@@ -1,4 +1,4 @@
-const { serverBuild, appBuild, publicPath } = require('../paths');
+const { serverBuild, clientBuild, publicPath } = require('../paths');
 
 module.exports = (mode, opEnv) => {
   switch (`${mode}_${opEnv}`) {
@@ -12,7 +12,7 @@ module.exports = (mode, opEnv) => {
 
     case 'production_client':
       return {
-        path: appBuild,
+        path: clientBuild,
         publicPath,
         filename: '[name].[chunkhash:8].bundle.js',
         chunkFilename: '[name].[chunkhash:8].chunk.js',
@@ -20,7 +20,7 @@ module.exports = (mode, opEnv) => {
 
     case 'development_client':
       return {
-        path: appBuild,
+        path: clientBuild,
         publicPath: `${host}/`,
         filename: '[name].bundle.js',
         chunkFilename: '[name].chunk.js',

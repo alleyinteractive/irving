@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const DotenvPlugin = require('dotenv-webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
-const { serverBuild, appBuild } = require('../paths');
+const { serverBuild, clientBuild } = require('../paths');
 
 module.exports = (mode, opEnv) => {
   switch (`${mode}_${opEnv}`) {
@@ -16,7 +16,7 @@ module.exports = (mode, opEnv) => {
 
     case 'production_client':
       return [
-        new CleanPlugin(appBuild, { allowExternal: true }),
+        new CleanPlugin(clientBuild, { allowExternal: true }),
         new DotenvPlugin(),
         new StatsWriterPlugin(),
       ];
