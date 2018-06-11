@@ -2,12 +2,13 @@ const nodeExternals = require('webpack-node-externals');
 const getConfig = require('./webpack');
 
 module.exports = (env, argv) => {
-  const server = getConfig(argv.mode, 'server');
-  const client = getConfig(argv.mode, 'client');
+  const { mode } = argv.mode;
+  const server = getConfig(mode, 'server');
+  const client = getConfig(mode, 'client');
   return [
     {
       name: 'client',
-      mode: 'production',
+      mode,
       entry: client.getEntry(),
       output: client.getOutput(),
       module: {
@@ -25,13 +26,14 @@ module.exports = (env, argv) => {
     },
     {
       name: 'server',
-      mode: 'production',
+      mode,
       devtool: 'sourcemap',
       target: 'node',
       // Quiet bundle size errors, as they are not applicable for code executed in NodeJS.
       performance: {
         hints: false,
       },
+      // Allow references to vendor css, so we can include them in our bundle.
       externals: [nodeExternals({
         whitelist: [/\.css$/],
       })],

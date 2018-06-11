@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const DotenvPlugin = require('dotenv-webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
