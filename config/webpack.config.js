@@ -3,17 +3,17 @@ const getConfig = require('./webpack');
 
 module.exports = (env, argv) => {
   const server = getConfig(argv.mode, 'server');
-  const browser = getConfig(argv.mode, 'browser');
+  const client = getConfig(argv.mode, 'client');
   return [
     {
       name: 'client',
       mode: 'production',
-      entry: browser.getEntry(),
-      output: browser.getOutput(),
+      entry: client.getEntry(),
+      output: client.getOutput(),
       module: {
-        rules: browser.getRules(),
+        rules: client.getRules(),
       },
-      plugins: browser.getPlugins(),
+      plugins: client.getPlugins(),
       optimization: {
         splitChunks: {
           name: 'common',
