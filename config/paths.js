@@ -2,9 +2,9 @@ const path = require('path');
 const os = require('os');
 
 module.exports = {
-  appRoot: path.join(__dirname, '../'),
+  clientRoot: path.join(__dirname, '../'),
   serverRoot: path.join(__dirname, '../../server'),
-  appBuild: path.join(__dirname, '../build/app'),
+  clientBuild: path.join(__dirname, '../build/client'),
   serverBuild: path.join(__dirname, '../build/server'),
   globalStyles: path.join(__dirname, '../styles'),
   config: __dirname,
