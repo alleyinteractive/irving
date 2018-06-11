@@ -31,7 +31,7 @@ module.exports = (mode, opEnv) => {
       loader: 'file-loader',
       options: {
         emitFile: ! isServer,
-        name: 'static/media/[name].[hash:8].[ext]'
+        name: 'static/media/[name].[hash:8].[ext]',
       },
     },
     {
@@ -48,7 +48,7 @@ module.exports = (mode, opEnv) => {
       options: {
         limit: 10000,
         emitFile: ! isServer,
-        name: 'static/media/[name].[hash:8].[ext]'
+        name: 'static/media/[name].[hash:8].[ext]',
       },
     },
     {

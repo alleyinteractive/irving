@@ -1,3 +1,4 @@
+const path = require('path');
 const { serverRoot, appRoot } = require('../paths');
 
 module.exports = (mode, opEnv) => {
@@ -10,8 +11,8 @@ module.exports = (mode, opEnv) => {
       return {
         main: [
           'babel-polyfill',
-          path.join(appRoot)
-        ]
+          path.join(appRoot),
+        ],
       };
 
     case 'development_client':
@@ -20,7 +21,7 @@ module.exports = (mode, opEnv) => {
           'babel-polyfill',
           'webpack-hot-middleware/client',
           path.join(appRoot),
-        ]
+        ],
       };
 
     default:
