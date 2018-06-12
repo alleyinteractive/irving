@@ -7,6 +7,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
+import createHistory from 'history/createBrowserHistory';
 import App from 'components/app';
 import CssProvider from 'components/hoc/CssProvider';
 import defaultState from 'config/defaultState';
@@ -28,6 +29,11 @@ const persistor = persistStore(store);
 const rootEl = document.getElementById('root');
 
 sagaMiddleware.run(rootSaga);
+
+const history = createHistory();
+history.listen((location, action) => {
+  console.log(action, location);
+});
 
 ReactDOM.hydrate(
   <Provider store={store}>

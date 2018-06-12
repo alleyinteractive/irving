@@ -21,7 +21,7 @@ module.exports = (mode, opEnv) => {
     case 'development_client':
       return {
         path: clientBuild,
-        publicPath: `${host}/`,
+        publicPath: `${process.env.ROOT_URL}/`,
         filename: '[name].bundle.js',
         chunkFilename: '[name].chunk.js',
       };

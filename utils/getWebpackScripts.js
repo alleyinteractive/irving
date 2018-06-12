@@ -2,12 +2,10 @@ const trimEnd = require('lodash/trimEnd');
 const fs = require('fs');
 const paths = require('../config/paths');
 let { PUBLIC_URL: publicUrl } = process.env;
-
 let runtimeSrc;
 
 /**
  * Get the emitted webpack assets as script elements to be rendered by the server.
- *
  * @param {object} clientStats
  * @returns {string[]}
  */
@@ -21,7 +19,7 @@ const getWebpackScripts = (clientStats) => {
     const [runtimePublicPath] = assets['runtime~main'];
     // Memoize file operation for optimal performance.
     if (! runtimeSrc) {
-      runtimeSrc = fs.readFileSync(`${paths.appBuild}/${runtimePublicPath}`);
+      runtimeSrc = fs.readFileSync(`${paths.clientBuild}/${runtimePublicPath}`);
     }
 
     // Webpack runtime source should be inlined for optimal performance.

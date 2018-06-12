@@ -9,6 +9,10 @@ const multiCompiler = webpack(config);
 const clientCompiler = multiCompiler.compilers.find(matchClient);
 const clientConfig = config.find(matchClient);
 
+/**
+ * Add the required middleware to support running the app in development mode.
+ * @param {object} app - express application
+ */
 const devMode = (app) => {
   app.use(webpackDevMiddleware(multiCompiler, {
     publicPath: clientConfig.output.publicPath,

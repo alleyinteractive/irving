@@ -2,13 +2,14 @@ const nodeExternals = require('webpack-node-externals');
 const getConfig = require('./webpack');
 
 module.exports = (env, argv) => {
-  const { mode } = argv.mode;
+  const { mode } = argv;
   const server = getConfig(mode, 'server');
   const client = getConfig(mode, 'client');
   return [
     {
       name: 'client',
       mode,
+      devtool: client.getDevTool(),
       entry: client.getEntry(),
       output: client.getOutput(),
       module: {
@@ -19,7 +20,6 @@ module.exports = (env, argv) => {
         splitChunks: {
           name: 'common',
           chunks: 'all',
-          minChunks: 2,
         },
         runtimeChunk: true,
       },
@@ -27,7 +27,7 @@ module.exports = (env, argv) => {
     {
       name: 'server',
       mode,
-      devtool: 'sourcemap',
+      devtool: server.getDevTool(),
       target: 'node',
       // Quiet bundle size errors, as they are not applicable for code executed in NodeJS.
       performance: {

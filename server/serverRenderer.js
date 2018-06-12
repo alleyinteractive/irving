@@ -1,3 +1,6 @@
+/* eslint-disable import/first */
+require('source-map-support').install();
+
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
@@ -10,7 +13,15 @@ import defaultState from 'config/defaultState';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import { createGetCss } from 'utils/css';
 
-function render(req, res, clientScripts) {
+/**
+ * Handle rendering the app as a string that can be returned as a response from
+ * the server.
+ * @param {object} req - express request object
+ * @param {object} res - express response object
+ * @param {string[]} clientScripts - an array of required client scripts to be
+ *                                   rendered
+ */
+const render = (req, res, clientScripts) => {
   const store = createStore(rootReducer, defaultState);
   // Container for all css that needs to be available for this page render.
   const critical = [];
@@ -33,12 +44,20 @@ function render(req, res, clientScripts) {
     preloadedState: store.getState(),
     scripts: clientScripts,
   });
-}
+};
 
-export default function serverRenderer({ clientStats }) {
-  return async (req, res, next) => {
+/**
+ * A webpack hot server compatible middleware.
+ * @param {object} options - the webpack bundle information for server and
+ *                           client configs
+ * @returns {function} - an express route middleware function responsible for
+ *                       rendering the html response
+ */
+export default function serverRenderer(options) {
+  const { clientStats } = options;
+  return function renderMiddleware(req, res, next) {
     try {
-      await render(req, res, getWebpackScripts(clientStats));
+      render(req, res, getWebpackScripts(clientStats));
     } catch (err) {
       next(err);
     }

@@ -1,4 +1,4 @@
-const { nodeModules, clientRoot, postCssConfig } = require('../paths');
+const { nodeModules, postCssConfig } = require('../paths');
 
 const exclude = [
   /node_modules/,
@@ -72,12 +72,13 @@ module.exports = (mode, opEnv) => {
     },
     {
       test: /\.css$/,
-      include: clientRoot,
+      exclude,
       use: [
         'isomorphic-style-loader',
         {
           loader: 'css-loader',
           options: {
+            url: false,
             importLoaders: 1,
             modules: true,
             localIdentName: '[name]__[local]--[hash:base64:5]',
