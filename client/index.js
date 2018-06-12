@@ -29,7 +29,7 @@ const rootEl = document.getElementById('root');
 
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <CssProvider insertCss={insertCss}>
