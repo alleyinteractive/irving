@@ -1,4 +1,11 @@
 /* eslint-disable global-require, no-console */
+
+// Support isomorphic environment variables from local .env file
+require('dotenv').config();
+
+// Shim window global and browser matchMedia API
+require('../utils/shimWindow');
+
 const path = require('path');
 const express = require('express');
 const { PORT = 3001, NODE_ENV } = process.env;
