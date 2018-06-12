@@ -33,6 +33,8 @@ module.exports = (env, argv) => {
       performance: {
         hints: false,
       },
+      // Don't polyfill NodeJS APIs, as we require a LTS NodeJS environment.
+      node: false,
       // Allow references to vendor css, so we can include them in our bundle.
       externals: [nodeExternals({
         whitelist: [/\.css$/],
