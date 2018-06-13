@@ -3,9 +3,9 @@ const { clientBuild, rootUrl } = require('../config/paths');
 let runtimeSrc;
 
 /**
- * Get the emitted webpack assets as script elements to be rendered by the server.
- * @param {object} clientStats
- * @returns {string[]}
+ * Get the emitted webpack assets as script tags to be rendered by the server.
+ * @param {object} clientStats - emitted webpack client bundle info
+ * @returns {string[]} - an array of script tags
  */
 const getWebpackScripts = (clientStats) => {
   const assets = clientStats.assetsByChunkName;

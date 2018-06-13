@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "build": "webpack --config config/webpack.config.js --mode production",
-    "dev": "NODE_ENV=development nodemon --ignore server/serverRender.js server",
+    "dev": "NODE_ENV=development nodemon server/index.js",
     "start": "NODE_ENV=prodcution node server/index.js",
     "postinstall": "npm run build",
     "test": "jest",
