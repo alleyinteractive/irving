@@ -4,10 +4,19 @@ const getOutput = require('./output');
 const getPlugins = require('./plugins');
 const getDevTool = require('./devTool');
 
-module.exports = (mode, opEnv) => ({
-  getEntry: () => getEntry(mode, opEnv),
-  getRules: () => getRules(mode, opEnv),
-  getOutput: () => getOutput(mode, opEnv),
-  getPlugins: () => getPlugins(mode, opEnv),
-  getDevTool: () => getDevTool(mode, opEnv),
-});
+/**
+ *
+ * @param {string} mode
+ * @param {string} opEnv
+ * @returns {object}
+ */
+module.exports = function getConfig(mode, opEnv) {
+  const context = `${mode}_${opEnv}`;
+  return {
+    getEntry: () => getEntry(context),
+    getRules: () => getRules(context),
+    getOutput: () => getOutput(context),
+    getPlugins: () => getPlugins(context),
+    getDevTool: () => getDevTool(context),
+  };
+};

@@ -1,12 +1,16 @@
-/* eslint-disable */
 const webpack = require('webpack');
 const DotenvPlugin = require('dotenv-webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const { serverBuild, clientBuild, rootUrl } = require('../paths');
 
-module.exports = (mode, opEnv) => {
-  switch (`${mode}_${opEnv}`) {
+/**
+ * Get the context specific plugins configuration.
+ * @param {string} context - the configuration context
+ * @returns {array} - a plugins configuration value
+ */
+module.exports = function getPlugins(context) {
+  switch (context) {
     case 'production_server':
       return [
         new CleanPlugin(serverBuild, { allowExternal: true }),
@@ -37,6 +41,6 @@ module.exports = (mode, opEnv) => {
       ];
 
     default:
-      throw new Error('Unknown configuration environment');
+      throw new Error(`Unknown configuration context ${context}`);
   }
 };

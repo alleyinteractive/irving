@@ -5,9 +5,14 @@ const exclude = [
   /\.min\.js$/,
 ];
 
-module.exports = (mode, opEnv) => {
-  const isProd = 'production' === mode;
-  const isServer = 'server' === opEnv;
+/**
+ * Get the context specific rules configuration.
+ * @param {string} context - the configuration context
+ * @returns {array} - a rules configuration value
+ */
+module.exports = function getRules(context) {
+  const isProd = 'production' === context.includes('production');
+  const isServer = 'server' === context.includes('server');
   return [
     {
       enforce: 'pre',
