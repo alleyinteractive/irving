@@ -6,7 +6,9 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import { createStore } from 'redux';
+import queryString from 'query-string';
 import rootReducer from 'reducers';
+import { actionLocationChange } from 'actions';
 import CssProvider from 'components/hoc/CssProvider';
 import App from 'components/app';
 import defaultState from 'config/defaultState';
@@ -23,6 +25,16 @@ import { createGetCss } from 'utils/css';
  */
 const render = (req, res, clientScripts) => {
   const store = createStore(rootReducer, defaultState);
+  const { getState, dispatch } = store;
+  const search = queryString.stringify(req.query, { arrayFormat: 'bracket' });
+
+  // Sync express route match with route state.
+  dispatch(actionLocationChange('PUSH', {
+    pathname: req.path,
+    search,
+    hash: '', // Only available in browser.
+  }));
+
   // Container for critical css related to this page render.
   const critical = [];
   // It is imperative that the server React component tree matches the client
@@ -38,7 +50,7 @@ const render = (req, res, clientScripts) => {
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
   // https://redux.js.org/recipes/server-rendering#security-considerations
-  const state = JSON.stringify(store.getState()).replace(/</g, '\\u003c');
+  const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
 
   res.render('app', {
     meta: helmet.meta.toString(),
@@ -46,7 +58,7 @@ const render = (req, res, clientScripts) => {
     criticalCss: critical.join(''),
     title: helmet.title.toString(),
     preRenderedHtml: html,
-    preloadedState: state,
+    preloadedState: stateEncoded,
     scripts: clientScripts,
   });
 };
