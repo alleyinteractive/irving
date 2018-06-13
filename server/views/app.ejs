@@ -26,8 +26,7 @@
 
 <%# pre-rendered serialized Redux state %>
 <script id="preload">
-  // https://redux.js.org/recipes/server-rendering#security-considerations
-  window.__PRELOADED_STATE__ = JSON.stringify(<%- preloadedState %>).replace(/</g, '\\u003c');
+  window.__PRELOADED_STATE__ = <%- preloadedState %>;
 </script>
 
 <%# main app bundle and initial chunks %>

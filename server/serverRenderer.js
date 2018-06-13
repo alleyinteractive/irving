@@ -34,6 +34,8 @@ const render = (req, res, clientScripts) => {
   );
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
+  // https://redux.js.org/recipes/server-rendering#security-considerations
+  const state = JSON.stringify(store.getState()).replace(/</g, '\\u003c');
 
   res.render('app', {
     meta: helmet.meta.toString(),
@@ -41,7 +43,7 @@ const render = (req, res, clientScripts) => {
     criticalCss: critical.join(''),
     title: helmet.title.toString(),
     preRenderedHtml: html,
-    preloadedState: store.getState(),
+    preloadedState: state,
     scripts: clientScripts,
   });
 };
