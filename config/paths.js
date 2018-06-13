@@ -4,7 +4,7 @@ const os = require('os');
 
 const appRoot = fs.realpathSync(process.cwd());
 /**
- * Ensure application path is consistent regardless of the processes's current
+ * Ensure application path is consistent regardless of the processes' current
  * working directory.
  * @param {string} relativePath
  * @returns {string} - absolute path

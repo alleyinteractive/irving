@@ -3,6 +3,7 @@ const getConfig = require('./webpack');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
+  const isProd = 'production' === mode;
   const server = getConfig(mode, 'server');
   const client = getConfig(mode, 'client');
   return [
@@ -21,7 +22,7 @@ module.exports = (env, argv) => {
           name: 'common',
           chunks: 'all',
         },
-        runtimeChunk: true,
+        runtimeChunk: isProd,
       },
     },
     {

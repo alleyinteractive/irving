@@ -7,7 +7,7 @@ const { default: serverRenderer } = require('../build/server/main.bundle');
  * Add the required middleware to support running the app in production mode.
  * @param {object} app - express application
  */
-const prodMode = (app) => {
+const productionMiddleware = (app) => {
   app.use(express.static(path.resolve('./build/client'), {
     maxage: 86400000,
   }));
@@ -16,4 +16,4 @@ const prodMode = (app) => {
   app.use(serverRenderer(options));
 };
 
-module.exports = prodMode;
+module.exports = productionMiddleware;

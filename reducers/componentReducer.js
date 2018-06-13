@@ -1,7 +1,7 @@
 import { components as defaultState } from 'config/defaultState';
 
 /**
- * Handle Redux actions operating on component state slice.
+ * Handle Redux actions operating on the components state slice.
  * @param {object[]} state - components state slice
  * @param {{type payload}} action - Redux action
  * @returns {object[]} - The updated components state
