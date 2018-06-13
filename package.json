@@ -1,7 +1,7 @@
 {
   "name": "irving",
   "version": "1.0.0",
-  "description": "Irving is a ReactJS based isomorphic rendered headless CMS frontend application.",
+  "description": "Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.",
   "main": "main.js",
   "scripts": {
     "build": "webpack --config config/webpack.config.js --mode production",
