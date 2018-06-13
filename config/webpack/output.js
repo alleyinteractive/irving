@@ -1,7 +1,12 @@
 const { serverBuild, clientBuild, rootUrl } = require('../paths');
 
-module.exports = (mode, opEnv) => {
-  switch (`${mode}_${opEnv}`) {
+/**
+ * Get the context specific output configuration.
+ * @param {string} context - the configuration context
+ * @returns {object} - a output configuration value
+ */
+module.exports = function getOutput(context) {
+  switch (context) {
     case 'production_server':
     case 'development_server':
       return {
@@ -27,6 +32,6 @@ module.exports = (mode, opEnv) => {
       };
 
     default:
-      throw new Error('Unknown configuration environment');
+      throw new Error(`Unknown configuration context ${context}`);
   }
 };

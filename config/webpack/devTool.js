@@ -1,15 +1,23 @@
-module.exports = (mode, opEnv) => {
-  // For code running in NodeJS, full source maps allows easier debugging,
-  // and we don't have to worry about exposing source code.
-  if ('server' === opEnv) {
-    return 'sourcemap';
-  }
+/**
+ * Get the context specific devtool configuration.
+ * @param {string} context
+ * @returns {bool|string} - a devtool configuration value
+ */
+module.exports = function getDevTool(context) {
+  switch (context) {
+    // For code running in NodeJS, full source maps allows easier debugging,
+    // and we don't have to worry about exposing source code.
+    case 'production_server':
+    case 'development_server':
+      return 'sourcemap';
 
-  // For code running in the browser, use source map plugin for more fine grain
-  // control in production, and a fast but helpful devtool for development.
-  if ('client' === opEnv) {
-    return 'production' === mode ? false : 'eval-source-map';
-  }
+    // a fast but helpful devtool for development.
+    case 'development_client':
+      return 'eval-source-map';
 
-  return false;
+    // use source map plugin for more fine grain control in production
+    case 'production_client':
+    default:
+      return false;
+  }
 };
