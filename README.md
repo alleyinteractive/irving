@@ -1,4 +1,6 @@
 # Irving
+Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.
+
 ## Commands
 * `npm run build` - Build the app for a production environment.
 * `npm run start` - Start the built app.
