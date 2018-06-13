@@ -8,21 +8,17 @@ module.exports = (mode, opEnv) => {
       return serverRoot;
 
     case 'production_client':
-      return {
-        main: [
-          'babel-polyfill',
-          path.join(clientRoot),
-        ],
-      };
+      return [
+        'babel-polyfill',
+        path.join(clientRoot),
+      ];
 
     case 'development_client':
-      return {
-        dev: [
-          'babel-polyfill',
-          'webpack-hot-middleware/client',
-          path.join(clientRoot),
-        ],
-      };
+      return [
+        'babel-polyfill',
+        'webpack-hot-middleware/client',
+        path.join(clientRoot),
+      ];
 
     default:
       throw new Error('Unknown configuration environment');

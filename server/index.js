@@ -14,11 +14,12 @@ app.set('views', 'server/views');
 app.set('view engine', 'ejs');
 
 if ('development' === NODE_ENV) {
-  require('./dev')(app);
+  require('./development')(app);
 } else {
-  require('./prod')(app);
+  require('./production')(app);
 }
 
+// Default error handler
 app.use((err, req, res, next) => {
   console.error(err);
 
@@ -33,6 +34,7 @@ app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}!`);
 });
 
+// Handle uncaught promise exceptions.
 process.on('unhandledRejection', (err) => {
   console.error(err);
 

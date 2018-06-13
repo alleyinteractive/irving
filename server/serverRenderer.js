@@ -14,8 +14,8 @@ import getWebpackScripts from 'utils/getWebpackScripts';
 import { createGetCss } from 'utils/css';
 
 /**
- * Handle rendering the app as a string that can be returned as a response from
- * the server.
+ * Handle rendering the app as a string that can then be returned as a response
+ * from the server.
  * @param {object} req - express request object
  * @param {object} res - express response object
  * @param {string[]} clientScripts - an array of required client scripts to be
@@ -23,7 +23,7 @@ import { createGetCss } from 'utils/css';
  */
 const render = (req, res, clientScripts) => {
   const store = createStore(rootReducer, defaultState);
-  // Container for all css that needs to be available for this page render.
+  // Container for critical css related to this page render.
   const critical = [];
   const html = renderToString(
     <Provider store={store}>
