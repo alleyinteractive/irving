@@ -1,11 +1,11 @@
 const nodeExternals = require('webpack-node-externals');
-const getConfig = require('./webpack');
+const getConfigService = require('./webpack');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
   const isProd = 'production' === mode;
-  const server = getConfig(mode, 'server');
-  const client = getConfig(mode, 'client');
+  const server = getConfigService(mode, 'server');
+  const client = getConfigService(mode, 'client');
   return [
     {
       name: 'client',

@@ -5,12 +5,12 @@ const getPlugins = require('./plugins');
 const getDevTool = require('./devTool');
 
 /**
- *
- * @param {string} mode
- * @param {string} opEnv
- * @returns {object}
+ * Get a configuration service based on the context parameters.
+ * @param {string} mode - production or development
+ * @param {string} opEnv - server or client
+ * @returns {object} - configuration service
  */
-module.exports = function getConfig(mode, opEnv) {
+module.exports = function getConfigService(mode, opEnv) {
   const context = `${mode}_${opEnv}`;
   return {
     getEntry: () => getEntry(context),

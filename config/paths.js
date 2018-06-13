@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const os = require('os');
 
 const appRoot = fs.realpathSync(process.cwd());
 /**
@@ -22,12 +21,4 @@ module.exports = {
   assetsRoot: resolveDir('assets'),
   nodeModules: resolveDir('node_modules'),
   postCssConfig: resolveDir('config/postcss.config.js'),
-  localCert: path.join(
-    os.homedir(),
-    'broadway/config/nginx-config/server.crt'
-  ),
-  localKey: path.join(
-    os.homedir(),
-    'broadway/config/nginx-config/server.key'
-  ),
 };
