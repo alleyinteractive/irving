@@ -1,5 +1,6 @@
 {
   "ignore": [
+    "actions/*",
     "client/*",
     "components/*",
     "reducers/*",

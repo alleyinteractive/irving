@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import reduceReducers from 'reduce-reducers';
 import componentReducer from './componentReducer';
+import routeReducer from './routeReducer';
 
 // Configure "slice" reducers.
 const rootSliceReducer = combineReducers({
   components: componentReducer,
+  route: routeReducer,
 });
 
 // "State" reducers are composed together. The order they are passed into

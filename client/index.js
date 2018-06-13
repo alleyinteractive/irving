@@ -7,6 +7,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
+import { actionLocationChange } from 'actions';
 import App from 'components/app';
 import CssProvider from 'components/hoc/CssProvider';
 import defaultState from 'config/defaultState';
@@ -31,7 +32,7 @@ sagaMiddleware.run(rootSaga);
 
 const history = createHistory();
 history.listen((location, action) => {
-  console.log(action, location);
+  store.dispatch(actionLocationChange(action, location));
 });
 
 const render = () => {
