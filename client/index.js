@@ -1,12 +1,9 @@
-/* eslint-disable */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore } from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react';
 import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
@@ -23,7 +20,7 @@ const state = window.__PRELOADED_STATE__ || defaultState; // eslint-disable-line
 const persistConfig = {
   key: 'root',
   storage: browserStorage,
-  whitelist: ['environments', 'selectedEnvironment'],
+  whitelist: [], // add state slices you do not want persisted here
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, state, enhancer);
@@ -37,13 +34,27 @@ history.listen((location, action) => {
   console.log(action, location);
 });
 
-ReactDOM.hydrate(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+const render = () => {
+  // It is imperative that the server React component tree matches the client
+  // component tree, so that the client can re-hydrate the app from the server
+  // rendered markup, otherwise the app will be completely re-rendered.
+  ReactDOM.hydrate(
+    <Provider store={store}>
       <CssProvider insertCss={insertCss}>
         <App />
       </CssProvider>
-    </PersistGate>
-  </Provider>,
-  rootEl
-);
+    </Provider>,
+    rootEl
+  );
+};
+
+// Wait for the Redux state to be re-hydrated before rendering the app.
+// We don't use the redux-persist/PersistGate component, because it doesn't play
+// nice with server side rendering.
+const unsubscribe = persistor.subscribe(() => {
+  const isReady = persistor.getState().bootstrapped;
+  if (isReady) {
+    render();
+    unsubscribe();
+  }
+});

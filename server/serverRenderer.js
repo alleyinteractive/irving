@@ -25,6 +25,9 @@ const render = (req, res, clientScripts) => {
   const store = createStore(rootReducer, defaultState);
   // Container for critical css related to this page render.
   const critical = [];
+  // It is imperative that the server React component tree matches the client
+  // component tree, so that the client can re-hydrate the app from the server
+  // rendered markup, otherwise the app will be completely re-rendered.
   const html = renderToString(
     <Provider store={store}>
       <CssProvider insertCss={createGetCss(critical)}>
