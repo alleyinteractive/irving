@@ -12,6 +12,7 @@ const appRoot = fs.realpathSync(process.cwd());
 const resolveDir = (relativePath) => path.resolve(appRoot, relativePath);
 
 module.exports = {
+  appRoot,
   clientRoot: resolveDir('client'),
   serverRoot: resolveDir('server/serverRenderer.js'),
   clientBuild: resolveDir('build/client'),

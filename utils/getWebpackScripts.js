@@ -1,7 +1,5 @@
-const trimEnd = require('lodash/trimEnd');
 const fs = require('fs');
-const paths = require('../config/paths');
-let { PUBLIC_URL: publicUrl } = process.env;
+const { clientBuild, rootUrl } = require('../config/paths');
 let runtimeSrc;
 
 /**
@@ -12,14 +10,13 @@ let runtimeSrc;
 const getWebpackScripts = (clientStats) => {
   const assets = clientStats.assetsByChunkName;
   const scripts = [];
-  publicUrl = trimEnd(publicUrl, '/');
 
   // Abstracted webpack runtime asset.
   if (assets['runtime~main']) {
     const [runtimePublicPath] = assets['runtime~main'];
     // Memoize file operation for optimal performance.
     if (! runtimeSrc) {
-      runtimeSrc = fs.readFileSync(`${paths.clientBuild}/${runtimePublicPath}`);
+      runtimeSrc = fs.readFileSync(`${clientBuild}/${runtimePublicPath}`);
     }
 
     // Webpack runtime source should be inlined for optimal performance.
@@ -27,14 +24,14 @@ const getWebpackScripts = (clientStats) => {
   }
 
   // Vendor assets
-  if (assets['vendors~main']) {
-    const [vendorPublicPath] = assets['vendors~main'];
-    scripts.push(`<script src="${publicUrl}/${vendorPublicPath}"></script>`);
+  if (assets.common) {
+    const [vendorPublicPath] = assets.common;
+    scripts.push(`<script src="${rootUrl}/${vendorPublicPath}"></script>`);
   }
 
   // Main asset
   const [mainPublicPath] = assets.main;
-  scripts.push(`<script src="${publicUrl}/${mainPublicPath}"></script>`);
+  scripts.push(`<script src="${rootUrl}/${mainPublicPath}"></script>`);
 
   return scripts;
 };
