@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%- meta %>
+    <%- link %>
+
+    <%# pre-rendered CSS required to avoid FOUC before client JS takes control. %>
+    <style id="critical-css"><%= criticalCss %></style>
+
+    <%- title %>
+
+    <%# third party scripts that need immediate execution %>
+    <%- include('headScripts'); %>
+
+</head>
+<body>
+<noscript>
+    You need to enable JavaScript to view this site.
+</noscript>
+<div id="root"><%- preRenderedHtml %></div>
+
+<%# third party scripts that can have delayed execution %>
+<%- include('bodyScripts'); %>
+
+<%# pre-rendered serialized Redux state %>
+<script id="preload">
+  window.__PRELOADED_STATE__ = <%- preloadedState %>;
+</script>
+
+<%# main app bundle and initial chunks %>
+<% scripts.forEach((script) => { %>
+<%- script %>
+<% }); %>
+</body>
+</html>

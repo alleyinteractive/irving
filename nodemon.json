@@ -1,0 +1,10 @@
+{
+  "ignore": [
+    "actions/*",
+    "client/*",
+    "components/*",
+    "reducers/*",
+    "server/serverRenderer.js",
+    "utils/*"
+  ]
+}
