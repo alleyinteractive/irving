@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config config/webpack.config.js --mode production",
     "dev": "NODE_ENV=development nodemon server/index.js",
-    "start": "NODE_ENV=prodcution node server/index.js",
+    "start": "NODE_ENV=production node server/index.js",
     "postinstall": "npm run build",
     "test": "jest",
     "test:watch": "jest --watch"
