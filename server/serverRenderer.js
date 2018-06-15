@@ -1,17 +1,21 @@
 /* eslint-disable import/first */
+import createSagaMiddleware from 'redux-saga/index';
+
 require('source-map-support').install();
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import queryString from 'query-string';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import CssProvider from 'components/hoc/CssProvider';
 import App from 'components/app';
 import defaultState from 'config/defaultState';
+import locationSaga from 'sagas/locationSaga';
+import { getPage } from 'services/api';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import { createGetCss } from 'utils/css';
 
@@ -23,8 +27,14 @@ import { createGetCss } from 'utils/css';
  * @param {string[]} clientScripts - an array of required client scripts to be
  *                                   rendered
  */
-const render = (req, res, clientScripts) => {
-  const store = createStore(rootReducer, defaultState);
+const render = async (req, res, clientScripts) => {
+  const sagaMiddleware = createSagaMiddleware();
+  const store = createStore(
+    rootReducer,
+    defaultState,
+    applyMiddleware(sagaMiddleware)
+  );
+
   const { getState, dispatch } = store;
   const search = queryString.stringify(req.query, { arrayFormat: 'bracket' });
 
@@ -34,6 +44,13 @@ const render = (req, res, clientScripts) => {
     search,
     hash: '', // Only available in browser.
   }));
+
+  await sagaMiddleware.run(locationSaga).done;
+
+
+  // how do we know what context to do?
+  await getPage(req.path,)
+
 
   // Container for critical css related to this page render.
   const critical = [];

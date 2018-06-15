@@ -1,4 +1,7 @@
-import { LOCATION_CHANGE } from './actionTypes';
+import {
+  LOCATION_CHANGE, RECEIVE_API_ERROR,
+  RECEIVE_COMPONENTS,
+} from './actionTypes';
 
 /**
  * Create a Flux Standard Action
@@ -18,4 +21,21 @@ export default function createAction(type, data = null) {
  */
 export function actionLocationChange(action, location) {
   return createAction(LOCATION_CHANGE, { action, ...location });
+}
+
+/**
+ * Create a Redux action
+ * @param {object[]} components
+ * @returns {{type, payload}} - Redux action
+ */
+export function actionReceiveComponents(components) {
+  return createAction(RECEIVE_COMPONENTS, components);
+}
+
+/**
+ * Create a Redux action the represents the app receiving an unrecoverable API error.
+ * @returns {{type, payload}} - Redux action
+ */
+export function actionReceiveApiError() {
+  return createAction(RECEIVE_API_ERROR);
 }

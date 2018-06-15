@@ -14,3 +14,7 @@ const rootSliceReducer = combineReducers({
 const rootReducer = reduceReducers(rootSliceReducer);
 
 export default rootReducer;
+
+// how do we structure the reducers
+// how do we map the data to components
+// sagas
