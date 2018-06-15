@@ -26,10 +26,11 @@ export function actionLocationChange(action, location) {
 /**
  * Create a Redux action
  * @param {object[]} components
+ * @param {boolean} notFound
  * @returns {{type, payload}} - Redux action
  */
-export function actionReceiveComponents(components) {
-  return createAction(RECEIVE_COMPONENTS, components);
+export function actionReceiveComponents(components, notFound) {
+  return createAction(RECEIVE_COMPONENTS, { components, notFound });
 }
 
 /**

@@ -5,6 +5,7 @@
     "components/*",
     "reducers/*",
     "server/serverRenderer.js",
+    "selectors/*",
     "utils/*"
   ]
 }

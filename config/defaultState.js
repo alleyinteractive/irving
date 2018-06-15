@@ -1,5 +1,6 @@
 export const components = [];
 export const route = {
+  notFound: false,
   action: '',
   location: {},
   siteComponents: [],

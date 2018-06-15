@@ -3,33 +3,19 @@ import {
   actionReceiveComponents,
   actionReceiveApiError,
 } from 'actions';
-import fetchComponents from 'services/fetchPage';
-import getPageParams from 'selectors/getPagParams';
+import getComponentArgs from 'selectors/getComponentArgs';
+import fetchComponents from 'services/fetchComponents';
 
 /**
  * Emit location change side effects.
  */
 export default function* watchLocationChange() {
-  const { path, context } = yield select(getPageParams);
-
+  const { path, context } = yield select(getComponentArgs);
   try {
-    const components = yield call(fetchComponents, path, context);
+    const { components, notFound } = yield call(fetchComponents, path, context);
+    yield put(actionReceiveComponents(components, notFound));
   } catch (err) {
     console.error(err); // eslint-disable-line no-console
     yield put(actionReceiveApiError());
   }
-
-
-  // how did we get the status?
-
-
-  const location = yield select((state) => state.location);
-  const hasSiteComponents = yield select((state) => !!state.siteComponents.length);
-  yield call(fetchPage, location.path)
-  // get url
-  // do request
-  // if null we have a 404
-  // if error update
-
-  yield put()
 }
