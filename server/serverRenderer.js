@@ -15,7 +15,8 @@ import CssProvider from 'components/hoc/CssProvider';
 import App from 'components/app';
 import defaultState from 'config/defaultState';
 import locationSaga from 'sagas/locationSaga';
-import { getPage } from 'services/api';
+import getStatus from 'selectors/getStatus';
+
 import getWebpackScripts from 'utils/getWebpackScripts';
 import { createGetCss } from 'utils/css';
 
@@ -45,12 +46,8 @@ const render = async (req, res, clientScripts) => {
     hash: '', // Only available in browser.
   }));
 
+  // Process location handling.
   await sagaMiddleware.run(locationSaga).done;
-
-
-  // how do we know what context to do?
-  await getPage(req.path,)
-
 
   // Container for critical css related to this page render.
   const critical = [];
@@ -69,6 +66,7 @@ const render = async (req, res, clientScripts) => {
   // https://redux.js.org/recipes/server-rendering#security-considerations
   const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
 
+  res.status(getStatus(getState()));
   res.render('app', {
     meta: helmet.meta.toString(),
     link: helmet.link.toString(),
