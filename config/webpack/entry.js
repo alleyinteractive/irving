@@ -15,12 +15,14 @@ module.exports = function getEntry(context) {
     case 'production_client':
       return [
         'babel-polyfill',
+        'isomorphic-fetch',
         path.join(clientRoot),
       ];
 
     case 'development_client':
       return [
         'babel-polyfill',
+        'isomorphic-fetch',
         'webpack-hot-middleware/client',
         path.join(clientRoot),
       ];

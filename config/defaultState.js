@@ -2,6 +2,8 @@ export const components = [];
 export const route = {
   action: '',
   location: {},
+  siteComponents: [],
+  pages: {},
 };
 
 const defaultState = {
