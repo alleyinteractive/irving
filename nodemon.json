@@ -4,8 +4,10 @@
     "client/*",
     "components/*",
     "reducers/*",
-    "server/serverRenderer.js",
     "selectors/*",
+    "sagas/*",
+    "server/serverRenderer.js",
+    "services/*",
     "utils/*"
   ]
 }
