@@ -7,7 +7,7 @@ import { CONTEXT_PAGE, CONTEXT_SITE } from 'config/constants';
  */
 export default function getComponentArgs(state) {
   return {
-    path: state.location.path,
+    path: state.route.location.path,
     context: state.siteComponents.length ? CONTEXT_PAGE : CONTEXT_SITE,
   };
 }

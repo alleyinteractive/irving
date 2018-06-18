@@ -1,10 +1,11 @@
-export const components = [];
+export const components = {
+  global: {},
+};
+
 export const route = {
   notFound: false,
   action: '',
   location: {},
-  siteComponents: [],
-  pages: {},
 };
 
 const defaultState = {
