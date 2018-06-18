@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import favicon from 'assets/images/favicon.ico';
-import getSiteComponents from 'selectors/getSiteComponents';
+import getRootComponents from 'selectors/getSiteComponents';
 
 import styles from './app.css';
 
@@ -29,7 +29,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  components: getSiteComponents(state),
+  components: getRootComponents(state),
 });
 
 const hotReload = hot(module);
