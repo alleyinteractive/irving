@@ -20,6 +20,7 @@ export default function componentReducer(state, action) { // eslint-disable-line
   const siteComponents = CONTEXT_SITE === context ?
     reject('page', components) :
     state.components.site;
+
   return flow(
     set('route.notFound', notFound),
     set(`components.${path}`, components.page.children),
