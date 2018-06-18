@@ -13,7 +13,7 @@ import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import CssProvider from 'components/hoc/CssProvider';
 import App from 'components/app';
-import defaultState from 'config/defaultState';
+import defaultState from 'reducers/defaultState';
 import locationSaga from 'sagas/locationSaga';
 import getStatus from 'selectors/getStatus';
 

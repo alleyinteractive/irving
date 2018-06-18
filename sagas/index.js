@@ -1,5 +1,5 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { LOCATION_CHANGE } from 'actions/actionTypes';
+import { LOCATION_CHANGE } from 'actions/types';
 import watchLocationChange from './locationSaga';
 
 /**
