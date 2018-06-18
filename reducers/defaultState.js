@@ -1,5 +1,6 @@
 export const components = {
-  site: {},
+  defaults: [],
+  page: {},
 };
 
 export const route = {

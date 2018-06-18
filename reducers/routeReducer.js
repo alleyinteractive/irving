@@ -1,4 +1,4 @@
-import { LOCATION_CHANGE, RECEIVE_COMPONENTS } from 'actions/types';
+import { LOCATION_CHANGE } from 'actions/types';
 import { route as defaultState } from 'reducers/defaultState';
 
 /**
@@ -14,12 +14,6 @@ export default function componentReducer(routeState = defaultState, action) {
       return {
         ...routeState,
         ...payload,
-      };
-
-    case RECEIVE_COMPONENTS:
-      return {
-        ...routeState,
-        notFound: payload.notFound,
       };
 
     default:
