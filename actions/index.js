@@ -25,13 +25,15 @@ export function actionLocationChange(action, location) {
 }
 
 /**
- * Create a Redux action
- * @param {object[]} components
- * @param {boolean} notFound
+ * Create a Redux action that represents the app receiving components.
+ * @param {object}   data
+ * @param {object[]} data.defaults - default components
+ * @param {object[]} data.page - page specific components
+ * @param {boolean}  data.notFound - response was a 404
  * @returns {{type, payload}} - Redux action
  */
-export function actionReceiveComponents(components, notFound) {
-  return createAction(RECEIVE_COMPONENTS, { components, notFound });
+export function actionReceiveComponents(data) {
+  return createAction(RECEIVE_COMPONENTS, data);
 }
 
 /**

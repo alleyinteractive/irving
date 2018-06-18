@@ -1,6 +1,5 @@
-import { flow, get, reject, set } from 'lodash/fp';
+import { flow, set } from 'lodash/fp';
 import { RECEIVE_COMPONENTS } from 'actions/types';
-import { CONTEXT_SITE } from 'config/constants';
 import getRouteComponentOptions from 'selectors/getRouteComponentOptions';
 
 /**
@@ -15,15 +14,12 @@ export default function componentReducer(state, action) { // eslint-disable-line
     return state;
   }
 
-  const { path, context } = getRouteComponentOptions(state);
-  const { notFound, components } = payload;
-  const siteComponents = CONTEXT_SITE === context ?
-    reject('page', components) :
-    state.components.site;
-
+  const currentDefaults = state.components.default;
+  const { path } = getRouteComponentOptions(state);
+  const { notFound, defaults, page } = payload;
   return flow(
     set('route.notFound', notFound),
-    set(`components.${path}`, get('page.children', components) || []),
-    set('components.site', siteComponents)
+    set('components.site', defaults.length ? defaults : currentDefaults),
+    set(`components.page.${path}`, page),
   )(state);
 }

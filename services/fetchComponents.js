@@ -18,5 +18,5 @@ export default async function fetchComponents(path, context = CONTEXT_PAGE) {
     throw new Error(`API error: ${data.message}`);
   }
 
-  return { components: data, notFound: 404 === response.status };
+  return { components: [], notFound: 404 === response.status };
 }

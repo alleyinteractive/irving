@@ -39,6 +39,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-persist": "^5.9.1",
     "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1",
     "sanitize-html": "^1.14.1"
   },
   "devDependencies": {

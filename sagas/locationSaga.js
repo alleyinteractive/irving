@@ -12,8 +12,8 @@ import fetchComponents from 'services/fetchComponents';
 export default function* watchLocationChange() {
   const { path, context } = yield select(getRouteComponentOptions);
   try {
-    const { components, notFound } = yield call(fetchComponents, path, context);
-    yield put(actionReceiveComponents(components, notFound));
+    const result = yield call(fetchComponents, path, context);
+    yield put(actionReceiveComponents(result));
   } catch (err) {
     console.error(err); // eslint-disable-line no-console
     yield put(actionReceiveApiError());
