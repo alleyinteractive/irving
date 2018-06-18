@@ -14,7 +14,7 @@ export default async function fetchComponents(path, context = CONTEXT_PAGE) {
   const response = await fetch(url);
   const data = await response.json();
 
-  if (500 >= response.status) {
+  if (500 <= response.status) {
     throw new Error(`API error: ${data.message}`);
   }
 
