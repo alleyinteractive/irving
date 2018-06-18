@@ -3,14 +3,14 @@ import {
   actionReceiveComponents,
   actionReceiveApiError,
 } from 'actions';
-import getComponentArgs from 'selectors/getComponentArgs';
+import getRouteComponentOptions from 'selectors/getRouteComponentOptions';
 import fetchComponents from 'services/fetchComponents';
 
 /**
  * Emit location change side effects.
  */
 export default function* watchLocationChange() {
-  const { path, context } = yield select(getComponentArgs);
+  const { path, context } = yield select(getRouteComponentOptions);
   try {
     const { components, notFound } = yield call(fetchComponents, path, context);
     yield put(actionReceiveComponents(components, notFound));
