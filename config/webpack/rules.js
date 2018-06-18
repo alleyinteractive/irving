@@ -32,6 +32,7 @@ module.exports = function getRules(context) {
         /\.png$/,
         /\.svg$/,
         /\.otf$/,
+        /\.ico$/,
       ],
       loader: 'file-loader',
       options: {

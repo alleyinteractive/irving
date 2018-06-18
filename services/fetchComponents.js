@@ -11,6 +11,7 @@ import { CONTEXT_PAGE } from 'config/constants';
 export default async function fetchComponents(path, context = CONTEXT_PAGE) {
   const query = queryString.stringify({ path, context });
   const url = `${process.env.API_ROOT_URL}/components?${query}`;
+  console.log(url);
   const response = await fetch(url);
   const data = await response.json();
 
