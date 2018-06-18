@@ -1,5 +1,5 @@
 export const components = {
-  global: {},
+  site: {},
 };
 
 export const route = {

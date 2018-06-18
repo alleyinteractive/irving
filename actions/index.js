@@ -2,7 +2,7 @@ import {
   LOCATION_CHANGE,
   RECEIVE_API_ERROR,
   RECEIVE_COMPONENTS,
-} from './actionTypes';
+} from './types';
 
 /**
  * Create a Flux Standard Action
