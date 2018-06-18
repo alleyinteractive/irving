@@ -1,5 +1,6 @@
 {
   "plugins": [
+    "lodash",
     "react-hot-loader/babel",
     "transform-object-rest-spread",
     "transform-class-properties",
@@ -23,7 +24,6 @@
   ],
   "presets": [
     "env",
-    "react",
-    ["latest-node", { "target": 8 }]
+    "react"
   ]
 }
