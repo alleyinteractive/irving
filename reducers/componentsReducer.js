@@ -1,3 +1,4 @@
+import { flow, reject, set } from 'lodash/fp';
 import { RECEIVE_COMPONENTS } from 'actions/types';
 import { CONTEXT_SITE } from 'config/constants';
 import getRouteComponentOptions from 'selectors/getRouteComponentOptions';
@@ -15,24 +16,13 @@ export default function componentReducer(state, action) { // eslint-disable-line
   }
 
   const { path, context } = getRouteComponentOptions(state);
-  // merge site and page specific components
-  if (CONTEXT_SITE === context) {
-    return {
-      ...state,
-      components: {
-        ...state.components,
-        site: payload.filter((component) => 'page' !== component.name),
-        [path]: payload.page.children,
-      },
-    };
-  }
-
-  // merge only page specific components
-  return {
-    ...state,
-    components: {
-      ...state.components,
-      [path]: payload.page.children,
-    },
-  };
+  const { notFound, components } = payload;
+  const siteComponents = CONTEXT_SITE === context ?
+    reject('page', components) :
+    state.components.site;
+  return flow(
+    set('route.notFound', notFound),
+    set(`components.${path}`, components.page.children),
+    set('components.site', siteComponents)
+  )(state);
 }

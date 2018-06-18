@@ -5,9 +5,9 @@ import { CONTEXT_PAGE, CONTEXT_SITE } from 'config/constants';
  * @param {object} state - Redux state
  * @returns {{path: string, context: string}}
  */
-export default function getComponentArgs(state) {
+export default function getRouteComponentOptions(state) {
   return {
-    path: state.route.location.path,
+    path: state.route.pathname,
     context: state.components.site.length ? CONTEXT_PAGE : CONTEXT_SITE,
   };
 }

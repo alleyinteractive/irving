@@ -1,6 +1,4 @@
 /* eslint-disable import/first */
-import createSagaMiddleware from 'redux-saga/index';
-
 require('source-map-support').install();
 
 import React from 'react';
@@ -8,6 +6,7 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
