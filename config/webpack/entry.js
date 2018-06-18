@@ -29,7 +29,7 @@ module.exports = function getEntry(context) {
     case 'development_client':
       return [
         ...polyfills,
-        'webpack-hot-middleware/client',
+        'webpack-hot-middleware/client?reload=true',
         path.join(clientRoot),
       ];
 

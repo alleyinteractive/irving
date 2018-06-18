@@ -16,7 +16,7 @@ module.exports = {
   serverRoot: resolveDir('server/serverRenderer.js'),
   clientBuild: resolveDir('build/client'),
   serverBuild: resolveDir('build/server'),
-  globalStyles: resolveDir('styles'),
+  globalStyles: resolveDir('assets/styles'),
   rootUrl: process.env.ROOT_URL || 'http://localhost:3001',
   assetsRoot: resolveDir('assets'),
   nodeModules: resolveDir('node_modules'),
