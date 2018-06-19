@@ -6,7 +6,7 @@ import { CONTEXT_PAGE } from 'config/constants';
  * @param {string} path - path of the request page
  * @param {string} context - "page" (page specific components) or
  *                           "site" (all components)
- * @returns {Promise<{components: object[], notFound: boolean}>}
+ * @returns {Promise<{object}>}
  */
 export default async function fetchComponents(path, context = CONTEXT_PAGE) {
   const query = queryString.stringify({ path, context });
@@ -14,9 +14,17 @@ export default async function fetchComponents(path, context = CONTEXT_PAGE) {
   const response = await fetch(url);
   const data = await response.json();
 
-  if (500 <= response.status) {
+  if (404 === response.status) {
+    return {
+      defaults: [],
+      page: [],
+      notFound: 404 === response.status,
+    };
+  }
+
+  if (! response.ok) {
     throw new Error(`API error: ${data.message}`);
   }
 
-  return { components: [], notFound: 404 === response.status };
+  return data;
 }

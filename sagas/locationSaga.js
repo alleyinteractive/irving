@@ -3,14 +3,18 @@ import {
   actionReceiveComponents,
   actionReceiveApiError,
 } from 'actions';
-import getRouteComponentOptions from 'selectors/getRouteComponentOptions';
+import { CONTEXT_PAGE, CONTEXT_SITE } from 'config/constants';
 import fetchComponents from 'services/fetchComponents';
 
 /**
  * Emit location change side effects.
  */
 export default function* watchLocationChange() {
-  const { path, context } = yield select(getRouteComponentOptions);
+  const { path, context } = yield select((state) => ({
+    path: state.route.pathname,
+    context: state.components.defaults.length ? CONTEXT_PAGE : CONTEXT_SITE,
+  }));
+
   try {
     const result = yield call(fetchComponents, path, context);
     yield put(actionReceiveComponents(result));

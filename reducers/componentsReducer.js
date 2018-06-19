@@ -1,6 +1,5 @@
-import { flow, set } from 'lodash/fp';
+import { flow, get, set } from 'lodash/fp';
 import { RECEIVE_COMPONENTS } from 'actions/types';
-import getRouteComponentOptions from 'selectors/getRouteComponentOptions';
 
 /**
  * Handle component related Redux actions.
@@ -15,11 +14,11 @@ export default function componentReducer(state, action) { // eslint-disable-line
   }
 
   const currentDefaults = state.components.defaults;
-  const { path } = getRouteComponentOptions(state);
+  const key = get('route.pathname', state);
   const { notFound, defaults, page } = payload;
   return flow(
     set('route.notFound', notFound),
-    set('components.site', defaults.length ? defaults : currentDefaults),
-    set(`components.page.${path}`, page),
+    set('components.defaults', defaults.length ? defaults : currentDefaults),
+    set(`components.page.${key}`, page),
   )(state);
 }
