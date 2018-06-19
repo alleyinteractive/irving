@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import favicon from 'assets/images/favicon.ico';
-import getRootComponents from 'selectors/getSiteComponents';
+import { getRootReactComponents } from 'selectors/components';
 
 import styles from './app.css';
 
@@ -15,9 +15,8 @@ const App = (props) => (
       <link rel="shortcut icon" href={favicon} />
     </Helmet>
     {props.components.map((component) => (
-      <component.Component key={component.key} />
+      <component.Component key={component.key} name={component.key} />
     ))}
-    <h1>Hello World!</h1>
   </React.Fragment>
 );
 
@@ -29,7 +28,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  components: getRootComponents(state),
+  components: getRootReactComponents(state),
 });
 
 const hotReload = hot(module);
