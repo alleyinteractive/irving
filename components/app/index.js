@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import favicon from 'assets/images/favicon.ico';
-import { getRootReactComponents } from 'selectors/components';
+import getElements from 'selectors/getElements';
 
 import styles from './app.css';
 
@@ -14,21 +14,16 @@ const App = (props) => (
     <Helmet>
       <link rel="shortcut icon" href={favicon} />
     </Helmet>
-    {props.components.map((component) => (
-      <component.Component key={component.key} name={component.key} />
-    ))}
+    {props.elements}
   </React.Fragment>
 );
 
 App.propTypes = {
-  components: PropTypes.arrayOf(PropTypes.shape({
-    key: PropTypes.string.isRequired,
-    Component: PropTypes.element.isRequired,
-  })).isRequired,
+  elements: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  components: getRootReactComponents(state),
+  elements: getElements(state),
 });
 
 const hotReload = hot(module);
