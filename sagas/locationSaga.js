@@ -12,6 +12,7 @@ import fetchComponents from 'services/fetchComponents';
 export default function* watchLocationChange() {
   const { path, context } = yield select((state) => ({
     path: state.route.pathname,
+    // Request the default site components if the Redux state doesn't have any yet.
     context: state.components.defaults.length ? CONTEXT_PAGE : CONTEXT_SITE,
   }));
 

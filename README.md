@@ -22,5 +22,5 @@ site.
 * `PORT` - http port the server will serve from
 * `HOSTNAME` - FQDN of the server host
 * `NODE_TLS_REJECT_UNAUTHORIZED` - Only disable this when attempting to execute
-http requests to development APIs with self signed certificates. Never enable
+http requests to development APIs with self signed certificates. Never disable
 this in production.

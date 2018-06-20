@@ -18,7 +18,7 @@ export default async function fetchComponents(path, context = CONTEXT_PAGE) {
     return {
       defaults: [],
       page: [],
-      notFound: 404 === response.status,
+      notFound: true,
     };
   }
 
