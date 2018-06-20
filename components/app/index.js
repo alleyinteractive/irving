@@ -15,9 +15,11 @@ const App = (props) => (
     <Helmet>
       <link rel="shortcut icon" href={favicon} />
     </Helmet>
-    {props.roots.map((name) => (
-      <ConnectedRoot key={name} name={name} />
-    ))}
+    <div className={styles.wrapper}>
+      {props.roots.map((name) => (
+        <ConnectedRoot key={name} name={name} />
+      ))}
+    </div>
   </React.Fragment>
 );
 

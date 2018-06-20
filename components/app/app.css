@@ -1,1 +1,7 @@
 @import 'reset.css';
+
+@lost flexbox flex;
+
+.wrapper {
+  lost-center: 980px;
+}
