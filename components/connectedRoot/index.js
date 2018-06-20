@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import createGetRootComponent from 'selectors/createGetRootComponent';
 import toReactElement from 'utils/toReactElement';
 
-const Index = (props) =>
+const ConnectedRoot = (props) =>
   toReactElement(props.component);
 
-Index.propTypes = {
+ConnectedRoot.propTypes = {
   component: PropTypes.shape({
     config: PropTypes.object.isRequired,
     children: PropTypes.arrayOf(PropTypes.element).isRequired,
@@ -23,4 +23,4 @@ const createMapStateToProps = () => {
 };
 
 const withRedux = connect(createMapStateToProps);
-export default withRedux(Index);
+export default withRedux(ConnectedRoot);
