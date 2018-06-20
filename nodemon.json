@@ -2,6 +2,7 @@
   "ignore": [
     "actions/*",
     "client/*",
+    "config/*",
     "components/*",
     "reducers/*",
     "selectors/*",

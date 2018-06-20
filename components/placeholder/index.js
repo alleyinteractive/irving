@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// centered box, with name as header, config as pre text, and children rendered
-// how do we determine what components are connected? are they all connected?
-// how do we render children?
 const Placeholder = (props) => (
   <div>
-    <h1></h1>
+    <h1>{props.name}</h1>
+    <pre>{JSON.stringify(props, null, 2)}</pre>
+    {props.children}
   </div>
 );
 
 Placeholder.propTypes = {
   name: PropTypes.string.isRequired,
-  config: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
 };
+
+export default Placeholder;
