@@ -4,5 +4,6 @@
  */
 module.exports = {
   serif: "Arial, Helvetica, Georgia, sans-serif",
+  monospace: "monospace",
 };
 /* eslint-enable */

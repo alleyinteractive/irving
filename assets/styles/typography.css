@@ -1,0 +1,4 @@
+:local(.primaryheading) {
+  font-size: rem(30);
+  text-transform: uppercase;
+}
