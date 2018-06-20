@@ -1,10 +1,11 @@
+import { omit } from 'lodash/fp';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const Placeholder = (props) => (
   <div>
     <h1>{props.name}</h1>
-    <pre>{JSON.stringify(props, null, 2)}</pre>
+    <pre>{JSON.stringify(omit(['name', 'children'], props), null, 2)}</pre>
     {props.children}
   </div>
 );
