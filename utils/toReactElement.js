@@ -1,9 +1,8 @@
 import React from 'react';
 import getReactComponent from 'config/componentMap';
 
-// need to solve unique key problem
 /**
- *
+ * Recursively map a tree of API component's to React elements.
  * @param {object} component - api component object
  * @param {string} keyPrefix
  * @return {object} - React Element

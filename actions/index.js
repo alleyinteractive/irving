@@ -6,12 +6,12 @@ import {
 
 /**
  * Create a Flux Standard Action
- * @param  {string} type action type
- * @param  {object} data data to pass into state
- * @return {object} to be consumed by the reducer
+ * @param  {string} type - identifies the nature of the action
+ * @param  {*} payload - the information of the action
+ * @returns {{type, payload}} - Redux action
  */
-export default function createAction(type, data = null) {
-  return { type, payload: data };
+function createAction(type, payload = null) {
+  return { type, payload };
 }
 
 /**
@@ -25,7 +25,7 @@ export function actionLocationChange(action, location) {
 }
 
 /**
- * Create a Redux action that represents the app receiving components.
+ * Create a Redux action that represents the app receiving API components.
  * @param {object}   data
  * @param {object[]} data.defaults - default components
  * @param {object[]} data.page - page specific components

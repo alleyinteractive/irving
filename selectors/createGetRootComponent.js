@@ -2,9 +2,10 @@ import { get } from 'lodash/fp';
 import { createSelector } from 'reselect';
 
 /**
- *
- * @param name
- * @returns {*}
+ * Create a selector that will return the root api component by the component's
+ * name. If a page specific override exists, that will be returned instead of
+ * the default.
+ * @returns {function} - Redux selector
  */
 const createGetRootComponent = () => createSelector(
   [
