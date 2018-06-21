@@ -9,6 +9,22 @@
   }
 }
 
-.heading {
-  composes: primaryheading from '../../assets/styles/typography.css';
+.heading2 {
+  composes: heading2 from '../../assets/styles/typography.css';
+}
+
+.heading3 {
+  composes: heading3 from '../../assets/styles/typography.css';
+}
+
+.heading4 {
+  composes: heading4 from '../../assets/styles/typography.css';
+}
+
+.heading5 {
+  composes: heading5 from '../../assets/styles/typography.css';
+}
+
+.children {
+  margin-left: 32px;
 }
