@@ -2,6 +2,7 @@ import { omit } from 'lodash/fp';
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import Link from 'components/link';
 
 import styles from './placeholder.css';
 
@@ -14,7 +15,7 @@ const Placeholder = (props) => {
   );
   return (
     <div className={styles.wrapper}>
-      {!! props.url && <a href={props.url}>{headingElement}</a>}
+      {!! props.url && <Link to={props.url}>{headingElement}</Link>}
       {! props.url && headingElement}
       <pre>{JSON.stringify(omit(['name', 'children'], props), null, 2)}</pre>
       <div className={styles.children}>
