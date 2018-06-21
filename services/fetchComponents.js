@@ -13,7 +13,7 @@ export default async function fetchComponents(path, context = CONTEXT_PAGE) {
   const url = `${process.env.API_ROOT_URL}/components?${query}`;
   const response = await fetch(url);
   const data = await response.json();
-  const notFound = response.status;
+  const notFound = 404 === response.status;
 
   if (! response.ok && ! notFound) {
     throw new Error(`API error: ${data.message}`);
