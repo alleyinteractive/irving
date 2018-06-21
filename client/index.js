@@ -6,7 +6,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
-import createHistory from 'history/createBrowserHistory';
 import { actionLocationChange } from 'actions';
 import App from 'components/app';
 import CssProvider from 'components/hoc/CssProvider';
@@ -14,6 +13,7 @@ import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
 import rootSaga from 'sagas';
 import { insertCss } from 'utils/css';
+import history from 'utils/history';
 
 const sagaMiddleware = createSagaMiddleware();
 const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware));
@@ -30,7 +30,6 @@ const rootEl = document.getElementById('root');
 
 sagaMiddleware.run(rootSaga);
 
-const history = createHistory();
 history.listen((location, action) => {
   store.dispatch(actionLocationChange(action, location));
 });
