@@ -11,7 +11,7 @@ export default function getRelativeUrl(url) {
   }
 
   try {
-    // Check if url is absolute, but local.
+    // Check if url is absolute, but internal.
     const urlObj = new URL(url);
     if (urlObj.host === window.location.host) {
       return urlObj.pathname;
@@ -21,5 +21,6 @@ export default function getRelativeUrl(url) {
     return url;
   }
 
+  // External absolute url.
   return false;
 }

@@ -1,5 +1,6 @@
 import { get } from 'lodash/fp';
 import { createSelector } from 'reselect';
+import getPageComponents from './getPageComponents';
 
 /**
  * Create a selector that will return the root api component by the component's
@@ -10,12 +11,10 @@ import { createSelector } from 'reselect';
 const createGetRootComponent = () => createSelector(
   [
     get('components.defaults'),
-    get('route.pathname'),
-    get('components.page'),
+    getPageComponents,
     (state, props) => props.name,
   ],
-  (defaults, pathname, pageMap, name) => {
-    const pageComponents = pageMap[pathname] || [];
+  (defaults, pageComponents, name) => {
     const matchComponent = (component) => component.name === name;
     const pageOverride = pageComponents.find(matchComponent);
     if (pageOverride) {
