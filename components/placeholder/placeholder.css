@@ -2,7 +2,7 @@
 
 .wrapper {
   lost-column: 1/1;
-  margin-bottom: 32px;
+  margin-bottom: 2rem;
 
   pre {
     font-family: var(--monospace);
