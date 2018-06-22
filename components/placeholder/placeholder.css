@@ -1,0 +1,14 @@
+@lost flexbox flex;
+
+.wrapper {
+  lost-column: 1/1;
+  margin-bottom: 2rem;
+
+  pre {
+    font-family: var(--monospace);
+  }
+}
+
+.heading {
+  composes: primaryheading from '../../assets/styles/typography.css';
+}

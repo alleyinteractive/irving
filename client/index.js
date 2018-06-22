@@ -10,8 +10,8 @@ import createHistory from 'history/createBrowserHistory';
 import { actionLocationChange } from 'actions';
 import App from 'components/app';
 import CssProvider from 'components/hoc/CssProvider';
-import defaultState from 'config/defaultState';
 import rootReducer from 'reducers';
+import defaultState from 'reducers/defaultState';
 import rootSaga from 'sagas';
 import { insertCss } from 'utils/css';
 
