@@ -41,7 +41,6 @@
     "redux-saga": "^0.16.0",
     "reselect": "^3.0.1",
     "sanitize-html": "^1.14.1",
-    "urijs": "^1.19.1",
     "whatwg-url": "^6.5.0"
   },
   "devDependencies": {

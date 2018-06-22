@@ -6,17 +6,24 @@ import Link from 'components/link';
 
 import styles from './placeholder.css';
 
+/**
+ * Render an API component placeholder that displays a basic representation of
+ * the component's data.
+ * @param {object} props
+ * @returns {object} - React element
+ */
 const Placeholder = (props) => {
-  const { name, children } = props;
-  const level = 6 < props.level ? 6 : props.level;
+  const { name, children, url } = props;
+  const maxLevel = 6;
+  const level = maxLevel < props.level ? maxLevel : props.level;
   const Heading = `h${level}`;
   const headingElement = (
     <Heading className={styles[`heading${level}`]}>{name}</Heading>
   );
   return (
     <div className={styles.wrapper}>
-      {!! props.url && <Link to={props.url}>{headingElement}</Link>}
-      {! props.url && headingElement}
+      {!! url && <Link to={url}>{headingElement}</Link>}
+      {! url && headingElement}
       <pre>{JSON.stringify(omit(['name', 'children'], props), null, 2)}</pre>
       <div className={styles.children}>
         {React.Children.map(children, (child) =>
