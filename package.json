@@ -25,6 +25,7 @@
     "ejs": "^2.5.7",
     "express": "^4.16.3",
     "history": "^4.7.2",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
@@ -38,6 +39,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-persist": "^5.9.1",
     "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1",
     "sanitize-html": "^1.14.1"
   },
   "devDependencies": {
@@ -45,6 +47,7 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

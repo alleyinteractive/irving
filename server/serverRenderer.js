@@ -5,13 +5,17 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import CssProvider from 'components/hoc/CssProvider';
 import App from 'components/app';
-import defaultState from 'config/defaultState';
+import defaultState from 'reducers/defaultState';
+import locationSaga from 'sagas/locationSaga';
+import getStatus from 'selectors/getStatus';
+
 import getWebpackScripts from 'utils/getWebpackScripts';
 import { createGetCss } from 'utils/css';
 
@@ -23,8 +27,14 @@ import { createGetCss } from 'utils/css';
  * @param {string[]} clientScripts - an array of required client scripts to be
  *                                   rendered
  */
-const render = (req, res, clientScripts) => {
-  const store = createStore(rootReducer, defaultState);
+const render = async (req, res, clientScripts) => {
+  const sagaMiddleware = createSagaMiddleware();
+  const store = createStore(
+    rootReducer,
+    defaultState,
+    applyMiddleware(sagaMiddleware)
+  );
+
   const { getState, dispatch } = store;
   const search = queryString.stringify(req.query, { arrayFormat: 'bracket' });
 
@@ -34,6 +44,9 @@ const render = (req, res, clientScripts) => {
     search,
     hash: '', // Only available in browser.
   }));
+
+  // Process location handling.
+  await sagaMiddleware.run(locationSaga).done;
 
   // Container for critical css related to this page render.
   const critical = [];
@@ -52,6 +65,7 @@ const render = (req, res, clientScripts) => {
   // https://redux.js.org/recipes/server-rendering#security-considerations
   const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
 
+  res.status(getStatus(getState()));
   res.render('app', {
     meta: helmet.meta.toString(),
     link: helmet.link.toString(),

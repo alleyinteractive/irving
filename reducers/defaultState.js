@@ -1,7 +1,11 @@
-export const components = [];
+export const components = {
+  defaults: [],
+  page: {},
+};
+
 export const route = {
+  notFound: false,
   action: '',
-  location: {},
 };
 
 const defaultState = {

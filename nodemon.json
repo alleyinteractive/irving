@@ -2,9 +2,13 @@
   "ignore": [
     "actions/*",
     "client/*",
+    "config/*",
     "components/*",
     "reducers/*",
+    "selectors/*",
+    "sagas/*",
     "server/serverRenderer.js",
+    "services/*",
     "utils/*"
   ]
 }

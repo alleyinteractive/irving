@@ -32,6 +32,7 @@ module.exports = function getRules(context) {
         /\.png$/,
         /\.svg$/,
         /\.otf$/,
+        /\.ico$/,
       ],
       loader: 'file-loader',
       options: {
@@ -59,7 +60,12 @@ module.exports = function getRules(context) {
     {
       test: /\.jsx?$/,
       exclude,
-      use: 'babel-loader',
+      use: {
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: ! isProd,
+        },
+      },
     },
     {
       test: /\.css$/,
