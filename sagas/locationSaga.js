@@ -18,6 +18,7 @@ export default function* watchLocationChange() {
     cached: !! getPageComponents(state).length,
   }));
 
+  // Skip fetching components if we already have them cached in memory.
   if (cached) {
     return;
   }
