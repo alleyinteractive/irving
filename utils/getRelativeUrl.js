@@ -1,9 +1,9 @@
 import { URL } from 'whatwg-url';
 
 /**
- *
- * @param url
- * @returns {*}
+ * Normalize internal urls to be relative. Reject external urls.
+ * @param {string} url
+ * @returns {string|boolean} - relative url, or false if not an internal url
  */
 export default function getRelativeUrl(url) {
   if ('string' !== typeof url) {
