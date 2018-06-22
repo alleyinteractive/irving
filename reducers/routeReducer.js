@@ -7,7 +7,7 @@ import { route as defaultState } from 'reducers/defaultState';
  * @param {{type payload}} action - Redux action
  * @returns {object} - The updated route state
  */
-export default function componentReducer(routeState = defaultState, action) {
+export default function routeReducer(routeState = defaultState, action) {
   const { type, payload } = action;
   switch (type) {
     case LOCATION_CHANGE:
