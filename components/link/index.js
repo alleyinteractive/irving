@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import parseUrl from 'utils/parseUrl';
+import parseUrl from 'utils/getRelativeUrl';
 import history from 'utils/history';
 
 const Link = (props) => {
-  const { external, path } = parseUrl(props.to);
+  const relativeUrl = parseUrl(props.to);
   return (
     <a
       {...props}
       href={props.to}
       onClick={(event) => {
-        if (! external) {
+        if (relativeUrl) {
           event.preventDefault();
-          history.push(path);
+          history.push(relativeUrl);
         }
       }}
     >
@@ -27,9 +26,4 @@ Link.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const mapDispatchToProps = ({
-
-});
-
-const withRedux = connect(undefined, mapDispatchToProps);
-export default withRedux(Link);
+export default Link;
