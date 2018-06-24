@@ -9,6 +9,8 @@ export const componentMap = {
   'admin-bar': Placeholder,
   body: Placeholder,
   footer: Placeholder,
+  menu: Placeholder,
+  'menu-item': Placeholder,
 };
 
 export default function getComponent(name) {

@@ -40,7 +40,8 @@
     "redux-persist": "^5.9.1",
     "redux-saga": "^0.16.0",
     "reselect": "^3.0.1",
-    "sanitize-html": "^1.14.1"
+    "sanitize-html": "^1.14.1",
+    "whatwg-url": "^6.5.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.0",
