@@ -1,7 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import ThemeProvider from '../ThemeProvider';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import ThemeContext from '../ThemeContext';
 import withThemes from './';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('withThemes', () => {
   const ThemeableComponent = ({ theme }) => (
@@ -37,9 +40,9 @@ describe('withThemes', () => {
 
   it('Should get a `themes` property from context and provide the specified theme to the component as a prop', () => {
     const wrapper = mount(
-      <ThemeProvider themes={{ Foo: 'theme1' }}>
+      <ThemeContext.Provider value={{ Foo: 'theme1' }}>
         <ThemedComponent />
-      </ThemeProvider>
+      </ThemeContext.Provider>
     );
     expect(wrapper.contains([
       <span className="theme1__testClass__12345">Foo</span>,
