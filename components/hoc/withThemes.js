@@ -4,6 +4,12 @@ import assignWith from 'lodash/fp/assignWith';
 import getDisplayName from 'utils/getDisplayName';
 import ThemeContext from 'components/hoc/ThemeContext';
 
+
+/**
+ * HoC for providing an object of themes for a component to use for styling
+ *
+ * @todo add tests for this once https://github.com/airbnb/enzyme/pull/1513 is merged
+ */
 const withThemes = (
   identifier,
   componentThemes,
