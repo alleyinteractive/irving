@@ -7,8 +7,13 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import favicon from 'assets/images/favicon.ico';
 import ConnectedRoot from 'components/connectedRoot';
 import getRoots from 'selectors/getRoots';
+import ThemeContext from 'components/hoc/ThemeContext';
 
 import styles from './app.css';
+
+const TestComponent = () => (
+  <button>check it out</button>
+);
 
 const App = (props) => (
   <React.Fragment>
@@ -16,6 +21,9 @@ const App = (props) => (
       <link rel="shortcut icon" href={favicon} />
     </Helmet>
     <div className={styles.wrapper}>
+      <ThemeContext.Provider value={{ Foo: 'bar' }}>
+        <TestComponent />
+      </ThemeContext.Provider>
       {props.roots.map((name) => (
         <ConnectedRoot key={name} name={name} />
       ))}
