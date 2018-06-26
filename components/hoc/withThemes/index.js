@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import assignWith from 'lodash/fp/assignWith';
-import getDisplayName from 'utils/getDisplayName';
-import ThemeContext from 'components/hot/ThemeContext';
+// import getDisplayName from 'utils/getDisplayName';
+import ThemeContext from 'components/hoc/ThemeContext';
 
 const withThemes = (
   identifier,
@@ -37,11 +37,11 @@ const withThemes = (
       }
     };
 
-    render {
+    render() {
       return (
         <ThemeContext.Consumer>
           {(themes) => (
-            <WrappedComponent {...props} theme={this.getTheme(themes)} />
+            <WrappedComponent {...this.props} theme={this.getTheme(themes)} />
           )}
         </ThemeContext.Consumer>
       );
@@ -59,7 +59,7 @@ const withThemes = (
     useTheme: false,
   };
 
-  ThemePicker.displayName = getDisplayName('ThemePicker', WrappedComponent);
+  // ThemePicker.displayName = getDisplayName('ThemePicker', WrappedComponent);
 
   return ThemePicker;
 };
