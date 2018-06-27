@@ -9,6 +9,13 @@ import ThemeContext from 'components/hoc/ThemeContext';
  * HoC for providing an object of themes for a component to use for styling
  *
  * @todo add tests for this once https://github.com/airbnb/enzyme/pull/1513 is merged
+ *
+ * @param {string} indentifier String to identify this component. ThemeContext can provide themes for multiple components,
+ *                             so the identifier is used to pull out the theme for just this component from context
+ * @param {object} componentThemes All themes available for this component. Keys are the string identifying the theme,
+ *                                 values are the contents of an imported stylesheet (localized cssmodules classnames)
+ *
+ * @param {bool} composes Should default classes be composed with (added to) theme classes or overridden by them?
  */
 const withThemes = (
   identifier,
