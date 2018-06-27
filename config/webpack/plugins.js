@@ -22,7 +22,9 @@ module.exports = function getPlugins(context) {
     case 'production_client':
       return [
         new CleanPlugin(clientBuild, { allowExternal: true }),
-        new DotenvPlugin(),
+        new DotenvPlugin({
+          systemvars: true,
+        }),
         new StatsWriterPlugin(),
         // Support friendly stack traces for error reporting, but protect
         // source code from being exposed.
