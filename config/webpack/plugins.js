@@ -25,6 +25,9 @@ module.exports = function getPlugins(context) {
         new DotenvPlugin({
           systemvars: true,
         }),
+        new webpack.DefinePlugin({
+          BROWSER: JSON.stringify(true),
+        }),
         new StatsWriterPlugin(),
         // Support friendly stack traces for error reporting, but protect
         // source code from being exposed.
@@ -40,6 +43,9 @@ module.exports = function getPlugins(context) {
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new DotenvPlugin(),
+        new webpack.DefinePlugin({
+          BROWSER: JSON.stringify(true),
+        }),
       ];
 
     default:
