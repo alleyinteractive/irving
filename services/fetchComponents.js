@@ -31,7 +31,7 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
 export default async function cacheResult(...args) {
   const cache = getCache();
   const key = args.toString();
-  let response = cache.get(key);
+  let response = await cache.get(key);
   if (! response) {
     response = await fetchComponents(...args);
     await cache.set(key, response);

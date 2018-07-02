@@ -42,7 +42,8 @@ const getService = () => {
         return this.client.set(
           key,
           JSON.stringify(value),
-          'EX', process.env.CACHE_EXPIRE
+          'EX',
+          process.env.CACHE_EXPIRE || 300
         );
       },
     };
