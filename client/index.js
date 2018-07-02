@@ -15,6 +15,8 @@ import rootSaga from 'sagas';
 import { insertCss } from 'utils/css';
 import history from 'utils/history';
 
+console.log(process.env.BROWSER);
+
 const sagaMiddleware = createSagaMiddleware();
 const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware));
 const state = window.__PRELOADED_STATE__ || defaultState; // eslint-disable-line no-underscore-dangle

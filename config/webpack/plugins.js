@@ -25,8 +25,8 @@ module.exports = function getPlugins(context) {
         new DotenvPlugin({
           systemvars: true,
         }),
-        new webpack.DefinePlugin({
-          BROWSER: JSON.stringify(true),
+        new webpack.EnvironmentPlugin({
+          BROWSER: true,
         }),
         new StatsWriterPlugin(),
         // Support friendly stack traces for error reporting, but protect
@@ -43,8 +43,8 @@ module.exports = function getPlugins(context) {
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new DotenvPlugin(),
-        new webpack.DefinePlugin({
-          BROWSER: JSON.stringify(true),
+        new webpack.EnvironmentPlugin({
+          BROWSER: true,
         }),
       ];
 

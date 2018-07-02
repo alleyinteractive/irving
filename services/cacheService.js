@@ -1,5 +1,3 @@
-const { REDIS_URL: url, CACHE_EXPIRE: expire = 300 } = process.env;
-
 let service;
 const defaultService = {
   get: () => null,
@@ -21,7 +19,7 @@ const getService = () => {
   }
 
   // Redis env variables have not been configured.
-  if (! url) {
+  if (! process.env.REDIS_URL) {
     return defaultService;
   }
 
@@ -30,7 +28,7 @@ const getService = () => {
   // while compiling.
   if (! process.env.BROWSER) {
     const Redis = require('ioredis'); // eslint-disable-line global-require
-    const client = new Redis(url);
+    const client = new Redis(process.env.REDIS_URL);
     client.on('error', (err) => {
       console.error(err); // eslint-disable-line no-console
     });
@@ -41,7 +39,11 @@ const getService = () => {
         return JSON.parse(await this.client.get(key));
       },
       set(key, value) {
-        return this.client.set(key, JSON.stringify(value), 'EX', expire);
+        return this.client.set(
+          key,
+          JSON.stringify(value),
+          'EX', process.env.CACHE_EXPIRE
+        );
       },
     };
 
