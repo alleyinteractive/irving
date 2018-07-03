@@ -1,5 +1,6 @@
 import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
+import getCache from './cacheService';
 
 /**
  * Fetch components for the page from the API.
@@ -8,7 +9,7 @@ import { CONTEXT_PAGE } from 'config/constants';
  *                           "site" (all components)
  * @returns {Promise<{object}>}
  */
-export default async function fetchComponents(path, context = CONTEXT_PAGE) {
+export async function fetchComponents(path, context = CONTEXT_PAGE) {
   const query = queryString.stringify({ path, context });
   const url = `${process.env.API_ROOT_URL}/components?${query}`;
   const response = await fetch(url);
@@ -20,4 +21,21 @@ export default async function fetchComponents(path, context = CONTEXT_PAGE) {
   }
 
   return { ...data, notFound };
+}
+
+/**
+ * Cache fetchComponents responses. Return cached response if available.
+ * @param {array} args - fetchComponents arguments
+ * @returns {Promise<{object}>} - fetchComponents return value
+ */
+export default async function cacheResult(...args) {
+  const cache = getCache();
+  const key = args.toString();
+  let response = await cache.get(key);
+  if (! response) {
+    response = await fetchComponents(...args);
+    await cache.set(key, response);
+  }
+
+  return response;
 }
