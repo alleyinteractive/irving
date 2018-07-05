@@ -19,7 +19,8 @@ export default function routeReducer(routeState = defaultState, action) {
     case RECEIVE_COMPONENTS:
       return {
         ...routeState,
-        notFound: payload.notFound,
+        status: payload.status,
+        redirectTo: payload.redirectTo,
       };
 
     default:
