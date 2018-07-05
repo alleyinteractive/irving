@@ -15,7 +15,6 @@ import CssProvider from 'components/hoc/CssProvider';
 import App from 'components/app';
 import defaultState from 'reducers/defaultState';
 import locationSaga from 'sagas/locationSaga';
-
 import getWebpackScripts from 'utils/getWebpackScripts';
 import { createGetCss } from 'utils/css';
 

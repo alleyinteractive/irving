@@ -18,7 +18,8 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
   let redirectTo = false;
 
   if (isNode()) {
-    // Execute request without automatic redirect resolution, why?.
+    // Execute request without automatic redirect resolution, so we can
+    // intercept and cascade the redirect down to the client.
     response = await fetch(apiUrl, { redirect: 'manual' });
     // node-fetch does have response.redirected support
     const redirected = 300 <= response.status && 400 > response.status;
@@ -32,6 +33,8 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
     }
   } else {
     response = await fetch(apiUrl);
+    // In the client component request redirects will be handled seamlessly
+    // by the browser.
     if (response.redirected) {
       redirectTo = getPath(response.url);
     }
@@ -45,6 +48,7 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
   return {
     ...data,
     status: response.status,
+    // Note the updated url path if a redirect occurred.
     redirectTo,
   };
 }
