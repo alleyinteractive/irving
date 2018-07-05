@@ -48,6 +48,8 @@ const render = async (req, res, clientScripts) => {
   // Process location handling.
   await sagaMiddleware.run(locationSaga).done;
 
+  // check if we redirected
+
   // Container for critical css related to this page render.
   const critical = [];
   // It is imperative that the server React component tree matches the client
