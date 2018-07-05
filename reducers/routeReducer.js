@@ -14,6 +14,8 @@ export default function routeReducer(routeState = defaultState, action) {
       return {
         ...routeState,
         ...payload,
+        status: defaultState.status,
+        redirectTo: defaultState.redirectTo,
       };
 
     case RECEIVE_COMPONENTS:

@@ -14,7 +14,7 @@ export default function componentReducer(state, action) { // eslint-disable-line
   }
 
   const currentDefaults = state.components.defaults;
-  const key = get('route.pathname', state);
+  const key = get('route.redirectTo', state) || get('route.pathname', state);
   const { defaults, page } = payload;
   return flow(
     set('components.defaults', defaults.length ? defaults : currentDefaults),
