@@ -33,9 +33,9 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
     }
   } else {
     response = await fetch(apiUrl);
-    // In the client component request redirects will be handled seamlessly
-    // by the browser.
+    // If executing in the browser, let request redirects follow through.
     if (response.redirected) {
+      // keep track of the new path, so we can update the address bar.
       redirectTo = getPath(response.url);
     }
   }

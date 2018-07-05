@@ -1,5 +1,4 @@
-/* eslint-disable */
-
+/* eslint-disable import/first */
 require('source-map-support').install();
 
 import React from 'react';

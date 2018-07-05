@@ -30,8 +30,7 @@ export function actionLocationChange(action, location) {
  * @param {object[]} data.defaults - default components
  * @param {object[]} data.page - page specific components
  * @param {boolean}  data.status - response was a 404
- * @param {string}   data.newPath - the new url path the app should resolve to
- *                                  from the result of a redirect
+ * @param {string}   data.redirectTo - the new url path the app should resolve
  * @returns {{type, payload}} - Redux action
  */
 export function actionReceiveComponents(data) {
