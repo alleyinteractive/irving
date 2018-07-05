@@ -15,37 +15,36 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
   const query = queryString.stringify({ path, context });
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
   let response;
-  let newPath = '';
+  let redirectTo = false;
   if (isNode()) {
     // Execute request without automatic redirect resolution, why?.
     response = await fetch(apiUrl, { redirect: 'manual' });
-    // node-fetch has not implemented response.redirected.
+    // node-fetch does have response.redirected support
     const redirected = 300 <= response.status && 400 > response.status;
     if (redirected) {
       return {
-        status: response.status,
-        path: getPath(response.url),
         defaults: [],
         page: [],
+        status: response.status,
+        redirectTo: getPath(response.headers.get('location')),
       };
     }
   } else {
     response = await fetch(apiUrl);
     if (response.redirected) {
-      newPath = getPath(response.url);
+      redirectTo = getPath(response.url);
     }
   }
 
   const data = await response.json();
-  const notFound = 404 === response.status;
-  if (! response.ok && ! notFound) {
+  if (! response.ok && 404 !== response.status) {
     throw new Error(`API error: ${data.message}`);
   }
 
   return {
     ...data,
     status: response.status,
-    newPath,
+    redirectTo,
   };
 }
 
