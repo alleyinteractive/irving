@@ -4,7 +4,7 @@ export const components = {
 };
 
 export const route = {
-  status: false,
+  status: null,
   redirectTo: false,
   action: '',
 };

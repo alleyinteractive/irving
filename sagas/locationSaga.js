@@ -6,6 +6,7 @@ import {
 import { CONTEXT_PAGE, CONTEXT_SITE } from 'config/constants';
 import getPageComponents from 'selectors/getPageComponents';
 import fetchComponents from 'services/fetchComponents';
+import history from 'utils/history';
 
 /**
  * Emit location change side effects.
@@ -26,6 +27,9 @@ export default function* watchLocationChange() {
   try {
     const result = yield call(fetchComponents, path, context);
     yield put(actionReceiveComponents(result));
+    if (result.redirectTo) {
+      yield call([history, history.replace], result.redirectTo);
+    }
   } catch (err) {
     console.error(err); // eslint-disable-line no-console
     yield put(actionReceiveApiError());

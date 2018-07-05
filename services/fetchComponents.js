@@ -16,6 +16,7 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
   let response;
   let redirectTo = false;
+
   if (isNode()) {
     // Execute request without automatic redirect resolution, why?.
     response = await fetch(apiUrl, { redirect: 'manual' });
