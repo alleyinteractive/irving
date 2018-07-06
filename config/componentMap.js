@@ -1,3 +1,4 @@
+import { isValidElementType } from 'react-is';
 import NotConfigured from 'components/notConfigured';
 import Placeholder from 'components/placeholder';
 
@@ -14,5 +15,15 @@ export const componentMap = {
 };
 
 export default function getComponent(name) {
-  return componentMap[name] ? componentMap[name] : NotConfigured;
+  // Custom component
+  if (componentMap[name]) {
+    return componentMap[name];
+  }
+
+  // Standard DOMElement
+  if (isValidElementType(name)) {
+    return name;
+  }
+
+  return NotConfigured;
 }
