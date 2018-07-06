@@ -14,8 +14,6 @@ import CssProvider from 'components/hoc/CssProvider';
 import App from 'components/app';
 import defaultState from 'reducers/defaultState';
 import locationSaga from 'sagas/locationSaga';
-import getStatus from 'selectors/getStatus';
-
 import getWebpackScripts from 'utils/getWebpackScripts';
 import { createGetCss } from 'utils/css';
 
@@ -48,6 +46,13 @@ const render = async (req, res, clientScripts) => {
   // Process location handling.
   await sagaMiddleware.run(locationSaga).done;
 
+  // Redirect before trying to render.
+  const { redirectTo, status } = getState().route;
+  if (redirectTo) {
+    res.redirect(status, redirectTo);
+    return;
+  }
+
   // Container for critical css related to this page render.
   const critical = [];
   // It is imperative that the server React component tree matches the client
@@ -65,7 +70,7 @@ const render = async (req, res, clientScripts) => {
   // https://redux.js.org/recipes/server-rendering#security-considerations
   const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
 
-  res.status(getStatus(getState()));
+  res.status(status);
   res.render('app', {
     meta: helmet.meta.toString(),
     link: helmet.link.toString(),
