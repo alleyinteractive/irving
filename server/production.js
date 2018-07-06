@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const auth = require('./auth');
 // App must be built using the build command before production mode can be run.
 const clientStats = require('../build/client/stats.json');
 const { default: serverRenderer } = require('../build/server/main.bundle');
@@ -9,6 +10,8 @@ const { default: serverRenderer } = require('../build/server/main.bundle');
  * @param {object} app - express application
  */
 const productionMiddleware = (app) => {
+  app.use(auth);
+
   app.use(express.static(path.resolve('./build/client'), {
     maxage: 86400000,
   }));
