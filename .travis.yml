@@ -1,0 +1,36 @@
+sudo: false
+dist: trusty
+language: node_js
+
+node_js:
+  - 8
+
+env:
+  global:
+    - NODE_ENV=production
+    - API_ROOT_URL=http://live-irving.alleydev.com/wp-json/irving/v1
+
+branches:
+  only:
+    - production
+    - dev
+
+notifications:
+  email: false
+
+# Ensure node and npm major version matches from package.json
+before_install:
+  - nvm install "$(jq -r '.engines.node' package.json | egrep -oe "[0-9]+" | head -n1)"
+  - npm i -g npm@$(jq -r '.engines.npm' package.json | egrep -oe "[0-9]+" | head -n1)
+
+install:
+    - npm install
+
+cache:
+  directories:
+    - node_modules
+
+script:
+    - npm run test
+    - npm run start &
+    - sleep 10 # Give server enough time to spin up

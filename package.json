@@ -18,6 +18,10 @@
   "author": "Alley (Alley.co)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/alleyinteractive/irving#readme",
+  "engine": {
+    "node": "8",
+    "npm": "6"
+  },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "basic-auth": "^2.0.0",
