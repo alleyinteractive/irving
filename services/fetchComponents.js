@@ -12,7 +12,14 @@ import getCache from './cacheService';
 export async function fetchComponents(path, context = CONTEXT_PAGE) {
   const query = queryString.stringify({ path, context });
   const url = `${process.env.API_ROOT_URL}/components?${query}`;
-  const response = await fetch(url);
+  const options = {
+    headers: {
+      Accept: 'application/json',
+    },
+    credentials: 'include', // Support XHR with basic auth.
+  };
+
+  const response = await fetch(url, options);
   const data = await response.json();
   const notFound = 404 === response.status;
 
