@@ -20,6 +20,7 @@
   "homepage": "https://github.com/alleyinteractive/irving#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "basic-auth": "^2.0.0",
     "classnames": "^2.2.5",
     "dotenv": "^6.0.0",
     "ejs": "^2.5.7",
