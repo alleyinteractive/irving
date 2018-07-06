@@ -35,5 +35,6 @@ Requests to the API host from the app running in Node can be cached with Redis.
 If the `REDIS_URL` is set caching will be enabled.
 
 ## Basic Authentication
-Credentials for basic auth. When both fields are set the express app will
-automatically apply the Authorization header for requests to the app.
+When both fields are set the express app will automatically apply the
+Authorization header for requests to the app. This will prompt the user to enter
+the valid credentials to access the site.
