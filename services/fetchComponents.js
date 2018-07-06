@@ -21,7 +21,7 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
     // Execute request without automatic redirect resolution, so we can
     // intercept and cascade the redirect down to the client.
     response = await fetch(apiUrl, { redirect: 'manual' });
-    // node-fetch does have response.redirected support
+    // node-fetch does not have response.redirected support
     const redirected = 300 <= response.status && 400 > response.status;
     if (redirected) {
       return {
@@ -33,9 +33,9 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
     }
   } else {
     response = await fetch(apiUrl);
-    // If executing in the browser, let request redirects follow through.
+    // If executing in the browser, let the browser follow redirects.
     if (response.redirected) {
-      // keep track of the new path, so we can update the address bar.
+      // Keep track of the new path, so we can update the address bar state.
       redirectTo = getPath(response.url);
     }
   }
@@ -48,7 +48,6 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
   return {
     ...data,
     status: response.status,
-    // Note the updated url path if a redirect occurred.
     redirectTo,
   };
 }
