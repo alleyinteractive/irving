@@ -46,7 +46,7 @@ const render = async (req, res, clientScripts) => {
   // Process location handling.
   await sagaMiddleware.run(locationSaga).done;
 
-  // Redirect if needed before trying to render.
+  // Redirect before trying to render.
   const { redirectTo, status } = getState().route;
   if (redirectTo) {
     res.redirect(status, redirectTo);
