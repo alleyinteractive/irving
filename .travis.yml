@@ -7,7 +7,6 @@ node_js:
 
 env:
   global:
-    - NODE_ENV=production
     - API_ROOT_URL=http://live-irving.alleydev.com/wp-json/irving/v1
 
 branches:
