@@ -14,12 +14,15 @@ export default function routeReducer(routeState = defaultState, action) {
       return {
         ...routeState,
         ...payload,
+        status: defaultState.status,
+        redirectTo: defaultState.redirectTo,
       };
 
     case RECEIVE_COMPONENTS:
       return {
         ...routeState,
-        notFound: payload.notFound,
+        status: payload.status,
+        redirectTo: payload.redirectTo,
       };
 
     default:

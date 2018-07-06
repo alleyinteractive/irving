@@ -1,5 +1,7 @@
+import { URL } from 'whatwg-url';
 import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
+import isNode from 'utils/isNode';
 import getCache from './cacheService';
 
 /**
@@ -11,7 +13,7 @@ import getCache from './cacheService';
  */
 export async function fetchComponents(path, context = CONTEXT_PAGE) {
   const query = queryString.stringify({ path, context });
-  const url = `${process.env.API_ROOT_URL}/components?${query}`;
+  const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
   const options = {
     headers: {
       Accept: 'application/json',
@@ -19,15 +21,53 @@ export async function fetchComponents(path, context = CONTEXT_PAGE) {
     credentials: 'include', // Support XHR with basic auth.
   };
 
-  const response = await fetch(url, options);
-  const data = await response.json();
-  const notFound = 404 === response.status;
+  let response;
+  let redirectTo = false;
 
-  if (! response.ok && ! notFound) {
+  if (isNode()) {
+    // Execute request without automatic redirect resolution, so we can
+    // intercept and cascade the redirect down to the client.
+    response = await fetch(apiUrl, { ...options, redirect: 'manual' });
+    // node-fetch does not have response.redirected support
+    const redirected = 300 <= response.status && 400 > response.status;
+    if (redirected) {
+      return {
+        defaults: [],
+        page: [],
+        status: response.status,
+        redirectTo: getPath(response.headers.get('location')),
+      };
+    }
+  } else {
+    response = await fetch(apiUrl, options);
+    // If executing in the browser, let the browser follow redirects.
+    if (response.redirected) {
+      // Keep track of the new path, so we can update the address bar state.
+      redirectTo = getPath(response.url);
+    }
+  }
+
+  const data = await response.json();
+  // Abort if error is encountered, except 404s, which we will handle ourselves.
+  if (! response.ok && 404 !== response.status) {
     throw new Error(`API error: ${data.message}`);
   }
 
-  return { ...data, notFound };
+  return {
+    ...data,
+    status: response.status,
+    redirectTo,
+  };
+}
+
+/**
+ * Extract the path from a components api url.
+ * @param {string} apiUrl - components api url
+ * @returns {string} - The path param of the api url.
+ */
+function getPath(apiUrl) {
+  const urlObj = new URL(apiUrl);
+  return urlObj.searchParams.get('path');
 }
 
 /**

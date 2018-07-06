@@ -4,7 +4,8 @@ export const components = {
 };
 
 export const route = {
-  notFound: false,
+  status: null,
+  redirectTo: false,
   action: '',
 };
 
