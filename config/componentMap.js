@@ -16,6 +16,12 @@ export const componentMap = {
   head: Head,
 };
 
+/**
+ * Resolve a defined React component by name.
+ *
+ * @param {string} name - component name
+ * @returns {function} - React component
+ */
 export default function getComponent(name) {
   // Custom component
   if (componentMap[name]) {
