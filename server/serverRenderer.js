@@ -12,6 +12,7 @@ import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import CssProvider from 'components/hoc/CssProvider';
 import App from 'components/app';
+import ErrorBoundary from 'components/errorBoundary';
 import defaultState from 'reducers/defaultState';
 import locationSaga from 'sagas/locationSaga';
 import getWebpackScripts from 'utils/getWebpackScripts';
@@ -61,7 +62,9 @@ const render = async (req, res, clientScripts) => {
   const html = renderToString(
     <Provider store={store}>
       <CssProvider insertCss={createGetCss(critical)}>
-        <App />
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </CssProvider>
     </Provider>
   );
