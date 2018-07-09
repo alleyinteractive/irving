@@ -9,15 +9,21 @@ import getReactComponent from 'config/componentMap';
  * @return {object} - React Element
  */
 export default function toReactElement(component, keyPrefix = '') {
-  const { name, config, children } = component;
+  const {
+    name,
+    config,
+    children,
+  } = component;
+
   const props = {
     ...config,
     name,
     key: keyPrefix + name,
   };
-  const childElements = isString(children) ?
-    children :
+
+  const childElements = isString(children) ? children : // text node
     children.map((child, index) => toReactElement(child, String(index)));
+
   return React.createElement(
     getReactComponent(name),
     props,
