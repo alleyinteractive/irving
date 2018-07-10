@@ -9,7 +9,6 @@ import createSagaMiddleware from 'redux-saga';
 import { actionLocationChange } from 'actions';
 import App from 'components/app';
 import CssProvider from 'components/hoc/CssProvider';
-import ErrorBoundary from 'components/errorBoundary';
 import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
 import rootSaga from 'sagas';
@@ -42,9 +41,7 @@ const render = () => {
   ReactDOM.hydrate(
     <Provider store={store}>
       <CssProvider insertCss={insertCss}>
-        <ErrorBoundary>
-          <App />
-        </ErrorBoundary>
+        <App />
       </CssProvider>
     </Provider>,
     rootEl
