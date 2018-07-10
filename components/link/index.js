@@ -8,7 +8,9 @@ import isNode from 'utils/isNode';
 
 const Link = (props) => {
   const relativeUrl = parseUrl(props.to);
-  throw new Error('foo');
+  if (! isNode()) {
+    throw new Error('foo');
+  }
   return (
     <a
       {...props}

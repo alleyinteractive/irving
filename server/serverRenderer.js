@@ -97,12 +97,10 @@ const render = async (req, res, clientScripts) => {
  *                       rendering the html response
  */
 export default function serverRenderer(options) {
-  const { clientStats } = options;
-  return async function renderMiddleware(req, res, next) {
-    // React 16 Error Boundaries do not work for SSR, so we must manually handle
-    // exceptions.
+  return async function renderMiddleware(req, res) {
+    // React 16 Error Boundaries do not work for SSR, so we must manually handle exceptions.
     try {
-      await render(req, res, getWebpackScripts(clientStats));
+      await render(req, res, getWebpackScripts(options.clientStats));
     } catch (err) {
       const css = [];
       const html = renderToString(
