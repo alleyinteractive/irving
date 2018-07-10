@@ -1,35 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import createDebug from 'services/createDebug';
-
-const debug = createDebug('react');
 
 class ErrorBoundary extends React.Component {
-  state = {
-    hasError: false,
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    Fallback: PropTypes.element,
+  }
+
+  static defaultProps = {
+    Fallback: (
+      <h1>
+        Something went wrong.
+        You may refresh the page or try again later.
+      </h1>
+    ),
   };
 
-  componentDidCatch(error, info) {
+  state = {
+    hasError: false,
+  }
+
+  componentDidCatch() {
     this.setState({ hasError: true });
-    debug(error, info);
   }
 
   render() {
+    const { children, Fallback } = this.props;
     if (this.state.hasError) {
       return (
-        <React.Fragment>
-          <h1>Something went wrong. Please refresh the page to try again.</h1>
-          {this.props.children}
-        </React.Fragment>
+        <Fallback />
       );
     }
 
-    return this.props.children;
+    return children;
   }
 }
-
-ErrorBoundary.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default ErrorBoundary;
