@@ -1,10 +1,14 @@
+/* eslint-disable */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import parseUrl from 'utils/getRelativeUrl';
 import history from 'utils/history';
+import isNode from 'utils/isNode';
 
 const Link = (props) => {
   const relativeUrl = parseUrl(props.to);
+  throw new Error('foo');
   return (
     <a
       {...props}
