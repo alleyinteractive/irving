@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ErrorMessage from 'components/errorMessage';
 
 class ErrorBoundary extends React.Component {
   static propTypes = {
@@ -8,12 +9,7 @@ class ErrorBoundary extends React.Component {
   }
 
   static defaultProps = {
-    Fallback: (
-      <h1>
-        Something went wrong.
-        You may refresh the page or try again later.
-      </h1>
-    ),
+    Fallback: ErrorMessage,
   };
 
   state = {
