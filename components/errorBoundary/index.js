@@ -5,11 +5,13 @@ import ErrorMessage from 'components/errorMessage';
 class ErrorBoundary extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    Fallback: PropTypes.element,
+    fallback: PropTypes.func,
   }
 
   static defaultProps = {
-    Fallback: ErrorMessage,
+    fallback: () => (
+      <ErrorMessage />
+    ),
   };
 
   state = {
@@ -21,11 +23,9 @@ class ErrorBoundary extends React.Component {
   }
 
   render() {
-    const { children, Fallback } = this.props;
+    const { children, fallback } = this.props;
     if (this.state.hasError) {
-      return (
-        <Fallback />
-      );
+      return fallback();
     }
 
     return children;
