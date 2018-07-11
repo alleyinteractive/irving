@@ -14,6 +14,11 @@ import defaultState from 'reducers/defaultState';
 import rootSaga from 'sagas';
 import { insertCss } from 'utils/css';
 import history from 'utils/history';
+import debug from 'debug';
+
+if (process.env.DEBUG) {
+  debug.enable(process.env.DEBUG);
+}
 
 const sagaMiddleware = createSagaMiddleware();
 const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware));

@@ -1,4 +1,4 @@
-import debug from 'debug';
+const debug = require('debug');
 
 /**
  * Create a debug logger that will conditionally handle logged errors based on
@@ -26,4 +26,4 @@ const createDebug = (namespace) => (message) => {
   debug(namespace)(message);
 };
 
-export default createDebug;
+module.exports = createDebug;
