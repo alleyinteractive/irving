@@ -10,12 +10,17 @@ import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
-import CssProvider from 'components/hoc/CssProvider';
 import App from 'components/app';
+import ErrorMessage from 'components/errorMessage';
+import CssProvider from 'components/hoc/CssProvider';
 import defaultState from 'reducers/defaultState';
 import locationSaga from 'sagas/locationSaga';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import { createGetCss } from 'utils/css';
+import createDebug from 'services/createDebug';
+
+const debugError = createDebug('render:error');
+const debugRequest = createDebug('render:request');
 
 /**
  * Handle rendering the app as a string that can then be returned as a response
@@ -80,6 +85,8 @@ const render = async (req, res, clientScripts) => {
     preloadedState: stateEncoded,
     scripts: clientScripts,
   });
+
+  debugRequest({ url: req.originalUrl, status });
 };
 
 /**
@@ -90,12 +97,25 @@ const render = async (req, res, clientScripts) => {
  *                       rendering the html response
  */
 export default function serverRenderer(options) {
-  const { clientStats } = options;
-  return function renderMiddleware(req, res, next) {
+  return async function renderMiddleware(req, res) {
+    // React 16 Error Boundaries do not work for SSR, so we must manually handle exceptions.
     try {
-      render(req, res, getWebpackScripts(clientStats));
+      await render(req, res, getWebpackScripts(options.clientStats));
     } catch (err) {
-      next(err);
+      const css = [];
+      const html = renderToString(
+        <CssProvider insertCss={createGetCss(css)}>
+          <ErrorMessage />
+        </CssProvider>
+      );
+
+      res.status(500);
+      res.render('error', {
+        css: css.join(''),
+        html,
+      });
+
+      debugError({ url: req.originalUrl, err });
     }
   };
 }

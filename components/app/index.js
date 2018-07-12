@@ -6,12 +6,13 @@ import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import favicon from 'assets/images/favicon.ico';
 import ConnectedRoot from 'components/connectedRoot';
+import ErrorBoundary from 'components/errorBoundary';
 import getRoots from 'selectors/getRoots';
 
 import styles from './app.css';
 
 const App = (props) => (
-  <React.Fragment>
+  <ErrorBoundary>
     <Helmet>
       <link rel="shortcut icon" href={favicon} />
     </Helmet>
@@ -20,7 +21,7 @@ const App = (props) => (
         <ConnectedRoot key={name} name={name} />
       ))}
     </div>
-  </React.Fragment>
+  </ErrorBoundary>
 );
 
 App.propTypes = {
