@@ -1,6 +1,6 @@
 import {
   LOCATION_CHANGE,
-  RECEIVE_API_ERROR,
+  RECEIVE_ERROR,
   RECEIVE_COMPONENTS,
 } from './types';
 
@@ -38,9 +38,9 @@ export function actionReceiveComponents(data) {
 }
 
 /**
- * Create a Redux action the represents the app receiving an unrecoverable API error.
+ * Create a Redux action the represents the app receiving an unrecoverable error.
  * @returns {{type, payload}} - Redux action
  */
-export function actionReceiveApiError() {
-  return createAction(RECEIVE_API_ERROR);
+export function actionReceiveError(err) {
+  return createAction(RECEIVE_ERROR, err);
 }

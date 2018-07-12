@@ -3,11 +3,13 @@ import reduceReducers from 'reduce-reducers';
 import defaultState from 'reducers/defaultState';
 import componentsReducer from './componentsReducer';
 import routeReducer from './routeReducer';
+import errorReducer from './errorReducer';
 
 // Configure "slice" reducers.
 const rootSliceReducer = combineReducers({
   components: (state = defaultState.components) => state,
   route: routeReducer,
+  error: errorReducer,
 });
 
 // "State" reducers are composed together. The order they are passed into
