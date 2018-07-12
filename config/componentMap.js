@@ -1,6 +1,8 @@
+import { isValidElementType } from 'react-is';
 import NotConfigured from 'components/notConfigured';
 import Placeholder from 'components/placeholder';
 import Image from 'components/image';
+import Head from 'components/head';
 
 /**
  * Defines which React component to render for each received API component.
@@ -13,8 +15,25 @@ export const componentMap = {
   menu: Placeholder,
   'menu-item': Placeholder,
   image: Image,
+  head: Head,
 };
 
+/**
+ * Resolve a defined React component by name.
+ *
+ * @param {string} name - component name
+ * @returns {function} - React component
+ */
 export default function getComponent(name) {
-  return componentMap[name] ? componentMap[name] : NotConfigured;
+  // Custom component
+  if (componentMap[name]) {
+    return componentMap[name];
+  }
+
+  // Standard DOMElement
+  if (isValidElementType(name)) {
+    return name;
+  }
+
+  return NotConfigured;
 }

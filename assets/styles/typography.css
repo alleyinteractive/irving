@@ -1,3 +1,7 @@
+:local(.primary-heading) {
+  font-size: rem(40);
+}
+
 :local(.heading2) {
   font-size: rem(28);
 }
