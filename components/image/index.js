@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Picture from './picture';
-import Img from './img';
+import PictureElement from './picture';
+import ImgElement from './img';
 import styles from './image.css';
 
 const Image = (props) => {
   const {
-    usePicture,
+    picture,
     sourceTags,
     srcset,
     src,
@@ -15,14 +15,14 @@ const Image = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      {usePicture ?
-        <Picture
+      {picture ?
+        <PictureElement
           sourceTags={sourceTags}
           srcset={srcset}
           src={src}
           alt={alt}
         /> :
-        <Img
+        <ImgElement
           srcset={srcset}
           src={src}
           alt={alt}
@@ -33,7 +33,7 @@ const Image = (props) => {
 };
 
 Image.propTypes = {
-  usePicture: PropTypes.bool.isRequired,
+  picture: PropTypes.bool.isRequired,
   sourceTags: PropTypes.arrayOf(
     PropTypes.shape({
       srcset: PropTypes.string.isRequired,

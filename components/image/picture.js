@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Img from './img';
+import ImgElement from './img';
 
-const Picture = (props) => {
+const PictureElement = (props) => {
   const {
     sourceTags,
     src,
@@ -16,12 +16,12 @@ const Picture = (props) => {
         const { srcset: sourceSrcset, media } = source;
         return (<source key={media} srcSet={sourceSrcset} media={media} />);
       })}
-      <Img srcset={srcset} src={src} alt={alt} />
+      <ImgElement srcset={srcset} src={src} alt={alt} />
     </picture>
   );
 };
 
-Picture.propTypes = {
+PictureElement.propTypes = {
   sourceTags: PropTypes.arrayOf(
     PropTypes.shape({
       srcset: PropTypes.string.isRequired,
@@ -33,5 +33,5 @@ Picture.propTypes = {
   alt: PropTypes.string.isRequired,
 };
 
-export default Picture;
+export default PictureElement;
 
