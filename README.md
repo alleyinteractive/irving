@@ -29,6 +29,18 @@ this in production.
 automatically deleted, defaults to 5 minutes
 * `BASIC_AUTH_USERNAME`
 * `BASIC_AUTH_PASSWORD`
+* `DEBUG` - https://github.com/visionmedia/debug#environment-variables
+
+### Debug Namespaces
+- render
+    - error
+    - request
+- server
+    - error
+- components
+- sagas
+    - location
+
 
 ## API Caching
 Requests to the API host from the app running in Node can be cached with Redis.

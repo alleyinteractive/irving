@@ -6,6 +6,9 @@ require('dotenv').config();
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
 
+const createDebug = require('../services/createDebug');
+const debug = createDebug('server:error');
+
 const express = require('express');
 const { PORT = 3001, NODE_ENV } = process.env;
 const app = express();
@@ -21,7 +24,7 @@ if ('development' === NODE_ENV) {
 
 // Default error handler
 app.use((err, req, res, next) => {
-  console.error(err);
+  debug(err);
 
   if (res.headersSent) {
     return next(err);
@@ -36,7 +39,7 @@ app.listen(PORT, () => {
 
 // Handle uncaught promise exceptions.
 process.on('unhandledRejection', (err) => {
-  console.error(err);
+  debug(err);
 
   if ('production' !== process.env.NODE_ENV) {
     throw err;

@@ -1,0 +1,8 @@
+.wrapper {
+  lost-center: 980px;
+  text-align: center;
+}
+
+.heading {
+  composes: primary-heading from '../../assets/styles/typography.css';
+}

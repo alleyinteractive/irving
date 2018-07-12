@@ -3,6 +3,9 @@ import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
 import getCache from './cacheService';
+import createDebug from './createDebug';
+
+const debug = createDebug('components');
 
 /**
  * Fetch components for the page from the API.
@@ -78,10 +81,15 @@ function getPath(apiUrl) {
 export default async function cacheResult(...args) {
   const cache = getCache();
   const key = args.toString();
+  const info = { cached: true, path: args[0], context: args[1] };
+
   let response = await cache.get(key);
   if (! response) {
+    debug(info);
     response = await fetchComponents(...args);
     await cache.set(key, response);
+  } else {
+    debug({ ...info, cached: false });
   }
 
   return response;

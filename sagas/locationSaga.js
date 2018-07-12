@@ -7,6 +7,9 @@ import { CONTEXT_PAGE, CONTEXT_SITE } from 'config/constants';
 import getPageComponents from 'selectors/getPageComponents';
 import fetchComponents from 'services/fetchComponents';
 import history from 'utils/history';
+import createDebug from 'services/createDebug';
+
+const debug = createDebug('sagas:location');
 
 /**
  * Emit location change side effects.
@@ -31,7 +34,7 @@ export default function* watchLocationChange() {
       yield call([history, history.replace], result.redirectTo);
     }
   } catch (err) {
-    console.error(err); // eslint-disable-line no-console
+    debug(err);
     yield put(actionReceiveApiError());
   }
 }
