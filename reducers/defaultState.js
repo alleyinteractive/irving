@@ -9,9 +9,12 @@ export const route = {
   action: '',
 };
 
+export const error = null;
+
 const defaultState = {
   components,
   route,
+  error,
 };
 
 export default defaultState;

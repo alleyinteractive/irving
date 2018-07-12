@@ -1,7 +1,7 @@
 import { call, select, put } from 'redux-saga/effects';
 import {
   actionReceiveComponents,
-  actionReceiveApiError,
+  actionReceiveError,
 } from 'actions';
 import { CONTEXT_PAGE, CONTEXT_SITE } from 'config/constants';
 import getPageComponents from 'selectors/getPageComponents';
@@ -34,7 +34,7 @@ export default function* watchLocationChange() {
       yield call([history, history.replace], result.redirectTo);
     }
   } catch (err) {
-    debug(err);
-    yield put(actionReceiveApiError());
+    yield call(debug, err);
+    yield put(actionReceiveError(err));
   }
 }
