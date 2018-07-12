@@ -1,0 +1,8 @@
+.wrapper {
+  display: block;
+
+  img,
+  picture {
+    display: block;
+  }
+}
