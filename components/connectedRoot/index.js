@@ -8,7 +8,7 @@ const ConnectedRoot = (props) => toReactElement(props.component);
 ConnectedRoot.propTypes = {
   component: PropTypes.shape({
     config: PropTypes.object.isRequired,
-    children: PropTypes.arrayOf(PropTypes.element).isRequired,
+    children: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
 };
 
