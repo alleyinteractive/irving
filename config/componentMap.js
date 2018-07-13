@@ -1,6 +1,7 @@
 import { isValidElementType } from 'react-is';
 import NotConfigured from 'components/notConfigured';
 import Placeholder from 'components/placeholder';
+import Image from 'components/image';
 import Head from 'components/head';
 
 /**
@@ -13,6 +14,7 @@ export const componentMap = {
   footer: Placeholder,
   menu: Placeholder,
   'menu-item': Placeholder,
+  image: Image,
   head: Head,
 };
 
