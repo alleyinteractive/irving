@@ -1,4 +1,8 @@
-import { LOCATION_CHANGE, RECEIVE_COMPONENTS } from 'actions/types';
+import {
+  LOCATION_CHANGE,
+  RECEIVE_COMPONENTS,
+  RECEIVE_ERROR,
+} from 'actions/types';
 import { route as defaultState } from 'reducers/defaultState';
 
 /**
@@ -23,6 +27,12 @@ export default function routeReducer(routeState = defaultState, action) {
         ...routeState,
         status: payload.status,
         redirectTo: payload.redirectTo,
+      };
+
+    case RECEIVE_ERROR:
+      return {
+        ...routeState,
+        status: 500,
       };
 
     default:
