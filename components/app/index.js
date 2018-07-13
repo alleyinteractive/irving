@@ -7,29 +7,39 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import favicon from 'assets/images/favicon.ico';
 import ConnectedRoot from 'components/connectedRoot';
 import ErrorBoundary from 'components/errorBoundary';
+import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
 
 import styles from './app.css';
 
-const App = (props) => (
-  <ErrorBoundary>
-    <Helmet>
-      <link rel="shortcut icon" href={favicon} />
-    </Helmet>
-    <div className={styles.wrapper}>
-      {props.roots.map((name) => (
-        <ConnectedRoot key={name} name={name} />
-      ))}
-    </div>
-  </ErrorBoundary>
-);
+const App = (props) => {
+  const { error, roots } = props;
+  return (
+    <ErrorBoundary>
+      <Helmet>
+        <link rel="shortcut icon" href={favicon} />
+      </Helmet>
+      {error ? (
+        <ErrorMessage />
+      ) : (
+        <div className={styles.wrapper}>
+          {roots.map((name) => (
+            <ConnectedRoot key={name} name={name} />
+          ))}
+        </div>
+      )}
+    </ErrorBoundary>
+  );
+};
 
 App.propTypes = {
   roots: PropTypes.arrayOf(PropTypes.string).isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   roots: getRoots(state),
+  error: !! state.error,
 });
 
 const hotReload = hot(module);
