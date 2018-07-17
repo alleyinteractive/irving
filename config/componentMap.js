@@ -1,8 +1,8 @@
-import { isValidElementType } from 'react-is';
 import NotConfigured from 'components/notConfigured';
 import Placeholder from 'components/placeholder';
 import Image from 'components/image';
 import Head from 'components/head';
+import RawHTML from 'components/rawHTML';
 
 /**
  * Defines which React component to render for each received API component.
@@ -16,6 +16,7 @@ export const componentMap = {
   'menu-item': Placeholder,
   image: Image,
   head: Head,
+  rawHTML: RawHTML,
 };
 
 /**
@@ -30,8 +31,8 @@ export default function getComponent(name) {
     return componentMap[name];
   }
 
-  // Standard DOMElement
-  if (isValidElementType(name)) {
+  const VALID_TAG_REGEX = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/; // eslint-disable-line no-useless-escape
+  if (VALID_TAG_REGEX.test(name)) {
     return name;
   }
 
