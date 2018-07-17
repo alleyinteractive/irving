@@ -31,6 +31,7 @@ export default function getComponent(name) {
     return componentMap[name];
   }
 
+  // Support standard html tag name.
   const VALID_TAG_REGEX = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/; // eslint-disable-line no-useless-escape
   if (VALID_TAG_REGEX.test(name)) {
     return name;
