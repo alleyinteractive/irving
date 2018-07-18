@@ -18,8 +18,9 @@ import locationSaga from 'sagas/locationSaga';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import { createGetCss } from 'utils/css';
 import createDebug from 'services/createDebug';
-import monitorService from 'services/monitorService';
+import getService from 'services/monitorService';
 
+const monitor = getService();
 const debugError = createDebug('render:error');
 const debugRequest = createDebug('render:request');
 
@@ -54,7 +55,7 @@ const render = async (req, res, clientScripts) => {
 
   const { redirectTo, status } = getState().route;
 
-  monitorService.logTransaction(req.method, status, 'server render');
+  monitor.logTransaction(req.method, status, 'server render');
 
   // Redirect before trying to render.
   if (redirectTo) {

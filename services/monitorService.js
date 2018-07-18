@@ -1,7 +1,7 @@
 const defaultService = {
   start: () => {},
   logError: () => {},
-  setTransactionName: () => {},
+  logTransaction: () => {},
 };
 
 let service;
