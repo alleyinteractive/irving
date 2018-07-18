@@ -32,7 +32,7 @@ const getService = () => {
     try {
       Redis = require('ioredis'); // eslint-disable-line global-require
     } catch (err) {
-      return service;
+      return defaultService;
     }
 
     const client = new Redis(process.env.REDIS_URL);
