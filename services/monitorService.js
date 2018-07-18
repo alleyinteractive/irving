@@ -1,4 +1,5 @@
 const defaultService = {
+  start: () => {},
   logError: () => {},
   setTransactionName: () => {},
 };
@@ -36,6 +37,7 @@ const getService = () => {
     }
 
     service = {
+      start: defaultService.start, // Simply requiring the newrelic module starts the service.
       logError(err) {
         newrelic = newrelic.noticeError(err);
       },
@@ -50,4 +52,4 @@ const getService = () => {
   return defaultService;
 };
 
-export default getService;
+module.exports = getService;
