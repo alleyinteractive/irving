@@ -7,7 +7,7 @@ require('dotenv').config();
 require('../utils/shimWindow');
 
 const getService = require('../services/monitorService');
-getService.start();
+getService().start();
 
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
