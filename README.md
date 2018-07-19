@@ -30,6 +30,8 @@ automatically deleted, defaults to 5 minutes
 * `BASIC_AUTH_USERNAME`
 * `BASIC_AUTH_PASSWORD`
 * `DEBUG` - https://github.com/visionmedia/debug#environment-variables
+* `NEW_RELIC_APP_NAME` - Your New Relic license key.
+* `NEW_RELIC_LICENSE_KEY` - The name of this application, for reporting to New Relic's servers. This value can be also be a comma-delimited list of names.
 
 ### Debug Namespaces
 - render
@@ -44,9 +46,17 @@ automatically deleted, defaults to 5 minutes
 
 ## API Caching
 Requests to the API host from the app running in Node can be cached with Redis.
-If the `REDIS_URL` is set caching will be enabled.
+If the `REDIS_URL` is set, and the `ioredis` package is installed, caching will
+be enabled.
 
 ## Basic Authentication
 When both fields are set the express app will automatically apply the
 Authorization header for requests to the app. This will prompt the user to enter
 the valid credentials to access the site.
+
+## Application Monitoring
+Transactions and errors can be logged to a monitoring service. Currently only
+newrelic is supported. To enabled newrelic the `newrelic` package must be
+installed, and the `NEW_RELIC_APP_NAME` and `NEW_RELIC_LICENSE_KEY` environment
+variable must be set. See [here](https://github.com/newrelic/node-newrelic#configuring-the-module)
+for additional newrelic configuration options.
