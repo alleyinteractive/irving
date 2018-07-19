@@ -6,6 +6,9 @@ require('dotenv').config();
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
 
+const getService = require('../services/monitorService');
+getService.start();
+
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
 

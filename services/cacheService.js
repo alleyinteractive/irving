@@ -27,7 +27,14 @@ const getService = () => {
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
   if (! process.env.BROWSER) {
-    const Redis = require('ioredis'); // eslint-disable-line global-require
+    let Redis;
+    // Check if optional redis client is installed.
+    try {
+      Redis = require('ioredis'); // eslint-disable-line global-require
+    } catch (err) {
+      return defaultService;
+    }
+
     const client = new Redis(process.env.REDIS_URL);
     client.on('error', (err) => {
       console.error(err); // eslint-disable-line no-console

@@ -1,4 +1,5 @@
 const debug = require('debug');
+const monitorService = require('../services/monitorService')();
 
 /**
  * Create a debug logger that will conditionally handle logged errors based on
@@ -19,6 +20,11 @@ const createDebug = (namespace) => (message) => {
   // In development the app should crash fast when encountering any errors.
   if (message instanceof Error && 'development' === env) {
     throw message;
+  }
+
+  // Send error to production monitoring service.
+  if ('production' === env) {
+    monitorService.logError();
   }
 
   // In production the app should attempt graceful handling of errors, but also
