@@ -46,6 +46,11 @@ module.exports = (env, argv) => {
         rules: server.getRules(),
       },
       plugins: server.getPlugins(),
+      optimization: {
+        // This keeps the emitted code readable if we need to review it manually.
+        // Minimization isn't useful for NodeJS anyways.
+        minimize: false,
+      },
     },
   ];
 };

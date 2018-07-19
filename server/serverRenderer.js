@@ -51,7 +51,7 @@ const render = async (req, res, clientScripts) => {
   }));
 
   // Process location handling.
-  await sagaMiddleware.run(locationSaga).done;
+  await sagaMiddleware.run(locationSaga).toPromise;
 
   const { redirectTo, status } = getState().route;
 
@@ -89,6 +89,8 @@ const render = async (req, res, clientScripts) => {
     preRenderedHtml: html,
     preloadedState: stateEncoded,
     scripts: clientScripts,
+  }, (err) => {
+    throw err; // Throw any render errors, so we can handle them like other errors.
   });
 
   debugRequest({ url: req.originalUrl, status });
