@@ -12,7 +12,7 @@ const defaultService = {
  * Return a service object for storing and retrieving cached items.
  * @returns {CacheService}
  */
-const getCache = () => {
+const getService = () => {
   // Memoize client connection, so it can reused.
   if (service) {
     return service;
@@ -61,4 +61,4 @@ const getCache = () => {
   return defaultService;
 };
 
-export default getCache;
+export default getService;

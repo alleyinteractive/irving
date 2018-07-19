@@ -2,7 +2,7 @@ import { URL } from 'whatwg-url';
 import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
-import getCache from './cacheService';
+import getService from './cacheService';
 import createDebug from './createDebug';
 
 const debug = createDebug('components');
@@ -79,7 +79,7 @@ function getPath(apiUrl) {
  * @returns {Promise<{object}>} - fetchComponents return value
  */
 export default async function cacheResult(...args) {
-  const cache = getCache();
+  const cache = getService();
   const key = args.toString();
   const info = { cached: true, path: args[0], context: args[1] };
 
