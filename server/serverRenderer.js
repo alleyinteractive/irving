@@ -18,7 +18,9 @@ import locationSaga from 'sagas/locationSaga';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import { createGetCss } from 'utils/css';
 import createDebug from 'services/createDebug';
+import getService from 'services/monitorService';
 
+const monitor = getService();
 const debugError = createDebug('render:error');
 const debugRequest = createDebug('render:request');
 
@@ -51,8 +53,11 @@ const render = async (req, res, clientScripts) => {
   // Process location handling.
   await sagaMiddleware.run(locationSaga).done;
 
-  // Redirect before trying to render.
   const { redirectTo, status } = getState().route;
+
+  monitor.logTransaction(req.method, status, 'server render');
+
+  // Redirect before trying to render.
   if (redirectTo) {
     res.redirect(status, redirectTo);
     return;
