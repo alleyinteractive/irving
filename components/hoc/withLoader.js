@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import getDisplayName from 'utils/getDisplayName';
 import PlaceholderLoading from 'components/placeholderLoading';
 
@@ -19,7 +20,10 @@ const withLoader = (WrappedComponent) => {
 
   Loader.displayName = getDisplayName('Loader', WrappedComponent);
 
-  return Loader;
+  const mapStateToProps = (state) => ({ loading: state.loading });
+  const withRedux = connect(mapStateToProps);
+
+  return withRedux(Loader);
 };
 
 export default withLoader;
