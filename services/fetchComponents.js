@@ -81,7 +81,7 @@ function getPath(apiUrl) {
 export default async function cacheResult(...args) {
   const cache = getService();
   const key = args.toString();
-  const info = { cached: true, path: args[0], context: args[1] };
+  const info = { cached: false, path: args[0], context: args[1] };
 
   let response = await cache.get(key);
   if (! response) {
@@ -89,7 +89,7 @@ export default async function cacheResult(...args) {
     response = await fetchComponents(...args);
     await cache.set(key, response);
   } else {
-    debug({ ...info, cached: false });
+    debug({ ...info, cached: true });
   }
 
   return response;

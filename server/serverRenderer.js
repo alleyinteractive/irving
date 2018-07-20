@@ -39,23 +39,22 @@ const render = async (req, res, clientScripts) => {
     defaultState,
     applyMiddleware(sagaMiddleware)
   );
-
   const { getState, dispatch } = store;
-  const search = queryString.stringify(req.query, { arrayFormat: 'bracket' });
 
-  // Sync express route match with route state.
+  // Sync express request with route state.
   dispatch(actionLocationChange('PUSH', {
     pathname: req.path,
-    search,
+    search: queryString.stringify(req.query, { arrayFormat: 'bracket' }),
     hash: '', // Only available in browser.
   }));
 
   // Process location handling.
-  await sagaMiddleware.run(locationSaga).toPromise;
+  await sagaMiddleware.run(locationSaga).toPromise();
 
+  // logging
   const { redirectTo, status } = getState().route;
-
   monitor.logTransaction(req.method, status, 'server render');
+  debugRequest({ url: req.originalUrl, status });
 
   // Redirect before trying to render.
   if (redirectTo) {
@@ -64,13 +63,13 @@ const render = async (req, res, clientScripts) => {
   }
 
   // Container for critical css related to this page render.
-  const critical = [];
+  const css = [];
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
-  const html = renderToString(
+  const appHtml = renderToString(
     <Provider store={store}>
-      <CssProvider insertCss={createGetCss(critical)}>
+      <CssProvider insertCss={createGetCss(css)}>
         <App />
       </CssProvider>
     </Provider>
@@ -79,50 +78,60 @@ const render = async (req, res, clientScripts) => {
   const helmet = Helmet.renderStatic();
   // https://redux.js.org/recipes/server-rendering#security-considerations
   const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
-
-  res.status(status);
-  res.render('app', {
+  const templateVars = {
     meta: helmet.meta.toString(),
     link: helmet.link.toString(),
-    criticalCss: critical.join(''),
+    criticalCss: css.join(''),
     title: helmet.title.toString(),
-    preRenderedHtml: html,
+    preRenderedHtml: appHtml,
     preloadedState: stateEncoded,
     scripts: clientScripts,
-  }, (err) => {
-    throw err; // Throw any render errors, so we can handle them like other errors.
-  });
+  };
 
-  debugRequest({ url: req.originalUrl, status });
+  res.status(status);
+  res.render('app', templateVars, (err, html) => {
+    // Throw any render errors, so we can handle them like other errors.
+    if (err) {
+      throw err;
+    }
+
+    res.send(html);
+  });
 };
 
 /**
- * A webpack hot server compatible middleware.
+ * Create a webpack hot server compatible middleware.
  * @param {object} options - the webpack bundle information for server and
  *                           client configs
  * @returns {function} - an express route middleware function responsible for
  *                       rendering the html response
  */
 export default function serverRenderer(options) {
-  return async function renderMiddleware(req, res) {
+  return async function renderMiddleware(req, res, next) {
     // React 16 Error Boundaries do not work for SSR, so we must manually handle exceptions.
     try {
       await render(req, res, getWebpackScripts(options.clientStats));
     } catch (err) {
+      debugError({ url: req.originalUrl, err });
+
+      // Render a error page.
       const css = [];
-      const html = renderToString(
+      const appHtml = renderToString(
         <CssProvider insertCss={createGetCss(css)}>
           <ErrorMessage />
         </CssProvider>
       );
+      const templateVars = { css: css.join(''), html: appHtml };
 
       res.status(500);
-      res.render('error', {
-        css: css.join(''),
-        html,
+      res.render('error', templateVars, (templateErr, html) => {
+        // There was an error rendering the error page :(
+        if (templateErr) {
+          next(templateErr);
+        } else {
+          res.send(html);
+        }
       });
-
-      debugError({ url: req.originalUrl, err });
     }
   };
 }
