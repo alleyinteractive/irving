@@ -4,16 +4,16 @@ import getReactComponent from 'config/componentMap';
 
 /**
  * Recursively map a tree of API components to React elements.
- * @param {object} component - api component object
+ * @param {object} apiComponent - api component object
  * @param {string} keyPrefix
  * @return {object} - React Element
  */
-export default function toReactElement(component, keyPrefix = '') {
+export default function toReactElement(apiComponent, keyPrefix = '') {
   const {
     name,
     config,
     children,
-  } = component;
+  } = apiComponent;
 
   const props = {
     ...config,
