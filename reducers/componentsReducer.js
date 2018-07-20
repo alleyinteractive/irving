@@ -7,7 +7,7 @@ import { RECEIVE_COMPONENTS } from 'actions/types';
  * @param {{type payload}} action - Redux action
  * @returns {object} - The updated Redux state
  */
-export default function componentReducer(state, action) { // eslint-disable-line no-unused-vars
+export default function componentReducer(state, action) {
   const { type, payload } = action;
   if (RECEIVE_COMPONENTS !== type) {
     return state;

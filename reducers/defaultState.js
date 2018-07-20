@@ -11,10 +11,13 @@ export const route = {
 
 export const error = null;
 
+export const loading = false;
+
 const defaultState = {
   components,
   route,
   error,
+  loading,
 };
 
 export default defaultState;
