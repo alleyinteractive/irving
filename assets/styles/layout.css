@@ -1,0 +1,3 @@
+:local(.containerFlex) {
+  lost-center: var(--xlVal) lost-gutter flex;
+}
