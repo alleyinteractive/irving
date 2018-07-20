@@ -2,6 +2,7 @@ import {
   LOCATION_CHANGE,
   RECEIVE_ERROR,
   RECEIVE_COMPONENTS,
+  FINISH_LOADING,
 } from './types';
 
 /**
@@ -43,4 +44,12 @@ export function actionReceiveComponents(data) {
  */
 export function actionReceiveError(err) {
   return createAction(RECEIVE_ERROR, err);
+}
+
+/**
+ * Create a Redux action that represents the global loading state becoming inactive.
+ * @returns {{type, payload}}
+ */
+export function actionFinishLoading() {
+  return createAction(FINISH_LOADING);
 }

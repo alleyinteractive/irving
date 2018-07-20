@@ -2,6 +2,7 @@ import {
   LOCATION_CHANGE,
   RECEIVE_COMPONENTS,
   RECEIVE_ERROR,
+  FINISH_LOADING,
 } from 'actions/types';
 import { error as defaultState } from 'reducers/defaultState';
 
@@ -17,6 +18,7 @@ export default function loadingReducer(errorState = defaultState, action) {
     case LOCATION_CHANGE:
       return true;
 
+    case FINISH_LOADING:
     case RECEIVE_COMPONENTS:
     case RECEIVE_ERROR:
       return false;
