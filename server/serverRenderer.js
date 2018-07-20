@@ -49,7 +49,7 @@ const render = async (req, res, clientScripts) => {
   }));
 
   // Process location handling.
-  await sagaMiddleware.run(locationSaga).toPromise;
+  await sagaMiddleware.run(locationSaga).toPromise();
 
   // logging
   const { redirectTo, status } = getState().route;
