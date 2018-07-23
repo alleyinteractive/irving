@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ThemeContext from './ThemeContext';
+import ThemeContext from './themeContext';
 import withThemes from './withThemes';
 
 xdescribe('withThemes', () => {
