@@ -7,12 +7,12 @@ import {
 import { error as defaultState } from 'reducers/defaultState';
 
 /**
- * Handle Redux actions operating on the route state slice.
- * @param {bool} errorState - route state slice
+ * Handle Redux actions operating on the loading state slice.
+ * @param {bool} loadingState - loading state slice
  * @param {{type payload}} action - Redux action
- * @returns {object} - The updated route state
+ * @returns {object} - The updated loading state
  */
-export default function loadingReducer(errorState = defaultState, action) {
+export default function loadingReducer(loadingState = defaultState, action) {
   const { type } = action;
   switch (type) {
     case LOCATION_CHANGE:
@@ -24,6 +24,6 @@ export default function loadingReducer(errorState = defaultState, action) {
       return false;
 
     default:
-      return errorState;
+      return loadingState;
   }
 }
