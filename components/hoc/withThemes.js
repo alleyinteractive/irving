@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import assignWith from 'lodash/fp/assignWith';
 import getDisplayName from 'utils/getDisplayName';
-import ThemeContext from 'components/hoc/ThemeContext';
-
+import ThemeContext from 'components/hoc/themeContext';
 
 /**
  * HoC for providing an object of themes for a component to use for styling
@@ -24,17 +23,15 @@ const withThemes = (
 ) => (WrappedComponent) => {
   class ThemePicker extends Component {
     getTheme = (contextThemes) => {
-      if (! contextThemes || ! Object.keys(contextThemes).length) {
-        return {};
-      }
-
-      const { useTheme } = this.props;
       const defaultTheme = componentThemes.default || {};
-      let theme = {};
+      const hasThemeFromContext = contextThemes &&
+        Object.keys(contextThemes).length &&
+        contextThemes[identifier];
+      let theme = defaultTheme;
 
-      if (useTheme) {
-        theme = componentThemes[useTheme];
-      } else if (contextThemes[identifier]) {
+      if (this.props.theme) {
+        theme = componentThemes[this.props.theme];
+      } else if (hasThemeFromContext) {
         theme = componentThemes[contextThemes[identifier]];
       }
 
@@ -65,14 +62,14 @@ const withThemes = (
   }
 
   ThemePicker.propTypes = {
-    useTheme: PropTypes.oneOfType([
+    theme: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.bool,
     ]),
   };
 
   ThemePicker.defaultProps = {
-    useTheme: false,
+    theme: false,
   };
 
   ThemePicker.displayName = getDisplayName('ThemePicker', WrappedComponent);

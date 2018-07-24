@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ThemeContext from './ThemeContext';
+import ThemeContext from './themeContext';
 import withThemes from './withThemes';
 
 xdescribe('withThemes', () => {
@@ -11,7 +11,7 @@ xdescribe('withThemes', () => {
     </div>
   );
   const testThemes = {
-    defaultTheme: {
+    default: {
       testClass: 'default__testClass__01234',
       testClass2: 'default__testClass2___ghjkl',
     },
@@ -57,7 +57,7 @@ xdescribe('withThemes', () => {
     ])).toBe(true);
   });
 
-  xit('Should combine classNames of provided theme and defaultTheme if `composes` is set to `true`', () => {
+  xit('Should combine classNames of provided theme and default if `composes` is set to `true`', () => {
     const wrapper = mount(
       <ThemedComponentComposes useTheme="theme1" />
     );
