@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import createGetRootComponent from 'selectors/createGetRootComponent';
 import toReactElement from 'utils/toReactElement';
 
-const ConnectedRoot = (props) => toReactElement(props.component);
+const ConnectedRoot = (props) => toReactElement(props.apiComponent);
 
 ConnectedRoot.propTypes = {
-  component: PropTypes.shape({
+  apiComponent: PropTypes.shape({
     config: PropTypes.object.isRequired,
     children: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
@@ -24,10 +24,11 @@ ConnectedRoot.propTypes = {
  * @returns {function} - Redux state mapper function
  */
 const createMapStateToProps = () => {
-  const getComponent = createGetRootComponent();
+  const getApiComponent = createGetRootComponent();
   return function mapStateToProps(state, props) {
     return {
-      component: getComponent(state, props),
+      apiComponent: getApiComponent(state, props),
+      loading: state.loading,
     };
   };
 };

@@ -3,6 +3,7 @@ import Placeholder from 'components/placeholder';
 import Image from 'components/image';
 import Head from 'components/head';
 import RawHTML from 'components/rawHTML';
+import withLoader from 'components/hoc/withLoader';
 
 /**
  * Defines which React component to render for each received API component.
@@ -10,7 +11,7 @@ import RawHTML from 'components/rawHTML';
 export const componentMap = {
   header: Placeholder,
   'admin-bar': Placeholder,
-  body: Placeholder,
+  body: withLoader(Placeholder),
   footer: Placeholder,
   menu: Placeholder,
   'menu-item': Placeholder,

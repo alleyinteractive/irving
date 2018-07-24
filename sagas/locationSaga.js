@@ -2,6 +2,7 @@ import { call, select, put } from 'redux-saga/effects';
 import {
   actionReceiveComponents,
   actionReceiveError,
+  actionFinishLoading,
 } from 'actions';
 import { CONTEXT_PAGE, CONTEXT_SITE } from 'config/constants';
 import getPageComponents from 'selectors/getPageComponents';
@@ -24,6 +25,7 @@ export default function* watchLocationChange() {
 
   // Skip fetching components if we already have them cached in memory.
   if (cached) {
+    yield put(actionFinishLoading());
     return;
   }
 

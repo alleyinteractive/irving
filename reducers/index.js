@@ -4,12 +4,14 @@ import defaultState from 'reducers/defaultState';
 import componentsReducer from './componentsReducer';
 import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
+import loadingReducer from './loadingReducer';
 
 // Configure "slice" reducers.
 const rootSliceReducer = combineReducers({
   components: (state = defaultState.components) => state,
   route: routeReducer,
   error: errorReducer,
+  loading: loadingReducer,
 });
 
 // "State" reducers are composed together. The order they are passed into
