@@ -39,7 +39,7 @@ const getService = () => {
     service = {
       start: defaultService.start, // Simply requiring the newrelic module starts the service.
       logError(err) {
-        newrelic = newrelic.noticeError(err);
+        newrelic.noticeError(err);
       },
       logTransaction(method, status, category) {
         newrelic.setTransactionName(`${method} ${status} ${category}`);
