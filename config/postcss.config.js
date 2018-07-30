@@ -2,8 +2,7 @@
 const lost = require('lost');
 const calc = require('postcss-calc');
 const cssImport = require('postcss-import');
-const customProps = require('postcss-custom-properties');
-const customMedia = require('postcss-custom-media');
+const variables = require('postcss-simple-vars');
 const values = require('postcss-modules-values-replace');
 const nested = require('postcss-nested');
 const units = require('postcss-units');
@@ -31,14 +30,10 @@ module.exports = () => ({
         paths.globalStyles,
       ],
     }), // Import files
-    customProps({
-      preserve: false,
+    variables({
       variables: flatten(cssVars),
     }),
     units(), // Compute rem() function
-    customMedia({
-      extensions: cssVars.breakpoints,
-    }),
     values(), // Arbitrary values for both css and JS
     mixins(),
     nested(), // Allow nested syntax.
