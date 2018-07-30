@@ -5,7 +5,7 @@
 }
 
 .thumb {
-  background-color: var(--grayLight);
+  background-color: $grayLight;
   flex: 1 0 rem(175);
   height: rem(175);
   margin-right: rem(20);
@@ -18,7 +18,7 @@
 }
 
 .textBar {
-  background-color: var(--grayLight);
+  background-color: $grayLight;
   height: rem(20);
   margin-bottom: rem(18);
 
