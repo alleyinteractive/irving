@@ -8,6 +8,24 @@ import createDebug from './createDebug';
 const debug = createDebug('components');
 
 /**
+ * Get any query parameters that should be included with every components request.
+ *
+ * @returns {object}
+ */
+function getExtraQueryParams() {
+  return Object
+    .keys(process.env)
+    .filter((key) => 0 === key.indexOf('API_QUERY_PARAM_'))
+    .reduce((acc, key) => {
+      const param = key.replace('API_QUERY_PARAM_', '').toLowerCase();
+      return {
+        ...acc,
+        [param]: process.env[key],
+      };
+    }, {});
+}
+
+/**
  * Fetch components for the page from the API.
  * @param {string} path - path of the request page
  * @param {string} context - "page" (page specific components) or
@@ -15,7 +33,11 @@ const debug = createDebug('components');
  * @returns {Promise<{object}>}
  */
 export async function fetchComponents(path, context = CONTEXT_PAGE) {
-  const query = queryString.stringify({ path, context });
+  const query = queryString.stringify({
+    path,
+    context,
+    ...getExtraQueryParams(),
+  });
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
   const options = {
     headers: {
