@@ -33,6 +33,12 @@ automatically deleted, defaults to 5 minutes
 * `NEW_RELIC_APP_NAME` - Your New Relic license key.
 * `NEW_RELIC_LICENSE_KEY` - The name of this application, for reporting to New Relic's servers. This value can be also be a comma-delimited list of names.
 
+### Extra Query Params
+Any environment variable that is prefixed with `API_QUERY_PARAM_`, for example
+`API_QUERY_PARAM_MARKET=india`, will be mapped to a query param with the prefix
+stripped out and the parameter name transformed to lowercase. This will allow
+you to add extra query parameters to all components requests.
+
 ### Debug Namespaces
 - render
     - error
