@@ -40,11 +40,12 @@ const render = async (req, res, clientScripts) => {
     applyMiddleware(sagaMiddleware)
   );
   const { getState, dispatch } = store;
+  const search = queryString.stringify(req.query, { arrayFormat: 'bracket' });
 
   // Sync express request with route state.
   dispatch(actionLocationChange('PUSH', {
     pathname: req.path,
-    search: queryString.stringify(req.query, { arrayFormat: 'bracket' }),
+    search: `?${search}`,
     hash: '', // Only available in browser.
   }));
 
