@@ -28,7 +28,7 @@ function getExtraQueryParams() {
 /**
  * Fetch components for the page from the API.
  * @param {string} path      - path of the request page
- * @param {string} [search]  - search string
+ * @param {string} search    - search string
  * @param {string} [context] - "page" (page specific components) or
  *                           "site" (all components)
  * @returns {Promise<{object}>}
