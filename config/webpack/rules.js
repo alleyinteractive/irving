@@ -1,4 +1,4 @@
-const { nodeModules, postCssConfig } = require('../paths');
+const { postCssConfig, transform } = require('../paths');
 
 const exclude = [
   /node_modules/,
@@ -11,8 +11,8 @@ const exclude = [
  * @returns {array} - a rules configuration value
  */
 module.exports = function getRules(context) {
-  const isProd = 'production' === context.includes('production');
-  const isServer = 'server' === context.includes('server');
+  const isProd = context.includes('production');
+  const isServer = context.includes('server');
   return [
     {
       enforce: 'pre',
@@ -69,32 +69,24 @@ module.exports = function getRules(context) {
     },
     {
       test: /\.css$/,
-      include: nodeModules,
-      use: [
-        'isomorphic-style-loader',
-        {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 1,
-            minimize: true,
-          },
-        },
-      ],
-    },
-    {
-      test: /\.css$/,
       exclude,
       use: [
-        'isomorphic-style-loader',
+        {
+          loader: isServer ? 'critical-style-loader' : 'style-loader',
+          options: {
+            transform,
+          },
+        },
         {
           loader: 'css-loader',
           options: {
-            url: false,
+            url: true,
             importLoaders: 1,
             modules: true,
             localIdentName: '[name]__[local]--[hash:base64:5]',
             minimize: isProd,
             sourceMap: ! isProd,
+            camelCase: true,
           },
         },
         {
