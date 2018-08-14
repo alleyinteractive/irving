@@ -8,11 +8,9 @@ import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { actionLocationChange } from 'actions';
 import App from 'components/app';
-import CssProvider from 'components/hoc/CssProvider';
 import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
 import rootSaga from 'sagas';
-import { insertCss } from 'utils/css';
 import history from 'utils/history';
 import debug from 'debug';
 
@@ -45,9 +43,7 @@ const render = () => {
   // rendered markup, otherwise the app will be completely re-rendered.
   ReactDOM.hydrate(
     <Provider store={store}>
-      <CssProvider insertCss={insertCss}>
-        <App />
-      </CssProvider>
+      <App />
     </Provider>,
     rootEl
   );
