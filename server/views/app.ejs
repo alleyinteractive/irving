@@ -7,7 +7,7 @@
     <%- link %>
 
     <%# pre-rendered CSS required to avoid FOUC before client JS takes control. %>
-    <style id="critical-css"><%= criticalCss %></style>
+    <style id="critical-css"><%- criticalCss %></style>
 
     <%- title %>
 
@@ -27,6 +27,7 @@
 <%# pre-rendered serialized Redux state %>
 <script id="preload">
   window.__PRELOADED_STATE__ = <%- preloadedState %>;
+  <%- preloadedStyles %>;
 </script>
 
 <%# main app bundle and initial chunks %>
