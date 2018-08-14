@@ -27,16 +27,18 @@ function getExtraQueryParams() {
 
 /**
  * Fetch components for the page from the API.
- * @param {string} path - path of the request page
- * @param {string} context - "page" (page specific components) or
+ * @param {string} path      - path of the request page
+ * @param {string} search    - search string
+ * @param {string} [context] - "page" (page specific components) or
  *                           "site" (all components)
  * @returns {Promise<{object}>}
  */
-export async function fetchComponents(path, context = CONTEXT_PAGE) {
+export async function fetchComponents(path, search, context = CONTEXT_PAGE) {
   const query = queryString.stringify({
     path,
     context,
     ...getExtraQueryParams(),
+    ...queryString.parse(search),
   });
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
   const options = {
@@ -103,7 +105,7 @@ function getPath(apiUrl) {
 export default async function cacheResult(...args) {
   const cache = getService();
   const key = args.toString();
-  const info = { cached: false, path: args[0], context: args[1] };
+  const info = { cached: false, route: args };
 
   let response = await cache.get(key);
   if (! response) {
