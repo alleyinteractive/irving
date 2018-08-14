@@ -16,8 +16,14 @@ const debug = createDebug('sagas:location');
  * Emit location change side effects.
  */
 export default function* watchLocationChange() {
-  const { path, context, cached } = yield select((state) => ({
+  const {
+    path,
+    search,
+    context,
+    cached,
+  } = yield select((state) => ({
     path: state.route.pathname,
+    search: state.route.search,
     // Request the default site components if the Redux state doesn't have any yet.
     context: state.components.defaults.length ? CONTEXT_PAGE : CONTEXT_SITE,
     cached: !! getPageComponents(state).length,
@@ -30,7 +36,7 @@ export default function* watchLocationChange() {
   }
 
   try {
-    const result = yield call(fetchComponents, path, context);
+    const result = yield call(fetchComponents, path, search, context);
     yield put(actionReceiveComponents(result));
     if (result.redirectTo) {
       yield call([history, history.replace], result.redirectTo);
