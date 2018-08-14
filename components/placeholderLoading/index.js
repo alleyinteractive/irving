@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { withStyles } from 'critical-style-loader/lib';
 
 import styles from './placeholderLoading.css';
 
