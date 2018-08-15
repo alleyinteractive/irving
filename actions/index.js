@@ -59,6 +59,6 @@ export function actionFinishLoading() {
  * Create a Redux action that represents a change in global UI visibility
  * @returns {{type, payload}} - Redux action
  */
-export function actionUpdateVisibility(property, isVisible = null) {
-  return createAction(UPDATE_VISIBILITY, { property, isVisible });
+export function actionUpdateVisibility(name, isVisible = null) {
+  return createAction(UPDATE_VISIBILITY, { name, isVisible });
 }
