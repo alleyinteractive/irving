@@ -8,7 +8,7 @@ it('should set field visible', () => {
   expect(newState.foo).toBe(true);
 });
 
-it('should set field no visible', () => {
+it('should set field not visible', () => {
   const mockState = { ...defaultState, foo: true };
   const newState = reducer(mockState, actionUpdateVisibility('foo', false));
   expect(newState.foo).toBe(false);

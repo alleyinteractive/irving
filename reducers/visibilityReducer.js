@@ -2,7 +2,7 @@ import { UPDATE_VISIBILITY } from 'actions/types';
 import { visible as defaultState } from './defaultState';
 
 /**
- * Handle Redux actions related to global UI element's visibility.
+ * Handle Redux actions related to global UI element visibility.
  *
  * @param {object} visibleState - visible state slice
  * @param {{type payload}} action - Redux action
