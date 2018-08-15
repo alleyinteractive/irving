@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { hot } from 'react-hot-loader';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { withStyles } from 'critical-style-loader/lib';
 import favicon from 'assets/images/favicon.ico';
 import ConnectedRoot from 'components/connectedRoot';
 import ErrorBoundary from 'components/errorBoundary';

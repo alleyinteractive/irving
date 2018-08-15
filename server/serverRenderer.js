@@ -8,15 +8,14 @@ import Helmet from 'react-helmet';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
+import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import App from 'components/app';
 import ErrorMessage from 'components/errorMessage';
-import CssProvider from 'components/hoc/CssProvider';
 import defaultState from 'reducers/defaultState';
 import locationSaga from 'sagas/locationSaga';
 import getWebpackScripts from 'utils/getWebpackScripts';
-import { createGetCss } from 'utils/css';
 import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
 
@@ -64,15 +63,15 @@ const render = async (req, res, clientScripts) => {
   }
 
   // Container for critical css related to this page render.
-  const css = [];
+  const cssBuilder = new CriticalCssBuilder();
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
   const appHtml = renderToString(
     <Provider store={store}>
-      <CssProvider insertCss={createGetCss(css)}>
+      <StyleContext.Provider value={cssBuilder.addCss}>
         <App />
-      </CssProvider>
+      </StyleContext.Provider>
     </Provider>
   );
   // Clear head data to avoid memory leak.
@@ -82,7 +81,8 @@ const render = async (req, res, clientScripts) => {
   const templateVars = {
     meta: helmet.meta.toString(),
     link: helmet.link.toString(),
-    criticalCss: css.join(''),
+    criticalCss: cssBuilder.getCss(),
+    preloadedStyles: cssBuilder.getEncodedMap(),
     title: helmet.title.toString(),
     preRenderedHtml: appHtml,
     preloadedState: stateEncoded,
@@ -116,13 +116,13 @@ export default function serverRenderer(options) {
       debugError({ url: req.originalUrl, err });
 
       // Render a error page.
-      const css = [];
+      const cssBuilder = new CriticalCssBuilder();
       const appHtml = renderToString(
-        <CssProvider insertCss={createGetCss(css)}>
+        <StyleContext.Provider value={cssBuilder.addStyles}>
           <ErrorMessage />
-        </CssProvider>
+        </StyleContext.Provider>
       );
-      const templateVars = { css: css.join(''), html: appHtml };
+      const templateVars = { css: cssBuilder.getCss(), html: appHtml };
 
       res.status(500);
       res.render('error', templateVars, (templateErr, html) => {

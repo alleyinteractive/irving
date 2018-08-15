@@ -1,7 +1,7 @@
 import { omit } from 'lodash/fp';
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/link';
 
 import styles from './placeholder.css';
