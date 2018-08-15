@@ -9,6 +9,8 @@ export const route = {
   action: '',
 };
 
+export const visible = {};
+
 export const error = null;
 
 export const loading = false;
@@ -18,6 +20,7 @@ const defaultState = {
   route,
   error,
   loading,
+  visible,
 };
 
 export default defaultState;
