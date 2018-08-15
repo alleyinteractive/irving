@@ -3,6 +3,7 @@ import {
   RECEIVE_ERROR,
   RECEIVE_COMPONENTS,
   FINISH_LOADING,
+  UPDATE_VISIBILITY,
 } from './types';
 
 /**
@@ -52,4 +53,12 @@ export function actionReceiveError(err) {
  */
 export function actionFinishLoading() {
   return createAction(FINISH_LOADING);
+}
+
+/**
+ * Create a Redux action that represents a change in global UI visibility
+ * @returns {{type, payload}} - Redux action
+ */
+export function actionUpdateVisibility(property, isVisible = null) {
+  return createAction(UPDATE_VISIBILITY, { property, isVisible });
 }
