@@ -70,34 +70,60 @@ module.exports = function getRules(context) {
     {
       test: /\.css$/,
       exclude,
-      use: [
+      oneOf: [
         {
-          loader: isServer ? 'critical-style-loader' : 'style-loader',
-          options: {
-            transform,
-          },
-        },
-        {
-          loader: 'css-loader',
-          options: {
-            url: true,
-            importLoaders: 1,
-            modules: true,
-            localIdentName: '[name]__[local]--[hash:base64:5]',
-            minimize: isProd,
-            sourceMap: ! isProd,
-            camelCase: true,
-          },
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: ! isProd,
-            config: {
-              path: postCssConfig,
+          issuer: path.join(clientRoot, 'editor.js'),
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                url: true,
+                importLoaders: 1,
+                minimize: true,
+              },
             },
-          },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: ! isProd,
+                config: {
+                  path: postCssConfig,
+                },
+              },
+            },
+          ],
         },
+        {
+          use: [
+            {
+              loader: isServer ? 'critical-style-loader' : 'style-loader',
+              options: {
+                transform,
+              },
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                url: true,
+                importLoaders: 1,
+                modules: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+                minimize: isProd,
+                sourceMap: ! isProd,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: ! isProd,
+                config: {
+                  path: postCssConfig,
+                },
+              },
+            },
+          ],
+        }
       ],
     },
   ];
