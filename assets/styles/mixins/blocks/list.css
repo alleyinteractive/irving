@@ -1,0 +1,47 @@
+@mixin blockList {
+  @include bodyContent;
+
+  ul,
+  ol {
+    @include bodyBlockLevel;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  ul {
+    list-style: square outside none;
+
+    ul {
+      margin-top: 0.5em;
+    }
+
+    > li > ul {
+      list-style-type: circle;
+
+      > li > ul {
+        list-style-type: square;
+      }
+    }
+  }
+
+  ol {
+    list-style: decimal outside none;
+
+    ol {
+      margin-top: 0.5em;
+    }
+
+    > li > ol {
+      list-style-type: lower-roman;
+
+      > li > ol {
+        list-style-type: lower-alpha;
+      }
+    }
+  }
+
+  li {
+    @include bodyLink;
+    margin: 0 0 0.5em 1em;
+  }
+}

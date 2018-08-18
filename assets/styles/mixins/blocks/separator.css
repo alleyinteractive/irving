@@ -1,0 +1,11 @@
+/* Styles for horizontal rule separator block */
+@mixin blockSeparator {
+
+  .wp-block-separator,
+  hr {
+    border-bottom: 1px solid $grayLight;
+    margin: rem(32) auto;
+    max-width: none;
+    width: 100%;
+  }
+}

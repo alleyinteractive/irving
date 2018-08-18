@@ -1,4 +1,11 @@
-const { postCssConfig, transform } = require('../paths');
+const {
+  postCssConfig,
+  transform,
+  assetsRoot,
+  clientRoot,
+} = require('../paths');
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const exclude = [
   /node_modules/,
@@ -45,17 +52,23 @@ module.exports = function getRules(context) {
         /\.bmp$/,
         /\.gif$/,
         /\.jpe?g$/,
-        /\.png$/,
         /\.svg$/,
+        /\.png$/,
         /\.otf$/,
         /\.ico$/,
       ],
       loader: 'url-loader',
+      exclude: path.join(assetsRoot, 'icons'),
       options: {
         limit: 10000,
         emitFile: ! isServer,
         name: 'static/media/[name].[hash:8].[ext]',
       },
+    },
+    {
+      test: /\.svg$/,
+      include: path.join(assetsRoot, 'icons'),
+      loader: 'svg-react-loader',
     },
     {
       test: /\.jsx?$/,
@@ -70,34 +83,60 @@ module.exports = function getRules(context) {
     {
       test: /\.css$/,
       exclude,
-      use: [
+      oneOf: [
         {
-          loader: isServer ? 'critical-style-loader' : 'style-loader',
-          options: {
-            transform,
-          },
-        },
-        {
-          loader: 'css-loader',
-          options: {
-            url: true,
-            importLoaders: 1,
-            modules: true,
-            localIdentName: '[name]__[local]--[hash:base64:5]',
-            minimize: isProd,
-            sourceMap: ! isProd,
-            camelCase: true,
-          },
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: ! isProd,
-            config: {
-              path: postCssConfig,
+          issuer: path.join(clientRoot, 'editor.js'),
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                url: true,
+                importLoaders: 1,
+                minimize: true,
+              },
             },
-          },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: ! isProd,
+                config: {
+                  path: postCssConfig,
+                },
+              },
+            },
+          ],
         },
+        {
+          use: [
+            {
+              loader: isServer ? 'critical-style-loader' : 'style-loader',
+              options: {
+                transform,
+              },
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                url: true,
+                importLoaders: 1,
+                modules: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+                minimize: isProd,
+                sourceMap: ! isProd,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: ! isProd,
+                config: {
+                  path: postCssConfig,
+                },
+              },
+            },
+          ],
+        }
       ],
     },
   ];

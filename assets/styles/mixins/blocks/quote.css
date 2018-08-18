@@ -1,0 +1,41 @@
+/* Styles for core quote block */
+@mixin blockQuote {
+
+  .wp-block-pullquote,
+  .wp-block-quote,
+  blockquote {
+    position: relative;
+
+    p,
+    cite {
+      color: $gray;
+      font-family: Georgia, Times, serif;
+      font-size: rem(24);
+      font-weight: 700;
+    }
+
+    cite {
+      font-weight: 700;
+      margin: 0;
+      text-transform: none;
+
+      &::before {
+        content: '\2014';
+        display: inline-block;
+        margin-right: rem(3);
+      }
+    }
+
+    &.alignleft {
+      @media ($mdMin) {
+        float: left;
+      }
+    }
+
+    &.alignright {
+      @media ($mdMin) {
+        float: right;
+      }
+    }
+  }
+}

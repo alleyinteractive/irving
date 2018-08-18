@@ -1,5 +1,5 @@
 .wrapper {
-  composes: containerflex from '../../assets/styles/layout.css';
+  composes: containerflex from $layout;
   min-height: rem(800);
   padding: rem(20) 0;
 }

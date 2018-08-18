@@ -1,0 +1,227 @@
+/**
+ * Contains styles for core markup
+ *
+ * These should be used for both frontend representations of body content and admin editor styles
+ *
+ * All article-level nodes should be styled in this partial. A list of these nodes can be found here:
+ * https://github.com/WordPress/WordPress/blob/master/wp-includes/kses.php#L61-L415
+ */
+
+/* Plain text styles */
+@mixin plainText {
+  @include blockList;
+
+  p {
+    @include bodyParagraph;
+  }
+}
+
+@mixin blocks {
+  @include blockSubhead;
+  @include blockQuote;
+  @include blockImage;
+  @include blockCoverImage;
+  @include blockGallery;
+  @include blockSeparator;
+  @include blockBleeds;
+}
+
+/**
+ * Mixin for styling rich text and gutenberg field content
+ *
+ * NOTE: Some of these elements have their own core blocks,
+ * and should be split out as needed
+ */
+@mixin richText {
+  @include plainText;
+  @include blocks;
+  @include bodyHeading;
+
+  blockquote,
+  q,
+  pre,
+  address,
+  area,
+  article,
+  aside,
+  audio,
+  code,
+  colgroup,
+  div,
+  details,
+  figure,
+  footer,
+  form,
+  header,
+  hgroup,
+  hr,
+  img,
+  section,
+  table,
+  summary,
+  video {
+    @include bodyBlockLevel;
+  }
+
+  table {
+    font-size: rem(15);
+
+    th {
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--grayLight);
+      padding: 1rem;
+    }
+  }
+
+  del,
+  strike {
+    text-decoration: line-through;
+  }
+
+  address {
+    font-size: 0.8em;
+    line-height: 1.5;
+  }
+
+  abbr,
+  acronym {
+    color: gray;
+    text-decoration: underline dotted;
+  }
+
+  code,
+  var,
+  tt,
+  kbd {
+    display: inline;
+    font: 400 1em 'Courier', monospace;
+  }
+
+  > pre {
+    font: 400 1em 'Courier', monospace;
+  }
+
+  cite {
+    color: var(--grayDark);
+    font-size: 0.8em;
+  }
+
+  pre {
+    font: 400 1em 'Courier', monospace;
+    white-space: pre-wrap;
+  }
+
+  img,
+  figure,
+  video {
+    display: block;
+  }
+
+  /* Images */
+  a {
+
+    img {
+      border: none;
+      display: inline-block;
+    }
+  }
+
+  p {
+
+    img {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  /*
+   * Resize images to fit the main content area.
+   * - Applies only to images uploaded via WordPress by targeting size-* classes.
+   * - Other images will be left alone. Use "size-auto" class to apply to other images.
+  */
+  img {
+
+    .attachment &,
+    .widget-area &,
+    &.size-auto,
+    &.size-full,
+    &.size-large,
+    &.size-medium {
+      height: auto;
+      /* Override height to match resized width for correct aspect ratio. */
+      max-width: 100%;
+      /* When images are too wide for containing element, force them to fit. */
+    }
+
+    &.alignleft {
+      margin-right: 1em;
+    }
+
+    &.alignright {
+      margin-left: 1em;
+    }
+
+    .wp-caption & {
+      margin: 0.25em;
+    }
+  }
+
+  .image-attachment {
+
+    div.entry-meta {
+      float: left;
+    }
+
+    nav {
+      float: right;
+      margin: 0 0 1em;
+    }
+  }
+
+  .entry-content {
+    clear: both;
+  }
+
+  .entry-attachment {
+    background: #eee;
+    margin: 0 0 1em;
+    padding: 1em;
+    text-align: center;
+  }
+
+  .attachment {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .wp-caption-text {
+    margin: 0.5em;
+  }
+
+  .wp-caption {
+    @include caption;
+  }
+
+  .wp-smiley {
+    margin: 0;
+  }
+
+  /* Widgets */
+  .widget {
+    display: block;
+  }
+
+  .widget-area .widget_search {
+    overflow: hidden;
+
+    input {
+      float: left;
+    }
+  }
+}
+

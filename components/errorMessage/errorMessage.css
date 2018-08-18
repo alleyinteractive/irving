@@ -4,5 +4,5 @@
 }
 
 .heading {
-  composes: primary-heading from '../../assets/styles/typography.css';
+  composes: primary-heading from $typography;
 }

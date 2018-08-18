@@ -14,5 +14,6 @@ module.exports = {
   bkptVal: require('./breakpoints').bkptVal,
   layout: require('./layout'),
   ui: require('./ui'),
+  paths: require('./paths'),
 };
 /* eslint-enable */

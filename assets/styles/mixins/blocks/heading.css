@@ -1,0 +1,39 @@
+@mixin bodyHeadingBase {
+  color: $black;
+  font-size: rem(32);
+  font-weight: 700;
+}
+
+/* In-body heading styles */
+@mixin bodyHeading {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  big {
+    @include bodyHeadingBase;
+  }
+
+  h2 {
+    font-size: rem(40);
+
+    @media ($mdMin) {
+      font-size: rem(48);
+    }
+  }
+
+  h3 {
+    font-size: rem(32);
+
+    @media ($mdMin) {
+      font-size: rem(36);
+    }
+  }
+
+  h4 {
+    font-size: rem(24);
+  }
+}

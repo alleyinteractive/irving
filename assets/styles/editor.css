@@ -1,0 +1,67 @@
+@import 'mixins/index.css';
+
+/* Gutenberg styles */
+.editor-writing-flow {
+  /* stylelint-disable selector-max-specificity */
+  [data-type="core/freeform"] {
+
+    .wp-block-freeform {
+      @include blockQuote;
+
+      p,
+      li {
+        @include bodyParagraph;
+      }
+    }
+  }
+  /* stylelint-enable */
+
+  [data-type="core/paragraph"] {
+
+    p {
+      @include bodyParagraph;
+    }
+  }
+
+  [data-type="core/list"] {
+    @include blockList;
+  }
+
+  [data-type="core/quote"],
+  [data-type="core/pullquote"] {
+    @include blockQuote;
+  }
+
+  [data-type="core/heading"] {
+    @include bodyHeading;
+  }
+
+  [data-type="core/subhead"] {
+    @include blockSubhead;
+  }
+
+  [data-type="core/image"] {
+    @include blockImage;
+  }
+
+  [data-type="core/gallery"] {
+    @include blockGallery;
+    max-width: none;
+    width: 100%;
+  }
+
+  [data-type="core/cover-image"] {
+    @include blockCoverImage;
+    max-width: none;
+    width: 100%;
+  }
+
+  [data-type="core/separator"] {
+    @include blockSeparator;
+  }
+}
+
+/* Classic editor styles */
+.mce-content-body {
+  @include richText;
+}
