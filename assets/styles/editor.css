@@ -1,5 +1,6 @@
 @import 'mixins/index.css';
 
+/* Gutenberg styles */
 .editor-writing-flow {
   /* stylelint-disable selector-max-specificity */
   [data-type="core/freeform"] {
@@ -58,4 +59,9 @@
   [data-type="core/separator"] {
     @include blockSeparator;
   }
+}
+
+/* Classic editor styles */
+.mce-content-body {
+  @include richText;
 }
