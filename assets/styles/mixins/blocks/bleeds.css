@@ -1,0 +1,19 @@
+@mixin blockBleeds {
+
+  .alignwide {
+    @media ($lgMin) {
+      width: 100vw;
+    }
+  }
+
+  .alignfull {
+    margin-left: calc(2rem * -1);
+    max-width: none;
+    width: 100vw;
+
+    /* Don't break the figcaption out, but constrain it to the content width */
+    figcaption {
+      width: calc(100vw - 2rem);
+    }
+  }
+}

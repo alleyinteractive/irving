@@ -1,7 +1,9 @@
-@import 'reset.css';
+@import 'global/index.css';
 
 @lost flexbox flex;
 
-.wrapper {
-  lost-center: 980px;
+body,
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

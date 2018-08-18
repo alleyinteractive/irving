@@ -3,6 +3,7 @@ const DotenvPlugin = require('dotenv-webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const { serverBuild, clientBuild, rootUrl } = require('../paths');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /**
  * Get the context specific plugins configuration.
@@ -36,6 +37,7 @@ module.exports = function getPlugins(context) {
           noSources: true,
           publicPath: `${rootUrl}/`,
         }),
+        new MiniCssExtractPlugin({ filename: 'static/css/[name].css' }),
       ];
 
     case 'development_client':
@@ -46,6 +48,7 @@ module.exports = function getPlugins(context) {
         new webpack.EnvironmentPlugin({
           BROWSER: true,
         }),
+        new MiniCssExtractPlugin({ filename: 'static/css/[name].css' }),
       ];
 
     default:

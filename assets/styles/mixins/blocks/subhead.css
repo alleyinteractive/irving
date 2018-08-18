@@ -1,0 +1,10 @@
+/* Styles for core subhead block */
+@mixin blockSubhead {
+
+  .wp-block-subhead {
+    color: $black;
+    font-size: rem(24);
+    font-style: normal;
+    font-weight: 700;
+  }
+}

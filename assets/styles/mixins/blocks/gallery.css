@@ -1,0 +1,33 @@
+/* Styles for core gallery block */
+@mixin blockGallery {
+
+  .wp-block-gallery {
+    display: grid;
+    grid-auto-rows: min-content;
+    width: 100%;
+
+    @media (--lgMax) {
+      grid-template-columns: repeat(auto-fit, minmax(rem(200), max-content));
+    }
+
+    @media (--lgMin) {
+      grid-template-columns: repeat(auto-fit, minmax(25%, max-content));
+    }
+
+    .blocks-gallery-item {
+      width: auto;
+
+      figure {
+        align-items: center;
+        justify-content: center;
+      }
+
+      img {
+        height: auto;
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+      }
+    }
+  }
+}

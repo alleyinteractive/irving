@@ -1,0 +1,48 @@
+/* Styles for any in-block text */
+
+/**
+ * Mixin for styling body content links.
+ */
+@mixin bodyLink {
+
+  a {
+    @include link;
+  }
+}
+
+/* Styles for any paragraph-like element (with italic, bold, links) */
+@mixin bodyParagraph {
+  @include bodyContent;
+  @include bodyBlockLevel;
+  @include bodyLink;
+
+  b,
+  strong {
+    font-weight: 700;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  &.is-small-text {
+    font-size: rem(14);
+  }
+
+  &.is-large-text {
+    font-size: 2rem;
+  }
+
+  &.is-larger-text {
+    font-size: 3.5rem;
+  }
+
+  &.has-drop-cap {
+
+    &::first-letter {
+      display: inline-block;
+      font-size: rem(100);
+    }
+  }
+}

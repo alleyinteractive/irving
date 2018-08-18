@@ -21,17 +21,25 @@ module.exports = function getEntry(context) {
       ];
 
     case 'production_client':
-      return [
-        ...polyfills,
-        path.join(clientRoot),
-      ];
+      return {
+        main: [
+          ...polyfills,
+          path.join(clientRoot),
+        ],
+        // Entry point for WordPress editor styles
+        editor: path.join(clientRoot, 'editor.js'),
+      };
 
     case 'development_client':
-      return [
-        ...polyfills,
-        'webpack-hot-middleware/client?reload=true',
-        path.join(clientRoot),
-      ];
+      return {
+        main: [
+          ...polyfills,
+          'webpack-hot-middleware/client?reload=true',
+          path.join(clientRoot),
+        ],
+        // Entry point for WordPress editor styles
+        editor: path.join(clientRoot, 'editor.js'),
+      };
 
     default:
       throw new Error(`Unknown configuration context ${context}`);

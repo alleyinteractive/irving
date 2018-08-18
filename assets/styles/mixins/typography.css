@@ -1,0 +1,20 @@
+@mixin bodyContent {
+  font-size: rem(18);
+  font-weight: 400;
+}
+
+@mixin link {
+  color: $black;
+  text-decoration: underline;
+
+  &:hover {
+    color: $gray;
+  }
+}
+
+@mixin caption {
+  color: $gray;
+  font-family: $serif;
+  font-size: 1rem;
+  text-align: left;
+}

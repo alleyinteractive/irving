@@ -1,4 +1,11 @@
-const { postCssConfig, transform } = require('../paths');
+const {
+  postCssConfig,
+  transform,
+  assetsRoot,
+  clientRoot,
+} = require('../paths');
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const exclude = [
   /node_modules/,
