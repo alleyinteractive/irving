@@ -1,4 +1,5 @@
-const { postCssConfig, transform } = require('../paths');
+const { postCssConfig, transform, assetsRoot } = require('../paths');
+const path = require('path');
 
 const exclude = [
   /node_modules/,
