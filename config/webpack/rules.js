@@ -1,4 +1,5 @@
-const { postCssConfig, transform } = require('../paths');
+const { postCssConfig, transform, assetsRoot } = require('../paths');
+const path = require('path');
 
 const exclude = [
   /node_modules/,
@@ -45,17 +46,23 @@ module.exports = function getRules(context) {
         /\.bmp$/,
         /\.gif$/,
         /\.jpe?g$/,
-        /\.png$/,
         /\.svg$/,
+        /\.png$/,
         /\.otf$/,
         /\.ico$/,
       ],
       loader: 'url-loader',
+      exclude: path.join(assetsRoot, 'icons'),
       options: {
         limit: 10000,
         emitFile: ! isServer,
         name: 'static/media/[name].[hash:8].[ext]',
       },
+    },
+    {
+      test: /\.svg$/,
+      include: path.join(assetsRoot, 'icons'),
+      loader: 'svg-react-loader',
     },
     {
       test: /\.jsx?$/,
