@@ -10,7 +10,7 @@ const { serverBuild, clientBuild, rootUrl } = require('../paths');
  * @returns {array} - a plugins configuration value
  */
 module.exports = function getPlugins(context) {
-  const env = getEnv(context);
+  const env = getEnv();
   switch (context) {
     case 'production_server':
       return [

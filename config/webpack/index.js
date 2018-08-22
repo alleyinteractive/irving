@@ -19,6 +19,5 @@ module.exports = function getConfigService(mode, opEnv) {
     getOutput: () => getOutput(context),
     getPlugins: () => getPlugins(context),
     getDevTool: () => getDevTool(context),
-    getEnv: () => getEnv(context),
   };
 };

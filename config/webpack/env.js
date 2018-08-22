@@ -1,18 +1,21 @@
+const fs = require('fs');
+const path = require('path');
+const { appRoot } = require('../paths');
+
 /**
  * Get the client available environment variables.
- * @param {string} context - the configuration context
  * @returns {object} - a client safe env object
  */
-module.exports = function getEnv(context) {
-  const isProd = context.includes('production');
+module.exports = function getEnv() {
   // Avoid missing .env file warning in production environments.
-  if (! isProd) {
+  if (fs.existsSync(path.join(appRoot, '.env'))) {
     require('dotenv').config(); // eslint-disable-line global-require
   }
 
   // Only include whitelisted variables for client environments to avoid leaking
   // sensitive information.
   const whitelist = [
+    new RegExp('NODE_ENV'),
     new RegExp('^API_QUERY_PARAM'),
   ];
   return Object
