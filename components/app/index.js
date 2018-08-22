@@ -9,6 +9,7 @@ import ConnectedRoot from 'components/connectedRoot';
 import ErrorBoundary from 'components/errorBoundary';
 import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
+import Menu from 'assets/icons/menu.svg';
 
 import styles from './app.css';
 
@@ -23,6 +24,7 @@ const App = (props) => {
         <ErrorMessage />
       ) : (
         <div className={styles.wrapper}>
+          <Menu />
           {roots.map((name) => (
             <ConnectedRoot key={name} name={name} />
           ))}
