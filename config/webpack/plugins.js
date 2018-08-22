@@ -1,7 +1,7 @@
 const webpack = require('webpack');
-const DotenvPlugin = require('dotenv-webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
+const getEnv = require('./env');
 const { serverBuild, clientBuild, rootUrl } = require('../paths');
 
 /**
@@ -10,6 +10,7 @@ const { serverBuild, clientBuild, rootUrl } = require('../paths');
  * @returns {array} - a plugins configuration value
  */
 module.exports = function getPlugins(context) {
+  const env = getEnv();
   switch (context) {
     case 'production_server':
       return [
@@ -22,11 +23,9 @@ module.exports = function getPlugins(context) {
     case 'production_client':
       return [
         new CleanPlugin(clientBuild, { allowExternal: true }),
-        new DotenvPlugin({
-          systemvars: true,
-        }),
         new webpack.EnvironmentPlugin({
           BROWSER: true,
+          ...env,
         }),
         new StatsWriterPlugin(),
         // Support friendly stack traces for error reporting, but protect
@@ -42,9 +41,9 @@ module.exports = function getPlugins(context) {
       return [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new DotenvPlugin(),
         new webpack.EnvironmentPlugin({
           BROWSER: true,
+          ...env,
         }),
       ];
 
