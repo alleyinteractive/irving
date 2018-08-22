@@ -3,7 +3,6 @@ const getRules = require('./rules');
 const getOutput = require('./output');
 const getPlugins = require('./plugins');
 const getDevTool = require('./devTool');
-const getEnv = require('./env');
 
 /**
  * Get a configuration service based on the context parameters.
