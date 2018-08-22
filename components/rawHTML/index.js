@@ -1,3 +1,4 @@
+import omit from 'lodash/fp/omit';
 import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
@@ -7,7 +8,10 @@ const RawHTML = (props) => {
   const { content, rich } = props;
   const html = sanitizeHtml(content, rich ? richText : plainText);
   return (
-    <div dangerouslySetInnerHTML={{ __html: html }} /> // eslint-disable-line react/no-danger
+    <div
+      {...omit(['content', 'rich', 'children', 'componentName'], props)}
+      dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
+    />
   );
 };
 
