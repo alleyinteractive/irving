@@ -3,6 +3,7 @@ const getRules = require('./rules');
 const getOutput = require('./output');
 const getPlugins = require('./plugins');
 const getDevTool = require('./devTool');
+const getEnv = require('./env');
 
 /**
  * Get a configuration service based on the context parameters.
@@ -18,5 +19,6 @@ module.exports = function getConfigService(mode, opEnv) {
     getOutput: () => getOutput(context),
     getPlugins: () => getPlugins(context),
     getDevTool: () => getDevTool(context),
+    getEnv: () => getEnv(context),
   };
 };
