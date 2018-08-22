@@ -4,7 +4,7 @@
  * @param {string} prop - The name of the prop to check.
  * @param {string} value - The value to check against.
  * @param {object[]} children - A collection of React elements.
- * @returns {object|null}
+ * @returns {object|null} - React Element
  */
 export const findChild = (prop, value, children) => (
   children.find((element) => {
@@ -18,7 +18,7 @@ export const findChild = (prop, value, children) => (
  *
  * @param {string} componentName - The api component name.
  * @param {object[]} children - A collection of React elements.
- * @returns {object|null}
+ * @returns {object|null} - React Element
  */
 export const findChildByName = (componentName, children) => (
   findChild('componentName', componentName, children)
@@ -30,7 +30,7 @@ export const findChildByName = (componentName, children) => (
  * @param {string} prop - The name of the prop to check.
  * @param {string} value - The value to check against.
  * @param {object[]} children - A collection of React elements.
- * @returns {object[]}
+ * @returns {object|null} - React Elements
  */
 export const filterChildren = (prop, value, children) => (
   children.filter((element) => {
@@ -44,7 +44,7 @@ export const filterChildren = (prop, value, children) => (
  *
  * @param {string} componentName - The api component name.
  * @param {object[]} children - A collection of React elements.
- * @returns {object[]}
+ * @returns {object|null} - React Elements
  */
 export const filterChildrenByName = (componentName, children) => (
   filterChildren('componentName', componentName, children)
