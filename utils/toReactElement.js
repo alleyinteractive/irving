@@ -1,4 +1,4 @@
-import { isString, omit } from 'lodash';
+import { isString, omit } from 'lodash/fp';
 import React from 'react';
 import getReactComponent from 'config/componentMap';
 
@@ -18,19 +18,24 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
   let props = {
     ...config,
     componentName: name,
-    key: keyPrefix + name,
+    key: `${keyPrefix}_ ${name}`,
   };
 
-  const childElements = isString(children) ?
+  const childElements = children.map((child, index) => (
     // Support text nodes.
-    children :
-    children.map((child, index) => toReactElement(child, String(index)));
+    isString(child) ? child : toReactElement(child, String(index))
+  ));
 
-  // For native DOM elements strip componentName prop, because it's technically
-  // not a valid element attribute.
   const type = getReactComponent(name);
-  if ('string' === typeof type) {
+  const isNativeDOMElm = 'string' === typeof type;
+  if (isNativeDOMElm) {
+    // Strip non valid element attribute.
     props = omit(['componentName'], props);
+
+    // Support self closing tags.
+    if (! childElements.length) {
+      return React.createElement(type, props);
+    }
   }
 
   return React.createElement(type, props, childElements);
