@@ -118,7 +118,7 @@ export default function serverRenderer(options) {
       // Render a error page.
       const cssBuilder = new CriticalCssBuilder();
       const appHtml = renderToString(
-        <StyleContext.Provider value={cssBuilder.addStyles}>
+        <StyleContext.Provider value={cssBuilder.addCss}>
           <ErrorMessage />
         </StyleContext.Provider>
       );
