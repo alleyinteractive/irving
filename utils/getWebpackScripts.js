@@ -24,18 +24,22 @@ const getWebpackScripts = (clientStats) => {
     }
 
     // Webpack runtime source should be inlined for optimal performance.
-    scripts.push(`<script>${runtimeSrc}</script>`);
+    scripts.push(`<script defer >${runtimeSrc}</script>`);
   }
 
   // Vendor assets
   if (assets.common) {
     const commonPublicPath = getAssetPath('common');
-    scripts.push(`<script src="${rootUrl}/${commonPublicPath}"></script>`);
+    scripts.push(
+      `<script defer src="${rootUrl}/${commonPublicPath}"></script>`
+    );
   }
 
   // Main asset
   const mainPublicPath = getAssetPath('main');
-  scripts.push(`<script src="${rootUrl}/${mainPublicPath}"></script>`);
+  scripts.push(
+    `<script defer src="${rootUrl}/${mainPublicPath}"></script>`
+  );
 
   return scripts;
 };
