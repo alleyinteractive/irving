@@ -28,10 +28,10 @@ const debugRequest = createDebug('render:request');
  * from the server.
  * @param {object} req - express request object
  * @param {object} res - express response object
- * @param {string[]} clientScripts - an array of required client scripts to be
- *                                   rendered
+ * @param {string[]} webpackScripts - an array of required webpack bundle scripts
+ *                                   to be rendered
  */
-const render = async (req, res, clientScripts) => {
+const render = async (req, res, webpackScripts) => {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     rootReducer,
@@ -80,13 +80,14 @@ const render = async (req, res, clientScripts) => {
   const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
   const templateVars = {
     meta: helmet.meta.toString(),
-    link: helmet.link.toString(),
-    criticalCss: cssBuilder.getCss(),
-    preloadedStyles: cssBuilder.getEncodedMap(),
+    links: helmet.link.toString(),
+    scripts: helmet.script.toString(),
     title: helmet.title.toString(),
+    criticalCss: cssBuilder.getCss(),
+    styleRefs: cssBuilder.getEncodedMap(),
     preRenderedHtml: appHtml,
-    preloadedState: stateEncoded,
-    scripts: clientScripts,
+    preRenderedState: stateEncoded,
+    webpackScripts,
   };
 
   res.status(status);

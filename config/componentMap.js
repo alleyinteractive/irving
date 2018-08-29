@@ -12,12 +12,13 @@ export const componentMap = {
   header: Placeholder,
   'admin-bar': Placeholder,
   body: withLoader(Placeholder),
+  embed: RawHTML,
   footer: Placeholder,
   menu: Placeholder,
   'menu-item': Placeholder,
   image: Image,
   head: Head,
-  rawHTML: RawHTML,
+  html: RawHTML,
 };
 
 /**

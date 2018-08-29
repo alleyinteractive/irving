@@ -4,35 +4,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%- meta %>
-    <%- link %>
-
-    <%# pre-rendered CSS required to avoid FOUC before client JS takes control. %>
-    <style id="critical-css"><%- criticalCss %></style>
-
+    <%- links %>
     <%- title %>
 
-    <%# third party scripts that need immediate execution %>
-    <%- include('headScripts'); %>
+    <%# critical CSS required to avoid FOUC before client JS takes control. %>
+    <style id="critical-css"><%- criticalCss %></style>
 
+    <%- scripts %>
+
+    <%# pre-rendered serialized Redux state %>
+    <script defer id="preload">
+      window.__PRELOADED_STATE__ = <%- preRenderedState %>;
+    </script>
+
+    <%# css module refs for critical css %>
+    <script defer>
+        <%- styleRefs %>;
+    </script>
+
+    <%# webpack runtime, main app bundle, and initial chunks %>
+    <% webpackScripts.forEach((script) => { %>
+    <%- script %>
+    <% }); %>
 </head>
 <body>
 <noscript>
     You need to enable JavaScript to view this site.
 </noscript>
 <div id="root"><%- preRenderedHtml %></div>
-
-<%# third party scripts that can have delayed execution %>
-<%- include('bodyScripts'); %>
-
-<%# pre-rendered serialized Redux state %>
-<script id="preload">
-  window.__PRELOADED_STATE__ = <%- preloadedState %>;
-  <%- preloadedStyles %>;
-</script>
-
-<%# main app bundle and initial chunks %>
-<% scripts.forEach((script) => { %>
-<%- script %>
-<% }); %>
 </body>
 </html>
