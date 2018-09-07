@@ -16,7 +16,11 @@ const PictureElement = (props) => {
         const { srcset: sourceSrcset, media } = source;
         return (<source key={media} srcSet={sourceSrcset} media={media} />);
       })}
-      <ImgElement srcset={srcset} src={src} alt={alt} />
+      <ImgElement
+        srcset={srcset}
+        src={src}
+        alt={alt}
+      />
     </picture>
   );
 };

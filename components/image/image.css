@@ -6,3 +6,21 @@
     display: block;
   }
 }
+
+.apsectRatio {
+  height: 0;
+  position: relative;
+
+  picture,
+  img {
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .placeholder {
+    height: 100%;
+  }
+}
