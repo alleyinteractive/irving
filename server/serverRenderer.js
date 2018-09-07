@@ -79,10 +79,7 @@ const render = async (req, res, webpackScripts) => {
   // https://redux.js.org/recipes/server-rendering#security-considerations
   const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
   const templateVars = {
-    meta: helmet.meta.toString(),
-    links: helmet.link.toString(),
-    scripts: helmet.script.toString(),
-    title: helmet.title.toString(),
+    helmet,
     criticalCss: cssBuilder.getCss(),
     styleRefs: cssBuilder.getEncodedMap(),
     preRenderedHtml: appHtml,

@@ -1,14 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" <%- helmet.htmlAttributes.toString() %> >
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%- meta %>
-    <%- links %>
-    <%- title %>
+    <%- helmet.title.toString() %>
+    <%- helmet.meta.toString() %>
+    <%- helmet.link.toString() %>
 
     <%# critical CSS required to avoid FOUC before client JS takes control. %>
     <style id="critical-css"><%- criticalCss %></style>
+    <%- style.toString() %>
 
     <%- scripts %>
 
@@ -22,15 +23,20 @@
         <%- styleRefs %>;
     </script>
 
+    <%- helmet.script.toString %>
+
     <%# webpack runtime, main app bundle, and initial chunks %>
     <% webpackScripts.forEach((script) => { %>
     <%- script %>
     <% }); %>
+
+    <%- helmet.base.toString() %>
 </head>
-<body>
+<body <%- helmet.bodyAttributes.toString() %>>
 <noscript>
     You need to enable JavaScript to view this site.
 </noscript>
+<%- helmet.noscript.toString() %>
 <div id="root"><%- preRenderedHtml %></div>
 </body>
 </html>
