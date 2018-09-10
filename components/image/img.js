@@ -1,22 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ImgElement = (props) => {
+const IrvingImg = (props) => {
   const {
-    srcset,
-    src,
     alt,
+    sizes,
+    src,
+    srcset,
   } = props;
 
   return (
-    <img alt={alt} src={src} srcSet={srcset} />
+    <img
+      alt={alt}
+      src={src}
+      srcSet={srcset}
+      sizes={sizes}
+    />
   );
 };
 
-ImgElement.propTypes = {
+IrvingImg.propTypes = {
   srcset: PropTypes.string.isRequired,
+  sizes: PropTypes.string,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
 };
 
-export default ImgElement;
+IrvingImg.defaultProps = {
+  sizes: '',
+};
+
+export default IrvingImg;
