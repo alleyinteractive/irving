@@ -1,0 +1,23 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: rem(10);
+  width: 100%;
+}
+
+.label {
+  margin-bottom: rem(5);
+}
+
+.select {
+  background-color: $white;
+  height: rem(42);
+
+  .error & {
+    border-color: $red;
+  }
+}
+
+.errorText {
+  color: $red;
+}
