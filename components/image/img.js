@@ -21,9 +21,13 @@ const IrvingImg = (props) => {
 
 IrvingImg.propTypes = {
   srcset: PropTypes.string.isRequired,
-  sizes: PropTypes.string.isRequired,
+  sizes: PropTypes.string,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
+};
+
+IrvingImg.defaultProps = {
+  sizes: '',
 };
 
 export default IrvingImg;
