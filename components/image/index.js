@@ -3,8 +3,8 @@ import { withStyles } from 'critical-style-loader/lib';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Lazyload from 'react-lazyload';
-import PictureElement from './picture';
-import ImgElement from './img';
+import IrvingPicture from './picture';
+import IrvingImg from './img';
 import styles from './image.css';
 
 const Image = (props) => {
@@ -33,8 +33,8 @@ const Image = (props) => {
       style={paddingPercentage}
     >
       {picture ?
-        <PictureElement {...props} /> :
-        <ImgElement {...props} />
+        <IrvingPicture {...props} /> :
+        <IrvingImg {...props} />
       }
     </span>
   );
