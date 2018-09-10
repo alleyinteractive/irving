@@ -1,0 +1,45 @@
+.inputWrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: rem(10);
+}
+
+.label {
+  margin-bottom: rem(5);
+}
+
+.input {
+  height: rem(42);
+  padding: rem(5) rem(10);
+}
+
+.textarea {
+  padding: rem(10);
+}
+
+.input,
+.textarea {
+  border: 1px solid $grayLight;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: var(--black);
+  width: 100%;
+
+  &::placeholder {
+    color: $grayLight;
+  }
+
+  &:focus {
+    border-color: $black;
+    outline: none;
+  }
+
+  .error & {
+    border-color: $red;
+  }
+}
+
+.errorText {
+  color: $red;
+}
