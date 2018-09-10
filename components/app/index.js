@@ -18,13 +18,6 @@ const App = (props) => {
   return (
     <ErrorBoundary>
       <Helmet>
-        <html lang="en" amp />
-        <body className="root" />
-        <title>Foo</title>
-        <meta name="description" content="Helmet application" />
-        <style type="text/css'">
-          {'body: { background-color: blue; }'}
-        </style>
         <link rel="shortcut icon" href={favicon} />
       </Helmet>
       {error ? (
