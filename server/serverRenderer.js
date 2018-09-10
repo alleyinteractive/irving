@@ -14,7 +14,7 @@ import { actionLocationChange } from 'actions';
 import App from 'components/app';
 import ErrorMessage from 'components/errorMessage';
 import defaultState from 'reducers/defaultState';
-import locationSaga from 'sagas/locationSaga';
+import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
@@ -49,7 +49,7 @@ const render = async (req, res, webpackScripts) => {
   }));
 
   // Process location handling.
-  await sagaMiddleware.run(locationSaga).toPromise();
+  await sagaMiddleware.run(resolveComponents).toPromise();
 
   // logging
   const { redirectTo, status } = getState().route;
