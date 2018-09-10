@@ -6,12 +6,13 @@
     <%- helmet.title.toString() %>
     <%- helmet.meta.toString() %>
     <%- helmet.link.toString() %>
+    <%- helmet.base.toString() %>
+    <%- helmet.style.toString() %>
 
     <%# critical CSS required to avoid FOUC before client JS takes control. %>
     <style id="critical-css"><%- criticalCss %></style>
-    <%- style.toString() %>
 
-    <%- scripts %>
+    <%- helmet.script.toString() %>
 
     <%# pre-rendered serialized Redux state %>
     <script defer id="preload">
@@ -23,14 +24,10 @@
         <%- styleRefs %>;
     </script>
 
-    <%- helmet.script.toString %>
-
     <%# webpack runtime, main app bundle, and initial chunks %>
     <% webpackScripts.forEach((script) => { %>
     <%- script %>
     <% }); %>
-
-    <%- helmet.base.toString() %>
 </head>
 <body <%- helmet.bodyAttributes.toString() %>>
 <noscript>
