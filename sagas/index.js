@@ -1,12 +1,14 @@
 import { all, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'actions/types';
-import watchLocationChange from './locationSaga';
+import resolveComponents from './resolveComponents';
+import waitToScroll from './waitToScroll';
 
 /**
- * Combine all continuous sagas, and run them in parallel.
+ * Combine all sagas, and run them continuously in parallel.
  */
 export default function* rootSaga() {
   yield all([
-    takeLatest(LOCATION_CHANGE, watchLocationChange),
+    takeLatest(LOCATION_CHANGE, resolveComponents),
+    takeLatest(LOCATION_CHANGE, waitToScroll),
   ]);
 }
