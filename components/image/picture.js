@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImgElement from './img';
+import IrvingImg from './img';
 
-const PictureElement = (props) => {
+const IrvingPicture = (props) => {
   const {
     sourceTags,
     src,
@@ -16,12 +16,16 @@ const PictureElement = (props) => {
         const { srcset: sourceSrcset, media } = source;
         return (<source key={media} srcSet={sourceSrcset} media={media} />);
       })}
-      <ImgElement srcset={srcset} src={src} alt={alt} />
+      <IrvingImg
+        srcset={srcset}
+        src={src}
+        alt={alt}
+      />
     </picture>
   );
 };
 
-PictureElement.propTypes = {
+IrvingPicture.propTypes = {
   sourceTags: PropTypes.arrayOf(
     PropTypes.shape({
       srcset: PropTypes.string.isRequired,
@@ -33,5 +37,5 @@ PictureElement.propTypes = {
   alt: PropTypes.string.isRequired,
 };
 
-export default PictureElement;
+export default IrvingPicture;
 
