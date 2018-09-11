@@ -4,6 +4,7 @@
   "description": "Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.",
   "main": "main.js",
   "scripts": {
+    "preinstall": "npx check-node-version --package",
     "build": "webpack --config config/webpack.config.js --mode production",
     "dev": "NODE_ENV=development nodemon server/index.js",
     "start": "NODE_ENV=production node server/index.js",
@@ -18,7 +19,7 @@
   "author": "Alley (Alley.co)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/alleyinteractive/irving#readme",
-  "engine": {
+  "engines": {
     "node": "8",
     "npm": "6"
   },
@@ -65,6 +66,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-latest-node": "^1.0.0",
     "babel-preset-react": "^6.24.1",
+    "check-node-version": "^3.2.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
