@@ -5,45 +5,34 @@ import { withStyles } from 'critical-style-loader/lib';
 import Label from './label';
 import styles from './text.css';
 
-const TextArea = ({
-  name,
-  placeholder,
-  label,
-  value,
-  onChange,
-  required,
-  className,
-  rows,
-  error,
-}) => (
-  <div className={classNames(
-    styles.inputWrapper,
+const TextArea = (props) => {
+  const {
+    name,
+    label,
+    required,
     className,
-    { [styles.error]: !!error }
-  )}
-  >
-    <Label
-      htmlFor={name}
-      text={label}
-      required={required}
-      className={styles.label}
-    />
-    <textarea
-      className={styles.textarea}
-      type="text"
-      placeholder={placeholder}
-      id={name}
-      name={name}
-      value={value}
-      onChange={onChange}
-      required={required}
-      rows={rows}
-    />
-    {!!error &&
-      <span className={styles.errorText}>{error}</span>
-    }
-  </div>
-);
+    error,
+  } = props;
+  return (
+    <div className={classNames(
+      styles.inputWrapper,
+      className,
+      { [styles.error]: !! error }
+    )}
+    >
+      <Label
+        htmlFor={name}
+        text={label}
+        required={required}
+        className={styles.label}
+      />
+      <textarea {...props} className={styles.textarea} type="text" />
+      {!! error &&
+        <span className={styles.errorText}>{error}</span>
+      }
+    </div>
+  );
+};
 
 TextArea.propTypes = {
   name: PropTypes.string.isRequired,

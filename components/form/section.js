@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './section.css';
 
-const FormSection = ({ heading, children }) => (
-  <section className={styles.section}>
-    {heading && <h3 className={styles.heading}>{heading}</h3>}
-    {children}
-  </section>
-);
+const FormSection = (props) => {
+  const { heading, children } = props;
+  return (
+    <section className={styles.section}>
+      {heading && <h3 className={styles.heading}>{heading}</h3>}
+      {children}
+    </section>
+  );
+};
 
 FormSection.propTypes = {
   heading: PropTypes.string,

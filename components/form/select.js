@@ -5,48 +5,54 @@ import { withStyles } from 'critical-style-loader/lib';
 import Label from './label';
 import styles from './select.css';
 
-const Select = ({
-  name,
-  label,
-  options,
-  value,
-  required,
-  onChange,
-  className,
-  error,
-}) => (
-  <div className={classNames(
-    styles.inputWrapper,
+const Select = (props) => {
+  const {
+    name,
+    label,
+    options,
+    value,
+    required,
+    onChange,
     className,
-    { [styles.error]: !!error }
-  )}
-  >
-    <Label
-      htmlFor={name}
-      text={label}
-      require={required}
-      className={styles.label}
-    />
-    <select
-      value={value}
-      className={styles.select}
-      name={name}
-      id={name}
-      onChange={onChange}
+    error,
+  } = props;
+
+  return (
+    <div className={classNames(
+      styles.inputWrapper,
+      className,
+      { [styles.error]: !! error }
+    )}
     >
-      {!value && <option value />}
-      {options.map(({ text, value: optionValue }) => (
-        <option
-          key={optionValue}
-          value={optionValue}
-        >{text || optionValue}</option>
-      ))}
-    </select>
-    {!!error &&
-      <span className={styles.errorText}>{error}</span>
-    }
-  </div>
-);
+      <Label
+        htmlFor={name}
+        text={label}
+        require={required}
+        className={styles.label}
+      />
+      <select
+        value={value}
+        className={styles.select}
+        name={name}
+        id={name}
+        onChange={onChange}
+      >
+        {! value && <option value />}
+        {options.map(({ text, value: optionValue }) => (
+          <option
+            key={optionValue}
+            value={optionValue}
+          >
+            {text || optionValue}
+          </option>
+        ))}
+      </select>
+      {!! error &&
+        <span className={styles.errorText}>{error}</span>
+      }
+    </div>
+  );
+};
 
 Select.propTypes = {
   name: PropTypes.string.isRequired,
@@ -66,7 +72,6 @@ Select.propTypes = {
 
 Select.defaultProps = {
   value: '',
-  defaultValue: '',
   required: false,
   className: '',
   error: '',
