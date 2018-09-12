@@ -10,7 +10,6 @@ import ErrorBoundary from 'components/errorBoundary';
 import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
 import Menu from 'assets/icons/menu.svg';
-
 import styles from './app.css';
 
 const App = (props) => {

@@ -1,0 +1,7 @@
+.label {
+  font-size: rem(12);
+}
+
+.required {
+  color: red;
+}
