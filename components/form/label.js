@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './label.css';
 
+/* eslint-disable jsx-a11y/label-has-for */
 const Label = ({
   htmlFor,
   text,
@@ -18,6 +19,7 @@ const Label = ({
     {required && <span className={styles.required}>required</span>}
   </label>
 );
+/* eslint-enable */
 
 Label.propTypes = {
   className: PropTypes.string,
