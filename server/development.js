@@ -3,6 +3,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const getConfig = require('../config/webpack.config.js');
+
 const config = getConfig({}, { mode: 'development' });
 const matchClient = ({ name }) => 'client' === name;
 const multiCompiler = webpack(config);
@@ -14,14 +15,18 @@ const clientConfig = config.find(matchClient);
  * @param {object} app - express application
  */
 const developmentMiddleware = (app) => {
-  app.use(webpackDevMiddleware(multiCompiler, {
+  const devMiddlewareInstance = webpackDevMiddleware(multiCompiler, {
     publicPath: clientConfig.output.publicPath,
     serverSideRender: true,
     logLevel: 'warn',
-  }));
-
+  });
+  app.use(devMiddlewareInstance);
   app.use(webpackHotMiddleware(clientCompiler));
   app.use(webpackHotServerMiddleware(multiCompiler));
+
+  // Begin compiling the bundle immediately.
+  devMiddlewareInstance.invalidate();
+  console.log('compiling initial bundle...'); // eslint-disable-line no-console
 };
 
 module.exports = developmentMiddleware;
