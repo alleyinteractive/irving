@@ -26,7 +26,13 @@ const withFormHandler = (defaultState) => (FormComponent) => {
   }
 
   FormHandler.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func,
+  };
+
+  FormHandler.defaultProps = {
+    onSubmit: (e) => {
+      e.preventDefault();
+    },
   };
 
   FormHandler.displayName = getDisplayName('FormHandler', FormComponent);
