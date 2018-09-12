@@ -4,21 +4,25 @@ import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './label.css';
 
+// This rule is both deprecated and appears to be causing an erroneous warning
 /* eslint-disable jsx-a11y/label-has-for */
-const Label = ({
-  htmlFor,
-  text,
-  required,
-  className,
-}) => (
-  <label
-    className={classNames(styles.label, className)}
-    htmlFor={htmlFor}
-  >
-    {text}
-    {required && <span className={styles.required}>required</span>}
-  </label>
-);
+const Label = (props) => {
+  const {
+    htmlFor,
+    text,
+    required,
+    className,
+  } = props;
+  return (
+    <label
+      className={classNames(styles.label, className)}
+      htmlFor={htmlFor}
+    >
+      {text}
+      {required && <span className={styles.required}>required</span>}
+    </label>
+  );
+};
 /* eslint-enable */
 
 Label.propTypes = {

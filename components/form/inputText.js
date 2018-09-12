@@ -5,43 +5,34 @@ import { withStyles } from 'critical-style-loader/lib';
 import Label from './label';
 import styles from './text.css';
 
-const InputText = ({
-  name,
-  placeholder,
-  label,
-  value,
-  onChange,
-  required,
-  className,
-  error,
-}) => (
-  <div className={classNames(
-    styles.inputWrapper,
+const InputText = (props) => {
+  const {
+    name,
+    label,
+    required,
+    error,
     className,
-    { [styles.error]: !! error }
-  )}
-  >
-    <Label
-      htmlFor={name}
-      text={label}
-      required={required}
-      className={styles.label}
-    />
-    <input
-      className={styles.input}
-      type="text"
-      placeholder={placeholder}
-      id={name}
-      name={name}
-      value={value}
-      onChange={onChange}
-      required={required}
-    />
-    {!! error &&
-      <span className={styles.errorText}>{error}</span>
-    }
-  </div>
-);
+  } = props;
+  return (
+    <div className={classNames(
+      styles.inputWrapper,
+      className,
+      { [styles.error]: !! error }
+    )}
+    >
+      <Label
+        htmlFor={name}
+        text={label}
+        required={required}
+        className={styles.label}
+      />
+      <input {...props} className={styles.input} type="text" />
+      {!! error &&
+        <span className={styles.errorText}>{error}</span>
+      }
+    </div>
+  );
+};
 
 InputText.propTypes = {
   name: PropTypes.string.isRequired,
