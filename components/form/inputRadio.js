@@ -42,7 +42,6 @@ InputRadio.propTypes = {
 };
 
 InputRadio.defaultProps = {
-  value: '',
   checked: false,
   required: false,
   className: '',

@@ -10,6 +10,7 @@ import ErrorBoundary from 'components/errorBoundary';
 import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
 import Menu from 'assets/icons/menu.svg';
+import InputRadio from 'components/form/inputRadio';
 
 import styles from './app.css';
 
@@ -28,6 +29,12 @@ const App = (props) => {
           {roots.map((name) => (
             <ConnectedRoot key={name} name={name} />
           ))}
+          <InputRadio
+            name="newsletterEmail"
+            label="Enter your email address"
+            onChange={() => {}}
+            value="test"
+          />
         </div>
       )}
     </ErrorBoundary>
