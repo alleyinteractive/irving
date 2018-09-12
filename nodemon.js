@@ -31,8 +31,8 @@ const getIgnore = get('config.options.ignore');
 const isIgnoreApplied = flow(getIgnore, intersection(ignore), isEqual(ignore));
 
 nodemon.on('crash', () => {
-  // We an error has occurred on the server, wait for any change in the project
-  // to restart the app.
+  // When an error has occurred on the server, wait for any change in the
+  // project to restart the app.
   if (isIgnoreApplied(nodemon)) {
     nodemon.config.load({ script }, () => {
       utils.log.info('Nodemon is temporarily watching all directories for a' +
