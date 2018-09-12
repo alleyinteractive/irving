@@ -4,7 +4,12 @@ import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './label.css';
 
-const Label = ({ htmlFor, text, required, className }) => (
+const Label = ({
+  htmlFor,
+  text,
+  required,
+  className,
+}) => (
   <label
     className={classNames(styles.label, className)}
     htmlFor={htmlFor}
