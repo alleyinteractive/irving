@@ -18,7 +18,7 @@ const developmentMiddleware = (app) => {
   const devMiddlewareInstance = webpackDevMiddleware(multiCompiler, {
     publicPath: clientConfig.output.publicPath,
     serverSideRender: true,
-    logLevel: 'warn',
+    logLevel: 'warn', // Info output is overwhelming with bundle information.
   });
   app.use(devMiddlewareInstance);
   app.use(webpackHotMiddleware(clientCompiler));
