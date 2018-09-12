@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { withStyles } from 'critical-style-loader/lib';
 import Label from './label';
 import styles from './text.css';
 

@@ -18,7 +18,7 @@ const InputText = ({
   <div className={classNames(
     styles.inputWrapper,
     className,
-    { [styles.error]: !!error }
+    { [styles.error]: !! error }
   )}
   >
     <Label
@@ -37,7 +37,7 @@ const InputText = ({
       onChange={onChange}
       required={required}
     />
-    {!!error &&
+    {!! error &&
       <span className={styles.errorText}>{error}</span>
     }
   </div>

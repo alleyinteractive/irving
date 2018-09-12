@@ -14,10 +14,10 @@
   height: rem(42);
 
   .error & {
-    border-color: $red;
+    border-color: red;
   }
 }
 
 .errorText {
-  color: $red;
+  color: red;
 }

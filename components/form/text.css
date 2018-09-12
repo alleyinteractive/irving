@@ -36,10 +36,10 @@
   }
 
   .error & {
-    border-color: $red;
+    border-color: red;
   }
 }
 
 .errorText {
-  color: $red;
+  color: red;
 }
