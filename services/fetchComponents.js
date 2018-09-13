@@ -13,14 +13,15 @@ const debug = createDebug('components');
  * @returns {object}
  */
 function getExtraQueryParams() {
+  const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
   return Object
-    .keys(process.env)
+    .keys(env)
     .filter((key) => 0 === key.indexOf('API_QUERY_PARAM_'))
     .reduce((acc, key) => {
       const param = key.replace('API_QUERY_PARAM_', '').toLowerCase();
       return {
         ...acc,
-        [param]: process.env[key],
+        [param]: env[key],
       };
     }, {});
 }
