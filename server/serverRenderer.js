@@ -1,6 +1,4 @@
-/* eslint-disable import/first */
-require('source-map-support').install();
-
+import 'source-map-support/register';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
