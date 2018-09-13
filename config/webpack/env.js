@@ -8,7 +8,7 @@ const { appRoot } = require('../paths');
  */
 module.exports = function getEnv() {
   // Production will use environment variables set by the system. We also don't
-  // want to do unnecessary file system calls for optimal performance.
+  // want to execute unnecessary file system calls for optimal performance reasons.
   const isProd = 'production' === process.env.NODE_ENV;
   // Avoid missing .env file warning.
   if (! isProd && fs.existsSync(path.join(appRoot, '.env'))) {
