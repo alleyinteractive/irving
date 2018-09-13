@@ -6,7 +6,7 @@
   "scripts": {
     "preinstall": "npx check-node-version --package",
     "build": "webpack --config config/webpack.config.js --mode production",
-    "dev": "NODE_ENV=development nodemon server/index.js",
+    "dev": "NODE_ENV=development node nodemon.js",
     "start": "NODE_ENV=production node server/index.js",
     "postinstall": "npm run build",
     "test": "jest",
