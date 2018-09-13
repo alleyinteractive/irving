@@ -13,6 +13,8 @@ const debug = createDebug('components');
  * @returns {object}
  */
 function getExtraQueryParams() {
+  // To access environment variables at run time in a client context we must
+  // access them through a global provided by the server render.
   const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
   return Object
     .keys(env)
