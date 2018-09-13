@@ -11,6 +11,7 @@ import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import App from 'components/app';
 import ErrorMessage from 'components/errorMessage';
+import getEnv from 'config/webpack/env';
 import defaultState from 'reducers/defaultState';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
@@ -82,6 +83,7 @@ const render = async (req, res, webpackScripts) => {
     styleRefs: cssBuilder.getEncodedMap(),
     preRenderedHtml: appHtml,
     preRenderedState: stateEncoded,
+    env: JSON.stringify(getEnv()),
     webpackScripts,
   };
 
