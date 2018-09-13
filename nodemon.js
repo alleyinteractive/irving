@@ -3,8 +3,8 @@ const utils = require('nodemon/lib/utils');
 const {
   flow,
   get,
-  isEqual,
   intersection,
+  isEqual,
 } = require('lodash/fp');
 
 // By default we want nodemon to ignore any files that contain isomorphic code,
