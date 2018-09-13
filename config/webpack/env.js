@@ -7,8 +7,12 @@ const { appRoot } = require('../paths');
  * @returns {object} - a client safe env object
  */
 module.exports = function getEnv() {
-  // Avoid missing .env file warning in production environments.
-  if (fs.existsSync(path.join(appRoot, '.env'))) {
+  // Production will use environment variables set by the system. We also don't
+  // want to execute unnecessary file system calls for optimal performance reasons.
+  const isProd = 'production' === process.env.NODE_ENV;
+  // Avoid missing .env file warning.
+  if (! isProd && fs.existsSync(path.join(appRoot, '.env'))) {
+    // Support environment variables set by .env file for development.
     require('dotenv').config(); // eslint-disable-line global-require
   }
 
