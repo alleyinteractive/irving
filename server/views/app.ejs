@@ -14,8 +14,7 @@
 
     <%# Runtime accessible environment variables %>
     <script>
-        window.process = window.process || {};
-        window.process.env = <%- env %>;
+      window.__ENV__ = <%- env %>;
     </script>
 
     <%- helmet.script.toString() %>
