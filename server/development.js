@@ -24,9 +24,9 @@ const developmentMiddleware = (app) => {
   app.use(webpackHotMiddleware(clientCompiler));
   app.use(webpackHotServerMiddleware(multiCompiler));
 
-  // Begin compiling the bundle immediately.
-  devMiddlewareInstance.invalidate();
-  console.log('compiling initial bundle...'); // eslint-disable-line no-console
+  // // Begin compiling the bundle immediately.
+  // devMiddlewareInstance.invalidate();
+  // console.log('compiling initial bundle...'); // eslint-disable-line no-console
 };
 
 module.exports = developmentMiddleware;
