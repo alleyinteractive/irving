@@ -10,7 +10,8 @@
     "start": "NODE_ENV=production node server/index.js",
     "postinstall": "npm run build",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "styleguide:watch": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js"
   },
   "repository": {
     "type": "git",
@@ -104,6 +105,7 @@
     "postcss-sassy-mixins": "^2.1.0",
     "postcss-simple-vars": "^4.1.0",
     "postcss-units": "^1.1.0",
+    "react-styleguidist": "^7.3.8",
     "style-loader": "^0.21.0",
     "stylelint": "^9.2.0",
     "stylelint-order": "^0.8.1",
