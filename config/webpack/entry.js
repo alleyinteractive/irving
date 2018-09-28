@@ -29,7 +29,7 @@ module.exports = function getEntry(context) {
     case 'development_client':
       return [
         ...polyfills,
-        'webpack-hot-middleware/client?reload=true',
+        'webpack-hot-middleware/client?https://3001-httpsproxy.alley.test&reload=true',
         path.join(clientRoot),
       ];
 

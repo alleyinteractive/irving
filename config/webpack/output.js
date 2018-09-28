@@ -26,7 +26,7 @@ module.exports = function getOutput(context) {
     case 'development_client':
       return {
         path: clientBuild,
-        publicPath: `${rootUrl}/`,
+        publicPath: 'https://3001-httpsproxy.alley.test/',
         filename: '[name].bundle.js',
         chunkFilename: '[name].chunk.js',
       };
