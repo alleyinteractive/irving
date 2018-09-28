@@ -3,10 +3,8 @@ const paths = require('./paths');
 
 module.exports = {
   components: path.join(paths.appRoot, 'components/**/*.js'),
-  webpackConfig: require('./webpack.config.js')({}, { mode: 'development' })[0],
+  webpackConfig: require('./webpack.config.js')({}, { mode: process.env.NODE_ENV })
+    .find((config) => config.name === 'client'),
   skipComponentsWithoutExample: true,
-  styleguideComponents: {
-    Wrapper: path.join(paths.styleguideRoot, './components/wrapper.js'),
-  },
   styleguideDir: paths.styleguideRoot,
 };

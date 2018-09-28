@@ -11,7 +11,7 @@
     "postinstall": "npm run build",
     "test": "jest",
     "test:watch": "jest --watch",
-    "styleguide:watch": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
+    "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
     "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js"
   },
   "repository": {
@@ -112,7 +112,7 @@
     "stylelint-order": "^0.8.1",
     "svg-react-loader": "^0.4.5",
     "url-loader": "^1.0.1",
-    "webpack": "^4.8.3",
+    "webpack": "^4.15.1",
     "webpack-cli": "^2.1.3",
     "webpack-dev-middleware": "^3.1.3",
     "webpack-hot-middleware": "^2.22.2",
