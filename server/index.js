@@ -21,6 +21,10 @@ app.set('view engine', 'ejs');
 
 if ('development' === NODE_ENV) {
   require('./development')(app);
+  const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
+  const { localUrlForBrowser } = prepareUrls('http', 'localhost', PORT);
+  const openBrowser = require('react-dev-utils/openBrowser');
+  openBrowser(localUrlForBrowser);
 } else {
   require('./production')(app);
 }
