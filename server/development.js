@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -9,6 +11,9 @@ const matchClient = ({ name }) => 'client' === name;
 const multiCompiler = webpack(config);
 const clientCompiler = multiCompiler.compilers.find(matchClient);
 const clientConfig = config.find(matchClient);
+
+const HTTPS = true;
+const { PORT } = process.env;
 
 /**
  * Add the required middleware to support running the app in development mode.
