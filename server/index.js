@@ -18,6 +18,7 @@ const path = require('path');
 const http = require('http');
 const https = require('https');
 const express = require('express');
+const { rootUrl } = require('../config/paths');
 
 const {
   PORT = 3001,
@@ -32,10 +33,6 @@ app.set('view engine', 'ejs');
 
 if ('development' === NODE_ENV) {
   require('./development')(app);
-  // const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
-  // const { localUrlForBrowser } = prepareUrls('http', 'localhost', PORT);
-  // const openBrowser = require('react-dev-utils/openBrowser');
-  // openBrowser(localUrlForBrowser);
 } else {
   require('./production')(app);
 }
@@ -76,11 +73,17 @@ if (HTTPS_KEY_PATH && HTTPS_CERT_PATH) {
 server.listen(PORT);
 console.log(`Server listening on port ${PORT}!`);
 
+// Open app for convenience and to get the initial build started.
+if ('development' === NODE_ENV) {
+  const openBrowser = require('react-dev-utils/openBrowser');
+  openBrowser(rootUrl);
+}
+
 // Handle uncaught promise exceptions.
 process.on('unhandledRejection', (err) => {
   debug(err);
 
-  if ('production' !== process.env.NODE_ENV) {
+  if ('production' !== NODE_ENV) {
     throw err;
   }
 });
