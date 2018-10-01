@@ -1,9 +1,8 @@
-/* eslint-disable */
-
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+const proxy = require('http-proxy-middleware');
 const getConfig = require('../config/webpack.config.js');
 
 const config = getConfig({}, { mode: 'development' });
@@ -12,26 +11,31 @@ const multiCompiler = webpack(config);
 const clientCompiler = multiCompiler.compilers.find(matchClient);
 const clientConfig = config.find(matchClient);
 
-const HTTPS = true;
-const { PORT } = process.env;
+const { PROXY_URL } = process.env;
 
 /**
  * Add the required middleware to support running the app in development mode.
  * @param {object} app - express application
  */
 const developmentMiddleware = (app) => {
-  const devMiddlewareInstance = webpackDevMiddleware(multiCompiler, {
+  // Serve webpack handled assets.
+  app.use(webpackDevMiddleware(multiCompiler, {
     publicPath: clientConfig.output.publicPath,
     serverSideRender: true,
     logLevel: 'warn', // Info output is overwhelming with bundle information.
-  });
-  app.use(devMiddlewareInstance);
+  }));
+  // Support hot module reloading.
   app.use(webpackHotMiddleware(clientCompiler));
+  // Support server executed module hot reloading.
   app.use(webpackHotServerMiddleware(multiCompiler));
-
-  // // Begin compiling the bundle immediately.
-  // devMiddlewareInstance.invalidate();
-  // console.log('compiling initial bundle...'); // eslint-disable-line no-console
+  // Support local HTTPS through a proxy.
+  if (PROXY_URL) {
+    app.use(proxy('**', {
+      context: '**',
+      target: PROXY_URL,
+      changeOrigin: true,
+    }));
+  }
 };
 
 module.exports = developmentMiddleware;

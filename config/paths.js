@@ -18,6 +18,7 @@ module.exports = {
   serverBuild: resolveDir('build/server'),
   globalStyles: resolveDir('assets/styles'),
   rootUrl: process.env.ROOT_URL || 'http://localhost:3001',
+  proxyUrl: process.env.PROXY_URL,
   assetsRoot: resolveDir('assets'),
   nodeModules: resolveDir('node_modules'),
   postCssConfig: resolveDir('config/postcss.config.js'),

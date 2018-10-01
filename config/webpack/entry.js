@@ -1,5 +1,5 @@
 const path = require('path');
-const { serverRoot, clientRoot } = require('../paths');
+const { serverRoot, clientRoot, proxyUrl } = require('../paths');
 
 /**
  * Get the context specific entry configuration.
@@ -26,12 +26,18 @@ module.exports = function getEntry(context) {
         path.join(clientRoot),
       ];
 
-    case 'development_client':
+    case 'development_client': {
+      let queryString = 'reload=true';
+      if (proxyUrl) {
+        queryString = `${proxyUrl}&reload=true`;
+      }
+
       return [
         ...polyfills,
-        'webpack-hot-middleware/client?https://3001-httpsproxy.alley.test&reload=true',
+        `webpack-hot-middleware/client?${queryString}`,
         path.join(clientRoot),
       ];
+    }
 
     default:
       throw new Error(`Unknown configuration context ${context}`);
