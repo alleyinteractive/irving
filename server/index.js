@@ -12,9 +12,6 @@ getService().start();
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
 
-const os = require('os');
-const fs = require('fs');
-const path = require('path');
 const http = require('http');
 const https = require('https');
 const express = require('express');
@@ -50,6 +47,10 @@ app.use((err, req, res, next) => {
 
 let server;
 if (HTTPS_KEY_PATH && HTTPS_CERT_PATH) {
+  const os = require('os');
+  const fs = require('fs');
+  const path = require('path');
+
   const key = fs.readFileSync(
     path.join(
       os.homedir(),
