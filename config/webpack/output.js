@@ -1,9 +1,4 @@
-const {
-  serverBuild,
-  clientBuild,
-  rootUrl,
-  proxyUrl,
-} = require('../paths');
+const { serverBuild, clientBuild, rootUrl } = require('../paths');
 
 /**
  * Get the context specific output configuration.
@@ -31,7 +26,7 @@ module.exports = function getOutput(context) {
     case 'development_client':
       return {
         path: clientBuild,
-        publicPath: `${proxyUrl || rootUrl}/`,
+        publicPath: `${rootUrl}/`,
         filename: '[name].bundle.js',
         chunkFilename: '[name].chunk.js',
       };
