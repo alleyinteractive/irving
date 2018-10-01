@@ -10,6 +10,8 @@ const appRoot = fs.realpathSync(process.cwd());
  */
 const resolveDir = (relativePath) => path.resolve(appRoot, relativePath);
 
+const { PROXY_URL, ROOT_URL } = process.env;
+
 module.exports = {
   appRoot,
   clientRoot: resolveDir('client'),
@@ -17,7 +19,7 @@ module.exports = {
   clientBuild: resolveDir('build/client'),
   serverBuild: resolveDir('build/server'),
   globalStyles: resolveDir('assets/styles'),
-  rootUrl: process.env.ROOT_URL || 'http://localhost:3001',
+  rootUrl: PROXY_URL || ROOT_URL || 'http://localhost:3001',
   assetsRoot: resolveDir('assets'),
   nodeModules: resolveDir('node_modules'),
   postCssConfig: resolveDir('config/postcss.config.js'),
