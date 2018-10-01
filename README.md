@@ -32,6 +32,9 @@ automatically deleted, defaults to 5 minutes
 * `DEBUG` - https://github.com/visionmedia/debug#environment-variables
 * `NEW_RELIC_APP_NAME` - Your New Relic license key.
 * `NEW_RELIC_LICENSE_KEY` - The name of this application, for reporting to New Relic's servers. This value can be also be a comma-delimited list of names.
+* `PROXY_URL` - URL to proxy all server requests through.
+* `HTTPS_KEY_PATH` - Path to tls key relative to current home directory. 
+* `HTTPS_CERT_PATH` - Path to tls cert relative to current home directory.
 
 ### Extra Query Params
 Any environment variable that is prefixed with `API_QUERY_PARAM_`, for example
@@ -66,3 +69,8 @@ newrelic is supported. To enabled newrelic the `newrelic` package must be
 installed, and the `NEW_RELIC_APP_NAME` and `NEW_RELIC_LICENSE_KEY` environment
 variable must be set. See [here](https://github.com/newrelic/node-newrelic#configuring-the-module)
 for additional newrelic configuration options.
+
+## HTTPS
+In production HTTPS will typically be handled by the load balancer of the
+hosting environment. If you would like HTTPS for local development set the
+`PROXY_URL`, `HTTP_KEY_PATH`, and `HTTPS_CERT_PATH` environment variables.
