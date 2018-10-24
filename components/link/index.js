@@ -4,17 +4,22 @@ import parseUrl from 'utils/getRelativeUrl';
 import history from 'utils/history';
 
 const Link = (props) => {
-  const relativeUrl = parseUrl(props.to);
+  const { to, blank, onClick } = props;
+  const relativeUrl = parseUrl(to);
+  const defaultOnClick = (event) => {
+    if (relativeUrl) {
+      event.preventDefault();
+      history.push(relativeUrl);
+    }
+  };
+
   return (
     <a
       {...props}
-      href={props.to}
-      onClick={(event) => {
-        if (relativeUrl) {
-          event.preventDefault();
-          history.push(relativeUrl);
-        }
-      }}
+      href={to}
+      onClick={onClick || defaultOnClick}
+      target={blank ? '_blank' : null}
+      rel={blank ? 'noopener' : null}
     >
       {props.children}
     </a>
@@ -23,7 +28,17 @@ const Link = (props) => {
 
 Link.propTypes = {
   to: PropTypes.string.isRequired,
+  blank: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  onClick: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.bool,
+  ]),
+};
+
+Link.defaultProps = {
+  blank: false,
+  onClick: false,
 };
 
 export default Link;
