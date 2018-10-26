@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import parseUrl from 'utils/getRelativeUrl';
 import history from 'utils/history';
+import omit from 'lodash/fp/omit';
 
 const Link = (props) => {
   const { to, blank, onClick } = props;
@@ -15,7 +16,7 @@ const Link = (props) => {
 
   return (
     <a
-      {...props}
+      {...omit(['blank'], props)}
       href={to}
       onClick={onClick || defaultOnClick}
       target={blank ? '_blank' : null}
