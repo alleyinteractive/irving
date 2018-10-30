@@ -3,6 +3,8 @@ import Placeholder from 'components/placeholder';
 import Image from 'components/image';
 import Head from 'components/head';
 import RawHTML from 'components/rawHTML';
+import SocialList from 'components/socialList';
+import SocialItem from 'components/socialItem';
 import withLoader from 'components/hoc/withLoader';
 
 /**
@@ -19,6 +21,9 @@ export const componentMap = {
   image: Image,
   head: Head,
   html: RawHTML,
+  'social-links': SocialList,
+  'social-share': SocialList,
+  'social-item': SocialItem,
 };
 
 /**
