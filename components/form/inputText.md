@@ -1,7 +1,6 @@
 Fully controlled text input component.
 
 ```js
-const withFormHandler = require('components/hoc/withFormHandler').default;
 const Form = ({
     onChangeInput,
     testText,

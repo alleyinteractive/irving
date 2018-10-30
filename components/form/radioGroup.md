@@ -1,7 +1,6 @@
 Group of radio button options.
 
 ```js
-const withFormHandler = require('components/hoc/withFormHandler').default;
 const Form = (props) => (
     <form>
         <RadioGroup

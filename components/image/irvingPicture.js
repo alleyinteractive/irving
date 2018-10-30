@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IrvingImg from './img';
+import IrvingImg from './irvingImg';
 
 const IrvingPicture = (props) => {
   const {
