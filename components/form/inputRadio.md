@@ -1,4 +1,4 @@
-Radio input example:
+Fully controlled radio input component. Generally used inside a RadioGroup.
 
 ```js
 <InputRadio 

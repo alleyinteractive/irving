@@ -26,7 +26,11 @@ const InputText = (props) => {
         required={required}
         className={styles.label}
       />
-      <input {...props} className={styles.input} type="text" />
+      <input
+        {...props}
+        className={styles.input}
+        type="text"
+      />
       {!! error &&
         <span className={styles.errorText}>{error}</span>
       }
