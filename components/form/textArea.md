@@ -1,11 +1,11 @@
 Text area input.
 
 ```js
-const withFormHandler = require('components/hoc/withFormHandler').default;
 const Form = (props) => (
     <form>
         <TextArea
             name="testTextArea"
+            label="This is a test textarea"
             onChange={props.onChangeInput('testTextArea')}
             options={[
                 { text: 'Lorem Ipsum', value: 'lorem-ipsum' },

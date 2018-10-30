@@ -1,7 +1,6 @@
 Select input.
 
 ```js
-const withFormHandler = require('components/hoc/withFormHandler').default;
 const Form = (props) => (
     <form>
         <Select

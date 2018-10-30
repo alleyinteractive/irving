@@ -1,6 +1,6 @@
 import NotConfigured from 'components/notConfigured';
 import Placeholder from 'components/placeholder';
-import Image from 'components/image';
+import Image from 'components/image/image';
 import Head from 'components/head';
 import RawHTML from 'components/rawHTML';
 import SocialList from 'components/socialList';

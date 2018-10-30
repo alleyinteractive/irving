@@ -1,7 +1,6 @@
 Form Section component.
 
 ```js
-const withFormHandler = require('components/hoc/withFormHandler').default;
 const Form = (props) => (
     <form>
         <FormFieldset heading="This is a form section heading">

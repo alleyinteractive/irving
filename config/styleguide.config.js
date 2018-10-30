@@ -3,6 +3,7 @@ const paths = require('./paths');
 
 module.exports = {
   components: path.join(paths.appRoot, 'components/**/*.js'),
+  require: [paths.styleguideRoot],
   skipComponentsWithoutExample: true,
   styleguideDir: paths.styleguideRoot,
   webpackConfig: {

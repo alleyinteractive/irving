@@ -1,3 +1,4 @@
-/* eslint-disable */
 // components required for styleguide
-const withFormHandler = require('components/hoc/withFormHandler').default;
+import withFormHandler from 'components/hoc/withFormHandler';
+
+global.withFormHandler = withFormHandler;
