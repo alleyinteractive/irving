@@ -8,6 +8,7 @@ const componentGlobs = {
 };
 
 module.exports = {
+  title: 'Irving',
   require: [paths.styleguideRoot],
   sections: [
     {

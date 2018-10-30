@@ -9,6 +9,9 @@ const Head = (props) => (
 );
 
 Head.propTypes = {
+  /**
+   * Elements to be rendered in document <head>
+   */
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
