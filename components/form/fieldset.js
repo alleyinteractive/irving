@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import styles from './section.css';
+import styles from './fieldset.css';
 
-const FormSection = (props) => {
+const FormFieldset = (props) => {
   const { heading, children } = props;
   return (
-    <section className={styles.section}>
+    <fieldset className={styles.section}>
       {heading && <h3 className={styles.heading}>{heading}</h3>}
       {children}
-    </section>
+    </fieldset>
   );
 };
 
-FormSection.propTypes = {
+FormFieldset.propTypes = {
   heading: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
-FormSection.defaultProps = {
+FormFieldset.defaultProps = {
   heading: '',
 };
 
-export default withStyles(styles)(FormSection);
+export default withStyles(styles)(FormFieldset);
