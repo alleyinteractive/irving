@@ -1,1 +1,1 @@
-React (ErrorBoundary)[https://reactjs.org/docs/error-boundaries.html] for Irving. This will display the `<ErrorMessage />` component if an unknown error occurs.
+React [ErrorBoundary](https://reactjs.org/docs/error-boundaries.html) for Irving. This will display the `<ErrorMessage />` component if an unknown error occurs.
