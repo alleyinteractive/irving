@@ -1,9 +1,39 @@
 const path = require('path');
 const paths = require('./paths');
 
+const componentGlobs = {
+  utility: path.join(paths.appRoot, 'components/**/*.js'),
+  hoc: path.join(paths.appRoot, 'components/hoc/*.js'),
+  form: path.join(paths.appRoot, 'components/form/*.js'),
+};
+
 module.exports = {
-  components: path.join(paths.appRoot, 'components/**/*.js'),
   require: [paths.styleguideRoot],
+  sections: [
+    {
+      name: 'Components Overview',
+      content: path.join(paths.appRoot, 'components/readme.md'),
+    },
+    {
+      name: 'Utility Components',
+      content: path.join(paths.appRoot, 'components/utilityComponents.md'),
+      components: componentGlobs.utility,
+      ignore: [
+        componentGlobs.form,
+        componentGlobs.hoc,
+      ],
+    },
+    {
+      name: 'Form Components',
+      content: path.join(paths.appRoot, 'components/form/forms.md'),
+      components: componentGlobs.form,
+    },
+    {
+      name: 'Higher-Order Components',
+      content: path.join(paths.appRoot, 'components/hoc/hoc.md'),
+      components: componentGlobs.hoc,
+    },
+  ],
   skipComponentsWithoutExample: true,
   styleguideDir: paths.styleguideRoot,
   webpackConfig: {

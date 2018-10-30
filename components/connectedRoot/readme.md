@@ -1,0 +1,1 @@
+Responsible for collection root-level components from state, converting those components and their children into React Elements, and rendering the resulting component tree.

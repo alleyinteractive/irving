@@ -1,13 +1,27 @@
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import createGetRootComponent from 'selectors/createGetRootComponent';
 import toReactElement from 'utils/toReactElement';
 
-const ConnectedRoot = (props) => toReactElement(props.apiComponent);
+const ConnectedRoot = (props) => (
+  <Fragment>
+    {toReactElement(props.apiComponent)}
+  </Fragment>
+);
 
 ConnectedRoot.propTypes = {
+  /**
+   * Root component object derived from current state
+   */
   apiComponent: PropTypes.shape({
+    /**
+     * Component configuration (mapped to props)
+     */
     config: PropTypes.object.isRequired,
+    /**
+     * Component children
+     */
     children: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
 };
