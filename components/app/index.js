@@ -32,7 +32,13 @@ const App = (props) => {
 };
 
 App.propTypes = {
+  /**
+   * Root component configurations
+   */
   roots: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
+   * Was there an error loading the page/components?
+   */
   error: PropTypes.bool.isRequired,
 };
 
