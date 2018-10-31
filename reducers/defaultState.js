@@ -9,6 +9,13 @@ export const route = {
   action: '',
 };
 
+export const form = {
+  submitting: false,
+  submitted: false,
+  failed: false,
+  validation: {},
+};
+
 export const visible = {};
 
 export const error = null;
@@ -21,6 +28,7 @@ const defaultState = {
   error,
   loading,
   visible,
+  contact: form,
 };
 
 export default defaultState;
