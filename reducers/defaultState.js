@@ -28,7 +28,6 @@ const defaultState = {
   error,
   loading,
   visible,
-  contact: form,
 };
 
 export default defaultState;
