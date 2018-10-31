@@ -9,6 +9,9 @@ import ConnectedRoot from 'components/connectedRoot';
 import ErrorBoundary from 'components/errorBoundary';
 import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
+// test
+import ContactForm from 'components/contactForm';
+
 import styles from './app.css';
 
 const App = (props) => {
@@ -27,6 +30,9 @@ const App = (props) => {
           ))}
         </div>
       )}
+      <div>
+        <ContactForm title="Test Contact Form" />
+      </div>
     </ErrorBoundary>
   );
 };

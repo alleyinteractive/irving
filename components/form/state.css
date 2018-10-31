@@ -1,0 +1,21 @@
+.response {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.submitting,
+.successText,
+.errorText {
+  font-size: rem(24);
+}
+
+.submitting,
+.success {
+  color: blue;
+}
+
+.errorText {
+  color: red;
+}
