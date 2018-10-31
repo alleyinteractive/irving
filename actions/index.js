@@ -12,7 +12,7 @@ import {
  * @param  {*} payload - the information of the action
  * @returns {{type, payload}} - Redux action
  */
-function createAction(type, payload = null) {
+export function createAction(type, payload = null) {
   return { type, payload };
 }
 
