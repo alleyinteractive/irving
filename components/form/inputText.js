@@ -13,6 +13,7 @@ const InputText = (props) => {
     error,
     className,
     children,
+    type,
   } = props;
   return (
     <div className={classNames(
@@ -28,7 +29,7 @@ const InputText = (props) => {
       >
         {children}
       </Label>
-      <input {...props} className={styles.input} type="text" />
+      <input {...props} className={styles.input} type={type} />
       {!! error &&
         <span className={styles.errorText}><RawHTML content={error} /></span>
       }
