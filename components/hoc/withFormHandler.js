@@ -13,7 +13,20 @@ const withFormHandler = (
     state = defaultState;
 
     onChangeInput = curry((name, e) => {
-      this.setState({ [name]: e.target.value });
+      const stateValue = this.state[name];
+      const inputValue = e.target.value;
+
+      if (Array.isArray(stateValue)) {
+        // If input state is an array (as with checkboxes)
+        // remove input value if it's in the array or add if it's not.
+        this.setState({
+          [name]: stateValue.includes(inputValue) ?
+            stateValue.filter((value) => value !== inputValue) :
+            stateValue.concat(inputValue),
+        });
+      } else {
+        this.setState({ [name]: inputValue });
+      }
     });
 
     render() {

@@ -1,3 +1,5 @@
+@import 'mixins/index.css';
+
 .inputWrapper {
   align-items: flex-start;
   display: flex;
@@ -41,5 +43,6 @@
 }
 
 .errorText {
+  @include plainTextSimple;
   color: red;
 }

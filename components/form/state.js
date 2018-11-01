@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import RawHTML from 'components/rawHTML';
 import styles from './state.css';
 
 const FormState = ({
@@ -16,7 +17,9 @@ const FormState = ({
   if (failed) {
     responseContent = (
       <div className={styles.failure}>
-        <span className={styles.errorText}>{errorText}</span>
+        <span className={styles.errorText}>
+          <RawHTML content={errorText} />
+        </span>
       </div>
     );
   }
