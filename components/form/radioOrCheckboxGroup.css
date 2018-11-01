@@ -1,0 +1,21 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: rem(15);
+}
+
+.label {
+  align-items: center;
+  display: flex;
+  margin-bottom: rem(10);
+  width: 100%;
+}
+
+.labelTextWrapper {
+  display: inline-block;
+}
+
+.input {
+  margin-right: rem(10);
+}
+
