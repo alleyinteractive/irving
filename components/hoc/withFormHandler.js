@@ -13,20 +13,50 @@ const withFormHandler = (
     state = defaultState;
 
     onChangeInput = curry((name, e) => {
-      this.setState({ [name]: e.target.value });
+      const stateValue = this.state[name];
+      const inputValue = e.target.value;
+
+      if (Array.isArray(stateValue)) {
+        // If input state is an array (as with checkboxes)
+        // remove input value if it's in the array or add if it's not.
+        const stateArray = stateValue.includes(inputValue) ?
+          stateValue.filter((value) => value !== inputValue) :
+          stateValue.concat(inputValue);
+        this.changeInputValue(name, stateArray);
+      } else {
+        this.changeInputValue(name, inputValue);
+      }
     });
 
+    changeInputValue = (name, value) => {
+      this.setState({ [name]: value });
+    }
+
     render() {
+      const {
+        createOnSubmit,
+        createSubmit,
+        onSubmit,
+        redirect,
+      } = this.props;
+
+      // Redirect post-submission
+      if (redirect) {
+        window.location = redirect;
+      }
+
       return (
         <div>
           <FormComponent
             {...this.props}
             {...this.state}
             onSubmit={connectedFormName ?
-              this.props.createOnSubmit(this.state) :
-              this.props.onSubmit
+              createOnSubmit(this.state) :
+              onSubmit
             }
+            createSubmit={createSubmit}
             onChangeInput={this.onChangeInput}
+            changeInputValue={this.changeInputValue}
           />
         </div>
       );
@@ -54,6 +84,7 @@ const withFormHandler = (
       submitted: PropTypes.bool.isRequired,
       failed: PropTypes.bool.isRequired,
       validation: PropTypes.objectOf(PropTypes.string).isRequired,
+      redirect: PropTypes.string.isRequired,
     };
 
     // Add redux functions
@@ -66,6 +97,9 @@ const withFormHandler = (
         e.preventDefault();
         dispatch(actionRequestSubmit(connectedFormName, submission));
       }),
+      createSubmit: (submission) => () => {
+        dispatch(actionRequestSubmit(connectedFormName, submission));
+      },
     });
 
     const withRedux = connect(

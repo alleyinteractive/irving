@@ -17,7 +17,8 @@ export default async function submitForm(formName, submission) {
     body: JSON.stringify(submission),
   });
 
-  if (400 === res.status) {
+  // Return data if invalid or redirected
+  if (400 === res.status || (300 <= res.status && 400 > res.status)) {
     return res.json();
   }
 
