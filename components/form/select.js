@@ -16,7 +16,7 @@ const Select = (props) => {
     onChange,
     className,
     error,
-    chlidren,
+    children,
   } = props;
 
   return (
