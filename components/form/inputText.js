@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import RawHTML from 'components/rawHTML';
+import omit from 'lodash/fp/omit';
 import Label from './label';
 import styles from './text.css';
 
@@ -29,7 +30,11 @@ const InputText = (props) => {
       >
         {children}
       </Label>
-      <input {...props} className={styles.input} type={type} />
+      <input
+        {...omit(['children'], props)}
+        className={styles.input}
+        type={type}
+      />
       {!! error &&
         <span className={styles.errorText}><RawHTML content={error} /></span>
       }
