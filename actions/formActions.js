@@ -21,8 +21,8 @@ export function actionRequestSubmit(formName, submission) {
   });
 }
 
-export function actionReceiveSubmitted(formName) {
-  return createAction(RECEIVE_SUBMITTED, { formName });
+export function actionReceiveSubmitted(formName, response) {
+  return createAction(RECEIVE_SUBMITTED, { formName, response });
 }
 
 /**

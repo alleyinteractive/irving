@@ -52,12 +52,16 @@ TextArea.propTypes = {
   className: PropTypes.string,
   rows: PropTypes.number,
   error: PropTypes.string,
-  children: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
-    ])
-  ).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+      ])
+    ),
+    PropTypes.element,
+    PropTypes.string,
+  ]).isRequired,
 };
 
 TextArea.defaultProps = {
