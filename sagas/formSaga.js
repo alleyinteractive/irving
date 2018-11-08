@@ -15,11 +15,11 @@ export default function* watchRequestSubmit(data) {
   } = data;
 
   try {
-    const messageMap = yield call(submitForm, formName, submission);
-    if (messageMap) {
-      yield put(actionReceiveSubmitInvalid(formName, messageMap));
+    const response = yield call(submitForm, formName, submission);
+    if (response.validation) {
+      yield put(actionReceiveSubmitInvalid(formName, response.validation));
     } else {
-      yield put(actionReceiveSubmitted(formName));
+      yield put(actionReceiveSubmitted(formName, response));
     }
   } catch (err) {
     yield put(actionReceiveSubmitError(formName, err));
