@@ -59,12 +59,16 @@ const Select = (props) => {
 
 Select.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
-    ])
-  ).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+      ])
+    ),
+    PropTypes.element,
+    PropTypes.string,
+  ]).isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string,

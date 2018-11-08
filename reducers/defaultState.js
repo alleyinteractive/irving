@@ -14,6 +14,7 @@ export const form = {
   submitted: false,
   failed: false,
   validation: {},
+  redirect: '',
 };
 
 export const visible = {};

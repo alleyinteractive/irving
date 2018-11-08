@@ -36,6 +36,7 @@ const createFormReducer = (name) =>
         return merge(formState, {
           submitting: false,
           submitted: true,
+          redirect: get('response.redirect', payload),
         });
 
       case RECEIVE_SUBMIT_ERROR:

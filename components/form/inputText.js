@@ -51,12 +51,16 @@ InputText.propTypes = {
   className: PropTypes.string,
   error: PropTypes.string,
   type: PropTypes.oneOf(['text', 'email', 'search', 'password', 'url']),
-  children: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
-    ])
-  ).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+      ])
+    ),
+    PropTypes.element,
+    PropTypes.string,
+  ]).isRequired,
 };
 
 InputText.defaultProps = {
