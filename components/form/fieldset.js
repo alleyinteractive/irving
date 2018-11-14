@@ -15,7 +15,16 @@ const FormFieldset = (props) => {
 
 FormFieldset.propTypes = {
   heading: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+      ])
+    ),
+    PropTypes.element,
+    PropTypes.string,
+  ]).isRequired,
 };
 
 FormFieldset.defaultProps = {

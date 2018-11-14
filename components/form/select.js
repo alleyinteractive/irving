@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
+import RawHTML from 'components/rawHTML';
 import Label from './label';
 import styles from './select.css';
 
@@ -15,6 +16,7 @@ const Select = (props) => {
     onChange,
     className,
     error,
+    children,
   } = props;
 
   return (
@@ -26,10 +28,11 @@ const Select = (props) => {
     >
       <Label
         htmlFor={name}
-        text={label}
         require={required}
         className={styles.label}
-      />
+      >
+        {children}
+      </Label>
       <select
         value={value}
         className={styles.select}
@@ -48,7 +51,7 @@ const Select = (props) => {
         ))}
       </select>
       {!! error &&
-        <span className={styles.errorText}>{error}</span>
+        <span className={styles.errorText}><RawHTML content={error} /></span>
       }
     </div>
   );
@@ -56,7 +59,16 @@ const Select = (props) => {
 
 Select.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+      ])
+    ),
+    PropTypes.element,
+    PropTypes.string,
+  ]).isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string,

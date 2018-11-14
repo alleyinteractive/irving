@@ -9,16 +9,16 @@ import styles from './label.css';
 const Label = (props) => {
   const {
     htmlFor,
-    text,
     required,
     className,
+    children,
   } = props;
   return (
     <label
       className={classNames(styles.label, className)}
       htmlFor={htmlFor}
     >
-      {text}
+      {children}
       {required && <span className={styles.required}>required</span>}
     </label>
   );
@@ -27,8 +27,17 @@ const Label = (props) => {
 
 Label.propTypes = {
   className: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+      ])
+    ),
+    PropTypes.element,
+    PropTypes.string,
+  ]).isRequired,
   htmlFor: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
   required: PropTypes.bool,
 };
 
