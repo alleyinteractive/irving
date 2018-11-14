@@ -34,9 +34,21 @@ const Placeholder = (props) => {
 };
 
 Placeholder.propTypes = {
+  /**
+   * Component name
+   */
   name: PropTypes.string.isRequired,
+  /**
+   * Child components
+   */
   children: PropTypes.node.isRequired,
+  /**
+   * Determines heading style to use for this component
+   */
   level: PropTypes.number,
+  /**
+   * Direct user to a URL, usually documenting specs for this component
+   */
   url: PropTypes.string,
 };
 
