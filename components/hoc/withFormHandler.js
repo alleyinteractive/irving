@@ -80,10 +80,25 @@ const withFormHandler = (
     // Add form state props to propTypes
     FormHandler.propTypes = {
       ...FormHandler.propTypes,
+      /**
+       * Prop indicating the form is in the process of being submitted to the provided API endpoint
+       */
       submitting: PropTypes.bool.isRequired,
+      /**
+       * Prop indicating if the form has been successfully submitted
+       */
       submitted: PropTypes.bool.isRequired,
+      /**
+       * Prop indicating if the form has failed to submit
+       */
       failed: PropTypes.bool.isRequired,
+      /**
+       * Prop indicating if the form has submitted, but there were errors in particular field values
+       */
       validation: PropTypes.objectOf(PropTypes.string).isRequired,
+      /**
+       * Absolute URL or relative path to which users will be redirect after form is successfully submitted
+       */
       redirect: PropTypes.string.isRequired,
     };
 

@@ -44,7 +44,7 @@ const Form = (props) => (
 );
 
 const FormWithHandler = withFormHandler({ 
-    checkboxGroup: 'lorem-ipsum',
+    checkboxGroup: [ 'lorem-ipsum' ],
 })(Form);
 
 <FormWithHandler />

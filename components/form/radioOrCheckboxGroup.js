@@ -54,7 +54,7 @@ RadioOrCheckboxGroup.propTypes = {
   currentValue: PropTypes.array.isRequired,
   inputs: PropTypes.arrayOf(
     PropTypes.shape({
-      label: children: PropTypes.arrayOf(
+      label: PropTypes.arrayOf(
         PropTypes.oneOfType([
           PropTypes.element,
           PropTypes.string,
