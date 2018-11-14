@@ -10,7 +10,6 @@ import styles from './text.css';
 const TextArea = (props) => {
   const {
     name,
-    label,
     required,
     className,
     error,

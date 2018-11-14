@@ -9,7 +9,6 @@ import styles from './select.css';
 const Select = (props) => {
   const {
     name,
-    label,
     options,
     value,
     required,

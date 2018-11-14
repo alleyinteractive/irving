@@ -36,6 +36,9 @@ module.exports = {
     },
   ],
   skipComponentsWithoutExample: true,
+  styleguideComponents: {
+    Wrapper: path.join(paths.styleguideRoot, 'components/wrapper.js'),
+  },
   styleguideDir: paths.styleguideRoot,
   webpackConfig: {
     ...require('./webpack.config.js')({}, { mode: process.env.NODE_ENV })

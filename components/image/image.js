@@ -11,13 +11,14 @@ const Image = (props) => {
   const {
     alt,
     aspectRatio,
+    aspectRatioStyles,
     className,
     height,
     lazyload,
     lqipSrc,
     picture,
   } = props;
-  const paddingPercentage = aspectRatio ?
+  const paddingPercentage = (aspectRatioStyles && aspectRatio) ?
     { paddingBottom: `${aspectRatio * 100}%` } :
     null;
   // Set up image element(s) for maybe using with lazyload component
@@ -27,7 +28,7 @@ const Image = (props) => {
         styles.wrapper,
         className,
         {
-          [styles.apsectRatio]: aspectRatio,
+          [styles.apsectRatio]: (aspectRatioStyles && aspectRatio),
         }
       )}
       style={paddingPercentage}
@@ -79,6 +80,10 @@ Image.propTypes = {
     PropTypes.oneOf(['auto']),
   ]).isRequired,
   /**
+   * Whether or not to include default styles for an image with a static aspect ratio
+   */
+  aspectRatioStyles: PropTypes.bool,
+  /**
    * Additional classname(s) to add to image wrapper element
    */
   className: PropTypes.string,
@@ -128,8 +133,9 @@ Image.propTypes = {
 };
 
 Image.defaultProps = {
-  sourceTags: [],
+  aspectRatioStyles: true,
   className: '',
+  sourceTags: [],
 };
 
 const wrapWithStyles = withStyles(styles);

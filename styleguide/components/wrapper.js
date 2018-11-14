@@ -4,12 +4,14 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import rootReducer from 'reducers';
-import defaultState from 'reducers/defaultState';
+import defaultState, { form } from 'reducers/defaultState';
 
 const store = createStore(
   rootReducer,
   {
     ...defaultState,
+    test: form,
+    loading: true,
     components: {
       defaults: [],
       page: {
