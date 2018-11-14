@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
+import RawHTML from 'components/rawHTML';
+import omit from 'lodash/fp/omit';
 import Label from './label';
 import styles from './text.css';
 
 const InputText = (props) => {
   const {
     name,
-    label,
     required,
     error,
     className,
+    children,
+    type,
   } = props;
   return (
     <div className={classNames(
@@ -22,17 +25,18 @@ const InputText = (props) => {
     >
       <Label
         htmlFor={name}
-        text={label}
-        required={required}
+        require={required}
         className={styles.label}
-      />
+      >
+        {children}
+      </Label>
       <input
-        {...props}
+        {...omit(['children'], props)}
         className={styles.input}
-        type="text"
+        type={type}
       />
       {!! error &&
-        <span className={styles.errorText}>{error}</span>
+        <span className={styles.errorText}><RawHTML content={error} /></span>
       }
     </div>
   );
@@ -41,12 +45,22 @@ const InputText = (props) => {
 InputText.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   required: PropTypes.bool,
   className: PropTypes.string,
   error: PropTypes.string,
+  type: PropTypes.oneOf(['text', 'email', 'search', 'password', 'url']),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+      ])
+    ),
+    PropTypes.element,
+    PropTypes.string,
+  ]).isRequired,
 };
 
 InputText.defaultProps = {
@@ -55,6 +69,7 @@ InputText.defaultProps = {
   required: false,
   className: '',
   error: '',
+  type: 'text',
 };
 
 export default withStyles(styles)(InputText);

@@ -9,6 +9,14 @@ export const route = {
   action: '',
 };
 
+export const form = {
+  submitting: false,
+  submitted: false,
+  failed: false,
+  validation: {},
+  redirect: '',
+};
+
 export const visible = {};
 
 export const error = null;

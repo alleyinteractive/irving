@@ -10,6 +10,7 @@
 }
 
 .input {
+  box-sizing: border-box;
   height: rem(42);
   padding: rem(5) rem(10);
 }
@@ -20,20 +21,7 @@
 
 .input,
 .textarea {
-  border: 1px solid $grayLight;
-  border-radius: 5px;
-  box-sizing: border-box;
-  color: var(--black);
-  width: 100%;
-
-  &::placeholder {
-    color: $grayLight;
-  }
-
-  &:focus {
-    border-color: $black;
-    outline: none;
-  }
+  border: 1px solid $black;
 
   .error & {
     border-color: red;
