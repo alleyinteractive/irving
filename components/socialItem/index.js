@@ -35,8 +35,17 @@ const SocialItem = (props) => {
 };
 
 SocialItem.propTypes = {
+  /**
+   * What type of service is this? Should correspond to a key in `socialIconMap`
+   */
   type: PropTypes.string.isRequired,
+  /**
+   * Where should this icon take the user?
+   */
   url: PropTypes.string.isRequired,
+  /**
+   * Should the social icon be displayed, or just text?
+   */
   displayIcon: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
