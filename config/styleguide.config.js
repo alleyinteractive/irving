@@ -12,27 +12,42 @@ module.exports = {
   require: [paths.styleguideRoot],
   sections: [
     {
-      name: 'Components Overview',
-      content: path.join(paths.appRoot, 'components/readme.md'),
+      name: 'Introduction and setup',
+      content: path.join(paths.appRoot, 'README.md'),
     },
     {
-      name: 'Utility Components',
-      content: path.join(paths.appRoot, 'components/utilityComponents.md'),
-      components: componentGlobs.utility,
-      ignore: [
-        componentGlobs.form,
-        componentGlobs.hoc,
+      name: 'Usage Documentation',
+      sections: [
+        {
+          name: 'Concepts',
+          content: path.join(paths.appRoot, 'documentation/concepts.md'),
+        },
       ],
     },
     {
-      name: 'Form Components',
-      content: path.join(paths.appRoot, 'components/form/forms.md'),
-      components: componentGlobs.form,
-    },
-    {
-      name: 'Higher-Order Components',
-      content: path.join(paths.appRoot, 'components/hoc/hoc.md'),
-      components: componentGlobs.hoc,
+      name: 'Components',
+      content: path.join(paths.appRoot, 'components/readme.md'),
+      sections: [
+        {
+          name: 'Utility Components',
+          content: path.join(paths.appRoot, 'components/utilityComponents.md'),
+          components: componentGlobs.utility,
+          ignore: [
+            componentGlobs.form,
+            componentGlobs.hoc,
+          ],
+        },
+        {
+          name: 'Form Components',
+          content: path.join(paths.appRoot, 'components/form/forms.md'),
+          components: componentGlobs.form,
+        },
+        {
+          name: 'Higher-Order Components',
+          content: path.join(paths.appRoot, 'components/hoc/hoc.md'),
+          components: componentGlobs.hoc,
+        },
+      ],
     },
   ],
   skipComponentsWithoutExample: true,

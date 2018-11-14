@@ -1,21 +1,21 @@
-# Irving
+## Irving
 Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.
 
-## Commands
+### Commands
 * `npm run build` - Build the app for a production environment.
 * `npm run start` - Start the built app.
 * `npm run dev` - Run the app in development with change watches and isomorphic hot module reloading.
 * `npm run test` - Run test suite.
 * `npm run test:watch` - Rerun test suit when files change.
 
-## Setup
+### Setup
 1. `npm install`
 
-## Development
+### Development
 After running `npm run dev`, navigate to `http://localhost:3001` in your browser.
 Environment variable values can be modified by creating a `.env` file in the root of the project.
 
-## Environment
+### Environment
 * `ROOT_URL` - The root url the app is served from. This value is required to
 prevent webpack assets from 404ing when the app isn't served from the root of a
 site.
@@ -36,13 +36,13 @@ automatically deleted, defaults to 5 minutes
 * `HTTPS_KEY_PATH` - Path to tls key relative to current home directory. 
 * `HTTPS_CERT_PATH` - Path to tls cert relative to current home directory.
 
-### Extra Query Params
+#### Extra Query Params
 Any environment variable that is prefixed with `API_QUERY_PARAM_`, for example
 `API_QUERY_PARAM_MARKET=india`, will be mapped to a query param with the prefix
 stripped out and the parameter name transformed to lowercase. This will allow
 you to add extra query parameters to all components requests.
 
-### Debug Namespaces
+#### Debug Namespaces
 - render
     - error
     - request
@@ -53,24 +53,24 @@ you to add extra query parameters to all components requests.
     - location
 
 
-## API Caching
+### API Caching
 Requests to the API host from the app running in Node can be cached with Redis.
 If the `REDIS_URL` is set, and the `ioredis` package is installed, caching will
 be enabled.
 
-## Basic Authentication
+### Basic Authentication
 When both fields are set the express app will automatically apply the
 Authorization header for requests to the app. This will prompt the user to enter
 the valid credentials to access the site.
 
-## Application Monitoring
+### Application Monitoring
 Transactions and errors can be logged to a monitoring service. Currently only
 newrelic is supported. To enabled newrelic the `newrelic` package must be
 installed, and the `NEW_RELIC_APP_NAME` and `NEW_RELIC_LICENSE_KEY` environment
 variable must be set. See [here](https://github.com/newrelic/node-newrelic#configuring-the-module)
 for additional newrelic configuration options.
 
-## HTTPS
+### HTTPS
 In production HTTPS will typically be handled by the load balancer of the
 hosting environment. If you would like HTTPS for local development set the
 `PROXY_URL`, `HTTP_KEY_PATH`, and `HTTPS_CERT_PATH` environment variables.
