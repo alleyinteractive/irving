@@ -1,8 +1,12 @@
 import NotConfigured from 'components/notConfigured';
 import Placeholder from 'components/placeholder';
 import Image from 'components/image/image';
+import Disqus from 'components/disqus';
 import Head from 'components/head';
+import Image from 'components/image';
+import NotConfigured from 'components/notConfigured';
 import RawHTML from 'components/rawHTML';
+import Placeholder from 'components/placeholder';
 import SocialList from 'components/socialList';
 import SocialItem from 'components/socialItem';
 import withLoader from 'components/hoc/withLoader';
@@ -11,16 +15,17 @@ import withLoader from 'components/hoc/withLoader';
  * Defines which React component to render for each received API component.
  */
 export const componentMap = {
-  header: Placeholder,
   'admin-bar': Placeholder,
   body: withLoader(Placeholder),
+  disqus: Disqus,
   embed: RawHTML,
   footer: Placeholder,
+  head: Head,
+  header: Placeholder,
+  html: RawHTML,
+  image: Image,
   menu: Placeholder,
   'menu-item': Placeholder,
-  image: Image,
-  head: Head,
-  html: RawHTML,
   'social-links': SocialList,
   'social-share': SocialList,
   'social-item': SocialItem,
