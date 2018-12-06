@@ -3,6 +3,7 @@ import Head from 'components/head';
 import Image from 'components/image';
 import NotConfigured from 'components/notConfigured';
 import RawHTML from 'components/rawHTML';
+import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import SocialList from 'components/socialList';
 import SocialItem from 'components/socialItem';
@@ -23,6 +24,7 @@ export const componentMap = {
   image: Image,
   menu: Placeholder,
   'menu-item': Placeholder,
+  parsely: Parsely,
   'social-links': SocialList,
   'social-share': SocialList,
   'social-item': SocialItem,
