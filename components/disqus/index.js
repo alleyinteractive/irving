@@ -1,13 +1,35 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import validateDisqusConfig from './validateDisqusConfig';
 
 class DisqusEmbed extends Component {
+  constructor(props) {
+    super(props);
+
+    this.config = {};
+  }
+
   state = {
     ready: false,
   };
 
   componentDidMount() {
     this.init();
+    this.config = validateDisqusConfig(this.props, window.location.pathname);
+  }
+
+  onLoad() {
+    if (this.config) {
+      // @see - https://help.disqus.com/customer/portal/articles/472107
+      // Reloading a Disqus thread within an AJAX application:
+      window.DISQUS.reset({
+        reload: true,
+        config() {
+          this.page.identifier = this.config.pageIdentifier;
+          this.page.url = this.config.pageUrl;
+        },
+      });
+    }
   }
 
   init = () => {
@@ -31,18 +53,14 @@ class DisqusEmbed extends Component {
         <script
           dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
             __html: ! this.state.ready ? '' :
-              `var disqus_config = function () {
-                this.page.url = '${pageUrl}';
-                this.page.identifier = '${pageIdentifier}';
-              };
-
-              (function() {
+              `(function() {
                 var d = document, s = d.createElement('script');
                 s.src = 'https://${forumShortname}.disqus.com/embed.js';
                 s.setAttribute('data-timestamp', +new Date());
                 (d.head || d.body).appendChild(s);
               })();`,
           }}
+          onLoad={this.onLoad}
         />
         <noscript
           dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
