@@ -33,6 +33,7 @@
     "ejs": "^2.5.7",
     "express": "^4.16.3",
     "history": "^4.7.2",
+    "http-proxy-middleware": "^0.19.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.10",
     "postcss-syntax": "^0.10.0",
