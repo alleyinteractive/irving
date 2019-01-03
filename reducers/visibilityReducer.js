@@ -1,4 +1,8 @@
-import { UPDATE_VISIBILITY } from 'actions/types';
+import mapValues from 'lodash/fp/mapValues';
+import {
+  UPDATE_VISIBILITY,
+  LOCATION_CHANGE,
+} from 'actions/types';
 import { visible as defaultState } from './defaultState';
 
 /**
@@ -10,15 +14,25 @@ import { visible as defaultState } from './defaultState';
  */
 export default function visibilityReducer(visibleState = defaultState, action) {
   const { type, payload } = action;
-  if (UPDATE_VISIBILITY !== type) {
-    return visibleState;
+
+  switch (type) {
+    case LOCATION_CHANGE: {
+      // Close everything when location changes
+      return mapValues(() => false, visibleState);
+    }
+
+    case UPDATE_VISIBILITY: {
+      const { name, isVisible } = payload;
+      // Toggle value if it was omitted in action.
+      const newValue =
+        (null !== isVisible && 'undefined' !== typeof isVisible) ?
+          isVisible :
+          ! visibleState[name];
+
+      return { ...visibleState, [name]: newValue };
+    }
+
+    default:
+      return visibleState;
   }
-
-  const { name, isVisible } = payload;
-  // Toggle value if it was omitted in action.
-  const newValue = (null !== isVisible && 'undefined' !== typeof isVisible) ?
-    isVisible :
-    ! visibleState[name];
-
-  return { ...visibleState, [name]: newValue };
 }
