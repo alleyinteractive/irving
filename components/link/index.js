@@ -5,7 +5,12 @@ import history from 'utils/history';
 import omit from 'lodash/fp/omit';
 
 const Link = (props) => {
-  const { to, blank, onClick } = props;
+  const {
+    to,
+    blank,
+    onClick,
+    children,
+  } = props;
   const relativeUrl = parseUrl(to);
   const defaultOnClick = (event) => {
     if (relativeUrl) {
@@ -22,7 +27,7 @@ const Link = (props) => {
       target={blank ? '_blank' : null}
       rel={blank ? 'noopener' : null}
     >
-      {props.children}
+      {children}
     </a>
   );
 };
