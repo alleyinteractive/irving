@@ -40,24 +40,28 @@ const Image = (props) => {
   );
   // Set up placeholder image with low quality image placeholder source
   const placeholder = lqipSrc ?
-    (<img
-      className={styles.placeholder}
-      src={lqipSrc}
-      alt={alt}
-    />) :
+    (
+      <img
+        className={styles.placeholder}
+        src={lqipSrc}
+        alt={alt}
+      />
+    ) :
     null;
 
   return (
     <Fragment>
       {lazyload ?
-        <Lazyload
-          height={placeholder ? height : null}
-          placeholder={placeholder}
-          once
-          throttle
-        >
-          {imageContent}
-        </Lazyload> :
+        (
+          <Lazyload
+            height={placeholder ? height : null}
+            placeholder={placeholder}
+            once
+            throttle
+          >
+            {imageContent}
+          </Lazyload>
+        ) :
         imageContent
       }
     </Fragment>
