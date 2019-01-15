@@ -5,6 +5,6 @@ module.exports = {
     '^.+\\.css$': '<rootDir>/utils/mockCssTransform.js',
   },
   testEnvironment: 'enzyme',
-  setupFiles: ['<rootDir>/node_modules/regenerator-runtime/runtime'],
+  setupFiles: ['<rootDir>/config/jest.setup'],
   setupTestFrameworkScriptFile: 'jest-enzyme',
 };
