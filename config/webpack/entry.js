@@ -7,7 +7,7 @@ const { serverRoot, clientRoot, proxyUrl } = require('../paths');
  * @returns {string|array|object} - a entry configuration value
  */
 module.exports = function getEntry(context) {
-  const polyfills = ['babel-polyfill', 'isomorphic-fetch'];
+  const polyfills = ['@babel/polyfill', 'isomorphic-fetch'];
   switch (context) {
     case 'production_server':
     case 'development_server':
