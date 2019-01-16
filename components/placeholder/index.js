@@ -13,12 +13,17 @@ import styles from './placeholder.css';
  * @returns {object} - React element
  */
 const Placeholder = (props) => {
-  const { name, children, url } = props;
+  const {
+    name,
+    children,
+    url,
+    level,
+  } = props;
   const maxLevel = 6;
-  const level = maxLevel < props.level ? maxLevel : props.level;
-  const Heading = `h${level}`;
+  const headingLevel = maxLevel < level ? maxLevel : level;
+  const Heading = `h${headingLevel}`;
   const headingElement = (
-    <Heading className={styles[`heading${level}`]}>{name}</Heading>
+    <Heading className={styles[`heading${headingLevel}`]}>{name}</Heading>
   );
   return (
     <div className={styles.wrapper}>
@@ -26,8 +31,8 @@ const Placeholder = (props) => {
       {! url && headingElement}
       <pre>{JSON.stringify(omit(['name', 'children'], props), null, 2)}</pre>
       <div className={styles.children}>
-        {React.Children.map(children, (child) =>
-          React.cloneElement(child, { level: level + 1 }))}
+        {React.Children.map(children, (child) => React
+          .cloneElement(child, { level: headingLevel + 1 }))}
       </div>
     </div>
   );

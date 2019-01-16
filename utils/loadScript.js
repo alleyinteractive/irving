@@ -7,8 +7,8 @@
  *                      can be used as a target to select in other functions.
  * @returns {Promise}   Promise is resolved when onload event is called.
  */
-const loadScript = (src, id) =>
-  new Promise((resolve, reject) => {
+const loadScript = (src, id) => new Promise(
+  (resolve, reject) => {
     if (document.getElementById(id)) {
       resolve();
     } else {
@@ -21,6 +21,7 @@ const loadScript = (src, id) =>
       script.id = id;
       document.body.appendChild(script);
     }
-  });
+  }
+);
 
 export default loadScript;
