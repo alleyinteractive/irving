@@ -25,7 +25,7 @@ const TextArea = (props) => {
     >
       <Label
         htmlFor={name}
-        require={required}
+        required={required}
         className={styles.label}
       >
         {children}
