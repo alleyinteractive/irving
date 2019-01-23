@@ -20,7 +20,7 @@
   "license": "UNLICENSED",
   "homepage": "https://github.com/alleyinteractive/irving#readme",
   "engines": {
-    "node": "8",
+    "node": "10",
     "npm": "6"
   },
   "dependencies": {
