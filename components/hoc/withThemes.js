@@ -74,6 +74,7 @@ const withThemes = (
             <WrappedComponent
               {...this.props}
               theme={this.getTheme(themes)}
+              themeName={this.getThemeName(themes)}
             />
           )}
         </ThemeContext.Consumer>
