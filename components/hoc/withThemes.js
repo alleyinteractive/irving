@@ -22,18 +22,16 @@ const withThemes = (
   composes = false
 ) => (WrappedComponent) => {
   class ThemePicker extends Component {
+    /**
+     * Get the theme object.
+     *
+     * @param {object} contextThemes Theme key provided from context.
+     * @return {object} Theme classes merged with defaults.
+     */
     getTheme = (contextThemes) => {
       const defaultTheme = componentThemes.default || {};
-      const hasThemeFromContext = contextThemes &&
-        Object.keys(contextThemes).length &&
-        contextThemes[identifier];
-      let theme = defaultTheme;
-
-      if (this.props.theme) {
-        theme = componentThemes[this.props.theme];
-      } else if (hasThemeFromContext) {
-        theme = componentThemes[contextThemes[identifier]];
-      }
+      const themeName = this.getThemeName(contextThemes);
+      const theme = componentThemes[themeName];
 
       // Should theme styles override or compose the defaults?
       if (composes) {
@@ -46,6 +44,28 @@ const withThemes = (
 
       return Object.assign({}, defaultTheme, theme);
     };
+
+    /**
+     * Get the theme name.
+     *
+     * @param {object} contextThemes Theme key provided from context.
+     * @return {string} Key/name for current theme.
+     */
+    getThemeName = (contextThemes) => {
+      const { theme: propsTheme } = this.props;
+      const hasThemeFromContext = contextThemes &&
+        Object.keys(contextThemes).length &&
+        contextThemes[identifier];
+      let themeName = 'default';
+
+      if (propsTheme) {
+        themeName = propsTheme;
+      } else if (hasThemeFromContext) {
+        themeName = contextThemes[identifier];
+      }
+
+      return themeName;
+    }
 
     render() {
       return (
