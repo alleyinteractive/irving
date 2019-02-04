@@ -1,72 +1,97 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Lazyload from 'react-lazyload';
 import IrvingPicture from './picture';
 import IrvingImg from './img';
 import styles from './image.css';
 
-const Image = (props) => {
-  const {
-    alt,
-    aspectRatio,
-    className,
-    height,
-    lazyload,
-    lqipSrc,
-    picture,
-  } = props;
-  const paddingPercentage = aspectRatio ?
-    { paddingBottom: `${aspectRatio * 100}%` } :
-    null;
-  // Set up image element(s) for maybe using with lazyload component
-  const imageContent = (
-    <span
-      className={classNames(
-        styles.wrapper,
-        className,
-        {
-          [styles.apsectRatio]: aspectRatio,
-        }
-      )}
-      style={paddingPercentage}
-    >
-      {picture ?
-        <IrvingPicture {...props} /> :
-        <IrvingImg {...props} />
-      }
-    </span>
-  );
-  // Set up placeholder image with low quality image placeholder source
-  const placeholder = lqipSrc ?
-    (
-      <img
-        className={styles.placeholder}
-        src={lqipSrc}
-        alt={alt}
-      />
-    ) :
-    null;
+class Image extends Component {
+  state = {
+    loaded: false,
+    error: false,
+  };
 
-  return (
-    <Fragment>
-      {lazyload ?
-        (
-          <Lazyload
-            height={placeholder ? height : null}
-            placeholder={placeholder}
-            once
-            throttle
-          >
-            {imageContent}
-          </Lazyload>
-        ) :
-        imageContent
-      }
-    </Fragment>
-  );
-};
+  onLoad = () => {
+    this.setState({ loaded: true });
+  };
+
+  onError = () => {
+    this.setState({ error: true });
+  };
+
+  render() {
+    const {
+      alt,
+      aspectRatio,
+      className,
+      lazyload,
+      lqipSrc,
+      picture,
+    } = this.props;
+    const {
+      loaded,
+      error,
+    } = this.state;
+    const paddingPercentage = aspectRatio ?
+      { paddingBottom: `${aspectRatio * 100}%` } :
+      null;
+    // Set up image element(s) for maybe using with lazyload component
+    const imageContent = (
+      <Fragment>
+        {picture ? (
+          <IrvingPicture
+            {...this.props}
+            onLoad={this.onLoad}
+            onError={this.onError}
+          />
+        ) : (
+          <IrvingImg
+            {...this.props}
+            onLoad={this.onLoad}
+            onError={this.onError}
+          />
+        )}
+      </Fragment>
+    );
+    // Set up placeholder image with low quality image placeholder source
+    const placeholder = lqipSrc ?
+      (
+        <img
+          className={styles.placeholder}
+          src={lqipSrc}
+          alt={alt}
+        />
+      ) :
+      null;
+
+    return (
+      <span
+        className={classNames(
+          styles.wrapper,
+          className,
+          {
+            [styles.apsectRatio]: aspectRatio,
+            [styles.lazyload]: lazyload,
+            [styles.loaded]: loaded,
+            [styles.error]: error,
+          }
+        )}
+        style={paddingPercentage}
+      >
+        {lazyload ?
+          (
+            <Fragment>
+              {! loaded && <Fragment>{placeholder}</Fragment>}
+              {imageContent}
+            </Fragment>
+          ) :
+          imageContent
+        }
+      </span>
+    );
+  }
+}
 
 Image.propTypes = {
   alt: PropTypes.string.isRequired,
@@ -79,8 +104,8 @@ Image.propTypes = {
   height: PropTypes.number.isRequired,
   lazyload: PropTypes.bool.isRequired,
   lqipSrc: PropTypes.string.isRequired,
-  picture: PropTypes.bool.isRequired,
-  sizes: PropTypes.string.isRequired,
+  picture: PropTypes.bool,
+  sizes: PropTypes.string,
   src: PropTypes.string.isRequired,
   srcset: PropTypes.string.isRequired,
   sourceTags: PropTypes.arrayOf(
@@ -94,6 +119,8 @@ Image.propTypes = {
 Image.defaultProps = {
   sourceTags: [],
   className: '',
+  picture: false,
+  sizes: '',
 };
 
 const wrapWithStyles = withStyles(styles);
