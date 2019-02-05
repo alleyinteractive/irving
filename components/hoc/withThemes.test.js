@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import ThemeContext from './themeContext';
 import withThemes from './withThemes';
 
-xdescribe('withThemes', () => {
+describe('withThemes', () => {
   const ThemeableComponent = ({ theme }) => (
     <div>
       <span className={theme.testClass}>Foo</span>
@@ -27,7 +27,7 @@ xdescribe('withThemes', () => {
   const ThemedComponent = withThemes('Foo', testThemes)(ThemeableComponent);
   const ThemedComponentComposes = withThemes('Foo', testThemes, true)(ThemeableComponent);
 
-  xit('Should use the default theme if no theme is specified', () => {
+  it('Should use the default theme if no theme is specified', () => {
     const wrapper = mount(<ThemedComponent />);
     expect(wrapper.contains([
       <span className="default__testClass__01234">Foo</span>,
@@ -35,9 +35,9 @@ xdescribe('withThemes', () => {
     ])).toBe(true);
   });
 
-  xit('Should get a `themes` property from context and provide the specified theme to the component as a prop', () => {
+  it('Should get a `themes` property from context and provide the specified theme to the component as a prop', () => {
     const wrapper = mount(
-      <ThemeContext.Provider themes={{ Foo: 'theme1' }}>
+      <ThemeContext.Provider value={{ Foo: 'theme1' }}>
         <ThemedComponent />
       </ThemeContext.Provider>
     );
@@ -47,9 +47,9 @@ xdescribe('withThemes', () => {
     ])).toBe(true);
   });
 
-  xit('Should render a component with a theme provided directly to the `useTheme` prop', () => {
+  it('Should render a component with a theme provided directly to the `useTheme` prop', () => {
     const wrapper = mount(
-      <ThemedComponent useTheme="theme2" />
+      <ThemedComponent theme="theme2" />
     );
     expect(wrapper.contains([
       <span className="theme2__testClass__34567">Foo</span>,
@@ -57,9 +57,9 @@ xdescribe('withThemes', () => {
     ])).toBe(true);
   });
 
-  xit('Should combine classNames of provided theme and default if `composes` is set to `true`', () => {
+  it('Should combine classNames of provided theme and default if `composes` is set to `true`', () => {
     const wrapper = mount(
-      <ThemedComponentComposes useTheme="theme1" />
+      <ThemedComponentComposes theme="theme1" />
     );
     expect(wrapper.contains([
       <span className="theme1__testClass__12345 default__testClass__01234">Foo</span>,
