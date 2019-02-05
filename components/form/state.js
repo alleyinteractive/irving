@@ -54,11 +54,29 @@ const FormState = ({
 };
 
 FormState.propTypes = {
+  /**
+   * Is this form in the process of being submitted (communicating with an API)?
+   */
   submitting: PropTypes.bool.isRequired,
+  /**
+   * Has the form successfully submitted?
+   */
   submitted: PropTypes.bool.isRequired,
+  /**
+   * Has the form submission failed?
+   */
   failed: PropTypes.bool.isRequired,
+  /**
+   * Form contents.
+   */
   children: PropTypes.node,
+  /**
+   * Custom text to display if an error occurrs (`failed`).
+   */
   errorText: PropTypes.string,
+  /**
+   * Custom text to display if submission succeeds (`submitted`).
+   */
   successText: PropTypes.string,
 };
 

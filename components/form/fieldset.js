@@ -14,7 +14,13 @@ const FormFieldset = (props) => {
 };
 
 FormFieldset.propTypes = {
+  /**
+   * Heading/title for this fieldset.
+   */
   heading: PropTypes.string,
+  /**
+   * Contents of the fieldset
+   */
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(
       PropTypes.oneOfType([
