@@ -26,7 +26,13 @@ const Label = (props) => {
 /* eslint-enable */
 
 Label.propTypes = {
+  /**
+   * Additional className(s) for the label.
+   */
   className: PropTypes.string,
+  /**
+   * Contents of the label.
+   */
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(
       PropTypes.oneOfType([
@@ -37,7 +43,13 @@ Label.propTypes = {
     PropTypes.element,
     PropTypes.string,
   ]).isRequired,
+  /**
+   * Contents of `for` attribute, should correspond to an input's `id` attribute.
+   */
   htmlFor: PropTypes.string.isRequired,
+  /**
+   * Display `required` text and styles.
+   */
   required: PropTypes.bool,
 };
 

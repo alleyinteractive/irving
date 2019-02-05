@@ -49,14 +49,30 @@ const RadioOrCheckboxGroup = (props) => {
 };
 
 RadioOrCheckboxGroup.propTypes = {
+  /**
+   * Contents of the `name` attribute for this input.
+   */
   name: PropTypes.string.isRequired,
+  /**
+   * Event handler triggered when the input value changes.
+   * Usually supplied with an `onChangeInput` function from `withFormHandler`.
+   */
   onChange: PropTypes.func.isRequired,
+  /**
+   * Currently selected checkbox or radio button. This prop is mapped to the `checked` attributed.
+   */
   currentValue: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.string,
   ]).isRequired,
+  /**
+   * Array of radio or checkbox inputs to include in this group.
+   */
   inputs: PropTypes.arrayOf(
     PropTypes.shape({
+      /**
+       * Label for this input.
+       */
       label: PropTypes.oneOfType([
         PropTypes.arrayOf(
           PropTypes.oneOfType([
@@ -67,10 +83,19 @@ RadioOrCheckboxGroup.propTypes = {
         PropTypes.element,
         PropTypes.string,
       ]).isRequired,
+      /**
+       * Value of this input. Should be static, unlike other input types.
+       */
       value: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  /**
+   * Type of input to use. Can be either `checkbox` or `radio`.
+   */
   type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
+  /**
+   * Is this input required?
+   */
   required: PropTypes.bool,
 };
 
