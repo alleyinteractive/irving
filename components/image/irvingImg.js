@@ -3,28 +3,45 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './image.css';
 
-const IrvingImg = (props) => {
-  const {
-    alt,
-    sizes,
-    src,
-    srcset,
-    onLoad,
-    onError,
-  } = props;
+class IrvingImg extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <img
-      alt={alt}
-      className={styles.img}
-      src={src}
-      srcSet={srcset}
-      sizes={sizes}
-      onLoad={onLoad}
-      onError={onError}
-    />
-  );
-};
+    this.imgRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const { onLoad } = this.props;
+
+    if (this.imgRef.current.complete) {
+      onLoad();
+    }
+  }
+
+  render() {
+    const {
+      alt,
+      sizes,
+      src,
+      srcset,
+      onLoad,
+      onError,
+    } = this.props;
+
+    return (
+      <img
+        alt={alt}
+        className={styles.img}
+        ref={this.imgRef}
+        src={src}
+        srcSet={srcset || null}
+        sizes={sizes || null}
+        onLoad={onLoad}
+        onError={onError}
+      />
+    );
+  }
+}
 
 IrvingImg.propTypes = {
   srcset: PropTypes.string.isRequired,

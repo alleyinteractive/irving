@@ -82,7 +82,7 @@ class Image extends Component {
         {lazyload ?
           (
             <Fragment>
-              {! loaded && <Fragment>{placeholder}</Fragment>}
+              {placeholder}
               {imageContent}
             </Fragment>
           ) :
