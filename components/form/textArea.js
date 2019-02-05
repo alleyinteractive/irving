@@ -24,7 +24,7 @@ const TextArea = (props) => {
     >
       <Label
         htmlFor={name}
-        require={required}
+        required={required}
         className={styles.label}
       >
         {children}
@@ -44,7 +44,6 @@ const TextArea = (props) => {
 TextArea.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   required: PropTypes.bool,

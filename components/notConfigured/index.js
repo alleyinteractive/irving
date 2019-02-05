@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NotConfigured = (props) => (
-  <React.Fragment>
-    <h1>Component {`"${props.name}"`} is not configured.</h1>
-    {props.children}
-  </React.Fragment>
-);
+const NotConfigured = (props) => {
+  const { children, name } = props;
+
+  return (
+    <React.Fragment>
+      <h1>
+        Component
+        {`"${name}"`}
+        is not configured.
+      </h1>
+      {children}
+    </React.Fragment>
+  );
+};
 
 NotConfigured.propTypes = {
   /**

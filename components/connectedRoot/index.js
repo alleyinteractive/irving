@@ -4,11 +4,15 @@ import { connect } from 'react-redux';
 import createGetRootComponent from 'selectors/createGetRootComponent';
 import toReactElement from 'utils/toReactElement';
 
-const ConnectedRoot = (props) => (
-  <Fragment>
-    {toReactElement(props.apiComponent)}
-  </Fragment>
-);
+const ConnectedRoot = (props) => {
+  const { apiComponent } = props;
+
+  return (
+    <Fragment>
+      {toReactElement(apiComponent)}
+    </Fragment>
+  );
+};
 
 ConnectedRoot.propTypes = {
   /**

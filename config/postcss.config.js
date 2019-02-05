@@ -3,11 +3,9 @@ const lost = require('lost');
 const calc = require('postcss-calc');
 const cssImport = require('postcss-import');
 const variables = require('postcss-simple-vars');
-const values = require('postcss-modules-values-replace');
 const nested = require('postcss-nested');
 const units = require('postcss-units');
 const colorFunction = require('postcss-color-function');
-const criticalCSS = require('postcss-critical-css');
 const autoprefixer = require('autoprefixer');
 const mixins = require('postcss-sassy-mixins');
 const focus = require('postcss-focus');
@@ -34,7 +32,6 @@ module.exports = () => ({
       variables: flatten(cssVars),
     }),
     units(), // Compute rem() function
-    values(), // Arbitrary values for both css and JS
     mixins(),
     nested(), // Allow nested syntax.
     calc({
@@ -46,7 +43,6 @@ module.exports = () => ({
     autoprefixer({
       flexbox: 'no-2009',
     }),
-    criticalCSS(),
     browserReporter(),
     reporter(),
   ],

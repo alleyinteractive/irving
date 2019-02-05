@@ -1,4 +1,9 @@
-import { call, delay, select, take } from 'redux-saga/effects';
+import {
+  call,
+  delay,
+  select,
+  take,
+} from 'redux-saga/effects';
 import { FINISH_LOADING, RECEIVE_COMPONENTS } from 'actions/types';
 import getRouteMeta from 'selectors/getRouteMeta';
 

@@ -51,15 +51,22 @@ const RadioOrCheckboxGroup = (props) => {
 RadioOrCheckboxGroup.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  currentValue: PropTypes.array.isRequired,
+  currentValue: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+  ]).isRequired,
   inputs: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-          PropTypes.element,
-          PropTypes.string,
-        ])
-      ).isRequired,
+      label: PropTypes.oneOfType([
+        PropTypes.arrayOf(
+          PropTypes.oneOfType([
+            PropTypes.element,
+            PropTypes.string,
+          ])
+        ),
+        PropTypes.element,
+        PropTypes.string,
+      ]).isRequired,
       value: PropTypes.string.isRequired,
     }),
   ).isRequired,
