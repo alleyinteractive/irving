@@ -36,7 +36,7 @@ export default function* resolveComponents() {
         // Use whatwg-url to test if the redirect is absolute or relative.
         const urlObj = new URL(result.redirectTo);
         if (urlObj.host) {
-          // Redirect via location.replace (for absolute urls).
+          // Redirect outside the app.
           window.location = result.redirectTo;
         }
       } catch (e) {
