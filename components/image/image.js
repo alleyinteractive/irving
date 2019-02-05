@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import IrvingPicture from './picture';
-import IrvingImg from './img';
+import IrvingPicture from './irvingPicture';
+import IrvingImg from './irvingImg';
 import styles from './image.css';
 
 class Image extends Component {
@@ -94,31 +94,76 @@ class Image extends Component {
 }
 
 Image.propTypes = {
+  /**
+   * Alt text for the image
+   */
   alt: PropTypes.string.isRequired,
+  /**
+   * Image aspect ratio. Used to apply intrinsic sizing CSS and
+   * generate an appropriately sized placeholder for lazyloading.
+   */
   aspectRatio: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.bool,
     PropTypes.oneOf(['auto']),
   ]).isRequired,
+  /**
+   * Whether or not to include default styles for an image with a static aspect ratio
+   */
+  aspectRatioStyles: PropTypes.bool,
+  /**
+   * Additional classname(s) to add to image wrapper element
+   */
   className: PropTypes.string,
+  /**
+   * Height of image. Necessary for lazyloading placeholder.
+   */
   height: PropTypes.number.isRequired,
+  /**
+   * Wether or not to lazyload this image via react-lazyload
+   */
   lazyload: PropTypes.bool.isRequired,
+  /**
+   * Src attribute for Low Quality Image Placeholder (LQIP)
+   */
   lqipSrc: PropTypes.string.isRequired,
+  /**
+   * Should this component render a `<picture>` element?
+   */
   picture: PropTypes.bool,
+  /**
+   * String with contents of <img> `sizes` attribute
+   */
   sizes: PropTypes.string,
+  /**
+   * String with contents of <img> `src` attribute
+   */
   src: PropTypes.string.isRequired,
+  /**
+   * String with contents of <img> `srcset` attribute
+   */
   srcset: PropTypes.string.isRequired,
+  /**
+   * Array of objects containing values necessary for `<source>` tag attributes
+   */
   sourceTags: PropTypes.arrayOf(
     PropTypes.shape({
+      /**
+       * String with contents of <source> `srcset` attribute
+       */
       srcset: PropTypes.string.isRequired,
+      /**
+       * Media query for which this `<source>` tag's srcset should apply
+       */
       media: PropTypes.string.isRequired,
     })
   ),
 };
 
 Image.defaultProps = {
-  sourceTags: [],
+  aspectRatioStyles: true,
   className: '',
+  sourceTags: [],
   picture: false,
   sizes: '',
 };

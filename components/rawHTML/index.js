@@ -16,7 +16,13 @@ const RawHTML = (props) => {
 };
 
 RawHTML.propTypes = {
+  /**
+   * HTML content to displayed using `dangerouslySetInnerHTML`
+   */
   content: PropTypes.string.isRequired,
+  /**
+   * Is the content of this component Rich Text or Plain Text? This prop determines which configuration for sanitize-html will be used.
+   */
   rich: PropTypes.bool,
 };
 

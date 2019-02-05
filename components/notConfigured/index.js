@@ -17,7 +17,13 @@ const NotConfigured = (props) => {
 };
 
 NotConfigured.propTypes = {
+  /**
+   * Name of component that is not configured in `componentMap.js`
+   */
   name: PropTypes.string.isRequired,
+  /**
+   * Child components
+   */
   children: PropTypes.node.isRequired,
 };
 

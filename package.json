@@ -10,7 +10,9 @@
     "start": "NODE_ENV=production node server/index.js",
     "postinstall": "npm run build",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
+    "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js"
   },
   "repository": {
     "type": "git",
@@ -104,6 +106,7 @@
     "postcss-syntax": "^0.36.2",
     "postcss-units": "^1.2.1",
     "react-dev-utils": "^5.0.2",
+    "react-styleguidist": "^8.0.6",
     "regenerator-runtime": "^0.13.1",
     "style-loader": "^0.21.0",
     "stylelint": "^9.9.0",

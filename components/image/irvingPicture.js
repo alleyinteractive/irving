@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import IrvingImg from './img';
+import IrvingImg from './irvingImg';
 import styles from './image.css';
 
 const IrvingPicture = (props) => {

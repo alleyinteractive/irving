@@ -33,9 +33,22 @@ const Link = (props) => {
 };
 
 Link.propTypes = {
+  /**
+   * Destination for anchor tag (`href` attribute)
+   */
   to: PropTypes.string.isRequired,
+  /**
+   * Should this link open in a new page/tab?
+   */
   blank: PropTypes.bool,
+  /**
+   * Child nodes
+   */
   children: PropTypes.node.isRequired,
+  /**
+   * OnClick function. NOTE: if provided, this will override
+   * history push handling, so use with care.
+   */
   onClick: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.bool,

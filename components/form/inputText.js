@@ -43,14 +43,42 @@ const InputText = (props) => {
 };
 
 InputText.propTypes = {
+  /**
+   * Contents of the `name` attribute for this input.
+   */
   name: PropTypes.string.isRequired,
+  /**
+   * Placeholder content for this input.
+   */
   placeholder: PropTypes.string,
+  /**
+   * Event handler triggered when the input value changes.
+   * Usually supplied with an `onChangeInput` function from `withFormHandler`.
+   */
   onChange: PropTypes.func.isRequired,
+  /**
+   * Value of the input supplied from component state. Usually handled by `withFormHandler`.
+   */
   value: PropTypes.string,
+  /**
+   * Is this field required?
+   */
   required: PropTypes.bool,
+  /**
+   * Additional className(s) to include on the wrapper element for this input.
+   */
   className: PropTypes.string,
+  /**
+   * Validation or error message to display to the user.
+   */
   error: PropTypes.string,
-  type: PropTypes.oneOf(['text', 'email', 'search', 'password', 'url']),
+  /**
+   * Additional options for HTML5 input types.
+   */
+  type: PropTypes.oneOf(['text', 'email', 'search', 'password', 'url', 'date']),
+  /**
+   * Contents of the form label.
+   */
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(
       PropTypes.oneOfType([

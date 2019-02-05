@@ -15,6 +15,9 @@ const SocialList = (props) => {
 };
 
 SocialList.propTypes = {
+  /**
+   * Component children, usually a list of `<SocialItem />` components
+   */
   children: PropTypes.node.isRequired,
 };
 

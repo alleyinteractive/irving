@@ -15,6 +15,9 @@ const withLoader = (WrappedComponent) => {
   };
 
   Loader.propTypes = {
+    /**
+     * Prop indicating whether or not the page is still loading
+     */
     loading: PropTypes.bool.isRequired,
   };
 
