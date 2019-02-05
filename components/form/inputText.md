@@ -10,25 +10,28 @@ const Form = ({
     <form>
         <InputText 
             name="testText" 
-            label="This is a sample text input component" 
             onChange={onChangeInput('testText')} 
             placeholder="Put your input here!"
             value={testText}
-        />
+        >
+            This is a sample text input component
+        </InputText>
         <InputText 
             name="testTextRequired" 
-            label="This is a sample required text input component" 
             onChange={onChangeInput('testTextRequired')} 
             value={testTextRequired}
             required
-        />
+        >
+            This is a sample required text input component
+        </InputText>
         <InputText 
             name="testTextError" 
-            label="This is a sample text input with an error" 
             onChange={onChangeInput('testTextError')} 
             value={testTextError}
             error="Something has gone wrong"
-        />
+        >
+            This is a sample text input with an error
+        </InputText>
     </form>
 );
 

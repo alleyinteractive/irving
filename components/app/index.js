@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { hot } from 'react-hot-loader';
+import { hot } from 'react-hot-loader/root';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { withStyles } from 'critical-style-loader/lib';
@@ -47,7 +47,6 @@ const mapStateToProps = (state) => ({
   error: !! state.error,
 });
 
-const hotReload = hot(module);
 const wrapWithStyles = withStyles(styles);
 const withRedux = connect(mapStateToProps);
-export default hotReload(wrapWithStyles(withRedux(App)));
+export default hot(wrapWithStyles(withRedux(App)));

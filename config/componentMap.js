@@ -1,8 +1,10 @@
+import Body from 'components/body';
 import Disqus from 'components/disqus';
 import Head from 'components/head';
 import Image from 'components/image/image';
 import NotConfigured from 'components/notConfigured';
 import RawHTML from 'components/rawHTML';
+import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import SocialList from 'components/socialList';
 import SocialItem from 'components/socialItem';
@@ -13,7 +15,7 @@ import withLoader from 'components/hoc/withLoader';
  */
 export const componentMap = {
   'admin-bar': Placeholder,
-  body: withLoader(Placeholder),
+  body: withLoader(Body),
   disqus: Disqus,
   embed: RawHTML,
   footer: Placeholder,
@@ -23,6 +25,7 @@ export const componentMap = {
   image: Image,
   menu: Placeholder,
   'menu-item': Placeholder,
+  parsely: Parsely,
   'social-links': SocialList,
   'social-share': SocialList,
   'social-item': SocialItem,

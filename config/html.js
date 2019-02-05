@@ -6,7 +6,7 @@ export const richText = {
     'figure', 'figcaption', 'iframe',
   ],
   allowedAttributes: {
-    '*': ['class', 'id'],
+    '*': ['class', 'id', 'data-*', 'cite'],
     iframe: ['*'],
     a: ['href', 'name', 'target'],
     img: ['src', 'srcset', 'sizes'],

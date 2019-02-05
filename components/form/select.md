@@ -5,7 +5,6 @@ const Form = (props) => (
     <form>
         <Select
             name="testSelect"
-            label="This is a select element"
             onChange={props.onChangeInput('testSelect')}
             options={[
                 { text: 'Lorem Ipsum', value: 'lorem-ipsum' },
@@ -13,7 +12,9 @@ const Form = (props) => (
                 { text: 'Adipscing Elit', value: 'adipscing' },
             ]}
             value={props.testSelect}
-        />
+        >
+            This is a select element
+        </Select>
     </form>
 );
 

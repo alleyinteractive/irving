@@ -13,7 +13,7 @@ const withFormHandler = (
     state = defaultState;
 
     onChangeInput = curry((name, e) => {
-      const stateValue = this.state[name];
+      const { [name]: stateValue } = this.state;
       const inputValue = e.target.value;
 
       if (Array.isArray(stateValue)) {

@@ -5,7 +5,7 @@ import {
   RECEIVE_SUBMIT_ERROR,
   RECEIVE_SUBMIT_INVALID,
 } from './types';
-import { createAction } from './';
+import { createAction } from '.';
 
 /**
  * Create a request submit Redux action.

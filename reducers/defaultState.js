@@ -17,7 +17,9 @@ export const form = {
   redirect: '',
 };
 
-export const visible = {};
+export const visible = {
+  test: false,
+};
 
 export const error = null;
 
