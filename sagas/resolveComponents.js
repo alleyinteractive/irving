@@ -37,7 +37,7 @@ export default function* resolveComponents() {
         const urlObj = new URL(result.redirectTo);
         if (urlObj.host) {
           // Redirect via location.replace (for absolute urls).
-          window.location.replace(result.redirectTo);
+          window.location = result.redirectTo;
         }
       } catch (e) {
         // Redirect via history (for relative paths).
