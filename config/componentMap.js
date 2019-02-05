@@ -1,3 +1,4 @@
+import Body from 'components/body';
 import Disqus from 'components/disqus';
 import Head from 'components/head';
 import Image from 'components/image';
@@ -14,7 +15,7 @@ import withLoader from 'components/hoc/withLoader';
  */
 export const componentMap = {
   'admin-bar': Placeholder,
-  body: withLoader(Placeholder),
+  body: withLoader(Body),
   disqus: Disqus,
   embed: RawHTML,
   footer: Placeholder,
