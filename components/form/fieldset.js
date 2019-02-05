@@ -1,20 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import styles from './section.css';
+import styles from './fieldset.css';
 
-const FormSection = (props) => {
+const FormFieldset = (props) => {
   const { heading, children } = props;
   return (
-    <section className={styles.section}>
+    <fieldset className={styles.section}>
       {heading && <h3 className={styles.heading}>{heading}</h3>}
       {children}
-    </section>
+    </fieldset>
   );
 };
 
-FormSection.propTypes = {
+FormFieldset.propTypes = {
+  /**
+   * Heading/title for this fieldset.
+   */
   heading: PropTypes.string,
+  /**
+   * Contents of the fieldset
+   */
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(
       PropTypes.oneOfType([
@@ -27,8 +33,8 @@ FormSection.propTypes = {
   ]).isRequired,
 };
 
-FormSection.defaultProps = {
+FormFieldset.defaultProps = {
   heading: '',
 };
 
-export default withStyles(styles)(FormSection);
+export default withStyles(styles)(FormFieldset);
