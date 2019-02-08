@@ -1,7 +1,0 @@
-{
-  "assetsByChunkName": {
-    "common": "build/common.66e760bd.js",
-    "runtime~main": "build/bundle.01f35a8b.js",
-    "main": "build/main.f2ef09c4.js"
-  }
-}
