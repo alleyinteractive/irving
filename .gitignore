@@ -3,6 +3,7 @@
 
 # production
 /build
+/styleguide/build
 
 # misc
 .DS_Store
