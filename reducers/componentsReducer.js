@@ -1,5 +1,6 @@
-import { flow, get, set } from 'lodash/fp';
+import { flow, set } from 'lodash/fp';
 import { RECEIVE_COMPONENTS } from 'actions/types';
+import getRouteKey from 'selectors/getRouteKey';
 
 /**
  * Handle component related Redux actions.
@@ -14,7 +15,7 @@ export default function componentReducer(state, action) {
   }
 
   const currentDefaults = state.components.defaults;
-  const key = get('route.redirectTo', state) || get('route.pathname', state);
+  const key = getRouteKey(state);
   const { defaults, page } = payload;
   return flow(
     set('components.defaults', defaults.length ? defaults : currentDefaults),
