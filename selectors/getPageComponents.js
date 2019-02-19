@@ -1,5 +1,6 @@
 import { get } from 'lodash/fp';
 import { createSelector } from 'reselect';
+import getRouteKey from './getRouteKey';
 
 /**
  * Select the current route's page components.
@@ -7,10 +8,10 @@ import { createSelector } from 'reselect';
  */
 const getPageComponents = createSelector(
   [
-    get('route.pathname'),
+    getRouteKey,
     get('components.page'),
   ],
-  (pathname, pageMap) => pageMap[pathname] || [],
+  (routeKey, pageMap) => pageMap[routeKey] || []
 );
 
 export default getPageComponents;
