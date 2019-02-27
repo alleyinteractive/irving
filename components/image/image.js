@@ -24,6 +24,7 @@ class Image extends Component {
     const {
       alt,
       aspectRatio,
+      caption,
       className,
       lazyload,
       lqipSrc,
@@ -36,6 +37,7 @@ class Image extends Component {
     const paddingPercentage = aspectRatio ?
       { paddingBottom: `${aspectRatio * 100}%` } :
       null;
+    const WrapperElement = caption ? Fragment : 'figure';
     // Set up image element(s) for maybe using with lazyload component
     const imageContent = (
       <Fragment>
@@ -66,29 +68,32 @@ class Image extends Component {
       null;
 
     return (
-      <span
-        className={classNames(
-          styles.wrapper,
-          className,
-          {
-            [styles.apsectRatio]: aspectRatio,
-            [styles.lazyload]: lazyload,
-            [styles.loaded]: loaded,
-            [styles.error]: error,
+      <WrapperElement>
+        <span
+          className={classNames(
+            styles.wrapper,
+            className,
+            {
+              [styles.apsectRatio]: aspectRatio,
+              [styles.lazyload]: lazyload,
+              [styles.loaded]: loaded,
+              [styles.error]: error,
+            }
+          )}
+          style={paddingPercentage}
+        >
+          {lazyload ?
+            (
+              <Fragment>
+                {placeholder}
+                {imageContent}
+              </Fragment>
+            ) :
+            imageContent
           }
-        )}
-        style={paddingPercentage}
-      >
-        {lazyload ?
-          (
-            <Fragment>
-              {placeholder}
-              {imageContent}
-            </Fragment>
-          ) :
-          imageContent
-        }
-      </span>
+        </span>
+        {caption && <figcaption>{caption}</figcaption>}
+      </WrapperElement>
     );
   }
 }
@@ -111,6 +116,10 @@ Image.propTypes = {
    * Whether or not to include default styles for an image with a static aspect ratio
    */
   aspectRatioStyles: PropTypes.bool,
+  /**
+   * Image caption. This prop will modify the image markup to use a <figure>.
+   */
+  caption: PropTypes.string,
   /**
    * Additional classname(s) to add to image wrapper element
    */
@@ -162,6 +171,7 @@ Image.propTypes = {
 
 Image.defaultProps = {
   aspectRatioStyles: true,
+  caption: '',
   className: '',
   sourceTags: [],
   picture: false,
@@ -171,4 +181,3 @@ Image.defaultProps = {
 const wrapWithStyles = withStyles(styles);
 
 export default wrapWithStyles(Image);
-
