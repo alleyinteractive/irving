@@ -6,5 +6,5 @@ module.exports = {
   },
   testEnvironment: 'enzyme',
   setupFiles: ['<rootDir>/config/jest.setup'],
-  setupTestFrameworkScriptFile: 'jest-enzyme',
+  setupFilesAfterEnv: ['jest-enzyme'],
 };
