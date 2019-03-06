@@ -52,14 +52,18 @@ const withThemes = (
      * @return {string} Key/name for current theme.
      */
     getThemeName = (contextThemes) => {
-      const { theme: propsTheme } = this.props;
+      const {
+        // This is included for backwards compatibility.
+        theme: propsTheme,
+        themeName: propsThemeName,
+      } = this.props;
       const hasThemeFromContext = contextThemes &&
         Object.keys(contextThemes).length &&
         contextThemes[identifier];
       let themeName = 'default';
 
-      if (propsTheme) {
-        themeName = propsTheme;
+      if (propsThemeName || propsTheme) {
+        themeName = propsThemeName || propsTheme;
       } else if (hasThemeFromContext) {
         themeName = contextThemes[identifier];
       }
@@ -83,6 +87,10 @@ const withThemes = (
   }
 
   ThemePicker.propTypes = {
+    themeName: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool,
+    ]),
     theme: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.bool,
@@ -90,6 +98,7 @@ const withThemes = (
   };
 
   ThemePicker.defaultProps = {
+    themeName: false,
     theme: false,
   };
 
