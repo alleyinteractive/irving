@@ -2,6 +2,7 @@
  * Custom media queries
  */
 const bkptVal = {
+  xxl: 90,
   xl: 80,
   lg: 64,
   md: 48,

@@ -10,19 +10,19 @@
 }
 
 .heading2 {
-  composes: heading2 from '../../assets/styles/typography.css';
+  font-size: rem(32);
 }
 
 .heading3 {
-  composes: heading3 from '../../assets/styles/typography.css';
+  font-size: rem(28);
 }
 
 .heading4 {
-  composes: heading4 from '../../assets/styles/typography.css';
+  font-size: rem(24);
 }
 
 .heading5 {
-  composes: heading5 from '../../assets/styles/typography.css';
+  font-size: rem(20);
 }
 
 .children {

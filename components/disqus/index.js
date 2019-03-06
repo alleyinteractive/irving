@@ -8,7 +8,7 @@ class DisqusEmbed extends Component {
     const { forumShortname } = this.props;
     const config = validateDisqusConfig(this.props, window.location.pathname);
 
-    if (! config) {
+    if (! config || ! forumShortname) {
       return;
     }
 
@@ -23,8 +23,8 @@ class DisqusEmbed extends Component {
     window.DISQUS.reset({
       reload: true,
       config() {
-        this.page.identifier = config.pageIdentifier;
-        this.page.url = config.pageUrl;
+        this.page.identifier = config.identifier;
+        this.page.url = config.url;
       },
     });
   }

@@ -2,7 +2,8 @@ import { omit } from 'lodash/fp';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import Link from 'components/link';
+import Heading from 'components/helpers/heading';
+import Link from 'components/helpers/link';
 import styles from './placeholder.css';
 
 /**
@@ -20,9 +21,8 @@ const Placeholder = (props) => {
   } = props;
   const maxLevel = 6;
   const headingLevel = maxLevel < level ? maxLevel : level;
-  const Heading = `h${headingLevel}`;
   const headingElement = (
-    <Heading className={styles[`heading${headingLevel}`]}>
+    <Heading tag={`h${headingLevel}`}>
       {componentName}
     </Heading>
   );
