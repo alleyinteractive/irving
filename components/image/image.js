@@ -29,6 +29,7 @@ class Image extends Component {
       lazyload,
       lqipSrc,
       picture,
+      showCaption,
     } = this.props;
     const {
       loaded,
@@ -92,7 +93,7 @@ class Image extends Component {
             imageContent
           }
         </span>
-        {caption && <figcaption>{caption}</figcaption>}
+        {(caption && showCaption) && <figcaption>{caption}</figcaption>}
       </WrapperElement>
     );
   }
@@ -140,6 +141,10 @@ Image.propTypes = {
    * Should this component render a `<picture>` element?
    */
   picture: PropTypes.bool,
+  /**
+   * Should the image caption be displayed?
+   */
+  showCaption: PropTypes.bool.isRequired,
   /**
    * String with contents of <img> `sizes` attribute
    */

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'components/link';
+import Link from 'components/helpers/link';
 import { withStyles } from 'critical-style-loader/lib';
 import FacebookIcon from 'assets/icons/facebook.svg';
 import TwitterIcon from 'assets/icons/twitter.svg';
