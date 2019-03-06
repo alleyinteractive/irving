@@ -12,6 +12,7 @@ const Button = (props) => {
     buttonStyle,
     children,
     className,
+    onClick,
   } = props;
   const Component = ! link ? 'button' : Link;
   const buttonType = link ? null : type;
@@ -26,6 +27,7 @@ const Button = (props) => {
         styles.wrapper,
         styles[buttonStyle]
       )}
+      onClick={onClick}
     >
       {children}
     </Component>
@@ -53,12 +55,20 @@ Button.propTypes = {
    * Additional classname(s) to apply to this button.
    */
   className: PropTypes.string,
+  /**
+   * Add an onClick handler to this button.
+   */
+  onClick: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.oneOf([null]),
+  ]),
 };
 
 Button.defaultProps = {
   link: '',
   type: 'button',
   className: '',
+  onClick: null,
 };
 
 export default withStyles(styles)(Button);
