@@ -5,6 +5,7 @@ const componentGlobs = {
   utility: path.join(paths.appRoot, 'components/**/*.js'),
   hoc: path.join(paths.appRoot, 'components/hoc/*.js'),
   form: path.join(paths.appRoot, 'components/form/*.js'),
+  helpers: path.join(paths.appRoot, 'components/helpers/**/*.js'),
 };
 
 module.exports = {
@@ -35,6 +36,7 @@ module.exports = {
           ignore: [
             componentGlobs.form,
             componentGlobs.hoc,
+            componentGlobs.helpers,
           ],
         },
         {
@@ -46,6 +48,11 @@ module.exports = {
           name: 'Higher-Order Components',
           content: path.join(paths.appRoot, 'components/hoc/hoc.md'),
           components: componentGlobs.hoc,
+        },
+        {
+          name: 'Helper Components',
+          content: path.join(paths.appRoot, 'components/helpers/helpers.md'),
+          components: componentGlobs.helpers,
         },
       ],
     },
