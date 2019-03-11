@@ -36,7 +36,9 @@ const withThemes = (
       // Should theme styles override or compose the defaults?
       if (composes) {
         return assignWith(
-          (objValue, srcValue) => `${objValue} ${srcValue}`,
+          (objValue, srcValue) => (
+            `${srcValue ? `${srcValue} ` : ''}${objValue || ''}`
+          ),
           theme,
           defaultTheme
         );
