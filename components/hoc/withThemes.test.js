@@ -62,8 +62,8 @@ describe('withThemes', () => {
       <ThemedComponentComposes theme="theme1" />
     );
     expect(wrapper.contains([
-      <span className="theme1__testClass__12345 default__testClass__01234">Foo</span>,
-      <span className="theme1__testClass2___asdfg default__testClass2___ghjkl">Bar</span>,
+      <span className="default__testClass__01234 theme1__testClass__12345">Foo</span>,
+      <span className="default__testClass2___ghjkl theme1__testClass2___asdfg">Bar</span>,
     ])).toBe(true);
   });
 });
