@@ -9,7 +9,6 @@
   @include screenreader-only;
   align-items: center;
   display: flex;
-  font-family: $sans-serif;
   justify-content: center;
   left: 0;
   text-transform: uppercase;
