@@ -38,7 +38,9 @@ module.exports = () => ({
       mediaQueries: true,
     }),
     colorFunction(),
-    lost(), // Grid library
+    lost({
+      flexbox: 'flex',
+    }), // Grid library
     focus(),
     autoprefixer({
       flexbox: 'no-2009',
