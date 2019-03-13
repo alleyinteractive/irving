@@ -14,7 +14,7 @@ class Body extends Component {
         <Helmet>
           <body className={classNames(bodyClasses)} />
         </Helmet>
-        <main role="main" id="#content">
+        <main role="main" id="content">
           {children}
         </main>
       </Fragment>

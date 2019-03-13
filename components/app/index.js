@@ -22,6 +22,9 @@ const App = (props) => {
         <ErrorMessage />
       ) : (
         <div className={styles.wrapper}>
+          <a href="#content" className={styles.skipLink}>
+            Skip to Content
+          </a>
           {roots.map((name) => (
             <ConnectedRoot key={name} name={name} />
           ))}
