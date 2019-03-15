@@ -2,7 +2,7 @@ import { omit } from 'lodash/fp';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import Link from 'components/link';
+import Link from 'core-components/link';
 
 import styles from './placeholder.css';
 

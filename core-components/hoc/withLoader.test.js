@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { createStore } from 'redux';
 import defaultState from 'reducers/defaultState';
-import PlaceholderLoading from 'components/placeholderLoading';
+import PlaceholderLoading from 'core-components/placeholderLoading';
 import withLoader from './withLoader';
 
 it('should skip rendering wrapped component if loading', () => {

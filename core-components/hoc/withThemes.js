@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import assignWith from 'lodash/fp/assignWith';
 import getDisplayName from 'utils/getDisplayName';
-import ThemeContext from 'components/hoc/themeContext';
+import ThemeContext from 'core-components/hoc/themeContext';
 
 /**
  * HoC for providing an object of themes for a component to use for styling

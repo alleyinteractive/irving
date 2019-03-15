@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getDisplayName from 'utils/getDisplayName';
-import PlaceholderLoading from 'components/placeholderLoading';
+import PlaceholderLoading from 'core-components/placeholderLoading';
 
 const withLoader = (WrappedComponent) => {
   const Loader = (props) => {

@@ -1,9 +1,9 @@
-import NotConfigured from 'components/notConfigured';
-import Placeholder from 'components/placeholder';
-import Image from 'components/image';
-import Head from 'components/head';
-import RawHTML from 'components/rawHTML';
-import withLoader from 'components/hoc/withLoader';
+import NotConfigured from 'core-components/notConfigured';
+import Placeholder from 'core-components/placeholder';
+import Image from 'core-components/image';
+import Head from 'core-components/head';
+import RawHTML from 'core-components/rawHTML';
+import withLoader from 'core-components/hoc/withLoader';
 
 /**
  * Defines which React component to render for each received API component.
