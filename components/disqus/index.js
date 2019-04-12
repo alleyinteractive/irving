@@ -1,47 +1,49 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import loadScript from 'utils/loadScript';
+import useLoadScript from 'hooks/useLoadScript';
 import validateDisqusConfig from './validate';
 
-class DisqusEmbed extends Component {
-  async componentDidMount() {
-    const { forumShortname } = this.props;
-    const config = validateDisqusConfig(this.props, window.location.pathname);
+const DisqusEmbed = (props) => {
+  const { forumShortname } = props;
+  const config = validateDisqusConfig(props, window.location.pathname);
 
-    if (! config || ! forumShortname) {
-      return;
-    }
-
-    // This script must load only when an anchor element exists in the DOM.
-    await loadScript(
-      `https://${forumShortname}.disqus.com/embed.js`,
-      'disqus-embed'
-    );
-
-    // @see - https://help.disqus.com/customer/portal/articles/472107
-    // Reloading a Disqus thread within an AJAX application:
-    window.DISQUS.reset({
-      reload: true,
-      config() {
-        this.page.identifier = config.identifier;
-        this.page.url = config.url;
-      },
-    });
+  if (! config || ! forumShortname) {
+    return null;
   }
 
-  render() {
-    return (
-      <Fragment>
-        <div id="disqus_thread" />
-        <noscript
-          dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
-            __html: 'Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>',
-          }}
-        />
-      </Fragment>
-    );
+  // This script must load only when an anchor element exists in the DOM.
+  const disqusLoaded = useLoadScript(
+    `https://${forumShortname}.disqus.com/embed.js`,
+    'disqus-embed'
+  );
+
+  if (! disqusLoaded) {
+    return null;
   }
-}
+
+  // @see - https://help.disqus.com/customer/portal/articles/472107
+  // Reloading a Disqus thread within an AJAX application:
+  window.DISQUS.reset({
+    reload: true,
+    config() {
+      /* eslint-disable react/no-this-in-sfc */
+      this.page.identifier = config.identifier;
+      this.page.url = config.url;
+      /* eslint-enable */
+    },
+  });
+
+  return (
+    <Fragment>
+      <div id="disqus_thread" />
+      <noscript
+        dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+          __html: 'Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>',
+        }}
+      />
+    </Fragment>
+  );
+};
 
 DisqusEmbed.propTypes = {
   /* eslint-disable react/no-unused-prop-types */
