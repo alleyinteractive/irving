@@ -7,39 +7,54 @@ let runtimeSrc;
  * @param {object} clientStats - emitted webpack client bundle info
  * @returns {string[]} - an array of script tags
  */
-const getWebpackScripts = (clientStats) => {
+const getWebpackScripts = (clientStats, flushScripts) => {
   const assets = clientStats.assetsByChunkName;
   // If external sourcemaps are generated each asset will be an array.
   const getAssetPath = (name) => (
     Array.isArray(assets[name]) ? assets[name][0] : assets[name]
+  );
+  // Verify we're not loading an resource twice using both this
+  // function and webpack-flush-chunks.
+  const isPrerendered = (assetPath) => (
+    Object.values(flushScripts)
+      .some((chunkFilename) => chunkFilename === assetPath)
   );
   const scripts = [];
 
   // Abstracted webpack runtime asset.
   if (assets['runtime~main']) {
     const runtimePublicPath = getAssetPath('runtime~main');
-    // Memoize file operation for optimal performance.
-    if (! runtimeSrc) {
-      runtimeSrc = fs.readFileSync(`${clientBuild}/${runtimePublicPath}`);
-    }
 
-    // Webpack runtime source should be inlined for optimal performance.
-    scripts.push(`<script defer >${runtimeSrc}</script>`);
+    if (! isPrerendered(runtimePublicPath)) {
+      // Memoize file operation for optimal performance.
+      if (! runtimeSrc) {
+        runtimeSrc = fs.readFileSync(`${clientBuild}/${runtimePublicPath}`);
+      }
+
+      // Webpack runtime source should be inlined for optimal performance.
+      scripts.push(`<script defer >${runtimeSrc}</script>`);
+    }
   }
 
   // Vendor assets
   if (assets.common) {
     const commonPublicPath = getAssetPath('common');
-    scripts.push(
-      `<script defer src="${rootUrl}/${commonPublicPath}"></script>`
-    );
+
+    if (! isPrerendered(commonPublicPath)) {
+      scripts.push(
+        `<script defer src="${rootUrl}/${commonPublicPath}"></script>`
+      );
+    }
   }
 
   // Main asset
   const mainPublicPath = getAssetPath('main');
-  scripts.push(
-    `<script defer src="${rootUrl}/${mainPublicPath}"></script>`
-  );
+
+  if (! isPrerendered(mainPublicPath)) {
+    scripts.push(
+      `<script defer src="${rootUrl}/${mainPublicPath}"></script>`
+    );
+  }
 
   return scripts;
 };
