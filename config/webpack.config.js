@@ -38,7 +38,10 @@ module.exports = (env, argv) => {
       node: false,
       // Allow references to vendor css, so we can include them in our bundle.
       externals: [nodeExternals({
-        whitelist: [/\.css$/],
+        whitelist: [
+          /\.css$/,
+          /babel-plugin-universal-import|react-universal-component|webpack-flush-chunks/,
+        ],
       })],
       entry: server.getEntry(),
       output: server.getOutput(),

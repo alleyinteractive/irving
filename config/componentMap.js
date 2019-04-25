@@ -1,3 +1,5 @@
+
+import universal from 'react-universal-component';
 import Body from 'components/body';
 import Disqus from 'components/disqus';
 import GoogleTagManager from 'components/googleTagManager';
@@ -11,7 +13,6 @@ import Placeholder from 'components/placeholder';
 import SocialList from 'components/socialList';
 import SocialItem from 'components/socialItem';
 import withLoader from 'components/hoc/withLoader';
-import UniversalFooter from 'components/footer/universal';
 
 /**
  * Defines which React component to render for each received API component.
@@ -21,7 +22,10 @@ export const componentMap = {
   body: withLoader(Body),
   disqus: Disqus,
   embed: RawHTML,
-  footer: UniversalFooter,
+  footer: universal(import('components/footer'), {
+    minDelay: 1200,
+    ignoreBabelRename: true,
+  }),
   'google-analytics': GoogleAnalytics,
   'google-tag-manager': GoogleTagManager,
   head: Head,

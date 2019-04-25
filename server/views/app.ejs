@@ -26,14 +26,14 @@
 
     <%# css module refs for critical css %>
     <script defer>
-        <%- styleRefs %>;
+      <%- styleRefs %>;
     </script>
 
     <%# webpack runtime, main app bundle, and initial chunks %>
     <% webpackScripts.forEach((script) => { %>
-    <%- script %>
+      <%- script %>
     <% }); %>
-    <%- jsChunks %>
+    <%- asyncChunks %>
 </head>
 <body <%- helmet.bodyAttributes.toString() %>>
 <noscript>

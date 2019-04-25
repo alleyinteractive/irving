@@ -32,7 +32,7 @@ const debugRequest = createDebug('render:request');
  * @param {string[]} webpackScripts - an array of required webpack bundle scripts
  *                                   to be rendered
  */
-const render = async (req, res, webpackScripts, jsChunks) => {
+const render = async (req, res, clientStats) => {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     rootReducer,
@@ -65,6 +65,10 @@ const render = async (req, res, webpackScripts, jsChunks) => {
 
   // Container for critical css related to this page render.
   const cssBuilder = new CriticalCssBuilder();
+
+  // Main webpack bundles
+  clearChunks();
+
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
@@ -75,6 +79,18 @@ const render = async (req, res, webpackScripts, jsChunks) => {
       </StyleContext.Provider>
     </Provider>
   );
+
+  // Async component chunks
+  const {
+    js: asyncChunks,
+    scripts: flushScripts,
+  } = flushChunks(clientStats, {
+    chunkNames: flushChunkNames(),
+    before: ['common'],
+    after: ['main'],
+  });
+  const webpackScripts = getWebpackScripts(clientStats, flushScripts);
+
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
   // https://redux.js.org/recipes/server-rendering#security-considerations
@@ -87,7 +103,7 @@ const render = async (req, res, webpackScripts, jsChunks) => {
     preRenderedState: stateEncoded,
     env: JSON.stringify(getEnv()),
     webpackScripts,
-    jsChunks,
+    asyncChunks,
   };
 
   res.status(status);
@@ -112,16 +128,10 @@ export default function serverRenderer(options) {
   return async function renderMiddleware(req, res, next) {
     // React 16 Error Boundaries do not work for SSR, so we must manually handle exceptions.
     try {
-      clearChunks();
-      const chunkNames = flushChunks(options.clientStats, {
-        chunkNames: flushChunkNames(),
-      });
-      console.log(chunkNames.js.toString());
       await render(
         req,
         res,
-        getWebpackScripts(options.clientStats),
-        chunkNames.js
+        options.clientStats
       );
     } catch (err) {
       debugError({ url: req.originalUrl, err });
