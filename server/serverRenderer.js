@@ -1,5 +1,7 @@
 import 'source-map-support/register';
 import React from 'react';
+import { clearChunks, flushChunkNames } from 'react-universal-component/server';
+import flushChunks from 'webpack-flush-chunks';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
@@ -30,7 +32,7 @@ const debugRequest = createDebug('render:request');
  * @param {string[]} webpackScripts - an array of required webpack bundle scripts
  *                                   to be rendered
  */
-const render = async (req, res, webpackScripts) => {
+const render = async (req, res, webpackScripts, jsChunks) => {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     rootReducer,
@@ -85,6 +87,7 @@ const render = async (req, res, webpackScripts) => {
     preRenderedState: stateEncoded,
     env: JSON.stringify(getEnv()),
     webpackScripts,
+    jsChunks,
   };
 
   res.status(status);
@@ -109,7 +112,17 @@ export default function serverRenderer(options) {
   return async function renderMiddleware(req, res, next) {
     // React 16 Error Boundaries do not work for SSR, so we must manually handle exceptions.
     try {
-      await render(req, res, getWebpackScripts(options.clientStats));
+      clearChunks();
+      const chunkNames = flushChunks(options.clientStats, {
+        chunkNames: flushChunkNames(),
+      });
+      console.log(chunkNames.js.toString());
+      await render(
+        req,
+        res,
+        getWebpackScripts(options.clientStats),
+        chunkNames.js
+      );
     } catch (err) {
       debugError({ url: req.originalUrl, err });
 
