@@ -33,6 +33,7 @@
     <% webpackScripts.forEach((script) => { %>
     <%- script %>
     <% }); %>
+    <%- jsChunks %>
 </head>
 <body <%- helmet.bodyAttributes.toString() %>>
 <noscript>
