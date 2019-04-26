@@ -1,6 +1,7 @@
 .wrapper {
   min-height: rem(800);
   padding: rem(20) 0;
+  width: 100%;
 }
 
 .thumb {

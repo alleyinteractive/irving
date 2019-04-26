@@ -1,3 +1,5 @@
+import { flushChunkNames } from 'react-universal-component/server';
+import flushChunks from 'webpack-flush-chunks';
 const fs = require('fs');
 const { clientBuild, rootUrl } = require('../config/paths');
 let runtimeSrc;
@@ -7,7 +9,15 @@ let runtimeSrc;
  * @param {object} clientStats - emitted webpack client bundle info
  * @returns {string[]} - an array of script tags
  */
-const getWebpackScripts = (clientStats, flushScripts) => {
+const getWebpackScripts = (clientStats) => {
+  const {
+    js: asyncChunks,
+    scripts: flushScripts,
+  } = flushChunks(clientStats, {
+    chunkNames: flushChunkNames(),
+    before: ['common'],
+    after: ['main'],
+  });
   const assets = clientStats.assetsByChunkName;
   // If external sourcemaps are generated each asset will be an array.
   const getAssetPath = (name) => (
@@ -46,6 +56,9 @@ const getWebpackScripts = (clientStats, flushScripts) => {
       );
     }
   }
+
+  // Render this in between common and main, just in case.
+  scripts.push(asyncChunks);
 
   // Main asset
   const mainPublicPath = getAssetPath('main');

@@ -1,7 +1,5 @@
 import 'source-map-support/register';
 import React from 'react';
-import { clearChunks, flushChunkNames } from 'react-universal-component/server';
-import flushChunks from 'webpack-flush-chunks';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
@@ -9,6 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
+import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import App from 'components/app';
@@ -66,7 +65,6 @@ const render = async (req, res, clientStats) => {
   // Container for critical css related to this page render.
   const cssBuilder = new CriticalCssBuilder();
 
-  // Main webpack bundles
   clearChunks();
 
   // It is imperative that the server React component tree matches the client
@@ -80,16 +78,8 @@ const render = async (req, res, clientStats) => {
     </Provider>
   );
 
-  // Async component chunks
-  const {
-    js: asyncChunks,
-    scripts: flushScripts,
-  } = flushChunks(clientStats, {
-    chunkNames: flushChunkNames(),
-    before: ['common'],
-    after: ['main'],
-  });
-  const webpackScripts = getWebpackScripts(clientStats, flushScripts);
+  // Collect webpack scripts for prerender
+  const webpackScripts = getWebpackScripts(clientStats);
 
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
@@ -103,7 +93,6 @@ const render = async (req, res, clientStats) => {
     preRenderedState: stateEncoded,
     env: JSON.stringify(getEnv()),
     webpackScripts,
-    asyncChunks,
   };
 
   res.status(status);

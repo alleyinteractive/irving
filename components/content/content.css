@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  p {
+    font-family: "Helvetica";
+    font-size: 18px;
+    line-height: 1.25;
+  }
+}
