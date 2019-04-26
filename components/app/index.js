@@ -8,6 +8,7 @@ import favicon from 'assets/images/favicon.ico';
 import ConnectedRoot from 'components/connectedRoot';
 import ErrorBoundary from 'components/errorBoundary';
 import ErrorMessage from 'components/errorMessage';
+import Link from 'components/helpers/link';
 import getRoots from 'selectors/getRoots';
 import styles from './app.css';
 
@@ -22,6 +23,8 @@ const App = (props) => {
         <ErrorMessage />
       ) : (
         <div className={styles.wrapper}>
+          <Link to="/2019/02/27/hello-world/">Hello World</Link>
+          <Link to="/">Home</Link>
           <a href="#content" className={styles.skipLink}>
             Skip to Content
           </a>
