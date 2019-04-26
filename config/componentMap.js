@@ -19,9 +19,6 @@ const universalOpts = {
   loading: PlaceholderLoading,
   minDelay: 1000,
   ignoreBabelRename: true,
-  // onLoad: (module, info, props, context) => {
-  //   console.log(module, info, props, context);
-  // },
 };
 
 /**
