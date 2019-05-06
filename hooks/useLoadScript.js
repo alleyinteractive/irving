@@ -1,16 +1,6 @@
 import { useState, useEffect } from 'react';
 
-/**
- * Dynamically load script.
- *
- * @param {string} src   The url or path of the script.
- * @param {string} id    The id attribute to uniquely identify the script. This
- *                       is used to cache scripts that are already loaded, and
- *                       can be used as a target to select in other functions.
- * @param {bool}   async Whether or not this script should be loaded async.
- * @returns {Promise}   Promise is resolved when onload event is called.
- */
-const useLoadScript = (src, id, async = true) => {
+const useLoadScript = (src, id, async = true, footer = true) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -20,7 +10,17 @@ const useLoadScript = (src, id, async = true) => {
     script.src = src;
     script.onload = () => setLoaded(true);
     script.id = id;
-    document.body.appendChild(script);
+
+    // Insert either at the end of the body tag or before the first script in the head tag.
+    if (footer) {
+      document.body.appendChild(script);
+    } else {
+      const firstScript = document.getElementsByTagName('script')[0];
+      firstScript.parentNode.insertBefore(script, firstScript);
+    }
+
+    // Remove script on unmount.
+    return () => script.parentElement.removeChild(script);
   }, []);
 
   return loaded;
