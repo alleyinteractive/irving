@@ -1,15 +1,11 @@
 import React from 'react';
 import { withStyles } from 'critical-style-loader/lib';
-import withData from 'components/hoc/withData';
 import styles from './footer.css';
 
-/* eslint-disable */
-const Footer = ({ data }) => (
+const Footer = () => (
   <footer className={styles.wrapper}>
-    I am a fooooooooter {JSON.stringify(data)}
+    This is your footer
   </footer>
 );
 
-export default withData('footer', {
-  endpoint: 'https://jsonplaceholder.typicode.com/todos/1',
-})(withStyles(styles)(Footer));
+export default withStyles(styles)(Footer);
