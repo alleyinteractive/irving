@@ -4,7 +4,7 @@ import PlaceholderLoading from 'components/placeholderLoading';
 const withAsync = (importer) => (
   universal(importer, {
     loading: PlaceholderLoading,
-    minDelay: 5000,
+    minDelay: 300,
     ignoreBabelRename: true,
   })
 );

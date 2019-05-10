@@ -15,6 +15,7 @@ module.exports = function getPlugins(context) {
     case 'production_server':
       return [
         new CleanPlugin(),
+        // Ensures async components can be rendered sync server-side.
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
         }),
@@ -23,6 +24,7 @@ module.exports = function getPlugins(context) {
 
     case 'development_server':
       return [
+        // Ensures async components can be rendered sync server-side.
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
         }),
