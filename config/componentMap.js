@@ -1,5 +1,6 @@
-import withAsync from 'components/helpers/withAsync';
 import Body from 'components/body';
+import withAsync from 'components/hoc/withAsync';
+import Footer from 'components/footer';
 import Disqus from 'components/disqus';
 import GoogleTagManager from 'components/googleTagManager';
 import GoogleAnalytics from 'components/googleAnalytics';
@@ -21,7 +22,8 @@ export const componentMap = {
   body: withLoader(Body),
   disqus: Disqus,
   embed: RawHTML,
-  footer: withAsync(() => import('components/footer'), 'footer'),
+  footer: Footer,
+  content: withAsync(() => import('components/content')),
   'google-analytics': GoogleAnalytics,
   'google-tag-manager': GoogleTagManager,
   head: Head,

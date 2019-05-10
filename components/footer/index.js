@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from 'critical-style-loader/lib';
+import withData from 'components/hoc/withData';
 import styles from './footer.css';
 
 /* eslint-disable */
@@ -9,4 +10,6 @@ const Footer = ({ data }) => (
   </footer>
 );
 
-export default withStyles(styles)(Footer);
+export default withData('footer', {
+  endpoint: 'https://jsonplaceholder.typicode.com/todos/1',
+})(withStyles(styles)(Footer));

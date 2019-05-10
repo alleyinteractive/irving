@@ -10,8 +10,8 @@ import { createAction } from '.';
  * @param {string} componentName
  * @returns {{type, payload}}
  */
-export function actionRequestComponentData(componentName) {
-  return createAction(REQUEST_COMPONENT_DATA, { componentName });
+export function actionRequestComponentData(componentName, endpoint) {
+  return createAction(REQUEST_COMPONENT_DATA, { componentName, endpoint });
 }
 
 /**

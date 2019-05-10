@@ -5,12 +5,9 @@ const fetchOpts = {
   credentials: 'include', // Support XHR with basic auth.
 };
 
-export default async function fetchComponentData(componentName) {
+export default async function fetchComponentData(endpoint) {
   // Fetch data for component.
-  const response = await fetch(
-    `${process.env.API_ROOT_URL}/component/${componentName}`,
-    fetchOpts
-  );
+  const response = await fetch(endpoint, fetchOpts);
 
   // Return data if invalid or redirected
   if (response.ok) {
