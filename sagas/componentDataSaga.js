@@ -10,11 +10,11 @@ const debug = createDebug('sagas:componentData');
 
 export default function* watchComponentData(action) {
   const {
-    payload: { componentName },
+    payload: { componentName, endpoint },
   } = action;
 
   try {
-    const response = yield call(fetchComponentData, componentName);
+    const response = yield call(fetchComponentData, endpoint);
 
     if (response) {
       yield put(actionReceiveComponentData(componentName, response));
