@@ -15,45 +15,47 @@ import { form as defaultState } from './defaultState';
  * @param {string} name form state slice name
  * @return {function}
  */
-const createFormReducer = (name) =>
-  (formState = defaultState, { type, payload }) => {
-    if (name !== get('formName', payload)) {
+const createFormReducer = (name) => (
+  formState = defaultState,
+  { type, payload }
+) => {
+  if (name !== get('formName', payload)) {
+    return formState;
+  }
+
+  switch (type) {
+    case REQUEST_SUBMIT: {
+      return flow(
+        set('validation', {}),
+        merge({
+          submitting: true,
+          failed: false,
+        })
+      )(formState);
+    }
+
+    case RECEIVE_SUBMITTED:
+      return merge(formState, {
+        submitting: false,
+        submitted: true,
+        redirect: get('response.redirect', payload),
+      });
+
+    case RECEIVE_SUBMIT_ERROR:
+      return merge(formState, {
+        submitting: false,
+        failed: true,
+      });
+
+    case RECEIVE_SUBMIT_INVALID:
+      return flow(
+        set('submitting', false),
+        set('validation', payload.messageMap)
+      )(formState);
+
+    default:
       return formState;
-    }
-
-    switch (type) {
-      case REQUEST_SUBMIT: {
-        return flow(
-          set('validation', {}),
-          merge({
-            submitting: true,
-            failed: false,
-          })
-        )(formState);
-      }
-
-      case RECEIVE_SUBMITTED:
-        return merge(formState, {
-          submitting: false,
-          submitted: true,
-          redirect: get('response.redirect', payload),
-        });
-
-      case RECEIVE_SUBMIT_ERROR:
-        return merge(formState, {
-          submitting: false,
-          failed: true,
-        });
-
-      case RECEIVE_SUBMIT_INVALID:
-        return flow(
-          set('submitting', false),
-          set('validation', payload.messageMap)
-        )(formState);
-
-      default:
-        return formState;
-    }
-  };
+  }
+};
 
 export default createFormReducer;

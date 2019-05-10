@@ -2,9 +2,10 @@ import React from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './footer.css';
 
-const Footer = () => (
+/* eslint-disable */
+const Footer = ({ data }) => (
   <footer className={styles.wrapper}>
-    I am a fooooooooter
+    I am a fooooooooter {JSON.stringify(data)}
   </footer>
 );
 

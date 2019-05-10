@@ -25,12 +25,19 @@ export const error = null;
 
 export const loading = false;
 
+export const componentData = {
+  loading: false,
+  error: false,
+  data: {},
+};
+
 const defaultState = {
   components,
   route,
   error,
   loading,
   visible,
+  footer: componentData,
 };
 
 export default defaultState;
