@@ -37,7 +37,6 @@ const defaultState = {
   error,
   loading,
   visible,
-  footer: componentData,
 };
 
 export default defaultState;
