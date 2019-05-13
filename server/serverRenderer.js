@@ -7,6 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
+import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import App from 'components/app';
@@ -30,7 +31,7 @@ const debugRequest = createDebug('render:request');
  * @param {string[]} webpackScripts - an array of required webpack bundle scripts
  *                                   to be rendered
  */
-const render = async (req, res, webpackScripts) => {
+const render = async (req, res, clientStats) => {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     rootReducer,
@@ -63,6 +64,9 @@ const render = async (req, res, webpackScripts) => {
 
   // Container for critical css related to this page render.
   const cssBuilder = new CriticalCssBuilder();
+
+  clearChunks();
+
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
@@ -73,6 +77,10 @@ const render = async (req, res, webpackScripts) => {
       </StyleContext.Provider>
     </Provider>
   );
+
+  // Collect webpack scripts for prerender
+  const webpackScripts = getWebpackScripts(clientStats);
+
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
   // https://redux.js.org/recipes/server-rendering#security-considerations
@@ -109,7 +117,11 @@ export default function serverRenderer(options) {
   return async function renderMiddleware(req, res, next) {
     // React 16 Error Boundaries do not work for SSR, so we must manually handle exceptions.
     try {
-      await render(req, res, getWebpackScripts(options.clientStats));
+      await render(
+        req,
+        res,
+        options.clientStats
+      );
     } catch (err) {
       debugError({ url: req.originalUrl, err });
 

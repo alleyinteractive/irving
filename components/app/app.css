@@ -2,6 +2,8 @@
 @import 'reset.css';
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
   lost-center: 980px;
 }
 

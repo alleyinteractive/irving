@@ -6,6 +6,7 @@ import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
 import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
+import createComponentDataReducer from './createComponentDataReducer';
 
 // Configure "slice" reducers.
 const rootSliceReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootSliceReducer = combineReducers({
   error: errorReducer,
   loading: loadingReducer,
   visible: visibilityReducer,
+  footer: createComponentDataReducer('footer'),
 });
 
 // "State" reducers are composed together. The order they are passed into
