@@ -15,7 +15,6 @@ const rootSliceReducer = combineReducers({
   error: errorReducer,
   loading: loadingReducer,
   visible: visibilityReducer,
-  footer: createComponentDataReducer('footer'),
 });
 
 // "State" reducers are composed together. The order they are passed into
