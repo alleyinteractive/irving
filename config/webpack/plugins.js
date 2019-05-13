@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const getEnv = require('./env');
-const { serverBuild, clientBuild, rootUrl } = require('../paths');
+const { rootUrl } = require('../paths');
 
 /**
  * Get the context specific plugins configuration.
@@ -14,20 +14,36 @@ module.exports = function getPlugins(context) {
   switch (context) {
     case 'production_server':
       return [
-        new CleanPlugin(serverBuild, { allowExternal: true }),
+        new CleanPlugin(),
+        // Ensures async components can be rendered sync server-side.
+        new webpack.optimize.LimitChunkCountPlugin({
+          maxChunks: 1,
+        }),
+        new webpack.HashedModuleIdsPlugin(),
       ];
 
     case 'development_server':
-      return [];
+      return [
+        // Ensures async components can be rendered sync server-side.
+        new webpack.optimize.LimitChunkCountPlugin({
+          maxChunks: 1,
+        }),
+      ];
 
     case 'production_client':
       return [
-        new CleanPlugin(clientBuild, { allowExternal: true }),
+        new CleanPlugin(),
         new webpack.EnvironmentPlugin({
           BROWSER: true,
           ...env,
         }),
-        new StatsWriterPlugin(),
+        new StatsWriterPlugin({
+          fields: [
+            'assetsByChunkName',
+            'publicPath',
+            'outputPath',
+          ],
+        }),
         // Support friendly stack traces for error reporting, but protect
         // source code from being exposed.
         new webpack.SourceMapDevToolPlugin({

@@ -1,4 +1,5 @@
 import Body from 'components/body';
+import Footer from 'components/footer';
 import Disqus from 'components/disqus';
 import GoogleTagManager from 'components/googleTagManager';
 import GoogleAnalytics from 'components/googleAnalytics';
@@ -20,7 +21,7 @@ export const componentMap = {
   body: withLoader(Body),
   disqus: Disqus,
   embed: RawHTML,
-  footer: Placeholder,
+  footer: Footer,
   'google-analytics': GoogleAnalytics,
   'google-tag-manager': GoogleTagManager,
   head: Head,
