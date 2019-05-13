@@ -6,7 +6,6 @@ import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
 import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
-import createComponentDataReducer from './createComponentDataReducer';
 
 // Configure "slice" reducers.
 const rootSliceReducer = combineReducers({
