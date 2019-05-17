@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { URL } from 'whatwg-url';
 import { actionRequestComponentData } from 'actions/componentDataActions';
+import getDisplayName from 'utils/getDisplayName';
 import DataLoading from './loading';
 import DataError from './error';
 
@@ -56,8 +57,15 @@ const withData = (componentName, opts = {}) => (WrappedComponent) => {
       return <Error />;
     }
 
+    // Set received data to prop corresponding to component name,
+    // In case multiple datasources are required.
+    const newProps = {
+      ...props,
+      [componentName]: componentData,
+    };
+
     // Return component.
-    return <WrappedComponent {...props} data={componentData} />;
+    return <WrappedComponent {...newProps} />;
   };
 
   DataProvider.propTypes = {
@@ -84,6 +92,8 @@ const withData = (componentName, opts = {}) => (WrappedComponent) => {
   });
 
   const withRedux = connect(mapStateToProps, mapDispatchToProps);
+
+  DataProvider.displayName = getDisplayName('DataProvider', WrappedComponent);
 
   return withRedux(DataProvider);
 };

@@ -8,13 +8,14 @@ import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
 
 // Configure "slice" reducers.
-const rootSliceReducer = combineReducers({
+export const reducers = {
   components: (state = defaultState.components) => state,
   route: routeReducer,
   error: errorReducer,
   loading: loadingReducer,
   visible: visibilityReducer,
-});
+};
+const rootSliceReducer = combineReducers(reducers);
 
 // "State" reducers are composed together. The order they are passed into
 // reduceReducers determines the order they will be run in.
