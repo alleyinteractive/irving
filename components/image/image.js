@@ -144,7 +144,7 @@ Image.propTypes = {
   /**
    * Should the image caption be displayed?
    */
-  showCaption: PropTypes.bool.isRequired,
+  showCaption: PropTypes.bool,
   /**
    * String with contents of <img> `sizes` attribute
    */
@@ -181,6 +181,7 @@ Image.defaultProps = {
   sourceTags: [],
   picture: false,
   sizes: '',
+  showCaption: false,
 };
 
 const wrapWithStyles = withStyles(styles);

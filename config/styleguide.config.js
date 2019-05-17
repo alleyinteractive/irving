@@ -3,7 +3,7 @@ const paths = require('./paths');
 
 const componentGlobs = {
   utility: path.join(paths.appRoot, 'components/**/*.js'),
-  hoc: path.join(paths.appRoot, 'components/hoc/*.js'),
+  hoc: path.join(paths.appRoot, 'components/hoc/**/*.js'),
   form: path.join(paths.appRoot, 'components/form/*.js'),
   helpers: path.join(paths.appRoot, 'components/helpers/**/*.js'),
 };
