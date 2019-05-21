@@ -8,12 +8,19 @@ import { plainText, richText } from 'config/html';
 const RawHTML = (props) => {
   const { content, rich, oembed } = props;
   const html = sanitizeHtml(content, rich ? richText : plainText);
+  const newProps = omit([
+    'content',
+    'rich',
+    'children',
+    'componentName',
+    'oembed',
+  ], props);
 
   if (oembed) {
     return (
       <EmbedContainer markup={content}>
         <div
-          {...omit(['content', 'rich', 'children', 'componentName'], props)}
+          {...newProps}
           dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
         />
       </EmbedContainer>
@@ -21,7 +28,7 @@ const RawHTML = (props) => {
   }
   return (
     <div
-      {...omit(['content', 'rich', 'children', 'componentName'], props)}
+      {...newProps}
       dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
     />
   );
