@@ -1,16 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import {
+  createStore,
+  combineReducers,
+  applyMiddleware,
+} from 'redux';
+import reduceReducers from 'reduce-reducers';
+import createSagaMiddleware from 'redux-saga';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
-import rootReducer from 'reducers';
-import defaultState, { form } from 'reducers/defaultState';
+import { reducers } from 'reducers';
+import rootSaga from 'sagas';
+import defaultState, { form, componentData } from 'reducers/defaultState';
+import componentsReducer from 'reducers/componentsReducer';
+import createFormReducer from 'reducers/createFormReducer';
+import createComponentDataReducer from 'reducers/createComponentDataReducer';
+
+const sagaMiddleware = createSagaMiddleware();
+
+// Combine reducers, including testing reducers.
+const rootSliceReducer = combineReducers({
+  ...reducers,
+  testForm: createFormReducer('testForm'),
+  asyncComponentData: createComponentDataReducer('asyncComponentData'),
+  externalComponentData: createComponentDataReducer('externalComponentData'),
+});
+// "State" reducers are composed together. The order they are passed into
+// reduceReducers determines the order they will be run in.
+const rootReducer = reduceReducers(rootSliceReducer, componentsReducer);
 
 const store = createStore(
   rootReducer,
   {
     ...defaultState,
-    test: form,
+    asyncComponentData: componentData,
+    externalComponentData: componentData,
+    testForm: form,
     loading: true,
     components: {
       defaults: [],
@@ -29,8 +54,10 @@ const store = createStore(
     route: {
       pathname: '/',
     },
-  }
+  },
+  applyMiddleware(sagaMiddleware)
 );
+sagaMiddleware.run(rootSaga);
 // Container for critical css related to this page render.
 const cssBuilder = new CriticalCssBuilder();
 

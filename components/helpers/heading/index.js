@@ -37,7 +37,7 @@ Heading.propTypes = {
   /**
    * Type style to use. Corresponds to a className in your stylesheet. Decoupled from tag to allow easy accessibility ordering.
    */
-  typeStyle: PropTypes.string.isRequired,
+  typeStyle: PropTypes.string,
   /**
    * Where this heading should link.
    */
@@ -51,6 +51,7 @@ Heading.propTypes = {
 Heading.defaultProps = {
   link: '',
   className: '',
+  typeStyle: 'base',
 };
 
 export default withStyles(styles)(Heading);
