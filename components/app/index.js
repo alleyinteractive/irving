@@ -5,14 +5,20 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { withStyles } from 'critical-style-loader/lib';
 import favicon from 'assets/images/favicon.ico';
+import RootProviders from 'components/rootProviders';
 import ConnectedRoot from 'components/connectedRoot';
 import ErrorBoundary from 'components/errorBoundary';
 import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
+import getProviders from 'selectors/getProviders';
 import styles from './app.css';
 
 const App = (props) => {
-  const { error, roots } = props;
+  const {
+    error,
+    roots,
+    providers,
+  } = props;
   return (
     <ErrorBoundary>
       <Helmet>
@@ -25,9 +31,11 @@ const App = (props) => {
           <a href="#content" className={styles.skipLink}>
             Skip to Content
           </a>
-          {roots.map((name) => (
-            <ConnectedRoot key={name} name={name} />
-          ))}
+          <RootProviders providers={providers}>
+            {roots.map((name) => (
+              <ConnectedRoot key={name} name={name} />
+            ))}
+          </RootProviders>
         </div>
       )}
     </ErrorBoundary>
@@ -43,10 +51,15 @@ App.propTypes = {
    * Was there an error loading the page/components?
    */
   error: PropTypes.bool.isRequired,
+  /**
+   * Root provider configurations
+   */
+  providers: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   roots: getRoots(state),
+  providers: getProviders(state),
   error: !! state.error,
 });
 

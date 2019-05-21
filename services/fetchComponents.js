@@ -64,6 +64,7 @@ export async function fetchComponents(path, search, context = CONTEXT_PAGE) {
       return {
         defaults: [],
         page: [],
+        providers: [],
         status: response.status,
         redirectTo: getPath(response.headers.get('location')),
       };

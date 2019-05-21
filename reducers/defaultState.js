@@ -1,5 +1,6 @@
 export const components = {
   defaults: [],
+  providers: {},
   page: {},
 };
 
