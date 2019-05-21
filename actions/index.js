@@ -31,6 +31,7 @@ export function actionLocationChange(action, location) {
  * @param {object}   data
  * @param {object[]} data.defaults - default components
  * @param {object[]} data.page - page specific components
+ * @param {object[]} data.providers - provider components
  * @param {boolean}  data.status - response was a 404
  * @param {string}   data.redirectTo - the new url path the app should resolve
  * @returns {{type, payload}} - Redux action

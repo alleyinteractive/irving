@@ -26,12 +26,30 @@ it('should merge received components', () => {
     },
   ];
 
-  const mockPayload = { defaults, page, notFound: false };
+  const providers = [
+    {
+      name: 'root-provider',
+      config: {
+        providedConfig: true,
+      },
+      children: [],
+    },
+  ];
+
+  const mockPayload = {
+    defaults,
+    page,
+    providers,
+    notFound: false,
+  };
   const newState = reducer(mockState, actionReceiveComponents(mockPayload));
   expect(newState.components).toEqual({
     defaults,
     page: {
       '/foo': page,
+    },
+    providers: {
+      '/foo': providers,
     },
   });
 });
