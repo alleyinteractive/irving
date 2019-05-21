@@ -25,7 +25,7 @@ const createComponentDataReducer = (componentName) => (
   switch (type) {
     case REQUEST_COMPONENT_DATA: {
       return merge(state, {
-        loading: false,
+        loading: true,
       });
     }
 
