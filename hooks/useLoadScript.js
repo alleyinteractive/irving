@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react';
 
+/**
+ * Hook for creating a script tag for an external script and inserting it into the DOM.
+ *
+ * @param {string} src - script source.
+ * @param {string} id - ID for checking if script already exists in the DOM.
+ * @param {bool} async - Should this script be loaded asyncronously?
+ * @param {bool} footer - Should this scirpt be loaded in the footer?
+ * @returns {bool} - Has the script finished loading?
+ */
 const useLoadScript = (src, id, async = true, footer = true) => {
   const [loaded, setLoaded] = useState(false);
 
