@@ -11,16 +11,16 @@ const useLoadScript = (src, id, async = true, footer = true) => {
     script.onload = () => setLoaded(true);
     script.id = id;
 
-    // Insert either at the end of the body tag or before the first script in the head tag.
-    if (footer) {
-      document.body.appendChild(script);
-    } else {
-      const firstScript = document.getElementsByTagName('script')[0];
-      firstScript.parentNode.insertBefore(script, firstScript);
+    // Insert either at the end of the body tag or before the first script in the head tag,
+    // but only if script doesn't already exist.
+    if (! document.getElementById(id)) {
+      if (footer) {
+        document.body.appendChild(script);
+      } else {
+        const firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+      }
     }
-
-    // Remove script on unmount.
-    return () => script.parentElement.removeChild(script);
   }, []);
 
   return loaded;
