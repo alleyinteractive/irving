@@ -24,7 +24,10 @@ class Body extends Component {
 
 Body.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
-  bodyClasses: PropTypes.arrayOf(PropTypes.string),
+  bodyClasses: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+  ]),
 };
 
 Body.defaultProps = {
