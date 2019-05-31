@@ -22,16 +22,6 @@ export const visible = {
   test: false,
 };
 
-export const error = null;
-
-export const loading = false;
-
-export const componentData = {
-  loading: false,
-  error: false,
-  data: {},
-};
-
 export const player = {
   currentTime: 0,
   duration: 0,
@@ -41,6 +31,18 @@ export const player = {
   src: '',
   visible: false,
   volume: 0.5,
+};
+
+export const error = null;
+
+export const loading = false;
+
+export const componentData = {};
+
+export const componentDataMeta = {
+  loading: false,
+  error: false,
+  data: [],
 };
 
 const defaultState = {
