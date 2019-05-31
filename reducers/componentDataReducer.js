@@ -11,8 +11,7 @@ import {
 } from './defaultState';
 
 /**
- * Create a state slice reducer for components that need to asyncronously retrieve
- * additional data.
+ * Create a state slice reducer for components that need to asyncronously retrieve additional data.
  *
  * @param {string} name component state slice name
  * @return {function}
