@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import assignWith from 'lodash/fp/assignWith';
 import getDisplayName from 'utils/getDisplayName';
 import ThemeContext from 'components/hoc/themeContext';
@@ -37,7 +38,7 @@ const withThemes = (
       if (composes) {
         return assignWith(
           (objValue, srcValue) => (
-            `${srcValue ? `${srcValue} ` : ''}${objValue || ''}`
+            classNames(srcValue, objValue)
           ),
           theme,
           defaultTheme
