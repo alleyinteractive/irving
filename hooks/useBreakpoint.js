@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import breakpoints from 'config/css/breakpoints';
 
 /**
- * Hook for creating a script tag for an external script and inserting it into the DOM.
+ * Hook for creating an instance of matchMedia for checking a particular breakpoint.
  *
  * @param {string} breakpointName - Breakpoint name. Must correspond to one of the keys in config/css/breakpoints.js
  * @returns {bool} - Does the viewport width match this breakpoint/media query?
