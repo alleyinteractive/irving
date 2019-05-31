@@ -8,7 +8,7 @@ import {
   actionPauseAudio,
   actionPlayAudio,
 } from 'actions/playerActions';
-import Spinner from 'components/spinner';
+import Spinner from 'components/helpers/spinner';
 import PlayIcon from 'assets/icons/play.svg';
 import PauseIcon from 'assets/icons/pause.svg';
 import styles from './playPauseButton.css';
@@ -70,12 +70,33 @@ const PlayPauseButton = (props) => {
 };
 
 PlayPauseButton.propTypes = {
+  /**
+   * Dispatch a load audio action.
+   */
   loadAudio: PropTypes.func.isRequired,
+  /**
+   * Is the audio src currently loading?
+   */
   loading: PropTypes.bool.isRequired,
+  /**
+   * Dispatch a pause audio action.
+   */
   pauseAudio: PropTypes.func.isRequired,
+  /**
+   * Dispatch a play audio action.
+   */
   playAudio: PropTypes.func.isRequired,
+  /**
+   * Is the audio currently playing?
+   */
   playing: PropTypes.bool.isRequired,
+  /**
+   * Current source of the global <audio> element.
+   */
   playerSrc: PropTypes.string.isRequired,
+  /**
+   * Source attached to this play button. Used to check what icon to display (play or pause).
+   */
   src: PropTypes.string.isRequired,
 };
 

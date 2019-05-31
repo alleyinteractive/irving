@@ -11,10 +11,9 @@ import createSagaMiddleware from 'redux-saga';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import { reducers } from 'reducers';
 import rootSaga from 'sagas';
-import defaultState, { form, componentData } from 'reducers/defaultState';
+import defaultState, { form } from 'reducers/defaultState';
 import componentsReducer from 'reducers/componentsReducer';
 import createFormReducer from 'reducers/createFormReducer';
-import createComponentDataReducer from 'reducers/createComponentDataReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -22,8 +21,6 @@ const sagaMiddleware = createSagaMiddleware();
 const rootSliceReducer = combineReducers({
   ...reducers,
   testForm: createFormReducer('testForm'),
-  asyncComponentData: createComponentDataReducer('asyncComponentData'),
-  externalComponentData: createComponentDataReducer('externalComponentData'),
 });
 // "State" reducers are composed together. The order they are passed into
 // reduceReducers determines the order they will be run in.
@@ -33,8 +30,7 @@ const store = createStore(
   rootReducer,
   {
     ...defaultState,
-    asyncComponentData: componentData,
-    externalComponentData: componentData,
+    componentData: [],
     testForm: form,
     loading: true,
     components: {

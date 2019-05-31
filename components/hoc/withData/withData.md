@@ -6,11 +6,11 @@ Example with internal endpoint:
 ```js
 const withData = require('./index').default;
 const DataComponent = (props) => {
-    const { asyncComponentData } = props;
+    const { data } = props;
 
     return (
         <div>
-            {JSON.stringify(asyncComponentData)}
+            {JSON.stringify(data)}
         </div>
     );
 }
@@ -24,23 +24,25 @@ Exmple with external endpoint and custom Loading/Error components:
 ```js
 const withData = require('./index').default;
 const ExternalDataComponent = (props) => {
-    const { externalComponentData } = props;
+    const { data } = props;
 
     return (
         <div>
-            {JSON.stringify(externalComponentData)}
+            {JSON.stringify(data)}
         </div>
     );
 }
-const ComponentWithExternalData = withData('externalComponentData', {
-    endpoint: 'https://jsonplaceholder.typicode.com/todos/1',
-    loading: () => (
-        <div>This is a custom loading component</div>
-    ),
-    error: () => (
-        <div>You've encountered an error</div>
-    ),
-})(ExternalDataComponent);
+const ComponentWithExternalData = withData(
+    'https://jsonplaceholder.typicode.com/todos/1',
+    {
+        loading: () => (
+            <div>This is a custom loading component</div>
+        ),
+        error: () => (
+            <div>You've encountered an error</div>
+        ),
+    }
+)(ExternalDataComponent);
 
 <ComponentWithExternalData />
 ```
