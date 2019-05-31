@@ -5,12 +5,27 @@ import { useState, useEffect } from 'react';
  *
  * @param {string} src - script source.
  * @param {string} id - ID for checking if script already exists in the DOM.
- * @param {bool} async - Should this script be loaded asyncronously?
- * @param {bool} footer - Should this scirpt be loaded in the footer?
+ * @param {object} opts - Options for loading this script.
+ * @param {bool}   opts.async - Load this script with an async attribute.
+ * @param {bool}   opts.footer - Load this script at the end of the body tag.
+ * @param {bool}   opts.dispose - Remove this script from the DOM when the component loading it is unmounted.
  * @returns {bool} - Has the script finished loading?
  */
-const useLoadScript = (src, id, async = true, footer = true) => {
+const useLoadScript = (
+  src,
+  id,
+  opts = {
+    async: true,
+    footer: false,
+    dispose: true,
+  }
+) => {
   const [loaded, setLoaded] = useState(false);
+  const {
+    async,
+    footer,
+    dispose,
+  } = opts;
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -20,8 +35,7 @@ const useLoadScript = (src, id, async = true, footer = true) => {
     script.onload = () => setLoaded(true);
     script.id = id;
 
-    // Insert either at the end of the body tag or before the first script in the head tag,
-    // but only if script doesn't already exist.
+    // Insert either at the end of the body tag or before the first script in the head tag.
     if (! document.getElementById(id)) {
       if (footer) {
         document.body.appendChild(script);
@@ -30,6 +44,13 @@ const useLoadScript = (src, id, async = true, footer = true) => {
         firstScript.parentNode.insertBefore(script, firstScript);
       }
     }
+
+    // Remove script from DOM if dispose is set to true.
+    return () => {
+      if (document.getElementById(id) && dispose) {
+        script.parentElement.removeChild(script);
+      }
+    };
   }, []);
 
   return loaded;

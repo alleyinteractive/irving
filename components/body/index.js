@@ -23,7 +23,13 @@ class Body extends Component {
 }
 
 Body.propTypes = {
+  /**
+   * Children of the body component.
+   */
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  /**
+   * Additional classes to apply to the <body> tag using react-helmet.
+   */
   bodyClasses: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.string,
