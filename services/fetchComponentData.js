@@ -2,7 +2,6 @@ const fetchOpts = {
   headers: {
     Accept: 'application/json',
   },
-  credentials: 'include', // Support XHR with basic auth.
 };
 
 export default async function fetchComponentData(endpoint) {

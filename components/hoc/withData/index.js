@@ -3,15 +3,23 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { URL } from 'whatwg-url';
 import { actionRequestComponentData } from 'actions/componentDataActions';
-import getDisplayName from 'utils/getDisplayName';
+import { componentDataMeta } from 'reducers/defaultState';
+import createComponentDataKey from 'utils/createComponentDataKey';
 import DataLoading from './loading';
 import DataError from './error';
 
-const withData = (componentName, opts = {}) => (WrappedComponent) => {
+const withData = (
+  endpoint,
+  opts = {
+    loading: DataLoading,
+    error: DataError,
+    refreshOnMount: false,
+  }
+) => (WrappedComponent) => {
   const {
-    endpoint = false,
-    loading: Loading = DataLoading,
-    error: Error = DataError,
+    loading: Loading,
+    error: Error,
+    refreshOnMount,
   } = opts;
 
   const DataProvider = (props) => {
@@ -23,7 +31,7 @@ const withData = (componentName, opts = {}) => (WrappedComponent) => {
     } = props;
     let requestUrl;
 
-    if (endpoint) {
+    if (endpoint.includes('/')) {
       try {
         // If endpoint is absolute, use it as-is.
         const urlObj = new URL(endpoint);
@@ -37,14 +45,21 @@ const withData = (componentName, opts = {}) => (WrappedComponent) => {
       }
     } else {
       // Use component data endpoint.
-      requestUrl = `${process.env.API_ROOT_URL}/data/${componentName}`;
+      requestUrl = `${process.env.API_ROOT_URL}/data/${endpoint}`;
     }
 
     /**
      * Effect for fetching component data, if applicable.
      */
     useEffect(() => {
-      fetchComponentData(requestUrl);
+      // Only fetch if we haven't already or refreshOnMount is set,
+      // otherwise refreshing of data must be explicit.
+      if (
+        refreshOnMount ||
+        (! componentData || ! componentData.length)
+      ) {
+        fetchComponentData(requestUrl);
+      }
     }, []);
 
     // Render loading state if either component or data are still loading.
@@ -57,43 +72,48 @@ const withData = (componentName, opts = {}) => (WrappedComponent) => {
       return <Error />;
     }
 
-    // Set received data to prop corresponding to component name,
-    // In case multiple datasources are required.
-    const newProps = {
-      ...props,
-      [componentName]: componentData,
-    };
-
     // Return component.
-    return <WrappedComponent {...newProps} />;
+    return (
+      <WrappedComponent
+        {...props}
+        data={componentData}
+        refresh={() => { fetchComponentData(requestUrl, true); }}
+      />
+    );
   };
 
   DataProvider.propTypes = {
-    componentData: PropTypes.object.isRequired,
+    componentData: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object,
+    ]).isRequired,
     fetchComponentData: PropTypes.func.isRequired,
     isDataLoading: PropTypes.bool.isRequired,
     isDataError: PropTypes.bool.isRequired,
   };
 
   const mapStateToProps = (state) => {
-    const componentState = state[componentName];
+    const key = createComponentDataKey(endpoint);
+    let meta = componentDataMeta;
+
+    if (state.componentData[key]) {
+      meta = state.componentData[key];
+    }
 
     return {
-      isDataLoading: componentState.loading,
-      isDataError: componentState.error,
-      componentData: componentState.data,
+      isDataLoading: meta.loading,
+      isDataError: meta.error,
+      componentData: meta.data,
     };
   };
 
   const mapDispatchToProps = (dispatch) => ({
-    fetchComponentData: (requestUrl) => {
-      dispatch(actionRequestComponentData(componentName, requestUrl));
+    fetchComponentData: (requestUrl, refresh = false) => {
+      dispatch(actionRequestComponentData(requestUrl, refresh));
     },
   });
 
   const withRedux = connect(mapStateToProps, mapDispatchToProps);
-
-  DataProvider.displayName = getDisplayName('DataProvider', WrappedComponent);
 
   return withRedux(DataProvider);
 };
