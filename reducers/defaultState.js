@@ -47,6 +47,7 @@ export const componentDataMeta = {
 
 const defaultState = {
   components,
+  componentData,
   error,
   loading,
   player,
