@@ -72,4 +72,4 @@ const getWebpackScripts = (clientStats) => {
   return scripts;
 };
 
-module.exports = getWebpackScripts;
+export default getWebpackScripts;
