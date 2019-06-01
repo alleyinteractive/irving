@@ -1,3 +1,4 @@
+import AudioElement from 'components/audio';
 import Body from 'components/body';
 import Footer from 'components/footer';
 import Disqus from 'components/disqus';
@@ -18,6 +19,7 @@ import withLoader from 'components/hoc/withLoader';
  */
 export const componentMap = {
   'admin-bar': Placeholder,
+  'audio-element': AudioElement,
   body: withLoader(Body),
   disqus: Disqus,
   embed: RawHTML,

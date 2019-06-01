@@ -6,13 +6,17 @@ import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
 import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
+import componentDataReducer from './componentDataReducer';
+import playerReducer from './playerReducer';
 
 // Configure "slice" reducers.
 export const reducers = {
   components: (state = defaultState.components) => state,
-  route: routeReducer,
+  componentData: componentDataReducer,
   error: errorReducer,
   loading: loadingReducer,
+  player: playerReducer,
+  route: routeReducer,
   visible: visibilityReducer,
 };
 const rootSliceReducer = combineReducers(reducers);
