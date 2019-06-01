@@ -22,21 +22,35 @@ export const visible = {
   test: false,
 };
 
+export const player = {
+  currentTime: 0,
+  duration: 0,
+  loading: false,
+  playing: false,
+  seek: 0,
+  src: '',
+  visible: false,
+  volume: 0.5,
+};
+
 export const error = null;
 
 export const loading = false;
 
-export const componentData = {
+export const componentData = {};
+
+export const componentDataMeta = {
   loading: false,
   error: false,
-  data: {},
+  data: [],
 };
 
 const defaultState = {
   components,
-  route,
   error,
   loading,
+  player,
+  route,
   visible,
 };
 
