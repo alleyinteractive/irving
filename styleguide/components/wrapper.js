@@ -11,7 +11,10 @@ import createSagaMiddleware from 'redux-saga';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import { reducers } from 'reducers';
 import rootSaga from 'sagas';
-import defaultState, { form } from 'reducers/defaultState';
+import defaultState, {
+  form,
+  componentData,
+} from 'reducers/defaultState';
 import componentsReducer from 'reducers/componentsReducer';
 import createFormReducer from 'reducers/createFormReducer';
 
@@ -30,7 +33,7 @@ const store = createStore(
   rootReducer,
   {
     ...defaultState,
-    componentData: [],
+    componentData,
     testForm: form,
     loading: true,
     components: {
