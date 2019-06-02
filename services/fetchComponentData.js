@@ -10,7 +10,9 @@ export default async function fetchComponentData(endpoint) {
 
   // Return data if invalid or redirected
   if (response.ok) {
-    return response.json();
+    const data = await response.json();
+
+    return data;
   }
 
   if (! response.ok) {
