@@ -38,7 +38,7 @@ class Image extends Component {
     const paddingPercentage = aspectRatio ?
       { paddingBottom: `${aspectRatio * 100}%` } :
       null;
-    const WrapperElement = caption ? Fragment : 'figure';
+    const WrapperElement = caption ? 'figure' : Fragment;
     // Set up image element(s) for maybe using with lazyload component
     const imageContent = (
       <Fragment>
