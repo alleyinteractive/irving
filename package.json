@@ -57,7 +57,8 @@
     "reselect": "^3.0.1",
     "sanitize-html": "^1.14.1",
     "source-map-support": "^0.5.6",
-    "whatwg-url": "^6.5.0"
+    "url-parse": "^1.4.7",
+    "whatwg-url": "^7.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
