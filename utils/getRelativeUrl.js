@@ -1,4 +1,4 @@
-import { URL } from 'whatwg-url';
+import URL from 'url-parse';
 
 /**
  * Normalize internal urls to be relative. Reject external urls.
@@ -14,7 +14,9 @@ export default function getRelativeUrl(url) {
     // Check if url is absolute, but internal.
     const urlObj = new URL(url);
     if (urlObj.host === window.location.host) {
-      return urlObj.pathname;
+      return urlObj.pathname +
+        (urlObj.query ? urlObj.query : '') +
+        (urlObj.hash ? urlObj.hash : '');
     }
   } catch (e) {
     // Already a relative url.
