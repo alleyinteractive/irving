@@ -7,6 +7,7 @@ export const components = {
 export const route = {
   status: null,
   redirectTo: false,
+  redirectStatus: 0,
   action: '',
 };
 
