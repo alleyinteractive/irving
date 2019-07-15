@@ -1,4 +1,3 @@
-import { URL } from 'whatwg-url';
 import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
@@ -50,37 +49,29 @@ export async function fetchComponents(path, search, context = CONTEXT_PAGE) {
     },
     credentials: 'include', // Support XHR with basic auth.
   };
+  const response = await fetch(apiUrl, { ...options });
+  const data = await response.json();
+  const { redirectTo, redirectStatus } = data;
 
-  let response;
-  let redirectTo = false;
-
-  if (isNode()) {
+  if (isNode() && redirectTo) {
     // Execute request without automatic redirect resolution, so we can
     // intercept and cascade the redirect down to the client.
-    response = await fetch(apiUrl, { ...options, redirect: 'manual' });
-    // node-fetch does not have response.redirected support
-    const redirected = 300 <= response.status && 400 > response.status;
-    if (redirected) {
-      return {
-        defaults: [],
-        page: [],
-        providers: [],
-        status: response.status,
-        redirectTo: getPath(response.headers.get('location')),
-      };
-    }
-  } else {
-    response = await fetch(apiUrl, options);
-    // If executing in the browser, let the browser follow redirects.
-    if (response.redirected) {
-      // Keep track of the new path, so we can update the address bar state.
-      redirectTo = getPath(response.url);
-    }
+    return {
+      defaults: [],
+      page: [],
+      providers: [],
+      status: response.status,
+      redirectTo,
+      redirectStatus,
+    };
   }
 
-  const data = await response.json();
   // Abort if error is encountered, except 404s, which we will handle ourselves.
-  if (! response.ok && 404 !== response.status) {
+  if (
+    ! response.ok &&
+    ! redirectTo &&
+    404 !== response.status
+  ) {
     throw new Error(`API error: ${data.message}`);
   }
 
@@ -89,16 +80,6 @@ export async function fetchComponents(path, search, context = CONTEXT_PAGE) {
     status: response.status,
     redirectTo,
   };
-}
-
-/**
- * Extract the path from a components api url.
- * @param {string} apiUrl - components api url
- * @returns {string} - The path param of the api url.
- */
-function getPath(apiUrl) {
-  const urlObj = new URL(apiUrl);
-  return urlObj.searchParams.get('path');
 }
 
 /**

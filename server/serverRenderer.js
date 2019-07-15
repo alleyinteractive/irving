@@ -52,13 +52,17 @@ const render = async (req, res, clientStats) => {
   await sagaMiddleware.run(resolveComponents).toPromise();
 
   // logging
-  const { redirectTo, status } = getState().route;
+  const {
+    redirectTo,
+    redirectStatus,
+    status,
+  } = getState().route;
   monitor.logTransaction(req.method, status, 'server render');
   debugRequest({ url: req.originalUrl, status });
 
   // Redirect before trying to render.
   if (redirectTo) {
-    res.redirect(status, redirectTo);
+    res.redirect(redirectStatus, redirectTo);
     return;
   }
 

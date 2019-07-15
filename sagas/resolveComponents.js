@@ -1,5 +1,4 @@
 import { call, select, put } from 'redux-saga/effects';
-import { URL } from 'whatwg-url';
 import {
   actionReceiveComponents,
   actionReceiveError,
@@ -8,6 +7,8 @@ import {
 import getRouteMeta from 'selectors/getRouteMeta';
 import fetchComponents from 'services/fetchComponents';
 import history from 'utils/history';
+import isNode from 'utils/isNode';
+import getRelativeUrl from 'utils/getRelativeUrl';
 import createDebug from 'services/createDebug';
 
 const debug = createDebug('sagas:location');
@@ -28,20 +29,21 @@ export default function* resolveComponents() {
 
   try {
     const result = yield call(fetchComponents, path, search, context);
-    yield put(actionReceiveComponents(result));
+
+    // Don't receive components on client side if redirecting,
+    // otherwise will result in a confusing flash of empty page content.
+    if ((result.redirectTo && isNode()) || ! result.redirectTo) {
+      yield put(actionReceiveComponents(result));
+    }
 
     // Request needs to be redirected.
     if (result.redirectTo) {
-      try {
-        // Use whatwg-url to test if the redirect is absolute or relative.
-        const urlObj = new URL(result.redirectTo);
-        if (urlObj.host) {
-          // Redirect outside the app.
-          window.location = result.redirectTo;
-        }
-      } catch (e) {
-        // Redirect via history (for relative paths).
-        yield call([history, history.replace], result.redirectTo);
+      const relativeUrl = getRelativeUrl(result.redirectTo);
+
+      if (relativeUrl) {
+        yield call([history, history.replace], relativeUrl);
+      } else {
+        window.location = result.redirectTo;
       }
     }
   } catch (err) {
