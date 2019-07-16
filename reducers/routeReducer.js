@@ -20,6 +20,7 @@ export default function routeReducer(routeState = defaultState, action) {
         ...payload,
         status: defaultState.status,
         redirectTo: defaultState.redirectTo,
+        redirectStatus: defaultState.redirectStatus,
       };
 
     case RECEIVE_COMPONENTS:
@@ -27,6 +28,7 @@ export default function routeReducer(routeState = defaultState, action) {
         ...routeState,
         status: payload.status,
         redirectTo: payload.redirectTo,
+        redirectStatus: payload.redirectStatus,
       };
 
     case RECEIVE_ERROR:
