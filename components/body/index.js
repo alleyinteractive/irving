@@ -1,26 +1,24 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
 import styles from './body.css';
 
-class Body extends Component {
-  render() {
-    const { bodyClasses, children } = this.props;
+const Body = (props) => {
+  const { bodyClasses, children } = props;
 
-    return (
-      <Fragment>
-        <Helmet>
-          <body className={classNames(bodyClasses)} />
-        </Helmet>
-        <main role="main" id="content">
-          {children}
-        </main>
-      </Fragment>
-    );
-  }
-}
+  return (
+    <>
+      <Helmet>
+        <body className={classNames(bodyClasses)} />
+      </Helmet>
+      <main role="main" id="content">
+        {children}
+      </main>
+    </>
+  );
+};
 
 Body.propTypes = {
   /**
