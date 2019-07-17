@@ -1,4 +1,4 @@
-import { URL } from 'whatwg-url';
+import URL from 'url-parse';
 
 /**
  * Validate and filter a Disqus config to make reasonably sure that the values
