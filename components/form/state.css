@@ -1,3 +1,12 @@
+.wrapper {
+
+  /* stylelint-disable selector-max-specificity */
+  &[disabled] .content {
+    opacity: 0.5;
+  }
+  /* stylelint-enable */
+}
+
 .response {
   display: flex;
   justify-content: center;
@@ -6,16 +15,18 @@
 }
 
 .submitting,
-.successText,
-.errorText {
+.success,
+.error {
+  font-family: $fira;
   font-size: rem(24);
+  text-transform: uppercase;
 }
 
 .submitting,
 .success {
-  color: blue;
+  color: $blue;
 }
 
-.errorText {
+.error {
   color: red;
 }
