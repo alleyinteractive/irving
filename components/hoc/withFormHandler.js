@@ -1,76 +1,51 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import curry from 'lodash/fp/curry';
+import { useFormState } from 'react-use-form-state';
 import PropTypes from 'prop-types';
 import getDisplayName from 'utils/getDisplayName';
+import curry from 'lodash/fp/curry';
 import { actionRequestSubmit } from 'actions/formActions';
 
 const withFormHandler = (
   defaultState,
   connectedFormName = ''
 ) => (FormComponent) => {
-  class FormHandler extends Component {
-    state = defaultState;
+  const FormHandler = (props) => {
+    const {
+      createOnSubmit,
+      createSubmit,
+      onSubmit,
+      redirect,
+    } = props;
+    const [formState, inputTypes] = useFormState(defaultState);
 
-    onChangeInput = curry((name, e) => {
-      const { [name]: stateValue } = this.state;
-      const inputValue = e.target.value;
-
-      if (Array.isArray(stateValue)) {
-        // If input state is an array (as with checkboxes)
-        // remove input value if it's in the array or add if it's not.
-        const stateArray = stateValue.includes(inputValue) ?
-          stateValue.filter((value) => value !== inputValue) :
-          stateValue.concat(inputValue);
-        this.changeInputValue(name, stateArray);
-      } else {
-        this.changeInputValue(name, inputValue);
-      }
-    });
-
-    changeInputValue = (name, value) => {
-      this.setState({ [name]: value });
+    // Redirect post-submission
+    if (redirect) {
+      window.location = redirect;
     }
 
-    render() {
-      const {
-        createOnSubmit,
-        createSubmit,
-        onSubmit,
-        redirect,
-      } = this.props;
-
-      // Redirect post-submission
-      if (redirect) {
-        window.location = redirect;
-      }
-
-      return (
-        <div>
-          <FormComponent
-            {...this.props}
-            {...this.state}
-            onSubmit={connectedFormName ?
-              createOnSubmit(this.state) :
-              onSubmit
-            }
-            createSubmit={createSubmit}
-            onChangeInput={this.onChangeInput}
-            changeInputValue={this.changeInputValue}
-          />
-        </div>
-      );
-    }
-  }
+    return (
+      <div>
+        <FormComponent
+          {...props}
+          formState={formState}
+          inputTypes={inputTypes}
+          onSubmit={connectedFormName ?
+            createOnSubmit(formState.values) :
+            onSubmit
+          }
+          createSubmit={createSubmit}
+        />
+      </div>
+    );
+  };
 
   FormHandler.propTypes = {
     onSubmit: PropTypes.func,
   };
 
   FormHandler.defaultProps = {
-    onSubmit: (e) => {
-      e.preventDefault();
-    },
+    onSubmit: () => {},
   };
 
   FormHandler.displayName = getDisplayName('FormHandler', FormComponent);
