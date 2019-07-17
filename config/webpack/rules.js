@@ -89,11 +89,12 @@ module.exports = function getRules(context) {
           options: {
             url: true,
             importLoaders: 1,
-            modules: true,
-            localIdentName: '[name]__[local]--[hash:base64:5]',
-            minimize: isProd,
+            modules: {
+              mode: 'local',
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
             sourceMap: ! isProd,
-            camelCase: true,
+            localsConvention: 'camelCase',
           },
         },
         {
