@@ -3,23 +3,29 @@ Higher-order component for managing form state and submitting a form to an API e
 
 1. The default state of your form. This should be an object composed of, for each form input, a key corresponding to the input `name` attribute and a default value.
 2. If this will be a connected form (to be submitted to your API), an arbitrary form name string which will be used as a new state slice in which to store your form's redux state.
-3. This hoc will pass through props corresponding to the input names provided when calling it. Be sure to provide the appropriate input name/prop to your input components' `onChange` and `value` prop respectively. 
+3. This hoc will pass through props corresponding to the input names provided when calling it. Be sure to provide the appropriate input name/prop to your input components' `onChange` and `value` prop respectively.
 
 Over all, an example of what this HOC might look like:
 ```js static
-const Form = ({ testText }) => (
-    <form>
-        <InputText 
-            name="testText" 
-            label="This is a sample text input component" 
-            onChange={onChangeInput('testText')} 
-            placeholder="Put your input here!"
-            value={testText}
-        />
-    </form>
+const Form = (props) => (
+    const {
+        inputTypes: {
+            text,
+        },
+    } = props;
+
+    return (
+        <form>
+            <FormInput
+                name="testText"
+                propsCreator={text}
+                placeholder="Put your input here!"
+            />
+        </form>
+    );
 );
 
-const FormWithHandler = withFormHandler({ 
+const FormWithHandler = withFormHandler({
     testText: '',
 })(FormComponent);
 ```
@@ -43,25 +49,25 @@ In general, client-side validation is preferable to server-side and there are a 
 ```js static
 const defaultFormState = {
     inputName: 'default state',
-    anotherName: '', 
+    anotherName: '',
 }
 ```
 The API should respond to invalid input with:
 ```js static
 const defaultFormState = {
     inputName: 'Your input was invalid because...',
-    anotherName: 'Please change this one too because...', 
+    anotherName: 'Please change this one too because...',
 }
 ```
 * Each of the components in `components/form` should provide an `error` prop designed to receive and display validation data. When you create a connected form, inputs with validation should generally look like:
 ```js static
-<InputText 
-    name="testText" 
-    label="This is a sample text input component" 
-    onChange={onChangeInput('testText')} 
+<FormInput
+    name="testText"
+    label="This is a sample text input component"
     placeholder="Put your input here!"
-    value={testText}
-    error={validation.testText}
+    propsCreator={testText}
+    InputComponent="select || input"
+    validation={validation.testText}
 />
 ```
 

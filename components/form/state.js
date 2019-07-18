@@ -16,7 +16,7 @@ const FormState = ({
 
   if (failed) {
     responseContent = (
-      <div className={styles.failure}>
+      <div className={styles.error}>
         <span className={styles.errorText}>
           <RawHTML content={errorText} />
         </span>
