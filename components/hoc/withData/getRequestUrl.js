@@ -1,4 +1,4 @@
-import { URL } from 'whatwg-url';
+import URL from 'url-parse';
 
 const getRequestUrl = (endpoint) => {
   let requestUrl;
