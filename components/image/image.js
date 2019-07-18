@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -6,98 +6,85 @@ import IrvingPicture from './irvingPicture';
 import IrvingImg from './irvingImg';
 import styles from './image.css';
 
-class Image extends Component {
-  state = {
-    loaded: false,
-    error: false,
-  };
+const Image = (props) => {
+  const {
+    alt,
+    aspectRatio,
+    caption,
+    className,
+    lazyload,
+    lqipSrc,
+    picture,
+    showCaption,
+  } = props;
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+  const onLoad = () => setLoaded(true);
+  const onError = () => setError(true);
+  const paddingPercentage = aspectRatio ?
+    { paddingBottom: `${aspectRatio * 100}%` } :
+    null;
+  const WrapperElement = caption ? 'figure' : Fragment;
 
-  onLoad = () => {
-    this.setState({ loaded: true });
-  };
-
-  onError = () => {
-    this.setState({ error: true });
-  };
-
-  render() {
-    const {
-      alt,
-      aspectRatio,
-      caption,
-      className,
-      lazyload,
-      lqipSrc,
-      picture,
-      showCaption,
-    } = this.props;
-    const {
-      loaded,
-      error,
-    } = this.state;
-    const paddingPercentage = aspectRatio ?
-      { paddingBottom: `${aspectRatio * 100}%` } :
-      null;
-    const WrapperElement = caption ? 'figure' : Fragment;
-    // Set up image element(s) for maybe using with lazyload component
-    const imageContent = (
-      <Fragment>
-        {picture ? (
-          <IrvingPicture
-            {...this.props}
-            onLoad={this.onLoad}
-            onError={this.onError}
-          />
-        ) : (
-          <IrvingImg
-            {...this.props}
-            onLoad={this.onLoad}
-            onError={this.onError}
-          />
-        )}
-      </Fragment>
-    );
-    // Set up placeholder image with low quality image placeholder source
-    const placeholder = lqipSrc ?
-      (
-        <img
-          className={styles.placeholder}
-          src={lqipSrc}
-          alt={alt}
+  // Set up image element(s) for maybe using with lazyload component
+  const imageContent = (
+    <Fragment>
+      {picture ? (
+        <IrvingPicture
+          {...props}
+          onLoad={onLoad}
+          onError={onError}
         />
-      ) :
-      null;
+      ) : (
+        <IrvingImg
+          {...props}
+          onLoad={onLoad}
+          onError={onError}
+        />
+      )}
+    </Fragment>
+  );
 
-    return (
-      <WrapperElement>
-        <span
-          className={classNames(
-            styles.wrapper,
-            className,
-            {
-              [styles.apsectRatio]: aspectRatio,
-              [styles.lazyload]: lazyload,
-              [styles.loaded]: loaded,
-              [styles.error]: error,
-            }
-          )}
-          style={paddingPercentage}
-        >
-          {lazyload ?
-            (
-              <Fragment>
-                {placeholder}
-                {imageContent}
-              </Fragment>
-            ) :
-            imageContent
+  // Set up placeholder image with low quality image placeholder source
+  const placeholder = lqipSrc ?
+    (
+      <img
+        className={styles.placeholder}
+        src={lqipSrc}
+        alt={alt}
+      />
+    ) :
+    null;
+
+  return (
+    <WrapperElement>
+      <span
+        className={classNames(
+          styles.wrapper,
+          className,
+          {
+            [styles.apsectRatio]: aspectRatio,
+            [styles.lazyload]: lazyload,
+            [styles.loaded]: loaded,
+            [styles.error]: error,
           }
-        </span>
-        {(caption && showCaption) && <figcaption>{caption}</figcaption>}
-      </WrapperElement>
-    );
-  }
-}
+        )}
+        style={paddingPercentage}
+      >
+        {lazyload ?
+          (
+            <Fragment>
+              {placeholder}
+              {imageContent}
+            </Fragment>
+          ) :
+          imageContent
+        }
+      </span>
+      {(caption && showCaption) && <figcaption>{caption}</figcaption>}
+    </WrapperElement>
+  );
+};
 
 Image.propTypes = {
   /**

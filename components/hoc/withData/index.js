@@ -10,16 +10,13 @@ import getRequestUrl from './getRequestUrl';
 
 const withData = (
   endpoint,
-  opts = {
-    loading: DataLoading,
-    error: DataError,
-    refreshOnMount: false,
-  }
+  opts = {}
 ) => (WrappedComponent) => {
   const {
-    loading: Loading,
-    error: Error,
-    refreshOnMount,
+    loading: Loading = DataLoading,
+    error: Error = DataError,
+    refreshOnMount = false,
+    cache = false,
   } = opts;
   const requestUrl = getRequestUrl(endpoint);
 
@@ -41,7 +38,7 @@ const withData = (
         refreshOnMount ||
         (! componentData || ! componentData.length)
       ) {
-        fetchComponentData(requestUrl);
+        fetchComponentData(requestUrl, cache);
       }
     }, []);
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import assignWith from 'lodash/fp/assignWith';
@@ -22,16 +22,42 @@ const withThemes = (
   componentThemes,
   composes = false
 ) => (WrappedComponent) => {
-  class ThemePicker extends Component {
+  const ThemePicker = (props) => {
+    /**
+     * Get the theme name.
+     *
+     * @param {object} contextThemes Theme key provided from context.
+     * @return {string} Key/name for current theme.
+     */
+    const getThemeName = (contextThemes) => {
+      const {
+        // This is included for backwards compatibility.
+        theme: propsTheme,
+        themeName: propsThemeName,
+      } = props;
+      const hasThemeFromContext = contextThemes &&
+        Object.keys(contextThemes).length &&
+        contextThemes[identifier];
+      let themeName = 'default';
+
+      if (propsThemeName || propsTheme) {
+        themeName = propsThemeName || propsTheme;
+      } else if (hasThemeFromContext) {
+        themeName = contextThemes[identifier];
+      }
+
+      return themeName;
+    };
+
     /**
      * Get the theme object.
      *
      * @param {object} contextThemes Theme key provided from context.
      * @return {object} Theme classes merged with defaults.
      */
-    getTheme = (contextThemes) => {
+    const getTheme = (contextThemes) => {
       const defaultTheme = componentThemes.default || {};
-      const themeName = this.getThemeName(contextThemes);
+      const themeName = getThemeName(contextThemes);
       const theme = componentThemes[themeName];
 
       // Should theme styles override or compose the defaults?
@@ -48,46 +74,18 @@ const withThemes = (
       return Object.assign({}, defaultTheme, theme);
     };
 
-    /**
-     * Get the theme name.
-     *
-     * @param {object} contextThemes Theme key provided from context.
-     * @return {string} Key/name for current theme.
-     */
-    getThemeName = (contextThemes) => {
-      const {
-        // This is included for backwards compatibility.
-        theme: propsTheme,
-        themeName: propsThemeName,
-      } = this.props;
-      const hasThemeFromContext = contextThemes &&
-        Object.keys(contextThemes).length &&
-        contextThemes[identifier];
-      let themeName = 'default';
-
-      if (propsThemeName || propsTheme) {
-        themeName = propsThemeName || propsTheme;
-      } else if (hasThemeFromContext) {
-        themeName = contextThemes[identifier];
-      }
-
-      return themeName;
-    }
-
-    render() {
-      return (
-        <ThemeContext.Consumer>
-          {(themes) => (
-            <WrappedComponent
-              {...this.props}
-              theme={this.getTheme(themes)}
-              themeName={this.getThemeName(themes)}
-            />
-          )}
-        </ThemeContext.Consumer>
-      );
-    }
-  }
+    return (
+      <ThemeContext.Consumer>
+        {(themes) => (
+          <WrappedComponent
+            {...props}
+            theme={getTheme(themes)}
+            themeName={getThemeName(themes)}
+          />
+        )}
+      </ThemeContext.Consumer>
+    );
+  };
 
   ThemePicker.propTypes = {
     themeName: PropTypes.oneOfType([
