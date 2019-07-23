@@ -1,0 +1,33 @@
+.wrapper {
+  min-height: rem(800);
+  padding: rem(20) 0;
+  width: 100%;
+}
+
+.thumb {
+  background-color: $grayLight;
+  flex: 1 0 rem(175);
+  height: rem(175);
+  margin-right: rem(20);
+  max-width: rem(175);
+  width: rem(175);
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.textBar {
+  background-color: $grayLight;
+  height: rem(20);
+  margin-bottom: rem(18);
+
+  &:first-child {
+    height: rem(32);
+    margin-bottom: rem(24);
+  }
+
+  &:last-child {
+    width: 25%;
+  }
+}

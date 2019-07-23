@@ -1,0 +1,1 @@
+Component for rendering children of the document head tag using `react-helmet`. See [react helmet docs](https://github.com/nfl/react-helmet) for all elements it's capable of rendering.

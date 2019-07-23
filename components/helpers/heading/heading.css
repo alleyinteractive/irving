@@ -1,0 +1,61 @@
+.heading {
+  font-weight: 700;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.step-down-two {
+  composes: heading;
+  font-size: rem(10);
+}
+
+.step-down-one {
+  composes: heading;
+  font-size: rem(14);
+}
+
+.base {
+  composes: heading;
+  font-size: rem(16);
+}
+
+.step-up-one {
+  composes: heading;
+  font-size: rem(20);
+}
+
+.step-up-two {
+  composes: heading;
+  font-size: rem(24);
+}
+
+.step-up-three {
+  composes: heading;
+  font-size: rem(34);
+}
+
+.step-up-four {
+  composes: heading;
+  font-size: rem(48);
+}
+
+.step-up-five {
+  composes: heading;
+  font-size: rem(60);
+}
+
+.step-up-six {
+  composes: heading;
+  font-size: rem(96);
+}
