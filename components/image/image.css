@@ -1,0 +1,52 @@
+.wrapper {
+  display: block;
+}
+
+.img,
+.picture {
+  display: block;
+}
+
+.lazyload {
+
+  .placeholder {
+    display: block;
+  }
+
+  .img,
+  .picture {
+    display: none;
+  }
+
+  /* stylelint-disable selector-max-specificity */
+  &.loaded {
+
+    .placeholder {
+      display: none;
+    }
+
+    .img,
+    .picture {
+      display: block;
+    }
+  }
+  /* stylelint-enable */
+}
+
+.apsectRatio {
+  height: 0;
+  position: relative;
+
+  picture,
+  img {
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .placeholder {
+    height: 100%;
+  }
+}
