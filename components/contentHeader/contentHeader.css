@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'NeueHaas';
+  font-style: normal;
+  font-weight: 600;
+  src: url('https://cdn.technologyreview.com/_/fonts/nhaasgroteskdsstd-65md.woff');
+}
+
+@font-face {
+  font-family: 'NeueHaas';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://cdn.technologyreview.com/_/fonts/nhaasgroteskdsstd-55rg.woff');
+}
+
+.wrapper {
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.publishDate {
+  font-family: 'NeueHaas', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 20px 20px;
+  white-space: nowrap;
+}
+
+.title {
+  color: #000;
+  display: block;
+  font-family: 'NeueHaas', sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  font-weight: 700;
+  line-height: 1.12;
+  margin: 0 20px 20px;
+  padding: 10px 0 10px 0;
+}

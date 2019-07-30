@@ -1,10 +1,10 @@
 import AudioElement from 'components/audio';
 import Body from 'components/body';
-import Footer from 'components/footer';
 import Disqus from 'components/disqus';
 import GoogleTagManager from 'components/googleTagManager';
 import GoogleAnalytics from 'components/googleAnalytics';
 import Head from 'components/head';
+import Footer from 'components/footer';
 import Image from 'components/image/image';
 import NotConfigured from 'components/notConfigured';
 import RawHTML from 'components/rawHTML';
@@ -12,6 +12,7 @@ import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import SocialList from 'components/socialList';
 import SocialItem from 'components/socialItem';
+import ContentHeader from 'components/contentHeader';
 import withLoader from 'components/hoc/withLoader';
 
 /**
@@ -21,6 +22,7 @@ export const componentMap = {
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   body: withLoader(Body),
+  'content-header': ContentHeader,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
