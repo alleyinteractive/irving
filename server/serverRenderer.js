@@ -61,7 +61,7 @@ const render = async (req, res, clientStats) => {
   debugRequest({ url: req.originalUrl, status });
 
   // Redirect before trying to render.
-  if (redirectTo && 0 !== redirectTo.length) {
+  if (redirectTo) {
     res.redirect(redirectStatus, redirectTo);
     return;
   }
