@@ -1,4 +1,5 @@
 .wrapper {
-  lost-center: 980px;
+  display: flex;
+  flex-flow: column nowrap;
   text-align: center;
 }
