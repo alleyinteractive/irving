@@ -11,8 +11,8 @@
     "postinstall": "npm run build",
     "test": "jest",
     "test:watch": "jest --watch",
-    "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
-    "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js"
+    "styleguide:dev": "NODE_ENV=development styleguidist server --config ./config/styleguide.config.js",
+    "styleguide:build": "NODE_ENV=production styleguidist build --config ./config/styleguide.config.js"
   },
   "repository": {
     "type": "git",

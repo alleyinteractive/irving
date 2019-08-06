@@ -25,5 +25,6 @@ module.exports = {
   nodeModules: resolveDir('node_modules'),
   postCssConfig: resolveDir('config/postcss.config.js'),
   styleguideRoot: resolveDir('styleguide'),
+  styleguideComponents: resolveDir('styleguideComponents'),
   transform: 'node_modules/critical-style-loader/lib/filterCriticalCss.js',
 };

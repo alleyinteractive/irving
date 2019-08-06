@@ -10,7 +10,7 @@ const componentGlobs = {
 
 module.exports = {
   title: 'Irving',
-  require: [paths.styleguideRoot],
+  require: [paths.styleguideComponents],
   sections: [
     {
       name: 'Introduction and setup',
@@ -59,12 +59,13 @@ module.exports = {
   ],
   skipComponentsWithoutExample: true,
   styleguideComponents: {
-    Wrapper: path.join(paths.styleguideRoot, 'components/wrapper.js'),
+    Wrapper: path.join(paths.styleguideComponents, 'components/wrapper.js'),
   },
   styleguideDir: paths.styleguideRoot,
   webpackConfig: {
-    ...require('./webpack.config.js')({}, { mode: process.env.NODE_ENV })
-      .find((config) => config.name === 'client'),
+    ...require('./webpack.config.js')({}, { mode: process.env.NODE_ENV }).find(
+      (config) => 'client' === config.name
+    ),
     // Recreate aliases as we can't use the same babel aliases for styleguide
     resolve: {
       alias: {
@@ -77,7 +78,7 @@ module.exports = {
         selectors: path.join(paths.appRoot, './selectors'),
         services: path.join(paths.appRoot, './services'),
         utils: path.join(paths.appRoot, './utils'),
-      }
-    }
+      },
+    },
   },
 };
