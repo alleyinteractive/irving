@@ -1,5 +1,22 @@
 @import 'mixins/index';
 @import 'reset.css';
+@import 'fonts/fonts.css';
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: $sans;
+  -moz-font-feature-settings: "liga" on;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+}
 
 .wrapper {
   display: flex;
