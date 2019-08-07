@@ -1,7 +1,7 @@
 {
-  "name": "irving",
+  "name": "mittr-irving",
   "version": "1.0.0",
-  "description": "Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.",
+  "description": "MIT Technology Review frontend application based on Irving, a headless app for Wordpress.",
   "main": "main.js",
   "scripts": {
     "preinstall": "npx check-node-version --package",
@@ -12,15 +12,15 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "styleguide:dev": "NODE_ENV=development styleguidist server --config ./config/styleguide.config.js",
-    "styleguide:build": "NODE_ENV=production styleguidist build --config ./config/styleguide.config.js"
+    "styleguide:build": "NODE_ENV=production styleguidist build --config ./config/styleguide.config.js && surge -d mit-technology-review.surge.sh -p ./styleguide"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:alleyinteractive/irving.git"
+    "url": "git@github.com:alleyinteractive/mittr-irving.git"
   },
   "author": "Alley (Alley.co)",
   "license": "UNLICENSED",
-  "homepage": "https://github.com/alleyinteractive/irving#readme",
+  "homepage": "https://github.com/alleyinteractive/mittr-irving#mittr-irving",
   "engines": {
     "node": "10",
     "npm": "6"
@@ -114,6 +114,7 @@
     "style-loader": "^0.21.0",
     "stylelint": "^9.10.1",
     "stylelint-order": "^2.0.0",
+    "surge": "^0.21.3",
     "svg-react-loader": "^0.4.6",
     "url-loader": "^1.0.1",
     "webpack": "^4.36.1",
