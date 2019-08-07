@@ -4,12 +4,11 @@ import { withStyles } from 'critical-style-loader/lib';
 import styles from './contentHeader.css';
 
 const ContentHeader = (props) => {
-  const { title, publishDate, children } = props;
+  const { title, publishDate } = props;
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>{title}</h1>
       <div className={styles.publishDate}>{publishDate}</div>
-      {children}
     </div>
   );
 };
@@ -17,7 +16,6 @@ const ContentHeader = (props) => {
 ContentHeader.propTypes = {
   title: PropTypes.string.isRequired,
   publishDate: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
 };
 
 const wrapWithStyles = withStyles(styles);
