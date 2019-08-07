@@ -1,9 +1,9 @@
-/* eslint-disable quotes */
 /**
  * Font families
  */
 module.exports = {
-  serif: "Arial, Helvetica, Georgia, sans-serif",
-  monospace: "monospace",
+  sans: '\'NeueHaas\', input mono, sans-serif',
+  serif: '\'MillerText\', input mono, serif',
+  'serif-text': '\'MillerText\', input mono, serif',
+  'serif-display': '\'MillerDisplay\', input mono, serif',
 };
-/* eslint-enable */

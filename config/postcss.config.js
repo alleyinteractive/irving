@@ -25,11 +25,11 @@ module.exports = () => ({
     cssImport({
       path: [paths.globalStyles],
     }), // Import files
+    mixins(),
     variables({
       variables: flatten(cssVars),
     }),
     units(), // Compute rem() function
-    mixins(),
     nested(), // Allow nested syntax.
     calc({
       mediaQueries: true,

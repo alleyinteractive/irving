@@ -6,22 +6,9 @@ import { withStyles } from 'critical-style-loader/lib';
 import styles from './container.css';
 
 const Container = (props) => {
-  const {
-    size,
-    children,
-    className,
-  } = props;
+  const { size, children, className } = props;
 
-  return (
-    <div
-      className={classNames(
-        styles[size],
-        className,
-      )}
-    >
-      {children}
-    </div>
-  );
+  return <div className={classNames(styles[size], className)}>{children}</div>;
 };
 
 Container.propTypes = {
@@ -36,13 +23,11 @@ Container.propTypes = {
   /**
    * Width of the container.
    */
-  size: PropTypes.oneOf(
-    Object.keys(breakpoints.bkptVal)
-  ),
+  size: PropTypes.oneOf(Object.keys(breakpoints.bkptVal)),
 };
 
 Container.defaultProps = {
-  size: 'xxl',
+  size: 'lg',
   className: '',
 };
 
