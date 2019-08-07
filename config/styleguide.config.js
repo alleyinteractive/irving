@@ -9,7 +9,7 @@ const componentGlobs = {
 };
 
 module.exports = {
-  title: 'Irving',
+  title: 'MIT Technology Review',
   require: [paths.styleguideComponents],
   sections: [
     {
