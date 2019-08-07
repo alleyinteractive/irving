@@ -1,10 +1,13 @@
-const { postCssConfig, transform, assetsRoot } = require('../paths');
 const path = require('path');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const {
+  postCssConfig,
+  transform,
+  assetsRoot,
+  clientRoot,
+} = require('../paths');
 
-const exclude = [
-  /node_modules/,
-  /\.min\.js$/,
-];
+const exclude = [/node_modules/, /\.min\.js$/];
 
 /**
  * Get the context specific rules configuration.
@@ -73,6 +76,35 @@ module.exports = function getRules(context) {
           cacheDirectory: ! isProd,
         },
       },
+    },
+    {
+      test: /\.css$/,
+      exclude,
+      oneOf: [
+        {
+          issuer: [path.join(clientRoot, 'styles/fonts.js')],
+          use: [
+            MiniCSSExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                url: true,
+                importLoaders: 1,
+                minimize: true,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: ! isProd,
+                config: {
+                  path: postCssConfig,
+                },
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       test: /\.css$/,

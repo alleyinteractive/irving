@@ -9,18 +9,6 @@
   padding-right: $gutterOutside;
 }
 
-.xxl {
-  composes: container;
-  composes: padding;
-  max-width: $xxlVal;
-}
-
-.xl {
-  composes: container;
-  composes: padding;
-  max-width: $xlVal;
-}
-
 .lg {
   composes: container;
   composes: padding;

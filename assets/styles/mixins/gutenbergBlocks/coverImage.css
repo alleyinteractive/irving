@@ -1,0 +1,21 @@
+/* Styles for core cover image block */
+@mixin block-cover-image {
+  :global(.wp-block-cover) {
+    align-items: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+  }
+
+  :global(.wp-block-cover-text) {
+    color: $white;
+    font-family: $sans;
+    font-size: rem(32);
+    font-weight: 700;
+    text-align: center;
+  }
+}

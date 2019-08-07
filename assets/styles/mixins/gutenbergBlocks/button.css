@@ -1,0 +1,48 @@
+@mixin block-button {
+  :global(.wp-block-button) {
+    @include block-level-element;
+    @include block-alignment;
+
+    .aligncenter {
+      display: flex;
+    }
+
+    a {
+      @include basic-formatting;
+      align-items: center;
+      background-color: $brand-blue;
+      color: $white;
+      display: flex;
+      font-family: $sans;
+      font-size: rem(14);
+      font-weight: 700;
+      height: rem(42);
+      justify-content: center;
+      letter-spacing: rem(1);
+      margin: 0 auto;
+      padding: 0 1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background-color 125ms ease-in-out;
+
+      &:hover {
+        background-color: color($brand-blue tint(25%));
+      }
+
+      &::before,
+      &::after {
+        color: $white;
+        content: "\2022";
+        display: block;
+      }
+
+      &::before {
+        margin-right: rem(5);
+      }
+
+      &::after {
+        margin-left: rem(5);
+      }
+    }
+  }
+}

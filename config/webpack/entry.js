@@ -21,10 +21,11 @@ module.exports = function getEntry(context) {
       ];
 
     case 'production_client':
-      return [
-        ...polyfills,
-        path.join(clientRoot),
-      ];
+      return {
+        main: [...polyfills, path.join(clientRoot)],
+        // Entry point for WordPress editor styles
+        fonts: path.join(clientRoot, 'fonts.js'),
+      };
 
     case 'development_client': {
       let queryString = 'reload=true';
@@ -32,11 +33,15 @@ module.exports = function getEntry(context) {
         queryString = `${proxyUrl}&reload=true`;
       }
 
-      return [
-        ...polyfills,
-        `webpack-hot-middleware/client?${queryString}`,
-        path.join(clientRoot),
-      ];
+      return {
+        main: [
+          ...polyfills,
+          `webpack-hot-middleware/client?${queryString}`,
+          path.join(clientRoot),
+        ],
+        // Entry point for WordPress editor styles
+        fonts: path.join(clientRoot, 'fonts.js'),
+      };
     }
 
     default:

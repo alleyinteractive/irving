@@ -1,0 +1,31 @@
+/* Styles for horizontal rule separator block */
+@mixin block-separator {
+  :global(.wp-block-separator),
+  hr {
+    &:global(.is-style-default),
+    &:not(:global(.is-style-dots)):not(:global(.is-style-wide)) {
+      border: 1px solid $brand-blue;
+      margin: rem(32) auto;
+      max-width: rem(300);
+      width: 100%;
+    }
+
+    &:global(.is-style-dots) {
+      &::before {
+        content: "\00b7 \00b7 \00b7";
+        color: $brand-blue;
+        font-size: rem(32);
+        letter-spacing: 1em;
+        padding-left: 2em;
+        font-family: $sans;
+      }
+    }
+
+    &:global(.is-style-wide) {
+      border: 4px solid $brand-blue;
+      margin: rem(32) auto;
+      max-width: none;
+      width: 100%;
+    }
+  }
+}

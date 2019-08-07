@@ -1,0 +1,24 @@
+@mixin block-preformatted {
+
+  pre,
+  :global(.wp-block-preformatted) {
+    @include block-level-element;
+    max-width: 100%;
+    padding: 1rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+@mixin block-code {
+
+  code,
+  :global(.wp-block-code) {
+    background-color: color($black tint(90%));
+    display: inline-block;
+    font-family: monospace;
+    overflow: auto;
+    padding: 1rem;
+    width: 100%;
+  }
+}

@@ -1,0 +1,35 @@
+@mixin block-embed {
+
+  :global(.wp-block-embed) {
+    @include block-level-element;
+  }
+
+  :global(.wp-block-embed__wrapper) {
+
+    > * {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  /* Gutenberg block styles */
+  :global(.wp-block-embed-youtube),
+  :global(.wp-block-embed-vimeo) {
+
+    > div {
+      position: relative;
+      overflow: hidden;
+      padding-top: 56.25%;
+    }
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+  }
+}

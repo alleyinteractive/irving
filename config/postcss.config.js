@@ -1,5 +1,4 @@
 // Plugins
-const lost = require('lost');
 const calc = require('postcss-calc');
 const cssImport = require('postcss-import');
 const variables = require('postcss-simple-vars');
@@ -24,23 +23,18 @@ module.exports = () => ({
   plugins: [
     stylelint(stylelintConfig),
     cssImport({
-      path: [
-        paths.globalStyles,
-      ],
+      path: [paths.globalStyles],
     }), // Import files
+    mixins(),
     variables({
       variables: flatten(cssVars),
     }),
     units(), // Compute rem() function
-    mixins(),
     nested(), // Allow nested syntax.
     calc({
       mediaQueries: true,
     }),
     colorFunction(),
-    lost({
-      flexbox: 'flex',
-    }), // Grid library
     focus(),
     autoprefixer({
       flexbox: 'no-2009',

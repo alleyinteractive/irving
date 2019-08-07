@@ -1,18 +1,19 @@
 import AudioElement from 'components/audio';
 import Body from 'components/body';
+import ContentBody from 'components/contentBody';
+import ContentHeader from 'components/contentHeader';
 import Disqus from 'components/disqus';
-import GoogleTagManager from 'components/googleTagManager';
-import GoogleAnalytics from 'components/googleAnalytics';
-import Head from 'components/head';
 import Footer from 'components/footer';
+import GoogleAnalytics from 'components/googleAnalytics';
+import GoogleTagManager from 'components/googleTagManager';
+import Head from 'components/head';
 import Image from 'components/image/image';
 import NotConfigured from 'components/notConfigured';
-import RawHTML from 'components/rawHTML';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
-import SocialList from 'components/socialList';
+import RawHTML from 'components/rawHTML';
 import SocialItem from 'components/socialItem';
-import ContentHeader from 'components/contentHeader';
+import SocialList from 'components/socialList';
 import withLoader from 'components/hoc/withLoader';
 
 /**
@@ -23,6 +24,7 @@ export const componentMap = {
   'audio-element': AudioElement,
   body: withLoader(Body),
   'content-header': ContentHeader,
+  'content-body': ContentBody,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,

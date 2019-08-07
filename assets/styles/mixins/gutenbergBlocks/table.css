@@ -1,0 +1,14 @@
+@mixin block-table {
+
+  :global(.wp-block-table),
+  table {
+    @include block-level-element;
+    @include block-alignment;
+
+    td {
+      @include basic-formatting;
+      border: 1px solid color($black tint(80%));
+      padding: 1rem;
+    }
+  }
+}

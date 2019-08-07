@@ -1,0 +1,45 @@
+/* Styles for any in-block text */
+
+/**
+ * Mixin for body content type styles
+ */
+@mixin body-content-type-styles {
+  color: $gray;
+  font-family: $serif;
+  font-size: rem(18);
+  line-height: calc(28/18);
+}
+
+/**
+ * Mixin for styling body content links.
+ */
+@mixin body-link {
+  a {
+    color: $brand-blue;
+    display: inline;
+    font-size: inherit;
+    font-weight: 700;
+    transition: $linkTransition;
+
+    &:hover {
+      color: $gray;
+    }
+  }
+}
+
+/**
+ * Basic bold, italic, and link formatting
+ */
+@mixin basic-formatting {
+  @include body-link;
+
+  b,
+  strong {
+    font-weight: 700;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+}

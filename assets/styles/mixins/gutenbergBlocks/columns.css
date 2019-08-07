@@ -1,0 +1,15 @@
+@mixin block-columns {
+
+  :global(.wp-block-columns) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  :global(.wp-block-column) {
+    flex: 1 1 auto;
+    margin: 0 0 rem(36);
+    max-width: 48%;
+    min-width: 25%;
+  }
+}

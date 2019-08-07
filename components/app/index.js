@@ -14,11 +14,7 @@ import getProviders from 'selectors/getProviders';
 import styles from './app.css';
 
 const App = (props) => {
-  const {
-    error,
-    roots,
-    providers,
-  } = props;
+  const { error, roots, providers } = props;
   return (
     <ErrorBoundary>
       <Helmet>

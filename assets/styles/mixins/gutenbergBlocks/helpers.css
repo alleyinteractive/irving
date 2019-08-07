@@ -1,0 +1,7 @@
+/**
+ * Mixin for styling block-level text elements
+ */
+@mixin block-level-element {
+  display: block;
+  margin: 0 0 rem(18);
+}

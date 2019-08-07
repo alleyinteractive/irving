@@ -1,0 +1,21 @@
+@mixin block-media-text {
+
+  :global(.wp-block-media-text) {
+    @include block-level-element;
+    display: flex;
+    flex-direction: column;
+
+    @media ($smMin) {
+      flex-direction: row;
+    }
+
+    figure,
+    div {
+      width: 100%;
+
+      @media ($smMin) {
+        lost-column: 1/2;
+      }
+    }
+  }
+}

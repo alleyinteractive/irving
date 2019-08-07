@@ -21,7 +21,7 @@
   width: 100%;
 
   &::placeholder {
-    color: $grayLight;
+    color: $background-gray;
   }
 }
 
