@@ -1,0 +1,32 @@
+@mixin block-paragraph {
+
+  p {
+    @include body-content-type-styles;
+    @include block-level-element;
+    @include basic-formatting;
+
+    &:global(.has-small-font-size) {
+      font-size: rem(13);
+    }
+
+    &:global(.has-medium-font-size) {
+      font-size: rem(20);
+    }
+
+    &:global(.has-large-font-size) {
+      font-size: rem(36);
+    }
+
+    &:global(.has-huge-font-size) {
+      font-size: rem(48);
+    }
+
+    &:global(.has-drop-cap) {
+
+      &::first-letter {
+        display: inline-block;
+        font-size: rem(100);
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+/* Styles for core quote block */
+@mixin cite {
+  cite,
+  :global(.wp-block-quote__citation) {
+    color: $black;
+    display: flex;
+    font-family: $sans;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: 1rem;
+  }
+
+  cite {
+    &::before {
+      content: '–';
+      display: inline-block;
+      margin-right: rem(3);
+    }
+  }
+}
+
+@mixin block-quote {
+  :global(.wp-block-quote),
+  > blockquote {
+    @include block-level-element;
+    @include cite;
+    border-bottom: 1px solid $black;
+    border-left: 0;
+    border-top: 1px solid $black;
+    color: $black;
+    padding: rem(36) 0;
+
+    p {
+      font-family: $sans;
+      font-size: rem(22);
+      font-style: italic;
+      font-weight: 300;
+      line-height: calc(38/28);
+      margin-bottom: 0;
+    }
+
+    &:global(.is-style-large) {
+      p {
+        font-size: rem(28);
+      }
+    }
+  }
+}
+
+@mixin block-pullquote {
+  :global(.wp-block-pullquote) {
+    @include block-alignment;
+    @include block-level-element;
+    @include cite;
+    border-bottom: 1px solid $black;
+    border-top: 1px solid $black;
+    font-family: $sans;
+    padding: rem(36) 0;
+
+    @media ($lgMin) {
+      margin: 0 rem(-50) rem(36) rem(-50);
+    }
+
+    &:global(.alignleft) {
+      @media ($lgMin) {
+        margin-left: rem(-50);
+      }
+    }
+
+    &:global(.alignright) {
+      @media ($lgMin) {
+        margin-right: rem(-50);
+      }
+    }
+
+    p {
+      font-family: $sans;
+      font-size: rem(28);
+      font-style: italic;
+      font-weight: 300;
+      line-height: calc(38/28);
+      margin-bottom: 0;
+    }
+  }
+}

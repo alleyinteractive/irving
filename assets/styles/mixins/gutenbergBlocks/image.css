@@ -1,0 +1,98 @@
+/* Styles for core image block */
+@mixin figcaption {
+  @include body-link;
+  border-bottom: 1px solid $black;
+  caption-side: bottom;
+  display: table-caption;
+  font-family: $sans;
+  font-size: rem(14);
+  font-style: italic;
+  line-height: calc(18/14);
+  padding: rem(15) 0;
+}
+
+@mixin image-credit {
+  color: $gray;
+  display: block;
+  font-family: $sans;
+  font-size: rem(12);
+  font-style: italic;
+  line-height: 1;
+  padding: rem(3 5 0);
+  text-align: right;
+}
+
+@mixin block-image {
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* No alignment set: <figure class="wp-block-image"> element only */
+  :global(figure.wp-block-image) {
+    display: table;
+    margin-bottom: rem(36);
+    max-width: 100%;
+
+    :global(.image-credit) {
+      @include image-credit;
+
+      + figcaption {
+        padding-top: rem(5);
+      }
+    }
+
+    figcaption {
+      @include figcaption;
+    }
+  }
+
+  /* Alignment set: <div class="wp-block-image"> wrapper around <figure class="align{left|right}"> */
+  :global(div.wp-block-image) {
+    figure {
+      display: table;
+      margin: 0 rem(36) rem(36) 0;
+    }
+
+    :global(.alignleft),
+    :global(.alignright) {
+      max-width: 50%;
+    }
+
+    :global(.alignleft) {
+      float: left;
+      margin: 0 rem(36) rem(36) 0;
+    }
+
+    :global(.alignright) {
+      float: right;
+      margin: 0 0 rem(36) rem(36);
+    }
+
+    :global(.aligncenter) {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      clear: both;
+
+      figcaption {
+        display: block;
+        text-align: center;
+      }
+    }
+
+    :global(.image-credit) {
+      @include image-credit;
+
+      + figcaption {
+        padding-top: rem(5);
+      }
+    }
+
+    figcaption {
+      @include figcaption;
+    }
+  }
+}

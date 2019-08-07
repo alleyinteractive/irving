@@ -1,0 +1,107 @@
+@import 'mixins/index';
+
+/* stylelint-disable selector-max-specificity */
+.editor-writing-flow {
+  [data-type="core/freeform"] {
+    .mce-content-body {
+      @include basic-editor-styles;
+    }
+  }
+
+  [data-type="core/paragraph"] {
+    @include block-paragraph;
+  }
+
+  [data-type="core/list"] {
+    @include block-list;
+  }
+
+  [data-type="core/quote"] {
+    @include block-quote;
+  }
+
+  [data-type="core/pullquote"] {
+    @include block-pullquote;
+
+    :global(.editor-block-list__block-edit .wp-block-pullquote) {
+      @media ($xlMin) {
+        margin: 0 0 0 0;
+      }
+
+      &:global(.alignleft) {
+        @media ($xlMin) {
+          margin-left: 0;
+        }
+      }
+
+      &:global(.alignright) {
+        @media ($xlMin) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  [data-type="core/heading"] {
+    @include block-heading;
+  }
+
+  [data-type="core/image"] {
+    @include block-image;
+  }
+
+  [data-type="core/gallery"] {
+    @include block-gallery;
+    max-width: none;
+    width: 100%;
+  }
+
+  [data-type="core/cover-image"] {
+    @include body-content-type-styles;
+    max-width: none;
+    width: 100%;
+  }
+
+  [data-type="core/separator"] {
+    @include block-separator;
+  }
+
+  [data-type="core/button"] {
+    @include block-button;
+  }
+
+  [data-type="core/columns"] {
+    :global(.wp-block-columns) > :global(.editor-inner-blocks) > :global(.editor-block-list__layout) {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+
+      [data-type="core/column"] {
+        flex: 1 1 auto;
+        max-width: calc(50% - rem(64));
+        min-width: 25%;
+      }
+    }
+  }
+
+  [data-type="core/YouTube"] {
+    @include block-embed;
+  }
+
+  [data-type="core/preformatted"] {
+    @include block-preformatted;
+  }
+
+  [data-type="core/code"] {
+    @include block-code;
+
+    textarea {
+      background-color: transparent;
+    }
+  }
+}
+
+.mce-content-body {
+  @include basic-editor-styles;
+}
+/* stylelint-enable */

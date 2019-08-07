@@ -1,0 +1,50 @@
+/* In-body heading styles */
+@mixin block-heading {
+  big,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include block-level-element;
+    color: $gray;
+    font-family: $serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: rem(10);
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: $linkTransition;
+
+      &:hover {
+        color: $brand-blue;
+      }
+    }
+  }
+
+  h2 {
+    font-size: rem(28);
+
+    @media ($mdMin) {
+      font-size: rem(36);
+    }
+  }
+
+  h3 {
+    font-size: rem(28);
+  }
+
+  h4 {
+    font-size: rem(24);
+  }
+
+  h5 {
+    font-size: rem(18);
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,44 @@
+@import 'helpers';
+@import 'alignment';
+@import 'text';
+@import 'paragraph';
+@import 'heading';
+@import 'list';
+@import 'quote';
+@import 'coverImage';
+@import 'gallery';
+@import 'separator';
+@import 'image';
+@import 'table';
+@import 'pre';
+@import 'button';
+@import 'mediaText';
+@import 'columns';
+@import 'embed';
+
+@mixin gutenberg-block-styles {
+  @include block-paragraph;
+  @include block-heading;
+  @include block-list;
+  @include block-quote;
+  @include block-pullquote;
+  @include block-cover-image;
+  @include block-gallery;
+  @include block-separator;
+  @include block-image;
+  @include block-table;
+  @include block-code;
+  @include block-preformatted;
+  @include block-button;
+  @include block-media-text;
+  @include block-columns;
+  @include block-embed;
+}
+
+@mixin basic-editor-styles {
+  @include body-content-type-styles;
+  @include basic-formatting;
+  @include block-paragraph;
+  @include block-list;
+  @include block-quote;
+}

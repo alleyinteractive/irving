@@ -1,0 +1,8 @@
+@import 'mixins/index';
+
+.wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+
+  @include basic-editor-styles;
+}
