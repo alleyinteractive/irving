@@ -13,7 +13,7 @@ const Body = (props) => {
       <Helmet>
         <body className={classNames(bodyClasses)} />
       </Helmet>
-      <main classNames={styles.content} id="content">
+      <main className={styles.content} id="content">
         {children}
       </main>
     </>
