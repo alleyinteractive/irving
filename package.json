@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "@wordpress/i18n": "^3.6.0",
     "basic-auth": "^2.0.0",
     "classnames": "^2.2.5",
     "critical-style-loader": "^1.0.1",
