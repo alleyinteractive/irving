@@ -9,7 +9,7 @@ import GoogleTagManager from 'components/googleTagManager';
 import Head from 'components/head';
 import Image from 'components/image/image';
 import Menu from 'components/menu';
-import MenuItem from 'components/MenuItem';
+import MenuItem from 'components/menuItem';
 import NotConfigured from 'components/notConfigured';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
