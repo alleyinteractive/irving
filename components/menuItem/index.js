@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import className from 'classnames';
+import classNames from 'classnames';
 import Link from 'components/helpers/link';
 import { findChildByName } from 'utils/children';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './menuItem.css';
+
 const MenuItem = (props) => {
   const {
     children, label, themeName, url,
@@ -16,12 +17,20 @@ const MenuItem = (props) => {
 
   return (
     <li
-      className={className(styles.wrapper, styles[themeName], {
+      className={classNames(styles.wrapper, styles[themeName], {
         [styles.hasChildren]: menu,
+        [styles.isChildless]: ! menu,
       })}
     >
       {menu ? (
-        <button onClick={() => setIsExpanded(! isExpanded)} type="button">
+        <button
+          onClick={() => setIsExpanded(! isExpanded)}
+          type="button"
+          aria-expanded={isExpanded}
+          className={classNames(styles.parent, {
+            [styles.isExpanded]: isExpanded,
+          })}
+        >
           {label}
         </button>
       ) : (

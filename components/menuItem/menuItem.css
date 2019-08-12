@@ -1,9 +1,58 @@
 /* MenuItem component styles */
 
 .wrapper {
-  border: 5px solid magenta;
+  align-content: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
 }
 
-.hasChildren {
-  border: 3px solid yellow;
+.isChildless {
+  border-bottom: $border-thin--gray;
+  flex-flow: row nowrap;
+
+  &::before {
+    content: '-';
+    margin-right: 1ch;
+    padding: rem(10) 0 rem(10) rem(3);
+    text-decoration: none;
+  }
+}
+
+.parent {
+  @include after-image;
+  align-items: center;
+  border-bottom: $border-thin--white;
+  color: $white;
+  display: flex;
+  flex-flow: row nowrap;
+  font-family: $sans;
+  font-weight: 700;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: rem(12) 0 rem(12) rem(3);
+  text-align: left;
+  width: 100%;
+
+  &::after {
+    position: static;
+  }
+}
+
+.isExpanded {
+  &::after {
+    transform: rotate(45deg);
+  }
+}
+
+.link {
+  display: block;
+  font-family: $sans;
+  font-size: rem(16);
+  line-height: 1.231;
+  padding: rem(10) 0 rem(10) rem(3);
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

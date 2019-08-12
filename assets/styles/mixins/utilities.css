@@ -20,3 +20,22 @@
   width: 1px;
   word-wrap: normal;
 }
+
+@mixin after-image($image: https://cdn.technologyreview.com/_/img/plus--white.svg) {
+  position: relative;
+
+  &::after {
+    background-image: url($image);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: '';
+    display: block;
+    height: rem(12);
+    position: absolute;
+    right: rem(10);
+    top: rem(10);
+    transition: transform 235ms ease;
+    width: rem(12);
+  }
+}
