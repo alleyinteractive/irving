@@ -2,13 +2,58 @@
   background-color: $black;
   color: $white;
   display: block;
+  justify-self: flex-end;
+  margin: 0 auto;
   width: 100%;
 }
 
 .wrapper {
+  @include container-with-bleed;
   margin: 0 auto;
-  max-width: $siteMaxWidth;
-  padding: rem(30) rem(10) 0;
+  padding-bottom: 0;
+  padding-top: rem(30);
+
+  @media ($lgMin) {
+    padding-top: rem(50);
+  }
+}
+
+.header {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: rem(30);
+
+  @media ($lgMin) {
+    flex-flow: row nowrap;
+    margin-bottom: rem(50);
+  }
+}
+
+.icon {
+  background-image: url(https://cdn.technologyreview.com/_/img/tr-glyph-v2--white.svg);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: none;
+  height: rem(34);
+
+  @media ($lgMin) {
+    display: block;
+    margin-right: tidy-var(gap);
+    order: 0;
+    tidy-span: 2;
+  }
+}
+
+.intro {
+  display: flex;
+  flex-flow: column nowrap;
+  order: 1;
+
+  @media ($lgMin) {
+    margin-right: tidy-var(gap);
+    tidy-span: 6;
+  }
 }
 
 .title {
@@ -39,10 +84,16 @@
   font-weight: 700;
   line-height: 1.25;
   margin-bottom: rem(20);
+  order: 3;
   padding: rem(8) 0 rem(8) rem(11);
   position: relative;
   transition: $linkTransition;
   width: 100%;
+
+  @media ($lgMin) {
+    tidy-offset-left: 2;
+    tidy-span: 2;
+  }
 
   &:hover {
     background-color: $white;
@@ -59,8 +110,18 @@
   font-family: $sans;
   font-size: rem(14);
   padding-bottom: rem(20);
+
+  @media ($lgMin) {
+    tidy-offset-left: 2;
+    tidy-span: 10;
+  }
 }
 
 .menu {
   margin-bottom: rem(30);
+
+  @media ($lgMin) {
+    tidy-offset-left: 2;
+    tidy-span: 10;
+  }
 }

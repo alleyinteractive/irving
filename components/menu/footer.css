@@ -1,0 +1,13 @@
+.wrapper {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+
+  @media ($lgMin) {
+    flex-flow: row nowrap;
+  }
+}

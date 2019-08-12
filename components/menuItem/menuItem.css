@@ -5,6 +5,20 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
+
+  &.footer {
+    @media ($lgMin) {
+      margin-right: tidy-var(gap);
+      tidy-span: 2;
+    }
+
+    /* stylelint-disable-next-line selector-max-specificity */
+    &:nth-of-type(5) {
+      @media ($lgMin) {
+        margin-right: 0;
+      }
+    }
+  }
 }
 
 .isChildless {
@@ -12,15 +26,16 @@
   flex-flow: row nowrap;
 
   &::before {
-    content: '-';
-    margin-right: 1ch;
-    padding: rem(10) 0 rem(10) rem(3);
-    text-decoration: none;
+    @media ($mdMax) {
+      content: '-';
+      margin-right: 1ch;
+      padding: rem(10) 0 rem(10) rem(3);
+      text-decoration: none;
+    }
   }
 }
 
 .parent {
-  @include after-image;
   align-items: center;
   border-bottom: $border-thin--white;
   color: $white;
@@ -36,6 +51,10 @@
 
   &::after {
     position: static;
+  }
+
+  @media ($lgMax) {
+    @include after-image;
   }
 }
 
