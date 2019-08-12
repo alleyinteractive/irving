@@ -12,6 +12,7 @@ const stylelint = require('stylelint');
 const browserReporter = require('postcss-browser-reporter');
 const reporter = require('postcss-reporter');
 const prependImports = require('postcss-prepend-imports');
+const tidyColumns = require('postcss-tidy-columns');
 
 // Other imports
 const paths = require('./paths');
@@ -40,6 +41,12 @@ module.exports = () => ({
       mediaQueries: true,
     }),
     colorFunction(),
+    tidyColumns({
+      columns: 12,
+      gap: '1rem',
+      edge: '1.25rem',
+      siteMax: '73.75rem',
+    }),
     focus(),
     autoprefixer({
       flexbox: 'no-2009',
