@@ -37,11 +37,8 @@ Menu.propTypes = {
 };
 
 Menu.defaultProps = {
-  titleLink: '',
-};
-
-Menu.defaultProps = {
   displayTitle: false,
+  titleLink: '',
 };
 
 export default withStyles(styles)(Menu);
