@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "@wordpress/i18n": "^3.6.0",
     "basic-auth": "^2.0.0",
     "classnames": "^2.2.5",
     "critical-style-loader": "^1.0.1",
@@ -103,6 +104,7 @@
     "postcss-import": "^12.0.1",
     "postcss-loader": "^2.1.5",
     "postcss-nested": "^4.1.1",
+    "postcss-prepend-imports": "^1.0.1",
     "postcss-reporter": "^6.0.1",
     "postcss-sassy-mixins": "^2.1.0",
     "postcss-simple-vars": "^5.0.1",

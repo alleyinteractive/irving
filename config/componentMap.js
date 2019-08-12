@@ -8,6 +8,8 @@ import GoogleAnalytics from 'components/googleAnalytics';
 import GoogleTagManager from 'components/googleTagManager';
 import Head from 'components/head';
 import Image from 'components/image/image';
+import Menu from 'components/menu';
+import MenuItem from 'components/menuItem';
 import NotConfigured from 'components/notConfigured';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
@@ -34,8 +36,8 @@ export const componentMap = {
   header: Placeholder,
   html: RawHTML,
   image: Image,
-  menu: Placeholder,
-  'menu-item': Placeholder,
+  menu: Menu,
+  'menu-item': MenuItem,
   parsely: Parsely,
   'social-links': SocialList,
   'social-share': SocialList,

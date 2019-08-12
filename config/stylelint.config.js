@@ -1,15 +1,13 @@
 module.exports = {
-  plugins: [
-    'stylelint-order',
-  ],
+  plugins: ['stylelint-order'],
   rules: {
-    'at-rule-empty-line-before': ['always', {
-      except: [
-        'blockless-after-same-name-blockless',
-        'first-nested',
-      ],
-      ignore: ['after-comment'],
-    }],
+    'at-rule-empty-line-before': [
+      'always',
+      {
+        except: ['blockless-after-same-name-blockless', 'first-nested'],
+        ignore: ['after-comment'],
+      },
+    ],
     indentation: 2,
     'at-rule-name-case': 'lower',
     'at-rule-name-space-after': 'always',
@@ -36,16 +34,22 @@ module.exports = {
     'no-missing-end-of-source-newline': true,
     'number-leading-zero': 'always',
     'order/properties-alphabetical-order': true,
-    'rule-empty-line-before': ['always', {
-      ignore: ['after-comment'],
-    }],
+    'rule-empty-line-before': [
+      'always',
+      {
+        ignore: ['after-comment', 'first-nested'],
+      },
+    ],
     'selector-combinator-space-after': 'always',
     'selector-combinator-space-before': 'always',
     'selector-descendant-combinator-no-non-space': true,
     'selector-list-comma-newline-after': 'always',
-    'selector-max-specificity': ['0,2,1', {
-      ignoreSelectors: [':global', ':local'],
-    }],
+    'selector-max-specificity': [
+      '0,2,1',
+      {
+        ignoreSelectors: [':global', ':local'],
+      },
+    ],
     'selector-no-vendor-prefix': true,
     'selector-pseudo-class-case': 'lower',
     'selector-pseudo-class-parentheses-space-inside': 'never',

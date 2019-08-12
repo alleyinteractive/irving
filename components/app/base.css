@@ -3,7 +3,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-overflow-scrolling: touch;
   color: #444444;
-  font-size: rem(13px);
+  font-size: rem(13);
   font-family: $sans;
   line-height: 1.231;
 }
@@ -294,6 +294,8 @@ textarea {
 }
 
 button {
-  width: auto;
+  background: transparent;
+  border: 0;
   overflow: visible;
+  width: auto;
 }

@@ -11,6 +11,7 @@ const focus = require('postcss-focus');
 const stylelint = require('stylelint');
 const browserReporter = require('postcss-browser-reporter');
 const reporter = require('postcss-reporter');
+const prependImports = require('postcss-prepend-imports');
 
 // Other imports
 const paths = require('./paths');
@@ -22,13 +23,17 @@ const flatten = require('../utils/flatten');
 module.exports = () => ({
   plugins: [
     stylelint(stylelintConfig),
+    variables({
+      variables: flatten(cssVars),
+    }),
+    prependImports({
+      path: paths.globalStyles,
+      files: ['mixins/index.css'],
+    }),
     cssImport({
       path: [paths.globalStyles],
     }), // Import files
     mixins(),
-    variables({
-      variables: flatten(cssVars),
-    }),
     units(), // Compute rem() function
     nested(), // Allow nested syntax.
     calc({
