@@ -13,7 +13,7 @@
   padding-bottom: 0;
   padding-top: rem(30);
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     padding-top: rem(50);
   }
 }
@@ -23,7 +23,7 @@
   flex-flow: column nowrap;
   margin-bottom: rem(30);
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     flex-flow: row nowrap;
     margin-bottom: rem(50);
   }
@@ -49,11 +49,16 @@
   display: flex;
   flex-flow: column nowrap;
   order: 1;
+  width: 100%;
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     margin-right: tidy-var(gap);
     tidy-span: 6;
   }
+
+  /* @media ($lgMin) {
+    tidy-span: 6;
+  } */
 }
 
 .title {
@@ -62,6 +67,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   height: rem(36);
+  margin-bottom: rem(20);
   max-width: 100%;
   overflow: hidden;
   text-indent: -9999px;
@@ -90,10 +96,15 @@
   transition: $linkTransition;
   width: 100%;
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     tidy-offset-left: 2;
     tidy-span: 2;
   }
+
+  /* @media ($lgMin) {
+    tidy-offset-left: 2;
+    tidy-span: 2;
+  } */
 
   &:hover {
     background-color: $white;
@@ -119,6 +130,11 @@
 
 .menu {
   margin-bottom: rem(30);
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-left: 0;
+  }
 
   @media ($lgMin) {
     tidy-offset-left: 2;

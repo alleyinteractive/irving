@@ -17,15 +17,15 @@ const MenuItem = (props) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Breakpoints
-  const isLgMin = useBreakpoint('lgMin');
+  const isMdMin = useBreakpoint('mdMin');
 
   useEffect(() => {
-    if (isLgMin) {
+    if (isMdMin) {
       setIsExpanded(true);
     } else {
       setIsExpanded(false);
     }
-  }, [isLgMin]);
+  }, [isMdMin]);
 
   return (
     <li

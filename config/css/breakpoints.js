@@ -2,9 +2,9 @@
  * Custom media queries
  */
 const bkptVal = {
-  lg: 82, // 1312px = desktop
-  md: 60, // 960px = tablet
-  sm: 40, // 640px = phablet
+  lg: 78.125, // 1250 = desktop
+  md: 64, // 1024 = tablet
+  sm: 53.125, // 850 = phablet
 };
 
 const breakpoints = Object.keys(bkptVal).reduce((acc, curr) => {
