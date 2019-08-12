@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 import { withStyles } from 'critical-style-loader/lib';
+import Link from 'components/helpers/link';
 import styles from './footer.css';
 
 const Footer = ({ children, copyrightLink, missionStatement }) => {
@@ -14,9 +15,9 @@ const Footer = ({ children, copyrightLink, missionStatement }) => {
           {__('MIT Technology Review', 'mittr')}
         </h2>
         <div className={styles.missionStatement}>{missionStatement}</div>
-        <a href="/editions/" className={styles.editionsLink}>
+        <Link to="/editions/" className={styles.editionsLink}>
           {__('Browse international editions', 'mittr')}
-        </a>
+        </Link>
         <div className={styles.menu}>{menu}</div>
         <div className={styles.copyright}>
           <a href={copyrightLink}>MIT Technology Review © 2019</a>
