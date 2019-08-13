@@ -20,7 +20,9 @@ const Footer = ({ children, copyrightLink, missionStatement }) => {
           </div>
           <div className={styles.icon} aria-hidden="true" />
           <Link to="/editions/" className={styles.editionsLink}>
-            {__('Browse international editions', 'mittr')}
+            <span>Browse</span>
+            <span>International</span>
+            <span>Editions</span>
           </Link>
         </header>
         <div className={styles.menu}>{menu}</div>

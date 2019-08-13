@@ -1,0 +1,29 @@
+.wrapper {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-flow: column nowrap;
+
+  @media ($smMin) {
+    flex-flow: row nowrap;
+  }
+
+  > li {
+    @media ($smMin) {
+      margin-right: tidy-var(gap);
+      tidy-span: 2;
+    }
+
+    @media ($lgMin) {
+      tidy-span: 2;
+    }
+
+    &:nth-of-type(5) {
+      @media ($smMin) {
+        margin-right: 0;
+      }
+    }
+  }
+}

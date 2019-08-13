@@ -5,7 +5,7 @@ import Link from 'components/helpers/link';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import styles from './menu.css';
-import footerStyles from './footer.css';
+import footerStyles from './footerMenu.css';
 
 const Menu = (props) => {
   const {

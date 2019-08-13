@@ -5,20 +5,6 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-
-  &.footer {
-    @media ($mdMin) {
-      margin-right: tidy-var(gap);
-      tidy-span: 2;
-    }
-
-    /* stylelint-disable-next-line selector-max-specificity */
-    &:nth-of-type(5) {
-      @media ($mdMin) {
-        margin-right: 0;
-      }
-    }
-  }
 }
 
 .isChildless {
@@ -26,7 +12,7 @@
   flex-flow: row nowrap;
 
   &::before {
-    @media ($mdMax) {
+    @media ($smMax) {
       content: '-';
       margin-right: 1ch;
       padding: rem(10) 0 rem(10) rem(3);
@@ -53,7 +39,7 @@
     position: static;
   }
 
-  @media ($mdMax) {
+  @media ($smMax) {
     @include after-image;
   }
 }
