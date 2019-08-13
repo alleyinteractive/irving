@@ -1,4 +1,3 @@
-@import 'mixins/index';
 @import 'reset.css';
 @import 'fonts/fonts.css';
 @import './base.css';
@@ -6,8 +5,7 @@
 .wrapper {
   display: flex;
   flex-flow: column nowrap;
-  margin: 0 auto;
-  max-width: 80rem;
+  min-height: 100vh;
 }
 
 .skipLink {

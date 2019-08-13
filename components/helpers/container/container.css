@@ -5,8 +5,8 @@
 }
 
 .padding {
-  padding-left: $gutterOutside;
-  padding-right: $gutterOutside;
+  padding-left: tidy_var(edge);
+  padding-right: tidy_var(edge);
 }
 
 .lg {

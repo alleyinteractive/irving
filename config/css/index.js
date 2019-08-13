@@ -12,7 +12,6 @@ module.exports = {
   animations: require('./animations'),
   breakpoints: require('./breakpoints'),
   bkptVal: require('./breakpoints').bkptVal,
-  layout: require('./layout'),
   ui: require('./ui'),
 };
 /* eslint-enable */

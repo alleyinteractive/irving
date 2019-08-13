@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Link from 'components/helpers/link';
 import { findChildByName } from 'utils/children';
 import { withStyles } from 'critical-style-loader/lib';
+import useBreakpoint from 'hooks/useBreakpoint';
 import styles from './menuItem.css';
 
 const MenuItem = (props) => {
@@ -14,6 +15,17 @@ const MenuItem = (props) => {
 
   const menu = findChildByName('menu', children);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // Breakpoints
+  const isSmMin = useBreakpoint('smMin');
+
+  useEffect(() => {
+    if (isSmMin) {
+      setIsExpanded(true);
+    } else {
+      setIsExpanded(false);
+    }
+  }, [isSmMin]);
 
   return (
     <li

@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import className from 'classnames';
 import Link from 'components/helpers/link';
 import { withStyles } from 'critical-style-loader/lib';
+import withThemes from 'components/hoc/withThemes';
 import styles from './menu.css';
+import footerStyles from './footerMenu.css';
 
 const Menu = (props) => {
   const {
-    children, displayTitle, themeName, title, titleLink,
+    children, displayTitle, themeName, title, titleLink, theme,
   } = props;
 
   return (
-    <nav className={className(styles.wrapper, styles[themeName])}>
+    <nav className={className(theme.wrapper, styles[themeName])}>
       {title && displayTitle && (
-        <h2 className={styles.title}>
+        <h2 className={theme.title}>
           {titleLink ? (
-            <Link className={styles.titleLink} to={titleLink}>
+            <Link className={theme.titleLink} to={titleLink}>
               {title}
             </Link>
           ) : (
@@ -23,7 +25,7 @@ const Menu = (props) => {
           )}
         </h2>
       )}
-      <ul className={styles.list}>{children}</ul>
+      <ul className={theme.list}>{children}</ul>
     </nav>
   );
 };
@@ -34,6 +36,10 @@ Menu.propTypes = {
   themeName: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   titleLink: PropTypes.string,
+  theme: PropTypes.shape({
+    wrapper: PropTypes.string,
+    list: PropTypes.string,
+  }).isRequired,
 };
 
 Menu.defaultProps = {
@@ -41,4 +47,11 @@ Menu.defaultProps = {
   titleLink: '',
 };
 
-export default withStyles(styles)(Menu);
+const wrapWithThemes = withThemes('menu', {
+  default: styles,
+  footer: footerStyles,
+});
+
+const wrapWithStyles = withStyles(styles, footerStyles);
+
+export default wrapWithThemes(wrapWithStyles(Menu));

@@ -10,18 +10,16 @@ import ThemeContext from 'components/hoc/themeContext';
  *
  * @todo add tests for this once https://github.com/airbnb/enzyme/pull/1513 is merged
  *
- * @param {string} indentifier String to identify this component. ThemeContext can provide themes for multiple components,
+ * @param {string} identifier String to identify this component. ThemeContext can provide themes for multiple components,
  *                             so the identifier is used to pull out the theme for just this component from context
  * @param {object} componentThemes All themes available for this component. Keys are the string identifying the theme,
  *                                 values are the contents of an imported stylesheet (localized cssmodules classnames)
  *
  * @param {bool} composes Should default classes be composed with (added to) theme classes or overridden by them?
  */
-const withThemes = (
-  identifier,
-  componentThemes,
-  composes = false
-) => (WrappedComponent) => {
+const withThemes = (identifier, componentThemes, composes = false) => (
+  WrappedComponent
+) => {
   const ThemePicker = (props) => {
     /**
      * Get the theme name.
@@ -35,7 +33,8 @@ const withThemes = (
         theme: propsTheme,
         themeName: propsThemeName,
       } = props;
-      const hasThemeFromContext = contextThemes &&
+      const hasThemeFromContext =
+        contextThemes &&
         Object.keys(contextThemes).length &&
         contextThemes[identifier];
       let themeName = 'default';
@@ -63,9 +62,7 @@ const withThemes = (
       // Should theme styles override or compose the defaults?
       if (composes) {
         return assignWith(
-          (objValue, srcValue) => (
-            classNames(srcValue, objValue)
-          ),
+          (objValue, srcValue) => classNames(srcValue, objValue),
           theme,
           defaultTheme
         );
@@ -88,14 +85,8 @@ const withThemes = (
   };
 
   ThemePicker.propTypes = {
-    themeName: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.bool,
-    ]),
-    theme: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.bool,
-    ]),
+    themeName: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    theme: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   };
 
   ThemePicker.defaultProps = {

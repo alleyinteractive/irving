@@ -11,13 +11,20 @@ const Footer = ({ children, copyrightLink, missionStatement }) => {
   return (
     <footer className={styles.container} aria-labelledby="footer">
       <div className={styles.wrapper}>
-        <h2 id="footer" className={styles.title}>
-          {__('MIT Technology Review', 'mittr')}
-        </h2>
-        <div className={styles.missionStatement}>{missionStatement}</div>
-        <Link to="/editions/" className={styles.editionsLink}>
-          {__('Browse international editions', 'mittr')}
-        </Link>
+        <header className={styles.header}>
+          <div className={styles.intro}>
+            <h2 id="footer" className={styles.title}>
+              {__('MIT Technology Review', 'mittr')}
+            </h2>
+            <p className={styles.missionStatement}>{missionStatement}</p>
+          </div>
+          <div className={styles.icon} aria-hidden="true" />
+          <Link to="/editions/" className={styles.editionsLink}>
+            <span>Browse</span>
+            <span>International</span>
+            <span>Editions</span>
+          </Link>
+        </header>
         <div className={styles.menu}>{menu}</div>
         <div className={styles.copyright}>
           <a href={copyrightLink}>MIT Technology Review © 2019</a>
