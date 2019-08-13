@@ -6,3 +6,26 @@
   padding-right: tidy-var(edge);
   width: calc(tidy-span(tidy-var(columns)) + tidy-var(edge) * 2);
 }
+
+/**
+ * Ensures a tidy-columns property applies to all screen sizes.
+ */
+@mixin keep-tidy {
+  @content;
+
+  /* Matches column breakpoint in postcss config. */
+  @media ($lgMin) {
+    @content;
+  }
+}
+
+/**
+ * Content-width container.
+ */
+@mixin container {
+  @include keep-tidy {
+    tidy-span: tidy-var(columns);
+  }
+  margin-left: auto;
+  margin-right: auto;
+}
