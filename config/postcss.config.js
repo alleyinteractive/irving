@@ -45,10 +45,12 @@ module.exports = () => ({
       columns: 10,
       gap: '1rem',
       edge: '1.25rem',
-      siteMax: '77.5',
+      siteMax: '78.125rem',
       breakpoints: {
-        '60rem': {
+        '78.125rem': {
           columns: 12,
+          edge: '1.25rem',
+          gap: '1rem',
         },
       },
     }),
