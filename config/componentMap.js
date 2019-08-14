@@ -29,6 +29,7 @@ export const componentMap = {
   byline: Byline,
   'content-header': ContentHeader,
   'content-body': ContentBody,
+  // 'content-footer': Placeholder,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
@@ -43,7 +44,7 @@ export const componentMap = {
   parsely: Parsely,
   'social-links': SocialList,
   'social-share': SocialList,
-  'social-item': Placeholder,
+  // 'social-item': Placeholder,
 };
 
 /**

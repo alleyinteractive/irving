@@ -5,16 +5,20 @@
   flex-flow: column nowrap;
   font-family: $serif;
   margin: 0 auto;
-  tidy-span: 10;
+  max-width: 1272px; /* @todo put this in a variable */
 
-  @media ($mdMin) {
-    tidy-offset: 1;
-    tidy-span: 6;
-  }
+  > * {
+    tidy-span: 10;
 
-  @media ($lgMin) {
-    tidy-offset: 1;
-    tidy-span: 6;
+    @media ($mdMin) {
+      tidy-offset-left: 1;
+      tidy-span: 6;
+    }
+
+    @media ($lgMin) {
+      tidy-offset-left: 1;
+      tidy-span: 6;
+    }
   }
 
   @include basic-editor-styles;
