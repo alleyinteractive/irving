@@ -1,0 +1,9 @@
+/* Byline component styles */
+
+.wrapper {
+  font-family: $sans;
+}
+
+.name {
+  font-weight: 700;
+}

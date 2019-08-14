@@ -1,5 +1,6 @@
 .wrapper {
   display: block;
+  width: 100%;
 }
 
 .img,
@@ -8,7 +9,6 @@
 }
 
 .lazyload {
-
   .placeholder {
     display: block;
   }
@@ -20,7 +20,6 @@
 
   /* stylelint-disable selector-max-specificity */
   &.loaded {
-
     .placeholder {
       display: none;
     }

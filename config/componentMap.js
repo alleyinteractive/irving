@@ -1,5 +1,6 @@
 import AudioElement from 'components/audio';
 import Body from 'components/body';
+import Byline from 'components/byline';
 import ContentBody from 'components/contentBody';
 import ContentHeader from 'components/contentHeader';
 import Disqus from 'components/disqus';
@@ -14,7 +15,7 @@ import NotConfigured from 'components/notConfigured';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import RawHTML from 'components/rawHTML';
-import SocialItem from 'components/socialItem';
+// import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import withLoader from 'components/hoc/withLoader';
 
@@ -25,6 +26,7 @@ export const componentMap = {
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   body: withLoader(Body),
+  byline: Byline,
   'content-header': ContentHeader,
   'content-body': ContentBody,
   disqus: Disqus,
@@ -41,7 +43,7 @@ export const componentMap = {
   parsely: Parsely,
   'social-links': SocialList,
   'social-share': SocialList,
-  'social-item': SocialItem,
+  'social-item': Placeholder,
 };
 
 /**

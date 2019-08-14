@@ -3,6 +3,19 @@
 .wrapper {
   display: flex;
   flex-flow: column nowrap;
+  font-family: $serif;
+  margin: 0 auto;
+  tidy-span: 10;
+
+  @media ($mdMin) {
+    tidy-offset: 1;
+    tidy-span: 6;
+  }
+
+  @media ($lgMin) {
+    tidy-offset: 1;
+    tidy-span: 6;
+  }
 
   @include basic-editor-styles;
 }
