@@ -1,9 +1,6 @@
-@import 'mixins/index';
+/* ContentFooter component styles */
 
 .wrapper {
-  display: flex;
-  flex-flow: column nowrap;
-  font-family: $serif;
   margin: 0 auto;
   max-width: 1272px; /* @todo put this in a variable */
 
@@ -21,6 +18,4 @@
       tidy-span: 6;
     }
   }
-
-  @include basic-editor-styles;
 }

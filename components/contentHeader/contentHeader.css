@@ -1,24 +1,72 @@
 .wrapper {
-  border-bottom: 1px solid black;
-  margin-bottom: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: rem(20);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1272px; /* @todo put this in a variable */
 }
 
 .publishDate {
   font-family: $sans;
-  font-size: 14px;
+  font-size: rem(14);
   font-weight: 400;
-  margin: 0 20px 20px;
+  margin-bottom: rem(20);
   white-space: nowrap;
 }
 
 .title {
-  color: #000;
+  color: $black;
   display: block;
   font-family: $sans;
-  font-size: 34px;
+  font-size: rem(34);
   font-weight: 600;
   font-weight: 700;
   line-height: 1.12;
-  margin: 0 20px 20px;
-  padding: 10px 0 10px 0;
+  margin-bottom: rem(20);
+}
+
+.deck {
+  color: $black;
+  font-family: $sans;
+  font-size: rem(22);
+  font-weight: 400;
+  line-height: 1.36;
+  margin-bottom: rem(50);
+}
+
+.intro {
+  border-bottom: 1px solid black;
+  margin: 0 auto;
+  tidy-span: 10;
+
+  @media ($mdMin) {
+    order: 1;
+    tidy-offset-left: 1;
+    tidy-span: 6;
+  }
+
+  @media ($lgMin) {
+    tidy-offset-left: 1;
+    tidy-span: 6;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.image {
+  @include container-with-bleed;
+  display: flex;
+  margin: 0 auto rem(20);
+  overflow: hidden;
+  /* tidy-span: 10; */
+
+  @media ($mdMin) {
+    order: 0;
+  }
 }
