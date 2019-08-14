@@ -15,9 +15,9 @@ import NotConfigured from 'components/notConfigured';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import RawHTML from 'components/rawHTML';
-// import SocialItem from 'components/socialItem';
-// import ContentFooter from 'components/ContentFooter';
-// import SocialList from 'components/socialList';
+import SocialItem from 'components/socialItem';
+import ContentFooter from 'components/ContentFooter';
+import SocialList from 'components/socialList';
 import withLoader from 'components/hoc/withLoader';
 
 /**
@@ -30,7 +30,7 @@ export const componentMap = {
   byline: Byline,
   'content-header': ContentHeader,
   'content-body': ContentBody,
-  // 'content-footer': ContentFooter, // Hide for demo.
+  'content-footer': ContentFooter, // Hide for demo.
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
@@ -43,9 +43,9 @@ export const componentMap = {
   menu: Menu,
   'menu-item': MenuItem,
   parsely: Parsely,
-  // 'social-links': SocialList, // Hide for demo.
-  // 'social-sharing': SocialList, // Hide for demo.
-  // 'social-item': SocialItem, // Hide for demo.
+  'social-links': SocialList, // Hide for demo.
+  'social-sharing': SocialList, // Hide for demo.
+  'social-item': SocialItem, // Hide for demo.
 };
 
 /**

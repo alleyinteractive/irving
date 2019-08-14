@@ -1,29 +1,32 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'components/helpers/link';
 import { withStyles } from 'critical-style-loader/lib';
-import FacebookIcon from 'assets/icons/facebook.svg';
-import LinkedInIcon from 'assets/icons/linkedin.svg';
-import TwitterIcon from 'assets/icons/twitter.svg';
-import WhatsAppIcon from 'assets/icons/whatsapp.svg';
+import classNames from 'classnames';
+import Link from 'components/helpers/link';
+import socialIconMap from './iconMap';
 import styles from './socialItem.css';
-
-const socialIconMap = {
-  facebook: FacebookIcon,
-  linkedin: LinkedInIcon,
-  twitter: TwitterIcon,
-  whatsapp: WhatsAppIcon,
-};
 
 const SocialItem = ({ type, url, displayIcon }) => {
   const IconComponent = socialIconMap[type];
 
   return (
-    <li className={styles.wrapper}>
-      <Link to={url} className={styles.link}>
-        {displayIcon && IconComponent && <IconComponent />}
-        {type}
+    <li className={classNames(styles.wrapper, styles[type])}>
+      <Link to={url} className={styles.anchor}>
+        <span
+          className={
+            classNames({
+              [styles.label]: 'link' === type,
+              [styles.screenReaderLabel]: 'link' !== type,
+            })
+          }
+        >
+          {type}
+        </span>
+        {displayIcon && IconComponent && (
+          <div className={styles.icon}>
+            <IconComponent />
+          </div>
+        )}
       </Link>
     </li>
   );

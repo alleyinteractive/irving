@@ -1,17 +1,47 @@
 .wrapper {
-  display: block;
+  display: flex;
+  flex-flow: row nowrap;
+  width: auto;
 
-  svg {
-    fill: $black;
-    height: rem(22);
-    width: rem(22);
+  &:not(last-child) {
+    margin-right: rem(15);
   }
 }
 
-.link {
+.anchor {
   align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.icon {
+  /* align-items: center;
   display: flex;
   height: rem(40);
   justify-content: center;
-  width: rem(40);
+  width: rem(40); */
+
+  align-items: center;
+  background-color: $gray;
+  border-radius: 50%;
+  display: flex;
+  flex-flow: row nowrap;
+  height: rem(30);
+  justify-content: center;
+  width: rem(30);
+
+  svg {
+    fill: $white;
+    height: rem(18);
+    width: auto;
+  }
+}
+
+.screenReaderLabel {
+  @include screenreader-only;
+}
+
+.label {
+  @include label;
 }

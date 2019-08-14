@@ -24,9 +24,6 @@ const flatten = require('../utils/flatten');
 module.exports = () => ({
   plugins: [
     stylelint(stylelintConfig),
-    variables({
-      variables: flatten(cssVars),
-    }),
     prependImports({
       path: paths.globalStyles,
       files: ['mixins/index.css'],
@@ -35,6 +32,9 @@ module.exports = () => ({
       path: [paths.globalStyles],
     }), // Import files
     mixins(),
+    variables({
+      variables: flatten(cssVars),
+    }),
     units(), // Compute rem() function
     nested(), // Allow nested syntax.
     calc({
