@@ -1,0 +1,21 @@
+/* ContentFooter component styles */
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1272px; /* @todo put this in a variable */
+
+  > * {
+    margin: 0 auto;
+    tidy-span: 10;
+
+    @media ($mdMin) {
+      tidy-offset-left: 1;
+      tidy-span: 6;
+    }
+
+    @media ($lgMin) {
+      tidy-offset-left: 1;
+      tidy-span: 6;
+    }
+  }
+}
