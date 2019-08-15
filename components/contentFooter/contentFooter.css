@@ -1,21 +1,56 @@
 /* ContentFooter component styles */
 
 .wrapper {
+  border-top: $border-thin--gray-light;
   margin: 0 auto;
   max-width: 1272px; /* @todo put this in a variable */
+  padding-top: rem(20);
+}
 
-  > * {
-    margin: 0 auto;
-    tidy-span: 10;
+.title {
+  @include screenreader-only;
+}
 
-    @media ($mdMin) {
-      tidy-offset-left: 1;
-      tidy-span: 6;
-    }
+.label {
+  @include label;
+  tidy-span: 1;
 
-    @media ($lgMin) {
-      tidy-offset-left: 1;
-      tidy-span: 6;
-    }
+  @media ($lgMin) {
+    tidy-span: 1;
+  }
+}
+
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: rem(15);
+  margin-left: auto;
+  margin-right: auto;
+  tidy-span: 10;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 6;
+  }
+
+  @media ($lgMin) {
+    tidy-offset-left: 1;
+    tidy-span: 6;
+  }
+}
+
+.social {
+  composes: row;
+}
+
+.tags {
+  composes: row;
+}
+
+.author {
+  composes: row;
+
+  a {
+    text-decoration: underline;
   }
 }

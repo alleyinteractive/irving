@@ -16,12 +16,6 @@
 }
 
 .icon {
-  /* align-items: center;
-  display: flex;
-  height: rem(40);
-  justify-content: center;
-  width: rem(40); */
-
   align-items: center;
   background-color: $gray;
   border-radius: 50%;
@@ -30,6 +24,34 @@
   height: rem(30);
   justify-content: center;
   width: rem(30);
+
+  .facebook & {
+    background-color: $brand-facebook;
+  }
+
+  .twitter & {
+    background-color: $brand-twitter;
+  }
+
+  .reddit & {
+    background-color: $brand-reddit;
+  }
+
+  .linkedin & {
+    background-color: $brand-linkedin;
+  }
+
+  .whatsapp & {
+    background-color: $brand-whatsapp;
+  }
+
+  .email & {
+    background-color: $brand-email;
+  }
+
+  .link & {
+    background-color: transparent;
+  }
 
   svg {
     fill: $white;
