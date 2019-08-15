@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const getEnv = require('./env');
 const { rootUrl } = require('../paths');
 
@@ -32,17 +33,14 @@ module.exports = function getPlugins(context) {
 
     case 'production_client':
       return [
+        new CaseSensitivePathsPlugin(),
         new CleanPlugin(),
         new webpack.EnvironmentPlugin({
           BROWSER: true,
           ...env,
         }),
         new StatsWriterPlugin({
-          fields: [
-            'assetsByChunkName',
-            'publicPath',
-            'outputPath',
-          ],
+          fields: ['assetsByChunkName', 'publicPath', 'outputPath'],
         }),
         // Support friendly stack traces for error reporting, but protect
         // source code from being exposed.
@@ -55,6 +53,7 @@ module.exports = function getPlugins(context) {
 
     case 'development_client':
       return [
+        new CaseSensitivePathsPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.EnvironmentPlugin({

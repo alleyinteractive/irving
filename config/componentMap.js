@@ -16,7 +16,7 @@ import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import RawHTML from 'components/rawHTML';
 import SocialItem from 'components/socialItem';
-import ContentFooter from 'components/ContentFooter';
+import ContentFooter from 'components/contentFooter';
 import SocialList from 'components/socialList';
 import withLoader from 'components/hoc/withLoader';
 
