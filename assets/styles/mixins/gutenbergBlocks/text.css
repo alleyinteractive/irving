@@ -4,10 +4,10 @@
  * Mixin for body content type styles
  */
 @mixin body-content-type-styles {
-  color: $gray;
+  color: $black;
   font-family: $serif;
   font-size: rem(18);
-  line-height: calc(28/18);
+  line-height: 1.55;
 }
 
 /**
@@ -15,15 +15,11 @@
  */
 @mixin body-link {
   a {
-    color: $brand-blue;
+    color: inherit;
     display: inline;
     font-size: inherit;
     font-weight: 700;
-    transition: $linkTransition;
-
-    &:hover {
-      color: $gray;
-    }
+    text-decoration: underline;
   }
 }
 

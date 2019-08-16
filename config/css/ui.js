@@ -10,5 +10,6 @@ module.exports = {
   'border-thick--white': '4px solid #FFFFFF',
   'border-thin': '1px solid $black',
   'border-thin--gray': '1px solid $gray',
+  'border-thin--gray-light': '1px solid #c8c8c8',
   'border-thin--white': '1px solid #FFFFFF',
 };

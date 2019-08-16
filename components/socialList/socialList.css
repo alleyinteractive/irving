@@ -1,8 +1,26 @@
 .wrapper {
-  display: block;
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .list {
   align-items: center;
   display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  tidy-span: 5;
+
+  @media ($lgMin) {
+    tidy-span: 5;
+  }
+}
+
+.title {
+  @include label;
+  tidy-span: 1;
+
+  @media ($lgMin) {
+    tidy-span: 1;
+  }
 }

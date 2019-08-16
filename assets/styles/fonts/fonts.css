@@ -136,3 +136,24 @@
   font-weight: 900;
   src: url("https://cdn.technologyreview.com/_/fonts/nhaasgroteskdsstd-95blk.woff") format("woff"), url("https://cdn.technologyreview.com/_/fonts/nhaasgroteskdsstd-95blk.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "Independent";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://cdn.technologyreview.com/_/fonts/independent-regular.woff") format("woff"), url("https://cdn.technologyreview.com/_/fonts/nhaasgroteskdsstd-95blk.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Independent";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://cdn.technologyreview.com/_/fonts/independent-bold.woff") format("woff"), url("https://cdn.technologyreview.com/_/fonts/nhaasgroteskdsstd-95blk.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Independent";
+  font-style: italic;
+  font-weight: 400;
+  src: url("https://cdn.technologyreview.com/_/fonts/independent-italic.woff") format("woff"), url("https://cdn.technologyreview.com/_/fonts/nhaasgroteskdsstd-95blk.ttf") format("truetype");
+}

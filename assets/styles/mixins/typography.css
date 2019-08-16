@@ -1,0 +1,7 @@
+@mixin label() {
+  font-family: $sans;
+  font-size: rem(12);
+  font-weight: 600;
+  margin-right: rem(12);
+  text-transform: capitalize;
+}
