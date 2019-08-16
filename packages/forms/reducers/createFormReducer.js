@@ -7,7 +7,7 @@ import {
   RECEIVE_SUBMITTED,
   RECEIVE_SUBMIT_ERROR,
   RECEIVE_SUBMIT_INVALID,
-} from 'actions/types';
+} from '../actions/types';
 import { form as defaultState } from './defaultState';
 
 /**

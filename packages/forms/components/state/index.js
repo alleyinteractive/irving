@@ -4,7 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import RawHTML from 'components/rawHTML';
 import styles from './state.css';
 
-const FormState = ({
+const State = ({
   submitting,
   submitted,
   failed,
@@ -53,7 +53,7 @@ const FormState = ({
   );
 };
 
-FormState.propTypes = {
+State.propTypes = {
   /**
    * Is this form in the process of being submitted (communicating with an API)?
    */
@@ -80,10 +80,10 @@ FormState.propTypes = {
   successText: PropTypes.string,
 };
 
-FormState.defaultProps = {
+State.defaultProps = {
   children: null,
   errorText: 'An error ocurred with your submission, please try again later.',
   successText: 'Success! Thank you for your submission.',
 };
 
-export default withStyles(styles)(FormState);
+export default withStyles(styles)(State);

@@ -2,8 +2,8 @@ import compose from 'lodash/fp/flow';
 import merge from 'lodash/fp/merge';
 import set from 'lodash/fp/set';
 import cloneDeep from 'lodash/fp/cloneDeep';
+import { LOCATION_CHANGE } from '@irving/core/actions/types';
 import {
-  LOCATION_CHANGE,
   PLAY_AUDIO,
   LOAD_AUDIO,
   STOP_AUDIO,
@@ -11,7 +11,7 @@ import {
   SET_AUDIO_VOLUME,
   SET_AUDIO_SEEK,
   RECEIVE_AUDIO_TIME,
-} from 'actions/types';
+} from '../actions/types';
 import { player as defaultState } from './defaultState';
 
 /**

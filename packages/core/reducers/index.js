@@ -7,7 +7,6 @@ import errorReducer from './errorReducer';
 import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
 import componentDataReducer from './componentDataReducer';
-import playerReducer from './playerReducer';
 
 // Configure "slice" reducers.
 export const reducers = {
@@ -15,7 +14,6 @@ export const reducers = {
   componentData: componentDataReducer,
   error: errorReducer,
   loading: loadingReducer,
-  player: playerReducer,
   route: routeReducer,
   visible: visibilityReducer,
 };

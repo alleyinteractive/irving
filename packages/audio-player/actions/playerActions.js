@@ -8,7 +8,7 @@ import {
   RECEIVE_AUDIO_TIME,
   LOAD_NEXT_TRACK,
   LOAD_PREVIOUS_TRACK,
-} from 'actions/types';
+} from './types';
 import { createAction } from '.';
 
 export function actionPlayAudio() {
