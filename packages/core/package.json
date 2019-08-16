@@ -1,0 +1,12 @@
+{
+  "name": "@irving/core",
+  "version": "1.0.0",
+  "description": "Irving core application",
+  "main": "server/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/core"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT"
+}

@@ -6,7 +6,7 @@ import omit from 'lodash/fp/omit';
 import Label from './label';
 import styles from './input.css';
 
-const FormInput = (props) => {
+const Input = (props) => {
   const {
     name,
     required,
@@ -84,7 +84,7 @@ const FormInput = (props) => {
   );
 };
 
-FormInput.propTypes = {
+Input.propTypes = {
   /**
    * Component or element to use for rendering this input.
    */
@@ -136,7 +136,7 @@ FormInput.propTypes = {
   validation: PropTypes.string,
 };
 
-FormInput.defaultProps = {
+Input.defaultProps = {
   InputComponent: 'input',
   ownValue: '',
   options: [],
@@ -146,4 +146,4 @@ FormInput.defaultProps = {
   validation: '',
 };
 
-export default withStyles(styles)(FormInput);
+export default withStyles(styles)(Input);

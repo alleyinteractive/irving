@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './fieldset.css';
 
-const FormFieldset = (props) => {
+const Fieldset = (props) => {
   const { heading, children } = props;
   return (
     <fieldset className={styles.section}>
@@ -13,7 +13,7 @@ const FormFieldset = (props) => {
   );
 };
 
-FormFieldset.propTypes = {
+Fieldset.propTypes = {
   /**
    * Heading/title for this fieldset.
    */
@@ -33,8 +33,8 @@ FormFieldset.propTypes = {
   ]).isRequired,
 };
 
-FormFieldset.defaultProps = {
+Fieldset.defaultProps = {
   heading: '',
 };
 
-export default withStyles(styles)(FormFieldset);
+export default withStyles(styles)(Fieldset);
