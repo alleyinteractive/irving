@@ -5,6 +5,9 @@ module.exports = {
     '^.+\\.css$': '<rootDir>/utils/mockCssTransform.js',
   },
   testEnvironment: 'enzyme',
-  setupFiles: ['<rootDir>/config/jest.setup'],
+  setupFiles: ['<rootDir>/jest.setup'],
   setupFilesAfterEnv: ['jest-enzyme'],
+  collectCoverageFrom: [
+    'packages/*/src/**/*.js',
+  ],
 };
