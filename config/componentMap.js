@@ -30,7 +30,7 @@ export const componentMap = {
   byline: Byline,
   'content-header': ContentHeader,
   'content-body': ContentBody,
-  'content-footer': ContentFooter, // Hide for demo.
+  'content-footer': ContentFooter,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
@@ -43,9 +43,9 @@ export const componentMap = {
   menu: Menu,
   'menu-item': MenuItem,
   parsely: Parsely,
-  'social-links': SocialList, // Hide for demo.
-  'social-sharing': SocialList, // Hide for demo.
-  'social-item': SocialItem, // Hide for demo.
+  'social-links': SocialList,
+  'social-sharing': SocialList,
+  'social-item': SocialItem,
 };
 
 /**
