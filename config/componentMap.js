@@ -40,12 +40,15 @@ export const componentMap = {
   header: Placeholder,
   html: RawHTML,
   image: Image,
+  'mega-menu': Placeholder,
   menu: Menu,
   'menu-item': MenuItem,
   parsely: Parsely,
+  'search-bar': Placeholder,
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,
+  'user-greeting': Placeholder,
 };
 
 /**
