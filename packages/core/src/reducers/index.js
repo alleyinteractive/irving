@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import reduceReducers from 'reduce-reducers';
 import defaultState from 'reducers/defaultState';
+import getIrvingConfig from 'utils/getIrvingConfig';
 import componentsReducer from './componentsReducer';
 import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
 import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
 import componentDataReducer from './componentDataReducer';
+import getConfigReducers from './getConfigReducers';
 
 // Configure "slice" reducers.
 export const reducers = {
@@ -16,6 +18,7 @@ export const reducers = {
   loading: loadingReducer,
   route: routeReducer,
   visible: visibilityReducer,
+  ...getConfigReducers(getIrvingConfig()),
 };
 const rootSliceReducer = combineReducers(reducers);
 
