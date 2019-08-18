@@ -1,3 +1,18 @@
+const fs = require('fs');
+const path = require('path');
+
+// Construct alias roots.
+const packages = fs.readdirSync(path.join(__dirname, 'packages'));
+const roots = packages.reduce((acc, packageDir) => {
+  const packageRoot = path.join('./packages', packageDir, 'src');
+
+  // Anything at the top level of the src diretory will get an alias.
+  return [
+    ...acc,
+    `./${packageRoot}/**`,
+  ];
+}, []);
+
 module.exports = {
   plugins: [
     'lodash',
@@ -7,25 +22,19 @@ module.exports = {
     '@babel/plugin-syntax-dynamic-import',
     [
       'module-resolver',
-      {
-        root: ['./'],
-        alias: {
-          assets: './assets',
-          actions: './actions',
-          components: './components',
-          config: './config',
-          reducers: './reducers',
-          sagas: './sagas',
-          selectors: './selectors',
-          services: './services',
-          utils: './utils',
-        },
-      },
+      { root: roots },
     ],
     'universal-import',
   ],
   presets: [
-    '@babel/env',
+    [
+      '@babel/env',
+      {
+        targets: {
+          browsers: 'last 3 versions, IE 11',
+        },
+      },
+    ],
     '@babel/react',
   ],
 };

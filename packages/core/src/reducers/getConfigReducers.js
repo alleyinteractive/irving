@@ -6,7 +6,7 @@
 export default function getConfigReducers(config) {
   // Get reducers from configured irving extension packages.
   const packageReducers = Object.keys(config.packages)
-    .reducer((acc, packageName) => {
+    .reduce((acc, packageName) => {
       const irvingPackage = config.packages[packageName];
 
       // If package has reducers, spread them into the accumulator.

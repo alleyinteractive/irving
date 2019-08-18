@@ -1,12 +1,18 @@
 {
-    "name": "@irving/forms",
-    "version": "1.0.0",
-    "description": "Form components and submission functionality for Irving",
-    "main": "index.js",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/alleyinteractive/irving/packages/forms"
-    },
-    "author": "Alley (Alley.co)",
-    "license": "MIT"
+  "name": "@irving/forms",
+  "version": "1.0.0",
+  "description": "Form components and submission functionality for Irving",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/forms"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^24.9.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-use-form-state": "^0.10.4"
   }
+}
