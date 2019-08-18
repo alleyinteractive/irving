@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Authenticated from './authenticated';
+import Anonymous from './anonymous';
 
 // Styles
 import styles from './userGreeting.css';
@@ -10,7 +11,7 @@ const UserGreeting = ({ firstName, lastName, isAuthenticated }) => (
     {isAuthenticated ? (
       <Authenticated firstName={firstName} lastName={lastName} />
     ) : (
-      <Authenticated firstName="Pattie" lastName="Reaves" />
+      <Anonymous />
     )}
   </div>
 );
