@@ -7,6 +7,11 @@
     "type": "git",
     "url": "https://github.com/alleyinteractive/irving/packages/forms"
   },
+  "scripts": {
+    "build": "webpack --config config/webpack.config.js --mode production",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
