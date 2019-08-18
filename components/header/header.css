@@ -1,17 +1,38 @@
 /* Header component styles */
 
-.wrapper {
-  @mixin container-with-bleed;
+.container {
   background-color: $white;
-  border-bottom: $border-thin--gray-light;
+  border-bottom: $border-thin--gray;
+  color: $black;
+  display: block;
+  justify-self: flex-end;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.wrapper {
+  @include container-with-bleed;
   display: flex;
   flex-flow: row wrap;
+  margin: 0 auto;
+  padding-bottom: 0;
+  padding-top: rem(30);
+
+  @media ($smMin) {
+    padding-top: rem(50);
+  }
 }
 
 .logo {
   display: block;
-  tidy-offset: 1;
-  tidy-span: 2;
+  margin-right: tidy-var(gap);
+  tidy-offset-right: 1;
+  tidy-span: 4;
+
+  @media ($lgMin) {
+    tidy-offset-right: 1;
+    tidy-span: 2;
+  }
 }
 
 .logoStacked {
@@ -48,9 +69,9 @@
   align-content: flex-end;
   display: flex;
   flex-flow: column nowrap;
-  tidy-span: 8;
+  tidy-span: 5;
 
   @media ($lgMin) {
-    tidy-span: 6;
+    tidy-span: 9;
   }
 }

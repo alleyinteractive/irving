@@ -4,11 +4,13 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
+  margin-bottom: rem(15);
 }
 
 .button {
   background: $white;
   border: $border-thin;
+  display: inline-block;
   font-family: $sans;
   font-weight: 600;
   line-height: 1.14;

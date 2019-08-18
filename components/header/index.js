@@ -15,23 +15,27 @@ const Header = ({ homeUrl, children }) => {
   const megaMenu = findChildByName('mega-menu', children);
 
   return (
-    <header className={styles.wrapper}>
-      <div className={styles.leaderboardRow}>
-        {/* @todo consider moving ad placeholder to its own component */}
-        <div className={styles.leaderboard}>Advertisement placeholder</div>
-      </div>
-      <a href={homeUrl} className={styles.logo}>
-        <div className="screen-reader-text">{__('MIT Technology Review')}</div>
-        <div className={styles.logoStacked}>
-          <LogoStacked />
+    <header className={styles.container}>
+      <div className={styles.wrapper}>
+        <div className={styles.leaderboardRow}>
+          {/* @todo consider moving ad placeholder to its own component */}
+          <div className={styles.leaderboard}>Advertisement placeholder</div>
         </div>
-      </a>
-      <div className={styles.navigation}>
-        <div className={styles.userGreeting}>{userGreeting}</div>
-        <div className={styles.menu}>
-          {menu}
-          <button type="button">Click to see MegaMenu</button>
-          <div className={styles.megaMenu}>{megaMenu}</div>
+        <a href={homeUrl} className={styles.logo}>
+          <div className="screen-reader-text">
+            {__('MIT Technology Review')}
+          </div>
+          <div className={styles.logoStacked}>
+            <LogoStacked />
+          </div>
+        </a>
+        <div className={styles.navigation}>
+          <div className={styles.userGreeting}>{userGreeting}</div>
+          <div className={styles.menu}>
+            {menu}
+            <button type="button">Click to see MegaMenu</button>
+            <div className={styles.megaMenu}>{megaMenu}</div>
+          </div>
         </div>
       </div>
     </header>

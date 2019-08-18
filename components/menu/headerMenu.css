@@ -1,0 +1,6 @@
+/* Header menu theme */
+
+.list {
+  display: flex;
+  flex-flow: row nowrap;
+}
