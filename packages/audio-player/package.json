@@ -16,15 +16,16 @@
   "license": "MIT",
   "dependencies": {
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "regenerator-runtime": "^0.13.3"
   },
   "devDependencies": {
-	  "babel-jest": "^24.9.0",
+    "@babel/core": "^7.5.5",
+    "babel-jest": "^24.9.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "jest": "^24.9.0",
     "jest-environment-enzyme": "^7.1.0",
     "jest-enzyme": "^7.1.0",
-	  "regenerator-runtime": "^0.13.3"
   }
 }
