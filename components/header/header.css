@@ -16,11 +16,6 @@
   flex-flow: row wrap;
   margin: 0 auto;
   padding-bottom: 0;
-  padding-top: rem(30);
-
-  @media ($smMin) {
-    padding-top: rem(50);
-  }
 }
 
 .logo {
@@ -74,4 +69,9 @@
   @media ($lgMin) {
     tidy-span: 9;
   }
+}
+
+.menu {
+  display: flex;
+  flex-flow: row nowrap;
 }
