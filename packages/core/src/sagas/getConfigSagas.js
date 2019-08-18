@@ -5,19 +5,20 @@
  */
 export default function getConfigSagas(config) {
   // Get reducers from configured irving extension packages.
-  const packageSagas = Object.keys(config.packages)
-    .reducer((acc, packageName) => {
-      const irvingPackage = config.packages[packageName];
+  const packageSagas = ! config.packages ? [] :
+    Object.keys(config.packages)
+      .reduce((acc, packageName) => {
+        const irvingPackage = config.packages[packageName];
 
-      if (irvingPackage.sagas) {
-        return acc.concat(irvingPackage.sagas());
-      }
+        if (irvingPackage.sagas) {
+          return acc.concat(irvingPackage.sagas());
+        }
 
-      return acc;
-    }, []);
+        return acc;
+      }, []);
 
   // Get user-configured reducers.
-  const configReducers = config.sagas || [];
+  const configReducers = config.sagas ? config.sagas() : [];
 
   return [
     ...packageSagas,

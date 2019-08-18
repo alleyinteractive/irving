@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack --config config/webpack.config.js --mode production",
     "dev": "NODE_ENV=development node nodemon.js",
-    "start": "NODE_ENV=production node server/index.js"
+    "start": "NODE_ENV=production node server/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -15,8 +17,16 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "jest": "^24.9.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^24.9.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.9.0",
+    "jest-environment-enzyme": "^7.1.0",
+    "jest-enzyme": "^7.1.0",
+    "regenerator-runtime": "^0.13.3"
   }
 }

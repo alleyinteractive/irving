@@ -1,9 +1,9 @@
-const baseConfig = require('../../../jest.config.base.js');
+const baseConfig = require('../../jest.config.base.js');
 
 module.exports = {
   ...baseConfig,
-  name: 'irving-core',
-  displayName: 'irving-core',
+  name: '@irving/forms',
+  displayName: '@irving/forms',
   setupFiles: ['<rootDir>/config/jest.setup.js'],
   setupFilesAfterEnv: ['jest-enzyme'],
   testEnvironment: 'enzyme',
