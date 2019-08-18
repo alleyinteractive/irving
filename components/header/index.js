@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
@@ -13,6 +13,7 @@ const Header = ({ homeUrl, children }) => {
   const menu = findChildByName('menu', children);
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <header className={styles.container}>
@@ -33,8 +34,12 @@ const Header = ({ homeUrl, children }) => {
           <div className={styles.userGreeting}>{userGreeting}</div>
           <div className={styles.menu}>
             {menu}
-            <button type="button">Click to see MegaMenu</button>
-            <div className={styles.megaMenu}>{megaMenu}</div>
+            <button type="button" onClick={() => setIsExpanded(! isExpanded)}>
+              {isExpanded ?
+                __('Close menu', 'mittr') :
+                __('Expand menu', 'mittr')}
+            </button>
+            {isExpanded && <div className={styles.megaMenu}>{megaMenu}</div>}
           </div>
         </div>
       </div>
