@@ -1,12 +1,17 @@
 {
-    "name": "@irving/audio-player",
-    "version": "1.0.0",
-    "description": "Persistent audio player components for Irving",
-    "main": "index.js",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/alleyinteractive/irving/packages/audio-player"
-    },
-    "author": "Alley (Alley.co)",
-    "license": "MIT"
+  "name": "@irving/audio-player",
+  "version": "1.0.0",
+  "description": "Persistent audio player components for Irving",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/audio-player"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^24.9.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   }
+}
