@@ -3,7 +3,7 @@
  */
 module.exports = {
   'alumni-red': '#A31F34',
-  'background-gray': '#F5F5F5',
+  'background-gray': '#f3f3f3',
   'border-gray': '#D1D7D7',
   'brand-blue': '#256F94',
   'brand-email': '#000000',

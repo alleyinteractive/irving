@@ -1,12 +1,13 @@
 body {
-  -moz-osx-font-smoothing: grayscale;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  -webkit-font-smoothing: antialiased;
-  -webkit-overflow-scrolling: touch;
+  background-color: $background-gray;
   color: #444444;
   font-family: $sans;
   font-size: 1rem;
   line-height: 1.231;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
 }
 
 ::selection {
