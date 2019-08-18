@@ -1,13 +1,18 @@
+const path = require('path');
+
 module.exports = {
-  roots: [
-    '<rootDir>/src',
-    '<rootDir>/tests',
+  setupFilesAfterEnv: ['jest-enzyme'],
+  testEnvironment: 'enzyme',
+  testEnvironmentOptions: {
+    enzymeAdapter: 'react16',
+  },
+  testMatch: [
+    '**/*.test.js',
   ],
   testURL: 'http://localhost',
-  // testRegex: "(.*.(test|spec)).js$",
   transform: {
-    '^.+\\.(js|jsx)$': '<rootDir>/node_modules/babel-jest',
-    '^.+\\.css$': '<rootDir>/test/mockCssTransform.js',
+    '^.+\\.(js|jsx)$': 'babel-jest',
+    '^.+\\.css$': path.join(__dirname, '/test/mockCssTransform.js'),
   },
   transformIgnorePatterns: [
     '/node_modules/',

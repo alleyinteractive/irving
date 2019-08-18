@@ -10,9 +10,17 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "jest": "^24.9.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-use-form-state": "^0.10.4"
+  },
+  "devDependencies": {
+    "babel-jest": "^24.9.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.9.0",
+    "jest-environment-enzyme": "^7.1.0",
+    "jest-enzyme": "^7.1.0",
+    "regenerator-runtime": "^0.13.3"
   }
 }
