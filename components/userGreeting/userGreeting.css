@@ -1,0 +1,22 @@
+/* UserGreeting component styles */
+
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
+
+.button {
+  background: $white;
+  border: $border-thin;
+  font-family: $sans;
+  font-weight: 600;
+  line-height: 1.14;
+  padding: rem(10) rem(20);
+  text-align: center;
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+}

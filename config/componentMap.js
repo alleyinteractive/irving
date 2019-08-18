@@ -19,6 +19,7 @@ import Placeholder from 'components/placeholder';
 import RawHTML from 'components/rawHTML';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
+import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
 
 /**
@@ -49,7 +50,7 @@ export const componentMap = {
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,
-  'user-greeting': Placeholder,
+  'user-greeting': UserGreeting,
 };
 
 /**
