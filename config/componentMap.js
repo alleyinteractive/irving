@@ -2,12 +2,14 @@ import AudioElement from 'components/audio';
 import Body from 'components/body';
 import Byline from 'components/byline';
 import ContentBody from 'components/contentBody';
+import ContentFooter from 'components/contentFooter';
 import ContentHeader from 'components/contentHeader';
 import Disqus from 'components/disqus';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
 import GoogleTagManager from 'components/googleTagManager';
 import Head from 'components/head';
+import Header from 'components/header';
 import Image from 'components/image/image';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
@@ -16,7 +18,6 @@ import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import RawHTML from 'components/rawHTML';
 import SocialItem from 'components/socialItem';
-import ContentFooter from 'components/contentFooter';
 import SocialList from 'components/socialList';
 import withLoader from 'components/hoc/withLoader';
 
@@ -37,7 +38,7 @@ export const componentMap = {
   'google-analytics': GoogleAnalytics,
   'google-tag-manager': GoogleTagManager,
   head: Head,
-  header: Placeholder,
+  header: Header,
   html: RawHTML,
   image: Image,
   'mega-menu': Placeholder,

@@ -289,14 +289,21 @@ textarea {
   margin: 0;
 }
 
-.no-boxshadow input:invalid,
-.no-boxshadow textarea:invalid {
-  background-color: #f0dddd;
-}
-
 button {
   background: transparent;
   border: 0;
   overflow: visible;
   width: auto;
+}
+
+/* Class names that are not transformed by css modules. */
+:global {
+  .no-boxshadow input:invalid,
+  .no-boxshadow textarea:invalid {
+    background-color: #f0dddd;
+  }
+
+  .screen-reader-text {
+    @include screenreader-only;
+  }
 }

@@ -1,0 +1,56 @@
+/* Header component styles */
+
+.wrapper {
+  @mixin container-with-bleed;
+  background-color: $white;
+  border-bottom: $border-thin--gray-light;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.logo {
+  display: block;
+  tidy-offset: 1;
+  tidy-span: 2;
+}
+
+.logoStacked {
+  height: rem(100);
+
+  svg {
+    height: 100%;
+  }
+}
+
+/* @todo MIT-176 remove placeholder */
+.leaderboard {
+  align-items: center;
+  background-color: $background-gray;
+  border: $border-thin--gray;
+  color: $gray;
+  display: flex;
+  font-family: $sans;
+  height: 90px;
+  justify-content: center;
+  margin-bottom: rem(40);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: rem(20);
+  width: 728px;
+}
+
+.leaderboardRow {
+  flex: 1 0 100%;
+  width: 100%;
+}
+
+.navigation {
+  align-content: flex-end;
+  display: flex;
+  flex-flow: column nowrap;
+  tidy-span: 8;
+
+  @media ($lgMin) {
+    tidy-span: 6;
+  }
+}
