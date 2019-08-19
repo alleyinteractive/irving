@@ -5,20 +5,23 @@ import NotConfigured from 'components/notConfigured';
 import RawHTML from 'components/rawHTML';
 import Placeholder from 'components/placeholder';
 import withLoader from 'components/hoc/withLoader';
+import getIrvingConfig from 'utils/getIrvingConfig';
+
+const irvingConfig = getIrvingConfig();
 
 /**
  * Defines which React component to render for each received API component.
  */
 export const componentMap = {
-  'admin-bar': Placeholder,
   body: withLoader(Body),
   embed: RawHTML,
   head: Head,
   header: Placeholder,
   html: RawHTML,
   image: Image,
-  menu: Placeholder,
-  'menu-item': Placeholder,
+  // Include user-configured componentMap after core components,
+  // so user can override core components if they want to.
+  ...irvingConfig.componentMap,
 };
 
 /**
