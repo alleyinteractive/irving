@@ -1,4 +1,4 @@
-/* eslint-disable global-require, no-console */
+/* eslint-disable global-require, no-console, import/order */
 
 // Support isomorphic environment variables from local .env file
 require('dotenv').config();
@@ -29,9 +29,9 @@ app.set('views', 'server/views');
 app.set('view engine', 'ejs');
 
 if ('development' === NODE_ENV) {
-  require('./development')(app);
+  require('../server/development')(app);
 } else {
-  require('./production')(app);
+  require('../server/production')(app);
 }
 
 // Default error handler

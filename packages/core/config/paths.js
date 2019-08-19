@@ -2,13 +2,17 @@ const path = require('path');
 const fs = require('fs');
 
 const appRoot = fs.realpathSync(process.cwd());
+const irvingRoot = fs.realpathSync(
+  path.join(__dirname, '../')
+);
+
 /**
  * Ensure application path is consistent regardless of the processes' current
  * working directory.
  * @param {string} relativePath
  * @returns {string} - absolute path
  */
-const resolveDir = (relativePath) => path.resolve(appRoot, relativePath);
+const resolveDir = (relativePath) => path.resolve(irvingRoot, relativePath);
 
 const { PROXY_URL, ROOT_URL } = process.env;
 

@@ -1,3 +1,4 @@
+const path = require('path');
 const nodemon = require('nodemon');
 const utils = require('nodemon/lib/utils');
 const {
@@ -22,8 +23,7 @@ const ignore = [
   'services/*',
   'utils/*',
 ];
-
-const script = './start.js';
+const script = path.join(__dirname, './start.js');
 
 nodemon({ script, ignore });
 
