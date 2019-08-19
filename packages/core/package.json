@@ -2,7 +2,10 @@
   "name": "@irving/core",
   "version": "1.0.0",
   "description": "Irving core application",
-  "main": "server/index.js",
+  "main": "cli/index.js",
+  "bin": {
+    "irving": "./dist/irving"
+  },
   "scripts": {
     "build": "babel cli --out-dir dist",
     "test": "jest",
