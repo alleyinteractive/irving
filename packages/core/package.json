@@ -2,7 +2,7 @@
   "name": "@irving/core",
   "version": "1.0.0",
   "description": "Irving core application",
-  "main": "cli/index.js",
+  "main": "cli/irving.js",
   "bin": {
     "irving": "./dist/irving"
   },
