@@ -23,7 +23,7 @@ const ignore = [
   'utils/*',
 ];
 
-const script = 'server/index.js';
+const script = './start.js';
 
 nodemon({ script, ignore });
 
