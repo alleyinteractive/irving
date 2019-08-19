@@ -1,4 +1,3 @@
-import AudioElement from 'components/audio';
 import Body from 'components/body';
 import Head from 'components/head';
 import Image from 'components/image/image';
@@ -12,7 +11,6 @@ import withLoader from 'components/hoc/withLoader';
  */
 export const componentMap = {
   'admin-bar': Placeholder,
-  'audio-element': AudioElement,
   body: withLoader(Body),
   embed: RawHTML,
   head: Head,
