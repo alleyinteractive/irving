@@ -8,10 +8,11 @@ import State from './components/state';
 export default {
   reducers: getReducers,
   sagas: getSagas,
-  componentMap: {
-    'form-fieldset': Fieldset,
-    'form-input': Input,
-    'form-state': State,
-    'form-label': Label,
-  },
+};
+
+export {
+  Fieldset,
+  Input,
+  Label,
+  State,
 };

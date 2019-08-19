@@ -5,9 +5,4 @@ module.exports = {
   name: '@irving/forms',
   displayName: '@irving/forms',
   setupFiles: ['<rootDir>/config/jest.setup.js'],
-  setupFilesAfterEnv: ['jest-enzyme'],
-  testEnvironment: 'enzyme',
-  testEnvironmentOptions: {
-    enzymeAdapter: 'react16',
-  },
 };
