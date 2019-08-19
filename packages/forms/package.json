@@ -2,7 +2,7 @@
   "name": "@irving/forms",
   "version": "1.0.0",
   "description": "Form components and submission functionality for Irving",
-  "main": "lib/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/alleyinteractive/irving/packages/forms"

@@ -1,11 +1,11 @@
 {
-  "name": "@irving/audio-player",
+  "name": "@irving/integrations",
   "version": "1.0.0",
-  "description": "Persistent audio player components for Irving",
-  "main": "lib/index.js",
+  "description": "Third party integrations for Irving",
+  "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alleyinteractive/irving/packages/audio-player"
+    "url": "https://github.com/alleyinteractive/irving/packages/integrations"
   },
   "scripts": {
     "test": "jest --passWithNoTests",
