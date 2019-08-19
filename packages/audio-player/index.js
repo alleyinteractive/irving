@@ -1,6 +1,6 @@
 import getReducers from './reducers';
 import PlayPauseButton from './components/playPauseButton';
-import Player from './components/player';
+import AudioElement from './components/audioElement';
 
 export default {
   reducers: getReducers,
@@ -8,5 +8,5 @@ export default {
 
 export {
   PlayPauseButton,
-  Player,
+  AudioElement,
 };
