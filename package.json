@@ -4,9 +4,11 @@
   "description": "Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.",
   "main": "main.js",
   "scripts": {
+    "build": "BABEL_ENV=build lerna run build",
     "preinstall": "npx check-node-version --package",
-    "test": "lerna run test",
-    "test:watch": "lerna run test:watch",
+    "install": "lerna bootstrap --hoist",
+    "test": "BABEL_ENV=app lerna run test",
+    "test:watch": "BABEL_ENV=app lerna run test:watch",
     "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
     "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js"
   },

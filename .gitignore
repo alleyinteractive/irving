@@ -2,8 +2,8 @@
 /node_modules
 /packages/**/node_modules
 
-# production
-/build
+# distribution files
+/packages/**/dist
 
 # styleguide
 /styleguide/index.html

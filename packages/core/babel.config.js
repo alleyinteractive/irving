@@ -1,6 +1,5 @@
 const path = require('path');
-
-module.exports = {
+const defaultConfig = {
   extends: path.join('../../babel.config.base.js'),
   plugins: [
     [
@@ -8,4 +7,23 @@ module.exports = {
       { root: ['./**'] },
     ],
   ],
+};
+
+module.exports = {
+  env: {
+    app: defaultConfig,
+    test: defaultConfig,
+    build: {
+      presets: [
+        [
+          '@babel/env',
+          {
+            targets: {
+              node: '10',
+            },
+          },
+        ],
+      ],
+    },
+  },
 };

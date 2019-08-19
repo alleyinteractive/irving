@@ -11,6 +11,10 @@
   }
 });
 
+// Set appropriate babel env.
+process.env.BABEL_ENV = 'app';
+
+// Build a map of available commands.
 const defaultCommand = 'dev';
 const commandMap = {
   build: () => {
@@ -24,21 +28,24 @@ const commandMap = {
   dev: () => {
     process.env.NODE_ENV = 'development';
     require('../cli/dev');
-  }
+  },
 };
 const commands = Object.keys(commandMap);
 
 if (process.argv && Array.isArray(process.argv)) {
   const command = process.argv.find((arg) => {
-    if (commands.find((command) => arg === command)) {
+    if (commands.find((key) => arg === key)) {
       return true;
     }
 
     return false;
   });
 
+  // Execute the selected command.
   if (commandMap[command]) {
     commandMap[command]();
+  } else {
+    commandMap[defaultCommand]();
   }
 }
 /* eslint-enable */
