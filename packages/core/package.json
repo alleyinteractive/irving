@@ -4,7 +4,7 @@
   "description": "Irving core application",
   "main": "server/index.js",
   "scripts": {
-    "build": "webpack --config config/webpack.config.js --mode production",
+    "build": "babel cli --out-dir dist",
     "test": "jest",
     "test:watch": "jest --watch"
   },
