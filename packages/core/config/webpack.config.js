@@ -1,22 +1,25 @@
-const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
-const alias = {
-  actions: path.resolve(__dirname, '../actions'),
-};
+const { appRoot } = require('./paths');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
   const isProd = 'production' === mode;
   const server = getConfigService(mode, 'server');
   const client = getConfigService(mode, 'client');
+
   return [
     {
-      resolve: {
-        alias,
-      },
+      context: appRoot,
       name: 'client',
       mode,
+      resolve: {
+        alias: {
+          'react-dom': ! isProd ?
+            require.resolve('@hot-loader/react-dom') :
+            require.resolve('react-dom'),
+        },
+      },
       devtool: client.getDevTool(),
       entry: client.getEntry(),
       output: client.getOutput(),
@@ -33,9 +36,7 @@ module.exports = (env, argv) => {
       },
     },
     {
-      resolve: {
-        alias,
-      },
+      context: appRoot,
       name: 'server',
       mode,
       devtool: server.getDevTool(),
@@ -46,13 +47,15 @@ module.exports = (env, argv) => {
       },
       // Don't polyfill NodeJS APIs, as we require a LTS NodeJS environment.
       node: false,
-      // Allow references to vendor css, so we can include them in our bundle.
-      externals: [nodeExternals({
-        whitelist: [
-          /\.css$/,
-          /babel-plugin-universal-import|react-universal-component|webpack-flush-chunks/,
-        ],
-      })],
+      externals: [
+        nodeExternals({
+          // Allow references to vendor css, so we can include them in our bundle.
+          whitelist: [
+            /\.css$/,
+            /babel-plugin-universal-import|react-universal-component|webpack-flush-chunks/,
+          ],
+        }),
+      ],
       entry: server.getEntry(),
       output: server.getOutput(),
       module: {

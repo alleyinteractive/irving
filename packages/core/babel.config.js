@@ -1,5 +1,4 @@
-const { irvingRoot } = require('./config/paths');
-console.log(irvingRoot);
+const { irvingRoot, appRoot } = require('./config/paths');
 
 module.exports = {
   env: {
@@ -8,7 +7,10 @@ module.exports = {
         [
           require.resolve('babel-plugin-module-resolver'),
           {
-            root: [`${irvingRoot}/`],
+            root: [
+              appRoot,
+              irvingRoot,
+            ],
             cwd: 'packagejson',
             alias: {
               actions: './actions',

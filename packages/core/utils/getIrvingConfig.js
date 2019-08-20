@@ -1,15 +1,12 @@
-const path = require('path');
-const defaultConfig = require('config/irving.config.default');
+import irvingDefaultConfig from 'config/irving.config.default';
+import userConfig from 'irving.config.js';
+import merge from 'lodash/fp/merge';
 
-/* eslint-disable global-require, import/no-dynamic-require */
-module.exports = function getIrvingConfig() {
-  const config = require(
-    path.resolve(process.cwd(), 'irving.config.js')
+export default function getIrvingConfig() {
+  console.log(userConfig);
+
+  return merge(
+    userConfig,
+    irvingDefaultConfig,
   );
-
-  return {
-    ...defaultConfig,
-    ...config,
-  };
-};
-/* eslint-enable */
+}

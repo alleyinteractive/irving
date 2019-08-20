@@ -12,6 +12,7 @@ module.exports = function getEntry(context) {
     require.resolve('regenerator-runtime/runtime'),
     require.resolve('isomorphic-fetch'),
   ];
+
   switch (context) {
     case 'production_server':
     case 'development_server':
@@ -21,12 +22,14 @@ module.exports = function getEntry(context) {
         // target NodeJS and browser environments, thus eliminating the need to
         // require babel-polyfill for NodeJS.
         ...polyfills,
+        './irving.config.js',
         serverRoot,
       ];
 
     case 'production_client':
       return [
         ...polyfills,
+        './irving.config.js',
         path.join(clientRoot),
       ];
 
@@ -38,7 +41,8 @@ module.exports = function getEntry(context) {
 
       return [
         ...polyfills,
-        `webpack-hot-middleware/client?${queryString}`,
+        `${require.resolve('webpack-hot-middleware/client')}?${queryString}`,
+        './irving.config.js',
         path.join(clientRoot),
       ];
     }

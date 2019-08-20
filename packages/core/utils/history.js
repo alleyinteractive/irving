@@ -16,7 +16,7 @@ if (isNode()) {
     canGo: () => {},
   });
 } else {
-  createHistory = require('history/createBrowserHistory').default;
+  createHistory = require('history').createBrowserHistory;
 }
 /* eslint-enable */
 

@@ -11,7 +11,7 @@ getService().start();
 
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
-
+const path = require('path');
 const http = require('http');
 const https = require('https');
 const express = require('express');
@@ -25,7 +25,7 @@ const {
 } = process.env;
 const app = express();
 
-app.set('views', 'server/views');
+app.set('views', path.join(__dirname, '../server/views'));
 app.set('view engine', 'ejs');
 
 if ('development' === NODE_ENV) {

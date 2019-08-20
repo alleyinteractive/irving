@@ -28,7 +28,12 @@ module.exports = function getRules(context) {
       enforce: 'pre',
       test: /\.jsx?$/,
       include,
-      use: require.resolve('eslint-loader'),
+      use: {
+        loader: require.resolve('eslint-loader'),
+        options: {
+          configFile: path.join(irvingRoot, '.eslintrc.json'),
+        },
+      },
     },
     {
       exclude: [
@@ -75,7 +80,7 @@ module.exports = function getRules(context) {
     {
       test: /\.svg$/,
       include: path.join(assetsRoot, 'icons'),
-      use: require.resolve('svg-react-loader'),
+      use: 'svg-react-loader',
     },
     {
       test: /\.jsx?$/,
