@@ -1,5 +1,9 @@
+const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
+const alias = {
+  actions: path.resolve(__dirname, '../actions'),
+};
 
 module.exports = (env, argv) => {
   const { mode } = argv;
@@ -8,6 +12,9 @@ module.exports = (env, argv) => {
   const client = getConfigService(mode, 'client');
   return [
     {
+      resolve: {
+        alias,
+      },
       name: 'client',
       mode,
       devtool: client.getDevTool(),
@@ -26,6 +33,9 @@ module.exports = (env, argv) => {
       },
     },
     {
+      resolve: {
+        alias,
+      },
       name: 'server',
       mode,
       devtool: server.getDevTool(),

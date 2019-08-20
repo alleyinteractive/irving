@@ -1,25 +1,37 @@
-const path = require('path');
-
-// Config used for running tests, transpilation when user is developing or building app.
-const defaultConfig = {
-  extends: path.resolve('../../babel.config.base.js'),
-};
+const { irvingRoot } = require('./config/paths');
+console.log(irvingRoot);
 
 module.exports = {
   env: {
-    app: defaultConfig,
-    test: defaultConfig,
-    // Config used for preparing irving CLI to be published.
-    build: {
-      presets: [
+    app: {
+      plugins: [
         [
-          '@babel/env',
+          require.resolve('babel-plugin-module-resolver'),
           {
-            targets: {
-              node: '10',
+            root: [`${irvingRoot}/`],
+            cwd: 'packagejson',
+            alias: {
+              actions: './actions',
+              assets: './assets',
+              components: './components',
+              hooks: './hooks',
+              reducers: './reducers',
+              sagas: './sagas',
+              selectors: './selectors',
+              server: './server',
+              services: './services',
+              utils: './utils',
             },
           },
         ],
+      ],
+      presets: [
+        require.resolve('@irving/babel-preset-irving'),
+      ],
+    },
+    test: {
+      presets: [
+        require.resolve('@irving/babel-preset-irving'),
       ],
     },
   },

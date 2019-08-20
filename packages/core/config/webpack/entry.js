@@ -8,9 +8,9 @@ const { serverRoot, clientRoot, proxyUrl } = require('../paths');
  */
 module.exports = function getEntry(context) {
   const polyfills = [
-    'core-js/stable',
-    'regenerator-runtime/runtime',
-    'isomorphic-fetch'
+    require.resolve('core-js/stable'),
+    require.resolve('regenerator-runtime/runtime'),
+    require.resolve('isomorphic-fetch'),
   ];
   switch (context) {
     case 'production_server':

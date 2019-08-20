@@ -22,7 +22,8 @@ const developmentMiddleware = (app) => {
   app.use(webpackDevMiddleware(multiCompiler, {
     publicPath: clientConfig.output.publicPath,
     serverSideRender: true,
-    logLevel: 'warn', // Info output is overwhelming with bundle information.
+    // logLevel: 'verbose', // Info output is overwhelming with bundle information.
+    logLevel: 'trace',
   }));
   // Support hot module reloading.
   app.use(webpackHotMiddleware(clientCompiler));

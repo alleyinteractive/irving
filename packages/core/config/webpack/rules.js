@@ -1,10 +1,13 @@
 const path = require('path');
-const { postCssConfig, transform, assetsRoot } = require('../paths');
-
-const exclude = [
-  /node_modules/,
-  /\.min\.js$/,
-];
+const {
+  transform,
+  assetsRoot,
+  irvingRoot,
+} = require('../paths');
+const include = (filepath) => (
+  filepath.includes(irvingRoot) &&
+  ! filepath.match(/node_modules/)
+);
 
 /**
  * Get the context specific rules configuration.
@@ -18,8 +21,8 @@ module.exports = function getRules(context) {
     {
       enforce: 'pre',
       test: /\.jsx?$/,
-      exclude,
-      use: 'eslint-loader',
+      include,
+      use: require.resolve('eslint-loader'),
     },
     {
       exclude: [
@@ -35,11 +38,13 @@ module.exports = function getRules(context) {
         /\.otf$/,
         /\.ico$/,
       ],
-      loader: 'file-loader',
-      options: {
-        emitFile: ! isServer,
-        name: 'static/media/[name].[hash:8].[ext]',
-      },
+      use: {
+        loader: require.resolve('file-loader'),
+        options: {
+          emitFile: ! isServer,
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
+      }
     },
     {
       test: [
@@ -51,41 +56,42 @@ module.exports = function getRules(context) {
         /\.otf$/,
         /\.ico$/,
       ],
-      loader: 'url-loader',
       exclude: path.join(assetsRoot, 'icons'),
-      options: {
-        limit: 10000,
-        emitFile: ! isServer,
-        name: 'static/media/[name].[hash:8].[ext]',
+      use: {
+        loader: require.resolve('url-loader'),
+        options: {
+          limit: 10000,
+          emitFile: ! isServer,
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
       },
     },
     {
       test: /\.svg$/,
       include: path.join(assetsRoot, 'icons'),
-      loader: 'svg-react-loader',
+      use: require.resolve('svg-react-loader'),
     },
     {
       test: /\.jsx?$/,
-      exclude,
+      include,
       use: {
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: ! isProd,
-        },
+        loader: require.resolve('babel-loader'),
+        options: require(path.join(irvingRoot, 'babel.config.js')),
       },
     },
     {
       test: /\.css$/,
-      exclude,
+      include,
       use: [
         {
-          loader: isServer ? 'critical-style-loader' : 'style-loader',
+          loader: isServer ? require.resolve('critical-style-loader') :
+            require.resolve('style-loader'),
           options: {
             transform,
           },
         },
         {
-          loader: 'css-loader',
+          loader: require.resolve('css-loader'),
           options: {
             url: true,
             importLoaders: 1,
@@ -95,15 +101,6 @@ module.exports = function getRules(context) {
             },
             sourceMap: ! isProd,
             localsConvention: 'camelCase',
-          },
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: ! isProd,
-            config: {
-              path: postCssConfig,
-            },
           },
         },
       ],

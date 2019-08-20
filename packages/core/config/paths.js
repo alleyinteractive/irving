@@ -18,6 +18,7 @@ const { PROXY_URL, ROOT_URL } = process.env;
 
 module.exports = {
   appRoot,
+  irvingRoot,
   clientRoot: resolveDir('client'),
   serverRoot: resolveDir('server/serverRenderer.js'),
   clientBuild: resolveDir('build/client'),
