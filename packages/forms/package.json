@@ -26,6 +26,10 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "jest": "^24.9.0",
     "jest-environment-enzyme": "^7.1.0",
-    "jest-enzyme": "^7.1.0"
+    "jest-enzyme": "^7.1.0",
+    "@irving/babel-preset-irving": "1.0.0"
+  },
+  "peerDependencies": {
+    "@irving/core": "1.0.0"
   }
 }
