@@ -30,7 +30,7 @@ const getService = () => {
     let Redis;
     // Check if optional redis client is installed.
     try {
-      Redis = require('ioredis'); // eslint-disable-line global-require
+      // Redis = require('ioredis'); // eslint-disable-line global-require
     } catch (err) {
       return defaultService;
     }

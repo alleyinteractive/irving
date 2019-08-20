@@ -94,5 +94,9 @@
     "webpack-hot-server-middleware": "^0.6.0",
     "webpack-node-externals": "^1.7.2",
     "webpack-stats-plugin": "^0.3.0"
+  },
+  "optionalDependencies": {
+    "ioredis": "^3.2.2",
+    "newrelic": "^4.5.0"
   }
 }

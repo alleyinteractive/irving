@@ -2,12 +2,18 @@ const path = require('path');
 const {
   transform,
   assetsRoot,
+  appRoot,
   irvingRoot,
 } = require('../paths');
-const include = (filepath) => (
-  filepath.includes(irvingRoot) &&
-  ! filepath.match(/node_modules/)
-);
+const include = (filepath) => {
+  const matches = (
+    (filepath.includes(irvingRoot) || filepath.includes(appRoot)) &&
+    ! filepath.match(/node_modules/) &&
+    ! filepath.match(/\.min\.js$/)
+  );
+
+  return matches;
+};
 
 /**
  * Get the context specific rules configuration.
