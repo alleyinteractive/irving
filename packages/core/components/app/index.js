@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { hot } from 'react-hot-loader/root';
+import { setConfig } from 'react-hot-loader';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { withStyles } from 'critical-style-loader/lib';
@@ -12,6 +13,8 @@ import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
 import getProviders from 'selectors/getProviders';
 import styles from './app.css';
+
+setConfig({ logLevel: 'debug' });
 
 const App = (props) => {
   const {

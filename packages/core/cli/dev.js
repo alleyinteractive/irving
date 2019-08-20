@@ -22,6 +22,7 @@ const ignore = [
   'server/serverRenderer.js',
   'services/*',
   'utils/*',
+  'hooks/*',
 ];
 const script = path.join(__dirname, './start.js');
 
