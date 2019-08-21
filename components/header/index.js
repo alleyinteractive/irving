@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 import classNames from 'classnames';
+import Link from 'components/helpers/link';
 
 // Images
 import LogoStacked from 'assets/icons/logoStacked.svg';
@@ -25,14 +26,14 @@ const Header = ({ homeUrl, children }) => {
           {/* @todo consider moving ad placeholder to its own component */}
           <div className={styles.leaderboard}>Advertisement placeholder</div>
         </div>
-        <a href={homeUrl} className={styles.logo}>
+        <Link to={homeUrl} className={styles.logo}>
           <div className="screen-reader-text">
             {__('MIT Technology Review')}
           </div>
           <div className={styles.logoStacked}>
             <LogoStacked />
           </div>
-        </a>
+        </Link>
         <div className={styles.navigation}>
           <div className={styles.userGreeting}>{userGreeting}</div>
           <div className={styles.menu}>
