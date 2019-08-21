@@ -10,15 +10,12 @@ const include = (filepath) => {
     (
       filepath.includes(irvingRoot) ||
       filepath.includes(appRoot) ||
-      (! filepath.includes(irvingRoot) && ! filepath.match(/node_modules/))
+      (filepath.match(/@irving/) && filepath.match(/node_modules/))
     ) &&
     ! filepath.match(/\.min\.js$/)
   );
-  if (filepath.includes('hot-loader')) {
-    // console.log(filepath, matches);
-  }
 
-  return matches;
+  return !! matches;
 };
 
 /**
@@ -74,7 +71,7 @@ module.exports = function getRules(context) {
         /\.otf$/,
         /\.ico$/,
       ],
-      exclude: path.join(assetsRoot, 'icons'),
+      exclude: [/assets\/icons/],
       use: {
         loader: 'url-loader',
         options: {
@@ -86,7 +83,7 @@ module.exports = function getRules(context) {
     },
     {
       test: /\.svg$/,
-      include: path.join(assetsRoot, 'icons'),
+      include: [/assets\/icons/],
       use: 'svg-react-loader',
     },
     {

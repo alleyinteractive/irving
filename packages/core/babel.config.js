@@ -1,5 +1,10 @@
 const path = require('path');
+const fs = require('fs');
 const { irvingRoot, appRoot } = require('./config/paths');
+const scopeDir = path.join(__dirname, '../');
+const packageDirs = fs.readdirSync(scopeDir);
+const packageRoots = ! packageDirs.length ? [] :
+  packageDirs.map((dir) => path.join(scopeDir, dir));
 
 module.exports = {
   env: {
@@ -10,7 +15,7 @@ module.exports = {
           {
             root: [
               appRoot,
-              irvingRoot,
+              ...packageRoots,
             ],
             cwd: 'packagejson',
             alias: {
@@ -36,21 +41,7 @@ module.exports = {
       plugins: [
         [
           'module-resolver',
-          {
-            root: [irvingRoot],
-            // alias: {
-            //   actions: './actions',
-            //   assets: './assets',
-            //   components: './components',
-            //   hooks: './hooks',
-            //   reducers: './reducers',
-            //   sagas: './sagas',
-            //   selectors: './selectors',
-            //   server: './server',
-            //   services: './services',
-            //   utils: './utils',
-            // },
-          },
+          { root: [irvingRoot] },
         ],
       ],
       presets: [
