@@ -1,8 +1,9 @@
 import irvingDefaultConfig from 'config/irving.config.default';
 import merge from 'lodash/fp/merge';
-import userConfig from 'irving.config.js';
+import userConfig from '@irving/irving.config';
 
 export default function getIrvingConfig() {
+  console.log(userConfig);
   return merge(
     userConfig,
     irvingDefaultConfig,
