@@ -64,6 +64,7 @@
   align-content: flex-end;
   display: flex;
   flex-flow: column nowrap;
+  position: static;
   tidy-span: 5;
 
   @media ($lgMin) {
@@ -74,4 +75,26 @@
 .menu {
   display: flex;
   flex-flow: row nowrap;
+  position: static;
+}
+
+.button {
+  display: block;
+  height: rem(50);
+  padding: rem(15) rem(10);
+  width: rem(46);
+  z-index: 2;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.megaMenu {
+  background-color: $black;
+  color: $white;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 }

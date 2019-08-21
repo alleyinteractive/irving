@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 
-// Logo
+// Images
 import LogoStacked from 'assets/icons/logoStacked.svg';
+import MegaMenuIcon from 'assets/icons/megaMenu.svg';
 
 // Styles
 import styles from './header.css';
@@ -34,10 +35,17 @@ const Header = ({ homeUrl, children }) => {
           <div className={styles.userGreeting}>{userGreeting}</div>
           <div className={styles.menu}>
             {menu}
-            <button type="button" onClick={() => setIsExpanded(! isExpanded)}>
-              {isExpanded ?
-                __('Close menu', 'mittr') :
-                __('Expand menu', 'mittr')}
+            <button
+              className={styles.button}
+              type="button"
+              onClick={() => setIsExpanded(! isExpanded)}
+            >
+              <span className="screen-reader-text">
+                {isExpanded ?
+                  __('Close menu', 'mittr') :
+                  __('Expand menu', 'mittr')}
+              </span>
+              <MegaMenuIcon />
             </button>
             {isExpanded && <div className={styles.megaMenu}>{megaMenu}</div>}
           </div>
