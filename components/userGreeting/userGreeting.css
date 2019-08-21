@@ -22,6 +22,17 @@
     background-color: $black;
     color: $white;
   }
+
+  &--dark {
+    background-color: $black;
+    border-color: $white;
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
+  }
 }
 
 .subscribe {
@@ -33,5 +44,9 @@
   &:hover {
     background-color: $red;
     color: $white;
+  }
+
+  &--dark {
+    background-color: $black;
   }
 }
