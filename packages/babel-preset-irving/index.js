@@ -1,23 +1,23 @@
 module.exports = function babelPresetIrving() {
   return {
     plugins: [
-      require.resolve('babel-plugin-lodash'),
-      require.resolve('react-hot-loader/babel'),
-      require.resolve('@babel/plugin-proposal-object-rest-spread'),
-      require.resolve('@babel/plugin-proposal-class-properties'),
-      require.resolve('@babel/plugin-syntax-dynamic-import'),
-      require.resolve('babel-plugin-universal-import'),
+      'babel-plugin-lodash',
+      'react-hot-loader/babel',
+      '@babel/plugin-proposal-object-rest-spread',
+      '@babel/plugin-proposal-class-properties',
+      '@babel/plugin-syntax-dynamic-import',
+      'babel-plugin-universal-import',
     ],
     presets: [
       [
-        require.resolve('@babel/preset-env'),
+        '@babel/preset-env',
         {
           targets: {
             browsers: 'last 3 versions, IE 11',
           },
         },
       ],
-      require.resolve('@babel/preset-react'),
+      '@babel/preset-react',
     ],
   };
-}
+};

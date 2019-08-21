@@ -10,7 +10,6 @@ import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
-import App from 'components/app';
 import ErrorMessage from 'components/errorMessage';
 import getEnv from 'config/webpack/env';
 import defaultState from 'reducers/defaultState';
@@ -18,6 +17,7 @@ import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
+import App from 'components/app';
 
 const monitor = getService();
 const debugError = createDebug('render:error');

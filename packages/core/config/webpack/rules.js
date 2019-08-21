@@ -7,10 +7,16 @@ const {
 } = require('../paths');
 const include = (filepath) => {
   const matches = (
-    (filepath.includes(irvingRoot) || filepath.includes(appRoot)) &&
-    ! filepath.match(/node_modules/) &&
+    (
+      filepath.includes(irvingRoot) ||
+      filepath.includes(appRoot) ||
+      (! filepath.includes(irvingRoot) && ! filepath.match(/node_modules/))
+    ) &&
     ! filepath.match(/\.min\.js$/)
   );
+  if (filepath.includes('hot-loader')) {
+    // console.log(filepath, matches);
+  }
 
   return matches;
 };
@@ -29,9 +35,10 @@ module.exports = function getRules(context) {
       test: /\.jsx?$/,
       include,
       use: {
-        loader: require.resolve('eslint-loader'),
+        loader: 'eslint-loader',
         options: {
-          configFile: path.join(irvingRoot, '.eslintrc.json'),
+          configFile: path.join(irvingRoot, '.eslintrc.js'),
+          eslintPath: path.join(appRoot, 'node_modules/eslint'),
         },
       },
     },
@@ -50,12 +57,12 @@ module.exports = function getRules(context) {
         /\.ico$/,
       ],
       use: {
-        loader: require.resolve('file-loader'),
+        loader: 'file-loader',
         options: {
           emitFile: ! isServer,
           name: 'static/media/[name].[hash:8].[ext]',
         },
-      }
+      },
     },
     {
       test: [
@@ -69,7 +76,7 @@ module.exports = function getRules(context) {
       ],
       exclude: path.join(assetsRoot, 'icons'),
       use: {
-        loader: require.resolve('url-loader'),
+        loader: 'url-loader',
         options: {
           limit: 10000,
           emitFile: ! isServer,
@@ -86,7 +93,7 @@ module.exports = function getRules(context) {
       test: /\.jsx?$/,
       include,
       use: {
-        loader: require.resolve('babel-loader'),
+        loader: 'babel-loader',
         options: require(path.join(irvingRoot, 'babel.config.js')),
       },
     },
@@ -95,14 +102,13 @@ module.exports = function getRules(context) {
       include,
       use: [
         {
-          loader: isServer ? require.resolve('critical-style-loader') :
-            require.resolve('style-loader'),
+          loader: isServer ? 'critical-style-loader' : 'style-loader',
           options: {
             transform,
           },
         },
         {
-          loader: require.resolve('css-loader'),
+          loader: 'css-loader',
           options: {
             url: true,
             importLoaders: 1,

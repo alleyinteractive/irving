@@ -5,7 +5,6 @@
  * @returns {object}
  */
 export default function getConfigReducers(config) {
-  console.log(config);
   // Get reducers from configured irving extension packages.
   const packageReducers = ! config.packages ? {} :
     Object.keys(config.packages)

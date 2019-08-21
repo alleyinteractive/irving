@@ -15,9 +15,7 @@ module.exports = (env, argv) => {
       mode,
       resolve: {
         alias: {
-          'react-dom': ! isProd ?
-            require.resolve('@hot-loader/react-dom') :
-            require.resolve('react-dom'),
+          'react-dom': ! isProd ? '@hot-loader/react-dom' : 'react-dom',
         },
       },
       devtool: client.getDevTool(),
@@ -52,7 +50,9 @@ module.exports = (env, argv) => {
           // Allow references to vendor css, so we can include them in our bundle.
           whitelist: [
             /\.css$/,
-            /babel-plugin-universal-import|react-universal-component|webpack-flush-chunks/,
+            /babel-plugin-universal-import/,
+            /react-universal-component/,
+            /webpack-flush-chunks/,
           ],
         }),
       ],

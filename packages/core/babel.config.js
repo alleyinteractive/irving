@@ -1,3 +1,4 @@
+const path = require('path');
 const { irvingRoot, appRoot } = require('./config/paths');
 
 module.exports = {
@@ -5,7 +6,7 @@ module.exports = {
     app: {
       plugins: [
         [
-          require.resolve('babel-plugin-module-resolver'),
+          'module-resolver',
           {
             root: [
               appRoot,
@@ -13,6 +14,7 @@ module.exports = {
             ],
             cwd: 'packagejson',
             alias: {
+              '@': path.join(appRoot, './.irving'),
               actions: './actions',
               assets: './assets',
               components: './components',
@@ -28,12 +30,12 @@ module.exports = {
         ],
       ],
       presets: [
-        require.resolve('@irving/babel-preset-irving'),
+        path.join(appRoot, 'node_modules/@irving/babel-preset-irving'),
       ],
     },
     test: {
       presets: [
-        require.resolve('@irving/babel-preset-irving'),
+        path.join(appRoot, 'node_modules/@irving/babel-preset-irving'),
       ],
     },
   },

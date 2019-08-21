@@ -23,6 +23,7 @@ const ignore = [
   'services/*',
   'utils/*',
   'hooks/*',
+  'irving.config.js',
 ];
 const script = path.join(__dirname, './start.js');
 
