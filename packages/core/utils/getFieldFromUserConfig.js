@@ -8,21 +8,25 @@
  */
 export default function getFieldFromUserConfig(config, key, type) {
   const initial = 'array' === type ? [] : {};
+  const hasPackages = (config.packages && Object.keys(config.packages).length);
 
-  // Return early if an invalid key was provided.
-  if (! config[key]) {
+  // Return early if an invalid key was provided or no packaged configured.
+  if (! config[key] && ! hasPackages) {
     return initial;
   }
 
   // Get provided key from configured irving extension packages.
-  const packageConfig = ! config.packages ? {} :
+  const packageConfig = ! hasPackages ? initial :
     Object.keys(config.packages)
       .reduce((acc, packageName) => {
         const irvingPackage = config.packages[packageName];
 
         // If package has provided key, spread them into the accumulator.
         if (irvingPackage[key] && 'function' === typeof irvingPackage[key]) {
-          return {
+          return 'array' === type ? [
+            ...acc,
+            ...irvingPackage[key](),
+          ] : {
             ...acc,
             ...irvingPackage[key](),
           };
