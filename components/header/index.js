@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
+import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 
 // Images
@@ -60,4 +61,4 @@ Header.propTypes = {
   homeUrl: PropTypes.string.isRequired,
 };
 
-export default Header;
+export default withStyles(styles)(Header);
