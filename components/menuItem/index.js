@@ -86,7 +86,7 @@ MenuItem.propTypes = {
   theme: PropTypes.shape({
     parent: PropTypes.string,
   }).isRequired,
-  useHover: PropTypes.string,
+  useHover: PropTypes.bool,
 };
 
 MenuItem.defaultProps = {

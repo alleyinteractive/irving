@@ -21,6 +21,7 @@ import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
+import MegaMenu from 'components/megaMenu';
 
 /**
  * Defines which React component to render for each received API component.
@@ -42,11 +43,11 @@ export const componentMap = {
   header: Header,
   html: RawHTML,
   image: Image,
-  'mega-menu': Placeholder,
+  'mega-menu': MegaMenu,
   menu: Menu,
   'menu-item': MenuItem,
   parsely: Parsely,
-  'search-bar': Placeholder,
+  // 'search-bar': Placeholder, // hide for demo
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,
