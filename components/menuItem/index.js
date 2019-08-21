@@ -51,7 +51,6 @@ const MenuItem = (props) => {
                 onClick={() => setIsExpanded(! isExpanded)}
                 type="button"
                 aria-expanded={isExpanded}
-                aria-disabled={isDesktop}
                 className={classNames(theme.parent, {
                   [theme.isExpanded]: isExpanded,
                 })}
