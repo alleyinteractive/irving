@@ -7,6 +7,7 @@
   display: block;
   justify-self: flex-end;
   margin: 0 auto;
+  position: relative;
   width: 100%;
 }
 
@@ -16,16 +17,19 @@
   flex-flow: row wrap;
   margin: 0 auto;
   padding-bottom: 0;
+  position: relative;
 }
 
 .logo {
   display: block;
+  margin-bottom: tidy-var(gap);
   margin-right: tidy-var(gap);
   tidy-offset-right: 1;
   tidy-span: 4;
 
   @media ($lgMin) {
-    tidy-offset-right: 1;
+    tidy-offset-left: 1;
+    tidy-offset-right: 0;
     tidy-span: 2;
   }
 }
@@ -94,6 +98,7 @@
 .megaMenu {
   background-color: $black;
   color: $white;
+  left: 0;
   position: absolute;
   width: 100%;
   z-index: 1;
