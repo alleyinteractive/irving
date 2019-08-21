@@ -95,6 +95,13 @@
   }
 }
 
+.expandedButton {
+  background-color: $white;
+  height: auto;
+  text-decoration: underline;
+  width: auto;
+}
+
 .megaMenu {
   background-color: $black;
   color: $white;

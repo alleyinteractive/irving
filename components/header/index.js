@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
+import classNames from 'classnames';
 
 // Images
 import LogoStacked from 'assets/icons/logoStacked.svg';
@@ -37,7 +38,9 @@ const Header = ({ homeUrl, children }) => {
           <div className={styles.menu}>
             {menu}
             <button
-              className={styles.button}
+              className={classNames(styles.button, {
+                [styles.expandedButton]: isExpanded,
+              })}
               type="button"
               onClick={() => setIsExpanded(! isExpanded)}
             >
@@ -46,7 +49,9 @@ const Header = ({ homeUrl, children }) => {
                   __('Close menu', 'mittr') :
                   __('Expand menu', 'mittr')}
               </span>
-              <MegaMenuIcon />
+              <span aria-hidden="true">
+                {isExpanded ? 'Close' : <MegaMenuIcon />}
+              </span>
             </button>
             {isExpanded && <div className={styles.megaMenu}>{megaMenu}</div>}
           </div>
