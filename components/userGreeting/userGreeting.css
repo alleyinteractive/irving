@@ -10,6 +10,7 @@
 .button {
   background: $white;
   border: $border-thin;
+  color: $black;
   display: inline-block;
   font-family: $sans;
   font-weight: 600;
