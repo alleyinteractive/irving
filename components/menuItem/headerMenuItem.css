@@ -1,0 +1,7 @@
+.parent {
+  background-color: $white;
+  border: 0;
+  color: $black;
+  font-weight: 600;
+  text-align: left;
+}
