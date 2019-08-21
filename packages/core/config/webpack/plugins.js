@@ -56,11 +56,11 @@ module.exports = function getPlugins(context) {
     case 'development_client':
       return [
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.EnvironmentPlugin({
           BROWSER: true,
           ...env,
         }),
+        new webpack.HotModuleReplacementPlugin(),
       ];
 
     default:
