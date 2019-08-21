@@ -15,7 +15,7 @@ import styles from './menuItem.css';
 
 const MenuItem = (props) => {
   const {
-    children, label, themeName, url, theme,
+    children, label, themeName, url, theme, useHover,
   } = props;
 
   const menu = findChildByName('menu', children);
@@ -27,7 +27,7 @@ const MenuItem = (props) => {
 
   // When resizing, do not have the click to expand controls on desktop.
   useEffect(() => {
-    if (isSmMin) {
+    if (isSmMin && ! useHover) {
       setIsExpanded(true);
       setIsDesktop(true);
     } else {
@@ -36,12 +36,17 @@ const MenuItem = (props) => {
     }
   }, [isSmMin]);
 
+  // If use hover is selected, when you click or hover in desktop mode,
+  // the dropdown should appear.
+
   return (
     <li
       className={classNames(theme.wrapper, styles[themeName], {
         [theme.hasChildren]: menu,
         [theme.isChildless]: ! menu,
       })}
+      onMouseEnter={() => (useHover ? setIsExpanded(true) : null)}
+      onMouseLeave={() => (useHover ? setIsExpanded(false) : null)}
     >
       {(() => {
         switch (true) {
@@ -59,7 +64,7 @@ const MenuItem = (props) => {
               </button>
             );
           case menu && isDesktop:
-            return <div className={theme.parent}>{label}</div>;
+            return <h3 className={theme.parent}>{label}</h3>;
           default:
             return (
               <Link className={theme.link} to={url}>
@@ -68,7 +73,7 @@ const MenuItem = (props) => {
             );
         }
       })()}
-      {isExpanded && menu}
+      {isExpanded && <div className={theme.childMenu}>{menu}</div>}
     </li>
   );
 };
@@ -81,6 +86,11 @@ MenuItem.propTypes = {
   theme: PropTypes.shape({
     parent: PropTypes.string,
   }).isRequired,
+  useHover: PropTypes.string,
+};
+
+MenuItem.defaultProps = {
+  useHover: false,
 };
 
 const wrapWithThemes = withThemes('menu', {
