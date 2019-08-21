@@ -1,12 +1,13 @@
 body {
-  -moz-osx-font-smoothing: grayscale;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  -webkit-font-smoothing: antialiased;
-  -webkit-overflow-scrolling: touch;
+  background-color: $background-gray;
   color: #444444;
   font-family: $sans;
   font-size: 1rem;
   line-height: 1.231;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
 }
 
 ::selection {
@@ -289,14 +290,21 @@ textarea {
   margin: 0;
 }
 
-.no-boxshadow input:invalid,
-.no-boxshadow textarea:invalid {
-  background-color: #f0dddd;
-}
-
 button {
   background: transparent;
   border: 0;
   overflow: visible;
   width: auto;
+}
+
+/* Class names that are not transformed by css modules. */
+:global {
+  .no-boxshadow input:invalid,
+  .no-boxshadow textarea:invalid {
+    background-color: #f0dddd;
+  }
+
+  .screen-reader-text {
+    @include screenreader-only;
+  }
 }

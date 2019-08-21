@@ -6,6 +6,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import styles from './menu.css';
 import footerStyles from './footerMenu.css';
+import headerStyles from './headerMenu.css';
 
 const Menu = (props) => {
   const {
@@ -13,7 +14,7 @@ const Menu = (props) => {
   } = props;
 
   return (
-    <nav className={className(theme.wrapper, styles[themeName])}>
+    <div className={className(theme.wrapper, styles[themeName])}>
       {title && displayTitle && (
         <h2 className={theme.title}>
           {titleLink ? (
@@ -26,7 +27,7 @@ const Menu = (props) => {
         </h2>
       )}
       <ul className={theme.list}>{children}</ul>
-    </nav>
+    </div>
   );
 };
 
@@ -50,6 +51,7 @@ Menu.defaultProps = {
 const wrapWithThemes = withThemes('menu', {
   default: styles,
   footer: footerStyles,
+  header: headerStyles,
 });
 
 const wrapWithStyles = withStyles(styles, footerStyles);

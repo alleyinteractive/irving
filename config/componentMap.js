@@ -2,12 +2,14 @@ import AudioElement from 'components/audio';
 import Body from 'components/body';
 import Byline from 'components/byline';
 import ContentBody from 'components/contentBody';
+import ContentFooter from 'components/contentFooter';
 import ContentHeader from 'components/contentHeader';
 import Disqus from 'components/disqus';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
 import GoogleTagManager from 'components/googleTagManager';
 import Head from 'components/head';
+import Header from 'components/header';
 import Image from 'components/image/image';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
@@ -16,9 +18,10 @@ import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import RawHTML from 'components/rawHTML';
 import SocialItem from 'components/socialItem';
-import ContentFooter from 'components/contentFooter';
 import SocialList from 'components/socialList';
+import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
+import MegaMenu from 'components/megaMenu';
 
 /**
  * Defines which React component to render for each received API component.
@@ -30,22 +33,25 @@ export const componentMap = {
   byline: Byline,
   'content-header': ContentHeader,
   'content-body': ContentBody,
-  'content-footer': ContentFooter, // Hide for demo.
+  'content-footer': ContentFooter,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
   'google-analytics': GoogleAnalytics,
   'google-tag-manager': GoogleTagManager,
   head: Head,
-  header: Placeholder,
+  header: Header,
   html: RawHTML,
   image: Image,
+  'mega-menu': MegaMenu,
   menu: Menu,
   'menu-item': MenuItem,
   parsely: Parsely,
-  'social-links': SocialList, // Hide for demo.
-  'social-sharing': SocialList, // Hide for demo.
-  'social-item': SocialItem, // Hide for demo.
+  // 'search-bar': Placeholder, // hide for demo
+  'social-links': SocialList,
+  'social-sharing': SocialList,
+  'social-item': SocialItem,
+  'user-greeting': UserGreeting,
 };
 
 /**
