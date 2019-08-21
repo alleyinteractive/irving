@@ -14,7 +14,7 @@ const Menu = (props) => {
   } = props;
 
   return (
-    <nav className={className(theme.wrapper, styles[themeName])}>
+    <div className={className(theme.wrapper, styles[themeName])}>
       {title && displayTitle && (
         <h2 className={theme.title}>
           {titleLink ? (
@@ -27,7 +27,7 @@ const Menu = (props) => {
         </h2>
       )}
       <ul className={theme.list}>{children}</ul>
-    </nav>
+    </div>
   );
 };
 
