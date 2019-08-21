@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from 'critical-style-loader/lib';
 import Authenticated from './authenticated';
 import Anonymous from './anonymous';
 
@@ -22,4 +23,4 @@ UserGreeting.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
-export default UserGreeting;
+export default withStyles(styles)(UserGreeting);
