@@ -53,6 +53,7 @@ module.exports = (env, argv) => {
             /babel-plugin-universal-import/,
             /react-universal-component/,
             /webpack-flush-chunks/,
+            /@irving/,
           ],
         }),
       ],

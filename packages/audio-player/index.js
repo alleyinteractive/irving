@@ -1,5 +1,5 @@
 import getReducers from 'reducers';
-import getDefaultState from 'reduceres/defaultState';
+import getDefaultState from 'reducers/defaultState';
 import PlayPauseButton from 'components/playPauseButton';
 import AudioElement from 'components/audioElement';
 

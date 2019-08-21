@@ -8,6 +8,7 @@ module.exports = {
         root: [path.resolve(__dirname)],
         alias: {
           actions: './actions',
+          assets: './assets',
           reducers: './reducers',
           config: './config',
           components: './components',
