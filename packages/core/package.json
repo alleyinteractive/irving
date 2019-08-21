@@ -75,6 +75,7 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "fetch-mock": "^7.3.0",
     "file-loader": "^1.1.11",
+    "@irving/babel-preset-irving": "1.0.0",
     "jest": "^24.9.0",
     "jest-environment-enzyme": "^7.1.0",
     "jest-enzyme": "^7.1.0",

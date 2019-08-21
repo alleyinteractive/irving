@@ -1,3 +1,4 @@
+import { createAction } from '@irving/core/actions';
 import {
   PLAY_AUDIO,
   LOAD_AUDIO,
@@ -9,7 +10,6 @@ import {
   LOAD_NEXT_TRACK,
   LOAD_PREVIOUS_TRACK,
 } from './types';
-import { createAction } from '.';
 
 export function actionPlayAudio() {
   return createAction(PLAY_AUDIO);

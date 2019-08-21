@@ -1,11 +1,11 @@
 import omitBy from 'lodash/fp/omitBy';
+import { createAction } from '@irving/core/actions';
 import {
   REQUEST_SUBMIT,
   RECEIVE_SUBMITTED,
   RECEIVE_SUBMIT_ERROR,
   RECEIVE_SUBMIT_INVALID,
 } from './types';
-import { createAction } from '.';
 
 /**
  * Create a request submit Redux action.

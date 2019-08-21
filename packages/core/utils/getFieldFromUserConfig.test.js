@@ -1,6 +1,6 @@
-import getConfigReducers from './getConfigReducers';
+import getFieldFromUserConfig from './getFieldFromUserConfig';
 
-it('should get reducers from configured packages', () => {
+it('should get provided field from configured packages', () => {
   const mockConfig = {
     packages: {
       test: {
@@ -10,7 +10,11 @@ it('should get reducers from configured packages', () => {
       },
     },
   };
-  const configReducers = getConfigReducers(mockConfig);
+  const configReducers = getFieldFromUserConfig(
+    mockConfig,
+    'reducers',
+    'object'
+  );
 
   expect(Object.keys(configReducers)).toEqual(['mySlice']);
 });
@@ -21,7 +25,11 @@ it('should get user-configured reducers', () => {
       userSlice: () => {},
     }),
   };
-  const configReducers = getConfigReducers(mockConfig);
+  const configReducers = getFieldFromUserConfig(
+    mockConfig,
+    'reducers',
+    'object'
+  );
 
   expect(Object.keys(configReducers)).toEqual(['userSlice']);
 });
@@ -41,7 +49,11 @@ it('should merge package and user reducers', () => {
       testSlice: () => {},
     }),
   };
-  const configReducers = getConfigReducers(mockConfig);
+  const configReducers = getFieldFromUserConfig(
+    mockConfig,
+    'reducers',
+    'object'
+  );
 
   expect(Object.keys(configReducers))
     .toEqual(['packageSlice', 'testSlice', 'userSlice']);

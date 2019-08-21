@@ -1,3 +1,6 @@
+import getIrvingConfig from 'utils/getIrvingConfig';
+import getFieldFromUserConfig from 'utils/getFieldFromUserConfig';
+
 export const components = {
   defaults: [],
   providers: {},
@@ -11,28 +14,9 @@ export const route = {
   action: '',
 };
 
-export const form = {
-  submitting: false,
-  submitted: false,
-  failed: false,
-  validation: {},
-  redirect: '',
-};
-
 export const visible = {
   test: false,
 };
-
-// export const player = {
-//   currentTime: 0,
-//   duration: 0,
-//   loading: false,
-//   playing: false,
-//   seek: 0,
-//   src: '',
-//   visible: false,
-//   volume: 0.5,
-// };
 
 export const error = null;
 
@@ -51,9 +35,9 @@ const defaultState = {
   componentData,
   error,
   loading,
-  // player,
   route,
   visible,
+  ...getFieldFromUserConfig(getIrvingConfig(), 'defaultState', 'object'),
 };
 
 export default defaultState;

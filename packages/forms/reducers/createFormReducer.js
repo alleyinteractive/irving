@@ -8,7 +8,7 @@ import {
   RECEIVE_SUBMIT_ERROR,
   RECEIVE_SUBMIT_INVALID,
 } from '../actions/types';
-import { form as defaultState } from './defaultState';
+import getDefaultState from './defaultState';
 
 /**
  * Create a state slice reducer for form related actions.
@@ -16,7 +16,7 @@ import { form as defaultState } from './defaultState';
  * @return {function}
  */
 const createFormReducer = (name) => (
-  formState = defaultState,
+  formState = getDefaultState(),
   { type, payload }
 ) => {
   if (name !== get('formName', payload)) {

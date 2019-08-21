@@ -14,7 +14,6 @@ module.exports = {
             ],
             cwd: 'packagejson',
             alias: {
-              '@': path.join(appRoot, './.irving'),
               actions: './actions',
               assets: './assets',
               components: './components',
@@ -34,8 +33,28 @@ module.exports = {
       ],
     },
     test: {
+      plugins: [
+        [
+          'module-resolver',
+          {
+            root: [irvingRoot],
+            alias: {
+              actions: './actions',
+              assets: './assets',
+              components: './components',
+              hooks: './hooks',
+              reducers: './reducers',
+              sagas: './sagas',
+              selectors: './selectors',
+              server: './server',
+              services: './services',
+              utils: './utils',
+            },
+          },
+        ],
+      ],
       presets: [
-        path.join(appRoot, 'node_modules/@irving/babel-preset-irving'),
+        '@irving/irving',
       ],
     },
   },

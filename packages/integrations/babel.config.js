@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   plugins: [
     [
-      require.resolve('babel-plugin-module-resolver'),
+      'module-resolver',
       {
         root: [path.resolve(__dirname)],
         alias: {
@@ -14,6 +14,6 @@ module.exports = {
     ],
   ],
   presets: [
-    require.resolve('@irving/babel-preset-irving'),
+    '@irving/irving',
   ],
 };
