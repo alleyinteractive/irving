@@ -1,3 +1,4 @@
+const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
 const { appRoot } = require('./paths');
