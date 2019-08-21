@@ -3,7 +3,6 @@ import merge from 'lodash/fp/merge';
 import userConfig from '@irving/irving.config';
 
 export default function getIrvingConfig() {
-  console.log(userConfig);
   return merge(
     userConfig,
     irvingDefaultConfig,
