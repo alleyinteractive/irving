@@ -23,7 +23,7 @@ const Header = ({ homeUrl, children }) => {
     <header className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.leaderboardRow}>
-          {/* @todo consider moving ad placeholder to its own component */}
+          {/* @todo consider moving ad placeholder to its own component. */}
           <div className={styles.leaderboard}>Advertisement placeholder</div>
         </div>
         <Link to={homeUrl} className={styles.logo}>
