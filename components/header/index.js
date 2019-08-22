@@ -8,6 +8,7 @@ import Link from 'components/helpers/link';
 
 // Images
 import LogoStacked from 'assets/icons/logoStacked.svg';
+import LogoHorizontal from 'assets/icons/logoHorizontal.svg';
 import MegaMenuIcon from 'assets/icons/megaMenu.svg';
 
 // Styles
@@ -30,14 +31,17 @@ const Header = ({ homeUrl, children }) => {
           <div className="screen-reader-text">
             {__('MIT Technology Review')}
           </div>
-          <div className={styles.logoStacked}>
+          <div className={styles.logoStacked} aria-hidden="true">
             <LogoStacked />
+          </div>
+          <div className={styles.logoHorizontal} aria-hidden="true">
+            <LogoHorizontal />
           </div>
         </Link>
         <div className={styles.navigation}>
           <div className={styles.userGreeting}>{userGreeting}</div>
-          <div className={styles.menu}>
-            {menu}
+          <div className={styles.menuRow}>
+            <div className={styles.menu}>{menu}</div>
             <button
               className={classNames(styles.button, {
                 [styles.expandedButton]: isExpanded,

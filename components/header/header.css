@@ -21,28 +21,44 @@
 }
 
 .logo {
-  display: block;
-  margin-bottom: tidy-var(gap);
-  tidy-offset-right: 0;
-  tidy-span: 4;
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  tidy-span: 2;
 
   @media ($lgMin) {
     tidy-offset-left: 0;
-    tidy-offset-right: 0;
     tidy-span: 3;
   }
 }
 
 .logoStacked {
-  display: flex;
+  display: none;
   flex-flow: row nowrap;
   justify-content: flex-start;
+  margin-bottom: tidy-var(gap);
   margin-left: rem(-7); /* Vertical align the R and T on the grid */
+
+  @media ($xsMin) {
+    display: flex;
+  }
 
   svg {
     display: block;
     height: rem(75.969);
     width: rem(154);
+  }
+}
+
+.logoHorizontal {
+  @media ($xsMin) {
+    display: none;
+  }
+
+  svg {
+    display: block;
+    height: rem(20);
+    width: rem(210);
   }
 }
 
@@ -80,17 +96,28 @@
   flex-flow: column nowrap;
   margin-left: tidy-var(gap);
   position: static;
-  tidy-span: 6;
+  tidy-span: 8;
 
   @media ($lgMin) {
     tidy-span: 9;
   }
 }
 
-.menu {
+.menuRow {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: flex-end;
   position: static;
+}
+
+.menu {
+  display: none;
+  flex-flow: row nowrap;
+  position: static;
+
+  @media ($xsMin) {
+    display: flex;
+  }
 }
 
 .button {
@@ -125,4 +152,12 @@
   position: absolute;
   width: 100%;
   z-index: 1;
+}
+
+.userGreeting {
+  display: none;
+
+  @media ($xsMin) {
+    display: block;
+  }
 }
