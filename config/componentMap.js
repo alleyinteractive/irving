@@ -19,6 +19,7 @@ import Placeholder from 'components/placeholder';
 import RawHTML from 'components/rawHTML';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
+import StatsWidget from 'components/statsWidget';
 import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
 import MegaMenu from 'components/megaMenu';
@@ -46,6 +47,7 @@ export const componentMap = {
   'mega-menu': MegaMenu,
   menu: Menu,
   'menu-item': MenuItem,
+  'mittr/stats-widget': StatsWidget,
   parsely: Parsely,
   // 'search-bar': Placeholder, // hide for demo
   'social-links': SocialList,
