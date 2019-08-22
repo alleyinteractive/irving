@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import styles from './userGreeting.css';
 
 const Anonymous = ({ themeName }) => (
-  <div>
+  <>
     <Link
       to="/login"
       className={classNames(styles.button, styles[`button--${themeName}`])}
@@ -25,7 +25,7 @@ const Anonymous = ({ themeName }) => (
     >
       {__('Subscribe', 'mittr')}
     </Link>
-  </div>
+  </>
 );
 
 Anonymous.propTypes = {
