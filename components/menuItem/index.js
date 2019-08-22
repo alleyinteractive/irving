@@ -73,7 +73,7 @@ const MenuItem = (props) => {
             );
         }
       })()}
-      {isExpanded && <div className={theme.childMenu}>{menu}</div>}
+      {isExpanded && menu && <div className={theme.childMenu}>{menu}</div>}
     </li>
   );
 };
