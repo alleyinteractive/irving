@@ -50,7 +50,7 @@ const Header = ({ homeUrl, children }) => {
                   __('Close menu', 'mittr') :
                   __('Expand menu', 'mittr')}
               </span>
-              <span aria-hidden="true">
+              <span aria-hidden="true" className={styles.buttonVisualContent}>
                 {isExpanded ? 'Close' : <MegaMenuIcon />}
               </span>
             </button>

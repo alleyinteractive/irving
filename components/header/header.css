@@ -23,7 +23,7 @@
 .logo {
   display: block;
   margin-bottom: tidy-var(gap);
-  tidy-offset-right: 1;
+  tidy-offset-right: 0;
   tidy-span: 4;
 
   @media ($lgMin) {
@@ -36,11 +36,12 @@
 .logoStacked {
   display: flex;
   flex-flow: row nowrap;
-  height: rem(75.969);
   justify-content: flex-start;
   margin-left: rem(-7); /* Vertical align the R and T on the grid */
 
   svg {
+    display: block;
+    height: rem(75.969);
     width: rem(154);
   }
 }
@@ -73,7 +74,7 @@
   flex-flow: column nowrap;
   margin-left: tidy-var(gap);
   position: static;
-  tidy-span: 5;
+  tidy-span: 6;
 
   @media ($lgMin) {
     tidy-span: 9;
@@ -87,16 +88,21 @@
 }
 
 .button {
-  display: block;
-  height: rem(50);
+  display: flex;
   padding: rem(15) rem(10);
-  width: rem(46);
   z-index: 2;
 
   svg {
-    height: 100%;
-    width: 100%;
+    display: block;
+    height: rem(19);
+    width: rem(31);
   }
+}
+
+.buttonVisualContent {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .expandedButton {
