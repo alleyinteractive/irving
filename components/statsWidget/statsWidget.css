@@ -1,0 +1,18 @@
+.stat {
+  border-top: 1px solid #000000;
+  clear: right;
+  float: right;
+  margin: rem(10) 0 rem(40) 0;
+  padding: (20) 0 0 0;
+  position: relative;
+  width: 59.1%;
+}
+
+.title {
+  margin: 0 0 rem(5) 0;
+}
+
+.description {
+  margin: 0;
+  width: 100%;
+}
