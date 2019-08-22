@@ -1,43 +1,38 @@
 Form Section component.
 
 ```js
-const Form = (props) => {
-    const {
-        inputTypes: {
-            text,
-        },
-    } = props;
-
-    return (
-        <form>
-            <FormFieldset heading="This is a form section heading">
-                <FormInput
-                    name="testText"
-                    placeholder="Put your input here!"
-                    propsCreator={text}
-                >
-                    Lorem Ipsum
-                </FormInput>
-                <FormInput
-                    name="testText2"
-                    placeholder="Put your input here!"
-                    propsCreator={text}
-                >
-                    Dolor sit amet
-                </FormInput>
-            </FormFieldset>
-            <FormInput
-                name="testText3"
+const Form = (props) => (
+    <form>
+        <FormFieldset heading="This is a form section heading">
+            <InputText 
+                name="testText" 
+                onChange={props.onChangeInput('testText')} 
                 placeholder="Put your input here!"
-                propsCreator={text}
+                value={props.testText}
             >
-                Adipscing elit
-            </FormInput>
-        </form>
-    );
-};
+                Lorem Ipsum
+            </InputText>
+            <InputText 
+                name="testText2" 
+                onChange={props.onChangeInput('testText2')} 
+                placeholder="Put your input here!"
+                value={props.testText2}
+            >
+                Dolor sit amet
+            </InputText>
+        </FormFieldset>
+        <InputText 
+            name="testText3" 
+            onChange={props.onChangeInput('testText3')} 
+            placeholder="Put your input here!"
+            value={props.testText3}
+        >
+            Adipscing elit
+        </InputText>
+    </form>
+);
 
-const FormWithHandler = withFormHandler({
+const FormWithHandler = withFormHandler({ 
     radioGroup: 'lorem-ipsum',
 })(Form);
 

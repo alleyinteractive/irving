@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import colors from 'config/css/colors';
 import RawHTML from 'components/rawHTML';
 import styles from './state.css';
 
 const FormState = ({
+  backgroundColor,
   submitting,
   submitted,
   failed,
@@ -16,7 +18,7 @@ const FormState = ({
 
   if (failed) {
     responseContent = (
-      <div className={styles.error}>
+      <div className={styles.failure}>
         <span className={styles.errorText}>
           <RawHTML content={errorText} />
         </span>
@@ -45,15 +47,23 @@ const FormState = ({
       className={styles.wrapper}
       disabled={submitting || submitted || failed}
     >
-      {responseContent &&
-        <div className={styles.response}>{responseContent}</div>
-      }
+      {responseContent && (
+        <div
+          className={styles.response}
+          style={{
+            backgroundColor,
+          }}
+        >
+          {responseContent}
+        </div>
+      )}
       {children && <div className={styles.content}>{children}</div>}
     </fieldset>
   );
 };
 
 FormState.propTypes = {
+  backgroundColor: PropTypes.string,
   /**
    * Is this form in the process of being submitted (communicating with an API)?
    */
@@ -81,6 +91,7 @@ FormState.propTypes = {
 };
 
 FormState.defaultProps = {
+  backgroundColor: colors.orange,
   children: null,
   errorText: 'An error ocurred with your submission, please try again later.',
   successText: 'Success! Thank you for your submission.',
