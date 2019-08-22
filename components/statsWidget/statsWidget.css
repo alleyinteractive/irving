@@ -2,7 +2,7 @@
   border-top: 1px solid #000000;
   clear: right;
   float: right;
-  margin: 10px 0 40px 0;
+  margin: rem(10) 0 rem(40) 0;
   padding: 20px 0 0 0;
   position: relative;
   width: 59.1%;
