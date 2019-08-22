@@ -41,7 +41,7 @@
     "lodash": "^4.17.14",
     "postcss-tidy-columns": "^0.4.0",
     "prop-types": "^15.6.1",
-    "query-string": "^6.1.0",
+    "query-string": "^6.8.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",

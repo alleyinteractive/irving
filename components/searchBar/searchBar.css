@@ -1,0 +1,36 @@
+/* SearchBar component styles */
+
+.wrapper {
+  margin-bottom: rem(10);
+  width: 100%;
+}
+
+.input {
+  flex: 1 0 auto;
+
+  input {
+    background-color: transparent;
+    border: 0;
+    color: $white;
+    font-family: $sans;
+    font-size: rem(36);
+    line-height: 0.91;
+    padding: rem(10) rem(10) rem(4) 0;
+    width: 100%;
+  }
+
+  label {
+    @include screenreader-only;
+  }
+}
+
+.form {
+  border-bottom: $border-thin--white;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.submit {
+  flex: 0 0 rem(34);
+}
