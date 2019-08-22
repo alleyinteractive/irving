@@ -19,7 +19,7 @@ const Label = (props) => {
       htmlFor={htmlFor}
     >
       {children}
-      {required && <span className={styles.required}>* required</span>}
+      {required && <span className={styles.required}>required</span>}
     </label>
   );
 };

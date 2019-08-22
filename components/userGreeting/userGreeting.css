@@ -1,6 +1,7 @@
 /* UserGreeting component styles */
 
 .wrapper {
+  align-items: flex-end;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
@@ -11,7 +12,7 @@
   background: $white;
   border: $border-thin;
   color: $black;
-  display: inline-block;
+  display: inline-flex;
   font-family: $sans;
   font-weight: 600;
   line-height: 1.14;
@@ -21,6 +22,17 @@
   &:hover {
     background-color: $black;
     color: $white;
+  }
+
+  &--dark {
+    background-color: $black;
+    border-color: $white;
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
   }
 }
 
@@ -33,5 +45,9 @@
   &:hover {
     background-color: $red;
     color: $white;
+  }
+
+  &--dark {
+    background-color: $black;
   }
 }

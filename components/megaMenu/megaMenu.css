@@ -4,3 +4,58 @@
   padding: rem(64) rem(20) rem(20);
   width: 100%;
 }
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.topRow {
+  /* @include container-with-bleed; */
+  /* composes: row; */
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+
+  @media ($smMin) {
+    flex-wrap: nowrap;
+  }
+}
+
+.searchBar {
+  width: 100%;
+
+  @media ($smMin) {
+    margin-right: tidy-var(gap);
+    tidy-span: 6;
+  }
+
+  @media ($lgMin) {
+    tidy-span: 8;
+  }
+}
+
+.userGreeting {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  width: 100%;
+
+  @media ($smMin) {
+    tidy-span: 4;
+  }
+
+  @media ($lgMin) {
+    tidy-span: 4;
+  }
+}
+
+.middleRow {
+  composes: row;
+  width: 100%;
+}
+
+.lastRow {
+  composes: row;
+  width: 100%;
+}

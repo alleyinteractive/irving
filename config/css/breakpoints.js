@@ -5,6 +5,7 @@ const bkptVal = {
   lg: 78.125, // 1250 = desktop
   md: 64, // 1024 = tablet
   sm: 53.125, // 850 = phablet
+  xs: 39.375, // 630 = phone
 };
 
 const breakpoints = Object.keys(bkptVal).reduce((acc, curr) => {

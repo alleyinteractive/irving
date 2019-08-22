@@ -21,24 +21,44 @@
 }
 
 .logo {
-  display: block;
-  margin-bottom: tidy-var(gap);
-  margin-right: tidy-var(gap);
-  tidy-offset-right: 1;
-  tidy-span: 4;
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  tidy-span: 2;
 
   @media ($lgMin) {
-    tidy-offset-left: 1;
-    tidy-offset-right: 0;
-    tidy-span: 2;
+    tidy-offset-left: 0;
+    tidy-span: 3;
   }
 }
 
 .logoStacked {
-  height: rem(100);
+  display: none;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  margin-bottom: tidy-var(gap);
+  margin-left: rem(-7); /* Vertical align the R and T on the grid */
+
+  @media ($xsMin) {
+    display: flex;
+  }
 
   svg {
-    height: 100%;
+    display: block;
+    height: rem(75.969);
+    width: rem(154);
+  }
+}
+
+.logoHorizontal {
+  @media ($xsMin) {
+    display: none;
+  }
+
+  svg {
+    display: block;
+    height: rem(20);
+    width: rem(210);
   }
 }
 
@@ -50,13 +70,19 @@
   color: $gray;
   display: flex;
   font-family: $sans;
-  height: 90px;
+  height: 50px;
   justify-content: center;
   margin-bottom: rem(40);
   margin-left: auto;
   margin-right: auto;
   margin-top: rem(20);
-  width: 728px;
+  width: 320px;
+
+  @media ($mdMin) {
+    display: flex;
+    height: 90px;
+    width: 728px;
+  }
 }
 
 .leaderboardRow {
@@ -68,31 +94,55 @@
   align-content: flex-end;
   display: flex;
   flex-flow: column nowrap;
+  margin-left: tidy-var(gap);
   position: static;
-  tidy-span: 5;
+  tidy-span: 8;
 
   @media ($lgMin) {
     tidy-span: 9;
   }
 }
 
-.menu {
+.menuRow {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: flex-end;
   position: static;
 }
 
+.menu {
+  display: none;
+  flex-flow: row nowrap;
+  position: static;
+
+  @media ($xsMin) {
+    display: flex;
+  }
+}
+
 .button {
-  display: block;
-  height: rem(50);
+  display: flex;
   padding: rem(15) rem(10);
-  width: rem(46);
   z-index: 2;
 
   svg {
-    height: 100%;
-    width: 100%;
+    display: block;
+    height: rem(19);
+    width: rem(31);
   }
+}
+
+.buttonVisualContent {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.expandedButton {
+  background-color: $white;
+  height: auto;
+  text-decoration: underline;
+  width: auto;
 }
 
 .megaMenu {
@@ -102,4 +152,12 @@
   position: absolute;
   width: 100%;
   z-index: 1;
+}
+
+.userGreeting {
+  display: none;
+
+  @media ($xsMin) {
+    display: block;
+  }
 }

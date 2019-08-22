@@ -23,6 +23,7 @@ import StatsWidget from 'components/statsWidget';
 import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
 import MegaMenu from 'components/megaMenu';
+import SearchBar from 'components/searchBar';
 
 /**
  * Defines which React component to render for each received API component.
@@ -49,7 +50,7 @@ export const componentMap = {
   'menu-item': MenuItem,
   'mittr/stats-widget': StatsWidget,
   parsely: Parsely,
-  // 'search-bar': Placeholder, // hide for demo
+  'search-bar': SearchBar,
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,

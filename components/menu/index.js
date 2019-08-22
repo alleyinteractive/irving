@@ -54,6 +54,6 @@ const wrapWithThemes = withThemes('menu', {
   header: headerStyles,
 });
 
-const wrapWithStyles = withStyles(styles, footerStyles);
+const wrapWithStyles = withStyles(styles, footerStyles, headerStyles);
 
 export default wrapWithThemes(wrapWithStyles(Menu));

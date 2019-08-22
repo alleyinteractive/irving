@@ -22,6 +22,7 @@
 
 .childMenu {
   background-color: $black;
+  border-top: rem(3) solid $white;
   color: $white;
   left: 0;
   position: absolute;
