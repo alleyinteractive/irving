@@ -23,22 +23,25 @@
 .logo {
   display: block;
   margin-bottom: tidy-var(gap);
-  margin-right: tidy-var(gap);
   tidy-offset-right: 1;
   tidy-span: 4;
 
   @media ($lgMin) {
-    tidy-offset-left: 1;
+    tidy-offset-left: 0;
     tidy-offset-right: 0;
-    tidy-span: 2;
+    tidy-span: 3;
   }
 }
 
 .logoStacked {
-  height: rem(100);
+  display: flex;
+  flex-flow: row nowrap;
+  height: rem(75.969);
+  justify-content: flex-start;
+  margin-left: rem(-7); /* Vertical align the R and T on the grid */
 
   svg {
-    height: 100%;
+    width: rem(154);
   }
 }
 
@@ -68,6 +71,7 @@
   align-content: flex-end;
   display: flex;
   flex-flow: column nowrap;
+  margin-left: tidy-var(gap);
   position: static;
   tidy-span: 5;
 

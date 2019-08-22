@@ -4,6 +4,8 @@ body {
   font-family: $sans;
   font-size: 1rem;
   line-height: 1.231;
+  max-width: 100vw;
+  width: 100%;
   -moz-osx-font-smoothing: grayscale;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-font-smoothing: antialiased;
