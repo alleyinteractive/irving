@@ -20,6 +20,7 @@ import RawHTML from 'components/rawHTML';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import StatsWidget from 'components/statsWidget';
+import TermArchiveContentList from 'components/termArchiveContentList';
 import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
 import MegaMenu from 'components/megaMenu';
@@ -49,11 +50,14 @@ export const componentMap = {
   menu: Menu,
   'menu-item': MenuItem,
   'mittr/stats-widget': StatsWidget,
+  pagination: Placeholder,
   parsely: Parsely,
   'search-bar': SearchBar,
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,
+  'term-archive-content-list': TermArchiveContentList,
+  'term-archive-content-list-item': Placeholder,
   'user-greeting': UserGreeting,
 };
 
