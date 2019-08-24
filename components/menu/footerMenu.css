@@ -12,7 +12,7 @@
 
   > li {
     @media ($smMin) {
-      margin-right: tidy-var(gap);
+      padding-right: 1rem;
       tidy-span: 2;
     }
 

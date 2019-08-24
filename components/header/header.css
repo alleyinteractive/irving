@@ -24,7 +24,11 @@
   align-items: center;
   display: flex;
   flex-flow: row nowrap;
-  tidy-span: 2;
+  tidy-span: 5;
+
+  @media ($smMin) {
+    tidy-span: 3;
+  }
 
   @media ($lgMin) {
     tidy-offset-left: 0;
@@ -39,7 +43,7 @@
   margin-bottom: tidy-var(gap);
   margin-left: rem(-7); /* Vertical align the R and T on the grid */
 
-  @media ($xsMin) {
+  @media ($smMin) {
     display: flex;
   }
 
@@ -51,14 +55,32 @@
 }
 
 .logoHorizontal {
-  @media ($xsMin) {
+  @media ($smMin) {
     display: none;
   }
 
   svg {
     display: block;
+    /* Srcolling widths */
+    /* height: rem(15); */
+    /* width: rem(160); */
     height: rem(20);
     width: rem(210);
+  }
+}
+
+.logoT {
+  display: none; /* todo header scroll styles */
+  margin-right: rem(24);
+
+  @media ($smMin) {
+    display: none;
+  }
+
+  svg {
+    display: block;
+    height: rem(22);
+    width: rem(22);
   }
 }
 
@@ -96,7 +118,11 @@
   flex-flow: column nowrap;
   margin-left: tidy-var(gap);
   position: static;
-  tidy-span: 8;
+  tidy-span: 5;
+
+  @media ($smMin) {
+    tidy-span: 7;
+  }
 
   @media ($lgMin) {
     tidy-span: 9;
@@ -115,7 +141,7 @@
   flex-flow: row nowrap;
   position: static;
 
-  @media ($xsMin) {
+  @media ($smMin) {
     display: flex;
   }
 }
@@ -157,7 +183,7 @@
 .userGreeting {
   display: none;
 
-  @media ($xsMin) {
+  @media ($smMin) {
     display: block;
   }
 }

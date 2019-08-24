@@ -9,6 +9,7 @@ import Link from 'components/helpers/link';
 // Images
 import LogoStacked from 'assets/icons/logoStacked.svg';
 import LogoHorizontal from 'assets/icons/logoHorizontal.svg';
+import TRGlyph from 'assets/icons/trGlyph.svg';
 import MegaMenuIcon from 'assets/icons/megaMenu.svg';
 
 // Styles
@@ -34,6 +35,9 @@ const Header = ({ homeUrl, children }) => {
           <div className={styles.logoStacked} aria-hidden="true">
             <LogoStacked />
           </div>
+          <span className={styles.logoT} aria-hidden="true">
+            <TRGlyph />
+          </span>
           <div className={styles.logoHorizontal} aria-hidden="true">
             <LogoHorizontal />
           </div>

@@ -56,6 +56,7 @@ export const componentMap = {
   pagination: Placeholder,
   parsely: Parsely,
   'search-bar': SearchBar,
+  sidebar: Placeholder,
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,

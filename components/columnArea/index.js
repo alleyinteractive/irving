@@ -19,9 +19,8 @@ const ColumnArea = (props) => {
 
   return (
     <div className={classNames(theme.wrapper, {})}>
-      {sidebar && <aside className={theme.sidebar}>{sidebar}</aside>}
-      {/* Render everything else down here */}
       {content && <div className={theme.main}>{content}</div>}
+      {sidebar && <aside className={theme.sidebar}>{sidebar}</aside>}
     </div>
   );
 };

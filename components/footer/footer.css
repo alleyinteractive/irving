@@ -37,7 +37,7 @@
   display: none;
   height: rem(34);
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     display: block;
     margin-right: tidy-var(gap);
     order: 0;
@@ -56,7 +56,7 @@
     tidy-span: 6;
   }
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     tidy-span: 6;
   }
 }
@@ -103,7 +103,7 @@
     tidy-span: 2;
   }
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     tidy-offset-left: 2;
     tidy-span: 2;
   }
@@ -128,7 +128,7 @@
   font-size: rem(14);
   padding-bottom: rem(20);
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     tidy-offset-left: 2;
     tidy-span: 10;
   }
@@ -142,7 +142,7 @@
     tidy-offset-left: 0;
   }
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     tidy-offset-left: 2;
     tidy-span: 10;
   }
