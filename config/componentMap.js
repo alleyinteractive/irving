@@ -24,6 +24,7 @@ import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import StatsWidget from 'components/statsWidget';
 import TermArchiveContentList from 'components/termArchiveContentList';
+import TermArchiveContentListItem from 'components/termArchiveContentListItem';
 import TopicHeader from 'components/topicHeader';
 import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
@@ -61,7 +62,7 @@ export const componentMap = {
   'social-sharing': SocialList,
   'social-item': SocialItem,
   'term-archive-content-list': TermArchiveContentList,
-  'term-archive-content-list-item': Placeholder,
+  'term-archive-content-list-item': TermArchiveContentListItem,
   'topic-header': TopicHeader,
   'user-greeting': UserGreeting,
 };
