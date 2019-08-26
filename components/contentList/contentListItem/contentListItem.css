@@ -1,0 +1,11 @@
+.listItemWrap {
+  display: block;
+  list-style: none;
+  margin-bottom: rem(20);
+}
+
+.listItemTitle {
+  font-size: rem(15);
+  font-weight: 700;
+  margin-bottom: rem(3);
+}

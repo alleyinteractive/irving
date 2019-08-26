@@ -4,6 +4,8 @@ import Byline from 'components/byline';
 import ContentBody from 'components/contentBody';
 import ContentFooter from 'components/contentFooter';
 import ContentHeader from 'components/contentHeader';
+import ContentList from 'components/contentList';
+import ContentListItem from 'components/contentList/contentListItem';
 import Disqus from 'components/disqus';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
@@ -36,6 +38,8 @@ export const componentMap = {
   'content-header': ContentHeader,
   'content-body': ContentBody,
   'content-footer': ContentFooter,
+  'mittr-plugin-extension/content-list': ContentList,
+  'mittr-plugin-extension/content-list-item': ContentListItem,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
