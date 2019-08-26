@@ -5,36 +5,36 @@
 }
 
 .padding {
-  padding-left: $gutterOutside;
-  padding-right: $gutterOutside;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .xxl {
   composes: container;
   composes: padding;
-  max-width: $xxlVal;
+  max-width: 90rem;
 }
 
 .xl {
   composes: container;
   composes: padding;
-  max-width: $xlVal;
+  max-width: 80rem;
 }
 
 .lg {
   composes: container;
   composes: padding;
-  max-width: $lgVal;
+  max-width: 64rem;
 }
 
 .md {
   composes: container;
   composes: padding;
-  max-width: $mdVal;
+  max-width: 48rem;
 }
 
 .sm {
   composes: container;
   composes: padding;
-  max-width: $smVal;
+  max-width: 32rem;
 }
