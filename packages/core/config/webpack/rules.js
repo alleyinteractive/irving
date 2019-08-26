@@ -1,7 +1,6 @@
 const path = require('path');
 const {
   transform,
-  assetsRoot,
   appRoot,
   irvingRoot,
 } = require('../paths');

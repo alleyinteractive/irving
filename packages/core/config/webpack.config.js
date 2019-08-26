@@ -48,12 +48,13 @@ module.exports = (env, argv) => {
       node: false,
       externals: [
         nodeExternals({
-          // Allow references to vendor css, so we can include them in our bundle.
           whitelist: [
+            // Allow references to vendor css, so we can include them in our bundle.
             /\.css$/,
             /babel-plugin-universal-import/,
             /react-universal-component/,
             /webpack-flush-chunks/,
+            // Include other irving packages in node_modules.
             /@irving/,
           ],
         }),
