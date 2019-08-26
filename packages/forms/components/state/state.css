@@ -18,7 +18,7 @@
 .success,
 .error {
   font-family: $fira;
-  font-size: rem(24);
+  font-size: 24px;
   text-transform: uppercase;
 }
 

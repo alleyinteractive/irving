@@ -1,71 +1,71 @@
 .wrapper {
   align-items: center;
-  border: 4px solid $black;
+  border: 4px solid #000000;
   border-radius: 50%;
   display: flex;
-  height: rem(40);
+  height: 40px;
   justify-content: center;
-  width: rem(40);
+  width: 40px;
 }
 
 .wrapper:hover,
 .wrapper:focus {
-  border-color: $gray;
+  border-color: #666666;
   outline: none;
 }
 
 .wrapper:hover svg,
 .wrapper:focus svg {
-  fill: $gray;
+  fill: #666666;
 }
 
 .icon svg {
-  fill: $black;
+  fill: #000000;
 }
 
 .play svg {
-  height: rem(18);
-  margin: rem(2) 0 0 rem(4);
-  width: rem(12);
+  height: 18px;
+  margin: 2px 0 0 4px;
+  width: 12px;
 }
 
 .pause svg {
-  height: rem(18);
-  margin-top: rem(1);
-  width: rem(14);
+  height: 18px;
+  margin-top: 1px;
+  width: 14px;
 }
 
 .spinner svg {
-  height: rem(18);
-  width: rem(18);
+  height: 18px;
+  width: 18px;
 }
 
 @media ($lgMin) {
   .wrapper {
-    border: 5px solid $black;
-    height: rem(56);
-    width: rem(56);
+    border: 5px solid #000000;
+    height: 56px;
+    width: 56px;
   }
 
   .icon svg {
-    height: rem(26);
-    width: rem(26);
+    height: 26px;
+    width: 26px;
   }
 
   .play svg {
-    height: rem(26);
-    margin: rem(2) 0 0 rem(6);
-    width: rem(18);
+    height: 26px;
+    margin: 2px 0 0 6px;
+    width: 18px;
   }
 
   .pause svg {
-    height: rem(26);
-    margin-top: rem(2);
-    width: rem(20);
+    height: 26px;
+    margin-top: 2px;
+    width: 20px;
   }
 
   .spinner svg {
-    height: rem(26);
-    width: rem(26);
+    height: 26px;
+    width: 26px;
   }
 }
