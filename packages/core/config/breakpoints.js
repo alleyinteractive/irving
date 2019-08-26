@@ -4,6 +4,7 @@
 const bkptVal = {
   xxl: 90,
   xl: 80,
+  article: 70,
   lg: 64,
   md: 48,
   sm: 32,

@@ -6,75 +6,66 @@
   height: rem(40);
   justify-content: center;
   width: rem(40);
+}
 
-  &:hover,
-  &:focus {
-    border-color: $gray;
-    outline: none;
+.wrapper:hover,
+.wrapper:focus {
+  border-color: $gray;
+  outline: none;
+}
 
-    svg {
-      fill: $gray;
-    }
-  }
+.wrapper:hover svg,
+.wrapper:focus svg {
+  fill: $gray;
+}
 
-  @media ($lgMin) {
+.icon svg {
+  fill: $black;
+}
+
+.play svg {
+  height: rem(18);
+  margin: rem(2) 0 0 rem(4);
+  width: rem(12);
+}
+
+.pause svg {
+  height: rem(18);
+  margin-top: rem(1);
+  width: rem(14);
+}
+
+.spinner svg {
+  height: rem(18);
+  width: rem(18);
+}
+
+@media ($lgMin) {
+  .wrapper {
     border: 5px solid $black;
     height: rem(56);
     width: rem(56);
   }
-}
 
-.icon {
-
-  svg {
-    fill: $black;
-
-    @media ($lgMin) {
-      height: rem(26);
-      width: rem(26);
-    }
+  .icon svg {
+    height: rem(26);
+    width: rem(26);
   }
-}
 
-.play {
-
-  svg {
-    height: rem(18);
-    margin: rem(2) 0 0 rem(4);
-    width: rem(12);
-
-    @media ($lgMin) {
-      height: rem(26);
-      margin: rem(2) 0 0 rem(6);
-      width: rem(18);
-    }
-  }
-}
-
-.pause {
-
-  svg {
-    height: rem(18);
-    margin-top: rem(1);
-    width: rem(14);
-
-    @media ($lgMin) {
-      height: rem(26);
-      margin-top: rem(2);
-      width: rem(20);
-    }
-  }
-}
-
-.spinner {
-
-  svg {
-    height: rem(18);
+  .play svg {
+    height: rem(26);
+    margin: rem(2) 0 0 rem(6);
     width: rem(18);
+  }
 
-    @media ($lgMin) {
-      height: rem(26);
-      width: rem(26);
-    }
+  .pause svg {
+    height: rem(26);
+    margin-top: rem(2);
+    width: rem(20);
+  }
+
+  .spinner svg {
+    height: rem(26);
+    width: rem(26);
   }
 }
