@@ -3,6 +3,8 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  padding-bottom: rem(15);
+  padding-top: rem(15);
   width: 100%;
 
   @media ($smMin) {
