@@ -1,0 +1,35 @@
+/* Column Area styles */
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 100%;
+
+  @media ($smMin) {
+    @include container-with-bleed;
+  }
+}
+
+.main {
+  overflow: hidden;
+  width: 100%;
+
+  @media ($mdMin) {
+    @include container-with-bleed(7);
+    margin-left: -tidy-var(edge);
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.sidebar {
+  /* FPO styles */
+  background-color: $inactive-gray;
+  border: $border-thin--gray;
+  padding: 1rem;
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-span: 4;
+  }
+}

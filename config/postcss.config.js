@@ -43,14 +43,14 @@ module.exports = () => ({
     colorFunction(),
     tidyColumns({
       columns: 10,
-      gap: '1rem',
+      gap: '0',
       edge: '1.25rem',
-      siteMax: '78.125rem',
+      siteMax: '79.5rem',
       breakpoints: {
-        '78.125rem': {
+        '60rem': {
           columns: 12,
           edge: '1.25rem',
-          gap: '1rem',
+          gap: '0',
         },
       },
     }),

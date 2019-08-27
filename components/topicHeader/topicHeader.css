@@ -1,0 +1,35 @@
+/* TopicHeader component styles */
+
+.wrapper {
+  background-color: #7d38a3; /* @todo update with color option. */
+  padding: rem(20);
+}
+
+.meta {
+  width: 100%;
+
+  @media ($smMin) {
+    tidy-span: 5;
+  }
+
+  @media ($lgMin) {
+    tidy-span: 3;
+  }
+}
+
+.name {
+  color: $white;
+  font-family: $sans;
+  font-size: rem(50);
+  letter-spacing: normal;
+  line-height: 1;
+  margin-bottom: rem(15);
+}
+
+.description {
+  color: $white;
+  font-family: $sans;
+  font-size: rem(20);
+  letter-spacing: normal;
+  line-height: 1.3;
+}

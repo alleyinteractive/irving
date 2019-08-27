@@ -1,6 +1,7 @@
 import AudioElement from 'components/audio';
 import Body from 'components/body';
 import Byline from 'components/byline';
+import ColumnArea from 'components/columnArea';
 import ContentBody from 'components/contentBody';
 import ContentFooter from 'components/contentFooter';
 import ContentHeader from 'components/contentHeader';
@@ -13,19 +14,21 @@ import GoogleTagManager from 'components/googleTagManager';
 import Head from 'components/head';
 import Header from 'components/header';
 import Image from 'components/image/image';
+import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
 import NotConfigured from 'components/notConfigured';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import RawHTML from 'components/rawHTML';
+import SearchBar from 'components/searchBar';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import StatsWidget from 'components/statsWidget';
+import TermArchiveContentList from 'components/termArchiveContentList';
+import TopicHeader from 'components/topicHeader';
 import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
-import MegaMenu from 'components/megaMenu';
-import SearchBar from 'components/searchBar';
 
 /**
  * Defines which React component to render for each received API component.
@@ -35,6 +38,7 @@ export const componentMap = {
   'audio-element': AudioElement,
   body: withLoader(Body),
   byline: Byline,
+  'column-area': ColumnArea,
   'content-header': ContentHeader,
   'content-body': ContentBody,
   'content-footer': ContentFooter,
@@ -53,11 +57,16 @@ export const componentMap = {
   menu: Menu,
   'menu-item': MenuItem,
   'mittr/stats-widget': StatsWidget,
+  pagination: Placeholder,
   parsely: Parsely,
   'search-bar': SearchBar,
+  sidebar: Placeholder,
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,
+  'term-archive-content-list': TermArchiveContentList,
+  'term-archive-content-list-item': Placeholder,
+  'topic-header': TopicHeader,
   'user-greeting': UserGreeting,
 };
 
