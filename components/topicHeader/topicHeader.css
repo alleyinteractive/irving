@@ -2,7 +2,13 @@
 
 .wrapper {
   background-color: #7d38a3; /* @todo update with color option. */
+  display: flex;
+  flex-flow: row wrap;
   padding: rem(20);
+
+  @media ($smMin) {
+    flex-wrap: nowrap;
+  }
 }
 
 .meta {
@@ -12,8 +18,18 @@
     tidy-span: 5;
   }
 
-  @media ($lgMin) {
-    tidy-span: 3;
+  @media ($mdMin) {
+    tidy-span: 3.5;
+  }
+}
+
+.image {
+  @media ($smMin) {
+    tidy-span: 5;
+  }
+
+  @media ($mdMin) {
+    tidy-span: 3.5;
   }
 }
 
