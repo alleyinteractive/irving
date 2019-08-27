@@ -1,16 +1,20 @@
+@import 'mixins/index';
+
 .wrap {
   border-top: 1px solid #000;
   margin: rem(25);
   padding: rem(20) 0 0 0;
+  width: rem(215);
 }
 
 .header {
-  font-family: "NeueHaas", sans-serif;
+  font-family: $sans;
   font-size: rem(20);
   font-weight: 700;
   margin-bottom: rem(20);
 }
 
 .listWrap {
+  margin: 0;
   padding: 0;
 }

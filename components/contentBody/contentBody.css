@@ -22,5 +22,7 @@
     }
   }
 
-  @include basic-editor-styles;
+  div:not([class]) {
+    @include basic-editor-styles;
+  }
 }
