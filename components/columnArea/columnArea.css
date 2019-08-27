@@ -15,10 +15,10 @@
   width: 100%;
 
   @media ($mdMin) {
-    @include container-with-bleed(6.5);
-    margin-left: -tidy-var(edge);
+    @include container-with-bleed(6);
     padding-left: 0;
     padding-right: 0;
+    tidy-offset-left: 1;
   }
 }
 
@@ -30,6 +30,6 @@
   width: 100%;
 
   @media ($mdMin) {
-    tidy-span: 4.5;
+    tidy-span: 4;
   }
 }
