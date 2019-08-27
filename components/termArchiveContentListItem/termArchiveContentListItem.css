@@ -1,5 +1,76 @@
 /* TermArchiveContentListItem component styles */
 
-.wrapper {
-  background-color: blue;
+.eyebrowLink {
+  color: $purple;
+  font-weight: 600;
+  margin-right: rem(5);
+}
+
+.meta {
+  display: flex;
+  margin-bottom: rem(5);
+}
+
+.title {
+  font-size: rem(26);
+  font-weight: 600;
+  line-height: 1.07;
+  margin-bottom: rem(15);
+  
+  @media ($smMin) {
+    font-size: rem(30);
+  }
+}
+
+.excerpt {
+  color: #303030;
+  font-size: rem(16);
+  line-height: 1.375;
+  margin-bottom: rem(15);
+  
+  @media ($smMin) {
+    font-size: rem(18);
+    line-height: 1.44;
+  }
+}
+
+.subTitle {
+  color: #303030;
+  font-size: rem(18);
+  font-weight: 600;
+  margin-bottom: rem(20);
+}
+
+.storyTease {
+  background-color: #fff;
+  border-top: 2px solid $sponsored-gray;
+  margin-bottom: rem(15);
+  padding: rem(20 20 25 20);
+}
+
+.shareMenu {
+  margin-left: auto;
+}
+
+.shareMenuToggle {
+  appearance: none;
+  background-color: #0000;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  height: rem(18);
+  letter-spacing: 1px;
+  padding: 0;
+}
+
+.dot {
+  background-color: #969696;
+  display: inline-block;
+  height: 4px;
+  vertical-align: middle;
+  width: 4px;
+
+  &:not(:last-child) {
+    margin-right: rem(5);
+  }
 }
