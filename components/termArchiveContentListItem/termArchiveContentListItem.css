@@ -1,7 +1,7 @@
 /* TermArchiveContentListItem component styles */
 
 .eyebrowLink {
-  color: $purple;
+  color: $color-deck;
   font-weight: 600;
   margin-right: rem(5);
 }
@@ -16,7 +16,7 @@
   font-weight: 600;
   line-height: 1.07;
   margin-bottom: rem(15);
-  
+
   @media ($smMin) {
     font-size: rem(30);
   }
@@ -27,14 +27,14 @@
   font-size: rem(16);
   line-height: 1.375;
   margin-bottom: rem(15);
-  
+
   @media ($smMin) {
     font-size: rem(18);
     line-height: 1.44;
   }
 }
 
-.subTitle {
+.callToAction {
   color: #303030;
   font-size: rem(18);
   font-weight: 600;

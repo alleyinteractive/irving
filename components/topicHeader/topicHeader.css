@@ -1,9 +1,10 @@
 /* TopicHeader component styles */
 
 .wrapper {
-  background-color: #7d38a3; /* @todo update with color option. */
+  background-color: $color-deck;
   display: flex;
   flex-flow: row wrap;
+  margin-bottom: rem(5);
   padding: rem(20);
 
   @media ($smMin) {

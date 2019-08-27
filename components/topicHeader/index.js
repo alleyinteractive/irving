@@ -6,10 +6,12 @@ import { findChildByName } from 'utils/children';
 // Styles
 import styles from './topicHeader.css';
 
-const TopicHeader = ({ name, description, children }) => {
+const TopicHeader = ({
+  name, description, children, color,
+}) => {
   const { image } = findChildByName('image', children);
   return (
-    <header className={styles.wrapper}>
+    <header className={styles.wrapper} style={{ backgroundColor: color }}>
       <div className={styles.meta}>
         <h1 className={styles.name}>{name}</h1>
         <p className={styles.description}>{description}</p>
@@ -20,9 +22,10 @@ const TopicHeader = ({ name, description, children }) => {
 };
 
 TopicHeader.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  color: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
 export default withStyles(styles)(TopicHeader);

@@ -35,6 +35,7 @@ module.exports = {
   'topic-tech-policy': '#0033A0',
   'tz-bullet--daily': '$red',
   'tz-text--cover': '#ffffff',
+  'color-deck': '#303030',
   black: '#000000',
   error: '#f79c31',
   gray: '#666666',
