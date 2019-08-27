@@ -41,4 +41,5 @@ module.exports = {
   red: '#F90E1E',
   success: '#7a8f43',
   white: '#ffffff',
+  purple: '#7d38a3',
 };
