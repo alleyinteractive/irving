@@ -6,10 +6,6 @@
   flex-flow: row wrap;
   margin-bottom: rem(5);
   padding: rem(20);
-
-  @media ($smMin) {
-    flex-wrap: nowrap;
-  }
 }
 
 .meta {
@@ -17,11 +13,7 @@
   width: 100%;
 
   @media ($smMin) {
-    tidy-span: 5;
-  }
-
-  @media ($mdMin) {
-    tidy-span: 3.5;
+    width: 50%;
   }
 }
 
@@ -32,11 +24,7 @@
   width: 100%;
 
   @media ($smMin) {
-    tidy-span: 5;
-  }
-
-  @media ($mdMin) {
-    tidy-span: 3.5;
+    width: 50%;
   }
 
   span {
@@ -69,4 +57,19 @@
     font-size: rem(20);
     line-height: 1.3;
   }
+}
+
+.slider {
+  border: 5px solid magenta;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.featured {
+  border: 5px solid magenta;
+}
+
+.list {
+  display: flex;
+  flex-flow: row nowrap;
 }

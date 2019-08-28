@@ -63,6 +63,7 @@ export const componentMap = {
   'social-item': SocialItem,
   'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TermArchiveContentListItem,
+  'term-archive-pinned-article': Placeholder,
   'topic-header': TopicHeader,
   'user-greeting': UserGreeting,
 };

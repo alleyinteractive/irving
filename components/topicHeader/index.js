@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import { findChildByName } from 'utils/children';
+import { findChildByName, filterChildrenByName } from 'utils/children';
+import { __ } from '@wordpress/i18n';
 
 // Styles
 import styles from './topicHeader.css';
@@ -10,6 +11,10 @@ const TopicHeader = ({
   name, description, children, color,
 }) => {
   const image = findChildByName('image', children);
+  const articles = filterChildrenByName(
+    'term-archive-pinned-article',
+    children
+  );
   return (
     <header className={styles.wrapper} style={{ backgroundColor: color }}>
       <div className={styles.meta}>
@@ -17,6 +22,17 @@ const TopicHeader = ({
         <p className={styles.description}>{description}</p>
       </div>
       <div className={styles.image}>{image}</div>
+      {articles && (
+        <div className={styles.slider}>
+          <ol className={styles.list}>
+            {articles.map((article) => (
+              <li className={styles.featured}>{article}</li>
+            ))}
+          </ol>
+          <button type="button">{__('Next', 'mittr')}</button>
+          <button type="button">{__('Previous', 'mittr')}</button>
+        </div>
+      )}
     </header>
   );
 };
