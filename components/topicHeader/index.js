@@ -25,8 +25,13 @@ const TopicHeader = ({
       {articles && (
         <div className={styles.slider}>
           <ol className={styles.list}>
-            {articles.map((article) => (
-              <li className={styles.featured}>{article}</li>
+            {articles.map((article, count) => (
+              <li className={styles.featured}>
+                <div className={styles.counter} aria-hidden>
+                  0{count + 1}.
+                </div>
+                {article}
+              </li>
             ))}
           </ol>
           <button type="button">{__('Next', 'mittr')}</button>

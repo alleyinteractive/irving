@@ -60,16 +60,32 @@
 }
 
 .slider {
-  border: 5px solid magenta;
   overflow-x: scroll;
   width: 100%;
 }
 
 .featured {
-  border: 5px solid magenta;
+  border: solid 1px $white;
+  color: $white;
+  flex: 0 0 rem(288);
+  font-family: $sans;
+  list-style-type: none;
+  margin-right: rem(10);
+  padding: rem(20) rem(10);
+  width: rem(288);
 }
 
 .list {
   display: flex;
   flex-flow: row nowrap;
+  width: auto;
+}
+
+.counter {
+  color: $white;
+  display: block;
+  font-family: $sans;
+  font-size: rem(14);
+  line-height: 1;
+  margin-bottom: rem(10);
 }
