@@ -7,7 +7,7 @@ import styles from './termArchiveContentList.css';
 
 const TermArchiveContentList = (props) => {
   const { children } = props;
-  return <div className={styles.wrapper}>{children}</div>;
+  return <ul className={styles.wrapper}>{children}</ul>;
 };
 
 TermArchiveContentList.propTypes = {

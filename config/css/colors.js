@@ -35,10 +35,12 @@ module.exports = {
   'topic-tech-policy': '#0033A0',
   'tz-bullet--daily': '$red',
   'tz-text--cover': '#ffffff',
+  'color-deck': '#303030',
   black: '#000000',
   error: '#f79c31',
   gray: '#666666',
   red: '#F90E1E',
   success: '#7a8f43',
   white: '#ffffff',
+  purple: '#7d38a3',
 };

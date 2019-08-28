@@ -3,6 +3,8 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  padding-bottom: rem(15);
+  padding-top: rem(15);
   width: 100%;
 
   @media ($smMin) {
@@ -15,10 +17,10 @@
   width: 100%;
 
   @media ($mdMin) {
-    @include container-with-bleed(7);
-    margin-left: -tidy-var(edge);
+    @include container-with-bleed(6);
     padding-left: 0;
     padding-right: 0;
+    tidy-offset-left: 1;
   }
 }
 

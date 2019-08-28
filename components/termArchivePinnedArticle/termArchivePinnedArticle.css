@@ -1,0 +1,15 @@
+/* TermArchivePinnedArticle component styles */
+
+.wrapper {
+  color: $white;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: rem(18);
+  line-height: 1.44;
+  width: 100%;
+}
+
+.title {
+  font-family: $sans;
+  font-weight: 700;
+}

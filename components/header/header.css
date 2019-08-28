@@ -30,9 +30,9 @@
     tidy-span: 3;
   }
 
-  @media ($lgMin) {
-    tidy-offset-left: 0;
-    tidy-span: 3;
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 2;
   }
 }
 
@@ -124,7 +124,7 @@
     tidy-span: 7;
   }
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     tidy-span: 9;
   }
 }
