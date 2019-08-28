@@ -18,7 +18,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-universal-import": "^4.0.0",
-    "react-hot-loader": "^4.6.3"
+    "react-hot-loader": "^4.12.11"
   },
   "peerDependencies": {
     "@irving/core": "1.0.0"
