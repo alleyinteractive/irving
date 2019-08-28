@@ -7,6 +7,7 @@ import withThemes from 'components/hoc/withThemes';
 import styles from './menu.css';
 import footerStyles from './footerMenu.css';
 import headerStyles from './headerMenu.css';
+import topStyles from './topMenu.css';
 
 const Menu = (props) => {
   const {
@@ -52,8 +53,10 @@ const wrapWithThemes = withThemes('menu', {
   default: styles,
   footer: footerStyles,
   header: headerStyles,
+  top: topStyles,
 });
 
-const wrapWithStyles = withStyles(styles, footerStyles, headerStyles);
+const wrapWithStyles = withStyles(styles, footerStyles,
+  headerStyles, topStyles);
 
 export default wrapWithThemes(wrapWithStyles(Menu));
