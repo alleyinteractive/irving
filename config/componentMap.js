@@ -22,6 +22,8 @@ import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import RawHTML from 'components/rawHTML';
 import SearchBar from 'components/searchBar';
+import SectionItem from 'components/subtopicsSection/sectionItem';
+import SubtopicsSection from 'components/subtopicsSection';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import StatsWidget from 'components/statsWidget';
@@ -62,6 +64,8 @@ export const componentMap = {
   pagination: Placeholder,
   parsely: Parsely,
   'search-bar': SearchBar,
+  'section-item': SectionItem,
+  'subtopics-section': SubtopicsSection,
   sidebar: Placeholder,
   'social-links': SocialList,
   'social-sharing': SocialList,
