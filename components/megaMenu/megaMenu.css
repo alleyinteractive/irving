@@ -63,3 +63,14 @@
   padding-top: rem(30);
   width: 100%;
 }
+
+.copyright {
+  font-size: rem(12);
+  font-weight: 600;
+  line-height: 1;
+  margin-top: rem(30);
+}
+
+.symbol {
+  margin-left: rem(35);
+}
