@@ -1,18 +1,31 @@
 .stat {
   border-top: 1px solid #000000;
-  clear: right;
-  float: right;
-  margin: rem(10) 0 rem(40) 0;
-  padding: (20) 0 0 0;
+  font-family: $sans;
+  margin: rem(10 0 40);
+  padding: rem(20) 0 0 0;
   position: relative;
-  width: 59.1%;
+  
+  @media ($mdMin) {
+    clear: right;
+    float: right;
+    margin: rem(10) -16% rem(20) 8.5%;
+    width: 59.1%;
+  }
+
+  @media ($lgMin) {
+    margin-right: -33%;
+  }
 }
 
 .title {
-  margin: 0 0 rem(5) 0;
+  font-size: rem(18);
+  line-height: 1.55;
 }
 
 .description {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.4;
   margin: 0;
   width: 100%;
 }
