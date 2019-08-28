@@ -4,6 +4,9 @@ import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
 
+// Icons
+import Arrow from 'assets/icons/arrow.svg';
+
 // Styles
 import styles from './topicHeader.css';
 
@@ -34,8 +37,16 @@ const TopicHeader = ({
               </li>
             ))}
           </ol>
-          <button type="button">{__('Next', 'mittr')}</button>
-          <button type="button">{__('Previous', 'mittr')}</button>
+          <button type="button" className={styles.previous}>
+            <Arrow aria-hidden />
+            <span className="screen-reader-text">{__('Next', 'mittr')}</span>
+          </button>
+          <button type="button" className={styles.next}>
+            <Arrow aria-hidden />
+            <span className="screen-reader-text">
+              {__('Previous', 'mittr')}
+            </span>
+          </button>
         </div>
       )}
     </header>

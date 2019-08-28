@@ -61,6 +61,7 @@
 
 .slider {
   overflow-x: scroll;
+  position: relative;
   width: 100%;
 }
 
@@ -88,4 +89,26 @@
   font-size: rem(14);
   line-height: 1;
   margin-bottom: rem(10);
+}
+
+.button {
+  background-color: $white;
+  background-repeat: norepeat;
+  background-size: cover;
+  border: solid 1px $black;
+  bottom: 0;
+  height: rem(40);
+  position: absolute;
+  width: rem(40);
+}
+
+.previous {
+  composes: button;
+  left: 0;
+  transform: rotate(180deg);
+}
+
+.next {
+  composes: button;
+  right: 0;
 }
