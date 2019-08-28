@@ -9,7 +9,7 @@ import styles from './topicHeader.css';
 const TopicHeader = ({
   name, description, children, color,
 }) => {
-  const { image } = findChildByName('image', children);
+  const image = findChildByName('image', children);
   return (
     <header className={styles.wrapper} style={{ backgroundColor: color }}>
       <div className={styles.meta}>
