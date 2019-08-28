@@ -4,16 +4,20 @@
 
 .list {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
+
+  @media ($mdMin) {
+    flex-flow: row nowrap;
+  }
 
   @media ($smMin) {
-    flex-flow: row nowrap;
+    flex-direction: row;
   }
 
   > li {
     @media ($smMin) {
       padding-right: 1rem;
-      tidy-span: 2;
+      tidy-span: 5;
     }
 
     @media ($lgMin) {
