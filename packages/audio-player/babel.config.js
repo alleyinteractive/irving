@@ -17,6 +17,6 @@ module.exports = {
     ],
   ],
   presets: [
-    '@irving/irving',
+    require.resolve('@irving/babel-preset-irving'),
   ],
 };

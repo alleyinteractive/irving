@@ -1,4 +1,3 @@
-import omit from 'lodash/fp/omit';
 import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
@@ -45,11 +44,14 @@ RawHTML.propTypes = {
    * Does this markup contain oembeds?
    */
   oembed: PropTypes.bool,
+
+  className: PropTypes.string,
 };
 
 RawHTML.defaultProps = {
   rich: true,
   oembed: false,
+  className: '',
 };
 
 export default RawHTML;

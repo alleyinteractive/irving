@@ -8,10 +8,15 @@ const {
 const include = (filepath) => {
   const matches = (
     (
-      filepath.includes(irvingRoot) ||
-      filepath.includes(appRoot)
+      (
+        (
+          filepath.includes(irvingRoot) ||
+          filepath.includes(appRoot) ||
+          filepath.includes(path.join(__dirname, '../../../'))
+        ) && ! filepath.match(/node_modules/)
+      ) ||
+      (filepath.includes('@irving') && filepath.match(/node_modules/))
     ) &&
-    ! filepath.match(/node_modules/) &&
     ! filepath.match(/\.min\.js$/)
   );
 
@@ -120,7 +125,9 @@ module.exports = function getRules(context) {
         {
           loader: 'postcss-loader',
           options: {
-            config: require(postCssConfig),
+            config: {
+              path: postCssConfig,
+            },
           },
         },
       ],

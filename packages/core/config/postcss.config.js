@@ -19,7 +19,7 @@ const cssVars = require('./css');
 const flatten = require('../utils/flatten');
 
 // Config
-module.exports = () => ({
+module.exports = {
   plugins: [
     stylelint(stylelintConfig),
     cssImport({
@@ -44,4 +44,4 @@ module.exports = () => ({
     browserReporter(),
     reporter(),
   ],
-});
+};

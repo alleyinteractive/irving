@@ -37,7 +37,7 @@ module.exports = {
         ],
       ],
       presets: [
-        path.join(appRoot, 'node_modules/@irving/babel-preset-irving'),
+        require.resolve('@irving/babel-preset-irving'),
       ],
     },
     test: {
