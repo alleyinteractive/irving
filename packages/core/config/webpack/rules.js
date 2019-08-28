@@ -10,13 +10,17 @@ const include = (filepath) => {
     (
       (
         (
+          // Anything within irving root + app root should be included in build.
           filepath.includes(irvingRoot) ||
           filepath.includes(appRoot) ||
-          filepath.includes(path.join(__dirname, '../../../'))
-        ) && ! filepath.match(/node_modules/)
+          // monorepo root directory (if it exists).
+          filepath.includes(path.join(__dirname, '../../../../'))
+        ) && ! filepath.includes('node_modules')
       ) ||
+      // Anything within irving repos should be included in build, even if located within node_modules.
       (filepath.includes('@irving') && filepath.match(/node_modules/))
     ) &&
+    // Exclude minified JS.
     ! filepath.match(/\.min\.js$/)
   );
 

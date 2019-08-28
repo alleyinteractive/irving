@@ -97,7 +97,7 @@
     "react-dev-utils": "^5.0.2",
     "react-styleguidist": "^8.0.6",
     "style-loader": "^0.21.0",
-    "stylelint": "^9.10.1",
+    "stylelint": "^10.1.0",
     "stylelint-order": "^2.0.0",
     "svg-react-loader": "^0.4.6",
     "url-loader": "^1.0.1",
