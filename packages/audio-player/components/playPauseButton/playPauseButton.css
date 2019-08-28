@@ -1,71 +1,87 @@
+@import 'mixins/index';
+
 .wrapper {
+  @include button-reset;
   align-items: center;
-  border: 4px solid #000000;
+  border: 4px solid $black;
   border-radius: 50%;
   display: flex;
-  height: 40px;
+  height: rem(40);
   justify-content: center;
-  width: 40px;
-}
+  width: rem(40);
 
-.wrapper:hover,
-.wrapper:focus {
-  border-color: #666666;
-  outline: none;
-}
+  &:hover,
+  &:focus {
+    border-color: $gray;
+    outline: none;
 
-.wrapper:hover svg,
-.wrapper:focus svg {
-  fill: #666666;
-}
-
-.icon svg {
-  fill: #000000;
-}
-
-.play svg {
-  height: 18px;
-  margin: 2px 0 0 4px;
-  width: 12px;
-}
-
-.pause svg {
-  height: 18px;
-  margin-top: 1px;
-  width: 14px;
-}
-
-.spinner svg {
-  height: 18px;
-  width: 18px;
-}
-
-@media ($lgMin) {
-  .wrapper {
-    border: 5px solid #000000;
-    height: 56px;
-    width: 56px;
+    svg {
+      fill: $gray;
+    }
   }
 
-  .icon svg {
-    height: 26px;
-    width: 26px;
+  @media ($lgMin) {
+    border: 5px solid $black;
+    height: rem(56);
+    width: rem(56);
   }
+}
 
-  .play svg {
-    height: 26px;
-    margin: 2px 0 0 6px;
-    width: 18px;
-  }
+.icon {
 
-  .pause svg {
-    height: 26px;
-    margin-top: 2px;
-    width: 20px;
-  }
+  svg {
+    fill: $black;
 
-  .spinner svg {
-    height: 26px;
-    width: 26px;
+    @media ($lgMin) {
+      height: rem(26);
+      width: rem(26);
+    }
   }
+}
+
+.play {
+
+  svg {
+    height: rem(18);
+    margin: rem(2) 0 0 rem(4);
+    width: rem(12);
+
+    @media ($lgMin) {
+      height: rem(26);
+      margin: rem(2) 0 0 rem(6);
+      width: rem(18);
+    }
+  }
+}
+
+.pause {
+
+  svg {
+    height: rem(18);
+    margin-top: rem(1);
+    width: rem(14);
+
+    @media ($lgMin) {
+      height: rem(26);
+      margin-top: rem(2);
+      width: rem(20);
+    }
+  }
+}
+
+.spinner {
+
+  svg {
+    height: rem(18);
+    width: rem(18);
+
+    @media ($lgMin) {
+      height: rem(26);
+      width: rem(26);
+    }
+  }
+}
+
+.text {
+  @include screenreader-only;
 }

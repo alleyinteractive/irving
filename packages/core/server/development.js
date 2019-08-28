@@ -4,6 +4,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const proxy = require('http-proxy-middleware');
 const getConfig = require('../config/webpack.config.js');
+const maybeRequireUserModule = require('../utils/maybeRequireUserModule');
 
 const config = getConfig({}, { mode: 'development' });
 const matchClient = ({ name }) => 'client' === name;
@@ -18,6 +19,9 @@ const { PROXY_URL } = process.env;
  * @param {object} app - express application
  */
 const developmentMiddleware = (app) => {
+  // Allow customization of development server
+  maybeRequireUserModule('server/customizeDevServer')(app);
+
   // Serve webpack handled assets.
   app.use(webpackDevMiddleware(multiCompiler, {
     publicPath: clientConfig.output.publicPath,

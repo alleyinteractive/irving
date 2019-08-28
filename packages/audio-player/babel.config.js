@@ -1,11 +1,11 @@
-const path = require('path');
+// const path = require('path');
 
 module.exports = {
   plugins: [
     [
       'module-resolver',
       {
-        root: [path.resolve(__dirname)],
+        root: ['./'],
         alias: {
           actions: './actions',
           assets: './assets',

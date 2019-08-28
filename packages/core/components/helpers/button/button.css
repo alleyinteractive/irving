@@ -1,28 +1,20 @@
-.button-reset {
-  appearance: none;
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  font: inherit;
-  margin: 0;
-  padding: 0;
-}
+@import 'mixins/index';
 
 .wrapper {
-  composes: button-reset;
+  @include button-reset;
 }
 
 .primary {
   align-items: center;
-  background-color: #000000;
-  color: #FFFFFF;
+  background-color: $black;
+  color: $white;
   display: flex;
-  height: 42px;
+  height: rem(42);
   justify-content: center;
   padding: 0 1rem;
-}
 
-.primary:hover {
-  background-color: #DDDDDD;
-  color: #000000;
+  &:hover {
+    background-color: $grayLight;
+    color: $black;
+  }
 }

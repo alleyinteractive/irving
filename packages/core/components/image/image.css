@@ -7,38 +7,46 @@
   display: block;
 }
 
-.lazyload .placeholder {
-  display: block;
-}
+.lazyload {
 
-.lazyload .img,
-.lazyload .picture {
-  display: none;
-}
+  .placeholder {
+    display: block;
+  }
 
-.lazyload.loaded .placeholder {
-  display: none;
-}
+  .img,
+  .picture {
+    display: none;
+  }
 
-.lazyload.loaded .img,
-.lazyload.loaded .picture {
-  display: block;
+  /* stylelint-disable selector-max-specificity */
+  &.loaded {
+
+    .placeholder {
+      display: none;
+    }
+
+    .img,
+    .picture {
+      display: block;
+    }
+  }
+  /* stylelint-enable */
 }
 
 .apsectRatio {
   height: 0;
   position: relative;
-}
 
-.aspectRatio picture,
-.aspectRatio img {
-  height: auto;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
+  picture,
+  img {
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 
-.aspectRatio .placeholder {
-  height: 100%;
+  .placeholder {
+    height: 100%;
+  }
 }

@@ -3,14 +3,15 @@ const {
   transform,
   appRoot,
   irvingRoot,
+  postCssConfig,
 } = require('../paths');
 const include = (filepath) => {
   const matches = (
     (
       filepath.includes(irvingRoot) ||
-      filepath.includes(appRoot) ||
-      (filepath.match(/@irving/) && filepath.match(/node_modules/))
+      filepath.includes(appRoot)
     ) &&
+    ! filepath.match(/node_modules/) &&
     ! filepath.match(/\.min\.js$/)
   );
 
@@ -114,6 +115,12 @@ module.exports = function getRules(context) {
             },
             sourceMap: ! isProd,
             localsConvention: 'camelCase',
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            config: require(postCssConfig),
           },
         },
       ],

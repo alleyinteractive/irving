@@ -1,11 +1,11 @@
 .label {
   font-family: sans-serif;
-  font-size: 12px;
+  font-size: rem(12);
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .required {
   color: red;
-  margin-left: 10px;
+  margin-left: rem(10);
 }
