@@ -71,14 +71,13 @@ const Image = (props) => {
         )}
         style={paddingPercentage}
       >
-        {lazyload ?
-          (
+        {
+          lazyload ? (
             <>
               {placeholder}
               {imageContent}
             </>
-          ) :
-          imageContent
+          ) : imageContent
         }
       </span>
       {(caption && showCaption) && <figcaption>{caption}</figcaption>}
