@@ -1,14 +1,13 @@
 .parent {
   align-items: center;
-  border-bottom: $border-thin--white;
   color: $white;
   display: flex;
   flex-flow: row nowrap;
   font-family: $sans;
-  font-weight: 700;
+  font-weight: 900;
   justify-content: space-between;
   overflow: hidden;
-  padding: rem(12) 0 rem(12) rem(3);
+  padding-bottom: rem(12);
   text-align: left;
   width: 100%;
 
@@ -22,7 +21,6 @@
 }
 
 .isChildless {
-  border-bottom: $border-thin--gray;
   flex-flow: row nowrap;
 
   &::before {
