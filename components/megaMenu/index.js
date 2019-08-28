@@ -19,6 +19,13 @@ const MegaMenu = (props) => {
       </div>
       <div className={styles.middleRow}>{menus[0]}</div>
       <div className={styles.lastRow}>{menus[1]}</div>
+      <div className={styles.copyright}>
+        MIT Technology Review © 2019
+        <span className={styles.symbol}>
+          v.|e
+          <sup>iπ</sup>|
+        </span>
+      </div>
     </div>
   );
 };

@@ -4,14 +4,14 @@
 
 .list {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
+
+  @media ($smMin) {
+    flex-flow: row wrap;
+  }
 
   @media ($mdMin) {
     flex-flow: row nowrap;
-  }
-
-  @media ($smMin) {
-    flex-direction: row;
   }
 
   > li {
@@ -21,7 +21,7 @@
     }
 
     @media ($lgMin) {
-      tidy-span: 2;
+      tidy-span: 4;
     }
 
     &:nth-of-type(5) {

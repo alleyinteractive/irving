@@ -1,7 +1,7 @@
 /* MegaMenu component styles */
 
 .wrapper {
-  padding: rem(64) rem(20) rem(20);
+  padding: rem(64) rem(5) rem(20) rem(30);
   width: 100%;
 }
 
@@ -52,10 +52,25 @@
 
 .middleRow {
   composes: row;
+  margin-top: rem(40);
   width: 100%;
 }
 
 .lastRow {
+  border-top: 1px solid #646464;
   composes: row;
+  margin-top: rem(40);
+  padding-top: rem(30);
   width: 100%;
+}
+
+.copyright {
+  font-size: rem(12);
+  font-weight: 600;
+  line-height: 1;
+  margin-top: rem(30);
+}
+
+.symbol {
+  margin-left: rem(35);
 }
