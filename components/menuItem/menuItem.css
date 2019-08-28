@@ -11,8 +11,8 @@
   display: block;
   font-family: $sans;
   font-size: rem(16);
-  line-height: 1.231;
-  padding: rem(10) 0 rem(10) rem(3);
+  line-height: 1.13;
+  padding-bottom: rem(8);
 
   &:hover {
     text-decoration: underline;
