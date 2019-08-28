@@ -7,6 +7,7 @@
     "build": "BABEL_ENV=app lerna run build",
     "preinstall": "npx check-node-version --package",
     "install": "lerna bootstrap --hoist",
+    "link": "lerna link",
     "test": "BABEL_ENV=test lerna run test --parallel",
     "test:watch": "BABEL_ENV=test lerna run test:watch",
     "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
