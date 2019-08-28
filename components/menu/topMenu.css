@@ -1,0 +1,33 @@
+.wrapper {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-flow: column nowrap;
+
+  @media ($smMin) {
+    flex-flow: row wrap;
+  }
+
+  @media ($mdMin) {
+    flex-flow: row nowrap;
+  }
+
+  > li {
+    @media ($smMin) {
+      padding-right: 1rem;
+      tidy-span: 5;
+    }
+
+    @media ($lgMin) {
+      tidy-span: 4;
+    }
+
+    &:nth-of-type(5) {
+      @media ($smMin) {
+        margin-right: 0;
+      }
+    }
+  }
+}
