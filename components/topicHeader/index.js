@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName, filterChildrenByName } from 'utils/children';
@@ -18,6 +18,16 @@ const TopicHeader = ({
     'term-archive-pinned-article',
     children
   );
+
+  /**
+   * @todo MIT-102 all these buttons do is appear and disappear based on
+   * whether or not the user has scrolled the slider. They should:
+   * - Actually move the slider
+   * - Not appear when the slider cannot be slid in that direction any further.
+   */
+  const sliderRef = React.createRef();
+  const [hasScrolled, setHasScrolled] = useState(false);
+
   return (
     <header className={styles.wrapper} style={{ backgroundColor: color }}>
       <div className={styles.meta}>
@@ -26,10 +36,16 @@ const TopicHeader = ({
       </div>
       <div className={styles.image}>{image}</div>
       {articles && (
-        <div className={styles.slider}>
+        <div
+          className={styles.slider}
+          ref={sliderRef}
+          onScroll={() => {
+            setHasScrolled(true);
+          }}
+        >
           <ol className={styles.list}>
             {articles.map((article, count) => (
-              <li className={styles.featured}>
+              <li className={styles.featured} key={article.props.title}>
                 <div className={styles.counter} aria-hidden>
                   0{count + 1}.
                 </div>
@@ -37,16 +53,34 @@ const TopicHeader = ({
               </li>
             ))}
           </ol>
-          <button type="button" className={styles.previous}>
-            <Arrow aria-hidden />
-            <span className="screen-reader-text">{__('Next', 'mittr')}</span>
-          </button>
-          <button type="button" className={styles.next}>
-            <Arrow aria-hidden />
-            <span className="screen-reader-text">
-              {__('Previous', 'mittr')}
-            </span>
-          </button>
+          {hasScrolled ? (
+            <button
+              type="button"
+              className={styles.previous}
+              onClick={() => setHasScrolled(false)}
+            >
+              <Arrow aria-hidden />
+              <span className="screen-reader-text">{__('Next', 'mittr')}</span>
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={styles.next}
+              onClick={() => {
+                setHasScrolled(true);
+                // @todo MIT-102 this does not work.
+                const { offsetWidth } = sliderRef;
+                sliderRef.current.style = {
+                  transform: `translateX(-${offsetWidth}px)`,
+                };
+              }}
+            >
+              <Arrow aria-hidden />
+              <span className="screen-reader-text">
+                {__('Previous', 'mittr')}
+              </span>
+            </button>
+          )}
         </div>
       )}
     </header>

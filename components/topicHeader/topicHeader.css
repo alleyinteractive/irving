@@ -60,7 +60,7 @@
 }
 
 .slider {
-  overflow-x: scroll;
+  overflow: visible;
   position: relative;
   width: 100%;
 }
@@ -79,6 +79,7 @@
 .list {
   display: flex;
   flex-flow: row nowrap;
+  overflow-x: scroll;
   width: auto;
 }
 
@@ -96,7 +97,7 @@
   background-repeat: norepeat;
   background-size: cover;
   border: solid 1px $black;
-  bottom: 0;
+  bottom: rem(-10);
   height: rem(40);
   position: absolute;
   width: rem(40);
