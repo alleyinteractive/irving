@@ -20,7 +20,7 @@ const TopicHeader = ({
   );
 
   /**
-   * @todo MIT-102 all these buttons do is appear and disappear based on
+   * @todo MIT-201 all these buttons do is appear and disappear based on
    * whether or not the user has scrolled the slider. They should:
    * - Actually move the slider
    * - Not appear when the slider cannot be slid in that direction any further.
@@ -68,7 +68,7 @@ const TopicHeader = ({
               className={styles.next}
               onClick={() => {
                 setHasScrolled(true);
-                // @todo MIT-102 this does not work.
+                // @todo MIT-210 this does not work.
                 const { offsetWidth } = sliderRef;
                 sliderRef.current.style = {
                   transform: `translateX(-${offsetWidth}px)`,
