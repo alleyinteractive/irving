@@ -1,13 +1,13 @@
 .heading {
-  background-color: #000000;
-  color: #FFFFFFF;
-  margin-bottom: 15px;
-  padding: 5px 10px;
+  background-color: $black;
+  color: $white;
+  margin-bottom: rem(15);
+  padding: rem(5) rem(10);
   text-transform: uppercase;
   width: 100%;
 }
 
 .fieldset {
-  margin-bottom: 40px;
+  margin-bottom: rem(40);
   position: relative;
 }

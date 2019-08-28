@@ -19,8 +19,7 @@ const Heading = (props) => {
     <Tag className={classNames(styles[`${typeStyle}`], className)}>
       {link ?
         <Link to={link}>{children}</Link> :
-        <span>{children}</span>
-      }
+        <span>{children}</span>}
     </Tag>
   );
 };

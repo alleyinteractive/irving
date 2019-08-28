@@ -3,23 +3,6 @@ import PropTypes from 'prop-types';
 import ErrorMessage from 'components/errorMessage';
 
 class ErrorBoundary extends React.Component {
-  static propTypes = {
-    /**
-     * Component children
-     */
-    children: PropTypes.node.isRequired,
-    /**
-     * Fallback component if error occurs
-     */
-    fallback: PropTypes.func,
-  }
-
-  static defaultProps = {
-    fallback: () => (
-      <ErrorMessage />
-    ),
-  };
-
   state = {
     hasError: false,
   }
@@ -39,5 +22,22 @@ class ErrorBoundary extends React.Component {
     return children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  /**
+   * Component children
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Fallback component if error occurs
+   */
+  fallback: PropTypes.func,
+};
+
+ErrorBoundary.defaultProps = {
+  fallback: () => (
+    <ErrorMessage />
+  ),
+};
 
 export default ErrorBoundary;

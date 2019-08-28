@@ -12,21 +12,21 @@ getService().start();
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
 const path = require('path');
-const http = require('http');
-const https = require('https');
 const express = require('express');
 const { rootUrl } = require('../config/paths');
+const maybeRequireUserModule = require('../utils/maybeRequireUserModule');
 
 const {
   PORT = 3001,
   NODE_ENV,
-  HTTPS_KEY_PATH,
-  HTTPS_CERT_PATH,
 } = process.env;
 const app = express();
 
 app.set('views', path.join(__dirname, '../server/views'));
 app.set('view engine', 'ejs');
+
+// Allow customization of server.
+maybeRequireUserModule('server/customizeServer')(app);
 
 if ('development' === NODE_ENV) {
   require('../server/development')(app);
@@ -45,31 +45,8 @@ app.use((err, req, res, next) => {
   return res.sendStatus(500);
 });
 
-let server;
-if (HTTPS_KEY_PATH && HTTPS_CERT_PATH) {
-  const os = require('os');
-  const fs = require('fs');
-  const path = require('path');
-
-  const key = fs.readFileSync(
-    path.join(
-      os.homedir(),
-      HTTPS_KEY_PATH,
-    ),
-    'utf8'
-  );
-  const cert = fs.readFileSync(
-    path.join(
-      os.homedir(),
-      HTTPS_CERT_PATH,
-    ),
-    'utf8'
-  );
-
-  server = https.createServer({ key, cert }, app);
-} else {
-  server = http.createServer(app);
-}
+// Allow customization of how server is created.
+const server = maybeRequireUserModule('server/createServer')(app);
 
 server.listen(PORT);
 console.log(`Server listening on port ${PORT}!`);

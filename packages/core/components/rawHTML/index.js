@@ -6,21 +6,19 @@ import EmbedContainer from 'react-oembed-container';
 import { plainText, richText } from 'config/html';
 
 const RawHTML = (props) => {
-  const { content, rich, oembed } = props;
+  const {
+    content,
+    rich,
+    oembed,
+    className,
+  } = props;
   const html = sanitizeHtml(content, rich ? richText : plainText);
-  const newProps = omit([
-    'content',
-    'rich',
-    'children',
-    'componentName',
-    'oembed',
-  ], props);
 
   if (oembed) {
     return (
       <EmbedContainer markup={content}>
         <div
-          {...newProps}
+          className={className}
           dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
         />
       </EmbedContainer>
@@ -28,7 +26,7 @@ const RawHTML = (props) => {
   }
   return (
     <div
-      {...newProps}
+      className={className}
       dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
     />
   );

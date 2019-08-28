@@ -17,8 +17,10 @@ const breakpoints = Object.keys(bkptVal)
     return acc;
   }, {});
 
+/* eslint-disable prefer-object-spread */
 module.exports = Object.assign({}, {
   adminBarMedMin: 'min-width: 783px',
   adminBarSmMin: 'min-width: 601px',
   bkptVal,
 }, breakpoints);
+/* eslint-enable */

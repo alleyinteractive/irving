@@ -19,6 +19,7 @@ module.exports = {
             ],
             cwd: 'packagejson',
             alias: {
+              '@components': '@irving/core/components',
               actions: './actions',
               assets: './assets',
               components: './components',
@@ -47,7 +48,10 @@ module.exports = {
             root: [irvingRoot],
             // Tests need an irving config, use an alias so it doesn't override user config.
             alias: {
-              '@irving/irving.config': path.join(irvingRoot, 'irving-test.config.js'),
+              '@irving/irving.config': path.join(
+                irvingRoot,
+                'irving-test.config.js'
+              ),
             },
           },
         ],

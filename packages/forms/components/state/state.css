@@ -1,3 +1,4 @@
+
 .wrapper {
 
   /* stylelint-disable selector-max-specificity */
@@ -18,7 +19,7 @@
 .success,
 .error {
   font-family: $fira;
-  font-size: 24px;
+  font-size: rem(24);
   text-transform: uppercase;
 }
 

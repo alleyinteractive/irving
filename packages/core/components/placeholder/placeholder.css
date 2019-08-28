@@ -1,26 +1,26 @@
 .wrapper {
   margin-bottom: 2rem;
   width: 100%;
-}
 
-.wrapper pre {
-  font-family: monospace;
+  pre {
+    font-family: monospace;
+  }
 }
 
 .heading2 {
-  font-size: 32px;
+  font-size: rem(32);
 }
 
 .heading3 {
-  font-size: 28px;
+  font-size: rem(28);
 }
 
 .heading4 {
-  font-size: 24px;
+  font-size: rem(24);
 }
 
 .heading5 {
-  font-size: 20px;
+  font-size: rem(20);
 }
 
 .children {

@@ -63,15 +63,21 @@ module.exports = {
     'arrow-parens': ['error', 'always'],
     'operator-linebreak': ['error', 'after'],
     'function-paren-newline': ['error', 'consistent'],
-    'react/prefer-stateless-function': 'off',
     'jsx-a11y/anchor-is-valid': [ 'error', {
       components: [ 'Link' ],
       specialLink: [ 'to' ]
     }],
     'import/newline-after-import': [0],
+    'react/prefer-stateless-function': 'off',
+    'react/jsx-curly-newline': ['error', {
+      multiline: 'consistent',
+      singleline: 'consistent',
+    }],
     'react/jsx-filename-extension': [0],
     'react/jsx-one-expression-per-line': [0],
     'react/forbid-prop-types': [0],
+    'react/state-in-constructor': [0],
+    'react/jsx-props-no-spreading': [0],
     'import/no-named-as-default': [0],
     'import/no-named-as-default-member': [0],
     'import/no-extraneous-dependencies': [0],

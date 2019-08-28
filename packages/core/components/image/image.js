@@ -28,7 +28,7 @@ const Image = (props) => {
 
   // Set up image element(s) for maybe using with lazyload component
   const imageContent = (
-    <Fragment>
+    <>
       {picture ? (
         <IrvingPicture
           {...props}
@@ -42,7 +42,7 @@ const Image = (props) => {
           onError={onError}
         />
       )}
-    </Fragment>
+    </>
   );
 
   // Set up placeholder image with low quality image placeholder source
@@ -73,10 +73,10 @@ const Image = (props) => {
       >
         {lazyload ?
           (
-            <Fragment>
+            <>
               {placeholder}
               {imageContent}
-            </Fragment>
+            </>
           ) :
           imageContent
         }
