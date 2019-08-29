@@ -66,10 +66,10 @@ const render = async (req, res, clientStats) => {
     return;
   }
 
+  clearChunks();
+
   // Container for critical css related to this page render.
   const cssBuilder = new CriticalCssBuilder();
-
-  clearChunks();
 
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
