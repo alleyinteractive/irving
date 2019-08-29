@@ -11,6 +11,7 @@ const SubtopicsSection = (props) => {
       <h5 className={styles.label}>
         {/* eslint-disable-next-line max-len */}
           What matters in <span className={styles.name}>{topic}</span> right now?
+        <span className={styles.rectangle}>&nbsp;</span>
       </h5>
       <div className={styles.listContainer}>
         <ul className={styles.list}>{subtopics}</ul>
