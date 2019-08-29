@@ -35,3 +35,8 @@
     tidy-span: 4;
   }
 }
+
+.container {
+  margin: 50px 0 50px calc((79.5rem - 1.25rem * 2) / 12);
+  width: 100%;
+}
