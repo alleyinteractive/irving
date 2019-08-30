@@ -60,7 +60,7 @@ export const componentMap = {
   'mega-menu': MegaMenu,
   menu: Menu,
   'menu-item': MenuItem,
-  'mittr/stats-widget': StatsWidget,
+  'mittr-plugin-extension/stats-widget': StatsWidget,
   pagination: Placeholder,
   parsely: Parsely,
   'search-bar': SearchBar,

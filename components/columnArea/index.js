@@ -13,16 +13,14 @@ const ColumnArea = (props) => {
   // Separate content and sidebar
   const content = children.filter(
     // eslint-disable-next-line max-len
-    (child) => 'sidebar' !== child.props.componentName && 'subtopics-section' !== child.props.componentName
+    (child) => 'sidebar' !== child.props.componentName
   );
   const sidebar = findChildByName('sidebar', children);
-  const subtopics = findChildByName('subtopics-section', children);
 
   return (
     <div className={classNames(theme.wrapper, {})}>
       {content && <div className={theme.main}>{content}</div>}
       {sidebar && <aside className={theme.sidebar}>{sidebar}</aside>}
-      {subtopics && <div className={theme.container}>{ subtopics }</div>}
     </div>
   );
 };

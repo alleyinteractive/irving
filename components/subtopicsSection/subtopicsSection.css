@@ -1,19 +1,20 @@
 .channel {
   background-color: #000000;
   color: #ffffff;
-  min-height: 275px;
-  padding: 20px 20px 25px 20px;
+  margin-top: 5px;
+  min-height: 210px;
+  padding: 30px 20px 25px 20px;
   position: relative;
 }
 
 .label {
-  border: 1px solid #ffffff;
   bottom: 25px;
   display: block;
   font-family: "NeueHaas", sans-serif;
   font-size: 30px;
-  font-weight: 300;
+  font-weight: 400;
   left: 20px;
+  line-height: 1.07;
   padding: 15px;
   position: absolute;
   top: 20px;
@@ -35,9 +36,17 @@
 }
 
 .list {
-  border-top: 3px solid #ffffff;
-  bottom: 0;
   overflow: hidden;
-  position: absolute;
+  padding-bottom: 45px;
+  padding-top: 10px;
+
   width: 100%;
+}
+
+.rectangle {
+  background-color: #f3f3f3;
+  display: block;
+  height: 5px;
+  margin-top: 20px;
+  width: 100px;
 }
