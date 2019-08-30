@@ -1,7 +1,7 @@
 .channel {
   background-color: #303030;
   color: #ffffff;
-  margin-bottom: 15px;
+  margin-bottom: rem(15);
   margin-top: 5px;
   min-height: 210px;
   padding: 30px 20px 25px 20px;
