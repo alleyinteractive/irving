@@ -19,7 +19,7 @@
   padding: 15px;
   position: absolute;
   top: 20px;
-  width: 288px;
+  width: rem(288);
 }
 
 .name {
