@@ -39,7 +39,7 @@
 .list {
   overflow: hidden;
   padding-bottom: 45px;
-  padding-left: 30px;
+  padding-left: rem(30);
   padding-top: 10px;
   width: 100%;
 }
