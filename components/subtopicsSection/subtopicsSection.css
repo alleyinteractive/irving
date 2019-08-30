@@ -1,5 +1,5 @@
 .channel {
-  background-color: #303030;
+  background-color: $color-deck;
   color: #ffffff;
   margin-bottom: rem(15);
   margin-top: 5px;
