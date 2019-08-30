@@ -11,7 +11,7 @@ import Arrow from 'assets/icons/arrow.svg';
 import styles from './topicHeader.css';
 
 const TopicHeader = ({
-  name, description, children, color,
+  name, description, children, color, isSubtopic,
 }) => {
   const image = findChildByName('image', children);
   const articles = filterChildrenByName(
@@ -30,12 +30,14 @@ const TopicHeader = ({
 
   return (
     <header className={styles.wrapper} style={{ backgroundColor: color }}>
-      <div className={styles.meta}>
+      <div className={isSubtopic ? styles.metaFull : styles.meta}>
         <h1 className={styles.name}>{name}</h1>
         <p className={styles.description}>{description}</p>
       </div>
-      <div className={styles.image}>{image}</div>
-      {articles && (
+      {! isSubtopic && (
+        <div className={styles.image}>{image}</div>
+      )}
+      {0 < articles.length && (
         <div
           className={styles.slider}
           ref={sliderRef}
@@ -92,6 +94,7 @@ TopicHeader.propTypes = {
   color: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  isSubtopic: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(TopicHeader);

@@ -17,6 +17,10 @@
   }
 }
 
+.metaFull {
+  width: 100%;
+}
+
 .image {
   display: flex;
   flex-flow: row nowrap;
