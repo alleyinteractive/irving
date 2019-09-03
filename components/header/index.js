@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Headroom from 'react-headroom';
 import { __ } from '@wordpress/i18n';
@@ -6,6 +6,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 import classNames from 'classnames';
 import Link from 'components/helpers/link';
+import useBreakpoint from 'hooks/useBreakpoint';
 
 // Images
 import LogoStacked from 'assets/icons/logoStacked.svg';
@@ -22,6 +23,19 @@ const Header = ({ homeUrl, children }) => {
   const megaMenu = findChildByName('mega-menu', children);
   const [isExpanded, setIsExpanded] = useState(false);
   const [fixedNavVisible, setFixedNavVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Breakpoints
+  const isSmMin = useBreakpoint('smMin');
+
+  // When resizing, do not have the click to expand controls on desktop.
+  useEffect(() => {
+    if (! isSmMin) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [isSmMin]);
 
   return (
     <Headroom
@@ -35,7 +49,7 @@ const Header = ({ homeUrl, children }) => {
         })}
       >
         <div className={styles.wrapper}>
-          {! fixedNavVisible && (
+          {(! fixedNavVisible && ! isMobile) && (
             <div className={styles.leaderboardRow}>
               {/* @todo consider moving ad placeholder to its own component. */}
               <div className={styles.leaderboard}>
@@ -48,7 +62,7 @@ const Header = ({ homeUrl, children }) => {
               {__('MIT Technology Review')}
             </div>
             {! fixedNavVisible && (
-              <div className={styles.logoStacked} aria-hidden="true">
+              <div className={styles.logoStacked} aria-hidden={fixedNavVisible}>
                 <LogoStacked />
               </div>
             )}
@@ -57,8 +71,11 @@ const Header = ({ homeUrl, children }) => {
             {/* <span className={styles.logoT} aria-hidden="true">
               <TRGlyph />
             </span> */}
-            {fixedNavVisible && (
-              <div className={styles.logoHorizontal} aria-hidden="true">
+            {(fixedNavVisible || isMobile) && (
+              <div
+                className={styles.logoHorizontal}
+                aria-hidden={fixedNavVisible || isMobile}
+              >
                 <LogoHorizontal />
               </div>
             )}
