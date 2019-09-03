@@ -1,0 +1,23 @@
+:global {
+  .headroom {
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .headroom:not(.headroom--unfixed) {
+    position: fixed;
+    transform: translateY(0);
+  }
+
+  .headroom--unfixed {
+    position: relative;
+    transition: all 2s cubic-bezier(0, 0, 0.2, 1);
+    transform: translateY(0);
+  }
+
+  .headroom--scrolled {
+    transition: transform 200ms ease-in-out;
+  }
+}

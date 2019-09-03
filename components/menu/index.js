@@ -11,7 +11,12 @@ import topStyles from './topMenu.css';
 
 const Menu = (props) => {
   const {
-    children, displayTitle, themeName, title, titleLink, theme,
+    children,
+    displayTitle,
+    themeName,
+    title,
+    titleLink,
+    theme,
   } = props;
 
   return (
