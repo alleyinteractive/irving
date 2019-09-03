@@ -14,15 +14,18 @@ const TermArchiveContentListItem = ({
   permalink,
   teaseCTA,
   title,
+  topic,
+  postDate,
+  topicLink,
 }) => (
   <li className={styles.wrapper}>
     <article className={styles.storyTease}>
       <div className={styles.meta}>
         <div className={styles.metaLeft}>
-          <Link className={styles.eyebrowLink} to={permalink} style={{ color }}>
-            Climate Change
+          <Link className={styles.eyebrowLink} to={topicLink} style={{ color }}>
+            { topic }
           </Link>
-          <time className={styles.timestamp}>Aug 26</time>
+          <time className={styles.timestamp}>{ postDate }</time>
         </div>
         <div className={styles.shareMenu}>
           <button
@@ -53,6 +56,9 @@ TermArchiveContentListItem.propTypes = {
   permalink: PropTypes.string.isRequired,
   teaseCTA: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  topic: PropTypes.string.isRequired,
+  postDate: PropTypes.string.isRequired,
+  topicLink: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(TermArchiveContentListItem);
