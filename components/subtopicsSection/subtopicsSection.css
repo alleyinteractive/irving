@@ -1,6 +1,7 @@
 .channel {
-  background-color: #000000;
+  background-color: $color-deck;
   color: #ffffff;
+  margin-bottom: rem(15);
   margin-top: 5px;
   min-height: 210px;
   padding: 30px 20px 25px 20px;
@@ -18,7 +19,7 @@
   padding: 15px;
   position: absolute;
   top: 20px;
-  width: 260px;
+  width: rem(288);
 }
 
 .name {
@@ -38,8 +39,8 @@
 .list {
   overflow: hidden;
   padding-bottom: 45px;
+  padding-left: rem(30);
   padding-top: 10px;
-
   width: 100%;
 }
 
