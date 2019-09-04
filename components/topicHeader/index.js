@@ -38,11 +38,11 @@ const TopicHeader = ({
 
   return (
     <header className={styles.wrapper} style={{ backgroundColor: color }}>
-      <div className={isSubtopic ? styles.metaFull : styles.meta}>
+      <div className={isSubtopic || ! image ? styles.metaFull : styles.meta}>
         <h1 className={styles.name}>{name}</h1>
         <p className={styles.description}>{description}</p>
       </div>
-      {! isSubtopic && <div className={styles.image}>{image}</div>}
+      {! isSubtopic && image && <div className={styles.image}>{image}</div>}
       {isSponsored && (
         <div className={styles.sponsored}>
           <h2 className={styles.sponsorLabel} style={{ color }}>
