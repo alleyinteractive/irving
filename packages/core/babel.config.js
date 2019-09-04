@@ -11,7 +11,7 @@ module.exports = {
     app: {
       plugins: [
         [
-          'module-resolver',
+          require.resolve('babel-plugin-module-resolver'),
           {
             root: [
               appRoot,
@@ -43,7 +43,7 @@ module.exports = {
     test: {
       plugins: [
         [
-          'module-resolver',
+          require.resolve('babel-plugin-module-resolver'),
           {
             root: [irvingRoot],
             // Tests need an irving config, use an alias so it doesn't override user config.

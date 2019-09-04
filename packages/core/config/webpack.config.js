@@ -1,6 +1,7 @@
+const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
-const { appRoot } = require('./paths');
+const { appRoot, irvingRoot } = require('./paths');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
@@ -14,9 +15,7 @@ module.exports = (env, argv) => {
       name: 'client',
       mode,
       resolve: {
-        alias: {
-          'react-dom': ! isProd ? '@hot-loader/react-dom' : 'react-dom',
-        },
+        alias: client.getAlias(),
       },
       devtool: client.getDevTool(),
       entry: client.getEntry(),
@@ -39,6 +38,9 @@ module.exports = (env, argv) => {
       mode,
       devtool: server.getDevTool(),
       target: 'node',
+      resolve: {
+        alias: server.getAlias(),
+      },
       // Quiet bundle size errors, as they are not applicable for code executed in NodeJS.
       performance: {
         hints: false,

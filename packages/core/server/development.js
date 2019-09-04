@@ -20,7 +20,7 @@ const { PROXY_URL } = process.env;
  */
 const developmentMiddleware = (app) => {
   // Allow customization of development server
-  maybeRequireUserModule('server/customizeDevServer')(app);
+  maybeRequireUserModule('server/customizeDevServer.js')(app);
 
   // Serve webpack handled assets.
   app.use(webpackDevMiddleware(multiCompiler, {

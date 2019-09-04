@@ -4,9 +4,6 @@ const {
   clientRoot,
   proxyUrl,
 } = require('../paths');
-const { maybeResolveUserModule } = require(
-  '../../utils/maybeRequireUserModule'
-);
 
 /**
  * Get the context specific entry configuration.
@@ -19,14 +16,6 @@ module.exports = function getEntry(context) {
     'regenerator-runtime/runtime',
     'isomorphic-fetch',
   ];
-  const server = [
-    maybeResolveUserModule('server/renderApp'),
-    maybeResolveUserModule('server/renderErrorMessage'),
-    serverRoot,
-  ];
-  const client = [
-    path.join(clientRoot),
-  ];
 
   switch (context) {
     case 'production_server':
@@ -37,13 +26,13 @@ module.exports = function getEntry(context) {
         // target NodeJS and browser environments, thus eliminating the need to
         // require babel-polyfill for NodeJS.
         ...polyfills,
-        ...server,
+        serverRoot,
       ];
 
     case 'production_client':
       return [
         ...polyfills,
-        ...client,
+        clientRoot,
       ];
 
     case 'development_client': {
@@ -55,7 +44,7 @@ module.exports = function getEntry(context) {
       return [
         ...polyfills,
         `webpack-hot-middleware/client?${queryString}`,
-        ...client,
+        clientRoot,
       ];
     }
 
