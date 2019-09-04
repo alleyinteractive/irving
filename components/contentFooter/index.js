@@ -13,11 +13,18 @@ const ContentFooter = ({ children, tags, author }) => {
     <footer className={styles.wrapper}>
       <h2 className={styles.title}>{__('Article meta', 'mittr')}</h2>
       <div className={styles.social}>{socialSharing}</div>
-      <div className={styles.tags}>
-        <h3 className={styles.label}>{__('Tagged', 'mittr')}</h3>
-        {/* @todo this should be fielded */}
-        {tags}
-      </div>
+      {tags && (
+        <div className={styles.tags}>
+          <h3 className={styles.label}>{__('Tagged', 'mittr')}</h3>
+          <ul>
+            {tags.map((tag) => (
+              // @todo MIT-183 update the API use react links for these instead.
+              // eslint-disable-next-line react/no-danger
+              <li key={tag} dangerouslySetInnerHTML={{ __html: tag }} />
+            ))}
+          </ul>
+        </div>
+      )}
       <address className={styles.author}>
         <h3 className={styles.label}>{__('Author', 'mittr')}</h3>
         {/* @todo this needs an image */}
@@ -29,11 +36,15 @@ const ContentFooter = ({ children, tags, author }) => {
 
 ContentFooter.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  tags: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string),
   author: PropTypes.shape({
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
   }).isRequired,
+};
+
+ContentFooter.defaultProps = {
+  tags: [],
 };
 
 export default ContentFooter;
