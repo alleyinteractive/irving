@@ -15,8 +15,10 @@ const ContentFooter = ({ children, tags, author }) => {
       <div className={styles.social}>{socialSharing}</div>
       {tags && (
         <div className={styles.tags}>
-          <h3 className={styles.label}>{__('Tagged', 'mittr')}</h3>
-          <ul>
+          <h3 className={styles.label} id="content-footer-tags">
+            {__('Tagged', 'mittr')}
+          </h3>
+          <ul aria-labelledby="content-foooter-tags">
             {tags.map((tag) => (
               // @todo MIT-183 update the API use react links for these instead.
               // eslint-disable-next-line react/no-danger
