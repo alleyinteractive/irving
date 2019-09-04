@@ -1,10 +1,10 @@
 .channel {
   background-color: $color-deck;
   color: #ffffff;
+  display: flex;
   margin-bottom: rem(15);
   margin-top: 5px;
-  min-height: 210px;
-  padding: 30px 20px 25px 20px;
+  padding: 30px 20px 45px 20px;
   position: relative;
 }
 
@@ -16,8 +16,7 @@
   font-weight: 400;
   left: 20px;
   line-height: 1.07;
-  padding: 15px;
-  position: absolute;
+  padding-top: rem(5);
   top: 20px;
   width: rem(288);
 }
@@ -31,7 +30,6 @@
 .listContainer {
   bottom: 20px;
   left: 301px;
-  position: absolute;
   right: 20px;
   top: 20px;
 }
@@ -40,7 +38,6 @@
   overflow: hidden;
   padding-bottom: 45px;
   padding-left: rem(30);
-  padding-top: 10px;
   width: 100%;
 }
 
@@ -48,6 +45,6 @@
   background-color: #f3f3f3;
   display: block;
   height: 5px;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100px;
 }
