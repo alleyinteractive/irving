@@ -1,0 +1,20 @@
+:global {
+  .headroom {
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .headroom:not(.headroom--unfixed) {
+    position: fixed;
+  }
+
+  .headroom--unfixed {
+    position: relative;
+  }
+
+  .headroom--scrolled {
+    transition: transform 200ms ease-in-out;
+  }
+}

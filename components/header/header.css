@@ -4,9 +4,10 @@
   background-color: $white;
   border-bottom: $border-thin--gray;
   color: $black;
-  display: block;
+  display: flex;
   justify-self: flex-end;
   margin: 0 auto;
+  min-height: rem(62);
   position: relative;
   width: 100%;
 }
@@ -18,6 +19,10 @@
   margin: 0 auto;
   padding-bottom: 0;
   position: relative;
+}
+
+.headerFixed {
+  height: rem(62);
 }
 
 .logo {
@@ -55,9 +60,6 @@
 }
 
 .logoHorizontal {
-  @media ($smMin) {
-    display: none;
-  }
 
   svg {
     display: block;
@@ -116,6 +118,7 @@
   align-content: flex-end;
   display: flex;
   flex-flow: column nowrap;
+  justify-content: center;
   margin-left: tidy-var(gap);
   position: static;
   tidy-span: 5;
