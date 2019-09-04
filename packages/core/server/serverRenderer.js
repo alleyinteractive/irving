@@ -18,8 +18,9 @@ import getWebpackScripts from 'utils/getWebpackScripts';
 import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
 import App from 'components/app';
-import renderApp from 'server/renderApp';
-import renderErrorMessage from 'server/renderErrorMessage';
+import renderAppWrapper from '@irving/custom/renderAppWrapper';
+import renderErrorMessageWrapper from
+  '@irving/custom/renderErrorMessageWrapper';
 import getIrvingConfig from 'utils/getIrvingConfig';
 
 const { componentMap } = getIrvingConfig();
@@ -74,7 +75,7 @@ const render = async (req, res, clientStats) => {
 
   // Container for critical css related to this page render.
   const cssBuilder = new CriticalCssBuilder();
-  const AppWrapper = (
+  const AppWrapper = () => (
     <Provider store={store}>
       <StyleContext.Provider value={cssBuilder.addCss}>
         <App />
@@ -86,7 +87,7 @@ const render = async (req, res, clientStats) => {
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
   const appHtml = renderToString(
-    renderApp(AppWrapper)
+    renderAppWrapper(AppWrapper)
   );
 
   // Collect webpack scripts for prerender
@@ -146,7 +147,7 @@ export default function serverRenderer(options) {
         </StyleContext.Provider>
       );
       const appHtml = renderToString(
-        renderErrorMessage(ErrorMessageWrapper)
+        renderErrorMessageWrapper(ErrorMessageWrapper)
       );
       const templateVars = { css: cssBuilder.getCss(), html: appHtml };
 

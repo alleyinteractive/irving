@@ -12,7 +12,7 @@ const { maybeRequireUserModule } = require('../utils/maybeRequireUserModule');
  */
 const productionMiddleware = (app) => {
   // Allow customization of production server
-  maybeRequireUserModule('server/customizeProdServer')(app);
+  maybeRequireUserModule('server/customizeProdServer.js')(app);
 
   // @todo should this be included in core or optional?
   app.use(auth);
