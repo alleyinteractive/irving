@@ -1,10 +1,8 @@
 .wrapper {
+  @include container-with-bleed;
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: rem(20);
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1272px; /* @todo put this in a variable */
 }
 
 .publishDate {
@@ -60,10 +58,11 @@
 }
 
 .image {
-  @include container-with-bleed;
+  /* @include container-with-bleed; */
   display: flex;
   margin: 0 auto rem(20);
   overflow: hidden;
+  width: 100%;
   /* tidy-span: 10; */
 
   @media ($mdMin) {
