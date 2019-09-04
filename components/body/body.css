@@ -1,5 +1,6 @@
 .content {
   background-color: $background-gray;
+  padding-top: rem(20);
 
   @media ($lgMin) {
     padding: rem(20);
