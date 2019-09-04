@@ -12,7 +12,7 @@ const TermArchiveContentListItem = ({
   color,
   excerpt,
   permalink,
-  teaseCTA,
+  teaseCta,
   title,
   topic,
   postDate,
@@ -23,9 +23,9 @@ const TermArchiveContentListItem = ({
       <div className={styles.meta}>
         <div className={styles.metaLeft}>
           <Link className={styles.eyebrowLink} to={topicLink} style={{ color }}>
-            { topic }
+            {topic}
           </Link>
-          <time className={styles.timestamp}>{ postDate }</time>
+          <time className={styles.timestamp}>{postDate}</time>
         </div>
         <div className={styles.shareMenu}>
           <button
@@ -42,7 +42,7 @@ const TermArchiveContentListItem = ({
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.excerpt}>{excerpt}</p>
       <Link to={permalink} className={styles.callToAction}>
-        {teaseCTA}
+        {teaseCta}
       </Link>
       {children}
     </article>
@@ -54,7 +54,7 @@ TermArchiveContentListItem.propTypes = {
   color: PropTypes.string.isRequired,
   excerpt: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
-  teaseCTA: PropTypes.string.isRequired,
+  teaseCta: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   topic: PropTypes.string.isRequired,
   postDate: PropTypes.string.isRequired,
