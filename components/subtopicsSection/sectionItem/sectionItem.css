@@ -1,20 +1,13 @@
 .listItem {
-  clear: left;
   display: block;
-  float: left;
-  font-family: "NeueHaas", sans-serif;
-  font-size: 20px;
+  font-family: $sans;
+  font-size: rem(20);
   font-weight: 400;
   line-height: 1;
-  padding-right: 15px;
   width: 100%;
 }
 
 .link {
   display: block;
-  overflow: hidden;
-  padding: 10px 0 10px 0;
-  position: relative;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  padding-bottom: rem(12);
 }
