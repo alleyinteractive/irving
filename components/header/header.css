@@ -10,6 +10,10 @@
   min-height: rem(62);
   position: relative;
   width: 100%;
+
+  &.fixed {
+    height: rem(62);
+  }
 }
 
 .wrapper {
@@ -19,10 +23,6 @@
   margin: 0 auto;
   padding-bottom: 0;
   position: relative;
-}
-
-.headerFixed {
-  height: rem(62);
 }
 
 .logo {
@@ -38,6 +38,11 @@
   @media ($mdMin) {
     tidy-offset-left: 1;
     tidy-span: 2;
+
+    .fixed & {
+      tidy-offset-left: 0;
+      tidy-span: 3;
+    }
   }
 }
 
@@ -60,24 +65,20 @@
 }
 
 .logoHorizontal {
-
   svg {
     display: block;
-    /* Srcolling widths */
-    /* height: rem(15); */
-    /* width: rem(160); */
     height: rem(20);
     width: rem(210);
+
+    .fixed & {
+      height: rem(15);
+      width: rem(160);
+    }
   }
 }
 
 .logoT {
-  display: none; /* todo header scroll styles */
   margin-right: rem(24);
-
-  @media ($smMin) {
-    display: none;
-  }
 
   svg {
     display: block;

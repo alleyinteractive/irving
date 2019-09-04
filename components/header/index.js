@@ -11,7 +11,7 @@ import useBreakpoint from 'hooks/useBreakpoint';
 // Images
 import LogoStacked from 'assets/icons/logoStacked.svg';
 import LogoHorizontal from 'assets/icons/logoHorizontal.svg';
-// import TRGlyph from 'assets/icons/trGlyph.svg';
+import TRGlyph from 'assets/icons/trGlyph.svg';
 import MegaMenuIcon from 'assets/icons/megaMenu.svg';
 
 // Styles
@@ -45,11 +45,11 @@ const Header = ({ homeUrl, children }) => {
     >
       <header
         className={classNames(styles.container, {
-          [styles.headerFixed]: fixedNavVisible,
+          [styles.fixed]: fixedNavVisible,
         })}
       >
         <div className={styles.wrapper}>
-          {(! fixedNavVisible && ! isMobile) && (
+          {! fixedNavVisible && ! isMobile && (
             <div className={styles.leaderboardRow}>
               {/* @todo consider moving ad placeholder to its own component. */}
               <div className={styles.leaderboard}>
@@ -66,18 +66,18 @@ const Header = ({ homeUrl, children }) => {
                 <LogoStacked />
               </div>
             )}
-            {/* @todo add this back when we have logic for
-              detecting stories nav */}
-            {/* <span className={styles.logoT} aria-hidden="true">
-              <TRGlyph />
-            </span> */}
             {(fixedNavVisible || isMobile) && (
-              <div
-                className={styles.logoHorizontal}
-                aria-hidden={fixedNavVisible || isMobile}
-              >
-                <LogoHorizontal />
-              </div>
+              <>
+                <span className={styles.logoT} aria-hidden="true">
+                  <TRGlyph />
+                </span>
+                <div
+                  className={styles.logoHorizontal}
+                  aria-hidden={fixedNavVisible || isMobile}
+                >
+                  <LogoHorizontal />
+                </div>
+              </>
             )}
           </Link>
           <div className={styles.navigation}>
