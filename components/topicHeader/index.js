@@ -112,6 +112,7 @@ const TopicHeader = ({
 
 TopicHeader.defaultProps = {
   sponsored: {},
+  isSponsored: false,
 };
 
 TopicHeader.propTypes = {
@@ -120,7 +121,7 @@ TopicHeader.propTypes = {
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   isSubtopic: PropTypes.bool.isRequired,
-  isSponsored: PropTypes.bool.isRequired,
+  isSponsored: PropTypes.bool,
   sponsored: PropTypes.shape({
     url: PropTypes.string,
   }),
