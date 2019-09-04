@@ -14,7 +14,7 @@ const debug = createDebug('server:error');
 const path = require('path');
 const express = require('express');
 const { rootUrl } = require('../config/paths');
-const maybeRequireUserModule = require('../utils/maybeRequireUserModule');
+const { maybeRequireUserModule } = require('../utils/maybeRequireUserModule');
 
 const {
   PORT = 3001,

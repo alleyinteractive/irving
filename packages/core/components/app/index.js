@@ -11,6 +11,7 @@ import ErrorBoundary from 'components/errorBoundary';
 import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
 import getProviders from 'selectors/getProviders';
+import getComponent from 'config/componentMap';
 import styles from './app.css';
 
 const App = (props) => {
@@ -19,24 +20,38 @@ const App = (props) => {
     roots,
     providers,
   } = props;
+  const UserErrorMesage = getComponent('error-message');
+  const UserApp = getComponent('app');
+  const CoreApp = () => (
+    <RootProviders providers={providers}>
+      {roots.map((name) => (
+        <ConnectedRoot key={name} name={name} />
+      ))}
+    </RootProviders>
+  );
+
   return (
     <ErrorBoundary>
       <Helmet>
         <link rel="shortcut icon" href={favicon} />
       </Helmet>
       {error ? (
-        <ErrorMessage />
+        <>
+          {UserErrorMesage ? <UserErrorMesage /> : <ErrorMessage />}
+        </>
       ) : (
-        <div className={styles.wrapper}>
-          <a href="#content" className={styles.skipLink}>
-            Skip to Content
-          </a>
-          <RootProviders providers={providers}>
-            {roots.map((name) => (
-              <ConnectedRoot key={name} name={name} />
-            ))}
-          </RootProviders>
-        </div>
+        <>
+          {UserApp ? (
+            <UserApp IrvingApp={CoreApp} />
+          ) : (
+            <div className={styles.wrapper}>
+              <a href="#content" className={styles.skipLink}>
+                Skip to Content
+              </a>
+              <CoreApp />
+            </div>
+          )}
+        </>
       )}
     </ErrorBoundary>
   );

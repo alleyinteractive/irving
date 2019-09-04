@@ -18,7 +18,11 @@ import getWebpackScripts from 'utils/getWebpackScripts';
 import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
 import App from 'components/app';
+import renderApp from 'server/renderApp';
+import renderErrorMessage from 'server/renderErrorMessage';
+import getIrvingConfig from 'utils/getIrvingConfig';
 
+const { componentMap } = getIrvingConfig();
 const monitor = getService();
 const debugError = createDebug('render:error');
 const debugRequest = createDebug('render:request');
@@ -70,16 +74,19 @@ const render = async (req, res, clientStats) => {
 
   // Container for critical css related to this page render.
   const cssBuilder = new CriticalCssBuilder();
-
-  // It is imperative that the server React component tree matches the client
-  // component tree, so that the client can re-hydrate the app from the server
-  // rendered markup, otherwise the app will be completely re-rendered.
-  const appHtml = renderToString(
+  const AppWrapper = (
     <Provider store={store}>
       <StyleContext.Provider value={cssBuilder.addCss}>
         <App />
       </StyleContext.Provider>
     </Provider>
+  );
+
+  // It is imperative that the server React component tree matches the client
+  // component tree, so that the client can re-hydrate the app from the server
+  // rendered markup, otherwise the app will be completely re-rendered.
+  const appHtml = renderToString(
+    renderApp(AppWrapper)
   );
 
   // Collect webpack scripts for prerender
@@ -131,10 +138,15 @@ export default function serverRenderer(options) {
 
       // Render a error page.
       const cssBuilder = new CriticalCssBuilder();
-      const appHtml = renderToString(
+      const ErrorMessageComponent = componentMap['error-message'] ||
+        ErrorMessage;
+      const ErrorMessageWrapper = () => (
         <StyleContext.Provider value={cssBuilder.addCss}>
-          <ErrorMessage />
+          <ErrorMessageComponent />
         </StyleContext.Provider>
+      );
+      const appHtml = renderToString(
+        renderErrorMessage(ErrorMessageWrapper)
       );
       const templateVars = { css: cssBuilder.getCss(), html: appHtml };
 
