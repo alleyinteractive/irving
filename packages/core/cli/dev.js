@@ -20,6 +20,7 @@ const ignore = [
   'sagas/*',
   'selectors/*',
   'server/serverRenderer.js',
+  'server/renderApp.js',
   'services/*',
   'utils/*',
   'hooks/*',

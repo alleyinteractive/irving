@@ -1,5 +1,12 @@
 const path = require('path');
-const { serverRoot, clientRoot, proxyUrl } = require('../paths');
+const {
+  serverRoot,
+  clientRoot,
+  proxyUrl,
+} = require('../paths');
+const { maybeResolveUserModule } = require(
+  '../../utils/maybeRequireUserModule'
+);
 
 /**
  * Get the context specific entry configuration.
@@ -8,9 +15,17 @@ const { serverRoot, clientRoot, proxyUrl } = require('../paths');
  */
 module.exports = function getEntry(context) {
   const polyfills = [
-    require.resolve('core-js/stable'),
-    require.resolve('regenerator-runtime/runtime'),
-    require.resolve('isomorphic-fetch'),
+    'core-js/stable',
+    'regenerator-runtime/runtime',
+    'isomorphic-fetch',
+  ];
+  const server = [
+    maybeResolveUserModule('server/renderApp'),
+    maybeResolveUserModule('server/renderErrorMessage'),
+    serverRoot,
+  ];
+  const client = [
+    path.join(clientRoot),
   ];
 
   switch (context) {
@@ -22,13 +37,13 @@ module.exports = function getEntry(context) {
         // target NodeJS and browser environments, thus eliminating the need to
         // require babel-polyfill for NodeJS.
         ...polyfills,
-        serverRoot,
+        ...server,
       ];
 
     case 'production_client':
       return [
         ...polyfills,
-        path.join(clientRoot),
+        ...client,
       ];
 
     case 'development_client': {
@@ -40,7 +55,7 @@ module.exports = function getEntry(context) {
       return [
         ...polyfills,
         `webpack-hot-middleware/client?${queryString}`,
-        path.join(clientRoot),
+        ...client,
       ];
     }
 

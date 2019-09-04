@@ -4,7 +4,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const proxy = require('http-proxy-middleware');
 const getConfig = require('../config/webpack.config.js');
-const maybeRequireUserModule = require('../utils/maybeRequireUserModule');
+const { maybeRequireUserModule } = require('../utils/maybeRequireUserModule');
 
 const config = getConfig({}, { mode: 'development' });
 const matchClient = ({ name }) => 'client' === name;

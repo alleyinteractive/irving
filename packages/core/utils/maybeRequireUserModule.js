@@ -1,17 +1,35 @@
+const fs = require('fs');
 const path = require('path');
 const { appRoot, irvingRoot } = require('../config/paths');
 
 /* eslint-disable import/no-dynamic-require, global-require */
-module.exports = function maybeRequireUserModule(userPath, corePath) {
-  let requiredModule;
+/**
+ * Resolve the path to a user module, falling back to Irving core version.
+ *
+ * @param {string} userPath Path to user-defined module, relative to user app root.
+ * @param {string} corePath Path to Irving core module, relative to Irving core root, if different from user path.
+ */
+const maybeResolveUserModule = (userPath, corePath) => {
   const defaultPath = corePath || userPath;
 
-  try {
-    requiredModule = require(path.join(appRoot, userPath));
-  } catch (e) {
-    requiredModule = require(path.join(irvingRoot, defaultPath));
+  if (fs.existsSync(path.resolve(appRoot, userPath))) {
+    return path.resolve(appRoot, userPath);
   }
 
-  return requiredModule;
+  return path.resolve(irvingRoot, defaultPath);
 };
+
+module.exports.maybeResolveUserModule = maybeResolveUserModule;
+
+/**
+ * Same as above, but require the module instead.
+ *
+ * @param {string} userPath Path to user-defined module, relative to user app root.
+ * @param {string} corePath Path to Irving core module, relative to Irving core root, if different from user path.
+ */
+module.exports.maybeRequireUserModule = (userPath, corePath) => (
+  require(
+    maybeResolveUserModule(userPath, corePath)
+  )
+);
 /* eslint-enable */
