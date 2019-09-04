@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import Link from 'components/helpers/link';
 import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
 
@@ -11,9 +12,16 @@ import Arrow from 'assets/icons/arrow.svg';
 import styles from './topicHeader.css';
 
 const TopicHeader = ({
-  name, description, children, color, isSubtopic,
+  name,
+  description,
+  children,
+  color,
+  isSubtopic,
+  isSponsored,
+  sponsored: { url: sponsorLink },
 }) => {
   const image = findChildByName('image', children);
+  const logo = findChildByName('logo', children);
   const articles = filterChildrenByName(
     'term-archive-pinned-article',
     children
@@ -34,8 +42,21 @@ const TopicHeader = ({
         <h1 className={styles.name}>{name}</h1>
         <p className={styles.description}>{description}</p>
       </div>
-      {! isSubtopic && (
-        <div className={styles.image}>{image}</div>
+      {! isSubtopic && <div className={styles.image}>{image}</div>}
+      {isSponsored && (
+        <div className={styles.sponsored}>
+          <h2 className={styles.sponsorLabel} style={{ color }}>
+            <span aria-hidden>{__('Sponsored', 'mittr')}</span>
+            {/* Re-phrase the heading for context for screen readers. */}
+            <span className="screen-reader-text">
+              {__('Collection sponsor', 'mittr')}
+            </span>
+          </h2>
+          <Link to={sponsorLink} className={styles.sponsorLink}>
+            {/* Name of sponsor in logo alt text. */}
+            {logo}
+          </Link>
+        </div>
       )}
       {0 < articles.length && (
         <div
@@ -89,12 +110,20 @@ const TopicHeader = ({
   );
 };
 
+TopicHeader.defaultProps = {
+  sponsored: {},
+};
+
 TopicHeader.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   color: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   isSubtopic: PropTypes.bool.isRequired,
+  isSponsored: PropTypes.bool.isRequired,
+  sponsored: PropTypes.shape({
+    url: PropTypes.string,
+  }),
 };
 
 export default withStyles(styles)(TopicHeader);
