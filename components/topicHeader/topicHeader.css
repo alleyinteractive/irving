@@ -6,6 +6,10 @@
   flex-flow: row wrap;
   margin-bottom: rem(5);
   padding: rem(20);
+
+  > * {
+    order: 1;
+  }
 }
 
 .meta {
@@ -116,4 +120,41 @@
 .next {
   composes: button;
   right: 0;
+}
+
+.sponsored {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: rem(15);
+  order: 0;
+  width: 100%;
+}
+
+.sponsorLabel {
+  background-color: $white;
+  color: $color-deck;
+  font-family: $sans;
+  font-size: rem(12);
+  letter-spacing: rem(1);
+  line-height: 1.58;
+  padding: rem(4) rem(15) rem(2);
+  text-transform: uppercase;
+}
+
+.sponsorLink {
+  display: block;
+  height: rem(32);
+  width: auto;
+
+  > span {
+    display: block;
+    height: rem(32);
+  }
+
+  img {
+    height: 100%;
+    width: auto;
+  }
 }

@@ -57,6 +57,7 @@ export const componentMap = {
   header: Header,
   html: RawHTML,
   image: Image,
+  logo: Image,
   'mega-menu': MegaMenu,
   menu: Menu,
   'menu-item': MenuItem,
