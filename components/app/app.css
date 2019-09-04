@@ -1,7 +1,6 @@
 @import 'reset.css';
 @import 'fonts/fonts.css';
 @import './base.css';
-@import './headroom.css';
 
 .wrapper {
   display: flex;

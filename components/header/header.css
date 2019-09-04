@@ -10,10 +10,6 @@
   min-height: rem(62);
   position: relative;
   width: 100%;
-
-  &.fixed {
-    height: rem(62);
-  }
 }
 
 .wrapper {
@@ -189,5 +185,23 @@
 
   @media ($smMin) {
     display: block;
+  }
+}
+
+.headroom {
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+
+  :global(.headroom) {
+    transform: translateY(-100%);
+    transition: transform 200ms ease-in;
+  }
+
+  :global(.headroom--unpinned),
+  :global(.headroom--pinned) {
+    transform: translateY(0);
   }
 }
