@@ -36,9 +36,11 @@
 
 .callToAction {
   color: #303030;
+  display: block;
   font-size: rem(18);
   font-weight: 600;
   margin-bottom: rem(20);
+  margin-top: rem(20);
 }
 
 .storyTease {
