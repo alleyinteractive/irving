@@ -3,21 +3,18 @@
   color: #ffffff;
   display: flex;
   margin-bottom: rem(15);
-  margin-top: 5px;
-  padding: 30px 20px 45px 20px;
+  margin-top: rem(5);
+  padding: rem(30 20 45 20);
   position: relative;
 }
 
 .label {
-  bottom: 25px;
   display: block;
-  font-family: "NeueHaas", sans-serif;
-  font-size: 30px;
+  font-family: $sans;
+  font-size: rem(30);
   font-weight: 400;
-  left: 20px;
   line-height: 1.07;
   padding-top: rem(5);
-  top: 20px;
   width: rem(288);
 }
 
@@ -27,16 +24,9 @@
   width: 100%;
 }
 
-.listContainer {
-  bottom: 20px;
-  left: 301px;
-  right: 20px;
-  top: 20px;
-}
-
 .list {
   overflow: hidden;
-  padding-bottom: 45px;
+  padding-bottom: rem(45);
   padding-left: rem(30);
   width: 100%;
 }
@@ -45,6 +35,6 @@
   background-color: #f3f3f3;
   display: block;
   height: 5px;
-  margin-top: 10px;
+  margin-top: rem(10);
   width: 100px;
 }
