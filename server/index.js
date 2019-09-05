@@ -16,7 +16,7 @@ MonitorService().start();
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
 const { rootUrl } = require('../config/paths');
-const CacheService = require('../services/cacheService');
+const cacheService = require('../services/cacheService');
 
 const {
   PORT = 3001,
@@ -28,25 +28,28 @@ const app = express();
 
 // Bust redis cache for a specific page/post.
 app.get('/bust-cache', (req, res) => {
-  const { endpoint } = req;
-  const cache = CacheService();
+  const { endpoint } = req.query;
 
-  const hasCache = cache.get(endpoint);
+  // The endpoint is the key.
+  const key = endpoint;
+  const cache = cacheService();
+
+  const hasCache = cache.get(key);
   if (! hasCache) {
-    res.json('No cache to bust.');
+    res.json('No cache to bust.').sendStatus(200);
   }
 
   // Delete cache.
-  cache.del(endpoint);
+  cache.del(key);
 
   // Send message.
-  res.json('Cached busted.');
+  res.json('Cached busted.').sendStatus(200);
 });
 
 // Wipe entire Redis cache.
 app.get('/wipe', (req, res) => {
   // Get Cache Service.
-  const service = CacheService();
+  const service = cacheService();
 
   // Get Redis object.
   const cache = service.wipe();
