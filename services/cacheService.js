@@ -20,6 +20,11 @@ const getService = () => {
     return service;
   }
 
+  // Redis env variables have not been configured.
+  if (! process.env.REDIS_URL) {
+    return defaultService;
+  }
+
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
