@@ -45,7 +45,17 @@ const Header = ({ homeUrl, children }) => {
             <div className={styles.leaderboard}>Advertisement placeholder</div>
           </div>
         )}
-        <Link to={homeUrl} className={styles.logo}>
+        {(isHeadroom || isMobile) && (
+          <Link to={homeUrl} tabIndex="-1" aria-hidden className={styles.logoT}>
+            <TRGlyph />
+          </Link>
+        )}
+        <Link
+          to={homeUrl}
+          className={classNames(styles.logo, {
+            [styles.headroomLogo]: isHeadroom,
+          })}
+        >
           <div className="screen-reader-text">
             {__('MIT Technology Review')}
           </div>
@@ -55,14 +65,9 @@ const Header = ({ homeUrl, children }) => {
             </div>
           )}
           {(isHeadroom || isMobile) && (
-            <>
-              <span className={styles.logoT} aria-hidden>
-                <TRGlyph />
-              </span>
-              <div className={styles.logoHorizontal} aria-hidden>
-                <LogoHorizontal />
-              </div>
-            </>
+            <div className={styles.logoHorizontal} aria-hidden>
+              <LogoHorizontal />
+            </div>
           )}
         </Link>
         <div className={styles.navigation}>

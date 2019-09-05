@@ -16,6 +16,7 @@
   @include container-with-bleed;
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
   margin: 0 auto;
   padding-bottom: 0;
   position: relative;
@@ -34,8 +35,12 @@
   @media ($mdMin) {
     tidy-offset-left: 1;
     tidy-span: 2;
+  }
 
-    .fixed & {
+  &.headroomLogo {
+    tidy-span: 4;
+
+    @media ($mdMin) {
       tidy-offset-left: 0;
       tidy-span: 3;
     }
@@ -66,7 +71,7 @@
     height: rem(20);
     width: rem(210);
 
-    .fixed & {
+    .headroom & {
       height: rem(15);
       width: rem(160);
     }
@@ -74,7 +79,17 @@
 }
 
 .logoT {
-  margin-right: rem(24);
+  align-items: center;
+  display: flex;
+  tidy-span: 1;
+
+  @media ($smMin) {
+    tidy-span: 0.5;
+  }
+
+  @media ($mdMin) {
+    tidy-span: 1;
+  }
 
   svg {
     display: block;
@@ -115,17 +130,30 @@
   align-content: flex-end;
   display: flex;
   flex-flow: column nowrap;
+  flex-grow: 1;
   justify-content: center;
   margin-left: tidy-var(gap);
   position: static;
   tidy-span: 5;
 
   @media ($smMin) {
-    tidy-span: 7;
+    tidy-span: 7.5;
   }
 
   @media ($mdMin) {
     tidy-span: 9;
+  }
+
+  .headroom & {
+    tidy-span: 5;
+
+    @media ($smMin) {
+      tidy-span: 5;
+    }
+
+    @media ($mdMin) {
+      tidy-span: 8;
+    }
   }
 }
 
