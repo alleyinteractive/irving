@@ -27,6 +27,8 @@ import SubtopicsSection from 'components/subtopicsSection';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import StatsWidget from 'components/statsWidget';
+import TagLink from 'components/tagLink';
+import Tags from 'components/tags';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import TermArchiveContentListItem from 'components/termArchiveContentListItem';
 import TermArchivePinnedArticle from 'components/termArchivePinnedArticle';
@@ -71,6 +73,8 @@ export const componentMap = {
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,
+  'tag-link': TagLink,
+  tags: Tags,
   'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TermArchiveContentListItem,
   'term-archive-pinned-article': TermArchivePinnedArticle,
