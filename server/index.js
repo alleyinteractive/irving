@@ -6,17 +6,17 @@ require('dotenv').config();
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
 
-const Monitor = require('../services/monitorService');
-Monitor().start();
-
-const createDebug = require('../services/createDebug');
-const debug = createDebug('server:error');
-
 const http = require('http');
 const https = require('https');
 const express = require('express');
+
+const MonitorService = require('../services/monitorService');
+MonitorService().start();
+
+const createDebug = require('../services/createDebug');
+const debug = createDebug('server:error');
 const { rootUrl } = require('../config/paths');
-const getService = require('../services/cacheService');
+const CacheService = require('../services/cacheService');
 
 const {
   PORT = 3001,
@@ -29,7 +29,7 @@ const app = express();
 // Bust redis cache for a specific page/post.
 app.get('/bust-cache', (req, res) => {
   const { endpoint } = req;
-  const cache = getService();
+  const cache = CacheService();
 
   const hasCache = cache.get(endpoint);
   if (! hasCache) {
@@ -46,7 +46,7 @@ app.get('/bust-cache', (req, res) => {
 // Wipe entire Redis cache.
 app.get('/wipe', (req, res) => {
   // Get Cache Service.
-  const service = getService();
+  const service = CacheService();
 
   // Get Redis object.
   const cache = service.wipe();
