@@ -1,20 +1,28 @@
 @mixin container-with-bleed($columns: tidy-var(columns)) {
   margin-left: auto;
   margin-right: auto;
-  max-width: calc(tidy-span-full($columns) + tidy-var(edge) * 2);
   padding-left: tidy-var(edge);
   padding-right: tidy-var(edge);
+  max-width: calc(tidy-span-full($columns) + tidy-var(edge) * 2);
   width: calc(tidy-span($columns) + tidy-var(edge) * 2);
+
+  @include keep-tidy {
+    max-width: calc(tidy-span-full($columns) + tidy-var(edge) * 2);
+    width: calc(tidy-span($columns) + tidy-var(edge) * 2);
+  }
 }
 
 /**
  * Ensures a tidy-columns property applies to all screen sizes.
  */
 @mixin keep-tidy {
-  @content;
+  /* For some reason @content will not work outside of a block. */
+  @media ($smMax) {
+    @content;
+  }
 
   /* Matches column breakpoint in postcss config. */
-  @media ($lgMin) {
+  @media ($mdMin) {
     @content;
   }
 }

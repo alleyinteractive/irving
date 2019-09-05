@@ -16,13 +16,10 @@
   @include container-with-bleed;
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
   margin: 0 auto;
   padding-bottom: 0;
   position: relative;
-}
-
-.headerFixed {
-  height: rem(62);
 }
 
 .logo {
@@ -38,6 +35,15 @@
   @media ($mdMin) {
     tidy-offset-left: 1;
     tidy-span: 2;
+  }
+
+  &.headroomLogo {
+    tidy-span: 4;
+
+    @media ($mdMin) {
+      tidy-offset-left: 0;
+      tidy-span: 3;
+    }
   }
 }
 
@@ -60,23 +66,29 @@
 }
 
 .logoHorizontal {
-
   svg {
     display: block;
-    /* Srcolling widths */
-    /* height: rem(15); */
-    /* width: rem(160); */
     height: rem(20);
     width: rem(210);
+
+    .headroom & {
+      height: rem(15);
+      width: rem(160);
+    }
   }
 }
 
 .logoT {
-  display: none; /* todo header scroll styles */
-  margin-right: rem(24);
+  align-items: center;
+  display: flex;
+  tidy-span: 1;
 
   @media ($smMin) {
-    display: none;
+    tidy-span: 0.5;
+  }
+
+  @media ($mdMin) {
+    tidy-span: 1;
   }
 
   svg {
@@ -118,17 +130,30 @@
   align-content: flex-end;
   display: flex;
   flex-flow: column nowrap;
+  flex-grow: 1;
   justify-content: center;
   margin-left: tidy-var(gap);
   position: static;
   tidy-span: 5;
 
   @media ($smMin) {
-    tidy-span: 7;
+    tidy-span: 7.5;
   }
 
   @media ($mdMin) {
     tidy-span: 9;
+  }
+
+  .headroom & {
+    tidy-span: 5;
+
+    @media ($smMin) {
+      tidy-span: 5;
+    }
+
+    @media ($mdMin) {
+      tidy-span: 8;
+    }
   }
 }
 
@@ -188,5 +213,23 @@
 
   @media ($smMin) {
     display: block;
+  }
+}
+
+.headroom {
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+
+  :global(.headroom) {
+    transform: translateY(-100%);
+    transition: transform 200ms ease-in;
+  }
+
+  :global(.headroom--unpinned),
+  :global(.headroom--pinned) {
+    transform: translateY(0);
   }
 }

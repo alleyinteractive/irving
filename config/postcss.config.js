@@ -13,6 +13,7 @@ const browserReporter = require('postcss-browser-reporter');
 const reporter = require('postcss-reporter');
 const prependImports = require('postcss-prepend-imports');
 const tidyColumns = require('postcss-tidy-columns');
+const cssnano = require('cssnano');
 
 // Other imports
 const paths = require('./paths');
@@ -60,5 +61,6 @@ module.exports = () => ({
     }),
     browserReporter(),
     reporter(),
+    cssnano({ preset: 'default' }),
   ],
 });

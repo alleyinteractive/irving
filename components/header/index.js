@@ -11,7 +11,7 @@ import useBreakpoint from 'hooks/useBreakpoint';
 // Images
 import LogoStacked from 'assets/icons/logoStacked.svg';
 import LogoHorizontal from 'assets/icons/logoHorizontal.svg';
-// import TRGlyph from 'assets/icons/trGlyph.svg';
+import TRGlyph from 'assets/icons/trGlyph.svg';
 import MegaMenuIcon from 'assets/icons/megaMenu.svg';
 
 // Styles
@@ -22,7 +22,6 @@ const Header = ({ homeUrl, children }) => {
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [fixedNavVisible, setFixedNavVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   // Breakpoints
@@ -37,77 +36,89 @@ const Header = ({ homeUrl, children }) => {
     }
   }, [isSmMin]);
 
-  return (
-    <Headroom
-      disableInlineStyles
-      onUnfix={() => setFixedNavVisible(false)}
-      onUnpin={() => setFixedNavVisible(true)}
-    >
-      <header
-        className={classNames(styles.container, {
-          [styles.headerFixed]: fixedNavVisible,
-        })}
-      >
-        <div className={styles.wrapper}>
-          {(! fixedNavVisible && ! isMobile) && (
-            <div className={styles.leaderboardRow}>
-              {/* @todo consider moving ad placeholder to its own component. */}
-              <div className={styles.leaderboard}>
-                Advertisement placeholder
-              </div>
+  const HeaderMarkup = ({ isHeadroom }) => (
+    <header className={styles.container}>
+      <div className={styles.wrapper}>
+        {! isHeadroom && ! isMobile && (
+          <div className={styles.leaderboardRow}>
+            {/* @todo consider moving ad placeholder to its own component. */}
+            <div className={styles.leaderboard}>Advertisement placeholder</div>
+          </div>
+        )}
+        {(isHeadroom || isMobile) && (
+          <Link to={homeUrl} tabIndex="-1" aria-hidden className={styles.logoT}>
+            <TRGlyph />
+          </Link>
+        )}
+        <Link
+          to={homeUrl}
+          className={classNames(styles.logo, {
+            [styles.headroomLogo]: isHeadroom,
+          })}
+        >
+          <div className="screen-reader-text">
+            {__('MIT Technology Review')}
+          </div>
+          {! isHeadroom && (
+            <div className={styles.logoStacked} aria-hidden>
+              <LogoStacked />
             </div>
           )}
-          <Link to={homeUrl} className={styles.logo}>
-            <div className="screen-reader-text">
-              {__('MIT Technology Review')}
+          {(isHeadroom || isMobile) && (
+            <div className={styles.logoHorizontal} aria-hidden>
+              <LogoHorizontal />
             </div>
-            {! fixedNavVisible && (
-              <div className={styles.logoStacked} aria-hidden={fixedNavVisible}>
-                <LogoStacked />
-              </div>
-            )}
-            {/* @todo add this back when we have logic for
-              detecting stories nav */}
-            {/* <span className={styles.logoT} aria-hidden="true">
-              <TRGlyph />
-            </span> */}
-            {(fixedNavVisible || isMobile) && (
-              <div
-                className={styles.logoHorizontal}
-                aria-hidden={fixedNavVisible || isMobile}
-              >
-                <LogoHorizontal />
-              </div>
-            )}
-          </Link>
-          <div className={styles.navigation}>
-            {! fixedNavVisible && (
-              <div className={styles.userGreeting}>{userGreeting}</div>
-            )}
-            <div className={styles.menuRow}>
-              <div className={styles.menu}>{menu}</div>
-              <button
-                className={classNames(styles.button, {
-                  [styles.expandedButton]: isExpanded,
-                })}
-                type="button"
-                onClick={() => setIsExpanded(! isExpanded)}
-              >
-                <span className="screen-reader-text">
-                  {isExpanded ?
-                    __('Close menu', 'mittr') :
-                    __('Expand menu', 'mittr')}
-                </span>
-                <span aria-hidden="true" className={styles.buttonVisualContent}>
-                  {isExpanded ? 'Close' : <MegaMenuIcon />}
-                </span>
-              </button>
-              {isExpanded && <div className={styles.megaMenu}>{megaMenu}</div>}
-            </div>
+          )}
+        </Link>
+        <div className={styles.navigation}>
+          {! isHeadroom && (
+            <div className={styles.userGreeting}>{userGreeting}</div>
+          )}
+          <div className={styles.menuRow}>
+            <div className={styles.menu}>{menu}</div>
+            <button
+              className={classNames(styles.button, {
+                [styles.expandedButton]: isExpanded,
+              })}
+              type="button"
+              onClick={() => setIsExpanded(! isExpanded)}
+            >
+              <span className="screen-reader-text">
+                {isExpanded ?
+                  __('Close menu', 'mittr') :
+                  __('Expand menu', 'mittr')}
+              </span>
+              <span aria-hidden="true" className={styles.buttonVisualContent}>
+                {isExpanded ? 'Close' : <MegaMenuIcon />}
+              </span>
+            </button>
+            {isExpanded && <div className={styles.megaMenu}>{megaMenu}</div>}
           </div>
         </div>
-      </header>
-    </Headroom>
+      </div>
+    </header>
+  );
+
+  HeaderMarkup.propTypes = {
+    isHeadroom: PropTypes.bool,
+  };
+
+  HeaderMarkup.defaultProps = {
+    isHeadroom: false,
+  };
+
+  return (
+    <>
+      <HeaderMarkup />
+      <Headroom
+        disableInlineStyles
+        aria-hidden
+        className={styles.headroom}
+        pinStart={isMobile ? 60 : 260}
+      >
+        <HeaderMarkup className={styles.headroom} isHeadroom />
+      </Headroom>
+    </>
   );
 };
 
