@@ -12,11 +12,12 @@ const TermArchiveContentListItem = ({
   color,
   excerpt,
   permalink,
-  teaseCta,
+  teaseCTA,
   title,
   topic,
   postDate,
   topicLink,
+  isCollection,
 }) => (
   <li className={styles.wrapper}>
     <article className={styles.storyTease}>
@@ -42,7 +43,7 @@ const TermArchiveContentListItem = ({
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.excerpt}>{excerpt}</p>
       <Link to={permalink} className={styles.callToAction}>
-        {teaseCta}
+        {isCollection ? teaseCTA : ''}
       </Link>
       {children}
     </article>
@@ -54,11 +55,12 @@ TermArchiveContentListItem.propTypes = {
   color: PropTypes.string.isRequired,
   excerpt: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
-  teaseCta: PropTypes.string.isRequired,
+  teaseCTA: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   topic: PropTypes.string.isRequired,
   postDate: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
+  isCollection: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(TermArchiveContentListItem);

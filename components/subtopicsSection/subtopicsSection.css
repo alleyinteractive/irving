@@ -1,25 +1,30 @@
 .channel {
   background-color: $color-deck;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
   margin-bottom: rem(15);
-  margin-top: 5px;
-  min-height: 210px;
-  padding: 30px 20px 25px 20px;
+  margin-top: rem(5);
+  padding: rem(30 20 35 20);
   position: relative;
+
+  @media ($smMin) {
+    flex-direction: row;
+    padding-bottom: rem(45);
+  }  
 }
 
 .label {
-  bottom: 25px;
   display: block;
-  font-family: "NeueHaas", sans-serif;
-  font-size: 30px;
+  font-family: $sans;
+  font-size: rem(30);
   font-weight: 400;
-  left: 20px;
   line-height: 1.07;
-  padding: 15px;
-  position: absolute;
-  top: 20px;
   width: rem(288);
+
+  @media ($smMax) {
+    margin-bottom: rem(30);
+  }
 }
 
 .name {
@@ -28,26 +33,19 @@
   width: 100%;
 }
 
-.listContainer {
-  bottom: 20px;
-  left: 301px;
-  position: absolute;
-  right: 20px;
-  top: 20px;
-}
-
 .list {
   overflow: hidden;
-  padding-bottom: 45px;
-  padding-left: rem(30);
-  padding-top: 10px;
   width: 100%;
+
+  @media ($smMin) {
+    padding-left: rem(30);
+  }
 }
 
 .rectangle {
   background-color: #f3f3f3;
   display: block;
   height: 5px;
-  margin-top: 20px;
+  margin-top: rem(10);
   width: 100px;
 }
