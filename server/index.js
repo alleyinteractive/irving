@@ -6,8 +6,8 @@ require('dotenv').config();
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
 
-const getService = require('../services/monitorService');
-getService().start();
+const Monitor = require('../services/monitorService');
+Monitor().start();
 
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
@@ -16,6 +16,7 @@ const http = require('http');
 const https = require('https');
 const express = require('express');
 const { rootUrl } = require('../config/paths');
+const getService = require('../services/cacheService');
 
 const {
   PORT = 3001,
@@ -24,6 +25,56 @@ const {
   HTTPS_CERT_PATH,
 } = process.env;
 const app = express();
+
+// Bust redis cache for a specific page/post.
+app.get('/bust-cache', (req, res) => {
+  const { endpoint } = req;
+  const cache = getService();
+
+  const hasCache = cache.get(endpoint);
+  if (! hasCache) {
+    res.json('No cache to bust.');
+  }
+
+  // Delete cache.
+  cache.del(endpoint);
+
+  // Send message.
+  res.json('Cached busted.');
+});
+
+// Wipe entire Redis cache.
+app.get('/wipe', (req, res) => {
+  // Get Cache Service.
+  const service = getService();
+
+  // Get Redis object.
+  const cache = service.wipe();
+
+  // Create a readable stream (object mode).
+  // This approach is better for performance.
+  const stream = cache.scanStream({
+    // Map all the keys. As we don't know,
+    // and save them in a specific pattern.
+    match: '*',
+  });
+
+  stream.on('data', (keys) => {
+    // `keys` is an array of strings representing key names
+    if (keys.length) {
+      const pipeline = cache.pipeline();
+      keys.forEach((key) => {
+        pipeline.del(key);
+      });
+      pipeline.exec();
+    } else {
+      res.json('No cache to wipe.');
+    }
+  });
+  stream.on('end', () => {
+    res.json('Entire Redis cache wiped out.');
+  });
+});
 
 app.set('views', 'server/views');
 app.set('view engine', 'ejs');
