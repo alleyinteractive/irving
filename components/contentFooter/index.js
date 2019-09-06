@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { findChildByName } from 'utils/children';
+import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
 import Link from 'components/helpers/link';
 
@@ -9,15 +9,17 @@ import styles from './contentFooter.css';
 
 const ContentFooter = ({ children, author }) => {
   const socialSharing = findChildByName('social-sharing', children);
-  const tags = findChildByName('tags', children);
+  const tags = filterChildrenByName('tags', children);
   return (
     <footer className={styles.wrapper}>
       <h2 className={styles.title}>{__('Article meta', 'mittr')}</h2>
       <div className={styles.social}>{socialSharing}</div>
-      <div className={styles.tags}>
-        <h3 className={styles.label}>{__('Tagged', 'mittr')}</h3>
-        {tags}
-      </div>
+      {tags && (
+        <div className={styles.tags}>
+          <h3 className={styles.label}>{__('Tagged', 'mittr')}</h3>
+          {tags}
+        </div>
+      )}
       <address className={styles.author}>
         <h3 className={styles.label}>{__('Author', 'mittr')}</h3>
         {/* @todo this needs an image */}
