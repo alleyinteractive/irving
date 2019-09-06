@@ -44,7 +44,6 @@ module.exports = function getRules(context) {
         loader: 'eslint-loader',
         options: {
           configFile: path.join(irvingRoot, '.eslintrc.js'),
-          // eslintPath: path.join(appRoot, 'node_modules/eslint'),
         },
       },
     },

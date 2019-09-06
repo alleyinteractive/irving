@@ -1,3 +1,4 @@
+/* global appView, errorView */
 import 'source-map-support/register';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -106,9 +107,10 @@ const render = async (req, res, clientStats) => {
     env: JSON.stringify(getEnv()),
     webpackScripts,
   };
+  console.log(appView);
 
   res.status(status);
-  res.render('app', templateVars, (err, html) => {
+  res.render(appView, templateVars, (err, html) => {
     // Throw any render errors, so we can handle them like other errors.
     if (err) {
       throw err;
@@ -152,7 +154,7 @@ export default function serverRenderer(options) {
       const templateVars = { css: cssBuilder.getCss(), html: appHtml };
 
       res.status(500);
-      res.render('error', templateVars, (templateErr, html) => {
+      res.render(errorView, templateVars, (templateErr, html) => {
         // There was an error rendering the error page :(
         if (templateErr) {
           next(templateErr);
