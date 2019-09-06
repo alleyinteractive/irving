@@ -44,7 +44,7 @@ const getRedisService = () => {
   service = {
     client,
     async get(key) {
-      return JSON.parse(await this.client.get(key));
+      return this.client.get(key);
     },
     set(key, value) {
       return this.client.set(
