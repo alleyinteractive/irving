@@ -10,13 +10,14 @@ const http = require('http');
 const https = require('https');
 const express = require('express');
 
-const MonitorService = require('../services/monitorService');
-MonitorService().start();
+const getService = require('../services/monitorService');
+getService().start();
 
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
 const { rootUrl } = require('../config/paths');
-const cacheService = require('../services/cacheService');
+const bustCache = require('./bustCache');
+const bustPageCache = require('./bustCache');
 
 const {
   PORT = 3001,
@@ -26,58 +27,9 @@ const {
 } = process.env;
 const app = express();
 
-// Bust redis cache for a specific page/post.
-app.get('/bust-cache', (req, res) => {
-  const { endpoint } = req.query;
-
-  // The endpoint is the key.
-  const key = endpoint;
-  const cache = cacheService();
-
-  const hasCache = cache.get(key);
-  if (! hasCache) {
-    res.json('No cache to bust.').sendStatus(200);
-  }
-
-  // Delete cache.
-  cache.del(key);
-
-  // Send message.
-  res.json('Cached busted.').sendStatus(200);
-});
-
-// Wipe entire Redis cache.
-app.get('/wipe', (req, res) => {
-  // Get Cache Service.
-  const service = cacheService();
-
-  // Get Redis object.
-  const cache = service.wipe();
-
-  // Create a readable stream (object mode).
-  // This approach is better for performance.
-  const stream = cache.scanStream({
-    // Map all the keys. As we don't know,
-    // and save them in a specific pattern.
-    match: '*',
-  });
-
-  stream.on('data', (keys) => {
-    // `keys` is an array of strings representing key names
-    if (keys.length) {
-      const pipeline = cache.pipeline();
-      keys.forEach((key) => {
-        pipeline.del(key);
-      });
-      pipeline.exec();
-    } else {
-      res.json('No cache to wipe.');
-    }
-  });
-  stream.on('end', () => {
-    res.json('Entire Redis cache wiped out.');
-  });
-});
+// Clearing the Redis cache.
+app.get('/bust-endpoint-cache', bustPageCache);
+app.get('/bust-entire-cache', bustCache);
 
 app.set('views', 'server/views');
 app.set('view engine', 'ejs');
