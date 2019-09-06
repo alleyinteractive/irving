@@ -5,4 +5,8 @@
   @media ($lgMin) {
     padding: rem(20);
   }
+
+  :global(.body--article) & {
+    background-color: $white;
+  }
 }
