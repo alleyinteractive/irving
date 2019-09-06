@@ -1,10 +1,9 @@
-let service;
 const defaultService = {
   get: () => null,
   set: () => {},
-  del: () => null,
-  wipe: () => null,
 };
+
+let service;
 
 /**
  * @typedef {object} CacheService
@@ -28,7 +27,7 @@ const getService = () => {
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
-  if (process.env.BROWSER) {
+  if (! process.env.BROWSER) {
     let Redis;
     // Check if optional redis client is installed.
     try {
@@ -54,12 +53,6 @@ const getService = () => {
           'EX',
           process.env.CACHE_EXPIRE || 300
         );
-      },
-      del(key) {
-        return this.client.del(key);
-      },
-      wipe() {
-        return this.client;
       },
     };
 
