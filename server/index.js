@@ -17,7 +17,7 @@ const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
 const { rootUrl } = require('../config/paths');
 const bustCache = require('./bustCache');
-const bustPageCache = require('./bustCache');
+const bustPageCache = require('./bustPageCache');
 
 const {
   PORT = 3001,
