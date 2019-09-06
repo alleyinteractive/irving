@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
+const { maybeResolveUserModule } = require('../../utils/userModule');
 const getEnv = require('./env');
 const { rootUrl } = require('../paths');
 
@@ -11,9 +12,17 @@ const { rootUrl } = require('../paths');
  */
 module.exports = function getPlugins(context) {
   const env = getEnv();
+  const commonPlugins = [
+    new webpack.DefinePlugin({
+      appView: JSON.stringify(maybeResolveUserModule('server/views/app.ejs')),
+      errorView: JSON.stringify(maybeResolveUserModule('server/views/error.ejs')),
+    }),
+  ];
+
   switch (context) {
     case 'production_server':
       return [
+        ...commonPlugins,
         new CleanPlugin(),
         // Ensures async components can be rendered sync server-side.
         new webpack.optimize.LimitChunkCountPlugin({
@@ -24,6 +33,7 @@ module.exports = function getPlugins(context) {
 
     case 'development_server':
       return [
+        ...commonPlugins,
         // Ensures async components can be rendered sync server-side.
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
@@ -32,6 +42,7 @@ module.exports = function getPlugins(context) {
 
     case 'production_client':
       return [
+        ...commonPlugins,
         new CleanPlugin(),
         new webpack.EnvironmentPlugin({
           BROWSER: true,
@@ -55,6 +66,7 @@ module.exports = function getPlugins(context) {
 
     case 'development_client':
       return [
+        ...commonPlugins,
         new webpack.NamedModulesPlugin(),
         new webpack.EnvironmentPlugin({
           BROWSER: true,

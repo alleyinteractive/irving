@@ -1,7 +1,7 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
-const { appRoot, irvingRoot } = require('./paths');
+const { appRoot } = require('./paths');
 
 module.exports = (env, argv) => {
   const { mode } = argv;

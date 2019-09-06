@@ -4,7 +4,7 @@ const auth = require('./auth');
 // App must be built using the build command before production mode can be run.
 const clientStats = require('../build/client/stats.json');
 const { default: serverRenderer } = require('../build/server/main.bundle');
-const { maybeRequireUserModule } = require('../utils/maybeRequireUserModule');
+const { maybeRequireUserModule } = require('../utils/userModule');
 
 /**
  * Add the required middleware to support running the app in production mode.

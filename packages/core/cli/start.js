@@ -14,7 +14,7 @@ const debug = createDebug('server:error');
 const path = require('path');
 const express = require('express');
 const { rootUrl } = require('../config/paths');
-const { maybeRequireUserModule } = require('../utils/maybeRequireUserModule');
+const { maybeRequireUserModule } = require('../utils/userModule');
 
 const {
   PORT = 3001,
@@ -22,7 +22,7 @@ const {
 } = process.env;
 const app = express();
 
-app.set('views', path.join(__dirname, '../server/views'));
+// app.set('views', path.join(__dirname, '../server/views'));
 app.set('view engine', 'ejs');
 
 // Allow customization of server.

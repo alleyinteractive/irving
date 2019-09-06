@@ -1,5 +1,5 @@
 const { maybeResolveUserModule } = require(
-  '../../utils/maybeRequireUserModule'
+  '../../utils/userModule'
 );
 
 /**
@@ -8,7 +8,6 @@ const { maybeResolveUserModule } = require(
  * @returns {object} - an alias configuration value.
  */
 module.exports = function getAlias(context) {
-
   /**
    * Create webpack aliases to resolve files containing user-customizable
    * irving functionality and include them in the appropriate bundle.
