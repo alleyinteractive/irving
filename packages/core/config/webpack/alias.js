@@ -27,8 +27,8 @@ module.exports = function getAlias(context) {
     case 'development_server':
     case 'production_server':
       return createCustomizableAliases({
-        renderAppWrapper: 'server/renderAppWrapper.js',
-        renderErrorMessageWrapper: 'server/renderErrorMessageWrapper.js',
+        getAppTemplateVars: 'server/getAppTemplateVars.js',
+        getErrorTemplateVars: 'server/getErrorTemplateVars.js',
       });
 
     case 'development_client':

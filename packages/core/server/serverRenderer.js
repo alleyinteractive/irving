@@ -1,7 +1,6 @@
 /* global appView, errorView */
 import 'source-map-support/register';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import { createStore, applyMiddleware } from 'redux';
@@ -19,9 +18,8 @@ import getWebpackScripts from 'utils/getWebpackScripts';
 import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
 import App from 'components/app';
-import renderAppWrapper from '@irving/custom/renderAppWrapper';
-import renderErrorMessageWrapper from
-  '@irving/custom/renderErrorMessageWrapper';
+import getAppTemplateVars from '@irving/custom/getAppTemplateVars';
+import getErrorTemplateVars from '@irving/custom/getErrorTemplateVars';
 import getIrvingConfig from 'utils/getIrvingConfig';
 
 const { componentMap } = getIrvingConfig();
@@ -84,15 +82,16 @@ const render = async (req, res, clientStats) => {
     </Provider>
   );
 
-  // It is imperative that the server React component tree matches the client
-  // component tree, so that the client can re-hydrate the app from the server
-  // rendered markup, otherwise the app will be completely re-rendered.
-  const appHtml = renderToString(
-    renderAppWrapper(AppWrapper)
-  );
+  // Get some template vars and allow customization by user.
+  const {
+    appHtml,
+    irvingHead,
+  } = getAppTemplateVars(AppWrapper, {
+    // Collect webpack scripts for prerender, pass in to allow addition of more tags to <head>.
+    irvingHead: getWebpackScripts(clientStats).join(''),
+  });
 
-  // Collect webpack scripts for prerender
-  const webpackScripts = getWebpackScripts(clientStats);
+  console.log(irvingHead);
 
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
@@ -105,9 +104,8 @@ const render = async (req, res, clientStats) => {
     preRenderedHtml: appHtml,
     preRenderedState: stateEncoded,
     env: JSON.stringify(getEnv()),
-    webpackScripts,
+    irvingHead,
   };
-  console.log(appView);
 
   res.status(status);
   res.render(appView, templateVars, (err, html) => {
@@ -148,10 +146,18 @@ export default function serverRenderer(options) {
           <ErrorMessageComponent />
         </StyleContext.Provider>
       );
-      const appHtml = renderToString(
-        renderErrorMessageWrapper(ErrorMessageWrapper)
-      );
-      const templateVars = { css: cssBuilder.getCss(), html: appHtml };
+      const {
+        appHtml,
+        irvingHead,
+      } = getErrorTemplateVars(ErrorMessageWrapper, {
+        // None of these are used by default on the error template, but provide them anyway.
+        irvingHead: '',
+      });
+      const templateVars = {
+        css: cssBuilder.getCss(),
+        html: appHtml,
+        irvingHead,
+      };
 
       res.status(500);
       res.render(errorView, templateVars, (templateErr, html) => {
