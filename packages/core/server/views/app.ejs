@@ -29,10 +29,8 @@
       <%- styleRefs %>;
     </script>
 
-    <%# webpack runtime, main app bundle, and initial chunks %>
-    <% webpackScripts.forEach((script) => { %>
-      <%- script %>
-    <% }); %>
+    <%# webpack runtime, main app bundle, initial chunks, and any other tags user adds %>
+    <%- irvingHead %>
 </head>
 <body <%- helmet.bodyAttributes.toString() %>>
 <noscript>

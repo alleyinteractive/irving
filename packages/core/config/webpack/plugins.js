@@ -12,6 +12,9 @@ const { rootUrl } = require('../paths');
  */
 module.exports = function getPlugins(context) {
   const env = getEnv();
+
+  // Define paths to app and error templates at compile time because express needs paths, not the template module itself.
+  // This allows user to more deeply customize app and error templates.
   const commonPlugins = [
     new webpack.DefinePlugin({
       appView: JSON.stringify(maybeResolveUserModule('server/views/app.ejs')),
