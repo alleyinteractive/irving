@@ -1,6 +1,6 @@
 {
   "name": "@irving/forms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Form components and submission functionality for Irving",
   "main": "index.js",
   "repository": {
@@ -14,7 +14,7 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "@irving/core": "1.0.0",
+    "@irving/core": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@irving/babel-preset-irving": "1.0.0",
+    "@irving/babel-preset-irving": "^1.0.1",
     "babel-jest": "^24.9.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
