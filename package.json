@@ -1,6 +1,6 @@
 {
   "name": "irving",
-  "version": "1.0.1",
+  "private": true,
   "description": "Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.",
   "homepage": "https://github.com/alleyinteractive/irving#readme",
   "repository": {
