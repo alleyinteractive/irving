@@ -1,5 +1,5 @@
 import omitBy from 'lodash/fp/omitBy';
-import { createAction } from '@irving/core/actions';
+import { createAction } from '@irvingjs/core/actions';
 import {
   REQUEST_SUBMIT,
   RECEIVE_SUBMITTED,

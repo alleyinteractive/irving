@@ -8,7 +8,7 @@ import {
   actionPauseAudio,
   actionPlayAudio,
 } from 'actions/playerActions';
-import Spinner from '@irving/core/components/helpers/spinner';
+import Spinner from '@irvingjs/core/components/helpers/spinner';
 import PlayIcon from 'assets/icons/play.svg';
 import PauseIcon from 'assets/icons/pause.svg';
 import styles from './playPauseButton.css';
