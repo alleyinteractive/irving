@@ -17,24 +17,21 @@ export default function getFieldFromUserConfig(config, key, type) {
 
   // Get provided key from configured irving extension packages.
   const packageConfig = ! hasPackages ? initial :
-    Object.keys(config.packages)
-      .reduce((acc, packageName) => {
-        const irvingPackage = config.packages[packageName];
+    config.packages.reduce((acc, irvingPackage) => {
+      // If package has provided key, spread them into the accumulator.
+      if (irvingPackage[key] && 'function' === typeof irvingPackage[key]) {
+        return 'array' === type ? [
+          ...acc,
+          ...irvingPackage[key](),
+        ] : {
+          ...acc,
+          ...irvingPackage[key](),
+        };
+      }
 
-        // If package has provided key, spread them into the accumulator.
-        if (irvingPackage[key] && 'function' === typeof irvingPackage[key]) {
-          return 'array' === type ? [
-            ...acc,
-            ...irvingPackage[key](),
-          ] : {
-            ...acc,
-            ...irvingPackage[key](),
-          };
-        }
-
-        // Return accumulator as-is if package has no provided key.
-        return acc;
-      }, initial);
+      // Return accumulator as-is if package has no provided key.
+      return acc;
+    }, initial);
 
   // Get user-configured data.
   const userConfig = config[key] ?

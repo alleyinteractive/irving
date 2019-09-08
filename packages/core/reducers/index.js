@@ -18,7 +18,7 @@ export const reducers = {
   loading: loadingReducer,
   route: routeReducer,
   visible: visibilityReducer,
-  ...getFieldFromUserConfig(getIrvingConfig(), 'reducers', 'object'),
+  ...getFieldFromUserConfig(getIrvingConfig(), 'reducers', 'array'),
 };
 const rootSliceReducer = combineReducers(reducers);
 

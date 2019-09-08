@@ -1,4 +1,4 @@
-/* global appView, errorView */
+/* global appView, errorView, getAppTemplateVarsList */
 import 'source-map-support/register';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -90,8 +90,6 @@ const render = async (req, res, clientStats) => {
     // Collect webpack scripts for prerender, pass in to allow addition of more tags to <head>.
     irvingHead: getWebpackScripts(clientStats).join(''),
   });
-
-  console.log(irvingHead);
 
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
