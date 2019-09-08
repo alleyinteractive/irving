@@ -114,5 +114,8 @@
   "optionalDependencies": {
     "ioredis": "^3.2.2",
     "newrelic": "^4.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

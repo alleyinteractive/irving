@@ -1,6 +1,6 @@
 {
   "name": "irving",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.",
   "homepage": "https://github.com/alleyinteractive/irving#readme",
   "repository": {
@@ -14,8 +14,8 @@
     "build": "BABEL_ENV=app lerna run build",
     "preinstall": "npx check-node-version --package",
     "install": "lerna bootstrap --hoist",
-    "link": "lerna link",
-    "publish": "lerna publish",
+    "irving:link": "lerna link",
+    "irving:publish": "lerna publish",
     "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js",
     "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
     "test": "BABEL_ENV=test lerna run test --parallel",

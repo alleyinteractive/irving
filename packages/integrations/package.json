@@ -29,5 +29,8 @@
     "jest": "^24.9.0",
     "jest-environment-enzyme": "^7.1.0",
     "jest-enzyme": "^7.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
