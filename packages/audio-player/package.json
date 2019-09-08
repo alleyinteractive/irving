@@ -1,6 +1,6 @@
 {
   "name": "@irving/audio-player",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "Persistent audio player and related components for Irving",
   "main": "index.js",
   "repository": {
@@ -33,5 +33,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "146a3b3fed8ff4cba4a5f1dd0d8648c3d96def55"
+  "gitHead": "033546299ab279d789b28be59d3d0d21361e0137"
 }
