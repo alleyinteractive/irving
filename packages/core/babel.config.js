@@ -19,7 +19,7 @@ module.exports = {
             ],
             cwd: 'packagejson',
             alias: {
-              '@components': '@irving/core/components',
+              '@components': '@irvingjs/core/components',
               actions: './actions',
               assets: './assets',
               components: './components',
