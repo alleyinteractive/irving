@@ -15,6 +15,7 @@
     "preinstall": "npx check-node-version --package",
     "install": "lerna bootstrap --hoist",
     "link": "lerna link",
+    "publish": "lerna publish",
     "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js",
     "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
     "test": "BABEL_ENV=test lerna run test --parallel",
