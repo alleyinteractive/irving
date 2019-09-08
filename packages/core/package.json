@@ -1,6 +1,6 @@
 {
   "name": "@irving/core",
-  "version": "1.0.0",
+  "version": "1.0.4-alpha.0+d4fe17c2",
   "description": "Irving core application",
   "repository": {
     "type": "git",
@@ -118,5 +118,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "033546299ab279d789b28be59d3d0d21361e0137"
+  "gitHead": "d4fe17c24cc4d4658404869187c6f5d52b8d2e6c"
 }
