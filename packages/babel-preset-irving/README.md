@@ -1,0 +1,13 @@
+## Irving Babel Preset
+This package contains a preset for babel required for core irving and development/testing of irving packages/plugins.
+
+### Usage
+Include in the `presets` array of your babel config:
+
+```javascript
+{
+    presets: [
+        '@irvingjs/irving'
+    ],
+}
+```
