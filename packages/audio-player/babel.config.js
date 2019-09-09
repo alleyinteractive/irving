@@ -17,6 +17,6 @@ module.exports = {
     ],
   ],
   presets: [
-    '@irving/irving',
+    '@irvingjs/irving',
   ],
 };

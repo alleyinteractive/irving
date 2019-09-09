@@ -1,4 +1,4 @@
-/* global appView, errorView, getAppTemplateVarsList */
+/* global appView, errorView */
 import 'source-map-support/register';
 import React from 'react';
 import { Provider } from 'react-redux';

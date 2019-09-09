@@ -56,7 +56,7 @@ module.exports = (env, argv) => {
             /react-universal-component/,
             /webpack-flush-chunks/,
             // Include other irving packages in node_modules.
-            /@irving/,
+            /@irvingjs/,
           ],
         }),
       ],
