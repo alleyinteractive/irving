@@ -1,5 +1,8 @@
-Component for creating a connected audio element. This component should be used primarily for managing audio state and corresponding audio playback. User interfaces for trigger various actions should be created in separate components.
+## Irving Integrations
+A collection of Irving-friendly components for getting you started with common third-party integrations.
 
-```
-<AudioElement />
-```
+### Components
+* `<DisqusEmbed />` - Embed an iframe for Disqus comments.
+* `<GoogleAnalytics />` - Render the required JS snippet for your GA account.
+* `<GoogleTagManager />` - Render the required JS snippet for your GTM account.
+* `<Parsely />` - Render the required JS for sending data to Parse.ly

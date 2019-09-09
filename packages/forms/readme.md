@@ -1,4 +1,8 @@
-Fully controlled text input component.
+## Irving Forms
+Various helpers for managing form display, state, validation, and submission. More details on individual components, the `withFormHandler` higher-order component, and relevant reducers and sagas can be find in subdirectories.
+
+### Usage
+Below is an example of how a fully-implemented form might look with the provided components.
 
 ```js
 const Form = (props) => {
