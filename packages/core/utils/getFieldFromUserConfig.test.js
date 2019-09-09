@@ -3,8 +3,8 @@ import getFieldFromUserConfig from './getFieldFromUserConfig';
 
 it('should get provided field from configured packages of both object and array types', () => {
   const mockConfig = {
-    packages: {
-      test: {
+    packages: [
+      {
         reducers: () => ({
           mySlice: () => {},
         }),
@@ -12,7 +12,7 @@ it('should get provided field from configured packages of both object and array 
           takeLatest('TEST_ACTION', () => {}),
         ]),
       },
-    },
+    ],
   };
   const configReducers = getFieldFromUserConfig(
     mockConfig,
@@ -55,8 +55,8 @@ it('should get user-configured config data of both object and array types', () =
 
 it('should merge package and user config data of any type', () => {
   const mockConfig = {
-    packages: {
-      test: {
+    packages: [
+      {
         reducers: () => ({
           packageSlice: () => {},
           testSlice: () => {},
@@ -66,7 +66,7 @@ it('should merge package and user config data of any type', () => {
           takeLatest('TEST_ACTION_TWO', () => {}),
         ]),
       },
-    },
+    ],
     reducers: () => ({
       userSlice: () => {},
       testSlice: () => {},

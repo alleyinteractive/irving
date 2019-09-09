@@ -20,6 +20,8 @@ const ignore = [
   'sagas/*',
   'selectors/*',
   'server/serverRenderer.js',
+  'server/getAppTemplateVars.js',
+  'server/getErrorTemplateVars.js',
   'services/*',
   'utils/*',
   'hooks/*',

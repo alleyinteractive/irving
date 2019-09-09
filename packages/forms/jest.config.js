@@ -2,7 +2,7 @@ const baseConfig = require('../../jest.config.base.js');
 
 module.exports = {
   ...baseConfig,
-  name: '@irving/forms',
-  displayName: '@irving/forms',
+  name: '@irvingjs/forms',
+  displayName: '@irvingjs/forms',
   setupFiles: ['<rootDir>/config/jest.setup.js'],
 };

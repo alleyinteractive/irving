@@ -13,12 +13,13 @@ const include = (filepath) => {
           // Anything within irving root + app root should be included in build.
           filepath.includes(irvingRoot) ||
           filepath.includes(appRoot) ||
-          // monorepo root directory (if it exists).
+          // Monorepo root directory (if it exists, which it won't outside a development context).
           filepath.includes(path.join(__dirname, '../../../../'))
         ) && ! filepath.includes('node_modules')
       ) ||
-      // Anything within irving repos should be included in build, even if located within node_modules.
-      (filepath.includes('@irving') && filepath.match(/node_modules/))
+      // Anything imported within irving core should be included in build,
+      // even if located within node_modules (but not nested node modules).
+      filepath.match(/node_modules\/@irvingjs\/core\/(?!node_modules)/)
     ) &&
     // Exclude minified JS.
     ! filepath.match(/\.min\.js$/)
@@ -44,7 +45,6 @@ module.exports = function getRules(context) {
         loader: 'eslint-loader',
         options: {
           configFile: path.join(irvingRoot, '.eslintrc.js'),
-          eslintPath: path.join(appRoot, 'node_modules/eslint'),
         },
       },
     },

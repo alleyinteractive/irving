@@ -14,7 +14,7 @@ const debug = createDebug('server:error');
 const path = require('path');
 const express = require('express');
 const { rootUrl } = require('../config/paths');
-const maybeRequireUserModule = require('../utils/maybeRequireUserModule');
+const { maybeRequireUserModule } = require('../utils/userModule');
 
 const {
   PORT = 3001,
@@ -22,11 +22,10 @@ const {
 } = process.env;
 const app = express();
 
-app.set('views', path.join(__dirname, '../server/views'));
 app.set('view engine', 'ejs');
 
 // Allow customization of server.
-maybeRequireUserModule('server/customizeServer')(app);
+maybeRequireUserModule('server/customizeServer.js')(app);
 
 if ('development' === NODE_ENV) {
   require('../server/development')(app);
@@ -46,7 +45,7 @@ app.use((err, req, res, next) => {
 });
 
 // Allow customization of how server is created.
-const server = maybeRequireUserModule('server/createServer')(app);
+const server = maybeRequireUserModule('server/createServer.js')(app);
 
 server.listen(PORT);
 console.log(`Server listening on port ${PORT}!`);

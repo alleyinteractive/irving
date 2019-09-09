@@ -6,7 +6,7 @@ import Placeholder from 'components/placeholder';
 import withLoader from 'components/hoc/withLoader';
 
 const irvingDefaultConfig = {
-  packages: {},
+  packages: [],
   reducers: () => ({}),
   defaultState: () => {},
   sagas: () => ([]),

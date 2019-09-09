@@ -1,3 +1,4 @@
+const getAlias = require('./alias');
 const getEntry = require('./entry');
 const getRules = require('./rules');
 const getOutput = require('./output');
@@ -13,6 +14,7 @@ const getDevTool = require('./devTool');
 module.exports = function getConfigService(mode, opEnv) {
   const context = `${mode}_${opEnv}`;
   return {
+    getAlias: () => getAlias(context),
     getEntry: () => getEntry(context),
     getRules: () => getRules(context),
     getOutput: () => getOutput(context),

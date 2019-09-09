@@ -1,5 +1,9 @@
 const path = require('path');
-const { serverRoot, clientRoot, proxyUrl } = require('../paths');
+const {
+  serverRoot,
+  clientRoot,
+  proxyUrl,
+} = require('../paths');
 
 /**
  * Get the context specific entry configuration.
@@ -8,9 +12,9 @@ const { serverRoot, clientRoot, proxyUrl } = require('../paths');
  */
 module.exports = function getEntry(context) {
   const polyfills = [
-    require.resolve('core-js/stable'),
-    require.resolve('regenerator-runtime/runtime'),
-    require.resolve('isomorphic-fetch'),
+    'core-js/stable',
+    'regenerator-runtime/runtime',
+    'isomorphic-fetch',
   ];
 
   switch (context) {
@@ -28,7 +32,7 @@ module.exports = function getEntry(context) {
     case 'production_client':
       return [
         ...polyfills,
-        path.join(clientRoot),
+        clientRoot,
       ];
 
     case 'development_client': {
@@ -40,7 +44,7 @@ module.exports = function getEntry(context) {
       return [
         ...polyfills,
         `webpack-hot-middleware/client?${queryString}`,
-        path.join(clientRoot),
+        clientRoot,
       ];
     }
 

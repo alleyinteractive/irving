@@ -19,7 +19,7 @@ module.exports = {
             ],
             cwd: 'packagejson',
             alias: {
-              '@components': '@irving/core/components',
+              '@components': '@irvingjs/core/components',
               actions: './actions',
               assets: './assets',
               components: './components',
@@ -31,13 +31,14 @@ module.exports = {
               services: './services',
               utils: './utils',
               // Tests need an irving config, use an alias so we can use a separate test config.
+              // @todo might want to update this to @irvingjs also.
               '@irving/irving.config': path.join(appRoot, 'irving.config.js'),
             },
           },
         ],
       ],
       presets: [
-        '@irving/irving',
+        '@irvingjs/irving',
       ],
     },
     test: {
@@ -48,6 +49,7 @@ module.exports = {
             root: [irvingRoot],
             // Tests need an irving config, use an alias so it doesn't override user config.
             alias: {
+              // @todo might want to update this to @irvingjs also.
               '@irving/irving.config': path.join(
                 irvingRoot,
                 'irving-test.config.js'
@@ -57,7 +59,7 @@ module.exports = {
         ],
       ],
       presets: [
-        '@irving/irving',
+        '@irvingjs/irving',
       ],
     },
   },
