@@ -18,7 +18,7 @@ const include = (filepath) => {
         ) && ! filepath.includes('node_modules')
       ) ||
       // Anything within irving repos should be included in build, even if located within node_modules.
-      (filepath.includes('@irving') && filepath.match(/node_modules/))
+      filepath.match(/node_modules\/@irvingjs/)
     ) &&
     // Exclude minified JS.
     ! filepath.match(/\.min\.js$/)

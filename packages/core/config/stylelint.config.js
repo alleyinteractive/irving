@@ -1,6 +1,8 @@
+const propertyOrder = require('./stylelintPropertyOrder');
+
 module.exports = {
   plugins: [
-    'stylelint-order',
+    require.resolve('stylelint-order'),
   ],
   rules: {
     'at-rule-empty-line-before': ['always', {
@@ -35,7 +37,12 @@ module.exports = {
     'no-extra-semicolons': true,
     'no-missing-end-of-source-newline': true,
     'number-leading-zero': 'always',
-    'order/properties-alphabetical-order': true,
+    'order/properties-order': [
+      {
+        properties: propertyOrder,
+        unspecified: 'top',
+      },
+    ],
     'rule-empty-line-before': ['always', {
       ignore: ['after-comment'],
     }],
