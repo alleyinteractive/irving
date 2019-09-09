@@ -9,4 +9,13 @@
   :global(.body--article) & {
     background-color: $white;
   }
+
+  /* @todo review if body padding makes sense on most articles. */
+  :global(.body--35-list) & {
+    padding: 0;
+
+    @media ($lgMin) {
+      padding: 0;
+    }
+  }
 }
