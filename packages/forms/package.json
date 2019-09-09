@@ -14,7 +14,8 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "@irvingjs/core": "^1.0.4-alpha",
+    "@irvingjs/core": "^1.0.4-alpha.5",
+    "@irvingjs/babel-preset-irving": "^1.0.4-alpha.5",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -23,7 +24,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@irvingjs/babel-preset-irving": "^1.0.4-alpha",
     "babel-jest": "^24.9.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
