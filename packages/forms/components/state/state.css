@@ -1,0 +1,33 @@
+
+.wrapper {
+
+  /* stylelint-disable selector-max-specificity */
+  &[disabled] .content {
+    opacity: 0.5;
+  }
+  /* stylelint-enable */
+}
+
+.response {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.submitting,
+.success,
+.error {
+  font-family: $fira;
+  font-size: rem(24);
+  text-transform: uppercase;
+}
+
+.submitting,
+.success {
+  color: $blue;
+}
+
+.error {
+  color: red;
+}

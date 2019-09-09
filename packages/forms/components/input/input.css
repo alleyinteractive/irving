@@ -1,0 +1,87 @@
+@import 'mixins/index';
+
+.inputWrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.label {
+  margin-bottom: rem(5);
+}
+
+.inputElement {
+  border-radius: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: rem(16);
+  height: rem(42);
+  padding: rem(5) rem(10);
+  width: 100%;
+
+  &::placeholder {
+    color: $grayLight;
+  }
+}
+
+.textarea {
+
+  .inputElement {
+    height: rem(100);
+    padding: rem(10);
+  }
+}
+
+.input,
+.textarea,
+.select {
+
+  /* stylelint-disable selector-max-specificity */
+  .inputElement {
+    border: 2px solid $black;
+  }
+
+  &.error {
+
+    .inputElement {
+      border-color: red;
+    }
+  }
+  /* stylelint-enable */
+}
+
+.validationMessge {
+  color: red;
+  font-family: sans-serif;
+  font-size: rem(12);
+  margin-top: rem(5);
+  text-transform: uppercase;
+}
+
+.select {
+  box-shadow: none;
+  position: relative;
+
+  .inputElement {
+    display: block;
+    width: 100%;
+  }
+}
+
+.checkbox,
+.radio {
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  .label {
+    margin: 0;
+    order: 1;
+  }
+
+  .inputElement {
+    margin: 0 rem(10) 0 0;
+    width: auto;
+  }
+}
