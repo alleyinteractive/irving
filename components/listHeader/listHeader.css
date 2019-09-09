@@ -1,0 +1,75 @@
+/* ListHeader component styles */
+
+.wrapper {
+  background-color: $color-deck;
+  width: 100%;
+}
+
+.container {
+  @include container-with-bleed;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.meta {
+  display: flex;
+  flex-flow: column nowrap;
+  order: 2;
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-right: 1;
+    tidy-span: 5;
+  }
+}
+
+.title {
+  color: $white;
+  font-family: $sans;
+  font-size: rem(30);
+  font-weight: 700;
+  line-height: 1.231;
+  width: 100%;
+
+  @media ($mdMin) {
+    font-size: rem(63);
+  }
+}
+
+.inlineTitle {
+  display: block;
+  font-weight: 400;
+}
+
+.description {
+  order: 2;
+  width: 100%;
+}
+
+.image {
+  color: $white;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  order: 1;
+  padding: rem(30);
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-span: 6;
+  }
+}
+
+.menus {
+  order: 0;
+  padding: rem(20) 0;
+  width: 100%;
+}
+
+.menu {
+  width: 100%;
+}
+
+.socialSharing {
+  width: 100%;
+}

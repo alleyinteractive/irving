@@ -14,6 +14,8 @@ import GoogleTagManager from 'components/googleTagManager';
 import Head from 'components/head';
 import Header from 'components/header';
 import Image from 'components/image/image';
+import ListHeader from 'components/listHeader';
+import ListDescription from 'components/listDescription';
 import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
@@ -45,11 +47,9 @@ export const componentMap = {
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
-  'content-header': ContentHeader,
   'content-body': ContentBody,
   'content-footer': ContentFooter,
-  'mittr-plugin-extension/content-list': ContentList,
-  'mittr-plugin-extension/content-list-item': ContentListItem,
+  'content-header': ContentHeader,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
@@ -59,10 +59,14 @@ export const componentMap = {
   header: Header,
   html: RawHTML,
   image: Image,
+  'list-header': ListHeader,
+  'list-description': ListDescription,
   logo: Image,
   'mega-menu': MegaMenu,
   menu: Menu,
   'menu-item': MenuItem,
+  'mittr-plugin-extension/content-list': ContentList,
+  'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/stats-widget': StatsWidget,
   pagination: Placeholder,
   parsely: Parsely,

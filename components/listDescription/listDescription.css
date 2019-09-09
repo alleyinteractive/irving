@@ -1,0 +1,31 @@
+/* ListDescription component styles */
+
+--highlight-color: $color-deck;
+
+.wrapper {
+  color: $white;
+  font-family: $sans;
+  font-size: rem(16);
+  font-weight: 500;
+  line-height: 1.5em;
+  margin-bottom: 1.5em;
+  width: 100%;
+
+  @media ($mdMin) {
+    font-size: rem(21);
+  }
+
+  /* stylelint-disable-next-line selector-max-specificity */
+  p:first-of-type::first-letter {
+    background-color: $white;
+    color: var(--highlight-color);
+    float: left;
+    font-family: $sans;
+    font-size: rem(28);
+    font-weight: 600;
+    line-height: 1;
+    margin: rem(5) rem(20) 0 0;
+    padding: rem(25) rem(30);
+    text-align: center;
+  }
+}
