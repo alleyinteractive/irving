@@ -13,7 +13,7 @@ const include = (filepath) => {
           // Anything within irving root + app root should be included in build.
           filepath.includes(irvingRoot) ||
           filepath.includes(appRoot) ||
-          // monorepo root directory (if it exists, which it won't outside a development context).
+          // Monorepo root directory (if it exists, which it won't outside a development context).
           filepath.includes(path.join(__dirname, '../../../../'))
         ) && ! filepath.includes('node_modules')
       ) ||
