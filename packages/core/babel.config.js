@@ -31,6 +31,7 @@ module.exports = {
               services: './services',
               utils: './utils',
               // Tests need an irving config, use an alias so we can use a separate test config.
+              // @todo might want to update this to @irvingjs also.
               '@irving/irving.config': path.join(appRoot, 'irving.config.js'),
             },
           },
@@ -48,6 +49,7 @@ module.exports = {
             root: [irvingRoot],
             // Tests need an irving config, use an alias so it doesn't override user config.
             alias: {
+              // @todo might want to update this to @irvingjs also.
               '@irving/irving.config': path.join(
                 irvingRoot,
                 'irving-test.config.js'

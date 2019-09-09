@@ -16,6 +16,7 @@ module.exports = function getAlias(context) {
    */
   const createCustomizableAliases = (aliases) => (
     Object.keys(aliases).reduce((acc, key) => {
+      // @todo might want to update this to @irvingjs also.
       acc[`@irving/custom/${key}`] = maybeResolveUserModule(
         aliases[key]
       );

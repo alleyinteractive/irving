@@ -18,6 +18,7 @@ import getWebpackScripts from 'utils/getWebpackScripts';
 import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
 import App from 'components/app';
+// @todo might want to update these to @irvingjs also.
 import getAppTemplateVars from '@irving/custom/getAppTemplateVars';
 import getErrorTemplateVars from '@irving/custom/getErrorTemplateVars';
 import getIrvingConfig from 'utils/getIrvingConfig';
