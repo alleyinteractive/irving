@@ -2,6 +2,13 @@
   "name": "@irvingjs/audio-player",
   "version": "1.0.4-alpha.1+088bf953",
   "description": "Persistent audio player and related components for Irving",
+  "files": [
+    "actions/**/*",
+    "assets/**/*",
+    "components/**/*",
+    "reducers/**/*",
+    "!*.test.js"
+  ],
   "main": "index.js",
   "repository": {
     "type": "git",
