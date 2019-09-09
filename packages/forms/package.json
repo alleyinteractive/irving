@@ -2,6 +2,13 @@
   "name": "@irvingjs/forms",
   "version": "1.0.4-alpha.1+088bf953",
   "description": "Form components and submission functionality for Irving",
+  "files": [
+    "actions/**/*",
+    "components/**/*",
+    "reducers/**/*",
+    "sagas/**/*",
+    "!*.test.js"
+  ],
   "main": "index.js",
   "repository": {
     "type": "git",

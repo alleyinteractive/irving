@@ -2,6 +2,26 @@
   "name": "@irvingjs/core",
   "version": "1.0.4-alpha.1+088bf953",
   "description": "Irving core application",
+  "files": [
+    "actions/**/*",
+    "assets/**/*",
+    "bin/**/*",
+    "cli/**/*",
+    "client/**/*",
+    "components/**/*",
+    "config/**/*",
+    "hooks/**/*",
+    "reducers/**/*",
+    "sagas/**/*",
+    "selectors/**/*",
+    "server/**/*",
+    "utils/**/*",
+    ".eslintignore",
+    ".eslintrc.js",
+    "babel.config.js",
+    "!*.md",
+    "!*.test.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/alleyinteractive/irving/packages/core"
