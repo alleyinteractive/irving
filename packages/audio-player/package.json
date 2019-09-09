@@ -1,7 +1,14 @@
 {
-  "name": "@irving/audio-player",
-  "version": "1.0.0",
+  "name": "@irvingjs/audio-player",
+  "version": "1.0.4-alpha.1+088bf953",
   "description": "Persistent audio player and related components for Irving",
+  "files": [
+    "actions/**/*",
+    "assets/**/*",
+    "components/**/*",
+    "reducers/**/*",
+    "!*.test.js"
+  ],
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -14,14 +21,14 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "@irving/core": "1.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@irving/babel-preset-irving": "1.0.0",
+    "@irvingjs/babel-preset-irving": ">1.0.4-alpha.9",
+    "@irvingjs/core": ">1.0.4-alpha.9",
     "babel-jest": "^24.9.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "enzyme": "^3.10.0",
@@ -29,5 +36,12 @@
     "jest": "^24.9.0",
     "jest-environment-enzyme": "^7.1.0",
     "jest-enzyme": "^7.1.0"
-  }
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">1.0.4-alpha.9"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "088bf95379370460985eae45041014c10b7027a0"
 }

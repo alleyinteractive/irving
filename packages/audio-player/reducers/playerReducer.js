@@ -2,7 +2,7 @@ import compose from 'lodash/fp/flow';
 import merge from 'lodash/fp/merge';
 import set from 'lodash/fp/set';
 import cloneDeep from 'lodash/fp/cloneDeep';
-import { LOCATION_CHANGE } from '@irving/core/actions/types';
+import { LOCATION_CHANGE } from '@irvingjs/core/actions/types';
 import {
   PLAY_AUDIO,
   LOAD_AUDIO,

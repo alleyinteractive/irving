@@ -1,4 +1,4 @@
-import { createAction } from '@irving/core/actions';
+import { createAction } from '@irvingjs/core/actions';
 import {
   PLAY_AUDIO,
   LOAD_AUDIO,
