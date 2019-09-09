@@ -3,5 +3,5 @@
 Example use of ListDescription component.
 
 ```jsx
-<ListDescription />
+<ListDescription children={[]} color='#ae7d5b' />
 ```

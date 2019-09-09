@@ -3,5 +3,5 @@
 Example use of ListHeader component.
 
 ```jsx
-<ListHeader />
+<ListHeader children={[]} title='2019' color='#ae7d5b' />
 ```
