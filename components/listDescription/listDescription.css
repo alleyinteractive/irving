@@ -1,5 +1,7 @@
 /* ListDescription component styles */
 
+--highlight-color: $color-deck;
+
 .wrapper {
   color: $white;
   font-family: $sans;
