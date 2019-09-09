@@ -1,4 +1,3 @@
-
 {
     "name": "@irvingjs/babel-preset-irving",
     "version": "1.0.4-alpha.1+088bf953",
@@ -17,13 +16,12 @@
       "@babel/plugin-syntax-dynamic-import": "^7.2.0",
       "@babel/preset-env": "^7.5.5",
       "@babel/preset-react": "^7.0.0",
-      "@irvingjs/core": "^1.0.4-alpha.6",
+      "@irvingjs/core": "1.0.4-alpha.7",
       "babel-plugin-lodash": "^3.3.4",
       "babel-plugin-universal-import": "^4.0.0",
       "react-hot-loader": "^4.12.11"
     },
     "publishConfig": {
       "access": "public"
-    },
-    "gitHead": "088bf95379370460985eae45041014c10b7027a0"
+    }
   }
