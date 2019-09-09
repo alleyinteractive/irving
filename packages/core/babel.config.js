@@ -37,7 +37,7 @@ module.exports = {
         ],
       ],
       presets: [
-        '@irving/irving',
+        '@irvingjs/irving',
       ],
     },
     test: {
@@ -57,7 +57,7 @@ module.exports = {
         ],
       ],
       presets: [
-        '@irving/irving',
+        '@irvingjs/irving',
       ],
     },
   },
