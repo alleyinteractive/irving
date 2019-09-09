@@ -69,6 +69,17 @@
   img {
     width: 100%;
   }
+
+  figcaption {
+    color: $white;
+    display: block;
+    font-family: $sans;
+    font-size: rem(11);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
 }
 
 .menus {
