@@ -22,7 +22,6 @@ const {
 } = process.env;
 const app = express();
 
-// app.set('views', path.join(__dirname, '../server/views'));
 app.set('view engine', 'ejs');
 
 // Allow customization of server.
