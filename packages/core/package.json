@@ -1,25 +1,40 @@
 {
-  "name": "irving",
-  "//": "Root irving package should never be published",
-  "private": true,
-  "description": "Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.",
-  "homepage": "https://github.com/alleyinteractive/irving#readme",
+  "name": "@irvingjs/core",
+  "version": "1.0.4-alpha.1+088bf953",
+  "description": "Irving core application",
+  "files": [
+    "actions/**/*",
+    "assets/**/*",
+    "bin/**/*",
+    "cli/**/*",
+    "client/**/*",
+    "components/**/*",
+    "config/**/*",
+    "hooks/**/*",
+    "reducers/**/*",
+    "sagas/**/*",
+    "selectors/**/*",
+    "server/**/*",
+    "utils/**/*",
+    ".eslintignore",
+    ".eslintrc.js",
+    "babel.config.js",
+    "!*.md",
+    "!*.test.js"
+  ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:alleyinteractive/irving.git"
+    "url": "https://github.com/alleyinteractive/irving/packages/core"
   },
   "license": "MIT",
   "author": "Alley (Alley.co)",
-  "main": "main.js",
+  "main": "cli/irving.js",
+  "bin": {
+    "irving": "./bin/irving"
+  },
   "scripts": {
-    "build": "BABEL_ENV=app lerna run build",
-    "preinstall": "npx check-node-version --package",
-    "//": "nohoist option is used to prevent internal packages from being hoisted/deleted by lerna (which is a bug, I think)",
-    "install": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
-    "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js",
-    "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
-    "test": "BABEL_ENV=test lerna run test --parallel",
-    "test:watch": "BABEL_ENV=test lerna run test:watch"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@babel/cli": "^7.5.5",
@@ -29,6 +44,8 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@hot-loader/react-dom": "^16.9.0",
+    "@irvingjs/babel-preset-irving": ">1.0.4-alpha.9",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
@@ -68,6 +85,17 @@
     "jest-enzyme": "^7.1.0",
     "lodash": "^4.17.14",
     "nodemon": "^1.17.5",
+    "postcss-browser-reporter": "^0.6.0",
+    "postcss-calc": "^7.0.1",
+    "postcss-color-function": "^4.1.0",
+    "postcss-focus": "^4.0.0",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-nested": "^4.1.2",
+    "postcss-reporter": "^6.0.1",
+    "postcss-sassy-mixins": "^2.1.0",
+    "postcss-simple-vars": "^5.0.2",
+    "postcss-units": "^1.2.1",
     "prop-types": "^15.7.2",
     "query-string": "^6.1.0",
     "react": "^16.9.0",
@@ -90,6 +118,8 @@
     "sanitize-html": "^1.14.1",
     "source-map-support": "^0.5.6",
     "style-loader": "^0.21.0",
+    "stylelint": "^10.1.0",
+    "stylelint-order": "^3.1.0",
     "svg-react-loader": "^0.4.6",
     "url-loader": "^1.0.1",
     "url-parse": "^1.4.7",
@@ -102,15 +132,12 @@
     "webpack-node-externals": "^1.7.2",
     "webpack-stats-plugin": "^0.3.0"
   },
-  "devDependencies": {
-    "lerna": "^3.16.4"
-  },
   "optionalDependencies": {
     "ioredis": "^3.2.2",
     "newrelic": "^4.5.0"
   },
-  "engines": {
-    "node": "10",
-    "npm": "6"
-  }
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "088bf95379370460985eae45041014c10b7027a0"
 }

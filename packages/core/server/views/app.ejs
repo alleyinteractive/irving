@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" <%- helmet.htmlAttributes.toString() %> >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%- helmet.title.toString() %>
+    <%- helmet.meta.toString() %>
+    <%- helmet.link.toString() %>
+    <%- helmet.base.toString() %>
+    <%- helmet.style.toString() %>
+
+    <%# critical CSS for core Irving required to avoid FOUC before client JS takes control. %>
+    <style id="critical-css"><%- criticalCss %></style>
+
+    <%# Runtime accessible environment variables %>
+    <script>
+      window.__ENV__ = <%- env %>;
+    </script>
+
+    <%- helmet.script.toString() %>
+
+    <%# pre-rendered serialized Redux state %>
+    <script defer id="preload">
+      window.__PRELOADED_STATE__ = <%- preRenderedState %>;
+    </script>
+
+    <%# css module refs for critical css %>
+    <script defer>
+      <%- styleRefs %>;
+    </script>
+
+    <%# webpack runtime, main app bundle, initial chunks, and any other tags user adds %>
+    <%- irvingHead %>
+</head>
+<body <%- helmet.bodyAttributes.toString() %>>
+<noscript>
+    You need to enable JavaScript to view this site.
+</noscript>
+<%- helmet.noscript.toString() %>
+<div id="root"><%- preRenderedHtml %></div>
+</body>
+</html>
