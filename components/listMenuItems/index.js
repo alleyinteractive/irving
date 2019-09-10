@@ -8,7 +8,7 @@ import classNames from 'classnames';
 // Styles
 import styles from './listMenuItems.css';
 
-const ListMenuItems = ({ children, title }) => {
+const ListMenuItems = ({ children, title, desktopOnly }) => {
   // Only show component if there are menu items.
   if (0 === children.length) {
     return null;
@@ -45,7 +45,9 @@ const ListMenuItems = ({ children, title }) => {
           const listMenuItemsID = uid('list-menu-items');
           return (
             <li
-              className={styles.wrapper}
+              className={classNames(styles.wrapper, {
+                [styles.desktopOnly]: desktopOnly,
+              })}
               onMouseEnter={() => setIsExpanded(true)}
               onMouseLeave={() => setIsExpanded(false)}
             >
@@ -81,6 +83,11 @@ const ListMenuItems = ({ children, title }) => {
 ListMenuItems.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   title: PropTypes.string.isRequired,
+  desktopOnly: PropTypes.bool,
+};
+
+ListMenuItems.defaultProps = {
+  desktopOnly: false,
 };
 
 export default withStyles(styles)(ListMenuItems);

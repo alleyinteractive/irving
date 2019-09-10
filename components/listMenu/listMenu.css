@@ -8,6 +8,11 @@
 
 .title {
   @include list-label;
+  display: none;
+
+  @media ($mdMin) {
+    display: block;
+  }
 }
 
 .list {

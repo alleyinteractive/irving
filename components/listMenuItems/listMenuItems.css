@@ -2,16 +2,27 @@
 
 .wrapper {
   background-color: transparent;
+  position: static;
 }
 
 .list {
   background-color: $black;
+  left: 0;
   padding: rem(20);
   position: absolute;
   width: 100%;
 
   @media ($smMin) {
+    left: auto;
     width: rem(350);
+  }
+}
+
+.desktopOnly {
+  display: none;
+
+  @media ($mdMin) {
+    display: block;
   }
 }
 
