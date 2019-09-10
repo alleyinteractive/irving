@@ -3,6 +3,11 @@
 }
 
 .list {
+  display: flex;
   margin-left: auto;
   width: auto;
+}
+
+.title {
+  display: none;
 }
