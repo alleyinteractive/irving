@@ -31,9 +31,9 @@ SocialList.propTypes = {
 
 const wrapWithStyles = withStyles(styles, trListStyles);
 
-const wrapWithThemes = withThemes('list-header', {
+const wrapWithThemes = withThemes('social-list', {
   default: styles,
-  trList: trListStyles,
+  'list-header': trListStyles,
 });
 
 export default wrapWithStyles(wrapWithThemes(SocialList));
