@@ -1,0 +1,21 @@
+/* ListMenu component styles */
+
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  width: auto;
+}
+
+.title {
+  @include list-label;
+  display: none;
+
+  @media ($mdMin) {
+    display: block;
+  }
+}
+
+.list {
+  display: flex;
+  flex-flow: row nowrap;
+}
