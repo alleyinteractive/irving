@@ -2,7 +2,7 @@ const defaultService = {
   get: () => null,
   set: () => {},
   del: () => null,
-  wipe: () => null,
+  instance: () => null,
 };
 
 let service;
@@ -62,7 +62,7 @@ const getService = () => {
       del(key) {
         return this.client.del(key);
       },
-      wipe() {
+      instance() {
         return this.client;
       },
     };

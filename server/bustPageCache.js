@@ -9,6 +9,11 @@ const getService = require('../services/cacheService');
 const bustPageCache = async (req, res) => {
   const { endpoint } = req.query;
 
+  // Endpoint is required.
+  if (! endpoint) {
+    return res.json('Required param (endpoint) missing.');
+  }
+
   // The endpoint is the key.
   const key = endpoint;
   const cache = getService();

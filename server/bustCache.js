@@ -7,7 +7,7 @@ const getService = require('../services/cacheService');
  * @param {Response} res  Response.
  */
 const bustCache = async (req, res) => {
-  const service = getService().wipe();
+  const service = getService().instance();
 
   // Create a readable stream (object mode).
   // This approach is better for performance.
