@@ -9,32 +9,17 @@ import classNames from 'classnames';
 import styles from './listMenuItems.css';
 
 const ListMenuItems = ({ children, title }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  // const [isManagingFocus, setIsManagingFocus] = useState(false);
-  let timeoutID;
-  // const isManagingFocusRef = useRef(isManagingFocus);
-  // const [isDesktop, setIsDesktop] = useState(false);
-
-  // Breakpoints
-  // const isSmMin = useBreakpoint('smMin');
-
-  // // When resizing, do not have the click to expand controls on desktop.
-  // useEffect(() => {
-  //   if (isSmMin) {
-  //     setIsExpanded(true);
-  //     setIsDesktop(true);
-  //   } else {
-  //     setIsExpanded(false);
-  //     setIsDesktop(false);
-  //   }
-  // }, [isSmMin]);
-
-  // console.log(isDesktop); // eslint-disable-line
-
+  // Only show component if there are menu items.
   if (0 === children.length) {
     return null;
   }
 
+  const [isExpanded, setIsExpanded] = useState(false);
+  let timeoutID;
+
+  /**
+   * When keyboard focus leaves the menu.
+   */
   const onBlur = () => {
     timeoutID = setTimeout(() => {
       if (isExpanded) {
@@ -43,6 +28,9 @@ const ListMenuItems = ({ children, title }) => {
     }, 0);
   };
 
+  /**
+   * When the keyboard focus enters the menu.
+   */
   const onFocus = () => {
     clearTimeout(timeoutID);
     if (! isExpanded) {
