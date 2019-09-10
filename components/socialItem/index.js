@@ -2,28 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import classNames from 'classnames';
+import withThemes from 'components/hoc/withThemes';
 import Link from 'components/helpers/link';
 import socialIconMap from './iconMap';
 import styles from './socialItem.css';
+import whiteIconStyles from './whiteIcon.css';
 
-const SocialItem = ({ type, url, displayIcon }) => {
+const SocialItem = ({
+  type, url, displayIcon, theme,
+}) => {
   const IconComponent = socialIconMap[type];
 
   return (
-    <li className={classNames(styles.wrapper, styles[type])}>
-      <Link to={url} className={styles.anchor}>
+    <li className={classNames(theme.wrapper, theme[type])}>
+      <Link to={url} className={theme.anchor}>
         <span
           className={
             classNames({
-              [styles.label]: 'link' === type,
-              [styles.screenReaderLabel]: 'link' !== type,
+              [theme.label]: 'link' === type,
+              [theme.screenReaderLabel]: 'link' !== type,
             })
           }
         >
           {type}
         </span>
         {displayIcon && IconComponent && (
-          <div className={styles.icon}>
+          <div className={theme.icon}>
             <IconComponent />
           </div>
         )}
@@ -46,8 +50,14 @@ SocialItem.propTypes = {
    */
   displayIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
     .isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-const wrapWithStyles = withStyles(styles);
+const wrapWithStyles = withStyles(styles, whiteIconStyles);
 
-export default wrapWithStyles(SocialItem);
+const wrapWithThemes = withThemes('social-item', {
+  default: styles,
+  'white-icon': whiteIconStyles,
+});
+
+export default wrapWithStyles(wrapWithThemes(SocialItem));
