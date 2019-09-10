@@ -40,10 +40,29 @@
   }
 }
 
+@mixin relative-plus($image: https://cdn.technologyreview.com/_/img/plus--white.svg) {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+
+  &::after {
+    background-image: url($image);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: '';
+    display: inline;
+    height: rem(12);
+    margin-left: 1ch;
+    transition: transform 235ms ease;
+    width: rem(12);
+  }
+}
+
 :global(.content-right) {
   float: right;
-  right: rem(-80);
   position: relative;
+  right: rem(-80);
 }
 
 :global(.content-left) {

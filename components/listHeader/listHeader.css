@@ -9,6 +9,7 @@
   @include container-with-bleed;
   display: flex;
   flex-flow: row wrap;
+  padding-bottom: rem(75);
 }
 
 .meta {
@@ -18,6 +19,7 @@
   width: 100%;
 
   @media ($mdMin) {
+    padding-right: rem(22);
     tidy-offset-right: 1;
     tidy-span: 5;
   }
@@ -43,6 +45,7 @@
 
 .description {
   order: 2;
+  padding-right: rem(25);
   width: 100%;
 }
 
@@ -52,24 +55,49 @@
   flex-flow: row nowrap;
   justify-content: center;
   order: 1;
-  padding: rem(30);
+  padding: 0 rem(30);
   width: 100%;
 
   @media ($mdMin) {
     tidy-span: 6;
   }
+
+  > * {
+    width: 100%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  figcaption {
+    color: $white;
+    display: block;
+    font-family: $sans;
+    font-size: rem(11);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
 }
 
 .menus {
+  border-bottom: $border-thin;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: rem(75);
   order: 0;
   padding: rem(20) 0;
   width: 100%;
 }
 
 .menu {
-  width: 100%;
+  width: auto;
 }
 
 .socialSharing {
-  width: 100%;
+  max-width: 300px; /* placeholder for styling menu */
+  width: auto;
 }

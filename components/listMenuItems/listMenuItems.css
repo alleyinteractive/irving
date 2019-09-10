@@ -1,0 +1,40 @@
+/* ListMenuItems component styles */
+
+.wrapper {
+  background-color: transparent;
+  position: static;
+}
+
+.list {
+  background-color: $black;
+  left: 0;
+  padding: rem(20);
+  position: absolute;
+  width: 100%;
+
+  @media ($smMin) {
+    left: auto;
+    width: rem(350);
+  }
+}
+
+.desktopOnly {
+  display: none;
+
+  @media ($mdMin) {
+    display: block;
+  }
+}
+
+.title {
+  @include list-label;
+  @include relative-plus;
+}
+
+.titleActive {
+  background-color: $black;
+
+  &::after {
+    transform: rotate(45deg);
+  }
+}
