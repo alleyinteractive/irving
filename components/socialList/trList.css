@@ -1,0 +1,13 @@
+.icon {
+  background-color: transparent;
+}
+
+.list {
+  display: flex;
+  margin-left: auto;
+  width: auto;
+}
+
+.title {
+  display: none;
+}
