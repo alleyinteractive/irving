@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  width: auto;
+
+  &:not(last-child) {
+    margin-right: rem(3);
+    
+    @media ($mdMin) {
+      margin-right: rem(10);
+    }
+  }
+}
+
+.anchor {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.icon {
+  align-items: center;
+  background-color: none;
+  border-radius: 50%;
+  display: flex;
+  flex-flow: row nowrap;
+  height: rem(30);
+  justify-content: center;
+  width: rem(30);
+
+  svg {
+    fill: $white;
+    height: rem(18);
+    width: auto;
+  }
+}
+
+.screenReaderLabel {
+  @include screenreader-only;
+}
+
+.label {
+  @include label;
+}
