@@ -1,5 +1,7 @@
 /* ListMenuItem component styles */
 
 .wrapper {
-  background-color: magenta;
+  border-top: $border-thin--white;
+  color: $white;
+  padding: rem(5) 0 rem(10);
 }

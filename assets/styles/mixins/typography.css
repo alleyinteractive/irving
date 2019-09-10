@@ -5,3 +5,12 @@
   margin-right: rem(12);
   text-transform: capitalize;
 }
+
+@mixin list-label() {
+  color: $white;
+  display: inline-block;
+  font-family: $sans;
+  font-size: rem(21);
+  font-weight: 700;
+  margin-right: rem(15);
+}

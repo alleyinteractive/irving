@@ -1,5 +1,16 @@
 /* ListMenu component styles */
 
 .wrapper {
-  background-color: magenta;
+  display: flex;
+  flex-flow: row nowrap;
+  width: auto;
+}
+
+.title {
+  @include list-label;
+}
+
+.list {
+  display: flex;
+  flex-flow: row nowrap;
 }

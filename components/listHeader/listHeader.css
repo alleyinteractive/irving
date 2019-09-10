@@ -83,6 +83,7 @@
 }
 
 .menus {
+  border-bottom: $border-thin;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -97,5 +98,6 @@
 }
 
 .socialSharing {
+  max-width: 300px; /* placeholder for styling menu */
   width: auto;
 }

@@ -16,9 +16,9 @@ const ListMenu = ({ children, title, permalink }) => (
         return (
           <nav className={styles.wrapper} aria-label={__('List', 'mittr')}>
             <h2 id={listID}>
-              <Link to={permalink}>{title}</Link>
+              <Link to={permalink} className={styles.title}>{title}</Link>
             </h2>
-            <ul aria-labelledby={listID}>{children}</ul>
+            <ul aria-labelledby={listID} className={styles.list}>{children}</ul>
           </nav>
         );
       }}

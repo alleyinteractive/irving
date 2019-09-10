@@ -1,5 +1,29 @@
 /* ListMenuItems component styles */
 
 .wrapper {
-  background-color: magenta;
+  background-color: transparent;
+}
+
+.list {
+  background-color: $black;
+  padding: rem(20);
+  position: absolute;
+  width: 100%;
+
+  @media ($smMin) {
+    width: rem(350);
+  }
+}
+
+.title {
+  @include list-label;
+  @include relative-plus;
+}
+
+.titleActive {
+  background-color: $black;
+
+  &::after {
+    transform: rotate(45deg);
+  }
 }

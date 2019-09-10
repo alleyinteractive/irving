@@ -8,7 +8,9 @@ import styles from './listMenuItem.css';
 
 const ListMenuItem = ({ title, url }) => (
   <li className={styles.wrapper}>
-    <Link to={url}>{title}</Link>
+    <Link to={url} className={styles.link}>
+      {title}
+    </Link>
   </li>
 );
 
