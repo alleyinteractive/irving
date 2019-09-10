@@ -4,10 +4,10 @@
   width: auto;
 
   &:not(last-child) {
-    margin-right: rem(3);
+    margin-left: rem(3);
     
     @media ($mdMin) {
-      margin-right: rem(10);
+      margin-left: rem(10);
     }
   }
 }
