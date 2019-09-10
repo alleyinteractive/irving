@@ -16,6 +16,9 @@ import Header from 'components/header';
 import Image from 'components/image/image';
 import ListHeader from 'components/listHeader';
 import ListDescription from 'components/listDescription';
+import ListMenu from 'components/listMenu';
+import ListMenuItem from 'components/listMenuItem';
+import ListMenuItems from 'components/listMenuItems';
 import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
@@ -61,6 +64,9 @@ export const componentMap = {
   image: Image,
   'list-header': ListHeader,
   'list-description': ListDescription,
+  'list-menu': ListMenu,
+  'list-menu-item': ListMenuItem,
+  'list-menu-items': ListMenuItems,
   logo: Image,
   'mega-menu': MegaMenu,
   menu: Menu,

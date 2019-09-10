@@ -52,6 +52,7 @@
     "react-oembed-container": "^0.3.0",
     "react-redux": "^5.1.1",
     "react-transition-group": "^4.0.0",
+    "react-uid": "^2.2.0",
     "react-universal-component": "^4.0.0",
     "react-use-form-state": "^0.10.4",
     "reduce-reducers": "^0.3.0",
