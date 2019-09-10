@@ -1,4 +1,4 @@
-const getRedisService = require('../services/redisService');
+const getService = require('../services/cacheService');
 
 /**
  * Bust page/post/endpoint cache from Redis.
@@ -11,7 +11,7 @@ const bustPageCache = async (req, res) => {
 
   // The endpoint is the key.
   const key = endpoint;
-  const cache = getRedisService();
+  const cache = getService();
 
   const hasCache = await cache.get(key);
   if (! hasCache) {
@@ -21,8 +21,7 @@ const bustPageCache = async (req, res) => {
   // Delete cache.
   cache.del(key);
 
-  // Send message.
-  return res.json('Cached busted.');
+  return res.json('Endpoint cache deleted.');
 };
 
 module.exports = bustPageCache;
