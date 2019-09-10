@@ -1,6 +1,8 @@
 const defaultService = {
   get: () => null,
   set: () => {},
+  del: () => null,
+  wipe: () => null,
 };
 
 let service;
@@ -9,8 +11,10 @@ let service;
  * @typedef {object} CacheService
  * @property {function} get
  * @property {function} set
+ * @property {function} del
+ * @property {function} wipe
  *
- * Return a service object for storing and retrieving cached items.
+ * Return a service object for storing, retrieving, deleting cached items.
  * @returns {CacheService}
  */
 const getService = () => {
@@ -29,6 +33,7 @@ const getService = () => {
   // while compiling.
   if (! process.env.BROWSER) {
     let Redis;
+
     // Check if optional redis client is installed.
     try {
       Redis = require('ioredis'); // eslint-disable-line global-require
@@ -41,7 +46,7 @@ const getService = () => {
       console.error(err); // eslint-disable-line no-console
     });
 
-    service = {
+    return {
       client,
       async get(key) {
         return JSON.parse(await this.client.get(key));
@@ -54,9 +59,13 @@ const getService = () => {
           process.env.CACHE_EXPIRE || 300
         );
       },
+      del(key) {
+        return this.client.del(key);
+      },
+      wipe() {
+        return this.client;
+      },
     };
-
-    return service;
   }
 
   return defaultService;
