@@ -4,10 +4,10 @@
   width: auto;
 
   &:not(last-child) {
-    margin-left: rem(3);
+    margin-left: rem(10);
     
     @media ($mdMin) {
-      margin-left: rem(10);
+      margin-left: rem(20);
     }
   }
 }
@@ -25,9 +25,7 @@
   border-radius: 50%;
   display: flex;
   flex-flow: row nowrap;
-  height: rem(30);
   justify-content: center;
-  width: rem(30);
 
   svg {
     fill: $white;
