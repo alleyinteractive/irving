@@ -37,9 +37,9 @@
 }
 
 .subscribe {
+  composes: button;
   border-color: $red;
   color: $red;
-  composes: button;
   margin-left: 1rem;
 
   &:hover {

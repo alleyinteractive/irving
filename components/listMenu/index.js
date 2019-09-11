@@ -5,12 +5,19 @@ import { UIDReset, UIDConsumer } from 'react-uid';
 import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
+import withThemes from 'components/hoc/withThemes';
 
 // Styles
 import styles from './listMenu.css';
+import lightTheme from './listMenu--light.css';
 
 const ListMenu = ({
-  children, title, permalink, themeName, fullBleed,
+  children,
+  fullBleed,
+  permalink,
+  theme,
+  themeName,
+  title,
 }) => (
   <UIDReset>
     <UIDConsumer>
@@ -18,23 +25,17 @@ const ListMenu = ({
         const listID = uid('list-menu');
         return (
           <nav
-            className={classNames(styles.wrapper, themeName, {
-              [styles.fullBleed]: fullBleed,
+            className={classNames(theme.wrapper, themeName, {
+              [theme.fullBleed]: fullBleed,
             })}
             aria-label={__('List', 'mittr')}
           >
             <h2 id={listID}>
-              <Link
-                to={permalink}
-                className={classNames(
-                  styles.title,
-                  styles[`title--${themeName}`]
-                )}
-              >
+              <Link to={permalink} className={theme.title}>
                 {title}
               </Link>
             </h2>
-            <ul aria-labelledby={listID} className={styles.list}>
+            <ul aria-labelledby={listID} className={theme.list}>
               {children}
             </ul>
           </nav>
@@ -50,6 +51,12 @@ ListMenu.propTypes = {
   title: PropTypes.string.isRequired,
   themeName: PropTypes.string,
   fullBleed: PropTypes.bool,
+  theme: PropTypes.shape({
+    wrapper: PropTypes.string,
+    fullBleed: PropTypes.string,
+    title: PropTypes.string,
+    list: PropTypes.string,
+  }).isRequired,
 };
 
 ListMenu.defaultProps = {
@@ -57,4 +64,7 @@ ListMenu.defaultProps = {
   fullBleed: false,
 };
 
-export default withStyles(styles)(ListMenu);
+export default withThemes('list-menu', {
+  default: styles,
+  light: lightTheme,
+})(withStyles(styles, lightTheme)(ListMenu));

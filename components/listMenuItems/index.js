@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { UIDReset, UIDConsumer } from 'react-uid';
-// import useBreakpoint from 'hooks/useBreakpoint';
 import classNames from 'classnames';
+import withThemes from 'components/hoc/withThemes';
 
 // Styles
 import styles from './listMenuItems.css';
+import lightTheme from './listMenuItems--light.css';
 
-const ListMenuItems = ({ children, title, desktopOnly }) => {
+const ListMenuItems = ({
+  children, title, desktopOnly, theme,
+}) => {
   // Only show component if there are menu items.
   if (0 === children.length) {
     return null;
@@ -45,8 +48,8 @@ const ListMenuItems = ({ children, title, desktopOnly }) => {
           const listMenuItemsID = uid('list-menu-items');
           return (
             <li
-              className={classNames(styles.wrapper, {
-                [styles.desktopOnly]: desktopOnly,
+              className={classNames(theme.wrapper, {
+                [theme.desktopOnly]: desktopOnly,
               })}
               onMouseEnter={() => setIsExpanded(true)}
               onMouseLeave={() => setIsExpanded(false)}
@@ -54,8 +57,8 @@ const ListMenuItems = ({ children, title, desktopOnly }) => {
               <h3 id={listMenuItemsID}>
                 <button
                   type="button"
-                  className={classNames(styles.title, {
-                    [styles.titleActive]: isExpanded,
+                  className={classNames(theme.title, {
+                    [theme.titleActive]: isExpanded,
                   })}
                   onClick={() => setIsExpanded(! isExpanded)}
                 >
@@ -65,7 +68,7 @@ const ListMenuItems = ({ children, title, desktopOnly }) => {
               {isExpanded && (
                 <ul
                   aria-labelledby={listMenuItemsID}
-                  className={styles.list}
+                  className={theme.list}
                   onBlur={onBlur}
                   onFocus={onFocus}
                 >
@@ -84,10 +87,20 @@ ListMenuItems.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   title: PropTypes.string.isRequired,
   desktopOnly: PropTypes.bool,
+  theme: PropTypes.shape({
+    wrapper: PropTypes.string,
+    desktopOnly: PropTypes.string,
+    title: PropTypes.string,
+    titleActive: PropTypes.string,
+    list: PropTypes.string,
+  }).isRequired,
 };
 
 ListMenuItems.defaultProps = {
   desktopOnly: false,
 };
 
-export default withStyles(styles)(ListMenuItems);
+export default withThemes('list-menu-items', {
+  default: styles,
+  light: lightTheme,
+})(withStyles(styles, lightTheme)(ListMenuItems));
