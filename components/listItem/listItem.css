@@ -5,7 +5,6 @@
   background-color: transparent;
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: rem(50);
   padding-bottom: rem(32);
   padding-top: rem(32);
   width: auto;

@@ -4,6 +4,7 @@
   @include container-with-bleed;
   display: flex;
   flex-flow: row wrap;
+  margin-bottom: rem(50);
 }
 
 .meta {
