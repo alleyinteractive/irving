@@ -3,6 +3,7 @@
 .wrapper {
   display: flex;
   flex-flow: row nowrap;
+  padding: rem(20) 0;
   width: auto;
 }
 
