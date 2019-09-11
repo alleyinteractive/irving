@@ -13,6 +13,10 @@
   @media ($mdMin) {
     display: block;
   }
+
+  &.title--light {
+    color: $white;
+  }
 }
 
 .list {

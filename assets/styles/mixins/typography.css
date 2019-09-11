@@ -6,8 +6,8 @@
   text-transform: capitalize;
 }
 
-@mixin list-label() {
-  color: $white;
+@mixin list-label($color: $text-black) {
+  color: $color;
   display: inline-block;
   font-family: $sans;
   font-size: rem(21);

@@ -40,7 +40,7 @@
   }
 }
 
-@mixin relative-plus($image: https://cdn.technologyreview.com/_/img/plus--white.svg) {
+@mixin relative-plus($image: https://cdn.technologyreview.com/_/img/plus.svg) {
   align-items: center;
   display: flex;
   flex-flow: row nowrap;
