@@ -33,7 +33,10 @@ module.exports = {
     'no-extra-semicolons': true,
     'no-missing-end-of-source-newline': true,
     'number-leading-zero': 'always',
-    'order/properties-alphabetical-order': true,
+    'order/properties-order': [
+      ['composes'],
+      { unspecified: 'bottomAlphabetical' },
+    ],
     'rule-empty-line-before': [
       'always',
       {

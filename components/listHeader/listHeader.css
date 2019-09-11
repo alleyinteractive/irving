@@ -9,7 +9,11 @@
   @include container-with-bleed;
   display: flex;
   flex-flow: row wrap;
-  padding-bottom: rem(75);
+  padding-bottom: rem(10);
+
+  @media ($mdMin) {
+    padding-bottom: rem(75);
+  }
 }
 
 .meta {
@@ -55,7 +59,6 @@
   flex-flow: row nowrap;
   justify-content: center;
   order: 1;
-  padding: 0 rem(30);
   width: 100%;
 
   @media ($mdMin) {
@@ -64,6 +67,10 @@
 
   > * {
     width: 100%;
+  }
+
+  span {
+    padding: 0 rem(30);
   }
 
   img {
@@ -77,8 +84,12 @@
     font-size: rem(11);
     font-weight: 500;
     letter-spacing: 1px;
-    margin-bottom: 0;
+    margin-bottom: rem(20);
     text-transform: uppercase;
+
+    @media ($mdMin) {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -89,7 +100,6 @@
   justify-content: space-between;
   margin-bottom: rem(75);
   order: 0;
-  padding: rem(20) 0;
   width: 100%;
 }
 
@@ -98,6 +108,8 @@
 }
 
 .socialSharing {
-  max-width: 300px; /* placeholder for styling menu */
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
   width: auto;
 }

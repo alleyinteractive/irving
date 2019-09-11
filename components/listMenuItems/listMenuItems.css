@@ -11,6 +11,7 @@
   padding: rem(20);
   position: absolute;
   width: 100%;
+  z-index: 2;
 
   @media ($smMin) {
     left: auto;
@@ -32,7 +33,9 @@
 }
 
 .titleActive {
+  @include relative-plus('//cdn.technologyreview.com/_/img/plus--white.svg');
   background-color: $black;
+  color: $white;
 
   &::after {
     transform: rotate(45deg);

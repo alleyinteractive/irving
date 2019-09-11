@@ -1,0 +1,4 @@
+.title {
+  @include list-label($white);
+  @include relative-plus('//cdn.technologyreview.com/_/img/plus--white.svg');
+}

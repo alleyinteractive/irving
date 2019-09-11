@@ -57,8 +57,8 @@
 }
 
 .lastRow {
-  border-top: 1px solid #646464;
   composes: row;
+  border-top: 1px solid #646464;
   margin-top: rem(40);
   padding-top: rem(30);
   width: 100%;

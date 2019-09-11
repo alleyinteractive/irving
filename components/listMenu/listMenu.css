@@ -3,12 +3,19 @@
 .wrapper {
   display: flex;
   flex-flow: row nowrap;
+  padding: rem(20) 0;
   width: auto;
+}
+
+.fullBleed {
+  @include container-with-bleed;
+  border-bottom: $border-thin;
 }
 
 .title {
   @include list-label;
   display: none;
+  padding-left: 0;
 
   @media ($mdMin) {
     display: block;

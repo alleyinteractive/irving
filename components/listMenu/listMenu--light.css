@@ -1,0 +1,8 @@
+.title {
+  composes: title from './listMenu.css';
+
+  /* increase override's specificity */
+  &.title {
+    color: $white;
+  }
+}
