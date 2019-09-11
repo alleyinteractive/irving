@@ -1,5 +1,56 @@
 /* ListItem component styles */
 
 .wrapper {
-  background-color: magenta;
+  align-items: center;
+  background-color: transparent;
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: rem(50);
+  padding-bottom: rem(32);
+  padding-top: rem(32);
+  width: auto;
+}
+
+.link {
+  display: flex;
+  flex-flow: row wrap;
+  width: auto;
+}
+
+.name {
+  font-size: rem(25);
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: rem(21);
+  font-weight: 500;
+}
+
+.meta {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  order: 1;
+
+  @media ($mdMin) {
+    padding-left: rem(24);
+    tidy-span: 6;
+  }
+}
+
+.image {
+  order: 0;
+
+  @media ($mdMin) {
+    padding-left: rem(24);
+    padding-right: rem(36);
+    tidy-span: 2;
+  }
+
+  > span {
+    border-radius: 50%;
+    display: block;
+    overflow: hidden;
+  }
 }
