@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import styles from './listMenu.css';
 
 const ListMenu = ({
-  children, title, permalink, themeName,
+  children, title, permalink, themeName, fullBleed,
 }) => (
   <UIDReset>
     <UIDConsumer>
@@ -18,7 +18,9 @@ const ListMenu = ({
         const listID = uid('list-menu');
         return (
           <nav
-            className={classNames(styles.wrapper, themeName)}
+            className={classNames(styles.wrapper, themeName, {
+              [styles.fullBleed]: fullBleed,
+            })}
             aria-label={__('List', 'mittr')}
           >
             <h2 id={listID}>
@@ -47,10 +49,12 @@ ListMenu.propTypes = {
   permalink: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   themeName: PropTypes.string,
+  fullBleed: PropTypes.bool,
 };
 
 ListMenu.defaultProps = {
   themeName: '',
+  fullBleed: false,
 };
 
 export default withStyles(styles)(ListMenu);

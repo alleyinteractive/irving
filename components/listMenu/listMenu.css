@@ -7,9 +7,14 @@
   width: auto;
 }
 
+.fullBleed {
+  @include container-with-bleed;
+}
+
 .title {
   @include list-label;
   display: none;
+  padding-left: 0;
 
   @media ($mdMin) {
     display: block;
