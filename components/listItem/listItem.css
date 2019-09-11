@@ -48,6 +48,7 @@
 
   @media ($mdMin) {
     padding-right: rem(36);
+    tidy-offset-right: 0;
     tidy-span: 2;
   }
 
