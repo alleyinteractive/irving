@@ -38,6 +38,7 @@
 }
 
 .titleActive {
+  @include relative-plus('//cdn.technologyreview.com/_/img/plus--white.svg');
   background-color: $black;
   color: $white;
 

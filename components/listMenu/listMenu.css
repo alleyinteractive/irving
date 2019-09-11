@@ -9,6 +9,7 @@
 
 .fullBleed {
   @include container-with-bleed;
+  border-bottom: $border-thin;
 }
 
 .title {

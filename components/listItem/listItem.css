@@ -3,6 +3,7 @@
 .wrapper {
   align-items: center;
   background-color: transparent;
+  border-bottom: $border-thin;
   display: flex;
   flex-flow: row wrap;
   padding-bottom: rem(32);
@@ -31,6 +32,7 @@
   flex-flow: column nowrap;
   justify-content: center;
   order: 1;
+  tidy-span: 7;
 
   @media ($mdMin) {
     padding-left: rem(24);
@@ -40,9 +42,11 @@
 
 .image {
   order: 0;
+  padding-left: rem(24);
+  tidy-offset-right: 1;
+  tidy-span: 2;
 
   @media ($mdMin) {
-    padding-left: rem(24);
     padding-right: rem(36);
     tidy-span: 2;
   }
