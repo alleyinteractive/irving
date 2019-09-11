@@ -108,6 +108,8 @@
 }
 
 .socialSharing {
-  max-width: 300px; /* placeholder for styling menu */
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
   width: auto;
 }
