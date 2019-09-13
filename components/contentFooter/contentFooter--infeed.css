@@ -1,0 +1,27 @@
+.wrapper {
+  width: 100%;
+}
+
+/* .title {
+  width: auto;
+} */
+
+.social {
+  margin-bottom: rem(15);
+  width: 100%;
+}
+
+.tags {
+  width: 100%;
+}
+
+.author {
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: rem(14);
+  width: 100%;
+}
+
+/* .label {
+  width: auto;
+} */
