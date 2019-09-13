@@ -8,22 +8,29 @@ import { findChildByName } from 'utils/children';
 // Styles
 import styles from './inFeedItem.css';
 
-const feedEyebrow = ({ customEyebrow, topic, topicLink }) => {
+const feedEyebrow = ({
+  customEyebrow, topic, topicLink, color,
+}) => {
   if ('' === customEyebrow) {
     return (
-      <Link className={styles.eyebrowLink} to={topicLink}>
+      <Link className={styles.eyebrowLink} to={topicLink} style={{ color }}>
         {topic}
       </Link>
     );
   }
 
-  return <div className={styles.eyebrow}>{customEyebrow}</div>;
+  return (
+    <div className={styles.eyebrow} style={{ color }}>
+      {customEyebrow}
+    </div>
+  );
 };
 
 feedEyebrow.propTypes = {
   customEyebrow: PropTypes.string.isRequired,
   topic: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
 };
 
 const InFeedItem = ({
@@ -33,6 +40,7 @@ const InFeedItem = ({
   topic,
   topicLink,
   postDate,
+  color,
 }) => {
   const image = findChildByName('image', children);
   const contentFooter = findChildByName('content-footer', children);
@@ -53,7 +61,12 @@ const InFeedItem = ({
             <span className="screen-reader-text">
               {__('Category: ', 'mittr')}
             </span>
-            {feedEyebrow({ customEyebrow, topic, topicLink })}
+            {feedEyebrow({
+              customEyebrow,
+              topic,
+              topicLink,
+              color,
+            })}
           </div>
           <div className="postDate">
             <span className="screen-reader-text">{__('Posted ', 'mittr')}</span>
@@ -68,6 +81,10 @@ const InFeedItem = ({
   );
 };
 
+InFeedItem.defaultProps = {
+  color: '#000000',
+};
+
 InFeedItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   customEyebrow: PropTypes.string.isRequired,
@@ -75,6 +92,7 @@ InFeedItem.propTypes = {
   title: PropTypes.string.isRequired,
   topic: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
+  color: PropTypes.string,
 };
 
 export default withStyles(styles)(InFeedItem);
