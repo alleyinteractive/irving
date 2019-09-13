@@ -1,6 +1,6 @@
 import { all, takeLatest, takeEvery } from 'redux-saga/effects';
 import getIrvingConfig from 'utils/getIrvingConfig';
-import getFieldFromUserConfig from 'utils/getFieldFromUserConfig';
+import getMergedConfigField from 'utils/getMergedConfigField';
 import {
   LOCATION_CHANGE,
   REQUEST_COMPONENT_DATA,
@@ -19,6 +19,6 @@ export default function* rootSaga() {
     takeLatest(LOCATION_CHANGE, waitToScroll),
     takeEvery(LOCATION_CHANGE, onLocationChange),
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
-    ...getFieldFromUserConfig(getIrvingConfig(), 'sagas', 'array'),
+    ...getMergedConfigField(getIrvingConfig(), 'sagas'),
   ]);
 }

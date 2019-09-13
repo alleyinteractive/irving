@@ -1,5 +1,5 @@
 import getIrvingConfig from 'utils/getIrvingConfig';
-import getFieldFromUserConfig from 'utils/getFieldFromUserConfig';
+import getMergedConfigField from 'utils/getMergedConfigField';
 
 export const components = {
   defaults: [],
@@ -37,7 +37,7 @@ const defaultState = {
   loading,
   route,
   visible,
-  ...getFieldFromUserConfig(getIrvingConfig(), 'defaultState', 'object'),
+  ...getMergedConfigField(getIrvingConfig(), 'defaultState'),
 };
 
 export default defaultState;
