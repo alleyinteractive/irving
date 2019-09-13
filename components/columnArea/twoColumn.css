@@ -1,1 +1,15 @@
 /* Two column theme styles */
+
+.main {
+  overflow: hidden;
+  width: 100%;
+
+  @media ($mdMin) {
+    @include container-with-bleed(6);
+    padding-left: 0;
+    padding-right: 0;
+    tidy-offset-left: 1;
+    /* Fix bleed from being entirely applied to right side */
+    transform: translateX(rem(-20));
+  }
+}

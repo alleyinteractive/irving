@@ -1,0 +1,59 @@
+/* InFeedItem component styles */
+
+.wrapper {
+  background-color: $white;
+  border-top: solid rem(2) $brown-gray;
+  padding: rem(20);
+  width: auto;
+}
+
+.content {
+  width: 100%;
+}
+
+.eyebrow {
+  font-family: $sans;
+  font-size: rem(16);
+  font-weight: 600;
+  line-height: 1.19;
+  margin-right: 1ch;
+  text-decoration: none;
+}
+
+.eyebrowLink {
+  font-family: $sans;
+  font-size: rem(16);
+  font-weight: 600;
+  line-height: 1.19;
+  text-decoration: none;
+}
+
+.header {
+  display: flex;
+  flex-flow: column nowrap;
+  width: auto;
+}
+
+.image {
+  width: auto;
+}
+
+.meta {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: rem(5);
+  order: 0;
+  width: auto;
+}
+
+.title {
+  color: $black;
+  font-family: $sans;
+  font-size: rem(30);
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.07;
+  margin-bottom: rem(20);
+  margin-right: rem(20);
+  order: 1;
+}

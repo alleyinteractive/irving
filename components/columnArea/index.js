@@ -8,11 +8,9 @@ import styles from './columnArea.css';
 import oneColumnStyles from './oneColumn.css';
 import twoColumnStyles from './twoColumn.css';
 
-const ColumnArea = (props) => {
-  const { children, theme } = props;
+const ColumnArea = ({ children, theme }) => {
   // Separate content and sidebar
   const content = children.filter(
-    // eslint-disable-next-line max-len
     (child) => 'sidebar' !== child.props.componentName
   );
   const sidebar = findChildByName('sidebar', children);
@@ -30,12 +28,8 @@ ColumnArea.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-const wrapWithStyles = withStyles(styles, oneColumnStyles, twoColumnStyles);
-
-const wrapWithThemes = withThemes('column-area', {
+export default withThemes('column-area', {
   default: styles,
-  oneColumn: oneColumnStyles,
-  twoColumn: twoColumnStyles,
-});
-
-export default wrapWithStyles(wrapWithThemes(ColumnArea));
+  'one-column': oneColumnStyles,
+  'two-column': twoColumnStyles,
+})(withStyles(styles, oneColumnStyles, twoColumnStyles)(ColumnArea));

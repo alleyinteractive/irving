@@ -1,18 +1,17 @@
 .content {
-  background-color: $background-gray;
+  background-color: $white;
   padding-top: rem(20);
 
   @media ($lgMin) {
     padding: rem(20);
   }
 
-  :global(.body--article) & {
-    background-color: $white;
+  :global(.body--feed) & {
+    background-color: $background-gray;
   }
 
   /* @todo review if body padding makes sense on most articles. */
   :global(.body--35-list) & {
-    background-color: $white;
     padding: 0;
 
     @media ($lgMin) {

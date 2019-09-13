@@ -3,25 +3,28 @@ import PropTypes from 'prop-types';
 import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
 import Link from 'components/helpers/link';
+import withThemes from 'components/hoc/withThemes';
+import { withStyles } from 'critical-style-loader/lib';
 
 // Styles
 import styles from './contentFooter.css';
+import infeedTheme from './contentFooter--infeed.css';
 
-const ContentFooter = ({ children, author }) => {
+const ContentFooter = ({ children, author, theme }) => {
   const socialSharing = findChildByName('social-sharing', children);
   const tags = filterChildrenByName('tags', children);
   return (
-    <footer className={styles.wrapper}>
-      <h2 className={styles.title}>{__('Article meta', 'mittr')}</h2>
-      <div className={styles.social}>{socialSharing}</div>
-      {tags && (
-        <div className={styles.tags}>
-          <h3 className={styles.label}>{__('Tagged', 'mittr')}</h3>
+    <footer className={theme.wrapper}>
+      <h2 className={theme.title}>{__('Article meta', 'mittr')}</h2>
+      <div className={theme.social}>{socialSharing}</div>
+      {tags && tags.children && (
+        <div className={theme.tags}>
+          <h3 className={theme.label}>{__('Tagged', 'mittr')}</h3>
           {tags}
         </div>
       )}
-      <address className={styles.author}>
-        <h3 className={styles.label}>{__('Author', 'mittr')}</h3>
+      <address className={theme.author}>
+        <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
         {/* @todo this needs an image */}
         <Link to={author.url}>{author.name}</Link>
       </address>
@@ -35,6 +38,17 @@ ContentFooter.propTypes = {
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
   }).isRequired,
+  theme: PropTypes.shape({
+    author: PropTypes.string,
+    label: PropTypes.string,
+    social: PropTypes.string,
+    tags: PropTypes.string,
+    title: PropTypes.string,
+    wrapper: PropTypes.string,
+  }).isRequired,
 };
 
-export default ContentFooter;
+export default withThemes('content-footer', {
+  default: styles,
+  infeed: infeedTheme,
+})(withStyles(styles, infeedTheme)(ContentFooter));

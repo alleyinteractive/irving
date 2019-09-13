@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  @include gutenberg-block-styles;
+  width: 100%;
+}

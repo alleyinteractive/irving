@@ -26,7 +26,7 @@
   align-items: center;
   display: flex;
   flex-flow: row nowrap;
-  tidy-span: 5;
+  tidy-span: 4;
 
   @media ($smMin) {
     tidy-span: 3;
@@ -130,15 +130,10 @@
   align-content: flex-end;
   display: flex;
   flex-flow: column nowrap;
-  flex-grow: 1;
   justify-content: center;
   margin-left: tidy-var(gap);
   position: static;
   tidy-span: 5;
-
-  @media ($smMin) {
-    tidy-span: 7.5;
-  }
 
   @media ($mdMin) {
     tidy-span: 9;
@@ -146,10 +141,6 @@
 
   .headroom & {
     tidy-span: 5;
-
-    @media ($smMin) {
-      tidy-span: 5;
-    }
 
     @media ($mdMin) {
       tidy-span: 8;

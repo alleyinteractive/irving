@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "assets": [
+        "./assets/*"
+      ],
+      "actions": [
+        "./actions/*"
+      ],
+      "components": [
+        "./components/*"
+      ],
+      "config": [
+        "./config/*"
+      ],
+      "reducers": [
+        "./reducers/*"
+      ],
+      "sagas": [
+        "./sagas/*"
+      ],
+      "selectors": [
+        "./selectors/*"
+      ],
+      "services": [
+        "./services/*"
+      ],
+      "utils": [
+        "./utils/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

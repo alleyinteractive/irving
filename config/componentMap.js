@@ -11,8 +11,10 @@ import Disqus from 'components/disqus';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
 import GoogleTagManager from 'components/googleTagManager';
+import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
+import InFeedItem from 'components/inFeedItem';
 import Image from 'components/image/image';
 import ListHeader from 'components/listHeader';
 import ListDescription from 'components/listDescription';
@@ -60,8 +62,10 @@ export const componentMap = {
   footer: Footer,
   'google-analytics': GoogleAnalytics,
   'google-tag-manager': GoogleTagManager,
+  'gutenberg-content': GutenbergContent,
   head: Head,
   header: Header,
+  'infeed-item': InFeedItem,
   html: RawHTML,
   image: Image,
   'list-header': ListHeader,
