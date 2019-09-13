@@ -1,0 +1,24 @@
+.content {
+  /* @todo: Determine if should override block styles or have all separate mixins. */
+  composes: content from './gutenbergContent.css';
+
+  /* stylelint-disable selector-max-specificity */
+  /* Increase specificity to override styles */
+  &.content {
+    p {
+      color: $color-text;
+      font-family: $sans;
+      font-size: rem(18);
+      font-weight: 400;
+      letter-spacing: normal;
+      line-height: 1.44;
+      margin-bottom: rem(18);
+
+      a {
+        font-weight: 400;
+        text-decoration: underline;
+      }
+    }
+  }
+  /* stylelint-enable selector-max-specificity */
+}
