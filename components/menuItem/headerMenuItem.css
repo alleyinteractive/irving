@@ -11,7 +11,7 @@
 }
 
 .parent {
-  background-color: $white;
+  background-color: transparent;
   border: 0;
   color: $black;
   font-weight: 600;
