@@ -3,12 +3,18 @@
  *
  * @param {object} config irving config object.
  * @param {string} key key to search for in config.
- * @param {string} type type of resulting config data (array or object).
  * @returns {object}
  */
-export default function getFieldFromUserConfig(config, key, type) {
+export default function getMergedConfigField(config, key) {
+  // Value against which to determine type of data config is expecting.
+  const checkValue = (config[key] && 'function' === typeof config[key]) ?
+    config[key]() : config[key];
+  // Infer type of data for this config field.
+  const type = (Array.isArray(checkValue)) ? 'array' : 'object';
+  // Set initial/default value for the merged config based on type.
   const initial = 'array' === type ? [] : {};
-  const hasPackages = (config.packages && Object.keys(config.packages).length);
+  // Determine if there are any packages configured in the user config.
+  const hasPackages = (config.packages && config.packages.length);
 
   // Return early if an invalid key was provided or no packaged configured.
   if (! config[key] && ! hasPackages) {

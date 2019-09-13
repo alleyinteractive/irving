@@ -1,5 +1,5 @@
 import { takeLatest, takeEvery } from 'redux-saga/effects';
-import getFieldFromUserConfig from './getFieldFromUserConfig';
+import getMergedConfigField from './getMergedConfigField';
 
 it('should get provided field from configured packages of both object and array types', () => {
   const mockConfig = {
@@ -14,16 +14,8 @@ it('should get provided field from configured packages of both object and array 
       },
     ],
   };
-  const configReducers = getFieldFromUserConfig(
-    mockConfig,
-    'reducers',
-    'object'
-  );
-  const configSagas = getFieldFromUserConfig(
-    mockConfig,
-    'sagas',
-    'array'
-  );
+  const configReducers = getMergedConfigField(mockConfig, 'reducers');
+  const configSagas = getMergedConfigField(mockConfig, 'sagas');
 
   expect(Object.keys(configReducers)).toEqual(['mySlice']);
   expect(configSagas[0].payload.args[0]).toBe('TEST_ACTION');
@@ -38,16 +30,8 @@ it('should get user-configured config data of both object and array types', () =
       takeLatest('TEST_ACTION', () => {}),
     ]),
   };
-  const configReducers = getFieldFromUserConfig(
-    mockConfig,
-    'reducers',
-    'object'
-  );
-  const configSagas = getFieldFromUserConfig(
-    mockConfig,
-    'sagas',
-    'array'
-  );
+  const configReducers = getMergedConfigField(mockConfig, 'reducers');
+  const configSagas = getMergedConfigField(mockConfig, 'sagas');
 
   expect(Object.keys(configReducers)).toEqual(['userSlice']);
   expect(configSagas[0].payload.args[0]).toBe('TEST_ACTION');
@@ -75,16 +59,8 @@ it('should merge package and user config data of any type', () => {
       takeEvery('TEST_ACTION_THREE', () => {}),
     ]),
   };
-  const configReducers = getFieldFromUserConfig(
-    mockConfig,
-    'reducers',
-    'object'
-  );
-  const configSagas = getFieldFromUserConfig(
-    mockConfig,
-    'sagas',
-    'array'
-  );
+  const configReducers = getMergedConfigField(mockConfig, 'reducers');
+  const configSagas = getMergedConfigField(mockConfig, 'sagas');
 
   expect(Object.keys(configReducers))
     .toEqual(['packageSlice', 'testSlice', 'userSlice']);
