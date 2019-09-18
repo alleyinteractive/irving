@@ -1,0 +1,7 @@
+/* PostList component styles */
+
+.wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}

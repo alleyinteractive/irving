@@ -1,0 +1,24 @@
+/* Teaser component styles */
+
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.title {
+  width: auto;
+}
+
+.excerpt {
+  width: auto;
+}
+
+.image {
+  order: 0;
+  width: auto;
+}
+
+.meta {
+  order: 1;
+  width: auto;
+}

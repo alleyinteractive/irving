@@ -30,6 +30,7 @@ import MenuItem from 'components/menuItem';
 import NotConfigured from 'components/notConfigured';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
+import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
@@ -39,6 +40,7 @@ import SocialList from 'components/socialList';
 import StatsWidget from 'components/statsWidget';
 import TagLink from 'components/tagLink';
 import Tags from 'components/tags';
+import Teaser from 'components/teaser';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import TermArchiveContentListItem from 'components/termArchiveContentListItem';
 import TermArchivePinnedArticle from 'components/termArchivePinnedArticle';
@@ -86,6 +88,7 @@ export const componentMap = {
   'mittr-plugin-extension/stats-widget': StatsWidget,
   pagination: Placeholder,
   parsely: Parsely,
+  'post-list': PostList,
   'search-bar': SearchBar,
   'section-item': SectionItem,
   'subtopics-section': SubtopicsSection,
@@ -95,6 +98,7 @@ export const componentMap = {
   'social-item': SocialItem,
   'tag-link': TagLink,
   tags: Tags,
+  teaser: Teaser,
   'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TermArchiveContentListItem,
   'term-archive-pinned-article': TermArchivePinnedArticle,
