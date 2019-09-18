@@ -1,54 +1,85 @@
+// @todo Use joi or something similar.
+const schema = require('../config/irvingConfigSchema');
+
+function getConfigFieldType(value) {
+  // Infer type of data based on schema.
+  switch (true) {
+    case Array.isArray(value):
+      return 'array';
+
+    case 'function' === typeof value:
+      return 'function';
+
+    default:
+      return 'object';
+  }
+}
+
 /**
- * Get additional fields from irving configuration file.
+ * Get additional fields from irving configurations.
  *
- * @param {object} config irving config object.
+ * @param {array} configs array of irving config objects.
  * @param {string} key key to search for in config.
- * @returns {object}
+ * @returns {mixed}
  */
-export default function getMergedConfigField(config, key) {
-  // Value against which to determine type of data config is expecting.
-  const checkValue = (config[key] && 'function' === typeof config[key]) ?
-    config[key]() : config[key];
-  // Infer type of data for this config field.
-  const type = (Array.isArray(checkValue)) ? 'array' : 'object';
+const getMergedConfigField = (configs, key) => {
+  // Throw an error if no key exists.
+  if (! schema[key]) {
+    throw new Error(`no key ${key} exists in the Irving config schema`);
+  }
+
   // Set initial/default value for the merged config based on type.
-  const initial = 'array' === type ? [] : {};
-  // Determine if there are any packages configured in the user config.
-  const hasPackages = (config.packages && config.packages.length);
+  const initial = schema[key];
+  const type = getConfigFieldType(initial);
+  const hasKey = configs.some((configPackage) => (configPackage[key]));
 
   // Return early if an invalid key was provided or no packaged configured.
-  if (! config[key] && ! hasPackages) {
+  if (! hasKey) {
     return initial;
   }
 
   // Get provided key from configured irving extension packages.
-  const packageConfig = ! hasPackages ? initial :
-    config.packages.reduce((acc, irvingPackage) => {
-      // If package has provided key, spread them into the accumulator.
-      if (irvingPackage[key] && 'function' === typeof irvingPackage[key]) {
-        return 'array' === type ? [
-          ...acc,
-          ...irvingPackage[key](),
-        ] : {
-          ...acc,
-          ...irvingPackage[key](),
-        };
-      }
+  return configs.reduce((acc, config) => {
+    // Merge together config fields based on type.
+    switch (type) {
+      case 'array':
+        return [...acc, ...config[key]];
 
-      // Return accumulator as-is if package has no provided key.
-      return acc;
-    }, initial);
+      // There should only be one configured function, so return the latest.
+      case 'function':
+        return config[key];
 
-  // Get user-configured data.
-  const userConfig = config[key] ?
-    config[key]() : initial;
+      case 'object':
+        return { ...acc, ...config[key] };
 
-  // Spread results and return.
-  return 'array' === type ? [
-    ...packageConfig,
-    ...userConfig,
-  ] : {
-    ...packageConfig,
-    ...userConfig,
-  };
-}
+      default:
+        return acc;
+    }
+  }, initial);
+};
+
+/**
+ * Get merged value from user config plus configured packages.
+ *
+ * @param {object} config irving config object.
+ * @param {string} key key to search for in config.
+ * @returns {mixed}
+ */
+const getMergedFromUserConfig = (userConfig, key) => {
+  let { packages } = schema;
+
+  // User empty array or user configured pacakges.
+  if (userConfig.packages && userConfig.packages.length) {
+    packages = userConfig.packages;
+  }
+
+  return getMergedConfigField(
+    [...packages, userConfig],
+    key
+  );
+};
+
+module.exports = {
+  getMergedConfigField,
+  getMergedFromUserConfig,
+};

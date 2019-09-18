@@ -4,7 +4,8 @@ const auth = require('./auth');
 // App must be built using the build command before production mode can be run.
 const clientStats = require('../build/client/stats.json');
 const { default: serverRenderer } = require('../build/server/main.bundle');
-const { maybeRequireUserModule } = require('../utils/userModule');
+const { userConfig } = require('../config/paths');
+const { getMergedFromUserConfig } = require('../utils/getMergedConfigField');
 
 /**
  * Add the required middleware to support running the app in production mode.
@@ -12,7 +13,11 @@ const { maybeRequireUserModule } = require('../utils/userModule');
  */
 const productionMiddleware = (app) => {
   // Allow customization of production server
-  maybeRequireUserModule('server/customizeProdServer.js')(app);
+  const irvingProdMiddleware = getMergedFromUserConfig(
+    userConfig,
+    'customizeProdServer'
+  );
+  irvingProdMiddleware.forEach((middleware) => middleware(app));
 
   // @todo should this be included in core or optional?
   app.use(auth);

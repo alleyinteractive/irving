@@ -11,10 +11,10 @@ getService().start();
 
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
-const path = require('path');
 const express = require('express');
-const { rootUrl } = require('../config/paths');
-const { maybeRequireUserModule } = require('../utils/userModule');
+const createServer = '../server/createSrver';
+const { rootUrl, userConfig } = require('../config/paths');
+const { getMergedFromUserConfig } = require('../utils/getMergedConfigField');
 
 const {
   PORT = 3001,
@@ -24,8 +24,12 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-// Allow customization of server.
-maybeRequireUserModule('server/customizeServer.js')(app);
+// Run all customize server functions.
+const irvingServerMiddleware = getMergedFromUserConfig(
+  userConfig,
+  'customizeServer'
+);
+irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 if ('development' === NODE_ENV) {
   require('../server/development')(app);
@@ -45,7 +49,13 @@ app.use((err, req, res, next) => {
 });
 
 // Allow customization of how server is created.
-const server = maybeRequireUserModule('server/createServer.js')(app);
+// Run all customize server functions.
+let server;
+if (userConfig.createServer) {
+  server = userConfig.createServer(app);
+} else {
+  server = createServer(app);
+}
 
 server.listen(PORT);
 console.log(`Server listening on port ${PORT}!`);
