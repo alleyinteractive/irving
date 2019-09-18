@@ -2,9 +2,7 @@ const defaultService = {
   get: () => null,
   set: () => {},
   del: () => null,
-  instance: () => null,
 };
-
 let service;
 
 /**
@@ -46,7 +44,7 @@ const getService = () => {
       console.error(err); // eslint-disable-line no-console
     });
 
-    return {
+    service = {
       client,
       async get(key) {
         return JSON.parse(await this.client.get(key));
@@ -62,10 +60,9 @@ const getService = () => {
       del(key) {
         return this.client.del(key);
       },
-      instance() {
-        return this.client;
-      },
     };
+
+    return service;
   }
 
   return defaultService;
