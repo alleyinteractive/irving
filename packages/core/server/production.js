@@ -4,7 +4,9 @@ const auth = require('./auth');
 // App must be built using the build command before production mode can be run.
 const clientStats = require('../build/client/stats.json');
 const { default: serverRenderer } = require('../build/server/main.bundle');
-const { userConfig } = require('../config/paths');
+const { serverConfig: serverConfigPath } = require('../config/paths');
+// eslint-disable-next-line import/no-dynamic-require
+const serverConfig = require(serverConfigPath);
 const { getMergedFromUserConfig } = require('../utils/getMergedConfigField');
 
 /**
@@ -14,7 +16,7 @@ const { getMergedFromUserConfig } = require('../utils/getMergedConfigField');
 const productionMiddleware = (app) => {
   // Allow customization of production server
   const irvingProdMiddleware = getMergedFromUserConfig(
-    userConfig,
+    serverConfig,
     'customizeProdServer'
   );
   irvingProdMiddleware.forEach((middleware) => middleware(app));

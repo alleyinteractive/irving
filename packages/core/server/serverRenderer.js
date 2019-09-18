@@ -11,8 +11,8 @@ import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import ErrorMessage from 'components/errorMessage';
-import getEnv from 'config/webpack/env';
 import defaultState from 'reducers/defaultState';
+import getEnv from 'config/webpack/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import createDebug from 'services/createDebug';
@@ -22,6 +22,7 @@ import userConfig from '@irvingjs/irving.config';
 import { getMergedFromUserConfig } from 'utils/getMergedConfigField';
 import getAppTemplateVars from './getAppTemplateVars';
 import getErrorTemplateVars from './getErrorTemplateVars';
+import getTemplateVars from './getTemplateVars';
 
 const monitor = getService();
 const debugError = createDebug('render:error');
@@ -31,10 +32,8 @@ const debugRequest = createDebug('render:request');
  * Handle rendering the app as a string that can then be returned as a response
  * from the server.
  * @param {object} req - express request object
- * @param {object} res - express response object
- * @param {string[]} webpackScripts - an array of required webpack bundle scripts
- *                                   to be rendered
- */
+ * @param {object} res - express response object to be rendered.
+ **/
 const render = async (req, res, clientStats) => {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
@@ -83,18 +82,18 @@ const render = async (req, res, clientStats) => {
   );
 
   // Get some template vars and allow customization by user.
-  const appTemplateVarGetters = getMergedFromUserConfig(
+  const getters = getMergedFromUserConfig(
     userConfig,
     'getAppTemplateVars'
   );
-  const initialVars = getAppTemplateVars(AppWrapper, {
-    // Collect webpack scripts for prerender, pass in to allow addition of more tags to <head>.
-    irvingHead: getWebpackScripts(clientStats).join(''),
-  });
-  // Loop through all getters and call them with merged templateVars.
-  const customTemplateVars = appTemplateVarGetters.reduce(
-    (acc, getVars) => getVars(acc),
-    initialVars
+  const initialValues = getAppTemplateVars(
+    AppWrapper,
+    { irvingHead: getWebpackScripts(clientStats).join('') },
+  );
+  const customTemplateVars = getTemplateVars(
+    getters,
+    AppWrapper,
+    initialValues
   );
 
   // Clear head data to avoid memory leak.
@@ -150,16 +149,18 @@ export default function serverRenderer(options) {
       );
 
       // Get some template vars and allow customization by user.
-      const errorTemplateVarGetters = getMergedFromUserConfig(
+      const getters = getMergedFromUserConfig(
         userConfig,
         'getErrorTemplateVars'
       );
-      // Vars not used by default on the error template, but provide them anyway.
-      const initialVars = getErrorTemplateVars(ErrorMessageWrapper, { irvingHead: '' });
-      // Loop through all getters and call them with merged templateVars.
-      const customTemplateVars = errorTemplateVarGetters.reduce(
-        (acc, getVars) => getVars(acc),
-        initialVars
+      const initialValues = getErrorTemplateVars(
+        ErrorMessageWrapper,
+        { irvingHead: '' }
+      );
+      const customTemplateVars = getTemplateVars(
+        getters,
+        ErrorMessageWrapper,
+        initialValues
       );
       const templateVars = {
         css: cssBuilder.getCss(),

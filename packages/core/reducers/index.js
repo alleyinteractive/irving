@@ -1,14 +1,19 @@
 import { combineReducers } from 'redux';
 import reduceReducers from 'reduce-reducers';
 import defaultState from 'reducers/defaultState';
-import getIrvingConfig from 'utils/getIrvingConfig';
-import getMergedConfigField from 'utils/getMergedConfigField';
+import userConfig from '@irvingjs/irving.config';
+import { getMergedFromUserConfig } from 'utils/getMergedConfigField';
 import componentsReducer from './componentsReducer';
 import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
 import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
 import componentDataReducer from './componentDataReducer';
+
+const reducerGetters = getMergedFromUserConfig(userConfig, 'reducers');
+const customReducers = reducerGetters.reduce((acc, getter) => (
+  { ...acc, ...getter() }
+), {});
 
 // Configure "slice" reducers.
 export const reducers = {
@@ -18,7 +23,7 @@ export const reducers = {
   loading: loadingReducer,
   route: routeReducer,
   visible: visibilityReducer,
-  ...getMergedConfigField(getIrvingConfig(), 'reducers'),
+  ...customReducers,
 };
 const rootSliceReducer = combineReducers(reducers);
 

@@ -4,8 +4,8 @@ import PlayPauseButton from 'components/playPauseButton';
 import AudioElement from 'components/audioElement';
 
 export default {
-  reducers: getReducers,
-  defaultState: getDefaultState,
+  reducers: [getReducers],
+  defaultState: [getDefaultState],
 };
 
 export {
