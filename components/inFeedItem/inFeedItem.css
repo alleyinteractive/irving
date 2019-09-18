@@ -35,6 +35,7 @@
 }
 
 .image {
+  margin-bottom: rem(20);
   width: auto;
 }
 
