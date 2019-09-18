@@ -4,7 +4,8 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const proxy = require('http-proxy-middleware');
 const getConfig = require('../config/webpack.config.js');
-const { maybeRequireUserModule } = require('../utils/userModule');
+const { userConfig } = require('../config/paths');
+const { getMergedFromUserConfig } = require('../utils/getMergedConfigField');
 
 const config = getConfig({}, { mode: 'development' });
 const matchClient = ({ name }) => 'client' === name;
@@ -20,7 +21,11 @@ const { PROXY_URL } = process.env;
  */
 const developmentMiddleware = (app) => {
   // Allow customization of development server
-  maybeRequireUserModule('server/customizeDevServer.js')(app);
+  const irvingDevMiddleware = getMergedFromUserConfig(
+    userConfig,
+    'customizeDevServer'
+  );
+  irvingDevMiddleware.forEach((middleware) => middleware(app));
 
   // Serve webpack handled assets.
   app.use(webpackDevMiddleware(multiCompiler, {

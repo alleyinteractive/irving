@@ -21,7 +21,6 @@ import App from 'components/app';
 // @todo might want to update these to @irvingjs also.
 import getAppTemplateVars from '@irving/custom/getAppTemplateVars';
 import getErrorTemplateVars from '@irving/custom/getErrorTemplateVars';
-import getIrvingConfig from 'utils/getIrvingConfig';
 
 const { componentMap } = getIrvingConfig();
 const monitor = getService();

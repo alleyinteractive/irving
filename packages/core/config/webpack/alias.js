@@ -1,36 +1,13 @@
-const { maybeResolveUserModule } = require(
-  '../../utils/userModule'
-);
-
 /**
  * Get the context specific alias configuration.
  * @param {string} context - the configuration context
  * @returns {object} - an alias configuration value.
  */
 module.exports = function getAlias(context) {
-  /**
-   * Create webpack aliases to resolve files containing user-customizable
-   * irving functionality and include them in the appropriate bundle.
-   *
-   * @param {array} aliases Aliases for user-customizable functionality in irving.
-   */
-  const createCustomizableAliases = (aliases) => (
-    Object.keys(aliases).reduce((acc, key) => {
-      // @todo might want to update this to @irvingjs also.
-      acc[`@irving/custom/${key}`] = maybeResolveUserModule(
-        aliases[key]
-      );
-      return acc;
-    }, {})
-  );
-
   switch (context) {
     case 'development_server':
     case 'production_server':
-      return createCustomizableAliases({
-        getAppTemplateVars: 'server/getAppTemplateVars.js',
-        getErrorTemplateVars: 'server/getErrorTemplateVars.js',
-      });
+      return {};
 
     case 'development_client':
       return {
