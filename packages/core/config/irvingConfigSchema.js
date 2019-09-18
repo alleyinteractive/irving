@@ -8,6 +8,7 @@ module.exports = {
   customizeDevServer: [],
   customizeProdServer: [],
   getAppTemplateVars: [],
+  getErrorTemplateVars: [],
   serverViews: {},
   componentMap: {},
 };

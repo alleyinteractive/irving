@@ -18,11 +18,11 @@ import getWebpackScripts from 'utils/getWebpackScripts';
 import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
 import App from 'components/app';
-// @todo might want to update these to @irvingjs also.
-import getAppTemplateVars from '@irving/custom/getAppTemplateVars';
-import getErrorTemplateVars from '@irving/custom/getErrorTemplateVars';
+import userConfig from '@irvingjs/irving.config';
+import { getMergedFromUserConfig } from 'utils/getMergedConfigField';
+import getAppTemplateVars from './getAppTemplateVars';
+import getErrorTemplateVars from './getErrorTemplateVars';
 
-const { componentMap } = getIrvingConfig();
 const monitor = getService();
 const debugError = createDebug('render:error');
 const debugRequest = createDebug('render:request');
@@ -83,13 +83,19 @@ const render = async (req, res, clientStats) => {
   );
 
   // Get some template vars and allow customization by user.
-  const {
-    appHtml,
-    irvingHead,
-  } = getAppTemplateVars(AppWrapper, {
+  const appTemplateVarGetters = getMergedFromUserConfig(
+    userConfig,
+    'getAppTemplateVars'
+  );
+  const initialVars = getAppTemplateVars(AppWrapper, {
     // Collect webpack scripts for prerender, pass in to allow addition of more tags to <head>.
     irvingHead: getWebpackScripts(clientStats).join(''),
   });
+  // Loop through all getters and call them with merged templateVars.
+  const customTemplateVars = appTemplateVarGetters.reduce(
+    (acc, getVars) => getVars(acc),
+    initialVars
+  );
 
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
@@ -99,10 +105,9 @@ const render = async (req, res, clientStats) => {
     helmet,
     criticalCss: cssBuilder.getCss(),
     styleRefs: cssBuilder.getEncodedMap(),
-    preRenderedHtml: appHtml,
     preRenderedState: stateEncoded,
     env: JSON.stringify(getEnv()),
-    irvingHead,
+    ...customTemplateVars,
   };
 
   res.status(status);
@@ -137,24 +142,28 @@ export default function serverRenderer(options) {
 
       // Render a error page.
       const cssBuilder = new CriticalCssBuilder();
-      const ErrorMessageComponent = componentMap['error-message'] ||
-        ErrorMessage;
+      const ErrorMessageComponent = userConfig['error-message'] || ErrorMessage;
       const ErrorMessageWrapper = () => (
         <StyleContext.Provider value={cssBuilder.addCss}>
           <ErrorMessageComponent />
         </StyleContext.Provider>
       );
-      const {
-        appHtml,
-        irvingHead,
-      } = getErrorTemplateVars(ErrorMessageWrapper, {
-        // None of these are used by default on the error template, but provide them anyway.
-        irvingHead: '',
-      });
+
+      // Get some template vars and allow customization by user.
+      const errorTemplateVarGetters = getMergedFromUserConfig(
+        userConfig,
+        'getErrorTemplateVars'
+      );
+      // Vars not used by default on the error template, but provide them anyway.
+      const initialVars = getErrorTemplateVars(ErrorMessageWrapper, { irvingHead: '' });
+      // Loop through all getters and call them with merged templateVars.
+      const customTemplateVars = errorTemplateVarGetters.reduce(
+        (acc, getVars) => getVars(acc),
+        initialVars
+      );
       const templateVars = {
         css: cssBuilder.getCss(),
-        html: appHtml,
-        irvingHead,
+        ...customTemplateVars,
       };
 
       res.status(500);
