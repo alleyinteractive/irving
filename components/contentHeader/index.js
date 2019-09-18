@@ -5,15 +5,22 @@ import { findChildByName } from 'utils/children';
 import styles from './contentHeader.css';
 
 const ContentHeader = ({
-  title, publishDate, deck, children,
+  title,
+  publishDate,
+  deck,
+  children,
+  headingLevel,
 }) => {
   const image = findChildByName('image', children);
   const byline = findChildByName('byline', children);
+  const Heading = `h${headingLevel}`;
+  const DeckTag = '' === title ? Heading : 'p';
+
   return (
     <header className={styles.wrapper}>
       <div className={styles.intro}>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.deck}>{deck}</p>
+        {'' !== title && <Heading className={styles.title}>{title}</Heading>}
+        <DeckTag className={styles.deck}>{deck}</DeckTag>
         <div className={styles.meta}>
           {byline}
           <div className={styles.publishDate}>{publishDate}</div>
@@ -29,6 +36,11 @@ ContentHeader.propTypes = {
   deck: PropTypes.string.isRequired,
   publishDate: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  headingLevel: PropTypes.number,
+};
+
+ContentHeader.defaultProps = {
+  headingLevel: 1,
 };
 
 const wrapWithStyles = withStyles(styles);

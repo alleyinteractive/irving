@@ -14,6 +14,7 @@ import GoogleTagManager from 'components/googleTagManager';
 import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
+import HeaderWithImage from 'components/headerWithImage';
 import InFeedItem from 'components/inFeedItem';
 import Image from 'components/image/image';
 import ListHeader from 'components/listHeader';
@@ -65,6 +66,7 @@ export const componentMap = {
   'gutenberg-content': GutenbergContent,
   head: Head,
   header: Header,
+  'header-with-image': HeaderWithImage,
   'infeed-item': InFeedItem,
   html: RawHTML,
   image: Image,
