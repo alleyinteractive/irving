@@ -16,15 +16,15 @@ const bustPageCache = async (req, res) => {
 
   // The endpoint is the key.
   const key = endpoint;
-  const cache = getService();
+  const service = getService();
 
-  const hasCache = await cache.get(key);
+  const hasCache = await service.get(key);
   if (! hasCache) {
     return res.json('No cache to bust.');
   }
 
   // Delete cache.
-  cache.del(key);
+  service.del(key);
 
   return res.json('Endpoint cache deleted.');
 };

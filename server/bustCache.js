@@ -7,16 +7,16 @@ const getService = require('../services/cacheService');
  * @param {Response} res  Response.
  */
 const bustCache = async (req, res) => {
-  const service = getService().instance();
+  const service = getService();
 
   // Create a readable stream (object mode).
   // This approach is better for performance.
-  const stream = await service.scanStream();
+  const stream = await service.client.scanStream();
 
   stream.on('data', async (keys) => {
     // `keys` is an array of strings representing key names
     if (keys.length) {
-      const pipeline = service.pipeline();
+      const pipeline = service.client.pipeline();
       keys.forEach((key) => {
         pipeline.del(key);
       });
