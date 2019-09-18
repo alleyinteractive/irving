@@ -1,0 +1,43 @@
+/* HeaderWithImage component styles */
+
+.wrapper {
+  @include container-with-bleed;
+  position: relative;
+
+  nav + & {
+    margin-top: rem(75);
+  }
+}
+
+.title {
+  box-sizing: border-box;
+  color: #fff;
+  font-family: $sans;
+  font-size: rem(122);
+  font-weight: 600;
+  height: 100%;
+  left: 0;
+  line-height: 1.15;
+  margin-bottom: rem(30);
+  max-width: rem(600);
+  padding: 0 0 0 rem(62);
+  position: absolute;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  top: 50%;
+  transform: translate(0, -39%);
+  width: 100%;
+  word-spacing: 1000000px;
+  z-index: 1;
+}
+
+.innerTitle {
+  background-color: $black;
+  box-decoration-break: clone;
+  box-shadow: 10px 0 0 black, -10px 0 0 black;
+}
+
+.image {
+  position: relative;
+  z-index: 0;
+}
