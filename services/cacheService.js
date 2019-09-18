@@ -1,4 +1,5 @@
 const defaultService = {
+  client: {},
   get: () => null,
   set: () => {},
   del: () => null,

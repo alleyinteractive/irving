@@ -17,8 +17,8 @@ const bustPageCache = async (req, res) => {
   // The endpoint is the key.
   const key = endpoint;
   const service = getService();
-
   const hasCache = await service.get(key);
+
   if (! hasCache) {
     return res.json('No cache to bust.');
   }
