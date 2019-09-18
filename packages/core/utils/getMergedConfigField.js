@@ -1,6 +1,12 @@
 // @todo Use joi or something similar.
 const schema = require('../config/irvingConfigSchema');
 
+/**
+ * Infer type based on a config value.
+ *
+ * @param {mixed} value value to check.
+ * @returns {string}
+ */
 function getConfigFieldType(value) {
   // Infer type of data based on schema.
   switch (true) {

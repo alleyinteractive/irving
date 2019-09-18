@@ -35,6 +35,7 @@ module.exports = {
   clientBuild: resolveAppDir('build/client'),
   serverBuild: resolveAppDir('build/server'),
   userConfig: resolveAppDir('irving.config.js'),
+  serverConfig: resolveAppDir('irving.config.server.js'),
   globalStyles: resolveIrvingDir('assets/styles'),
   rootUrl: ROOT_URL || 'http://localhost:3001',
   proxyUrl: PROXY_URL,

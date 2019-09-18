@@ -12,8 +12,13 @@ getService().start();
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
 const express = require('express');
-const createServer = '../server/createSrver';
-const { rootUrl, userConfig } = require('../config/paths');
+const createServer = require('../server/createServer');
+const {
+  rootUrl,
+  serverConfig: serverConfigPath,
+} = require('../config/paths');
+// eslint-disable-next-line import/no-dynamic-require
+const serverConfig = require(serverConfigPath);
 const { getMergedFromUserConfig } = require('../utils/getMergedConfigField');
 
 const {
@@ -26,7 +31,7 @@ app.set('view engine', 'ejs');
 
 // Run all customize server functions.
 const irvingServerMiddleware = getMergedFromUserConfig(
-  userConfig,
+  serverConfig,
   'customizeServer'
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
@@ -51,8 +56,8 @@ app.use((err, req, res, next) => {
 // Allow customization of how server is created.
 // Run all customize server functions.
 let server;
-if (userConfig.createServer) {
-  server = userConfig.createServer(app);
+if (serverConfig.createServer) {
+  server = serverConfig.createServer(app);
 } else {
   server = createServer(app);
 }

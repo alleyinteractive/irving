@@ -4,7 +4,9 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const proxy = require('http-proxy-middleware');
 const getConfig = require('../config/webpack.config.js');
-const { userConfig } = require('../config/paths');
+const { serverConfig: serverConfigPath } = require('../config/paths');
+// eslint-disable-next-line import/no-dynamic-require
+const serverConfig = require(serverConfigPath);
 const { getMergedFromUserConfig } = require('../utils/getMergedConfigField');
 
 const config = getConfig({}, { mode: 'development' });
@@ -22,7 +24,7 @@ const { PROXY_URL } = process.env;
 const developmentMiddleware = (app) => {
   // Allow customization of development server
   const irvingDevMiddleware = getMergedFromUserConfig(
-    userConfig,
+    serverConfig,
     'customizeDevServer'
   );
   irvingDevMiddleware.forEach((middleware) => middleware(app));
