@@ -1,6 +1,5 @@
 import { all, takeLatest, takeEvery } from 'redux-saga/effects';
-import userConfig from '@irvingjs/irving.config';
-import { getMergedFromUserConfig } from 'utils/getMergedConfigField';
+import getConfigField from 'utils/getConfigField';
 import {
   LOCATION_CHANGE,
   REQUEST_COMPONENT_DATA,
@@ -10,7 +9,7 @@ import waitToScroll from './waitToScroll';
 import onLocationChange from './onLocationChange';
 import watchComponentData from './componentDataSaga';
 
-const sagaGetters = getMergedFromUserConfig(userConfig, 'sagas');
+const sagaGetters = getConfigField('sagas');
 const customSagas = sagaGetters.reduce((acc, getter) => (
   [...acc, ...getter()]
 ), []);

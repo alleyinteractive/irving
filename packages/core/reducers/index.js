@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 import reduceReducers from 'reduce-reducers';
 import defaultState from 'reducers/defaultState';
-import userConfig from '@irvingjs/irving.config';
-import { getMergedFromUserConfig } from 'utils/getMergedConfigField';
+import getConfigField from 'utils/getConfigField';
 import componentsReducer from './componentsReducer';
 import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
@@ -10,7 +9,7 @@ import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
 import componentDataReducer from './componentDataReducer';
 
-const reducerGetters = getMergedFromUserConfig(userConfig, 'reducers');
+const reducerGetters = getConfigField('reducers');
 const customReducers = reducerGetters.reduce((acc, getter) => (
   { ...acc, ...getter() }
 ), {});

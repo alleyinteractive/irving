@@ -1,5 +1,11 @@
 import { renderToString } from 'react-dom/server';
 
+/**
+ *
+ * @param {array} getters Functions for getting template vars, sourced from both user config and packages
+ * @param {object} WrapperComponent React component for rendering the app (or error message)
+ * @param {object} initialVars Variables passed in from serverRenderer
+ */
 export default function getTemplateVars(
   getters,
   WrapperComponent,
@@ -10,8 +16,6 @@ export default function getTemplateVars(
     (acc, getVars) => getVars(WrapperComponent, acc),
     initialVars
   );
-
-  console.log(customTemplateVars);
 
   return Object.keys(customTemplateVars).reduce((acc, templateVar) => {
     const value = customTemplateVars[templateVar];
