@@ -9,6 +9,7 @@ import { withStyles } from 'critical-style-loader/lib';
 // Styles
 import styles from './contentFooter.css';
 import infeedTheme from './contentFooter--infeed.css';
+import inlineTheme from './contentFooter--inline.css';
 
 const ContentFooter = ({ children, author, theme }) => {
   const socialSharing = findChildByName('social-sharing', children);
@@ -53,4 +54,5 @@ ContentFooter.propTypes = {
 export default withThemes('content-footer', {
   default: styles,
   infeed: infeedTheme,
-})(withStyles(styles, infeedTheme)(ContentFooter));
+  inline: inlineTheme,
+})(withStyles(styles, infeedTheme, inlineTheme)(ContentFooter));
