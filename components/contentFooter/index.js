@@ -23,11 +23,13 @@ const ContentFooter = ({ children, author, theme }) => {
           {tags}
         </div>
       )}
-      <address className={theme.author}>
-        <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
-        {/* @todo this needs an image */}
-        <Link to={author.url}>{author.name}</Link>
-      </address>
+      {author && author.name && (
+        <address className={theme.author}>
+          <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
+          {/* @todo this needs an image */}
+          <Link to={author.url}>{author.name}</Link>
+        </address>
+      )}
     </footer>
   );
 };
