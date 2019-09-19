@@ -20,7 +20,7 @@ export default function getTemplateVars(
 
     if ('appHtml' === templateVar) {
       // Render app html to a string
-      result = renderToString(value());
+      result = renderToString(value);
     } else if ('function' === typeof value) {
       // Call any function assuming it will return the value to be rendered.
       result = value();
