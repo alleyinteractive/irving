@@ -1,5 +1,4 @@
-import userConfig from '@irvingjs/irving.config';
-import { getMergedFromUserConfig } from 'utils/getMergedConfigField';
+import getConfigField from 'utils/getConfigField';
 
 export const components = {
   defaults: [],
@@ -30,7 +29,7 @@ export const componentDataMeta = {
   data: [],
 };
 
-const defaultStateGetters = getMergedFromUserConfig(userConfig, 'defaultState');
+const defaultStateGetters = getConfigField('defaultState');
 const customDefaultState = defaultStateGetters.reduce((acc, getter) => (
   { ...acc, ...getter() }
 ), {});

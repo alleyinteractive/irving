@@ -19,7 +19,7 @@ const {
 } = require('../config/paths');
 // eslint-disable-next-line import/no-dynamic-require
 const serverConfig = require(serverConfigPath);
-const { getMergedFromUserConfig } = require('../utils/getMergedConfigField');
+const getServerConfigField = require('./utils/getServerConfigField');
 
 const {
   PORT = 3001,
@@ -30,10 +30,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 // Run all customize server functions.
-const irvingServerMiddleware = getMergedFromUserConfig(
-  serverConfig,
-  'customizeServer'
-);
+const irvingServerMiddleware = getServerConfigField('customizeServer');
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 if ('development' === NODE_ENV) {
