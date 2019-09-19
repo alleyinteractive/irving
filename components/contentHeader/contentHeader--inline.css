@@ -1,0 +1,12 @@
+/* .wrapper {
+  width: auto;
+} */
+
+.intro {
+  composes: intro from './contentHeader.css';
+
+  /* Increase specificity for override. */
+  &.intro {
+    border-bottom: 0;
+  }
+}
