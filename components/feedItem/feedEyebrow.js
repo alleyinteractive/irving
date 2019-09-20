@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'components/helpers/link';
 
 // Styles
-import styles from './inFeedItem.css';
+import styles from './feedItem.css';
 
 const FeedEyebrow = ({
   customEyebrow, topic, topicLink, color,

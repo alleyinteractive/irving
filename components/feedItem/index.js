@@ -6,16 +6,16 @@ import { findChildByName } from 'utils/children';
 import FeedEyebrow from './feedEyebrow';
 
 // Styles
-import styles from './inFeedItem.css';
+import styles from './feedItem.css';
 
-const InFeedItem = ({
-  title,
+const FeedItem = ({
   children,
+  color,
   customEyebrow,
+  postDate,
+  title,
   topic,
   topicLink,
-  postDate,
-  color,
 }) => {
   const image = findChildByName('image', children);
   const contentFooter = findChildByName('content-footer', children);
@@ -56,11 +56,11 @@ const InFeedItem = ({
   );
 };
 
-InFeedItem.defaultProps = {
+FeedItem.defaultProps = {
   color: '#000000',
 };
 
-InFeedItem.propTypes = {
+FeedItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   customEyebrow: PropTypes.string.isRequired,
   postDate: PropTypes.string.isRequired,
@@ -70,4 +70,4 @@ InFeedItem.propTypes = {
   color: PropTypes.string,
 };
 
-export default withStyles(styles)(InFeedItem);
+export default withStyles(styles)(FeedItem);

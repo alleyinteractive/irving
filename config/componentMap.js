@@ -15,7 +15,7 @@ import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
-import InFeedItem from 'components/inFeedItem';
+import FeedItem from 'components/feedItem';
 import Image from 'components/image/image';
 import ListHeader from 'components/listHeader';
 import ListDescription from 'components/listDescription';
@@ -70,7 +70,7 @@ export const componentMap = {
   head: Head,
   header: Header,
   'header-with-image': HeaderWithImage,
-  'infeed-item': InFeedItem,
+  'feed-item': FeedItem,
   html: RawHTML,
   image: Image,
   'list-header': ListHeader,
