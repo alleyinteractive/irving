@@ -5,9 +5,9 @@ import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 
 // Styles
-import styles from './teaser.css';
+import styles from './teaserItem.css';
 
-const Teaser = ({
+const TeaserItem = ({
   excerpt, permalink, title, children,
 }) => {
   const image = findChildByName('image', children);
@@ -22,11 +22,11 @@ const Teaser = ({
   );
 };
 
-Teaser.propTypes = {
+TeaserItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   excerpt: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(Teaser);
+export default withStyles(styles)(TeaserItem);

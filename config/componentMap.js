@@ -40,7 +40,7 @@ import SocialList from 'components/socialList';
 import StatsWidget from 'components/statsWidget';
 import TagLink from 'components/tagLink';
 import Tags from 'components/tags';
-import Teaser from 'components/teaser';
+import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import TermArchiveContentListItem from 'components/termArchiveContentListItem';
 import TermArchivePinnedArticle from 'components/termArchivePinnedArticle';
@@ -99,7 +99,7 @@ export const componentMap = {
   'social-item': SocialItem,
   'tag-link': TagLink,
   tags: Tags,
-  teaser: Teaser,
+  'teaser-item': TeaserItem,
   'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TermArchiveContentListItem,
   'term-archive-pinned-article': TermArchivePinnedArticle,
