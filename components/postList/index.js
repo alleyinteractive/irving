@@ -26,7 +26,7 @@ const PostList = ({ children, title, showTitle }) => (
             )}
             <ul className={styles.wrapper} id={'' !== title && titleID}>
               {children.map((child) => (
-                <li>{child}</li>
+                <li key={uid('postListItem')}>{child}</li>
               ))}
             </ul>
           </div>
