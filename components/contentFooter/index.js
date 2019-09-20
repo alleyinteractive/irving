@@ -9,6 +9,7 @@ import { withStyles } from 'critical-style-loader/lib';
 // Styles
 import styles from './contentFooter.css';
 import infeedTheme from './contentFooter--infeed.css';
+import inlineTheme from './contentFooter--inline.css';
 
 const ContentFooter = ({ children, author, theme }) => {
   const socialSharing = findChildByName('social-sharing', children);
@@ -23,11 +24,13 @@ const ContentFooter = ({ children, author, theme }) => {
           {tags}
         </div>
       )}
-      <address className={theme.author}>
-        <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
-        {/* @todo this needs an image */}
-        <Link to={author.url}>{author.name}</Link>
-      </address>
+      {author && author.name && (
+        <address className={theme.author}>
+          <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
+          {/* @todo this needs an image */}
+          <Link to={author.url}>{author.name}</Link>
+        </address>
+      )}
     </footer>
   );
 };
@@ -51,4 +54,5 @@ ContentFooter.propTypes = {
 export default withThemes('content-footer', {
   default: styles,
   infeed: infeedTheme,
-})(withStyles(styles, infeedTheme)(ContentFooter));
+  inline: inlineTheme,
+})(withStyles(styles, infeedTheme, inlineTheme)(ContentFooter));

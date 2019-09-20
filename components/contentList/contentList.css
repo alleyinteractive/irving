@@ -1,10 +1,15 @@
-@import 'mixins/index';
-
 .wrap {
-  border-top: 1px solid #000;
-  margin: rem(25);
-  padding: rem(20) 0 0 0;
-  width: rem(215);
+  border-top: $border-thin;
+  padding-top: rem(20);
+
+  @media ($mdMin) {
+    margin: rem(25);
+    width: rem(215);
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 .header {

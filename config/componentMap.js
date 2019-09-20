@@ -58,6 +58,7 @@ export const componentMap = {
   'content-body': ContentBody,
   'content-footer': ContentFooter,
   'content-header': ContentHeader,
+  'content-list-item': ContentListItem,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
@@ -98,6 +99,7 @@ export const componentMap = {
   'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TermArchiveContentListItem,
   'term-archive-pinned-article': TermArchivePinnedArticle,
+  'technology-meta': ContentList,
   'topic-header': TopicHeader,
   'user-greeting': UserGreeting,
 };

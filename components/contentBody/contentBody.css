@@ -19,8 +19,4 @@
       tidy-span: 6;
     }
   }
-
-  div:not([class]) {
-    @include basic-editor-styles;
-  }
 }

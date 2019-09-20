@@ -2,13 +2,30 @@
 
 .wrapper {
   @include container-with-bleed;
-  border-top: $border-thin--gray-light;
   font-size: rem(12);
   margin: 0 auto;
-  padding-top: rem(20);
+  /* padding-top: rem(20); */
 
   > * {
     margin: 0 auto;
+    tidy-span: 10;
+
+    @media ($mdMin) {
+      tidy-offset-left: 1;
+      tidy-span: 6;
+    }
+
+    @media ($lgMin) {
+      tidy-offset-left: 1;
+      tidy-span: 6;
+    }
+  }
+
+  &::before {
+    border-top: $border-thin--gray-light;
+    content: '';
+    display: block;
+    margin: 0 auto rem(20);
     tidy-span: 10;
 
     @media ($mdMin) {
