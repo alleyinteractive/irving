@@ -28,6 +28,7 @@
     border-bottom: 1px solid $black;
     border-left: 0;
     border-top: 1px solid $black;
+    clear: both;
     color: $black;
     padding: rem(36) 0;
 

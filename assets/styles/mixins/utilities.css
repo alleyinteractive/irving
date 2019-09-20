@@ -58,20 +58,3 @@
     width: rem(12);
   }
 }
-
-:global(.content-right) {
-  float: right;
-  position: relative;
-  right: rem(-80);
-}
-
-:global(.content-left) {
-  float: left;
-  left: rem(-80);
-  position: relative;
-}
-
-:global(.content-center) {
-  margin: 0 auto;
-  text-align: left;
-}

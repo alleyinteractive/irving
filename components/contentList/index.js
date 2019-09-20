@@ -2,36 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import classNames from 'classnames';
-import uniqueId from 'react-html-id';
+import { UIDReset, UIDConsumer } from 'react-uid';
 import styles from './contentList.css';
 
-class ContentList extends React.PureComponent {
-  constructor() {
-    super();
-    // Enable Unique ID support for this class
-    uniqueId.enableUniqueIds(this);
-  }
-
-  render() {
-    const { listTitle, align, children } = this.props;
-    return (
-      <div
-        className={classNames(styles.wrap, {
-          'content-right': 'right' === align,
-          'content-left': 'left' === align,
-          'content-center': 'center' === align,
-        })}
-      >
-        <h2 className={styles.header} id={this.nextUniqueId()}>
-          {listTitle}
-        </h2>
-        <ul className={styles.listWrap} aria-labelledby={this.lastUniqueId()}>
-          {children}
-        </ul>
-      </div>
-    );
-  }
-}
+const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
+  <UIDReset>
+    <UIDConsumer>
+      {(id, uid) => {
+        const titleID = uid('contentList');
+        return (
+          <div
+            className={classNames(styles.wrap, {
+              'content-right': 'right' === align,
+              'content-left': 'left' === align,
+              'content-center': 'center' === align,
+            })}
+          >
+            <h2 className={styles.header} id={titleID}>
+              {listTitle}
+            </h2>
+            <ul className={styles.listWrap} aria-labelledby={titleID}>
+              {children}
+            </ul>
+          </div>
+        );
+      }}
+    </UIDConsumer>
+  </UIDReset>
+);
 
 ContentList.propTypes = {
   listTitle: PropTypes.string.isRequired,

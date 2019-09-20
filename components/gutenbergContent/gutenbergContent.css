@@ -5,5 +5,6 @@
 
 .content {
   @include gutenberg-block-styles;
+  @include basic-editor-styles;
   width: 100%;
 }

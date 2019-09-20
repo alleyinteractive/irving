@@ -14,6 +14,7 @@ import GoogleTagManager from 'components/googleTagManager';
 import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
+import HeaderWithImage from 'components/headerWithImage';
 import InFeedItem from 'components/inFeedItem';
 import Image from 'components/image/image';
 import ListHeader from 'components/listHeader';
@@ -57,6 +58,7 @@ export const componentMap = {
   'content-body': ContentBody,
   'content-footer': ContentFooter,
   'content-header': ContentHeader,
+  'content-list-item': ContentListItem,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
@@ -65,6 +67,7 @@ export const componentMap = {
   'gutenberg-content': GutenbergContent,
   head: Head,
   header: Header,
+  'header-with-image': HeaderWithImage,
   'infeed-item': InFeedItem,
   html: RawHTML,
   image: Image,
@@ -96,6 +99,7 @@ export const componentMap = {
   'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TermArchiveContentListItem,
   'term-archive-pinned-article': TermArchivePinnedArticle,
+  'technology-meta': ContentList,
   'topic-header': TopicHeader,
   'user-greeting': UserGreeting,
 };

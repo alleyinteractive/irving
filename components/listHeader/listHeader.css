@@ -58,10 +58,12 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  margin-bottom: rem(20);
   order: 1;
   width: 100%;
 
   @media ($mdMin) {
+    margin-bottom: 0;
     tidy-span: 6;
   }
 
