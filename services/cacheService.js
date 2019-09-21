@@ -11,7 +11,6 @@ let service;
  * @property {function} get
  * @property {function} set
  * @property {function} del
- * @property {function} wipe
  *
  * Return a service object for storing, retrieving, deleting cached items.
  * @returns {CacheService}
