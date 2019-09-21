@@ -51,7 +51,7 @@ module.exports = {
             // Tests need an irving config, use an alias so it doesn't override user config.
             alias: {
               // @todo might want to update this to @irvingjs also.
-              '@irvingjs/irving.config': path.join(irvingRoot, 'test/irving.config.js'),
+              '@irvingjs/irving.config': path.join(irvingRoot, 'test/irving-test.config.js'),
               '@irvingjs/irving.config.server': path.join(appRoot, 'test/irving-test.config.js'),
             },
           },

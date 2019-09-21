@@ -10,6 +10,9 @@ const schema = require('../config/irvingConfigSchema');
 function getConfigFieldType(value) {
   // Infer type of data based on schema.
   switch (true) {
+    case (Array.isArray(value) && 'function' === typeof value[0]):
+      return 'func-array';
+
     case Array.isArray(value):
       return 'array';
 
@@ -18,6 +21,30 @@ function getConfigFieldType(value) {
 
     default:
       return 'object';
+  }
+}
+
+/**
+ * Get the initial reducer value for a particular config data type.
+ *
+ * @param {string} type type to check.
+ * @returns {mixed}
+ */
+function getInitialValue(type) {
+  // Infer type of data based on schema.
+  switch (type) {
+    case 'func-array':
+    case 'array':
+      return [];
+
+    case 'function':
+      return () => {};
+
+    case 'object':
+      return {};
+
+    default:
+      return [];
   }
 }
 
@@ -35,8 +62,8 @@ const getMergedConfigField = (configs, key) => {
   }
 
   // Set initial/default value for the merged config based on type.
-  const initial = schema[key];
-  const type = getConfigFieldType(initial);
+  const type = getConfigFieldType(schema[key]);
+  const initial = getInitialValue(type);
   const hasKey = configs.some((configPackage) => (configPackage[key]));
 
   // Return early if an invalid key was provided or no packaged configured.
@@ -50,6 +77,9 @@ const getMergedConfigField = (configs, key) => {
     switch (type) {
       case 'array':
         return [...acc, ...config[key]];
+
+      case 'func-array':
+        return acc.concat(config[key]);
 
       // There should only be one configured function, so return the latest.
       case 'function':

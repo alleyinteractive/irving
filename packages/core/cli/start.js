@@ -19,7 +19,7 @@ const {
 } = require('../config/paths');
 // eslint-disable-next-line import/no-dynamic-require
 const serverConfig = require(serverConfigPath);
-const getServerConfigField = require('./utils/getServerConfigField');
+const getServerConfigField = require('../utils/getServerConfigField');
 
 const {
   PORT = 3001,
