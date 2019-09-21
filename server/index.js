@@ -6,16 +6,18 @@ require('dotenv').config();
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
 
+const http = require('http');
+const https = require('https');
+const express = require('express');
+
 const getService = require('../services/monitorService');
 getService().start();
 
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
-
-const http = require('http');
-const https = require('https');
-const express = require('express');
 const { rootUrl } = require('../config/paths');
+const bustCache = require('./bustCache');
+const bustPageCache = require('./bustPageCache');
 
 const {
   PORT = 3001,
@@ -24,6 +26,10 @@ const {
   HTTPS_CERT_PATH,
 } = process.env;
 const app = express();
+
+// Clearing the Redis cache.
+app.get('/bust-endpoint-cache', bustPageCache);
+app.get('/bust-entire-cache', bustCache);
 
 app.set('views', 'server/views');
 app.set('view engine', 'ejs');
