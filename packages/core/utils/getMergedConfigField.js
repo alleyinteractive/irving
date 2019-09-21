@@ -64,7 +64,7 @@ const getMergedConfigField = (configs, key) => {
   // Set initial/default value for the merged config based on type.
   const type = getConfigFieldType(schema[key]);
   const initial = getInitialValue(type);
-  const hasKey = configs.some((configPackage) => (configPackage[key]));
+  const hasKey = configs.some((config) => config[key]);
 
   // Return early if an invalid key was provided or no packaged configured.
   if (! hasKey) {
@@ -73,6 +73,11 @@ const getMergedConfigField = (configs, key) => {
 
   // Get provided key from configured irving extension packages.
   return configs.reduce((acc, config) => {
+    // Return early if config key doesn't exist.
+    if (! config[key]) {
+      return acc;
+    }
+
     // Merge together config fields based on type.
     switch (type) {
       case 'array':
