@@ -10,6 +10,7 @@ module.exports = {
   getErrorTemplateVars: [() => {}],
   packages: [],
   reducers: [() => {}],
+  webpackConfig: [() => {}],
   sagas: [() => {}],
   serverViews: {},
 };
