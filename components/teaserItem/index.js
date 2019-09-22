@@ -25,7 +25,7 @@ const TeaserItem = ({
 }) => {
   const image = findChildByName('image', children);
   const otherChildren = children.filter(
-    ({ props: componentName }) => 'image' === componentName
+    ({ props: componentName }) => 'image' !== componentName
   );
   if ('simple' === themeName) {
     return (
