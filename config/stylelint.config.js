@@ -59,7 +59,7 @@ module.exports = {
     'selector-pseudo-element-case': 'lower',
     'selector-pseudo-element-colon-notation': 'double',
     'unit-no-unknown': true,
-    'value-keyword-case': 'lower',
+    'value-keyword-case': ['lower', { ignoreProperties: ['composes'] }],
     'value-list-comma-newline-after': 'always-multi-line',
     'value-list-comma-space-after': 'always-single-line',
     'value-no-vendor-prefix': true,

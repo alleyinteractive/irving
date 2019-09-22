@@ -1,0 +1,54 @@
+/* TeaserItem simple styles */
+
+/*
+  @todo
+  - style in MIT-252
+  - Delete any items in this file that you do not want to keep and the styles
+  will default to the styles in the selector in ./teaserItem.css.
+  - If you delete the composes rule, no preexisting styles will be applied to
+  the selector.
+ */
+
+.callToAction {
+  composes: callToAction from './teaserItem.css';
+}
+
+.dot {
+  composes: dot from './teaserItem.css';
+}
+
+.excerpt {
+  composes: excerpt from './teaserItem.css';
+}
+
+.eyebrow {
+  composes: eyebrow from './teaserItem.css';
+}
+
+.eyebrowLink {
+  composes: eyebrowLink from './teaserItem.css';
+}
+
+.image {
+  composes: image from './teaserItem.css';
+}
+
+.meta {
+  composes: meta from './teaserItem.css';
+}
+
+.shareMenu {
+  composes: shareMenu from './teaserItem.css';
+}
+
+.shareMenuToggle {
+  composes: shareMenuToggle from './teaserItem.css';
+}
+
+.title {
+  composes: title from './teaserItem.css';
+}
+
+.wrapper {
+  composes: wrapper from './teaserItem.css';
+}
