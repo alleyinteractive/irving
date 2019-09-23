@@ -44,32 +44,6 @@ const TeaserItem = ({
     );
   }
 
-  // if ('aside' === themeName) {
-  //   return (
-  //     <article className={theme.wrapper}>
-  //       <header className={theme.header}>
-  //         {/* @todo review if this title level needs to be dynamic. */}
-  //         <h3 className={theme.title}>
-  //           <Link to={permalink}>{title}</Link>
-  //         </h3>
-  //         <p className={theme.excerpt}>{excerpt}</p>
-  //       </header>
-  //       <Meta
-  //         theme={theme}
-  //         topicLink={topicLink}
-  //         postDate={postDate}
-  //         topic={topic}
-  //         color={color}
-  //       />
-  //       {image && (
-  //         <Link to={permalink} tabIndex="-1" className={theme.image}>
-  //           {image}
-  //         </Link>
-  //       )}
-  //     </article>
-  //   );
-  // }
-
   return (
     <article
       className={classNames(theme.wrapper, {
@@ -133,6 +107,7 @@ TeaserItem.propTypes = {
     eyebrow: PropTypes.string,
     eyebrowLink: PropTypes.string,
     header: PropTypes.string,
+    hasImage: PropTypes.string,
     image: PropTypes.string,
     meta: PropTypes.string,
     shareMenu: PropTypes.string,
