@@ -28,6 +28,7 @@ import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
 import NotConfigured from 'components/notConfigured';
+import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import PostList from 'components/postList';
@@ -88,6 +89,7 @@ export const componentMap = {
   'mittr-plugin-extension/stats-widget': StatsWidget,
   pagination: Placeholder,
   parsely: Parsely,
+  'page-body': PageBody,
   'post-list': PostList,
   'search-bar': SearchBar,
   'section-item': SectionItem,
