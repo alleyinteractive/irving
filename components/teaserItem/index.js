@@ -5,10 +5,14 @@ import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
+import classNames from 'classnames';
 
 // Styles
 import styles from './teaserItem.css';
 import simpleTheme from './teaserItem--simple.css';
+import asideTheme from './teaserItem--aside.css';
+
+import Meta from './meta.js';
 
 const TeaserItem = ({
   children,
@@ -27,6 +31,7 @@ const TeaserItem = ({
   const otherChildren = children.filter(
     ({ props: { componentName } }) => 'image' !== componentName
   );
+
   if ('simple' === themeName) {
     return (
       <Link className={theme.wrapper} to={permalink}>
@@ -39,43 +44,55 @@ const TeaserItem = ({
     );
   }
 
+  // if ('aside' === themeName) {
+  //   return (
+  //     <article className={theme.wrapper}>
+  //       <header className={theme.header}>
+  //         {/* @todo review if this title level needs to be dynamic. */}
+  //         <h3 className={theme.title}>
+  //           <Link to={permalink}>{title}</Link>
+  //         </h3>
+  //         <p className={theme.excerpt}>{excerpt}</p>
+  //       </header>
+  //       <Meta
+  //         theme={theme}
+  //         topicLink={topicLink}
+  //         postDate={postDate}
+  //         topic={topic}
+  //         color={color}
+  //       />
+  //       {image && (
+  //         <Link to={permalink} tabIndex="-1" className={theme.image}>
+  //           {image}
+  //         </Link>
+  //       )}
+  //     </article>
+  //   );
+  // }
+
   return (
-    <article className={theme.wrapper}>
-      <div className={theme.meta}>
+    <article
+      className={classNames(theme.wrapper, {
+        [theme.hasImage]: image,
+      })}
+    >
+      <div className={theme.text}>
         {/* @todo review if this title level needs to be dynamic. */}
-        <h3 className={theme.title}>
-          <Link to={permalink}>{title}</Link>
-        </h3>
-        <div className={theme.eyebrow}>
-          {'' !== topicLink && (
-            <Link
-              className={theme.eyebrowLink}
-              to={topicLink}
-              style={{ color }}
-            >
-              <span className="screen-reader-text">
-                {__('Categorized in ', 'mittr')}
-              </span>
-              {topic}
-            </Link>
-          )}
-          {'' !== postDate && (
-            <time className={theme.timestamp}>{postDate}</time>
-          )}
-        </div>
-        <div className={theme.shareMenu}>
-          <button
-            type="button"
-            aria-label={__('Open share menu', 'mittr')}
-            className={theme.shareMenuToggle}
-          >
-            <div className={theme.dot} />
-            <div className={theme.dot} />
-            <div className={theme.dot} />
-          </button>
-        </div>
+        <header className={theme.header}>
+          <h3 className={theme.title}>
+            <Link to={permalink}>{title}</Link>
+          </h3>
+          {'aside' === themeName && <p className={theme.excerpt}>{excerpt}</p>}
+        </header>
+        <Meta
+          theme={theme}
+          topicLink={topicLink}
+          postDate={postDate}
+          topic={topic}
+          color={color}
+        />
       </div>
-      <p className={theme.excerpt}>{excerpt}</p>
+      {'aside' !== themeName && <p className={theme.excerpt}>{excerpt}</p>}
       {'' !== teaseCTA && (
         <Link to={permalink} className={theme.callToAction}>
           {teaseCTA}
@@ -87,6 +104,17 @@ const TeaserItem = ({
         </Link>
       )}
       {otherChildren}
+      <div className={theme.shareMenu}>
+        <button
+          type="button"
+          aria-label={__('Open share menu', 'mittr')}
+          className={theme.shareMenuToggle}
+        >
+          <div className={theme.dot} />
+          <div className={theme.dot} />
+          <div className={theme.dot} />
+        </button>
+      </div>
     </article>
   );
 };
@@ -104,6 +132,7 @@ TeaserItem.propTypes = {
     excerpt: PropTypes.string,
     eyebrow: PropTypes.string,
     eyebrowLink: PropTypes.string,
+    header: PropTypes.string,
     image: PropTypes.string,
     meta: PropTypes.string,
     shareMenu: PropTypes.string,
@@ -129,4 +158,5 @@ TeaserItem.defaultProps = {
 export default withThemes('teaser-item', {
   default: styles,
   simple: simpleTheme,
+  aside: asideTheme,
 })(withStyles(styles)(TeaserItem));

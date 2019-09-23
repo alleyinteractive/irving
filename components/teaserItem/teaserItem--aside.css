@@ -1,0 +1,120 @@
+.callToAction {
+  composes: callToAction from './teaserItem.css';
+}
+
+.dot {
+  composes: dot from './teaserItem.css';
+}
+
+.excerpt {
+  composes: excerpt from './teaserItem.css';
+
+  &.excerpt {
+    display: inline;
+    font-size: rem(16);
+    width: auto;
+  }
+}
+
+.eyebrow {
+  composes: eyebrow from './teaserItem.css';
+}
+
+.eyebrowLink {
+  composes: eyebrowLink from './teaserItem.css';
+}
+
+.image {
+  composes: image from './teaserItem.css';
+
+  &.image {
+    display: none;
+
+    @media ($smMin) {
+      display: block;
+      order: 0;
+      padding: 0 tidy-var(edge);
+      tidy-span: 4;
+    }
+
+    @media ($mdMin) {
+      order: 3;
+      padding: 0;
+      width: 100%;
+    }
+  }
+}
+
+.meta {
+  composes: meta from './teaserItem.css';
+
+  &.meta {
+    order: 1;
+    tidy-span: 4;
+
+    @media ($mdMin) {
+      order: 0;
+      width: 100%;
+    }
+  }
+}
+
+.shareMenu {
+  composes: shareMenu from './teaserItem.css';
+}
+
+.shareMenuToggle {
+  composes: shareMenuToggle from './teaserItem.css';
+}
+
+.title {
+  color: $color-text;
+  display: inline;
+  font-family: $sans;
+  font-size: rem(16);
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 1.38;
+  margin-right: 1ch;
+}
+
+.wrapper {
+  composes: wrapper from './teaserItem.css';
+
+  &.hasImage {
+    @media ($smMin) and ($mdMax) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.header {
+  display: block;
+  margin-bottom: rem(20);
+  order: 2;
+  width: 100%;
+
+  @media ($mdMin) {
+    order: 1;
+  }
+}
+
+.text {
+  display: flex;
+  flex-flow: column nowrap;
+  order: 2;
+  width: 100%;
+
+  .hasImage & {
+    @media ($smMin) and ($mdMax) {
+      padding-right: tidy-var(edge);
+      tidy-span: 8;
+    }
+  }
+
+  @media ($mdMin) {
+    margin-left: 0;
+    width: 100%;
+  }
+}
