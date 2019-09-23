@@ -1,30 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import withThemes from 'components/hoc/withThemes';
 import classNames from 'classnames';
 import { UIDReset, UIDConsumer } from 'react-uid';
 
 // Styles
 import styles from './postList.css';
+import withTitleTheme from './postList--withTitle.css';
 
-const PostList = ({ children, title, showTitle }) => (
+const PostList = ({
+  children, title, showTitle, theme, themeName,
+}) => (
   <UIDReset>
     <UIDConsumer>
       {(id, uid) => {
         const titleID = uid('post-list');
+        const useScreenReaderTitle = ! showTitle && 'withTitle' !== themeName;
         return (
-          <div className={styles.wrapper}>
+          <div className={theme.wrapper}>
             {'' !== title && (
               <h2
-                className={classNames(styles.title, {
-                  'screen-reader-text': ! showTitle,
+                className={classNames(theme.title, {
+                  'screen-reader-text': useScreenReaderTitle,
                 })}
                 id={titleID}
               >
                 {title}
               </h2>
             )}
-            <ul className={styles.wrapper} id={'' !== title && titleID}>
+            <ul className={theme.wrapper} id={'' !== title && titleID}>
               {children.map((child) => (
                 <li key={uid('postListItem')}>{child}</li>
               ))}
@@ -40,11 +45,20 @@ PostList.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   showTitle: PropTypes.bool,
   title: PropTypes.string,
+  theme: PropTypes.shape({
+    wrapper: PropTypes.string,
+    title: PropTypes.string,
+  }).isRequired,
+  themeName: PropTypes.string,
 };
 
 PostList.defaultProps = {
   title: '',
   showTitle: false,
+  themeName: '',
 };
 
-export default withStyles(styles)(PostList);
+export default withThemes('post-list', {
+  default: styles,
+  withTitle: withTitleTheme,
+})(withStyles(styles, withTitleTheme)(PostList));
