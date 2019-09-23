@@ -1,11 +1,3 @@
-.callToAction {
-  composes: callToAction from './teaserItem.css';
-}
-
-.dot {
-  composes: dot from './teaserItem.css';
-}
-
 .excerpt {
   composes: excerpt from './teaserItem.css';
 
@@ -14,14 +6,6 @@
     font-size: rem(16);
     width: auto;
   }
-}
-
-.eyebrow {
-  composes: eyebrow from './teaserItem.css';
-}
-
-.eyebrowLink {
-  composes: eyebrowLink from './teaserItem.css';
 }
 
 .image {
@@ -57,14 +41,6 @@
       width: 100%;
     }
   }
-}
-
-.shareMenu {
-  composes: shareMenu from './teaserItem.css';
-}
-
-.shareMenuToggle {
-  composes: shareMenuToggle from './teaserItem.css';
 }
 
 .title {
