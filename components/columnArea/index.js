@@ -4,6 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
 import classNames from 'classnames';
+import { UIDReset, UIDConsumer } from 'react-uid';
 
 // Themes
 import styles from './columnArea.css';
@@ -31,7 +32,15 @@ const ColumnArea = ({ children, theme, themeName }) => {
   return (
     <div className={theme.wrapper}>
       {children.map((child) => (
-        <div className={theme.column}>{child}</div>
+        <UIDReset>
+          <UIDConsumer>
+            {(id, uid) => (
+              <div className={theme.column} key={uid('column')}>
+                {child}
+              </div>
+            )}
+          </UIDConsumer>
+        </UIDReset>
       ))}
     </div>
   );

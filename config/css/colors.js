@@ -18,6 +18,7 @@ module.exports = {
   'brown-gray': '#9b9b9b',
   'color-deck': '#303030',
   'color-text': '#303030',
+  'color-heading': '#767676',
   'form-border-default': '#e5e5e5',
   'inactive-gray': '#B4B4B4',
   'insider-blue': '#027298',
