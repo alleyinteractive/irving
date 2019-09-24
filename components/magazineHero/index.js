@@ -5,11 +5,11 @@ import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
 
-// Styles
-import ArrowIcon from 'assets/icons/arrow.svg';
-import styles from './magazineHero.css';
-
 // SVGs
+import ArrowIcon from 'assets/icons/arrow.svg';
+
+// Styles
+import styles from './magazineHero.css';
 
 const MagazineHero = ({
   backgroundColor,
