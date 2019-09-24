@@ -24,6 +24,7 @@ import ListMenuItem from 'components/listMenuItem';
 import ListMenuItems from 'components/listMenuItems';
 import ListGroup from 'components/listGroup';
 import ListItem from 'components/listItem';
+import MagazineHero from 'components/magazineHero';
 import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
@@ -80,6 +81,7 @@ export const componentMap = {
   'list-group': ListGroup,
   'list-item': ListItem,
   logo: Image,
+  'magazine-hero': MagazineHero,
   'mega-menu': MegaMenu,
   menu: Menu,
   'menu-item': MenuItem,

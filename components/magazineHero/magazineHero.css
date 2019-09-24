@@ -1,0 +1,6 @@
+/* MagazineHero component styles */
+
+.wrapper {
+  background-color: $black;
+  color: $white;
+}
