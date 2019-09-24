@@ -8,9 +8,16 @@
   flex-flow: row wrap;
   margin-bottom: rem(15);
   padding: rem(20 20 25 20);
+  position: relative;
 }
 
 .meta {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.text {
   display: flex;
   flex-flow: row wrap;
   width: 100%;
@@ -65,7 +72,9 @@
 }
 
 .shareMenu {
-  margin-left: auto;
+  position: absolute;
+  right: tidy-var(edge);
+  top: tidy-var(edge);
 }
 
 .shareMenuToggle {

@@ -43,17 +43,11 @@ module.exports = () => ({
     }),
     colorFunction(),
     tidyColumns({
-      columns: 10,
+      columns: 12,
       gap: '0',
       edge: '1.25rem',
       siteMax: '79.5rem',
-      breakpoints: {
-        '60rem': {
-          columns: 12,
-          edge: '1.25rem',
-          gap: '0',
-        },
-      },
+      breakpoints: {},
     }),
     focus(),
     autoprefixer({

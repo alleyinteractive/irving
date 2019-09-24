@@ -2,15 +2,17 @@
   border-top: rem(4) solid $black;
   color: $black;
   font-family: $sans;
-  font-size: rem(40);
+  font-size: rem(30);
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.07;
   margin-left: tidy-var(edge);
   margin-right: tidy-var(edge);
   padding-bottom: rem(30);
   padding-top: rem(20);
 
   @media ($smMin) {
+    font-size: rem(40);
+    line-height: 1.1;
     margin-left: 0;
     margin-right: 0;
   }

@@ -1,24 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
-import { findChildByName } from 'utils/children';
 import withThemes from 'components/hoc/withThemes';
+import { findChildByName } from 'utils/children';
+import classNames from 'classnames';
+
+// Themes
 import styles from './columnArea.css';
 import oneColumnStyles from './oneColumn.css';
 import twoColumnStyles from './twoColumn.css';
 
-const ColumnArea = ({ children, theme }) => {
-  // Separate content and sidebar
-  const content = children.filter(
-    (child) => 'sidebar' !== child.props.componentName
-  );
-  const sidebar = findChildByName('sidebar', children);
+const ColumnArea = ({ children, theme, themeName }) => {
+  // @todo leave this block for deprecation purposes (topics page, etc.)
+  // It may make sense to refactor this component into multiple components.
+  if ('two-column' === themeName) {
+    // Separate content and sidebar
+    const content = children.filter(
+      (child) => 'sidebar' !== child.props.componentName
+    );
+    const sidebar = findChildByName('sidebar', children);
+
+    return (
+      <div className={classNames(theme.wrapper, {})}>
+        {content && <div className={theme.main}>{content}</div>}
+        {sidebar && <aside className={theme.sidebar}>{sidebar}</aside>}
+      </div>
+    );
+  }
 
   return (
-    <div className={classNames(theme.wrapper, {})}>
-      {content && <div className={theme.main}>{content}</div>}
-      {sidebar && <aside className={theme.sidebar}>{sidebar}</aside>}
+    <div className={theme.wrapper}>
+      {children.map((child) => (
+        <div className={theme.column}>{child}</div>
+      ))}
     </div>
   );
 };
@@ -26,6 +40,7 @@ const ColumnArea = ({ children, theme }) => {
 ColumnArea.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   theme: PropTypes.object.isRequired,
+  themeName: PropTypes.string.isRequired,
 };
 
 export default withThemes('column-area', {
