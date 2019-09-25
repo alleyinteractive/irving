@@ -134,4 +134,4 @@ export default withThemes('teaser-item', {
   default: styles,
   simple: simpleTheme,
   aside: asideTheme,
-})(withStyles(styles)(TeaserItem));
+})(withStyles(styles, simpleTheme, asideTheme)(TeaserItem));
