@@ -1,0 +1,10 @@
+@import 'mixins/index';
+
+.wrapper {
+  @include block-columns;
+}
+
+.content {
+  @include gutenberg-block-styles;
+  width: 100%;
+}

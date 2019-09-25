@@ -1,7 +1,9 @@
 import AudioElement from 'components/audio';
 import Body from 'components/body';
 import Byline from 'components/byline';
+import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
+import Columns from 'components/gutenbergContent/blocks/columns';
 import ContentBody from 'components/contentBody';
 import ContentFooter from 'components/contentFooter';
 import ContentHeader from 'components/contentHeader';
@@ -61,6 +63,8 @@ export const componentMap = {
   'content-footer': ContentFooter,
   'content-header': ContentHeader,
   'content-list-item': ContentListItem,
+  'core/column': Column,
+  'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
