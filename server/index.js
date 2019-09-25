@@ -1,4 +1,8 @@
 /* eslint-disable global-require, no-console */
+const proxy = require('http-proxy-middleware');
+const http = require('http');
+const https = require('https');
+const express = require('express');
 
 // Support isomorphic environment variables from local .env file
 require('dotenv').config();
@@ -10,15 +14,12 @@ const getService = require('../services/monitorService');
 getService().start();
 
 const createDebug = require('../services/createDebug');
-const debug = createDebug('server:error');
-
-const http = require('http');
-const https = require('https');
-const express = require('express');
 const { rootUrl } = require('../config/paths');
 
+const debug = createDebug('server:error');
 const {
   PORT = 3001,
+  API_ROOT_URL,
   NODE_ENV,
   HTTPS_KEY_PATH,
   HTTPS_CERT_PATH,
@@ -27,6 +28,25 @@ const app = express();
 
 app.set('views', 'server/views');
 app.set('view engine', 'ejs');
+
+// Set up a reusable proxy for responses that should be served directly.
+const passthrough = proxy({
+  changeOrigin: true,
+  followRedirects: true,
+  secure: 'development' !== NODE_ENV,
+  target: API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  xfwd: true,
+});
+
+// Proxy XML and XSL file requests directly.
+app.use('/robots.txt', passthrough);
+app.use('*.xml', passthrough);
+app.use('/wp-json/*', passthrough);
+app.use('*.rss', passthrough);
+app.use('*.xsl', passthrough);
+app.use('*/amp/', passthrough);
+app.use('*/feed/', passthrough);
+app.use('/xmlrpc.php', passthrough);
 
 if ('development' === NODE_ENV) {
   require('./development')(app);
