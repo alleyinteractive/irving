@@ -26,8 +26,6 @@
 
 .sidebar {
   /* FPO styles */
-  background-color: $inactive-gray;
-  border: $border-thin--gray;
   padding: 1rem;
   width: 100%;
 

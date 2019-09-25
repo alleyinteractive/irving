@@ -4,11 +4,10 @@ import { withStyles } from 'critical-style-loader/lib';
 import styles from './pageBody.css';
 
 const PageBody = (props) => {
-  const { children, title } = props;
+  const { children } = props;
 
   return (
     <div className={styles.wrapper}>
-      <h2>{title}</h2>
       {children}
     </div>
   );
@@ -16,7 +15,6 @@ const PageBody = (props) => {
 
 PageBody.propTypes = {
   children: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(PageBody);

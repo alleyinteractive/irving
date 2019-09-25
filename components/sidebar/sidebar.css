@@ -1,0 +1,30 @@
+@import 'mixins/index';
+
+.wrapper {
+  flex: 0 0 auto;
+  margin-right: lost-vars('gutter');
+
+  @media ($smMin) {
+    min-width: rem(330);
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  .sidebarItem {
+    /* stylelint-disable selector-max-specificity */
+    &:not(:empty) {
+      margin-bottom: rem(40);
+    }
+    /* stylelint-enable */
+  }
+
+  :global(.sidebarHTMLContent) {
+    @include basic-formatting;
+    @include block-heading;
+    @include block-paragraph;
+    @include body-link;
+    @include block-list;
+  }
+}
