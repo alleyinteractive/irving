@@ -12,6 +12,7 @@ import useBreakpoint from 'hooks/useBreakpoint';
 import footerStyles from './footerMenuItem.css';
 import headerStyles from './headerMenuItem.css';
 import topStyles from './topMenuItem.css';
+import sidebarStyles from './sidebarMenuItem.css';
 import styles from './menuItem.css';
 
 const MenuItem = (props) => {
@@ -99,6 +100,7 @@ const wrapWithThemes = withThemes('menu', {
   footer: footerStyles,
   header: headerStyles,
   top: topStyles,
+  sidebar: sidebarStyles,
 });
 
 const wrapWithStyles = withStyles(styles, footerStyles,
