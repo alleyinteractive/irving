@@ -1,0 +1,18 @@
+/* Sidebar menu theme */
+.wrapper {
+  display: none;
+
+  @media ($mdMin) {
+    display: block;
+  }
+}
+
+h2 {
+  font-size: rem(24);
+  margin-bottom: rem(10);
+  padding-left: rem(10);
+}
+
+ul li {
+  margin-bottom: rem(10);
+}

@@ -1,0 +1,17 @@
+/* Sidebar menu theme */
+
+.link {
+  display: block;
+  font-family: $sans;
+  font-size: rem(16);
+  font-weight: 600;
+  line-height: 1.13;
+  padding: rem(10);
+  width: 100%;
+
+  &:hover {
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+  }
+}
