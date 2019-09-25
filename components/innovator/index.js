@@ -20,6 +20,7 @@ const Innovator = ({
 }) => {
   const image = findChildByName('image', children);
   const gutenbergContent = findChildByName('gutenberg-content', children);
+  const contentFooter = findChildByName('content-footer', children);
   return (
     <li className={styles.wrapper}>
       <div className={styles.header}>
@@ -35,13 +36,16 @@ const Innovator = ({
             )}
           </div>
           <p className={styles.subtitle}>{subtitle}</p>
-          <div className={styles.credit}>
-            {__('by', 'mittr')}: {credit}
-          </div>
+          {credit && (
+            <div className={styles.credit}>
+              {__('by', 'mittr')}: {credit}
+            </div>
+          )}
         </div>
         <div className={styles.image}>{image}</div>
       </div>
       <div className={styles.article}>{gutenbergContent}</div>
+      {contentFooter}
     </li>
   );
 };

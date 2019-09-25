@@ -3,7 +3,6 @@
 .wrapper {
   @include container-with-bleed;
   background-color: transparent;
-  border-bottom: $border-thin;
   list-style: none;
   padding-bottom: rem(32);
   padding-top: rem(32);
@@ -13,7 +12,13 @@
 .header {
   display: flex;
   margin-bottom: rem(30);
+  tidy-span: 12;
   width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 6;
+  }
 }
 
 .link {
@@ -23,9 +28,13 @@
 }
 
 .name {
-  font-size: rem(36);
+  font-size: rem(28);
   font-weight: 600;
   margin-bottom: rem(10);
+
+  @media ($mdMin) {
+    font-size: rem(36);
+  }
 }
 
 .affiliation {
@@ -38,9 +47,13 @@
 }
 
 .subtitle {
-  font-size: rem(36);
+  font-size: rem(21);
   font-weight: 600;
-  line-height: rem(41);
+  line-height: 1.15em;
+
+  @media ($mdMin) {
+    font-size: rem(36);
+  }
 }
 
 .meta {
@@ -48,9 +61,16 @@
   flex-flow: column nowrap;
   justify-content: center;
   order: 1;
+  tidy-span: 12;
+
+  @media ($smMin) {
+    order: 0;
+    tidy-span: 9;
+  }
 
   @media ($mdMin) {
-    padding-left: rem(24);
+    order: 1;
+    tidy-span: 8;
   }
 }
 
@@ -63,13 +83,32 @@
   margin-right: rem(30);
   max-width: rem(220);
   order: 0;
-  width: rem(220);
+  tidy-span: 12;
 
   > span {
     display: block;
+
+    img {
+      position: relative;
+    }
+  }
+
+  @media ($smMin) {
+    order: 1;
+    tidy-span: 3;
+  }
+
+  @media ($mdMin) {
+    order: 0;
+    tidy-span: 4;
   }
 }
 
 .article {
   width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 6;
+  }
 }

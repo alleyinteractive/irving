@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
+import classNames from 'classnames';
 
 // Styles
 import styles from './innovatorHeader.css';
@@ -14,15 +15,16 @@ const InnovatorHeader = ({ children, title, color }) => {
   return (
     <header className={styles.wrapper} style={{ backgroundColor: color }}>
       <div className={styles.container}>
-        <div className={styles.heroContent}>
-          <div className={styles.meta}>
-            <h1 className={styles.title}>
-              {__('35 Innovators Under 35', 'mittr')}
-              <span className={styles.inlineTitle}>{title}</span>
-            </h1>
-            <p className={styles.description}>{description}</p>
-          </div>
-          {image && <div className={styles.image}>{image}</div>}
+        {image && <div className={styles.image}>{image}</div>}
+        <div className={classNames(styles.meta, {
+          [styles.withImg]: image,
+        })}
+        >
+          <h1 className={styles.title}>
+            {__('35 Innovators Under 35', 'mittr')}
+            <span className={styles.inlineTitle}>{title}</span>
+          </h1>
+          <p className={styles.description}>{description}</p>
         </div>
       </div>
     </header>
