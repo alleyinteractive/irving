@@ -31,9 +31,7 @@
  * Content-width container.
  */
 @mixin container {
-  @include keep-tidy {
-    tidy-span: tidy-var(columns);
-  }
   margin-left: auto;
   margin-right: auto;
+  tidy-span: tidy-var(columns);
 }

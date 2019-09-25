@@ -18,6 +18,7 @@ const TeaserItem = ({
   children,
   color,
   excerpt,
+  itemPosition,
   permalink,
   postDate,
   teaseCTA,
@@ -34,7 +35,10 @@ const TeaserItem = ({
 
   if ('simple' === themeName) {
     return (
-      <Link className={theme.wrapper} to={permalink}>
+      <Link
+        className={classNames(theme.wrapper, [theme[itemPosition]])}
+        to={permalink}
+      >
         <div className={theme.meta}>
           <h3 className={theme.title}>{title}</h3>
           <p className={theme.excerpt}>{excerpt}</p>
@@ -46,7 +50,7 @@ const TeaserItem = ({
 
   return (
     <article
-      className={classNames(theme.wrapper, {
+      className={classNames(theme.wrapper, [theme[itemPosition]], {
         [theme.hasImage]: image,
       })}
     >
@@ -97,6 +101,7 @@ TeaserItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   color: PropTypes.string,
   excerpt: PropTypes.string.isRequired,
+  itemPosition: PropTypes.string,
   permalink: PropTypes.string.isRequired,
   postDate: PropTypes.string,
   teaseCTA: PropTypes.string,
@@ -128,10 +133,11 @@ TeaserItem.defaultProps = {
   topic: '',
   postDate: '',
   topicLink: '',
+  itemPosition: '',
 };
 
 export default withThemes('teaser-item', {
   default: styles,
   simple: simpleTheme,
   aside: asideTheme,
-})(withStyles(styles)(TeaserItem));
+})(withStyles(styles, simpleTheme, asideTheme)(TeaserItem));
