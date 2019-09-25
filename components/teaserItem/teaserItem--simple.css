@@ -1,54 +1,46 @@
 /* TeaserItem simple styles */
 
-/*
-  @todo
-  - style in MIT-252
-  - Delete any items in this file that you do not want to keep and the styles
-  will default to the styles in the selector in ./teaserItem.css.
-  - If you delete the composes rule, no preexisting styles will be applied to
-  the selector.
- */
-
-.callToAction {
-  composes: callToAction from './teaserItem.css';
-}
-
-.dot {
-  composes: dot from './teaserItem.css';
-}
-
 .excerpt {
-  composes: excerpt from './teaserItem.css';
-}
+  font-family: $sans;
+  font-size: rem(16);
+  font-weight: 400;
 
-.eyebrow {
-  composes: eyebrow from './teaserItem.css';
-}
-
-.eyebrowLink {
-  composes: eyebrowLink from './teaserItem.css';
+  @media ($smMin) {
+    font-size: rem(24);
+  }
 }
 
 .image {
-  composes: image from './teaserItem.css';
+  order: 1;
+  overflow: hidden;
+  tidy-span: 4;
 }
 
 .meta {
-  composes: meta from './teaserItem.css';
-}
-
-.shareMenu {
-  composes: shareMenu from './teaserItem.css';
-}
-
-.shareMenuToggle {
-  composes: shareMenuToggle from './teaserItem.css';
+  order: 0;
+  padding: 0 rem(20);
+  tidy-span: 8;
 }
 
 .title {
-  composes: title from './teaserItem.css';
+  font-family: $sans;
+  font-size: rem(26);
+  font-weight: 700;
+
+  @media ($smMin) {
+    font-size: rem(37);
+  }
 }
 
 .wrapper {
-  composes: wrapper from './teaserItem.css';
+  @include container;
+  border-bottom: $border-thin;
+  display: flex;
+  flex-flow: row wrap;
+  padding: rem(40) 0;
+
+  &.last {
+    border-bottom: 0;
+    margin-bottom: rem(40);
+  }
 }
