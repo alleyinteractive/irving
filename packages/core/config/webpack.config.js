@@ -1,4 +1,3 @@
-const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
 const { appRoot } = require('./paths');
@@ -78,8 +77,6 @@ module.exports = (env, argv) => {
   const processedConfigs = configGetters.reduce((acc, getter) => (
     getter(acc, mode)
   ), multiConfig);
-
-  console.log(processedConfigs);
 
   return processedConfigs;
 };
