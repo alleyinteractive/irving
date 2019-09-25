@@ -30,7 +30,10 @@ const PostList = ({
                 {title}
               </h2>
             )}
-            <ul className={theme.wrapper} id={'' !== title && titleID}>
+            <ul
+              className={theme.wrapper}
+              aria-labelledby={'' !== title && titleID}
+            >
               {children.map((child, index) => (
                 <li key={uid(`postListItem${index}`)}>{child}</li>
               ))}
