@@ -12,27 +12,25 @@
   }
 }
 
-.main {
-  overflow: hidden;
-  width: 100%;
+.column {
+  &:first-child {
+    overflow: hidden;
+    width: 100%;
 
-  @media ($mdMin) {
-    @include container-with-bleed(6);
-    padding-left: 0;
-    padding-right: 0;
-    tidy-offset-left: 1;
+    @media ($mdMin) {
+      @include container-with-bleed(6);
+      padding-left: 0;
+      padding-right: 0;
+      tidy-offset-left: 1;
+    }
   }
-}
 
-.sidebar {
-  /* FPO styles */
-  background-color: $inactive-gray;
-  border: $border-thin--gray;
-  padding: 1rem;
-  width: 100%;
+  &:last-child {
+    width: 100%;
 
-  @media ($mdMin) {
-    tidy-span: 4;
+    @media ($mdMin) {
+      tidy-span: 4;
+    }
   }
 }
 

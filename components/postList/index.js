@@ -4,6 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import classNames from 'classnames';
 import { UIDReset, UIDConsumer } from 'react-uid';
+import kebabCase from 'lodash.kebabcase';
 
 // Styles
 import styles from './postList.css';
@@ -15,7 +16,7 @@ const PostList = ({
   <UIDReset>
     <UIDConsumer>
       {(id, uid) => {
-        const titleID = uid('post-list');
+        const titleID = '' !== title ? kebabCase(title) : uid('post-list');
         const useScreenReaderTitle = ! showTitle && 'withTitle' !== themeName;
         return (
           <div className={theme.wrapper}>
@@ -30,8 +31,8 @@ const PostList = ({
               </h2>
             )}
             <ul className={theme.wrapper} id={'' !== title && titleID}>
-              {children.map((child) => (
-                <li key={uid('postListItem')}>{child}</li>
+              {children.map((child, index) => (
+                <li key={uid(`postListItem${index}`)}>{child}</li>
               ))}
             </ul>
           </div>

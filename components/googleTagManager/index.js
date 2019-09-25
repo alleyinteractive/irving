@@ -22,7 +22,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </Helmet>
       <noscript>
         <iframe
-          title="fortune-gtm"
+          title="mittr-gtm"
           src={`https://www.googletagmanager.com/ns.html?id=${containerId}`}
           height="0"
           width="0"
