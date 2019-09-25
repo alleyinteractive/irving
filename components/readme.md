@@ -12,4 +12,3 @@ Some noteworthy components to flag,
 * [Placeholder](https://github.com/alleyinteractive/irving/tree/production/components/placeholder)
 * [Placeholder Loading](https://github.com/alleyinteractive/irving/tree/production/components/placeholderLoading)
 * [Root Providers](https://github.com/alleyinteractive/irving/tree/production/components/rootProviders)
-TBD.
