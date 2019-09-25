@@ -35,7 +35,21 @@ const PostList = ({
               aria-labelledby={'' !== title && titleID}
             >
               {children.map((child, index) => (
-                <li key={uid(`postListItem${index}`)}>{child}</li>
+                <li key={uid(`postListItem${index}`)}>
+                  {React.cloneElement(child, {
+                    itemPosition: (() => {
+                      if (0 === index) {
+                        return 'first';
+                      }
+
+                      if (index === children.length - 1) {
+                        return 'last';
+                      }
+
+                      return 'middle';
+                    })(),
+                  })}
+                </li>
               ))}
             </ul>
           </div>
