@@ -1,7 +1,9 @@
 import AudioElement from 'components/audio';
 import Body from 'components/body';
 import Byline from 'components/byline';
+import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
+import Columns from 'components/gutenbergContent/blocks/columns';
 import ContentBody from 'components/contentBody';
 import ContentFooter from 'components/contentFooter';
 import ContentHeader from 'components/contentHeader';
@@ -29,12 +31,14 @@ import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
 import NotConfigured from 'components/notConfigured';
+import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
+import Sidebar from 'components/sidebar';
 import SubtopicsSection from 'components/subtopicsSection';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
@@ -61,6 +65,8 @@ export const componentMap = {
   'content-footer': ContentFooter,
   'content-header': ContentHeader,
   'content-list-item': ContentListItem,
+  'core/column': Column,
+  'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
   footer: Footer,
@@ -90,11 +96,12 @@ export const componentMap = {
   'mittr-plugin-extension/stats-widget': StatsWidget,
   pagination: Placeholder,
   parsely: Parsely,
+  'page-body': PageBody,
   'post-list': PostList,
   'search-bar': SearchBar,
   'section-item': SectionItem,
   'subtopics-section': SubtopicsSection,
-  sidebar: Placeholder,
+  sidebar: Sidebar,
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,

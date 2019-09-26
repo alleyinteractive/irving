@@ -6,32 +6,20 @@ import EmbedContainer from 'react-oembed-container';
 import { plainText, richText } from 'config/html';
 
 const RawHTML = (props) => {
-  const {
-    content, rich, oembed, prependChildren, appendChildren,
-  } = props;
+  const { content, rich, oembed } = props;
   const html = sanitizeHtml(content, rich ? richText : plainText);
   const newProps = omit(
-    [
-      'content',
-      'rich',
-      'children',
-      'componentName',
-      'oembed',
-      'appendChildren',
-      'prependChildren',
-    ],
+    ['content', 'rich', 'children', 'componentName', 'oembed'],
     props
   );
 
   if (oembed) {
     return (
       <EmbedContainer markup={content}>
-        {prependChildren}
         <div
           {...newProps}
           dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
         />
-        {appendChildren}
       </EmbedContainer>
     );
   }
@@ -56,21 +44,11 @@ RawHTML.propTypes = {
    * Does this markup contain oembeds?
    */
   oembed: PropTypes.bool,
-  /**
-   * Components that should be prepended.
-   */
-  prependChildren: PropTypes.arrayOf(PropTypes.element),
-  /**
-   * Components that should be appended.
-   */
-  appendChildren: PropTypes.arrayOf(PropTypes.element),
 };
 
 RawHTML.defaultProps = {
-  appendChildren: [],
-  oembed: false,
-  prependChildren: [],
   rich: true,
+  oembed: false,
 };
 
 export default RawHTML;

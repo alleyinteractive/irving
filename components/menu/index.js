@@ -8,6 +8,7 @@ import styles from './menu.css';
 import footerStyles from './footerMenu.css';
 import headerStyles from './headerMenu.css';
 import topStyles from './topMenu.css';
+import sidebarStyles from './sidebarMenu.css';
 
 const Menu = (props) => {
   const {
@@ -59,6 +60,7 @@ const wrapWithThemes = withThemes('menu', {
   footer: footerStyles,
   header: headerStyles,
   top: topStyles,
+  sidebar: sidebarStyles,
 });
 
 const wrapWithStyles = withStyles(styles, footerStyles,

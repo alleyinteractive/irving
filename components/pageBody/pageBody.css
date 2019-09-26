@@ -1,0 +1,6 @@
+.wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  font-family: $serif;
+  margin: 0 auto;
+}
