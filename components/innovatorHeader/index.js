@@ -7,6 +7,7 @@ import classNames from 'classnames';
 
 // Styles
 import styles from './innovatorHeader.css';
+import colors from '../../config/css/colors';
 
 const InnovatorHeader = ({ children, title, color }) => {
   const description = findChildByName('list-description', children);
@@ -38,7 +39,7 @@ InnovatorHeader.propTypes = {
 };
 
 InnovatorHeader.defaultProps = {
-  color: '#333333',
+  color: colors['tr35-list-header-bg'],
 };
 
 export default withStyles(styles)(InnovatorHeader);

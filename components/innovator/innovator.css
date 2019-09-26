@@ -11,9 +11,13 @@
 
 .header {
   display: flex;
+  flex-direction: column;
   margin-bottom: rem(30);
-  tidy-span: 12;
   width: 100%;
+
+  @media ($smMin) {
+    flex-direction: row;
+  }
 
   @media ($mdMin) {
     tidy-offset-left: 1;
@@ -61,7 +65,7 @@
   flex-flow: column nowrap;
   justify-content: center;
   order: 1;
-  tidy-span: 12;
+  tidy-span: 10;
 
   @media ($smMin) {
     order: 0;
@@ -80,10 +84,9 @@
 }
 
 .image {
-  margin-right: rem(30);
   max-width: rem(220);
   order: 0;
-  tidy-span: 12;
+  tidy-span: 10;
 
   > span {
     display: block;
@@ -94,6 +97,7 @@
   }
 
   @media ($smMin) {
+    margin-right: rem(30);
     order: 1;
     tidy-span: 3;
   }
