@@ -7,7 +7,7 @@
 ```javascript
 const reducers = {
   ...
-  formName: createFormReducer('formName),
+  formName: createFormReducer('formName'),
 };
 ```
 * [defaultState.js](https://github.com/alleyinteractive/irving/blob/production/reducers/defaultState.js) - Default global state. This file should be used in all reducers.
