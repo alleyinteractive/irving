@@ -1,3 +1,4 @@
+const getServerConfigField = require('../utils/getServerConfigField');
 const defaultService = {
   client: {},
   get: () => null,
@@ -16,6 +17,13 @@ let service;
  * @returns {CacheService}
  */
 const getService = () => {
+  const configService = getServerConfigField('cacheService')();
+
+  // Set user- or package-configured cache service, if applicable.
+  if (configService) {
+    service = configService;
+  }
+
   // Memoize client connection, so it can reused.
   if (service) {
     return service;

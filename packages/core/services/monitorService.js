@@ -1,9 +1,9 @@
+const getServerConfigField = require('../utils/getServerConfigField');
 const defaultService = {
   start: () => {},
   logError: () => {},
   logTransaction: () => {},
 };
-
 let service;
 
 /**
@@ -14,6 +14,14 @@ let service;
  * @returns {object} singleton service object
  */
 const getService = () => {
+  const configService = getServerConfigField('monitorService')();
+
+  // Set user- or package-configured cache service, if applicable.
+  if (configService) {
+    service = configService;
+  }
+
+  // Memoize service, so it can reused.
   if (service) {
     return service;
   }
