@@ -1,0 +1,85 @@
+/* MagazineIssues component styles */
+
+.button {
+  border: $border-thin;
+  color: $black;
+  font-family: $sans;
+  font-size: rem(20);
+  font-weight: 600;
+  line-height: 1;
+  padding: rem(22) rem(18) rem(18);
+  text-align: center;
+  width: 100%;
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+}
+
+.container {
+  border-top: $border-thick $black;
+  padding-top: rem(20);
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 11;
+  }
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: rem(20);
+  width: 100%;
+}
+
+.item {
+  width: calc(33.3% - rem(20));
+
+  @supports (display: grid) {
+    width: 100%;
+  }
+}
+
+.list {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: rem(40);
+
+  @supports (display: grid) {
+    display: grid;
+    grid-gap: rem(40);
+    grid-template-columns: repeat(2, 1fr);
+
+    @media ($smMin) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.select {
+  font-size: rem(16);
+}
+
+.title {
+  color: $color-heading;
+  font-family: $sans;
+  font-size: rem(30);
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 0;
+
+  @media ($smMin) {
+    font-size: rem(40);
+  }
+}
+
+.wrapper {
+  @include container;
+  margin-bottom: rem(60);
+}

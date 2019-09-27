@@ -18,7 +18,7 @@ const MagazineHero = ({
   issueDate,
   issueNavigation,
   letter,
-  MITNewsLink,
+  mitNewsLink,
   pdfLink,
   textColor,
   title,
@@ -36,7 +36,7 @@ const MagazineHero = ({
               </Link>
             </li>
             <li role="menuitem">
-              <Link to={MITNewsLink} className={styles.publicationLink}>
+              <Link to={mitNewsLink} className={styles.publicationLink}>
                 {__('MIT News Magazine', 'mittr')}
               </Link>
             </li>
@@ -116,7 +116,7 @@ MagazineHero.propTypes = {
     previous: PropTypes.string,
     next: PropTypes.string,
   }).isRequired,
-  MITNewsLink: PropTypes.string.isRequired,
+  mitNewsLink: PropTypes.string.isRequired,
   letter: PropTypes.shape({
     url: PropTypes.string,
     title: PropTypes.string,
