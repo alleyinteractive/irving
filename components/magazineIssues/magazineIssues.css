@@ -1,0 +1,46 @@
+/* MagazineIssues component styles */
+
+.container {
+  border-top: $border-thick $black;
+  padding-top: rem(20);
+  tidy-offset-left: 1;
+  tidy-span: 11;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: rem(20);
+  width: 100%;
+}
+
+.item {
+  width: 100%;
+}
+
+.list {
+  @supports (display: grid) {
+    display: grid;
+    grid-gap: rem(40);
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.select {
+  font-size: rem(16);
+}
+
+.title {
+  color: $color-heading;
+  font-family: $sans;
+  font-size: rem(40);
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.wrapper {
+  @include container;
+}

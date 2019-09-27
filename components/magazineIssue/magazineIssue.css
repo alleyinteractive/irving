@@ -1,0 +1,15 @@
+/* MagazineIssue component styles */
+
+.cover {
+  overflow: hidden;
+  width: rem(190);
+}
+
+.wrapper {
+  align-items: center;
+  background-color: $black;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  padding: rem(50);
+}
