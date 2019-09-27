@@ -19,7 +19,7 @@ const productionMiddleware = (app) => {
   app.use(auth);
 
   app.use(express.static(path.resolve('./build/client'), {
-    maxage: 86400000,
+    maxAge: 86400000,
   }));
 
   const options = { clientStats };

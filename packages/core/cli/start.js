@@ -6,12 +6,15 @@ require('dotenv').config();
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
 
+const http = require('http');
+const https = require('https');
+const express = require('express');
+
 const getService = require('../services/monitorService');
 getService().start();
 
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
-const express = require('express');
 const createServer = require('../server/createServer');
 const {
   rootUrl,
@@ -20,6 +23,8 @@ const {
 // eslint-disable-next-line import/no-dynamic-require
 const serverConfig = require(serverConfigPath);
 const getServerConfigField = require('../utils/getServerConfigField');
+const bustCache = require('./bustCache');
+const bustPageCache = require('./bustPageCache');
 
 const {
   PORT = 3001,
@@ -27,6 +32,11 @@ const {
 } = process.env;
 const app = express();
 
+// Clearing the Redis cache.
+app.get('/bust-endpoint-cache', bustPageCache);
+app.get('/bust-entire-cache', bustCache);
+
+// Set view engine.
 app.set('view engine', 'ejs');
 
 // Run all customize server functions.
