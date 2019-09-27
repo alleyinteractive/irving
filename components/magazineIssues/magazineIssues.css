@@ -10,13 +10,22 @@
   padding: rem(22) rem(18) rem(18);
   text-align: center;
   width: 100%;
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
 }
 
 .container {
   border-top: $border-thick $black;
   padding-top: rem(20);
-  tidy-offset-left: 1;
-  tidy-span: 11;
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 11;
+  }
 }
 
 .header {
@@ -45,7 +54,11 @@
   @supports (display: grid) {
     display: grid;
     grid-gap: rem(40);
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+
+    @media ($smMin) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }
 
@@ -56,12 +69,17 @@
 .title {
   color: $color-heading;
   font-family: $sans;
-  font-size: rem(40);
+  font-size: rem(30);
   font-weight: 600;
   line-height: 1;
   margin-bottom: 0;
+
+  @media ($smMin) {
+    font-size: rem(40);
+  }
 }
 
 .wrapper {
   @include container;
+  margin-bottom: rem(60);
 }
