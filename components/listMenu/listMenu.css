@@ -9,7 +9,12 @@
 
 .fullBleed {
   @include container-with-bleed;
+  padding-left: rem(103);
+}
+
+.withBorder {
   border-bottom: $border-thin;
+  padding-left: 0;
 }
 
 .title {

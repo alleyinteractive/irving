@@ -18,4 +18,12 @@
       padding: 0;
     }
   }
+
+  :global(.body--innovators-list) & {
+    padding: 0;
+
+    @media ($lgMin) {
+      padding: 0;
+    }
+  }
 }

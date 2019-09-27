@@ -1,0 +1,120 @@
+/* ListHeader component styles */
+
+.wrapper {
+  background-color: $color-deck;
+  width: 100%;
+}
+
+.container {
+  @include container-with-bleed;
+  display: flex;
+  flex-flow: row wrap;
+  padding: rem(30) rem(15);
+
+  @media ($mdMin) {
+    padding: rem(60) 0;
+  }
+}
+
+.image {
+  color: $white;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin-bottom: rem(20);
+  max-width: rem(300);
+  order: 1;
+  width: 100%;
+
+  @media ($mdMin) {
+    margin-bottom: 0;
+    order: 0;
+    tidy-span: 4;
+  }
+
+  > * {
+    width: 100%;
+  }
+
+  span {
+    padding: 0 rem(30);
+  }
+
+  img {
+    width: 100%;
+  }
+
+  figcaption {
+    color: $white;
+    display: block;
+    font-family: $sans;
+    font-size: rem(11);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: rem(20);
+    text-transform: uppercase;
+
+    @media ($mdMin) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.meta {
+  display: flex;
+  flex-flow: column nowrap;
+  order: 0;
+  width: 100%;
+
+  @media ($mdMin) {
+    order: 1;
+    padding-right: rem(22);
+    tidy-offset-left: 1;
+    tidy-offset-right: 1;
+    tidy-span: 6;
+  }
+}
+
+.meta.withImg {
+  @media ($mdMin) {
+    tidy-offset-left: 0;
+  }
+}
+
+.title {
+  color: $white;
+  font-family: $sans;
+  font-size: rem(24);
+  font-weight: 700;
+  line-height: 1.231;
+  width: 100%;
+
+  @media ($mdMin) {
+    font-size: rem(28);
+    margin-top: rem(30);
+  }
+}
+
+.inlineTitle {
+  display: block;
+  font-size: rem(40);
+  font-weight: 700;
+  margin: rem(20) 0;
+
+  @media ($mdMin) {
+    font-size: rem(60);
+    margin: rem(30) 0;
+  }
+}
+
+.description {
+  color: $white;
+  font-size: rem(24);
+  order: 2;
+  width: 100%;
+
+  @media ($mdMin) {
+    font-size: rem(28);
+    padding-right: rem(25);
+  }
+}
