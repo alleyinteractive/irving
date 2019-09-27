@@ -1,15 +1,18 @@
-let service;
 const defaultService = {
+  client: {},
   get: () => null,
   set: () => {},
+  del: () => null,
 };
+let service;
 
 /**
  * @typedef {object} CacheService
  * @property {function} get
  * @property {function} set
+ * @property {function} del
  *
- * Return a service object for storing and retrieving cached items.
+ * Return a service object for storing, retrieving, deleting cached items.
  * @returns {CacheService}
  */
 const getService = () => {
@@ -28,6 +31,7 @@ const getService = () => {
   // while compiling.
   if (! process.env.BROWSER) {
     let Redis;
+
     // Check if optional redis client is installed.
     try {
       // Redis = require('ioredis'); // eslint-disable-line global-require
@@ -53,6 +57,9 @@ const getService = () => {
           process.env.CACHE_EXPIRE || 300
         );
       },
+      del(key) {
+        return this.client.del(key);
+      },
     };
 
     return service;
@@ -61,4 +68,4 @@ const getService = () => {
   return defaultService;
 };
 
-export default getService;
+module.exports = getService;
