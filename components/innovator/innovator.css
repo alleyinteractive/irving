@@ -1,0 +1,118 @@
+/* ListItem component styles */
+
+.wrapper {
+  @include container-with-bleed;
+  background-color: transparent;
+  list-style: none;
+  padding-bottom: rem(32);
+  padding-top: rem(32);
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: rem(30);
+  width: 100%;
+
+  @media ($smMin) {
+    flex-direction: row;
+  }
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 6;
+  }
+}
+
+.link {
+  display: flex;
+  flex-flow: row wrap;
+  width: auto;
+}
+
+.name {
+  font-size: rem(28);
+  font-weight: 600;
+  margin-bottom: rem(10);
+
+  @media ($mdMin) {
+    font-size: rem(36);
+  }
+}
+
+.affiliation {
+  font-size: rem(17);
+  margin-bottom: rem(7);
+
+  > span {
+    display: block;
+  }
+}
+
+.subtitle {
+  font-size: rem(21);
+  font-weight: 600;
+  line-height: 1.15em;
+
+  @media ($mdMin) {
+    font-size: rem(36);
+  }
+}
+
+.meta {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  order: 1;
+  tidy-span: 10;
+
+  @media ($smMin) {
+    order: 0;
+    tidy-span: 9;
+  }
+
+  @media ($mdMin) {
+    order: 1;
+    tidy-span: 8;
+  }
+}
+
+.credit {
+  font-size: rem(19);
+  margin-top: rem(20);
+}
+
+.image {
+  max-width: rem(220);
+  order: 0;
+  tidy-span: 10;
+
+  > span {
+    display: block;
+
+    img {
+      position: relative;
+    }
+  }
+
+  @media ($smMin) {
+    margin-right: rem(30);
+    order: 1;
+    tidy-span: 3;
+  }
+
+  @media ($mdMin) {
+    order: 0;
+    tidy-span: 4;
+  }
+}
+
+.article {
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 6;
+  }
+}

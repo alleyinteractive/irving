@@ -19,6 +19,8 @@ import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
 import FeedItem from 'components/feedItem';
 import Image from 'components/image/image';
+import Innovator from 'components/innovator';
+import InnovatorHeader from 'components/innovatorHeader';
 import ListHeader from 'components/listHeader';
 import ListDescription from 'components/listDescription';
 import ListMenu from 'components/listMenu';
@@ -79,6 +81,8 @@ export const componentMap = {
   'feed-item': FeedItem,
   html: RawHTML,
   image: Image,
+  innovator: Innovator,
+  'innovator-header': InnovatorHeader,
   'list-header': ListHeader,
   'list-description': ListDescription,
   'list-menu': ListMenu,

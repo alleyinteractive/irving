@@ -14,6 +14,7 @@ import lightTheme from './listMenu--light.css';
 const ListMenu = ({
   children,
   fullBleed,
+  withBorder,
   permalink,
   theme,
   themeName,
@@ -27,6 +28,7 @@ const ListMenu = ({
           <nav
             className={classNames(theme.wrapper, themeName, {
               [theme.fullBleed]: fullBleed,
+              [theme.withBorder]: withBorder,
             })}
             aria-label={__('List', 'mittr')}
           >
@@ -51,6 +53,7 @@ ListMenu.propTypes = {
   title: PropTypes.string.isRequired,
   themeName: PropTypes.string,
   fullBleed: PropTypes.bool,
+  withBorder: PropTypes.bool,
   theme: PropTypes.shape({
     wrapper: PropTypes.string,
     fullBleed: PropTypes.string,
@@ -62,6 +65,7 @@ ListMenu.propTypes = {
 ListMenu.defaultProps = {
   themeName: '',
   fullBleed: false,
+  withBorder: false,
 };
 
 export default withThemes('list-menu', {
