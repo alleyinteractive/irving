@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import kebabcase from 'lodash.kebabcase';
+import { __ } from '@wordpress/i18n';
 
 // Styles
 import styles from './magazineIssues.css';
@@ -28,6 +29,9 @@ const MagazineIssues = ({ children, title }) => (
           </li>
         ))}
       </ul>
+      <button className={styles.button} type="button">
+        {__('Load more past issues', 'mittr')}
+      </button>
     </div>
   </div>
 );

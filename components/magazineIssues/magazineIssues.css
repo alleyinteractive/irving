@@ -1,5 +1,17 @@
 /* MagazineIssues component styles */
 
+.button {
+  border: $border-thin;
+  color: $black;
+  font-family: $sans;
+  font-size: rem(20);
+  font-weight: 600;
+  line-height: 1;
+  padding: rem(22) rem(18) rem(18);
+  text-align: center;
+  width: 100%;
+}
+
 .container {
   border-top: $border-thick $black;
   padding-top: rem(20);
@@ -17,10 +29,19 @@
 }
 
 .item {
-  width: 100%;
+  width: calc(33.3% - rem(20));
+
+  @supports (display: grid) {
+    width: 100%;
+  }
 }
 
 .list {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: rem(40);
+
   @supports (display: grid) {
     display: grid;
     grid-gap: rem(40);
