@@ -6,8 +6,6 @@ require('dotenv').config();
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
 
-const http = require('http');
-const https = require('https');
 const express = require('express');
 
 const getService = require('../services/monitorService');
