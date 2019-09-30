@@ -4,10 +4,6 @@ import { withStyles } from 'critical-style-loader/lib';
 import kebabcase from 'lodash.kebabcase';
 import { __ } from '@wordpress/i18n';
 import withData from 'components/hoc/withData';
-// import toReact from 'config/componentMap';
-// import ConnectedRoot from 'components/connectedRoot';
-// import RootProviders  from 'components/rootProviders';
-// import ConnectedRoot from 'components/connectedRoot';
 import toReactElement from 'utils/toReactElement';
 
 // Styles
@@ -19,6 +15,10 @@ const MagazineIssues = ({ data, title }) => {
   useEffect(() => {
     setItems(data);
   }, [data]);
+
+  const loadItems = () => {
+    setItems(data);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -36,20 +36,13 @@ const MagazineIssues = ({ data, title }) => {
           </select>
         </header>
         <ul className={styles.list} aria-labelledby={kebabcase(title)}>
-          {/* <RootProviders providers={items}>
-            {items.map(({ name }) => (
-              <ConnectedRoot key={name} name={name} />
-            ))}
-          </RootProviders> */}
           {items.map((item) => (
             <li key={item.config.title} className={styles.item}>
               {toReactElement(item)}
-              {/* {React.createElement(getReactComponent(item.name))} */}
-              {/* <ConnectedRoot apiComponent={item} /> */}
             </li>
           ))}
         </ul>
-        <button className={styles.button} type="button">
+        <button className={styles.button} type="button" onClick={loadItems}>
           {__('Load more past issues', 'mittr')}
         </button>
       </div>
