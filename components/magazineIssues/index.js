@@ -1,27 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import kebabcase from 'lodash.kebabcase';
 import { __ } from '@wordpress/i18n';
 import withData from 'components/hoc/withData';
-import toReactElement from 'utils/toReactElement';
-
-// Styles
+import MagazineIssuesList from './list';
 import styles from './magazineIssues.css';
 
-const MagazineIssues = ({ data, title, issueType }) => {
-  const filterType = (
-    issues // eslint-disable-line implicit-arrow-linebreak
-  ) => issues.filter(({ config }) => config.issueType === issueType);
-  const [items, setItems] = useState([]);
+const MagazineIssues = ({ title, issueType }) => {
+  // const filterType = (
+  //   issues // eslint-disable-line implicit-arrow-linebreak
+  // ) => issues.filter(({ config }) => config.issueType === issueType);
+  // const [items, setItems] = useState([]);
+  // const [data, setData] = useState([]);
+  const [userRequest, setUserRequest] = useState({
+    currentPage: 0,
+    endpoint: '',
+  });
 
-  useEffect(() => {
-    setItems(filterType(data));
-  }, [data]);
+  // useEffect(() => {
+  //   setItems(data);
+  // }, [data]);
 
   const loadItems = () => {
-    setItems(filterType(data));
+    // setItems(filterType(data));
+    setUserRequest({
+      currentPage: userRequest.currentPage + 1,
+      endpoint: `?page=${userRequest.currentPage + 1}&issueType=${issueType}`,
+    });
   };
+
+  const Results = withData(`magazine_issues${userRequest.endpoint}`, {
+    loading: () => <div>{__('Loading', 'mittr')}</div>,
+  })(MagazineIssuesList);
 
   return (
     <div className={styles.wrapper}>
@@ -38,13 +49,7 @@ const MagazineIssues = ({ data, title, issueType }) => {
             <option value="1990">1990s</option>
           </select>
         </header>
-        <ul className={styles.list} aria-labelledby={kebabcase(title)}>
-          {items.map((item) => (
-            <li key={item.config.title} className={styles.item}>
-              {toReactElement(item)}
-            </li>
-          ))}
-        </ul>
+        <Results labelID={kebabcase(title)} />
         <button className={styles.button} type="button" onClick={loadItems}>
           {__('Load more past issues', 'mittr')}
         </button>
@@ -54,11 +59,9 @@ const MagazineIssues = ({ data, title, issueType }) => {
 };
 
 MagazineIssues.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // data: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string.isRequired,
   issueType: PropTypes.string.isRequired,
 };
 
-export default withData('magazine_issues', {
-  loading: () => <div>{__('Loading', 'mittr')}</div>,
-})(withStyles(styles)(MagazineIssues));
+export default withStyles(styles)(MagazineIssues);
