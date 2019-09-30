@@ -9,15 +9,18 @@ import toReactElement from 'utils/toReactElement';
 // Styles
 import styles from './magazineIssues.css';
 
-const MagazineIssues = ({ data, title }) => {
+const MagazineIssues = ({ data, title, issueType }) => {
+  const filterType = (
+    issues // eslint-disable-line implicit-arrow-linebreak
+  ) => issues.filter(({ config }) => config.issueType === issueType);
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    setItems(data);
+    setItems(filterType(data));
   }, [data]);
 
   const loadItems = () => {
-    setItems(data);
+    setItems(filterType(data));
   };
 
   return (
@@ -53,6 +56,7 @@ const MagazineIssues = ({ data, title }) => {
 MagazineIssues.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string.isRequired,
+  issueType: PropTypes.string.isRequired,
 };
 
 export default withData('magazine_issues', {
