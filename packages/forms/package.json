@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/forms",
-  "version": "1.0.4-alpha.1+088bf953",
+  "version": "1.0.4-alpha.18+088bf953",
   "description": "Form components and submission functionality for Irving",
   "files": [
     "actions/**/*",
@@ -44,5 +44,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "088bf95379370460985eae45041014c10b7027a0"
+  "gitHead": "148ee9d13ed8a1af204cf5e40abf29881d0a03ef"
 }
