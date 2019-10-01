@@ -5,6 +5,7 @@ const {
   irvingRoot,
   postCssConfig,
 } = require('../paths');
+
 const include = (filepath) => {
   const matches = (
     (
@@ -100,7 +101,9 @@ module.exports = function getRules(context) {
       include,
       use: {
         loader: 'babel-loader',
-        options: require(path.join(irvingRoot, 'babel.config.js')),
+        options: {
+          extends: path.join(irvingRoot, 'babel.config.js'),
+        },
       },
     },
     {

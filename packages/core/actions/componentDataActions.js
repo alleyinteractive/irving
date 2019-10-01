@@ -3,7 +3,7 @@ import {
   RECEIVE_COMPONENT_DATA,
   RECEIVE_COMPONENT_DATA_ERROR,
 } from 'actions/types';
-import { createAction } from '.';
+import { createAction } from 'actions';
 
 /**
  * Create a request component data Redux action.

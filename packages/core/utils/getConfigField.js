@@ -1,6 +1,13 @@
-import userConfig from '@irvingjs/irving.config';
-import { getMergedFromUserConfig } from 'utils/getMergedConfigField';
+const { getMergedFromUserConfig } = require('./getMergedConfigField');
+let config;
 
-const getConfigField = (key) => getMergedFromUserConfig(userConfig, key);
+/* eslint-disable import/no-dynamic-require, global-require */
+if (process.env.BUILD) {
+  config = require('@irvingjs/irving.config');
+} else {
+  const { serverConfig: serverConfigPath } = require('../config/paths');
+  config = require(serverConfigPath);
+}
+/* eslint-enable */
 
-export default getConfigField;
+module.exports = (key) => getMergedFromUserConfig(config, key);

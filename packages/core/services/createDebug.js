@@ -1,6 +1,6 @@
 const debug = require('debug');
-const getServerConfigField = require('../utils/getServerConfigField');
 const getService = require('../services/monitorService');
+const getConfigField = require('../utils/getConfigField');
 const monitor = getService();
 
 /**
@@ -14,7 +14,7 @@ const monitor = getService();
  */
 const createDebug = (namespace) => (message) => {
   const env = process.env.NODE_ENV;
-  const configDebug = getServerConfigField('debugService')();
+  const configService = getConfigField('debugService')();
 
   // Don't log during testing.
   if ('test' === env) {
@@ -33,8 +33,8 @@ const createDebug = (namespace) => (message) => {
 
   // In production the app should attempt graceful handling of errors, but also
   // log them for easier debugging.
-  if (configDebug) {
-    configDebug(namespace)(message);
+  if (configService) {
+    configService(namespace)(message);
   } else {
     debug(namespace)(message);
   }

@@ -1,9 +1,6 @@
-import getConfigField from 'utils/getConfigField';
 import getService from './cacheService';
 import createDebug from './createDebug';
 
-const configCacheService = getConfigField('cacheService');
-const configDebugService = getConfigField('debugService');
 const debug = createDebug('irving:components:data');
 
 const fetchOpts = {

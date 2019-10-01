@@ -1,5 +1,6 @@
 module.exports = {
   name: '',
+  babelConfig: [() => {}],
   componentMap: {},
   createServer: () => {},
   customizeServer: [() => {}],
