@@ -19,9 +19,7 @@ import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
 import App from 'components/app';
 import userConfig from '@irvingjs/irving.config';
-import { getMergedFromUserConfig } from 'utils/getMergedConfigField';
-import getAppTemplateVars from './getAppTemplateVars';
-import getErrorTemplateVars from './getErrorTemplateVars';
+import getConfigField from 'utils/getConfigField';
 import getTemplateVars from './getTemplateVars';
 
 const monitor = getService();
@@ -82,18 +80,13 @@ const render = async (req, res, clientStats) => {
   );
 
   // Get some template vars and allow customization by user.
-  const getters = getMergedFromUserConfig(
-    userConfig,
-    'getAppTemplateVars'
-  );
-  const initialValues = getAppTemplateVars(
-    AppWrapper,
-    { irvingHead: getWebpackScripts(clientStats).join('') },
-  );
+  const getters = getConfigField('getAppTemplateVars');
   const customTemplateVars = getTemplateVars(
     getters,
-    AppWrapper,
-    initialValues
+    {
+      Wrapper: AppWrapper,
+      irvingHead: getWebpackScripts(clientStats).join(''),
+    }
   );
 
   // Clear head data to avoid memory leak.
@@ -141,7 +134,8 @@ export default function serverRenderer(options) {
 
       // Render a error page.
       const cssBuilder = new CriticalCssBuilder();
-      const ErrorMessageComponent = userConfig['error-message'] || ErrorMessage;
+      const ErrorMessageComponent = userConfig.componentMap['error-message'] ||
+        ErrorMessage;
       const ErrorMessageWrapper = () => (
         <StyleContext.Provider value={cssBuilder.addCss}>
           <ErrorMessageComponent />
@@ -149,18 +143,13 @@ export default function serverRenderer(options) {
       );
 
       // Get some template vars and allow customization by user.
-      const getters = getMergedFromUserConfig(
-        userConfig,
-        'getErrorTemplateVars'
-      );
-      const initialValues = getErrorTemplateVars(
-        ErrorMessageWrapper,
-        { irvingHead: '' }
-      );
+      const getters = getConfigField('getErrorTemplateVars');
       const customTemplateVars = getTemplateVars(
         getters,
-        ErrorMessageWrapper,
-        initialValues
+        {
+          Wrapper: ErrorMessageWrapper,
+          irvingHead: '',
+        }
       );
       const templateVars = {
         criticalCss: cssBuilder.getCss(),
