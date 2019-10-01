@@ -1,3 +1,1 @@
-const irvingTestConfig = {};
-
-export default irvingTestConfig;
+module.exports = {};

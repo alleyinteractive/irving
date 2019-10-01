@@ -78,7 +78,7 @@ module.exports = (api) => {
                   'test/irving-test.config.js'
                 ),
                 '@irvingjs/irving.config.server': path.join(
-                  appRoot,
+                  irvingRoot,
                   'test/irving-test.config.js'
                 ),
               },
