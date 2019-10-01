@@ -1,28 +1,23 @@
 {
-	"name": "@irvingjs/integrations",
-	"version": "1.0.4-alpha.0",
-	"description": "Third party integrations for Irving",
+	"name": "@irvingjs/vip-go",
+	"version": "1.0.0",
+	"description": "Integration for WordPress VIP's Node server helpers",
 	"files": [
-		"components/**/*",
 		"!*.test.js"
 	],
 	"main": "index.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/alleyinteractive/irving/packages/integrations"
+		"url": "https://github.com/alleyinteractive/irving/packages/vip-go"
 	},
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
-		"prop-types": "^15.7.2",
-		"react": "^16.9.0",
-		"react-dom": "^16.9.0",
-		"regenerator-runtime": "^0.13.3"
+		"@automattic/vip-go": "^0.3.3"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
 		"@irvingjs/babel-preset-irving": "^1.0.4-alpha.0",
-		"@irvingjs/core": "^1.0.4-alpha.0",
 		"babel-jest": "^24.9.0",
 		"enzyme": "^3.10.0",
 		"enzyme-adapter-react-16": "^1.14.0",
@@ -31,7 +26,7 @@
 		"jest-enzyme": "^7.1.0"
 	},
 	"peerDependencies": {
-		"@irvingjs/core": ">1.0.4-alpha.9"
+		"@irvingjs/core": ">1.0.4-alpha.0"
 	},
 	"publishConfig": {
 		"access": "public"
