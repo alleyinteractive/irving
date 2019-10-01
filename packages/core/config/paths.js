@@ -25,7 +25,11 @@ const resolveIrvingDir = (relativePath) => (
  */
 const resolveAppDir = (relativePath) => path.resolve(appRoot, relativePath);
 
-const { PROXY_URL, ROOT_URL } = process.env;
+const {
+  PROXY_URL,
+  ROOT_URL,
+  NODE_ENV,
+} = process.env;
 
 module.exports = {
   appRoot,
@@ -34,6 +38,10 @@ module.exports = {
   serverRoot: resolveIrvingDir('server/serverRenderer.js'),
   clientBuild: resolveAppDir('build/client'),
   serverBuild: resolveAppDir('build/server'),
+  userConfig: resolveAppDir('irving.config.js'),
+  serverConfig: 'test' === NODE_ENV ?
+    resolveIrvingDir('test/irving-test.config.js') :
+    resolveAppDir('irving.config.server.js'),
   globalStyles: resolveIrvingDir('assets/styles'),
   rootUrl: ROOT_URL || 'http://localhost:3001',
   proxyUrl: PROXY_URL,

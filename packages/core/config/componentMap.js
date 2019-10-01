@@ -1,8 +1,27 @@
 import NotConfigured from 'components/notConfigured';
-import getIrvingConfig from 'utils/getIrvingConfig';
+import Body from 'components/body';
+import Head from 'components/head';
+import Image from 'components/image/image';
+import RawHTML from 'components/rawHTML';
+import Placeholder from 'components/placeholder';
+import withLoader from 'components/hoc/withLoader';
+import { getMergedConfigField } from 'utils/getMergedConfigField';
+import userConfig from '@irvingjs/irving.config';
 
-const irvingConfig = getIrvingConfig();
-const { componentMap } = irvingConfig;
+const defaultComponents = {
+  componentMap: {
+    body: withLoader(Body),
+    embed: RawHTML,
+    head: Head,
+    header: Placeholder,
+    html: RawHTML,
+    image: Image,
+  },
+};
+const componentMap = getMergedConfigField(
+  [userConfig, defaultComponents],
+  'componentMap'
+);
 
 /**
  * Resolve a defined React component by name.

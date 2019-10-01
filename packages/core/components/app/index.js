@@ -14,14 +14,15 @@ import getProviders from 'selectors/getProviders';
 import getComponent from 'config/componentMap';
 import styles from './app.css';
 
+const UserErrorMesage = getComponent('error-message');
+const UserApp = getComponent('app');
+
 const App = (props) => {
   const {
     error,
     roots,
     providers,
   } = props;
-  const UserErrorMesage = getComponent('error-message');
-  const UserApp = getComponent('app');
   const CoreApp = () => (
     <RootProviders providers={providers}>
       {roots.map((name) => (

@@ -1,0 +1,17 @@
+Various utility methods.
+
+* [children.js](https://github.com/alleyinteractive/irving/blob/production/utils/children.js) - Helper functions for getting children out of the `children` array provided to each Irving component. Unlike normal React apps, `children` in Irving are converted into instances of React components for you using data directly from the components API. In may cases, `children` can simply be rendered as-is. However, in some cases you may need to render specific children in specific locations in your component markup, hence the need for these helpers.
+* [children.test.js](https://github.com/alleyinteractive/irving/blob/production/utils/children.test.js) - Tests for `children.js`.
+* [createComponentDataKey.js](https://github.com/alleyinteractive/irving/blob/production/utils/createComponentDataKey.js) - Create key from a component-specific data endpoint for use when accessing that components data in redux state.
+* [flatten.js](https://github.com/alleyinteractive/irving/blob/production/utils/flatten.js) - Merges objects nested one level deep into their parent object.
+* [flatten.test.js](https://github.com/alleyinteractive/irving/blob/production/utils/flatten.test.js) - Unit tests for `flatten.js`
+* [getDisplayName.js](https://github.com/alleyinteractive/irving/blob/production/utils/getDisplayName.js) - Get a display name for a component. Makes it easier to identify from which component an error originates when utilizing a HOC.
+* [getRelativeUrl.js](https://github.com/alleyinteractive/irving/blob/production/utils/getRelativeUrl.js) - Convert an absolute, internal URL to a relative one or return an already relative URL as-is. If a URL is absolute and external, return `false`.
+* [getRelativeUrl.test.js](https://github.com/alleyinteractive/irving/blob/production/utils/getRelativeUrl.test.js) - Unit tests for `getRelativeUrl.js`.
+* [getWebpackScripts.js](https://github.com/alleyinteractive/irving/blob/production/utils/getWebpackScripts.js) - Retrieve the public path to crucial app scripts from a Webpack stats object. This is used for fetching the `src` value to provide to script tags in SSR templates.
+* [history.js](https://github.com/alleyinteractive/irving/blob/production/utils/history.js) - Returns a shim for the `history` API on the server side, or the history API if we're on the client side.
+* [isNode.js](https://github.com/alleyinteractive/irving/blob/production/utils/isNode.js) - Helper for determining if the app is currently executing in a node context.
+* [mockCssTransform.js](https://github.com/alleyinteractive/irving/blob/production/utils/mockCssTransform.js) - Helper for mocking the CSS transform used by `critical-style-loader`.
+* [shimWindow.js](https://github.com/alleyinteractive/irving/blob/production/utils/shimWindow.js) - Shim for basic browser-native functionality. Used to prevent errors related to the non-existent `window` object when the app is rendering/executing in a node context.
+* [toReactElement.js](https://github.com/alleyinteractive/irving/blob/production/utils/toReactWrapper.js) - Helper for recursively converting components and their children, pulled in through the Irving components API, into React elements.
+* [toReactWrapper.js](https://github.com/alleyinteractive/irving/blob/production/utils/toReactWrapper.js) - Helper for converting providers, pulled in from the Irving components API, into components and recursively nesting them within one another so they can properly provide context to their children.

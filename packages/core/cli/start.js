@@ -1,4 +1,5 @@
 /* eslint-disable global-require, no-console, import/order */
+const express = require('express');
 
 // Support isomorphic environment variables from local .env file
 require('dotenv').config();
@@ -6,15 +7,21 @@ require('dotenv').config();
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
 
+const getConfigField = require('../utils/getConfigField');
 const getService = require('../services/monitorService');
 getService().start();
 
 const createDebug = require('../services/createDebug');
 const debug = createDebug('server:error');
-const path = require('path');
-const express = require('express');
-const { rootUrl } = require('../config/paths');
-const { maybeRequireUserModule } = require('../utils/userModule');
+const createServer = require('../server/createServer');
+const {
+  rootUrl,
+  serverConfig: serverConfigPath,
+} = require('../config/paths');
+// eslint-disable-next-line import/no-dynamic-require
+const serverConfig = require(serverConfigPath);
+const bustCache = require('../server/bustCache');
+const bustPageCache = require('../server/bustPageCache');
 
 const {
   PORT = 3001,
@@ -22,10 +29,16 @@ const {
 } = process.env;
 const app = express();
 
+// Clearing the Redis cache.
+app.get('/bust-endpoint-cache', bustPageCache);
+app.get('/bust-entire-cache', bustCache);
+
+// Set view engine.
 app.set('view engine', 'ejs');
 
-// Allow customization of server.
-maybeRequireUserModule('server/customizeServer.js')(app);
+// Run all customize server functions.
+const irvingServerMiddleware = getConfigField('customizeServer');
+irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 if ('development' === NODE_ENV) {
   require('../server/development')(app);
@@ -45,7 +58,13 @@ app.use((err, req, res, next) => {
 });
 
 // Allow customization of how server is created.
-const server = maybeRequireUserModule('server/createServer.js')(app);
+// Run all customize server functions.
+let server;
+if (serverConfig.createServer) {
+  server = serverConfig.createServer(app);
+} else {
+  server = createServer(app);
+}
 
 server.listen(PORT);
 console.log(`Server listening on port ${PORT}!`);

@@ -27,6 +27,10 @@ module.exports = function getPlugins(context) {
       return [
         ...commonPlugins,
         new CleanPlugin(),
+        new webpack.EnvironmentPlugin({
+          BUILD: true,
+          ...env,
+        }),
         // Ensures async components can be rendered sync server-side.
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
@@ -37,6 +41,10 @@ module.exports = function getPlugins(context) {
     case 'development_server':
       return [
         ...commonPlugins,
+        new webpack.EnvironmentPlugin({
+          BUILD: true,
+          ...env,
+        }),
         // Ensures async components can be rendered sync server-side.
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
@@ -48,6 +56,7 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new CleanPlugin(),
         new webpack.EnvironmentPlugin({
+          BUILD: true,
           BROWSER: true,
           ...env,
         }),
@@ -72,6 +81,7 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new webpack.NamedModulesPlugin(),
         new webpack.EnvironmentPlugin({
+          BUILD: true,
           BROWSER: true,
           ...env,
         }),
