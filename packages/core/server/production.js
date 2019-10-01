@@ -4,7 +4,7 @@ const auth = require('./auth');
 // App must be built using the build command before production mode can be run.
 const clientStats = require('../build/client/stats.json');
 const { default: serverRenderer } = require('../build/server/main.bundle');
-const getServerConfigField = require('../utils/getServerConfigField');
+const getConfigField = require('../utils/getConfigField');
 
 /**
  * Add the required middleware to support running the app in production mode.
@@ -12,7 +12,7 @@ const getServerConfigField = require('../utils/getServerConfigField');
  */
 const productionMiddleware = (app) => {
   // Allow customization of production server
-  const irvingProdMiddleware = getServerConfigField('customizeProdServer');
+  const irvingProdMiddleware = getConfigField('customizeProdServer');
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 
   // @todo should this be included in core or optional?

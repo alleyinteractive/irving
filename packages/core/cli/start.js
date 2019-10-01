@@ -1,4 +1,5 @@
 /* eslint-disable global-require, no-console, import/order */
+const express = require('express');
 
 // Support isomorphic environment variables from local .env file
 require('dotenv').config();
@@ -6,8 +7,7 @@ require('dotenv').config();
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
 
-const express = require('express');
-
+const getConfigField = require('../utils/getConfigField');
 const getService = require('../services/monitorService');
 getService().start();
 
@@ -20,9 +20,8 @@ const {
 } = require('../config/paths');
 // eslint-disable-next-line import/no-dynamic-require
 const serverConfig = require(serverConfigPath);
-const getServerConfigField = require('../utils/getServerConfigField');
-const bustCache = require('./bustCache');
-const bustPageCache = require('./bustPageCache');
+const bustCache = require('../server/bustCache');
+const bustPageCache = require('../server/bustPageCache');
 
 const {
   PORT = 3001,
@@ -38,7 +37,7 @@ app.get('/bust-entire-cache', bustCache);
 app.set('view engine', 'ejs');
 
 // Run all customize server functions.
-const irvingServerMiddleware = getServerConfigField('customizeServer');
+const irvingServerMiddleware = getConfigField('customizeServer');
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 if ('development' === NODE_ENV) {
