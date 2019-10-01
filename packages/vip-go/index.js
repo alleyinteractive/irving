@@ -1,5 +1,3 @@
-import config from './irving.config.server.js';
+const serverConfig = require('./irving.config.server');
 
-export {
-  config,
-};
+module.exports = serverConfig;
