@@ -11,7 +11,7 @@ const {
 
 /* eslint-disable global-require, no-console, import/order */
 module.exports = function createServer(app) {
-  let server;
+  let irvingServer;
 
   if (HTTPS_KEY_PATH && HTTPS_CERT_PATH && 'development' === NODE_ENV) {
     const os = require('os');
@@ -24,10 +24,10 @@ module.exports = function createServer(app) {
       'utf8'
     );
 
-    server = https.createServer({ key, cert }, app);
+    irvingServer = https.createServer({ key, cert }, app);
   } else {
-    server = server(app, { PORT });
+    irvingServer = server(app, { PORT });
   }
 
-  return server;
+  return irvingServer;
 }
