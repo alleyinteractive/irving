@@ -49,7 +49,6 @@ const MagazineIssues = ({ title, issueTypeId }) => {
 };
 
 MagazineIssues.propTypes = {
-  // data: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string.isRequired,
   issueTypeId: PropTypes.string.isRequired,
 };
