@@ -10,8 +10,9 @@ const getService = () => {
     'NEW_RELIC_APP_NAME',
     'NEW_RELIC_LICENSE_KEY',
   ].every((field) => ('undefined' !== typeof process.env[field]));
+
   if (! configured) {
-    return defaultService;
+    return false;
   }
 
   // newrelic cannot be imported in a browser environment.
@@ -24,11 +25,11 @@ const getService = () => {
         logger: logger('irving:newrelic'),
       });
     } catch (err) {
-      return defaultService;
+      return false;
     }
 
-    service = {
-      start: defaultService.start, // Simply requiring the newrelic module starts the service.
+    return {
+      start: () => {}, // Simply requiring the newrelic module starts the service.
       logError(err) {
         irvingNewrelic.noticeError(err);
       },
@@ -36,11 +37,9 @@ const getService = () => {
         irvingNewrelic.setTransactionName(`${method} ${status} ${category}`);
       },
     };
-
-    return service;
   }
 
-  return defaultService;
+  return false;
 };
 
 module.exports = getService;
