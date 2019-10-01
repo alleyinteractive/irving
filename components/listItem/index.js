@@ -8,14 +8,20 @@ import Link from 'components/helpers/link';
 import styles from './listItem.css';
 
 const ListItem = ({
-  name, subtitle, children, permalink,
+  firstName,
+  lastName,
+  subtitle,
+  children,
+  permalink,
 }) => {
   const image = findChildByName('image', children);
   return (
     <li className={styles.wrapper}>
       <Link className={styles.link} to={permalink}>
         <div className={styles.meta}>
-          <h3 className={styles.name}>{name}</h3>
+          <h3 className={styles.name}>
+            {firstName} {lastName}
+          </h3>
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
         <div className={styles.image}>{image}</div>
@@ -26,7 +32,8 @@ const ListItem = ({
 
 ListItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  name: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
 };
