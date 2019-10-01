@@ -163,7 +163,7 @@ export default function serverRenderer(options) {
         initialValues
       );
       const templateVars = {
-        css: cssBuilder.getCss(),
+        criticalCss: cssBuilder.getCss(),
         ...customTemplateVars,
       };
 
