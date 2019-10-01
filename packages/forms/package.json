@@ -29,8 +29,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@irvingjs/babel-preset-irving": "^1.0.4-alpha.1+a191d629",
-    "@irvingjs/core": "^1.0.4-alpha.1+a191d629",
+    "@irvingjs/babel-preset-irving": "^1.0.4-beta.2",
+    "@irvingjs/core": "^1.0.4-beta.2",
     "babel-jest": "^24.9.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -39,7 +39,7 @@
     "jest-enzyme": "^7.1.0"
   },
   "peerDependencies": {
-    "@irvingjs/core": ">1.0.4-alpha.9"
+    "@irvingjs/core": ">1.0.4-beta.2"
   },
   "publishConfig": {
     "access": "public"
