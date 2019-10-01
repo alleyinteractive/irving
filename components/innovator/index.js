@@ -9,7 +9,8 @@ import { __ } from '@wordpress/i18n';
 import styles from './innovator.css';
 
 const Innovator = ({
-  name,
+  firstName,
+  lastName,
   affiliation,
   subtitle,
   age,
@@ -25,10 +26,14 @@ const Innovator = ({
     <li className={styles.wrapper}>
       <div className={styles.header}>
         <div className={styles.meta}>
-          <h3 className={styles.name}>{name}</h3>
+          <h3 className={styles.name}>
+            {firstName} {lastName}
+          </h3>
           <div className={styles.affiliation}>
             {age && <span>{age}</span>}
-            {affiliation && <span>{affiliation}</span>}
+            {(affiliation || institution) && (
+              <span>{affiliation || institution}</span>
+            )}
             {cob && (
               <span>
                 {__('Country of birth', 'mittr')}: {cob}
@@ -60,7 +65,8 @@ Innovator.defaultProps = {
 
 Innovator.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  name: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
   affiliation: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
   age: PropTypes.string,
