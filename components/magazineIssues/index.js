@@ -7,26 +7,16 @@ import withData from 'components/hoc/withData';
 import MagazineIssuesList from './list';
 import styles from './magazineIssues.css';
 
-const MagazineIssues = ({ title, issueType }) => {
-  // const filterType = (
-  //   issues // eslint-disable-line implicit-arrow-linebreak
-  // ) => issues.filter(({ config }) => config.issueType === issueType);
-  // const [items, setItems] = useState([]);
-  // const [data, setData] = useState([]);
+const MagazineIssues = ({ title, issueTypeId }) => {
   const [userRequest, setUserRequest] = useState({
     currentPage: 0,
     endpoint: '',
   });
 
-  // useEffect(() => {
-  //   setItems(data);
-  // }, [data]);
-
   const loadItems = () => {
-    // setItems(filterType(data));
     setUserRequest({
       currentPage: userRequest.currentPage + 1,
-      endpoint: `?page=${userRequest.currentPage + 1}&issueType=${issueType}`,
+      endpoint: `?page=${userRequest.currentPage + 1}&issueType=${issueTypeId}`,
     });
   };
 
@@ -61,7 +51,7 @@ const MagazineIssues = ({ title, issueType }) => {
 MagazineIssues.propTypes = {
   // data: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string.isRequired,
-  issueType: PropTypes.string.isRequired,
+  issueTypeId: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(MagazineIssues);
