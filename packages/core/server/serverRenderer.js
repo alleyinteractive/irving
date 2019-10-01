@@ -11,19 +11,17 @@ import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import ErrorMessage from 'components/errorMessage';
-import getEnv from 'config/webpack/env';
 import defaultState from 'reducers/defaultState';
+import getEnv from 'config/webpack/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
 import App from 'components/app';
-// @todo might want to update these to @irvingjs also.
-import getAppTemplateVars from '@irving/custom/getAppTemplateVars';
-import getErrorTemplateVars from '@irving/custom/getErrorTemplateVars';
-import getIrvingConfig from 'utils/getIrvingConfig';
+import userConfig from '@irvingjs/irving.config';
+import getConfigField from 'utils/getConfigField';
+import getTemplateVars from './getTemplateVars';
 
-const { componentMap } = getIrvingConfig();
 const monitor = getService();
 const debugError = createDebug('render:error');
 const debugRequest = createDebug('render:request');
@@ -32,10 +30,8 @@ const debugRequest = createDebug('render:request');
  * Handle rendering the app as a string that can then be returned as a response
  * from the server.
  * @param {object} req - express request object
- * @param {object} res - express response object
- * @param {string[]} webpackScripts - an array of required webpack bundle scripts
- *                                   to be rendered
- */
+ * @param {object} res - express response object to be rendered.
+ **/
 const render = async (req, res, clientStats) => {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
@@ -84,13 +80,14 @@ const render = async (req, res, clientStats) => {
   );
 
   // Get some template vars and allow customization by user.
-  const {
-    appHtml,
-    irvingHead,
-  } = getAppTemplateVars(AppWrapper, {
-    // Collect webpack scripts for prerender, pass in to allow addition of more tags to <head>.
-    irvingHead: getWebpackScripts(clientStats).join(''),
-  });
+  const getters = getConfigField('getAppTemplateVars');
+  const customTemplateVars = getTemplateVars(
+    getters,
+    {
+      Wrapper: AppWrapper,
+      irvingHead: getWebpackScripts(clientStats).join(''),
+    }
+  );
 
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
@@ -100,10 +97,9 @@ const render = async (req, res, clientStats) => {
     helmet,
     criticalCss: cssBuilder.getCss(),
     styleRefs: cssBuilder.getEncodedMap(),
-    preRenderedHtml: appHtml,
     preRenderedState: stateEncoded,
     env: JSON.stringify(getEnv()),
-    irvingHead,
+    ...customTemplateVars,
   };
 
   res.status(status);
@@ -138,24 +134,26 @@ export default function serverRenderer(options) {
 
       // Render a error page.
       const cssBuilder = new CriticalCssBuilder();
-      const ErrorMessageComponent = componentMap['error-message'] ||
+      const ErrorMessageComponent = userConfig.componentMap['error-message'] ||
         ErrorMessage;
       const ErrorMessageWrapper = () => (
         <StyleContext.Provider value={cssBuilder.addCss}>
           <ErrorMessageComponent />
         </StyleContext.Provider>
       );
-      const {
-        appHtml,
-        irvingHead,
-      } = getErrorTemplateVars(ErrorMessageWrapper, {
-        // None of these are used by default on the error template, but provide them anyway.
-        irvingHead: '',
-      });
+
+      // Get some template vars and allow customization by user.
+      const getters = getConfigField('getErrorTemplateVars');
+      const customTemplateVars = getTemplateVars(
+        getters,
+        {
+          Wrapper: ErrorMessageWrapper,
+          irvingHead: '',
+        }
+      );
       const templateVars = {
-        css: cssBuilder.getCss(),
-        html: appHtml,
-        irvingHead,
+        criticalCss: cssBuilder.getCss(),
+        ...customTemplateVars,
       };
 
       res.status(500);

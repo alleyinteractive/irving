@@ -1,0 +1,23 @@
+// I realize this isn't actually a schema—it will be eventually.
+module.exports = {
+  name: '',
+  babelConfig: [() => {}],
+  componentMap: {},
+  createServer: () => {},
+  customizeServer: [() => {}],
+  customizeDevServer: [() => {}],
+  customizeProdServer: [() => {}],
+  cacheService: () => {},
+  debugService: () => {},
+  defaultState: [() => {}],
+  getAppTemplateVars: [() => {}],
+  getErrorTemplateVars: [() => {}],
+  monitorService: () => {},
+  packages: [],
+  postcssConfig: [() => {}],
+  reducers: [() => {}],
+  webpackConfig: [() => {}],
+  sagas: [() => {}],
+  serverViews: {},
+  stylelintConfig: [() => {}],
+};

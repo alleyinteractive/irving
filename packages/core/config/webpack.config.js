@@ -1,15 +1,14 @@
-const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
 const { appRoot } = require('./paths');
+const getConfigField = require('../utils/getConfigField');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
   const isProd = 'production' === mode;
   const server = getConfigService(mode, 'server');
   const client = getConfigService(mode, 'client');
-
-  return [
+  const multiConfig = [
     {
       context: appRoot,
       name: 'client',
@@ -73,4 +72,11 @@ module.exports = (env, argv) => {
       },
     },
   ];
+  const configGetters = getConfigField('webpackConfig');
+  // Call all config getters, passing in configs in succession.
+  const processedConfigs = configGetters.reduce((acc, getter) => (
+    getter(acc, mode)
+  ), multiConfig);
+
+  return processedConfigs;
 };

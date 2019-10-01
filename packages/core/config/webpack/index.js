@@ -13,6 +13,7 @@ const getDevTool = require('./devTool');
  */
 module.exports = function getConfigService(mode, opEnv) {
   const context = `${mode}_${opEnv}`;
+
   return {
     getAlias: () => getAlias(context),
     getEntry: () => getEntry(context),

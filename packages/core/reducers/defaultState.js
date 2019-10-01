@@ -1,5 +1,4 @@
-import getIrvingConfig from 'utils/getIrvingConfig';
-import getFieldFromUserConfig from 'utils/getFieldFromUserConfig';
+import getConfigField from 'utils/getConfigField';
 
 export const components = {
   defaults: [],
@@ -30,6 +29,11 @@ export const componentDataMeta = {
   data: [],
 };
 
+const defaultStateGetters = getConfigField('defaultState');
+const customDefaultState = defaultStateGetters.reduce((acc, getter) => (
+  { ...acc, ...getter() }
+), {});
+
 const defaultState = {
   components,
   componentData,
@@ -37,7 +41,7 @@ const defaultState = {
   loading,
   route,
   visible,
-  ...getFieldFromUserConfig(getIrvingConfig(), 'defaultState', 'object'),
+  ...customDefaultState,
 };
 
 export default defaultState;
