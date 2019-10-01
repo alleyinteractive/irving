@@ -13,7 +13,7 @@ const getService = () => {
   if (! process.env.BROWSER) {
     // Redis env variables have not been configured.
     if (! process.env.REDIS_MASTER) {
-      return defaultService;
+      return false;
     }
 
     let Redis;
@@ -21,7 +21,7 @@ const getService = () => {
     try {
       Redis = require('ioredis'); // eslint-disable-line global-require
     } catch (err) {
-      return defaultService;
+      return false;
     }
 
     const [host, port] = (process.env.REDIS_MASTER).split(':');
@@ -37,7 +37,7 @@ const getService = () => {
       console.error(err); // eslint-disable-line no-console
     });
 
-    service = {
+    return {
       client,
       async get(key) {
         return JSON.parse(await this.client.get(key));
@@ -51,45 +51,9 @@ const getService = () => {
         );
       },
     };
-
-    return service;
   }
 
-  // Caching for the browser using localForage.
-  if (process.env.BROWSER) {
-    // Browser-side cache expiration is configured in milliseconds.
-    const cacheExpire = 600000;
-    const localForage = require('localforage'); // eslint-disable-line global-require
-
-    service = {
-      client: localForage,
-      async get(key) {
-        const expire = await this.client.getItem(`${key}_expire`);
-
-        // If expired, return null and make a new request.
-        if (expire && new Date().getTime() >= expire) {
-          return null;
-        }
-
-        // Browser storage supports JS objects/arrays.
-        return this.client.getItem(key);
-      },
-      async set(key, value) {
-        // Set a value to for cache expiration.
-        await this.client.setItem(
-          `${key}_expire`,
-          new Date().getTime() + cacheExpire
-        );
-
-        // Set the cache. Browser storage supports JS objects/arrays.
-        return this.client.setItem(key, value);
-      },
-    };
-
-    return service;
-  }
-
-  return defaultService;
+  return false;
 };
 
-export default getService;
+module.exports = getService;
