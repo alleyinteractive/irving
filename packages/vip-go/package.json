@@ -3,8 +3,11 @@
 	"version": "1.0.4-alpha.1+a191d629",
 	"description": "Integration for WordPress VIP's Node server helpers",
 	"files": [
+		"server/**/*",
+		"services/**/*",
+		"irving.config.server.js",
 		"!*.test.js"
-	],
+	  ],
 	"main": "index.js",
 	"repository": {
 		"type": "git",
