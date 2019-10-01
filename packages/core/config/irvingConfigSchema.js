@@ -13,8 +13,10 @@ module.exports = {
   getErrorTemplateVars: [() => {}],
   monitorService: () => {},
   packages: [],
+  postcssConfig: [() => {}],
   reducers: [() => {}],
   webpackConfig: [() => {}],
   sagas: [() => {}],
   serverViews: {},
+  stylelintConfig: [() => {}],
 };
