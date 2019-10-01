@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/forms",
-  "version": "1.0.4-alpha.18+088bf953",
+  "version": "1.0.4-alpha.19+088bf953",
   "description": "Form components and submission functionality for Irving",
   "files": [
     "actions/**/*",
@@ -29,8 +29,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@irvingjs/babel-preset-irving": ">1.0.4-alpha.9",
-    "@irvingjs/core": ">1.0.4-alpha.9",
+    "@irvingjs/babel-preset-irving": "^1.0.4-alpha.18+088bf953",
+    "@irvingjs/core": "^1.0.4-alpha.18+088bf953",
     "babel-jest": "^24.9.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -44,5 +44,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "148ee9d13ed8a1af204cf5e40abf29881d0a03ef"
+  "gitHead": "63fa74695bdf872e95da5066358c5484c7b83db5"
 }

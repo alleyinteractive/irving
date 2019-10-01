@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "1.0.4-alpha.18+088bf953",
+  "version": "1.0.4-alpha.19+088bf953",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -45,7 +45,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@hot-loader/react-dom": "^16.9.0",
-    "@irvingjs/babel-preset-irving": ">1.0.4-alpha.9",
+    "@irvingjs/babel-preset-irving": "^1.0.4-alpha.18+088bf953",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
@@ -139,5 +139,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "148ee9d13ed8a1af204cf5e40abf29881d0a03ef"
+  "gitHead": "63fa74695bdf872e95da5066358c5484c7b83db5"
 }
