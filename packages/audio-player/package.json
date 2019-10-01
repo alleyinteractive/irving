@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/audio-player",
-  "version": "1.0.4-alpha.20+d6ce36e5",
+  "version": "1.0.4-alpha.1+a191d629",
   "description": "Persistent audio player and related components for Irving",
   "files": [
     "actions/**/*",
@@ -27,8 +27,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@irvingjs/babel-preset-irving": "^1.0.4-alpha.0+d6ce36e5",
-    "@irvingjs/core": "^1.0.4-alpha.0+d6ce36e5",
+    "@irvingjs/babel-preset-irving": "^1.0.4-alpha.1+a191d629",
+    "@irvingjs/core": "^1.0.4-alpha.1+a191d629",
     "babel-jest": "^24.9.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "enzyme": "^3.10.0",
@@ -43,5 +43,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "d6ce36e5ab49fde0805719d2fa25f6f06e3036f3"
+  "gitHead": "a191d6297ff9a52930cb757fc0d773b1c9de67a6"
 }
