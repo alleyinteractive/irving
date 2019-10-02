@@ -8,9 +8,13 @@ import MagazineIssuesList from './list';
 import styles from './magazineIssues.css';
 
 const MagazineIssues = ({ title, issueTypeId }) => {
+  const [issues, setIssues] = useState({
+    issues: [],
+    lastUpdate: [],
+  });
   const [userRequest, setUserRequest] = useState({
     currentPage: 0,
-    endpoint: '',
+    endpoint: `?page=0&issueType=${issueTypeId}`,
   });
 
   const loadItems = () => {
@@ -18,11 +22,39 @@ const MagazineIssues = ({ title, issueTypeId }) => {
       currentPage: userRequest.currentPage + 1,
       endpoint: `?page=${userRequest.currentPage + 1}&issueType=${issueTypeId}`,
     });
+    // updateShouldRefresh(false);
   };
 
   const Results = withData(`magazine_issues${userRequest.endpoint}`, {
     loading: () => <div>{__('Loading', 'mittr')}</div>,
   })(MagazineIssuesList);
+
+  // @todo this is not appending the new endpoint to the list, its
+  // adding it like three times, we need to keep the component from hitting
+  // the endoint several times.
+  const appendIssues = (newData) => {
+    // if (issues !== issuesToAppend) {
+    //   setIssues([...issues, ...issuesToAppend]);
+    // }
+
+    debugger; // eslint-disable-line
+
+    // Append the issues, if they are new, to issues.
+    if (issues.lastUpdate !== newData) {
+      setIssues({
+        issues: [].concat(issues.issues, newData),
+        lastUpdate: newData,
+      });
+    } else {
+      setIssues({
+        issues: issues.issues,
+        lastUpdate: newData,
+      });
+    }
+
+    // Update data with last request.
+    // updateShouldRefresh(false);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -39,7 +71,12 @@ const MagazineIssues = ({ title, issueTypeId }) => {
             <option value="1990">1990s</option>
           </select>
         </header>
-        <Results labelID={kebabcase(title)} />
+        <Results
+          labelID={kebabcase(title)}
+          setData={appendIssues}
+          issues={issues.issues}
+          lastUpdate={issues.lastUpdate}
+        />
         <button className={styles.button} type="button" onClick={loadItems}>
           {__('Load more past issues', 'mittr')}
         </button>
