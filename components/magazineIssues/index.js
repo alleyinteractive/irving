@@ -4,6 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import kebabcase from 'lodash.kebabcase';
 import { __ } from '@wordpress/i18n';
 import withData from 'components/hoc/withData';
+import toReactElement from 'utils/toReactElement';
 import MagazineIssuesList from './list';
 import styles from './magazineIssues.css';
 
@@ -24,16 +25,16 @@ const MagazineIssues = ({ title, issueTypeId }) => {
     });
   };
 
-  const Results = withData(`magazine_issues${userRequest.endpoint}`, {
-    loading: () => <div>{__('Loading', 'mittr')}</div>,
-  })(MagazineIssuesList);
-
   const appendIssues = (newData) => {
     setIssues({
       issues: [].concat(issues.issues, newData),
       lastUpdate: newData,
     });
   };
+
+  const Results = withData(`magazine_issues${userRequest.endpoint}`, {})(
+    MagazineIssuesList
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -50,11 +51,17 @@ const MagazineIssues = ({ title, issueTypeId }) => {
             <option value="1990">1990s</option>
           </select>
         </header>
+        <ul className={styles.list} aria-labelledby={kebabcase(title)}>
+          {issues.issues.map((issue) => (
+            <li key={issue.config.title} className={styles.item}>
+              {toReactElement(issue)}
+            </li>
+          ))}
+        </ul>
         <Results
           labelID={kebabcase(title)}
           setData={appendIssues}
-          issues={issues.issues}
-          lastUpdate={issues.lastUpdate}
+          lastUpdate={issues.lastUpdate || []}
         />
         <button className={styles.button} type="button" onClick={loadItems}>
           {__('Load more past issues', 'mittr')}

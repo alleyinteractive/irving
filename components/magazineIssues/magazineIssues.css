@@ -83,3 +83,7 @@
   @include container;
   margin-bottom: rem(60);
 }
+
+.hidden {
+  display: none;
+}
