@@ -7,7 +7,7 @@
 		"services/**/*",
 		"irving.config.server.js",
 		"!*.test.js"
-	  ],
+	],
 	"main": "index.js",
 	"repository": {
 		"type": "git",

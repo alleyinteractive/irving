@@ -15,6 +15,7 @@
     "sagas/**/*",
     "selectors/**/*",
     "server/**/*",
+    "services/**/*",
     "utils/**/*",
     ".eslintignore",
     ".eslintrc.js",
