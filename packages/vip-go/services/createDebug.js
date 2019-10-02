@@ -1,4 +1,4 @@
-const getService = require('../services/monitorService');
+const getService = require('./monitorService');
 const monitor = getService();
 
 /**
