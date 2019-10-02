@@ -29,18 +29,10 @@ const MagazineIssues = ({ title, issueTypeId }) => {
   })(MagazineIssuesList);
 
   const appendIssues = (newData) => {
-    // Append the issues, if they are new, to issues.
-    if (issues.lastUpdate !== newData) {
-      setIssues({
-        issues: [].concat(issues.issues, newData),
-        lastUpdate: newData,
-      });
-    } else {
-      setIssues({
-        issues: issues.issues,
-        lastUpdate: newData,
-      });
-    }
+    setIssues({
+      issues: [].concat(issues.issues, newData),
+      lastUpdate: newData,
+    });
   };
 
   return (
