@@ -27,7 +27,7 @@ const MagazineIssues = ({ title, issueTypeId }) => {
 
   const appendIssues = (newData) => {
     setIssues({
-      issues: [].concat(issues.issues, newData),
+      issues: [...issues.issues, ...newData],
       lastUpdate: newData,
     });
   };
