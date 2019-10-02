@@ -1,5 +1,5 @@
 const debug = require('debug');
-const getService = require('../services/monitorService');
+const getService = require('./monitorService');
 const getConfigField = require('../utils/getConfigField');
 const monitor = getService();
 
