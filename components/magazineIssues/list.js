@@ -5,12 +5,11 @@ import PropTypes from 'prop-types';
 import styles from './magazineIssues.css';
 
 const MagazineIssuesList = ({
-  data, labelID, setData, issues, lastUpdate,
+  data, labelID, issues, setData, lastUpdate,
 }) => {
-  debugger; // eslint-disable-line
-
   useEffect(() => {
-    if (lastUpdate !== data) {
+    // debugger; // eslint-disable-line
+    if (lastUpdate !== data && 0 < data.length) {
       setData(data);
     }
   }, [data]);
