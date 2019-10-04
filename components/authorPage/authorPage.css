@@ -1,44 +1,101 @@
 
+/* Block Wrappers */
 .profileWrapper {
-  background-color: #f3f3f3;
+  background-color: #ffffff;
   display: flex;
-  padding: 50px 20px;
+  padding: rem(50) rem(20);
 }
 
-.imageWrapper {
+.imageWrapperLg {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-right: 20px;
+  margin-right: rem(20);
+
+  @media ($smMax) {
+    display: none;
+  }
 }
 
-.avatar {
-  border-radius: 50%;
-  height: 192px;
-  width: 192px;
-  margin-bottom: 20px;
+.imageWrapperSm {
+  @media ($smMin) {
+    display: none;
+  }
 }
 
-.title {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
-}
-
+/* Author Meta */
 .contributorType {
-  font-size: 40px;
-  line-height: 36px;
+  font-size: rem(40);
+  line-height: rem(36);
   margin: 0;
   padding: 0;
   color: #767676;
 }
 
-.displayName {
-  font-size: 50px;
+.avatar {
+  border-radius: 50%;
+  height: rem(192);
+  width: rem(192);
 }
 
+.displayName {
+  font-size: rem(50);
+}
+
+.title {
+  font-size: rem(16);
+  font-weight: 600;
+  line-height: rem(22);
+  margin-top: rem(20);
+}
+
+.profileHeader {
+  .title {
+    display: none;
+  }
+
+  @media ($smMax) {
+    display: flex;
+    flex-direction: row;
+
+    & .title {
+      display: block;
+    }
+
+    & .avatar {
+      margin-right: rem(20);
+    }
+  }
+}
+
+/* Bio */
 .bio {
-  margin-top: 20px;
-  font-size: 20px;
-  line-height: 26px;
+  font-size: rem(20);
+  line-height: rem(26);
+  margin-top: rem(20);
+
+  & > a {
+    border-bottom: rem(1) solid #000000;
+  }
+}
+
+/* Link to Twitter Profile */
+.socialIcon {
+  height: rem(22);
+  width: rem(22);
+}
+
+.twitterHandle {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  margin-top: rem(20);
+
+  & > span {
+    display: block;
+    font-size: rem(20);
+    margin-left: rem(2);
+    margin-top: rem(-6);
+  }
 }
