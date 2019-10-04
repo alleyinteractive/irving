@@ -1,0 +1,44 @@
+
+.profileWrapper {
+  background-color: #f3f3f3;
+  display: flex;
+  padding: 50px 20px;
+}
+
+.imageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.avatar {
+  border-radius: 50%;
+  height: 192px;
+  width: 192px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.contributorType {
+  font-size: 40px;
+  line-height: 36px;
+  margin: 0;
+  padding: 0;
+  color: #767676;
+}
+
+.displayName {
+  font-size: 50px;
+}
+
+.bio {
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 26px;
+}

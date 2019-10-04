@@ -1,4 +1,5 @@
 import AudioElement from 'components/audio';
+import AuthorPage from 'components/authorPage';
 import Body from 'components/body';
 import Byline from 'components/byline';
 import Column from 'components/gutenbergContent/blocks/columns/column';
@@ -62,6 +63,7 @@ import withLoader from 'components/hoc/withLoader';
 export const componentMap = {
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
+  'author-page': AuthorPage,
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
