@@ -6,7 +6,7 @@ const defaultService = {
   alert: console.error,
   crit: console.error,
   error: console.error,
-  warning: console.warn,
+  warning: console.log,
   notice: console.log,
   info: console.info,
   debug: console.debug,
