@@ -63,7 +63,7 @@ import withLoader from 'components/hoc/withLoader';
 export const componentMap = {
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
-  'author-page': AuthorPage,
+  'author-partial': AuthorPage,
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
