@@ -15,7 +15,7 @@ import defaultState from 'reducers/defaultState';
 import getEnv from 'config/webpack/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
-import createDebug from 'services/createDebug';
+import getLogService from 'services/logService';
 import getService from 'services/monitorService';
 import App from 'components/app';
 import userConfig from '@irvingjs/irving.config';
@@ -23,8 +23,8 @@ import getConfigField from 'utils/getConfigField';
 import getTemplateVars from './getTemplateVars';
 
 const monitor = getService();
-const debugError = createDebug('render:error');
-const debugRequest = createDebug('render:request');
+const logError = getLogService('irving:render:error');
+const logRequest = getLogService('irving:render:request');
 
 /**
  * Handle rendering the app as a string that can then be returned as a response
@@ -59,7 +59,7 @@ const render = async (req, res, clientStats) => {
     status,
   } = getState().route;
   monitor.logTransaction(req.method, status, 'server render');
-  debugRequest({ url: req.originalUrl, status });
+  logRequest.info({ url: req.originalUrl, status });
 
   // Redirect before trying to render.
   if (redirectTo) {
@@ -130,7 +130,7 @@ export default function serverRenderer(options) {
         options.clientStats
       );
     } catch (err) {
-      debugError({ url: req.originalUrl, err });
+      logError.error({ url: req.originalUrl, err });
 
       // Render a error page.
       const cssBuilder = new CriticalCssBuilder();

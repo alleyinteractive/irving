@@ -11,8 +11,8 @@ const getConfigField = require('../utils/getConfigField');
 const getService = require('../services/monitorService');
 getService().start();
 
-const createDebug = require('../services/createDebug');
-const debug = createDebug('server:error');
+const getLogService = require('../services/logService');
+const log = getLogService('irving:server:error');
 const createServer = require('../server/createServer');
 const {
   rootUrl,
@@ -48,7 +48,7 @@ if ('development' === NODE_ENV) {
 
 // Default error handler
 app.use((err, req, res, next) => {
-  debug(err);
+  log.error(err);
 
   if (res.headersSent) {
     return next(err);
@@ -77,7 +77,7 @@ if ('development' === NODE_ENV) {
 
 // Handle uncaught promise exceptions.
 process.on('unhandledRejection', (err) => {
-  debug(err);
+  log.error(err);
 
   if ('production' !== NODE_ENV) {
     throw err;
