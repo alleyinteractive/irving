@@ -75,14 +75,20 @@ const AuthorPage = ({
   );
 };
 
+AuthorPage.defaultProps = {
+  twitter: '',
+  facebook: '',
+  linkedin: '',
+};
+
 AuthorPage.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  twitter: PropTypes.string.isRequired,
-  facebook: PropTypes.string.isRequired,
-  linkedin: PropTypes.string.isRequired,
+  twitter: PropTypes.string,
+  facebook: PropTypes.string,
+  linkedin: PropTypes.string,
 };
 
 export default withStyles(styles)(AuthorPage);
