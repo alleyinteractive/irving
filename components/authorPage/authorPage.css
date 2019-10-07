@@ -1,5 +1,8 @@
-
 /* Block Wrappers */
+.wrapper {
+  background-color: transparent;
+}
+
 .profileWrapper {
   background-color: #ffffff;
   display: flex;
@@ -96,23 +99,32 @@
   }
 }
 
-/* Link to Twitter Profile */
-.socialIcon {
-  height: rem(22);
-  width: rem(22);
-}
-
-.twitter {
+/* Link to social profiles */
+.socialLink {
   align-items: center;
   display: flex;
   flex-direction: row;
   font-weight: 700;
-  margin-top: rem(20);
+  margin-top: rem(30);
 
   & > span {
     display: block;
     font-size: rem(20);
-    margin-left: rem(2);
-    margin-top: rem(-6);
+    margin-left: rem(6);
   }
+}
+
+.twitterIcon,
+.linkedinIcon,
+.facebookIcon {
+  display: flex;
+  width: rem(22);
+
+  & > svg {
+    width: rem(22);
+  }
+}
+
+.facebookIcon > svg {
+  width: rem(16);
 }
