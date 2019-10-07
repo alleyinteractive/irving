@@ -16,9 +16,9 @@
 }
 
 .profileImage {
-  background-color: black;
   border-radius: 50%;
   height: rem(192);
+  overflow: hidden;
   width: rem(192);
 }
 
