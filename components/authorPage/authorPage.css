@@ -1,8 +1,3 @@
-/* Block Wrappers */
-.wrapper {
-  background-color: transparent;
-}
-
 .profileWrapper {
   background-color: #ffffff;
   display: flex;
@@ -14,39 +9,32 @@
   display: flex;
   flex-direction: column;
   margin-right: rem(20);
-  max-height: rem(192);
-  max-width: rem(192);
   
-  & img {
-    /* background color is for dev only */
-    background-color: red;
-    border-radius: 50%;
-    height: rem(192);
-    width: rem(192);
-  }
-
   @media ($smMax) {
     display: none;
   }
 }
 
+.profileImage {
+  background-color: black;
+  border-radius: 50%;
+  height: rem(192);
+  width: rem(192);
+}
+
 .mobileImageWrapper {
   margin-right: rem(20);
-
-  & img {
-    /* background color is for dev only */
-    background-color: blue;
-    border-radius: 50%;
-    height: rem(192);
-    width: rem(192);
-  }
 
   @media ($smMin) {
     display: none;
   }
 }
 
-/* Author Meta */
+.authorType {
+  font-size: rem(40);
+  font-weight: 600;
+}
+
 .profile {
   display: flex;
   flex-direction: row;
@@ -56,19 +44,15 @@
   display: flex;
   flex-direction: column;
 
+  & .authorType {
+    color: #767676;
+  }
+
   @media ($smMin) {
     & .title {
       display: none;
     }
   }
-}
-
-.affiliation {
-  font-size: rem(40);
-  line-height: rem(36);
-  margin: 0;
-  padding: 0;
-  color: #767676;
 }
 
 .name {
@@ -82,7 +66,6 @@
   margin-top: rem(20);
 }
 
-/* Bio */
 .bio {
   font-size: rem(20);
   line-height: rem(26);
@@ -92,16 +75,24 @@
     border-bottom: $border-thin;
   }
 
-  & i {
+  & i,
+  em {
     font-style: italic;
   }
 
   & strong {
     font-style: bold;
   }
+
+  & p {
+    margin-bottom: rem(20);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
 }
 
-/* Link to social profiles */
 .socialLink {
   align-items: center;
   display: flex;
