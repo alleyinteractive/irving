@@ -6,7 +6,8 @@
     padding: rem(20);
   }
 
-  :global(.body--feed) & {
+  :global(.body--feed),
+  :global(.body--author) & {
     background-color: $background-gray;
   }
 

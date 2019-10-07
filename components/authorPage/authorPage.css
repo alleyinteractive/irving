@@ -1,0 +1,123 @@
+.profileWrapper {
+  background-color: $white;
+  display: flex;
+  padding: rem(50) rem(20);
+}
+
+.imageWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-right: rem(20);
+  
+  @media ($smMax) {
+    display: none;
+  }
+}
+
+.profileImage {
+  border-radius: 50%;
+  height: rem(192);
+  overflow: hidden;
+  width: rem(192);
+}
+
+.mobileImageWrapper {
+  margin-right: rem(20);
+
+  @media ($smMin) {
+    display: none;
+  }
+}
+
+.authorType {
+  font-size: rem(40);
+  font-weight: 600;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+
+  & .authorType {
+    color: $color-heading;
+  }
+
+  @media ($smMin) {
+    & .title {
+      display: none;
+    }
+  }
+}
+
+.name {
+  font-size: rem(50);
+}
+
+.title {
+  font-size: rem(16);
+  font-weight: 600;
+  line-height: rem(22);
+  margin-top: rem(20);
+}
+
+.bio {
+  font-size: rem(20);
+  line-height: rem(26);
+  margin-top: rem(20);
+
+  & a {
+    border-bottom: $border-thin;
+  }
+
+  & i,
+  em {
+    font-style: italic;
+  }
+
+  & strong {
+    font-style: bold;
+  }
+
+  & p {
+    margin-bottom: rem(20);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.socialLink {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  margin-top: rem(30);
+
+  & > span {
+    display: block;
+    font-size: rem(20);
+    margin-left: rem(6);
+  }
+}
+
+.twitterIcon,
+.linkedinIcon,
+.facebookIcon {
+  display: flex;
+  width: rem(22);
+
+  & > svg {
+    width: rem(22);
+  }
+}
+
+.facebookIcon > svg {
+  width: rem(16);
+}
