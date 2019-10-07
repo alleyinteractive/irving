@@ -12,6 +12,7 @@ const AuthorPage = ({
   children,
   name,
   title,
+  type,
   twitter,
   facebook,
   linkedin,
@@ -23,7 +24,7 @@ const AuthorPage = ({
     <div className={styles.wrapper}>
       <div className={styles.profileWrapper}>
         <div className={styles.imageWrapper}>
-          {image}
+          <div className={styles.profileImage}>{image}</div>
           <span className={styles.title}>{title}</span>
         </div>
 
@@ -34,7 +35,9 @@ const AuthorPage = ({
             </div>
 
             <div className={styles.meta}>
-              <h2 className={styles.affiliation}>Our team</h2>
+              <h2 className={styles.affiliation}>
+                {'staff' === type ? 'Our Team' : 'Contributor'}
+              </h2>
               <h1 className={styles.name}>{name}</h1>
               <span className={styles.title}>{title}</span>
             </div>
@@ -78,6 +81,7 @@ AuthorPage.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   twitter: PropTypes.string.isRequired,
   facebook: PropTypes.string.isRequired,
   linkedin: PropTypes.string.isRequired,

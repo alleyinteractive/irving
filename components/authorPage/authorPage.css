@@ -14,7 +14,9 @@
   display: flex;
   flex-direction: column;
   margin-right: rem(20);
-
+  max-height: rem(192);
+  max-width: rem(192);
+  
   & img {
     /* background color is for dev only */
     background-color: red;
