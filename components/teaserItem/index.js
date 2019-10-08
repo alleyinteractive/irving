@@ -48,6 +48,15 @@ const TeaserItem = ({
     );
   }
 
+  const Header = () => (
+    <header className={theme.header}>
+      <h3 className={theme.title}>
+        <Link to={permalink}>{title}</Link>
+      </h3>
+      {'aside' === themeName && <p className={theme.excerpt}>{excerpt}</p>}
+    </header>
+  );
+
   return (
     <article
       className={classNames(theme.wrapper, [theme[itemPosition]], {
@@ -55,13 +64,7 @@ const TeaserItem = ({
       })}
     >
       <div className={theme.text}>
-        {/* @todo review if this title level needs to be dynamic. */}
-        <header className={theme.header}>
-          <h3 className={theme.title}>
-            <Link to={permalink}>{title}</Link>
-          </h3>
-          {'aside' === themeName && <p className={theme.excerpt}>{excerpt}</p>}
-        </header>
+        {'search' !== themeName && <Header />}
         <Meta
           theme={theme}
           topicLink={topicLink}
@@ -69,6 +72,8 @@ const TeaserItem = ({
           topic={topic}
           color={color}
         />
+        {/* Place the header beneath the meta info on the search template */}
+        {'search' === themeName && <Header />}
       </div>
       {'aside' !== themeName && <p className={theme.excerpt}>{excerpt}</p>}
       {'' !== teaseCTA && (

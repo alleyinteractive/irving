@@ -34,3 +34,17 @@
 .submit {
   flex: 0 0 rem(34);
 }
+
+.standaloneWrapper {
+  background-color: $color-deck;
+  margin-bottom: rem(15);
+  padding: rem(50) rem(20);
+
+  & form {
+    border-bottom: none;
+  }
+
+  & input:focus {
+    outline: none;
+  }
+}
