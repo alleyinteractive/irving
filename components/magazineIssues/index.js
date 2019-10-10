@@ -11,7 +11,6 @@ import styles from './magazineIssues.css';
 const MagazineIssues = ({ title, issueTypeId }) => {
   const [issues, setIssues] = useState({
     issues: [],
-    issueDates: [],
     lastUpdate: [],
     shouldDisplayLoadMore: true,
   });
@@ -19,8 +18,11 @@ const MagazineIssues = ({ title, issueTypeId }) => {
     currentPage: 1,
     endpoint: `?page=1&issueType=${issueTypeId}`,
   });
+  const [datesAvailable, setDatesAvailable] = useState({
+    decades: [],
+  });
 
-  const loadItems = async () => {
+  const loadItems = () => {
     setUserRequest({
       currentPage: userRequest.currentPage + 1,
       endpoint: `?page=${userRequest.currentPage + 1}&issueType=${issueTypeId}`,
@@ -32,9 +34,19 @@ const MagazineIssues = ({ title, issueTypeId }) => {
 
     setIssues({
       issues: newIssues,
-      issueDates: newIssues.map(({ config: { issueYear } }) => issueYear),
       lastUpdate: newData,
       shouldDisplayLoadMore,
+    });
+
+    // Update the list of decades in the range of currently appended issues.
+    const decades = new Set(
+      newIssues
+        .map(({ config: { issueYear } }) => issueYear)
+        .map((date) => parseInt(date / 10, 10) * 10)
+    );
+
+    setDatesAvailable({
+      decades: [...decades],
     });
   };
 
@@ -42,25 +54,14 @@ const MagazineIssues = ({ title, issueTypeId }) => {
     MagazineIssuesList
   );
 
-  const renderDropdown = () => {
-    // Build an array of years rounded down to the nearest decade.
-    let decades = issues.issueDates.map(
-      (date) => parseInt(date / 10, 10) * 10
-    );
-    const decadeSet = new Set(decades);
-    // Replace the decades array with a set of unique IDs.
-    decades = [...decadeSet];
-
-    return (
-      <select className={styles.select}>
-        <option value="">Year</option>
-        {decades.map((decade) => (
-          <option key={decade} value={decade}>
-            {`${decade}s`}
-          </option>
-        ))}
-      </select>
-    );
+  const filterIssues = (e) => {
+    setIssues({
+      issues: issues.issues.filter(
+        ({ config: { issueYear } }) => issueYear === e.target.value
+      ),
+      issueDates: issues.issueDates,
+      shouldDisplayLoadMore: issues.shouldDisplayLoadMore,
+    });
   };
 
   return (
@@ -70,8 +71,19 @@ const MagazineIssues = ({ title, issueTypeId }) => {
           <h2 className={styles.title} id={kebabcase(title)}>
             {title}
           </h2>
-          {renderDropdown()}
+          <select onChange={filterIssues} className={styles.select}>
+            <option value="">Year</option>
+            {datesAvailable.decades.map((decade) => (
+              <option
+                key={decade}
+                value={decade}
+              >
+                {`${decade}s`}
+              </option>
+            ))}
+          </select>
         </header>
+
         <ul className={styles.list} aria-labelledby={kebabcase(title)}>
           {issues.issues.map((issue) => (
             <li key={issue.config.title} className={styles.item}>
@@ -79,11 +91,13 @@ const MagazineIssues = ({ title, issueTypeId }) => {
             </li>
           ))}
         </ul>
+
         <Results
           labelID={kebabcase(title)}
           setData={appendIssues}
           lastUpdate={issues.lastUpdate || []}
         />
+
         {issues.shouldDisplayLoadMore && (
           <button className={styles.button} type="button" onClick={loadItems}>
             {__('Load more past issues', 'mittr')}
