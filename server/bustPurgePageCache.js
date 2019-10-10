@@ -4,8 +4,10 @@ const getService = require('../services/cacheService');
  * Bust page/post/endpoint cache from Redis
  * on PURGE request.
  *
- * @param {Request}  req  Request.
- * @param {Response} res  Response.
+ * @param {object}   req  Request.
+ * @param {object}   res  Response.
+ * @param {function} next Next.
+ * @returns {*}
  */
 const bustPurgePageCache = async (req, res, next) => {
   const key = req.originalUrl;
