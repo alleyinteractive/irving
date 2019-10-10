@@ -14,8 +14,9 @@ const bustPurgePageCache = async (req, res, next) => {
   const service = getService();
   const hasCache = await service.get(key);
 
+  // Move on if there is no cache.
   if (! hasCache) {
-    return res.json('No cache to bust.');
+    return next();
   }
 
   // Delete cache.
