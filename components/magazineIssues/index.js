@@ -12,6 +12,7 @@ const MagazineIssues = ({ title, issueTypeId }) => {
   const [issues, setIssues] = useState({
     issues: [],
     lastUpdate: [],
+    shouldDisplayLoadMore: true,
   });
   const [userRequest, setUserRequest] = useState({
     currentPage: 1,
@@ -25,10 +26,11 @@ const MagazineIssues = ({ title, issueTypeId }) => {
     });
   };
 
-  const appendIssues = (newData) => {
+  const appendIssues = (newData, shouldDisplayLoadMore) => {
     setIssues({
       issues: [...issues.issues, ...newData],
       lastUpdate: newData,
+      shouldDisplayLoadMore,
     });
   };
 
@@ -63,9 +65,11 @@ const MagazineIssues = ({ title, issueTypeId }) => {
           setData={appendIssues}
           lastUpdate={issues.lastUpdate || []}
         />
-        <button className={styles.button} type="button" onClick={loadItems}>
-          {__('Load more past issues', 'mittr')}
-        </button>
+        {issues.shouldDisplayLoadMore && (
+          <button className={styles.button} type="button" onClick={loadItems}>
+            {__('Load more past issues', 'mittr')}
+          </button>
+        )}
       </div>
     </div>
   );
