@@ -8,12 +8,6 @@ const getService = require('../services/cacheService');
  * @param {Response} res  Response.
  */
 const bustPurgePageCache = async (req, res, next) => {
-
-  // If it is not a PURGE request, bail.
-  if ('PURGE' !== req.method) {
-    return next();
-  }
-
   const key = req.originalUrl;
   const service = getService();
   const hasCache = await service.get(key);
