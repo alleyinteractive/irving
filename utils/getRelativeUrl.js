@@ -7,6 +7,7 @@ import URL from 'url-parse';
  */
 export default function getRelativeUrl(url) {
   const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
+  let result = false;
 
   if ('string' !== typeof url) {
     return false;
@@ -15,7 +16,7 @@ export default function getRelativeUrl(url) {
   try {
     // Check if url is absolute, but internal.
     const urlObj = new URL(url);
-    let {
+    const {
       pathname: urlPath,
     } = urlObj;
     const {
@@ -24,23 +25,31 @@ export default function getRelativeUrl(url) {
       hash,
     } = urlObj;
 
-    // Add a trailing slash, if relevant env var is configured.
-    if (env.CONFIG_FORCE_TRAILING_SLASHES) {
-      urlPath = (
-        '/' !== urlPath[urlPath.length - 1] &&
-        ! urlPath.includes('.')
-      ) ? `${urlPath}/` : urlPath;
-    }
+    if (
+      host === window.location.host ||
+      host.includes(window.location.host) ||
+      window.location.host.includes(host)
+    ) {
+      let internalPath = urlPath;
 
-    // Internal URL, add query and hash.
-    if (host === window.location.host) {
-      return urlPath + (query || '') + (hash || '');
+      // Add a trailing slash, if relevant env var is configured.
+      if (env.CONFIG_FORCE_TRAILING_SLASHES) {
+        internalPath = (
+          '/' !== urlPath[urlPath.length - 1] &&
+          ! urlPath.includes('.')
+        ) ? `${urlPath}/` : urlPath;
+      }
+
+      // Internal URL, add query and hash.
+      result = internalPath + (query || '') + (hash || '');
+    } else {
+      // External URL, not relative.
+      result = false;
     }
   } catch (e) {
-    // Already a relative url.
-    return url;
+    // In case an error occurs, assume URL is not relative.
+    result = false;
   }
 
-  // External absolute url.
-  return false;
+  return result;
 }
