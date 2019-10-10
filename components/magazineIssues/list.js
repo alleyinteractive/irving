@@ -27,7 +27,6 @@ MagazineIssuesList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   lastUpdate: PropTypes.arrayOf(PropTypes.object).isRequired,
   setData: PropTypes.func.isRequired,
-  // setLimit: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(MagazineIssuesList);

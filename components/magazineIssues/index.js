@@ -11,6 +11,7 @@ import styles from './magazineIssues.css';
 const MagazineIssues = ({ title, issueTypeId }) => {
   const [issues, setIssues] = useState({
     issues: [],
+    issueDates: [],
     lastUpdate: [],
     shouldDisplayLoadMore: true,
   });
@@ -19,7 +20,7 @@ const MagazineIssues = ({ title, issueTypeId }) => {
     endpoint: `?page=1&issueType=${issueTypeId}`,
   });
 
-  const loadItems = () => {
+  const loadItems = async () => {
     setUserRequest({
       currentPage: userRequest.currentPage + 1,
       endpoint: `?page=${userRequest.currentPage + 1}&issueType=${issueTypeId}`,
@@ -27,8 +28,11 @@ const MagazineIssues = ({ title, issueTypeId }) => {
   };
 
   const appendIssues = (newData, shouldDisplayLoadMore) => {
+    const newIssues = [...issues.issues, ...newData];
+
     setIssues({
-      issues: [...issues.issues, ...newData],
+      issues: newIssues,
+      issueDates: newIssues.map(({ config: { issueYear } }) => issueYear),
       lastUpdate: newData,
       shouldDisplayLoadMore,
     });
@@ -38,6 +42,27 @@ const MagazineIssues = ({ title, issueTypeId }) => {
     MagazineIssuesList
   );
 
+  const renderDropdown = () => {
+    // Build an array of years rounded down to the nearest decade.
+    let decades = issues.issueDates.map(
+      (date) => parseInt(date / 10, 10) * 10
+    );
+    const decadeSet = new Set(decades);
+    // Replace the decades array with a set of unique IDs.
+    decades = [...decadeSet];
+
+    return (
+      <select className={styles.select}>
+        <option value="">Year</option>
+        {decades.map((decade) => (
+          <option key={decade} value={decade}>
+            {`${decade}s`}
+          </option>
+        ))}
+      </select>
+    );
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -45,13 +70,7 @@ const MagazineIssues = ({ title, issueTypeId }) => {
           <h2 className={styles.title} id={kebabcase(title)}>
             {title}
           </h2>
-          {/* @todo make this update component on select. */}
-          <select className={styles.select}>
-            <option value="">Year</option>
-            <option value="2000">2000s</option>
-            <option value="2010">2010s</option>
-            <option value="1990">1990s</option>
-          </select>
+          {renderDropdown()}
         </header>
         <ul className={styles.list} aria-labelledby={kebabcase(title)}>
           {issues.issues.map((issue) => (
