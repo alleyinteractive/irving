@@ -21,9 +21,11 @@ const MagazineIssues = ({ title, issueTypeId, datesAvailable }) => {
   });
 
   const loadItems = () => {
+    const { endpoint, currentPage } = userRequest;
+
     setUserRequest({
-      currentPage: userRequest.currentPage + 1,
-      endpoint: `?page=${userRequest.currentPage + 1}&issueType=${issueTypeId}`,
+      currentPage: currentPage + 1,
+      endpoint: endpoint.replace(/(page)=[^?&]+/, `$1=${currentPage + 1}`),
     });
   };
 
@@ -36,12 +38,21 @@ const MagazineIssues = ({ title, issueTypeId, datesAvailable }) => {
   };
 
   const filterIssues = (decade) => {
-    /* eslint-disable max-len */
+    const page = 1 < userRequest.currentPage ? 1 : userRequest.currentPage;
+
     setUserRequest({
       currentPage: 1,
-      endpoint: `?page=${userRequest.currentPage + 1}&issueType=${issueTypeId}&decade=${decade}`,
+      endpoint:
+        `?page=1&issueType=${issueTypeId}&decade=${decade}`
+          .replace(/(page)=[^?&]+/, `$1=${page}`),
     });
-    /* eslint-enable */
+
+    // Clear any current issue data from the component's state.
+    setIssues({
+      issues: [],
+      lastUpdate: [],
+      shouldDisplayLoadMore: true,
+    });
   };
 
   const Results = withData(`magazine_issues${userRequest.endpoint}`, {})(
