@@ -1,4 +1,5 @@
 import URL from 'url-parse';
+import addTrailingSlash from './addTrailingSlash';
 
 /**
  * Normalize internal urls to be relative. Reject external urls.
@@ -6,7 +7,6 @@ import URL from 'url-parse';
  * @returns {string|boolean} - relative url, or false if not an internal url
  */
 export default function getRelativeUrl(url) {
-  const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
   let result = false;
 
   if ('string' !== typeof url) {
@@ -30,18 +30,8 @@ export default function getRelativeUrl(url) {
       host.includes(window.location.host) ||
       window.location.host.includes(host)
     ) {
-      let internalPath = urlPath;
-
-      // Add a trailing slash, if relevant env var is configured.
-      if (env.CONFIG_FORCE_TRAILING_SLASHES) {
-        internalPath = (
-          '/' !== urlPath[urlPath.length - 1] &&
-          ! urlPath.includes('.')
-        ) ? `${urlPath}/` : urlPath;
-      }
-
       // Internal URL, add query and hash.
-      result = internalPath + (query || '') + (hash || '');
+      result = addTrailingSlash(urlPath) + (query || '') + (hash || '');
     } else {
       // External URL, not relative.
       result = false;
