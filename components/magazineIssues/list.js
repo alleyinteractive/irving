@@ -10,10 +10,12 @@ const MagazineIssuesList = ({
   lastUpdate,
 }) => {
   useEffect(() => {
-    const isNewData = lastUpdate !== data;
-
-    if (isNewData && 0 < data.length) {
-      setData(data, true);
+    if (lastUpdate !== data && 0 < data.length) {
+      if (10 > data.length) {
+        setData(data, false);
+      } else {
+        setData(data, true);
+      }
     }
   }, [data]);
 
