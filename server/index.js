@@ -18,6 +18,7 @@ const debug = createDebug('server:error');
 const { rootUrl } = require('../config/paths');
 const bustCache = require('./bustCache');
 const bustPageCache = require('./bustPageCache');
+const purgePageCache = require('./purgePageCache');
 
 const {
   PORT = 3001,
@@ -30,6 +31,7 @@ const app = express();
 // Clearing the Redis cache.
 app.get('/bust-endpoint-cache', bustPageCache);
 app.get('/bust-entire-cache', bustCache);
+app.purge(purgePageCache);
 
 app.set('views', 'server/views');
 app.set('view engine', 'ejs');
