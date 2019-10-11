@@ -10,7 +10,8 @@ const getService = require('../services/cacheService');
  * @returns {*}
  */
 const purgePageCache = async (req, res, next) => {
-  const key = req.originalUrl;
+  const path = req.originalUrl;
+  const key = `${path},?,site`;
   const service = getService();
   const hasCache = await service.get(key);
 
