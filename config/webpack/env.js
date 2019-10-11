@@ -21,6 +21,7 @@ module.exports = function getEnv() {
   const whitelist = [
     new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL'),
     new RegExp('^API_QUERY_PARAM'),
+    new RegExp('^CONFIG_'),
   ];
   return Object
     .keys(process.env)
