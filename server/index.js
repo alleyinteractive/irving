@@ -31,7 +31,7 @@ const app = express();
 // Clearing the Redis cache.
 app.get('/bust-endpoint-cache', bustPageCache);
 app.get('/bust-entire-cache', bustCache);
-app.purge(purgePageCache);
+app.purge('/*', purgePageCache);
 
 app.set('views', 'server/views');
 app.set('view engine', 'ejs');
