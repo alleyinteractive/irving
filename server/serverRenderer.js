@@ -18,6 +18,7 @@ import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import createDebug from 'services/createDebug';
 import getService from 'services/monitorService';
+import addTrailingSlash from 'utils/addTrailingSlash';
 
 const monitor = getService();
 const debugError = createDebug('render:error');
@@ -40,6 +41,13 @@ const render = async (req, res, clientStats) => {
   );
   const { getState, dispatch } = store;
   const search = queryString.stringify(req.query, { arrayFormat: 'bracket' });
+  const trailingSlash = addTrailingSlash(req.path);
+
+  // Redirect to path with trailling slash before dispatching location change.
+  if (req.path !== trailingSlash) {
+    res.redirect(trailingSlash);
+    return;
+  }
 
   // Sync express request with route state.
   dispatch(actionLocationChange('PUSH', {
