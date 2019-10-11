@@ -3,8 +3,9 @@ const getService = require('../services/cacheService');
 /**
  * Bust the entire cache from Redis.
  *
- * @param {Request}  req  Request.
- * @param {Response} res  Response.
+ * @param {object} req  Request object.
+ * @param {object} res  Response object.
+ * @returns {*}
  */
 const bustCache = async (req, res) => {
   const service = getService();
