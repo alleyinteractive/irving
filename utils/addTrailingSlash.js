@@ -8,9 +8,12 @@ export default function addTrailingSlash(url) {
 
   // Add a trailing slash, if relevant env var is configured.
   if (env.CONFIG_FORCE_TRAILING_SLASHES) {
+    const splitUrl = url.split('/');
+
     return (
       '/' !== url[url.length - 1] &&
-      ! url.includes('.')
+      // Don't add trailing slashes to filepaths.
+      ! splitUrl[splitUrl.length - 1].includes('.')
     ) ? `${url}/` : url;
   }
 
