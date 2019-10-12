@@ -29,6 +29,7 @@ import ListMenuItem from 'components/listMenuItem';
 import ListMenuItems from 'components/listMenuItems';
 import ListGroup from 'components/listGroup';
 import ListItem from 'components/listItem';
+import MagazineCard from 'components/magazineCard';
 import MagazineHero from 'components/magazineHero';
 import MagazineIssue from 'components/magazineIssue';
 import MagazineIssues from 'components/magazineIssues';
@@ -95,6 +96,7 @@ export const componentMap = {
   'list-group': ListGroup,
   'list-item': ListItem,
   logo: Image,
+  'magazine-card': MagazineCard,
   'magazine-hero': MagazineHero,
   'magazine-issue': MagazineIssue,
   'magazine-issues': MagazineIssues,
@@ -133,6 +135,7 @@ export const componentMap = {
  * @returns {function} - React component
  */
 export default function getComponent(name) {
+  console.log(name);
   // Custom component
   if (componentMap[name]) {
     return componentMap[name];
