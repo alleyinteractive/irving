@@ -21,6 +21,7 @@ import App from 'components/app';
 import userConfig from '@irvingjs/irving.config';
 import getConfigField from 'utils/getConfigField';
 import getTemplateVars from './getTemplateVars';
+import addTrailingSlash from 'utils/addTrailingSlash';
 
 const monitor = getService();
 const debugError = createDebug('render:error');
@@ -41,6 +42,13 @@ const render = async (req, res, clientStats) => {
   );
   const { getState, dispatch } = store;
   const search = queryString.stringify(req.query, { arrayFormat: 'bracket' });
+  const trailingSlash = addTrailingSlash(req.path);
+
+  // Redirect to path with trailling slash before dispatching location change.
+  if (req.path !== trailingSlash) {
+    res.redirect(trailingSlash);
+    return;
+  }
 
   // Sync express request with route state.
   dispatch(actionLocationChange('PUSH', {
