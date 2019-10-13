@@ -1,20 +1,14 @@
-@import 'mixins/index';
-
-.wrapper {
-  @include button-reset;
-}
-
 .primary {
   align-items: center;
-  background-color: $black;
-  color: $white;
+  background-color: #000000;
+  color: #FFFFFF;
   display: flex;
-  height: rem(42);
+  height: 42px;
   justify-content: center;
   padding: 0 1rem;
+}
 
-  &:hover {
-    background-color: $grayLight;
-    color: $black;
-  }
+.primary:hover {
+  background-color: rgb(215, 215, 217);
+  color: #000000;
 }

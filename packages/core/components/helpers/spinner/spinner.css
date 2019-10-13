@@ -9,17 +9,14 @@
   }
 }
 
-.spinner {
+.spinner path {
+  transform-origin: 50% 50%;
+}
 
-  path {
-    transform-origin: 50% 50%;
-  }
+.spinner :global(.opaque) {
+  animation: spin 1s infinite;
+}
 
-  :global(.opaque) {
-    animation: spin 1s infinite;
-  }
-
-  :global(.transparent) {
-    animation: spin 1s infinite 0.2s;
-  }
+.spinner :global(.transparent) {
+  animation: spin 1s infinite 0.2s;
 }
