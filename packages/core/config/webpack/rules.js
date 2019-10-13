@@ -18,9 +18,9 @@ const include = (filepath) => {
           filepath.includes(path.join(__dirname, '../../../../'))
         ) && ! filepath.includes('node_modules')
       ) ||
-      // Anything imported within irving core should be included in build,
+      // Anything imported within irving packages should be included in build,
       // even if located within node_modules (but not nested node modules).
-      filepath.match(/node_modules\/@irvingjs\/core\/(?!node_modules)/)
+      filepath.match(/node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/)
     ) &&
     // Exclude minified JS.
     ! filepath.match(/\.min\.js$/)

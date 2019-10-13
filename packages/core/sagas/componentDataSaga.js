@@ -4,9 +4,9 @@ import {
   actionReceiveComponentDataError,
 } from 'actions/componentDataActions';
 import fetchComponentData from 'services/fetchComponentData';
-import createDebug from 'services/createDebug';
+import getLogService from 'services/logService';
 
-const debug = createDebug('sagas:componentData');
+const debug = getLogService('irving:sagas:componentData');
 
 export default function* watchComponentData(action) {
   const {
@@ -23,6 +23,6 @@ export default function* watchComponentData(action) {
     }
   } catch (err) {
     yield put(actionReceiveComponentDataError(endpoint, err));
-    yield call(debug, err);
+    yield call(debug.error, err);
   }
 }

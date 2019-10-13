@@ -1,5 +1,5 @@
-import getReducers from 'reducers';
-import getDefaultState from 'reducers/defaultState';
+import getReducers from './reducers';
+import getDefaultState from './reducers/defaultState';
 
 export default {
   reducers: getReducers,

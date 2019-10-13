@@ -11,7 +11,7 @@ import {
   SET_AUDIO_VOLUME,
   SET_AUDIO_SEEK,
   RECEIVE_AUDIO_TIME,
-} from 'actions/types';
+} from '../actions/types';
 import getDefaultState from './defaultState';
 
 /**

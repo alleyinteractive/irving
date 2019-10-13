@@ -5,9 +5,9 @@ import {
   actionReceiveSubmitInvalid,
 } from 'actions/formActions';
 import submitForm from 'services/submitForm';
-import createDebug from 'services/createDebug';
+import getLogService from 'services/logService';
 
-const debug = createDebug('sagas:form');
+const debug = getLogService('irving:sagas:form');
 
 export default function* watchRequestSubmit(data) {
   const {
@@ -23,6 +23,6 @@ export default function* watchRequestSubmit(data) {
     }
   } catch (err) {
     yield put(actionReceiveSubmitError(formName, err));
-    yield call(debug, err);
+    yield call(debug.error, err);
   }
 }

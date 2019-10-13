@@ -1,7 +1,7 @@
 import getService from './cacheService';
-import createDebug from './createDebug';
+import getLogService from './logService';
 
-const debug = createDebug('irving:components:data');
+const log = getLogService('irving:components:data');
 
 const fetchOpts = {
   headers: {
@@ -39,11 +39,11 @@ export async function cacheResult(endpoint) {
 
   let response = await cache.get(endpoint);
   if (! response) {
-    debug(info);
+    log.info(info);
     response = await fetchComponentData(endpoint);
     await cache.set(endpoint, response);
   } else {
-    debug({ ...info, cached: true });
+    log.info({ ...info, cached: true });
   }
 
   return response;

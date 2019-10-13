@@ -3,8 +3,9 @@ const getService = require('../services/cacheService');
 /**
  * Bust page/post/endpoint cache from Redis.
  *
- * @param {Request}  req  Request.
- * @param {Response} res  Response.
+ * @param {object} req  Request object.
+ * @param {object} res  Response object.
+ * @returns {*}
  */
 const bustPageCache = async (req, res) => {
   const { endpoint } = req.query;

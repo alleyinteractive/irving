@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/babel-preset-irving",
-  "version": "1.0.4-alpha.0",
+  "version": "1.0.4-alpha.1+a191d629",
   "description": "Babel preset for working with irving",
   "main": "index.js",
   "repository": {
@@ -20,8 +20,12 @@
     "babel-plugin-universal-import": "^4.0.0",
     "react-hot-loader": "^4.12.11"
   },
+  "peerDependencies": {
+    "react": "^16.9.0",
+    "webpack": "^4.39.2"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "63fa74695bdf872e95da5066358c5484c7b83db5"
+  "gitHead": "a191d6297ff9a52930cb757fc0d773b1c9de67a6"
 }
