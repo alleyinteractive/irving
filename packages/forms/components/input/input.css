@@ -17,36 +17,27 @@
   height: 42px;
   padding: 5px 10px;
   width: 100%;
-
-  &::placeholder {
-    color: $grayLight;
-  }
 }
 
-.textarea {
-
-  .inputElement {
-    height: 100px;
-    padding: 10px;
-  }
+.inputElement::placeholder {
+  color: rgb(215, 215, 217);
 }
 
-.input,
-.textarea,
-.select {
+.textarea .inputElement {
+  height: 100px;
+  padding: 10px;
+}
 
-  /* stylelint-disable selector-max-specificity */
-  .inputElement {
-    border: 2px solid #000000;
-  }
+.input .inputElement,
+.textarea .inputElement,
+.select .inputElement {
+  border: 2px solid #000000;
+}
 
-  &.error {
-
-    .inputElement {
-      border-color: red;
-    }
-  }
-  /* stylelint-enable */
+.input.error .inputElement,
+.textarea.error .inputElement,
+.select.error .inputElement {
+  border-color: red;
 }
 
 .validationMessge {
@@ -60,11 +51,11 @@
 .select {
   box-shadow: none;
   position: relative;
+}
 
-  .inputElement {
-    display: block;
-    width: 100%;
-  }
+.select .inputElement {
+  display: block;
+  width: 100%;
 }
 
 .checkbox,
@@ -72,14 +63,16 @@
   align-items: center;
   flex-direction: row;
   justify-content: flex-start;
+}
 
-  .label {
-    margin: 0;
-    order: 1;
-  }
+.checkbox .label,
+.radio .label {
+  margin: 0;
+  order: 1;
+}
 
-  .inputElement {
-    margin: 0 10px 0 0;
-    width: auto;
-  }
+.checkbox .inputElement,
+.radio .inputElement {
+  margin: 0 10px 0 0;
+  width: auto;
 }
