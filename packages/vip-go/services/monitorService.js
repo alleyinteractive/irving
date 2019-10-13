@@ -1,3 +1,11 @@
+const defaultService = {
+  start: () => {},
+  logError: () => {},
+  logTransaction: () => {},
+};
+
+let service;
+
 /**
  * Get the reusable monitor service instance. This service implements basic
  * application monitoring. It currently relies on newrelic, but the interface
@@ -6,13 +14,17 @@
  * @returns {object} singleton service object
  */
 const getService = () => {
+  if (service) {
+    return service;
+  }
+
   const configured = [
     'NEW_RELIC_APP_NAME',
     'NEW_RELIC_LICENSE_KEY',
   ].every((field) => ('undefined' !== typeof process.env[field]));
 
   if (! configured) {
-    return false;
+    return defaultService;
   }
 
   // newrelic cannot be imported in a browser environment.
@@ -25,11 +37,11 @@ const getService = () => {
         logger: logger('irving:newrelic'),
       });
     } catch (err) {
-      return false;
+      return defaultService;
     }
 
-    return {
-      start: () => {}, // Simply requiring the newrelic module starts the service.
+    service = {
+      start: defaultService.start, // Simply requiring the newrelic module starts the service.
       logError(err) {
         irvingNewrelic.noticeError(err);
       },
@@ -37,9 +49,11 @@ const getService = () => {
         irvingNewrelic.setTransactionName(`${method} ${status} ${category}`);
       },
     };
+
+    return service;
   }
 
-  return false;
+  return defaultService;
 };
 
 module.exports = getService;

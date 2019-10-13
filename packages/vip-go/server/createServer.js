@@ -18,7 +18,10 @@ module.exports = function createServer(app) {
     const fs = require('fs');
     const path = require('path');
 
-    const key = fs.readFileSync(path.join(os.homedir(), HTTPS_KEY_PATH), 'utf8');
+    const key = fs.readFileSync(
+      path.join(os.homedir(), HTTPS_KEY_PATH),
+      'utf8'
+    );
     const cert = fs.readFileSync(
       path.join(os.homedir(), HTTPS_CERT_PATH),
       'utf8'
@@ -30,4 +33,4 @@ module.exports = function createServer(app) {
   }
 
   return irvingServer;
-}
+};

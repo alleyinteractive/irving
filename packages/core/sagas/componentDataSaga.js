@@ -6,7 +6,7 @@ import {
 import fetchComponentData from 'services/fetchComponentData';
 import getLogService from 'services/logService';
 
-const debug = getLogService('sagas:componentData');
+const debug = getLogService('irving:sagas:componentData');
 
 export default function* watchComponentData(action) {
   const {
