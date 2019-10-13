@@ -14,12 +14,12 @@ it('should handle a relative url with a hash', () => {
     .toBe('/foo#somehash');
 });
 
-it('should handle an internal absolute url', () => {
-  expect(getRelativeUrl('http://localhost/foo')).toBe('/foo');
+it('should handle an internal, absolute URL with port', () => {
+  expect(getRelativeUrl('http://localhost:3001/foo')).toBe('/foo');
 });
 
 it('should handle an internal absolute url with search query', () => {
-  expect(getRelativeUrl('http://localhost/foo/?s=test')).toBe('/foo/?s=test');
+  expect(getRelativeUrl('http://localhost:3001/foo/?s=test')).toBe('/foo/?s=test');
 });
 
 it('should handle an internal absolute url with hash', () => {

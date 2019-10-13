@@ -11,8 +11,8 @@ const getConfigField = require('../utils/getConfigField');
 const getService = require('../services/monitorService');
 getService().start();
 
-const createDebug = require('../services/createDebug');
-const debug = createDebug('server:error');
+const getLogService = require('../services/logService');
+const log = getLogService('irving:server:error');
 const createServer = require('../server/createServer');
 const {
   rootUrl,
@@ -22,6 +22,7 @@ const {
 const serverConfig = require(serverConfigPath);
 const bustCache = require('../server/bustCache');
 const bustPageCache = require('../server/bustPageCache');
+const purgePageCache = require('../server/purgePageCache');
 
 const {
   PORT = 3001,
@@ -32,6 +33,7 @@ const app = express();
 // Clearing the Redis cache.
 app.get('/bust-endpoint-cache', bustPageCache);
 app.get('/bust-entire-cache', bustCache);
+app.purge('/*', purgePageCache);
 
 // Set view engine.
 app.set('view engine', 'ejs');
@@ -48,7 +50,7 @@ if ('development' === NODE_ENV) {
 
 // Default error handler
 app.use((err, req, res, next) => {
-  debug(err);
+  log.error(err);
 
   if (res.headersSent) {
     return next(err);
@@ -77,7 +79,7 @@ if ('development' === NODE_ENV) {
 
 // Handle uncaught promise exceptions.
 process.on('unhandledRejection', (err) => {
-  debug(err);
+  log.error(err);
 
   if ('production' !== NODE_ENV) {
     throw err;

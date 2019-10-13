@@ -9,9 +9,9 @@ import fetchComponents from 'services/fetchComponents';
 import history from 'utils/history';
 import isNode from 'utils/isNode';
 import getRelativeUrl from 'utils/getRelativeUrl';
-import createDebug from 'services/createDebug';
+import getLogService from 'services/logService';
 
-const debug = createDebug('sagas:location');
+const debug = getLogService('irving:sagas:location');
 
 export default function* resolveComponents() {
   const {
@@ -47,7 +47,7 @@ export default function* resolveComponents() {
       }
     }
   } catch (err) {
-    yield call(debug, err);
+    yield call(debug.error, err);
     yield put(actionReceiveError(err));
   }
 }

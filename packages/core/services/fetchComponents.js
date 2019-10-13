@@ -2,9 +2,9 @@ import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
 import getService from './cacheService';
-import createDebug from './createDebug';
+import getLogService from './logService';
 
-const debug = createDebug('components');
+const log = getLogService('irving:components');
 
 /**
  * Get any query parameters that should be included with every components request.
@@ -94,11 +94,11 @@ export default async function cacheResult(...args) {
 
   let response = await cache.get(key);
   if (! response) {
-    debug(info);
+    log.info(info);
     response = await fetchComponents(...args);
     await cache.set(key, response);
   } else {
-    debug({ ...info, cached: true });
+    log.info({ ...info, cached: true });
   }
 
   return response;
