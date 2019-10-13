@@ -22,7 +22,7 @@ const {
 const serverConfig = require(serverConfigPath);
 const bustCache = require('../server/bustCache');
 const bustPageCache = require('../server/bustPageCache');
-const purgePageCache = require('./purgePageCache');
+const purgePageCache = require('../server/purgePageCache');
 
 const {
   PORT = 3001,

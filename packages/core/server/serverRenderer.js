@@ -15,13 +15,13 @@ import defaultState from 'reducers/defaultState';
 import getEnv from 'config/webpack/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
+import addTrailingSlash from 'utils/addTrailingSlash';
 import getLogService from 'services/logService';
 import getService from 'services/monitorService';
 import App from 'components/app';
 import userConfig from '@irvingjs/irving.config';
 import getConfigField from 'utils/getConfigField';
 import getTemplateVars from './getTemplateVars';
-import addTrailingSlash from 'utils/addTrailingSlash';
 
 const monitor = getService();
 const logError = getLogService('irving:render:error');

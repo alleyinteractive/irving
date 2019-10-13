@@ -4,7 +4,7 @@ import isNode from 'utils/isNode';
 import getService from './cacheService';
 import getLogService from './logService';
 
-const log = getLogService('components');
+const log = getLogService('irving:components');
 
 /**
  * Get any query parameters that should be included with every components request.
