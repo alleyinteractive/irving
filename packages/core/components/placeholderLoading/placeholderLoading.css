@@ -1,17 +1,17 @@
 
 .wrapper {
-  min-height: rem(800);
-  padding: rem(20) 0;
+  min-height: 800px;
+  padding: 20px 0;
   width: 100%;
 }
 
 .thumb {
-  background-color: $grayLight;
-  flex: 1 0 rem(175);
-  height: rem(175);
-  margin-right: rem(20);
-  max-width: rem(175);
-  width: rem(175);
+  background-color: rgb(215, 215, 217);
+  flex: 1 0 175px;
+  height: 175px;
+  margin-right: 20px;
+  max-width: 175px;
+  width: 175px;
 }
 
 .content {
@@ -19,16 +19,16 @@
 }
 
 .textBar {
-  background-color: $grayLight;
-  height: rem(20);
-  margin-bottom: rem(18);
+  background-color: rgb(215, 215, 217);
+  height: 20px;
+  margin-bottom: 18px;
+}
 
-  &:first-child {
-    height: rem(32);
-    margin-bottom: rem(24);
-  }
+.textBar:first-child {
+  height: 32px;
+  margin-bottom: 24px;
+}
 
-  &:last-child {
-    width: 25%;
-  }
+.textBar:last-child {
+  width: 25%;
 }

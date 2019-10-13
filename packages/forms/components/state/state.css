@@ -1,11 +1,6 @@
 
-.wrapper {
-
-  /* stylelint-disable selector-max-specificity */
-  &[disabled] .content {
-    opacity: 0.5;
-  }
-  /* stylelint-enable */
+.wrapper[disabled] .content {
+  opacity: 0.5;
 }
 
 .response {
@@ -18,8 +13,8 @@
 .submitting,
 .success,
 .error {
-  font-family: $fira;
-  font-size: rem(24);
+  font-family: helvetica, arial, sans-serif;
+  font-size: 24px;
   text-transform: uppercase;
 }
 
