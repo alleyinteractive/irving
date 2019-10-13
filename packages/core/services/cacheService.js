@@ -21,7 +21,11 @@ const getService = () => {
 
   // Set user- or package-configured cache service, if applicable.
   if (configService) {
-    service = configService;
+    // Ensure all keys are present.
+    service = {
+      ...defaultService,
+      ...configService,
+    };
   }
 
   // Memoize client connection, so it can reused.
@@ -42,7 +46,7 @@ const getService = () => {
 
     // Check if optional redis client is installed.
     try {
-      // Redis = require('ioredis'); // eslint-disable-line global-require
+      Redis = require('ioredis'); // eslint-disable-line global-require
     } catch (err) {
       return defaultService;
     }

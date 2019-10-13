@@ -81,4 +81,12 @@ const mapStateToProps = (state) => ({
 
 const wrapWithStyles = withStyles(styles);
 const withRedux = connect(mapStateToProps);
-export default hot(wrapWithStyles(withRedux(App)));
+let hotApp; // eslint-disable-line import/no-mutable-exports
+
+if (process.env.BROWSER) {
+  hotApp = hot(wrapWithStyles(withRedux(App)));
+} else {
+  hotApp = wrapWithStyles(withRedux(App));
+}
+
+export default hotApp;

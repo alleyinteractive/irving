@@ -50,6 +50,9 @@ const getService = () => {
           600
         );
       },
+      del(key) {
+        return this.client.del(key);
+      },
     };
   }
 
