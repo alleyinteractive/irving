@@ -47,27 +47,6 @@ const getService = (namespace) => {
 
         return acc;
       }, {});
-  } else {
-    const log = require('debug')(namespace);
-
-    // Map all log levels to the same function for browser.
-    service = Object.keys(defaultService)
-      .reduce((acc, method) => {
-        acc[method] = (...messages) => {
-          // In development the app should crash fast when encountering any errors.
-          if ('development' === env) {
-            messages.forEach((message) => {
-              if (message instanceof Error) {
-                throw message;
-              }
-            });
-          }
-
-          log(...messages);
-        };
-
-        return acc;
-      }, {});
   }
   /* eslint-enable */
 

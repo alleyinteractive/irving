@@ -20,6 +20,10 @@
     "babel-plugin-universal-import": "^4.0.0",
     "react-hot-loader": "^4.12.11"
   },
+  "peerDependencies": {
+    "react": "^16.9.0",
+    "webpack": "^4.39.2"
+  },
   "publishConfig": {
     "access": "public"
   },

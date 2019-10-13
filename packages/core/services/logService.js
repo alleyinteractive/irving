@@ -1,3 +1,4 @@
+const getConfigField = require('../utils/getConfigField');
 const getMonitorService = require('./monitorService');
 const monitor = getMonitorService();
 /* eslint-disable no-console */
@@ -11,6 +12,7 @@ const defaultService = {
   info: console.info,
   debug: console.debug,
 };
+let service;
 /* eslint-enable */
 
 /**
@@ -24,6 +26,18 @@ const defaultService = {
  */
 const getService = (namespace) => {
   const env = process.env.NODE_ENV;
+  const configService = getConfigField('logService')(namespace);
+
+  // Set user- or package-configured cache service, if applicable.
+  if (configService) {
+    service = configService;
+  }
+
+  // Memoize service, so it can reused.
+  if (service) {
+    return service;
+  }
+
   const log = require('debug')(namespace); // eslint-disable-line global-require
 
   // Map all log levels to the same function for browser.
