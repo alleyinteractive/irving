@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { hot } from 'react-hot-loader/root';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
@@ -15,7 +16,7 @@ import getComponent from 'config/componentMap';
 import styles from './app.css';
 
 const UserErrorMesage = getComponent('error-message');
-const UserApp = getComponent('app');
+const AppContentComponent = getComponent('app');
 
 const App = (props) => {
   const {
@@ -41,18 +42,15 @@ const App = (props) => {
           {UserErrorMesage ? <UserErrorMesage /> : <ErrorMessage />}
         </>
       ) : (
-        <>
-          {UserApp ? (
-            <UserApp IrvingApp={CoreApp} />
-          ) : (
-            <div className={styles.wrapper}>
-              <a href="#content" className={styles.skipLink}>
-                Skip to Content
-              </a>
-              <CoreApp />
-            </div>
-          )}
-        </>
+        <div className={styles.wrapper}>
+          <a
+            href="#content"
+            className={classnames(styles.skipLink, styles.screenreaderOnly)}
+          >
+            Skip to Content
+          </a>
+          <AppContentComponent IrvingApp={CoreApp} />
+        </div>
       )}
     </ErrorBoundary>
   );
