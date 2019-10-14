@@ -5,9 +5,9 @@ import styles from './magazineIssues.css';
 
 class MagazineDropdown extends React.Component {
   static propTypes = {
-    datesAvailable: PropTypes.arrayOf([
-      PropTypes.number,
-    ]).isRequired,
+    datesAvailable: PropTypes.arrayOf(
+      PropTypes.number
+    ).isRequired,
     filterIssues: PropTypes.func.isRequired,
   }
 
@@ -41,15 +41,15 @@ class MagazineDropdown extends React.Component {
       <select
         className={styles.select}
         onChange={this.handleChange}
-        value={decade}
+        value={decade || ''}
       >
         <option value="">Year</option>
-        {datesAvailable.map((dc) => (
+        {datesAvailable.map((date) => (
           <option
-            key={dc}
-            value={dc}
+            key={date}
+            value={date}
           >
-            {`${dc}s`}
+            {`${date}s`}
           </option>
         ))}
       </select>
