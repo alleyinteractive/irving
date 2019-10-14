@@ -10,12 +10,10 @@ const MagazineIssue = ({
   children,
   permalink,
   title,
-  yearPublished,
 }) => (
   <Link
     to={permalink}
     className={styles.wrapper}
-    data-year-published={yearPublished}
   >
     <span className="screen-reader-text">{title}</span>
     <div className={styles.cover}>{children}</div>
@@ -26,7 +24,6 @@ MagazineIssue.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   permalink: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  yearPublished: PropTypes.isRequired,
 };
 
 export default withStyles(styles)(MagazineIssue);
