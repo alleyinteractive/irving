@@ -8,7 +8,7 @@ const DefaultAppContent = (props) => {
 };
 
 DefaultAppContent.propTypes = {
-  IrvingApp: PropTypes.object.isRequired,
+  IrvingApp: PropTypes.func.isRequired,
 };
 
 export default DefaultAppContent;
