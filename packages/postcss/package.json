@@ -15,9 +15,10 @@
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
+		"autoprefixer": "^9.6.5",
 		"postcss-loader": "^3.0.0",
 		"stylelint": "^10.1.0",
-		"stylelint-order": "^3.1.0"
+		"stylelint-order": "^3.1.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
