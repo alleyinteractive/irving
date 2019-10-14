@@ -9,7 +9,6 @@ if (process.env.BUILD) {
   config = require(serverConfigPath);
 }
 /* eslint-enable */
-
 module.exports = (key) => getMergedFromUserConfig(config, key);
 
 if (module.hot) {
