@@ -4,6 +4,7 @@ import { UIDReset, UIDConsumer } from 'react-uid';
 import { withStyles } from 'critical-style-loader/lib';
 import Label from 'components/form/label';
 import styles from './magazineIssues.css';
+import { __ } from '@wordpress/i18n';
 
 const MagazineDropdown = ({ datesAvailable, filterIssues }) => {
   const [decade, setDecade] = useState(null);
@@ -22,8 +23,8 @@ const MagazineDropdown = ({ datesAvailable, filterIssues }) => {
           const selectID = uid('decadesDropdown');
           return (
             <Fragment>
-              <Label className={styles.hidden} htmlFor={selectID}>
-                Choose a decade:
+              <Label className="screen-reader-text" htmlFor={selectID}>
+                {__('Choose a decade:', 'mittr')}
               </Label>
               <select
                 id={selectID}
