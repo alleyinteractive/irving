@@ -18,7 +18,9 @@ module.exports = function getPlugins(context) {
   const commonPlugins = [
     new webpack.DefinePlugin({
       appView: JSON.stringify(maybeResolveUserModule('server/views/app.ejs')),
-      errorView: JSON.stringify(maybeResolveUserModule('server/views/error.ejs')),
+      errorView: JSON.stringify(
+        maybeResolveUserModule('server/views/error.ejs')
+      ),
     }),
   ];
 

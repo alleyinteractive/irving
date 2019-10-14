@@ -1,3 +1,9 @@
+const defaultService = {
+  start: () => {},
+  logError: () => {},
+  logTransaction: () => {},
+};
+
 /**
  * Get the reusable monitor service instance. This service implements basic
  * application monitoring. It currently relies on newrelic, but the interface
@@ -12,7 +18,7 @@ const getService = () => {
   ].every((field) => ('undefined' !== typeof process.env[field]));
 
   if (! configured) {
-    return false;
+    return defaultService;
   }
 
   // newrelic cannot be imported in a browser environment.
@@ -25,7 +31,7 @@ const getService = () => {
         logger: logger('irving:newrelic'),
       });
     } catch (err) {
-      return false;
+      return defaultService;
     }
 
     return {
@@ -39,7 +45,7 @@ const getService = () => {
     };
   }
 
-  return false;
+  return defaultService;
 };
 
 module.exports = getService;

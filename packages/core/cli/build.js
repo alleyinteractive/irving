@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const getConfig = require('../config/webpack.config.js');
-const config = getConfig({}, { mode: 'development' });
+const config = getConfig({}, { mode: 'production' });
 
 // Compile.
 webpack(
