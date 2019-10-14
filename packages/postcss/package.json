@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/postcss",
-	"version": "1.0.4-beta.7+95e92086",
+	"version": "1.0.4-beta.8+1bc481a7",
 	"description": "PostCSS configuration functionality for Irving",
 	"files": [
 		"config/**/*",
@@ -36,5 +36,5 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"gitHead": "95e92086a53efca25ccf35b3e67c931db427873a"
+	"gitHead": "1bc481a7923ceb890367188a8908c31933c764a7"
 }
