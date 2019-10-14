@@ -34,7 +34,7 @@ const MagazineDropdown = ({ datesAvailable, filterIssues }) => {
                 onChange={handleChange}
                 value={decade || ''}
               >
-                <option value="">Year</option>
+                <option value="">{__('Year', 'mittr')}</option>
                 {datesAvailable.map((date) => (
                   <option key={date} value={date}>
                     {`${date}s`}
