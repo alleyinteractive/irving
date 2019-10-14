@@ -1,3 +1,4 @@
+import DefaultAppContent from 'components/app/DefaultAppContent';
 import NotConfigured from 'components/notConfigured';
 import Body from 'components/body';
 import Head from 'components/head';
@@ -10,6 +11,7 @@ import userConfig from '@irvingjs/irving.config';
 
 const defaultComponents = {
   componentMap: {
+    app: DefaultAppContent,
     body: withLoader(Body),
     embed: RawHTML,
     head: Head,
@@ -19,7 +21,7 @@ const defaultComponents = {
   },
 };
 const componentMap = getMergedConfigField(
-  [userConfig, defaultComponents],
+  [defaultComponents, userConfig],
   'componentMap'
 );
 

@@ -16,7 +16,9 @@
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
-		"@automattic/vip-go": "^0.3.3"
+		"@automattic/vip-go": "^0.3.3",
+		"ioredis": "^3.2.2",
+		"newrelic": "^4.5.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
