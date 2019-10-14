@@ -6,9 +6,10 @@
     padding: rem(20);
   }
 
-  :global(.body--feed),
-  :global(.body--author),
-  :global(.body--search) & {
+  :global(.body--feed) &,
+  :global(.body--search) &,
+  :global(.body--author) &,
+  :global(.body-magazine) & {
     background-color: $background-gray;
   }
 

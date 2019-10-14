@@ -1,0 +1,10 @@
+.card {
+  align-items: center;
+  background-color: $black;
+  color: white;
+  display: flex;
+  font-size: 60px;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
