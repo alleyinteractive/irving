@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/vip-go",
-	"version": "1.0.4-beta.0+88f549b3",
+	"version": "1.0.4-beta.13+2f5cba9c",
 	"description": "Integration for WordPress VIP's Node server helpers",
 	"files": [
 		"server/**/*",
@@ -35,5 +35,5 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"gitHead": "88f549b3d1f45fdc6f561e5f75b1488d01d26020"
+	"gitHead": "2f5cba9ca2ae998e862bcc4b5ea5f5943c07b6d2"
 }
