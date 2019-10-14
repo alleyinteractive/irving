@@ -1,61 +1,61 @@
 .heading {
   font-weight: 700;
+}
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+.heading a {
+  color: inherit;
+  text-decoration: none;
+}
 
-  em {
-    font-style: italic;
-  }
+.heading em {
+  font-style: italic;
+}
 
-  strong {
-    font-weight: 700;
-  }
+.heading strong {
+  font-weight: 700;
 }
 
 .step-down-two {
   composes: heading;
-  font-size: rem(10);
+  font-size: 10px;
 }
 
 .step-down-one {
   composes: heading;
-  font-size: rem(14);
+  font-size: 14px;
 }
 
 .base {
   composes: heading;
-  font-size: rem(16);
+  font-size: 16px;
 }
 
 .step-up-one {
   composes: heading;
-  font-size: rem(20);
+  font-size: 20px;
 }
 
 .step-up-two {
   composes: heading;
-  font-size: rem(24);
+  font-size: 24px;
 }
 
 .step-up-three {
   composes: heading;
-  font-size: rem(34);
+  font-size: 34px;
 }
 
 .step-up-four {
   composes: heading;
-  font-size: rem(48);
+  font-size: 48px;
 }
 
 .step-up-five {
   composes: heading;
-  font-size: rem(60);
+  font-size: 60px;
 }
 
 .step-up-six {
   composes: heading;
-  font-size: rem(96);
+  font-size: 96px;
 }
