@@ -23,7 +23,7 @@ const MagazineDropdown = ({ datesAvailable, filterIssues }) => {
           const selectID = uid('decadesDropdown');
           return (
             <Fragment>
-              <Label className={styles.hidden} htmlFor={selectID}>
+              <Label className="screen-reader-text" htmlFor={selectID}>
                 {__('Choose a decade:', 'mittr')}
               </Label>
               <select
