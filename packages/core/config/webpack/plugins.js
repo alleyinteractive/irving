@@ -63,11 +63,12 @@ module.exports = function getPlugins(context) {
           ...env,
         }),
         new StatsWriterPlugin({
-          fields: [
-            'assetsByChunkName',
-            'publicPath',
-            'outputPath',
-          ],
+          stats: {
+            all: false,
+            assets: true,
+            outputPath: true,
+            publicPath: true,
+          },
         }),
         // Support friendly stack traces for error reporting, but protect
         // source code from being exposed.

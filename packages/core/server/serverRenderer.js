@@ -67,7 +67,7 @@ const render = async (req, res, clientStats) => {
     status,
   } = getState().route;
   monitor.logTransaction(req.method, status, 'server render');
-  logRequest.info({ url: req.originalUrl, status });
+  logRequest.info('%o', { url: req.originalUrl, status });
 
   // Redirect before trying to render.
   if (redirectTo) {
@@ -138,7 +138,7 @@ export default function serverRenderer(options) {
         options.clientStats
       );
     } catch (err) {
-      logError.error({ url: req.originalUrl, err });
+      logError.error('%o', { url: req.originalUrl, err });
 
       // Render a error page.
       const cssBuilder = new CriticalCssBuilder();
