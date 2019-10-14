@@ -1,3 +1,2 @@
-const serverConfig = require('./irving.config.server');
 
-module.exports = serverConfig;
+module.exports = require('./irving.config.server.js');

@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"description": "PostCSS configuration functionality for Irving",
 	"files": [
-		"components/**/*",
+		"config/**/*",
+		"irving.config.server.js",
 		"!*.test.js"
 	],
 	"main": "index.js",
