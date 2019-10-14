@@ -8,7 +8,7 @@ import styles from './magazineIssues.css';
 const MagazineDropdown = ({ datesAvailable, filterIssues }) => {
   const [decade, setDecade] = useState(null);
 
-  const handleChange = ({ target: value }) => {
+  const handleChange = ({ target: { value } }) => {
     if (value !== decade) {
       setDecade(value);
       filterIssues(value);

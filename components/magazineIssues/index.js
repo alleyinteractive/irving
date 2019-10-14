@@ -59,10 +59,6 @@ const MagazineIssues = ({ title, issueTypeId, datesAvailable }) => {
     MagazineIssuesList
   );
 
-  const formatKey = (key) => (
-    'number' === typeof key ? `${key}-${Math.random()}` : key
-  );
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -78,7 +74,7 @@ const MagazineIssues = ({ title, issueTypeId, datesAvailable }) => {
 
         <ul className={styles.list} aria-labelledby={kebabcase(title)}>
           {issues.issues.map((issue) => (
-            <li key={formatKey(issue.config.title)} className={styles.item}>
+            <li key={issue.config.title} className={styles.item}>
               {toReactElement(issue)}
             </li>
           ))}
