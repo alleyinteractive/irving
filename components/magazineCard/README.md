@@ -3,5 +3,5 @@
 Example use of MagazineCard component.
 
 ```jsx
-<MagazineCard />
+<MagazineCard title="2016" />
 ```

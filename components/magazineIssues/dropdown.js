@@ -1,60 +1,57 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
+import { UIDReset, UIDConsumer } from 'react-uid';
 import { withStyles } from 'critical-style-loader/lib';
+import Label from 'components/form/label';
 import styles from './magazineIssues.css';
 
-class MagazineDropdown extends React.Component {
-  static propTypes = {
-    datesAvailable: PropTypes.arrayOf(
-      PropTypes.number
-    ).isRequired,
-    filterIssues: PropTypes.func.isRequired,
-  }
+const MagazineDropdown = ({ datesAvailable, filterIssues }) => {
+  const [decade, setDecade] = useState(null);
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      decade: null,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    const { decade } = this.state;
-    const newDecade = event.target.value;
-
-    if (event.target.value !== decade) {
-      this.setState({ decade: newDecade });
-
-      const { filterIssues } = this.props;
-      filterIssues(newDecade);
+  const handleChange = ({ target: value }) => {
+    if (value !== decade) {
+      setDecade(value);
+      filterIssues(value);
     }
-  }
+  };
 
-  render() {
-    const { datesAvailable } = this.props;
-    const { decade } = this.state;
+  return (
+    <UIDReset>
+      <UIDConsumer>
+        {(id, uid) => {
+          const selectID = uid('decadesDropdown');
+          return (
+            <Fragment>
+              <Label className={styles.hidden} htmlFor={selectID}>
+                Choose a decade:
+              </Label>
+              <select
+                id={selectID}
+                aria-labelledby={selectID}
+                className={styles.select}
+                onChange={handleChange}
+                value={decade || ''}
+              >
+                <option value="">Year</option>
+                {datesAvailable.map((date) => (
+                  <option key={date} value={date}>
+                    {`${date}s`}
+                  </option>
+                ))}
+              </select>
+            </Fragment>
+          );
+        }}
+      </UIDConsumer>
+    </UIDReset>
+  );
+};
 
-    return (
-      <select
-        className={styles.select}
-        onChange={this.handleChange}
-        value={decade || ''}
-      >
-        <option value="">Year</option>
-        {datesAvailable.map((date) => (
-          <option
-            key={date}
-            value={date}
-          >
-            {`${date}s`}
-          </option>
-        ))}
-      </select>
-    );
-  }
-}
+MagazineDropdown.propTypes = {
+  datesAvailable: PropTypes.arrayOf(
+    PropTypes.number
+  ).isRequired,
+  filterIssues: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(MagazineDropdown);
