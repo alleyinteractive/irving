@@ -129,14 +129,6 @@ module.exports = function getRules(context) {
             localsConvention: 'camelCase',
           },
         },
-        // {
-        //   loader: 'postcss-loader',
-        //   options: {
-        //     config: {
-        //       path: postCssConfig,
-        //     },
-        //   },
-        // },
       ],
     },
   ];

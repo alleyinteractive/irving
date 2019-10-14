@@ -1,9 +1,6 @@
-// Plugins
 const autoprefixer = require('autoprefixer');
 const stylelint = require('stylelint');
-
-// Other imports
-const getConfigField = require('../utils/getConfigField');
+const getConfigField = require('@irvingjs/core/utils/getConfigField');
 const stylelintConfig = require('./stylelint.config.js');
 
 // Config
