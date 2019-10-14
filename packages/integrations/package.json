@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/integrations",
-	"version": "1.0.4-beta.2+50b861ff",
+	"version": "1.0.4-beta.3+7fc5c8c4",
 	"description": "Third party integrations for Irving",
 	"files": [
 		"components/**/*",
@@ -21,7 +21,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
-		"@irvingjs/babel-preset-irving": "^1.0.4-beta.2",
+		"@irvingjs/babel-preset-irving": "^1.0.4-beta.3+7fc5c8c4",
 		"@irvingjs/core": ">1.0.4-beta.2",
 		"babel-jest": "^24.9.0",
 		"enzyme": "^3.10.0",
@@ -36,5 +36,5 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"gitHead": "50b861ffefb004033fce768f1ea69478db322047"
+	"gitHead": "7fc5c8c49e39d95249fd0d1add8f0597fd03482a"
 }
