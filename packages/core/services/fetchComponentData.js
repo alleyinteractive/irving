@@ -43,7 +43,7 @@ export async function cacheResult(endpoint) {
     response = await fetchComponentData(endpoint);
     await cache.set(endpoint, response);
   } else {
-    log.info({ ...info, cached: true });
+    log.info('%o', { ...info, cached: true });
   }
 
   return response;

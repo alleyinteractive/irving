@@ -98,7 +98,7 @@ export default async function cacheResult(...args) {
     response = await fetchComponents(...args);
     await cache.set(key, response);
   } else {
-    log.info({ ...info, cached: true });
+    log.info('%o', { ...info, cached: true });
   }
 
   return response;

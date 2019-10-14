@@ -46,7 +46,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@hot-loader/react-dom": "^16.9.0",
-    "@irvingjs/babel-preset-irving": "^1.0.4-beta.4+8a33a77a",
+    "@irvingjs/babel-preset-irving": "^1.0.4-rc.10",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
