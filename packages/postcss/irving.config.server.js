@@ -1,4 +1,4 @@
-const getWebpackConfig = require('./getWebpackConfig');
+const getWebpackConfig = require('./config/getWebpackConfig');
 
 module.exports = {
   name: 'postcss',
