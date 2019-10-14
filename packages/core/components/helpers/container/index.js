@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import breakpoints from 'config/css/breakpoints';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './container.css';
@@ -36,9 +35,7 @@ Container.propTypes = {
   /**
    * Width of the container.
    */
-  size: PropTypes.oneOf(
-    Object.keys(breakpoints.bkptVal)
-  ),
+  size: PropTypes.string,
 };
 
 Container.defaultProps = {

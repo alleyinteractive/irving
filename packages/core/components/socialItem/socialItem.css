@@ -1,17 +1,16 @@
 .wrapper {
   display: block;
+}
 
-  svg {
-    fill: $black;
-    height: rem(22);
-    width: rem(22);
-  }
+.wrapper svg {
+  height: 22px;
+  width: 22px;
 }
 
 .link {
   align-items: center;
   display: flex;
-  height: rem(40);
+  height: 40px;
   justify-content: center;
-  width: rem(40);
+  width: 40px;
 }

@@ -1,22 +1,24 @@
 {
-	"name": "@irvingjs/vip-go",
+	"name": "@irvingjs/postcss",
 	"version": "1.0.4-beta.9+c8b0bf32",
-	"description": "Integration for WordPress VIP's Node server helpers",
+	"description": "PostCSS configuration functionality for Irving",
 	"files": [
-		"server/**/*",
-		"services/**/*",
+		"config/**/*",
 		"irving.config.server.js",
 		"!*.test.js"
 	],
 	"main": "index.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/alleyinteractive/irving/packages/vip-go"
+		"url": "https://github.com/alleyinteractive/irving/packages/integrations"
 	},
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
-		"@automattic/vip-go": "^0.3.3"
+		"autoprefixer": "^9.6.5",
+		"postcss-loader": "^3.0.0",
+		"stylelint": "^10.1.0",
+		"stylelint-order": "^3.1.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
