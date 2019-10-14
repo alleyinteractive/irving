@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { UIDReset, UIDConsumer } from 'react-uid';
 import { withStyles } from 'critical-style-loader/lib';
 import Label from 'components/form/label';
-import styles from './magazineIssues.css';
 import { __ } from '@wordpress/i18n';
+
+import styles from './magazineIssues.css';
 
 const MagazineDropdown = ({ datesAvailable, filterIssues }) => {
   const [decade, setDecade] = useState(null);

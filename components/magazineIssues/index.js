@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
 import kebabcase from 'lodash.kebabcase';
-import { __ } from '@wordpress/i18n';
 import withData from 'components/hoc/withData';
 import toReactElement from 'utils/toReactElement';
 import MagazineIssuesList from './list';
 import MagazineDropdown from './dropdown';
+
 import styles from './magazineIssues.css';
 
 const MagazineIssues = ({ title, issueTypeId, datesAvailable }) => {
