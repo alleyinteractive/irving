@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/integrations",
-	"version": "1.0.4-beta.0+88f549b3",
+	"version": "1.0.4-beta.1+ed8c27df",
 	"description": "Third party integrations for Irving",
 	"files": [
 		"components/**/*",
@@ -36,5 +36,5 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"gitHead": "88f549b3d1f45fdc6f561e5f75b1488d01d26020"
+	"gitHead": "ed8c27dfc8ced804419fa305e55e597818cd1364"
 }
