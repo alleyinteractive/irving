@@ -23,7 +23,7 @@ const MagazineDropdown = ({ datesAvailable, filterIssues }) => {
           return (
             <Fragment>
               <Label className={styles.hidden} htmlFor={selectID}>
-                Choose a decade:
+                {__('Choose a decade:', 'mittr')}
               </Label>
               <select
                 id={selectID}
