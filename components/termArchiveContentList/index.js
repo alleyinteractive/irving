@@ -1,11 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+  Fragment,
+} from 'react';
 import PropTypes from 'prop-types';
+import toReactElement from 'utils/toReactElement';
+import withData from 'components/hoc/withData';
+import kebabcase from 'lodash.kebabcase';
 import { withStyles } from 'critical-style-loader/lib';
 
 // Styles
 import styles from './termArchiveContentList.css';
 
-const TermArchiveContentList = ({ children }) => {
+const ItemList = ({ data, setData, lastUpdate }) => {
+  useEffect(() => {
+    if (lastUpdate !== data && 0 < data.length) {
+      setData(data);
+    }
+  }, [data]);
+
+  return <span className={styles.hidden}>Updated</span>
+};
+
+ItemList.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  lastUpdate: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setData: PropTypes.func.isRequired,
+};
+
+const ArticlesList = withStyles(styles)(ItemList);
+
+const TermArchiveContentList = ({ title, endpoint }) => {
   const [items, setItems] = useState({
     items: [],
     lastUpdate: [],
@@ -29,12 +54,12 @@ const TermArchiveContentList = ({ children }) => {
     });
   };
 
-  // const appendItems = (newItems) => {
-  //   setItems({
-  //     items: [...items.items, ...newItems],
-  //     lastUpdate: newItems,
-  //   });
-  // };
+  const appendItems = (newItems) => {
+    setItems({
+      items: [...items.items, ...newItems],
+      lastUpdate: newItems,
+    });
+  };
 
   useEffect(() => {
     window.onscroll = () => {
@@ -47,19 +72,35 @@ const TermArchiveContentList = ({ children }) => {
     };
   }, []);
 
-  // const Results = withData(`${endpoint}${userRequest.queryString}`, {})(
-  //   ArticlesList
-  // );
+  const Results = withData(`${endpoint}${userRequest.queryString}`, {})(
+    ArticlesList
+  );
 
   console.log(items);
   console.log(userRequest);
+  console.log(Results);
 
-  return <ul className={styles.wrapper}>{children}</ul>;
+  return (
+    <Fragment>
+      <ul className={styles.wrapper}>
+        {items.items.map((item) => (
+          <li key={item.config.title} className={styles.item}>
+            {toReactElement(item)}
+          </li>
+        ))}
+      </ul>
+
+      <Results
+        labelID={kebabcase(title)}
+        setData={appendItems}
+        lastUpdate={items.lastUpdate || []}
+      />
+    </Fragment>
+  );
 };
 
 TermArchiveContentList.propTypes = {
-  // endpoint: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  endpoint: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(TermArchiveContentList);
