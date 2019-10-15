@@ -19,7 +19,7 @@ const ItemList = ({ data, setData, lastUpdate }) => {
     }
   }, [data]);
 
-  return <span className={styles.hidden}>Updated</span>
+  return <span className={styles.hidden}>Updated</span>;
 };
 
 ItemList.propTypes = {
@@ -38,7 +38,7 @@ const TermArchiveContentList = ({ title, endpoint }) => {
   });
   const [userRequest, setUserRequest] = useState({
     currentPage: 1,
-    queryString: '?page=1',
+    queryString: `?category_name=${endpoint}?page=1`,
   });
 
   const loadItems = () => {
@@ -72,7 +72,7 @@ const TermArchiveContentList = ({ title, endpoint }) => {
     };
   }, []);
 
-  const Results = withData(`${endpoint}${userRequest.queryString}`, {})(
+  const Results = withData(userRequest.queryString, {})(
     ArticlesList
   );
 
@@ -99,8 +99,13 @@ const TermArchiveContentList = ({ title, endpoint }) => {
   );
 };
 
+TermArchiveContentList.defaultProps = {
+  endpoint: 'artificial-intelligence',
+};
+
 TermArchiveContentList.propTypes = {
-  endpoint: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  endpoint: PropTypes.string,
 };
 
 export default withStyles(styles)(TermArchiveContentList);
