@@ -11,7 +11,7 @@ const MagazineIssuesList = ({
 }) => {
   useEffect(() => {
     if (lastUpdate !== data && 0 < data.length) {
-      if (10 > data.length) {
+      if (5 > data.length) {
         setData(data, false);
       } else {
         setData(data, true);

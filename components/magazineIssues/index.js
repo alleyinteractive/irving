@@ -31,8 +31,13 @@ const MagazineIssues = ({ title, issueTypeId, datesAvailable }) => {
   };
 
   const appendIssues = (newData, shouldDisplayLoadMore) => {
+    // Ensure that there are no duplicate year cards rendered to the issues list.
     setIssues({
-      issues: [...issues.issues, ...newData],
+      issues: [...issues.issues, ...newData].filter((issue, index, self) => (
+        index === self.findIndex((i) => (
+          i.config.title === issue.config.title
+        ))
+      )),
       lastUpdate: newData,
       shouldDisplayLoadMore,
     });
