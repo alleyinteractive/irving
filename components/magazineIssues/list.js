@@ -4,10 +4,18 @@ import { withStyles } from 'critical-style-loader/lib';
 import PropTypes from 'prop-types';
 import styles from './magazineIssues.css';
 
-const MagazineIssuesList = ({ data, setData, lastUpdate }) => {
+const MagazineIssuesList = ({
+  data,
+  setData,
+  lastUpdate,
+}) => {
   useEffect(() => {
     if (lastUpdate !== data && 0 < data.length) {
-      setData(data);
+      if (10 > data.length) {
+        setData(data, false);
+      } else {
+        setData(data, true);
+      }
     }
   }, [data]);
 
