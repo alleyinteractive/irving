@@ -53,7 +53,7 @@ import Tags from 'components/tags';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import TermArchivePinnedArticle from 'components/termArchivePinnedArticle';
-import TopicHeader from 'components/topicHeader';
+import CardStack from 'components/cardStack';
 import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
 
@@ -75,6 +75,7 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
+  'feed-anchor': CardStack,
   footer: Footer,
   'google-analytics': GoogleAnalytics,
   'google-tag-manager': GoogleTagManager,
@@ -122,7 +123,7 @@ export const componentMap = {
   'term-archive-content-list-item': TeaserItem,
   'term-archive-pinned-article': TermArchivePinnedArticle,
   'technology-meta': ContentList,
-  'topic-header': TopicHeader,
+  'topic-header': CardStack,
   'user-greeting': UserGreeting,
 };
 
