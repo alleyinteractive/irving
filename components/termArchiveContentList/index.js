@@ -6,6 +6,7 @@ import React, {
 import PropTypes from 'prop-types';
 import toReactElement from 'utils/toReactElement';
 import { __ } from '@wordpress/i18n';
+import { debounce } from 'lodash';
 import withData from 'components/hoc/withData';
 import kebabcase from 'lodash.kebabcase';
 import { withStyles } from 'critical-style-loader/lib';
@@ -14,16 +15,16 @@ import ContentList from './list';
 // Styles
 import styles from './termArchiveContentList.css';
 
-const TermArchiveContentList = ({ title, endpoint }) => {
+const TermArchiveContentList = ({ slug, topic, requestType }) => {
   const [items, setItems] = useState({
     items: [],
     lastUpdate: [],
-    isLoading: false,
   });
   const [userRequest, setUserRequest] = useState({
     currentPage: 1,
-    queryString: `?category_name=${endpoint}?page=1`,
+    queryString: `?${requestType}=${slug}&page=1`,
   });
+  const [isLoading, setLoadState] = useState(false);
 
   const loadItems = () => {
     const { queryString, currentPage } = userRequest;
@@ -34,11 +35,7 @@ const TermArchiveContentList = ({ title, endpoint }) => {
         .replace(/(page)=[^?&]+/, `$1=${currentPage + 1}`),
     });
 
-    setItems({
-      items: items.items,
-      lastUpdate: items.lastUpdate,
-      isLoading: true,
-    });
+    setLoadState({ isLoading: true });
   };
 
   const appendItems = (newItems) => {
@@ -46,20 +43,22 @@ const TermArchiveContentList = ({ title, endpoint }) => {
       items: [...items.items, ...newItems],
       lastUpdate: newItems,
     });
+
+    setLoadState({ isLoading: false });
   };
 
   useEffect(() => {
-    window.onscroll = () => {
+    window.onscroll = debounce(() => {
       if (
         window.innerHeight + document.documentElement.scrollTop >
-        document.documentElement.offsetHeight - 500
+        document.documentElement.offsetHeight
       ) {
         loadItems();
       }
-    };
+    }, 100);
   }, []);
 
-  const Results = withData(userRequest.queryString, {})(
+  const Results = withData(`term_archive${userRequest.queryString}`, {})(
     ContentList
   );
 
@@ -74,25 +73,22 @@ const TermArchiveContentList = ({ title, endpoint }) => {
       </ul>
 
       <Results
-        labelID={kebabcase(title)}
+        labelID={kebabcase(topic)}
         setData={appendItems}
         lastUpdate={items.lastUpdate || []}
       />
 
       <button className={styles.button} type="button" onClick={loadItems}>
-        {items.isLoading ? __('Loading...', 'mittr') : __('Load more', 'mittr')}
+        {isLoading ? __('Loading...', 'mittr') : __('Load more', 'mittr')}
       </button>
     </Fragment>
   );
 };
 
-TermArchiveContentList.defaultProps = {
-  endpoint: 'artificial-intelligence',
-};
-
 TermArchiveContentList.propTypes = {
-  title: PropTypes.string.isRequired,
-  endpoint: PropTypes.string,
+  topic: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  requestType: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(TermArchiveContentList);
