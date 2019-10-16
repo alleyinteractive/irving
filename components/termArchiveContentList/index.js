@@ -5,30 +5,14 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import toReactElement from 'utils/toReactElement';
+import { __ } from '@wordpress/i18n';
 import withData from 'components/hoc/withData';
 import kebabcase from 'lodash.kebabcase';
 import { withStyles } from 'critical-style-loader/lib';
+import ContentList from './list';
 
 // Styles
 import styles from './termArchiveContentList.css';
-
-const ItemList = ({ data, setData, lastUpdate }) => {
-  useEffect(() => {
-    if (lastUpdate !== data && 0 < data.length) {
-      setData(data);
-    }
-  }, [data]);
-
-  return <span className={styles.hidden}>Updated</span>;
-};
-
-ItemList.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  lastUpdate: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setData: PropTypes.func.isRequired,
-};
-
-const ArticlesList = withStyles(styles)(ItemList);
 
 const TermArchiveContentList = ({ title, endpoint }) => {
   const [items, setItems] = useState({
@@ -42,9 +26,12 @@ const TermArchiveContentList = ({ title, endpoint }) => {
   });
 
   const loadItems = () => {
+    const { queryString, currentPage } = userRequest;
+
     setUserRequest({
-      currentPage: userRequest.currentPage + 1,
-      queryString: `?page=${userRequest.currentPage + 1}`,
+      currentPage: currentPage + 1,
+      queryString: queryString
+        .replace(/(page)=[^?&]+/, `$1=${currentPage + 1}`),
     });
 
     setItems({
@@ -73,12 +60,8 @@ const TermArchiveContentList = ({ title, endpoint }) => {
   }, []);
 
   const Results = withData(userRequest.queryString, {})(
-    ArticlesList
+    ContentList
   );
-
-  console.log(items);
-  console.log(userRequest);
-  console.log(Results);
 
   return (
     <Fragment>
@@ -95,6 +78,10 @@ const TermArchiveContentList = ({ title, endpoint }) => {
         setData={appendItems}
         lastUpdate={items.lastUpdate || []}
       />
+
+      <button className={styles.button} type="button" onClick={loadItems}>
+        {items.isLoading ? __('Loading...', 'mittr') : __('Load more', 'mittr')}
+      </button>
     </Fragment>
   );
 };
