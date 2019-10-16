@@ -1,28 +1,49 @@
-import React, { Fragment } from 'react';
-import { Helmet } from 'react-helmet';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 
 const GoogleTagManager = (props) => {
-  const { containerId } = props;
+  const {
+    containerId,
+    dataLayer,
+  } = props;
 
   if (! containerId) {
     return null;
   }
 
+  /**
+   * Effect for pushing new data to the GTM dataLayer.
+   */
+  useEffect(() => {
+    window.dataLayer = window.dataLayer || [];
+
+    window.dataLayer.push({
+      event: 'irving.historyChange',
+      ...dataLayer,
+    });
+
+    return () => {};
+  }, [dataLayer]);
+
   return (
-    <Fragment>
+    <>
       <Helmet>
+        {/* eslint-disable max-len */}
         <script>
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${containerId}');`}
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${containerId}');
+          `}
         </script>
+        {/* eslint-enable */}
       </Helmet>
       <noscript>
         <iframe
-          title="fortune-gtm"
+          title="irving-gtm"
           src={`https://www.googletagmanager.com/ns.html?id=${containerId}`}
           height="0"
           width="0"
@@ -32,15 +53,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
       </noscript>
-    </Fragment>
+    </>
   );
 };
 
 GoogleTagManager.propTypes = {
-  /**
-   * Your GTM tracking ID, found in your GTM account dashboard.
-   */
   containerId: PropTypes.string.isRequired,
+  dataLayer: PropTypes.object.isRequired,
 };
 
 export default GoogleTagManager;
