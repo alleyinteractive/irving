@@ -3,5 +3,9 @@
 Example use of TermArchiveContentList component.
 
 ```jsx
-<TermArchiveContentList />
+<TermArchiveContentList
+  topic="Artificial Intelligence"
+  endpoint="artificial-intelligence"
+  requestType="category_name"
+/>
 ```

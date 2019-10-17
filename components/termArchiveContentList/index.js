@@ -10,13 +10,12 @@ import { debounce } from 'lodash';
 import withData from 'components/hoc/withData';
 import kebabcase from 'lodash.kebabcase';
 import { withStyles } from 'critical-style-loader/lib';
-import ContentList from './list';
 
 // Styles
 import styles from './termArchiveContentList.css';
 
 const TermArchiveContentList = ({ slug, topic, requestType }) => {
-  const [items, setItems] = useState({
+  const [listInfo, setItems] = useState({
     items: [],
     lastUpdate: [],
     shouldDisplayLoadMore: true,
@@ -44,7 +43,7 @@ const TermArchiveContentList = ({ slug, topic, requestType }) => {
     // Ensure no duplicate items are inserted into the DOM by running a filter
     // on each call of `setItems`.
     setItems({
-      items: [...items.items, ...newItems].filter((issue, index, self) => (
+      items: [...listInfo.items, ...newItems].filter((issue, index, self) => (
         index === self.findIndex((i) => (
           i.config.title === issue.config.title
         ))
@@ -68,7 +67,7 @@ const TermArchiveContentList = ({ slug, topic, requestType }) => {
       ) {
         const button = document.getElementById('term-archive__load-more-btn');
 
-        if (false === isLoading && true === items.shouldDisplayLoadMore) {
+        if (false === isLoading && true === listInfo.shouldDisplayLoadMore) {
           button.click();
         }
       }
@@ -76,14 +75,37 @@ const TermArchiveContentList = ({ slug, topic, requestType }) => {
   }, []);
 
   const Results = withData(`term_archive${userRequest.queryString}`, {})(
-    ContentList
+    ({ data, setData, lastUpdate }) => {
+      useEffect(() => {
+        if (lastUpdate !== data && 0 < data.length) {
+          setData(data, 9 <= data.length);
+        }
+      }, [data]);
+
+      return <span className={styles.hidden}>Updated</span>;
+    }
   );
 
   return (
     <Fragment>
-      <ul className={styles.wrapper}>
-        {items.items.map((item) => (
-          <li key={item.config.title} className={styles.item}>
+      <h3
+        id="term-archive-content-list__topic"
+        className="screen-reader-text"
+      >
+        {topic}
+      </h3>
+      <ul
+        className={styles.wrapper}
+        aria-labelledby="term-archive-content-list__topic"
+        aria-busy={isLoading}
+      >
+        {listInfo.items.map((item, index) => (
+          <li
+            key={kebabcase(item.config.title)}
+            className={styles.item}
+            aria-setsize={listInfo.items.length}
+            aria-posinset={index + 1}
+          >
             {toReactElement(item)}
           </li>
         ))}
@@ -92,10 +114,10 @@ const TermArchiveContentList = ({ slug, topic, requestType }) => {
       <Results
         labelID={kebabcase(topic)}
         setData={appendItems}
-        lastUpdate={items.lastUpdate || []}
+        lastUpdate={listInfo.lastUpdate || []}
       />
 
-      {true === items.shouldDisplayLoadMore && (
+      {true === listInfo.shouldDisplayLoadMore && (
         <button
           id="term-archive__load-more-btn"
           className={styles.button}
