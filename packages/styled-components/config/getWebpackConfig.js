@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = (configs) => (
   configs.map((config) => {
     config.module.rules = config.module.rules
@@ -11,7 +13,7 @@ module.exports = (configs) => (
           rule.use.push({
             loader: 'stylelint-custom-processor-loader',
             options: {
-              configPath: './stylelint.config.js',
+              configPath: path.join(__dirname, './stylelint.config.js'),
             },
           });
         }
