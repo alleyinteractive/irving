@@ -1,0 +1,42 @@
+{
+	"name": "@irvingjs/styled-components",
+	"version": "1.1.2",
+	"description": "Integration for Styled Components with Irving",
+	"files": [
+		"server/**/*",
+		"services/**/*",
+		"irving.config.server.js",
+		"!*.test.js"
+	],
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/alleyinteractive/irving/packages/styled-components"
+	},
+	"author": "Alley (Alley.co)",
+	"license": "MIT",
+	"dependencies": {
+		"babel-plugin-styled-components": "^1.10.6",
+		"styled-components": "^4.4.0",
+		"stylelint": "^11.1.1",
+		"stylelint-config-styled-components": "^0.1.1",
+		"stylelint-processor-styled-components": "^1.8.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.5.5",
+		"@irvingjs/babel-preset-irving": "^1.1.0",
+		"@irvingjs/core": "^1.1.2",
+		"babel-jest": "^24.9.0",
+		"enzyme": "^3.10.0",
+		"enzyme-adapter-react-16": "^1.14.0",
+		"jest": "^24.9.0",
+		"jest-environment-enzyme": "^7.1.0",
+		"jest-enzyme": "^7.1.0"
+	},
+	"peerDependencies": {
+		"@irvingjs/core": ">1.0.4-beta.2"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
