@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/postcss",
-	"version": "1.1.2",
+	"version": "1.1.3-alpha.3+85578c1d",
 	"description": "PostCSS configuration functionality for Irving",
 	"files": [
 		"config/**/*",
@@ -16,26 +16,29 @@
 	"license": "MIT",
 	"dependencies": {
 		"autoprefixer": "^9.6.5",
+		"enzyme": "^3.10.0",
+		"enzyme-adapter-react-16": "^1.15.1",
+		"jest-enzyme": "^7.1.1",
 		"postcss-loader": "^3.0.0",
-		"stylelint": "^10.1.0",
+		"stylelint": "^11.1.1",
 		"stylelint-order": "^3.1.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
-		"@irvingjs/babel-preset-irving": "^1.1.0",
-		"@irvingjs/core": "^1.1.2",
+		"@irvingjs/babel-preset-irving": "^1.1.3-alpha.3+85578c1d",
+		"@irvingjs/core": "^1.1.3-alpha.3+85578c1d",
 		"babel-jest": "^24.9.0",
 		"enzyme": "^3.10.0",
-		"enzyme-adapter-react-16": "^1.14.0",
+		"enzyme-adapter-react-16": "^1.15.1",
 		"jest": "^24.9.0",
-		"jest-environment-enzyme": "^7.1.0",
-		"jest-enzyme": "^7.1.0"
+		"jest-environment-enzyme": "^7.1.1",
+		"jest-enzyme": "^7.1.1"
 	},
 	"peerDependencies": {
-		"@irvingjs/core": ">1.0.4-beta.2"
+		"@irvingjs/core": ">1.1.0"
 	},
 	"publishConfig": {
 		"access": "public"
 	},
-	"gitHead": "8a33a77a6e6f8f512f5908c4491b1e5331268c3f"
+	"gitHead": "85578c1d60d5e9edba93f26800ac1ce7a012e53f"
 }
