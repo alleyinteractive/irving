@@ -4,8 +4,9 @@
 	"description": "Integration for Styled Components with Irving",
 	"files": [
 		"server/**/*",
-		"services/**/*",
+		"config/**/*",
 		"irving.config.server.js",
+		"irving.config.js",
 		"!*.test.js"
 	],
 	"main": "index.js",
