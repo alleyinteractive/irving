@@ -84,6 +84,13 @@
     "jasmine/missing-expect": [2],
     "jasmine/valid-expect": [2],
     "jasmine/no-global-setup": [2],
-    "jasmine/no-expect-in-setup-teardown": [2]
+    "jasmine/no-expect-in-setup-teardown": [2],
+    "jsx-a11y/no-noninteractive-tabindex": [
+      "error",
+      {
+        "tags": [],
+        "roles": ["article"]
+      }
+    ]
   }
 }

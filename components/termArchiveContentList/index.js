@@ -103,6 +103,8 @@ const TermArchiveContentList = ({ slug, topic, requestType }) => {
           <li
             key={kebabcase(item.config.title)}
             className={styles.item}
+            tabIndex="0"
+            role="article"
             aria-setsize={listInfo.items.length}
             aria-posinset={index + 1}
           >
