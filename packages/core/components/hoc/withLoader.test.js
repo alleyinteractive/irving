@@ -11,6 +11,7 @@ it('should skip rendering wrapped component if loading', () => {
   const store = createStore((state) => state, mockState);
   const Foo = () => <div>foo</div>;
   const ComponentWithLoader = withLoader(Foo);
+  // @todo revisit these (and use shallow, hopefully) on future enzyme releases
   const wrapper = mount(
     <Provider store={store}>
       <ComponentWithLoader />
@@ -24,6 +25,7 @@ it('should render wrapped component if not loading', () => {
   const store = createStore((state) => state, defaultState);
   const Foo = () => <div>foo</div>;
   const ComponentWithLoader = withLoader(Foo);
+  // @todo revisit these (and use shallow, hopefully) on future enzyme releases
   const wrapper = mount(
     <Provider store={store}>
       <ComponentWithLoader />
