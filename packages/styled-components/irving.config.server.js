@@ -1,4 +1,4 @@
-const babelConfig = require('./getBabelConfig');
+const babelConfig = require('./getBabelConfig.js');
 
 module.exports = {
   name: 'styled-components',

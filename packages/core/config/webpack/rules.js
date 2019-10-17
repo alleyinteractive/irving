@@ -3,7 +3,6 @@ const {
   transform,
   appRoot,
   irvingRoot,
-  postCssConfig,
 } = require('../paths');
 
 const include = (filepath) => {
