@@ -3,7 +3,6 @@ const {
   transform,
   appRoot,
   irvingRoot,
-  postCssConfig,
 } = require('../paths');
 
 const include = (filepath) => {
@@ -42,12 +41,14 @@ module.exports = function getRules(context) {
       enforce: 'pre',
       test: /\.jsx?$/,
       include,
-      use: {
-        loader: 'eslint-loader',
-        options: {
-          configFile: path.join(irvingRoot, '.eslintrc.js'),
+      use: [
+        {
+          loader: 'eslint-loader',
+          options: {
+            configFile: path.join(irvingRoot, '.eslintrc.js'),
+          },
         },
-      },
+      ],
     },
     {
       exclude: [
@@ -63,13 +64,15 @@ module.exports = function getRules(context) {
         /\.otf$/,
         /\.ico$/,
       ],
-      use: {
-        loader: 'file-loader',
-        options: {
-          emitFile: ! isServer,
-          name: 'static/media/[name].[hash:8].[ext]',
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            emitFile: ! isServer,
+            name: 'static/media/[name].[hash:8].[ext]',
+          },
         },
-      },
+      ],
     },
     {
       test: [
@@ -82,29 +85,33 @@ module.exports = function getRules(context) {
         /\.ico$/,
       ],
       exclude: [/assets\/icons/],
-      use: {
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          emitFile: ! isServer,
-          name: 'static/media/[name].[hash:8].[ext]',
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            emitFile: ! isServer,
+            name: 'static/media/[name].[hash:8].[ext]',
+          },
         },
-      },
+      ],
     },
     {
       test: /\.svg$/,
       include: [/assets\/icons/],
-      use: 'svg-react-loader',
+      use: ['svg-react-loader'],
     },
     {
       test: /\.jsx?$/,
       include,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          extends: path.join(irvingRoot, 'babel.config.js'),
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            extends: path.join(irvingRoot, 'babel.config.js'),
+          },
         },
-      },
+      ],
     },
     {
       test: /\.css$/,
