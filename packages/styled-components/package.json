@@ -23,6 +23,7 @@
 		"styled-components": "^4.4.0",
 		"stylelint": "^11.1.1",
 		"stylelint-config-styled-components": "^0.1.1",
+		"stylelint-custom-processor-loader": "^0.6.0",
 		"stylelint-processor-styled-components": "^1.8.0"
 	},
 	"devDependencies": {
@@ -37,7 +38,7 @@
 		"jest-enzyme": "^7.1.0"
 	},
 	"peerDependencies": {
-		"@irvingjs/core": ">1.0.4-beta.2"
+		"@irvingjs/core": ">1.1.0"
 	},
 	"publishConfig": {
 		"access": "public"
