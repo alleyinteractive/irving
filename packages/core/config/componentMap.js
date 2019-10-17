@@ -1,4 +1,4 @@
-import DefaultAppContent from 'components/app/DefaultAppContent';
+import DefaultAppContent from 'components/app/defaultAppContent';
 import NotConfigured from 'components/notConfigured';
 import Body from 'components/body';
 import Head from 'components/head';
