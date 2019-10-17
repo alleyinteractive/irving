@@ -74,7 +74,6 @@ const TermArchiveContentList = ({ slug, topic, requestType }) => {
       }
     }, 500));
   }, []);
-  console.log(items);
 
   const Results = withData(`term_archive${userRequest.queryString}`, {})(
     ContentList
