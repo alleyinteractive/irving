@@ -7,7 +7,7 @@ import styles from './termArchiveContentList.css';
 const ContentList = ({ data, setData, lastUpdate }) => {
   useEffect(() => {
     if (lastUpdate !== data && 0 < data.length) {
-      setData(data);
+      setData(data, 9 <= data.length);
     }
   }, [data]);
 
