@@ -11,6 +11,10 @@
   position: relative;
 }
 
+.header {
+  max-width: rem(575);
+}
+
 .meta {
   display: flex;
   flex-flow: row wrap;
