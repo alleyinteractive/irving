@@ -22,10 +22,7 @@ const CardStack = ({
 }) => {
   const image = findChildByName('image', children);
   const logo = findChildByName('logo', children);
-  const articles = filterChildrenByName(
-    'term-archive-pinned-article',
-    children
-  );
+  const articles = filterChildrenByName('link-teaser', children);
 
   /**
    * @todo MIT-201 all these buttons do is appear and disappear based on

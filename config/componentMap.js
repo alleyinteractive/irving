@@ -2,6 +2,7 @@ import AudioElement from 'components/audio';
 import AuthorPage from 'components/authorPage';
 import Body from 'components/body';
 import Byline from 'components/byline';
+import CardStack from 'components/cardStack';
 import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
@@ -11,6 +12,7 @@ import ContentHeader from 'components/contentHeader';
 import ContentList from 'components/contentList';
 import ContentListItem from 'components/contentList/contentListItem';
 import Disqus from 'components/disqus';
+import FeedItem from 'components/feedItem';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
 import GoogleTagManager from 'components/googleTagManager';
@@ -18,21 +20,21 @@ import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
-import FeedItem from 'components/feedItem';
 import Image from 'components/image/image';
 import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
-import ListHeader from 'components/listHeader';
+import LinkTeaser from 'components/linkTeaser';
 import ListDescription from 'components/listDescription';
+import ListGroup from 'components/listGroup';
+import ListHeader from 'components/listHeader';
+import ListItem from 'components/listItem';
 import ListMenu from 'components/listMenu';
 import ListMenuItem from 'components/listMenuItem';
 import ListMenuItems from 'components/listMenuItems';
-import ListGroup from 'components/listGroup';
-import ListItem from 'components/listItem';
-import MagazineYear from 'components/magazineYear';
 import MagazineHero from 'components/magazineHero';
 import MagazineIssue from 'components/magazineIssue';
 import MagazineIssues from 'components/magazineIssues';
+import MagazineYear from 'components/magazineYear';
 import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
@@ -45,16 +47,14 @@ import RawHTML from 'components/rawHTML';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
 import Sidebar from 'components/sidebar';
-import SubtopicsSection from 'components/subtopicsSection';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import StatsWidget from 'components/statsWidget';
+import SubtopicsSection from 'components/subtopicsSection';
 import TagLink from 'components/tagLink';
 import Tags from 'components/tags';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
-import TermArchivePinnedArticle from 'components/termArchivePinnedArticle';
-import CardStack from 'components/cardStack';
 import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
 
@@ -88,6 +88,7 @@ export const componentMap = {
   html: RawHTML,
   image: Image,
   innovator: Innovator,
+  'link-teaser': LinkTeaser,
   'innovator-header': InnovatorHeader,
   'list-header': ListHeader,
   'list-description': ListDescription,
@@ -123,7 +124,6 @@ export const componentMap = {
   'teaser-item': TeaserItem,
   'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TeaserItem,
-  'term-archive-pinned-article': TermArchivePinnedArticle,
   'technology-meta': ContentList,
   'topic-header': CardStack,
   'user-greeting': UserGreeting,
