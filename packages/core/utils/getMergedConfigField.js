@@ -56,13 +56,22 @@ function getInitialValue(type) {
  * @returns {mixed}
  */
 const getMergedConfigField = (configs, key) => {
+  let mergedSchema = schema;
+
+  // Get additional config fields (but don't recurse it by accident).
+  if ('configFields' !== key) {
+    const schemaGetters = getMergedConfigField(configs, 'configFields');
+    mergedSchema = schemaGetters
+      .reduce((acc, getter) => getter(acc), mergedSchema);
+  }
+
   // Throw an error if no key exists.
-  if (! schema[key]) {
+  if (! mergedSchema[key]) {
     throw new Error(`no key ${key} exists in the Irving config schema`);
   }
 
   // Set initial/default value for the merged config based on type.
-  const type = getConfigFieldType(schema[key]);
+  const type = getConfigFieldType(mergedSchema[key]);
   const initial = getInitialValue(type);
   const hasKey = configs.some((config) => config[key]);
 
