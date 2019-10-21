@@ -19,10 +19,18 @@ const {
   serverConfig: serverConfigPath,
 } = require('../config/paths');
 // eslint-disable-next-line import/no-dynamic-require
-const serverConfig = require(serverConfigPath);
 const bustCache = require('../server/bustCache');
 const bustPageCache = require('../server/bustPageCache');
 const purgePageCache = require('../server/purgePageCache');
+
+// Wrap require for server config in try/catch to ensure things will work
+// if user decides not to create a server config.
+let serverConfig;
+try {
+  serverConfig = require(serverConfigPath);
+} catch (e) {
+  serverConfig = {};
+}
 
 const {
   PORT = 3001,
