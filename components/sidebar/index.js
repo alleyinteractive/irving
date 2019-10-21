@@ -6,21 +6,14 @@ import styles from './sidebar.css';
 
 const Sidebar = (props) => {
   const {
-    children,
-    className,
-    context,
-    hasAd,
-    themeName,
+    children, className, context, hasAd, themeName,
   } = props;
 
   return (
     <aside
-      className={classNames(
-        className,
-        styles.wrapper,
-        styles[themeName],
-        { [styles.hasAd]: hasAd },
-      )}
+      className={classNames(className, styles.wrapper, styles[themeName], {
+        [styles.hasAd]: hasAd,
+      })}
     >
       {children.map((child) => {
         const {
@@ -29,10 +22,9 @@ const Sidebar = (props) => {
 
         return (
           <div key={child.key} className={styles.sidebarItem}>
-            {! gtmTargetingClass ? cloneElement(
-              child,
-              { gtmTargetingClass: context }
-            ) : child}
+            {! gtmTargetingClass ?
+              cloneElement(child, { gtmTargetingClass: context }) :
+              child}
           </div>
         );
       })}
@@ -44,13 +36,15 @@ Sidebar.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   context: PropTypes.string,
-  hasAd: PropTypes.bool.isRequired,
-  themeName: PropTypes.string.isRequired,
+  hasAd: PropTypes.bool,
+  themeName: PropTypes.string,
 };
 
 Sidebar.defaultProps = {
   className: '',
   context: '',
+  themeName: '',
+  hasAd: false,
 };
 
 export default withStyles(styles)(Sidebar);

@@ -9,9 +9,9 @@ import { __ } from '@wordpress/i18n';
 import Arrow from 'assets/icons/arrow.svg';
 
 // Styles
-import styles from './topicHeader.css';
+import styles from './cardStack.css';
 
-const TopicHeader = ({
+const CardStack = ({
   name,
   description,
   children,
@@ -22,10 +22,7 @@ const TopicHeader = ({
 }) => {
   const image = findChildByName('image', children);
   const logo = findChildByName('logo', children);
-  const articles = filterChildrenByName(
-    'term-archive-pinned-article',
-    children
-  );
+  const articles = filterChildrenByName('link-teaser', children);
 
   /**
    * @todo MIT-201 all these buttons do is appear and disappear based on
@@ -110,21 +107,22 @@ const TopicHeader = ({
   );
 };
 
-TopicHeader.defaultProps = {
+CardStack.defaultProps = {
+  isSubtopic: false,
   sponsored: {},
   isSponsored: false,
 };
 
-TopicHeader.propTypes = {
+CardStack.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   color: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  isSubtopic: PropTypes.bool.isRequired,
+  isSubtopic: PropTypes.bool,
   isSponsored: PropTypes.bool,
   sponsored: PropTypes.shape({
     url: PropTypes.string,
   }),
 };
 
-export default withStyles(styles)(TopicHeader);
+export default withStyles(styles)(CardStack);
