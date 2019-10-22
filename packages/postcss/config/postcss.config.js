@@ -1,15 +1,13 @@
 const autoprefixer = require('autoprefixer');
 const stylelint = require('stylelint');
-const getConfigField = require('@irvingjs/core/utils/getConfigField');
+const { getConfigObject } = require('@irvingjs/core/utils/getConfigValue');
 const stylelintConfig = require('./stylelint.config.js');
 
 // Config
 module.exports = () => {
-  // Customize stylelint.
-  const stylelintConfigGetters = getConfigField('stylelintConfig');
   // Call all config getters, passing in configs in succession.
-  const processedStylelintConfig = stylelintConfigGetters.reduce(
-    (acc, getter) => getter(acc),
+  const processedStylelintConfig = getConfigObject(
+    'stylelintConfig',
     stylelintConfig
   );
 
@@ -23,13 +21,8 @@ module.exports = () => {
     ],
   };
 
-  // Customize postcss.
-  const configGetters = getConfigField('postcssConfig');
   // Call all config getters, passing in configs in succession.
-  const procssedConfig = configGetters.reduce(
-    (acc, getter) => getter(acc),
-    config
-  );
+  const procssedConfig = getConfigObject('postcssConfig', config);
 
   return procssedConfig;
 };

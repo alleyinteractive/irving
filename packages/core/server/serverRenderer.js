@@ -20,7 +20,6 @@ import getLogService from 'services/logService';
 import getService from 'services/monitorService';
 import App from 'components/app';
 import userConfig from '@irvingjs/irving.config';
-import getConfigField from 'utils/getConfigField';
 import getTemplateVars from './getTemplateVars';
 
 const monitor = getService();
@@ -88,14 +87,10 @@ const render = async (req, res, clientStats) => {
   );
 
   // Get some template vars and allow customization by user.
-  const getters = getConfigField('getAppTemplateVars');
-  const customTemplateVars = getTemplateVars(
-    getters,
-    {
-      Wrapper: AppWrapper,
-      irvingHead: getWebpackScripts(clientStats).join(''),
-    }
-  );
+  const customTemplateVars = getTemplateVars('getAppTemplateVars', {
+    Wrapper: AppWrapper,
+    irvingHead: getWebpackScripts(clientStats).join(''),
+  });
 
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
@@ -151,14 +146,10 @@ export default function serverRenderer(options) {
       );
 
       // Get some template vars and allow customization by user.
-      const getters = getConfigField('getErrorTemplateVars');
-      const customTemplateVars = getTemplateVars(
-        getters,
-        {
-          Wrapper: ErrorMessageWrapper,
-          irvingHead: '',
-        }
-      );
+      const customTemplateVars = getTemplateVars('getErrorTemplateVars', {
+        Wrapper: ErrorMessageWrapper,
+        irvingHead: '',
+      });
       const templateVars = {
         criticalCss: cssBuilder.getCss(),
         ...customTemplateVars,

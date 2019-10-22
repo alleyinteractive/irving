@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
-import breakpoints from 'styles/variables/breakpoints';
+import { breakpoints } from '../../variables';
 import {
   display,
   columnsEqual,
   columnsCustom,
   rowsEqual,
   rowsCustom,
-} from 'styles/utils/cssGrid';
+} from '../../utils/cssGrid';
 
 const createGridStyles = (columns, rows, gap) => css`
   ${display}

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { breakpointNames } from 'styles/variables/breakpoints';
-import layout from 'styles/variables/layout';
+import { breakpoints, layout } from '../../variables';
 import StyledContainer from './containerStyles';
+
+const { breakpointNames } = breakpoints;
 
 const GridContainer = (props) => {
   const {
