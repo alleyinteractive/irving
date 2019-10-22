@@ -21,6 +21,7 @@ import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
 import Image from 'components/image/image';
+import InfiniteItemList from 'components/infiniteItemList';
 import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
 import LinkTeaser from 'components/linkTeaser';
@@ -87,6 +88,7 @@ export const componentMap = {
   'feed-item': FeedItem,
   html: RawHTML,
   image: Image,
+  'infinite-list': InfiniteItemList,
   innovator: Innovator,
   'link-teaser': LinkTeaser,
   'innovator-header': InnovatorHeader,
@@ -136,7 +138,6 @@ export const componentMap = {
  * @returns {function} - React component
  */
 export default function getComponent(name) {
-  console.log(name);
   // Custom component
   if (componentMap[name]) {
     return componentMap[name];

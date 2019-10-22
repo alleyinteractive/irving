@@ -1,17 +1,19 @@
 import React, {
-    useState,
-    useEffect,
-    Fragment,
-  } from 'react';
-  import PropTypes from 'prop-types';
-  import toReactElement from 'utils/toReactElement';
-  import { __ } from '@wordpress/i18n';
-  import { debounce } from 'lodash';
-  import withData from 'components/hoc/withData';
-  import kebabcase from 'lodash.kebabcase';
-  import { withStyles } from 'critical-style-loader/lib'
+  useState,
+  useEffect,
+  Fragment,
+} from 'react';
+import PropTypes from 'prop-types';
+import toReactElement from 'utils/toReactElement';
+import { __ } from '@wordpress/i18n';
+import { debounce } from 'lodash';
+import withData from 'components/hoc/withData';
+import kebabcase from 'lodash.kebabcase';
+import { withStyles } from 'critical-style-loader/lib';
 
-const InfiniteItemList = ({ slug, request }) => {
+import styles from './infiniteItemList.css';
+
+const InfiniteItemList = ({ slug }) => {
   const [listInfo, setItems] = useState({
     items: [],
     lastUpdate: [],
@@ -19,7 +21,7 @@ const InfiniteItemList = ({ slug, request }) => {
   });
   const [userRequest, setUserRequest] = useState({
     currentPage: 1,
-    queryString: `?page=1`,
+    queryString: '?page=1',
   });
   const [isLoading, setLoadState] = useState(false);
 
@@ -30,25 +32,22 @@ const InfiniteItemList = ({ slug, request }) => {
     // Filter the querystring with a regex to ensure other
     // parameters are preserved.
     setUserRequest({
-    currentPage: userRequest.currentPage + 1,
-    queryString: userRequest.queryString
+      currentPage: userRequest.currentPage + 1,
+      queryString: userRequest.queryString
         .replace(/(page)=[^?&]+/, `$1=${userRequest.currentPage + 1}`),
     });
   };
 
   const appendItems = (newItems, isFinalSet) => {
     // Ensure no duplicate items are inserted into the DOM.
-    const filteredItemSet = [...listInfo.items, ...newItems]
-    .filter((item, index, key) => (
-        index === self.findIndex((i) => (
-        i.config.title === item.config.title
-        ))
-    ));
-    
     setItems({
-    items: filteredItemSet,
-    lastUpdate: newItems,
-    shouldDisplayLoadMore: isFinalSet,
+      items: [...listInfo.items, ...newItems].filter((issue, index, self) => (
+        index === self.findIndex((i) => (
+          i.config.title === issue.config.title
+        ))
+      )),
+      lastUpdate: newItems,
+      shouldDisplayLoadMore: isFinalSet,
     });
 
     setLoadState(false);
@@ -60,10 +59,10 @@ const InfiniteItemList = ({ slug, request }) => {
         window.innerHeight + document.documentElement.scrollTop >
         document.documentElement.offsetHeight - 500
       ) {
-        const button = document.getElementById('infinite-content-list__load-more-btn');
+        const button = document.getElementById('content-list__load-more-btn');
 
-        if (false === isLoading && true == listInfo.shouldDisplayLoadMore) {
-        button.click();
+        if (false === isLoading && true === listInfo.shouldDisplayLoadMore) {
+          button.click();
         }
       }
     }, 500));
@@ -73,11 +72,11 @@ const InfiniteItemList = ({ slug, request }) => {
     ({ data, setData, lastUpdate }) => {
       useEffect(() => {
         if (lastUpdate !== data && 0 < data.length) {
-            setData(data, 9 <= data.length);
+          setData(data, 9 <= data.length);
         }
       }, [data]);
 
-      return <span>Updated</span>;
+      return null;
     }
   );
 
@@ -109,7 +108,7 @@ const InfiniteItemList = ({ slug, request }) => {
 
       {true === listInfo.shouldDisplayLoadMore && (
         <button
-          id="infinite-content-list__load-more-btn"
+          id="content-list__load-more-btn"
           className={styles.button}
           type="button"
           onClick={loadItems}
@@ -122,17 +121,12 @@ const InfiniteItemList = ({ slug, request }) => {
         </button>
       )}
     </Fragment>
-  )
-}
-
-InfiniteItemList.defaultProps = {
-  slug: 'feed',
-  request: {}
+  );
 };
 
 InfiniteItemList.propTypes = {
-  slug: PropTypes.string,
-  requestType: PropTypes.object,
+  slug: PropTypes.string.isRequired,
+//   request: PropTypes.object,
 };
 
 export default withStyles(styles)(InfiniteItemList);
