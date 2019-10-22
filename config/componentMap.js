@@ -136,6 +136,7 @@ export const componentMap = {
  * @returns {function} - React component
  */
 export default function getComponent(name) {
+  console.log(name);
   // Custom component
   if (componentMap[name]) {
     return componentMap[name];
