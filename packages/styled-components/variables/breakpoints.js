@@ -26,4 +26,4 @@ const breakpoints = {
 
 module.exports.bkptVal = bkptVal;
 module.exports.breakpointNames = Object.keys(breakpoints).concat('all');
-module.exports = breakpoints;
+module.exports.breakpoints = breakpoints;
