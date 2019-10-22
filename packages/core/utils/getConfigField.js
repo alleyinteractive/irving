@@ -6,7 +6,14 @@ if (process.env.BUILD) {
   config = require('@irvingjs/irving.config').default;
 } else {
   const { serverConfig: serverConfigPath } = require('../config/paths');
-  config = require(serverConfigPath);
+
+  // Wrap require for server config in try/catch to ensure things will work
+  // if user decides not to create a server config.
+  try {
+    config = require(serverConfigPath);
+  } catch (e) {
+    config = {};
+  }
 }
 /* eslint-enable */
 module.exports = (key) => getMergedFromUserConfig(config, key);

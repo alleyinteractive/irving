@@ -19,20 +19,24 @@ module.exports = function getEntry(context) {
   switch (context) {
     case 'production_server':
     case 'development_server':
-      return [
-        // @todo: Upgrade to babel 7.0 to obtain access to .babelrc.js support,
-        // so that the env preset can be dynamically configured to independently
-        // target NodeJS and browser environments, thus eliminating the need to
-        // require babel-polyfill for NodeJS.
-        ...polyfills,
-        serverRoot,
-      ];
+      return {
+        main: [
+          // @todo: Upgrade to babel 7.0 to obtain access to .babelrc.js support,
+          // so that the env preset can be dynamically configured to independently
+          // target NodeJS and browser environments, thus eliminating the need to
+          // require babel-polyfill for NodeJS.
+          ...polyfills,
+          serverRoot,
+        ],
+      };
 
     case 'production_client':
-      return [
-        ...polyfills,
-        clientRoot,
-      ];
+      return {
+        main: [
+          ...polyfills,
+          clientRoot,
+        ],
+      };
 
     case 'development_client': {
       let queryString = 'reload=true';
@@ -40,11 +44,13 @@ module.exports = function getEntry(context) {
         queryString = `${proxyUrl}&reload=true`;
       }
 
-      return [
-        ...polyfills,
-        `webpack-hot-middleware/client?${queryString}`,
-        clientRoot,
-      ];
+      return {
+        main: [
+          ...polyfills,
+          `webpack-hot-middleware/client?${queryString}`,
+          clientRoot,
+        ],
+      };
     }
 
     default:

@@ -1,4 +1,4 @@
-import getConfigField from 'utils/getConfigField';
+import { getConfigObject } from '../utils/getConfigValue';
 
 export const components = {
   defaults: [],
@@ -29,10 +29,7 @@ export const componentDataMeta = {
   data: [],
 };
 
-const defaultStateGetters = getConfigField('defaultState');
-const customDefaultState = defaultStateGetters.reduce((acc, getter) => (
-  { ...acc, ...getter() }
-), {});
+const customDefaultState = getConfigObject('defaultState');
 
 const defaultState = {
   components,
