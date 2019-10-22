@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const { getConfigObject } = require('./utils/getConfigValue');
+const getConfigField = require('./utils/getConfigField');
 const { irvingRoot, appRoot } = require('./config/paths');
 const scopeDir = path.join(__dirname, '../');
 const packageDirs = fs.readdirSync(scopeDir);
@@ -53,9 +53,13 @@ module.exports = (api) => {
     ],
   };
 
+  const configGetters = getConfigField('babelConfig');
   // Call all config getters, passing in configs in succession.
   // Only allow users to modify app config, not test.
-  const processedConfigs = getConfigObject('babelConfig', appConfig);
+  const processedConfigs = configGetters.reduce(
+    (acc, getter) => getter(acc),
+    appConfig
+  );
 
   return {
     env: {
