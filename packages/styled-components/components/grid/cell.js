@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { breakpointNames } from 'styles/variables/breakpoints';
+import { breakpoints } from '../../variables';
 import StyledCell from './cellStyles';
+
+const { breakpointNames } = breakpoints;
 
 const GridCell = (props) => {
   const {

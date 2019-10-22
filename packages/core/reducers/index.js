@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import reduceReducers from 'reduce-reducers';
 import defaultState from 'reducers/defaultState';
-import getConfigField from 'utils/getConfigField';
+import { getConfigObject } from '../utils/getConfigValue';
 import componentsReducer from './componentsReducer';
 import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
@@ -9,10 +9,7 @@ import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
 import componentDataReducer from './componentDataReducer';
 
-const reducerGetters = getConfigField('reducers');
-const customReducers = reducerGetters.reduce((acc, getter) => (
-  { ...acc, ...getter() }
-), {});
+const customReducers = getConfigObject('reducers');
 
 // Configure "slice" reducers.
 export const reducers = {

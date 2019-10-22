@@ -1,20 +1,14 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import { getConfigObject } from '../utils/getConfigValue';
 
 /**
  *
- * @param {array} getters Functions for getting template vars, sourced from both user config and packages
+ * @param {string} key Key for configured functions for getting template vars.
  * @param {object} initialVars Variables passed in from serverRenderer
  */
-export default function getTemplateVars(getters, initialVars) {
-  // Loop through all getters and call them with merged templateVars.
-  const customTemplateVars = getters.reduce(
-    (acc, getVars) => ({
-      ...acc,
-      ...getVars(acc),
-    }),
-    initialVars
-  );
+export default function getTemplateVars(key, initialVars) {
+  const customTemplateVars = getConfigObject(key, initialVars);
 
   // Delete Wrapper and renderToString.
   // This needs to happen first to ensure proper SSR rendering of stylesheets.

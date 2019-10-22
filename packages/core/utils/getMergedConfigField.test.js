@@ -78,16 +78,3 @@ it('should merge package and user config data of any type', () => {
   expect(sagas[1].payload.args[0]).toBe('TEST_ACTION_TWO');
   expect(sagas[2].payload.args[0]).toBe('TEST_ACTION_THREE');
 });
-
-it('should allow addition of custom config fields', () => {
-  const mockConfig = {
-    configFields: (schema) => ({
-      ...schema,
-      newField: [() => {}],
-    }),
-    newField: () => 'foo bar',
-  };
-  const newField = getMergedFromUserConfig(mockConfig, 'newField');
-
-  expect(newField[0]()).toEqual('foo bar');
-});
