@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
 import { breakpointNames } from '../../variables/breakpoints';
 import { layout } from '../../variables';
 import StyledContainer from './containerStyles';
+
+export const GridContext = createContext({});
 
 const GridContainer = (props) => {
   const {
@@ -19,15 +21,14 @@ const GridContainer = (props) => {
       as={tag}
       {...props}
     >
-      {/* eslint-disable react/no-array-index-key */}
-      {children.map((child, index) => (
-        React.cloneElement(child, {
-          key: index,
+      <GridContext.Provider
+        value={{
           gridColumns: columns,
           gridGap: gap,
-        })
-      ))}
-      {/* eslint-enable */}
+        }}
+      >
+        {children}
+      </GridContext.Provider>
     </StyledContainer>
   );
 };

@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { GridContext } from './container';
 import { breakpoints } from '../../variables';
 import StyledCell from './cellStyles';
 
 const { breakpointNames } = breakpoints;
 
 const GridCell = (props) => {
+  const {
+    gridColumns,
+    gridGap,
+  } = useContext(GridContext);
   const {
     children,
     className,
@@ -16,6 +21,8 @@ const GridCell = (props) => {
     <StyledCell
       className={className}
       as={tag}
+      gridColumns={gridColumns}
+      gridGap={gridGap}
       {...props}
     >
       {children}
@@ -66,18 +73,6 @@ GridCell.propTypes = {
     'li',
     'span',
   ]),
-  /**
-   * The total number of columns on the grid container, used to calculate
-   * column widths for the flexbox fallback styles. This value is passed as a prop
-   * from the GridContainer component.
-   */
-  gridColumns: PropTypes.number.isRequired,
-  /**
-   * The grid-gap set on the container, used to calclulate
-   * column padding for the flexbox fallback styles. This value is passed as a prop
-   * from the GridContainer component.
-   */
-  gridGap: PropTypes.number.isRequired,
   /**
    * responsive styles: An array of objects, which define a breakpoint and the CSS grid styles that
    * should apply at that breakpoint.
