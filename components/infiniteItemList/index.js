@@ -69,13 +69,25 @@ const InfiniteItemList = ({ slug, request }) => {
   };
 
   const appendItems = (newItems, isFinalSet) => {
+    console.log(newItems);
     // Ensure no duplicate items are inserted into the DOM.
+    const filteredItems = [...listInfo.items, ...newItems].filter(
+      (item, index, self) => (
+        index === self.findIndex((i) => {
+          switch (item.name) {
+            case 'teaser-item':
+              return i.config.title === item.config.title;
+            case 'feed-anchor':
+              return i.config.name === item.config.name;
+            default:
+              return true;
+          }
+        })
+      )
+    );
+
     setItems({
-      items: [...listInfo.items, ...newItems].filter((issue, index, self) => (
-        index === self.findIndex((i) => (
-          i.config.title === issue.config.title
-        ))
-      )),
+      items: filteredItems,
       lastUpdate: newItems,
       shouldDisplayLoadMore: isFinalSet,
     });
