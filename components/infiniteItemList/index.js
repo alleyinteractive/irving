@@ -129,7 +129,6 @@ const InfiniteItemList = ({
         setData={appendItems}
         lastUpdate={listInfo.lastUpdate || []}
       />
-
       <h3
         id="term-archive-content-list__topic"
         className="screen-reader-text"
