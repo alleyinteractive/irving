@@ -6,36 +6,66 @@ import React, {
 import PropTypes from 'prop-types';
 import toReactElement from 'utils/toReactElement';
 import { __ } from '@wordpress/i18n';
-import { debounce } from 'lodash';
+import { debounce, isEmpty } from 'lodash';
 import withData from 'components/hoc/withData';
 import kebabcase from 'lodash.kebabcase';
 import { withStyles } from 'critical-style-loader/lib';
 
 import styles from './infiniteItemList.css';
 
-const InfiniteItemList = ({ slug }) => {
+const InfiniteItemList = ({ slug, request }) => {
+  // Construct the query string dynamically using the `request` obj
+  // so that this component can be used for infinite lists across the project.
+  const buildQueryString = () => {
+    if (! isEmpty(request)) {
+      let qs = '';
+
+      const {
+        type,
+        query,
+        args,
+      } = request;
+
+      if (type && query) {
+        qs += `?${request.type}=${request.query}`;
+      }
+
+      if (args.page) {
+        qs += `?page=${args.page}`;
+      } else {
+        qs += '?page=1';
+      }
+
+      return qs;
+    }
+
+    return '?page=1';
+  };
+
+  const [userRequest, setUserRequest] = useState({
+    currentPage: 1,
+    queryString: buildQueryString(),
+  });
   const [listInfo, setItems] = useState({
     items: [],
     lastUpdate: [],
     shouldDisplayLoadMore: true,
   });
-  const [userRequest, setUserRequest] = useState({
-    currentPage: 1,
-    queryString: '?page=1',
-  });
   const [isLoading, setLoadState] = useState(false);
 
   const loadItems = () => {
-    setLoadState(true);
+    if (false === isLoading) {
+      setLoadState(true);
 
-    // Update the page requested.
-    // Filter the querystring with a regex to ensure other
-    // parameters are preserved.
-    setUserRequest({
-      currentPage: userRequest.currentPage + 1,
-      queryString: userRequest.queryString
-        .replace(/(page)=[^?&]+/, `$1=${userRequest.currentPage + 1}`),
-    });
+      // Update the page requested.
+      // Filter the querystring with a regex to ensure other
+      // parameters are preserved.
+      setUserRequest({
+        currentPage: userRequest.currentPage + 1,
+        queryString: userRequest.queryString
+          .replace(/(page)=[^?&]+/, `$1=${userRequest.currentPage + 1}`),
+      });
+    }
   };
 
   const appendItems = (newItems, isFinalSet) => {
@@ -55,18 +85,22 @@ const InfiniteItemList = ({ slug }) => {
 
   useEffect(() => {
     window.addEventListener('scroll', debounce(() => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop >
-        document.documentElement.offsetHeight - 500
-      ) {
-        const button = document.getElementById('content-list__load-more-btn');
+      if (false === isLoading) {
+        const currentOffset =
+          window.innerHeight + document.documentElement.scrollTop;
 
-        if (false === isLoading && true === listInfo.shouldDisplayLoadMore) {
+        const button = document.getElementById('content-list__load-more-btn');
+        const buttonOffset =
+          button.getBoundingClientRect().top + window.scrollY;
+
+        const shouldTriggerLoad = currentOffset > (buttonOffset - 250);
+
+        if (shouldTriggerLoad && true === listInfo.shouldDisplayLoadMore) {
           button.click();
         }
       }
     }, 500));
-  }, []);
+  }, [isLoading]);
 
   const Results = withData(`${slug}${userRequest.queryString}`, {})(
     ({ data, setData, lastUpdate }) => {
@@ -87,6 +121,12 @@ const InfiniteItemList = ({ slug }) => {
         lastUpdate={listInfo.lastUpdate || []}
       />
 
+      <h3
+        id="term-archive-content-list__topic"
+        className="screen-reader-text"
+      >
+        {request.topic}
+      </h3>
       <ul
         className={styles.wrapper}
         aria-labelledby="term-archive-content-list__topic"
@@ -124,9 +164,13 @@ const InfiniteItemList = ({ slug }) => {
   );
 };
 
+InfiniteItemList.defaultProps = {
+  request: {},
+};
+
 InfiniteItemList.propTypes = {
   slug: PropTypes.string.isRequired,
-//   request: PropTypes.object,
+  request: PropTypes.object,
 };
 
 export default withStyles(styles)(InfiniteItemList);
