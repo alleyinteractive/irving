@@ -1,11 +1,12 @@
-## TermArchiveContentList component
+## InfiniteItemList component
 
 Example use of TermArchiveContentList component.
 
 ```jsx
-<TermArchiveContentList
+<InfiniteItemList
+  slug="term_archive"
   topic="Artificial Intelligence"
-  endpoint="artificial-intelligence"
+  query="artificial-intelligence"
   requestType="category_name"
 />
 ```

@@ -6,51 +6,49 @@ import React, {
 import PropTypes from 'prop-types';
 import toReactElement from 'utils/toReactElement';
 import { __ } from '@wordpress/i18n';
-import { debounce, isEmpty } from 'lodash';
+import { debounce } from 'lodash';
 import withData from 'components/hoc/withData';
 import kebabcase from 'lodash.kebabcase';
 import { withStyles } from 'critical-style-loader/lib';
 
 import styles from './infiniteItemList.css';
 
-const InfiniteItemList = ({ slug, request }) => {
+const InfiniteItemList = ({
+  topic,
+  slug,
+  requestType,
+  query,
+  page,
+}) => {
   // Construct the query string dynamically using the `request` obj
   // so that this component can be used for infinite lists across the project.
   const buildQueryString = () => {
-    if (! isEmpty(request)) {
-      let qs = '';
+    let qs = '';
 
-      const {
-        type,
-        query,
-        args,
-      } = request;
-
-      if (type && query) {
-        qs += `?${request.type}=${request.query}`;
-      }
-
-      if (args.page) {
-        qs += `?page=${args.page}`;
-      } else {
-        qs += '?page=1';
-      }
-
-      return qs;
+    if (
+      0 < requestType.length &&
+      0 < query.length
+    ) {
+      qs = `?${requestType}=${query}&page=${page}`;
+    } else {
+      qs = `?page=${page}`;
     }
 
-    return '?page=1';
+    return qs;
   };
 
+  // Create state hook for user request.
   const [userRequest, setUserRequest] = useState({
     currentPage: 1,
     queryString: buildQueryString(),
   });
+  // State hook for list operations.
   const [listInfo, setItems] = useState({
     items: [],
     lastUpdate: [],
     shouldDisplayLoadMore: true,
   });
+  // isLoading state hook
   const [isLoading, setLoadState] = useState(false);
 
   const loadItems = () => {
@@ -69,7 +67,6 @@ const InfiniteItemList = ({ slug, request }) => {
   };
 
   const appendItems = (newItems, isFinalSet) => {
-    console.log(newItems);
     // Ensure no duplicate items are inserted into the DOM.
     const filteredItems = [...listInfo.items, ...newItems].filter(
       (item, index, self) => (
@@ -137,7 +134,7 @@ const InfiniteItemList = ({ slug, request }) => {
         id="term-archive-content-list__topic"
         className="screen-reader-text"
       >
-        {request.topic}
+        {topic}
       </h3>
       <ul
         className={styles.wrapper}
@@ -177,12 +174,17 @@ const InfiniteItemList = ({ slug, request }) => {
 };
 
 InfiniteItemList.defaultProps = {
-  request: {},
+  page: 1,
+  query: '',
+  requestType: '',
 };
 
 InfiniteItemList.propTypes = {
+  page: PropTypes.number,
+  query: PropTypes.string,
+  requestType: PropTypes.string,
   slug: PropTypes.string.isRequired,
-  request: PropTypes.object,
+  topic: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(InfiniteItemList);
