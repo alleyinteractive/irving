@@ -1,0 +1,8 @@
+@mixin formInput() {
+  background-color: #fff;
+  border: 1px solid #000;
+  color: #222;
+  font-size: rem(20);
+  padding: rem(10);
+  width: 100%;
+}

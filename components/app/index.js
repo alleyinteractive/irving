@@ -11,7 +11,7 @@ import ErrorBoundary from 'components/errorBoundary';
 import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
 import getProviders from 'selectors/getProviders';
-import styles from './app.css';
+import styles from './styles/app.css';
 
 const App = (props) => {
   const { error, roots, providers } = props;

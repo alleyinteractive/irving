@@ -1,0 +1,32 @@
+@mixin btn() {
+  font-size: rem(20);
+  font-weight: 600;
+  padding: rem(10) rem(20);
+}
+
+@mixin btnGray() {
+  background-color: $sponsored-gray;
+  border: 1px solid $sponsored-gray;
+  color: #fff;
+
+  &:hover {
+    background-color: transparent;
+    color: $sponsored-gray;
+  }
+}
+
+@mixin blackBtn() {
+  background-color: #000;
+  border: 1px solid #000;
+  color: #fff;
+
+  &:hover {
+    background-color: transparent;
+    color: #000;;
+  }
+}
+
+@mixin btnLink() {
+  padding: rem(10) rem(20);
+  text-decoration: underline;
+}
