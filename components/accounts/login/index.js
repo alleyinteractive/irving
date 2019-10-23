@@ -62,7 +62,7 @@ const Login = () => {
           />
         </div>
         {! emailValid && (
-          <p className={styles.formError}>Email format is invalid</p>
+          <span className={styles.formError} aria-live="assertive" id="email-error">Email is invalid</span>
         )}
         <p className={styles.ssoText}>
           { /* TODO: Write code for SSO */ }
