@@ -35,7 +35,7 @@ const Login = () => {
   return (
     <div className={styles.accountWrap}>
       <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
-      <h2 className={styles.accountSubHeader}>
+      <p className={styles.accountSubHeader}>
         {__('Please enter your email address.', 'mittr')}
       </h2>
       <p className={styles.accountHeaderDescription}>
