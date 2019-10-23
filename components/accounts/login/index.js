@@ -37,25 +37,27 @@ const Login = () => {
       <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
       <p className={styles.accountSubHeader}>
         {__('Please enter your email address.', 'mittr')}
-      </h2>
+      </p>
       <p className={styles.accountHeaderDescription}>
         {__(`If you have an account, we’ll get you signed in.
           If not, we’ll help you set one up. Easy, right?`, 'mittr')}
       </p>
       <form onSubmit={handleSubmit} className={styles.formWrap}>
         <div className={styles.formGroup}>
-          <input
-            type="text"
-            id="userEmailInput"
-            name="userEmailInput"
-            value={userEmailInput}
-            onChange={handleInputChange}
-            className={classNames(styles.formInput, {
-              [styles.inputInvalid]: ! emailValid,
-            })}
-            placeholder={__('Enter your email address', 'mittr')}
-            aria-errormessage="email-error"
-          />
+          <label htmlFor="userEmailInput">
+            <input
+              type="text"
+              id="userEmailInput"
+              name="userEmailInput"
+              value={userEmailInput}
+              onChange={handleInputChange}
+              className={classNames(styles.formInput, {
+                [styles.inputInvalid]: ! emailValid,
+              })}
+              placeholder={__('Enter your email address', 'mittr')}
+              aria-errormessage="email-error"
+            />
+          </label>
           <input
             type="submit"
             className={styles.continueBtn}
@@ -63,21 +65,29 @@ const Login = () => {
           />
         </div>
         {! emailValid && (
-          <span className={styles.formError} aria-live="assertive" id="email-error">Email is invalid</span>
+          <span
+            className={styles.formError}
+            aria-live="assertive"
+            id="email-error"
+          >
+            {__(`Oops! Let’s try that again —
+            please enter your email address.`, 'mittr')}
+          </span>
         )}
-        <p className={styles.ssoText}>
-          { /* TODO: Write code for SSO */ }
-          {__('Or use your social media account:', 'mittr')}&nbsp;
-          <a href="https://google.com">Google</a> /&nbsp;
-          <a href="https://twitter.com">Twitter</a> /&nbsp;
-          <a href="https://facebook.com">Facebook</a>
-        </p>
+        <h2 className={styles.ssoText} id="socialMediaSignOn">
+          {__('Sign on with the following social media accounts:', 'mittr')}
+        </h2>
+        <ul className={styles.ssoList} aria-labelledby="socialMediaSignOn">
+          <li><a href="https://google.com">Google</a>/</li>
+          <li><a href="https://twitter.com">Twitter</a>/</li>
+          <li><a href="https://facebook.com">Facebook</a></li>
+        </ul>
       </form>
       <div className={styles.alumWrap}>
-        <p>
+        <h3>
           <strong>MIT alum?</strong> Sign in using your MIT Infinite
           Connection account.
-        </p>
+        </h3>
         <button
           type="button"
           className={styles.connectBtn}

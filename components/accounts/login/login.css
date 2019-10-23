@@ -22,6 +22,11 @@
 }
 
 .formGroup {
+  label {
+    margin-right: rem(5);
+    width: 100%;
+  }
+
   input {
     display: block;
     margin-bottom: rem(10);
@@ -55,17 +60,34 @@
 
 .ssoText {
   color: #000;
+  display: inline;
+  float: left;
   font-size: rem(16);
+  font-weight: 400;
+  margin-right: rem(10);
+  padding-left: 0;
+}
+
+.ssoList {
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 0 rem(3);
+  }
 
   a {
     font-weight: 600;
+    padding-right: rem(5);
     text-decoration: underline;
   }
 }
 
 .alumWrap {
-  p {
+  h3 {
     font-size: rem(24);
+    font-weight: 400;
     margin-bottom: rem(10);
   }
 }
@@ -86,5 +108,7 @@
 
 .formError {
   color: $red;
+  display: block;
   margin-bottom: rem(10);
+  margin-left: rem(10);
 }
