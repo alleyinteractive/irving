@@ -31,6 +31,7 @@ import ListItem from 'components/listItem';
 import ListMenu from 'components/listMenu';
 import ListMenuItem from 'components/listMenuItem';
 import ListMenuItems from 'components/listMenuItems';
+import Login from 'components/accounts/login/';
 import MagazineHero from 'components/magazineHero';
 import MagazineIssue from 'components/magazineIssue';
 import MagazineIssues from 'components/magazineIssues';
@@ -97,6 +98,7 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
+  login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
   'magazine-hero': MagazineHero,

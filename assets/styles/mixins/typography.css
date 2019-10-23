@@ -16,3 +16,34 @@
   padding: rem(12) rem(15);
   white-space: nowrap;
 }
+
+@mixin accountHeader() {
+  color: $color-heading;
+  font-size: rem(30);
+
+  @media ($smMin) {
+    font-size: rem(40);
+  }
+}
+
+@mixin accountSubHeader() {
+  color: #000;
+  font-size: rem(40);
+  line-height: 1;
+  margin-bottom: 0;
+  padding-left: 0;
+
+  @media ($smMin) {
+    font-size: rem(50);
+  }
+}
+
+@mixin accountHeaderDescription() {
+  color: #000;
+  font-size: rem(30);
+  letter-spacing: -0.1px;
+
+  @media ($smMin) {
+    font-size: rem(40);
+  }
+}

@@ -1,4 +1,6 @@
 @import 'gutenbergBlocks/index';
+@import 'buttons';
+@import 'forms';
 @import 'utilities';
 @import 'layout';
 @import 'typography';
