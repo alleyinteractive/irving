@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
+import classNames from 'classnames';
 
 // Styles
 import styles from './login.css';
@@ -8,16 +9,23 @@ import styles from './login.css';
 const Login = () => {
   // Set state variable userEmailInput which we use for the form input value.
   const [userEmailInput, setUserEmailInput] = useState('');
+  const [emailValid, checkEmailValid] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(`Submit form value ${userEmailInput} to Nexus!`);
   };
 
+  const validateEmail = (email) => {
+    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    checkEmailValid(isEmailValid);
+  };
+
   const handleInputChange = (event) => {
     const name = event.target.value;
     // Set State.
     setUserEmailInput(name);
+    validateEmail(name);
   };
 
   const handleConnectAlum = () => {
@@ -42,7 +50,9 @@ const Login = () => {
             name="userEmailInput"
             value={userEmailInput}
             onChange={handleInputChange}
-            className={styles.formInput}
+            className={classNames(styles.formInput, {
+              [styles.inputInvalid]: ! emailValid,
+            })}
             placeholder={__('Enter your email address', 'mittr')}
           />
           <input
@@ -51,6 +61,9 @@ const Login = () => {
             value="Continue"
           />
         </div>
+        {! emailValid && (
+          <p className={styles.formError}>Email format is invalid</p>
+        )}
         <p className={styles.ssoText}>
           { /* TODO: Write code for SSO */ }
           {__('Or use your social media account:', 'mittr')}&nbsp;

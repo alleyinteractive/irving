@@ -22,11 +22,6 @@
 }
 
 .formGroup {
-  .formInput {
-    @include formInput;
-    margin-right: rem(5);
-  }
-
   input {
     display: block;
     margin-bottom: rem(10);
@@ -46,6 +41,15 @@
       display: flex;
       margin-bottom: 0;
     }
+  }
+}
+
+.formInput {
+  @include formInput;
+  margin-right: rem(5);
+
+  &.inputInvalid {
+    @include inputInvalid;
   }
 }
 
@@ -78,4 +82,9 @@
 
 .btnLink {
   @include btnLink;
+}
+
+.formError {
+  color: $red;
+  margin-bottom: rem(10);
 }

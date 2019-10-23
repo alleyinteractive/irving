@@ -6,3 +6,7 @@
   padding: rem(10);
   width: 100%;
 }
+
+@mixin inputInvalid() {
+  border: 1px solid $red;
+}
