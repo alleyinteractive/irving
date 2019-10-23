@@ -1,3 +1,47 @@
-h1 {
-  font-size: 32px;
+.accountWrap {
+  margin: 0 auto rem(50);
+  max-width: rem(742);
+}
+
+.accountHeader {
+  color: $color-heading;
+  font-size: rem(40);
+}
+
+.accountSubHeader {
+  color: #000;
+  font-size: rem(50);
+  line-height: 1;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.accountHeaderDescription {
+  color: #000;
+  font-size: rem(40);
+  letter-spacing: -0.1px;
+}
+
+.formWrap {
+  margin-bottom: rem(50);
+}
+
+.formGroup {
+  margin-bottom: rem(10);
+}
+
+.ssoText {
+  color: #000;
+  font-size: rem(16);
+
+  a {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}
+
+.alumWrap {
+  p {
+    font-size: rem(24);
+  }
 }
