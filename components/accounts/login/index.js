@@ -54,6 +54,7 @@ const Login = () => {
               [styles.inputInvalid]: ! emailValid,
             })}
             placeholder={__('Enter your email address', 'mittr')}
+            aria-errormessage="email-error"
           />
           <input
             type="submit"
