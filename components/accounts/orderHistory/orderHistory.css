@@ -1,0 +1,22 @@
+.accountWrap {
+  font-family: $sans;
+  margin: rem(20);
+}
+
+.accountHeader {
+  @include accountHeader;
+  font-family: $sans;
+  font-size: rem(40);
+}
+
+.accountSubHeader {
+  @include accountSubHeader;
+  font-family: $sans;
+  font-size: rem(50);
+}
+
+.heading {
+  font-family: $sans;
+  font-size: rem(30);
+  margin-bottom: rem(15);
+}

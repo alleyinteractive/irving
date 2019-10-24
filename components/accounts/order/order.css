@@ -1,0 +1,22 @@
+.ordersWrap {
+  border-bottom: 1px solid #767676;
+  margin-top: rem(20);
+  padding-bottom: rem(30);
+}
+
+.ordersWrapNB {
+  border-bottom: none;
+  margin-top: rem(20);
+  padding-bottom: rem(30);
+}
+
+.heading {
+  font-family: $sans;
+  font-size: rem(30);
+  margin-bottom: rem(15);
+}
+
+.downloadLink {
+  float: right;
+  text-decoration: underline;
+}

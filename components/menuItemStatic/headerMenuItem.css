@@ -1,0 +1,49 @@
+.wrapper {
+  position: relative;
+
+  &:last-of-type {
+    /* stylelint-disable-next-line selector-max-specificity */
+    .childMenu {
+      left: auto;
+      right: 0;
+    }
+  }
+}
+
+.parent {
+  background-color: transparent;
+  border: 0;
+  color: $black;
+  font-weight: 600;
+  padding: rem(15) rem(10);
+  text-align: left;
+}
+
+.childMenu {
+  background-color: $black;
+  border-top: rem(3) solid $white;
+  color: $white;
+  left: 0;
+  position: absolute;
+  top: 100%;
+  width: rem(182);
+}
+
+.link {
+  display: block;
+  font-family: $sans;
+  font-size: rem(16);
+  font-weight: 600;
+  line-height: 1.231;
+  padding: rem(6) rem(10);
+
+  &:hover {
+    background-color: $gray;
+    text-decoration: underline;
+  }
+}
+
+.isExpanded {
+  background-color: $black;
+  color: $white;
+}

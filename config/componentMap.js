@@ -1,3 +1,4 @@
+import AccountNavigation from 'components/accounts/accountNavigation';
 import AudioElement from 'components/audio';
 import AuthorPage from 'components/authorPage';
 import Body from 'components/body';
@@ -40,6 +41,8 @@ import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
 import NotConfigured from 'components/notConfigured';
+import Order from 'components/accounts/order';
+import OrderHistory from 'components/accounts/orderHistory';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
@@ -52,6 +55,7 @@ import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import StatsWidget from 'components/statsWidget';
 import SubtopicsSection from 'components/subtopicsSection';
+import Subscriptions from 'components/accounts/subscriptions';
 import TagLink from 'components/tagLink';
 import Tags from 'components/tags';
 import TeaserItem from 'components/teaserItem';
@@ -63,6 +67,7 @@ import withLoader from 'components/hoc/withLoader';
  * Defines which React component to render for each received API component.
  */
 export const componentMap = {
+  accountNavigation: AccountNavigation,
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   'author-partial': AuthorPage,
@@ -110,6 +115,8 @@ export const componentMap = {
   'mittr-plugin-extension/content-list': ContentList,
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/stats-widget': StatsWidget,
+  order: Order,
+  orderHistory: OrderHistory,
   pagination: Placeholder,
   parsely: Parsely,
   'page-body': PageBody,
@@ -117,6 +124,7 @@ export const componentMap = {
   'search-bar': SearchBar,
   'section-item': SectionItem,
   'subtopics-section': SubtopicsSection,
+  subscriptions: Subscriptions,
   sidebar: Sidebar,
   'social-links': SocialList,
   'social-sharing': SocialList,

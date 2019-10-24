@@ -1,0 +1,40 @@
+.parent {
+  align-items: center;
+  color: $white;
+  display: flex;
+  flex-flow: row nowrap;
+  font-family: $sans;
+  font-weight: 900;
+  justify-content: space-between;
+  overflow: hidden;
+  padding-bottom: rem(12);
+  text-align: left;
+  width: 100%;
+
+  &::after {
+    position: static;
+  }
+
+  @media ($smMax) {
+    @include after-image;
+  }
+}
+
+.isChildless {
+  flex-flow: row nowrap;
+
+  &::before {
+    @media ($smMax) {
+      content: '-';
+      margin-right: 1ch;
+      padding: rem(10) 0 rem(10) rem(3);
+      text-decoration: none;
+    }
+  }
+}
+
+.isExpanded {
+  &::after {
+    transform: rotate(45deg);
+  }
+}
