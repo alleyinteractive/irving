@@ -14,23 +14,11 @@ getService().start();
 const getLogService = require('../services/logService');
 const log = getLogService('irving:server:error');
 const createServer = require('../server/createServer');
-const {
-  rootUrl,
-  serverConfig: serverConfigPath,
-} = require('../config/paths');
+const { rootUrl } = require('../config/paths');
 // eslint-disable-next-line import/no-dynamic-require
 const bustCache = require('../server/bustCache');
 const bustPageCache = require('../server/bustPageCache');
 const purgePageCache = require('../server/purgePageCache');
-
-// Wrap require for server config in try/catch to ensure things will work
-// if user decides not to create a server config.
-let serverConfig;
-try {
-  serverConfig = require(serverConfigPath);
-} catch (e) {
-  serverConfig = {};
-}
 
 const {
   PORT = 3001,
@@ -70,9 +58,9 @@ app.use((err, req, res, next) => {
 // Allow customization of how server is created.
 // Run all customize server functions.
 let server;
-if (serverConfig.createServer) {
-  console.log('hi');
-  server = serverConfig.createServer(app);
+const configCreateServer = getConfigField('createServer');
+if (configCreateServer) {
+  server = configCreateServer(app);
 } else {
   server = createServer(app);
 }
