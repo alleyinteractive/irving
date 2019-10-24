@@ -29,6 +29,7 @@ module.exports = function createServer(app) {
 
     irvingServer = https.createServer({ key, cert }, app);
   } else {
+    console.log('hi');
     irvingServer = server(app, { PORT });
   }
 

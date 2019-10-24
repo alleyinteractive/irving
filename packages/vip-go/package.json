@@ -17,6 +17,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@automattic/vip-go": "^0.3.3",
+		"@automattic/vip-go-preflight-checks": "0.0.3",
 		"ioredis": "^3.2.2",
 		"newrelic": "^4.5.0"
 	},
