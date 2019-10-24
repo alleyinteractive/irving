@@ -71,6 +71,7 @@ app.use((err, req, res, next) => {
 // Run all customize server functions.
 let server;
 if (serverConfig.createServer) {
+  console.log('hi');
   server = serverConfig.createServer(app);
 } else {
   server = createServer(app);
