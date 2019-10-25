@@ -55,7 +55,8 @@ const OrderHistory = () => {
           order={order}
           lastItem={(orders.length - 1 === i)}
         />
-      ))}
+      </li>))}
+      </ul>
     </div>
   );
 };
