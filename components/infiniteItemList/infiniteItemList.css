@@ -1,13 +1,7 @@
-/* TermArchiveContentList component styles */
-
-.wrapper {
-  width: 100%;
-}
-
 .hidden {
   display: none;
 }
-
+  
 .button {
   border: $border-thin;
   color: $black;
@@ -18,7 +12,7 @@
   padding: rem(22) rem(18) rem(18);
   text-align: center;
   width: 100%;
-
+  
   &:hover {
     background-color: $black;
     color: $white;
