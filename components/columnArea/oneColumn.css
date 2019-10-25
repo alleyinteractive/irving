@@ -1,1 +1,4 @@
 /* One Column theme styles */
+.column {
+  width: 100%;
+}

@@ -1,12 +1,65 @@
+.wrapper {
+  font-family: $sans;
+  max-width: rem(1200);
+  margin: 0 auto;
+}
+
+.welcomeMessage {
+  font-size: rem(40);
+  font-weight: 600;
+  color: $color-heading;
+}
+
+.greeting {
+  font-size: rem(50);
+}
+
+.accessBanner {
+  font-size: rem(40);
+  line-height: 1.1;
+
+  & > a {
+    border-bottom: 2px solid $black;
+  }
+}
+
+.inlineString {
+  display: inline;
+}
+
+.accountControls,
+.extraControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & > div {
+    max-width: rem(540);
+  }
+}
+
+.accountControls {
+  border-top: 2px solid $black;
+  border-bottom: 2px solid $black;
+  display: flex;
+  flex-direction: row;
+  margin: rem(50) 0;
+  padding: rem(40) 0;
+
+  & > div {
+    max-width: rem(540);
+  }
+}
+
 .button {
   background: $white;
   border: $border-thin;
   color: $black;
   display: inline-flex;
-  font-family: $sans;
   font-weight: 600;
   line-height: 1.14;
   padding: rem(10) rem(20);
+  width: rem(280);
   text-align: center;
 
   &:hover {
@@ -23,5 +76,81 @@
       background-color: $white;
       color: $black;
     }
+  }
+}
+
+.buttonGroup {
+  text-align: center;
+  width: rem(280);
+  
+  .button {
+    margin-bottom: rem(10);
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.accountDetails,
+.subscription,
+.socialConnections,
+.discounts {
+  h2 {
+    color: $color-heading;
+    font-size: rem(40);
+    padding: 0;
+    margin: 0;
+  }
+
+  p {
+    font-size: rem(20);
+    line-height: 1.3;
+    margin: rem(10) 0;
+    word-wrap: break-word;
+  }
+}
+
+.twitterIcon,
+.googleIcon,
+.facebookIcon {
+  display: flex;
+  width: rem(18);
+
+  & > svg {
+    width: rem(22);
+  }
+}
+
+.googleIcon,
+.twitterIcon {
+  margin-right: rem(6);
+}
+
+.facebookIcon > svg {
+  width: rem(12);
+}
+
+.discountList {
+  margin-top: rem(10);
+
+  h3 {
+    font-size: rem(18);
+    font-weight: 700;
+  }
+}
+
+.discount {
+  margin-bottom: rem(20);
+
+  a {
+    text-decoration: underline;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
   }
 }

@@ -2,6 +2,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import TwitterIcon from 'assets/icons/twitter.svg';
+import FacebookIcon from 'assets/icons/facebook.svg';
+import GoogleIcon from 'assets/icons/reddit.svg'; // @todo get a svg of the Google `G`
 
 import styles from './landingPage.css';
 
@@ -28,13 +31,13 @@ const AccountLandingPage = ({
       if (index === array.length) {
         str += n;
       } else if (0 === index && ! 2 < array.length) {
-        str += `${n} `;
+        str += `<strong>${n}</strong> `;
       } else if (0 === index && 2 < array.length) {
-        str += `${n}, `;
+        str += `<strong>${n}</strong>, `;
       } else if (index === array.length - 2) {
-        str += `${n} `;
+        str += `<strong>${n}</strong> `;
       } else if (index === array.length - 1) {
-        str += `and ${n}`;
+        str += `and <strong>${n}</strong>`;
       } else {
         str += `${n}, `;
       }
@@ -43,11 +46,13 @@ const AccountLandingPage = ({
     return str;
   };
 
+  const truncatedName = name.split(' ')[0];
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.welcomeBanner}>
         <span className={styles.welcomeMessage}>Welcome</span>
-        <h1 className={styles.greeting}>Hello, {name}!</h1>
+        <h1 className={styles.greeting}>Hello, {truncatedName}!</h1>
         <span className={styles.accessBanner}>
           {generateAccessBanner()} <a href="/contact">Please contact us</a> if
           you have any questions or requests.
@@ -62,22 +67,24 @@ const AccountLandingPage = ({
             newsletters and other email to that address.
           </p>
 
-          <button className={styles.button} type="button">
-            Edit your email address
-          </button>
-          <button className={styles.button} type="button">
-            Change your password
-          </button>
+          <div className={styles.buttonGroup}>
+            <button className={styles.button} type="button">
+              Edit your email address
+            </button>
+            <button className={styles.button} type="button">
+              Change your password
+            </button>
+          </div>
 
           {0 < newsletters.length && (
             <Fragment>
               <p>
-                We send you {generateNewsletterString()}{' '}
+                We send you <div className={styles.inlineString} dangerouslySetInnerHTML={{ __html: generateNewsletterString() }} />{' '}
                 {`newsletter${1 < newsletters.length ? 's' : ''}`} each week.
               </p>
-              <button className={styles.button} type="button">
+              <a href="/account/newsletter-preferences" className={styles.button} type="button">
                 Edit your newsletter preferenes
-              </button>
+              </a>
             </Fragment>
           )}
         </div>
@@ -92,15 +99,17 @@ const AccountLandingPage = ({
             <strong>{subscription.renewDate}</strong>.
           </p>
 
-          <button className={styles.button} type="button">
-            Manage your subscription
-          </button>
-          <button className={styles.button} type="button">
-            Review your order history
-          </button>
-          <button className={styles.button} type="button">
-            Purchase a gift subscription
-          </button>
+          <div className={styles.buttonGroup}>
+            <a href="/accout/manage-subscription" className={styles.button}>
+              Manage your subscription
+            </a>
+            <a href="/account/order-history" className={styles.button}>
+              Review your order history
+            </a>
+            <a href="/account/purchase-gift" className={styles.button}>
+              Purchase a gift subscription
+            </a>
+          </div>
         </div>
       </div>
 
@@ -114,15 +123,26 @@ const AccountLandingPage = ({
             course.)
           </p>
 
-          <button className={styles.button} type="button">
-            Connect Facebook
-          </button>
-          <button className={styles.button} type="button">
-            Connect Twitter
-          </button>
-          <button className={styles.button} type="button">
-            Connect Google
-          </button>
+          <div className={styles.buttonGroup}>
+            <button className={styles.button} type="button">
+              <div className={styles.facebookIcon}>
+                <FacebookIcon />
+              </div>
+              Connect Facebook
+            </button>
+            <button className={styles.button} type="button">
+              <div className={styles.twitterIcon}>
+                <TwitterIcon />
+              </div>
+              Connect Twitter
+            </button>
+            <button className={styles.button} type="button">
+              <div className={styles.googleIcon}>
+                <GoogleIcon />
+              </div>
+              Connect Google
+            </button>
+          </div>
         </div>
 
         {0 < discounts.length && (
@@ -132,6 +152,16 @@ const AccountLandingPage = ({
               These codes are subject to change. Please check here before
               purchasing for the most up-to-date offer details.
             </p>
+            {0 < discounts.length && (
+              <ul className={styles.discountList}>
+                {discounts.map((discount) => (
+                  <li className={styles.discount}>
+                    <h3>{discount.name}</h3>
+                    <div dangerouslySetInnerHTML={{ __html: discount.content }} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
       </div>
