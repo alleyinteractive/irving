@@ -14,10 +14,11 @@ module.exports = {
     ...
 };
 ```
-3. Update your `package.json` to use the vip-go-friendly build script:
+3. Update your `package.json` to include the VIP Go preflight checks and the vip-go-friendly build script:
 ```json
 {
     "scripts": {
+        "preflight": "npx @automattic/vip-go-preflight-checks",
         "build": "if [ -z $VIP_GO_APP_ID ]; then npm run webpack; else exit 0; fi",
     }
 }
