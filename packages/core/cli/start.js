@@ -57,11 +57,8 @@ app.use((err, req, res, next) => {
 
 // Allow customization of how server is created.
 // Run all customize server functions.
-let server;
-const configCreateServer = getConfigField('createServer');
-if (configCreateServer) {
-  server = configCreateServer(app);
-} else {
+let server = getConfigField('createServer')(app);
+if (! server) {
   server = createServer(app);
 }
 
