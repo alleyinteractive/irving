@@ -3,5 +3,12 @@
 Example use of MenuItemStatic component.
 
 ```jsx
-<MenuItem />
+<MenuItemStatic  
+  isCurrentPage="true"
+  label="This is a label"
+  themeName="default"
+  url="#"
+  theme={{ parent: "parent-class" }},
+  useHover="true"
+/>
 ```
