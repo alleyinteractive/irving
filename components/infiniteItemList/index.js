@@ -20,8 +20,8 @@ const InfiniteItemList = ({
   query,
   page,
 }) => {
-  // Construct the query string dynamically using the `request` obj
-  // so that this component can be used for infinite lists across the project.
+  // Construct the query string dynamically using request parameters so
+  // that this component can be used for infinite lists across the project.
   const buildQueryString = () => {
     let qs = '';
 
@@ -113,7 +113,6 @@ const InfiniteItemList = ({
         setData={appendItems}
         lastUpdate={listInfo.lastUpdate || []}
       />
-
       <h3
         id="term-archive-content-list__topic"
         className="screen-reader-text"

@@ -1,6 +1,6 @@
 ## InfiniteItemList component
 
-Example use of TermArchiveContentList component.
+Example use of InfiniteItemList component.
 
 ```jsx
 <InfiniteItemList
