@@ -1,0 +1,12 @@
+.subscriptionWrap {
+  border-bottom: 2px solid #000;
+  line-height: rem(26);
+  margin: rem(20) 0 rem(40) 0;
+  padding-bottom: rem(50);
+}
+
+.heading {
+  font-family: $sans;
+  font-size: rem(30);
+  margin-bottom: rem(15);
+}

@@ -1,0 +1,11 @@
+.heading {
+  font-size: rem(20);
+  font-weight: 900;
+  margin-bottom: rem(10);
+}
+
+.link {
+  display: block;
+  font-size: rem(20);
+  padding-bottom: rem(5);
+}

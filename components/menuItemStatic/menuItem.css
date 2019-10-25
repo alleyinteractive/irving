@@ -1,0 +1,20 @@
+/* MenuItem component styles */
+
+.wrapper {
+  align-content: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+}
+
+.link {
+  display: block;
+  font-family: $sans;
+  font-size: rem(16);
+  line-height: 1.13;
+  padding-bottom: rem(8);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
