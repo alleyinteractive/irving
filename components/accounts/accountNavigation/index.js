@@ -10,22 +10,22 @@ import MenuItemStatic from '../../menuItemStatic';
 const AccountNavigation = ({ currentPage }) => {
   const nav = [
     {
-      page: 'manageSubscription',
+      page: 'manage-subscription',
       label: __('Manage your subscription', 'mittr'),
       url: '/account/manage-subscription',
     },
     {
-      page: 'orderHistory',
+      page: 'order-history',
       label: __('Review your order history', 'mittr'),
       url: '/account/order-history',
     },
     {
-      page: 'purchaseGift',
+      page: 'purchase-gift',
       label: __('Purchase a gift subscription', 'mittr'),
       url: '/account/purchase-gift',
     },
     {
-      page: 'newsletterPreferences',
+      page: 'newsletter-preferences',
       label: __('Edit your newsletter preferences', 'mittr'),
       url: '#',
     },
@@ -39,6 +39,7 @@ const AccountNavigation = ({ currentPage }) => {
       >
         {nav.map((item) => (
           <MenuItemStatic
+            key={item.label}
             themeName="sidebar"
             label={item.label}
             url={item.url}

@@ -11,6 +11,7 @@ const Order = ({ order: { item, orderDate, downloadLink }, lastItem }) => (
   <div className={(lastItem) ? styles.ordersWrapNB : styles.ordersWrap}>
     <Link to={downloadLink} className={styles.downloadLink}>
       {__('Download', 'mittr')}
+      <span className="screen-reader-text">{item}</span>
     </Link>
     {item} <br />
     {orderDate} <br />

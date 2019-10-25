@@ -67,7 +67,7 @@ import withLoader from 'components/hoc/withLoader';
  * Defines which React component to render for each received API component.
  */
 export const componentMap = {
-  accountNavigation: AccountNavigation,
+  'account-navigation': AccountNavigation,
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   'author-partial': AuthorPage,
@@ -116,7 +116,7 @@ export const componentMap = {
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/stats-widget': StatsWidget,
   order: Order,
-  orderHistory: OrderHistory,
+  'order-history': OrderHistory,
   pagination: Placeholder,
   parsely: Parsely,
   'page-body': PageBody,
