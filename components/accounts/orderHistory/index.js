@@ -49,7 +49,8 @@ const OrderHistory = () => {
         expiration="November 21, 2020"
       />
       <h3 className={styles.heading} id="orders-downloads'>{__('Orders and downloads', 'mittr')}</h3>
-      { orders.map((order, i) => (
+<ul aria-labelledby="orders-downloads">
+      { orders.map((order, i) => (<li>
         <Order
           order={order}
           lastItem={(orders.length - 1 === i)}
