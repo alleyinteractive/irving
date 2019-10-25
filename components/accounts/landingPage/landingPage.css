@@ -1,0 +1,27 @@
+.button {
+  background: $white;
+  border: $border-thin;
+  color: $black;
+  display: inline-flex;
+  font-family: $sans;
+  font-weight: 600;
+  line-height: 1.14;
+  padding: rem(10) rem(20);
+  text-align: center;
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+
+  &--dark {
+    background-color: $black;
+    border-color: $white;
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
+  }
+}
