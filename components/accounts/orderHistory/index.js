@@ -48,7 +48,7 @@ const OrderHistory = () => {
         type="Print + All Access Digital"
         expiration="November 21, 2020"
       />
-      <h3 className={styles.heading}>{__('Orders and downloads', 'mittr')}</h3>
+      <h3 className={styles.heading} id="orders-downloads'>{__('Orders and downloads', 'mittr')}</h3>
       { orders.map((order, i) => (
         <Order
           order={order}
