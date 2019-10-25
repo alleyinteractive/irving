@@ -34,7 +34,7 @@ const AccountNavigation = ({ currentPage }) => {
     <div className={styles.wrapper}>
       <Menu
         displayTitle
-        title="Manage your account"
+        title={__('Manage your account', 'mittr')}
         themeName="sidebar"
       >
         {nav.map((item) => (
