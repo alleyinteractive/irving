@@ -1,6 +1,6 @@
 ## MenuItemStatic component
 
-Example use of MenuItem component.
+Example use of MenuItemStatic component.
 
 ```jsx
 <MenuItem />
