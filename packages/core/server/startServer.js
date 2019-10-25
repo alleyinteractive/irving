@@ -3,6 +3,7 @@ const https = require('https');
 const {
   HTTPS_KEY_PATH,
   HTTPS_CERT_PATH,
+  PORT = 3001,
 } = process.env;
 
 /* eslint-disable global-require, no-console, import/order */
@@ -33,6 +34,9 @@ module.exports = function createServer(app) {
   } else {
     server = http.createServer(app);
   }
+
+  server.listen(PORT);
+  console.log(`Server listening on port ${PORT}!`);
 
   return server;
 };

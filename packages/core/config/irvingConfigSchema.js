@@ -5,7 +5,7 @@ module.exports = {
   cacheService: () => {},
   componentMap: {},
   configFields: [() => {}],
-  createServer: () => {},
+  startServer: () => {},
   customizeServer: [() => {}],
   customizeDevServer: [() => {}],
   customizeProdServer: [() => {}],

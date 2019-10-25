@@ -13,29 +13,13 @@ getService().start();
 
 const getLogService = require('../services/logService');
 const log = getLogService('irving:server:error');
-const createServer = require('../server/createServer');
-const {
-  rootUrl,
-  serverConfig: serverConfigPath,
-} = require('../config/paths');
-// eslint-disable-next-line import/no-dynamic-require
+const startServer = require('../server/startServer');
+const { rootUrl } = require('../config/paths');
 const bustCache = require('../server/bustCache');
 const bustPageCache = require('../server/bustPageCache');
 const purgePageCache = require('../server/purgePageCache');
 
-// Wrap require for server config in try/catch to ensure things will work
-// if user decides not to create a server config.
-let serverConfig;
-try {
-  serverConfig = require(serverConfigPath);
-} catch (e) {
-  serverConfig = {};
-}
-
-const {
-  PORT = 3001,
-  NODE_ENV,
-} = process.env;
+const { NODE_ENV } = process.env;
 const app = express();
 
 // Clearing the Redis cache.
@@ -69,15 +53,10 @@ app.use((err, req, res, next) => {
 
 // Allow customization of how server is created.
 // Run all customize server functions.
-let server;
-if (serverConfig.createServer) {
-  server = serverConfig.createServer(app);
-} else {
-  server = createServer(app);
+const server = getConfigField('startServer')(app);
+if (! server) {
+  startServer(app);
 }
-
-server.listen(PORT);
-console.log(`Server listening on port ${PORT}!`);
 
 // Open app for convenience and to get the initial build started.
 if ('development' === NODE_ENV) {
