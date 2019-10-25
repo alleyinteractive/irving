@@ -1,4 +1,4 @@
-## MenuItem component
+## MenuItemStatic component
 
 Example use of MenuItem component.
 
