@@ -67,24 +67,8 @@ const InfiniteItemList = ({
   };
 
   const appendItems = (newItems, isFinalSet) => {
-    // Ensure no duplicate items are inserted into the DOM.
-    const filteredItems = [...listInfo.items, ...newItems].filter(
-      (item, index, self) => (
-        index === self.findIndex((i) => {
-          switch (item.name) {
-            case 'teaser-item':
-              return i.config.title === item.config.title;
-            case 'feed-anchor':
-              return i.config.name === item.config.name;
-            default:
-              return true;
-          }
-        })
-      )
-    );
-
     setItems({
-      items: filteredItems,
+      items: [...listInfo.items, ...newItems],
       lastUpdate: newItems,
       shouldDisplayLoadMore: isFinalSet,
     });
