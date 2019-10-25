@@ -86,13 +86,13 @@ const InfiniteItemList = ({
         const buttonOffset =
           button.getBoundingClientRect().top + window.scrollY;
 
-        const shouldTriggerLoad = currentOffset > (buttonOffset - 250);
+        const shouldTriggerLoad = currentOffset > (buttonOffset - 750);
 
         if (shouldTriggerLoad && true === listInfo.shouldDisplayLoadMore) {
           button.click();
         }
       }
-    }, 500));
+    }, 250));
   }, [isLoading]);
 
   const Results = withData(`${slug}${userRequest.queryString}`, {})(
