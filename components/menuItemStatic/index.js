@@ -66,7 +66,7 @@ const MenuItemStatic = (props) => {
               </button>
             );
           case menu && isDesktop:
-            return <h3 className={theme.parent}>{label}</h3>;
+            return <h3 className={theme.heading}>{label}</h3>;
           default:
             return (
               // eslint-disable-next-line max-len
