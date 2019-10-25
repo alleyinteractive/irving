@@ -7,7 +7,7 @@ const {
 } = process.env;
 
 /* eslint-disable global-require, no-console, import/order */
-module.exports = function createServer(app) {
+module.exports = function startServer(app) {
   let server;
 
   if (HTTPS_KEY_PATH && HTTPS_CERT_PATH) {
