@@ -1,35 +1,32 @@
 import React from 'react';
 import { withStyles } from 'critical-style-loader/lib';
-
+import { __ } from '@wordpress/i18n';
 // Styles
 import PropTypes from 'prop-types';
 import styles from './accountNavigation.css';
 import Menu from '../../menu';
 import MenuItemStatic from '../../menuItemStatic';
 
-const AccountNavigation = (props) => {
-  const {
-    currentPage,
-  } = props;
+const AccountNavigation = ({ currentPage }) => {
   const nav = [
     {
       page: 'manageSubscription',
-      label: 'Manage your subscription',
+      label: __('Manage your subscription', 'mittr'),
       url: '/account/manage-subscription',
     },
     {
       page: 'orderHistory',
-      label: 'Review your order history',
+      label: __('Review your order history', 'mittr'),
       url: '/account/order-history',
     },
     {
       page: 'purchaseGift',
-      label: 'Purchase a gift subscription',
+      label: __('Purchase a gift subscription', 'mittr'),
       url: '/account/purchase-gift',
     },
     {
       page: 'newsletterPreferences',
-      label: 'Edit your newsletter preferences',
+      label: __('Edit your newsletter preferences', 'mittr'),
       url: '#',
     },
   ];
