@@ -1,10 +1,10 @@
-/* eslint-disable max-len */
+/* eslint-disable */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import TwitterIcon from 'assets/icons/twitter.svg';
 import FacebookIcon from 'assets/icons/facebook.svg';
-import GoogleIcon from 'assets/icons/reddit.svg'; // @todo get a svg of the Google `G`
+import GoogleIcon from 'assets/icons/google.svg';
 
 import styles from './landingPage.css';
 
@@ -48,6 +48,8 @@ const AccountLandingPage = ({
 
   const truncatedName = name.split(' ')[0];
 
+  return null;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.welcomeBanner}>
@@ -67,7 +69,7 @@ const AccountLandingPage = ({
             newsletters and other email to that address.
           </p>
 
-          <div className={styles.buttonGroup}>
+          <div className={styles.buttonContainer}>
             <button className={styles.button} type="button">
               Edit your email address
             </button>
@@ -82,9 +84,11 @@ const AccountLandingPage = ({
                 We send you <div className={styles.inlineString} dangerouslySetInnerHTML={{ __html: generateNewsletterString() }} />{' '}
                 {`newsletter${1 < newsletters.length ? 's' : ''}`} each week.
               </p>
-              <a href="/account/newsletter-preferences" className={styles.button} type="button">
-                Edit your newsletter preferenes
-              </a>
+              <div className={styles.buttonContainer}>
+                <a href="/account/newsletter-preferences" className={styles.button} type="button">
+                  Edit your newsletter preferenes
+                </a>
+              </div>
             </Fragment>
           )}
         </div>
@@ -99,7 +103,7 @@ const AccountLandingPage = ({
             <strong>{subscription.renewDate}</strong>.
           </p>
 
-          <div className={styles.buttonGroup}>
+          <div className={styles.buttonContainer}>
             <a href="/accout/manage-subscription" className={styles.button}>
               Manage your subscription
             </a>
@@ -123,7 +127,7 @@ const AccountLandingPage = ({
             course.)
           </p>
 
-          <div className={styles.buttonGroup}>
+          <div className={styles.buttonContainer}>
             <button className={styles.button} type="button">
               <div className={styles.facebookIcon}>
                 <FacebookIcon />
