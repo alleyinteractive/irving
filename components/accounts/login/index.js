@@ -39,8 +39,11 @@ const Login = () => {
         {__('Please enter your email address.', 'mittr')}
       </p>
       <p className={styles.accountHeaderDescription}>
-        {__(`If you have an account, we’ll get you signed in.
-          If not, we’ll help you set one up. Easy, right?`, 'mittr')}
+        {__(
+          `If you have an account, we’ll get you signed in.
+          If not, we’ll help you set one up. Easy, right?`,
+          'mittr'
+        )}
       </p>
       <form onSubmit={handleSubmit} className={styles.formWrap}>
         <div className={styles.formGroup}>
@@ -70,23 +73,32 @@ const Login = () => {
             aria-live="assertive"
             id="email-error"
           >
-            {__(`Oops! Let’s try that again —
-            please enter your email address.`, 'mittr')}
+            {__(
+              `Oops! Let’s try that again —
+            please enter your email address.`,
+              'mittr'
+            )}
           </span>
         )}
         <h2 className={styles.ssoText} id="socialMediaSignOn">
           {__('Sign on with the following social media accounts:', 'mittr')}
         </h2>
         <ul className={styles.ssoList} aria-labelledby="socialMediaSignOn">
-          <li><a href="https://google.com">Google</a>/</li>
-          <li><a href="https://twitter.com">Twitter</a>/</li>
-          <li><a href="https://facebook.com">Facebook</a></li>
+          <li>
+            <a href="https://google.com">Google</a>/
+          </li>
+          <li>
+            <a href="https://twitter.com">Twitter</a>/
+          </li>
+          <li>
+            <a href="https://facebook.com">Facebook</a>
+          </li>
         </ul>
       </form>
       <div className={styles.alumWrap}>
-        <h3>
-          <strong>MIT alum?</strong> Sign in using your MIT Infinite
-          Connection account.
+        <h3 className={styles.alumTitle}>
+          <span className={styles.leadIn}>{__('MIT alum?', 'mittr')}</span>{' '}
+          {__('Sign in using your MIT Infinite Connection account.', 'mittr')}
         </h3>
         <button
           type="button"
