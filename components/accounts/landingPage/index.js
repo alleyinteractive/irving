@@ -1,22 +1,25 @@
-/* eslint-disable */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import TwitterIcon from 'assets/icons/twitter.svg';
 import FacebookIcon from 'assets/icons/facebook.svg';
 import GoogleIcon from 'assets/icons/google.svg';
+import parse from 'html-react-parser';
 
 import styles from './landingPage.css';
 
 const AccountLandingPage = ({
   name,
-  subscription,
+  subscriptionName,
+  subscriptionType,
+  accountNumber,
   email,
   newsletters,
   discounts,
+  renewalDate,
 }) => {
   const generateAccessBanner = () => {
-    switch (subscription.type) {
+    switch (subscriptionType) {
       case 'all-access':
         return 'You have unlimited access to technologyreview.com';
       default:
@@ -47,8 +50,6 @@ const AccountLandingPage = ({
   };
 
   const truncatedName = name.split(' ')[0];
-
-  return null;
 
   return (
     <div className={styles.wrapper}>
@@ -81,11 +82,14 @@ const AccountLandingPage = ({
           {0 < newsletters.length && (
             <Fragment>
               <p>
-                We send you <div className={styles.inlineString} dangerouslySetInnerHTML={{ __html: generateNewsletterString() }} />{' '}
+                We send you {parse(generateNewsletterString())}{' '}
                 {`newsletter${1 < newsletters.length ? 's' : ''}`} each week.
               </p>
               <div className={styles.buttonContainer}>
-                <a href="/account/newsletter-preferences" className={styles.button} type="button">
+                <a
+                  href="/account/newsletter-preferences"
+                  className={styles.button}
+                >
                   Edit your newsletter preferenes
                 </a>
               </div>
@@ -97,10 +101,10 @@ const AccountLandingPage = ({
           <h2>Subscription</h2>
           <p>
             You are an{' '}
-            <strong>{subscription.subscriptionName} subscriber</strong>, account{' '}
-            <strong>#{subscription.accountNumber}</strong>. Your subscription
+            <strong>{subscriptionName} subscriber</strong>, account{' '}
+            <strong>#{accountNumber}</strong>. Your subscription
             will automatically renew on{' '}
-            <strong>{subscription.renewDate}</strong>.
+            <strong>{renewalDate}</strong>.
           </p>
 
           <div className={styles.buttonContainer}>
@@ -161,7 +165,7 @@ const AccountLandingPage = ({
                 {discounts.map((discount) => (
                   <li className={styles.discount}>
                     <h3>{discount.name}</h3>
-                    <div dangerouslySetInnerHTML={{ __html: discount.content }} />
+                    {parse(discount.content)}
                   </li>
                 ))}
               </ul>
@@ -173,16 +177,10 @@ const AccountLandingPage = ({
   );
 };
 
+/* eslint-disable max-len */
 AccountLandingPage.defaultProps = {
-  name: 'Penelope Jackson',
-  subscription: {
-    type: 'all-access',
-    subscriptionName: 'All Access Digital',
-    accountNumber: 1635767369,
-    renewDate: 'May 1, 2020',
-  },
+  accountNumber: 1635767369,
   email: 'penelope.jackson@technologyreview.com',
-  newsletters: ['The Download', 'Chain Letter'],
   discounts: [
     {
       name: 'EmTech Next 2019 Offer',
@@ -195,14 +193,23 @@ AccountLandingPage.defaultProps = {
         '<p>Subscribers can take advantage of a 30% discount on <a href="#">MIT Press</a> publication by using the code MTECHR30 at checkout.',
     },
   ],
+  name: 'Penelope Jackson',
+  newsletters: ['The Download', 'Chain Letter'],
+  renewalDate: 'May 1, 2020',
+  subscriptionName: 'All Access Digital',
+  subscriptionType: 'all-access',
 };
+/* eslint-enable */
 
 AccountLandingPage.propTypes = {
-  name: PropTypes.string,
-  subscription: PropTypes.object,
-  email: PropTypes.string,
-  newsletters: PropTypes.array,
+  accountNumber: PropTypes.number,
   discounts: PropTypes.array,
+  email: PropTypes.string,
+  name: PropTypes.string,
+  newsletters: PropTypes.array,
+  subscriptionName: PropTypes.string,
+  subscriptionType: PropTypes.string,
+  renewalDate: PropTypes.string,
 };
 
 export default withStyles(styles)(AccountLandingPage);
