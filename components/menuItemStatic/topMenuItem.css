@@ -1,9 +1,7 @@
-.wrapper {
-  h3 {
-    font-size: rem(20);
-    font-weight: 900;
-    margin-bottom: rem(10);
-  }
+.heading {
+  font-size: rem(20);
+  font-weight: 900;
+  margin-bottom: rem(10);
 }
 
 .link {

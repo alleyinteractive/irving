@@ -23,6 +23,7 @@ import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
 import Image from 'components/image/image';
+import InfiniteItemList from 'components/infiniteItemList';
 import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
 import LinkTeaser from 'components/linkTeaser';
@@ -60,7 +61,6 @@ import Subscriptions from 'components/accounts/subscriptions';
 import TagLink from 'components/tagLink';
 import Tags from 'components/tags';
 import TeaserItem from 'components/teaserItem';
-import TermArchiveContentList from 'components/termArchiveContentList';
 import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
 
@@ -69,7 +69,7 @@ import withLoader from 'components/hoc/withLoader';
  */
 export const componentMap = {
   account: AccountPage,
-  accountNavigation: AccountNavigation,
+  'account-navigation': AccountNavigation,
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   'author-partial': AuthorPage,
@@ -95,6 +95,7 @@ export const componentMap = {
   'feed-item': FeedItem,
   html: RawHTML,
   image: Image,
+  'infinite-list': InfiniteItemList,
   innovator: Innovator,
   'link-teaser': LinkTeaser,
   'innovator-header': InnovatorHeader,
@@ -118,7 +119,7 @@ export const componentMap = {
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/stats-widget': StatsWidget,
   order: Order,
-  orderHistory: OrderHistory,
+  'order-history': OrderHistory,
   pagination: Placeholder,
   parsely: Parsely,
   'page-body': PageBody,
@@ -134,7 +135,6 @@ export const componentMap = {
   'tag-link': TagLink,
   tags: Tags,
   'teaser-item': TeaserItem,
-  'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TeaserItem,
   'technology-meta': ContentList,
   'topic-header': CardStack,
