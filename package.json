@@ -98,16 +98,16 @@
     "webpack-stats-plugin": "^0.3.0"
   },
   "devDependencies": {
-    "lerna": "^3.16.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^24.9.0",
     "jest-environment-enzyme": "^7.1.1",
-    "jest-enzyme": "^7.1.1"
+    "jest-enzyme": "^7.1.1",
+    "lerna": "^3.18.3"
   },
   "optionalDependencies": {
-    "ioredis": "^3.2.2",
-    "newrelic": "^4.5.0"
+    "ioredis": "^4.14.1",
+    "newrelic": "^5.13.1"
   },
   "engines": {
     "node": "10",

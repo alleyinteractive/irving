@@ -12,37 +12,33 @@ const defaultService = {
  * @returns {object} singleton service object
  */
 const getService = () => {
-  const configured = [
-    'NEW_RELIC_APP_NAME',
-    'NEW_RELIC_LICENSE_KEY',
-  ].every((field) => ('undefined' !== typeof process.env[field]));
-
-  if (! configured) {
-    return defaultService;
-  }
-
   // newrelic cannot be imported in a browser environment.
   if (! process.env.BROWSER) {
-    let irvingNewrelic;
-    // Check if optional newrelic client is installed.
+    // Attempt to create newrelic client using vip go package.
     try {
       const { newrelic, logger } = require('@automattic/vip-go'); // eslint-disable-line global-require
-      irvingNewrelic = newrelic({
+      const client = newrelic({
         logger: logger('irving:newrelic'),
       });
+
+      // VIP Go's package can return nothing if newrelic is not instsalled or configured improperly.
+      if (! client) {
+        return defaultService;
+      }
+
+      return {
+        client,
+        start: () => {},
+        logError(err) {
+          client.noticeError(err);
+        },
+        logTransaction(method, status, category) {
+          client.setTransactionName(`${method} ${status} ${category}`);
+        },
+      };
     } catch (err) {
       return defaultService;
     }
-
-    return {
-      start: () => {},
-      logError(err) {
-        irvingNewrelic.noticeError(err);
-      },
-      logTransaction(method, status, category) {
-        irvingNewrelic.setTransactionName(`${method} ${status} ${category}`);
-      },
-    };
   }
 
   return defaultService;
