@@ -23,15 +23,6 @@ const AccountInfoForm = ({
 
   return (
     <form onSubmit={handleSubmit} className={styles.formWrap}>
-      {! isValid && (
-        <span
-          className={styles.formError}
-          aria-live="assertive"
-          id="email-error"
-        >
-          {__(errorMessage, 'mittr')}
-        </span>
-      )}
       <div className={styles.horizontalFormGroup}>
         {! isValid && errorMessage ? errorMessage : null}
 
@@ -54,6 +45,15 @@ const AccountInfoForm = ({
           className={styles.inputButton}
           value="Save changes"
         />
+        {! isValid && (
+          <span
+            className={styles.formError}
+            aria-live="assertive"
+            id="email-error"
+          >
+            {__(errorMessage, 'mittr')}
+          </span>
+        )}
       </div>
     </form>
   );
