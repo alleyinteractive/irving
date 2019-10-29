@@ -8,6 +8,7 @@ import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
 import componentDataReducer from './componentDataReducer';
 import playerReducer from './playerReducer';
+import userReducer from './userReducer';
 
 // Configure "slice" reducers.
 export const reducers = {
@@ -18,6 +19,7 @@ export const reducers = {
   player: playerReducer,
   route: routeReducer,
   visible: visibilityReducer,
+  user: userReducer,
 };
 const rootSliceReducer = combineReducers(reducers);
 

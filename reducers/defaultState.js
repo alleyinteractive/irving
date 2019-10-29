@@ -34,6 +34,8 @@ export const player = {
   volume: 0.5,
 };
 
+export const user = {};
+
 export const error = null;
 
 export const loading = false;

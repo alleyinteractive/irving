@@ -2,18 +2,26 @@ import React, { useState } from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
+import { actionRequestSendEmail } from 'actions/userActions';
+import PropTypes from 'prop-types';
 
 // Styles
 import styles from './login.css';
 
-const Login = () => {
+const Login = ({ submitSignin }) => {
   // Set state variable userEmailInput which we use for the form input value.
   const [userEmailInput, setUserEmailInput] = useState('');
   const [emailValid, checkEmailValid] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Submit form value ${userEmailInput} to Nexus!`);
+
+    // This is not the action we really want to take on submit sign on, it is
+    // only here to demo the functionality of the email service.
+    if (emailValid) {
+      submitSignin(userEmailInput);
+    }
   };
 
   const validateEmail = (email) => {
@@ -23,13 +31,13 @@ const Login = () => {
 
   const handleInputChange = (event) => {
     const name = event.target.value;
-    // Set State.
     setUserEmailInput(name);
     validateEmail(name);
   };
 
   const handleConnectAlum = () => {
-    alert('Connect Alum');
+    // @todo stub.
+    alert('Connect Alum'); // eslint-disable-line no-alert
   };
 
   return (
@@ -115,4 +123,16 @@ const Login = () => {
   );
 };
 
-export default withStyles(styles)(Login);
+Login.propTypes = {
+  submitSignin: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  submitSignin: (email) => dispatch(actionRequestSendEmail(email)),
+});
+const withRedux = connect(
+  undefined,
+  mapDispatchToProps
+);
+
+export default withRedux(withStyles(styles)(Login));
