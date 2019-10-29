@@ -124,18 +124,22 @@ const InfiniteItemList = ({
         aria-labelledby="term-archive-content-list__topic"
         aria-busy={isLoading}
       >
-        {listInfo.items.map((item, index) => (
-          <li
-            key={kebabcase(item.config.title)}
-            className={styles.item}
-            tabIndex="0"
-            role="article"
-            aria-setsize={listInfo.items.length}
-            aria-posinset={index + 1}
-          >
-            {toReactElement(item)}
-          </li>
-        ))}
+        {listInfo.items.map((item, index) => {
+          const imageIndexes = [0, 2, 3, 5, 9, 10, 13, 14, 16, 17];
+          const showImage = imageIndexes.includes(index);
+          return (
+            <li
+              key={kebabcase(item.config.title)}
+              className={styles.item}
+              tabIndex="0"
+              role="article"
+              aria-setsize={listInfo.items.length}
+              aria-posinset={index + 1}
+            >
+              {toReactElement(item, '', { showImage })}
+            </li>
+          );
+        })}
       </ul>
 
       {true === listInfo.shouldDisplayLoadMore && (

@@ -21,6 +21,7 @@ const TeaserItem = ({
   itemPosition,
   permalink,
   postDate,
+  showImage,
   teaseCTA,
   theme,
   themeName,
@@ -81,7 +82,7 @@ const TeaserItem = ({
           {teaseCTA}
         </Link>
       )}
-      {image && (
+      {(image && showImage) && (
         <Link to={permalink} tabIndex="-1" className={theme.image}>
           {image}
         </Link>
@@ -109,6 +110,7 @@ TeaserItem.propTypes = {
   itemPosition: PropTypes.string,
   permalink: PropTypes.string.isRequired,
   postDate: PropTypes.string,
+  showImage: PropTypes.bool,
   teaseCTA: PropTypes.string,
   theme: PropTypes.shape({
     callToAction: PropTypes.string,
@@ -134,6 +136,7 @@ TeaserItem.propTypes = {
 TeaserItem.defaultProps = {
   themeName: '',
   color: '',
+  showImage: true,
   teaseCTA: '',
   topic: '',
   postDate: '',
