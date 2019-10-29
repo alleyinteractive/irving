@@ -1,11 +1,15 @@
-import React, { Fragment } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import TwitterIcon from 'assets/icons/twitter.svg';
 import FacebookIcon from 'assets/icons/facebook.svg';
 import GoogleIcon from 'assets/icons/google.svg';
 import parse from 'html-react-parser';
+import { __ } from '@wordpress/i18n';
+import classNames from 'classnames';
 
+import AccountInfoForm from './infoForm';
 import styles from './landingPage.css';
 
 const AccountLandingPage = ({
@@ -18,6 +22,23 @@ const AccountLandingPage = ({
   discounts,
   renewalDate,
 }) => {
+  const [formState, setFormState] = useState({
+    isEditingEmail: false,
+    isEditingPassword: false,
+  });
+  const onClickEditEmail = () => {
+    setFormState({
+      isEditingEmail: true,
+      isEditingPassword: false,
+    });
+  };
+  const onClickEditPassword = () => {
+    setFormState({
+      isEditingEmail: false,
+      isEditingPassword: true,
+    });
+  };
+
   const generateAccessBanner = () => {
     switch (subscriptionType) {
       case 'all-access':
@@ -71,12 +92,39 @@ const AccountLandingPage = ({
           </p>
 
           <div className={styles.buttonContainer}>
-            <button className={styles.button} type="button">
-              Edit your email address
-            </button>
-            <button className={styles.button} type="button">
-              Change your password
-            </button>
+            {! formState.isEditingEmail ? (
+              <button
+                className={styles.button}
+                type="button"
+                tabIndex="0"
+                onClick={onClickEditEmail}
+              >
+                {__('Edit your email addresss', 'mittr')}
+              </button>
+            ) : (
+              <AccountInfoForm
+                type="email"
+                handleSubmit={() => {}}
+                placeholderValue={email}
+              />
+            )}
+
+            {! formState.isEditingPassword ? (
+              <button
+                className={styles.button}
+                type="button"
+                tabIndex="0"
+                onClick={onClickEditPassword}
+              >
+                {__('Edit your password', 'mittr')}
+              </button>
+            ) : (
+              <AccountInfoForm
+                type="password"
+                handleSubmit={() => {}}
+                placeholderValue="password"
+              />
+            )}
           </div>
 
           {0 < newsletters.length && (
@@ -89,8 +137,9 @@ const AccountLandingPage = ({
                 <a
                   href="/account/newsletter-preferences"
                   className={styles.button}
+                  role="button"
                 >
-                  Edit your newsletter preferenes
+                  {__('Edit your newsletter preferences', 'mittr')}
                 </a>
               </div>
             </Fragment>
@@ -108,14 +157,26 @@ const AccountLandingPage = ({
           </p>
 
           <div className={styles.buttonContainer}>
-            <a href="/accout/manage-subscription" className={styles.button}>
-              Manage your subscription
+            <a
+              href="/accout/manage-subscription"
+              className={styles.button}
+              role="button"
+            >
+              {__('Manage your subscription', 'mittr')}
             </a>
-            <a href="/account/order-history" className={styles.button}>
-              Review your order history
+            <a
+              href="/account/order-history"
+              className={styles.button}
+              role="button"
+            >
+              {__('Review your order history', 'mittr')}
             </a>
-            <a href="/account/purchase-gift" className={styles.button}>
-              Purchase a gift subscription
+            <a
+              href="/account/purchase-gift"
+              className={styles.button}
+              role="button"
+            >
+              {__('Purchase a gift subscription', 'mittr')}
             </a>
           </div>
         </div>
@@ -132,23 +193,35 @@ const AccountLandingPage = ({
           </p>
 
           <div className={styles.buttonContainer}>
-            <button className={styles.button} type="button">
+            <button
+              className={styles.button}
+              type="button"
+              tabIndex="0"
+            >
               <div className={styles.facebookIcon}>
                 <FacebookIcon />
               </div>
-              Connect Facebook
+              {__('Connect Facebook', 'mittr')}
             </button>
-            <button className={styles.button} type="button">
+            <button
+              className={styles.button}
+              type="button"
+              tabIndex="0"
+            >
               <div className={styles.twitterIcon}>
                 <TwitterIcon />
               </div>
-              Connect Twitter
+              {__('Connect Twitter', 'mittr')}
             </button>
-            <button className={styles.button} type="button">
+            <button
+              className={styles.button}
+              type="button"
+              tabIndex="0"
+            >
               <div className={styles.googleIcon}>
                 <GoogleIcon />
               </div>
-              Connect Google
+              {__('Connect Google', 'mittr')}
             </button>
           </div>
         </div>
