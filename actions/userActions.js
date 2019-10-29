@@ -1,5 +1,11 @@
+// @todo this will be updated when the user state is more flushed out.
+/* eslint-disable no-unused-vars */
 import { createAction } from '.';
-import { REQUEST_SEND_EMAIL, USER_EMAIL_SENT } from './types';
+import {
+  REQUEST_SEND_EMAIL,
+  USER_EMAIL_SENT,
+  USER_EMAIL_FAILED,
+} from './types';
 
 /**
  * Create a Redux action that represents a browser state change.
@@ -22,12 +28,9 @@ export function actionRequestSendEmail(email) {
  * @returns {{type, payload}} - Redux action
  */
 export function actionUserEmailError(email, err) {
-  console.error(email, err); // eslint-disable-line no-console
-  // look at form response.
-  // return createAction(SEND_USER_EMAIL);
+  return createAction(USER_EMAIL_FAILED);
 }
 
 export function actionUserEmailSent(email) {
-  console.log(email); // eslint-disable-line no-console
   return createAction(USER_EMAIL_SENT);
 }
