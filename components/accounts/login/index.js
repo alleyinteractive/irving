@@ -12,27 +12,30 @@ import styles from './login.css';
 const Login = ({ submitSignin }) => {
   // Set state variable userEmailInput which we use for the form input value.
   const [userEmailInput, setUserEmailInput] = useState('');
-  const [emailValid, checkEmailValid] = useState(true);
+  const [isEmailValid, setIsEmailValid] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // This is not the action we really want to take on submit sign on, it is
-    // only here to demo the functionality of the email service.
-    if (emailValid) {
+    if (isEmailValid && '' !== userEmailInput) {
+      // This is not the action we really want to take on submit sign on, it is
+      // only here to demo the functionality of the email service.
       submitSignin(userEmailInput);
+    } else {
+      // Email must be invalid it is empty.
+      setIsEmailValid(false);
     }
   };
 
   const validateEmail = (email) => {
-    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    checkEmailValid(isEmailValid);
+    const validEmailTest = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setIsEmailValid(validEmailTest);
   };
 
   const handleInputChange = (event) => {
-    const name = event.target.value;
-    setUserEmailInput(name);
-    validateEmail(name);
+    const { value } = event.target;
+    setUserEmailInput(value);
+    validateEmail(value);
   };
 
   const handleConnectAlum = () => {
@@ -63,7 +66,7 @@ const Login = ({ submitSignin }) => {
               value={userEmailInput}
               onChange={handleInputChange}
               className={classNames(styles.formInput, {
-                [styles.inputInvalid]: ! emailValid,
+                [styles.inputInvalid]: ! isEmailValid,
               })}
               placeholder={__('Enter your email address', 'mittr')}
               aria-errormessage="email-error"
@@ -75,7 +78,7 @@ const Login = ({ submitSignin }) => {
             value="Continue"
           />
         </div>
-        {! emailValid && (
+        {! isEmailValid && (
           <span
             className={styles.formError}
             aria-live="assertive"
