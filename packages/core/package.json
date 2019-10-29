@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -116,8 +116,8 @@
     "webpack-stats-plugin": "^0.3.0"
   },
   "optionalDependencies": {
-		"ioredis": "^4.14.1",
-		"newrelic": "^5.13.1"
+    "ioredis": "^4.14.1",
+    "newrelic": "^5.13.1"
   },
   "publishConfig": {
     "access": "public"
