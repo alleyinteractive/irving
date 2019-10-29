@@ -116,8 +116,8 @@
     "webpack-stats-plugin": "^0.3.0"
   },
   "optionalDependencies": {
-    "ioredis": "^3.2.2",
-    "newrelic": "^4.5.0"
+		"ioredis": "^4.14.1",
+		"newrelic": "^5.13.1"
   },
   "publishConfig": {
     "access": "public"

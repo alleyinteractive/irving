@@ -28,8 +28,8 @@ automatically deleted, defaults to 5 minutes
 * `BASIC_AUTH_USERNAME`
 * `BASIC_AUTH_PASSWORD`
 * `DEBUG` - https://github.com/visionmedia/debug#environment-variables
-* `NEW_RELIC_APP_NAME` - Your New Relic license key.
-* `NEW_RELIC_LICENSE_KEY` - The name of this application, for reporting to New Relic's servers. This value can be also be a comma-delimited list of names.
+* `NEW_RELIC_APP_NAME` - The name of this application, for reporting to New Relic's servers. This value can be also be a comma-delimited list of names.
+* `NEW_RELIC_LICENSE_KEY` - Your New Relic license key.
 * `PROXY_URL` - URL to proxy all server requests through.
 * `HTTPS_KEY_PATH` - Path to tls key relative to current home directory.
 * `HTTPS_CERT_PATH` - Path to tls cert relative to current home directory.
