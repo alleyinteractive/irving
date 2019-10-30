@@ -1,0 +1,172 @@
+.wrapper {
+  font-family: $sans;
+  margin: 0 auto;
+  max-width: rem(1200);
+}
+
+.welcomeBanner {
+  @media ($smMax) {
+    margin: 0 rem(20);
+  }
+}
+
+.welcomeMessage {
+  color: $color-heading;
+  font-size: rem(40);
+  font-weight: 600;
+}
+
+.greeting {
+  font-size: rem(50);
+}
+
+.accessBanner {
+  font-size: rem(40);
+  line-height: 1.1;
+
+  & > a {
+    border-bottom: 2px solid $black;
+  }
+}
+
+.inlineString {
+  display: inline;
+}
+
+.accountControls,
+.extraControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & > div {
+    max-width: rem(540);
+  }
+
+  @media ($mdMax) {
+    flex-direction: column;
+
+    & > div {
+      margin-bottom: rem(10);
+      max-width: 100%;
+    }
+  }
+}
+
+.accountControls {
+  @media ($mdMin) {
+    border-bottom: 2px solid $black;
+    border-top: 2px solid $black;
+    margin: rem(50) 0;
+    padding: rem(40) 0;
+  }
+}
+
+.button {
+  @include groupBtn;
+}
+
+.buttonContainer {
+  .button {
+    align-items: center;
+    justify-content: center;
+    margin-bottom: rem(10);
+    white-space: nowrap;
+    width: rem(280);
+  }
+
+  @media ($mdMax) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.accountDetails,
+.subscription,
+.socialConnections,
+.discounts {
+  h2 {
+    color: $color-heading;
+    font-size: rem(40);
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    font-size: rem(20);
+    line-height: 1.3;
+    margin: rem(10) 0;
+    word-wrap: break-word;
+  }
+
+  @media ($mdMax) {
+    border-top: 2px solid $black;
+    margin: rem(50) 0;
+    padding: rem(40) 0 0 0;
+  }
+
+  @media ($smMin) {
+    padding-bottom: 0;
+  }
+}
+
+.twitterIcon,
+.googleIcon,
+.facebookIcon {
+  display: flex;
+  width: rem(18);
+
+  & > svg {
+    width: rem(22);
+  }
+}
+
+.googleIcon,
+.twitterIcon {
+  margin-right: rem(6);
+}
+
+.facebookIcon > svg {
+  width: rem(12);
+}
+
+.discountList {
+  margin-top: rem(10);
+
+  h3 {
+    font-size: rem(18);
+    font-weight: 700;
+  }
+}
+
+.discount {
+  margin-bottom: rem(20);
+
+  a {
+    text-decoration: underline;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.horizontalFormGroup {
+  @include horizontalForm;  
+}
+
+.formInput {
+  @include formInput;
+
+  &.inputInvalid {
+    @include inputInvalid;
+  }
+}
+
+.inputButton {
+  @include inputBtn;
+}
+
+.formError {
+  @include formErrorMsg;
+}

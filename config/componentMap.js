@@ -1,3 +1,4 @@
+import AccountPage from 'components/accounts/landingPage';
 import AccountNavigation from 'components/accounts/accountNavigation';
 import AudioElement from 'components/audio';
 import AuthorPage from 'components/authorPage';
@@ -67,6 +68,7 @@ import withLoader from 'components/hoc/withLoader';
  * Defines which React component to render for each received API component.
  */
 export const componentMap = {
+  account: AccountPage,
   'account-navigation': AccountNavigation,
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
