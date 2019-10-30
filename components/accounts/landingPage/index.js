@@ -99,7 +99,7 @@ const AccountLandingPage = ({
           <div className={styles.buttonContainer}>
             {! formState.isEditingEmail ? (
               <button
-                id="edit-email__button"
+                id="editEmailBtn"
                 className={styles.button}
                 type="button"
                 tabIndex="0"
@@ -117,7 +117,7 @@ const AccountLandingPage = ({
 
             {! formState.isEditingPassword ? (
               <button
-                id="edit-password__button"
+                id="editPasswordBtn"
                 className={styles.button}
                 type="button"
                 tabIndex="0"
@@ -144,7 +144,7 @@ const AccountLandingPage = ({
               </p>
               <div className={styles.buttonContainer}>
                 <a
-                  id="newsletter-prefs__button"
+                  id="newsletterPrefsBtn"
                   href="/account/newsletter-preferences"
                   className={styles.button}
                   role="button"
@@ -172,7 +172,7 @@ const AccountLandingPage = ({
 
           <div className={styles.buttonContainer}>
             <a
-              id="subscription-manager__button"
+              id="subscriptionManagerBtn"
               href="/accout/manage-subscription"
               className={styles.button}
               role="button"
@@ -180,7 +180,7 @@ const AccountLandingPage = ({
               {__('Manage your subscription', 'mittr')}
             </a>
             <a
-              id="order-history__button"
+              id="orderHistoryBtn"
               href="/account/order-history"
               className={styles.button}
               role="button"
@@ -188,7 +188,7 @@ const AccountLandingPage = ({
               {__('Review your order history', 'mittr')}
             </a>
             <a
-              id="purchase-subscription__button"
+              id="purchaseSubscriptionBtn"
               href="/account/purchase-gift"
               className={styles.button}
               role="button"
@@ -211,7 +211,7 @@ const AccountLandingPage = ({
 
           <div className={styles.buttonContainer}>
             <button
-              id="facebook-conntect__button"
+              id="facebookConnectBtn"
               className={styles.button}
               type="button"
               tabIndex="0"
@@ -222,7 +222,7 @@ const AccountLandingPage = ({
               {__('Connect Facebook', 'mittr')}
             </button>
             <button
-              id="twitter-connect__button"
+              id="twitterConnectBtn"
               className={styles.button}
               type="button"
               tabIndex="0"
@@ -233,7 +233,7 @@ const AccountLandingPage = ({
               {__('Connect Twitter', 'mittr')}
             </button>
             <button
-              id="google-connect__button"
+              id="googleConnectBtn"
               className={styles.button}
               type="button"
               tabIndex="0"
