@@ -13,6 +13,7 @@
 
 @mixin horizontalForm() {
   display: flex;
+  flex: 0 0 auto;
   margin: rem(10) 0;
 
   label {
@@ -27,6 +28,10 @@
 
   @media ($mdMax) {
     max-width: 80%;
+  }
+
+  @media ($smMax) {
+    max-width: 100%;
   }
 }
 
