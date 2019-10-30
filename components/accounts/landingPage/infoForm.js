@@ -49,7 +49,7 @@ const AccountInfoForm = ({
           <span
             className={styles.formError}
             aria-live="assertive"
-            id="email-error"
+            id={`${type}-error`}
           >
             {__(errorMessage, 'mittr')}
           </span>
