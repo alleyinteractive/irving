@@ -1,8 +1,8 @@
 .wrapper {
-  overflow: auto;
   font-family: $sans;
   margin: 0 auto;
   max-width: 100%;
+  overflow: auto;
 }
 
 .welcomeMessage {
