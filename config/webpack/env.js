@@ -19,8 +19,8 @@ module.exports = function getEnv() {
   // Only include whitelisted variables for client environments to avoid leaking
   // sensitive information.
   const whitelist = [
-    // check if the mandrill key needs to be whitelisted.
-    new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL'),
+    // @todo This needs to be handled server-side; stubbing out now to complete MIT-57.
+    new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL|MANDRILL_API_KEY'),
     new RegExp('^API_QUERY_PARAM'),
   ];
   return Object.keys(process.env)
