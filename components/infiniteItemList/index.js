@@ -125,7 +125,11 @@ const InfiniteItemList = ({
         aria-busy={isLoading}
       >
         {listInfo.items.map((item, index) => {
-          const imageIndexes = [0, 2, 3, 5, 9, 10, 13, 14, 16, 17];
+          const imageIndexes = [
+            0, 2, 3, 5, 9, 10, 13, 14, 16,
+            17, 20, 22, 23, 27, 30, 32, 38,
+            41, 44, 48, 51, 53, 58, 60, 62,
+          ];
           const showImage = imageIndexes.includes(index);
           return (
             <li
