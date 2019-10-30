@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
@@ -7,7 +6,6 @@ import FacebookIcon from 'assets/icons/facebook.svg';
 import GoogleIcon from 'assets/icons/google.svg';
 import parse from 'html-react-parser';
 import { __ } from '@wordpress/i18n';
-import classNames from 'classnames';
 
 import AccountInfoForm from './infoForm';
 import styles from './landingPage.css';
@@ -42,9 +40,9 @@ const AccountLandingPage = ({
   const generateAccessBanner = () => {
     switch (subscriptionType) {
       case 'all-access':
-        return 'You have unlimited access to technologyreview.com';
+        return __('You have unlimited access to technologyreview.com', 'mittr');
       default:
-        return 'You have limited access to technologyreview.com';
+        return __('You have limited access to technologyreview.com', 'mittr');
     }
   };
 
@@ -75,20 +73,27 @@ const AccountLandingPage = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.welcomeBanner}>
-        <span className={styles.welcomeMessage}>Welcome</span>
-        <h1 className={styles.greeting}>Hello, {truncatedName}!</h1>
+        <span className={styles.welcomeMessage}>{__('Welcome', 'mittr')}</span>
+        <h1 className={styles.greeting}>
+          {__('Hello', 'mittr')}, {truncatedName}!
+        </h1>
         <span className={styles.accessBanner}>
-          {generateAccessBanner()} <a href="/contact">Please contact us</a> if
-          you have any questions or requests.
+          {generateAccessBanner()}{' '}
+          <a href="/contact">{__('Please contact us', 'mittr')}</a>{' '}
+          {__('if you have any questions or requests.', 'mittr')}
         </span>
       </div>
 
       <div className={styles.accountControls}>
         <div className={styles.accountDetails}>
-          <h2>Account Details</h2>
+          <h2>{__('Account Details', 'mittr')}</h2>
           <p>
-            Your email address is <strong>{email}</strong>—we send all
-            newsletters and other email to that address.
+            {__('Your email address is', 'mittr')}{' '}
+            <strong>{email}</strong>
+            {__(
+              '—we send all newsletters and other emails to that address',
+              'mittr'
+            )}
           </p>
 
           <div className={styles.buttonContainer}>
@@ -130,8 +135,10 @@ const AccountLandingPage = ({
           {0 < newsletters.length && (
             <Fragment>
               <p>
-                We send you {parse(generateNewsletterString())}{' '}
-                {`newsletter${1 < newsletters.length ? 's' : ''}`} each week.
+                {__('We send you', 'mittr')}{' '}
+                {parse(generateNewsletterString())}{' '}
+                {`newsletter${1 < newsletters.length ? 's' : ''}`}{' '}
+                {__('each week.', 'mittr')}
               </p>
               <div className={styles.buttonContainer}>
                 <a
@@ -147,12 +154,16 @@ const AccountLandingPage = ({
         </div>
 
         <div className={styles.subscription}>
-          <h2>Subscription</h2>
+          <h2>{__('Subscription', 'mittr')}</h2>
           <p>
-            You are an{' '}
-            <strong>{subscriptionName} subscriber</strong>, account{' '}
-            <strong>#{accountNumber}</strong>. Your subscription
-            will automatically renew on{' '}
+            {__('You are an', 'mittr')}{' '}
+            <strong>
+              {subscriptionName}{' '}
+              {__('subscriber', 'mittr')}{' '}
+            </strong>,{' '}
+            {__('account', 'mittr')}{' '}
+            <strong>#{accountNumber}</strong>.{' '}
+            {__('Your subscription will automatically renew on', 'mittr')}{' '}
             <strong>{renewalDate}</strong>.
           </p>
 
@@ -184,12 +195,12 @@ const AccountLandingPage = ({
 
       <div className={styles.extraControls}>
         <div className={styles.socialConnections}>
-          <h2>Social login connections</h2>
+          <h2>{__('Social login connections', 'mittr')}</h2>
           <p>
-            Simplify signing in by connecting your social media accounts to this
-            site. (We will never post anything to your social media accounts on
-            your behalf without explicitly asking for your permission first, of
-            course.)
+            {__(`Simplify signing in by connecting your social media accounts 
+            to this site. (We will never post anything to your social media
+            accounts on your behalf without explicitly asking for your
+            permission first, of course.)`, 'mittr')}
           </p>
 
           <div className={styles.buttonContainer}>
@@ -228,10 +239,10 @@ const AccountLandingPage = ({
 
         {0 < discounts.length && (
           <div className={styles.discounts}>
-            <h2>Discounts and deals</h2>
+            <h2>{__('Discounts and deals', 'mittr')}</h2>
             <p>
-              These codes are subject to change. Please check here before
-              purchasing for the most up-to-date offer details.
+              {__(`These codes are subject to change. Please check here before
+              purchasing for the most up-to-date offer details.`, 'mittr')}
             </p>
             {0 < discounts.length && (
               <ul className={styles.discountList}>
