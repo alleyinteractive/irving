@@ -1,6 +1,5 @@
 import { call, put } from 'redux-saga/effects';
 import { actionUserEmailError, actionUserEmailSent } from 'actions/userActions';
-// import submitForm from 'services/submitForm';
 import sendEmail from 'services/mandrillService';
 import createDebug from 'services/createDebug';
 
