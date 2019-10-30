@@ -125,6 +125,8 @@ const InfiniteItemList = ({
         aria-busy={isLoading}
       >
         {listInfo.items.map((item, index) => {
+          // Check to see if we should show the image based on the index in the feed.
+          // @TODO: imageIndexes should go in a config some where once its dialed in
           const imageIndexes = [
             0, 2, 3, 5, 9, 10, 13, 14, 16,
             17, 20, 22, 23, 27, 30, 32, 38,
