@@ -1,7 +1,7 @@
 .wrapper {
   font-family: $sans;
-  max-width: rem(1200);
   margin: 0 auto;
+  max-width: rem(1200);
 }
 
 .welcomeBanner {
@@ -11,9 +11,9 @@
 }
 
 .welcomeMessage {
+  color: $color-heading;
   font-size: rem(40);
   font-weight: 600;
-  color: $color-heading;
 }
 
 .greeting {
@@ -55,56 +55,24 @@
 
 .accountControls {
   @media ($mdMin) {
-    border-top: 2px solid $black;
     border-bottom: 2px solid $black;
+    border-top: 2px solid $black;
     margin: rem(50) 0;
     padding: rem(40) 0;
   }
 }
 
 .button {
-  background: $white;
-  border: $border-thin;
-  color: $black;
-  display: inline-flex;
-  font-weight: 600;
-  line-height: 1.14;
-  padding: rem(10) rem(20);
-  width: rem(280);
-  text-align: center;
-
-  &:hover {
-    background-color: $black;
-    color: $white;
-
-    & path {
-      fill: $white;
-    }
-  }
-
-  &--dark {
-    background-color: $black;
-    border-color: $white;
-    color: $white;
-
-    &:hover {
-      background-color: $white;
-      color: $black;
-    }
-  }
+  @include groupBtn;
 }
 
 .buttonContainer {
   .button {
-    margin-bottom: rem(10);
-    white-space: nowrap;
     align-items: center;
     justify-content: center;
+    margin-bottom: rem(10);
+    white-space: nowrap;
     width: rem(280);
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
   }
 
   @media ($mdMax) {
@@ -120,8 +88,8 @@
   h2 {
     color: $color-heading;
     font-size: rem(40);
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 
   p {
@@ -184,22 +152,7 @@
 }
 
 .horizontalFormGroup {
-  display: flex;
-  margin: rem(10) 0;
-
-  label {
-    width: 100%;
-  }
-
-  input {
-    font-size: rem(16);
-    display: block;
-    width: 100%;
-  }
-
-  @media ($mdMax) {
-    max-width: 80%;
-  }
+  @include horizontalForm;  
 }
 
 .formInput {
@@ -211,17 +164,9 @@
 }
 
 .inputButton {
-  font-size: rem(16);
-  margin-left: rem(10);
-  max-width: rem(150);
-
-  @include btn;
-  @include blackBtn;
+  @include inputBtn;
 }
 
 .formError {
-  color: $red;
-  display: block;
-  margin-top: rem(10);
-  margin-left: rem(10);
+  @include formErrorMsg;
 }
