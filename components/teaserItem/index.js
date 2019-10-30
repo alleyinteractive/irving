@@ -21,6 +21,7 @@ const TeaserItem = ({
   itemPosition,
   permalink,
   postDate,
+  showImage,
   teaseCTA,
   theme,
   themeName,
@@ -64,7 +65,7 @@ const TeaserItem = ({
       })}
     >
       <div className={theme.text}>
-        {'search' !== themeName && <Header />}
+        {('search' !== themeName && 'infeed' !== themeName) && <Header />}
         <Meta
           theme={theme}
           topicLink={topicLink}
@@ -73,15 +74,15 @@ const TeaserItem = ({
           color={color}
         />
         {/* Place the header beneath the meta info on the search template */}
-        {'search' === themeName && <Header />}
+        {('search' === themeName || 'infeed' === themeName) && <Header />}
       </div>
       {'aside' !== themeName && <p className={theme.excerpt}>{excerpt}</p>}
-      {'' !== teaseCTA && (
+      {('' !== teaseCTA && 'infeed' !== themeName) && (
         <Link to={permalink} className={theme.callToAction}>
           {teaseCTA}
         </Link>
       )}
-      {image && (
+      {(image && showImage) && (
         <Link to={permalink} tabIndex="-1" className={theme.image}>
           {image}
         </Link>
@@ -109,6 +110,7 @@ TeaserItem.propTypes = {
   itemPosition: PropTypes.string,
   permalink: PropTypes.string.isRequired,
   postDate: PropTypes.string,
+  showImage: PropTypes.bool,
   teaseCTA: PropTypes.string,
   theme: PropTypes.shape({
     callToAction: PropTypes.string,
@@ -134,6 +136,7 @@ TeaserItem.propTypes = {
 TeaserItem.defaultProps = {
   themeName: '',
   color: '',
+  showImage: true,
   teaseCTA: '',
   topic: '',
   postDate: '',
