@@ -1,13 +1,8 @@
 .wrapper {
+  overflow: auto;
   font-family: $sans;
   margin: 0 auto;
-  max-width: rem(1200);
-}
-
-.welcomeBanner {
-  @media ($smMax) {
-    margin: 0 rem(20);
-  }
+  max-width: 100%;
 }
 
 .welcomeMessage {
@@ -26,6 +21,10 @@
 
   & > a {
     border-bottom: 2px solid $black;
+  }
+
+  @media ($smMax) {
+    font-size: rem(36);
   }
 }
 
@@ -62,6 +61,11 @@
   }
 }
 
+.accountControls,
+.extraControls {
+  align-items: flex-start;
+}
+
 .button {
   @include groupBtn;
 }
@@ -85,6 +89,9 @@
 .subscription,
 .socialConnections,
 .discounts {
+  display: inline-flex;
+  flex-direction: column;
+
   h2 {
     color: $color-heading;
     font-size: rem(40);
