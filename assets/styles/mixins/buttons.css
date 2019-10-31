@@ -31,3 +31,44 @@
   padding: rem(10) rem(20);
   text-decoration: underline;
 }
+
+@mixin groupBtn() {
+  background: $white;
+  border: $border-thin;
+  color: $black;
+  display: inline-flex;
+  font-weight: 600;
+  line-height: 1.14;
+  padding: rem(10) rem(20);
+  width: rem(280);
+  text-align: center;
+
+  &:hover {
+    background-color: $black;
+    color: $white;
+
+    & path {
+      fill: $white;
+    }
+  }
+
+  &--dark {
+    background-color: $black;
+    border-color: $white;
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
+  }
+}
+
+@mixin inputBtn() {
+  font-size: rem(16);
+  margin-left: rem(10);
+  max-width: rem(150);
+
+  @include btn;
+  @include blackBtn;
+}

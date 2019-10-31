@@ -124,18 +124,28 @@ const InfiniteItemList = ({
         aria-labelledby="term-archive-content-list__topic"
         aria-busy={isLoading}
       >
-        {listInfo.items.map((item, index) => (
-          <li
-            key={kebabcase(item.config.title)}
-            className={styles.item}
-            tabIndex="0"
-            role="article"
-            aria-setsize={listInfo.items.length}
-            aria-posinset={index + 1}
-          >
-            {toReactElement(item)}
-          </li>
-        ))}
+        {listInfo.items.map((item, index) => {
+          // Check to see if we should show the image based on the index in the feed.
+          // @TODO: imageIndexes should go in a config some where once its dialed in
+          const imageIndexes = [
+            0, 2, 3, 5, 9, 10, 13, 14, 16,
+            17, 20, 22, 23, 27, 30, 32, 38,
+            41, 44, 48, 51, 53, 58, 60, 62,
+          ];
+          const showImage = imageIndexes.includes(index);
+          return (
+            <li
+              key={kebabcase(item.config.title)}
+              className={styles.item}
+              tabIndex="0"
+              role="article"
+              aria-setsize={listInfo.items.length}
+              aria-posinset={index + 1}
+            >
+              {toReactElement(item, '', { showImage })}
+            </li>
+          );
+        })}
       </ul>
 
       {true === listInfo.shouldDisplayLoadMore && (

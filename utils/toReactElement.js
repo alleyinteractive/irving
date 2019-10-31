@@ -8,7 +8,11 @@ import getReactComponent from 'config/componentMap';
  * @param {string} keyPrefix
  * @return {object} - React Element
  */
-export default function toReactElement(apiComponent, keyPrefix = '') {
+export default function toReactElement(
+  apiComponent,
+  keyPrefix = '',
+  additionalProps = {},
+) {
   const {
     name,
     config,
@@ -19,6 +23,7 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     ...config,
     componentName: name,
     key: `${keyPrefix}_ ${name}`,
+    ...additionalProps,
   };
 
   const childElements = children.map((child, index) => (

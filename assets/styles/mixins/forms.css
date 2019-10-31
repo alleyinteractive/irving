@@ -10,3 +10,34 @@
 @mixin inputInvalid() {
   border: 1px solid $red;
 }
+
+@mixin horizontalForm() {
+  display: flex;
+  flex: 0 0 auto;
+  margin: rem(10) 0;
+
+  label {
+    width: 100%;
+  }
+
+  input {
+    font-size: rem(16);
+    display: block;
+    width: 100%;
+  }
+
+  @media ($mdMax) {
+    max-width: 80%;
+  }
+
+  @media ($smMax) {
+    max-width: 100%;
+  }
+}
+
+@mixin formErrorMsg {
+  color: $red;
+  display: block;
+  margin-top: rem(10);
+  margin-left: rem(10);
+}
