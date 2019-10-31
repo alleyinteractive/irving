@@ -14,7 +14,7 @@ const getRouteKey = createSelector(
     const key = redirectTo ||
       pathname + (search && 1 < search.length ? search : '');
     return replace(/\./g, '%2E', key);
-  },
+  }
 );
 
 export default getRouteKey;

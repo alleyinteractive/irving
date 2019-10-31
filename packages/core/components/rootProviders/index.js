@@ -29,7 +29,7 @@ RootProviders.propTypes = {
        * Component configuration (mapped to props)
        */
       config: PropTypes.object.isRequired,
-    }).isRequired,
+    }).isRequired
   ).isRequired,
 
   /**
