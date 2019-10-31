@@ -15,7 +15,7 @@ const Container = (props) => {
     <div
       className={classNames(
         styles[size],
-        className,
+        className
       )}
     >
       {children}
