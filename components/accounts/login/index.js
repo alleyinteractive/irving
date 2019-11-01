@@ -28,7 +28,7 @@ const Login = ({ submitLogin }) => {
   };
 
   const validateEmail = (email) => {
-    const validEmailTest = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validEmailTest = /^[^\s@]+@[^\s@]+\.[^\s@][^\s@]+$/.test(email);
     setIsEmailValid(validEmailTest);
   };
 
