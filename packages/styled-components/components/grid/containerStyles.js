@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { rem } from 'styles/utils';
+import { rem } from '../../utils';
 import {
   display,
   columnsEqual,
