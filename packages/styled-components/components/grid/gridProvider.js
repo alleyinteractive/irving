@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
-import { layout } from 'styles/variables';
+import { layout } from '../../variables';
 
 export const GridContext = createContext({
   gridGap: layout.gridGap,
