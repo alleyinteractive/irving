@@ -1,15 +1,17 @@
 import styled, { css } from 'styled-components';
-import { breakpoints } from '../../variables';
+import { rem } from 'styles/utils';
+import breakpoints from 'styles/variables/breakpoints';
 import {
   display,
   columnsEqual,
   columnsCustom,
   rowsEqual,
   rowsCustom,
-} from '../../utils/cssGrid';
+} from 'styles/utils/cssGrid';
 
 const createGridStyles = (columns, rows, gap) => css`
   ${display}
+  padding: ${(props) => rem(props.padding)};
   ${'number' === typeof columns ?
     columnsEqual(columns, gap) :
     columnsCustom(columns, gap)}
@@ -38,21 +40,29 @@ const StyledContainer = styled.div`
 
   /* Create grid styles */
   ${(props) => {
-    const { columns, rows, gap } = props;
-    return createGridStyles(columns, rows, gap);
+    const {
+      gridColumns,
+      gridRows,
+      gridGap,
+    } = props;
+    return createGridStyles(
+      gridColumns,
+      gridRows,
+      gridGap
+    );
   }}
 
   /* Create responsive styles */
   ${(props) => {
     const {
       responsiveStyles,
-      gap,
+      gridGap,
     } = props;
 
     if (responsiveStyles.length && responsiveStyles) {
       return createBreakpointStyles(
         responsiveStyles,
-        gap
+        gridGap
       );
     }
 
