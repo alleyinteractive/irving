@@ -1,36 +1,22 @@
-// @todo this will be updated when the user state is more flushed out.
-/* eslint-disable no-unused-vars */
 import { createAction } from '.';
-import {
-  REQUEST_SEND_EMAIL,
-  USER_EMAIL_SENT,
-  USER_EMAIL_FAILED,
-} from './types';
+import { INITIATE_USER_LOGIN, RECEIVE_USER_LOGIN } from './types';
 
 /**
- * Create a Redux action that represents a browser state change.
+ * Create a Redux action that represents browser state change when user submits
+ * email to login.
  *
- * @param {string} action   The browser action (push, pop, replace, etc..)
- * @param {string} payload  The email address of the form.
- *
- * @returns {{type, payload}} - Redux action
+ * @param {*} email The email of the user requesting a login.
+ * @returns {{type, payload}} The Redux action.
  */
-export function actionRequestSendEmail(email) {
-  return createAction(REQUEST_SEND_EMAIL, { email });
+export function actionInitiateUserLogin(email) {
+  return createAction(INITIATE_USER_LOGIN, { email });
 }
 
 /**
- * Create a Redux action that represents a browser state change.
+ * Create Redux action that represents browser state change when user submits password to login.
  *
- * @param {string} action   The browser action (push, pop, replace, etc..)
- * @param {string} payload  The email address of the form.
- *
- * @returns {{type, payload}} - Redux action
+ * @returns {{type, payload}} The redux action.
  */
-export function actionUserEmailError(email, err) {
-  return createAction(USER_EMAIL_FAILED);
-}
-
-export function actionUserEmailSent(email) {
-  return createAction(USER_EMAIL_SENT);
+export function actionReceiveUserLogin() {
+  return createAction(RECEIVE_USER_LOGIN);
 }

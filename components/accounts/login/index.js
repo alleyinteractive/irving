@@ -3,13 +3,13 @@ import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { actionRequestSendEmail } from 'actions/userActions';
+import { actionInitiateUserLogin } from 'actions/userActions';
 import PropTypes from 'prop-types';
 
 // Styles
 import styles from './login.css';
 
-const Login = ({ submitSignin }) => {
+const Login = ({ submitLogin }) => {
   // Set state variable userEmailInput which we use for the form input value.
   const [userEmailInput, setUserEmailInput] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -20,7 +20,7 @@ const Login = ({ submitSignin }) => {
     if (isEmailValid && '' !== userEmailInput) {
       // This is not the action we really want to take on submit sign on, it is
       // only here to demo the functionality of the email service.
-      submitSignin(userEmailInput);
+      submitLogin(userEmailInput);
     } else {
       // Email must be invalid it is empty.
       setIsEmailValid(false);
@@ -127,11 +127,11 @@ const Login = ({ submitSignin }) => {
 };
 
 Login.propTypes = {
-  submitSignin: PropTypes.func.isRequired,
+  submitLogin: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  submitSignin: (email) => dispatch(actionRequestSendEmail(email)),
+  submitLogin: (email) => dispatch(actionInitiateUserLogin(email)),
 });
 const withRedux = connect(
   undefined,

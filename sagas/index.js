@@ -3,14 +3,14 @@ import {
   LOCATION_CHANGE,
   REQUEST_SUBMIT,
   REQUEST_COMPONENT_DATA,
-  REQUEST_SEND_EMAIL,
+  INITIATE_USER_LOGIN,
 } from 'actions/types';
 import resolveComponents from './resolveComponents';
 import waitToScroll from './waitToScroll';
 import watchRequestSubmit from './formSaga';
 import onLocationChange from './onLocationChange';
 import watchComponentData from './componentDataSaga';
-import handleEmail from './handleEmail';
+import loginFlow from './userSaga';
 
 /**
  * Combine all sagas, and run them continuously in parallel.
@@ -22,6 +22,6 @@ export default function* rootSaga() {
     takeLatest(REQUEST_SUBMIT, watchRequestSubmit),
     takeEvery(LOCATION_CHANGE, onLocationChange),
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
-    takeLatest(REQUEST_SEND_EMAIL, handleEmail),
+    takeLatest(INITIATE_USER_LOGIN, loginFlow),
   ]);
 }
