@@ -4,6 +4,7 @@ const {
   appRoot,
   irvingRoot,
 } = require('../paths');
+const { maybeResolveUserModule } = require('../../utils/userModule');
 
 const include = (filepath) => {
   const matches = (
@@ -36,6 +37,7 @@ const include = (filepath) => {
 module.exports = function getRules(context) {
   const isProd = context.includes('production');
   const isServer = context.includes('server');
+
   return [
     {
       enforce: 'pre',
@@ -45,7 +47,7 @@ module.exports = function getRules(context) {
         {
           loader: 'eslint-loader',
           options: {
-            configFile: path.join(irvingRoot, '.eslintrc.js'),
+            configFile: maybeResolveUserModule('.eslintrc.js'),
           },
         },
       ],
