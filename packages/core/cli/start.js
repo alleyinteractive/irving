@@ -28,6 +28,7 @@ app.get('/bust-entire-cache', bustCache);
 app.purge('/*', purgePageCache);
 
 // Set view engine.
+app.set('views', '/');
 app.set('view engine', 'ejs');
 
 // Run all customize server functions.

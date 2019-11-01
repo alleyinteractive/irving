@@ -10,7 +10,7 @@ const getRoots = createSelector(
   [
     get('components.defaults'),
   ],
-  (defaults) => defaults.map((component) => component.name),
+  (defaults) => defaults.map((component) => component.name)
 );
 
 export default getRoots;
