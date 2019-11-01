@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
-import { breakpoints } from 'styles/variables';
+import { breakpoints } from '../../variables';
 import {
   columnSpan,
   rowSpan,
-} from 'styles/utils/cssGrid';
+} from '../../utils/cssGrid';
 
 const createBreakpointStyles = (responsiveStyles, gridColumns) => (
   responsiveStyles.map((style) => (css`

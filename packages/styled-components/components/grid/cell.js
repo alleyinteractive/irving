@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { breakpointNames } from 'styles/variables/breakpoints';
+import { breakpointNames } from '../../variables';
 import { GridContext } from './gridProvider';
 import StyledCell from './cellStyles';
 
