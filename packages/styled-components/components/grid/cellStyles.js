@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
-import { breakpoints } from '../../variables';
+import { breakpoints } from 'styles/variables';
 import {
   columnSpan,
   rowSpan,
-} from '../../utils/cssGrid';
+} from 'styles/utils/cssGrid';
 
 const createBreakpointStyles = (responsiveStyles, gridColumns) => (
   responsiveStyles.map((style) => (css`
@@ -15,12 +15,17 @@ const createBreakpointStyles = (responsiveStyles, gridColumns) => (
 );
 
 const StyledCell = styled.div`
-  ${(props) => (
-    props.columns ?
-      columnSpan(props.columns, props.gridColumns, props.gridGap) : ''
-  )}
+  ${(props) => {
+    const {
+      gridColumns,
+      columns,
+      gridGap,
+    } = props;
 
-  ${(props) => (props.rows ? rowSpan(props.rows) : '')};
+    return columns ? columnSpan(columns, gridColumns, gridGap) : '';
+  }}
+
+  ${({ rows }) => (rows ? rowSpan(rows) : '')};
 
   ${(props) => {
     const { responsiveStyles, gridColumns, gridGap } = props;

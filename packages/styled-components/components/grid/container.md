@@ -30,21 +30,21 @@ const containerStyles = {
 };
 
 <GridContainer
-	columns={8}
-	rows={4}
-	gap={40}
+	gridColumns={8}
+	gridRows={4}
+	gridGap={40}
 	responsiveStyles={[
 		{
 			breakpoint: 'lgMin',
-			columns: 10,
-			rows: 3,
+			gridColumns: 10,
+			gridRows: 3,
 		}
 	]}
 	style={containerStyles}
 >
 	<GridCell
-		columns={[1, 4]}
-		rows={[1, 2]}
+		gridColumns={[1, 4]}
+		gridRows={[1, 2]}
 		style={cellStyles}
 	>
 		Grid cell 1
@@ -54,7 +54,7 @@ const containerStyles = {
 	<GridCell style={cellStyles}>Grid cell 4</GridCell>
 	<GridCell
 		columns={[7, 9]}
-		rows={[1, 4]}
+		gridRows={[1, 4]}
 		style={cellStyles}
 	>
 		Grid cell 5
