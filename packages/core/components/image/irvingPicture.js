@@ -48,4 +48,3 @@ IrvingPicture.propTypes = {
 const wrapWithStyles = withStyles(styles);
 
 export default wrapWithStyles(IrvingPicture);
-
