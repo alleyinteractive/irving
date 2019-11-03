@@ -8,15 +8,17 @@ export default {
    * @returns {{}}
    */
   async getAccount(email) {
+    // @todo this needs to be dynamically generated based on .env settings;
+    // stubbing out development endpoint for now.
     const endpoint = 'http://localhost:5000';
-    // const authorization = 'test';
+    const authorization = 'test';
 
     try {
       const response = await fetch(`${endpoint}/api/user/email/${email}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'test',
+          Authorization: authorization,
         },
         credentials: 'include',
       });
