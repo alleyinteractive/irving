@@ -27,6 +27,10 @@ const GridProvider = (props) => {
   );
 };
 
+GridProvider.defaultProps = {
+  gridRows: null,
+};
+
 GridProvider.propTypes = {
   children: PropTypes.node.isRequired,
   /**
@@ -60,7 +64,7 @@ GridProvider.propTypes = {
   gridRows: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
-  ]).isRequired,
+  ]),
 };
 
 export default GridProvider;
