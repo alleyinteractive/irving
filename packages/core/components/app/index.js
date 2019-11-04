@@ -9,13 +9,12 @@ import favicon from 'assets/images/favicon.ico';
 import RootProviders from 'components/rootProviders';
 import ConnectedRoot from 'components/connectedRoot';
 import ErrorBoundary from 'components/errorBoundary';
-import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
 import getProviders from 'selectors/getProviders';
 import getComponent from 'config/componentMap';
 import styles from './app.css';
 
-const UserErrorMesage = getComponent('error-message');
+const ErrorMessage = getComponent('error-message');
 const AppContentComponent = getComponent('app');
 
 const App = (props) => {
@@ -38,9 +37,7 @@ const App = (props) => {
         <link rel="shortcut icon" href={favicon} />
       </Helmet>
       {error ? (
-        <>
-          {UserErrorMesage ? <UserErrorMesage /> : <ErrorMessage />}
-        </>
+        <ErrorMessage />
       ) : (
         <div className={styles.wrapper}>
           <a

@@ -10,7 +10,6 @@ import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
-import ErrorMessage from 'components/errorMessage';
 import defaultState from 'reducers/defaultState';
 import getEnv from 'config/webpack/env';
 import resolveComponents from 'sagas/resolveComponents';
@@ -19,7 +18,7 @@ import addTrailingSlash from 'utils/addTrailingSlash';
 import getLogService from 'services/logService';
 import getService from 'services/monitorService';
 import App from 'components/app';
-import userConfig from '@irvingjs/irving.config';
+import getComponent from 'config/componentMap';
 import getTemplateVars from './getTemplateVars';
 
 const monitor = getService();
@@ -137,8 +136,7 @@ export default function serverRenderer(options) {
 
       // Render a error page.
       const cssBuilder = new CriticalCssBuilder();
-      const ErrorMessageComponent = userConfig.componentMap['error-message'] ||
-        ErrorMessage;
+      const ErrorMessageComponent = getComponent('error-message');
       const ErrorMessageWrapper = () => (
         <StyleContext.Provider value={cssBuilder.addCss}>
           <ErrorMessageComponent />

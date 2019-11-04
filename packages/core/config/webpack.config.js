@@ -1,6 +1,6 @@
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
-const { appRoot } = require('./paths');
+const { buildContext } = require('./paths');
 const getConfigField = require('../utils/getConfigField');
 
 module.exports = (env, argv) => {
@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
   const client = getConfigService(mode, 'client');
   const multiConfig = [
     {
-      context: appRoot,
+      context: buildContext,
       name: 'client',
       mode,
       resolve: {
@@ -32,7 +32,7 @@ module.exports = (env, argv) => {
       },
     },
     {
-      context: appRoot,
+      context: buildContext,
       name: 'server',
       mode,
       devtool: server.getDevTool(),

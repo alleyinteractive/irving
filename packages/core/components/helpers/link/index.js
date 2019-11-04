@@ -22,7 +22,7 @@ const Link = (props) => {
   return (
     <a
       {...omit(['blank', 'to'], props)}
-      href={to}
+      href={relativeUrl || to}
       onClick={onClick || defaultOnClick}
       target={blank ? '_blank' : null}
       rel={blank ? 'noopener' : null}
