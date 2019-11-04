@@ -1,45 +1,63 @@
-import React, { createContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { breakpointNames } from '../../variables/breakpoints';
 import { layout } from '../../variables';
+import { GridContext } from './gridProvider';
 import StyledContainer from './containerStyles';
-
-export const GridContext = createContext({});
 
 const GridContainer = (props) => {
   const {
+    gridColumns: contextColumns,
+    gridRows: contextRows,
+    gridGap: contextGap,
+  } = useContext(GridContext);
+  const {
     children,
     className,
-    columns,
-    gap,
+    gridColumns,
+    gridRows,
+    gridGap,
+    padding,
+    responsiveStyles,
+    maxWidth,
     tag,
   } = props;
+  const useProps = (gridColumns && gridGap);
 
   return (
     <StyledContainer
       className={className}
       as={tag}
-      {...props}
+      gridColumns={gridColumns || contextColumns}
+      gridRows={gridRows || contextRows}
+      gridGap={gridGap || contextGap}
+      padding={padding}
+      responsiveStyles={responsiveStyles}
+      maxWidth={maxWidth}
     >
-      <GridContext.Provider
-        value={{
-          gridColumns: columns,
-          gridGap: gap,
-        }}
-      >
-        {children}
-      </GridContext.Provider>
+      {useProps && (
+        <GridContext.Provider
+          value={{
+            gridColumns,
+            gridRows,
+            gridGap,
+          }}
+        >
+          {children}
+        </GridContext.Provider>
+      )}
     </StyledContainer>
   );
 };
 
 GridContainer.defaultProps = {
-  columns: layout.gridColumns,
+  gridColumns: layout.gridColumns,
   className: '',
-  gap: layout.gridGap,
+  gridGap: layout.gridGap,
   maxWidth: 'xlVal',
+  padding: 0,
   responsiveStyles: [],
-  rows: null,
+  gridRows: null,
   tag: 'div',
 };
 
@@ -59,7 +77,10 @@ GridContainer.propTypes = {
    * Outputs value for `grid-column`.
    * See https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column
    */
-  columns: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  gridColumns: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The value to use for CSS `grid-gap`. Accepts the following types:
    * - A single number: outputs the a single value, used for both column-gap
@@ -68,7 +89,7 @@ GridContainer.propTypes = {
    * one for row-gap. Uses the rem() function.
    * See https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap
    */
-  gap: PropTypes.oneOfType([
+  gridGap: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.arrayOf(PropTypes.number),
   ]),
@@ -78,14 +99,18 @@ GridContainer.propTypes = {
    */
   maxWidth: PropTypes.oneOf(breakpointNames),
   /**
+   * Outer padding for the grid container.
+   */
+  padding: PropTypes.number,
+  /**
    * An array of objects, which define a breakpoint and the CSS grid styles that
    * should apply at that breakpoint.
    */
   responsiveStyles: PropTypes.arrayOf(PropTypes.shape({
     breakpoint: PropTypes.oneOf(breakpointNames),
-    columns: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    gap: PropTypes.oneOfType([
+    gridColumns: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    gridRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    gridGap: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.arrayOf(PropTypes.number),
     ]),
@@ -96,7 +121,7 @@ GridContainer.propTypes = {
    * Outputs value for `grid-row`.
    * See https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row
    */
-  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  gridRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The type of HTML element to use for the grid container.
    */
