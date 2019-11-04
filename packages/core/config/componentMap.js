@@ -1,4 +1,5 @@
 import DefaultAppContent from 'components/app/defaultAppContent';
+import DefaultErrorMessage from 'components/defaultErrorMessage';
 import NotConfigured from 'components/notConfigured';
 import Body from 'components/body';
 import Head from 'components/head';
@@ -14,6 +15,7 @@ const defaultComponents = {
     app: DefaultAppContent,
     body: withLoader(Body),
     embed: RawHTML,
+    'error-message': DefaultErrorMessage,
     head: Head,
     header: Placeholder,
     html: RawHTML,
