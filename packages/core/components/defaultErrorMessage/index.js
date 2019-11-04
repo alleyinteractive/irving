@@ -4,7 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 
 import styles from './errorMessage.css';
 
-const ErrorMessage = () => (
+const DefaultErrorMessage = () => (
   <div className={styles.wrapper}>
     <Heading
       tag="h1"
@@ -19,4 +19,4 @@ const ErrorMessage = () => (
 
 const wrapWithStyles = withStyles(styles);
 
-export default wrapWithStyles(ErrorMessage);
+export default wrapWithStyles(DefaultErrorMessage);

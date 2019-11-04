@@ -1,10 +1,22 @@
 const path = require('path');
 const fs = require('fs');
 
-const appRoot = fs.realpathSync(process.cwd());
+const {
+  PROXY_URL,
+  ROOT_URL,
+  NODE_ENV,
+  APP_ROOT,
+  BUILD_CONTEXT,
+} = process.env;
+
+const appRoot = fs.realpathSync(APP_ROOT || process.cwd());
 const irvingRoot = fs.realpathSync(
   path.join(__dirname, '../')
 );
+
+// Used for webpack `context` config value. Useful to configure if app is build in a
+// different location from where it is run.
+const buildContext = fs.realpathSync(BUILD_CONTEXT || process.cwd());
 
 /**
  * Ensure irving paths are consistent regardless of the processes' current
@@ -25,15 +37,11 @@ const resolveIrvingDir = (relativePath) => (
  */
 const resolveAppDir = (relativePath) => path.resolve(appRoot, relativePath);
 
-const {
-  PROXY_URL,
-  ROOT_URL,
-  NODE_ENV,
-} = process.env;
 
 module.exports = {
   appRoot,
   irvingRoot,
+  buildContext,
   clientRoot: resolveIrvingDir('client'),
   serverRoot: resolveIrvingDir('server/serverRenderer.js'),
   clientBuild: resolveAppDir('build/client'),
