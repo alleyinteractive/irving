@@ -12,7 +12,7 @@ const irvingRoot = fs.realpathSync(
   path.join(__dirname, '../')
 );
 
-// Used for webpack `context` config value. Useful to configure if app is build in a
+// Used for webpack `context` config value. Useful to configure if app is built in a
 // different location from where it is run.
 const buildContext = fs.realpathSync(BUILD_CONTEXT || process.cwd());
 
@@ -34,7 +34,6 @@ const resolveIrvingDir = (relativePath) => (
  * @returns {string} - absolute path
  */
 const resolveAppDir = (relativePath) => path.resolve(appRoot, relativePath);
-
 
 module.exports = {
   appRoot,
