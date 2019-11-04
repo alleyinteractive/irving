@@ -5,9 +5,12 @@ import userConfig from '@irvingjs/irving.config';
  * @param {string} url - URL to which trailing slash should be added.
  * @returns {string} - URL with trailing slash.
  */
-export default function addTrailingSlash(url) {
+export default function addTrailingSlash(
+  url,
+  replace = userConfig.forceTrailingSlashes
+) {
   // Add a trailing slash, if relevant env var is configured.
-  if (userConfig.forceTrailingSlashes) {
+  if (replace) {
     const splitUrl = url.split('/');
 
     return (
