@@ -7,14 +7,14 @@ const {
   APP_ROOT,
   BUILD_CONTEXT,
 } = process.env;
-const appRoot = fs.realpathSync(APP_ROOT || process.cwd());
+const appRoot = APP_ROOT || fs.realpathSync(process.cwd());
 const irvingRoot = fs.realpathSync(
   path.join(__dirname, '../')
 );
 
 // Used for webpack `context` config value. Useful to configure if app is built in a
 // different location from where it is run.
-const buildContext = fs.realpathSync(BUILD_CONTEXT || process.cwd());
+const buildContext = BUILD_CONTEXT || fs.realpathSync(process.cwd());
 
 /**
  * Ensure irving paths are consistent regardless of the processes' current
