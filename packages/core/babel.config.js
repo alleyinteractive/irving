@@ -22,7 +22,7 @@ module.exports = (api) => {
         'module-resolver',
         {
           root: [
-            appRoot,
+            buildContext,
             ...packageRoots,
           ],
           cwd: 'packagejson',
