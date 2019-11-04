@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ErrorMessage from 'components/errorMessage';
+import getComponent from 'config/componentMap';
+
+const ErrorMessage = getComponent('error-message');
 
 class ErrorBoundary extends React.Component {
   state = {
