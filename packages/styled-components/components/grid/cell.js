@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { GridContext } from './container';
-import { breakpoints } from '../../variables';
+import { breakpointNames } from '../../variables';
+import { GridContext } from './gridProvider';
 import StyledCell from './cellStyles';
-
-const { breakpointNames } = breakpoints;
 
 const GridCell = (props) => {
   const {
@@ -13,7 +11,10 @@ const GridCell = (props) => {
   } = useContext(GridContext);
   const {
     children,
+    columns,
     className,
+    responsiveStyles,
+    rows,
     tag,
   } = props;
 
@@ -21,9 +22,11 @@ const GridCell = (props) => {
     <StyledCell
       className={className}
       as={tag}
+      columns={columns}
       gridColumns={gridColumns}
       gridGap={gridGap}
-      {...props}
+      responsiveStyles={responsiveStyles}
+      rows={rows}
     >
       {children}
     </StyledCell>

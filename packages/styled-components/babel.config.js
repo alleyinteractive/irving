@@ -8,6 +8,8 @@ module.exports = {
         root: [path.resolve(__dirname)],
         alias: {
           server: './server',
+          variables: './variables',
+          components: './components',
         },
       },
     ],

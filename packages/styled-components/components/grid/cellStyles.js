@@ -15,12 +15,17 @@ const createBreakpointStyles = (responsiveStyles, gridColumns) => (
 );
 
 const StyledCell = styled.div`
-  ${(props) => (
-    props.columns ?
-      columnSpan(props.columns, props.gridColumns, props.gridGap) : ''
-  )}
+  ${(props) => {
+    const {
+      gridColumns,
+      columns,
+      gridGap,
+    } = props;
 
-  ${(props) => (props.rows ? rowSpan(props.rows) : '')};
+    return columns ? columnSpan(columns, gridColumns, gridGap) : '';
+  }}
+
+  ${({ rows }) => (rows ? rowSpan(rows) : '')};
 
   ${(props) => {
     const { responsiveStyles, gridColumns, gridGap } = props;
