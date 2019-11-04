@@ -23,6 +23,7 @@ module.exports = (api) => {
         {
           root: [
             buildContext,
+            appRoot,
             ...packageRoots,
           ],
           cwd: 'packagejson',
