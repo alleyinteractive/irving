@@ -7,7 +7,7 @@ import Link from '../helpers/link';
 import inFeedStyles from './inFeed.css';
 
 const Popular = ({ popular, theme }) => (
-  <div className={theme.popular}>
+  <div className={theme.wrapper}>
     <h3 className={theme.title}>Popular</h3>
     <ul className={theme.stories}>
       {popular.map((item) => (
@@ -29,7 +29,13 @@ const Popular = ({ popular, theme }) => (
 
 Popular.propTypes = {
   popular: PropTypes.array.isRequired,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.shape({
+    wrapper: PropTypes.string,
+    title: PropTypes.string,
+    stories: PropTypes.string,
+    story: PropTypes.string,
+    byline: PropTypes.string,
+  }).isRequired,
 };
 
 export default withThemes('popular', {
