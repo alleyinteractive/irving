@@ -18,8 +18,6 @@ module.exports = function getEnv() {
 
   // Only include whitelisted variables for client environments to avoid leaking
   // sensitive information.
-  // @todo research the best implementation for being able to access nexus secrets
-  // on the client without exposing them to the public
   const whitelist = [
     new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL'),
     new RegExp('^API_QUERY_PARAM'),
