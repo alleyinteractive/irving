@@ -15,6 +15,8 @@ module.exports = (api) => {
   // Cache computed config forever.
   api.cache(true);
 
+  console.log(buildContext, appRoot);
+
   // Base app babel config.
   const appConfig = {
     plugins: [
