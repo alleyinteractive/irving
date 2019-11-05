@@ -32,7 +32,7 @@ export default {
   async getAuth() {
     // @todo this needs to be dynamically generated based on .env settings.
     const endpoint = 'http://localhost:5000';
-    const response = await fetch('https://mittr.alley.test/wp-json/irving/v1/data/accounts');
+    const response = await fetch('https://mittr.alley.test/wp-json/irving/v1/data/request_auth');
     const {
       hash,
       header,
