@@ -22,11 +22,12 @@
 
   &:hover {
     background-color: transparent;
-    color: #000;;
+    color: #000;
   }
 }
 
 @mixin btnLink() {
+  font-family: $sans;
   padding: rem(10) rem(20);
   text-decoration: underline;
 }

@@ -18,6 +18,7 @@
 }
 
 .formWrap {
+  font-family: $sans;
   margin-bottom: rem(50);
 }
 
@@ -84,12 +85,15 @@
   }
 }
 
-.alumWrap {
-  h3 {
-    font-size: rem(24);
-    font-weight: 400;
-    margin-bottom: rem(10);
-  }
+.alumTitle {
+  font-family: $sans;
+  font-size: rem(24);
+  font-weight: 500;
+  margin-bottom: rem(10);
+}
+
+.leadIn {
+  font-weight: 600;
 }
 
 .connectBtn {

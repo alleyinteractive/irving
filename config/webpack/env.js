@@ -22,11 +22,13 @@ module.exports = function getEnv() {
     new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL'),
     new RegExp('^API_QUERY_PARAM'),
   ];
-  return Object
-    .keys(process.env)
+  return Object.keys(process.env)
     .filter((key) => whitelist.some((regex) => regex.test(key)))
-    .reduce((acc, key) => ({
-      ...acc,
-      [key]: process.env[key],
-    }), {});
+    .reduce(
+      (acc, key) => ({
+        ...acc,
+        [key]: process.env[key],
+      }),
+      {}
+    );
 };
