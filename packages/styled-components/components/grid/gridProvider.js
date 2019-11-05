@@ -18,9 +18,11 @@ const GridProvider = (props) => {
 
   return (
     <GridContext.Provider
-      gridGap={gridGap}
-      gridColumns={gridColumns}
-      gridRows={gridRows}
+      value={{
+        gridGap,
+        gridColumns,
+        gridRows,
+      }}
     >
       {children}
     </GridContext.Provider>

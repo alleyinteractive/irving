@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { breakpointNames } from '../../variables/breakpoints';
-import { layout } from '../../variables';
 import { GridContext } from './gridProvider';
 import StyledContainer from './containerStyles';
 
@@ -35,7 +34,7 @@ const GridContainer = (props) => {
       responsiveStyles={responsiveStyles}
       maxWidth={maxWidth}
     >
-      {useProps && (
+      {useProps ? (
         <GridContext.Provider
           value={{
             gridColumns,
@@ -45,15 +44,15 @@ const GridContainer = (props) => {
         >
           {children}
         </GridContext.Provider>
-      )}
+      ) : children}
     </StyledContainer>
   );
 };
 
 GridContainer.defaultProps = {
-  gridColumns: layout.gridColumns,
+  gridColumns: 0,
   className: '',
-  gridGap: layout.gridGap,
+  gridGap: 0,
   maxWidth: 'xlVal',
   padding: 0,
   responsiveStyles: [],
