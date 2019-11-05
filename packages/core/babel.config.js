@@ -3,7 +3,6 @@ const fs = require('fs');
 const getConfigField = require('./utils/getConfigField');
 const {
   irvingRoot,
-  appRoot,
   buildContext,
 } = require('./config/paths');
 const scopeDir = path.join(__dirname, '../');
@@ -14,7 +13,6 @@ const packageRoots = ! packageDirs.length ? [] :
 module.exports = (api) => {
   // Cache computed config forever.
   api.cache(true);
-  console.log(buildContext, appRoot, process.cwd());
 
   // Base app babel config.
   const appConfig = {
@@ -23,7 +21,6 @@ module.exports = (api) => {
         'module-resolver',
         {
           root: [
-            appRoot,
             buildContext,
             ...packageRoots,
           ],

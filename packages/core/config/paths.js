@@ -1,5 +1,8 @@
 const path = require('path');
 const fs = require('fs');
+
+// Support isomorphic environment variables from local .env file
+require('dotenv').config();
 const {
   PROXY_URL,
   ROOT_URL,
@@ -7,6 +10,8 @@ const {
   APP_ROOT,
   BUILD_CONTEXT,
 } = process.env;
+
+// Root of user app and root of irving core.
 const appRoot = APP_ROOT || fs.realpathSync(process.cwd());
 const irvingRoot = fs.realpathSync(
   path.join(__dirname, '../')
