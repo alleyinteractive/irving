@@ -35,7 +35,7 @@
 		"jest-enzyme": "^7.1.1"
 	},
 	"peerDependencies": {
-		"@irvingjs/core": ">1.1.0"
+		"@irvingjs/core": "^1.1.10",
 	},
 	"publishConfig": {
 		"access": "public"
