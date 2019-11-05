@@ -25,7 +25,7 @@ const buildContext = BUILD_CONTEXT || fs.realpathSync(process.cwd());
  * Ensure irving paths are consistent regardless of the processes' current
  * working directory.
  *
- * @param {string} relativePath
+ * @param {string} relativePath Path relative to irving core.
  * @returns {string} - absolute path
  */
 const resolveIrvingDir = (relativePath) => (
@@ -35,10 +35,21 @@ const resolveIrvingDir = (relativePath) => (
 /**
  * Ensure application paths are consistent regardless of the processes' current
  * working directory.
- * @param {string} relativePath
+ *
+ * @param {string} relativePath Path relative to the user app.
  * @returns {string} - absolute path
  */
 const resolveAppDir = (relativePath) => path.resolve(appRoot, relativePath);
+
+/**
+ * Ensure build paths are consistent.
+ *
+ * @param {string} relativePath Path relative to the build context.
+ * @returns {string} - absolute path
+ */
+const resolveBuildDir = (relativePath) => (
+  path.resolve(buildContext, relativePath)
+);
 
 module.exports = {
   appRoot,
@@ -46,8 +57,8 @@ module.exports = {
   buildContext,
   clientRoot: resolveIrvingDir('client'),
   serverRoot: resolveIrvingDir('server/serverRenderer.js'),
-  clientBuild: resolveAppDir('build/client'),
-  serverBuild: resolveAppDir('build/server'),
+  clientBuild: resolveBuildDir('build/client'),
+  serverBuild: resolveBuildDir('build/server'),
   userConfig: resolveAppDir('irving.config.js'),
   serverConfig: 'test' === NODE_ENV ?
     resolveIrvingDir('test/irving-test.config.js') :
