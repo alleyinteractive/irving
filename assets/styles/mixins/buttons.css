@@ -4,6 +4,17 @@
   padding: rem(10) rem(20);
 }
 
+@mixin btnWhite() {
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
+}
+
 @mixin btnGray() {
   background-color: $sponsored-gray;
   border: 1px solid $sponsored-gray;

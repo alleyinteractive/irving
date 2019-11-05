@@ -3,6 +3,7 @@
 .wrapper {
   background-color: $white;
   border-top: solid rem(2) $brown-gray;
+  margin-bottom: rem(15);
   padding: rem(20);
   width: auto;
 }
@@ -57,4 +58,33 @@
   margin-bottom: rem(20);
   margin-right: rem(20);
   order: 1;
+}
+
+.expandableBody {
+  width: 100%;
+}
+
+.mainCopyWrap {
+  height: 0;
+  overflow: hidden;
+  transition: height 250ms ease-in-out 0s;
+
+  &.isExpanded {
+    height: auto;
+  }
+}
+
+.expandBtnWrap {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: rem(15) auto 0;
+  width: 100%;
+}
+
+.expandBtn {
+  @include btn;
+  @include btnWhite;
+  font-size: rem(14);
+  padding: rem(10) rem(20);
 }
