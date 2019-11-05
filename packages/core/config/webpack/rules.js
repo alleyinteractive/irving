@@ -1,7 +1,7 @@
 const path = require('path');
 const {
   transform,
-  appRoot,
+  buildContext,
   irvingRoot,
 } = require('../paths');
 const { maybeResolveUserModule } = require('../../utils/userModule');
@@ -11,9 +11,9 @@ const include = (filepath) => {
     (
       (
         (
-          // Anything within irving root + app root should be included in build.
+          // Anything within irving root + build context should be included in build.
           filepath.includes(irvingRoot) ||
-          filepath.includes(appRoot) ||
+          filepath.includes(buildContext) ||
           // Monorepo root directory (if it exists, which it won't outside a development context).
           filepath.includes(path.join(__dirname, '../../../../'))
         ) && ! filepath.includes('node_modules')
