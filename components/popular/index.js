@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
-import styles from './popular.css';
 import Link from '../helpers/link';
+
+import styles from './popular.css';
 import inFeedStyles from './inFeed.css';
 
 const Popular = ({ popular, theme }) => (
@@ -28,7 +29,7 @@ const Popular = ({ popular, theme }) => (
 );
 
 Popular.propTypes = {
-  popular: PropTypes.array.isRequired,
+  popular: PropTypes.array,
   theme: PropTypes.shape({
     wrapper: PropTypes.string,
     title: PropTypes.string,
@@ -36,6 +37,10 @@ Popular.propTypes = {
     story: PropTypes.string,
     byline: PropTypes.string,
   }).isRequired,
+};
+
+Popular.defaultProps = {
+  popular: [],
 };
 
 export default withThemes('popular', {
