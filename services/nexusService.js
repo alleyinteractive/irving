@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
-import sjcl from 'sjcl';
+import crypto from 'crypto';
 
 /**
  * Validate the hash used in the authorization header.
@@ -40,12 +40,13 @@ export default {
     const key = process.env.NEXUS_KEY;
     const secret = process.env.NEXUS_SECRET;
 
-    // Unix timestamp needs to be rounded to seconds from milliseconds.
-    const timestamp = Math.round(+ new Date() / 1000);
-    // Create the sha256 bit array.
-    const bitArray = sjcl.hash.sha256.hash(secret + timestamp);
+    // Unix timestamp needs to be converted to seconds from milliseconds.
+    const timestamp = Math.floor(Date.now() / 1000);
     // Generate the hash.
-    const hash = sjcl.codec.hex.fromBits(bitArray);
+    const hash = crypto
+      .createHash('sha256')
+      .update(secret + timestamp)
+      .digest('hex');
 
     const authorization =
       `MITROUTER access_key=${key},timestamp=${timestamp},hash=${hash}`;
