@@ -1,7 +1,7 @@
 {
-	"name": "@irvingjs/styled-components",
+	"name": "@irvingjs/styled",
 	"version": "1.1.11",
-	"description": "Integration for Styled Components with Irving",
+	"description": "Integration for React components with attached styles for Irving",
 	"files": [
 		"server/**/*",
 		"config/**/*",
@@ -15,7 +15,7 @@
 	"main": "index.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/alleyinteractive/irving/packages/styled-components"
+		"url": "https://github.com/alleyinteractive/irving/packages/styled"
 	},
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
