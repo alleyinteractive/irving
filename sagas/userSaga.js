@@ -22,14 +22,14 @@ export default function* loginFlow(data) {
 
       if (false !== auth.isValid) {
         // yield put(actionReceiveUserAuth(auth));
-        const response = yield call(nexusService.getAccount, [email, auth.header]);
+        const response = yield call(nexusService.getAccount, { email, header: auth.header });
         yield put(actionReceiveUserLogin(response));
       } else {
         console.info('There was a problem verifying the authorization header.') // eslint-disable-line no-console
       }
     } else {
       const header = yield select(authHeader);
-      const response = yield call(nexusService.getAccount, email, header);
+      const response = yield call(nexusService.getAccount, { email, header });
       yield put(actionReceiveUserLogin(response));
     }
   } catch (error) {

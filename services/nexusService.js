@@ -15,7 +15,7 @@ async function validateHash(endpoint, hash, authorization) {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'erasmus',
+        Authorization: authorization,
       },
       credentials: 'include',
     });
@@ -74,7 +74,7 @@ export default {
    * @param {string} authorization Authorization header to be passed in request.
    * @returns {{}}
    */
-  async getAccount(email, authorization) {
+  async getAccount({ email, header }) {
     // @todo this needs to be dynamically generated based on .env settings;
     // stubbing out development endpoint for now.
     const endpoint = 'http://localhost:5000';
@@ -84,7 +84,7 @@ export default {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: authorization,
+          Authorization: header,
         },
         credentials: 'include',
       });
