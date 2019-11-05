@@ -23,9 +23,9 @@ module.exports = (api) => {
         'module-resolver',
         {
           root: [
+            // appRoot,
             buildContext,
-            appRoot,
-            ...packageRoots,
+            // ...packageRoots,
           ],
           cwd: 'packagejson',
           alias: {
