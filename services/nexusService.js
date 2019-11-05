@@ -1,20 +1,22 @@
 /**
  * Validate the hash used in the authorization header.
  *
- * @param {string} endpoint The request url.
- * @param {string} hash     sha256 hash of secret and timestamp.
- * @param {string} header   The authoriztion header.
+ * @param {string} hash   sha256 hash of secret and timestamp.
+ * @param {string} header The authoriztion header.
  */
-async function validateHash(endpoint, hash, header) {
+async function validateHash(hash, header) {
   try {
-    const response = await fetch(`${endpoint}/api/session/verify/${hash}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: header,
-      },
-      credentials: 'include',
-    });
+    const response = await fetch(
+      `${process.env.NEXUS_ROOT_URL}/api/session/verify/${hash}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: header,
+        },
+        credentials: 'include',
+      }
+    );
     const data = await response.json();
     return data;
   } catch (error) {
@@ -39,11 +41,8 @@ export default {
       timestamp,
     } = await response.json();
 
-    // @todo this needs to be dynamically generated based on .env settings.
-    const endpoint = 'http://localhost:5000';
-
     const { status, verified } =
-      await validateHash(endpoint, hash, header);
+      await validateHash(hash, header);
 
     if ('success' === status && true === verified) {
       return {
@@ -66,19 +65,18 @@ export default {
    * @returns {{}}
    */
   async getAccount({ email, header }) {
-    // @todo this needs to be dynamically generated based on .env settings;
-    // stubbing out development endpoint for now.
-    const endpoint = 'http://localhost:5000';
-
     try {
-      const response = await fetch(`${endpoint}/api/user/email/${email}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: header,
-        },
-        credentials: 'include',
-      });
+      const response = await fetch(
+        `${process.env.NEXUS_ROOT_URL}/api/user/email/${email}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: header,
+          },
+          credentials: 'include',
+        }
+      );
       const data = await response.json();
       return data;
     } catch (error) {
