@@ -6,6 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
+import { CookiesProvider } from 'react-cookie';
 import { actionLocationChange } from 'actions';
 import App from 'components/app';
 import rootReducer from 'reducers';
@@ -42,9 +43,11 @@ const render = () => {
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
   ReactDOM.hydrate(
-    <Provider store={store}>
-      <App />
-    </Provider>,
+    <CookiesProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </CookiesProvider>,
     rootEl
   );
 };
