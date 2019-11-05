@@ -30,14 +30,17 @@ export default {
    * Assemble the authorization header used for neuxus requests.
    */
   async getAuth() {
-    // @todo this needs to be dynamically generated based on .env settings.
-    const endpoint = 'http://localhost:5000';
-    const response = await fetch('https://mittr.alley.test/wp-json/irving/v1/data/request_auth');
+    const response = await fetch(
+      `${process.env.API_ROOT_URL}/data/request_auth`
+    );
     const {
       hash,
       header,
       timestamp,
     } = await response.json();
+
+    // @todo this needs to be dynamically generated based on .env settings.
+    const endpoint = 'http://localhost:5000';
 
     const { status, verified } =
       await validateHash(endpoint, hash, header);
