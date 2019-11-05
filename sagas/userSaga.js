@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { call, put, select } from 'redux-saga/effects';
 import { actionReceiveUserLogin } from 'actions/userActions';
-import { isValid } from 'selectors/getAuth';
+import { isValid, authHeader } from 'selectors/getAuth';
 import createDebug from 'services/createDebug';
 import nexusService from 'services/nexusService';
 
@@ -15,11 +15,23 @@ export default function* loginFlow(data) {
   } = data;
 
   try {
-    const auth = yield call(nexusService.getAuth);
-    console.log(auth);
-    // Call Nexus
-    const response = yield call(nexusService.getAccount, [email, auth.header]);
-    yield put(actionReceiveUserLogin(response));
+    const isAuthHeaderValid = yield select(isValid);
+
+    if (false === isAuthHeaderValid) {
+      const auth = yield call(nexusService.getAuth);
+
+      if (false !== auth.isValid) {
+        // yield put(actionReceiveUserAuth(auth));
+        const response = yield call(nexusService.getAccount, [email, auth.header]);
+        yield put(actionReceiveUserLogin(response));
+      } else {
+        console.info('There was a problem verifying the authorization header.') // eslint-disable-line no-console
+      }
+    } else {
+      const header = yield select(authHeader);
+      const response = yield call(nexusService.getAccount, email, header);
+      yield put(actionReceiveUserLogin(response));
+    }
   } catch (error) {
     yield call(debug, error);
   }

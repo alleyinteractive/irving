@@ -20,6 +20,8 @@ async function validateHash(endpoint, hash, authorization) {
       credentials: 'include',
     });
     const data = await response.json();
+    // @todo remove me. for dev.
+    console.log(data); // eslint-disable-line no-console
     return data;
   } catch (error) {
     console.info('There was a problem.', error); // eslint-disable-line no-console
@@ -33,6 +35,7 @@ export default {
    * Assemble the authorization header used for neuxus requests.
    */
   async getAuth() {
+    // @todo this needs to be dynamically generated based on .env settings.
     const endpoint = 'http://localhost:5000';
     const key = process.env.NEXUS_KEY;
     const secret = process.env.NEXUS_SECRET;
@@ -50,7 +53,7 @@ export default {
     const { status, verified } =
       await validateHash(endpoint, hash, authorization);
 
-    if ('success' === status && true === verified) {
+    if ('success' === status && false === verified) {
       return {
         isValid: true,
         validTo: timestamp + 540, // ensure the header is only valid for 9 minutes.
