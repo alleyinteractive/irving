@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable consistent-return */
-import crypto from 'crypto';
-
 /**
  * Validate the hash used in the authorization header.
  *
@@ -22,10 +18,13 @@ async function validateHash(endpoint, hash, authorization) {
     const data = await response.json();
     // @todo remove me. for dev.
     console.log(data); // eslint-disable-line no-console
+
     return data;
   } catch (error) {
     console.info('There was a problem.', error); // eslint-disable-line no-console
   }
+
+  return {};
 }
 
 export default {
@@ -37,28 +36,21 @@ export default {
   async getAuth() {
     // @todo this needs to be dynamically generated based on .env settings.
     const endpoint = 'http://localhost:5000';
-    const key = process.env.NEXUS_KEY;
-    const secret = process.env.NEXUS_SECRET;
-
-    // Unix timestamp needs to be converted to seconds from milliseconds.
-    const timestamp = Math.floor(Date.now() / 1000);
-    // Generate the hash.
-    const hash = crypto
-      .createHash('sha256')
-      .update(secret + timestamp)
-      .digest('hex');
-
-    const authorization =
-      `MITROUTER access_key=${key},timestamp=${timestamp},hash=${hash}`;
+    const response = await fetch('https://mittr.alley.test/wp-json/irving/v1/data/accounts');
+    const {
+      hash,
+      header,
+      timestamp,
+    } = await response.json();
 
     const { status, verified } =
-      await validateHash(endpoint, hash, authorization);
+      await validateHash(endpoint, hash, header);
 
     if ('success' === status && false === verified) {
       return {
         isValid: true,
-        validTo: timestamp + 540, // ensure the header is only valid for 9 minutes.
-        header: authorization,
+        validTo: timestamp + 540, // The header is only valid for 9 minutes.
+        header,
       };
     }
 

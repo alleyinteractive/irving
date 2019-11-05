@@ -21,7 +21,7 @@ module.exports = function getEnv() {
   // @todo research the best implementation for being able to access nexus secrets
   // on the client without exposing them to the public
   const whitelist = [
-    new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL|NEXUS_KEY|NEXUS_SECRET'),
+    new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL'),
     new RegExp('^API_QUERY_PARAM'),
   ];
   return Object.keys(process.env)
