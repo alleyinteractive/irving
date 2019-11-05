@@ -1,40 +1,30 @@
 import { createAction } from '.';
 import {
-  VERIFY_AUTH_TOKEN,
-  SET_AUTH_HEADER,
-  GET_AUTH_HEADER,
+  REQUEST_AUTH,
+  RECEIVE_USER_AUTH,
   INITIATE_USER_LOGIN,
   RECEIVE_USER_LOGIN,
 } from './types';
 
 /**
- * Create a Redux action that represents browser state change to verify that a
- * given authorization header is valid for 9 minutes.
+ * Create a Redux action that represents browser state change when a
+ * authorization header is requested.
  *
  * @returns {{type, payload}} The Redux action.
  */
-export function actionVerifyAuthToken() {
-  return createAction(VERIFY_AUTH_TOKEN);
+export function actionRequestAuth() {
+  return createAction(REQUEST_AUTH);
 }
 
 /**
- * Create a Redux action that represents browser state change when a valid
- * authorization header is set.
+ * Create a Redux action that represents browser state change when a
+ * authorization information is received.
  *
+ * @param {object} auth Authorization values retrieved from the Irving API.
  * @returns {{type, payload}} The Redux action.
  */
-export function actionSetAuthHeader() {
-  return createAction(SET_AUTH_HEADER);
-}
-
-/**
- * Create a Redux action that represents browser state change when a user initiates a
- * request that requires an authorization token.
- *
- * @returns {{type, payload}} The Redux action.
- */
-export function actionRequestAuthToken() {
-  return createAction(GET_AUTH_HEADER);
+export function actionReceiveUserAuth(auth) {
+  return createAction(RECEIVE_USER_AUTH, { auth });
 }
 
 /**

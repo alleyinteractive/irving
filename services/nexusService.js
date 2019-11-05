@@ -1,29 +1,25 @@
 /**
  * Validate the hash used in the authorization header.
  *
- * @param {string} endpoint      The request url.
- * @param {string} hash          sha256 hash of secret and timestamp.
- * @param {string} authorization The authoriztion header.
+ * @param {string} endpoint The request url.
+ * @param {string} hash     sha256 hash of secret and timestamp.
+ * @param {string} header   The authoriztion header.
  */
-async function validateHash(endpoint, hash, authorization) {
+async function validateHash(endpoint, hash, header) {
   try {
     const response = await fetch(`${endpoint}/api/session/verify/${hash}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: authorization,
+        Authorization: header,
       },
       credentials: 'include',
     });
     const data = await response.json();
-    // @todo remove me. for dev.
-    console.log(data); // eslint-disable-line no-console
-
     return data;
   } catch (error) {
     console.info('There was a problem.', error); // eslint-disable-line no-console
   }
-
   return {};
 }
 
@@ -46,10 +42,10 @@ export default {
     const { status, verified } =
       await validateHash(endpoint, hash, header);
 
-    if ('success' === status && false === verified) {
+    if ('success' === status && true === verified) {
       return {
         isValid: true,
-        validTo: timestamp + 540, // The header is only valid for 9 minutes.
+        validTo: parseInt(timestamp, 10) + 540, // The header is only valid for 9 minutes.
         header,
       };
     }

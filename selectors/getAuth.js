@@ -7,7 +7,7 @@ export const isValid = createSelector(
   (state) => state.isValid,
 );
 
-export const headerValidTo = createSelector(
+export const validTo = createSelector(
   authSelector,
   (state) => state.validTo,
 );

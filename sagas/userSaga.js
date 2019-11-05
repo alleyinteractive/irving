@@ -1,7 +1,10 @@
-/* eslint-disable */
 import { call, put, select } from 'redux-saga/effects';
-import { actionReceiveUserLogin } from 'actions/userActions';
-import { isValid, authHeader } from 'selectors/getAuth';
+import {
+  actionReceiveUserLogin,
+  actionRequestAuth,
+  actionReceiveUserAuth,
+} from 'actions/userActions';
+import { authSelector, isValid, validTo } from 'selectors/getAuth';
 import createDebug from 'services/createDebug';
 import nexusService from 'services/nexusService';
 
@@ -15,24 +18,40 @@ export default function* loginFlow(data) {
   } = data;
 
   try {
-    const isAuthHeaderValid = yield select(isValid);
-
-    if (false === isAuthHeaderValid) {
-      const auth = yield call(nexusService.getAuth);
-
-      if (false !== auth.isValid) {
-        // yield put(actionReceiveUserAuth(auth));
-        const response = yield call(nexusService.getAccount, { email, header: auth.header });
-        yield put(actionReceiveUserLogin(response));
-      } else {
-        console.info('There was a problem verifying the authorization header.') // eslint-disable-line no-console
-      }
-    } else {
-      const header = yield select(authHeader);
-      const response = yield call(nexusService.getAccount, { email, header });
-      yield put(actionReceiveUserLogin(response));
-    }
+    const { header } = yield call(authorize);
+    const response = yield call(nexusService.getAccount, { email, header });
+    yield put(actionReceiveUserLogin(response));
   } catch (error) {
     yield call(debug, error);
   }
 }
+
+export function* authorize() {
+  const isAuthorized = yield select(isValid);
+  const timestamp = yield select(validTo);
+  const hasTimedOut = (Math.floor(Date.now() / 1000) - 300) < timestamp;
+
+  try {
+    if (false === isAuthorized || hasTimedOut) {
+      yield put(actionRequestAuth());
+
+      const auth = yield call(nexusService.getAuth);
+      if (
+        false !== auth.isValid &&
+        Math.floor(Date.now() / 1000) - 300 > auth.validTo
+      ) {
+        yield put(actionReceiveUserAuth(auth));
+      } else {
+        // @todo define error state.
+        throw new Error('Request failed', auth);
+      }
+
+      return auth;
+    }
+  } catch (error) {
+    console.info('There was a problem while requesting authorization.', error); // eslint-disable-line no-console
+  }
+
+  return yield select(authSelector);
+}
+
