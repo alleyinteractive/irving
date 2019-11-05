@@ -3,7 +3,7 @@ import * as variables from './variables';
 
 // Export config
 export default {
-  name: 'styled-components',
+  name: 'styled',
   getAppTemplateVars,
   cssVariables: variables,
 };
