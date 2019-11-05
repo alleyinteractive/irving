@@ -1,5 +1,8 @@
 const path = require('path');
 const fs = require('fs');
+
+// Support isomorphic environment variables from local .env file
+require('dotenv').config();
 const {
   PROXY_URL,
   ROOT_URL,
@@ -7,20 +10,22 @@ const {
   APP_ROOT,
   BUILD_CONTEXT,
 } = process.env;
-const appRoot = fs.realpathSync(APP_ROOT || process.cwd());
+
+// Root of user app and root of irving core.
+const appRoot = APP_ROOT || fs.realpathSync(process.cwd());
 const irvingRoot = fs.realpathSync(
   path.join(__dirname, '../')
 );
 
 // Used for webpack `context` config value. Useful to configure if app is built in a
 // different location from where it is run.
-const buildContext = fs.realpathSync(BUILD_CONTEXT || process.cwd());
+const buildContext = BUILD_CONTEXT || fs.realpathSync(process.cwd());
 
 /**
  * Ensure irving paths are consistent regardless of the processes' current
  * working directory.
  *
- * @param {string} relativePath
+ * @param {string} relativePath Path relative to irving core.
  * @returns {string} - absolute path
  */
 const resolveIrvingDir = (relativePath) => (
@@ -30,10 +35,21 @@ const resolveIrvingDir = (relativePath) => (
 /**
  * Ensure application paths are consistent regardless of the processes' current
  * working directory.
- * @param {string} relativePath
+ *
+ * @param {string} relativePath Path relative to the user app.
  * @returns {string} - absolute path
  */
 const resolveAppDir = (relativePath) => path.resolve(appRoot, relativePath);
+
+/**
+ * Ensure build paths are consistent.
+ *
+ * @param {string} relativePath Path relative to the build context.
+ * @returns {string} - absolute path
+ */
+const resolveBuildDir = (relativePath) => (
+  path.resolve(buildContext, relativePath)
+);
 
 module.exports = {
   appRoot,
@@ -41,8 +57,8 @@ module.exports = {
   buildContext,
   clientRoot: resolveIrvingDir('client'),
   serverRoot: resolveIrvingDir('server/serverRenderer.js'),
-  clientBuild: resolveAppDir('build/client'),
-  serverBuild: resolveAppDir('build/server'),
+  clientBuild: resolveBuildDir('build/client'),
+  serverBuild: resolveBuildDir('build/server'),
   userConfig: resolveAppDir('irving.config.js'),
   serverConfig: 'test' === NODE_ENV ?
     resolveIrvingDir('test/irving-test.config.js') :
