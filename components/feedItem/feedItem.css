@@ -68,10 +68,6 @@
   height: 0;
   overflow: hidden;
   transition: height 250ms ease-in-out 0s;
-
-  &.isExpanded {
-    height: auto;
-  }
 }
 
 .expandBtnWrap {

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import classNames from 'classnames';
@@ -9,6 +9,7 @@ import FeedEyebrow from './feedEyebrow';
 // Styles
 import styles from './feedItem.css';
 
+let tempHeight = null;
 const FeedItem = ({
   children,
   color,
@@ -23,8 +24,19 @@ const FeedItem = ({
   const [expandState, setExpandState] = useState({
     btnText: 'Expand',
     isExpanded: false,
+    containerHeight: 'auto',
   });
-  console.log('children', children);
+  const drawerRef = React.useRef(null);
+  useEffect(() => {
+    if (drawerRef.current && null === tempHeight) {
+      tempHeight = drawerRef.current.getBoundingClientRect().height;
+      setExpandState({
+        btnText: 'Expand',
+        isExpanded: false,
+        containerHeight: 0,
+      });
+    }
+  });
   const image = findChildByName('image', children);
   const contentFooter = findChildByName('content-footer', children);
 
@@ -36,10 +48,10 @@ const FeedItem = ({
   });
 
   const toggleStory = () => {
-    console.log('click button');
     setExpandState({
       btnText: 'Expand' === expandState.btnText ? 'Collapse' : 'Expand',
       isExpanded: expandState.isExpanded = ! expandState.isExpanded,
+      containerHeight: 0 === expandState.containerHeight ? tempHeight : 0,
     });
   };
 
@@ -76,12 +88,17 @@ const FeedItem = ({
       )}
       {includeExpandBtn && (
         <div className={styles.expandableBody}>
-          <div className={styles.textBeforeBtn}>
-            {content}
-          </div>
-          <div className={classNames(styles.mainCopyWrap, {
-            [styles.isExpanded]: expandState.isExpanded,
-          })}
+          {! expandState.isExpanded && (
+            <div className={styles.textBeforeBtn}>
+              <p>Hello here is some trimmed content ...</p>
+            </div>
+          )}
+          <div
+            ref={drawerRef}
+            style={{ height: expandState.containerHeight }}
+            className={classNames(styles.mainCopyWrap, {
+              [styles.isExpanded]: expandState.isExpanded,
+            })}
           >
             <div className={styles.content}>
               {content}
