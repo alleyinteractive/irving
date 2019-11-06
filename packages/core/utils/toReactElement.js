@@ -2,6 +2,29 @@ import { isString, omit } from 'lodash/fp';
 import React from 'react';
 import getReactComponent from 'config/componentMap';
 
+export function createComponentGroups(componentGroups) {
+  return Object.keys(componentGroups)
+    .reduce((acc, groupKey) => {
+      let convertedComponents = componentGroups[groupKey];
+
+      if (convertedComponents.length) {
+        convertedComponents = convertedComponents
+          .map((component, index) => (
+            // Support text nodes.
+            isString(component) ? component : toReactElement(
+              component,
+              String(index)
+            )
+          ));
+      }
+
+      return {
+        ...acc,
+        [groupKey]: convertedComponents,
+      };
+    }, {});
+}
+
 /**
  * Recursively map a tree of API components to React elements.
  * @param {object} apiComponent - api component object
@@ -13,14 +36,20 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     name,
     config,
     children,
+    componentGroups = {},
   } = apiComponent;
+
+  // Convert comopnent groups.
+  const convertedGroups = createComponentGroups(componentGroups);
 
   let props = {
     ...config,
     componentName: name,
+    componentGroups: convertedGroups,
     key: `${keyPrefix}_ ${name}`,
   };
 
+  // Recursively convert children to react elements.
   const childElements = children.map((child, index) => (
     // Support text nodes.
     isString(child) ? child : toReactElement(child, String(index))
