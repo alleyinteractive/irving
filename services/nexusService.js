@@ -31,8 +31,8 @@ export default {
   /**
    * Generate a new user session and hash in the database.
    *
-   * @param {string} username 
-   * @param {string} password 
+   * @param {string} username
+   * @param {string} password
    */
   async newSession(username, password) {
     try {
@@ -46,8 +46,8 @@ export default {
           },
           credentials: 'include',
           body: JSON.stringify({
-            username: username,
-            password: password, // @todo encrypt this before sending to the nexus.
+            username,
+            password, // @todo encrypt this before sending to the nexus.
           }),
         }
       );
