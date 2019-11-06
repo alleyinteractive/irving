@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/audio-player",
-  "version": "1.1.11",
+  "version": "1.2.0",
   "description": "Persistent audio player and related components for Irving",
   "files": [
     "actions/**/*",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@irvingjs/babel-preset-irving": "^1.1.3",
-    "@irvingjs/core": "^1.1.11",
+    "@irvingjs/core": "^1.2.0",
     "babel-jest": "^24.9.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "enzyme": "^3.10.0",
