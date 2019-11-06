@@ -4,7 +4,7 @@
  * @param {string} hash   sha256 hash of secret and timestamp.
  * @param {string} header The authoriztion header.
  */
-async function validateHash(hash, header) {
+async function validateHash(hash, header) { // eslint-disable-line no-unused-vars
   try {
     const response = await fetch(
       `${process.env.NEXUS_ROOT_URL}/api/session/verify/${hash}`,
@@ -12,7 +12,7 @@ async function validateHash(hash, header) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: header,
+          Authorization: 'test', // @todo fix me.
         },
         credentials: 'include',
       }
@@ -27,6 +27,34 @@ async function validateHash(hash, header) {
 
 export default {
   // @todo write authentication to nexus production server.
+
+  /**
+   * Generate a new user session and hash in the database.
+   *
+   * @param {string} username 
+   * @param {string} password 
+   */
+  async newSession(username, password) {
+    try {
+      await fetch(
+        `${process.env.NEXUS_ROOT_URL}/api/session/new`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'test',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            username: username,
+            password: password, // @todo encrypt this before sending to the nexus.
+          }),
+        }
+      );
+    } catch (error) {
+      console.info('There was a problem', error); // eslint-disable-line no-console
+    }
+  },
 
   /**
    * Assemble the authorization header used for neuxus requests.
