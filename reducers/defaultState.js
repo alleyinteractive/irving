@@ -34,7 +34,13 @@ export const player = {
   volume: 0.5,
 };
 
-export const user = {};
+export const user = {
+  authorization: {
+    isValid: false,
+    validTo: null,
+    header: '',
+  },
+};
 
 export const error = null;
 

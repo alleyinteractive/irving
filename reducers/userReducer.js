@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+import { RECEIVE_USER_AUTH } from 'actions/types';
 import { user as defaultState } from './defaultState';
 
 /**
@@ -10,8 +10,8 @@ import { user as defaultState } from './defaultState';
  */
 export default function userReducer(state = defaultState, { type, payload }) {
   switch (type) {
-    // @todo This is just a stub, will be filled out when users states needed.
-    //  Where the case is the actions in actions/types.js
+    case RECEIVE_USER_AUTH:
+      return { ...state, authorization: { ...payload.auth } };
     default:
       return state;
   }
