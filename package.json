@@ -19,7 +19,7 @@
     "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js",
     "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
     "test": "BABEL_ENV=test lerna run test --parallel",
-    "test:watch": "BABEL_ENV=test lerna run test:watch"
+    "test:watch": "BABEL_ENV=test lerna run test:watch --parallel"
   },
   "dependencies": {
     "@babel/cli": "^7.5.5",
