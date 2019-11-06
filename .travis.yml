@@ -24,7 +24,8 @@ before_install:
   - npm i -g npm@$(jq -r '.engines.npm' package.json | egrep -oe "[0-9]+" | head -n1)
 
 install:
-    - npm install
+    - npm ci
+    - npm run bootstrap
 
 cache:
   directories:
