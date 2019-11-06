@@ -1,7 +1,6 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import classNames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 import FeedEyebrow from './feedEyebrow';
@@ -9,12 +8,12 @@ import FeedEyebrow from './feedEyebrow';
 // Styles
 import styles from './feedItem.css';
 
-let tempHeight = null;
 const FeedItem = ({
   children,
   color,
   customEyebrow,
   includeExpandBtn,
+  teaserContent,
   postDate,
   showImage,
   title,
@@ -24,19 +23,9 @@ const FeedItem = ({
   const [expandState, setExpandState] = useState({
     btnText: 'Expand',
     isExpanded: false,
-    containerHeight: 'auto',
   });
-  const drawerRef = React.useRef(null);
-  useEffect(() => {
-    if (drawerRef.current && null === tempHeight) {
-      tempHeight = drawerRef.current.getBoundingClientRect().height;
-      setExpandState({
-        btnText: 'Expand',
-        isExpanded: false,
-        containerHeight: 0,
-      });
-    }
-  });
+  const [containerHeight, setContainerHeight] = useState(0);
+  const contentRef = React.useRef();
   const image = findChildByName('image', children);
   const contentFooter = findChildByName('content-footer', children);
 
@@ -51,8 +40,15 @@ const FeedItem = ({
     setExpandState({
       btnText: 'Expand' === expandState.btnText ? 'Collapse' : 'Expand',
       isExpanded: expandState.isExpanded = ! expandState.isExpanded,
-      containerHeight: 0 === expandState.containerHeight ? tempHeight : 0,
     });
+    if (expandState.isExpanded) {
+      setContainerHeight(
+        0 === containerHeight ?
+          contentRef.current.getBoundingClientRect().height : 0
+      );
+    } else {
+      setContainerHeight(0);
+    }
   };
 
   return (
@@ -90,20 +86,19 @@ const FeedItem = ({
         <div className={styles.expandableBody}>
           {! expandState.isExpanded && (
             <div className={styles.textBeforeBtn}>
-              <p>Hello here is some trimmed content ...</p>
+              <p>{teaserContent} . . .</p>
             </div>
           )}
           <div
-            ref={drawerRef}
-            style={{ height: expandState.containerHeight }}
-            className={classNames(styles.mainCopyWrap, {
-              [styles.isExpanded]: expandState.isExpanded,
-            })}
+            style={{ height: containerHeight }}
+            className={styles.mainCopyWrap}
           >
-            <div className={styles.content}>
-              {content}
+            <div ref={contentRef}>
+              <div className={styles.content}>
+                {content}
+              </div>
+              {contentFooter}
             </div>
-            {contentFooter}
           </div>
           <div className={styles.expandBtnWrap}>
             <button
@@ -124,11 +119,13 @@ FeedItem.defaultProps = {
   color: '#000000',
   includeExpandBtn: false,
   showImage: true,
+  teaserContent: '',
 };
 
 FeedItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   includeExpandBtn: PropTypes.bool,
+  teaserContent: PropTypes.string,
   customEyebrow: PropTypes.string.isRequired,
   postDate: PropTypes.string.isRequired,
   showImage: PropTypes.bool,
