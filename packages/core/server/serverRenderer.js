@@ -8,7 +8,7 @@ import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import { clearChunks } from 'react-universal-component/server';
-import { CookiesProvider } from 'react-cookie';
+import { Cookies, CookiesProvider } from 'react-cookie';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import ErrorMessage from 'components/errorMessage';
@@ -80,7 +80,7 @@ const render = async (req, res, clientStats) => {
   // Container for critical css related to this page render.
   const cssBuilder = new CriticalCssBuilder();
   const AppWrapper = () => (
-    <CookiesProvider cookies={req.headers.cookie}>
+    <CookiesProvider cookies={new Cookies(req.headers.cookie)}>
       <Provider store={store}>
         <StyleContext.Provider value={cssBuilder.addCss}>
           <App />
