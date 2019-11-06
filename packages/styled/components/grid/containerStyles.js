@@ -35,8 +35,6 @@ const createBreakpointStyles = (responsiveStyles, gap) => (
 
 const StyledContainer = styled.div`
   display: block;
-  margin: 0 auto;
-  max-width: ${(props) => breakpoints[props.maxWidth]};
 
   /* Create grid styles */
   ${(props) => {

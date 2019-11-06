@@ -14,6 +14,13 @@ After running `irving dev`, navigate to `http://localhost:3001` in your browser.
 Environment variable values can be modified by creating a `.env` file in the root of the project.
 
 ### Environment
+* `APP_ROOT` - Absolute path to the directory in which this app will be executed.
+This path will be included in the build and be used to resolve the location of your configuration file and express view templates.
+By default, this variable will be set to `process.cwd()`. This variable is required if you are building your app in a
+separate location from where it will be run.
+* `BUILD_CONTEXT` - Absolute path used to indicate the context in which the build is occurring.
+This will be provided as-is to webpack's `context` configuration property. By default,
+this variable will be set to `process.cwd()`.
 * `ROOT_URL` - The root url the app is served from. This value is required to
 prevent webpack assets from 404ing when the app isn't served from the root of a
 site.
