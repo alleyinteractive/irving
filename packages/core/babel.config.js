@@ -1,7 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 const getConfigField = require('./utils/getConfigField');
-const { irvingRoot, appRoot } = require('./config/paths');
+const {
+  irvingRoot,
+  buildContext,
+} = require('./config/paths');
 const scopeDir = path.join(__dirname, '../');
 const packageDirs = fs.readdirSync(scopeDir);
 const packageRoots = ! packageDirs.length ? [] :
@@ -18,7 +21,7 @@ module.exports = (api) => {
         'module-resolver',
         {
           root: [
-            appRoot,
+            buildContext,
             ...packageRoots,
           ],
           cwd: 'packagejson',
@@ -37,11 +40,11 @@ module.exports = (api) => {
             // Tests need an irving config, use an alias so we can use a separate test config.
             // @todo might want to update this to @irvingjs also.
             '@irvingjs/irving.config': path.join(
-              appRoot,
+              buildContext,
               'irving.config.js'
             ),
             '@irvingjs/irving.config.server': path.join(
-              appRoot,
+              buildContext,
               'irving.config.server.js'
             ),
           },
