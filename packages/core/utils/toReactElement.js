@@ -2,22 +2,8 @@ import { isString, omit } from 'lodash/fp';
 import React from 'react';
 import getReactComponent from 'config/componentMap';
 
-/**
- * Recursively map a tree of API components to React elements.
- * @param {object} apiComponent - api component object
- * @param {string} keyPrefix
- * @return {object} - React Element
- */
-export default function toReactElement(apiComponent, keyPrefix = '') {
-  const {
-    name,
-    config,
-    children,
-    componentGroups,
-  } = apiComponent;
-
-  // Convert comopnent groups.
-  const convertedGroups = Object.keys(componentGroups)
+export function createComponentGroups(componentGroups) {
+  return Object.keys(componentGroups)
     .reduce((acc, groupKey) => {
       let convertedComponents = componentGroups[groupKey];
 
@@ -37,6 +23,24 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
         [groupKey]: convertedComponents,
       };
     }, {});
+}
+
+/**
+ * Recursively map a tree of API components to React elements.
+ * @param {object} apiComponent - api component object
+ * @param {string} keyPrefix
+ * @return {object} - React Element
+ */
+export default function toReactElement(apiComponent, keyPrefix = '') {
+  const {
+    name,
+    config,
+    children,
+    componentGroups = {},
+  } = apiComponent;
+
+  // Convert comopnent groups.
+  const convertedGroups = createComponentGroups(componentGroups);
 
   let props = {
     ...config,
