@@ -3,6 +3,7 @@
 .wrapper {
   background-color: $white;
   border-top: solid rem(2) $brown-gray;
+  margin-bottom: rem(15);
   padding: rem(20);
   width: auto;
 }
@@ -57,4 +58,49 @@
   margin-bottom: rem(20);
   margin-right: rem(20);
   order: 1;
+}
+
+.expandableBody {
+  width: 100%;
+}
+
+.mainCopyWrap {
+  height: 0;
+  overflow: hidden;
+  transition: height 250ms ease-in-out 0s;
+}
+
+/* stylelint-disable selector-max-specificity */
+/* Increase specificity to override styles */
+.textBeforeBtn {
+  p {
+    color: $color-text;
+    font-family: $sans;
+    font-size: rem(18);
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.44;
+    margin-bottom: rem(18);
+
+    a {
+      font-weight: 400;
+      text-decoration: underline;
+    }
+  }
+}
+/* stylelint-enable selector-max-specificity */
+
+.expandBtnWrap {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: rem(25) auto 0;
+  width: 100%;
+}
+
+.expandBtn {
+  @include btn;
+  @include btnWhite;
+  font-size: rem(14);
+  padding: rem(10) rem(20);
 }
