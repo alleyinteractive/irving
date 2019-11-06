@@ -13,14 +13,39 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     name,
     config,
     children,
+    componentGroups,
   } = apiComponent;
+
+  // Convert comopnent groups.
+  const convertedGroups = Object.keys(componentGroups)
+    .reduce((acc, groupKey) => {
+      let convertedComponents = componentGroups[groupKey];
+
+      if (convertedComponents.length) {
+        convertedComponents = convertedComponents
+          .map((component, index) => (
+            // Support text nodes.
+            isString(component) ? component : toReactElement(
+              component,
+              String(index)
+            )
+          ));
+      }
+
+      return {
+        ...acc,
+        [groupKey]: convertedComponents,
+      };
+    }, {});
 
   let props = {
     ...config,
     componentName: name,
+    componentGroups: convertedGroups,
     key: `${keyPrefix}_ ${name}`,
   };
 
+  // Recursively convert children to react elements.
   const childElements = children.map((child, index) => (
     // Support text nodes.
     isString(child) ? child : toReactElement(child, String(index))
