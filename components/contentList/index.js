@@ -35,7 +35,7 @@ const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
 
 ContentList.defaultProps = {
   listTitle: '',
-}
+};
 
 ContentList.propTypes = {
   listTitle: PropTypes.string,
