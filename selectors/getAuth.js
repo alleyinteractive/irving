@@ -9,7 +9,7 @@ export const isValid = createSelector(
 
 export const validTo = createSelector(
   authSelector,
-  (state) => state.validTo,
+  (state) => state.expires,
 );
 
 export const authHeader = createSelector(

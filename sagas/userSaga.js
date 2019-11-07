@@ -34,12 +34,13 @@ export default function* loginFlow(data) {
 
 // @todo implement me in the login flow.
 export function* authorize(username, password) {
-  const isValid = yield select(isAuthValid);
+  const hasAuth = yield select(isAuthValid);
   const timestamp = yield select(validTo);
-  const timeLimit = Math.floor(Date.now() / 1000) - 300;
+  const timeLimit = Math.floor(Date.now() / 1000) + 300;
+  const isValid = hasAuth && timestamp < timeLimit;
 
   try {
-    if (false === isValid || timestamp > timeLimit) {
+    if (! isValid) {
       yield put(actionRequestAuth());
 
       const session = yield call(nexusService.newSession, { username: 'tyler', password: 'test' });

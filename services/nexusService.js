@@ -50,18 +50,18 @@ export default {
           }),
         }
       );
-      const { hash, access, expires } = await response.json();
+      const { hash, access } = await response.json();
       const { status, verified } = await validateHash(hash);
 
       const headerReq = await fetch(
         `${process.env.API_ROOT_URL}/data/request_auth`
       );
-      const { header } = await headerReq.json();
+      const { header, timestamp } = await headerReq.json();
 
       if ('success' === status && true === verified) {
         return {
           access,
-          expires,
+          expires: parseInt(timestamp, 10),
           isValid: true,
           hash,
           header,
@@ -80,7 +80,7 @@ export default {
    * @param {string} authorization Authorization header to be passed in request.
    * @returns {{}}
    */
-  async getAccount({ email, header }) {
+  async getAccount({ email, header }) { // eslint-disable-line no-unused-vars
     try {
       const response = await fetch(
         `${process.env.NEXUS_ROOT_URL}/api/user/email/${email}`,
@@ -88,7 +88,7 @@ export default {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: header,
+            Authorization: 'test',
           },
           credentials: 'include',
         }
