@@ -11,15 +11,19 @@ const {
   BUILD_CONTEXT,
 } = process.env;
 
-// Root of user app and root of irving core.
-const appRoot = APP_ROOT || fs.realpathSync(process.cwd());
-const irvingRoot = fs.realpathSync(
-  path.join(__dirname, '../')
-);
-
 // Used for webpack `context` config value. Useful to configure if app is built in a
 // different location from where it is run.
 const buildContext = BUILD_CONTEXT || fs.realpathSync(process.cwd());
+
+// Root of user app and root of irving core.
+const appRoot = APP_ROOT || fs.realpathSync(process.cwd());
+const irvingRoot = path.join(__dirname, '../');
+
+// Path to irving core relative to the appRoot.
+const appIrvingRoot = path.join(
+  appRoot,
+  path.relative(buildContext, irvingRoot)
+);
 
 /**
  * Ensure irving paths are consistent regardless of the processes' current
@@ -54,6 +58,7 @@ const resolveBuildDir = (relativePath) => (
 module.exports = {
   appRoot,
   irvingRoot,
+  appIrvingRoot,
   buildContext,
   clientRoot: resolveIrvingDir('client'),
   serverRoot: resolveIrvingDir('server/serverRenderer.js'),
