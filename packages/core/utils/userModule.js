@@ -9,10 +9,10 @@ const {
 
 /* eslint-disable import/no-dynamic-require, global-require */
 /**
- * Resolve the path to a user module, falling back to Irving core version.
+ * Resolve the path to a module required in the build, fall back to irving core.
  *
- * @param {string} userPath Path to user-defined module, relative to user app root.
- * @param {string} corePath Path to Irving core module, relative to Irving core root, if different from user path.
+ * @param {string} userPath Path to user-defined module.
+ * @param {string} corePath Path to Irving core module, if different from user path.
  */
 module.exports.maybeResolveBuildModule = (userPath, corePath) => {
   const defaultPath = corePath || userPath;
