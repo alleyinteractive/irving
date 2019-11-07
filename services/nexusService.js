@@ -31,12 +31,11 @@ export default {
   /**
    * Generate a new user session and hash in the database.
    *
-   * @param {string} username
-   * @param {string} password
+   * @param {object} { username, password }
    */
-  async newSession(username, password) {
+  async newSession({ username, password }) {
     try {
-      await fetch(
+      const response = await fetch(
         `${process.env.NEXUS_ROOT_URL}/api/session/new`,
         {
           method: 'POST',
@@ -51,38 +50,27 @@ export default {
           }),
         }
       );
+      const { hash, access, expires } = await response.json();
+      const { status, verified } = await validateHash(hash);
+
+      const headerReq = await fetch(
+        `${process.env.API_ROOT_URL}/data/request_auth`
+      );
+      const { header } = await headerReq.json();
+
+      if ('success' === status && true === verified) {
+        return {
+          access,
+          expires,
+          isValid: true,
+          hash,
+          header,
+        };
+      }
     } catch (error) {
       console.info('There was a problem', error); // eslint-disable-line no-console
     }
-  },
-
-  /**
-   * Assemble the authorization header used for neuxus requests.
-   */
-  async getAuth() {
-    const response = await fetch(
-      `${process.env.API_ROOT_URL}/data/request_auth`
-    );
-    const {
-      hash,
-      header,
-      timestamp,
-    } = await response.json();
-
-    const { status, verified } =
-      await validateHash(hash, header);
-
-    if ('success' === status && true === verified) {
-      return {
-        isValid: true,
-        validTo: parseInt(timestamp, 10) + 540, // The header is only valid for 9 minutes.
-        header,
-      };
-    }
-
-    return {
-      isValid: false,
-    };
+    return {};
   },
 
   /**

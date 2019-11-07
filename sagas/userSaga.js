@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { call, put, select } from 'redux-saga/effects';
 import {
   actionReceiveUserLogin,
@@ -32,7 +33,7 @@ export default function* loginFlow(data) {
 }
 
 // @todo implement me in the login flow.
-export function* authorize() {
+export function* authorize(username, password) {
   const isValid = yield select(isAuthValid);
   const timestamp = yield select(validTo);
   const timeLimit = Math.floor(Date.now() / 1000) - 300;
@@ -41,15 +42,16 @@ export function* authorize() {
     if (false === isValid || timestamp > timeLimit) {
       yield put(actionRequestAuth());
 
-      const auth = yield call(nexusService.getAuth);
-      if (false !== auth.isValid) {
-        yield put(actionReceiveUserAuth(auth));
+      const session = yield call(nexusService.newSession, { username: 'tyler', password: 'test' });
+      console.log(session);
+      if (false !== session.isValid) {
+        yield put(actionReceiveUserAuth(session));
       } else {
         // @todo define error state.
-        throw new Error('Request failed', auth);
+        throw new Error('Request failed: ', session);
       }
 
-      return auth;
+      return session;
     }
   } catch (error) {
     console.info('There was a problem while requesting authorization.', error); // eslint-disable-line no-console
