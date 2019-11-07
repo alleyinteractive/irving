@@ -24,18 +24,15 @@ export default function* loginFlow(data) {
   } = data;
 
   try {
-    yield call(validateEmailAddress, email);
+    yield call(login, { id: 1, password: 'test' });
+    // yield call(validateEmailAddress, email);
   } catch (error) {
     yield call(debug, error);
   }
 }
 
 function* validateEmailAddress(email) {
-  const header = yield select(authHeader);
-
-  if (0 >= header.length) {
-    yield call(authorize);
-  }
+  const header = yield call(getHeader);
 
   try {
     const response = yield call(nexusService.getAccount, { email, header });
@@ -45,8 +42,34 @@ function* validateEmailAddress(email) {
   }
 }
 
+function* login({ id, password }) {
+  const header = yield call(getHeader);
+
+  try {
+    const response = yield call(nexusService.login, { id, password, header });
+
+    if ('authenticated' === response.status) {
+      // @todo do something
+      console.log('authenticated');
+    }
+  } catch (error) {
+    yield call(debug, error);
+  }
+}
+
+function* getHeader() {
+  let header = yield select(authHeader);
+
+  if (0 >= header.length) {
+    const response = yield call(authorize);
+    header = response.header; // eslint-disable-line prefer-destructuring
+  }
+
+  return header;
+}
+
 // @todo implement me in the login flow.
-export function* authorize(username, password) {
+export function* authorize({ username, password }) { // eslint-disable-line
   const hasAuth = yield select(isAuthValid);
   const timestamp = yield select(validTo);
   const timeLimit = Math.floor(Date.now() / 1000) + 300;
@@ -56,7 +79,10 @@ export function* authorize(username, password) {
     if (! isValid) {
       yield put(actionRequestAuth());
 
-      const session = yield call(nexusService.newSession, { username: 'tyler', password: 'test' });
+      const session = yield call(
+        nexusService.newSession, { username, password }
+      );
+
       if (false !== session.isValid) {
         yield put(actionReceiveUserAuth(session));
       } else {

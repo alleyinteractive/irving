@@ -78,7 +78,6 @@ export default {
    *
    * @param {string} email         User email to look up.
    * @param {string} authorization Authorization header to be passed in request.
-   * @returns {{}}
    */
   async getAccount({ email, header }) { // eslint-disable-line no-unused-vars
     try {
@@ -97,6 +96,33 @@ export default {
       return data;
     } catch (error) {
       console.info('There was a problem.', error); // eslint-disable-line no-console
+    }
+    return {};
+  },
+
+  /**
+   * Once an account has been validated, login the user.
+   *
+   * @param { id, password, header } params
+   */
+  async login({ id, password, header }) { // eslint-disable-line no-unused-vars
+    try {
+      const response = await fetch(
+        `${process.env.NEXUS_ROOT_URL}/api/user/auth`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'test',
+          },
+          credentials: 'include',
+          body: JSON.stringify({ id, password }),
+        }
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.info('There was a problem.', error); // eslint-disable-line no-unused-vars
     }
     return {};
   },
