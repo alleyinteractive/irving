@@ -11,17 +11,26 @@ const ContentListItem = (props) => {
   } = props;
   return (
     <li className={styles.wrap}>
-      <h3 className={styles.title}>{parseHTML(title)}</h3>
-      <span className={styles.description}>
-        {parseHTML(description)}
-      </span>
+      {title && (
+        <h3 className={styles.title}>{parseHTML(title)}</h3>
+      )}
+      {description && (
+        <span className={styles.description}>
+          {parseHTML(description)}
+        </span>
+      )}
     </li>
   );
 };
 
+ContentListItem.defaultProps = {
+  title: '',
+  description: '',
+};
+
 ContentListItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
 };
 
 const wrapWithStyles = withStyles(styles);
