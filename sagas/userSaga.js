@@ -9,6 +9,7 @@ import {
   authSelector,
   isValid as isAuthValid,
   validTo,
+  authHeader,
 } from 'selectors/getAuth';
 import createDebug from 'services/createDebug';
 import nexusService from 'services/nexusService';
@@ -23,8 +24,20 @@ export default function* loginFlow(data) {
   } = data;
 
   try {
-    const { header } = yield call(authorize);
+    yield call(validateEmailAddress, email);
+  } catch (error) {
+    yield call(debug, error);
+  }
+}
 
+function* validateEmailAddress(email) {
+  const header = yield select(authHeader);
+
+  if (0 >= header.length) {
+    yield call(authorize);
+  }
+
+  try {
     const response = yield call(nexusService.getAccount, { email, header });
     yield put(actionReceiveUserLogin(response));
   } catch (error) {
@@ -44,18 +57,16 @@ export function* authorize(username, password) {
       yield put(actionRequestAuth());
 
       const session = yield call(nexusService.newSession, { username: 'tyler', password: 'test' });
-      console.log(session);
       if (false !== session.isValid) {
         yield put(actionReceiveUserAuth(session));
       } else {
         // @todo define error state.
-        throw new Error('Request failed: ', session);
+        throw new Error('Session request failed: ', session);
       }
-
       return session;
     }
   } catch (error) {
-    console.info('There was a problem while requesting authorization.', error); // eslint-disable-line no-console
+    yield call(debug, error);
   }
 
   return yield select(authSelector);

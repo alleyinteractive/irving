@@ -43,6 +43,6 @@ export function actionInitiateUserLogin(email) {
  *
  * @returns {{type, payload}} The Redux action.
  */
-export function actionReceiveUserLogin() {
-  return createAction(RECEIVE_USER_LOGIN);
+export function actionReceiveUserLogin(user) {
+  return createAction(RECEIVE_USER_LOGIN, { user });
 }

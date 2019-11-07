@@ -61,7 +61,7 @@ export default {
       if ('success' === status && true === verified) {
         return {
           access,
-          expires: parseInt(timestamp, 10),
+          expires: parseInt(timestamp, 10) + 300, // cache for 5 minutes.
           isValid: true,
           hash,
           header,
