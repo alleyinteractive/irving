@@ -2,6 +2,11 @@ import { isString, omit } from 'lodash/fp';
 import React from 'react';
 import getReactComponent from 'config/componentMap';
 
+/**
+ * Recursively map a tree of API components within component groups to React elements.
+ * @param {object} componentGroups - componentGroups object
+ * @return {object} - React Element
+ */
 export function createComponentGroups(componentGroups) {
   return Object.keys(componentGroups)
     .reduce((acc, groupKey) => {
