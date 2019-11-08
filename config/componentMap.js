@@ -51,6 +51,7 @@ import Placeholder from 'components/placeholder';
 import Popular from 'components/popular';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
+import Related from 'components/related';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
 import Sidebar from 'components/sidebar';
@@ -119,6 +120,7 @@ export const componentMap = {
   'mittr-plugin-extension/content-list': ContentList,
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/stats-widget': StatsWidget,
+  'mittr-plugin-extension/related': Related,
   order: Order,
   'order-history': OrderHistory,
   pagination: Placeholder,
