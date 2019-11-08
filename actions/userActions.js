@@ -5,6 +5,7 @@ import {
   INITIATE_USER_LOGIN,
   RECEIVE_USER_LOGIN,
   RECEIVE_REQUEST_HEADER,
+  SUBMIT_USER_PASSWORD,
 } from './types';
 
 /**
@@ -40,12 +41,22 @@ export function actionInitiateUserLogin(email) {
 }
 
 /**
- * Create Redux action that represents browser state change when user submits password to login.
+ * Create Redux action that represents browser state change when user is found.
  *
  * @returns {{type, payload}} The Redux action.
  */
 export function actionReceiveUserLogin(user) {
   return createAction(RECEIVE_USER_LOGIN, { user });
+}
+
+/**
+ * Create a Redux action that represent browser state change when a user submits
+ * their password.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionSubmitUserPassword(password) {
+  return createAction(SUBMIT_USER_PASSWORD, { password });
 }
 
 /**

@@ -42,6 +42,11 @@ function* validateEmailAddress({ payload: { email } }) {
   try {
     const response = yield call(nexusService.getAccount, { email, header });
     yield put(actionReceiveUserLogin({ ...response, email }));
+    console.log(response);
+
+    if (0 < response.username.length) {
+      window.location.pathname = '/login/verified';
+    }
   } catch (error) {
     yield call(debug, error);
   }

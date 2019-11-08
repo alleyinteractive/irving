@@ -47,6 +47,7 @@ import Order from 'components/accounts/order';
 import OrderHistory from 'components/accounts/orderHistory';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
+import PasswordInputScreen from 'components/accounts/login/enterPassword';
 import Placeholder from 'components/placeholder';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
@@ -84,6 +85,7 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
+  'enter-password': PasswordInputScreen,
   'feed-anchor': CardStack,
   footer: Footer,
   'google-analytics': GoogleAnalytics,

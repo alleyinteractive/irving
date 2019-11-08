@@ -22,3 +22,8 @@ export const getUsername = createSelector(
   userSelector,
   (state) => state.username,
 );
+
+export const getUserFirstName = createSelector(
+  userSelector,
+  (state) => state.firstName,
+);
