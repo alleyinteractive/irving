@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 /**
  * Validate the hash used in the authorization header.
  *
@@ -106,6 +108,9 @@ export default {
    * @param { id, password, header } params
    */
   async login({ id, password, header }) { // eslint-disable-line no-unused-vars
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+
     try {
       const response = await fetch(
         `${process.env.NEXUS_ROOT_URL}/api/user/auth`,
@@ -116,7 +121,10 @@ export default {
             Authorization: 'test',
           },
           credentials: 'include',
-          body: JSON.stringify({ id, password }),
+          body: JSON.stringify({
+            id,
+            password: hash,
+          }),
         }
       );
       const data = await response.json();
