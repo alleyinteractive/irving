@@ -18,9 +18,11 @@ const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
               'content-center': 'center' === align,
             })}
           >
-            <h2 className={styles.header} id={titleID}>
-              {listTitle}
-            </h2>
+            {listTitle && (
+              <h2 className={styles.header} id={titleID}>
+                {listTitle}
+              </h2>
+            )}
             <ul className={styles.listWrap} aria-labelledby={titleID}>
               {children}
             </ul>
@@ -31,8 +33,12 @@ const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
   </UIDReset>
 );
 
+ContentList.defaultProps = {
+  listTitle: '',
+};
+
 ContentList.propTypes = {
-  listTitle: PropTypes.string.isRequired,
+  listTitle: PropTypes.string,
   align: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };

@@ -49,6 +49,7 @@ import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
 import PasswordInputScreen from 'components/accounts/login/enterPassword';
 import Placeholder from 'components/placeholder';
+import Popular from 'components/popular';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import SearchBar from 'components/searchBar';
@@ -125,6 +126,7 @@ export const componentMap = {
   pagination: Placeholder,
   parsely: Parsely,
   'page-body': PageBody,
+  popular: Popular,
   'post-list': PostList,
   'search-bar': SearchBar,
   'section-item': SectionItem,

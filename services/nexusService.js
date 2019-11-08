@@ -43,7 +43,7 @@ export default {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'test',
+            Authorization: 'test', // @todo update me
           },
           credentials: 'include',
           body: JSON.stringify({

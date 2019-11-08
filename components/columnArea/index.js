@@ -21,9 +21,21 @@ const ColumnArea = ({ children, theme, themeName }) => {
     const sidebar = findChildByName('sidebar', children);
 
     return (
-      <div className={classNames(theme.wrapper, {})}>
-        {content && <div className={theme.main}>{content}</div>}
-        {sidebar && <aside className={theme.sidebar}>{sidebar}</aside>}
+      <div className={classNames(theme.wrapper)}>
+        {content && (
+          <div
+            className={classNames(theme.main, styles.main)}
+          >
+            {content}
+          </div>
+        )}
+        {sidebar && (
+          <aside
+            className={classNames(theme.sidebar, styles.sidebar)}
+          >
+            {sidebar}
+          </aside>
+        )}
       </div>
     );
   }
