@@ -16,6 +16,10 @@ import nexusService from 'services/nexusService';
 
 const debug = createDebug('sagas:login');
 
+// @todo create a takeLatest or takeEvery effect pattern to create action responders instead
+// of chaining actions together inside of a generator. If I'm not the person that does this,
+// look here for the deets: https://redux-saga.js.org/docs/api/#takepattern
+
 // @todo needs to handle more than just someone requesting login.
 // I found this tutorial helpful: https://github.com/sotojuan/saga-login-flow
 export default function* loginFlow(data) {
