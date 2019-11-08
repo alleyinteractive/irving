@@ -10,12 +10,12 @@
     tidy-span: 10;
 
     @media ($mdMin) {
-      tidy-offset-left: 1;
+      tidy-offset-left: 0;
       tidy-span: 6;
     }
 
     @media ($lgMin) {
-      tidy-offset-left: 1;
+      tidy-offset-left: 0;
       tidy-span: 6;
     }
   }

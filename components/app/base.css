@@ -315,7 +315,6 @@ button {
     @media ($mdMin) {
       float: right;
       position: relative;
-      right: rem(-80);
       width: auto;
     }
   }
@@ -323,7 +322,6 @@ button {
   .content-left {
     @media ($mdMin) {
       float: left;
-      left: rem(-80);
       position: relative;
       width: auto;
     }
