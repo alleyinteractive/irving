@@ -49,8 +49,7 @@ function* login({ id, password }) {
     const response = yield call(nexusService.login, { id, password, header });
 
     if ('authenticated' === response.status) {
-      // @todo do something
-      console.log('authenticated');
+      window.location.pathname = '/';
     }
   } catch (error) {
     yield call(debug, error);
