@@ -24,8 +24,8 @@ const state = window.__PRELOADED_STATE__ || defaultState; // eslint-disable-line
 const persistConfig = {
   key: 'root',
   storage: browserStorage,
-  whitelist: ['user'], // add state slices you want persisted here
-  blacklist: [], // add state slices you don't want persisted here
+  // whitelist: ['user'], // add state slices you want persisted here
+  blacklist: ['user'], // add state slices you don't want persisted here
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, state, enhancer);

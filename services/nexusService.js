@@ -55,20 +55,34 @@ export default {
       const { hash, access } = await response.json();
       const { status, verified } = await validateHash(hash);
 
-      const headerReq = await fetch(
-        `${process.env.API_ROOT_URL}/data/request_auth`
-      );
-      const { header, timestamp } = await headerReq.json();
-
       if ('success' === status && true === verified) {
         return {
           access,
-          expires: parseInt(timestamp, 10) + 300, // cache for 5 minutes.
           isValid: true,
           hash,
-          header,
         };
       }
+    } catch (error) {
+      console.info('There was a problem', error); // eslint-disable-line no-console
+    }
+    return {};
+  },
+
+  /**
+   * Retrieve the header used to as an authorization token to authenticate
+   * nexus requests.
+   */
+  async getRequestHeader() {
+    try {
+      const request = await fetch(
+        `${process.env.API_ROOT_URL}/data/request_auth`
+      );
+      const { header, timestamp } = await request.json();
+
+      return {
+        header,
+        expires: parseInt(timestamp, 10) + 300,
+      };
     } catch (error) {
       console.info('There was a problem', error); // eslint-disable-line no-console
     }

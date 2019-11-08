@@ -4,6 +4,7 @@ import {
   RECEIVE_USER_AUTH,
   INITIATE_USER_LOGIN,
   RECEIVE_USER_LOGIN,
+  RECEIVE_REQUEST_HEADER,
 } from './types';
 
 /**
@@ -45,4 +46,14 @@ export function actionInitiateUserLogin(email) {
  */
 export function actionReceiveUserLogin(user) {
   return createAction(RECEIVE_USER_LOGIN, { user });
+}
+
+/**
+ * Create a Redux action that represent browser state change when an Authoriztion header is
+ * received from WordPress.
+ *
+ * @param {{type, payload}} header The Redux action.
+ */
+export function actionReceiveRequestHeader(header) {
+  return createAction(RECEIVE_REQUEST_HEADER, { header });
 }

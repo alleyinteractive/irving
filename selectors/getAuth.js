@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
 export const authSelector = (state) => state.user.authorization;
+export const userSelector = (state) => state.user;
 
 export const isValid = createSelector(
   authSelector,
@@ -15,4 +16,9 @@ export const validTo = createSelector(
 export const authHeader = createSelector(
   authSelector,
   (state) => state.header,
+);
+
+export const getUsername = createSelector(
+  userSelector,
+  (state) => state.username,
 );
