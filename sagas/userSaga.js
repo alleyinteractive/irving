@@ -74,8 +74,8 @@ function* getHeader() {
 // @todo implement me in the login flow.
 export function* authorize({ username, password }) { // eslint-disable-line
   const hasAuth = yield select(isAuthValid);
-  const timestamp = yield select(validTo);
-  const timeLimit = Math.floor(Date.now() / 1000) + 300;
+  const timeLimit = yield select(validTo);
+  const timestamp = Math.floor(Date.now() / 1000);
   const isValid = hasAuth && timestamp < timeLimit;
 
   try {
