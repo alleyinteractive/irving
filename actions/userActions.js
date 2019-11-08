@@ -6,6 +6,7 @@ import {
   RECEIVE_USER_LOGIN,
   RECEIVE_REQUEST_HEADER,
   SUBMIT_USER_PASSWORD,
+  RECEIVE_USER_LOGOUT,
 } from './types';
 
 /**
@@ -50,7 +51,7 @@ export function actionReceiveUserLogin(user) {
 }
 
 /**
- * Create a Redux action that represent browser state change when a user submits
+ * Create a Redux action that represents browser state change when a user submits
  * their password.
  *
  * @returns {{type, payload}} The Redux action.
@@ -60,11 +61,20 @@ export function actionSubmitUserPassword(password) {
 }
 
 /**
- * Create a Redux action that represent browser state change when an Authoriztion header is
+ * Create a Redux action that represents browser state change when an Authoriztion header is
  * received from WordPress.
  *
  * @param {{type, payload}} header The Redux action.
  */
 export function actionReceiveRequestHeader(header) {
   return createAction(RECEIVE_REQUEST_HEADER, { header });
+}
+
+/**
+ * Create a Redux action that represents browser state change when a user logs out.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveUserLogout() {
+  return createAction(RECEIVE_USER_LOGOUT);
 }

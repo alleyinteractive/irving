@@ -2,6 +2,7 @@ import {
   RECEIVE_USER_AUTH,
   RECEIVE_USER_LOGIN,
   RECEIVE_REQUEST_HEADER,
+  RECEIVE_USER_LOGOUT,
 } from 'actions/types';
 import { user as defaultState } from './defaultState';
 
@@ -20,6 +21,8 @@ export default function userReducer(state = defaultState, { type, payload }) {
       return { ...state, authorization: { ...payload.auth } };
     case RECEIVE_USER_LOGIN:
       return { ...state, ...payload.user };
+    case RECEIVE_USER_LOGOUT:
+      return state;
     default:
       return state;
   }
