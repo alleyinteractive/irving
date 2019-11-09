@@ -7,6 +7,7 @@ import {
   RECEIVE_REQUEST_HEADER,
   SUBMIT_USER_PASSWORD,
   RECEIVE_USER_LOGOUT,
+  RECEIVE_NEW_USER_EMAIL,
 } from './types';
 
 /**
@@ -78,3 +79,13 @@ export function actionReceiveRequestHeader(header) {
 export function actionReceiveUserLogout() {
   return createAction(RECEIVE_USER_LOGOUT);
 }
+
+/**
+ * Create a Redux action that represents browser state change when a user logs out.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveNewUserEmail(email) {
+  return createAction(RECEIVE_NEW_USER_EMAIL, { email });
+}
+

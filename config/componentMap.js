@@ -52,6 +52,7 @@ import Placeholder from 'components/placeholder';
 import Popular from 'components/popular';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
+import Register from 'components/accounts/register';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
 import Sidebar from 'components/sidebar';
@@ -128,6 +129,7 @@ export const componentMap = {
   'page-body': PageBody,
   popular: Popular,
   'post-list': PostList,
+  register: Register,
   'search-bar': SearchBar,
   'section-item': SectionItem,
   'subtopics-section': SubtopicsSection,

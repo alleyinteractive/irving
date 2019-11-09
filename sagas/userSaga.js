@@ -5,6 +5,7 @@ import {
   actionRequestAuth,
   actionReceiveUserAuth,
   actionReceiveRequestHeader,
+  actionReceiveNewUserEmail,
 } from 'actions/userActions';
 import * as userActions from 'actions/userActions';
 import {
@@ -43,10 +44,15 @@ function* validateEmailAddress({ payload: { email } }) {
 
   try {
     const response = yield call(nexusService.getAccount, { email, header });
-    yield put(actionReceiveUserLogin({ ...response, email }));
 
-    if (0 < response.username.length) {
+    if (response.username) {
+      yield put(actionReceiveUserLogin({ ...response, email }));
+  
       window.location.pathname = '/login/verified';
+    } else {
+      yield put(actionReceiveNewUserEmail(email));
+
+      window.location.pathname = '/register';
     }
   } catch (error) {
     yield call(debug, error);

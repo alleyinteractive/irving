@@ -1,0 +1,95 @@
+.accountWrap {
+  margin: rem(40) auto rem(50);
+  max-width: rem(758);
+  padding: 0 rem(15);
+}
+
+.accountHeader {
+  @include accountHeader;
+}
+
+.accountSubHeader {
+  @include accountSubHeader;
+}
+
+.accountHeaderDescription {
+  @include accountHeaderDescription;
+  margin-bottom: rem(25);
+}
+
+.formWrap {
+  font-family: $sans;
+  margin-bottom: rem(50);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: rem(15);
+    margin-right: rem(5);
+    width: 100%;
+  }
+
+  input {
+    display: block;
+    margin-bottom: rem(10);
+    width: 100%;
+  }
+
+  @media ($smMin) {
+    display: flex;
+    margin-bottom: rem(10);
+
+    .createBtn {
+      display: inline-block;
+      width: auto;
+    }
+
+    input {
+      display: flex;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.formInput {
+  @include formInput;
+  margin-right: rem(5);
+
+  &.inputInvalid {
+    @include inputInvalid;
+  }
+}
+
+.formCheckbox {
+  display: inline-block;
+  max-width: 15px;
+}
+
+.termsText {
+  font-size: 16px;
+  display: inline-block;
+}
+
+.confirmationText {
+  color: #000;
+  display: inline;
+  font-size: rem(24);
+  font-weight: 400;
+}
+
+.createBtn {
+  @include btn;
+  @include blackBtn;
+
+  max-width: 228px;
+}
+
+.formError {
+  color: $red;
+  display: block;
+  margin-bottom: rem(10);
+  margin-left: rem(10);
+}

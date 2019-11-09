@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 // Styles
 import styles from './login.css';
 
-const PasswordInputScreen = ({ submitPassword, userName }) => {
+const PasswordInputScreen = ({ submitPassword, userName = '' }) => {
   const [userPasswordInput, setUserPasswordInput] = useState('');
 
   const handleSubmit = (event) => {
@@ -46,7 +46,7 @@ const PasswordInputScreen = ({ submitPassword, userName }) => {
         <div className={styles.formGroup}>
           <label htmlFor="userPasswordInput">
             <input
-              type="text"
+              type="password"
               id="userPasswordInput"
               name="userPasswordInput"
               value={userPasswordInput}

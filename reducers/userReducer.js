@@ -3,6 +3,7 @@ import {
   RECEIVE_USER_LOGIN,
   RECEIVE_REQUEST_HEADER,
   RECEIVE_USER_LOGOUT,
+  RECEIVE_NEW_USER_EMAIL,
 } from 'actions/types';
 import { user as defaultState } from './defaultState';
 
@@ -23,6 +24,8 @@ export default function userReducer(state = defaultState, { type, payload }) {
       return { ...state, ...payload.user };
     case RECEIVE_USER_LOGOUT:
       return state;
+    case RECEIVE_NEW_USER_EMAIL:
+      return { ...state, email: payload.email };
     default:
       return state;
   }
