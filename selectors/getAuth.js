@@ -18,6 +18,11 @@ export const authHeader = createSelector(
   (state) => state.header,
 );
 
+export const getUserId = createSelector(
+  userSelector,
+  (state) => state.id,
+);
+
 export const getUsername = createSelector(
   userSelector,
   (state) => state.username,

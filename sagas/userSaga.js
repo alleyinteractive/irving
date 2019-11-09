@@ -12,21 +12,24 @@ import {
   isValid as isAuthValid,
   validTo,
   authHeader,
+  getUsername,
+  getUserId,
 } from 'selectors/getAuth';
 import createDebug from 'services/createDebug';
 import nexusService from 'services/nexusService';
-import { INITIATE_USER_LOGIN } from '../actions/types';
+import { INITIATE_USER_LOGIN, SUBMIT_USER_PASSWORD } from '../actions/types';
 
 const debug = createDebug('sagas:login');
 
 export default [
   takeEvery(INITIATE_USER_LOGIN, validateEmailAddress),
+  takeEvery(SUBMIT_USER_PASSWORD, authorize),
 ];
 
 function* getRequestHeader() {
   let header = yield select(authHeader);
 
-  if (0 >= header.length) {
+  if (! header || 0 >= header.length) {
     const response = yield call(nexusService.getRequestHeader);
     header = response.header; // eslint-disable-line prefer-destructuring
     yield put(actionReceiveRequestHeader(response))
@@ -37,12 +40,10 @@ function* getRequestHeader() {
 
 function* validateEmailAddress({ payload: { email } }) {
   const header = yield call(getRequestHeader);
-  console.log(email, header);
 
   try {
     const response = yield call(nexusService.getAccount, { email, header });
     yield put(actionReceiveUserLogin({ ...response, email }));
-    console.log(response);
 
     if (0 < response.username.length) {
       window.location.pathname = '/login/verified';
@@ -61,7 +62,8 @@ function* authorize({ payload: { password }}) {
   try {
     if (! isValid) {
       const header = yield call(getRequestHeader);
-      const username = yield call(getUsername);
+      const username = yield select(getUsername);
+      const userId = yield select(getUserId);
   
       yield put(actionRequestAuth());
 
@@ -73,7 +75,7 @@ function* authorize({ payload: { password }}) {
         // Store session data.
         yield put(actionReceiveUserAuth(session));
         // Login the user.
-        yield call(login, { id: session.id, password, header });
+        yield call(login, { id: userId, password, header });
       } else {
         // @todo define error state.
         throw new Error('Session request failed: ', session);
@@ -89,7 +91,7 @@ function* authorize({ payload: { password }}) {
 }
 
 function* login({ id, password }) {
-  const header = yield call(getHeader);
+  const header = yield call(getRequestHeader);
 
   try {
     const response = yield call(nexusService.login, { id, password, header });
