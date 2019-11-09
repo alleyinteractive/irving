@@ -17,6 +17,7 @@
   font-size: rem(20);
   font-weight: 700;
   margin-bottom: rem(20);
+  padding-left: 0;
 }
 
 .listWrap {
