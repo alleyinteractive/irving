@@ -69,8 +69,8 @@
 }
 
 .termsText {
-  font-size: 16px;
   display: inline-block;
+  font-size: rem(16);
 }
 
 .confirmationText {
@@ -83,7 +83,7 @@
 .createBtn {
   @include btn;
   @include blackBtn;
-  max-width: 228px;
+  max-width: rem(228);
 }
 
 .formError {
