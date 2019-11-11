@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 /**
  * Validate the hash used in the authorization header.
  *
@@ -31,12 +33,11 @@ export default {
   /**
    * Generate a new user session and hash in the database.
    *
-   * @param {string} username
-   * @param {string} password
+   * @param {object} { username, password }
    */
-  async newSession(username, password) {
+  async newSession({ username, password }) {
     try {
-      await fetch(
+      const response = await fetch(
         `${process.env.NEXUS_ROOT_URL}/api/session/new`,
         {
           method: 'POST',
@@ -51,38 +52,41 @@ export default {
           }),
         }
       );
+      const { hash, access } = await response.json();
+      const { status, verified } = await validateHash(hash);
+
+      if ('success' === status && true === verified) {
+        return {
+          access,
+          isValid: true,
+          hash,
+        };
+      }
     } catch (error) {
       console.info('There was a problem', error); // eslint-disable-line no-console
     }
+    return {};
   },
 
   /**
-   * Assemble the authorization header used for neuxus requests.
+   * Retrieve the header used to as an authorization token to authenticate
+   * nexus requests.
    */
-  async getAuth() {
-    const response = await fetch(
-      `${process.env.API_ROOT_URL}/data/request_auth`
-    );
-    const {
-      hash,
-      header,
-      timestamp,
-    } = await response.json();
+  async getRequestHeader() {
+    try {
+      const request = await fetch(
+        `${process.env.API_ROOT_URL}/data/request_auth`
+      );
+      const { header, timestamp } = await request.json();
 
-    const { status, verified } =
-      await validateHash(hash, header);
-
-    if ('success' === status && true === verified) {
       return {
-        isValid: true,
-        validTo: parseInt(timestamp, 10) + 540, // The header is only valid for 9 minutes.
         header,
+        expires: parseInt(timestamp, 10) + 300,
       };
+    } catch (error) {
+      console.info('There was a problem', error); // eslint-disable-line no-console
     }
-
-    return {
-      isValid: false,
-    };
+    return {};
   },
 
   /**
@@ -90,9 +94,8 @@ export default {
    *
    * @param {string} email         User email to look up.
    * @param {string} authorization Authorization header to be passed in request.
-   * @returns {{}}
    */
-  async getAccount({ email, header }) {
+  async getAccount({ email, header }) { // eslint-disable-line no-unused-vars
     try {
       const response = await fetch(
         `${process.env.NEXUS_ROOT_URL}/api/user/email/${email}`,
@@ -100,7 +103,7 @@ export default {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: header,
+            Authorization: 'test',
           },
           credentials: 'include',
         }
@@ -109,6 +112,39 @@ export default {
       return data;
     } catch (error) {
       console.info('There was a problem.', error); // eslint-disable-line no-console
+    }
+    return {};
+  },
+
+  /**
+   * Once an account has been validated, login the user.
+   *
+   * @param { id, password, header } params
+   */
+  async login({ id, password, header }) { // eslint-disable-line no-unused-vars
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXUS_ROOT_URL}/api/user/auth`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'test',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            id,
+            password: hash,
+          }),
+        }
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.info('There was a problem.', error); // eslint-disable-line no-unused-vars
     }
     return {};
   },

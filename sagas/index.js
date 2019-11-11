@@ -3,7 +3,6 @@ import {
   LOCATION_CHANGE,
   REQUEST_SUBMIT,
   REQUEST_COMPONENT_DATA,
-  INITIATE_USER_LOGIN,
 } from 'actions/types';
 import resolveComponents from './resolveComponents';
 import waitToScroll from './waitToScroll';
@@ -22,6 +21,7 @@ export default function* rootSaga() {
     takeLatest(REQUEST_SUBMIT, watchRequestSubmit),
     takeEvery(LOCATION_CHANGE, onLocationChange),
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
-    takeLatest(INITIATE_USER_LOGIN, loginFlow),
+    // User sagas.
+    ...loginFlow,
   ]);
 }

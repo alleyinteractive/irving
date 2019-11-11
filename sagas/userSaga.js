@@ -1,60 +1,112 @@
-import { call, put, select } from 'redux-saga/effects';
+/* eslint-disable */
+import { call, put, select, takeEvery } from 'redux-saga/effects';
 import {
   actionReceiveUserLogin,
   actionRequestAuth,
   actionReceiveUserAuth,
+  actionReceiveRequestHeader,
+  actionReceiveNewUserEmail,
 } from 'actions/userActions';
+import * as userActions from 'actions/userActions';
 import {
   authSelector,
   isValid as isAuthValid,
   validTo,
+  authHeader,
+  getUsername,
+  getUserId,
 } from 'selectors/getAuth';
 import createDebug from 'services/createDebug';
 import nexusService from 'services/nexusService';
+import { INITIATE_USER_LOGIN, SUBMIT_USER_PASSWORD } from '../actions/types';
 
 const debug = createDebug('sagas:login');
 
-// @todo needs to handle more than just someone requesting login.
-// I found this tutorial helpful: https://github.com/sotojuan/saga-login-flow
-export default function* loginFlow(data) {
-  const {
-    payload: { email },
-  } = data;
+export default [
+  takeEvery(INITIATE_USER_LOGIN, validateEmailAddress),
+  takeEvery(SUBMIT_USER_PASSWORD, authorize),
+];
+
+function* getRequestHeader() {
+  let header = yield select(authHeader);
+
+  if (! header || 0 >= header.length) {
+    const response = yield call(nexusService.getRequestHeader);
+    header = response.header; // eslint-disable-line prefer-destructuring
+    yield put(actionReceiveRequestHeader(response))
+  }
+
+  return header;
+}
+
+function* validateEmailAddress({ payload: { email } }) {
+  const header = yield call(getRequestHeader);
 
   try {
-    const { header } = yield call(authorize);
-
     const response = yield call(nexusService.getAccount, { email, header });
-    yield put(actionReceiveUserLogin(response));
+
+    if (response.username) {
+      yield put(actionReceiveUserLogin({ ...response, email }));
+  
+      window.location.pathname = '/login/verified';
+    } else {
+      yield put(actionReceiveNewUserEmail(email));
+
+      window.location.pathname = '/register';
+    }
   } catch (error) {
     yield call(debug, error);
   }
 }
 
-// @todo implement me in the login flow.
-export function* authorize() {
-  const isValid = yield select(isAuthValid);
-  const timestamp = yield select(validTo);
-  const timeLimit = Math.floor(Date.now() / 1000) - 300;
+function* authorize({ payload: { password }}) {
+  const hasAuth = yield select(isAuthValid);
+  const timeLimit = yield select(validTo);
+  const timestamp = Math.floor(Date.now() / 1000);
+  const isValid = hasAuth && timestamp < timeLimit;
 
   try {
-    if (false === isValid || timestamp > timeLimit) {
+    if (! isValid) {
+      const header = yield call(getRequestHeader);
+      const username = yield select(getUsername);
+      const userId = yield select(getUserId);
+  
       yield put(actionRequestAuth());
 
-      const auth = yield call(nexusService.getAuth);
-      if (false !== auth.isValid) {
-        yield put(actionReceiveUserAuth(auth));
+      const session = yield call(
+        nexusService.newSession, { username, password, header }
+      );
+
+      if (false !== session.isValid) {
+        // Store session data.
+        yield put(actionReceiveUserAuth(session));
+        // Login the user.
+        yield call(login, { id: userId, password, header });
       } else {
         // @todo define error state.
-        throw new Error('Request failed', auth);
+        throw new Error('Session request failed: ', session);
       }
-
-      return auth;
+      return session;
     }
   } catch (error) {
-    console.info('There was a problem while requesting authorization.', error); // eslint-disable-line no-console
+    yield call(debug, error);
   }
 
+  // User already exists
   return yield select(authSelector);
+}
+
+function* login({ id, password }) {
+  const header = yield call(getRequestHeader);
+
+  try {
+    const response = yield call(nexusService.login, { id, password, header });
+
+    if ('authenticated' === response.status) {
+      window.location.pathname = '/';
+    }
+  } catch (error) {
+    yield call(debug, error);
+  }
 }
 
