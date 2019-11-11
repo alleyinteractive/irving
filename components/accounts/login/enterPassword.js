@@ -37,7 +37,7 @@ const PasswordInputScreen = ({ submitPassword, userName = '' }) => {
     <div className={styles.accountWrap}>
       <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
       <p className={styles.accountSubHeader}>
-        {__(`Welecome back, ${userName}!`, 'mittr')}
+        {__(`Welcome back, ${userName}!`, 'mittr')}
       </p>
       <p className={styles.accountHeaderDescription}>
         {__('Please enter your password to continue.', 'mittr')}
