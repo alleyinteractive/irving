@@ -31,6 +31,6 @@ cache:
 
 script:
   - npm run test
-  - npm run build
+  - npx stylelint '{assets,client,components,styleguide}/**/*.css' --config config/stylelint.config.js
   - npm run start &
   - sleep 10 # Give server enough time to spin up
