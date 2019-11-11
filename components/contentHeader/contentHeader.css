@@ -60,6 +60,7 @@
 .image {
   @include container-with-bleed;
   display: flex;
+  flex-direction: column;
   margin: 0 auto rem(20);
   overflow: hidden;
   width: 100%;
