@@ -10,37 +10,52 @@ import { withStyles } from 'critical-style-loader/lib';
 import styles from './contentFooter.css';
 import infeedTheme from './contentFooter--infeed.css';
 import inlineTheme from './contentFooter--inline.css';
+import Image from '../image/image';
 
-const ContentFooter = ({ children, author, theme }) => {
+const ContentFooter = ({ children, authors, theme }) => {
   const socialSharing = findChildByName('social-sharing', children);
   const tags = filterChildrenByName('tags', children);
   return (
     <footer className={theme.wrapper}>
       <h2 className={theme.title}>{__('Article meta', 'mittr')}</h2>
       <div className={theme.social}>{socialSharing}</div>
-      {tags && tags.children && (
+      {tags && (
         <div className={theme.tags}>
           <h3 className={theme.label}>{__('Tagged', 'mittr')}</h3>
           {tags}
         </div>
       )}
-      {author && author.name && (
-        <address className={theme.author}>
-          <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
-          {/* @todo this needs an image */}
-          <Link to={author.url}>{author.name}</Link>
-        </address>
-      )}
+
+      <address className={theme.author}>
+        <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
+        {/* @todo this needs an image */}
+        {authors && authors.map((author) => (
+
+          <Link to={author.url} key={author.name} class={theme.authorLink}>
+            {author.avatar && (
+              <Image
+                src={author.avatar}
+                alt={author.name}
+                className={theme.avatar}
+                picture={false}
+              />
+            )}
+            {author.name}
+          </Link>
+        ))}
+      </address>
+
     </footer>
   );
 };
 
 ContentFooter.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  author: PropTypes.shape({
+  authors: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-  }).isRequired,
+    avatar: PropTypes.string,
+  })).isRequired,
   theme: PropTypes.shape({
     author: PropTypes.string,
     label: PropTypes.string,
