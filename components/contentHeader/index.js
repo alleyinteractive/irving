@@ -7,8 +7,10 @@ import { findChildByName } from 'utils/children';
 // Themes
 import styles from './contentHeader.css';
 import inlineTheme from './contentHeader--inline.css';
+import Eyebrow from '../eyebrow';
 
 const ContentHeader = ({
+  eyebrow,
   title,
   publishDate,
   deck,
@@ -25,6 +27,13 @@ const ContentHeader = ({
   return (
     <header className={theme.wrapper}>
       <div className={theme.intro}>
+        <Eyebrow
+          customEyebrow=""
+          themeName="Full Story"
+          topic={eyebrow.content}
+          topicLink={eyebrow.link}
+          color={eyebrow.color}
+        />
         {'' !== title && <Heading className={theme.title}>{title}</Heading>}
         <DeckTag className={theme.deck}>{deck}</DeckTag>
         {'inline' !== themeName && (
@@ -34,12 +43,17 @@ const ContentHeader = ({
           </div>
         )}
       </div>
-      <figure className={theme.image}>{image}</figure>
+      <div className={theme.image}>{image}</div>
     </header>
   );
 };
 
 ContentHeader.propTypes = {
+  eyebrow: PropTypes.shape({
+    link: PropTypes.string,
+    color: PropTypes.string,
+    content: PropTypes.string,
+  }),
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   deck: PropTypes.string.isRequired,
   publishDate: PropTypes.string.isRequired,
@@ -58,6 +72,11 @@ ContentHeader.propTypes = {
 };
 
 ContentHeader.defaultProps = {
+  eyebrow: {
+    color: '#000000',
+    content: '',
+    link: '',
+  },
   headingLevel: 1,
   themeName: '',
 };

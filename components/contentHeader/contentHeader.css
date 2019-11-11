@@ -58,12 +58,16 @@
 }
 
 .image {
-  /* @include container-with-bleed; */
+  @include container-with-bleed;
   display: flex;
   margin: 0 auto rem(20);
   overflow: hidden;
   width: 100%;
   /* tidy-span: 10; */
+
+  figure {
+    width: 100%;
+  }
 
   @media ($mdMin) {
     order: 0;

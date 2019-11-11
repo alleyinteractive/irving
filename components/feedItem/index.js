@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
-import FeedEyebrow from './feedEyebrow';
+import Eyebrow from '../eyebrow';
 
 // Styles
 import styles from './feedItem.css';
@@ -60,8 +60,9 @@ const FeedItem = ({
             <span className="screen-reader-text">
               {__('Category: ', 'mittr')}
             </span>
-            <FeedEyebrow
+            <Eyebrow
               customEyebrow={customEyebrow}
+              themeName="In Feed"
               topic={topic}
               topicLink={topicLink}
               color={color}
