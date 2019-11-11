@@ -50,9 +50,9 @@ const ContentHeader = ({
 
 ContentHeader.propTypes = {
   eyebrow: PropTypes.shape({
-    link: PropTypes.string.isRequired,
-    color: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    link: PropTypes.string,
+    color: PropTypes.string,
+    content: PropTypes.string,
   }),
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   deck: PropTypes.string.isRequired,
@@ -74,6 +74,8 @@ ContentHeader.propTypes = {
 ContentHeader.defaultProps = {
   eyebrow: {
     color: '#000000',
+    content: '',
+    link: '',
   },
   headingLevel: 1,
   themeName: '',
