@@ -31,5 +31,6 @@ cache:
 
 script:
   - npm run test
+  - npm run build
   - npm run start &
-  - sleep 30 # Give server enough time to spin up
+  - sleep 10 # Give server enough time to spin up
