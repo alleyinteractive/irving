@@ -19,7 +19,7 @@ const PasswordInputScreen = ({ submitPassword, userName = '' }) => {
       submitPassword(userPasswordInput);
     } else {
       // Define error handling logic.
-      console.log('Something went wrong with the password.');
+      console.log('Something went wrong with the password.'); // eslint-disable-line no-console
     }
   };
 

@@ -1,12 +1,14 @@
+/* eslint-disable no-unused-vars */
+// @todo use header for authentication.
 import bcrypt from 'bcryptjs';
 
 /**
  * Validate the hash used in the authorization header.
  *
  * @param {string} hash   sha256 hash of secret and timestamp.
- * @param {string} header The authoriztion header.
+ * @param {string} header The authorization header.
  */
-async function validateHash(hash, header) { // eslint-disable-line no-unused-vars
+async function validateHash(hash, header) {
   try {
     const response = await fetch(
       `${process.env.NEXUS_ROOT_URL}/api/session/verify/${hash}`,
@@ -95,7 +97,8 @@ export default {
    * @param {string} email         User email to look up.
    * @param {string} authorization Authorization header to be passed in request.
    */
-  async getAccount({ email, header }) { // eslint-disable-line no-unused-vars
+  async getAccount({ email, header }) {
+    // eslint-disable-line no-unused-vars
     try {
       const response = await fetch(
         `${process.env.NEXUS_ROOT_URL}/api/user/email/${email}`,
@@ -121,7 +124,8 @@ export default {
    *
    * @param { id, password, header } params
    */
-  async login({ id, password, header }) { // eslint-disable-line no-unused-vars
+  async login({ id, password, header }) {
+    // eslint-disable-line no-unused-vars
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
@@ -144,7 +148,7 @@ export default {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.info('There was a problem.', error); // eslint-disable-line no-unused-vars
+      console.info('There was a problem.', error); // eslint-disable-line no-console
     }
     return {};
   },

@@ -22,10 +22,10 @@ const Register = () => {
       '' !== userPasswordInput &&
       '' !== confirmUserPasswordInput
     ) {
-      console.log('Create an account.');
+      console.log('Create an account.'); // eslint-disable-line no-console
     } else {
       // Define error handling logic.
-      console.log('Something went wrong.');
+      console.log('Something went wrong.'); // eslint-disable-line no-console
     }
   };
 
