@@ -12,6 +12,7 @@ const Image = (props) => {
     aspectRatio,
     caption,
     className,
+    credit,
     lazyload,
     lqipSrc,
     picture,
@@ -81,7 +82,10 @@ const Image = (props) => {
           imageContent
         }
       </span>
-      {(caption && showCaption) && <figcaption>{caption}</figcaption>}
+      {(caption && showCaption) && (
+        <figcaption className={styles.caption}>{caption}</figcaption>
+      )}
+      {credit && (<span className={styles.credit}>{credit}</span>)}
     </WrapperElement>
   );
 };
@@ -112,6 +116,10 @@ Image.propTypes = {
    * Additional classname(s) to add to image wrapper element
    */
   className: PropTypes.string,
+  /**
+   * Image caption. This prop will modify the image markup to use a <figure>.
+   */
+  credit: PropTypes.string,
   /**
    * Height of image. Necessary for lazyloading placeholder.
    */
@@ -164,6 +172,7 @@ Image.propTypes = {
 Image.defaultProps = {
   aspectRatioStyles: true,
   caption: '',
+  credit: '',
   className: '',
   sourceTags: [],
   picture: false,
