@@ -28,7 +28,6 @@ const ContentFooter = ({ children, authors, theme }) => {
 
       <address className={theme.author}>
         <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
-        {/* @todo this needs an image */}
         {authors && authors.map((author) => (
 
           <Link to={author.url} key={author.name} class={theme.authorLink}>
