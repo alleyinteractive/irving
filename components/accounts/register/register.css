@@ -83,7 +83,6 @@
 .createBtn {
   @include btn;
   @include blackBtn;
-
   max-width: 228px;
 }
 
