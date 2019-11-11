@@ -47,10 +47,12 @@ import Order from 'components/accounts/order';
 import OrderHistory from 'components/accounts/orderHistory';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
+import PasswordInputScreen from 'components/accounts/login/enterPassword';
 import Placeholder from 'components/placeholder';
 import Popular from 'components/popular';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
+import Register from 'components/accounts/register';
 import Related from 'components/related';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
@@ -86,6 +88,7 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
+  'enter-password': PasswordInputScreen,
   'feed-anchor': CardStack,
   footer: Footer,
   'google-analytics': GoogleAnalytics,
@@ -128,6 +131,7 @@ export const componentMap = {
   'page-body': PageBody,
   popular: Popular,
   'post-list': PostList,
+  register: Register,
   'search-bar': SearchBar,
   'section-item': SectionItem,
   'subtopics-section': SubtopicsSection,
