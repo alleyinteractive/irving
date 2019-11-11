@@ -27,13 +27,15 @@ const ContentHeader = ({
   return (
     <header className={theme.wrapper}>
       <div className={theme.intro}>
-        <Eyebrow
-          customEyebrow=""
-          themeName="Full Story"
-          topic={eyebrow.content}
-          topicLink={eyebrow.link}
-          color={eyebrow.color}
-        />
+        {eyebrow.content && (
+          <Eyebrow
+            customEyebrow=""
+            themeName="Full Story"
+            topic={eyebrow.content}
+            topicLink={eyebrow.link}
+            color={eyebrow.color}
+          />
+        )}
         {'' !== title && <Heading className={theme.title}>{title}</Heading>}
         <DeckTag className={theme.deck}>{deck}</DeckTag>
         {'inline' !== themeName && (
