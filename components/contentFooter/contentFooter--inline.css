@@ -1,1 +1,5 @@
 /* Inline footer styles */
+.avatar {
+  height: rem(32);
+  width: rem(32);
+}

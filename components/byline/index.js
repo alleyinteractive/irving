@@ -8,30 +8,36 @@ import styles from './byline.css';
 
 const Byline = (props) => {
   const {
-    name,
-    link,
+    authors,
   } = props;
 
   return (
     <div className={styles.wrapper}>
-      {__('by ', 'mittr')}
-      {link ? (
-        <Link
-          className={styles.name}
-          to={link}
-        >
-          {name}
-        </Link>
-      ) : (
-        <span className={styles.name}>{name}</span>
-      )}
+      <span className={styles.by}>
+        {__('by ', 'mittr')}
+      </span>
+      {authors.map((author, index, arr) => (
+        <div className={styles.author}>
+          <span className={styles.and}>
+            {((index < arr.length) && (0 !== index)) && (
+              <span>
+                {__('and', 'mittr') }
+              </span>
+            )
+            }
+          </span>
+          <Link to={author.link} className={styles.name}>{author.name}</Link>
+        </div>
+      ))}
     </div>
   );
 };
 
 Byline.propTypes = {
-  name: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
+  authors: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    link: PropTypes.string,
+  })).isRequired,
 };
 
 export default Byline;

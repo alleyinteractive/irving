@@ -4,6 +4,18 @@
   font-family: $sans;
 }
 
-.name {
-  font-weight: 700;
+.by {
+  float: left;
+}
+
+.author {
+  float: left;
+
+  .name {
+    font-weight: 700;
+  }
+
+  .and {
+    padding: 0 rem(5) 0 rem(5);
+  }
 }

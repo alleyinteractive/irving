@@ -17,3 +17,8 @@
   font-size: rem(14);
   width: 100%;
 }
+
+.avatar {
+  height: rem(32);
+  width: rem(32);
+}
