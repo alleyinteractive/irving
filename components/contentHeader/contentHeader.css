@@ -1,8 +1,12 @@
 .wrapper {
-  @include container-with-bleed;
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: rem(20);
+  width: 100%;
+
+  @media ($smMin) {
+    @include container-with-bleed;
+  }
 }
 
 .publishDate {
@@ -34,8 +38,15 @@
 }
 
 .headerBlock {
+  @include container-with-bleed;
   margin: 0 auto;
-  tidy-span: 10;
+  width: 100%;
+
+  @media ($smMin) {
+    padding-left: 0;
+    padding-right: 0;
+    tidy-span: 10;
+  }
 
   @media ($mdMin) {
     order: 1;
@@ -62,10 +73,9 @@
 }
 
 .image {
-  @include container-with-bleed;
   display: flex;
   flex-direction: column;
-  margin: 0 auto rem(20);
+  margin: 0 auto;
   overflow: hidden;
   width: 100%;
 
@@ -80,7 +90,8 @@
 
 .sponsoredModule {
   composes: headerBlock;
-  order: 10;
+  margin-bottom: rem(20);
+  margin-top: rem(20);
 
   @media ($mdMin) {
     margin-bottom: rem(40);
