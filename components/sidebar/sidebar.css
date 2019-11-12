@@ -1,33 +1,12 @@
 .wrapper {
   flex: 0 0 auto;
   width: 100%;
-  /* margin-right: lost-vars('gutter'); */
-  /* tidy-span: 12; */
 
   @media ($smMin) {
+    min-width: rem(330);
     padding-left: 0;
     padding-right: 0;
-    min-width: rem(330);
   }
-
-  /* > * {
-    margin: 0 auto;
-    tidy-span: 10;
-
-    @media ($mdMin) {
-      tidy-offset-left: 0;
-      tidy-span: 6;
-    }
-
-    @media ($lgMin) {
-      tidy-offset-left: 0;
-      tidy-span: 6;
-    }
-  } */
-
-  /* &:last-child {
-    margin-right: 0;
-  } */
 
   :global(.sidebarHTMLContent) {
     @include basic-formatting;
@@ -41,7 +20,6 @@
 .item {
   width: 100%;
 
-  /* stylelint-disable-next-line selector-max-specificity */
   &:not(:empty) {
     margin-bottom: rem(40);
   }
