@@ -35,7 +35,7 @@ describe('withThemes', () => {
     ])).toBe(true);
   });
 
-  it('Should get a `themes` property from context and provide the specified theme to the component as a prop', () => {
+  it('Should get a `contextThemes` value from context and provide the specified theme to the component as a prop', () => {
     const wrapper = mount(
       <ThemeContext.Provider value={{ Foo: 'theme1' }}>
         <ThemedComponent />
@@ -47,9 +47,9 @@ describe('withThemes', () => {
     ])).toBe(true);
   });
 
-  it('Should render a component with a theme provided directly to the `useTheme` prop', () => {
+  it('Should render a component with a theme provided directly to the `themeName` prop', () => {
     const wrapper = mount(
-      <ThemedComponent theme="theme2" />
+      <ThemedComponent themeName="theme2" />
     );
     expect(wrapper.contains([
       <span className="theme2__testClass__34567">Foo</span>,
@@ -59,11 +59,27 @@ describe('withThemes', () => {
 
   it('Should combine classNames of provided theme and default if `composes` is set to `true`', () => {
     const wrapper = mount(
-      <ThemedComponentComposes theme="theme1" />
+      <ThemedComponentComposes themeName="theme1" />
     );
     expect(wrapper.contains([
       <span className="default__testClass__01234 theme1__testClass__12345">Foo</span>,
       <span className="default__testClass2___ghjkl theme1__testClass2___asdfg">Bar</span>,
+    ])).toBe(true);
+  });
+
+  it('Should utilize a theme provided directly via a `theme` prop first instead of any theme derived from context or `themeName`', () => {
+    const wrapper = mount(
+      <ThemedComponent
+        themeName="theme1"
+        theme={{
+          testClass: 'default__testClass__56789',
+          testClass2: 'default__testClass2___lalala',
+        }}
+      />
+    );
+    expect(wrapper.contains([
+      <span className="default__testClass__56789">Foo</span>,
+      <span className="default__testClass2___lalala">Bar</span>,
     ])).toBe(true);
   });
 });
