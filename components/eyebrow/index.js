@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Link from 'components/helpers/link';
+import { withStyles } from 'critical-style-loader/lib';
 
 // Styles
 import styles from './eyebrow.css';
@@ -44,4 +45,4 @@ Eyebrow.propTypes = {
 
 Eyebrow.defaultProps = { color: '#000000' };
 
-export default Eyebrow;
+export default withStyles(styles)(Eyebrow);
