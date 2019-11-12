@@ -35,11 +35,13 @@ Eyebrow.defaultProps = {
 };
 
 Eyebrow.propTypes = {
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   customEyebrow: PropTypes.string.isRequired,
   themeName: PropTypes.string,
   topic: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
 };
+
+Eyebrow.defaultProps = { color: '#000000' };
 
 export default Eyebrow;
