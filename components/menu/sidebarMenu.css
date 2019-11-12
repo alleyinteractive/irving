@@ -7,7 +7,7 @@
   }
 }
 
-h2 {
+.title {
   font-size: rem(24);
   margin-bottom: rem(10);
   padding-left: rem(10);
