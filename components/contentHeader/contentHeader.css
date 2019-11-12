@@ -33,8 +33,7 @@
   margin-bottom: rem(50);
 }
 
-.intro {
-  border-bottom: 1px solid black;
+.headerBlock {
   margin: 0 auto;
   tidy-span: 10;
 
@@ -48,6 +47,11 @@
     tidy-offset-left: 1;
     tidy-span: 6;
   }
+}
+
+.intro {
+  composes: headerBlock;
+  border-bottom: 1px solid black;
 }
 
 .meta {
@@ -64,7 +68,6 @@
   margin: 0 auto rem(20);
   overflow: hidden;
   width: 100%;
-  /* tidy-span: 10; */
 
   figure {
     width: 100%;
@@ -72,5 +75,15 @@
 
   @media ($mdMin) {
     order: 0;
+  }
+}
+
+.sponsoredModule {
+  composes: headerBlock;
+  order: 10;
+
+  @media ($mdMin) {
+    margin-bottom: rem(40);
+    margin-top: rem(40);
   }
 }
