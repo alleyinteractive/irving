@@ -14,6 +14,8 @@
   "scripts": {
     "build": "BABEL_ENV=app lerna run build",
     "preinstall": "npx check-node-version --package",
+    "release:canary": "lerna publish --canary",
+    "release": "lerna publish",
     "//": "nohoist option is used to prevent internal packages from being hoisted/deleted by lerna (which is a bug, I think)",
     "bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
     "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js",
