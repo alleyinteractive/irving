@@ -44,7 +44,7 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     componentGroups = {},
   } = apiComponent;
 
-  // Convert comopnent groups.
+  // Convert component groups.
   const convertedGroups = createComponentGroups(componentGroups);
 
   let props = {
