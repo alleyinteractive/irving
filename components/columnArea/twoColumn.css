@@ -1,7 +1,6 @@
 /* Two column theme styles */
 
 .main {
-  overflow: hidden;
   width: 100%;
 
   @media ($mdMin) {
