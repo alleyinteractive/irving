@@ -30,11 +30,11 @@ const ColumnArea = ({ children, theme, themeName }) => {
           </div>
         )}
         {sidebar && (
-          <aside
+          <div
             className={classNames(theme.sidebar, styles.sidebar)}
           >
             {sidebar}
-          </aside>
+          </div>
         )}
       </div>
     );
