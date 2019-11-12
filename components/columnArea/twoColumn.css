@@ -1,15 +1,37 @@
 /* Two column theme styles */
 
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding-bottom: rem(15);
+  padding-top: rem(15);
+  width: 100%;
+
+  @media ($smMin) {
+    @include container;
+  }
+}
+
 .main {
+  margin-bottom: rem(40);
   overflow: hidden;
   width: 100%;
 
   @media ($mdMin) {
-    @include container-with-bleed(6);
+    margin-bottom: 0;
     padding-left: 0;
     padding-right: 0;
     tidy-offset-left: 1;
-    /* Fix bleed from being entirely applied to right side */
-    transform: translateX(rem(-20));
+    tidy-span: 6;
+  }
+}
+
+.sidebar {
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 3;
   }
 }
