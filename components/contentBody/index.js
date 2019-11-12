@@ -9,8 +9,8 @@ import { withStyles } from 'critical-style-loader/lib';
 import styles from './contentBody.css';
 
 const ContentBody = (props) => {
-  const [truncateContent, setTruncation] = useState(true);
-  const [contentHeight, setContentHeight] = useState(400);
+  const [truncateContent, setTruncation] = useState(false);
+  const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef();
 
   const {
@@ -32,8 +32,11 @@ const ContentBody = (props) => {
     const { referrer } = document;
     const { location: { origin } } = window;
 
-    if (0 < referrer.length && referrer !== origin) {
+    if (0 === truncatedCTA.length) {
+      showFullText();
+    } else if (0 < referrer.length && referrer !== origin) {
       setTruncation(true);
+      setContentHeight(400);
     } else {
       showFullText();
     }
@@ -69,9 +72,13 @@ const ContentBody = (props) => {
   );
 };
 
+ContentBody.defaultProps = {
+  truncatedCTA: '',
+};
+
 ContentBody.propTypes = {
   children: PropTypes.node.isRequired,
-  truncatedCTA: PropTypes.string.isRequired,
+  truncatedCTA: PropTypes.string,
   wordCount: PropTypes.number.isRequired,
 };
 
