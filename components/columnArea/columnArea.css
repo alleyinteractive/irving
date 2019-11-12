@@ -14,7 +14,6 @@
 
 .column {
   &:first-child {
-    overflow: hidden;
     width: 100%;
 
     @media ($mdMin) {
@@ -35,7 +34,6 @@
 }
 
 .main {
-  overflow: hidden;
   width: 100%;
 
   @media ($mdMin) {
