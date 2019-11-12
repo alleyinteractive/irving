@@ -12,7 +12,7 @@ env:
 branches:
   only:
     - production
-    - dev
+    - develop
 
 notifications:
   email: false
@@ -23,13 +23,15 @@ before_install:
   - npm i -g npm@$(jq -r '.engines.npm' package.json | egrep -oe "[0-9]+" | head -n1)
 
 install:
-    - npm install
+  - npm install
 
 cache:
   directories:
     - node_modules
 
 script:
-    - npm run test
-    - npm run start &
-    - sleep 10 # Give server enough time to spin up
+  - npm run test
+  - npx stylelint '{assets,client,components,styleguide}/**/*.css' --config config/stylelint.config.js
+  - npm run lint
+  - npm run start &
+  - sleep 10 # Give server enough time to spin up

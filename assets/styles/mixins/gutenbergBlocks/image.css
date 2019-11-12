@@ -38,7 +38,7 @@
     :global(.image-credit) {
       @include image-credit;
 
-      + figcaption {
+      + figcaption { /* stylelint-disable-line selector-max-specificity */
         padding-top: rem(5);
       }
     }
@@ -72,12 +72,12 @@
 
     :global(.aligncenter) {
       align-items: center;
+      clear: both;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      clear: both;
 
-      figcaption {
+      figcaption { /* stylelint-disable-line selector-max-specificity */
         display: block;
         text-align: center;
       }
@@ -86,7 +86,7 @@
     :global(.image-credit) {
       @include image-credit;
 
-      + figcaption {
+      + figcaption { /* stylelint-disable-line selector-max-specificity */
         padding-top: rem(5);
       }
     }

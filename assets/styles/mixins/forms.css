@@ -21,8 +21,8 @@
   }
 
   input {
-    font-size: rem(16);
     display: block;
+    font-size: rem(16);
     width: 100%;
   }
 
@@ -38,6 +38,6 @@
 @mixin formErrorMsg {
   color: $red;
   display: block;
-  margin-top: rem(10);
   margin-left: rem(10);
+  margin-top: rem(10);
 }

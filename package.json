@@ -10,6 +10,7 @@
     "start": "NODE_ENV=production node server/index.js",
     "postinstall": "npm run build",
     "test": "jest",
+    "lint": "eslint --config=./.eslintrc.json ./",
     "test:watch": "jest --watch",
     "styleguide:dev": "NODE_ENV=development styleguidist server --config ./config/styleguide.config.js",
     "styleguide:build": "NODE_ENV=production styleguidist build --config ./config/styleguide.config.js && surge -d mit-technology-review.surge.sh -p ./styleguide"

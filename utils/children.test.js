@@ -26,15 +26,16 @@ const testElement = {
         testProp: 'bar',
       },
     },
-  ]
+  ],
 };
 
+/* eslint-disable-next-line max-len */
 it('should find and return a single react element in `children` given a prop and value', () => {
   expect(findChild('testProp', 'bar', testElement.children)).toEqual({
     props: {
       componentName: 'foo',
       testProp: 'bar',
-    }
+    },
   });
 });
 
@@ -43,7 +44,7 @@ it('should find a single react element by api component name', () => {
     props: {
       componentName: 'foo',
       testProp: 'bar',
-    }
+    },
   });
 });
 

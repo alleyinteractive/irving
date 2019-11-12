@@ -1,4 +1,5 @@
 /* Styles for horizontal rule separator block */
+/* stylelint-disable selector-max-specificity */
 @mixin block-separator {
   :global(.wp-block-separator),
   hr {
@@ -12,12 +13,12 @@
 
     &:global(.is-style-dots) {
       &::before {
-        content: "\00b7 \00b7 \00b7";
         color: $brand-blue;
+        content: "\00b7 \00b7 \00b7";
+        font-family: $sans;
         font-size: rem(32);
         letter-spacing: 1em;
         padding-left: 2em;
-        font-family: $sans;
       }
     }
 

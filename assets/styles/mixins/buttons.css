@@ -55,8 +55,8 @@
   font-weight: 600;
   line-height: 1.14;
   padding: rem(10) rem(20);
-  width: rem(280);
   text-align: center;
+  width: rem(280);
 
   &:hover {
     background-color: $black;
