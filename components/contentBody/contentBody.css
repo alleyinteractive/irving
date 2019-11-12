@@ -35,7 +35,7 @@
 .truncationButton {
   @include btn;
   @include btnWhite;
-  font-size: 16px;
+  font-size: rem(16);
   font-weight: 400;
   margin: rem(15) 0;
 }
