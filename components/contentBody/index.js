@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, {
   useState,
   useEffect,
@@ -17,21 +16,8 @@ const ContentBody = (props) => {
   const {
     children,
     truncatedCTA,
-    wordCount
+    wordCount,
   } = props;
-
-  useEffect(() => {
-    const { referrer } = document;
-    const { location: { origin } } = window;
-
-    if (referrer.length > 0 && referrer !== origin) {
-      setTruncation(true);
-    } else {
-      if (contentRef.current) {
-        showFullText();
-      }
-    }
-  }, truncateContent);
 
   const showFullText = () => {
     // Remove the truncation button and height limit.
@@ -40,17 +26,28 @@ const ContentBody = (props) => {
     setContentHeight(
       contentRef.current.getBoundingClientRect().height
     );
-  }
+  };
+
+  useEffect(() => {
+    const { referrer } = document;
+    const { location: { origin } } = window;
+
+    if (0 < referrer.length && referrer !== origin) {
+      setTruncation(true);
+    } else {
+      showFullText();
+    }
+  }, truncateContent);
 
   return (
     <div className={styles.wrapper}>
       <div
         className={styles.overlay}
-        style={{ display: contentHeight === 400 ? 'block' : 'none' }}
+        style={{ display: 400 === contentHeight ? 'block' : 'none' }}
       />
 
       <div
-        className={contentHeight === 400 ? styles.contentHidden : ''}
+        className={400 === contentHeight ? styles.contentHidden : ''}
         style={{ height: contentHeight }}
       >
         <div ref={contentRef}>
@@ -74,6 +71,8 @@ const ContentBody = (props) => {
 
 ContentBody.propTypes = {
   children: PropTypes.node.isRequired,
+  truncatedCTA: PropTypes.string.isRequired,
+  wordCount: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(ContentBody);
