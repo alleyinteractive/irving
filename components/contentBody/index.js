@@ -24,10 +24,12 @@ const ContentBody = (props) => {
     const { referrer } = document;
     const { location: { origin } } = window;
 
-    if (referrer !== origin) {
+    if (referrer.length > 0 && referrer !== origin) {
       setTruncation(true);
     } else {
-      showFullText();
+      if (contentRef.current) {
+        showFullText();
+      }
     }
   }, truncateContent);
 
