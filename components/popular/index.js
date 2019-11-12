@@ -23,7 +23,10 @@ const Popular = ({ popular, theme, themeName }) => (
           <br />
           { 'in-feed' === themeName && (
             <span className={theme.byline}>
-              {item.author}
+              {item.authorLink && (
+                <Link to={item.authorLink}>{item.author}</Link>
+              )}
+              {! item.authorLink ? item.author : ''}
             </span>
           )}
         </li>
