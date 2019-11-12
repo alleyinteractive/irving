@@ -21,22 +21,15 @@
   }
 }
 
-.truncatedContent {
-  height: 400px;
-  margin-bottom: 15px;
+.contentHidden {
   overflow: hidden;
+}
 
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin-top: -40px;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #fff 100%);
-  }
+.overlay {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  height: 400px;
+  position: absolute;
+  top: 0;
 }
 
 .truncationButton {
@@ -44,4 +37,5 @@
   @include btnWhite;
   font-size: 16px;
   font-weight: 400;
+  margin: rem(15) 0;
 }
