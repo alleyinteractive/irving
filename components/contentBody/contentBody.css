@@ -20,3 +20,22 @@
     }
   }
 }
+
+.contentHidden {
+  overflow: hidden;
+}
+
+.overlay {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  height: rem(400);
+  position: absolute;
+  top: 0;
+}
+
+.truncationButton {
+  @include btn;
+  @include btnWhite;
+  font-size: rem(16);
+  font-weight: 400;
+  margin: rem(15) 0;
+}
