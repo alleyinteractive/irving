@@ -15,7 +15,6 @@
 
 .main {
   margin-bottom: rem(40);
-  overflow: hidden;
   width: 100%;
 
   @media ($mdMin) {

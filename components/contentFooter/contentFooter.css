@@ -93,3 +93,20 @@
     text-decoration: underline;
   }
 }
+
+.avatar {
+  display: block;
+  float: left;
+  height: rem(16);
+  margin-right: rem(5);
+  width: rem(16);
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.authorLink {
+  margin-right: rem(15);
+}
