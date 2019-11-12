@@ -31,6 +31,10 @@
   width: 100%;
 
   @media ($mdMin) {
+    tidy-span: 4;
+  }
+
+  @media ($lgMin) {
     tidy-offset-left: 1;
     tidy-span: 3;
   }
