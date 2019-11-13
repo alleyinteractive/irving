@@ -23,11 +23,11 @@ const Popular = ({ popular, theme, themeName }) => {
           nodeOffset = node.getBoundingClientRect().top + window.scrollY;
         }
 
-        if (currentOffset > (nodeOffset - 75)) {
+        if (currentOffset > (nodeOffset - 100)) {
           setFixedPosition(true);
         }
         
-        if (currentOffset < (nodeOffset - 75)) {
+        if (currentOffset < (nodeOffset - 100)) {
           setFixedPosition(false);
         }
       }
@@ -40,7 +40,7 @@ const Popular = ({ popular, theme, themeName }) => {
       id="sticky__content-module"
       style={{
         position: isFixed ? 'fixed' : 'relative',
-        top: isFixed ? 80 : 0,
+        top: isFixed ? 100 : 0,
       }}
     >
       <div className={styles.adUnit}>Ad unit placeholder</div>
