@@ -59,6 +59,7 @@ import SectionItem from 'components/subtopicsSection/sectionItem';
 import Sidebar from 'components/sidebar';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
+import SponsoredModule from 'components/sponsoredModule';
 import StatsWidget from 'components/statsWidget';
 import SubtopicsSection from 'components/subtopicsSection';
 import Subscriptions from 'components/accounts/subscriptions';
@@ -140,6 +141,7 @@ export const componentMap = {
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,
+  'sponsored-module': SponsoredModule,
   'tag-link': TagLink,
   tags: Tags,
   'teaser-item': TeaserItem,

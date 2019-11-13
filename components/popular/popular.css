@@ -1,5 +1,8 @@
 .wrapper {
   font-family: $sans;
+}
+
+.contentModule {
   width: rem(300);
 }
 
@@ -18,7 +21,7 @@
 }
 
 .story {
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid $black;
   font-size: rem(16);
   line-height: 1.375;
   padding: rem(15) 0 rem(15) 0;
@@ -34,8 +37,27 @@
 }
 
 .itemCount {
-  color: #f90e1e;
+  color: $red;
   font-size: rem(12);
   font-weight: 700;
   padding: 0 0 rem(5) 0;
+}
+
+.adUnit {
+  align-items: center;
+  background-color: $background-gray;
+  border: $border-thin--gray;
+  color: $gray;
+  display: flex;
+  font-family: $sans;
+  height: rem(300);
+  justify-content: center;
+  margin-bottom: rem(40);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+
+  @media ($mdMax) {
+    margin-top: rem(40);
+  }
 }

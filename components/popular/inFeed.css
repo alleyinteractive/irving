@@ -1,3 +1,8 @@
+.contentWrapper {
+  max-width: rem(300);
+  position: relative;
+}
+
 .wrapper {
   border-top: 4px solid #000000;
   font-family: $sans;

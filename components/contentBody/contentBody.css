@@ -1,9 +1,10 @@
 .wrapper {
-  @include container-with-bleed;
   display: flex;
   flex-flow: column nowrap;
   font-family: $serif;
   margin: 0 auto;
+  position: relative;
+  width: 100%;
 
   > * {
     margin: 0 auto;
