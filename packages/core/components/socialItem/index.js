@@ -23,12 +23,13 @@ const SocialItem = (props) => {
     type,
     url,
     displayIcon,
+    theme,
   } = props;
   const IconComponent = socialIconMap[type];
 
   return (
-    <li className={styles.wrapper}>
-      <Link to={url} className={styles.link}>
+    <li className={theme.wrapper}>
+      <Link to={url} className={theme.link}>
         {displayIcon && <IconComponent />}
       </Link>
     </li>
@@ -51,6 +52,10 @@ SocialItem.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ]).isRequired,
+  /**
+   * Alternate theme for this component.
+   */
+  theme: PropTypes.object.isRequired,
 };
 
 const wrapWithStyles = withStyles(styles);
