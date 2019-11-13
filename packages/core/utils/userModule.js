@@ -1,8 +1,31 @@
 const fs = require('fs');
 const path = require('path');
-const { appRoot, irvingRoot } = require('../config/paths');
+const {
+  appRoot,
+  buildContext,
+  appIrvingRoot,
+  irvingRoot,
+} = require('../config/paths');
 
 /* eslint-disable import/no-dynamic-require, global-require */
+/**
+ * Resolve the path to a module required in the build, fall back to irving core.
+ *
+ * @param {string} userPath Path to user-defined module.
+ * @param {string} corePath Path to Irving core module, if different from user path.
+ */
+module.exports.maybeResolveBuildModule = (userPath, corePath) => {
+  const defaultPath = corePath || userPath;
+
+  // Resolve file relative to build context if it exists.
+  if (fs.existsSync(path.resolve(buildContext, userPath))) {
+    return path.resolve(buildContext, userPath);
+  }
+
+  // Resolve file relative to irving app in build context otherwise.
+  return path.resolve(irvingRoot, defaultPath);
+};
+
 /**
  * Resolve the path to a user module, falling back to Irving core version.
  *
@@ -12,11 +35,14 @@ const { appRoot, irvingRoot } = require('../config/paths');
 const maybeResolveUserModule = (userPath, corePath) => {
   const defaultPath = corePath || userPath;
 
-  if (fs.existsSync(path.resolve(appRoot, userPath))) {
+  // If file exists in build context, assume the same file exists in the appRoot.
+  // This will support app finding appropriate file if build happens in a different place than app execution.
+  if (fs.existsSync(path.resolve(buildContext, userPath))) {
     return path.resolve(appRoot, userPath);
   }
 
-  return path.resolve(irvingRoot, defaultPath);
+  // Use path to irving core relative to app root otherwise.
+  return path.resolve(appIrvingRoot, defaultPath);
 };
 
 module.exports.maybeResolveUserModule = maybeResolveUserModule;
