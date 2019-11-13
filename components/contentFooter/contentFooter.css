@@ -6,8 +6,6 @@
   font-size: rem(12);
   margin: 0 auto;
 
-  /* padding-top: rem(20); */
-
   > * {
     margin: 0 auto;
     tidy-span: 10;
