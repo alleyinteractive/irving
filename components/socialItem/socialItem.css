@@ -52,9 +52,27 @@
       height: rem(14);
     }
   }
-
+  
   .whatsapp & {
     background-color: $brand-whatsapp;
+    position: relative;
+    
+    svg {
+      height: rem(15);
+    }
+
+    &::after {
+      border-bottom: 5px solid transparent;
+      border-right: 14px solid $brand-whatsapp;
+      border-top: 5px solid transparent;
+      content: "";
+      height: 0;
+      position: absolute;
+      right: 71%;
+      top: 20px;
+      transform: rotate(-45deg);
+      width: 0;
+    }
   }
 
   .email & {
