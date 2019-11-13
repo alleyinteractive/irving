@@ -7,13 +7,13 @@ import classNames from 'classnames';
 
 // Themes
 import styles from './columnArea.css';
-import oneColumnStyles from './oneColumn.css';
-import twoColumnStyles from './twoColumn.css';
+import oneColumnTheme from './oneColumn.css';
+import skinnyColumnTheme from './skinnyColumn.css';
 
 const ColumnArea = ({ children, theme, themeName }) => {
   // @todo leave this block for deprecation purposes (topics page, etc.)
   // It may make sense to refactor this component into multiple components.
-  if ('two-column' === themeName) {
+  if ('skinny-column' === themeName) {
     // Separate content and sidebar
     const content = children.filter(
       (child) => 'sidebar' !== child.props.componentName
@@ -59,6 +59,6 @@ ColumnArea.propTypes = {
 
 export default withThemes('column-area', {
   default: styles,
-  'one-column': oneColumnStyles,
-  'two-column': twoColumnStyles,
-})(withStyles(styles, oneColumnStyles, twoColumnStyles)(ColumnArea));
+  'one-column': oneColumnTheme,
+  'skinny-column': skinnyColumnTheme,
+})(withStyles(styles, oneColumnTheme, skinnyColumnTheme)(ColumnArea));
