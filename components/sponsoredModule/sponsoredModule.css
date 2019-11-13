@@ -31,4 +31,13 @@
   display: block;
   height: rem(50);
   width: rem(50);
+
+  > * {
+    height: 100%;
+    width: 100%;
+  }
+
+  img {
+    height: 100%;
+  }
 }
