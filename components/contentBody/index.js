@@ -10,7 +10,7 @@ import styles from './contentBody.css';
 
 const ContentBody = (props) => {
   const [truncateContent, setTruncation] = useState(false);
-  const [contentHeight, setContentHeight] = useState(0);
+  const [contentHeight, setContentHeight] = useState(400);
   const contentRef = useRef();
 
   const {
@@ -32,11 +32,14 @@ const ContentBody = (props) => {
     const { referrer } = document;
     const { location: { origin } } = window;
 
+    const extractHostname = (url) => (new URL(url)).hostname;
+    const isOutsideSource =
+      extractHostname(referrer) !== extractHostname(origin);
+
     if (0 === truncatedCTA.length) {
       showFullText();
-    } else if (0 < referrer.length && referrer !== origin) {
+    } else if (0 < referrer.length && isOutsideSource) {
       setTruncation(true);
-      setContentHeight(400);
     } else {
       showFullText();
     }
