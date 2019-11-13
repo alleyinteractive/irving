@@ -35,7 +35,7 @@ const Popular = ({ popular, theme, themeName }) => {
 
   return (
     <div
-      className={theme.wrapper}
+      className={theme.contentWrapper}
       id="sticky__content-module"
       style={{
         position: isFixed ? 'fixed' : 'relative',

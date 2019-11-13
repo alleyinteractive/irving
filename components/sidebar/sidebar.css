@@ -13,6 +13,8 @@
   }
 
   .sidebarItem {
+    position: relative;
+
     /* stylelint-disable selector-max-specificity */
     &:not(:empty) {
       margin-bottom: rem(40);
