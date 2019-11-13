@@ -50,11 +50,7 @@
 
 .label {
   @include label;
-  tidy-span: 1;
-
-  @media ($mdMin) {
-    tidy-span: 1;
-  }
+  tidy-span: 0.5;
 }
 
 .row {
