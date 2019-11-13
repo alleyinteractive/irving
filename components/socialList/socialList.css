@@ -18,9 +18,5 @@
 
 .title {
   @include label;
-  tidy-span: 1;
-
-  @media ($lgMin) {
-    tidy-span: 1;
-  }
+  margin-right: rem(18);
 }
