@@ -5,17 +5,39 @@
 }
 
 .by {
-  float: left;
+  display: inline;
+  padding-right: 0.5ch;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.list {
+  display: inline-block;
 }
 
 .author {
-  float: left;
+  display: inline;
 
-  .name {
-    font-weight: 700;
+  &::after {
+    display: inline;
   }
 
-  .and {
-    padding: 0 rem(5) 0 rem(5);
+  /* stylelint-disable selector-max-specificity */
+  &:nth-last-child(2) {
+    &::after {
+      content: 'and';
+      padding-left: 0.5ch;
+      padding-right: 0.5ch;
+    }
   }
+
+  &:not(:nth-last-child(2)):not(:only-child):not(:last-child) {
+    &::after {
+      content: ',';
+      padding-right: 0.5ch;
+    }
+  }
+  /* stylelint-enable */
 }
