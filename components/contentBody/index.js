@@ -33,12 +33,16 @@ const ContentBody = (props) => {
     const { location: { origin } } = window;
 
     const extractHostname = (url) => (new URL(url)).hostname;
-    const isOutsideSource =
-      extractHostname(referrer) !== extractHostname(origin);
+
+    // Check to see if the referrer exists and contains a hostname.
+    // If it does, run the `extractHostname` comparison.
+    const isOutsideSource = referrer && 0 < referrer.length ?
+      extractHostname(referrer) !== extractHostname(origin) :
+      false;
 
     if (0 === truncatedCTA.length) {
       showFullText();
-    } else if (0 < referrer.length && isOutsideSource) {
+    } else if (isOutsideSource) {
       setTruncation(true);
     } else {
       showFullText();
