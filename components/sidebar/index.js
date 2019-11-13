@@ -21,7 +21,11 @@ const Sidebar = (props) => {
         } = child;
 
         return (
-          <div key={child.key} className={styles.sidebarItem}>
+          <div
+            key={child.key}
+            className={styles.sidebarItem}
+            id="sidebar__item"
+          >
             {! gtmTargetingClass ?
               cloneElement(child, { gtmTargetingClass: context }) :
               child}

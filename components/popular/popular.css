@@ -1,10 +1,8 @@
-.contentWrapper {
-  max-width: rem(300);
-  position: relative;
-}
-
 .wrapper {
   font-family: $sans;
+}
+
+.contentModule {
   width: rem(300);
 }
 
@@ -57,7 +55,7 @@
   margin-bottom: rem(40);
   margin-left: auto;
   margin-right: auto;
-  width: rem(300);
+  width: 100%;
 
   @media ($mdMax) {
     margin-top: rem(40);
