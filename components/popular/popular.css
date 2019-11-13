@@ -18,7 +18,7 @@
 }
 
 .story {
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid $black;
   font-size: rem(16);
   line-height: 1.375;
   padding: rem(15) 0 rem(15) 0;
@@ -34,7 +34,7 @@
 }
 
 .itemCount {
-  color: #f90e1e;
+  color: $red;
   font-size: rem(12);
   font-weight: 700;
   padding: 0 0 rem(5) 0;
