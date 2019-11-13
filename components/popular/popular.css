@@ -40,7 +40,7 @@
   padding: 0 0 rem(5) 0;
 }
 
-.leaderboard {
+.adUnit {
   align-items: center;
   background-color: $background-gray;
   border: $border-thin--gray;

@@ -11,18 +11,22 @@ import inFeedStyles from './inFeed.css';
 
 const Popular = ({ popular, theme, themeName }) => {
   const [isFixed, setFixedPosition] = useState(false);
+  let nodeOffset;
 
   useEffect(() => {
     document.addEventListener('scroll', () => {
-      const node = document.getElementById('sticky__content-module');
-      const nodeOffset = node.getBoundingClientRect().top;
-      console.log(100 <= nodeOffset);
+      const currentOffset = document.documentElement.scrollTop;
 
-      if (100 >= nodeOffset) {
+      const node = document.getElementById('sticky__content-module');
+      if (nodeOffset === undefined) {
+        nodeOffset = node.getBoundingClientRect().top + window.scrollY;
+      }
+
+      if (currentOffset > (nodeOffset - 75)) {
         setFixedPosition(true);
       }
       
-      if (100 <= nodeOffset) {
+      if (currentOffset < (nodeOffset - 75)) {
         setFixedPosition(false);
       }
     });
@@ -36,11 +40,10 @@ const Popular = ({ popular, theme, themeName }) => {
       id="sticky__content-module"
       style={{
         position: isFixed ? 'fixed' : 'relative',
-        top: 82,
+        top: isFixed ? 80 : 0,
       }}
     >
-      {/* @todo consider moving ad placeholder to its own component. */}
-      <div className={styles.leaderboard}>Ad unit placeholder</div>
+      <div className={styles.adUnit}>Ad unit placeholder</div>
       <div className={theme.wrapper}>
         <h3 className={theme.title}>Popular</h3>
         <ul className={theme.stories}>
