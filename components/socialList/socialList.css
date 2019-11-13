@@ -18,6 +18,5 @@
 
 .title {
   @include label;
-  margin-right: rem(18);
-  tidy-span: 0.4;
+  tidy-span: 0.5;
 }
