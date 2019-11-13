@@ -39,7 +39,7 @@ const ContentFooter = ({ children, authors, theme }) => {
                 picture={false}
               />
             )}
-            {author.name}
+            <span>{author.name}</span>
           </Link>
         ))}
       </address>
