@@ -3,6 +3,7 @@
   flex-flow: column nowrap;
   font-family: $serif;
   margin: 0 auto;
+  position: relative;
   width: 100%;
 
   > * {
