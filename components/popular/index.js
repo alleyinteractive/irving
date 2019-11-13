@@ -10,6 +10,7 @@ import inFeedStyles from './inFeed.css';
 
 const Popular = ({ popular, theme, themeName }) => {
   const [isFixed, setFixedPosition] = useState(false);
+  const [maxWidth, setMaxWidth] = useState(null);
   let nodeOffset;
 
   useEffect(() => {
@@ -20,6 +21,12 @@ const Popular = ({ popular, theme, themeName }) => {
         const node = document.getElementById('sticky__content-module');
         if (nodeOffset === undefined) {
           nodeOffset = node.getBoundingClientRect().top + window.scrollY;
+
+          // Make sure that the fixed position sidebar is never wider than its parent.
+          const sidebarNode = document.getElementById('sidebar__item');
+          const sidebarStyle = window.getComputedStyle(sidebarNode, null);
+          const sidebarWidth = sidebarStyle.getPropertyValue('width');
+          setMaxWidth(sidebarWidth);
         }
 
         if (currentOffset > (nodeOffset - 100)) {
@@ -35,15 +42,16 @@ const Popular = ({ popular, theme, themeName }) => {
 
   return (
     <div
-      className={theme.wrapper}
+      className={theme.contentWrapper}
       id="sticky__content-module"
       style={{
         position: isFixed ? 'fixed' : 'relative',
         top: isFixed ? 100 : 0,
+        width: maxWidth,
       }}
     >
       <div className={styles.adUnit}>Ad unit placeholder</div>
-      <div className={theme.wrapper}>
+      <div className={theme.contentModule}>
         <h3 className={theme.title}>Popular</h3>
         <ul className={theme.stories}>
           {popular.map((item, index) => (
