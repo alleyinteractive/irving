@@ -69,7 +69,7 @@
       height: 0;
       position: absolute;
       right: 71%;
-      top: 20px;
+      top: rem(20);
       transform: rotate(-45deg);
       width: 0;
     }
