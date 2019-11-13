@@ -32,8 +32,6 @@ const Popular = ({ popular, theme, themeName }) => {
     });
   }, isFixed);
 
-  console.log(isFixed);
-
   return (
     <div
       className={theme.wrapper}
