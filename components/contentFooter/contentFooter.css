@@ -2,8 +2,10 @@
 
 .wrapper {
   @include container-with-bleed;
+
   font-size: rem(12);
   margin: 0 auto;
+
   /* padding-top: rem(20); */
 
   > * {
@@ -50,6 +52,7 @@
 
 .label {
   @include label;
+
   tidy-span: 1;
 
   @media ($mdMin) {
@@ -87,13 +90,17 @@
 }
 
 .author {
-  align-items: center;
   composes: row;
+  align-items: center;
 
   a {
+    align-items: center;
     display: flex;
-    align-items:  center;
     text-decoration: underline;
+
+    span {
+      margin-bottom: 0;
+    }
 
     img {
       align-self: baseline;
