@@ -28,7 +28,7 @@ const SponsoredModule = ({
         <Link to={url} className={styles.name}>{name}</Link>
       </p>
       {logo && (
-        <a className={styles.logo} href={url} tabIndex="-1'" aria-hidden>
+        <a className={styles.logo} href={url} tabIndex="-1" aria-hidden>
           {logo}
         </a>
       )}
