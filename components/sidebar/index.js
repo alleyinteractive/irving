@@ -23,7 +23,7 @@ const Sidebar = (props) => {
         return (
           <div
             key={child.key}
-            className={styles.sidebarItem}
+            className={styles.item}
             id="sidebar__item"
           >
             {! gtmTargetingClass ?

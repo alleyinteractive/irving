@@ -19,7 +19,7 @@ const ContentFooter = ({ children, authors, theme }) => {
     <footer className={theme.wrapper}>
       <h2 className={theme.title}>{__('Article meta', 'mittr')}</h2>
       <div className={theme.social}>{socialSharing}</div>
-      {tags && (
+      {0 < tags.length && (
         <div className={theme.tags}>
           <h3 className={theme.label}>{__('Tagged', 'mittr')}</h3>
           {tags}

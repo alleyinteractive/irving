@@ -1,4 +1,5 @@
-/* Column Area styles */
+/* Column Area styles - defaults to two columns with a 4-col sidebar */
+
 .wrapper {
   display: flex;
   flex-flow: row wrap;
