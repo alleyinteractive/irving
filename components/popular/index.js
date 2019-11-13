@@ -15,19 +15,21 @@ const Popular = ({ popular, theme, themeName }) => {
 
   useEffect(() => {
     document.addEventListener('scroll', () => {
-      const currentOffset = document.documentElement.scrollTop;
+      if (window.innerWidth > 960) {
+        const currentOffset = document.documentElement.scrollTop;
 
-      const node = document.getElementById('sticky__content-module');
-      if (nodeOffset === undefined) {
-        nodeOffset = node.getBoundingClientRect().top + window.scrollY;
-      }
+        const node = document.getElementById('sticky__content-module');
+        if (nodeOffset === undefined) {
+          nodeOffset = node.getBoundingClientRect().top + window.scrollY;
+        }
 
-      if (currentOffset > (nodeOffset - 75)) {
-        setFixedPosition(true);
-      }
-      
-      if (currentOffset < (nodeOffset - 75)) {
-        setFixedPosition(false);
+        if (currentOffset > (nodeOffset - 75)) {
+          setFixedPosition(true);
+        }
+        
+        if (currentOffset < (nodeOffset - 75)) {
+          setFixedPosition(false);
+        }
       }
     });
   }, isFixed);

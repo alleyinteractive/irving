@@ -53,4 +53,8 @@
   margin-left: auto;
   margin-right: auto;
   width: rem(300);
+
+  @media ($mdMax) {
+    margin-top: rem(40);
+  }
 }
