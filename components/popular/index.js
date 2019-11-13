@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
@@ -15,7 +14,7 @@ const Popular = ({ popular, theme, themeName }) => {
 
   useEffect(() => {
     document.addEventListener('scroll', () => {
-      if (window.innerWidth > 960) {
+      if (960 < window.innerWidth) {
         const currentOffset = document.documentElement.scrollTop;
 
         const node = document.getElementById('sticky__content-module');
@@ -26,7 +25,7 @@ const Popular = ({ popular, theme, themeName }) => {
         if (currentOffset > (nodeOffset - 100)) {
           setFixedPosition(true);
         }
-        
+
         if (currentOffset < (nodeOffset - 100)) {
           setFixedPosition(false);
         }
