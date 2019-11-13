@@ -39,3 +39,18 @@
   font-weight: 700;
   padding: 0 0 rem(5) 0;
 }
+
+.leaderboard {
+  align-items: center;
+  background-color: $background-gray;
+  border: $border-thin--gray;
+  color: $gray;
+  display: flex;
+  font-family: $sans;
+  height: rem(300);
+  justify-content: center;
+  margin-bottom: rem(40);
+  margin-left: auto;
+  margin-right: auto;
+  width: rem(300);
+}
