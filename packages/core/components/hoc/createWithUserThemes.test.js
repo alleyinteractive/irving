@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import withUserThemes from './withUserThemes';
+import createWithUserThemes from './createWithUserThemes';
 
 describe('withUserThemes', () => {
   const ThemeableComponent = ({ theme }) => (
@@ -19,7 +19,7 @@ describe('withUserThemes', () => {
       testClass2: 'theme2__testClass2__qwert',
     },
   };
-  const ThemedComponent = withUserThemes(userThemes)(ThemeableComponent);
+  const ThemedComponent = createWithUserThemes(ThemeableComponent)(userThemes);
 
   it('Should use a themeMap and themeName provided by a user', () => {
     const wrapper = mount(<ThemedComponent themeName="theme1" />);

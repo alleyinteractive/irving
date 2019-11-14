@@ -8,6 +8,7 @@ import LinkedInIcon from 'assets/icons/linkedin.svg';
 import WhatsAppIcon from 'assets/icons/whatsapp.svg';
 import PinterestIcon from 'assets/icons/pinterest.svg';
 import withThemes from 'components/hoc/withThemes';
+import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import styles from './socialItem.css';
 
 const socialIconMap = {
@@ -59,6 +60,7 @@ SocialItem.propTypes = {
 };
 
 const wrapWithStyles = withStyles(styles);
-const wrapWithThemes = withThemes('socialItem', { default: styles });
+const wrapWithThemes = withThemes('SocialItem', { default: styles });
+export const themeSocialItem = createWithUserThemes(SocialItem, styles);
 
 export default wrapWithThemes(wrapWithStyles(SocialItem));

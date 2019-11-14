@@ -18,6 +18,7 @@
     "release": "lerna publish",
     "//": "nohoist option is used to prevent internal packages from being hoisted/deleted by lerna (which is a bug, I think)",
     "bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
+    "link": "lerna exec --parallel -- npm link",
     "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js",
     "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
     "test": "BABEL_ENV=test lerna run test --parallel",
