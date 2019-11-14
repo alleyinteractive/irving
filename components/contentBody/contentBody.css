@@ -31,6 +31,11 @@
   height: rem(400);
   position: absolute;
   top: 0;
+
+  @media ($mdMax) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .truncationButton {
@@ -39,4 +44,8 @@
   font-size: rem(16);
   font-weight: 400;
   margin: rem(15) 0;
+
+  @media ($mdMax) {
+    margin: rem(15) auto;
+  }
 }
