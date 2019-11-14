@@ -8,6 +8,8 @@
 }
 
 .tags {
+  display: flex;
+  margin-bottom: rem(15);
   width: 100%;
 }
 

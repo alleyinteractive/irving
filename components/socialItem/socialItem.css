@@ -27,10 +27,18 @@
 
   .facebook & {
     background-color: $brand-facebook;
+
+    svg {
+      height: rem(15);
+    }
   }
 
   .twitter & {
     background-color: $brand-twitter;
+
+    svg {
+      height: rem(14);
+    }
   }
 
   .reddit & {
@@ -39,10 +47,32 @@
 
   .linkedin & {
     background-color: $brand-linkedin;
-  }
 
+    svg {
+      height: rem(14);
+    }
+  }
+  
   .whatsapp & {
     background-color: $brand-whatsapp;
+    position: relative;
+    
+    svg {
+      height: rem(15);
+    }
+
+    &::after {
+      border-bottom: 5px solid transparent;
+      border-right: 14px solid $brand-whatsapp;
+      border-top: 5px solid transparent;
+      content: "";
+      height: 0;
+      position: absolute;
+      right: 71%;
+      top: rem(20);
+      transform: rotate(-45deg);
+      width: 0;
+    }
   }
 
   .email & {
@@ -66,4 +96,10 @@
 
 .label {
   @include label;
+}
+
+.link {
+  @media ($lgMin) {
+    margin-left: rem(50);
+  }
 }
