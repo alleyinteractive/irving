@@ -30,7 +30,11 @@ const ContentFooter = ({ children, authors, theme }) => {
         <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
         {authors && authors.map((author) => (
 
-          <Link to={author.url} key={author.name} className={theme.authorLink}>
+          <Link
+            to={author.url}
+            key={author.name}
+            className={theme.authorLink}
+          >
             {author.avatar && (
               <Image
                 src={author.avatar}
@@ -39,7 +43,7 @@ const ContentFooter = ({ children, authors, theme }) => {
                 picture={false}
               />
             )}
-            {author.name}
+            <span>{author.name}</span>
           </Link>
         ))}
       </address>

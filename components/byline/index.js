@@ -13,22 +13,22 @@ const Byline = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <span className={styles.by} aria-hidden>
+      <span className={styles.by}>
         {__('by ', 'mittr')}
       </span>
-      <ul className={styles.list} aria-label={__('Authors', 'mittr')}>
-        {authors.map((author) => (
-          <li className={styles.author} key={author.name}>
-            <Link to={author.link} className={styles.name}>
-              {author.name}
-              {' '}
-              <span className="screen-reader-text">
-                {__('archive page', 'mittr')}
+      {authors.map((author, index, arr) => (
+        <div className={styles.author} key={author.name}>
+          <span className={styles.and}>
+            {((index < arr.length) && (0 !== index)) && (
+              <span>
+                {__('and', 'mittr') }
               </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+            )
+            }
+          </span>
+          <Link to={author.link} className={styles.name}>{author.name}</Link>
+        </div>
+      ))}
     </div>
   );
 };
