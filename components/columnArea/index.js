@@ -43,7 +43,7 @@ const ColumnArea = ({ children, theme, themeName }) => {
   return (
     <div className={theme.wrapper}>
       {children.map((child) => (
-        <div className={theme.column} key={child.props.title}>
+        <div className={theme.column} key={child.props.componentName}>
           {child}
         </div>
       ))}

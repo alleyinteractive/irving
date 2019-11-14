@@ -83,13 +83,15 @@ const InfiniteItemList = ({
           window.innerHeight + document.documentElement.scrollTop;
 
         const button = document.getElementById('content-list__load-more-btn');
-        const buttonOffset =
-          button.getBoundingClientRect().top + window.scrollY;
+        if (button) {
+          const buttonOffset =
+            button.getBoundingClientRect().top + window.scrollY;
 
-        const shouldTriggerLoad = currentOffset > (buttonOffset - 750);
+          const shouldTriggerLoad = currentOffset > (buttonOffset - 750);
 
-        if (shouldTriggerLoad && true === listInfo.shouldDisplayLoadMore) {
-          button.click();
+          if (shouldTriggerLoad && true === listInfo.shouldDisplayLoadMore) {
+            button.click();
+          }
         }
       }
     }, 250));
@@ -133,9 +135,10 @@ const InfiniteItemList = ({
             41, 44, 48, 51, 53, 58, 60, 62,
           ];
           const showImage = imageIndexes.includes(index);
+          const key = item.config.title ? item.config.title : item.config.name;
           return (
             <li
-              key={kebabcase(item.config.title)}
+              key={kebabcase(key)}
               className={styles.item}
               tabIndex="0"
               role="article"

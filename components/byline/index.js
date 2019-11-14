@@ -17,7 +17,7 @@ const Byline = (props) => {
         {__('by ', 'mittr')}
       </span>
       {authors.map((author, index, arr) => (
-        <div className={styles.author}>
+        <div className={styles.author} key={author.name}>
           <span className={styles.and}>
             {((index < arr.length) && (0 !== index)) && (
               <span>
