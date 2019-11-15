@@ -1,20 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import withThemes from 'components/hoc/withThemes';
+import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import Container from 'components/helpers/container';
-
 import styles from './placeholderLoading.css';
 
-const PlaceholderLoading = () => (
-  <Container className={styles.wrapper} aria-hidden="true">
-    <div className={styles.thumb} />
-    <div className={styles.content}>
-      <div className={styles.textBar} />
-      <div className={styles.textBar} />
-      <div className={styles.textBar} />
-      <div className={styles.textBar} />
-    </div>
-  </Container>
-);
+const PlaceholderLoading = (props) => {
+  const { theme } = props;
+
+  return (
+    <Container className={theme.wrapper} aria-hidden="true">
+      <div className={theme.thumb} />
+      <div className={theme.content}>
+        <div className={theme.textBar} />
+        <div className={theme.textBar} />
+        <div className={theme.textBar} />
+        <div className={theme.textBar} />
+      </div>
+    </Container>
+  );
+};
+
+PlaceholderLoading.propTypes = {
+  /**
+   * Theme object.
+   */
+  theme: PropTypes.object,
+};
+
+PlaceholderLoading.defaultProps = {
+  theme: {},
+};
 
 const wrapWithStyles = withStyles(styles);
-export default wrapWithStyles(PlaceholderLoading);
+const wrapWithThemes = withThemes('PlaceholderLoading', { default: styles });
+
+export const themePlaceholderLoading = createWithUserThemes(
+  PlaceholderLoading,
+  styles
+);
+export default wrapWithThemes(
+  wrapWithStyles(PlaceholderLoading)
+);

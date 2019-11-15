@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'critical-style-loader/lib';
 import IrvingImg from './irvingImg';
-import styles from './image.css';
 
 const IrvingPicture = (props) => {
   const {
@@ -12,10 +10,11 @@ const IrvingPicture = (props) => {
     alt,
     onLoad,
     onError,
+    theme,
   } = props;
 
   return (
-    <picture className={styles.picture}>
+    <picture className={theme.picture}>
       {sourceTags.map((source) => {
         const { srcset: sourceSrcset, media } = source;
         return (<source key={media} srcSet={sourceSrcset} media={media} />);
@@ -43,8 +42,7 @@ IrvingPicture.propTypes = {
   alt: PropTypes.string.isRequired,
   onLoad: PropTypes.func.isRequired,
   onError: PropTypes.func.isRequired,
+  theme: PropTypes.string.isRequired,
 };
 
-const wrapWithStyles = withStyles(styles);
-
-export default wrapWithStyles(IrvingPicture);
+export default IrvingPicture;

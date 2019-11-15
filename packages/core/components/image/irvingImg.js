@@ -1,7 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'critical-style-loader/lib';
-import styles from './image.css';
 
 const IrvingImg = (props) => {
   const {
@@ -11,6 +9,7 @@ const IrvingImg = (props) => {
     srcset,
     onLoad,
     onError,
+    theme,
   } = props;
   const imgRef = useRef(null);
 
@@ -23,7 +22,7 @@ const IrvingImg = (props) => {
   return (
     <img
       alt={alt}
-      className={styles.img}
+      className={theme.img}
       ref={imgRef}
       src={src}
       srcSet={srcset || null}
@@ -41,12 +40,11 @@ IrvingImg.propTypes = {
   alt: PropTypes.string.isRequired,
   onLoad: PropTypes.func.isRequired,
   onError: PropTypes.func.isRequired,
+  theme: PropTypes.string.isRequired,
 };
 
 IrvingImg.defaultProps = {
   sizes: '',
 };
 
-const wrapWithStyles = withStyles(styles);
-
-export default wrapWithStyles(IrvingImg);
+export default IrvingImg;
