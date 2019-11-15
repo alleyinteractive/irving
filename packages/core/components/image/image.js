@@ -1,7 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import { withStyles } from 'critical-style-loader/lib';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { withStyles } from 'critical-style-loader/lib';
+import withThemes from 'components/hoc/withThemes';
+import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import IrvingPicture from './irvingPicture';
 import IrvingImg from './irvingImg';
 import styles from './image.css';
@@ -16,6 +18,7 @@ const Image = (props) => {
     lqipSrc,
     picture,
     showCaption,
+    theme,
   } = props;
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
@@ -49,7 +52,7 @@ const Image = (props) => {
   const placeholder = lqipSrc ?
     (
       <img
-        className={styles.placeholder}
+        className={theme.placeholder}
         src={lqipSrc}
         alt={alt}
       />
@@ -60,13 +63,13 @@ const Image = (props) => {
     <WrapperElement>
       <span
         className={classNames(
-          styles.wrapper,
+          theme.wrapper,
           className,
           {
-            [styles.apsectRatio]: aspectRatio,
-            [styles.lazyload]: lazyload,
-            [styles.loaded]: loaded,
-            [styles.error]: error,
+            [theme.apsectRatio]: aspectRatio,
+            [theme.lazyload]: lazyload,
+            [theme.loaded]: loaded,
+            [theme.error]: error,
           }
         )}
         style={paddingPercentage}
@@ -158,6 +161,10 @@ Image.propTypes = {
       media: PropTypes.string.isRequired,
     })
   ),
+  /**
+   * Theme object.
+   */
+  theme: PropTypes.string.isRequired,
 };
 
 Image.defaultProps = {
@@ -171,5 +178,7 @@ Image.defaultProps = {
 };
 
 const wrapWithStyles = withStyles(styles);
+const wrapWithThemes = withThemes('Image', { default: styles });
 
-export default wrapWithStyles(Image);
+export const themeImage = createWithUserThemes(Image, styles);
+export default wrapWithThemes(wrapWithStyles(Image));

@@ -2,6 +2,8 @@ import { omit } from 'lodash/fp';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import withThemes from 'components/hoc/withThemes';
+import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import Heading from 'components/helpers/heading';
 import Link from 'components/helpers/link';
 import styles from './placeholder.css';
@@ -18,6 +20,7 @@ const Placeholder = (props) => {
     children,
     url,
     level,
+    theme,
   } = props;
   const maxLevel = 6;
   const headingLevel = maxLevel < level ? maxLevel : level;
@@ -28,13 +31,13 @@ const Placeholder = (props) => {
   );
 
   return (
-    <div className={styles.wrapper}>
+    <div className={theme.wrapper}>
       {!! url && <Link to={url}>{headingElement}</Link>}
       {! url && headingElement}
       <pre>
         {JSON.stringify(omit(['componentName', 'children'], props), null, 2)}
       </pre>
-      <div className={styles.children}>
+      <div className={theme.children}>
         {React.Children.map(children, (child) => React
           .cloneElement(child, { level: headingLevel + 1 }))}
       </div>
@@ -59,12 +62,20 @@ Placeholder.propTypes = {
    * Direct user to a URL, usually documenting specs for this component
    */
   url: PropTypes.string,
+  /**
+   * Theme object.
+   */
+  theme: PropTypes.object,
 };
 
 Placeholder.defaultProps = {
   level: 2,
   url: '',
+  theme: {},
 };
 
 const wrapWithStyles = withStyles(styles);
-export default wrapWithStyles(Placeholder);
+const wrapWithThemes = withThemes('Placeholder', { default: styles });
+
+export const themePlaceholder = createWithUserThemes(Placeholder, styles);
+export default wrapWithThemes(wrapWithStyles(Placeholder));

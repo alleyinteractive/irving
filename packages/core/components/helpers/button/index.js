@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Link from 'components/helpers/link';
 import { withStyles } from 'critical-style-loader/lib';
+import withThemes from 'components/hoc/withThemes';
+import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import styles from './button.css';
 
 const Button = (props) => {
@@ -13,6 +15,7 @@ const Button = (props) => {
     children,
     className,
     onClick,
+    theme,
   } = props;
   const Component = ! link ? 'button' : Link;
   const buttonType = link ? null : type;
@@ -24,8 +27,8 @@ const Button = (props) => {
       type={buttonType}
       className={classNames(
         className,
-        styles.wrapper,
-        styles[buttonStyle]
+        theme.wrapper,
+        theme[buttonStyle]
       )}
       onClick={onClick}
     >
@@ -62,6 +65,10 @@ Button.propTypes = {
     PropTypes.func,
     PropTypes.oneOf([null]),
   ]),
+  /**
+   * Theme for the button.
+   */
+  theme: PropTypes.object,
 };
 
 Button.defaultProps = {
@@ -69,6 +76,11 @@ Button.defaultProps = {
   type: 'button',
   className: '',
   onClick: null,
+  theme: {},
 };
 
-export default withStyles(styles)(Button);
+const wrapWithStyles = withStyles(styles);
+const wrapWithThemes = withThemes('Button', { default: styles });
+export const themeButton = createWithUserThemes(Button, styles);
+
+export default wrapWithThemes(wrapWithStyles(Button));

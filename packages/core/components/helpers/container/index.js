@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
+import withThemes from 'components/hoc/withThemes';
+import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import styles from './container.css';
 
 const Container = (props) => {
@@ -9,12 +11,13 @@ const Container = (props) => {
     size,
     children,
     className,
+    theme,
   } = props;
 
   return (
     <div
       className={classNames(
-        styles[size],
+        theme[size],
         className
       )}
     >
@@ -36,11 +39,20 @@ Container.propTypes = {
    * Width of the container.
    */
   size: PropTypes.string,
+  /**
+   * Width of the container.
+   */
+  theme: PropTypes.object,
 };
 
 Container.defaultProps = {
   size: 'xxl',
   className: '',
+  theme: {},
 };
 
-export default withStyles(styles)(Container);
+const wrapWithStyles = withStyles(styles);
+const wrapWithThemes = withThemes('Container', { default: styles });
+export const themeContainer = createWithUserThemes(Container, styles);
+
+export default wrapWithThemes(wrapWithStyles(Container));
