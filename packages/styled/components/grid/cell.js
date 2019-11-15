@@ -66,15 +66,10 @@ GridCell.propTypes = {
   className: PropTypes.string,
   /**
    * The HTML element to use for the grid cell.
-   * @todo: revisit/update to ensure we're including a sensible list of elements.
    */
-  tag: PropTypes.oneOf([
-    'a',
-    'aside',
-    'button',
-    'div',
-    'li',
-    'span',
+  tag: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func, // React element
   ]),
   /**
    * responsive styles: An array of objects, which define a breakpoint and the CSS grid styles that
