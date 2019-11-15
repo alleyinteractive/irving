@@ -40,7 +40,7 @@ IrvingImg.propTypes = {
   alt: PropTypes.string.isRequired,
   onLoad: PropTypes.func.isRequired,
   onError: PropTypes.func.isRequired,
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 IrvingImg.defaultProps = {

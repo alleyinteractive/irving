@@ -124,15 +124,9 @@ GridContainer.propTypes = {
   /**
    * The type of HTML element to use for the grid container.
    */
-  tag: PropTypes.oneOf([
-    'div',
-    'footer',
-    'header',
-    'main',
-    'nav',
-    'section',
-    'ul',
-    'nav',
+  tag: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func, // React element
   ]),
 };
 
