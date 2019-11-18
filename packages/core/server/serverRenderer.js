@@ -53,6 +53,7 @@ const render = async (req, res, clientStats) => {
   dispatch(actionLocationChange('PUSH', {
     pathname: req.path,
     search: `?${search}`,
+    cookie: req.headers.cookie,
     hash: '', // Only available in browser.
   }));
 
