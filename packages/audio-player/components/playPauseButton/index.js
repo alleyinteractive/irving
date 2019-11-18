@@ -122,7 +122,7 @@ const mapDispatchToProps = {
 
 const withRedux = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 );
 const wrapWithStyles = withStyles(styles);
 

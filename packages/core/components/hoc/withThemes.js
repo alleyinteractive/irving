@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import assignWith from 'lodash/fp/assignWith';
@@ -23,30 +23,29 @@ const withThemes = (
   composes = false
 ) => (WrappedComponent) => {
   const ThemePicker = (props) => {
+    const contextThemes = useContext(ThemeContext);
+
     /**
      * Get the theme name.
      *
      * @param {object} contextThemes Theme key provided from context.
      * @return {string} Key/name for current theme.
      */
-    const getThemeName = (contextThemes) => {
-      const {
-        // This is included for backwards compatibility.
-        theme: propsTheme,
-        themeName: propsThemeName,
-      } = props;
+    const getThemeName = () => {
+      const { themeName: propsThemeName } = props;
       const hasThemeFromContext = contextThemes &&
         Object.keys(contextThemes).length &&
         contextThemes[identifier];
-      let themeName = 'default';
 
-      if (propsThemeName || propsTheme) {
-        themeName = propsThemeName || propsTheme;
-      } else if (hasThemeFromContext) {
-        themeName = contextThemes[identifier];
+      if (propsThemeName) {
+        return propsThemeName;
       }
 
-      return themeName;
+      if (hasThemeFromContext) {
+        return contextThemes[identifier];
+      }
+
+      return 'default';
     };
 
     /**
@@ -55,10 +54,13 @@ const withThemes = (
      * @param {object} contextThemes Theme key provided from context.
      * @return {object} Theme classes merged with defaults.
      */
-    const getTheme = (contextThemes) => {
+    const getTheme = () => {
       const defaultTheme = componentThemes.default || {};
-      const themeName = getThemeName(contextThemes);
-      const theme = componentThemes[themeName];
+      const { theme: propsTheme } = props;
+      const themeName = getThemeName();
+      const theme = Object.keys(propsTheme).length ?
+        propsTheme :
+        componentThemes[themeName];
 
       // Should theme styles override or compose the defaults?
       if (composes) {
@@ -71,19 +73,18 @@ const withThemes = (
         );
       }
 
-      return Object.assign({}, defaultTheme, theme);
+      return {
+        ...defaultTheme,
+        ...theme,
+      };
     };
 
     return (
-      <ThemeContext.Consumer>
-        {(themes) => (
-          <WrappedComponent
-            {...props}
-            theme={getTheme(themes)}
-            themeName={getThemeName(themes)}
-          />
-        )}
-      </ThemeContext.Consumer>
+      <WrappedComponent
+        {...props}
+        theme={getTheme(contextThemes)}
+        themeName={getThemeName(contextThemes)}
+      />
     );
   };
 
@@ -92,15 +93,12 @@ const withThemes = (
       PropTypes.string,
       PropTypes.bool,
     ]),
-    theme: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.bool,
-    ]),
+    theme: PropTypes.object,
   };
 
   ThemePicker.defaultProps = {
     themeName: false,
-    theme: false,
+    theme: {},
   };
 
   ThemePicker.displayName = getDisplayName('ThemePicker', WrappedComponent);

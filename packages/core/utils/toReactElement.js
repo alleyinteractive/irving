@@ -44,7 +44,7 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     componentGroups = {},
   } = apiComponent;
 
-  // Convert comopnent groups.
+  // Convert component groups.
   const convertedGroups = createComponentGroups(componentGroups);
 
   let props = {
@@ -63,8 +63,11 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
   const type = getReactComponent(name);
   const isNativeDOMElm = 'string' === typeof type;
   if (isNativeDOMElm) {
-    // Strip non valid element attribute.
-    props = omit(['componentName'], props);
+    // Strip invalid attributes for native dom elements.
+    props = omit([
+      'componentName',
+      'componentGroups',
+    ], props);
 
     // Support self closing tags.
     if (! childElements.length) {
