@@ -1,7 +1,10 @@
 import React from 'react';
-import { withStyles } from 'critical-style-loader/lib';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SpinnerSVG from 'assets/icons/spinner.svg';
+import { withStyles } from 'critical-style-loader/lib';
+import withThemes from 'components/hoc/withThemes';
+import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import styles from './spinner.css';
 
 // Using inline styles for centering to prevent jumpiness when component is loaded.
@@ -10,13 +13,27 @@ const inlineStyle = {
   margin: '0 auto',
 };
 
-const Spinner = () => (
-  <SpinnerSVG
-    style={inlineStyle}
-    className={classNames(styles.spinner, 'spinner')}
-  />
-);
+const Spinner = (props) => {
+  const { theme } = props;
+
+  return (
+    <SpinnerSVG
+      style={inlineStyle}
+      className={classNames(theme.spinner, 'spinner')}
+    />
+  );
+};
+
+Spinner.propTypes = {
+  theme: PropTypes.object,
+};
+
+Spinner.defaultProps = {
+  theme: {},
+};
 
 const wrapWithStyles = withStyles(styles);
+const wrapWithThemes = withThemes('Spinner', { default: styles });
+export const themeSpinner = createWithUserThemes(Spinner, styles);
 
-export default wrapWithStyles(Spinner);
+export default wrapWithThemes(wrapWithStyles(Spinner));

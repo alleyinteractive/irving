@@ -8,7 +8,7 @@ const withThemes = (themeMap) => (WrappedComponent) => {
     const { themeName } = props;
     const theme = assign(
       themeMap.default,
-      themeMap[themeName],
+      themeMap[themeName]
     );
 
     return (

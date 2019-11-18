@@ -7,6 +7,8 @@ import TwitterIcon from 'assets/icons/twitter.svg';
 import LinkedInIcon from 'assets/icons/linkedin.svg';
 import WhatsAppIcon from 'assets/icons/whatsapp.svg';
 import PinterestIcon from 'assets/icons/pinterest.svg';
+import withThemes from 'components/hoc/withThemes';
+import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import styles from './socialItem.css';
 
 const socialIconMap = {
@@ -22,12 +24,13 @@ const SocialItem = (props) => {
     type,
     url,
     displayIcon,
+    theme,
   } = props;
   const IconComponent = socialIconMap[type];
 
   return (
-    <li className={styles.wrapper}>
-      <Link to={url} className={styles.link}>
+    <li className={theme.wrapper}>
+      <Link to={url} className={theme.link}>
         {displayIcon && <IconComponent />}
       </Link>
     </li>
@@ -50,8 +53,14 @@ SocialItem.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ]).isRequired,
+  /**
+   * Alternate theme for this component.
+   */
+  theme: PropTypes.object.isRequired,
 };
 
 const wrapWithStyles = withStyles(styles);
+const wrapWithThemes = withThemes('SocialItem', { default: styles });
+export const themeSocialItem = createWithUserThemes(SocialItem, styles);
 
-export default wrapWithStyles(SocialItem);
+export default wrapWithThemes(wrapWithStyles(SocialItem));
