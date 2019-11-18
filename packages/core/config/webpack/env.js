@@ -19,7 +19,7 @@ module.exports = function getEnv() {
   // Only include whitelisted variables for client environments to avoid leaking
   // sensitive information.
   const whitelist = [
-    new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL'),
+    new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL|COOKIE_MAP_LIST'),
     new RegExp('^API_QUERY_PARAM'),
   ];
   return Object

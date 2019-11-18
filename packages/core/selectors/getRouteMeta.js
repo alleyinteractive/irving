@@ -13,6 +13,7 @@ const getRouteMeta = createSelector(
     path: route.pathname,
     search: route.search,
     hash: route.hash,
+    cookie: route.cookie,
     // Request the default site components if the Redux state doesn't have any yet.
     context: components.defaults.length ? CONTEXT_PAGE : CONTEXT_SITE,
     cached: !! pageComponents.length,
