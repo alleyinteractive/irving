@@ -7,6 +7,7 @@ import { findChildByName } from 'utils/children';
 // Themes
 import styles from './contentHeader.css';
 import inlineTheme from './contentHeader--inline.css';
+import verticalTheme from './contentHeader--vertical.css';
 import Eyebrow from '../eyebrow';
 
 const ContentHeader = ({
@@ -92,4 +93,5 @@ ContentHeader.defaultProps = {
 export default withThemes('content-header', {
   default: styles,
   inline: inlineTheme,
-})(withStyles(styles, inlineTheme)(ContentHeader));
+  isVertical: verticalTheme,
+})(withStyles(styles, inlineTheme, verticalTheme)(ContentHeader));
