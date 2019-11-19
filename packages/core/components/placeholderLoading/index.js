@@ -26,11 +26,7 @@ PlaceholderLoading.propTypes = {
   /**
    * Theme object.
    */
-  theme: PropTypes.object,
-};
-
-PlaceholderLoading.defaultProps = {
-  theme: {},
+  theme: PropTypes.object.isRequired,
 };
 
 const wrapWithStyles = withStyles(styles);
