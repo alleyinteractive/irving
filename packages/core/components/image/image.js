@@ -18,6 +18,10 @@ const Image = (props) => {
     lqipSrc,
     picture,
     showCaption,
+    sizes,
+    src,
+    srcset,
+    sourceTags,
     theme,
   } = props;
   const [loaded, setLoaded] = useState(false);
@@ -34,13 +38,21 @@ const Image = (props) => {
     <>
       {picture ? (
         <IrvingPicture
-          {...props}
+          alt={alt}
+          sourceTags={sourceTags}
+          src={src}
+          srcset={srcset}
+          theme={theme}
           onLoad={onLoad}
           onError={onError}
         />
       ) : (
         <IrvingImg
-          {...props}
+          alt={alt}
+          sizes={sizes}
+          src={src}
+          srcset={srcset}
+          theme={theme}
           onLoad={onLoad}
           onError={onError}
         />
@@ -103,10 +115,6 @@ Image.propTypes = {
     PropTypes.oneOf(['auto']),
   ]).isRequired,
   /**
-   * Whether or not to include default styles for an image with a static aspect ratio
-   */
-  aspectRatioStyles: PropTypes.bool,
-  /**
    * Image caption. This prop will modify the image markup to use a <figure>.
    */
   caption: PropTypes.string,
@@ -114,10 +122,6 @@ Image.propTypes = {
    * Additional classname(s) to add to image wrapper element
    */
   className: PropTypes.string,
-  /**
-   * Height of image. Necessary for lazyloading placeholder.
-   */
-  height: PropTypes.number.isRequired,
   /**
    * Wether or not to lazyload this image via react-lazyload
    */
@@ -171,7 +175,6 @@ Image.propTypes = {
 };
 
 Image.defaultProps = {
-  aspectRatioStyles: true,
   caption: '',
   className: '',
   sourceTags: [],

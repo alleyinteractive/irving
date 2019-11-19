@@ -3,7 +3,6 @@ module.exports = {
   name: '',
   babelConfig: [() => {}],
   cacheService: () => {},
-  componentMap: {},
   configFields: [() => {}],
   startServer: () => {},
   customizeServer: [() => {}],
