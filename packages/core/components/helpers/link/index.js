@@ -21,7 +21,7 @@ const Link = (props) => {
 
   return (
     <a
-      {...omit(['blank', 'to'], props)}
+      {...omit(['blank', 'to', 'componentGroups'], props)}
       href={relativeUrl || to}
       onClick={onClick || defaultOnClick}
       target={blank ? '_blank' : null}

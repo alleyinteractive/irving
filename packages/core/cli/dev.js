@@ -23,6 +23,7 @@ const ignore = [
   'server/getAppTemplateVars.js',
   'server/getErrorTemplateVars.js',
   'services/*',
+  'styles/*',
   'utils/*',
   'hooks/*',
   'irving.config.js',
