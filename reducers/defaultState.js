@@ -40,6 +40,12 @@ export const user = {
     validTo: null,
     header: '',
   },
+  id: null,
+  firstName: '',
+  lastName: '',
+  email: null,
+  pendingEmail: null,
+  pendingVerification: false,
 };
 
 export const error = null;
