@@ -27,7 +27,7 @@ Video.propTypes = {
 };
 
 Video.defaultProps = {
-  caption: 'Caption',
+  caption: '',
 };
 
 export default (withStyles(styles)(Video));
