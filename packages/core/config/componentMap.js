@@ -10,16 +10,14 @@ import withLoader from 'components/hoc/withLoader';
 import userComponentMap from '@irvingjs/componentMap';
 
 const defaultComponents = {
-  componentMap: {
-    app: DefaultAppContent,
-    body: withLoader(Body),
-    embed: RawHTML,
-    'error-message': DefaultErrorMessage,
-    head: Head,
-    header: Placeholder,
-    html: RawHTML,
-    image: Image,
-  },
+  app: DefaultAppContent,
+  body: withLoader(Body),
+  embed: RawHTML,
+  'error-message': DefaultErrorMessage,
+  head: Head,
+  header: Placeholder,
+  html: RawHTML,
+  image: Image,
 };
 
 /**
