@@ -15,6 +15,7 @@ const RawHTML = (props) => {
     rich,
     oembed,
     className,
+    theme,
   } = props;
   const html = sanitizeHtml(content, rich ? richText : plainText);
 
@@ -22,7 +23,7 @@ const RawHTML = (props) => {
     return (
       <EmbedContainer markup={content}>
         <div
-          className={classnames(styles.wrapper, className)}
+          className={classnames(theme.wrapper, className)}
           dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
         />
       </EmbedContainer>
@@ -31,7 +32,7 @@ const RawHTML = (props) => {
 
   return (
     <div
-      className={classnames(styles.wrapper, className)}
+      className={classnames(theme.wrapper, className)}
       dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
     />
   );
@@ -54,6 +55,10 @@ RawHTML.propTypes = {
    * Additional classname for component wrapper.
    */
   className: PropTypes.string,
+  /**
+   * Theme object.
+   */
+  theme: PropTypes.object.isRequired,
 };
 
 RawHTML.defaultProps = {
