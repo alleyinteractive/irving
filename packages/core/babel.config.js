@@ -37,8 +37,7 @@ module.exports = (api) => {
             server: './server',
             services: './services',
             utils: './utils',
-            // Tests need an irving config, use an alias so we can use a separate test config.
-            // @todo might want to update this to @irvingjs also.
+            // Aliases for irving config files.
             '@irvingjs/irving.config': path.join(
               buildContext,
               'irving.config.js'
@@ -46,6 +45,10 @@ module.exports = (api) => {
             '@irvingjs/irving.config.server': path.join(
               buildContext,
               'irving.config.server.js'
+            ),
+            '@irvingjs/componentMap': path.join(
+              buildContext,
+              'componentMap.js'
             ),
           },
         },
@@ -75,7 +78,6 @@ module.exports = (api) => {
               root: [irvingRoot],
               // Tests need an irving config, use an alias so it doesn't override user config.
               alias: {
-                // @todo might want to update this to @irvingjs also.
                 '@irvingjs/irving.config': path.join(
                   irvingRoot,
                   'test/irving-test.config.js'
@@ -83,6 +85,10 @@ module.exports = (api) => {
                 '@irvingjs/irving.config.server': path.join(
                   irvingRoot,
                   'test/irving-test.config.js'
+                ),
+                '@irvingjs/componentMap': path.join(
+                  irvingRoot,
+                  'test/componentMap.js'
                 ),
               },
             },

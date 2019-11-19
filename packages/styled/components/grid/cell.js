@@ -69,7 +69,8 @@ GridCell.propTypes = {
    */
   tag: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.func, // React element
+    PropTypes.func,
+    PropTypes.object,
   ]),
   /**
    * responsive styles: An array of objects, which define a breakpoint and the CSS grid styles that

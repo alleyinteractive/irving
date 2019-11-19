@@ -23,9 +23,12 @@ const ignore = [
   'server/getAppTemplateVars.js',
   'server/getErrorTemplateVars.js',
   'services/*',
+  'styles/*',
   'utils/*',
   'hooks/*',
   'irving.config.js',
+  'irving.config.server.js',
+  'componentMap.js',
 ];
 const script = path.join(__dirname, './start.js');
 

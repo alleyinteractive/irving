@@ -65,13 +65,12 @@ Placeholder.propTypes = {
   /**
    * Theme object.
    */
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };
 
 Placeholder.defaultProps = {
   level: 2,
   url: '',
-  theme: {},
 };
 
 const wrapWithStyles = withStyles(styles);

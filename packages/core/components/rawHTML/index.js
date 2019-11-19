@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import sanitizeHtml from 'sanitize-html';
 import EmbedContainer from 'react-oembed-container';
+import { withStyles } from 'critical-style-loader/lib';
+import withThemes from 'components/hoc/withThemes';
+import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import { plainText, richText } from 'config/html';
+import styles from './rawHTML.css';
 
 const RawHTML = (props) => {
   const {
@@ -10,6 +15,7 @@ const RawHTML = (props) => {
     rich,
     oembed,
     className,
+    theme,
   } = props;
   const html = sanitizeHtml(content, rich ? richText : plainText);
 
@@ -17,15 +23,16 @@ const RawHTML = (props) => {
     return (
       <EmbedContainer markup={content}>
         <div
-          className={className}
+          className={classnames(theme.wrapper, className)}
           dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
         />
       </EmbedContainer>
     );
   }
+
   return (
     <div
-      className={className}
+      className={classnames(theme.wrapper, className)}
       dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
     />
   );
@@ -44,8 +51,14 @@ RawHTML.propTypes = {
    * Does this markup contain oembeds?
    */
   oembed: PropTypes.bool,
-
+  /**
+   * Additional classname for component wrapper.
+   */
   className: PropTypes.string,
+  /**
+   * Theme object.
+   */
+  theme: PropTypes.object.isRequired,
 };
 
 RawHTML.defaultProps = {
@@ -54,4 +67,8 @@ RawHTML.defaultProps = {
   className: '',
 };
 
-export default RawHTML;
+const wrapWithStyles = withStyles(styles);
+const wrapWithThemes = withThemes('RawHTML', { default: styles });
+
+export const themeRawHTML = createWithUserThemes(RawHTML, styles);
+export default wrapWithStyles(wrapWithThemes(RawHTML));
