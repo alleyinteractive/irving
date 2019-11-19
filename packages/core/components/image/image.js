@@ -121,7 +121,10 @@ Image.propTypes = {
   /**
    * Wether or not to lazyload this image via react-lazyload
    */
-  lazyload: PropTypes.bool.isRequired,
+  lazyload: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]).isRequired,
   /**
    * Src attribute for Low Quality Image Placeholder (LQIP)
    */
