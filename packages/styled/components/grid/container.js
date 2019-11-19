@@ -126,7 +126,8 @@ GridContainer.propTypes = {
    */
   tag: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.func, // React element
+    PropTypes.func,
+    PropTypes.object,
   ]),
 };
 
