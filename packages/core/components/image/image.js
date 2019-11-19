@@ -171,7 +171,7 @@ Image.propTypes = {
   /**
    * Theme object.
    */
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };
 
 Image.defaultProps = {
@@ -181,7 +181,6 @@ Image.defaultProps = {
   picture: false,
   sizes: '',
   showCaption: false,
-  theme: {},
 };
 
 const wrapWithStyles = withStyles(styles);

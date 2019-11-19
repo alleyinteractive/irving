@@ -68,7 +68,7 @@ Button.propTypes = {
   /**
    * Theme for the button.
    */
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };
 
 Button.defaultProps = {
@@ -76,7 +76,6 @@ Button.defaultProps = {
   type: 'button',
   className: '',
   onClick: null,
-  theme: {},
 };
 
 const wrapWithStyles = withStyles(styles);

@@ -25,11 +25,7 @@ const Spinner = (props) => {
 };
 
 Spinner.propTypes = {
-  theme: PropTypes.object,
-};
-
-Spinner.defaultProps = {
-  theme: {},
+  theme: PropTypes.object.isRequired,
 };
 
 const wrapWithStyles = withStyles(styles);

@@ -28,11 +28,7 @@ SocialList.propTypes = {
   /**
    * Theme object.
    */
-  theme: PropTypes.object,
-};
-
-SocialList.defaultProps = {
-  theme: {},
+  theme: PropTypes.object.isRequired,
 };
 
 const wrapWithStyles = withStyles(styles);
