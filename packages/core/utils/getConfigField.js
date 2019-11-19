@@ -17,7 +17,3 @@ if (process.env.BUILD) {
 }
 /* eslint-enable */
 module.exports = (key) => getMergedFromUserConfig(config, key);
-
-if (module.hot) {
-  module.hot.accept();
-}

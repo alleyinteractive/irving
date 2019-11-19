@@ -7,8 +7,7 @@ import Image from 'components/image/image';
 import RawHTML from 'components/rawHTML';
 import Placeholder from 'components/placeholder';
 import withLoader from 'components/hoc/withLoader';
-import { getMergedConfigField } from 'utils/getMergedConfigField';
-import userConfig from '@irvingjs/irving.config';
+import userComponentMap from '@irvingjs/componentMap';
 
 const defaultComponents = {
   componentMap: {
@@ -22,10 +21,12 @@ const defaultComponents = {
     image: Image,
   },
 };
-const componentMap = getMergedConfigField(
-  [defaultComponents, userConfig],
-  'componentMap'
-);
+const componentMap = {
+  ...defaultComponents,
+  ...userComponentMap,
+};
+
+console.log(userComponentMap, componentMap);
 
 /**
  * Resolve a defined React component by name.
@@ -46,4 +47,8 @@ export default function getComponent(name) {
   }
 
   return NotConfigured;
+}
+
+if (module.hot) {
+  module.hot.accept();
 }
