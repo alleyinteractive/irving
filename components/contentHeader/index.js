@@ -20,6 +20,7 @@ const ContentHeader = ({
   theme,
   themeName,
 }) => {
+  const video = findChildByName('video', children);
   const image = findChildByName('image', children);
   const byline = findChildByName('byline', children);
   const sponsoredModule = findChildByName('sponsored-module', children);
@@ -53,6 +54,7 @@ const ContentHeader = ({
         </div>
       )}
       <div className={theme.image}>{image}</div>
+      {video}
     </header>
   );
 };
