@@ -3,7 +3,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { connect } from 'react-redux';
 import { actionSubmitUserPassword } from 'actions/userActions';
-import { getUserFirstName } from 'selectors/getAuth';
+import { getUserFirstName } from 'selectors/getUser';
 import PropTypes from 'prop-types';
 
 // Styles

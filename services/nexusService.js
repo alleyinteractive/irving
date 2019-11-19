@@ -120,6 +120,47 @@ export default {
   },
 
   /**
+   * When we receive a new user email, create the user in the database.
+   *
+   * @param { email, fullName, password, header } params
+   */
+  async createAccount({
+    email,
+    fullName,
+    password,
+    header,
+  }) {
+    // eslint-disable-line no-unused-vars
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+    const firstName = fullName.split(' ')[0];
+    const lastName = fullName.split(' ')[- 1];
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXUS_ROOT_URL}/api/user/email`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'test',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            email,
+            password: hash,
+            firstName,
+            lastName,
+          }),
+        }
+      );
+    } catch (error) {
+      console.info('There was a problem.', error); // eslint-disable-line no-console
+    }
+    return {};
+  },
+
+  /**
    * Once an account has been validated, login the user.
    *
    * @param { id, password, header } params
@@ -147,6 +188,35 @@ export default {
       );
       const data = await response.json();
       return data;
+    } catch (error) {
+      console.info('There was a problem.', error); // eslint-disable-line no-console
+    }
+    return {};
+  },
+
+  /**
+   * Update an email address already stored in the database.
+   *
+   * @param { email, newEmail header } params
+   */
+  async changeEmail({ email, newEmail, header }) {
+    // eslint-disable-line no-unused-vars
+    try {
+      const response = await fetch(
+        `${process.env.NEXUS_ROOT_URL}/api/user/email`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'test',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            email,
+            newEmail,
+          }),
+        }
+      );
     } catch (error) {
       console.info('There was a problem.', error); // eslint-disable-line no-console
     }
