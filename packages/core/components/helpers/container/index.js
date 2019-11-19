@@ -42,13 +42,12 @@ Container.propTypes = {
   /**
    * Width of the container.
    */
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };
 
 Container.defaultProps = {
   size: 'xxl',
   className: '',
-  theme: {},
 };
 
 const wrapWithStyles = withStyles(styles);

@@ -1,3 +1,4 @@
+const memoize = require('lodash/memoize');
 const { getMergedFromUserConfig } = require('./getMergedConfigField');
 let config;
 
@@ -16,8 +17,6 @@ if (process.env.BUILD) {
   }
 }
 /* eslint-enable */
-module.exports = (key) => getMergedFromUserConfig(config, key);
 
-if (module.hot) {
-  module.hot.accept();
-}
+// getMergedFromUserConfig is expensive, so export a function that memoizes the results.
+module.exports = memoize((key) => getMergedFromUserConfig(config, key));
