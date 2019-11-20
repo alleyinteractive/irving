@@ -16,7 +16,7 @@ const Video = ({ url, caption }) => (
         src={url}
         className={styles.video}
       />
-      <div className={styles.caption}>{caption}</div>
+      <figcaption className={styles.caption}>{caption}</figcaption>
     </figure>
   </div>
 );
