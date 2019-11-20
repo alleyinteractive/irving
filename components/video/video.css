@@ -15,4 +15,8 @@
 
 .figure {
   margin-bottom: rem(30);
+
+  @media ($smMax) {
+    margin-left: rem(30);
+  }
 }
