@@ -6,19 +6,16 @@ import { withStyles } from 'critical-style-loader/lib';
 import styles from './video.css';
 
 const Video = ({ url, caption }) => (
-  <div>
-    <figure className={styles.figure}>
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <video
-        autoPlay
-        muted
-        loop
-        src={url}
-        className={styles.video}
-      />
-      <figcaption className={styles.caption}>{caption}</figcaption>
-    </figure>
-  </div>
+  <figure className={styles.figure}>
+    <video
+      autoPlay
+      muted
+      loop
+      src={url}
+      className={styles.video}
+    />
+    <figcaption className={styles.caption}>{caption}</figcaption>
+  </figure>
 );
 
 Video.propTypes = {
