@@ -1,0 +1,101 @@
+.wrap {
+  background-color: #eee;
+  padding: rem(20) rem(10);
+
+  .signUpHeading,
+  span {
+    display: inline;
+    font-family: $sans;
+    font-size: rem(18);
+    font-weight: 400;
+    line-height: 1.55;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .bold {
+    font-weight: 600;
+  }
+}
+
+.newsletterHeader {
+  margin-bottom: rem(5);
+}
+
+.subscribeHeader {
+  align-items: center;
+  display: flex;
+  margin-bottom: rem(15);
+
+  .logoImg {
+    display: block;
+    margin-right: rem(15);
+  }
+}
+
+.formGroup {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.emailInputLabel {
+  margin-right: rem(5);
+  width: 80%;
+}
+
+input[type=text].emailInput {
+  @include formInput;
+  border-radius: 0;
+  font-size: 1rem;
+  max-height: rem(40);
+}
+
+.signUpBtn {
+  @include btn;
+  color: #fff;
+  font-family: $sans;
+  font-size: 1rem;
+  height: rem(40);
+  padding: rem(9);
+  width: rem(112);
+
+  &:hover {
+    background: #fff;
+  }
+}
+
+.radioWrap {
+  display: flex;
+  font-family: $sans;
+  margin-top: rem(10);
+  padding-left: rem(10);
+
+  .radioHeader {
+    font-size: rem(12);
+    font-weight: 400;
+    margin: 0;
+    width: 70%;
+  }
+}
+
+.formGroupRadio {
+  display: flex;
+
+  .inlineRadioLabel {
+    font-family: $sans;
+    font-size: rem(12);
+  }
+
+  .radioInput {
+    margin-left: rem(5);
+  }
+}
+
+.display {
+  display: block;
+}
+
+.displayNone {
+  display: none;
+}
