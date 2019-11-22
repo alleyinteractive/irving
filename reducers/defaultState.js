@@ -48,6 +48,10 @@ export const user = {
   pendingVerification: false,
 };
 
+export const story = {
+  showFullText: false,
+};
+
 export const error = null;
 
 export const loading = false;
