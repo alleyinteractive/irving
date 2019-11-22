@@ -5,8 +5,8 @@
   width: 100%;
 
   @media ($smMax) {
-    tidy-span: 12;
     margin: 0 auto rem(20);
+    tidy-span: 12;
   }
 }
 
