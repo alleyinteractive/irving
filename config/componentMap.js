@@ -67,6 +67,7 @@ import Subscriptions from 'components/accounts/subscriptions';
 import TagLink from 'components/tagLink';
 import Tags from 'components/tags';
 import TeaserItem from 'components/teaserItem';
+import TermArchiveContentList from 'components/termArchiveContentList';
 import UserGreeting from 'components/userGreeting';
 import withLoader from 'components/hoc/withLoader';
 
@@ -147,6 +148,7 @@ export const componentMap = {
   'tag-link': TagLink,
   tags: Tags,
   'teaser-item': TeaserItem,
+  'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TeaserItem,
   'technology-meta': ContentList,
   'topic-header': CardStack,
