@@ -1,8 +1,18 @@
-@import 'mixins/index';
+/**
+ * This stylesheet is enqueued directly in the WordPress admin to style the
+ * editor experience.
+ */
 
-/* stylelint-disable selector-max-specificity */
+/**
+ *  Blocks defined in other components.
+ *  These paths must be relative to the currnt directory.
+ */
+@import '../../components/related/related.css';
+
+/* Inline blocks */
 .editor-writing-flow {
   [data-type="core/freeform"] {
+    /* stylelint-disable-next-line selector-max-specificity */
     .mce-content-body {
       @include basic-editor-styles;
     }
@@ -22,24 +32,6 @@
 
   [data-type="core/pullquote"] {
     @include block-pullquote;
-
-    :global(.editor-block-list__block-edit .wp-block-pullquote) {
-      @media ($xlMin) {
-        margin: 0 0 0 0;
-      }
-
-      &:global(.alignleft) {
-        @media ($xlMin) {
-          margin-left: 0;
-        }
-      }
-
-      &:global(.alignright) {
-        @media ($xlMin) {
-          margin-right: 0;
-        }
-      }
-    }
   }
 
   [data-type="core/heading"] {
@@ -71,6 +63,7 @@
   }
 
   [data-type="core/columns"] {
+    /* stylelint-disable selector-max-specificity */
     :global(.wp-block-columns) > :global(.editor-inner-blocks) > :global(.editor-block-list__layout) {
       display: flex;
       flex-flow: row wrap;
@@ -82,6 +75,7 @@
         min-width: 25%;
       }
     }
+    /* stylelint-enable */
   }
 
   [data-type="core/YouTube"] {
@@ -101,7 +95,7 @@
   }
 }
 
+/* Edtitor styles */
 .mce-content-body {
   @include basic-editor-styles;
 }
-/* stylelint-enable */
