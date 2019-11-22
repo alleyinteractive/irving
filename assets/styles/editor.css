@@ -7,10 +7,11 @@
  *  Blocks defined in other components.
  *  These paths must be relative to the currnt directory.
  */
-@import '../../components/related/related.css';
+@import '../../components/contentList/contentList.css';
+@import '../../components/contentList/contentList.css';
 @import '../../components/newsletter/newsletter.css';
-@import '../../components/contentList/contentList.css';
-@import '../../components/contentList/contentList.css';
+@import '../../components/related/related.css';
+@import '../../components/statsWidget/statsWidget.css';
 
 /* Inline blocks */
 .editor-writing-flow {
