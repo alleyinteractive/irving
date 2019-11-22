@@ -92,7 +92,7 @@ module.exports = function getRules(context) {
               options: {
                 url: true,
                 importLoaders: 1,
-                minimize: true,
+                modules: 'global',
               },
             },
             {
