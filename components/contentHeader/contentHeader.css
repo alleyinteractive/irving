@@ -44,13 +44,13 @@
   @media ($smMin) {
     padding-left: 0;
     padding-right: 0;
-    tidy-span: 10;
+    tidy-span: 12;
   }
 
   @media ($mdMin) {
     order: 1;
     tidy-offset-left: 1;
-    tidy-span: 6;
+    tidy-span: 12;
   }
 
   @media ($lgMin) {
@@ -61,10 +61,14 @@
 
 .intro {
   composes: headerBlock;
-  border-bottom: 1px solid black;
+
+  @media ($mdMax) {
+    margin-bottom: rem(20);
+  }
 }
 
 .meta {
+  border-bottom: 1px solid black;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;

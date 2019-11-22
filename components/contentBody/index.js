@@ -6,6 +6,11 @@ import React, {
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
+import {
+  actionShowFullStory,
+  actionTruncateStory,
+} from 'actions/storyActions';
+import { connect } from 'react-redux';
 import styles from './contentBody.css';
 
 const ContentBody = (props) => {
@@ -17,6 +22,8 @@ const ContentBody = (props) => {
     children,
     truncatedCTA,
     wordCount,
+    dispatchShowFullStory,
+    dispatchTruncateStory,
   } = props;
 
   const showFullText = () => {
@@ -42,10 +49,13 @@ const ContentBody = (props) => {
 
     if (0 === truncatedCTA.length) {
       showFullText();
+      dispatchShowFullStory();
     } else if (isOutsideSource) {
       setTruncation(true);
+      dispatchTruncateStory();
     } else {
       showFullText();
+      dispatchShowFullStory();
     }
   }, truncateContent);
 
@@ -59,6 +69,7 @@ const ContentBody = (props) => {
       <div
         className={400 === contentHeight ? styles.contentHidden : ''}
         style={{ height: contentHeight }}
+        id="content--body"
       >
         <div ref={contentRef}>
           {children}
@@ -81,12 +92,25 @@ const ContentBody = (props) => {
 
 ContentBody.defaultProps = {
   truncatedCTA: '',
+  dispatchShowFullStory: () => {},
+  dispatchTruncateStory: () => {},
 };
 
 ContentBody.propTypes = {
   children: PropTypes.node.isRequired,
   truncatedCTA: PropTypes.string,
   wordCount: PropTypes.number.isRequired,
+  dispatchShowFullStory: PropTypes.func,
+  dispatchTruncateStory: PropTypes.func,
 };
 
-export default withStyles(styles)(ContentBody);
+const mapDispatchToProps = (dispatch) => ({
+  dispatchShowStory: () => dispatch(actionShowFullStory()),
+  dispatchTruncateStory: () => dispatch(actionTruncateStory()),
+});
+const withRedux = connect(
+  undefined,
+  mapDispatchToProps
+);
+
+export default withRedux(withStyles(styles)(ContentBody));
