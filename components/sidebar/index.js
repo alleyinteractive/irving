@@ -19,7 +19,11 @@ const Sidebar = (props) => {
     let height;
     const contentHeader = document.getElementById('content--header');
 
-    if (null !== contentHeader && 'raised' === themeName) {
+    if (
+      null !== contentHeader &&
+      'raised' === themeName &&
+      960 < window.innerWidth
+    ) {
       const headerWrapper =
         document.getElementById('content--header--wrapper');
 

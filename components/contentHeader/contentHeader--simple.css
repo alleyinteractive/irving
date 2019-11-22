@@ -3,6 +3,11 @@
   flex-flow: column nowrap;
   margin-bottom: rem(20);
   width: 100%;
+
+  @media ($smMax) {
+    tidy-span: 12;
+    margin: 0 auto rem(20);
+  }
 }
 
 .intro {

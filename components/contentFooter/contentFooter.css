@@ -1,18 +1,40 @@
+/* ContentFooter component styles */
+
 .wrapper {
   font-size: rem(12);
   margin: 0 auto;
 
-  &::before {
-    border-top: $border-thin--gray-light;
-    content: '';
-    display: block;
-    margin: rem(20) 0;
-  
+  > * {
+    margin: 0 auto;
+    tidy-span: 10;
+
     @media ($mdMin) {
       tidy-span: 6;
     }
 
     @media ($lgMin) {
+      tidy-span: 10;
+    }
+  }
+
+  &::before {
+    border-top: $border-thin--gray-light;
+    content: '';
+    display: block;
+    margin: 0 auto rem(20);
+    tidy-span: 10;
+
+    @media ($smMax) {
+      tidy-span: 12;
+    }
+
+    @media ($mdMin) {
+      tidy-offset-left: 1;
+      tidy-span: 6;
+    }
+
+    @media ($lgMin) {
+      tidy-offset-left: 0;
       tidy-span: 6;
     }
   }
@@ -29,6 +51,14 @@
 .label {
   @include label;
   tidy-span: 0.5;
+
+  @media ($mdMax) {
+    tidy-span: 0.65;
+  }
+
+  @media ($smMax) {
+    tidy-span: 1.5;
+  }
 }
 
 .row {
@@ -36,6 +66,23 @@
   flex-flow: row nowrap;
   font-size: rem(14);
   margin-bottom: rem(15);
+  margin-left: auto;
+  margin-right: auto;
+  tidy-span: 10;
+
+  @media ($smMax) {
+    tidy-span: 12;
+  }
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 6;
+  }
+
+  @media ($lgMin) {
+    tidy-offset-left: 0;
+    tidy-span: 6;
+  }
 }
 
 .social {
