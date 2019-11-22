@@ -1,40 +1,18 @@
-/* ContentFooter component styles */
-
 .wrapper {
-  @include container-with-bleed;
-
   font-size: rem(12);
   margin: 0 auto;
-
-  > * {
-    margin: 0 auto;
-    tidy-span: 10;
-
-    @media ($mdMin) {
-      tidy-offset-left: 1;
-      tidy-span: 6;
-    }
-
-    @media ($lgMin) {
-      tidy-offset-left: 1;
-      tidy-span: 6;
-    }
-  }
 
   &::before {
     border-top: $border-thin--gray-light;
     content: '';
     display: block;
-    margin: 0 auto rem(20);
-    tidy-span: 10;
-
+    margin: rem(20) 0;
+  
     @media ($mdMin) {
-      tidy-offset-left: 1;
       tidy-span: 6;
     }
 
     @media ($lgMin) {
-      tidy-offset-left: 1;
       tidy-span: 6;
     }
   }
@@ -58,19 +36,6 @@
   flex-flow: row nowrap;
   font-size: rem(14);
   margin-bottom: rem(15);
-  margin-left: auto;
-  margin-right: auto;
-  tidy-span: 10;
-
-  @media ($mdMin) {
-    tidy-offset-left: 1;
-    tidy-span: 6;
-  }
-
-  @media ($lgMin) {
-    tidy-offset-left: 1;
-    tidy-span: 6;
-  }
 }
 
 .social {
