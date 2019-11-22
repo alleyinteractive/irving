@@ -8,6 +8,7 @@
  *  These paths must be relative to the currnt directory.
  */
 @import '../../components/related/related.css';
+@import '../../components/newsletter/newsletter.css';
 
 /* Inline blocks */
 .editor-writing-flow {

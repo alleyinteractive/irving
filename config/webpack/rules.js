@@ -4,7 +4,6 @@ const {
   postCssConfig,
   transform,
   assetsRoot,
-  clientRoot,
 } = require('../paths');
 
 const exclude = [/node_modules/, /\.min\.js$/];
