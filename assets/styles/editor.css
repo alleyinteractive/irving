@@ -9,6 +9,8 @@
  */
 @import '../../components/related/related.css';
 @import '../../components/newsletter/newsletter.css';
+@import '../../components/contentList/contentList.css';
+@import '../../components/contentList/contentList.css';
 
 /* Inline blocks */
 .editor-writing-flow {
