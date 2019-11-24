@@ -2,10 +2,6 @@
  * Custom media queries
  */
 const bkptVal = {
-  // lg: 78.125, // 1250 = desktop
-  // md: 64, // 1024 = tablet
-  // sm: 53.125, // 850 = phablet
-  // xs: 39.375, // 630 = phone
   lg: 82, // 1312 = desktop
   md: 60, // 960 = tablet
   sm: 39.375, // 630= phone

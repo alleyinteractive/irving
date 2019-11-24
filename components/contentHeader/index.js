@@ -8,6 +8,7 @@ import { findChildByName } from 'utils/children';
 import styles from './contentHeader.css';
 import inlineTheme from './contentHeader--inline.css';
 import verticalTheme from './contentHeader--vertical.css';
+import simpleTheme from './contentHeader--simple.css';
 import Eyebrow from '../eyebrow';
 
 const ContentHeader = ({
@@ -27,8 +28,8 @@ const ContentHeader = ({
   const DeckTag = '' === title ? Heading : 'p';
 
   return (
-    <header className={theme.wrapper}>
-      <div className={theme.intro}>
+    <header className={theme.wrapper} id="content--header--wrapper">
+      <div className={theme.intro} id="content--header">
         {eyebrow.content && (
           <Eyebrow
             customEyebrow=""
@@ -48,7 +49,7 @@ const ContentHeader = ({
         )}
       </div>
       {sponsoredModule && (
-        <div className={styles.sponsoredModule}>
+        <div className={styles.sponsoredModule} id="sponsored-content--module">
           {sponsoredModule}
         </div>
       )}
@@ -94,4 +95,5 @@ export default withThemes('content-header', {
   default: styles,
   inline: inlineTheme,
   isVertical: verticalTheme,
+  simple: simpleTheme,
 })(withStyles(styles, inlineTheme, verticalTheme)(ContentHeader));

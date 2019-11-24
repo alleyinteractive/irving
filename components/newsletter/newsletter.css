@@ -1,0 +1,109 @@
+/* Newsletter component styles */
+
+/**
+ * Gutenberg block styles.
+ * Because these are also included in the editor in WordPress, they must be globally scoped.
+ */
+:global {
+  .newsletter__wrap {
+    background-color: #eee;
+    padding: rem(20) rem(10);
+
+    .newsletter__signUpHeading,
+    span {
+      display: inline;
+      font-family: $sans;
+      font-size: rem(18);
+      font-weight: 400;
+      line-height: 1.55;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    .newsletter__bold {
+      font-weight: 600;
+    }
+  }
+
+  .newsletter__newsletterHeader {
+    margin-bottom: rem(5);
+  }
+
+  .newsletter__subscribeHeader {
+    align-items: center;
+    display: flex;
+    margin-bottom: rem(15);
+
+    .newsletter__logoImg {
+      display: block;
+      margin-right: rem(15);
+    }
+  }
+
+  .newsletter__formGroup {
+    align-items: center;
+    display: flex;
+    width: 100%;
+  }
+
+  .newsletter__emailInputLabel {
+    margin-right: rem(5);
+    width: 80%;
+  }
+
+  input[type=text].newsletter__emailInput {
+    @include formInput;
+    border-radius: 0;
+    font-size: 1rem;
+    max-height: rem(40);
+  }
+
+  .newsletter__signUpBtn {
+    @include btn;
+    color: #fff;
+    font-family: $sans;
+    font-size: 1rem;
+    height: rem(40);
+    padding: rem(9);
+    width: rem(112);
+
+    &:hover {
+      background: #fff;
+    }
+  }
+
+  .newsletter__radioWrap {
+    display: flex;
+    font-family: $sans;
+    margin-top: rem(10);
+    padding-left: rem(10);
+
+    .newsletter__radioHeader {
+      font-size: rem(12);
+      font-weight: 400;
+      margin: 0;
+      width: 70%;
+    }
+  }
+
+  .newsletter__formGroupRadio {
+    display: flex;
+
+    .newsletter__inlineRadioLabel {
+      font-family: $sans;
+      font-size: rem(12);
+    }
+
+    .newsletter__radioInput {
+      margin-left: rem(5);
+    }
+  }
+
+  .newsletter__display {
+    display: block;
+  }
+
+  .newsletter__displayNone {
+    display: none;
+  }
+}

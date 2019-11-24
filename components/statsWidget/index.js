@@ -7,9 +7,9 @@ const StatsWidget = (props) => {
   const { title } = props;
   const { description } = props;
   return (
-    <aside className={styles.stat}>
-      <h4 className={styles.title}>{title}</h4>
-      <p className={styles.description}>
+    <aside className="statsWidget__stat">
+      <h2 className="statsWidget__title">{title}</h2>
+      <p className="statsWidget__description">
         {description}
       </p>
     </aside>

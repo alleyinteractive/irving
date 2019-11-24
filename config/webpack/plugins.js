@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getEnv = require('./env');
 const { rootUrl } = require('../paths');
 
@@ -49,6 +50,7 @@ module.exports = function getPlugins(context) {
           noSources: true,
           publicPath: `${rootUrl}/`,
         }),
+        new MiniCssExtractPlugin({ filename: 'static/css/[name].css' }),
       ];
 
     case 'development_client':
@@ -60,6 +62,7 @@ module.exports = function getPlugins(context) {
           BROWSER: true,
           ...env,
         }),
+        new MiniCssExtractPlugin({ filename: 'static/css/[name].css' }),
       ];
 
     default:
