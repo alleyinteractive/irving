@@ -1,123 +1,131 @@
-.wrap {
-  background-color: #eee;
-  display: block;
-  height: 100%;
-  padding: rem(20) rem(10);
+/* Newsletter component styles */
 
-  .signUpHeading,
-  span {
-    display: inline;
-    font-family: $sans;
-    font-size: rem(18);
-    font-weight: 400;
-    line-height: 1.55;
-    margin-bottom: 0;
-    margin-top: 0;
-  }
-
-  .bold {
-    font-weight: 600;
-  }
-}
-
-.newsletterHeader {
-  margin-bottom: rem(5);
-}
-
-.subscribeHeader {
-  align-items: center;
-  display: flex;
-  margin-bottom: rem(15);
-
-  .logoImg {
+/**
+ * Gutenberg block styles.
+ * Because these are also included in the editor in WordPress, they must be globally scoped.
+ */
+:global {
+  .newsletter__wrap {
+    background-color: #eee;
     display: block;
-    margin-right: rem(15);
+    height: 100%;
+    padding: rem(20) rem(10);
+
+    .newsletter__signUpHeading,
+    span {
+      display: inline;
+      font-family: $sans;
+      font-size: rem(18);
+      font-weight: 400;
+      line-height: 1.55;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    .bold {
+      font-weight: 600;
+    }
   }
-}
 
-.formGroup {
-  align-items: center;
-  display: flex;
-  width: 100%;
-}
-
-.emailInputLabel {
-  margin-right: rem(5);
-  width: 80%;
-}
-
-input[type=text].emailInput {
-  @include formInput;
-  border-radius: 0;
-  font-size: 1rem;
-  max-height: rem(40);
-}
-
-.signUpBtn {
-  @include btn;
-  color: #fff;
-  font-family: $sans;
-  font-size: 1rem;
-  height: rem(40);
-  padding: rem(9);
-  width: rem(112);
-
-  &:hover {
-    background: #fff;
+  .newsletter__header {
+    margin-bottom: rem(5);
   }
-}
 
-.radioWrap {
-  display: flex;
-  font-family: $sans;
-  margin-top: rem(10);
-  padding-left: rem(10);
+  .newsletter__subscribeHeader {
+    align-items: center;
+    display: flex;
+    margin-bottom: rem(15);
 
-  .radioHeader {
-    font-size: rem(12);
-    font-weight: 400;
-    margin: 0 rem(20) 0 0;
+    .newsletter__logoImg {
+      display: block;
+      margin-right: rem(15);
+    }
   }
-}
 
-.formGroupRadio {
-  display: flex;
+  .newsletter__formGroup {
+    align-items: center;
+    display: flex;
+    width: 100%;
+  }
 
-  .inlineRadioLabel {
+  .newsletter__emailInputLabel {
+    margin-right: rem(5);
+    width: 80%;
+  }
+
+  input[type=text].newsletter__emailInput {
+    @include formInput;
+    border-radius: 0;
+    font-size: 1rem;
+    max-height: rem(40);
+  }
+
+  .newsletter__signUpBtn {
+    @include btn;
+    color: #fff;
     font-family: $sans;
-    font-size: rem(12);
-    margin: 0 rem(10) 0 0;
+    font-size: 1rem;
+    height: rem(40);
+    padding: rem(9);
+    width: rem(112);
+
+    &:hover {
+      background: #fff;
+    }
   }
-}
 
-.radioInput {
-  appearance: none;
-  background-color: #fff;
-  border: 1px solid #000;
-  border-radius: rem(12);
-  color: $gray;
-  height: rem(12);
-  margin: 0 rem(5) 0 0;
-  outline: none;
-  position: relative;
-  top: rem(-1);
-  width: rem(12);
+  .newsletter__radioWrap {
+    display: flex;
+    font-family: $sans;
+    margin-top: rem(10);
+    padding-left: rem(10);
 
-  &:checked {
-    background-color: #000;
+    .newsletter__radioHeader {
+      font-size: rem(12);
+      font-weight: 400;
+      margin: 0 rem(20) 0 0;
+    }
   }
-}
 
-.formError {
-  color: $red;
-  display: block;
-  margin-bottom: rem(10);
-  margin-left: rem(10);
-}
+  .newsletter__formGroupRadio {
+    display: flex;
 
-.formSuccess {
-  color: $success;
-  display: block;
-  margin-bottom: rem(10);
-  margin-left: rem(10);
+    .newsletter__inlineRadioLabel {
+      font-family: $sans;
+      font-size: rem(12);
+      margin: 0 rem(10) 0 0;
+    }
+  }
+
+  .newsletter__radioInput {
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: rem(12);
+    color: $gray;
+    height: rem(12);
+    margin: 0 rem(5) 0 0;
+    outline: none;
+    position: relative;
+    top: rem(-1);
+    width: rem(12);
+
+    &:checked {
+      background-color: #000;
+    }
+  }
+
+  .newsletter__formError {
+    color: $red;
+    display: block;
+    margin-bottom: rem(10);
+    margin-left: rem(10);
+  }
+
+  .newsletter__formSuccess {
+    color: $success;
+    display: block;
+    margin-bottom: rem(10);
+    margin-left: rem(10);
+  }
 }

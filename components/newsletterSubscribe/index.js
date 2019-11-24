@@ -125,32 +125,32 @@ const NewsletterSubscribe = ({
   };
 
   return (
-    <aside className={styles.wrap}>
+    <aside className="newsletter__wrap">
       <form onSubmit={handleSubmit}>
-        <div className={styles.subscribeHeader}>
+        <div className="newsletter__subscribeHeader">
           {imgLogoUrl && (
-            <img src={imgLogoUrl} alt="" className={styles.logoImg} />
+            <img src={imgLogoUrl} alt="" className="newsletter__logoImg" />
           )}
           {title && (
             <div>
-              <h3 className={styles.signUpHeading}>
+              <h3 className="newsletter__signUpHeading">
                 {__('Sign up for', 'mittr')}
                 &nbsp;
-                <span className={styles.bold}>{title}</span>
+                <span className="bold">{title}</span>
               </h3>
               &nbsp;
               <span>{`- ${description}`}</span>
             </div>
           )}
         </div>
-        <div className={styles.formGroup}>
+        <div className="newsletter__formGroup">
           <label
             htmlFor={`emailInput-${clientId}`}
-            className={styles.emailInputLabel}
+            className="newsletter__emailInputLabel"
           >
             <input
               type="text"
-              className={styles.emailInput}
+              className="newsletter__emailInput"
               id={`emailInput-${clientId}`}
               placeholder={__(
                 'Enter your email, receive the newsletter',
@@ -166,7 +166,7 @@ const NewsletterSubscribe = ({
           <button
             type="submit"
             id={`signUpBtn-${clientId}`}
-            className={styles.signUpBtn}
+            className="newsletter__signUpBtn"
             style={{
               backgroundColor: color || '#000',
               borderColor: color || '#000',
@@ -177,7 +177,7 @@ const NewsletterSubscribe = ({
         </div>
         {! isEmailValid && (
           <span
-            className={styles.formError}
+            className="newsletter__formError"
             aria-live="assertive"
             id="email-error"
           >
@@ -192,15 +192,18 @@ const NewsletterSubscribe = ({
           <span
             className={
               'error' === formResponseState.status ?
-                styles.formError :
-                styles.formSuccess
+                'newsletter__formError' :
+                'newsletter__formSuccess'
             }
           >
             {formResponseState.message}
           </span>
         )}
-        <div className={styles.radioWrap}>
-          <h3 className={styles.radioHeader} id={`upToDateOptInID-${clientId}`}>
+        <div className="newsletter__radioWrap">
+          <h3
+            className="newsletter__radioHeader"
+            id={`upToDateOptInID-${clientId}`}
+          >
             {__(
               `Also stay updated on MIT Technology
               Review initiatives and events?`,
@@ -208,16 +211,16 @@ const NewsletterSubscribe = ({
             )}
           </h3>
           <div
-            className={styles.formGroupRadio}
+            className="newsletter__formGroupRadio"
             role="radiogroup"
             aria-labelledby={`upToDateOptInID-${clientId}`}
           >
             <label
-              className={styles.inlineRadioLabel}
+              className="newsletter__inlineRadioLabel"
               htmlFor={`radioYesID-${clientId}`}
             >
               <input
-                className={styles.radioInput}
+                className="newsletter__radioInput"
                 name="opt-in-radio"
                 type="radio"
                 id={`radioYesID-${clientId}`}
@@ -232,11 +235,11 @@ const NewsletterSubscribe = ({
               {__('Yes', 'mittr')}
             </label>
             <label
-              className={styles.inlineRadioLabel}
+              className="newsletter__inlineRadioLabel"
               htmlFor={`radioNoID-${clientId}`}
             >
               <input
-                className={styles.radioInput}
+                className="newsletter__radioInput"
                 name="opt-in-radio"
                 type="radio"
                 id={`radioNoID-${clientId}`}
