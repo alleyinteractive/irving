@@ -6,21 +6,15 @@
 :global {
   .statsWidget__stat {
     border-top: 1px solid $black;
+    clear: right;
+    float: right;
     font-family: $sans;
-    margin: rem(10 0 40);
-    padding: rem(20) 0 0 0;
+    font-family: $sans;
+    font-size: rem(14);
+    margin-left: rem(10);
+    padding: rem(10) rem(20) rem(40) rem(10);
     position: relative;
-
-    @media ($mdMin) {
-      clear: right;
-      float: right;
-      margin: rem(10) -16% rem(20) 8.5%;
-      width: 59.1%;
-    }
-
-    @media ($lgMin) {
-      margin-right: -33%;
-    }
+    width: rem(222);
   }
 
   .statsWidget__title {
