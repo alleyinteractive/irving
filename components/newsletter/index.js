@@ -8,6 +8,7 @@ import styles from './newsletter.css';
 
 const NewsletterSubscribe = ({
   clientId,
+  mailchimpId,
   title,
   description,
   color,
@@ -23,27 +24,9 @@ const NewsletterSubscribe = ({
   });
 
   /**
-   * Set the key for the form param depending on which Newsletter group the component is using.
+   * Function to post to the form so the user is subscribed.
+   * @param {string} url string for the form.
    */
-  const setNewsLetterKey = () => {
-    switch (title) {
-      case 'The Download':
-        return 'group[12385][4]';
-      case 'The Algorithm':
-        return 'group[12385][8]';
-      case 'Chain Letter':
-        return 'group[12385][16]';
-      case 'fwd: Economy':
-        return 'group[12385][32]';
-      case 'The Airlock':
-        return 'group[12385][64]';
-      case 'Weekend Reads':
-        return 'group[12385][128]';
-      default:
-        return '';
-    }
-  };
-
   const postFormData = (url) => {
     jsonp(
       url,
@@ -73,34 +56,37 @@ const NewsletterSubscribe = ({
   };
 
   /**
-   * Subscribe user to newsletter group from mailchimp
+   * Subscribe user to newsletter group from mailchimp.
    * @param {string} email
    * @param {string} subscribeToEvents radio input value
    */
   const submitNewsLetterSubscribe = (email, subscribeToEvents) => {
     // Set the params. Merge fields found in MailChimp account.
     const data = {
+      u: '47c1a9cec9749a8f8cbc83e78',
+      id: 'e2349bbf6b',
       MERGE0: email,
       // Merge values for Initiates, Events, Updates (mirrors current functionality)
       MERGE27: subscribeToEvents,
       MERGE28: subscribeToEvents,
       MERGE29: subscribeToEvents,
-      // Dynamically set key based on Newsletter Group
-      [setNewsLetterKey()]: 1,
+      [mailchimpId]: 1,
     };
     const formUrl =
-      'https://technologyreview.us11.list-manage.com/subscribe/post-json?u=47c1a9cec9749a8f8cbc83e78&id=e2349bbf6b';
+      'https://technologyreview.us11.list-manage.com/subscribe/post-json?';
     const params = queryString.stringify(data);
-    const url = `${formUrl}&${params}`;
+    const url = `${formUrl}${params}`;
     postFormData(url);
   };
 
+  /**
+   * Handle form submission.
+   * @param {DomEven} event
+   */
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (isEmailValid && '' !== userEmailInput) {
-      // This is not the action we really want to take on submit sign on, it is
-      // only here to demo the functionality of the email service.
       submitNewsLetterSubscribe(userEmailInput, selectedRadio);
     } else {
       // Email must be invalid it is empty.
@@ -108,41 +94,44 @@ const NewsletterSubscribe = ({
     }
   };
 
+  /**
+   * Validate email format.
+   * @param {string} email email string.
+   */
   const validateEmail = (email) => {
     const validEmailTest = /^[^\s@]+@[^\s@]+\.[^\s@][^\s@]+$/.test(email);
     setIsEmailValid(validEmailTest);
   };
 
+  /**
+   * As user input changes check if the email is a valid format.
+   * @param {DomEvent} event
+   */
   const handleInputChange = (event) => {
     const { value } = event.target;
     setUserEmailInput(value);
     validateEmail(value);
   };
 
-  const handleRadioChange = (event) => {
-    const { value } = event.target;
-    setSelectedRadio(value);
-  };
-
   return (
     <aside className="newsletter__wrap">
       <form onSubmit={handleSubmit}>
-        <div className="newsletter__subscribeHeader">
+        <header className="newsletter__subscribeHeader">
           {imgLogoUrl && (
             <img src={imgLogoUrl} alt="" className="newsletter__logoImg" />
           )}
           {title && (
             <div>
-              <h3 className="newsletter__signUpHeading">
+              <h2 className="newsletter__signUpHeading">
                 {__('Sign up for', 'mittr')}
                 &nbsp;
                 <span className="newsletter__bold">{title}</span>
-              </h3>
+              </h2>
               &nbsp;
               <span>{`- ${description}`}</span>
             </div>
           )}
-        </div>
+        </header>
         <div className="newsletter__formGroup">
           <label
             htmlFor={`emailInput-${clientId}`}
@@ -190,6 +179,7 @@ const NewsletterSubscribe = ({
         )}
         {formResponseState.message && (
           <span
+            aria-live="assertive"
             className={
               'error' === formResponseState.status ?
                 'newsletter__formError' :
@@ -226,7 +216,7 @@ const NewsletterSubscribe = ({
                 id={`radioYesID-${clientId}`}
                 value="Yes"
                 checked={'Yes' === selectedRadio}
-                onChange={handleRadioChange}
+                onChange={({ target: value }) => setSelectedRadio(value)}
                 style={{
                   borderColor: color,
                   backgroundColor: 'Yes' === selectedRadio ? color : '#fff',
@@ -245,7 +235,7 @@ const NewsletterSubscribe = ({
                 id={`radioNoID-${clientId}`}
                 value="No"
                 checked={'No' === selectedRadio}
-                onChange={handleRadioChange}
+                onChange={({ target: value }) => setSelectedRadio(value)}
                 style={{
                   borderColor: color,
                   backgroundColor: 'No' === selectedRadio ? color : '#fff',
@@ -262,6 +252,7 @@ const NewsletterSubscribe = ({
 
 NewsletterSubscribe.propTypes = {
   clientId: PropTypes.string.isRequired,
+  mailchimpId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
