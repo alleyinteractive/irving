@@ -43,7 +43,7 @@ import MagazineYear from 'components/magazineYear';
 import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
 import MenuItem from 'components/menuItem';
-import NewsletterSubscribe from 'components/newsletterSubscribe';
+import Newsletter from 'components/newsletter';
 import NotConfigured from 'components/notConfigured';
 import Order from 'components/accounts/order';
 import OrderHistory from 'components/accounts/orderHistory';
@@ -127,7 +127,7 @@ export const componentMap = {
   'menu-item': MenuItem,
   'mittr-plugin-extension/content-list': ContentList,
   'mittr-plugin-extension/content-list-item': ContentListItem,
-  'mittr-plugin-extension/newsletter': NewsletterSubscribe,
+  'mittr-plugin-extension/newsletter': Newsletter,
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
   order: Order,

@@ -3,5 +3,5 @@
 Example use of Newsletter component.
 
 ```jsx
-<NewsletterSubscribe />
+<Newsletter />
 ```

@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 import jsonp from 'jsonp';
 import queryString from 'query-string';
 import { withStyles } from 'critical-style-loader/lib';
-import styles from './newsletterSubscribe.css';
+import styles from './newsletter.css';
 
 const NewsletterSubscribe = ({
   clientId,
