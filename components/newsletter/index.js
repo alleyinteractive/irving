@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
+import parse from 'html-react-parser';
 import jsonp from 'jsonp';
 import queryString from 'query-string';
 import { withStyles } from 'critical-style-loader/lib';
@@ -186,7 +187,7 @@ const NewsletterSubscribe = ({
                 'newsletter__formSuccess'
             }
           >
-            {formResponseState.message}
+            {parse(formResponseState.message)}
           </span>
         )}
         <div className="newsletter__radioWrap">
