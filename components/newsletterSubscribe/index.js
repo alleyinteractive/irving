@@ -136,7 +136,7 @@ const NewsletterSubscribe = ({
               <h3 className="newsletter__signUpHeading">
                 {__('Sign up for', 'mittr')}
                 &nbsp;
-                <span className="bold">{title}</span>
+                <span className="newsletter__bold">{title}</span>
               </h3>
               &nbsp;
               <span>{`- ${description}`}</span>
