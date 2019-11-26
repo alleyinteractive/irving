@@ -30,8 +30,11 @@ const TeaserItem = ({
   topicLink,
 }) => {
   const image = findChildByName('image', children);
+  const video = findChildByName('video', children);
+
   const otherChildren = children.filter(
-    ({ props: { componentName } }) => 'image' !== componentName
+    ({ props: { componentName } }) => ('image' !== componentName) &&
+      ('video' !== componentName)
   );
 
   if ('simple' === themeName) {
@@ -45,6 +48,7 @@ const TeaserItem = ({
           <p className={theme.excerpt}>{excerpt}</p>
         </div>
         {image && <div className={theme.image}>{image}</div>}
+        {video}
       </Link>
     );
   }
@@ -87,6 +91,7 @@ const TeaserItem = ({
           {image}
         </Link>
       )}
+      {video}
       {otherChildren}
       <div className={theme.shareMenu}>
         <button
