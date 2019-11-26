@@ -70,6 +70,7 @@ import Tags from 'components/tags';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import UserGreeting from 'components/userGreeting';
+import Video from 'components/video';
 import withLoader from 'components/hoc/withLoader';
 
 /**
@@ -155,6 +156,7 @@ export const componentMap = {
   'technology-meta': ContentList,
   'topic-header': CardStack,
   'user-greeting': UserGreeting,
+  video: Video,
 };
 
 /**
