@@ -109,7 +109,6 @@ const NewsletterSubscribe = ({
    * @param {DomEvent} event
    */
   const handleInputChange = ({ target: { value } }) => {
-    const { value } = event.target;
     setUserEmailInput(value);
     validateEmail(value);
   };
