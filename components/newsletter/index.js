@@ -108,7 +108,7 @@ const NewsletterSubscribe = ({
    * As user input changes check if the email is a valid format.
    * @param {DomEvent} event
    */
-  const handleInputChange = (event) => {
+  const handleInputChange = ({ target: { value } }) => {
     const { value } = event.target;
     setUserEmailInput(value);
     validateEmail(value);
