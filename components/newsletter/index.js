@@ -216,7 +216,7 @@ const NewsletterSubscribe = ({
                 id={`radioYesID-${clientId}`}
                 value="Yes"
                 checked={'Yes' === selectedRadio}
-                onChange={({ target: value }) => setSelectedRadio(value)}
+                onChange={({ target: { value } }) => setSelectedRadio(value)}
                 style={{
                   borderColor: color,
                   backgroundColor: 'Yes' === selectedRadio ? color : '#fff',
@@ -235,7 +235,7 @@ const NewsletterSubscribe = ({
                 id={`radioNoID-${clientId}`}
                 value="No"
                 checked={'No' === selectedRadio}
-                onChange={({ target: value }) => setSelectedRadio(value)}
+                onChange={({ target: { value } }) => setSelectedRadio(value)}
                 style={{
                   borderColor: color,
                   backgroundColor: 'No' === selectedRadio ? color : '#fff',
