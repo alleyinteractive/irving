@@ -20,7 +20,6 @@ const paths = require('./paths');
 const stylelintConfig = require('./stylelint.config.js');
 const cssVars = require('./css');
 const flatten = require('../utils/flatten');
-
 // Config
 module.exports = () => ({
   plugins: [
@@ -30,7 +29,7 @@ module.exports = () => ({
       files: ['mixins/index.css'],
     }),
     cssImport({
-      path: [paths.globalStyles],
+      path: paths.globalStyles,
     }), // Import files
     mixins(),
     variables({

@@ -12,18 +12,18 @@ const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
         const titleID = uid('contentList');
         return (
           <div
-            className={classNames(styles.wrap, {
+            className={classNames('contentList__wrap', {
               'content-right': 'right' === align,
               'content-left': 'left' === align,
               'content-center': 'center' === align,
             })}
           >
             {listTitle && (
-              <h2 className={styles.header} id={titleID}>
+              <h2 className="contentList__header" id={titleID}>
                 {listTitle}
               </h2>
             )}
-            <ul className={styles.listWrap} aria-labelledby={titleID}>
+            <ul className="contentList__listWrap" aria-labelledby={titleID}>
               {children}
             </ul>
           </div>
@@ -43,6 +43,4 @@ ContentList.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
-const wrapWithStyles = withStyles(styles);
-
-export default wrapWithStyles(ContentList);
+export default withStyles(styles)(ContentList);
