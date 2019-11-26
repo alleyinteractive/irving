@@ -5,14 +5,10 @@
 
 :global {
   .related__wrap {
-    clear: left;
-    float: left;
+    @include block-alignment;
     font-family: $sans;
     font-size: rem(14);
-    margin-left: -16%;
-    padding: rem(10) rem(40) rem(30) rem(10);
     position: relative;
-    width: rem(222);
   }
 
   .related__header {
