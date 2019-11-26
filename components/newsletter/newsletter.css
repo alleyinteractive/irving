@@ -9,6 +9,7 @@
     background-color: #eee;
     display: block;
     height: 100%;
+    margin-bottom: rem(20);
     padding: rem(20) rem(10);
 
     .newsletter__signUpHeading,

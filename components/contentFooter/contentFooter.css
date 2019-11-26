@@ -2,7 +2,7 @@
 
 .wrapper {
   font-size: rem(12);
-  margin: 0 auto;
+  margin: rem(30) auto 0;
 
   > * {
     margin: 0 auto;
