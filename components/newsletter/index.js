@@ -82,7 +82,7 @@ const NewsletterSubscribe = ({
 
   /**
    * Handle form submission.
-   * @param {DomEven} event
+   * @param {DomEvent} event
    */
   const handleSubmit = (event) => {
     event.preventDefault();
