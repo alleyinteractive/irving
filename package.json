@@ -126,7 +126,6 @@
     "regenerator-runtime": "^0.13.1",
     "style-loader": "^0.21.0",
     "stylelint": "^9.10.1",
-    "stylelint-config-standard": "^19.0.0",
     "stylelint-order": "^2.0.0",
     "surge": "^0.21.3",
     "svg-react-loader": "^0.4.6",
