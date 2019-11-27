@@ -1,0 +1,67 @@
+/* MagazineStory component styles */
+
+/* As a gutenberg block, all styles must be global */
+:global {
+  .magazineStory__wrap {
+    @include block-alignment;
+    font-family: $sans;
+    max-width: rem(222);
+    tidy-span: 2;
+  }
+
+  .magazineStory__image {
+    height: auto;
+    margin-bottom: rem(10);
+    width: 100%;
+  }
+
+  .magazineStory__header {
+    width: auto;
+  }
+
+  .magazineStory__title {
+    font-family: $sans;
+    font-size: rem(14);
+    font-weight: 700;
+  }
+
+  .magazineStory__issueDate {
+    font-family: $sans;
+    font-size: rem(14);
+    font-weight: 700;
+    margin-bottom: rem(15);
+  }
+
+  .magazineStory__nav {
+
+    &::before {
+      border-top: $border-thick;
+      content: '';
+      display: block;
+      margin-bottom: rem(15);
+      width: 50%;
+    }
+  }
+
+  .magazineStory__list {
+    list-style-type: none;
+  }
+
+  .magazineStory__item {
+    display: block;
+  }
+
+  .magazineStory__link {
+    color: $red;
+    display: block;
+    font-size: rem(14);
+    font-weight: 700;
+    margin-bottom: rem(10);
+
+    &::after {
+      content: ">";
+      display: inline-block;
+      margin-left: 0.5ch;
+    }
+  }
+}

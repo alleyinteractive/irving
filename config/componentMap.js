@@ -36,6 +36,7 @@ import ListMenu from 'components/listMenu';
 import ListMenuItem from 'components/listMenuItem';
 import ListMenuItems from 'components/listMenuItems';
 import Login from 'components/accounts/login/';
+import MagazineStory from 'components/magazineStory';
 import MagazineHero from 'components/magazineHero';
 import MagazineIssue from 'components/magazineIssue';
 import MagazineIssues from 'components/magazineIssues';
@@ -131,6 +132,7 @@ export const componentMap = {
   'mittr-plugin-extension/newsletter': Newsletter,
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
+  'mittr-plugin-extension/magazine-story': MagazineStory,
   order: Order,
   'order-history': OrderHistory,
   pagination: Placeholder,

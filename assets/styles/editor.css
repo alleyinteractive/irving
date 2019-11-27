@@ -12,6 +12,7 @@
 @import '../../components/newsletter/newsletter.css';
 @import '../../components/related/related.css';
 @import '../../components/statsWidget/statsWidget.css';
+@import '../../components/magazineStory/magazineStory.css';
 
 /* Inline blocks */
 .editor-writing-flow {

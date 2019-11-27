@@ -11,7 +11,7 @@ import styles from './related.css';
 const Related = ({
   headline, url, featuredImg, deck,
 }) => (
-  <aside className="related__wrap">
+  <aside className="related__wrap alignleft">
     <h2 className="related__header">{__('Related Story', 'mittr')}</h2>
     {featuredImg && (
       <Link to={url} tabIndex="-1">

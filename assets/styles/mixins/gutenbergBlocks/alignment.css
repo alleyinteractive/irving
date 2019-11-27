@@ -11,13 +11,23 @@
   }
 
   &:global(.alignleft) {
+    clear: left;
     float: left;
-    margin: 0 rem(36) rem(36) 0;
+    margin: rem(10) rem(40) rem(30) 0;
+    min-width: rem(200);
+    tidy-span: 2;
+
+    @media ($mdMin) {
+      margin-left: -16%;
+    }
   }
 
   &:global(.alignright) {
+    clear: right;
     float: right;
     margin: 0 0 rem(36) rem(36);
+    min-width: rem(200);
+    tidy-span: 2;
   }
 
   &:global(.aligncenter),
@@ -27,5 +37,9 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
+  }
+
+  &:not(:global(.alignright)):not(:global(.alignleft)) {
+    max-width: rem(200);
   }
 }
