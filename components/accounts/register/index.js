@@ -1,6 +1,5 @@
 import React, {
   useState,
-  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
@@ -60,7 +59,7 @@ const Register = ({ submitRegistration }) => {
           isValid: false,
           errorMessage: __('Your full name is requred', 'mittr'),
         });
-      } 
+      }
 
       // Check to ensure that the password field has been populated.
       if (0 >= password.length) {
@@ -185,7 +184,10 @@ const Register = ({ submitRegistration }) => {
               placeholder={__('Enter your full name', 'mittr')}
               aria-errormessage="fullname-error"
             />
-            {! userFullNameInput.isValid && renderDynamicError(userFullNameInput)}
+            {
+              ! userFullNameInput.isValid &&
+              renderDynamicError(userFullNameInput)
+            }
           </label>
 
           <label htmlFor="userPasswordInput">
@@ -208,7 +210,10 @@ const Register = ({ submitRegistration }) => {
               placeholder={__('Create a password for your account', 'mittr')}
               aria-errormessage="password-error"
             />
-            {! userPasswordInput.isValid && renderDynamicError(userPasswordInput)}
+            {
+              ! userPasswordInput.isValid &&
+              renderDynamicError(userPasswordInput)
+            }
           </label>
 
           <label htmlFor="confirmUserPasswordInput">
@@ -231,7 +236,10 @@ const Register = ({ submitRegistration }) => {
               placeholder={__('Confirm your password', 'mittr')}
               aria-errormessage="confirm-password-error"
             />
-            {! confirmUserPasswordInput.isValid && renderDynamicError(confirmUserPasswordInput)}
+            {
+              ! confirmUserPasswordInput.isValid &&
+              renderDynamicError(confirmUserPasswordInput)
+            }
           </label>
 
           <label htmlFor="termsCheckbox">
@@ -259,7 +267,8 @@ const Register = ({ submitRegistration }) => {
               />
               <p className={styles.termsText}>
                 {__(
-                  'I agree to the terms of service and have reviewed the privacy policy.', // eslint-disable-line max-len
+                  `I agree to the terms of service
+                   and have reviewed the privacy policy.`,
                   'mittr'
                 )}
               </p>
