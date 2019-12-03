@@ -188,6 +188,7 @@ const Register = ({ submitRegistration }) => {
             />
             {! userFullNameInput.isValid && renderDynamicError(userFullNameInput)}
           </label>
+
           <label htmlFor="userPasswordInput">
             <input
               type="password"
@@ -210,6 +211,7 @@ const Register = ({ submitRegistration }) => {
             />
             {! userPasswordInput.isValid && renderDynamicError(userPasswordInput)}
           </label>
+
           <label htmlFor="confirmUserPasswordInput">
             <input
               type="password"
@@ -232,6 +234,7 @@ const Register = ({ submitRegistration }) => {
             />
             {! confirmUserPasswordInput.isValid && renderDynamicError(confirmUserPasswordInput)}
           </label>
+
           <label htmlFor="termsCheckbox">
             <div className={styles.checkboxWrapper}>
               <input
@@ -264,6 +267,7 @@ const Register = ({ submitRegistration }) => {
             </div>
             {! termsCheckbox.isValid && renderDynamicError(termsCheckbox)}
           </label>
+
           <div className={styles.captchaWrapper}>
             {/* @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create) */}
             <LazyRecaptcha
@@ -285,6 +289,7 @@ const Register = ({ submitRegistration }) => {
               )}
             </span>
           )}
+
           <input
             type="submit"
             className={styles.createBtn}
