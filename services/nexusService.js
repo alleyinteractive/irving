@@ -150,12 +150,16 @@ export default {
           body: JSON.stringify({
             email,
             password: hash,
-            firstName,
-            lastName,
+            first_name: firstName,
+            last_name: lastName,
           }),
         }
       );
-      console.log(response);
+      const data = await response.json();
+
+      if ('inserted' === data.action && 'pending' === data.status) {
+        return { status: 'success', pendingActivation: true };
+      }
     } catch (error) {
       console.info('There was a problem.', error); // eslint-disable-line no-console
     }

@@ -64,8 +64,45 @@
 }
 
 .formCheckbox {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clippath: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.styledCheckbox {
+  background-clip: content-box;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
   display: inline-block;
-  max-width: 15px;
+  height: 16px;
+  margin-right: 8px;
+  padding: 2px;
+  width: 16px;
+
+  &.checked {
+    background-color: black;
+  }
+}
+
+.checkboxWrapper {
+  align-items: center;
+  display: flex;
+
+  p {
+    height: 17px;
+  }
+}
+
+.captchaWrapper {
+  margin-bottom: rem(20);
 }
 
 .termsText {
@@ -89,6 +126,7 @@
 .formError {
   color: $red;
   display: block;
-  margin-bottom: rem(10);
+  margin-bottom: rem(0);
   margin-left: rem(10);
+  margin-top: rem(5);
 }

@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+/* eslint-disable */
+import React, {
+  useState,
+  useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
-import Recaptcha from 'react-recaptcha';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { actionSubmitUserRegistration } from 'actions/userActions';
+import LazyRecaptcha from './recaptcha';
 
 // Styles
 import styles from './register.css';
@@ -31,9 +35,22 @@ const Register = ({ submitRegistration }) => {
     isValid: true,
     errorMessage: '',
   });
+  const [captcha, setCaptcha] = useState({
+    isValid: false,
+    hasError: false,
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (false === captcha.isValid) {
+      setCaptcha({
+        hasError: true,
+        isValid: false,
+      });
+
+      return;
+    }
 
     const { fullName } = userFullNameInput;
     const { password } = userPasswordInput;
@@ -53,18 +70,7 @@ const Register = ({ submitRegistration }) => {
           isValid: false,
           errorMessage: __('Your full name is requred', 'mittr'),
         });
-      } else {
-        const namesArr = fullName.split(' ');
-
-        // Ensure that a full name has been entered.
-        if (1 >= namesArr.length) {
-          setUserFullNameInput({
-            fullName,
-            isValid: false,
-            errorMessage: __('Please enter your full name', 'mittr'),
-          });
-        }
-      }
+      } 
 
       // Check to ensure that the password field has been populated.
       if (0 >= password.length) {
@@ -84,17 +90,17 @@ const Register = ({ submitRegistration }) => {
         });
       }
 
-      return;
-    }
+      const namesArr = fullName.split(' ');
+      console.log(namesArr);
 
-    const passwordMatch = password === confirmPassword;
-
-    if (! passwordMatch) {
-      setConfirmUserPasswordInput({
-        confirmPassword,
-        isValid: false,
-        errorMessage: __('Your passwords do not match', 'mittr'),
-      });
+      // Ensure that a full name has been entered.
+      if (1 >= namesArr.length) {
+        setUserFullNameInput({
+          fullName,
+          isValid: false,
+          errorMessage: __('Please enter your full name', 'mittr'),
+        });
+      }
 
       return;
     }
@@ -112,7 +118,42 @@ const Register = ({ submitRegistration }) => {
     }
 
     submitRegistration({ fullName, password });
+
+    const passwordMatch = password === confirmPassword;
+
+    if (! passwordMatch) {
+      setConfirmUserPasswordInput({
+        confirmPassword,
+        isValid: false,
+        errorMessage: __('Your passwords do not match', 'mittr'),
+      });
+
+      return;
+    }
+
+    submitRegistration({ fullName, password });
   };
+
+  const verifyCallback = () => {
+    setCaptcha({
+      isValid: true,
+      hasError: false,
+    });
+  };
+
+  const renderDynamicError = (obj) => (
+    <span
+      className={styles.formError}
+      aria-live="assertive"
+      id="email-error"
+    >
+      {__(
+        `Oops! Let’s try that again —
+      ${obj.errorMessage}`,
+        'mittr'
+      )}
+    </span>
+  );
 
   return (
     <div className={styles.accountWrap}>
@@ -145,19 +186,7 @@ const Register = ({ submitRegistration }) => {
               placeholder={__('Enter your full name', 'mittr')}
               aria-errormessage="fullname-error"
             />
-            {! userFullNameInput.isValid && (
-              <span
-                className={styles.formError}
-                aria-live="assertive"
-                id="email-error"
-              >
-                {__(
-                  `Oops! Let’s try that again —
-                ${userFullNameInput.errorMessage}`,
-                  'mittr'
-                )}
-              </span>
-            )}
+            {! userFullNameInput.isValid && renderDynamicError(userFullNameInput)}
           </label>
           <label htmlFor="userPasswordInput">
             <input
@@ -179,19 +208,7 @@ const Register = ({ submitRegistration }) => {
               placeholder={__('Create a password for your account', 'mittr')}
               aria-errormessage="password-error"
             />
-            {! userPasswordInput.isValid && (
-              <span
-                className={styles.formError}
-                aria-live="assertive"
-                id="email-error"
-              >
-                {__(
-                  `Oops! Let’s try that again —
-                ${userPasswordInput.errorMessage}`,
-                  'mittr'
-                )}
-              </span>
-            )}
+            {! userPasswordInput.isValid && renderDynamicError(userPasswordInput)}
           </label>
           <label htmlFor="confirmUserPasswordInput">
             <input
@@ -213,59 +230,61 @@ const Register = ({ submitRegistration }) => {
               placeholder={__('Confirm your password', 'mittr')}
               aria-errormessage="confirm-password-error"
             />
-            {! confirmUserPasswordInput.isValid && (
-              <span
-                className={styles.formError}
-                aria-live="assertive"
-                id="email-error"
-              >
+            {! confirmUserPasswordInput.isValid && renderDynamicError(confirmUserPasswordInput)}
+          </label>
+          <label htmlFor="termsCheckbox">
+            <div className={styles.checkboxWrapper}>
+              <input
+                type="checkbox"
+                id="termsCheckbox"
+                name="termsCheckbox"
+                checked={termsCheckbox.checked}
+                onChange={(event) => {
+                  const { checked } = event.target;
+                  setTermsCheckbox({
+                    checked,
+                    isValid: true,
+                    errorMessage: '',
+                  });
+                }}
+                className={styles.formCheckbox}
+                aria-errormessage="terms-error"
+              />
+              <div
+                className={classNames(styles.styledCheckbox, {
+                  [styles.checked]: true === termsCheckbox.checked,
+                })}
+              />
+              <p className={styles.termsText}>
                 {__(
-                  `Oops! Let’s try that again —
-                ${confirmUserPasswordInput.errorMessage}`,
+                  'I agree to the terms of service and have reviewed the privacy policy.', // eslint-disable-line max-len
                   'mittr'
                 )}
-              </span>
-            )}
+              </p>
+            </div>
+            {! termsCheckbox.isValid && renderDynamicError(termsCheckbox)}
           </label>
-          {/* @todo stub. */}
-          <label htmlFor="termsCheckbox">
-            <input
-              type="checkbox"
-              id="termsCheckbox"
-              name="termsCheckbox"
-              checked={termsCheckbox.checked}
-              onChange={(event) => {
-                const { checked } = event.target;
-                setTermsCheckbox({
-                  checked,
-                  isValid: true,
-                  errorMessage: '',
-                });
-              }}
-              className={styles.formCheckbox}
-              aria-errormessage="terms-error"
+          <div className={styles.captchaWrapper}>
+            {/* @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create) */}
+            <LazyRecaptcha
+              sitekey="6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt"
+              render="explicit"
+              verifyCallback={verifyCallback}
             />
-            <p className={styles.termsText}>
+          </div>
+          {true === captcha.hasError && (
+            <span
+              className={styles.formError}
+              aria-live="assertive"
+              id="terms-error"
+            >
               {__(
-                'I agree to the terms of service and have reviewed the privacy policy.', // eslint-disable-line max-len
+                `Please complete the captcha
+                 in order to create your account.`,
                 'mittr'
               )}
-            </p>
-            {! termsCheckbox.isValid && (
-              <span
-                className={styles.formError}
-                aria-live="assertive"
-                id="terms-error"
-              >
-                {__(
-                  `Oops! Let’s try that again —
-                ${termsCheckbox.errorMessage}`,
-                  'mittr'
-                )}
-              </span>
-            )}
-          </label>
-          <Recaptcha sitekey="superdupersecret" />
+            </span>
+          )}
           <input
             type="submit"
             className={styles.createBtn}
