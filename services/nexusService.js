@@ -133,8 +133,16 @@ export default {
     // eslint-disable-line no-unused-vars
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    const firstName = fullName.split(' ')[0];
-    const lastName = fullName.split(' ')[- 1];
+    const namesArr = fullName.split(' ');
+    const firstName = namesArr[0];
+    const lastName = namesArr[namesArr.length - 1];
+    const body = JSON.stringify({
+      email,
+      password: hash,
+      firstName,
+      lastName,
+    });
+    console.log(body);
 
     try {
       const response = await fetch(

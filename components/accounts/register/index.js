@@ -1,32 +1,117 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import Recaptcha from 'react-recaptcha';
+import classNames from 'classnames';
+import { connect } from 'react-redux';
+import { actionSubmitUserRegistration } from 'actions/userActions';
 
 // Styles
 import styles from './register.css';
 
-const Register = () => {
-  // @todo The logic in this component is very basic and needs to be fleshed out,
-  // but that work was not within the scope of MIT-350.
-  const [userFullNameInput, setUserFullNameInput] = useState('');
-  const [userPasswordInput, setUserPasswordInput] = useState('');
-  const [confirmUserPasswordInput, setConfirmUserPasswordInput] = useState('');
-  const [termsCheckbox, setTermsCheckbox] = useState(false);
+const Register = ({ submitRegistration }) => {
+  const [userFullNameInput, setUserFullNameInput] = useState({
+    fullName: '',
+    isValid: true,
+    errorMessage: '',
+  });
+  const [userPasswordInput, setUserPasswordInput] = useState({
+    password: '',
+    isValid: true,
+    errorMessage: '',
+  });
+  const [confirmUserPasswordInput, setConfirmUserPasswordInput] = useState({
+    confirmPassword: '',
+    isValid: true,
+    errorMessage: '',
+  });
+  const [termsCheckbox, setTermsCheckbox] = useState({
+    checked: false,
+    isValid: true,
+    errorMessage: '',
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (
-      '' !== userFullNameInput &&
-      '' !== userPasswordInput &&
-      '' !== confirmUserPasswordInput
-    ) {
-      console.log('Create an account.'); // eslint-disable-line no-console
-    } else {
-      // Define error handling logic.
-      console.log('Something went wrong.'); // eslint-disable-line no-console
+    const { fullName } = userFullNameInput;
+    const { password } = userPasswordInput;
+    const { confirmPassword } = confirmUserPasswordInput;
+
+    // Catch all for whether or not the registration form has been filled out.
+    const filledOut =
+      0 < fullName.length &&
+      0 < password.length &&
+      0 < confirmPassword.length;
+
+    if (! filledOut) {
+      // Check to ensure that the full name input has been populated.
+      if (0 >= fullName.length) {
+        setUserFullNameInput({
+          fullName,
+          isValid: false,
+          errorMessage: __('Your full name is requred', 'mittr'),
+        });
+      } else {
+        const namesArr = fullName.split(' ');
+
+        // Ensure that a full name has been entered.
+        if (1 >= namesArr.length) {
+          setUserFullNameInput({
+            fullName,
+            isValid: false,
+            errorMessage: __('Please enter your full name', 'mittr'),
+          });
+        }
+      }
+
+      // Check to ensure that the password field has been populated.
+      if (0 >= password.length) {
+        setUserPasswordInput({
+          password,
+          isValid: false,
+          errorMessage: __('Please enter a password', 'mittr'),
+        });
+      }
+
+      // Check to ensure that the confirm password field has been populated.
+      if (0 >= confirmPassword.length) {
+        setConfirmUserPasswordInput({
+          confirmPassword,
+          isValid: false,
+          errorMessage: __('Please confirm your password', 'mittr'),
+        });
+      }
+
+      return;
     }
+
+    const passwordMatch = password === confirmPassword;
+
+    if (! passwordMatch) {
+      setConfirmUserPasswordInput({
+        confirmPassword,
+        isValid: false,
+        errorMessage: __('Your passwords do not match', 'mittr'),
+      });
+
+      return;
+    }
+
+    const { checked } = termsCheckbox;
+
+    if (! checked) {
+      setTermsCheckbox({
+        checked,
+        isValid: false,
+        errorMessage: __('You must agree to the terms of service', 'mittr'),
+      });
+
+      return;
+    }
+
+    submitRegistration({ fullName, password });
   };
 
   return (
@@ -45,45 +130,102 @@ const Register = () => {
               type="text"
               id="userFullNameInput"
               name="userFullNameInput"
-              value={userFullNameInput}
+              value={userFullNameInput.fullName}
               onChange={(event) => {
                 const { value } = event.target;
-                setUserFullNameInput(value);
+                setUserFullNameInput({
+                  fullName: value,
+                  isValid: true,
+                  errorMessage: '',
+                });
               }}
-              className={styles.formInput}
+              className={classNames(styles.formInput, {
+                [styles.inputInvalid]: ! userFullNameInput.isValid,
+              })}
               placeholder={__('Enter your full name', 'mittr')}
               aria-errormessage="fullname-error"
             />
+            {! userFullNameInput.isValid && (
+              <span
+                className={styles.formError}
+                aria-live="assertive"
+                id="email-error"
+              >
+                {__(
+                  `Oops! Let’s try that again —
+                ${userFullNameInput.errorMessage}`,
+                  'mittr'
+                )}
+              </span>
+            )}
           </label>
           <label htmlFor="userPasswordInput">
             <input
               type="password"
               id="userPasswordInput"
               name="userPasswordInput"
-              value={userPasswordInput}
+              value={userPasswordInput.password}
               onChange={(event) => {
                 const { value } = event.target;
-                setUserPasswordInput(value);
+                setUserPasswordInput({
+                  password: value,
+                  isValid: true,
+                  errorMessage: '',
+                });
               }}
-              className={styles.formInput}
+              className={classNames(styles.formInput, {
+                [styles.inputInvalid]: ! userPasswordInput.isValid,
+              })}
               placeholder={__('Create a password for your account', 'mittr')}
               aria-errormessage="password-error"
             />
+            {! userPasswordInput.isValid && (
+              <span
+                className={styles.formError}
+                aria-live="assertive"
+                id="email-error"
+              >
+                {__(
+                  `Oops! Let’s try that again —
+                ${userPasswordInput.errorMessage}`,
+                  'mittr'
+                )}
+              </span>
+            )}
           </label>
           <label htmlFor="confirmUserPasswordInput">
             <input
               type="password"
               id="confirmUserPasswordInput"
               name="confirmUserPasswordInput"
-              value={confirmUserPasswordInput}
+              value={confirmUserPasswordInput.confirmPassword}
               onChange={(event) => {
                 const { value } = event.target;
-                setConfirmUserPasswordInput(value);
+                setConfirmUserPasswordInput({
+                  confirmPassword: value,
+                  isValid: true,
+                  errorMessage: '',
+                });
               }}
-              className={styles.formInput}
+              className={classNames(styles.formInput, {
+                [styles.inputInvalid]: ! confirmUserPasswordInput.isValid,
+              })}
               placeholder={__('Confirm your password', 'mittr')}
               aria-errormessage="confirm-password-error"
             />
+            {! confirmUserPasswordInput.isValid && (
+              <span
+                className={styles.formError}
+                aria-live="assertive"
+                id="email-error"
+              >
+                {__(
+                  `Oops! Let’s try that again —
+                ${confirmUserPasswordInput.errorMessage}`,
+                  'mittr'
+                )}
+              </span>
+            )}
           </label>
           {/* @todo stub. */}
           <label htmlFor="termsCheckbox">
@@ -91,12 +233,17 @@ const Register = () => {
               type="checkbox"
               id="termsCheckbox"
               name="termsCheckbox"
-              value={termsCheckbox}
+              checked={termsCheckbox.checked}
               onChange={(event) => {
-                const { value } = event.target;
-                setTermsCheckbox(value);
+                const { checked } = event.target;
+                setTermsCheckbox({
+                  checked,
+                  isValid: true,
+                  errorMessage: '',
+                });
               }}
               className={styles.formCheckbox}
+              aria-errormessage="terms-error"
             />
             <p className={styles.termsText}>
               {__(
@@ -104,6 +251,19 @@ const Register = () => {
                 'mittr'
               )}
             </p>
+            {! termsCheckbox.isValid && (
+              <span
+                className={styles.formError}
+                aria-live="assertive"
+                id="terms-error"
+              >
+                {__(
+                  `Oops! Let’s try that again —
+                ${termsCheckbox.errorMessage}`,
+                  'mittr'
+                )}
+              </span>
+            )}
           </label>
           <Recaptcha sitekey="superdupersecret" />
           <input
@@ -123,4 +283,20 @@ const Register = () => {
   );
 };
 
-export default withStyles(styles)(Register);
+Register.propTypes = {
+  submitRegistration: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  submitRegistration: (payload) => dispatch(
+    actionSubmitUserRegistration(payload)
+  ),
+});
+const withRedux = connect(
+  undefined,
+  mapDispatchToProps
+);
+
+export default withRedux(
+  withStyles(styles)(Register)
+);

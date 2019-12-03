@@ -9,7 +9,6 @@ import {
   actionRequestAuth,
   actionReceiveUserAuth,
   actionReceiveRequestHeader,
-  actionReceiveNewUserEmail,
   actionStorePendingEmail,
 } from 'actions/userActions';
 import {
@@ -26,7 +25,6 @@ import nexusService from 'services/nexusService';
 import {
   INITIATE_USER_LOGIN,
   SUBMIT_USER_PASSWORD,
-  INITIATE_USER_REGISTRATION,
   SUBMIT_USER_REGISTRATION,
 } from '../actions/types';
 
@@ -35,7 +33,6 @@ const debug = createDebug('sagas:login');
 export default [
   takeEvery(INITIATE_USER_LOGIN, validateEmailAddress),
   takeEvery(SUBMIT_USER_PASSWORD, authorize),
-  takeEvery(INITIATE_USER_REGISTRATION, storePendingEmailAddress),
   takeEvery(SUBMIT_USER_REGISTRATION, register),
 ];
 
@@ -62,7 +59,7 @@ function* validateEmailAddress({ payload: { email } }) {
 
       window.location.pathname = '/login/verified';
     } else {
-      yield put(actionReceiveNewUserEmail(email));
+      yield put(actionStorePendingEmail(email));
 
       window.location.pathname = '/register';
     }
@@ -122,11 +119,7 @@ function* login({ id, password }) {
   }
 }
 
-function* storePendingEmailAddress({ email }) {
-  yield put(actionStorePendingEmail(email));
-}
-
-function* register({ fullName, password }) {
+function* register({ payload: { body: { fullName, password } } }) {
   const header = yield call(getRequestHeader);
 
   try {
