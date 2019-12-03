@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, {
   useState,
   useEffect,
@@ -42,15 +41,6 @@ const Register = ({ submitRegistration }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    if (false === captcha.isValid) {
-      setCaptcha({
-        hasError: true,
-        isValid: false,
-      });
-
-      return;
-    }
 
     const { fullName } = userFullNameInput;
     const { password } = userPasswordInput;
@@ -126,6 +116,15 @@ const Register = ({ submitRegistration }) => {
         confirmPassword,
         isValid: false,
         errorMessage: __('Your passwords do not match', 'mittr'),
+      });
+
+      return;
+    }
+
+    if (false === captcha.isValid) {
+      setCaptcha({
+        hasError: true,
+        isValid: false,
       });
 
       return;
