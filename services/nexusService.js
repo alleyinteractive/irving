@@ -136,13 +136,6 @@ export default {
     const namesArr = fullName.split(' ');
     const firstName = namesArr[0];
     const lastName = namesArr[namesArr.length - 1];
-    const body = JSON.stringify({
-      email,
-      password: hash,
-      firstName,
-      lastName,
-    });
-    console.log(body);
 
     try {
       const response = await fetch(
@@ -162,6 +155,7 @@ export default {
           }),
         }
       );
+      console.log(response);
     } catch (error) {
       console.info('There was a problem.', error); // eslint-disable-line no-console
     }
