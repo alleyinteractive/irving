@@ -12,7 +12,9 @@ import infeedTheme from './contentFooter--infeed.css';
 import inlineTheme from './contentFooter--inline.css';
 import Image from '../image/image';
 
-const ContentFooter = ({ children, authors, theme }) => {
+const ContentFooter = ({
+  children, authors, theme, imageCredit,
+}) => {
   const socialSharing = findChildByName('social-sharing', children);
   const tags = filterChildrenByName('tags', children);
   return (
@@ -43,13 +45,24 @@ const ContentFooter = ({ children, authors, theme }) => {
                 picture={false}
               />
             )}
-            <span>{author.name}</span>
+            <span className={theme.item}>{author.name}</span>
           </Link>
         ))}
       </address>
 
+      {0 < imageCredit.length && (
+        <div className={theme.imageCredit}>
+          <h3 className={theme.label}>{__('Image', 'mittr')}</h3>
+          <span className={theme.item}>{imageCredit}</span>
+        </div>
+      )}
+
     </footer>
   );
+};
+
+ContentFooter.defaultProps = {
+  imageCredit: '',
 };
 
 ContentFooter.propTypes = {
@@ -67,6 +80,7 @@ ContentFooter.propTypes = {
     title: PropTypes.string,
     wrapper: PropTypes.string,
   }).isRequired,
+  imageCredit: PropTypes.string,
 };
 
 export default withThemes('content-footer', {
