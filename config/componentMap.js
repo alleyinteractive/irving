@@ -71,6 +71,7 @@ import Tags from 'components/tags';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import UserGreeting from 'components/userGreeting';
+import Verify from 'components/accounts/verify';
 import Video from 'components/video';
 import withLoader from 'components/hoc/withLoader';
 
@@ -158,6 +159,7 @@ export const componentMap = {
   'technology-meta': ContentList,
   'topic-header': CardStack,
   'user-greeting': UserGreeting,
+  verify: Verify,
   video: Video,
 };
 

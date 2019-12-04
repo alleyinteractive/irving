@@ -80,7 +80,6 @@ const Register = ({ submitRegistration }) => {
       }
 
       const namesArr = fullName.split(' ');
-      console.log(namesArr);
 
       // Ensure that a full name has been entered.
       if (1 >= namesArr.length) {
