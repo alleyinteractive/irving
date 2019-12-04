@@ -138,9 +138,9 @@ const InfiniteItemList = ({
           const key = item.config.title ? item.config.title : item.config.name;
           return (
             <li
-              key={kebabcase(key)}
+              key={kebabcase(`${key} ${index}`)}
               className={styles.item}
-              tabIndex="0"
+              tabIndex="-1"
               role="article"
               aria-setsize={listInfo.items.length}
               aria-posinset={index + 1}
