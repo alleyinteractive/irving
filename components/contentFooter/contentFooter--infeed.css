@@ -36,6 +36,7 @@
 .authorLink {
   align-items: center;
   display: flex;
+  text-decoration: underline;
   
   .avatar {
     margin: rem(0 10 0 0);
