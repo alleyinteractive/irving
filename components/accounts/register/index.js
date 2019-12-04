@@ -318,10 +318,8 @@ Register.propTypes = {
   submitRegistration: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  submitRegistration: (payload) => dispatch(
-    actionSubmitUserRegistration(payload)
-  ),
+const mapDispatchToProps = () => ({
+  submitRegistration: (payload) => actionSubmitUserRegistration(payload),
 });
 const withRedux = connect(
   undefined,

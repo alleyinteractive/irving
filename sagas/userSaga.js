@@ -135,7 +135,10 @@ function* register({ payload: { body: { fullName, password } } }) {
         header,
       }
     );
-    console.log(response); // eslint-disable-line no-console
+
+    if ('pending' === response.status) {
+      window.location.pathname = '/register/confirmation';
+    }
   } catch (error) {
     yield call(debug, error);
   }

@@ -54,8 +54,8 @@ Verify.propTypes = {
   firstName: PropTypes.string.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  verifyHash: (hash) => dispatch(actionVerifyUserEmail(hash)),
+const mapDispatchToProps = () => ({
+  verifyHash: (hash) => actionVerifyUserEmail(hash),
 });
 
 const withRedux = connect(

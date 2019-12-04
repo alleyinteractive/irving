@@ -156,10 +156,7 @@ export default {
         }
       );
       const data = await response.json();
-
-      if ('inserted' === data.action && 'pending' === data.status) {
-        return { status: 'success', pendingActivation: true };
-      }
+      return data;
     } catch (error) {
       console.info('There was a problem.', error); // eslint-disable-line no-console
     }
