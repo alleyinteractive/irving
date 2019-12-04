@@ -26,6 +26,7 @@ import {
   INITIATE_USER_LOGIN,
   SUBMIT_USER_PASSWORD,
   SUBMIT_USER_REGISTRATION,
+  VERIFY_USER_EMAIL,
 } from '../actions/types';
 
 const debug = createDebug('sagas:login');
@@ -34,6 +35,7 @@ export default [
   takeEvery(INITIATE_USER_LOGIN, validateEmailAddress),
   takeEvery(SUBMIT_USER_PASSWORD, authorize),
   takeEvery(SUBMIT_USER_REGISTRATION, register),
+  takeEvery(VERIFY_USER_EMAIL, validateHash),
 ];
 
 function* getRequestHeader() {
@@ -139,3 +141,17 @@ function* register({ payload: { body: { fullName, password } } }) {
   }
 }
 
+function* validateHash({ payload: { hash } }) {
+  const header = yield call(getRequestHeader);
+
+  try {
+    const email = yield select(getPendingEmailAddress);
+
+    const response = yield call(
+      nexusService.verifyUserAccount, { email, hash, header }
+    );
+    console.log(response);
+  } catch (error) {
+    yield call(debug, error);
+  }
+}

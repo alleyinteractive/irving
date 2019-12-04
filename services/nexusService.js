@@ -228,4 +228,34 @@ export default {
     }
     return {};
   },
+
+  /**
+   * Validate a user's email address through a hash.
+   *
+   * @param { email, hash, header } params
+   */
+  async verifyUserAccount({ email, hash, header }) {
+    // eslint-disable-line no-unused-vars
+    try {
+      const response = await fetch(
+        `${process.env.NEXUS_ROOT_URL}/api/user/verify`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'test',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            hash,
+            email,
+          }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.info('There was a problem.', error); // eslint-disable-line no-console
+    }
+  },
 };
