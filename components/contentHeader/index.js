@@ -33,7 +33,10 @@ const ContentHeader = ({
       <div className={theme.intro} id="content--header">
         {eyebrow.content && (
           <Eyebrow
-            customEyebrow=""
+            // Current I don't see customEyebrow being set in the api, just content.
+            customEyebrow={eyebrow.customEyebrow}
+            subTopic={eyebrow.subTopic}
+            subTopicLink={eyebrow.subTopicLink}
             themeName="Full Story"
             topic={eyebrow.content}
             topicLink={eyebrow.link}
