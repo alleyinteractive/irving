@@ -27,7 +27,7 @@
 .avatar {
   height: rem(35);
   width: rem(35);
-
+  
   img {
     width: 100%;
   }
@@ -36,4 +36,9 @@
 .authorLink {
   align-items: center;
   display: flex;
+  text-decoration: underline;
+  
+  .avatar {
+    margin: rem(0 10 0 0);
+  }
 }
