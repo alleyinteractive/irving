@@ -12,6 +12,7 @@ import Arrow from 'assets/icons/arrow.svg';
 // Styles
 import styles from './cardStack.css';
 import horizontalTheme from './cardStack--isHorizontal.css';
+import noImageTheme from './cardStack--noImage.css';
 
 const CardStack = ({
   children,
@@ -39,6 +40,7 @@ const CardStack = ({
   return (
     <header className={theme.wrapper} style={{ backgroundColor: color }}>
       <div className={isSubtopic || ! image ? theme.metaFull : theme.meta}>
+        {/* @todo heading level needs to be dynamic, homepage has > 1 h1 */}
         <h1 className={theme.name}>{name}</h1>
         <p className={theme.description}>{description}</p>
       </div>
@@ -133,4 +135,5 @@ export default withThemes('card-stack', {
   default: styles,
   isVertical: styles,
   isHorizontal: horizontalTheme,
+  noImage: noImageTheme,
 })(withStyles(styles)(CardStack));

@@ -1,0 +1,5 @@
+/* Card stacks with no image */
+
+.metaFull {
+  composes: meta from './cardStack--isHorizontal.css';
+}
