@@ -25,11 +25,11 @@ const Eyebrow = ({
   }
 
   return (
-    <>
+    <div className={'In Feed' !== themeName ? styles.wrap : ''}>
       {topic && (
         <Link
           className={classNames(styles.eyebrowLink, {
-            [styles.fullStory]: 'In Feed' !== themeName,
+            [styles.fullStoryLink]: 'In Feed' !== themeName,
           })}
           to={topicLink}
           style={{ color }}
@@ -46,7 +46,7 @@ const Eyebrow = ({
       {(subTopic && 'In Feed' !== themeName) && (
         <Link
           className={classNames(styles.eyebrowLink, {
-            [styles.fullStory]: 'In Feed' !== themeName,
+            [styles.fullStoryLink]: 'In Feed' !== themeName,
           })}
           to={subTopicLink}
           style={{ color }}
@@ -54,7 +54,7 @@ const Eyebrow = ({
           {subTopic}
         </Link>
       )}
-    </>
+    </div>
   );
 };
 
