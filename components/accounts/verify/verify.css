@@ -12,8 +12,8 @@
 
 .accountHeaderDescription {
   @include accountHeaderDescription;
-  margin-top: rem(5);
   margin-bottom: rem(25);
+  margin-top: rem(5);
 }
 
 .homeButton {
