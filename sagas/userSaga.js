@@ -9,7 +9,6 @@ import {
   actionRequestAuth,
   actionReceiveUserAuth,
   actionReceiveRequestHeader,
-  actionReceiveNewUserEmail,
   actionStorePendingEmail,
 } from 'actions/userActions';
 import {
@@ -26,8 +25,8 @@ import nexusService from 'services/nexusService';
 import {
   INITIATE_USER_LOGIN,
   SUBMIT_USER_PASSWORD,
-  INITIATE_USER_REGISTRATION,
   SUBMIT_USER_REGISTRATION,
+  VERIFY_USER_EMAIL,
 } from '../actions/types';
 
 const debug = createDebug('sagas:login');
@@ -35,8 +34,8 @@ const debug = createDebug('sagas:login');
 export default [
   takeEvery(INITIATE_USER_LOGIN, validateEmailAddress),
   takeEvery(SUBMIT_USER_PASSWORD, authorize),
-  takeEvery(INITIATE_USER_REGISTRATION, storePendingEmailAddress),
   takeEvery(SUBMIT_USER_REGISTRATION, register),
+  takeEvery(VERIFY_USER_EMAIL, validateHash),
 ];
 
 function* getRequestHeader() {
@@ -62,7 +61,7 @@ function* validateEmailAddress({ payload: { email } }) {
 
       window.location.pathname = '/login/verified';
     } else {
-      yield put(actionReceiveNewUserEmail(email));
+      yield put(actionStorePendingEmail(email));
 
       window.location.pathname = '/register';
     }
@@ -122,11 +121,7 @@ function* login({ id, password }) {
   }
 }
 
-function* storePendingEmailAddress({ email }) {
-  yield put(actionStorePendingEmail(email));
-}
-
-function* register({ fullName, password }) {
+function* register({ payload: { body: { fullName, password } } }) {
   const header = yield call(getRequestHeader);
 
   try {
@@ -140,9 +135,26 @@ function* register({ fullName, password }) {
         header,
       }
     );
-    console.log(response); // eslint-disable-line no-console
+
+    if ('pending' === response.status) {
+      window.location.pathname = '/register/confirmation';
+    }
   } catch (error) {
     yield call(debug, error);
   }
 }
 
+function* validateHash({ payload: { hash } }) {
+  const header = yield call(getRequestHeader);
+
+  try {
+    const email = yield select(getPendingEmailAddress);
+
+    const response = yield call(
+      nexusService.verifyUserAccount, { email, hash, header }
+    );
+    console.log(response);
+  } catch (error) {
+    yield call(debug, error);
+  }
+}

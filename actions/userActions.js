@@ -11,6 +11,7 @@ import {
   INITIATE_USER_REGISTRATION,
   SUBMIT_USER_REGISTRATION,
   RECEIVE_USER_REGISTRATION,
+  VERIFY_USER_EMAIL,
 } from './types';
 
 /**
@@ -120,4 +121,14 @@ export function actionSubmitUserRegistration(body) {
  */
 export function actionReceiveUserRegistration(user) {
   return createAction(RECEIVE_USER_REGISTRATION, { user });
+}
+
+/**
+ * Create a Redux action that represents browser state change when a user verifies
+ * their email address.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionVerifyUserEmail(hash) {
+  return createAction(VERIFY_USER_EMAIL, { hash });
 }
