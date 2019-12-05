@@ -1,0 +1,24 @@
+.accountWrap {
+  margin: rem(40) auto rem(50);
+}
+
+.accountHeader {
+  @include accountHeader;
+}
+
+.accountSubHeader {
+  @include accountSubHeader;
+}
+
+.accountHeaderDescription {
+  @include accountHeaderDescription;
+  margin-bottom: rem(25);
+  margin-top: rem(5);
+}
+
+.homeButton {
+  @include btn;
+  @include blackBtn;
+
+  font-family: $sans;
+}

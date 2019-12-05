@@ -8,6 +8,7 @@ import CardStack from 'components/cardStack';
 import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
+import ConfirmRegistration from 'components/accounts/register/confirm';
 import ContentArea from 'components/contentArea';
 import ContentBody from 'components/contentBody';
 import ContentFooter from 'components/contentFooter';
@@ -71,6 +72,7 @@ import Tags from 'components/tags';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import UserGreeting from 'components/userGreeting';
+import Verify from 'components/accounts/verify';
 import Video from 'components/video';
 import withLoader from 'components/hoc/withLoader';
 
@@ -86,6 +88,7 @@ export const componentMap = {
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
+  'confirm-registration': ConfirmRegistration,
   'content-area': ContentArea,
   'content-body': ContentBody,
   'content-footer': ContentFooter,
@@ -158,6 +161,7 @@ export const componentMap = {
   'technology-meta': ContentList,
   'topic-header': CardStack,
   'user-greeting': UserGreeting,
+  verify: Verify,
   video: Video,
 };
 

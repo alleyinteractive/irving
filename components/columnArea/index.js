@@ -59,6 +59,6 @@ ColumnArea.propTypes = {
 
 export default withThemes('column-area', {
   default: styles,
-  'one-column': oneColumnTheme,
+  oneColumn: oneColumnTheme,
   'skinny-column': skinnyColumnTheme,
 })(withStyles(styles, oneColumnTheme, skinnyColumnTheme)(ColumnArea));
