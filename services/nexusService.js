@@ -233,6 +233,9 @@ export default {
    */
   async verifyUserAccount({ email, hash, header }) {
     // eslint-disable-line no-unused-vars
+
+    // @todo This is currently only working in dev environments. We'll need to
+    // ensure that this works with the production server in the future.
     try {
       const response = await fetch(
         `${process.env.NEXUS_ROOT_URL}/api/user/verify`,

@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
 import { actionVerifyUserEmail } from 'actions/userActions';
 import { getUserFirstName } from 'selectors/getUser';
+import Link from 'components/helpers/link';
 
 // Styles
 import styles from './verify.css';
@@ -44,7 +45,7 @@ const Verify = ({ verifyHash, firstName }) => {
           'mittr'
         )}
       </p>
-      <a href="/" className={styles.homeButton}>Go Home</a>
+      <Link to="/" className={styles.homeButton}>Go Home</Link>
     </div>
   );
 };

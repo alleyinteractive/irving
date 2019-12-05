@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
+import Link from 'components/helpers/link';
 
 // Styles
 import styles from './register.css';
@@ -18,7 +19,7 @@ const ConfirmRegistration = () => (
         'mittr'
       )}
     </p>
-    <a href="/" className={styles.homeButton}>Go Home</a>
+    <Link to="/" className={styles.homeButton}>Go Home</Link>
   </div>
 );
 

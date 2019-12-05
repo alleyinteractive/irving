@@ -241,39 +241,37 @@ const Register = ({ submitRegistration }) => {
             }
           </label>
 
-          <label htmlFor="termsCheckbox">
-            <div className={styles.checkboxWrapper}>
-              <input
-                type="checkbox"
-                id="termsCheckbox"
-                name="termsCheckbox"
-                checked={termsCheckbox.checked}
-                onChange={(event) => {
-                  const { checked } = event.target;
-                  setTermsCheckbox({
-                    checked,
-                    isValid: true,
-                    errorMessage: '',
-                  });
-                }}
-                className={styles.formCheckbox}
-                aria-errormessage="terms-error"
-              />
-              <div
-                className={classNames(styles.styledCheckbox, {
-                  [styles.checked]: true === termsCheckbox.checked,
-                })}
-              />
-              <p className={styles.termsText}>
-                {__(
-                  `I agree to the terms of service
-                   and have reviewed the privacy policy.`,
-                  'mittr'
-                )}
-              </p>
-            </div>
-            {! termsCheckbox.isValid && renderDynamicError(termsCheckbox)}
-          </label>
+          <div className={styles.checkboxWrapper}>
+            <input
+              type="checkbox"
+              id="termsCheckbox"
+              name="termsCheckbox"
+              checked={termsCheckbox.checked}
+              onChange={(event) => {
+                const { checked } = event.target;
+                setTermsCheckbox({
+                  checked,
+                  isValid: true,
+                  errorMessage: '',
+                });
+              }}
+              className={styles.formCheckbox}
+              aria-errormessage="terms-error"
+            />
+            <div
+              className={classNames(styles.styledCheckbox, {
+                [styles.checked]: true === termsCheckbox.checked,
+              })}
+            />
+            <label htmlFor="termsCheckbox" className={styles.termsText}>
+              {__(
+                `I agree to the terms of service
+                  and have reviewed the privacy policy.`,
+                'mittr'
+              )}
+            </label>
+          </div>
+          {! termsCheckbox.isValid && renderDynamicError(termsCheckbox)}
 
           <div className={styles.captchaWrapper}>
             {/* @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create) */}
