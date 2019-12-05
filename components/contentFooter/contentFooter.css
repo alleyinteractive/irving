@@ -129,3 +129,12 @@
 .authorLink {
   margin-right: rem(15);
 }
+
+.imageCredit {
+  align-items: center;
+  display: flex;
+}
+
+.item {
+  font-size: rem(14);
+}

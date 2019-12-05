@@ -4,21 +4,25 @@ import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
 import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
+import withThemes from 'components/hoc/withThemes';
 
 // Icons
 import Arrow from 'assets/icons/arrow.svg';
 
 // Styles
 import styles from './cardStack.css';
+import horizontalTheme from './cardStack--isHorizontal.css';
+import noImageTheme from './cardStack--noImage.css';
 
 const CardStack = ({
-  name,
-  description,
   children,
   color,
-  isSubtopic,
+  description,
   isSponsored,
+  isSubtopic,
+  name,
   sponsored: { url: sponsorLink },
+  theme,
 }) => {
   const image = findChildByName('image', children);
   const logo = findChildByName('logo', children);
@@ -34,22 +38,23 @@ const CardStack = ({
   const [hasScrolled, setHasScrolled] = useState(false);
 
   return (
-    <header className={styles.wrapper} style={{ backgroundColor: color }}>
-      <div className={isSubtopic || ! image ? styles.metaFull : styles.meta}>
-        <h1 className={styles.name}>{name}</h1>
-        <p className={styles.description}>{description}</p>
+    <header className={theme.wrapper} style={{ backgroundColor: color }}>
+      <div className={isSubtopic || ! image ? theme.metaFull : theme.meta}>
+        {/* @todo heading level needs to be dynamic, homepage has > 1 h1 */}
+        <h1 className={theme.name}>{name}</h1>
+        <p className={theme.description}>{description}</p>
       </div>
-      {! isSubtopic && image && <div className={styles.image}>{image}</div>}
+      {! isSubtopic && image && <div className={theme.image}>{image}</div>}
       {isSponsored && (
-        <div className={styles.sponsored}>
-          <h2 className={styles.sponsorLabel} style={{ color }}>
+        <div className={theme.sponsored}>
+          <h2 className={theme.sponsorLabel} style={{ color }}>
             <span aria-hidden>{__('Sponsored', 'mittr')}</span>
             {/* Re-phrase the heading for context for screen readers. */}
             <span className="screen-reader-text">
               {__('Collection sponsor', 'mittr')}
             </span>
           </h2>
-          <Link to={sponsorLink} className={styles.sponsorLink}>
+          <Link to={sponsorLink} className={theme.sponsorLink}>
             {/* Name of sponsor in logo alt text. */}
             {logo}
           </Link>
@@ -57,16 +62,16 @@ const CardStack = ({
       )}
       {0 < articles.length && (
         <div
-          className={styles.slider}
+          className={theme.slider}
           ref={sliderRef}
           onScroll={() => {
             setHasScrolled(true);
           }}
         >
-          <ol className={styles.list}>
+          <ol className={theme.list}>
             {articles.map((article, count) => (
-              <li className={styles.featured} key={article.props.title}>
-                <div className={styles.counter} aria-hidden>
+              <li className={theme.featured} key={article.props.title}>
+                <div className={theme.counter} aria-hidden>
                   0{count + 1}.
                 </div>
                 {article}
@@ -76,7 +81,7 @@ const CardStack = ({
           {hasScrolled ? (
             <button
               type="button"
-              className={styles.previous}
+              className={theme.previous}
               onClick={() => setHasScrolled(false)}
             >
               <Arrow aria-hidden />
@@ -85,7 +90,7 @@ const CardStack = ({
           ) : (
             <button
               type="button"
-              className={styles.next}
+              className={theme.next}
               onClick={() => {
                 setHasScrolled(true);
                 // @todo MIT-210 this does not work.
@@ -123,6 +128,12 @@ CardStack.propTypes = {
   sponsored: PropTypes.shape({
     url: PropTypes.string,
   }),
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CardStack);
+export default withThemes('card-stack', {
+  default: styles,
+  isVertical: styles,
+  isHorizontal: horizontalTheme,
+  noImage: noImageTheme,
+})(withStyles(styles)(CardStack));
