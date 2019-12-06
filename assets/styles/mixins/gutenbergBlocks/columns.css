@@ -12,4 +12,8 @@
     max-width: 48%;
     min-width: 25%;
   }
+
+  :global(.editor-writing-flow [data-type="core/columns"] .wp-block-columns>.editor-inner-blocks>.editor-block-list__layout) {
+    flex-flow: row nowrap;
+  }
 }

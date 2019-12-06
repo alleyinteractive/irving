@@ -2,13 +2,13 @@
 @mixin figcaption {
   @include body-link;
   border-bottom: 1px solid $black;
-  caption-side: bottom;
-  display: table-caption;
+  display: block;
   font-family: $sans;
   font-size: rem(14);
   font-style: italic;
   line-height: calc(18/14);
   padding: rem(15) 0;
+  width: 100%;
 }
 
 @mixin image-credit {
