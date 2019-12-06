@@ -38,7 +38,7 @@ const Eyebrow = ({
         </Link>
       )}
       {subTopic && (
-        <span>/</span>
+        <span style={{ color }}>/</span>
       )}
       {/* Subtopics are only shown in the eyebrow on
         full story pages, they are hidden when in the feed.
