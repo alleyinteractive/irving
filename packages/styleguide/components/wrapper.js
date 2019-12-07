@@ -9,14 +9,14 @@ import {
 import reduceReducers from 'reduce-reducers';
 import createSagaMiddleware from 'redux-saga';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
-import { reducers } from 'reducers';
-import rootSaga from 'sagas';
+import { reducers } from '@irvingjs/core/reducers';
+import rootSaga from '@irvingjs/core/sagas';
 import defaultState, {
   form,
   componentData,
-} from 'reducers/defaultState';
-import componentsReducer from 'reducers/componentsReducer';
-import createFormReducer from 'reducers/createFormReducer';
+} from '@irvingjs/core/reducers/defaultState';
+import componentsReducer from '@irvingjs/core/reducers/componentsReducer';
+import createFormReducer from '@irvingjs/core/reducers/createFormReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 

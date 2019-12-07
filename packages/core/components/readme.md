@@ -3,8 +3,6 @@ Irving offers a collection of components for building commonly-requested feature
 * **Form Components:** build forms and managing form state.
 * **Higher Order Components:** offer a variety of reusable functionality for use with any component.
 
-Core Irving components. Eventually set to be refactored into a standalone NPM package. Each component has a readme.
-
 Some noteworthy components to flag,
 
 * [Connected Root](https://github.com/alleyinteractive/irving/tree/production/components/connectedRoot)
