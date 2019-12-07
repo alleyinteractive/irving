@@ -31,7 +31,7 @@
 
   /* No alignment set: <figure class="wp-block-image"> element only */
   :global(figure.wp-block-image) {
-    display: table;
+    display: block;
     margin-bottom: rem(36);
     max-width: 100%;
 
@@ -93,6 +93,16 @@
 
     figcaption {
       @include figcaption;
+    }
+  }
+
+  :global(.alignwide) {
+    margin-left: rem(-80);
+    margin-right: rem(-80);
+
+    img {
+      max-width: 120%;
+      width: 120%;
     }
   }
 }
