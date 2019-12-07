@@ -19,8 +19,6 @@
     "//": "nohoist option is used to prevent internal packages from being hoisted/deleted by lerna (which is a bug, I think)",
     "bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
     "link": "lerna exec --parallel -- npm link",
-    "styleguide:build": "NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js",
-    "styleguide:dev": "NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
     "test": "BABEL_ENV=test lerna run test --parallel",
     "test:watch": "BABEL_ENV=test lerna run test:watch --parallel"
   },
@@ -75,7 +73,6 @@
     "react-hot-loader": "^4.12.15",
     "react-oembed-container": "^0.3.0",
     "react-redux": "^7.1.1",
-    "react-styleguidist": "^8.0.6",
     "react-transition-group": "^4.0.0",
     "react-universal-component": "^4.0.0",
     "reduce-reducers": "^0.3.0",

@@ -9,7 +9,34 @@ const scopeDir = path.join(__dirname, '../');
 const packageDirs = fs.readdirSync(scopeDir);
 const packageRoots = ! packageDirs.length ? [] :
   packageDirs.map((dir) => path.join(scopeDir, dir));
+const appAliases = {
+  '@components': '@irvingjs/core/components',
+  actions: './actions',
+  assets: './assets',
+  components: './components',
+  hooks: './hooks',
+  reducers: './reducers',
+  sagas: './sagas',
+  selectors: './selectors',
+  server: './server',
+  services: './services',
+  utils: './utils',
+  // Aliases for irving config files.
+  '@irvingjs/irving.config': path.join(
+    buildContext,
+    'irving.config.js'
+  ),
+  '@irvingjs/irving.config.server': path.join(
+    buildContext,
+    'irving.config.server.js'
+  ),
+  '@irvingjs/componentMap': path.join(
+    buildContext,
+    'componentMap.js'
+  ),
+};
 
+module.exports.aliases = appAliases;
 module.exports = (api) => {
   // Cache computed config forever.
   api.cache(true);
@@ -25,32 +52,7 @@ module.exports = (api) => {
             ...packageRoots,
           ],
           cwd: 'packagejson',
-          alias: {
-            '@components': '@irvingjs/core/components',
-            actions: './actions',
-            assets: './assets',
-            components: './components',
-            hooks: './hooks',
-            reducers: './reducers',
-            sagas: './sagas',
-            selectors: './selectors',
-            server: './server',
-            services: './services',
-            utils: './utils',
-            // Aliases for irving config files.
-            '@irvingjs/irving.config': path.join(
-              buildContext,
-              'irving.config.js'
-            ),
-            '@irvingjs/irving.config.server': path.join(
-              buildContext,
-              'irving.config.server.js'
-            ),
-            '@irvingjs/componentMap': path.join(
-              buildContext,
-              'componentMap.js'
-            ),
-          },
+          alias: appAliases,
         },
       ],
     ],

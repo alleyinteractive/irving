@@ -1,16 +1,18 @@
 const path = require('path');
-const paths = require('./paths');
+const paths = require('@irvingjs/core/config/paths');
+const webpackConfig = require('@irvingjs/core/config/webpack.config.js');
+const { aliases } = require('@irvingjs/core/babel.config.js');
 
 const componentGlobs = {
-  utility: path.join(paths.appRoot, 'components/**/*.js'),
-  hoc: path.join(paths.appRoot, 'components/hoc/**/*.js'),
-  form: path.join(paths.appRoot, 'components/form/*.js'),
-  helpers: path.join(paths.appRoot, 'components/helpers/**/*.js'),
+  core: path.join(paths.irvingRoot, 'components/**/*.js'),
+  hoc: path.join(paths.irvingRoot, 'components/hoc/**/*.js'),
+  helpers: path.join(paths.irvingRoot, 'components/helpers/**/*.js'),
+  // form: path.join(paths.appRoot, 'components/form/*.js'),
 };
 
 module.exports = {
   title: 'Irving',
-  require: [paths.styleguideRoot],
+  require: [paths.join(__dirname, './styleguide.js')],
   sections: [
     {
       name: 'Introduction and setup',
@@ -26,7 +28,7 @@ module.exports = {
       ],
     },
     {
-      name: 'Components',
+      name: 'Irving Core Components',
       content: path.join(paths.appRoot, 'components/readme.md'),
       sections: [
         {
@@ -39,11 +41,11 @@ module.exports = {
             componentGlobs.helpers,
           ],
         },
-        {
-          name: 'Form Components',
-          content: path.join(paths.appRoot, 'components/form/forms.md'),
-          components: componentGlobs.form,
-        },
+        // {
+        //   name: 'Form Components',
+        //   content: path.join(paths.appRoot, 'components/form/forms.md'),
+        //   components: componentGlobs.form,
+        // },
         {
           name: 'Higher-Order Components',
           content: path.join(paths.appRoot, 'components/hoc/hoc.md'),
@@ -59,25 +61,22 @@ module.exports = {
   ],
   skipComponentsWithoutExample: true,
   styleguideComponents: {
-    Wrapper: path.join(paths.styleguideRoot, 'components/wrapper.js'),
+    Wrapper: path.join(__dirname, '../components/wrapper.js'),
   },
-  styleguideDir: paths.styleguideRoot,
+  styleguideDir: path.join(paths.appRoot, 'styleguide'),
   webpackConfig: {
-    ...require('./webpack.config.js')({}, { mode: process.env.NODE_ENV })
-      .find((config) => config.name === 'client'),
+    ...webpackConfig({}, { mode: process.env.NODE_ENV })
+      .find((config) => 'client' === config.name),
     // Recreate aliases as we can't use the same babel aliases for styleguide
     resolve: {
       alias: {
-        assets: path.join(paths.appRoot, './assets'),
-        actions: path.join(paths.appRoot, './actions'),
-        components: path.join(paths.appRoot, './components'),
-        config: path.join(paths.appRoot, './config'),
-        reducers: path.join(paths.appRoot, './reducers'),
-        sagas: path.join(paths.appRoot, './sagas'),
-        selectors: path.join(paths.appRoot, './selectors'),
-        services: path.join(paths.appRoot, './services'),
-        utils: path.join(paths.appRoot, './utils'),
-      }
-    }
+        // Make all aliases absolute paths.
+        ...Object.keys(aliases).reduce(
+          (acc, alias) => (
+            path.join(paths.irvingRoot, alias)
+          )
+        ),
+      },
+    },
   },
 };

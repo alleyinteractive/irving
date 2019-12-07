@@ -74,6 +74,5 @@ module.exports = {
   assetsRoot: resolveIrvingDir('assets'),
   nodeModules: resolveIrvingDir('node_modules'),
   postCssConfig: resolveIrvingDir('config/postcss.config.js'),
-  styleguideRoot: resolveIrvingDir('styleguide'),
   transform: require.resolve('critical-style-loader/lib/filterCriticalCss.js'),
 };
