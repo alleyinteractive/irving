@@ -1,0 +1,12 @@
+:global {
+  .imageSet__wrap {
+    width: 100%;
+  }
+
+  .imageSet__caption,
+  .imageSet__caption p,
+  .editor-styles-wrapper .imageSet__caption p {
+    font-size: rem(14);
+    font-weight: 400;
+  }
+}
