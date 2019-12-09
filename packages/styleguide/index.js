@@ -12,6 +12,9 @@ const userConfig = require(path.join(buildContext, 'irving.config.server.js'));
 const configBase = merge(coreComponents, styleguideBase);
 let mergedConfig = configBase;
 
+// Set babel env.
+process.env.BABEL_ENV = 'app';
+
 if (userConfig && userConfig.styleguideConfig) {
   const styleguideConfigs = getConfigObject('styleguideConfig');
   const styleguideSetupPaths = getMergedFromUserConfig(
