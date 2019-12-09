@@ -22,7 +22,7 @@ module.exports = {
       alias: {
         // Fix issue with acorn parser import.
         acorn: require.resolve('acorn/dist/acorn.js'),
-        // Make all aliases absolute appRoot.
+        // Make all aliases absolute.
         ...Object.keys(aliases).reduce(
           (acc, alias) => (
             [...acc, path.join(irvingRoot, alias)]
