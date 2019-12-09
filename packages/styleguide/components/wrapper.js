@@ -16,14 +16,12 @@ import defaultState, {
   componentData,
 } from '@irvingjs/core/reducers/defaultState';
 import componentsReducer from '@irvingjs/core/reducers/componentsReducer';
-import createFormReducer from '@irvingjs/core/reducers/createFormReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
 // Combine reducers, including testing reducers.
 const rootSliceReducer = combineReducers({
   ...reducers,
-  testForm: createFormReducer('testForm'),
 });
 // "State" reducers are composed together. The order they are passed into
 // reduceReducers determines the order they will be run in.
