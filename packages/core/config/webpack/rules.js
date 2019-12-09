@@ -29,8 +29,6 @@ const include = (filepath) => {
   return !! matches;
 };
 
-console.log(path.join(irvingRoot, 'babel.config.js'));
-
 /**
  * Get the context specific rules configuration.
  * @param {string} context - the configuration context
