@@ -2,13 +2,13 @@
 @mixin figcaption {
   @include body-link;
   border-bottom: 1px solid $black;
-  caption-side: bottom;
-  display: table-caption;
+  display: block;
   font-family: $sans;
   font-size: rem(14);
   font-style: italic;
   line-height: calc(18/14);
   padding: rem(15) 0;
+  width: 100%;
 }
 
 @mixin image-credit {
@@ -31,7 +31,7 @@
 
   /* No alignment set: <figure class="wp-block-image"> element only */
   :global(figure.wp-block-image) {
-    display: table;
+    display: block;
     margin-bottom: rem(36);
     max-width: 100%;
 
@@ -62,12 +62,12 @@
 
     :global(.alignleft) {
       float: left;
-      margin: 0 rem(36) rem(36) 0;
+      margin: rem(30) calc(8.33%) rem(20) -13.33%;
     }
 
     :global(.alignright) {
       float: right;
-      margin: 0 0 rem(36) rem(36);
+      margin: rem(30) -13.33% rem(20) calc(8.33%);
     }
 
     :global(.aligncenter) {
@@ -93,6 +93,16 @@
 
     figcaption {
       @include figcaption;
+    }
+  }
+
+  :global(.alignwide) {
+    margin-left: rem(-80);
+    margin-right: rem(-80);
+
+    img {
+      max-width: 120%;
+      width: 120%;
     }
   }
 }
