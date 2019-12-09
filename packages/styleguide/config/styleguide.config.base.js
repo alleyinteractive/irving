@@ -1,7 +1,9 @@
 const path = require('path');
-const paths = require('@irvingjs/core/config/paths');
+const paths = require('@irvingjs/core/config/paths.js');
 const webpackConfig = require('@irvingjs/core/config/webpack.config.js');
-const { aliases } = require('@irvingjs/core/babel.config.js');
+const aliases = require('@irvingjs/core/config/aliases.js');
+
+console.log(aliases);
 
 module.exports = {
   title: 'Irving',
