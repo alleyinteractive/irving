@@ -4,6 +4,10 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+
+    @media ($smMin) {
+      flex-flow: row nowrap;
+    }
   }
 
   :global(.wp-block-column) {

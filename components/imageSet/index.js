@@ -1,32 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import Image from '../image/image';
 
 import styles from './imageSet.css';
 
-const ImageSet = ({ images, caption }) => (
+// eslint-disable-next-line no-unused-vars
+const ImageSet = ({ children, layout }) => (
   <div className="imageSet__wrap">
-    {images.map((image) => (
-      <Image
-        src={image.src}
-        picture={false}
-      />
-    ))}
-    <figcaption className="imageSet__caption">
-      {caption}
-    </figcaption>
+    {children}
   </div>
 );
 
 ImageSet.defaultProps = {
-  caption: 'string',
+  layout: 'diptych',
 };
 
 ImageSet.propTypes = {
-  caption: PropTypes.string,
-  images: PropTypes.arrayOf(PropTypes.shape({}))
-    .isRequired,
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  layout: PropTypes.string,
 };
 
 export default withStyles(styles)(ImageSet);
