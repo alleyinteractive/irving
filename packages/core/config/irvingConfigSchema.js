@@ -21,4 +21,6 @@ module.exports = {
   sagas: [() => {}],
   serverViews: {},
   stylelintConfig: [() => {}],
+  styleguideConfig: [],
+  styleguideSetup: [],
 };

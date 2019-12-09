@@ -7,7 +7,6 @@ const componentGlobs = {
   core: path.join(paths.irvingRoot, 'components/**/*.js'),
   hoc: path.join(paths.irvingRoot, 'components/hoc/**/*.js'),
   helpers: path.join(paths.irvingRoot, 'components/helpers/**/*.js'),
-  // form: path.join(paths.appRoot, 'components/form/*.js'),
 };
 
 module.exports = {
@@ -41,11 +40,6 @@ module.exports = {
             componentGlobs.helpers,
           ],
         },
-        // {
-        //   name: 'Form Components',
-        //   content: path.join(paths.appRoot, 'components/form/forms.md'),
-        //   components: componentGlobs.form,
-        // },
         {
           name: 'Higher-Order Components',
           content: path.join(paths.appRoot, 'components/hoc/hoc.md'),

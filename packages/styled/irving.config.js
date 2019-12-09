@@ -6,4 +6,5 @@ export default {
   name: 'styled',
   getAppTemplateVars,
   cssVariables: variables,
+  styleguideConfig: './config/styleguide.config.js',
 };
