@@ -3,13 +3,11 @@ const omit = require('lodash/fp/omit');
 const { irvingRoot } = require('@irvingjs/core/config/paths');
 const componentGlobs = {
   core: path.join(irvingRoot, 'components/**/*.js'),
+  hoc: path.join(irvingRoot, 'components/hoc/**/*.js'),
   helpers: path.join(irvingRoot, 'components/helpers/**/*.js'),
 };
 
 module.exports = {
-  ignore: [
-    path.join(irvingRoot, 'components/hoc/**/*.js'),
-  ],
   sections: [
     {
       name: 'Irving Core',
@@ -21,6 +19,11 @@ module.exports = {
           components: componentGlobs.core,
           // Everything excluding the other sections.
           ignore: Object.values(omit(['core'], componentGlobs)),
+        },
+        {
+          name: 'Higher-order Components',
+          content: path.join(irvingRoot, 'components/hoc/hoc.md'),
+          components: componentGlobs.hoc,
         },
         {
           name: 'Helper Components',
