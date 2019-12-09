@@ -17,6 +17,8 @@ module.exports = {
   webpackConfig: {
     ...webpackConfig({}, { mode: process.env.NODE_ENV })
       .find((config) => 'client' === config.name),
+    // Get rid of splitChunks.
+    optimization: {},
     // Recreate aliases as we can't use the same babel aliases for styleguide
     resolve: {
       alias: {
