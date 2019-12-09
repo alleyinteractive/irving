@@ -17,7 +17,6 @@
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
-		"acorn": "^6.0.5",
 		"react-styleguidist": "^10.2.1"
 	},
 	"devDependencies": {
