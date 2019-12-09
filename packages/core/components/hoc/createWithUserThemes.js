@@ -25,4 +25,5 @@ const createWithUserThemes = (WrappedComponent, defaultStyles = {}) => (
   return wrapWithThemes(wrapWithStyles(WrappedComponent));
 };
 
+/** @component */
 export default createWithUserThemes;

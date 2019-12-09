@@ -9,4 +9,5 @@ const withAsync = (importer) => (
   })
 );
 
+/** @component */
 export default withAsync;

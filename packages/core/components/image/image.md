@@ -1,4 +1,4 @@
-Responsive image component. 
+Responsive image component.
 
 Image component with srcset/sizes and lazyloading
 ```js
@@ -34,4 +34,4 @@ Image component with picture tag and lazyloading
     picture
     lazyload
 />
-````
+```

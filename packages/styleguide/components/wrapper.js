@@ -9,21 +9,18 @@ import {
 import reduceReducers from 'reduce-reducers';
 import createSagaMiddleware from 'redux-saga';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
-import { reducers } from 'reducers';
-import rootSaga from 'sagas';
+import { reducers } from '@irvingjs/core/reducers';
+import rootSaga from '@irvingjs/core/sagas';
 import defaultState, {
-  form,
   componentData,
-} from 'reducers/defaultState';
-import componentsReducer from 'reducers/componentsReducer';
-import createFormReducer from 'reducers/createFormReducer';
+} from '@irvingjs/core/reducers/defaultState';
+import componentsReducer from '@irvingjs/core/reducers/componentsReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
 // Combine reducers, including testing reducers.
 const rootSliceReducer = combineReducers({
   ...reducers,
-  testForm: createFormReducer('testForm'),
 });
 // "State" reducers are composed together. The order they are passed into
 // reduceReducers determines the order they will be run in.
@@ -34,7 +31,6 @@ const store = createStore(
   {
     ...defaultState,
     componentData,
-    testForm: form,
     loading: true,
     components: {
       defaults: [],

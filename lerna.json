@@ -6,9 +6,6 @@
   "npmClient": "npm",
   "command": {
     "publish": {
-      "ignoreChanges": [
-        "*.md"
-      ],
       "message": "chore(release): publish"
     },
     "bootstrap": {

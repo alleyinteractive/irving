@@ -101,4 +101,5 @@ const withData = (
   return withRedux(DataProvider);
 };
 
+/** @component */
 export default withData;
