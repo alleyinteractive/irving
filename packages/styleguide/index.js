@@ -7,7 +7,7 @@ const {
 const { buildContext } = require('@irvingjs/core/config/paths');
 const styleguideBase = require('./config/styleguide.config.base');
 const coreComponents = require('./config/styleguide.config.core');
-const userConfig = require(path.join(buildContext, 'irving.config.js'));
+const userConfig = require(path.join(buildContext, 'irving.config.server.js'));
 const configBase = merge(styleguideBase, coreComponents);
 let mergedConfig = configBase;
 
