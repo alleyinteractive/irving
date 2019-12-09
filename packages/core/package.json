@@ -20,7 +20,6 @@
     ".eslintignore",
     ".eslintrc.js",
     "babel.config.js",
-    "!*.md",
     "!*.test.js"
   ],
   "repository": {
