@@ -1,6 +1,8 @@
 Component for displaying an array of `<SocialItem />` components or..really any array of components within a `<ul>`.
 
 ```js
+import SocialItem from '../socialItem';
+
 <SocialList>
     <SocialItem
         type="facebook"

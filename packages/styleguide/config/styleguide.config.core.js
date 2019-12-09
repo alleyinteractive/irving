@@ -7,6 +7,9 @@ const componentGlobs = {
 };
 
 module.exports = {
+  ignore: [
+    path.join(irvingRoot, 'components/hoc/**/*.js'),
+  ],
   sections: [
     {
       name: 'Irving Core',
