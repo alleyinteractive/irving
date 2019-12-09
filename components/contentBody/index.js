@@ -11,11 +11,12 @@ import {
   actionTruncateStory,
 } from 'actions/storyActions';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import styles from './contentBody.css';
 
+/* eslint-disable */
 const ContentBody = (props) => {
   const [truncateContent, setTruncation] = useState(false);
-  const [contentHeight, setContentHeight] = useState(400);
   const contentRef = useRef();
 
   const {
@@ -29,10 +30,6 @@ const ContentBody = (props) => {
   const showFullText = () => {
     // Remove the truncation button and height limit.
     setTruncation(false);
-    // Update the container's height to be that of the content.
-    setContentHeight(
-      contentRef.current.getBoundingClientRect().height
-    );
   };
 
   useEffect(() => {
@@ -58,17 +55,20 @@ const ContentBody = (props) => {
       dispatchShowFullStory();
     }
   }, truncateContent);
+  console.log(truncateContent);
 
   return (
     <div className={styles.wrapper}>
       <div
-        className={styles.overlay}
-        style={{ display: 400 === contentHeight ? 'block' : 'none' }}
+        className={classNames(styles.overlay, {
+          [styles.overlayVisible]: truncateContent,
+        })}
       />
 
       <div
-        className={400 === contentHeight ? styles.contentHidden : ''}
-        style={{ height: contentHeight }}
+        className={classNames(styles.content, {
+          [styles.contentHidden]: truncateContent,
+        })}
         id="content--body"
       >
         <div ref={contentRef}>
