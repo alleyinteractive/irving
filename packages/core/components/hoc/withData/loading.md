@@ -1,7 +1,7 @@
 Default component for displaying loading state for the withData HoC.
 
 ```js
-import Loading from './loading';
+const Loading = require('./loading').default;
 
 <Loading />
 ```
