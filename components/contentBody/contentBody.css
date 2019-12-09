@@ -26,7 +26,12 @@
   }
 }
 
+.content {
+  height: 100%;
+}
+
 .contentHidden {
+  height: 400px;
   overflow: hidden;
   position: relative;
 
@@ -39,6 +44,7 @@
 
 .overlay {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  display: none;
   height: rem(400);
   position: absolute;
   top: 0;
@@ -48,6 +54,10 @@
     left: 50%;
     transform: translateX(-50%);
   }
+}
+
+.overlayVisible {
+  display: block;
 }
 
 .truncationButton {
