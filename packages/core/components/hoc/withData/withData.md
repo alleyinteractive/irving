@@ -4,7 +4,7 @@ This component also includes functionality for a custom loading and error compon
 
 Example with internal endpoint:
 ```js
-const withData = require('./index').default;
+import withData from './';
 const DataComponent = (props) => {
     const { data } = props;
 
@@ -22,7 +22,7 @@ const ComponentWithData = withData('asyncComponentData')(DataComponent);
 Exmple with external endpoint and custom Loading/Error components:
 
 ```js
-const withData = require('./index').default;
+import withData from './';
 const ExternalDataComponent = (props) => {
     const { data } = props;
 
