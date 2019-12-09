@@ -1,1 +1,1 @@
-module.exports = require('./irving.config.js');
+module.exports = require('./config/styleguide.config.base');
