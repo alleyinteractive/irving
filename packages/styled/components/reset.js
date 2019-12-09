@@ -56,4 +56,5 @@ const CssReset = createGlobalStyle`
   /* stylelint-enable */
 `;
 
+/** @component */
 export default CssReset;
