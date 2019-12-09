@@ -9,6 +9,7 @@
     "cli/**/*",
     "client/**/*",
     "components/**/*",
+    "components/**/*.md",
     "config/**/*",
     "hooks/**/*",
     "reducers/**/*",
