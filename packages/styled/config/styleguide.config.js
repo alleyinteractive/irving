@@ -1,6 +1,6 @@
 const path = require('path');
 
-module.exports = {
+module.exports = () => ({
   sections: [
     {
       name: 'Styled Components',
@@ -14,4 +14,4 @@ module.exports = {
       ],
     },
   ],
-};
+});
