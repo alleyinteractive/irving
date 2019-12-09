@@ -9,6 +9,8 @@ const scopeDir = path.join(__dirname, '../');
 const packageDirs = fs.readdirSync(scopeDir);
 const packageRoots = ! packageDirs.length ? [] :
   packageDirs.map((dir) => path.join(scopeDir, dir));
+
+// App aliases, exported in case we need them elsewhere.
 const appAliases = {
   '@components': '@irvingjs/core/components',
   actions: './actions',
@@ -35,8 +37,9 @@ const appAliases = {
     'componentMap.js'
   ),
 };
-
 module.exports.aliases = appAliases;
+
+// Main config function.
 module.exports = (api) => {
   // Cache computed config forever.
   api.cache(true);
