@@ -87,3 +87,13 @@
   font-size: rem(14);
   padding: rem(10) rem(20);
 }
+
+.sponsoredMetaTag {
+  background-color: $brown-gray;
+  color: #ffffff;
+  font-size: rem(12);
+  font-weight: 700;
+  letter-spacing: rem(1);
+  padding: rem(7) rem(14) rem(5);
+  text-transform: uppercase;
+}

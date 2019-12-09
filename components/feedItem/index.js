@@ -19,6 +19,7 @@ const FeedItem = ({
   title,
   topic,
   topicLink,
+  isSponsored,
 }) => {
   const [expandState, setExpandState] = useState({
     btnText: 'Expand',
@@ -50,6 +51,24 @@ const FeedItem = ({
       setContainerHeight(0);
     }
   };
+
+  if (isSponsored) {
+    return (
+      <article className={styles.wrapper}>
+        <header className={styles.header}>
+          <h1 className={styles.title}>{title}</h1>
+          <div className={styles.meta}>
+            <h4 className={styles.sponsoredMetaTag}>
+              Sponsored
+            </h4>
+          </div>
+        </header>
+        <div className={styles.content}>
+          {teaserContent}
+        </div>
+      </article>
+    );
+  }
 
   return (
     <article className={styles.wrapper}>
@@ -121,6 +140,7 @@ FeedItem.defaultProps = {
   includeExpandBtn: false,
   showImage: true,
   teaserContent: '',
+  isSponsored: false,
 };
 
 FeedItem.propTypes = {
@@ -134,6 +154,7 @@ FeedItem.propTypes = {
   topic: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,
+  isSponsored: PropTypes.bool,
 };
 
 export default withStyles(styles)(FeedItem);
