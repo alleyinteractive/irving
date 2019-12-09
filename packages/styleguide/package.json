@@ -5,6 +5,8 @@
 	"files": [
 		"config/**/*",
 		"components/**/*",
+		"styleguide/**/*",
+		"styleguide.js",
 		"!*.test.js"
 	],
 	"main": "index.js",
