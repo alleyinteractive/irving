@@ -1,6 +1,8 @@
 const path = require('path');
+const styleguideSetup = require('./styelguideSetup');
 
-module.exports = () => ({
+module.exports = {
+  require: [styleguideSetup],
   sections: [
     {
       name: 'Irving Forms',
@@ -14,4 +16,4 @@ module.exports = () => ({
       ],
     },
   ],
-});
+};

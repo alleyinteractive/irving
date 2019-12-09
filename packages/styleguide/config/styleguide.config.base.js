@@ -5,6 +5,8 @@ const {
 } = require('@irvingjs/core/config/paths');
 const webpackConfig = require('@irvingjs/core/config/webpack.config');
 const aliases = require('@irvingjs/core/config/aliases');
+const clientconfig = webpackConfig({}, { mode: process.env.NODE_ENV })
+  .find((config) => 'client' === config.name);
 
 module.exports = {
   title: 'Irving',
@@ -15,13 +17,15 @@ module.exports = {
   },
   styleguideDir: path.join(appRoot, 'styleguide'),
   webpackConfig: {
-    ...webpackConfig({}, { mode: process.env.NODE_ENV })
-      .find((config) => 'client' === config.name),
+    ...clientconfig,
     // Get rid of splitChunks.
     optimization: {},
     // Recreate aliases as we can't use the same babel aliases for styleguide
     resolve: {
       alias: {
+        ...clientconfig.resolve.alias,
+        // Fix issue with acorn parser import.
+        acorn: require.resolve('acorn/dist/acorn.js'),
         // Make all aliases absolute.
         ...Object.keys(aliases).reduce(
           (acc, alias) => (
