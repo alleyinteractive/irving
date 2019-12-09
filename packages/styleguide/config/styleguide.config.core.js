@@ -15,7 +15,7 @@ module.exports = {
         {
           name: 'Core Components',
           content: path.join(irvingRoot, 'components/components.md'),
-          components: componentGlobs.utility,
+          components: componentGlobs.core,
           // Everything excluding the other sections.
           ignore: Object.values(componentGlobs),
         },
