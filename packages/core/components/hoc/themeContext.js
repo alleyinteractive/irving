@@ -7,4 +7,5 @@ ThemeContext.Provider.propTypes = {
   value: PropTypes.object.isRequired,
 };
 
+/** @component */
 export default ThemeContext;

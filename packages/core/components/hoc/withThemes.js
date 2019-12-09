@@ -106,4 +106,5 @@ const withThemes = (
   return ThemePicker;
 };
 
+/** @component */
 export default withThemes;

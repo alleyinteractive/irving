@@ -29,4 +29,5 @@ const withLoader = (WrappedComponent) => {
   return withRedux(Loader);
 };
 
+/** @component */
 export default withLoader;
