@@ -20,6 +20,7 @@ module.exports = {
     // Recreate aliases as we can't use the same babel aliases for styleguide
     resolve: {
       alias: {
+        // Fix issue with acorn parser import.
         acorn: require.resolve('acorn/dist/acorn.js'),
         // Make all aliases absolute appRoot.
         ...Object.keys(aliases).reduce(
