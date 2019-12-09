@@ -20,7 +20,7 @@ const include = (filepath) => {
       ) ||
       // Anything imported within irving packages should be included in build,
       // even if located within node_modules (but not nested node modules).
-      filepath.match(/@irvingjs\/[^/]*\/(?!node_modules)/)
+      filepath.match(/node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/)
     ) &&
     // Exclude minified JS.
     ! filepath.match(/\.min\.js$/)
@@ -28,6 +28,8 @@ const include = (filepath) => {
 
   return !! matches;
 };
+
+console.log(path.join(irvingRoot, 'babel.config.js'));
 
 /**
  * Get the context specific rules configuration.
