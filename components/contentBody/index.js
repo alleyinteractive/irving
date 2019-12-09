@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import styles from './contentBody.css';
 
-/* eslint-disable */
 const ContentBody = (props) => {
   const [truncateContent, setTruncation] = useState(false);
   const contentRef = useRef();
