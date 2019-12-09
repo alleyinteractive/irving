@@ -25,6 +25,7 @@ const IrvingPicture = (props) => {
         alt={alt}
         onLoad={onLoad}
         onError={onError}
+        theme={theme}
       />
     </picture>
   );

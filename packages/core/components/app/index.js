@@ -84,4 +84,5 @@ if (process.env.BROWSER) {
   hotApp = wrapWithStyles(withRedux(App));
 }
 
+/** @component */
 export default hotApp;

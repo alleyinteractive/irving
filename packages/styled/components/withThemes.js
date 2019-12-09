@@ -32,4 +32,5 @@ const withThemes = (themeMap) => (WrappedComponent) => {
   return ThemedComponent;
 };
 
+/** @component */
 export default withThemes;
