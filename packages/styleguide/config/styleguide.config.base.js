@@ -10,7 +10,10 @@ const clientconfig = webpackConfig({}, { mode: process.env.NODE_ENV })
 
 module.exports = {
   title: 'Irving',
-  require: [path.join(__dirname, '../styleguide.js')],
+  require: [
+    'core-js/stable',
+    'regenerator-runtime/runtime',
+  ],
   skipComponentsWithoutExample: true,
   styleguideComponents: {
     Wrapper: path.join(__dirname, '../components/wrapper.js'),
