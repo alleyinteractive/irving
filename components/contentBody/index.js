@@ -54,7 +54,6 @@ const ContentBody = (props) => {
       dispatchShowFullStory();
     }
   }, truncateContent);
-  console.log(truncateContent);
 
   return (
     <div className={styles.wrapper}>
