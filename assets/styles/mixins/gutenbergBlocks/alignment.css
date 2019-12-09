@@ -58,7 +58,7 @@
     width: 100vw;
   }
 
-  &:global(.wp-block[data-align=wide] img)  {
+  &:global(.wp-block[data-align=wide] img) {
     width: 100%;
   }
 }
