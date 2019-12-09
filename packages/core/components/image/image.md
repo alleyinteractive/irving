@@ -1,7 +1,9 @@
-Responsive image component. 
+Responsive image component.
 
 Image component with srcset/sizes and lazyloading
 ```js
+import Image from './image';
+
 <Image
     alt="Fringilla orci vivamus sit cras"
     aspectRatio={0.6667}
@@ -18,6 +20,8 @@ Image component with srcset/sizes and lazyloading
 
 Image component with picture tag and lazyloading
 ```js
+import Image from './image';
+
 <Image
     alt="Fringilla orci vivamus sit cras"
     aspectRatio={0.6667}
@@ -34,4 +38,4 @@ Image component with picture tag and lazyloading
     picture
     lazyload
 />
-````
+```
