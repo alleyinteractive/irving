@@ -1,6 +1,6 @@
 const path = require('path');
 const omit = require('lodash/fp/omit');
-const { irvingRoot } = require('@irvingjs/core/config/paths');
+const { irvingRoot } = require('./paths');
 const componentGlobs = {
   core: path.join(irvingRoot, 'components/**/*.js'),
   hoc: path.join(irvingRoot, 'components/hoc/**/*.js'),
