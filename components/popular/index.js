@@ -51,7 +51,7 @@ const Popular = ({
           }
         }
 
-        if ('in-feed' === themeName) {
+        if ('inFeed' === themeName) {
           setPosition();
         }
       }
