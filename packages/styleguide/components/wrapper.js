@@ -12,7 +12,6 @@ import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import { reducers } from '@irvingjs/core/reducers';
 import rootSaga from '@irvingjs/core/sagas';
 import defaultState, {
-  form,
   componentData,
 } from '@irvingjs/core/reducers/defaultState';
 import componentsReducer from '@irvingjs/core/reducers/componentsReducer';
@@ -32,7 +31,6 @@ const store = createStore(
   {
     ...defaultState,
     componentData,
-    testForm: form,
     loading: true,
     components: {
       defaults: [],
