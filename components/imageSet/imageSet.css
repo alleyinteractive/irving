@@ -16,6 +16,10 @@
         flex-flow: row nowrap;
       }
 
+      /* Default layout if there is no layout attribute coming from API
+      *  All columns will be equal in length which still looks good on the
+      *  double image caption format.
+      */
       .wp-block-column {
         margin-bottom: 0;
         margin-right: rem(10);
@@ -33,6 +37,24 @@
     .wp-block-column:nth-of-type(3n) {
       align-self: flex-end;
       margin-right: 0;
+    }
+
+    &.diptych {
+      .wp-block-column {
+        @media ($smMin) {
+          flex: 1 0 auto;
+          width: 36%;
+        }
+      }
+
+      .wp-block-column:nth-of-type(3n) {
+        align-self: flex-end;
+        margin-right: 0;
+
+        @media ($smMin) {
+          flex: 0 1 auto;
+        }
+      }
     }
 
     .imageSet__caption {

@@ -97,12 +97,12 @@
   }
 
   :global(.alignwide) {
-    margin-left: rem(-80);
-    margin-right: rem(-80);
+    margin-left: -20%;
+    margin-right: -20%;
 
     img {
-      max-width: 120%;
-      width: 120%;
+      max-width: 130%;
+      width: 130%;
     }
   }
 }
