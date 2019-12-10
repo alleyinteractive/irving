@@ -69,7 +69,7 @@
     }
   }
 
-  .editor-writing-flow .imageSet__innerBlockContainer [data-type="core/column"]:nth-of-type(3n) {
+  .editor-writing-flow .diptych .imageSet__innerBlockContainer [data-type="core/column"]:nth-of-type(3n) {
     align-self: flex-end;
     flex: 1;
   }
