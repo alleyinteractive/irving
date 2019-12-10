@@ -36,6 +36,7 @@
     }
 
     .imageSet__caption {
+      font-family: $sans;
       font-size: rem(14);
       font-weight: 400;
       margin-bottom: rem(5);
@@ -70,6 +71,7 @@
   }
 
   .editor-writing-flow [data-type="core/paragraph"] p.imageSet__caption {
+    font-family: $sans;
     font-size: rem(14);
     font-weight: 400;
   }
