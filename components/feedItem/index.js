@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
-import Link from 'components/helpers/link';
 import Eyebrow from '../eyebrow';
+import SponsoredFeedItem from './sponsored';
 
 // Styles
 import styles from './feedItem.css';
@@ -23,6 +23,7 @@ const FeedItem = ({
   isSponsored,
   sponsorTagline,
   sponsorUrl,
+  permalink,
 }) => {
   const [expandState, setExpandState] = useState({
     btnText: 'Expand',
@@ -56,30 +57,15 @@ const FeedItem = ({
   };
 
   if (isSponsored) {
-    const logo = findChildByName('image', children);
-
     return (
-      <article className={styles.wrapper}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>{title}</h1>
-          <div className={styles.meta}>
-            <h4 className={styles.sponsorMetaTag}>
-              Sponsored
-            </h4>
-          </div>
-        </header>
-        <div className={styles.sponsorExcerpt}>
-          <p>{teaserContent}</p>
-        </div>
-        <Link to={sponsorUrl} className={styles.sponsorLink}>
-          <div className={styles.sponsorLogo}>
-            {logo}
-          </div>
-          <span className={styles.sponsorTagline}>
-            {sponsorTagline}
-          </span>
-        </Link>
-      </article>
+      <SponsoredFeedItem
+        permalink={permalink}
+        title={title}
+        teaserContent={teaserContent}
+        url={sponsorUrl}
+        logo={image}
+        tagline={sponsorTagline}
+      />
     );
   }
 
@@ -172,6 +158,7 @@ FeedItem.propTypes = {
   isSponsored: PropTypes.bool,
   sponsorTagline: PropTypes.string,
   sponsorUrl: PropTypes.string,
+  permalink: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(FeedItem);
