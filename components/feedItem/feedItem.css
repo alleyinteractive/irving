@@ -96,8 +96,8 @@
   font-size: rem(12);
   font-weight: 700;
   letter-spacing: rem(1);
-  padding: rem(7) rem(14) rem(5);
   margin-bottom: rem(2);
+  padding: rem(7) rem(14) rem(5);
   text-transform: uppercase;
 }
 
