@@ -33,7 +33,9 @@ const ContentHeader = ({
       <div className={theme.intro} id="content--header">
         {eyebrow.content && (
           <Eyebrow
-            customEyebrow=""
+            customEyebrow={eyebrow.customEyebrow}
+            subTopic={eyebrow.subTopic}
+            subTopicLink={eyebrow.subTopicLink}
             themeName="Full Story"
             topic={eyebrow.content}
             topicLink={eyebrow.link}
@@ -65,6 +67,9 @@ ContentHeader.propTypes = {
     link: PropTypes.string,
     color: PropTypes.string,
     content: PropTypes.string,
+    customEyebrow: PropTypes.string,
+    subTopic: PropTypes.string,
+    subTopicLink: PropTypes.string,
   }),
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   deck: PropTypes.string.isRequired,
@@ -87,7 +92,10 @@ ContentHeader.defaultProps = {
   eyebrow: {
     color: '#000000',
     content: '',
+    customEyebrow: '',
     link: '',
+    subTopic: '',
+    subTopicLink: '',
   },
   headingLevel: 1,
   themeName: '',

@@ -28,5 +28,9 @@
         font-size: rem(100);
       }
     }
+
+    &:global(.has-text-align-center) {
+      text-align: center;
+    }
   }
 }
