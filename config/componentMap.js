@@ -66,6 +66,7 @@ import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import SponsoredModule from 'components/sponsoredModule';
 import StatsWidget from 'components/statsWidget';
+import StoryGroup from 'components/storyGroup';
 import SubtopicsSection from 'components/subtopicsSection';
 import Subscriptions from 'components/accounts/subscriptions';
 import TagLink from 'components/tagLink';
@@ -155,6 +156,7 @@ export const componentMap = {
   'social-sharing': SocialList,
   'social-item': SocialItem,
   'sponsored-module': SponsoredModule,
+  'story-group': StoryGroup,
   'tag-link': TagLink,
   tags: Tags,
   'teaser-item': TeaserItem,
