@@ -154,7 +154,7 @@ export const componentMap = {
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,
-  'sponsored-feed-item': FeedItem,
+  'sponsored': FeedItem,
   'sponsored-module': SponsoredModule,
   'tag-link': TagLink,
   tags: Tags,
@@ -175,7 +175,6 @@ export const componentMap = {
  * @returns {function} - React component
  */
 export default function getComponent(name) {
-  console.log(name);
   // Custom component
   if (componentMap[name]) {
     return componentMap[name];
