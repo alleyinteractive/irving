@@ -25,6 +25,7 @@ import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
 import Image from 'components/image/image';
+import ImageSet from 'components/imageSet';
 import InfiniteItemList from 'components/infiniteItemList';
 import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
@@ -132,6 +133,7 @@ export const componentMap = {
   'menu-item': MenuItem,
   'mittr-plugin-extension/content-list': ContentList,
   'mittr-plugin-extension/content-list-item': ContentListItem,
+  'mittr-plugin-extension/image-set': ImageSet,
   'mittr-plugin-extension/newsletter': Newsletter,
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,

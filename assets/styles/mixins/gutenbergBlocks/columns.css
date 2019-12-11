@@ -4,6 +4,10 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+
+    @media ($smMin) {
+      flex-flow: row nowrap;
+    }
   }
 
   :global(.wp-block-column) {
@@ -11,5 +15,9 @@
     margin: 0 0 rem(36);
     max-width: 48%;
     min-width: 25%;
+  }
+  /* stylelint-disable-next-line selector-max-specificity */
+  :global(.editor-writing-flow [data-type="core/columns"] .wp-block-columns>.editor-inner-blocks>.editor-block-list__layout) {
+    flex-flow: row nowrap;
   }
 }

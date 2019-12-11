@@ -250,9 +250,14 @@ const NewsletterSubscribe = ({
   );
 };
 
+NewsletterSubscribe.defaultProps = {
+  clientId: '',
+  mailchimpId: '',
+};
+
 NewsletterSubscribe.propTypes = {
-  clientId: PropTypes.string.isRequired,
-  mailchimpId: PropTypes.string.isRequired,
+  clientId: PropTypes.string,
+  mailchimpId: PropTypes.string,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
