@@ -154,7 +154,7 @@ export const componentMap = {
   'social-links': SocialList,
   'social-sharing': SocialList,
   'social-item': SocialItem,
-  'sponsored': FeedItem,
+  sponsored: FeedItem,
   'sponsored-module': SponsoredModule,
   'tag-link': TagLink,
   tags: Tags,
