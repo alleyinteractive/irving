@@ -139,6 +139,7 @@ export const componentMap = {
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
   'mittr-plugin-extension/magazine-story': MagazineStory,
+  newsletter: Newsletter,
   order: Order,
   'order-history': OrderHistory,
   pagination: Placeholder,
