@@ -16,6 +16,10 @@
         flex-flow: row nowrap;
       }
 
+      /* Default layout if there is no layout attribute coming from API
+      *  All columns will be equal in length which still looks good on the
+      *  double image caption format.
+      */
       .wp-block-column {
         margin-bottom: 0;
         margin-right: rem(10);
@@ -35,7 +39,26 @@
       margin-right: 0;
     }
 
+    &.diptych {
+      .wp-block-column {
+        @media ($smMin) {
+          flex: 1 0 auto;
+          width: 36%;
+        }
+      }
+
+      .wp-block-column:nth-of-type(3n) {
+        align-self: flex-end;
+        margin-right: 0;
+
+        @media ($smMin) {
+          flex: 0 1 auto;
+        }
+      }
+    }
+
     .imageSet__caption {
+      font-family: $sans;
       font-size: rem(14);
       font-weight: 400;
       margin-bottom: rem(5);
@@ -46,7 +69,7 @@
     }
   }
 
-  .editor-writing-flow .imageSet__innerBlockContainer [data-type="core/column"]:nth-of-type(3n) {
+  .editor-writing-flow .diptych .imageSet__innerBlockContainer [data-type="core/column"]:nth-of-type(3n) {
     align-self: flex-end;
     flex: 1;
   }
@@ -70,6 +93,7 @@
   }
 
   .editor-writing-flow [data-type="core/paragraph"] p.imageSet__caption {
+    font-family: $sans;
     font-size: rem(14);
     font-weight: 400;
   }
