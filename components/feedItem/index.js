@@ -4,7 +4,6 @@ import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 import Eyebrow from '../eyebrow';
-import SponsoredFeedItem from './sponsored';
 
 // Styles
 import styles from './feedItem.css';
@@ -20,10 +19,6 @@ const FeedItem = ({
   title,
   topic,
   topicLink,
-  isSponsored,
-  sponsorTagline,
-  sponsorUrl,
-  permalink,
 }) => {
   const [expandState, setExpandState] = useState({
     btnText: 'Expand',
@@ -55,19 +50,6 @@ const FeedItem = ({
       setContainerHeight(0);
     }
   };
-
-  if (isSponsored) {
-    return (
-      <SponsoredFeedItem
-        permalink={permalink}
-        title={title}
-        teaserContent={teaserContent}
-        url={sponsorUrl}
-        logo={image}
-        tagline={sponsorTagline}
-      />
-    );
-  }
 
   return (
     <article className={styles.wrapper}>
@@ -139,9 +121,6 @@ FeedItem.defaultProps = {
   includeExpandBtn: false,
   showImage: true,
   teaserContent: '',
-  isSponsored: false,
-  sponsorTagline: '',
-  sponsorUrl: '',
 };
 
 FeedItem.propTypes = {
@@ -155,10 +134,6 @@ FeedItem.propTypes = {
   topic: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,
-  isSponsored: PropTypes.bool,
-  sponsorTagline: PropTypes.string,
-  sponsorUrl: PropTypes.string,
-  permalink: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(FeedItem);

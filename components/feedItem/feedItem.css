@@ -132,7 +132,7 @@
   width: rem(80);
 
   img {
-    height: 100%;
+    width: 100%;
   }
 
   & > span {
