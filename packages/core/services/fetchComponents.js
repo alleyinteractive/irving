@@ -82,13 +82,19 @@ export async function fetchComponents(
     ...getQueryParamsFromCookies(cookie),
   });
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
+  const controller = new AbortController();
+  const { signal } = controller;
+  setTimeout(() => controller.abort(), 5000);
   const options = {
     headers: {
       Accept: 'application/json',
     },
     credentials: 'include', // Support XHR with basic auth.
+    signal,
   };
+
   const response = await fetch(apiUrl, { ...options });
+  console.log({ response });
   const data = await response.json();
   const { redirectTo, redirectStatus } = data;
 
