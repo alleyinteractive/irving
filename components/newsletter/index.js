@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import parse from 'html-react-parser';
 import jsonp from 'jsonp';
+import classNames from 'classnames';
 import queryString from 'query-string';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './newsletter.css';
@@ -14,6 +15,7 @@ const NewsletterSubscribe = ({
   description,
   color,
   imgLogoUrl,
+  themeName,
 }) => {
   // Set state variable userEmailInput which we use for the form input value.
   const [userEmailInput, setUserEmailInput] = useState('');
@@ -114,7 +116,10 @@ const NewsletterSubscribe = ({
   };
 
   return (
-    <aside className="newsletter__wrap">
+    <aside
+      className={classNames('newsletter__wrap', themeName)}
+      style={{ borderColor: color }}
+    >
       <form onSubmit={handleSubmit}>
         <header className="newsletter__subscribeHeader">
           {imgLogoUrl && (
@@ -253,6 +258,7 @@ const NewsletterSubscribe = ({
 NewsletterSubscribe.defaultProps = {
   clientId: '',
   mailchimpId: '',
+  themeName: '',
 };
 
 NewsletterSubscribe.propTypes = {
@@ -262,6 +268,7 @@ NewsletterSubscribe.propTypes = {
   description: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   imgLogoUrl: PropTypes.string.isRequired,
+  themeName: PropTypes.string,
 };
 
 export default withStyles(styles)(NewsletterSubscribe);
