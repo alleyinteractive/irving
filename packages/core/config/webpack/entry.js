@@ -1,4 +1,6 @@
+const path = require('path');
 const {
+  irvingRoot,
   serverRoot,
   clientRoot,
   proxyUrl,
@@ -13,7 +15,7 @@ module.exports = function getEntry(context) {
   const polyfills = [
     'core-js/stable',
     'regenerator-runtime/runtime',
-    'node-fetch/browser',
+    path.join(irvingRoot, 'utils/isomorphicFetch'),
     'abort-controller/polyfill',
   ];
 
