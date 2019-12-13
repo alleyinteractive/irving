@@ -8,6 +8,9 @@ import getService from './cacheService';
 import getLogService from './logService';
 
 const log = getLogService('irving:components');
+// To access environment variables at run time in a client context we must
+// access them through a global provided by the server render.
+const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
 
 /**
  * Get any query parameters that should be included with every components request.
@@ -15,9 +18,6 @@ const log = getLogService('irving:components');
  * @returns {object}
  */
 function getExtraQueryParams() {
-  // To access environment variables at run time in a client context we must
-  // access them through a global provided by the server render.
-  const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
   return Object
     .keys(env)
     .filter((key) => 0 === key.indexOf('API_QUERY_PARAM_'))
@@ -45,16 +45,12 @@ function getExtraQueryParams() {
  * @returns {object}
  */
 function getQueryParamsFromCookies(cookieData) {
-  // To access environment variables at run time in a client context we must
-  // access them through a global provided by the server render.
-  const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
   const cookieAllowList = env.COOKIE_MAP_LIST ?
     env.COOKIE_MAP_LIST.split(',') :
     [];
 
   const cookies = new Cookies(cookieData);
   const cookieObject = cookies.getAll({ doNotParse: true });
-
   const cookieQueryParams = pick(cookieAllowList)(cookieObject);
 
   return cookieQueryParams;
@@ -83,8 +79,13 @@ export async function fetchComponents(
     ...getQueryParamsFromCookies(cookie),
   });
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
+
+  // Create abort controller and set timeout to abort fetch call.
+  // Default timeout is 10s, but can be configured with env var.
   const controller = new AbortController();
-  setTimeout(() => controller.abort(), 5000);
+  const timeout = setTimeout(() => controller.abort(), env.FETCH_TIMEOUT || 10000);
+
+  // Set up fetch options.
   const options = {
     headers: {
       Accept: 'application/json',
@@ -92,9 +93,11 @@ export async function fetchComponents(
     credentials: 'include', // Support XHR with basic auth.
     signal: controller.signal,
   };
+  const response = await fetch(apiUrl, options);
 
-  const response = await fetch(apiUrl, { ...options });
-  console.log(response);
+  // Clear timeout once response is returned (no matter what it is).
+  clearTimeout(timeout);
+
   const data = await response.json();
   const { redirectTo, redirectStatus } = data;
 
