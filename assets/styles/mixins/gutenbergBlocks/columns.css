@@ -15,6 +15,10 @@
     margin: 0 0 rem(36);
     max-width: 48%;
     min-width: 25%;
+
+    &:global(.no-margin) {
+      margin: 0;
+    }
   }
   /* stylelint-disable-next-line selector-max-specificity */
   :global(.editor-writing-flow [data-type="core/columns"] .wp-block-columns>.editor-inner-blocks>.editor-block-list__layout) {

@@ -5,3 +5,7 @@
   display: block;
   margin: 0 0 rem(18);
 }
+
+@mixin no-margin {
+  margin: 0;
+}

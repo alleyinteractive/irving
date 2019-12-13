@@ -32,5 +32,13 @@
     &:global(.has-text-align-center) {
       text-align: center;
     }
+
+    &:global(.page-subheader) {
+      color: #000;
+      font-family: $sans;
+      font-size: rem(50);
+      font-weight: 600;
+      line-height: 1;
+    }
   }
 }
