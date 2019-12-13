@@ -1,6 +1,7 @@
 /* In-body heading styles */
 @mixin block-heading {
   big,
+  h1,
   h2,
   h3,
   h4,
@@ -8,7 +9,7 @@
   h6 {
     @include block-level-element;
     color: $gray;
-    font-family: $serif;
+    font-family: $sans;
     font-weight: 700;
     line-height: 1.2;
     margin-top: rem(10);
@@ -21,6 +22,19 @@
       &:hover {
         color: $brand-blue;
       }
+    }
+
+    &:global(.page-header) {
+      font-weight: 600;
+      margin-bottom: rem(10);
+    }
+  }
+
+  h1 {
+    font-size: rem(30);
+
+    @media ($mdMin) {
+      font-size: rem(40);
     }
   }
 

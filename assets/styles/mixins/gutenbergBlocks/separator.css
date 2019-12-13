@@ -5,10 +5,14 @@
   hr {
     &:global(.is-style-default),
     &:not(:global(.is-style-dots)):not(:global(.is-style-wide)) {
-      border: 1px solid $brand-blue;
+      border: 1px solid #000;
       margin: rem(32) auto;
-      max-width: rem(300);
+      max-width: 100%;
       width: 100%;
+
+      &:global(.more-margin) {
+        margin: rem(50) auto;
+      }
     }
 
     &:global(.is-style-dots) {
@@ -23,7 +27,7 @@
     }
 
     &:global(.is-style-wide) {
-      border: 4px solid $brand-blue;
+      border: 2px solid #000;
       margin: rem(32) auto;
       max-width: none;
       width: 100%;
