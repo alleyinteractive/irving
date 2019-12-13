@@ -1,0 +1,40 @@
+.wrap {
+  background: $white;
+  border-top: solid rem(2) $brown-gray;
+  margin-bottom: rem(20);
+  padding: rem(20);
+}
+
+.meta {
+  display: flex;
+}
+
+.title {
+  font-size: rem(26);
+  font-weight: 600;
+  line-height: 1.07;
+  margin-bottom: rem(15);
+  order: 1;
+  width: 100%;
+
+  @media ($smMin) {
+    font-size: rem(30);
+  }
+}
+
+.excerpt {
+  p {
+    color: $color-text;
+    font-family: $sans;
+    font-size: rem(18);
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.44;
+    margin-bottom: rem(18);
+
+    a {
+      font-weight: 400;
+      text-decoration: underline;
+    }
+  }
+}
