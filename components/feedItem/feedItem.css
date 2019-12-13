@@ -6,6 +6,11 @@
   margin-bottom: rem(15);
   padding: rem(20);
   width: auto;
+
+  &.storygroup {
+    border-top: 0;
+    padding: 0;
+  }
 }
 
 .content {
