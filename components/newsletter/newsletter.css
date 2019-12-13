@@ -12,6 +12,12 @@
     margin-bottom: rem(20);
     padding: rem(20) rem(10);
 
+    &.storygroup {
+      background: #fff;
+      border-top: 2px solid;
+      padding: rem(15) 0;
+    }
+
     .newsletter__signUpHeading,
     span {
       display: inline;

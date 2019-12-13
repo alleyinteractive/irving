@@ -67,6 +67,7 @@ import SocialList from 'components/socialList';
 import SponsoredModule from 'components/sponsoredModule';
 import SponsoredFeedItem from 'components/feedItem/sponsored';
 import StatsWidget from 'components/statsWidget';
+import StoryGroup from 'components/storyGroup';
 import SubtopicsSection from 'components/subtopicsSection';
 import Subscriptions from 'components/accounts/subscriptions';
 import TagLink from 'components/tagLink';
@@ -139,6 +140,7 @@ export const componentMap = {
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
   'mittr-plugin-extension/magazine-story': MagazineStory,
+  newsletter: Newsletter,
   order: Order,
   'order-history': OrderHistory,
   pagination: Placeholder,
@@ -157,6 +159,7 @@ export const componentMap = {
   'social-item': SocialItem,
   sponsored: SponsoredFeedItem,
   'sponsored-module': SponsoredModule,
+  'story-group': StoryGroup,
   'tag-link': TagLink,
   tags: Tags,
   'teaser-item': TeaserItem,
