@@ -1,6 +1,7 @@
 import queryString from 'query-string';
 import { Cookies } from 'react-cookie';
 import { pick } from 'lodash/fp';
+import AbortController from 'abort-controller';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
 import getService from './cacheService';
