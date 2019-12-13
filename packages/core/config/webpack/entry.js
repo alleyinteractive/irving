@@ -13,7 +13,7 @@ module.exports = function getEntry(context) {
   const polyfills = [
     'core-js/stable',
     'regenerator-runtime/runtime',
-    'isomorphic-fetch',
+    'node-fetch/browser',
     'abort-controller/polyfill',
   ];
 
