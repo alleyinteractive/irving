@@ -84,18 +84,17 @@ export async function fetchComponents(
   });
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
   const controller = new AbortController();
-  const { signal } = controller;
   setTimeout(() => controller.abort(), 5000);
   const options = {
     headers: {
       Accept: 'application/json',
     },
     credentials: 'include', // Support XHR with basic auth.
-    signal,
+    signal: controller.signal,
   };
 
   const response = await fetch(apiUrl, { ...options });
-  console.log({ response });
+  console.log(response);
   const data = await response.json();
   const { redirectTo, redirectStatus } = data;
 
