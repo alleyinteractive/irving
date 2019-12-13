@@ -14,6 +14,7 @@ module.exports = function getEntry(context) {
     'core-js/stable',
     'regenerator-runtime/runtime',
     'isomorphic-fetch',
+    'abort-controller/polyfill',
   ];
 
   switch (context) {
