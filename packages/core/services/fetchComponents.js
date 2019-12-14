@@ -83,7 +83,10 @@ export async function fetchComponents(
   // Create abort controller and set timeout to abort fetch call.
   // Default timeout is 10s, but can be configured with env var.
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), env.FETCH_TIMEOUT || 10000);
+  const timeout = setTimeout(
+    () => controller.abort(),
+    env.FETCH_TIMEOUT || 10000
+  );
 
   // Set up fetch options.
   const options = {
