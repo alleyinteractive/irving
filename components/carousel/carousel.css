@@ -1,0 +1,135 @@
+:global {
+  .wrapper {
+    margin-bottom: 40px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+
+    &.isVisible {
+      opacity: 1;
+    }
+
+    .image-gallery-slide {
+      background-color: $white;
+
+      span {
+        bottom: 0;
+        display: block;
+        font-family: $sans;
+        font-style: italic;
+      }
+    }
+
+    .image-gallery-image {
+      height: 0;
+      overflow: hidden;
+      padding-bottom: 66.66%;
+      position: relative;
+
+      img {
+        left: 50%;
+        max-height: 100%;
+        max-width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+      }
+    }
+
+    .image-credit {
+      background-color: $white;
+      color: #3e4451;
+      font-size: 0.75rem;
+      line-height: 1;
+      padding: 0.188rem 0.313rem 0;
+      text-align: right;
+    }
+
+    .image-description {
+      background-color: $white;
+      border-bottom: none;
+      caption-side: bottom;
+      color: #000;
+      font-size: rem(14);
+      font-weight: 200;
+      line-height: rem(18);
+      min-height: rem(40);
+      padding-left: 180px;
+      white-space: normal;
+      width: calc(100% - 180px);
+    }
+
+    .image-gallery-fullscreen-button {
+      bottom: rem(100);
+      left: 0;
+    }
+
+    .image-gallery-left-nav,
+    .image-gallery-right-nav {
+      background-color: transparent;
+      padding: 0;
+      top: 90%;
+
+      &::before {
+        content: '';
+      }
+    }
+
+    .image-gallery-left-nav {
+      border-bottom: 14px solid transparent;
+      border-right: 25px solid #000;
+      border-top: 14px solid transparent;
+      height: 0;
+      margin-right: 9px;
+      width: 0;
+    }
+
+    .image-gallery-right-nav {
+      border-bottom: 14px solid transparent;
+      border-left: 25px solid black;
+      border-top: 14px solid transparent;
+      height: 0;
+      margin-left: 9px;
+      margin-left: 12px;
+      right: 76%;
+      width: 0;
+    }
+
+    .image-gallery-index {
+      align-items: center;
+      background: $white;
+      border: 1px solid #000;
+      color: #000;
+      display: flex;
+      font-family: $sans;
+      font-size: rem(14);
+      height: rem(40);
+      justify-content: center;
+      left: rem(40);
+      position: absolute;
+      top: 87%;
+      width: rem(60);
+      z-index: 20;
+
+      &::before {
+        border: 1px solid #000;
+        content: ' ';
+        height: rem(40);
+        left: rem(3);
+        position: absolute;
+        top: rem(-7);
+        width: rem(60);
+        z-index: 0;
+      }
+    }
+
+    .image-gallery-index-current,
+    .image-gallery-index-total {
+      font-weight: 600;
+    }
+
+    .image-gallery-index-separator {
+      padding: 0 rem(5);
+    }
+  }
+}

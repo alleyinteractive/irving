@@ -5,6 +5,7 @@ import AuthorPage from 'components/authorPage';
 import Body from 'components/body';
 import Byline from 'components/byline';
 import CardStack from 'components/cardStack';
+import Carousel from 'components/carousel';
 import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
@@ -133,6 +134,7 @@ export const componentMap = {
   'mega-menu': MegaMenu,
   menu: Menu,
   'menu-item': MenuItem,
+  'mittr-plugin-extension/carousel': Carousel,
   'mittr-plugin-extension/content-list': ContentList,
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/image-set': ImageSet,

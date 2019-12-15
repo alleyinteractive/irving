@@ -78,6 +78,19 @@ module.exports = function getRules(context) {
     },
     {
       test: /\.css$/,
+      include: /node_modules/,
+      use: [
+        {
+          loader: isServer ? 'critical-style-loader' : 'style-loader',
+          options: {
+            transform,
+          },
+        },
+        'css-loader',
+      ],
+    },
+    {
+      test: /\.css$/,
       exclude,
       oneOf: [
         {
