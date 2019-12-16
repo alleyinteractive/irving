@@ -32,11 +32,13 @@ const Carousel = (props) => {
     >
       <ImageGallery
         useBrowserFullscreen={false}
-        showFullscreenButton
+        showFullscreenButton={false}
         showBullets={false}
         showIndex
+        indexSeparator="of"
         showThumbnails={false}
         showPlayButton={false}
+        slideDuration={160}
         items={carousel}
         renderItem={(item) => (
           <Fragment>
