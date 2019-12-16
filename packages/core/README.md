@@ -40,6 +40,7 @@ automatically deleted, defaults to 5 minutes
 * `PROXY_URL` - URL to proxy all server requests through.
 * `HTTPS_KEY_PATH` - Path to tls key relative to current home directory.
 * `HTTPS_CERT_PATH` - Path to tls cert relative to current home directory.
+* `FETCH_TIMEOUT` - Timeout after which primary call to `fetch` to retrieve component data will be aborted.
 
 #### Extra Query Params
 Any environment variable that is prefixed with `API_QUERY_PARAM_`, for example
