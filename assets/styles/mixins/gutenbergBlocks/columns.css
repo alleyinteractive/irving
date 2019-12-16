@@ -3,18 +3,22 @@
   :global(.wp-block-columns) {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
 
-    @media ($smMin) {
+    @media ($mdMin) {
       flex-flow: row nowrap;
+      justify-content: space-between;
     }
   }
 
   :global(.wp-block-column) {
     flex: 1 1 auto;
     margin: 0 0 rem(36);
-    max-width: 48%;
+    max-width: 100%;
     min-width: 25%;
+
+    @media ($mdMin) {
+      max-width: 48%;
+    }
 
     &:global(.no-margin) {
       margin: 0;
