@@ -8,6 +8,19 @@
       opacity: 1;
     }
 
+    /* stylelint-disable selector-max-specificity */
+    &.wide {
+      margin-left: -20%;
+      margin-right: -20%;
+      max-width: 130%;
+      width: 130%;
+
+      .image-gallery-image img {
+        width: 100%;
+      }
+    }
+    /* stylelint-enbale selector-max-specificity */
+
     .image-gallery-slide {
       background-color: $white;
 

@@ -7,7 +7,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import styles from './carousel.css';
 
 const Carousel = (props) => {
-  const { images } = props;
+  const { align, images } = props;
   const carousel = images.map((image) => {
     const imageProps = {
       original: image.original,
@@ -28,6 +28,7 @@ const Carousel = (props) => {
     <div className={classNames(
       'wrapper',
       isVisible ? 'isVisible' : '',
+      align,
     )}
     >
       <ImageGallery
@@ -94,7 +95,12 @@ const Carousel = (props) => {
   );
 };
 
+Carousel.defaultProps = {
+  align: '',
+};
+
 Carousel.propTypes = {
+  align: PropTypes.string,
   images: PropTypes.arrayOf(
     PropTypes.shape({
       original: PropTypes.string.isRequired,
