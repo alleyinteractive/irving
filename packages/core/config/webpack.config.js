@@ -8,12 +8,14 @@ module.exports = (env, argv) => {
   const isProd = 'production' === mode;
   const server = getConfigService(mode, 'server');
   const client = getConfigService(mode, 'client');
+  const extensions = ['.js', '.json'];
   const multiConfig = [
     {
       context: buildContext,
       name: 'client',
       mode,
       resolve: {
+        extensions,
         alias: client.getAlias(),
       },
       devtool: client.getDevTool(),
@@ -38,6 +40,7 @@ module.exports = (env, argv) => {
       devtool: server.getDevTool(),
       target: 'node',
       resolve: {
+        extensions,
         alias: server.getAlias(),
       },
       // Quiet bundle size errors, as they are not applicable for code executed in NodeJS.
