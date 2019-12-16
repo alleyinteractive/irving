@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { appRoot } = require('../paths');
+const { getConfigArray } = require('../../utils/getConfigValue');
 
 /**
  * Get the client available environment variables.
@@ -18,8 +19,16 @@ module.exports = function getEnv() {
 
   // Only include whitelisted variables for client environments to avoid leaking
   // sensitive information.
+  const whitelistArray = getConfigArray('envWhitelist', [
+    'NODE_ENV',
+    'API_ROOT_URL',
+    'DEBUG',
+    'ROOT_URL',
+    'COOKIE_MAP_LIST',
+    'FETCH_TIMEOUT',
+  ]);
   const whitelist = [
-    new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL|COOKIE_MAP_LIST'),
+    new RegExp(whitelistArray.join('|')),
     new RegExp('^API_QUERY_PARAM'),
   ];
   return Object

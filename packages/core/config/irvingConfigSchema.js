@@ -2,6 +2,7 @@
 module.exports = {
   name: '',
   babelConfig: [() => {}],
+  envWhitelist: [() => []],
   cacheService: () => {},
   configFields: [() => {}],
   startServer: () => {},
