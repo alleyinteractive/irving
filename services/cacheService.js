@@ -1,4 +1,3 @@
-let service;
 const defaultService = {
   get: () => null,
   set: () => {},
