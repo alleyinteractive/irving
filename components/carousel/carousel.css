@@ -1,6 +1,6 @@
 :global {
   .wrapper {
-    margin-bottom: 40px;
+    margin-bottom: rem(40);
     opacity: 0;
     transition: opacity 0.2s ease;
 
@@ -102,22 +102,22 @@
     }
 
     .image-gallery-left-nav {
-      border-bottom: 14px solid transparent;
-      border-right: 25px solid #000;
-      border-top: 14px solid transparent;
+      border-bottom: rem(14) solid transparent;
+      border-right: rem(25) solid #000;
+      border-top: rem(14) solid transparent;
       height: 0;
-      margin-right: 9px;
+      margin-right: rem(9);
       width: 0;
     }
 
     .image-gallery-right-nav {
-      border-bottom: 14px solid transparent;
-      border-left: 25px solid black;
-      border-top: 14px solid transparent;
+      border-bottom: rem(14) solid transparent;
+      border-left: rem(25) solid black;
+      border-top: rem(14) solid transparent;
       height: 0;
       left: rem(110);
-      margin-left: 9px;
-      margin-left: 12px;
+      margin-left: rem(9);
+      margin-left: rem(12);
       width: 0;
     }
 
