@@ -9,6 +9,7 @@ import Carousel from 'components/carousel';
 import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
+import CompanyListItem from 'components/companyListItem';
 import ConfirmRegistration from 'components/accounts/register/confirm';
 import ContentArea from 'components/contentArea';
 import ContentBody from 'components/contentBody';
@@ -125,6 +126,7 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
+  'list-50-item': CompanyListItem,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
