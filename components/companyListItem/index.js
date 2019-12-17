@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import Link from 'components/helpers/link';
+import toReactElement from 'utils/toReactElement';
 
 import styles from './companyListItem.css';
 
@@ -16,51 +18,69 @@ const CompanyListItem = ({
   summary,
   statTitle,
   statDescription,
-}) => (
-  <div className={styles.wrapper}>
-    <div className={styles.header}>
-      <span className={styles.rank}>{rank}</span>
-      <h1 className={styles.companyName}>{companyName}</h1>
-    </div>
-    <ul className={styles.companyStats}>
-      {0 < headquarters.length && (
-        <li><strong>Headquarters</strong>{' '}{headquarters}</li>
-      )}
-      {0 < industry.length && (
-        <li><strong>Industry</strong>{' '}
-          {/* Some industries may contain HTML that need to be escaped. */}
-          <div
-            className={styles.industry}
-            dangerouslySetInnerHTML={{ __html: industry }}
-          />
-        </li>
-      )}
-      {0 < status.length && (
-        <li><strong>Status</strong>{' '}{status}</li>
-      )}
-      {0 < yearsOnList.length && (
-        <li><strong>Years on the List</strong>{' '}{
-          yearsOnList.map((year, key) => {
-            if (key !== yearsOnList.length - 1) {
-              return <span>{year}{' , '}</span>;
-            }
+  relatedStories,
+}) => {
+  console.log(relatedStories);
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.header}>
+        <span className={styles.rank}>{rank}</span>
+        <h1 className={styles.companyName}>{companyName}</h1>
+      </div>
+      <ul className={styles.companyStats}>
+        {0 < headquarters.length && (
+          <li><strong>Headquarters</strong>{' '}{headquarters}</li>
+        )}
+        {0 < industry.length && (
+          <li><strong>Industry</strong>{' '}
+            {/* Some industries may contain HTML that need to be escaped. */}
+            <div
+              className={styles.industry}
+              dangerouslySetInnerHTML={{ __html: industry }}
+            />
+          </li>
+        )}
+        {0 < status.length && (
+          <li><strong>Status</strong>{' '}{status}</li>
+        )}
+        {0 < yearsOnList.length && (
+          <li><strong>Years on the List</strong>{' '}{
+            yearsOnList.map((year, key) => {
+              if (key !== yearsOnList.length - 1) {
+                return <span>{year}{' , '}</span>;
+              }
 
-            return <span>{year}</span>;
-          })}
-        </li>
-      )}
-      {0 < valuation.length && (
-        <li><strong>Valuation</strong>{' '}{valuation}</li>
-      )}
-    </ul>
-    <div className={styles.companyBody}>
-      <p><strong>Summary</strong>{' '}{summary}</p>
-      {(0 < statTitle.length && 0 < statDescription.length) && (
-        <p><strong>{statTitle}</strong>{' '}{statDescription}</p>
+              return <span>{year}</span>;
+            })}
+          </li>
+        )}
+        {0 < valuation.length && (
+          <li><strong>Valuation</strong>{' '}{valuation}</li>
+        )}
+      </ul>
+      <div className={styles.companyBody}>
+        <p><strong>Summary</strong>{' '}{summary}</p>
+        {(0 < statTitle.length && 0 < statDescription.length) && (
+          <p><strong>{statTitle}</strong>{' '}{statDescription}</p>
+        )}
+      </div>
+      {0 < relatedStories.length && (
+        <div className={styles.relatedStoryGroup}>
+          <h2>Related Stories</h2>
+          <ul className={styles.relatedStories}>
+            {relatedStories.map((story) => (
+              <li className={styles.relatedStory} key={story.title}>
+                {toReactElement(story.image)}
+
+                <Link to={story.permalink}>{story.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
-  </div>
-);
+  );
+};
 
 CompanyListItem.propTypes = {
   rank: PropTypes.number.isRequired,
@@ -73,6 +93,7 @@ CompanyListItem.propTypes = {
   summary: PropTypes.string.isRequired,
   statTitle: PropTypes.string.isRequired,
   statDescription: PropTypes.string.isRequired,
+  relatedStories: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(CompanyListItem);
