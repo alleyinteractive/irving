@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "preinstall": "npx check-node-version --package",
-    "build": "webpack --config config/webpack.config.js --mode production",
+    "preflight": "npx @automattic/vip-go-preflight-checks",
+    "build": "if [ -z $VIP_GO_APP_ID ]; then npm run webpack; else exit 0; fi",
+    "webpack": "webpack --config config/webpack.config.js --mode production",
     "dev": "NODE_ENV=development node nodemon.js",
     "start": "NODE_ENV=production node server/index.js",
     "postinstall": "npm run build",
