@@ -25,9 +25,7 @@
   > blockquote {
     @include block-level-element;
     @include cite;
-    border-bottom: 1px solid $black;
     border-left: 0;
-    border-top: 1px solid $black;
     clear: both;
     color: $black;
     padding: rem(36) 0;
@@ -35,15 +33,33 @@
     p {
       font-family: $sans;
       font-size: rem(22);
-      font-style: italic;
       font-weight: 300;
-      line-height: calc(38/28);
+      line-height: 1.2;
       margin-bottom: 0;
     }
 
-    &:global(.is-style-large) {
+    &:global(.is-style-large),
+    &:global(.is-style-default) {
+      border-top: 4px solid #000;
+      padding-top: rem(20);
+
+      @media ($mdMin) {
+        border: 0;
+      }
+
       p {
-        font-size: rem(28);
+        font-size: rem(40);
+        font-weight: 600;
+
+        @media ($lgMin) {
+          font-size: rem(45);
+        }
+      }
+    }
+
+    &:global(.is-style-default) {
+      p {
+        font-family: $serif-text;
       }
     }
   }
@@ -54,10 +70,8 @@
     @include block-alignment;
     @include block-level-element;
     @include cite;
-    border-bottom: 1px solid $black;
-    border-top: 1px solid $black;
     font-family: $sans;
-    padding: rem(36) 0;
+    padding: rem(20) 0;
 
     @media ($lgMin) {
       margin: 0 rem(-50) rem(36) rem(-50);
@@ -68,19 +82,35 @@
         margin-left: rem(-50);
       }
     }
-
+    
     &:global(.alignright) {
+      @media ($mdMax) {
+        border-top: 4px solid #000;
+        display: block;
+        float: none;
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+      }
+
       @media ($lgMin) {
-        margin-right: rem(-50);
+        margin-right: rem(-115);
+        tidy-span: 4;
+      }
+
+      p {
+        font-size: rem(24);
+        font-weight: 600;
+        line-height: 1.2;
+
+        @media ($lgMin) {
+          font-size: rem(26);
+        }
       }
     }
 
     p {
       font-family: $sans;
-      font-size: rem(28);
-      font-style: italic;
-      font-weight: 300;
-      line-height: calc(38/28);
       margin-bottom: 0;
     }
   }
