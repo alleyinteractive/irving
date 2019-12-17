@@ -3,6 +3,7 @@ const proxy = require('http-proxy-middleware');
 const http = require('http');
 const https = require('https');
 const express = require('express');
+const { server } = require('@automattic/vip-go');
 
 // Support isomorphic environment variables from local .env file
 require('dotenv').config();
@@ -65,8 +66,8 @@ app.use((err, req, res, next) => {
   return res.sendStatus(500);
 });
 
-let server;
-if (HTTPS_KEY_PATH && HTTPS_CERT_PATH) {
+let vipServer;
+if (HTTPS_KEY_PATH && HTTPS_CERT_PATH && 'development' === NODE_ENV) {
   const os = require('os');
   const fs = require('fs');
   const path = require('path');
@@ -86,18 +87,15 @@ if (HTTPS_KEY_PATH && HTTPS_CERT_PATH) {
     'utf8'
   );
 
-  server = https.createServer({ key, cert }, app);
-} else {
-  server = http.createServer(app);
-}
+  vipServer = https.createServer({ key, cert }, app);
+  vipServer.listen(PORT);
+  console.log(`Server listening on port ${PORT}!`);
 
-server.listen(PORT);
-console.log(`Server listening on port ${PORT}!`);
-
-// Open app for convenience and to get the initial build started.
-if ('development' === NODE_ENV) {
+  // Open app for convenience and to get the initial build started.
   const openBrowser = require('react-dev-utils/openBrowser');
   openBrowser(rootUrl);
+} else {
+  vipServer = server(app, { PORT });
 }
 
 // Handle uncaught promise exceptions.
