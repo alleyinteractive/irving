@@ -1,6 +1,5 @@
 /* eslint-disable global-require, no-console */
 const proxy = require('http-proxy-middleware');
-const http = require('http');
 const https = require('https');
 const express = require('express');
 const { server } = require('@automattic/vip-go');
