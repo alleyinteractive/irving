@@ -1,3 +1,9 @@
+let service;
+const defaultService = {
+  get: () => null,
+  set: () => {},
+};
+
 /**
  * @typedef {object} CacheService
  * @property {function} get
@@ -13,7 +19,7 @@ const getService = () => {
   if (! process.env.BROWSER) {
     // Redis env variables have not been configured.
     if (! process.env.REDIS_MASTER) {
-      return false;
+      return defaultService;
     }
 
     let Redis;
@@ -21,7 +27,7 @@ const getService = () => {
     try {
       Redis = require('ioredis'); // eslint-disable-line global-require
     } catch (err) {
-      return false;
+      return defaultService;
     }
 
     const [host, port] = (process.env.REDIS_MASTER).split(':');
@@ -56,7 +62,7 @@ const getService = () => {
     };
   }
 
-  return false;
+  return defaultService;
 };
 
 module.exports = getService;
