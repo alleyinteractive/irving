@@ -78,7 +78,6 @@
     }
 
     &:global(.alignleft) {
-      
       @media ($lgMin) {
         margin-left: rem(-50);
       }
