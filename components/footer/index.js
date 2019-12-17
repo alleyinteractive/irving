@@ -6,7 +6,12 @@ import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
 import styles from './footer.css';
 
-const Footer = ({ children, copyrightLink, missionStatement }) => {
+const Footer = ({
+  children,
+  copyrightLink,
+  missionStatement,
+  themeName,
+}) => {
   const menu = findChildByName('menu', children);
   return (
     <footer className={styles.container} aria-labelledby="footer">
@@ -25,7 +30,9 @@ const Footer = ({ children, copyrightLink, missionStatement }) => {
             <span>Editions</span>
           </Link>
         </header>
-        <div className={styles.menu}>{menu}</div>
+        {'simpleFooter' !== themeName && (
+          <div className={styles.menu}>{menu}</div>
+        )}
         <div className={styles.copyright}>
           <a href={copyrightLink}>MIT Technology Review © 2019</a>
         </div>
@@ -34,10 +41,15 @@ const Footer = ({ children, copyrightLink, missionStatement }) => {
   );
 };
 
+Footer.defaultProps = {
+  themeName: '',
+};
+
 Footer.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   missionStatement: PropTypes.string.isRequired,
   copyrightLink: PropTypes.string.isRequired,
+  themeName: PropTypes.string,
 };
 
 export default withStyles(styles)(Footer);
