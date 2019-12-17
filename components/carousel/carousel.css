@@ -93,7 +93,7 @@
       top: 110%;
 
       @media ($mdMin) {
-        top: 90%;
+        top: 95%;
       }
 
       &::before {
@@ -139,7 +139,7 @@
       z-index: 20;
 
       @media ($mdMin) {
-        top: 87%;
+        top: 92%;
       }
 
       &::before {
