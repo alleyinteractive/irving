@@ -2,10 +2,6 @@
   background-color: $white;
   padding-top: rem(20);
 
-  @media ($lgMin) {
-    padding: rem(20);
-  }
-
   :global(.body--feed) &,
   :global(.body--search) &,
   :global(.body--author) &,
