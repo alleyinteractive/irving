@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
 import toReactElement from 'utils/toReactElement';
@@ -66,13 +67,19 @@ const CompanyListItem = ({
       </div>
       {0 < relatedStories.length && (
         <div className={styles.relatedStoryGroup}>
-          <h2>Related Stories</h2>
+          <h2 className={styles.relatedHeader}>
+            {__('Related Stories', 'mittr')}
+          </h2>
           <ul className={styles.relatedStories}>
             {relatedStories.map((story) => (
               <li className={styles.relatedStory} key={story.title}>
                 {toReactElement(story.image)}
-
-                <Link to={story.permalink}>{story.title}</Link>
+                <Link
+                  to={story.permalink}
+                  className={styles.relatedStoryLink}
+                >
+                  {story.title}
+                </Link>
               </li>
             ))}
           </ul>

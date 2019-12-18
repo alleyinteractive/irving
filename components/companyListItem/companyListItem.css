@@ -54,3 +54,23 @@
     }
   }
 }
+
+.relatedStoryGroup {
+  border-top: 1px solid #000;
+  margin-top: rem(20);
+  padding: rem(10) 0;
+}
+
+.relatedHeader {
+  font-size: rem(13);
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: rem(10);
+  text-transform: uppercase;
+}
+
+.relatedStoryLink {
+  color: #ff7d75;
+  font-size: rem(17);
+  font-weight: 600;
+}
