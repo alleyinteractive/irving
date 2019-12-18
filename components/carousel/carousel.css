@@ -1,8 +1,12 @@
 :global {
   .wrapper {
-    margin-bottom: rem(40);
+    margin-bottom: rem(72);
     opacity: 0;
     transition: opacity 0.2s ease;
+
+    @media ($mdMin) {
+      margin-bottom: rem(40);
+    }
 
     &.isVisible {
       opacity: 1;
@@ -10,13 +14,24 @@
 
     /* stylelint-disable selector-max-specificity */
     &.wide {
-      margin-left: -20%;
-      margin-right: -20%;
-      max-width: 130%;
-      width: 130%;
+      @media ($mdMin) {
+        margin-left: -20%;
+        margin-right: -20%;
+        max-width: 130%;
+        width: 130%;
 
-      .image-gallery-image img {
-        width: 100%;
+        .image-gallery-image img {
+          width: 100%;
+        }
+
+        .image-gallery-left-nav,
+        .image-gallery-right-nav {
+          top: 97%;
+        }
+
+        .image-gallery-index {
+          top: 94%;
+        }
       }
     }
     /* stylelint-enbale selector-max-specificity */
@@ -67,6 +82,7 @@
       line-height: rem(18);
       min-height: rem(40);
       padding-left: 0;
+      padding-top: rem(15);
       text-align: left;
       white-space: normal;
       width: 100%;
@@ -93,7 +109,7 @@
       top: 110%;
 
       @media ($mdMin) {
-        top: 90%;
+        top: 95%;
       }
 
       &::before {
@@ -139,7 +155,7 @@
       z-index: 20;
 
       @media ($mdMin) {
-        top: 87%;
+        top: 92%;
       }
 
       &::before {
