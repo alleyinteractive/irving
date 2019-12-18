@@ -33,12 +33,13 @@ const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
 
 ContentList.defaultProps = {
   listTitle: '',
+  children: [],
 };
 
 ContentList.propTypes = {
   listTitle: PropTypes.string,
   align: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.arrayOf(PropTypes.element),
 };
 
 export default withStyles(styles)(ContentList);

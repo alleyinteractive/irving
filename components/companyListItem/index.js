@@ -6,11 +6,13 @@ import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
 import classNames from 'classnames';
 import toReactElement from 'utils/toReactElement';
+import { findChildByName } from 'utils/children';
 
 import styles from './companyListItem.css';
 
 const CompanyListItem = ({
   rank,
+  children,
   companyName,
   headquarters,
   industry,
@@ -22,139 +24,148 @@ const CompanyListItem = ({
   statDescription,
   relatedStories,
   listYearsAvailable,
-}) => (
-  <div className={styles.wrapper} id={companyName}>
-    <div className={styles.header}>
-      <span className={styles.rank}>{rank}</span>
-      <h1 className={styles.companyName}>{companyName}</h1>
-    </div>
+}) => {
+  const gutenbergContent = findChildByName('gutenberg-content', children);
+  return (
+    <div className={styles.wrapper} id={companyName}>
+      <div className={styles.header}>
+        <span className={styles.rank}>{rank}</span>
+        <h1 className={styles.companyName}>{companyName}</h1>
+      </div>
 
-    <ul className={styles.companyStats}>
-      {0 < headquarters.length && (
-        <li>
-          <strong>{__('Headquarters', 'mittr')}</strong>
-          {' '}{headquarters}
-        </li>
-      )}
-      {0 < industry.length && (
-        <li>
-          <strong>{__('Industry', 'mittr')}</strong>
-          {' '}
-          {/* Some industries may contain HTML that needs to be escaped. */}
-          <div
-            className={styles.industry}
-            dangerouslySetInnerHTML={{ __html: industry }}
-          />
-        </li>
-      )}
-      {0 < status.length && (
-        <li>
-          <strong>{__('Status', 'mittr')}</strong>
-          {' '}{status}
-        </li>
-      )}
-      {0 < yearsOnList.length && (
-        <li>
-          <strong>{__('Years on the List', 'mittr')}</strong>
-          {' '}{
-            yearsOnList.map((year, key) => {
-              const isLastItem = key === yearsOnList.length - 1;
+      <ul className={styles.companyStats}>
+        {0 < headquarters.length && (
+          <li>
+            <strong>{__('Headquarters', 'mittr')}</strong>
+            {' '}{headquarters}
+          </li>
+        )}
+        {0 < industry.length && (
+          <li>
+            <strong>{__('Industry', 'mittr')}</strong>
+            {' '}
+            {/* Some industries may contain HTML that needs to be escaped. */}
+            <div
+              className={styles.industry}
+              dangerouslySetInnerHTML={{ __html: industry }}
+            />
+          </li>
+        )}
+        {0 < status.length && (
+          <li>
+            <strong>{__('Status', 'mittr')}</strong>
+            {' '}{status}
+          </li>
+        )}
+        {0 < yearsOnList.length && (
+          <li>
+            <strong>{__('Years on the List', 'mittr')}</strong>
+            {' '}{
+              yearsOnList.map((year, key) => {
+                const isLastItem = key === yearsOnList.length - 1;
 
-              const foundItem = listYearsAvailable.filter(
-                (obj) => obj.name === year
-              );
+                const foundItem = listYearsAvailable.filter(
+                  (obj) => obj.name === year
+                );
 
-              if (0 < foundItem.length) {
-                const { permalink } = foundItem[0];
+                if (0 < foundItem.length) {
+                  const { permalink } = foundItem[0];
 
-                if (! isLastItem) {
+                  if (! isLastItem) {
+                    return (
+                      <React.Fragment>
+                        <Link
+                          className={styles.yearLink}
+                          to={permalink}
+                          key={year}
+                        >
+                          {year}
+                        </Link>
+                        {' , '}
+                      </React.Fragment>
+                    );
+                  }
+
                   return (
-                    <React.Fragment>
-                      <Link
-                        className={styles.yearLink}
-                        to={permalink}
-                        key={year}
-                      >
-                        {year}
-                      </Link>
-                      {' , '}
-                    </React.Fragment>
+                    <Link
+                      className={styles.yearLink}
+                      to={permalink}
+                      key={year}
+                    >
+                      {year}
+                    </Link>
                   );
                 }
 
-                return (
-                  <Link
-                    className={styles.yearLink}
-                    to={permalink}
-                    key={year}
-                  >
-                    {year}
-                  </Link>
-                );
-              }
+                if (! isLastItem) {
+                  return <span key={year}>{year}{' , '}</span>;
+                }
 
-              if (! isLastItem) {
-                return <span key={year}>{year}{' , '}</span>;
-              }
+                return <span key={year}>{year}</span>;
+              })}
+          </li>
+        )}
+        {0 < valuation.length && (
+          <li>
+            <strong>{__('Valuation', 'mittr')}</strong>
+            {' '}{valuation}
+          </li>
+        )}
+      </ul>
 
-              return <span key={year}>{year}</span>;
-            })}
-        </li>
-      )}
-      {0 < valuation.length && (
-        <li>
-          <strong>{__('Valuation', 'mittr')}</strong>
-          {' '}{valuation}
-        </li>
-      )}
-    </ul>
+      <div className={styles.companyBody}>
+        <p>
+          <strong>{__('Summary', 'mittr')}</strong>
+          {' '}{summary}
+        </p>
+        {gutenbergContent}
+        {(0 < statTitle.length && 0 < statDescription.length) && (
+          <p><strong>{statTitle}</strong>{' '}{statDescription}</p>
+        )}
+      </div>
 
-    <div className={styles.companyBody}>
-      <p>
-        <strong>{__('Summary', 'mittr')}</strong>
-        {' '}{summary}
-      </p>
-      {(0 < statTitle.length && 0 < statDescription.length) && (
-        <p><strong>{statTitle}</strong>{' '}{statDescription}</p>
+      {0 < relatedStories.length && (
+        <div className={styles.relatedStoryGroup}>
+          <h2 className={styles.relatedHeader}>
+            {__('Related Stories', 'mittr')}
+          </h2>
+
+          <ul className={styles.relatedStories}>
+            {relatedStories.map((story) => (
+              <li
+                className={classNames(styles.relatedStory, {
+                  [styles.noFeaturedImage]: ! story.image,
+                })}
+                key={story.title}
+              >
+                {story.image && (
+                  <div className={styles.relatedStoryImage}>
+                    {toReactElement(story.image)}
+                  </div>
+                )}
+
+                <Link
+                  to={story.permalink}
+                  className={styles.relatedStoryLink}
+                >
+                  {story.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
+  );
+};
 
-    {0 < relatedStories.length && (
-      <div className={styles.relatedStoryGroup}>
-        <h2 className={styles.relatedHeader}>
-          {__('Related Stories', 'mittr')}
-        </h2>
-
-        <ul className={styles.relatedStories}>
-          {relatedStories.map((story) => (
-            <li
-              className={classNames(styles.relatedStory, {
-                [styles.noFeaturedImage]: ! story.image,
-              })}
-              key={story.title}
-            >
-              {story.image && (
-                <div className={styles.relatedStoryImage}>
-                  {toReactElement(story.image)}
-                </div>
-              )}
-
-              <Link
-                to={story.permalink}
-                className={styles.relatedStoryLink}
-              >
-                {story.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
-  </div>
-);
+CompanyListItem.defaultProps = {
+  children: [],
+};
 
 CompanyListItem.propTypes = {
   rank: PropTypes.number.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element),
   companyName: PropTypes.string.isRequired,
   headquarters: PropTypes.string.isRequired,
   industry: PropTypes.string.isRequired,
