@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
+import classNames from 'classnames';
 import toReactElement from 'utils/toReactElement';
 
 import styles from './companyListItem.css';
@@ -26,6 +27,7 @@ const CompanyListItem = ({
       <span className={styles.rank}>{rank}</span>
       <h1 className={styles.companyName}>{companyName}</h1>
     </div>
+
     <ul className={styles.companyStats}>
       {0 < headquarters.length && (
         <li>
@@ -37,7 +39,7 @@ const CompanyListItem = ({
         <li>
           <strong>{__('Industry', 'mittr')}</strong>
           {' '}
-          {/* Some industries may contain HTML that need to be escaped. */}
+          {/* Some industries may contain HTML that needs to be escaped. */}
           <div
             className={styles.industry}
             dangerouslySetInnerHTML={{ __html: industry }}
@@ -56,10 +58,10 @@ const CompanyListItem = ({
           {' '}{
             yearsOnList.map((year, key) => {
               if (key !== yearsOnList.length - 1) {
-                return <span>{year}{' , '}</span>;
+                return <span key={year}>{year}{' , '}</span>;
               }
 
-              return <span>{year}</span>;
+              return <span key={year}>{year}</span>;
             })}
         </li>
       )}
@@ -86,12 +88,21 @@ const CompanyListItem = ({
         <h2 className={styles.relatedHeader}>
           {__('Related Stories', 'mittr')}
         </h2>
+
         <ul className={styles.relatedStories}>
           {relatedStories.map((story) => (
-            <li className={styles.relatedStory} key={story.title}>
-              <div className={styles.relatedStoryImage}>
-                {toReactElement(story.image)}
-              </div>
+            <li
+              className={classNames(styles.relatedStory, {
+                [styles.noFeaturedImage]: ! story.image,
+              })}
+              key={story.title}
+            >
+              {story.image && (
+                <div className={styles.relatedStoryImage}>
+                  {toReactElement(story.image)}
+                </div>
+              )}
+
               <Link
                 to={story.permalink}
                 className={styles.relatedStoryLink}
