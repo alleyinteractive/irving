@@ -21,6 +21,7 @@ const CompanyListItem = ({
   statTitle,
   statDescription,
   relatedStories,
+  listYearsAvailable,
 }) => (
   <div className={styles.wrapper} id={companyName}>
     <div className={styles.header}>
@@ -57,7 +58,42 @@ const CompanyListItem = ({
           <strong>{__('Years on the List', 'mittr')}</strong>
           {' '}{
             yearsOnList.map((year, key) => {
-              if (key !== yearsOnList.length - 1) {
+              const isLastItem = key === yearsOnList.length - 1;
+
+              const foundItem = listYearsAvailable.filter(
+                (obj) => obj.name === year
+              );
+
+              if (0 < foundItem.length) {
+                const { permalink } = foundItem[0];
+
+                if (! isLastItem) {
+                  return (
+                    <React.Fragment>
+                      <Link
+                        className={styles.yearLink}
+                        to={permalink}
+                        key={year}
+                      >
+                        {year}
+                      </Link>
+                      {' , '}
+                    </React.Fragment>
+                  );
+                }
+
+                return (
+                  <Link
+                    className={styles.yearLink}
+                    to={permalink}
+                    key={year}
+                  >
+                    {year}
+                  </Link>
+                );
+              }
+
+              if (! isLastItem) {
                 return <span key={year}>{year}{' , '}</span>;
               }
 
@@ -129,6 +165,7 @@ CompanyListItem.propTypes = {
   statTitle: PropTypes.string.isRequired,
   statDescription: PropTypes.string.isRequired,
   relatedStories: PropTypes.array.isRequired,
+  listYearsAvailable: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(CompanyListItem);

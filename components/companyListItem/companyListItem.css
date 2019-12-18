@@ -25,6 +25,11 @@
   display: inline-block;
 }
 
+.yearLink {
+  border-bottom: 1px solid $black;
+  color: $black;
+}
+
 .companyStats {
   margin-bottom: rem(20);
 
