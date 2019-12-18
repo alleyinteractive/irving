@@ -18,13 +18,12 @@ const ShareStories = ({ link }) => (
     <div className={styles.right}>
       <p>{__(`If you know of any MIT alumni making a difference
         in their corner of the planet, let us know. We always welcome your
-        ideas for interesting stories about the MIT community.
-        Share your stories`, 'mittr')}
+        ideas for interesting stories about the MIT community.`, 'mittr')}
       </p>
+      <a className={styles.link} href={link}>
+        {__('Share your stories', 'mittr')}
+      </a>
     </div>
-    <a className={styles.link} href={link}>
-      {__('Share your stories', 'mittr')}
-    </a>
   </div>
 );
 
