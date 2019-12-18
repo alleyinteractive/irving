@@ -1,0 +1,29 @@
+.wrap {
+  background: #303030;
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+  padding: rem(30) rem(20);
+}
+
+.title {
+  color: $white;
+  font-size: rem(30);
+  margin-bottom: rem(10);
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.right {
+  p {
+    font-size: rem(20);
+    margin-bottom: rem(20);
+  }
+}
+
+.link {
+  color: $white;
+  font-size: rem(20);
+}
