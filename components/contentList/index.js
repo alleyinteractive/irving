@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import classNames from 'classnames';
 import { UIDConsumer } from 'react-uid';
+import parse from 'html-react-parser';
 import styles from './contentList.css';
 
-const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
+const ContentList = ({
+  align,
+  children,
+  className: theClass,
+  listTitle,
+}) => 0 < children.length && (
   <UIDConsumer>
     {(id, uid) => {
       const titleID = uid('contentList');
@@ -18,8 +24,13 @@ const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
           })}
         >
           {listTitle && (
-            <h2 className="contentList__header" id={titleID}>
-              {listTitle}
+            <h2
+              className={classNames('contentList__header', {
+                'company-feature': 'company-feature' === theClass,
+              })}
+              id={titleID}
+            >
+              {parse(listTitle)}
             </h2>
           )}
           <ul className="contentList__listWrap" aria-labelledby={titleID}>
@@ -34,9 +45,11 @@ const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
 ContentList.defaultProps = {
   listTitle: '',
   children: [],
+  className: '',
 };
 
 ContentList.propTypes = {
+  className: PropTypes.string,
   listTitle: PropTypes.string,
   align: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.element),
