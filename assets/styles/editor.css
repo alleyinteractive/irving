@@ -38,9 +38,13 @@
     @include block-quote;
   }
 
-  [data-type="core/pullquote"] {
+  /* stylelint-disable selector-max-specificity */
+  [data-type="core/pullquote"],
+  [data-type="core/pullquote"][data-align=right],
+  [data-type="core/pullquote"][data-align=left] {
     @include block-pullquote;
   }
+  /* stylelint-enable selector-max-specificity */
 
   [data-type="core/heading"] {
     @include block-heading;
