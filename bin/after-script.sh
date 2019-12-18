@@ -13,6 +13,9 @@ if [[ $TRAVIS_TEST_RESULT != "0" ]]; then
 	exit 1
 fi
 echo "Deploying the built branch ..."
+# Replace .gitignore files with .gitignore.dist files to allow committing built assets.
+find . -type f -name .gitignore.dist | sed -e 'p;s/.dist//' | xargs -n2 mv
+
 # Perform the deploy.
 bash <(curl -s "https://raw.githubusercontent.com/Automattic/vip-go-build/master/deploy-travis-prepare.sh") &&
 bash <(curl -s "https://raw.githubusercontent.com/Automattic/vip-go-build/master/deploy.sh")
