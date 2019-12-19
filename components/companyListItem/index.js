@@ -6,7 +6,6 @@ import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
 import classNames from 'classnames';
 import toReactElement from 'utils/toReactElement';
-// import { findChildByName } from 'utils/children';
 
 import styles from './companyListItem.css';
 
