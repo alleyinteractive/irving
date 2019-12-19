@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
+import classNames from 'classnames';
 import Link from 'components/helpers/link';
 import withThemes from 'components/hoc/withThemes';
 import { withStyles } from 'critical-style-loader/lib';
@@ -31,22 +32,32 @@ const ContentFooter = ({
       <address className={theme.author}>
         <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
         {authors && authors.map((author) => (
-
-          <Link
-            to={author.url}
-            key={author.name}
-            className={theme.authorLink}
-          >
-            {author.avatar && (
-              <Image
-                src={author.avatar}
-                alt={author.name}
-                className={theme.avatar}
-                picture={false}
-              />
+          <Fragment>
+            {'' !== author.url ? (
+              <Link
+                to={author.url}
+                key={author.name}
+                className={theme.authorLink}
+              >
+                {author.avatar && (
+                  <Image
+                    src={author.avatar}
+                    alt={author.name}
+                    className={theme.avatar}
+                    picture={false}
+                  />
+                )}
+                <span className={theme.item}>{author.name}</span>
+              </Link>
+            ) : (
+              <span
+                className={classNames(theme.authorLink, theme.item)}
+                key={author.name}
+              >
+                {author.name}
+              </span>
             )}
-            <span className={theme.item}>{author.name}</span>
-          </Link>
+          </Fragment>
         ))}
       </address>
 
