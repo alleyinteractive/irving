@@ -3,12 +3,14 @@ import AccountNavigation from 'components/accounts/accountNavigation';
 import AudioElement from 'components/audio';
 import AuthorPage from 'components/authorPage';
 import Body from 'components/body';
+import Brightcove from 'components/brightcove';
 import Byline from 'components/byline';
 import CardStack from 'components/cardStack';
 import Carousel from 'components/carousel';
 import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
+import CompanyListItem from 'components/companyListItem';
 import ConfirmRegistration from 'components/accounts/register/confirm';
 import ContentArea from 'components/contentArea';
 import ContentBody from 'components/contentBody';
@@ -90,6 +92,7 @@ export const componentMap = {
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   'author-partial': AuthorPage,
+  'bc/brightcove': Brightcove,
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
@@ -126,6 +129,7 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
+  'list-50-item': CompanyListItem,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,

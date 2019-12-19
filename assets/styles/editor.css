@@ -87,6 +87,8 @@
         min-width: 25%;
       }
     }
+
+    @include block-featured-company;
     /* stylelint-enable */
   }
 

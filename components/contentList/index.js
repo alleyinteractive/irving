@@ -5,7 +5,11 @@ import classNames from 'classnames';
 import { UIDConsumer } from 'react-uid';
 import styles from './contentList.css';
 
-const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
+const ContentList = ({
+  align,
+  listTitle,
+  children,
+}) => 0 < children.length && (
   <UIDConsumer>
     {(id, uid) => {
       const titleID = uid('contentList');
@@ -32,13 +36,15 @@ const ContentList = ({ listTitle, align, children }) => 0 < children.length && (
 );
 
 ContentList.defaultProps = {
+  align: '',
   listTitle: '',
+  children: [],
 };
 
 ContentList.propTypes = {
   listTitle: PropTypes.string,
-  align: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  align: PropTypes.string,
+  children: PropTypes.arrayOf(PropTypes.element),
 };
 
 export default withStyles(styles)(ContentList);
