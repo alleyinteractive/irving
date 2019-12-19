@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import parse from 'html-react-parser';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
@@ -43,7 +44,7 @@ const ContentHeader = ({
           />
         )}
         {'' !== title && <Heading className={theme.title}>{title}</Heading>}
-        <DeckTag className={theme.deck}>{deck}</DeckTag>
+        <DeckTag className={theme.deck}>{parse(deck)}</DeckTag>
         {'inline' !== themeName && (
           <div className={theme.meta}>
             {byline}

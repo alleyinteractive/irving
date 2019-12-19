@@ -63,6 +63,7 @@ import Register from 'components/accounts/register';
 import Related from 'components/related';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
+import ShareStories from 'components/shareStories';
 import Sidebar from 'components/sidebar';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
@@ -155,6 +156,7 @@ export const componentMap = {
   register: Register,
   'search-bar': SearchBar,
   'section-item': SectionItem,
+  'share-stories': ShareStories,
   'subtopics-section': SubtopicsSection,
   subscriptions: Subscriptions,
   sidebar: Sidebar,

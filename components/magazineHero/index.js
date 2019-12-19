@@ -17,6 +17,7 @@ const MagazineHero = ({
   description,
   issueDate,
   issueNavigation,
+  issueType,
   letter,
   mitNewsLink,
   pdfLink,
@@ -37,7 +38,10 @@ const MagazineHero = ({
             </li>
             <li role="menuitem">
               <Link to={mitNewsLink} className={styles.publicationLink}>
-                {__('MIT News Magazine', 'mittr')}
+                {'MIT News Magazine' !== issueType ?
+                  __('MIT News Magazine', 'mittr') :
+                  __('MIT Technology Review Magazine', 'mittr')
+                }
               </Link>
             </li>
           </ul>
@@ -62,13 +66,29 @@ const MagazineHero = ({
           <Link to={pdfLink} className={styles.pdfLink}>
             {__('Open the PDF', 'mittr')}
           </Link>
-          {'' !== letter.title && '' !== letter.url && (
+          {'' !== letter.title &&
+            '' !== letter.url &&
+            'MIT News Magazine' !== issueType && (
             <div className={styles.letter}>
               <h2 className={styles.letterLabel}>
                 {__('Letter from the editor', 'mittr')}
               </h2>
               <Link to={letter.url} className={styles.letterTitle}>
                 {letter.title}
+              </Link>
+            </div>
+          )}
+          {'MIT News Magazine' === issueType && (
+            <div className={styles.letter}>
+              <h2 className={styles.letterLabel}>
+                {__('MIT Class notes', 'mittr')}
+              </h2>
+              <Link
+                to="https://alum.mit.edu/communities/class-notes-and-sites"
+                className={styles.letterTitle}
+              >
+                {__('Read class notes on the MIT Alumni Association website.',
+                  'mittr')}
               </Link>
             </div>
           )}
@@ -107,6 +127,10 @@ const MagazineHero = ({
   );
 };
 
+MagazineHero.defaultProps = {
+  issueType: '',
+};
+
 MagazineHero.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   backgroundColor: PropTypes.string.isRequired,
@@ -116,6 +140,7 @@ MagazineHero.propTypes = {
     previous: PropTypes.string,
     next: PropTypes.string,
   }).isRequired,
+  issueType: PropTypes.string,
   mitNewsLink: PropTypes.string.isRequired,
   letter: PropTypes.shape({
     url: PropTypes.string,
