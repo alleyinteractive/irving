@@ -46,7 +46,7 @@ const Popular = ({
         if (null !== contentNode) {
           const nodeHeight = contentNode.clientHeight;
 
-          if (400 < nodeHeight) {
+          if (400 < nodeHeight || 'list' === themeName) {
             setPosition();
           }
         }

@@ -15,6 +15,7 @@
     margin: 0 0 rem(36);
     max-width: 100%;
     min-width: 25%;
+    position: relative;
 
     @media ($mdMin) {
       max-width: 48%;
@@ -28,4 +29,6 @@
   :global(.editor-writing-flow [data-type="core/columns"] .wp-block-columns>.editor-inner-blocks>.editor-block-list__layout) {
     flex-flow: row nowrap;
   }
+
+  @include block-featured-company;
 }

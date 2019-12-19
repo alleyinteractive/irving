@@ -24,6 +24,7 @@ const ContentBody = (props) => {
     wordCount,
     dispatchShowFullStory,
     dispatchTruncateStory,
+    overrideCTA,
   } = props;
 
   const showFullText = () => {
@@ -50,6 +51,11 @@ const ContentBody = (props) => {
       setTruncation(true);
       dispatchTruncateStory();
     } else {
+      showFullText();
+      dispatchShowFullStory();
+    }
+
+    if (true === overrideCTA) {
       showFullText();
       dispatchShowFullStory();
     }
@@ -92,6 +98,7 @@ ContentBody.defaultProps = {
   truncatedCTA: '',
   dispatchShowFullStory: () => {},
   dispatchTruncateStory: () => {},
+  overrideCTA: false,
 };
 
 ContentBody.propTypes = {
@@ -100,6 +107,7 @@ ContentBody.propTypes = {
   wordCount: PropTypes.number.isRequired,
   dispatchShowFullStory: PropTypes.func,
   dispatchTruncateStory: PropTypes.func,
+  overrideCTA: PropTypes.bool,
 };
 
 const mapDispatchToProps = (dispatch) => ({
