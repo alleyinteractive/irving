@@ -3,6 +3,7 @@ import AccountNavigation from 'components/accounts/accountNavigation';
 import AudioElement from 'components/audio';
 import AuthorPage from 'components/authorPage';
 import Body from 'components/body';
+import Brightcove from 'components/brightcove';
 import Byline from 'components/byline';
 import CardStack from 'components/cardStack';
 import Carousel from 'components/carousel';
@@ -90,6 +91,7 @@ export const componentMap = {
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   'author-partial': AuthorPage,
+  'bc/brightcove': Brightcove,
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
