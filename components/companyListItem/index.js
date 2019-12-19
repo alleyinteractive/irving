@@ -111,10 +111,12 @@ const CompanyListItem = ({
     </ul>
 
     <div className={styles.companyBody}>
-      <p>
-        <strong>{__('Summary', 'mittr')}</strong>
-        {' '}{children}
-      </p>
+      {children && (
+        <p>
+          <strong>{__('Summary', 'mittr')}</strong>
+          {' '}{children}
+        </p>
+      )}
       {(0 < statTitle.length && 0 < statDescription.length) && (
         <p><strong>{statTitle}</strong>{' '}{statDescription}</p>
       )}

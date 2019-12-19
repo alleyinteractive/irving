@@ -15,6 +15,7 @@
     margin: 0 0 rem(36);
     max-width: 100%;
     min-width: 25%;
+    position: relative;
 
     @media ($mdMin) {
       max-width: 48%;
@@ -27,5 +28,47 @@
   /* stylelint-disable-next-line selector-max-specificity */
   :global(.editor-writing-flow [data-type="core/columns"] .wp-block-columns>.editor-inner-blocks>.editor-block-list__layout) {
     flex-flow: row nowrap;
+  }
+
+  :global(.featured-company) {
+    margin: 0;
+    position: absolute;
+    right: rem(-60);
+    top: calc(50% - 40px);
+    width: rem(200);
+
+    a {
+      background: #ff7d75;
+      color: $white;
+      font-size: rem(24);
+      font-weight: 600;
+      line-height: rem(34);
+      padding: rem(3) rem(10);
+      text-decoration: none;
+      -webkit-box-decoration-break: clone;
+
+      &:hover {
+        &::after {
+          transform: translateX(0);
+        }
+      }
+
+      &::after {
+        content: ' ';
+        display: inline-block;
+        height: rem(9);
+        width: rem(20);
+        margin-left: rem(10);
+        background-position: 50% 50%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url(https://cdn.technologyreview.com/_/img/arrow--white.svg);
+        opacity: 1;
+        -webkit-transition: all .2s ease;
+        transition: all .2s ease;
+        -webkit-transform: translateX(-5px);
+        transform: translateX(-5px);
+      }
+    }
   }
 }

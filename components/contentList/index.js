@@ -8,9 +8,9 @@ import styles from './contentList.css';
 
 const ContentList = ({
   align,
-  children,
-  className: theClass,
+  className,
   listTitle,
+  children,
 }) => 0 < children.length && (
   <UIDConsumer>
     {(id, uid) => {
@@ -26,7 +26,7 @@ const ContentList = ({
           {listTitle && (
             <h2
               className={classNames('contentList__header', {
-                'company-feature': 'company-feature' === theClass,
+                'company-feature': 'company-feature' === className,
               })}
               id={titleID}
             >
@@ -43,15 +43,16 @@ const ContentList = ({
 );
 
 ContentList.defaultProps = {
+  align: '',
   listTitle: '',
-  children: [],
   className: '',
+  children: [],
 };
 
 ContentList.propTypes = {
   className: PropTypes.string,
   listTitle: PropTypes.string,
-  align: PropTypes.string.isRequired,
+  align: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element),
 };
 
