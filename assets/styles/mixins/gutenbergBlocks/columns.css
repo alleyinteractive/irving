@@ -44,8 +44,10 @@
       font-weight: 600;
       line-height: rem(34);
       padding: rem(3) rem(10);
-      -webkit-box-decoration-break: clone;
       text-decoration: none;
+      /* stylelint-disable order/properties-order */
+      -webkit-box-decoration-break: clone;
+      /* stylelint-enable */
 
       /* stylelint-disable selector-max-specificity */
       &:hover {
@@ -66,10 +68,12 @@
         margin-left: rem(10);
         opacity: 1;
         width: rem(20);
+        /* stylelint-disable order/properties-order */
         -webkit-transform: translateX(-5px);
         transform: translateX(-5px);
         -webkit-transition: all 0.2s ease;
         transition: all 0.2s ease;
+        /* stylelint-enable */
       }
     }
   }
