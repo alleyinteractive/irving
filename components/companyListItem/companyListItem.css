@@ -1,0 +1,113 @@
+.wrapper {
+  font-family: $sans;
+  font-size: rem(20);
+  margin-top: rem(100);
+  max-width: rem(600);
+
+  @media ($smMax) {
+    margin: rem(100) rem(20) 0 rem(20);
+  }
+}
+
+.rank {
+  color: #ff7d75;
+  font-size: rem(28);
+  font-weight: 700;
+}
+
+.companyName {
+  color: $black;
+  font-size: rem(28);
+  margin-bottom: rem(20);
+}
+
+.industry {
+  display: inline-block;
+}
+
+.yearLink {
+  border-bottom: 1px solid $black;
+  color: $black;
+}
+
+.companyStats {
+  margin-bottom: rem(20);
+
+  strong {
+    display: inline-block;
+    margin-right: rem(5);
+  }
+
+  li {
+    border-top: 1px solid $black;
+    padding: rem(5) 0;
+
+    &:last-of-type {
+      border-bottom: 1px solid $black;
+    }
+  }
+}
+
+.companyBody {
+  strong {
+    display: inline-block;
+    margin-right: rem(5);
+  }
+
+  p {
+    line-height: 1.5;
+    margin-bottom: rem(20);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  /* stylelint-disable selector-max-specificity */
+  /* Increase specificity to adjust width of first column */
+  @media ($mdMin) {
+    :global(.wp-block-column):first-of-type {
+      flex-grow: 2;
+      max-width: rem(400);
+    }
+  }
+  /* styleline-enable */
+}
+
+.relatedStoryGroup {
+  border-top: 1px solid #000;
+  margin-top: rem(30);
+  padding: rem(10) 0;
+}
+
+.relatedHeader {
+  font-size: rem(13);
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: rem(10);
+  text-transform: uppercase;
+}
+
+.relatedStoryImage {
+  max-width: rem(125);
+}
+
+.relatedStoryLink {
+  color: #ff7d75;
+  font-size: rem(17);
+  font-weight: 600;
+
+  &:hover {
+    color: $black;
+  }
+
+  &::after {
+    background: #ff7d75;
+    border-right: 1px white;
+    content: '';
+    display: block;
+    height: rem(4);
+    margin: rem(10) 0;
+    width: rem(50);
+  }
+}
