@@ -21,7 +21,7 @@ module.exports = createStyleGuideConfig(myConfig, styledConfig);
 {
     "scripts": {
         "styleguide:build": "BABEL_ENV=app NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js",
-        "styleguide:dev": "BABEL_ENV=app NODE_ENV=production npx styleguidist build --config ./config/styleguide.config.js",
+        "styleguide:dev": "BABEL_ENV=app NODE_ENV=development npx styleguidist server --config ./config/styleguide.config.js",
     }
 }
 ```

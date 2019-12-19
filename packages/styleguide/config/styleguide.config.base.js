@@ -25,17 +25,20 @@ module.exports = {
     optimization: {},
     // Recreate aliases as we can't use the same babel aliases for styleguide
     resolve: {
-      alias: {
-        ...clientconfig.resolve.alias,
-        // Fix issue with acorn parser import.
-        acorn: require.resolve('acorn/dist/acorn.js'),
-        // Make all aliases absolute.
-        ...Object.keys(aliases).reduce(
-          (acc, alias) => (
-            [...acc, path.join(irvingRoot, alias)]
-          )
+      alias: Object.keys(aliases).reduce(
+        (acc, alias) => (
+          {
+            ...acc,
+            [alias]: path.join(appRoot, alias),
+            [`@${alias}`]: path.join(irvingRoot, alias),
+          }
         ),
-      },
+        {
+          ...clientconfig.resolve.alias,
+          // Fix issue with acorn parser import.
+          acorn: require.resolve('acorn/dist/acorn.js'),
+        }
+      ),
     },
   },
 };
