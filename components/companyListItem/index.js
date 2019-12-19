@@ -26,7 +26,7 @@ const CompanyListItem = ({
   <div className={styles.wrapper} id={companyName}>
     <div className={styles.header}>
       <span className={styles.rank}>{rank}</span>
-      <h1 className={styles.companyName}>{companyName}</h1>
+      <h2 className={styles.companyName}>{companyName}</h2>
     </div>
 
     <ul className={styles.companyStats}>
@@ -123,9 +123,9 @@ const CompanyListItem = ({
 
     {0 < relatedStories.length && (
       <div className={styles.relatedStoryGroup}>
-        <h2 className={styles.relatedHeader}>
+        <h3 className={styles.relatedHeader}>
           {__('Related Stories', 'mittr')}
-        </h2>
+        </h3>
 
         <ul className={styles.relatedStories}>
           {relatedStories.map((story) => (
