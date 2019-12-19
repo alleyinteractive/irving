@@ -4,6 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import classNames from 'classnames';
 import withThemes from 'components/hoc/withThemes';
 import Link from 'components/helpers/link';
+import CopyLink from 'components/copyLink';
 import socialIconMap from './iconMap';
 import styles from './socialItem.css';
 import whiteIconStyles from './whiteIcon.css';
@@ -15,23 +16,20 @@ const SocialItem = ({
 
   return (
     <li className={classNames(theme.wrapper, theme[type])}>
-      <Link to={url} className={theme.anchor}>
-        <span
-          className={
-            classNames({
-              [theme.label]: 'link' === type,
-              [theme.screenReaderLabel]: 'link' !== type,
-            })
-          }
-        >
-          {type}
-        </span>
-        {displayIcon && IconComponent && (
-          <div className={theme.icon}>
-            <IconComponent />
-          </div>
-        )}
-      </Link>
+      {'link' !== type ? (
+        <Link to={url} className={theme.anchor}>
+          <span className={theme.screenReaderLabel}>
+            {type}
+          </span>
+          {displayIcon && IconComponent && (
+            <div className={theme.icon}>
+              <IconComponent />
+            </div>
+          )}
+        </Link>
+      ) : (
+        <CopyLink url={url} />
+      )}
     </li>
   );
 };
