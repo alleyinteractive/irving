@@ -44,30 +44,32 @@
       font-weight: 600;
       line-height: rem(34);
       padding: rem(3) rem(10);
-      text-decoration: none;
       -webkit-box-decoration-break: clone;
+      text-decoration: none;
 
+      /* stylelint-disable selector-max-specificity */
       &:hover {
         &::after {
           transform: translateX(0);
         }
       }
+      /* eslint-enable */
 
       &::after {
+        background-image: url(https://cdn.technologyreview.com/_/img/arrow--white.svg);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
         content: ' ';
         display: inline-block;
         height: rem(9);
-        width: rem(20);
         margin-left: rem(10);
-        background-position: 50% 50%;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-image: url(https://cdn.technologyreview.com/_/img/arrow--white.svg);
         opacity: 1;
-        -webkit-transition: all .2s ease;
-        transition: all .2s ease;
+        width: rem(20);
         -webkit-transform: translateX(-5px);
         transform: translateX(-5px);
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
       }
     }
   }
