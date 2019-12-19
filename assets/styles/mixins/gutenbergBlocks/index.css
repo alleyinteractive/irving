@@ -15,6 +15,7 @@
 @import 'mediaText';
 @import 'columns';
 @import 'embed';
+@import 'featuredCompany';
 
 @mixin gutenberg-block-styles {
   @include block-paragraph;
@@ -33,6 +34,7 @@
   @include block-media-text;
   @include block-columns;
   @include block-embed;
+  @include block-featured-company;
 }
 
 @mixin basic-editor-styles {

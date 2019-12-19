@@ -1,0 +1,49 @@
+@mixin block-featured-company {
+  :global(.featured-company) {
+    margin: 0;
+    position: absolute;
+    right: rem(-60);
+    top: calc(50% - 40px);
+    width: rem(200);
+
+    a {
+      background: #ff7d75;
+      color: $white;
+      font-size: rem(24);
+      font-weight: 600;
+      line-height: rem(34);
+      padding: rem(3) rem(10);
+      text-decoration: none;
+      /* stylelint-disable order/properties-order */
+      -webkit-box-decoration-break: clone;
+      /* stylelint-enable */
+
+      /* stylelint-disable selector-max-specificity */
+      &:hover {
+        &::after {
+          transform: translateX(0);
+        }
+      }
+      /* eslint-enable */
+
+      &::after {
+        background-image: url(https://cdn.technologyreview.com/_/img/arrow--white.svg);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: ' ';
+        display: inline-block;
+        height: rem(9);
+        margin-left: rem(10);
+        opacity: 1;
+        width: rem(20);
+        /* stylelint-disable order/properties-order */
+        -webkit-transform: translateX(-5px);
+        transform: translateX(-5px);
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        /* stylelint-enable */
+      }
+    }
+  }
+}
