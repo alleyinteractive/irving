@@ -19,7 +19,7 @@ const Byline = (props) => {
       <ul className={styles.list} aria-label={__('Authors', 'mittr')}>
         {authors.map((author) => (
           <li className={styles.author} key={author.name}>
-            {'' !== authors.link ? (
+            {'' !== author.link ? (
               <Link to={author.link} className={styles.name}>
                 {author.name}
                 {' '}
