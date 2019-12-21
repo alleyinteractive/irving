@@ -1,5 +1,8 @@
 import { flow, set } from 'lodash/fp';
-import { RECEIVE_COMPONENTS } from 'actions/types';
+import {
+  RECEIVE_COMPONENTS,
+  RESET_COMPONENT_DEFAULTS,
+} from 'actions/types';
 import getRouteKey from 'selectors/getRouteKey';
 
 /**
@@ -10,16 +13,32 @@ import getRouteKey from 'selectors/getRouteKey';
  */
 export default function componentReducer(state, action) {
   const { type, payload } = action;
-  if (RECEIVE_COMPONENTS !== type) {
-    return state;
-  }
 
-  const currentDefaults = state.components.defaults;
-  const key = getRouteKey(state);
-  const { defaults, providers, page } = payload;
-  return flow(
-    set('components.defaults', defaults.length ? defaults : currentDefaults),
-    set(`components.providers.${key}`, providers),
-    set(`components.page.${key}`, page)
-  )(state);
+  switch (type) {
+    case RECEIVE_COMPONENTS: {
+      const currentDefaults = state.components.defaults;
+      const key = getRouteKey(state);
+      const { defaults, providers, page } = payload;
+
+      return flow(
+        set(
+          'components.defaults',
+          defaults.length ? defaults : currentDefaults
+        ),
+        set(`components.providers.${key}`, providers),
+        set(`components.page.${key}`, page)
+      )(state);
+    }
+    case RESET_COMPONENT_DEFAULTS: {
+      console.log('RESET_COMPONENT_DEFAULTS');
+      return flow(
+        set(
+          'components.defaults',
+          []
+        )
+      )(state);
+    }
+    default:
+      return state;
+  }
 }
