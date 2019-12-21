@@ -30,7 +30,6 @@ export default function componentReducer(state, action) {
       )(state);
     }
     case RESET_COMPONENT_DEFAULTS: {
-      console.log('RESET_COMPONENT_DEFAULTS');
       return flow(
         set(
           'components.defaults',
