@@ -92,7 +92,7 @@ const FeedItem = ({
         <div className={styles.expandableBody}>
           {! expandState.isExpanded && (
             <div className={styles.textBeforeBtn}>
-              <p>{teaserContent} . . .</p>
+              <p>{teaserContent}</p>
             </div>
           )}
           <div
