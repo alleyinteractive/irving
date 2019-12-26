@@ -95,6 +95,7 @@ if (HTTPS_KEY_PATH && HTTPS_CERT_PATH && 'development' === NODE_ENV) {
   openBrowser(rootUrl);
 } else {
   vipServer = server(app, { PORT });
+  vipServer.listen();
 }
 
 // Handle uncaught promise exceptions.
