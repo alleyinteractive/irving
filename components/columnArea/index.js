@@ -24,14 +24,14 @@ const ColumnArea = ({ children, theme, themeName }) => {
       <div className={classNames(theme.wrapper)}>
         {content && (
           <div
-            className={classNames(theme.main, styles.main)}
+            className={classNames(theme.main)}
           >
             {content}
           </div>
         )}
         {sidebar && (
           <div
-            className={classNames(theme.sidebar, styles.sidebar)}
+            className={classNames(theme.sidebar)}
           >
             {sidebar}
           </div>

@@ -14,19 +14,21 @@
 }
 
 .main {
+  composes: main from './columnArea.css';
   margin-bottom: rem(40);
   width: 100%;
 
   @media ($mdMin) {
+    box-sizing: content-box;
     margin-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
     tidy-offset-left: 1;
-    tidy-span: 6;
+    transform: translateX(rem(-20));
+    width: calc(tidy-span(6) + rem(40));
   }
 }
 
 .sidebar {
+  composes: sidebar from './columnArea.css';
   width: 100%;
 
   @media ($mdMin) {
