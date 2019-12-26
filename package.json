@@ -4,7 +4,7 @@
   "description": "MIT Technology Review frontend application based on Irving, a headless app for Wordpress.",
   "main": "main.js",
   "scripts": {
-    "preinstall": "npx check-node-version --package",
+    "preinstall": "if [ -z $VIP_GO_APP_ID ]; then npx check-node-version --package; fi",
     "preflight": "npx @automattic/vip-go-preflight-checks",
     "build": "if [ -z $VIP_GO_APP_ID ]; then npm run webpack; else exit 0; fi",
     "webpack": "webpack --config config/webpack.config.js --mode production",
