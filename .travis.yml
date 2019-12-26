@@ -32,14 +32,14 @@ script:
   - npm run lint
   - |
       if [ "$TRAVIS_BRANCH" == "develop" ]; then
-        export API_ROOT_URL=http://technologyreview-com-develop.go-vip.net/wp-json/irving/v1
-        export ROOT_URL=http://irving-technologyreview-com-develop.go-vip.net
+        export API_ROOT_URL=https://technologyreview-com-develop.go-vip.net/wp-json/irving/v1
+        export ROOT_URL=https://irving-technologyreview-com-develop.go-vip.net
       elif [ "$TRAVIS_BRANCH" == "preprod" ]; then
-        export API_ROOT_URL=http://technologyreview-com-preprod.go-vip.net/wp-json/irving/v1
-        export ROOT_URL=http://irving-technologyreview-com-preprod.go-vip.net
+        export API_ROOT_URL=https://technologyreview-com-preprod.go-vip.net/wp-json/irving/v1
+        export ROOT_URL=https://irving-technologyreview-com-preprod.go-vip.net
       elif [ "$TRAVIS_BRANCH" == "master" ]; then
-        export API_ROOT_URL=http://technologyreview-com.go-vip.net/wp-json/irving/v1
-        export ROOT_URL=http://irving-technologyreview-com.go-vip.net
+        export API_ROOT_URL=https://technologyreview-com.go-vip.net/wp-json/irving/v1
+        export ROOT_URL=https://irving-technologyreview-com.go-vip.net
       fi
   - echo "Exported API_ROOT_URL $API_ROOT_URL, ROOT_URL $ROOT_URL for branch $TRAVIS_BRANCH"
   - npm install
