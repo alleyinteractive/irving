@@ -1,4 +1,12 @@
-/* Column Area styles - defaults to two columns with a 4-col sidebar */
+/**
+ * Full story column layout.
+ *
+ * At desktop:
+ * - 1-col offset
+ * - 6-col main columnn with 20px padding right
+ * - 2-col gap
+ * - 3-col sidebar with 20px padding margin
+ */
 
 .wrapper {
   display: flex;

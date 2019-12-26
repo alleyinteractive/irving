@@ -1,4 +1,16 @@
-/* Theme with a 3-column sidebar on wide screens (12) */
+/**
+ * Feed theme column layout.
+ *
+ * At desktop:
+ * - 1-col offset
+ * - 6-col main columnn with 20px overflow on both sides
+ * - 1-col gap
+ * - 4-col sidebar with no overlap or margin
+ *
+ * Examples
+ * - Author page: https://zpl.io/29jBgRp
+ * - Topic page: https://zpl.io/VYpeMxp
+ */
 
 .wrapper {
   display: flex;
@@ -14,7 +26,7 @@
 }
 
 .main {
-  composes: main from './columnArea.css';
+  composes: main from './columnArea--full.css';
   margin-bottom: rem(40);
   width: 100%;
 
@@ -28,7 +40,7 @@
 }
 
 .sidebar {
-  composes: sidebar from './columnArea.css';
+  composes: sidebar from './columnArea--full.css';
   width: 100%;
 
   @media ($mdMin) {

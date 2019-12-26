@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
-import classNames from 'classnames';
 
 // Themes
-import styles from './columnArea.css';
-import oneColumnTheme from './oneColumn.css';
-import skinnyColumnTheme from './skinnyColumn.css';
+import feedColumnTheme from './columnArea--feed.css';
+import fullStoryTheme from './columnArea--full.css';
+import magazineTheme from './columnArea--magazine.css';
+import oneColumnTheme from './columnArea--oneCol.css';
+import pageTheme from './columnArea--page.css';
 
 const ColumnArea = ({ children, theme, themeName }) => {
   // @todo leave this block for deprecation purposes (topics page, etc.)
@@ -21,17 +22,17 @@ const ColumnArea = ({ children, theme, themeName }) => {
     const sidebar = findChildByName('sidebar', children);
 
     return (
-      <div className={classNames(theme.wrapper)}>
+      <div className={theme.wrapper}>
         {content && (
           <div
-            className={classNames(theme.main)}
+            className={theme.main}
           >
             {content}
           </div>
         )}
         {sidebar && (
           <div
-            className={classNames(theme.sidebar)}
+            className={theme.sidebar}
           >
             {sidebar}
           </div>
@@ -58,7 +59,18 @@ ColumnArea.propTypes = {
 };
 
 export default withThemes('column-area', {
-  default: styles,
-  oneColumn: oneColumnTheme,
-  'skinny-column': skinnyColumnTheme,
-})(withStyles(styles, oneColumnTheme, skinnyColumnTheme)(ColumnArea));
+  default: feedColumnTheme,
+  feed: feedColumnTheme,
+  story: fullStoryTheme,
+  single: oneColumnTheme,
+  page: pageTheme,
+  magazine: magazineTheme,
+})(
+  withStyles(
+    feedColumnTheme,
+    fullStoryTheme,
+    magazineTheme,
+    oneColumnTheme,
+    pageTheme,
+  )(ColumnArea)
+);
