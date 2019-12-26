@@ -136,4 +136,4 @@ export default withThemes('card-stack', {
   isVertical: styles,
   isHorizontal: horizontalTheme,
   noImage: noImageTheme,
-})(withStyles(styles)(CardStack));
+})(withStyles(styles, horizontalTheme, noImageTheme)(CardStack));
