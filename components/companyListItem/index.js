@@ -73,7 +73,7 @@ const CompanyListItem = ({
                       <Link
                         className={styles.yearLink}
                         to={permalink}
-                        key={year}
+                        key={`${year}-${companyName}`}
                       >
                         {year}
                       </Link>
@@ -110,14 +110,19 @@ const CompanyListItem = ({
     </ul>
 
     <div className={styles.companyBody}>
-      {children && (
-        <p>
-          <strong>{__('Summary', 'mittr')}</strong>
-          {' '}{children}
-        </p>
+      {0 < children.length && (
+        <div className={styles.stat}>
+          <h3 className={styles.statTitle}>{__('Summary', 'mittr')}</h3>
+          {' '}
+          {children}
+        </div>
       )}
       {(0 < statTitle.length && 0 < statDescription.length) && (
-        <p><strong>{statTitle}</strong>{' '}{statDescription}</p>
+        <div className={styles.stat}>
+          <h3 className={styles.statTitle}>{statTitle}</h3>
+          {' '}
+          {statDescription}
+        </div>
       )}
     </div>
 

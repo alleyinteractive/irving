@@ -33,11 +33,6 @@
 .companyStats {
   margin-bottom: rem(20);
 
-  strong {
-    display: inline-block;
-    margin-right: rem(5);
-  }
-
   li {
     border-top: 1px solid $black;
     padding: rem(5) 0;
@@ -48,21 +43,12 @@
   }
 }
 
+.statTitle {
+  display: inline-block;
+  margin-right: rem(5);
+}
+
 .companyBody {
-  strong {
-    display: inline-block;
-    margin-right: rem(5);
-  }
-
-  p {
-    line-height: 1.5;
-    margin-bottom: rem(20);
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-  }
-
   /* stylelint-disable selector-max-specificity */
   /* Increase specificity to adjust width of first column */
   @media ($mdMin) {
@@ -72,6 +58,15 @@
     }
   }
   /* styleline-enable */
+}
+
+.stat {
+  line-height: 1.5;
+  margin-bottom: rem(20);
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .relatedStoryGroup {
