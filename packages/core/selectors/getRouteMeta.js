@@ -9,15 +9,28 @@ const getRouteMeta = createSelector(
     get('components'),
     getPageComponents,
   ],
-  (route, components, pageComponents) => ({
-    path: route.pathname,
-    search: route.search,
-    hash: route.hash,
-    cookie: route.cookie,
-    // Request the default site components if the Redux state doesn't have any yet.
-    context: components.defaults.length ? CONTEXT_PAGE : CONTEXT_SITE,
-    cached: !! pageComponents.length,
-  })
+  (route, components, pageComponents) => {
+    let context;
+
+    // Request the default site components if the Redux state
+    // doesn't have any yet... @todo
+    if (route.state && route.state.context) {
+      context = route.state.context;
+    } else {
+      context = components.defaults.length ? CONTEXT_PAGE : CONTEXT_SITE;
+    }
+
+    console.log('context', context);
+
+    return {
+      path: route.pathname,
+      search: route.search,
+      hash: route.hash,
+      cookie: route.cookie,
+      context,
+      cached: !! pageComponents.length,
+    };
+  }
 );
 
 export default getRouteMeta;
