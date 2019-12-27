@@ -1,4 +1,4 @@
-Higher-order component for asyncronously retreiving additional data for a component, either from your configured endpoint or a separate endpoing entirely. This HoC is particularly useful for retriving large, non-critical datasets that might slow down your page's render time or retriving data from a third-party service.
+Higher-order component for asyncronously retrieving additional data for a component, either from your configured endpoint or a separate endpoint entirely. This HoC is particularly useful for retrieving large, non-critical datasets that might slow down your page's render time or retrieving data from a third-party service.
 
 This component also includes functionality for a custom loading and error component for displaying those states.
 
