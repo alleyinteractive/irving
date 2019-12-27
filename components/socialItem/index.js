@@ -55,7 +55,7 @@ const wrapWithStyles = withStyles(styles, whiteIconStyles);
 
 const wrapWithThemes = withThemes('social-item', {
   default: styles,
-  'white-icon': whiteIconStyles,
+  whiteIcon: whiteIconStyles,
 });
 
 export default wrapWithStyles(wrapWithThemes(SocialItem));
