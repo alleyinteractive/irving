@@ -12,8 +12,9 @@ const getRouteMeta = createSelector(
   (route, components, pageComponents) => {
     let context;
 
-    // Request the default site components if the Redux state
-    // doesn't have any yet... @todo
+    // Allow `context` to be set with the route state, or if not
+    // specified, request the default site components if the Redux state
+    // doesn't have any yet.
     if (route.state && route.state.context) {
       context = route.state.context;
     } else {
