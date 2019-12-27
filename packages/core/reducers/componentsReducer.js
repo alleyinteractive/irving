@@ -10,23 +10,16 @@ import getRouteKey from 'selectors/getRouteKey';
  */
 export default function componentReducer(state, action) {
   const { type, payload } = action;
-
-  switch (type) {
-    case RECEIVE_COMPONENTS: {
-      const currentDefaults = state.components.defaults;
-      const key = getRouteKey(state);
-      const { defaults, providers, page } = payload;
-
-      return flow(
-        set(
-          'components.defaults',
-          defaults.length ? defaults : currentDefaults
-        ),
-        set(`components.providers.${key}`, providers),
-        set(`components.page.${key}`, page)
-      )(state);
-    }
-    default:
-      return state;
+  if (RECEIVE_COMPONENTS !== type) {
+    return state;
   }
+
+  const currentDefaults = state.components.defaults;
+  const key = getRouteKey(state);
+  const { defaults, providers, page } = payload;
+  return flow(
+    set('components.defaults', defaults.length ? defaults : currentDefaults),
+    set(`components.providers.${key}`, providers),
+    set(`components.page.${key}`, page)
+  )(state);
 }
