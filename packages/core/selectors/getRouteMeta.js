@@ -20,8 +20,6 @@ const getRouteMeta = createSelector(
       context = components.defaults.length ? CONTEXT_PAGE : CONTEXT_SITE;
     }
 
-    console.log('context', context);
-
     return {
       path: route.pathname,
       search: route.search,
