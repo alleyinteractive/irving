@@ -1,8 +1,5 @@
 import { flow, set } from 'lodash/fp';
-import {
-  RECEIVE_COMPONENTS,
-  RESET_COMPONENT_DEFAULTS,
-} from 'actions/types';
+import { RECEIVE_COMPONENTS } from 'actions/types';
 import getRouteKey from 'selectors/getRouteKey';
 
 /**
@@ -27,14 +24,6 @@ export default function componentReducer(state, action) {
         ),
         set(`components.providers.${key}`, providers),
         set(`components.page.${key}`, page)
-      )(state);
-    }
-    case RESET_COMPONENT_DEFAULTS: {
-      return flow(
-        set(
-          'components.defaults',
-          []
-        )
       )(state);
     }
     default:

@@ -2,7 +2,6 @@ import {
   REQUEST_COMPONENT_DATA,
   RECEIVE_COMPONENT_DATA,
   RECEIVE_COMPONENT_DATA_ERROR,
-  RESET_COMPONENT_DEFAULTS,
 } from 'actions/types';
 import { createAction } from 'actions';
 
@@ -33,12 +32,4 @@ export function actionReceiveComponentData(endpoint, data) {
  */
 export function actionReceiveComponentDataError(endpoint, err) {
   return createAction(RECEIVE_COMPONENT_DATA_ERROR, { endpoint, err });
-}
-
-/**
- * Create a reset default components Redux action.
- * @returns {{type, payload}}
- */
-export function actionResetDefaultComponents() {
-  return createAction(RESET_COMPONENT_DEFAULTS);
 }
