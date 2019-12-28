@@ -13,14 +13,18 @@ import Arrow from 'assets/icons/arrow.svg';
 import styles from './cardStack.css';
 import horizontalTheme from './cardStack--isHorizontal.css';
 import noImageTheme from './cardStack--noImage.css';
+import Eyebrow from '../eyebrow';
 
 const CardStack = ({
   children,
   color,
+  dateline,
   description,
+  eyebrow,
   isSponsored,
   isSubtopic,
   name,
+  textColor,
   sponsored: { url: sponsorLink },
   theme,
 }) => {
@@ -40,6 +44,12 @@ const CardStack = ({
   return (
     <header className={theme.wrapper} style={{ backgroundColor: color }}>
       <div className={isSubtopic || ! image ? theme.metaFull : theme.meta}>
+        <Eyebrow
+          customEyebrow={eyebrow}
+          themeName="In Feed"
+          color={textColor}
+          dateline={dateline}
+        />
         {/* @todo heading level needs to be dynamic, homepage has > 1 h1 */}
         <h1 className={theme.name}>{name}</h1>
         <p className={theme.description}>{description}</p>
@@ -113,6 +123,8 @@ const CardStack = ({
 };
 
 CardStack.defaultProps = {
+  dateline: '',
+  eyebrow: '',
   isSubtopic: false,
   sponsored: {},
   isSponsored: false,
@@ -121,7 +133,10 @@ CardStack.defaultProps = {
 CardStack.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   color: PropTypes.string.isRequired,
+  dateline: PropTypes.string,
   description: PropTypes.string.isRequired,
+  eyebrow: PropTypes.string,
+  textColor: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   isSubtopic: PropTypes.bool,
   isSponsored: PropTypes.bool,
