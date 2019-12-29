@@ -21,9 +21,11 @@ separate location from where it will be run.
 * `BUILD_CONTEXT` - Absolute path used to indicate the context in which the build is occurring.
 This will be provided as-is to webpack's `context` configuration property. By default,
 this variable will be set to `process.cwd()`.
-* `ROOT_URL` - The root url the app is served from. This value is required to
+* `ROOT_URL` **required** - The root url the app is served from. This value is required to
 prevent webpack assets from 404ing when the app isn't served from the root of a
 site.
+* `API_ROOT_URL` **required** - URL at which your components endpoint can be accessed.
+* `API_ORIGIN` - Protocol and host at which your API is located. Usually the same as `API_ROOT_URL` but without the path. This is used only in a limited number of places, and is not required.
 * `PORT` - http port the server will serve from
 * `HOSTNAME` - FQDN of the server host
 * `NODE_TLS_REJECT_UNAUTHORIZED` - Only disable this when attempting to execute
