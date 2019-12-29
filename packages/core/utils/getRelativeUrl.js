@@ -20,15 +20,23 @@ export default function getRelativeUrl(url) {
       pathname: urlPath,
     } = urlObj;
     const {
+      protocol,
       host,
       query,
       hash,
     } = urlObj;
 
+    // Add trailing slashes and remove host only under below conditions.
     if (
-      host === window.location.host ||
-      host.includes(window.location.host) ||
-      window.location.host.includes(host)
+      (
+        host === window.location.host ||
+        host.includes(window.location.host) ||
+        window.location.host.includes(host)
+      ) &&
+      (
+        ('http:' === protocol || 'https:' === protocol) &&
+        'rss' !== url.split('.').pop()
+      )
     ) {
       // Internal URL, add query and hash.
       result = addTrailingSlash(urlPath) + (query || '') + (hash || '');
