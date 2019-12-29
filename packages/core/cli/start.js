@@ -39,6 +39,7 @@ const passthrough = proxy({
   changeOrigin: true,
   followRedirects: true,
   secure: 'development' !== NODE_ENV,
+  // @todo make this not specific to WP. Another env var maybe?
   target: API_ROOT_URL.replace('/wp-json/irving/v1', ''),
   xfwd: true,
 });
