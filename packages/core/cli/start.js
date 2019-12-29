@@ -18,7 +18,11 @@ const bustCache = require('../server/bustCache');
 const bustPageCache = require('../server/bustPageCache');
 const purgePageCache = require('../server/purgePageCache');
 
-const { API_ROOT_URL, NODE_ENV } = process.env;
+const {
+  API_ROOT_URL,
+  API_BASE,
+  NODE_ENV,
+} = process.env;
 const app = express();
 
 // Clearing the Redis cache.
@@ -34,18 +38,18 @@ const irvingServerMiddleware = getConfigField('customizeServer');
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 // Set up a reusable proxy for responses that should be served directly.
-const proxyConfig = getConfigArray('proxy');
+const proxyPassthrough = getConfigArray('proxyPassthrough');
 const passthrough = proxy({
   changeOrigin: true,
   followRedirects: true,
   secure: 'development' !== NODE_ENV,
-  // @todo make this not specific to WP. Another env var maybe?
-  target: API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  // @todo make this not specific to WP eventually.
+  target: API_BASE || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
   xfwd: true,
 });
 
 // Create proxies for each configured proxy pattern.
-proxyConfig.forEach((pattern) => {
+proxyPassthrough.forEach((pattern) => {
   app.use(pattern, passthrough);
 });
 
