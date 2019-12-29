@@ -78,7 +78,7 @@
     "fetch-mock": "^7.3.0",
     "file-loader": "^1.1.11",
     "history": "^4.7.2",
-    "http-proxy-middleware": "^0.19.1",
+    "http-proxy-middleware": "^0.20.0",
     "lodash": "^4.17.14",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.17.5",

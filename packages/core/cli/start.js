@@ -1,10 +1,12 @@
 /* eslint-disable global-require, no-console, import/order */
 const express = require('express');
+const proxy = require('http-proxy-middleware');
 
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
 
 const getConfigField = require('../utils/getConfigField');
+const { getConfigArray } = require('../utils/getConfigValue');
 const getService = require('../services/monitorService');
 getService().start();
 
@@ -16,7 +18,7 @@ const bustCache = require('../server/bustCache');
 const bustPageCache = require('../server/bustPageCache');
 const purgePageCache = require('../server/purgePageCache');
 
-const { NODE_ENV } = process.env;
+const { API_ROOT_URL, NODE_ENV } = process.env;
 const app = express();
 
 // Clearing the Redis cache.
@@ -30,6 +32,21 @@ app.set('view engine', 'ejs');
 // Run all customize server functions.
 const irvingServerMiddleware = getConfigField('customizeServer');
 irvingServerMiddleware.forEach((middleware) => middleware(app));
+
+// Set up a reusable proxy for responses that should be served directly.
+const proxyConfig = getConfigArray('proxy');
+const passthrough = proxy({
+  changeOrigin: true,
+  followRedirects: true,
+  secure: 'development' !== NODE_ENV,
+  target: API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  xfwd: true,
+});
+
+// Create proxies for each configured proxy pattern.
+proxyConfig.forEach((pattern) => {
+  app.use(pattern, passthrough);
+});
 
 if ('development' === NODE_ENV) {
   require('../server/development')(app);
