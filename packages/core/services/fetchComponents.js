@@ -145,7 +145,7 @@ export default async function cacheResult(...args) {
 
   let response = await cache.get(key);
   if (! response) {
-    log.info(info);
+    log.info('%o', info);
     response = await fetchComponents(...args);
     await cache.set(key, response);
   } else {

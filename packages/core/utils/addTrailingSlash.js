@@ -13,11 +13,13 @@ export default function addTrailingSlash(
   if (replace) {
     const splitUrl = url.split('/');
 
-    return (
+    if (
       '/' !== url[url.length - 1] &&
       // Don't add trailing slashes to filepaths.
       ! splitUrl[splitUrl.length - 1].includes('.')
-    ) ? `${url}/` : url;
+    ) {
+      return `${url}/`;
+    }
   }
 
   return url;
