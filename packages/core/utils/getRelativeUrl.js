@@ -3,7 +3,9 @@ import globToRegExp from 'glob-to-regexp';
 import { getConfigArray } from 'utils/getConfigValue';
 import addTrailingSlash from './addTrailingSlash';
 
+// Create RegExp version of proxy globs.
 const proxyPassthrough = getConfigArray('proxyPassthrough');
+const proxyRegExp = proxyPassthrough.map(globToRegExp);
 
 /**
  * Normalize internal urls to be relative. Reject external urls.
@@ -12,7 +14,6 @@ const proxyPassthrough = getConfigArray('proxyPassthrough');
  */
 export default function getRelativeUrl(url) {
   let result = false;
-  const proxyRegExp = proxyPassthrough.map(globToRegExp);
 
   if ('string' !== typeof url) {
     return false;
@@ -26,23 +27,31 @@ export default function getRelativeUrl(url) {
     } = urlObj;
     const {
       protocol,
-      host,
+      hostname,
       query,
       hash,
     } = urlObj;
 
-    // Add trailing slashes and remove host only under below conditions.
+    /**
+     * Add trailing slashes and remove hostname only under below conditions:
+     * - current hostname is included in the provided target URL
+     * - protocol isn't set or is either http or https
+     * - target URL does not match one of the configured passthrough proxies
+     */
     if (
       (
-        host === window.location.host ||
-        host.includes(window.location.host) ||
-        window.location.host.includes(host)
+        hostname.includes(window.location.hostname) ||
+        window.location.hostname.includes(hostname)
       ) &&
-      ('http:' === protocol || 'https:' === protocol) &&
+      (
+        'http:' === protocol ||
+        'https:' === protocol ||
+        ! protocol
+      ) &&
       ! proxyRegExp.some((proxy) => proxy.test(url))
     ) {
       // Internal URL, add query and hash.
-      result = addTrailingSlash(urlPath) + (query || '') + (hash || '');
+      result = `${addTrailingSlash(urlPath)}${(query || '')}${(hash || '')}`;
     } else {
       // External URL, not relative.
       result = false;
