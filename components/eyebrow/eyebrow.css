@@ -9,8 +9,8 @@
   text-decoration: none;
 
   span {
-    padding-left: rem(5);
     font-weight: 400;
+    padding-left: rem(5);
   }
 }
 
