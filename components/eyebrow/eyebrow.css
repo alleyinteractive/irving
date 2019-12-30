@@ -1,10 +1,17 @@
 .eyebrow {
+  display: block;
   font-family: $sans;
   font-size: rem(16);
   font-weight: 600;
   line-height: 1.19;
   margin-right: 1ch;
+  padding-top: rem(10);
   text-decoration: none;
+
+  span {
+    font-weight: 400;
+    padding-left: rem(5);
+  }
 }
 
 .eyebrowLink {
