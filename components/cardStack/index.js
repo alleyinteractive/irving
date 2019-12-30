@@ -44,12 +44,14 @@ const CardStack = ({
   return (
     <header className={theme.wrapper} style={{ backgroundColor: color }}>
       <div className={isSubtopic || ! image ? theme.metaFull : theme.meta}>
-        <Eyebrow
-          customEyebrow={eyebrow}
-          themeName="In Feed"
-          color={textColor}
-          dateline={dateline}
-        />
+        { eyebrow && (
+          <Eyebrow
+            customEyebrow={eyebrow}
+            themeName="In Feed"
+            color={textColor}
+            dateline={dateline}
+          />
+        )}
         {/* @todo heading level needs to be dynamic, homepage has > 1 h1 */}
         <h1 className={theme.name}>{name}</h1>
         <p className={theme.description}>{description}</p>
@@ -124,7 +126,7 @@ const CardStack = ({
 
 CardStack.defaultProps = {
   dateline: '',
-  eyebrow: '',
+  eyebrow: false,
   isSubtopic: false,
   sponsored: {},
   isSponsored: false,

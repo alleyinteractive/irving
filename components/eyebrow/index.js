@@ -21,9 +21,10 @@ const Eyebrow = ({
     return (
       <div className={styles.eyebrow} style={{ color }}>
         {customEyebrow}
-        if (dateline) {
+        {(
+          dateline &&
           <span>{dateline}</span>
-        }
+        )}
       </div>
     );
   }
