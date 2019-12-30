@@ -53,7 +53,7 @@ const CardStack = ({
           />
         )}
         {/* @todo heading level needs to be dynamic, homepage has > 1 h1 */}
-        <h1 className={theme.name}>{name}</h1>
+        <h1 className={theme.name} style={{ color: textColor }}>{name}</h1>
         <p className={theme.description}>{description}</p>
       </div>
       {! isSubtopic && image && <div className={theme.image}>{image}</div>}
