@@ -1,5 +1,9 @@
 import URL from 'url-parse';
+import globToRegExp from 'glob-to-regexp';
+import { getConfigArray } from 'utils/getConfigValue';
 import addTrailingSlash from './addTrailingSlash';
+
+const proxyPassthrough = getConfigArray('proxyPassthrough');
 
 /**
  * Normalize internal urls to be relative. Reject external urls.
@@ -8,6 +12,7 @@ import addTrailingSlash from './addTrailingSlash';
  */
 export default function getRelativeUrl(url) {
   let result = false;
+  const proxyRegExp = proxyPassthrough.map(globToRegExp);
 
   if ('string' !== typeof url) {
     return false;
@@ -33,10 +38,8 @@ export default function getRelativeUrl(url) {
         host.includes(window.location.host) ||
         window.location.host.includes(host)
       ) &&
-      (
-        ('http:' === protocol || 'https:' === protocol) &&
-        'rss' !== url.split('.').pop()
-      )
+      ('http:' === protocol || 'https:' === protocol) &&
+      ! proxyRegExp.some((proxy) => proxy.test(url))
     ) {
       // Internal URL, add query and hash.
       result = addTrailingSlash(urlPath) + (query || '') + (hash || '');

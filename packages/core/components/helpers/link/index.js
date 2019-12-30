@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import parseUrl from 'utils/getRelativeUrl';
+import memoize from 'lodash/memoize';
+import getRelativeUrl from 'utils/getRelativeUrl';
 import history from 'utils/history';
 import omit from 'lodash/fp/omit';
+
+// Create memoized copy of relative URL getter.
+const parseUrl = memoize(getRelativeUrl);
 
 const Link = (props) => {
   const {
