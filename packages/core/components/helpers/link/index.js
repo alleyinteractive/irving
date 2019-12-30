@@ -5,7 +5,7 @@ import getRelativeUrl from 'utils/getRelativeUrl';
 import history from 'utils/history';
 import omit from 'lodash/fp/omit';
 
-// Create memoized copy of relative URL getter.
+// Checking for a relative URL is expensive, memoize it.
 const parseUrl = memoize(getRelativeUrl);
 
 const Link = (props) => {
