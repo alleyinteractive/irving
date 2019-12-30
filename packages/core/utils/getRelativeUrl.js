@@ -35,6 +35,7 @@ export default function getRelativeUrl(url) {
     /**
      * Consider provided target URL to be relative (and transform/return it accordingly) only if:
      * - Current hostname is included in the provided target URL
+     * - URL does not begin with a hash
      * - Protocol isn't set or is either http or https
      * - Target URL does not match one of the configured passthrough proxies
      */
@@ -48,6 +49,7 @@ export default function getRelativeUrl(url) {
         'https:' === protocol ||
         ! protocol
       ) &&
+      '#' !== url[0] &&
       ! proxyRegExp.some((proxy) => proxy.test(url))
     ) {
       // Internal URL, add query and hash.
