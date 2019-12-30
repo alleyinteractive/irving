@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import isNode from 'utils/isNode';
 
 const GoogleTagManager = (props) => {
   const {
@@ -17,7 +18,6 @@ const GoogleTagManager = (props) => {
    */
   useEffect(() => {
     window.dataLayer = window.dataLayer || [];
-
     window.dataLayer.push({
       event: 'irving.historyChange',
       ...dataLayer,
@@ -37,6 +37,17 @@ const GoogleTagManager = (props) => {
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${containerId}');
+          `}
+        </script>
+        {/* Initial SSR event. */}
+        <script>
+          {`
+            if (${isNode()}) {
+              window.dataLayer.push({
+                event: 'irving.initialRender',
+                ...dataLayer,
+              });
+            }
           `}
         </script>
         {/* eslint-enable */}
