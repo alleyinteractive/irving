@@ -33,7 +33,7 @@ const wrapWithStyles = withStyles(styles, trListStyles);
 
 const wrapWithThemes = withThemes('social-list', {
   default: styles,
-  'list-header': trListStyles,
+  listHeader: trListStyles,
 });
 
 export default wrapWithStyles(wrapWithThemes(SocialList));
