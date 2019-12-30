@@ -10,8 +10,8 @@ it('should handle a relative url with search parameters', () => {
 });
 
 it('should handle a relative url with a hash', () => {
-  expect(getRelativeUrl('/foo#somehash'))
-    .toBe('/foo#somehash');
+  expect(getRelativeUrl('/foo#some-hash'))
+    .toBe('/foo#some-hash');
 });
 
 it('should handle an internal, absolute URL with port', () => {
@@ -34,4 +34,20 @@ it('should handle an internal absolute url with search query and hash', () => {
 
 it('should handle an external absolute url', () => {
   expect(getRelativeUrl('http://google.com')).toBe(false);
+});
+
+it('should not modify URLs with non http/https protocols', () => {
+  expect(getRelativeUrl('mailto:ops@alley.co')).toBe(false);
+});
+
+it('should not modify URLs that match a configured passhtrough proxy', () => {
+  expect(getRelativeUrl('/test/path/is/cool')).toBe(false);
+});
+
+it('should modify empty URLs so they lead home', () => {
+  expect(getRelativeUrl('')).toBe('/');
+});
+
+it('should not modify URLs that begin with a hash', () => {
+  expect(getRelativeUrl('#test-hash')).toBe(false);
 });
