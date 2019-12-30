@@ -33,10 +33,10 @@ export default function getRelativeUrl(url) {
     } = urlObj;
 
     /**
-     * Add trailing slashes and remove hostname only under below conditions:
-     * - current hostname is included in the provided target URL
-     * - protocol isn't set or is either http or https
-     * - target URL does not match one of the configured passthrough proxies
+     * Consider provided target URL to be relative (and transform/return it accordingly) only if:
+     * - Current hostname is included in the provided target URL
+     * - Protocol isn't set or is either http or https
+     * - Target URL does not match one of the configured passthrough proxies
      */
     if (
       (
