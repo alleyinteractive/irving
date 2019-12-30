@@ -39,7 +39,7 @@ export async function cacheResult(endpoint) {
 
   let response = await cache.get(endpoint);
   if (! response) {
-    log.info(info);
+    log.info('%o', info);
     response = await fetchComponentData(endpoint);
     await cache.set(endpoint, response);
   } else {

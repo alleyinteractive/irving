@@ -11,9 +11,8 @@ env:
 
 branches:
   only:
-    - production
-    - release
-    - dev
+    - master
+    - beta
 
 notifications:
   email: false
