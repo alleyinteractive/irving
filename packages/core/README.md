@@ -25,7 +25,7 @@ this variable will be set to `process.cwd()`.
 prevent webpack assets from 404ing when the app isn't served from the root of a
 site.
 * `API_ROOT_URL` **required** - URL at which your components endpoint can be accessed.
-* `API_ORIGIN` - Protocol and host at which your API is located. Usually the same as `API_ROOT_URL` but without the path. This is used only in a limited number of places (like passthrough proxies). This is not required if you are not using that functionality OR if your API origin and root URL are the same.
+* `API_ORIGIN` - Protocol and host at which your API is located. Usually the same as `API_ROOT_URL` but without a path. This is used only in a limited number of places (like passthrough proxies). This is not required if you are not using that functionality OR if your API origin and root URL are the same.
 * `PORT` - http port the server will serve from
 * `HOSTNAME` - FQDN of the server host
 * `NODE_TLS_REJECT_UNAUTHORIZED` - Only disable this when attempting to execute
