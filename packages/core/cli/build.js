@@ -17,16 +17,30 @@ webpack(
     }
 
     const info = stats.toJson();
+    const messageRegExp = /(\([^)]*\))([\s\S]*)/;
 
     // Log compile errors.
     if (stats.hasErrors()) {
-      throw new Error(info.errors);
+      info.errors.forEach((error) => {
+        const errorParts = error.match(messageRegExp);
+        console.error(
+          chalk.black.bgRed(errorParts[1]),
+          chalk.red(errorParts[2])
+        );
+      });
+
+      throw new Error('build failed');
     }
 
     // Log compile warnings.
     if (stats.hasWarnings()) {
       info.warnings.forEach((warning) => {
-        console.warn(chalk.yellow(warning));
+        const warnParts = warning.match(messageRegExp);
+        // console.log(warnParts);
+        console.warn(
+          chalk.black.bgYellow(warnParts[1]),
+          chalk.yellow(warnParts[2])
+        );
       });
     }
 
