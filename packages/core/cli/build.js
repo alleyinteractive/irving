@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const chalk = require('chalk');
 const getConfig = require('../config/webpack.config.js');
 const config = getConfig({}, { mode: 'production' });
 
@@ -8,23 +9,39 @@ webpack(
   (err, stats) => {
     // Log fatal webpack errors.
     if (err) {
-      console.error(err.stack || err);
       if (err.details) {
-        console.error(err.details);
+        throw new Error(err.details);
+      } else {
+        throw new Error(err.stack || err);
       }
-      return;
     }
 
     const info = stats.toJson();
+    const messageRegExp = /(\([^)]*\))([\s\S]*)/;
 
     // Log compile errors.
     if (stats.hasErrors()) {
-      console.error(info.errors);
+      info.errors.forEach((error) => {
+        const errorParts = error.match(messageRegExp);
+        console.error(
+          chalk.black.bgRed(errorParts[1]),
+          chalk.red(errorParts[2])
+        );
+      });
+
+      throw new Error('build failed');
     }
 
     // Log compile warnings.
     if (stats.hasWarnings()) {
-      console.warn(info.warnings);
+      info.warnings.forEach((warning) => {
+        const warnParts = warning.match(messageRegExp);
+        // console.log(warnParts);
+        console.warn(
+          chalk.black.bgYellow(warnParts[1]),
+          chalk.yellow(warnParts[2])
+        );
+      });
     }
 
     console.log('build complete');
