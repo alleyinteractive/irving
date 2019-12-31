@@ -55,6 +55,7 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-universal-import": "^4.0.0",
     "basic-auth": "^2.0.0",
+    "chalk": "^3.0.0",
     "check-node-version": "^3.2.0",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^2.0.1",
