@@ -4,7 +4,6 @@ const { irvingRoot } = require('./paths');
 const componentGlobs = {
   core: path.join(irvingRoot, 'components/**/*.js'),
   hoc: path.join(irvingRoot, 'components/hoc/**/*.js'),
-  helpers: path.join(irvingRoot, 'components/helpers/**/*.js'),
 };
 
 module.exports = {
@@ -24,11 +23,6 @@ module.exports = {
           name: 'Higher-order Components',
           content: path.join(irvingRoot, 'components/hoc/hoc.md'),
           components: componentGlobs.hoc,
-        },
-        {
-          name: 'Helper Components',
-          content: path.join(irvingRoot, 'components/helpers/helpers.md'),
-          components: componentGlobs.helpers,
         },
       ],
     },

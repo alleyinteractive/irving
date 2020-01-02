@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import createWithUserThemes from 'components/hoc/createWithUserThemes';
-import Container from 'components/helpers/container';
 import styles from './placeholderLoading.css';
 
 const PlaceholderLoading = (props) => {
   const { theme } = props;
 
   return (
-    <Container className={theme.wrapper} aria-hidden="true">
+    <div className={theme.wrapper} aria-hidden="true">
       <div className={theme.thumb} />
       <div className={theme.content}>
         <div className={theme.textBar} />
@@ -18,7 +17,7 @@ const PlaceholderLoading = (props) => {
         <div className={theme.textBar} />
         <div className={theme.textBar} />
       </div>
-    </Container>
+    </div>
   );
 };
 

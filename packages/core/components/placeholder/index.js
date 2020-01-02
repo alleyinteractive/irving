@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import createWithUserThemes from 'components/hoc/createWithUserThemes';
-import Heading from 'components/helpers/heading';
 import Link from 'components/link';
 import styles from './placeholder.css';
 
@@ -24,16 +23,17 @@ const Placeholder = (props) => {
   } = props;
   const maxLevel = 6;
   const headingLevel = maxLevel < level ? maxLevel : level;
-  const headingElement = (
-    <Heading tag={`h${headingLevel}`}>
+  const HeadingElement = `h${headingLevel}`;
+  const HeadingComponent = (
+    <HeadingElement>
       {componentName}
-    </Heading>
+    </HeadingElement>
   );
 
   return (
     <div className={theme.wrapper}>
-      {!! url && <Link to={url}>{headingElement}</Link>}
-      {! url && headingElement}
+      {!! url && <Link to={url}>{HeadingComponent}</Link>}
+      {! url && HeadingComponent}
       <pre>
         {JSON.stringify(omit(['componentName', 'children'], props), null, 2)}
       </pre>
