@@ -3,16 +3,13 @@ const { getMergedFromUserConfig } = require('./getMergedConfigField');
 let config;
 
 /* eslint-disable import/no-dynamic-require, global-require */
-// Wrap require for configs in try/catch to ensure things will work if user only needs a componentMap.js
 if (process.env.BUILD) {
-  try {
-    config = require('@irvingjs/irving.config').default;
-  } catch (e) {
-    config = {};
-  }
+  config = require('@irvingjs/irving.config').default;
 } else {
   const { serverConfig: serverConfigPath } = require('../config/paths');
 
+  // Wrap require for server config in try/catch to ensure things will work
+  // if user decides not to create a server config.
   try {
     config = require(serverConfigPath);
   } catch (e) {
