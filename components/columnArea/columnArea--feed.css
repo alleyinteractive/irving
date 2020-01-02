@@ -39,10 +39,6 @@
   }
 }
 
-.column {
-  composes: column from './columnArea--full.css';
-}
-
 .sidebar {
   width: 100%;
 
