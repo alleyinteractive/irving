@@ -16,9 +16,6 @@
 	"license": "MIT",
 	"dependencies": {
 		"autoprefixer": "^9.6.5",
-		"enzyme": "^3.10.0",
-		"enzyme-adapter-react-16": "^1.15.1",
-		"jest-enzyme": "^7.1.1",
 		"postcss-loader": "^3.0.0",
 		"stylelint": "^11.1.1",
 		"stylelint-order": "^3.1.1"
