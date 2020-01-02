@@ -5,7 +5,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import Heading from 'components/helpers/heading';
-import Link from 'components/helpers/link';
+import Link from 'components/link';
 import styles from './placeholder.css';
 
 /**
