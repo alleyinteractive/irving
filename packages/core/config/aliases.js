@@ -1,5 +1,5 @@
 const path = require('path');
-const { maybeRequireUserModule } = require('../utils/userModule');
+const { maybeResolveUserModule } = require('../utils/userModule');
 const { buildContext } = require('./paths');
 
 // App aliases, exported in case we need them elsewhere.
@@ -16,8 +16,8 @@ module.exports = {
   services: './services',
   utils: './utils',
   // Aliases for irving config files. Use core defaults if they don't exist.
-  '@irvingjs/irving.config': maybeRequireUserModule('irving.config.js'),
-  '@irvingjs/irving.config.server': maybeRequireUserModule(
+  '@irvingjs/irving.config': maybeResolveUserModule('irving.config.js'),
+  '@irvingjs/irving.config.server': maybeResolveUserModule(
     'irving.config.server.js'
   ),
   '@irvingjs/componentMap': path.join(
