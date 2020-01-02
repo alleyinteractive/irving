@@ -44,7 +44,6 @@
 }
 
 .sidebar {
-  composes: sidebar from './columnArea--full.css';
   width: 100%;
 
   @media ($mdMin) {
