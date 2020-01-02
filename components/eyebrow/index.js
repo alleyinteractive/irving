@@ -10,6 +10,7 @@ import styles from './eyebrow.css';
 const Eyebrow = ({
   color,
   customEyebrow,
+  dateline,
   subTopic,
   subTopicLink,
   themeName,
@@ -20,6 +21,10 @@ const Eyebrow = ({
     return (
       <div className={styles.eyebrow} style={{ color }}>
         {customEyebrow}
+        {(
+          dateline &&
+          <span>{dateline}</span>
+        )}
       </div>
     );
   }
@@ -61,6 +66,7 @@ const Eyebrow = ({
 Eyebrow.defaultProps = {
   themeName: 'In Feed',
   customEyebrow: '',
+  dateline: '',
   subTopic: '',
   subTopicLink: '',
 };
@@ -68,6 +74,7 @@ Eyebrow.defaultProps = {
 Eyebrow.propTypes = {
   color: PropTypes.string,
   customEyebrow: PropTypes.string,
+  dateline: PropTypes.string,
   subTopic: PropTypes.string,
   subTopicLink: PropTypes.string,
   themeName: PropTypes.string,
