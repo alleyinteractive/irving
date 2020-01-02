@@ -21,7 +21,6 @@ const AudioElement = (props) => {
     seek,
     src,
     stop,
-    liveStreamSource,
     receiveTime,
     volume,
   } = props;
@@ -86,10 +85,7 @@ const AudioElement = (props) => {
     if (player) {
       if (playing && ! player.playing()) {
         player.play();
-
-        if (! liveStreamSource) {
-          requestAnimationFrame(updateTime);
-        }
+        requestAnimationFrame(updateTime);
       } else if (! playing && player.playing()) {
         player.pause();
       }
