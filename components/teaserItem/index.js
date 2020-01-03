@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
@@ -30,6 +30,7 @@ const TeaserItem = ({
   topic,
   topicLink,
 }) => {
+  const [sharingIsVisible, setSharingIsVisible] = useState(false);
   const image = findChildByName('image', children);
   const video = findChildByName('video', children);
   const socialSharing = findChildByName('social-sharing', children);
@@ -110,12 +111,19 @@ const TeaserItem = ({
           type="button"
           aria-label={__('Open share menu', 'mittr')}
           className={theme.shareMenuToggle}
+          onClick={() => {
+            setSharingIsVisible(! sharingIsVisible);
+          }}
+          aria-haspopup
+          aria-expanded={sharingIsVisible}
         >
           <div className={theme.dot} />
           <div className={theme.dot} />
           <div className={theme.dot} />
         </button>
-        {socialSharing}
+        <div className={theme.shareMenuFlyOut}>
+          {sharingIsVisible && socialSharing}
+        </div>
       </div>
     </article>
   );
