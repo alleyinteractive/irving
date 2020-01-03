@@ -1,5 +1,7 @@
 /**
- * Page theme column layout (e.g. non-story pages).
+ * Page theme column layout (e.g. non-story pages with sidebar).
+ *
+ * Zeplin link: https://zpl.io/2jWQdy4
  *
  * At desktop:
  * - 1-col offset
@@ -12,18 +14,20 @@
   composes: wrapper from './columnArea--feed.css';
 }
 
-.column {
-  composes: column from './columnArea--feed.css';
-}
-
 .main {
-  composes: main from './columnArea--feed.css';
+  tidy-span: 12;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 7;
+  }
 }
 
 .sidebar {
-  composes: sidebar from './columnArea--feed.css';
-}
+  display: none;
 
-.container {
-  composes: container from './columnArea--feed.css';
+  @media ($mdMin) {
+    display: block;
+    tidy-span: 3;
+  }
 }
