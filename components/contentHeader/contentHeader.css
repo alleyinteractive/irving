@@ -54,6 +54,9 @@
   }
 
   @media ($lgMin) {
+    /* @see ../columnArea--fullStory.css */
+    padding-left: 0;
+    padding-right: rem(20);
     tidy-offset-left: 1;
     tidy-span: 6;
   }

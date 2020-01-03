@@ -1,0 +1,34 @@
+/**
+ * Full story column layout.
+ *
+ * Zeplin: https://zpl.io/VDADW3r
+ *
+ * At desktop:
+ * - 1-col offset
+ * - 6-col main columnn with 20px padding right
+ * - 2-col gap
+ * - 3-col sidebar with 20px padding margin
+ */
+
+.wrapper {
+  composes: wrapper from './columnArea--feed.css';
+}
+
+.main {
+  width: 100%;
+
+  @media ($mdMin) {
+    padding-left: 0;
+    padding-right: rem(20);
+    tidy-offset-left: 1;
+    tidy-span: 6;
+  }
+}
+
+.sidebar {
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-span: 3;
+  }
+}

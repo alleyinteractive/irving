@@ -22,20 +22,19 @@
 
   @media ($smMin) {
     @include container;
+    /* flex-wrap: nowrap; */
   }
 }
 
 .main {
-  composes: main from './columnArea--full.css';
   margin-bottom: rem(40);
   width: 100%;
 
   @media ($mdMin) {
-    box-sizing: content-box;
     margin-bottom: 0;
     tidy-offset-left: 1;
     transform: translateX(rem(-20));
-    width: calc(tidy-span(6) + rem(40));
+    width: calc(tidy-span-full(6) + rem(40));
   }
 }
 
@@ -47,7 +46,7 @@
   }
 
   @media ($lgMin) {
-    tidy-offset-left: 1;
-    tidy-span: 3;
+    margin-left: calc(tidy-span-full(1) - rem(40));  /* Account for main container bleed. */
+    tidy-span: 4;
   }
 }

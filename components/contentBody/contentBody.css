@@ -5,29 +5,11 @@
   margin: 0 auto;
   position: relative;
   width: 100%;
-
-  > * {
-    margin: 0 auto;
-    tidy-span: 10;
-
-    @media ($smMax) {
-      tidy-span: 12;
-    }
-
-    @media ($mdMin) {
-      tidy-offset-left: 0;
-      tidy-span: 6;
-    }
-
-    @media ($lgMin) {
-      tidy-offset-left: 0;
-      tidy-span: 6;
-    }
-  }
 }
 
 .content {
   height: 100%;
+  width: 100%;
 }
 
 .contentHidden {
