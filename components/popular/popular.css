@@ -3,11 +3,7 @@
 }
 
 .contentModule {
-  width: rem(300);
-
-  @media ($smMax) {
-    tidy-span: 12;
-  }
+  width: 100%;
 
   @media ($mdMax) {
     margin: 0 auto;
