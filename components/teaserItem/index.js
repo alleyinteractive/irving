@@ -32,6 +32,7 @@ const TeaserItem = ({
 }) => {
   const image = findChildByName('image', children);
   const video = findChildByName('video', children);
+  const socialSharing = findChildByName('social-sharing', children);
 
   const otherChildren = children.filter(
     ({ props: { componentName } }) => ('image' !== componentName) &&
@@ -114,6 +115,7 @@ const TeaserItem = ({
           <div className={theme.dot} />
           <div className={theme.dot} />
         </button>
+        {socialSharing}
       </div>
     </article>
   );
