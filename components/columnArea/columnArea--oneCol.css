@@ -1,19 +1,9 @@
 /* One Column theme styles */
-.column {
-  @media ($mdMin) {
-    @include container-with-bleed;
-    padding-left: 0;
-    padding-right: 0;
-    tidy-offset-left: 1;
-    /* Fix bleed from being entirely applied to right side */
-  }
-
-  @media ($smMax) {
-    @include container-with-bleed;
-  }
+.wrapper {
+  composes: wrapper from './columnArea--feed.css';
 }
 
-.content,
-.contentWrapper {
-  width: 100%;
+.main {
+  margin: 0 auto rem(60);
+  max-width: rem(741);
 }
