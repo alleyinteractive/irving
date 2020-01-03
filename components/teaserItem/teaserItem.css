@@ -85,12 +85,6 @@
   margin-top: rem(20);
 }
 
-.shareMenu {
-  position: absolute;
-  right: tidy-var(edge);
-  top: tidy-var(edge);
-}
-
 .shareMenuToggle {
   appearance: none;
   background-color: transparent;
@@ -100,6 +94,9 @@
   height: rem(18);
   letter-spacing: rem(1);
   padding: 0;
+  position: absolute;
+  right: tidy-var(edge);
+  top: tidy-var(edge);
 }
 
 .dot {
@@ -117,4 +114,8 @@
 .image {
   overflow: hidden;
   width: 100%;
+}
+
+.shareMenuFlyOut {
+  background-color: #fff;
 }
