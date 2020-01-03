@@ -4,6 +4,10 @@
   @include container-with-bleed;
   position: relative;
 
+  @media ($mdMin) {
+    min-height: rem(800);
+  }
+
   nav + & {
     margin-top: rem(75);
   }
