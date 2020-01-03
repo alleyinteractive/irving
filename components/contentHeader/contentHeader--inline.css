@@ -9,13 +9,16 @@
   /* Increase specificity for override. */
   &.intro {
     border-bottom: 0;
+    width: 100%;
 
     @media ($mdMin) {
       margin-left: 0;
+      width: 100%;
     }
 
     @media ($lgMin) {
       margin-left: 0;
+      width: 100%;
     }
   }
 }
