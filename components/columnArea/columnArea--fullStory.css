@@ -7,7 +7,13 @@
  * - 1-col offset
  * - 6-col main columnn with 20px padding right
  * - 2-col gap
- * - 3-col sidebar with 20px padding margin
+ * - 3-col sidebar with 20px padding right
+ *
+ * At tablet:
+ * - 1-col offset
+ * - 6-col main columnn with 20px padding right
+ * - 1-col gap
+ * - 4-col sidebar with 20px padding left
  */
 
 .wrapper {
@@ -15,7 +21,7 @@
 }
 
 .main {
-  width: 100%;
+  @include container;
 
   @media ($mdMin) {
     padding-left: 0;
@@ -26,9 +32,16 @@
 }
 
 .sidebar {
-  width: 100%;
+  display: none;
 
   @media ($mdMin) {
-    tidy-span: 3;
+    display: block;
+    padding-left: rem(20);
+    width: calc(tidy-span-full(4) - rem(20));
+  }
+
+  @media ($lgMin) {
+    padding-right: rem(20);
+    width: calc(tidy-span-full(3) - rem(20));
   }
 }
