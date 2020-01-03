@@ -47,12 +47,6 @@
     tidy-span: 12;
   }
 
-  @media ($mdMin) {
-    order: 1;
-    tidy-offset-left: 1;
-    tidy-span: 12;
-  }
-
   @media ($lgMin) {
     /* @see ../columnArea--fullStory.css */
     padding-left: 0;
