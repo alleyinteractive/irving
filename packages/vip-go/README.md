@@ -11,7 +11,7 @@ import vipGoConfig from '@irvingjs/vip-go';
 const config = {
   packages: [
     vipGoConfig,
-  ]
+  ],
 }
 
 export default config;
