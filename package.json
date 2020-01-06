@@ -97,6 +97,7 @@
     "webpack-stats-plugin": "^0.3.0"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^24.9.0",
@@ -111,5 +112,10 @@
   "engines": {
     "node": "10",
     "npm": "6"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
