@@ -51,7 +51,7 @@ const AudioElement = (props) => {
     stop();
   };
 
-  // Watch for src changes and creat new howl.
+  // Watch for src changes and create new howl.
   useEffect(() => {
     let howl;
 
