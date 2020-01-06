@@ -40,7 +40,7 @@ const SocialItem = ({
           rel="noopener"
         >
           <span className={theme.screenReaderLabel}>
-            {type}
+            {type}link opens in a new window
           </span>
           {displayIcon && IconComponent && (
             <div className={theme.icon}>
