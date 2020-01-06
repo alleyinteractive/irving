@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
-import { findChildByName } from 'utils/children';
 
 // Themes
 import feedColumnTheme from './columnArea--feed.css';
@@ -13,10 +12,11 @@ import pageTheme from './columnArea--page.css';
 
 const ColumnArea = ({ children, theme }) => {
   // Separate content and sidebar
-  const content = children.filter(
-    (child) => 'sidebar' !== child.props.componentName
+  const childIsSidebar = ({ componentName, isSidebar = false }) => (
+    isSidebar || 'sidebar' === componentName
   );
-  const sidebar = findChildByName('sidebar', children);
+  const content = children.filter(({ props }) => ! childIsSidebar(props));
+  const sidebar = children.filter(({ props }) => childIsSidebar(props));
 
   return (
     <div className={theme.wrapper}>
