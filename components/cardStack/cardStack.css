@@ -33,14 +33,15 @@
   flex-flow: row nowrap;
   margin-bottom: rem(30);
   overflow: hidden;
-  padding: rem(30 30 0 30);
+  padding: rem(30 0 0 30);
   width: 100%;
 
   @media ($smMin) {
     width: 50%;
   }
 
-  span {
+  span,
+  figure {
     display: block;
     width: 100%;
   }
