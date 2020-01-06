@@ -3,15 +3,28 @@ This package contains implementations of WordPress VIP's helpers for caching, lo
 
 ## Installation
 1. `npm install @irvingjs/vip-go`
-2. Import and add the vip go server configuration file to your project's `irving.config.server.js`:
+2. Add the VIP Go package configuration to your local project configuration files:
+In your `irving.config.js` file:
 ```javascript
-const config = require('@irvingjs/vip-go/irving.config.server.js')
+import vipGoConfig from '@irvingjs/vip-go';
+
+const config = {
+  packages: [
+    vipGoConfig,
+  ],
+};
+
+export default config;
+```
+
+In your `irving.config.server.js` file:
+```javascript
+const vipGoConfig = require('@irvingjs/vip-go');
 
 module.exports = {
-    packages: [
-        config,
-    ],
-    ...
+  packages: [
+    vipGoConfig,
+  ],
 };
 ```
 3. Update your `package.json` to include the VIP Go preflight checks and the vip-go-friendly build script:
