@@ -12,7 +12,7 @@ const config = {
   packages: [
     vipGoConfig,
   ],
-}
+};
 
 export default config;
 ```
