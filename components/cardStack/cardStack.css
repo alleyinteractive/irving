@@ -40,7 +40,8 @@
     width: 50%;
   }
 
-  span {
+  span,
+  figure {
     display: block;
     width: 100%;
   }
