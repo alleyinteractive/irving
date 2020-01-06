@@ -9,6 +9,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 
 import React from 'react';
+import { __ } from '@wordpress/i18n';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import classNames from 'classnames';
@@ -40,7 +41,7 @@ const SocialItem = ({
           rel="noopener"
         >
           <span className={theme.screenReaderLabel}>
-            {type}link opens in a new window
+            {type}{__('link opens in a new window', 'mittr')}
           </span>
           {displayIcon && IconComponent && (
             <div className={theme.icon}>
