@@ -25,7 +25,7 @@ module.exports = {
   packages: [
     vipGoConfig,
   ],
-}
+};
 ```
 3. Update your `package.json` to include the VIP Go preflight checks and the vip-go-friendly build script:
 ```json
