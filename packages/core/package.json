@@ -21,6 +21,8 @@
     ".eslintignore",
     ".eslintrc.js",
     "babel.config.js",
+    "irving.config.js",
+    "irving.config.server.js",
     "!*.test.js"
   ],
   "repository": {
