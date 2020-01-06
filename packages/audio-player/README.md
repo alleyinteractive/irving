@@ -6,7 +6,7 @@ A persistent audio player is one of the most unique features that Irving offers.
 2. Add necessary components your project `componentMap.js`
 3. Package includes a component called `<AudioElement>` to connect/interface with the HTML audio element. This component:
     * Should only have a single instance appear on the page. Because of this, we recommend you include it directly in your project's `<App>` component.
-    * As described below, this package does not contain any user interface for controlling the `<AudioElement>` beyond a simple play/pase button. Volume, scrubbing, next/prev buttons, etc. are up to you—there are, however, redux actions provided for managing that functionality.
+    * As described below, this package does not contain any user interface for controlling the `<AudioElement>` beyond a simple play/pause button. Volume, scrubbing, next/prev buttons, etc. are up to you—there are, however, redux actions provided for managing that functionality.
 
 ### Components
 * `<AudioElement>` - HTML `<audio>` tag and relevant hooks for controlling it via redux state. Note that beyond the `<PlayPauseButton />` component (below) this package does not provide a UI for controlling audio.
