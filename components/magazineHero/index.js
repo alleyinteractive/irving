@@ -4,6 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
+import parse from 'html-react-parser';
 
 // SVGs
 import ArrowIcon from 'assets/icons/arrow.svg';
@@ -59,7 +60,7 @@ const MagazineHero = ({
         <div className={styles.text}>
           <h1 className={styles.title}>{title}</h1>
           <div className={styles.date}>{issueDate}</div>
-          <p className={styles.description}>{description}</p>
+          <p className={styles.description}>{parse(description)}</p>
           <Link to="#features" className={styles.readLink}>
             {__('Read the issue', 'mittr')}
           </Link>
