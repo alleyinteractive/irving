@@ -37,7 +37,7 @@ const TeaserItem = ({
 
   const otherChildren = children.filter(
     ({ props: { componentName } }) => ('image' !== componentName) &&
-      ('video' !== componentName)
+      ('video' !== componentName) && ('social-sharing' !== componentName)
   );
 
   if ('simple' === themeName) {
