@@ -18,6 +18,7 @@ import ContentFooter from 'components/contentFooter';
 import ContentHeader from 'components/contentHeader';
 import ContentList from 'components/contentList';
 import ContentListItem from 'components/contentList/contentListItem';
+import Container from 'components/container';
 import Disqus from 'components/disqus';
 import FeedItem from 'components/feedItem';
 import Footer from 'components/footer';
@@ -102,6 +103,7 @@ export const componentMap = {
   'content-footer': ContentFooter,
   'content-header': ContentHeader,
   'content-list-item': ContentListItem,
+  container: Container,
   'core/column': Column,
   'core/columns': Columns,
   disqus: Disqus,
