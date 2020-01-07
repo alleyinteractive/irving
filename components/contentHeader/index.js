@@ -53,7 +53,7 @@ const ContentHeader = ({
         )}
       </div>
       {sponsoredModule && (
-        <div className={styles.sponsoredModule} id="sponsored-content--module">
+        <div className={theme.sponsoredModule} id="sponsored-content--module">
           {sponsoredModule}
         </div>
       )}
@@ -107,4 +107,4 @@ export default withThemes('content-header', {
   inline: inlineTheme,
   isVertical: verticalTheme,
   simple: simpleTheme,
-})(withStyles(styles, inlineTheme, verticalTheme)(ContentHeader));
+})(withStyles(styles, inlineTheme, verticalTheme, simpleTheme)(ContentHeader));

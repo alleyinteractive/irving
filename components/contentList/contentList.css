@@ -25,6 +25,15 @@
       padding-left: rem(10);
       padding-right: 0;
     }
+
+    &.content-full {
+      margin-bottom: 0;
+      margin-left: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+      width: 100%;
+    }
   }
 
   .contentList__header {

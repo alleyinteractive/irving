@@ -3,40 +3,14 @@
 .wrapper {
   font-size: rem(12);
   margin: rem(30) auto 0;
-
-  > * {
-    margin: 0 auto;
-    tidy-span: 10;
-
-    @media ($mdMin) {
-      tidy-span: 6;
-    }
-
-    @media ($lgMin) {
-      tidy-span: 10;
-    }
-  }
+  width: 100%;
 
   &::before {
     border-top: $border-thin--gray-light;
     content: '';
     display: block;
     margin: 0 auto rem(20);
-    tidy-span: 10;
-
-    @media ($smMax) {
-      tidy-span: 12;
-    }
-
-    @media ($mdMin) {
-      tidy-offset-left: 1;
-      tidy-span: 6;
-    }
-
-    @media ($lgMin) {
-      tidy-offset-left: 0;
-      tidy-span: 6;
-    }
+    width: 100%;
   }
 
   a {
@@ -68,21 +42,6 @@
   margin-bottom: rem(15);
   margin-left: auto;
   margin-right: auto;
-  tidy-span: 10;
-
-  @media ($smMax) {
-    tidy-span: 12;
-  }
-
-  @media ($mdMin) {
-    tidy-offset-left: 1;
-    tidy-span: 6;
-  }
-
-  @media ($lgMin) {
-    tidy-offset-left: 0;
-    tidy-span: 6;
-  }
 }
 
 .social {

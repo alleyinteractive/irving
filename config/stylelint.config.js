@@ -1,5 +1,6 @@
 module.exports = {
   plugins: ['stylelint-order'],
+  ignoreFiles: ['**/*.js'],
   rules: {
     'at-rule-empty-line-before': [
       'always',
