@@ -1,0 +1,16 @@
+.wrapper {
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid $border-gray;
+  display: flex;
+  padding: 1rem;
+  position: absolute;
+  right: 1rem;
+  top: rem(40);
+}
+
+.list {
+  align-items: center;
+  display: flex;
+  width: auto;
+}
