@@ -7,7 +7,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { actionLocationChange } from 'actions';
-import { Cookies } from 'react-cookie';
+import Cookies from 'universal-cookie';
 import App from 'components/app';
 import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
