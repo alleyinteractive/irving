@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LinkIcon from 'assets/icons/link.svg';
 import styles from './copyLink.css';
 
-const CopyLink = ({ url }) => {
+const CopyLink = ({ url, themeName }) => {
   const [copiedLink, copyLink] = useState(false);
   const wrapperRef = React.createRef();
   const linkRef = React.createRef();
@@ -62,7 +62,10 @@ const CopyLink = ({ url }) => {
         data-event-action="click"
         data-event-label="copy-link"
       >
-        {__('Link', 'mittr')}
+        {__(
+          'flyoutIcon' !== themeName ? 'Link' : 'Copy link',
+          'mittr'
+        )}
 
         <LinkIcon />
 
@@ -78,6 +81,7 @@ const CopyLink = ({ url }) => {
 
 CopyLink.propTypes = {
   url: PropTypes.string.isRequired,
+  themeName: PropTypes.string.isRequired,
 };
 
 export default CopyLink;
