@@ -47,7 +47,7 @@ const CardStack = ({
         { eyebrow && (
           <Eyebrow
             customEyebrow={eyebrow}
-            themeName="In Feed"
+            themeName="anchorEyebrow"
             color={textColor}
             dateline={dateline}
           />

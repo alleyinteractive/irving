@@ -40,3 +40,26 @@
 .fullStoryLink {
   font-size: rem(20);
 }
+
+.anchorEyebrow {
+  padding-left: rem(3);
+
+  @media ($mdMin) {
+    padding-left: rem(12);
+  }
+
+  &::before {
+    background-color: currentColor;
+    content: "";
+    display: inline-block;
+    height: 0.875rem;
+    left: 0;
+    position: absolute;
+    top: 12px;
+    width: rem(15);
+
+    @media ($mdMin) {
+      width: 1.563rem;
+    }
+  }
+}
