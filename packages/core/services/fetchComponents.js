@@ -112,7 +112,14 @@ export async function fetchComponents(
  */
 export default async function cacheResult(...args) {
   const cache = getService();
-  const key = args.toString();
+  const key = args.map((arg) => {
+    // Some args, like cookie, are objects. Stringify those using query-string.
+    if ('object' === typeof arg) {
+      return queryString.stringify(arg);
+    }
+
+    return arg.toString();
+  }).join(',');
   const info = { cached: false, route: args };
 
   let response = await cache.get(key);
