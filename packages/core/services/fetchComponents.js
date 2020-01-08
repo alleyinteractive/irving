@@ -1,6 +1,4 @@
 import queryString from 'query-string';
-import { Cookies } from 'react-cookie';
-import { pick } from 'lodash/fp';
 import AbortController from 'abort-controller';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
@@ -31,32 +29,6 @@ function getExtraQueryParams() {
 }
 
 /**
- * Get any query parameters that should be mapped from the
- * cookies in the request.
- * ---
- * This can be used to pass cookie values as parameters in the components
- * request URL. In many cases, we won't be able to use cookies in the
- * Components API, so this can be used to pass the values we need as a parameter
- * instead.
- * ---
- * The specific cookies to be mapped to query params can be set as a comma-separated
- * list in the `COOKIE_MAP_LIST` environment variable.
- *
- * @returns {object}
- */
-function getQueryParamsFromCookies(cookieData) {
-  const cookieAllowList = env.COOKIE_MAP_LIST ?
-    env.COOKIE_MAP_LIST.split(',') :
-    [];
-
-  const cookies = new Cookies(cookieData);
-  const cookieObject = cookies.getAll({ doNotParse: true });
-  const cookieQueryParams = pick(cookieAllowList)(cookieObject);
-
-  return cookieQueryParams;
-}
-
-/**
  * Fetch components for the page from the API.
  * @param {string} path      - path of the request page
  * @param {string} search    - search string
@@ -68,7 +40,7 @@ function getQueryParamsFromCookies(cookieData) {
 export async function fetchComponents(
   path,
   search,
-  cookie = '',
+  cookie = {},
   context = CONTEXT_PAGE
 ) {
   const query = queryString.stringify({
@@ -76,7 +48,7 @@ export async function fetchComponents(
     context,
     ...getExtraQueryParams(),
     ...queryString.parse(search),
-    ...getQueryParamsFromCookies(cookie),
+    ...cookie,
   });
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
 
