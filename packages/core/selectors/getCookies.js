@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { Cookies } from 'react-cookie';
 import pick from 'lodash/fp/pick';
 import get from 'lodash/fp/get';
 
@@ -26,12 +25,9 @@ const getCookies = createSelector(
     const cookieAllowList = env.COOKIE_MAP_LIST ?
       env.COOKIE_MAP_LIST.split(',') :
       [];
+    const whiteListCookies = pick(cookieAllowList)(routeCookies);
 
-    const cookies = new Cookies(routeCookies);
-    const cookieObject = cookies.getAll({ doNotParse: true });
-    const cookieQueryParams = pick(cookieAllowList)(cookieObject);
-
-    return cookieQueryParams;
+    return whiteListCookies;
   }
 );
 
