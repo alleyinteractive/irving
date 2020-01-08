@@ -21,7 +21,7 @@ import whiteIconStyles from './whiteIcon.css';
 import flyoutIconStyles from './socialItem--flyoutIcon.css';
 
 const SocialItem = ({
-  type, url, displayIcon, theme,
+  type, url, displayIcon, theme, themeName,
 }) => {
   const IconComponent = socialIconMap[type];
   return (
@@ -51,7 +51,7 @@ const SocialItem = ({
           )}
         </a>
       ) : (
-        <CopyLink url={url} />
+        <CopyLink url={url} themeName={themeName} />
       )}
     </li>
   );
@@ -72,6 +72,7 @@ SocialItem.propTypes = {
   displayIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
     .isRequired,
   theme: PropTypes.object.isRequired,
+  themeName: PropTypes.string.isRequired,
 };
 
 const wrapWithStyles = withStyles(styles, whiteIconStyles);
