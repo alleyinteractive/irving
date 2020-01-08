@@ -41,7 +41,7 @@ module.exports = () => ({
       columns: 12,
       gap: '0',
       edge: '1.25rem', // 20px
-      siteMax: '79.5rem', // 1272px
+      siteMax: '81.875rem', // 1270px + 40px edges
       breakpoints: {},
     }),
     calc({
