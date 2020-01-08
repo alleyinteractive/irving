@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
@@ -38,8 +38,15 @@ const CardStack = ({
    * - Actually move the slider
    * - Not appear when the slider cannot be slid in that direction any further.
    */
-  const sliderRef = React.createRef();
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [width, setWidth] = useState('auto');
+
+  const sliderRef = useCallback((node) => {
+    if (null !== node) {
+      console.log('node ', node.getBoundingClientRect().width);
+      setWidth(node.getBoundingClientRect().width);
+    }
+  }, []);
 
   return (
     <header className={theme.wrapper} style={{ backgroundColor: color }}>
@@ -75,12 +82,11 @@ const CardStack = ({
       {0 < articles.length && (
         <div
           className={theme.slider}
-          ref={sliderRef}
           onScroll={() => {
             setHasScrolled(true);
           }}
         >
-          <ol className={theme.list}>
+          <ol className={theme.list} ref={sliderRef} style={{ width }}>
             {articles.map((article, count) => (
               <li className={theme.featured} key={article.props.title}>
                 <div className={theme.counter} aria-hidden>
@@ -105,11 +111,6 @@ const CardStack = ({
               className={theme.next}
               onClick={() => {
                 setHasScrolled(true);
-                // @todo MIT-210 this does not work.
-                const { offsetWidth } = sliderRef;
-                sliderRef.current.style = {
-                  transform: `translateX(-${offsetWidth}px)`,
-                };
               }}
             >
               <Arrow aria-hidden />
