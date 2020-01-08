@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
-import classNames from 'classnames';
 
 import styles from './contentArea.css';
 import simpleTheme from './simpleContentArea.css';
 
 const ContentArea = ({ children, theme }) => (
-  <div className={classNames(theme.wrapper, styles.wrapper)}>
+  <div className={theme.wrapper}>
     {children}
   </div>
 );

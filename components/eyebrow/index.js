@@ -19,7 +19,12 @@ const Eyebrow = ({
 }) => {
   if (customEyebrow) {
     return (
-      <div className={styles.eyebrow} style={{ color }}>
+      <div
+        className={classNames(styles.eyebrow, {
+          [styles.anchorEyebrow]: 'anchorEyebrow' === themeName,
+        })}
+        style={{ color }}
+      >
         {customEyebrow}
         {(
           dateline &&
