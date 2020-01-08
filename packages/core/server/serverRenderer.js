@@ -8,10 +8,10 @@ import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import { clearChunks } from 'react-universal-component/server';
-import { Cookies, CookiesProvider } from 'react-cookie';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
+import { Cookies } from 'react-cookie';
 import getEnv from 'config/webpack/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
@@ -53,7 +53,7 @@ const render = async (req, res, clientStats) => {
   dispatch(actionLocationChange('PUSH', {
     pathname: req.path,
     search: `?${search}`,
-    cookie: req.headers.cookie,
+    cookie: new Cookies(req.headers.cookie).getAll({ doNotParse: true }),
     hash: '', // Only available in browser.
   }));
 
@@ -80,13 +80,11 @@ const render = async (req, res, clientStats) => {
   // Container for critical css related to this page render.
   const cssBuilder = new CriticalCssBuilder();
   const AppWrapper = () => (
-    <CookiesProvider cookies={new Cookies(req.headers.cookie)}>
-      <Provider store={store}>
-        <StyleContext.Provider value={cssBuilder.addCss}>
-          <App />
-        </StyleContext.Provider>
-      </Provider>
-    </CookiesProvider>
+    <Provider store={store}>
+      <StyleContext.Provider value={cssBuilder.addCss}>
+        <App />
+      </StyleContext.Provider>
+    </Provider>
   );
 
   // Get some template vars and allow customization by user.

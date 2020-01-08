@@ -6,8 +6,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
-import { CookiesProvider } from 'react-cookie';
 import { actionLocationChange } from 'actions';
+import { Cookies } from 'react-cookie';
 import App from 'components/app';
 import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
@@ -34,8 +34,15 @@ const rootEl = document.getElementById('root');
 
 sagaMiddleware.run(rootSaga);
 
+const cookies = new Cookies();
 history.listen((location, action) => {
-  store.dispatch(actionLocationChange(action, location));
+  store.dispatch(actionLocationChange(
+    action,
+    {
+      ...location,
+      cookie: cookies.getAll({ doNotParse: true }),
+    }
+  ));
 });
 
 const render = () => {
@@ -43,11 +50,9 @@ const render = () => {
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
   ReactDOM.hydrate(
-    <CookiesProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </CookiesProvider>,
+    <Provider store={store}>
+      <App />
+    </Provider>,
     rootEl
   );
 };
