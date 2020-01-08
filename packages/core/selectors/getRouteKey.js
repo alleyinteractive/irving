@@ -14,9 +14,13 @@ const getRouteKey = createSelector(
   ],
   (routeState, cookies) => {
     const { redirectTo, pathname, search } = routeState;
-    const cookieString = queryString.stringify(cookies);
-    const searchString = (search && 1 < search.length ? search : '');
-    const key = redirectTo || `${pathname}${searchString}${cookieString}`;
+    const searchObj = queryString.parse(search);
+    const queries = queryString.stringify({
+      ...searchObj,
+      ...cookies,
+    });
+
+    const key = redirectTo || `${pathname}${(queries ? `?${queries}` : '')}`;
 
     return replace(/\./g, '%2E', key);
   }
