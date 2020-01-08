@@ -1,5 +1,7 @@
 import { get, replace } from 'lodash/fp';
 import { createSelector } from 'reselect';
+import queryString from 'query-string';
+import getCookies from 'selectors/getCookies';
 
 /**
  * Select the current route's unique key.
@@ -8,11 +10,14 @@ import { createSelector } from 'reselect';
 const getRouteKey = createSelector(
   [
     get('route'),
+    getCookies,
   ],
-  (routeState) => {
+  (routeState, cookies) => {
     const { redirectTo, pathname, search } = routeState;
-    const key = redirectTo ||
-      pathname + (search && 1 < search.length ? search : '');
+    const cookieString = queryString.stringify(cookies);
+    const searchString = (search && 1 < search.length ? search : '');
+    const key = redirectTo || `${pathname}${searchString}${cookieString}`;
+
     return replace(/\./g, '%2E', key);
   }
 );
