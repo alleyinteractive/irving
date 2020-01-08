@@ -1,7 +1,13 @@
 .wrapper {
   align-items: center;
+}
+
+.shareWrapper,
+.copyWrapper {
+  align-items: center;
   display: flex;
   flex-flow: row nowrap;
+  padding: 1rem 0;
 }
 
 .list {
