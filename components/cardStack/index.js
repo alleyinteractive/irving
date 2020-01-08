@@ -24,6 +24,7 @@ const CardStack = ({
   isSponsored,
   isSubtopic,
   name,
+  permalink,
   textColor,
   sponsored: { url: sponsorLink },
   theme,
@@ -53,10 +54,20 @@ const CardStack = ({
           />
         )}
         {/* @todo heading level needs to be dynamic, homepage has > 1 h1 */}
-        <h1 className={theme.name} style={{ color: textColor }}>{name}</h1>
+        <h1 className={theme.name} style={{ color: textColor }}>
+          <Link to={permalink}>
+            {name}
+          </Link>
+        </h1>
         <p className={theme.description}>{description}</p>
       </div>
-      {! isSubtopic && image && <div className={theme.image}>{image}</div>}
+      {! isSubtopic && image && (
+        <div className={theme.image}>
+          <Link to={permalink}>
+            {image}
+          </Link>
+        </div>
+      )}
       {isSponsored && (
         <div className={theme.sponsored}>
           <h2 className={theme.sponsorLabel} style={{ color }}>
@@ -140,6 +151,7 @@ CardStack.propTypes = {
   eyebrow: PropTypes.string,
   textColor: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  permalink: PropTypes.string.isRequired,
   isSubtopic: PropTypes.bool,
   isSponsored: PropTypes.bool,
   sponsored: PropTypes.shape({
