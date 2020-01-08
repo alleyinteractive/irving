@@ -3,7 +3,11 @@
 }
 
 .contentModule {
-  width: rem(300);
+  width: 100%;
+
+  @media ($mdMax) {
+    margin: 0 auto;
+  }
 }
 
 .title {
@@ -57,7 +61,12 @@
   margin-right: auto;
   width: 100%;
 
+  @media ($smMax) {
+    tidy-span: 12;
+  }
+
   @media ($mdMax) {
     margin-top: rem(40);
+    max-width: rem(300);
   }
 }

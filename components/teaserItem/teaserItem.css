@@ -9,6 +9,11 @@
   margin-bottom: rem(15);
   padding: rem(20 20 25 20);
   position: relative;
+
+  &.featuredGroup {
+    margin-bottom: 0;
+    padding: rem(15) 0;
+  }
 }
 
 .header {
@@ -48,8 +53,13 @@
   order: 1;
   width: 100%;
 
+  &.groupTitle {
+    font-size: rem(22);
+  }
+
   @media ($smMin) {
     font-size: rem(30);
+    margin-bottom: 0;
   }
 }
 
@@ -75,12 +85,6 @@
   margin-top: rem(20);
 }
 
-.shareMenu {
-  position: absolute;
-  right: tidy-var(edge);
-  top: tidy-var(edge);
-}
-
 .shareMenuToggle {
   appearance: none;
   background-color: transparent;
@@ -90,6 +94,9 @@
   height: rem(18);
   letter-spacing: rem(1);
   padding: 0;
+  position: absolute;
+  right: tidy-var(edge);
+  top: tidy-var(edge);
 }
 
 .dot {

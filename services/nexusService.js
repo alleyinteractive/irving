@@ -120,6 +120,50 @@ export default {
   },
 
   /**
+   * When we receive a new user email, create the user in the database.
+   *
+   * @param { email, fullName, password, header } params
+   */
+  async createAccount({
+    email,
+    fullName,
+    password,
+    header,
+  }) {
+    // eslint-disable-line no-unused-vars
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+    const namesArr = fullName.split(' ');
+    const firstName = namesArr[0];
+    const lastName = namesArr[namesArr.length - 1];
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXUS_ROOT_URL}/api/user/email`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'test',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            email,
+            password: hash,
+            first_name: firstName,
+            last_name: lastName,
+          }),
+        }
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.info('There was a problem.', error); // eslint-disable-line no-console
+    }
+    return {};
+  },
+
+  /**
    * Once an account has been validated, login the user.
    *
    * @param { id, password, header } params
@@ -151,5 +195,67 @@ export default {
       console.info('There was a problem.', error); // eslint-disable-line no-console
     }
     return {};
+  },
+
+  /**
+   * Update an email address already stored in the database.
+   *
+   * @param { email, newEmail header } params
+   */
+  async changeEmail({ email, newEmail, header }) {
+    // eslint-disable-line no-unused-vars
+    try {
+      const response = await fetch(
+        `${process.env.NEXUS_ROOT_URL}/api/user/email`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'test',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            email,
+            newEmail,
+          }),
+        }
+      );
+    } catch (error) {
+      console.info('There was a problem.', error); // eslint-disable-line no-console
+    }
+    return {};
+  },
+
+  /**
+   * Validate a user's email address through a hash.
+   *
+   * @param { email, hash, header } params
+   */
+  async verifyUserAccount({ email, hash, header }) {
+    // eslint-disable-line no-unused-vars
+
+    // @todo This is currently only working in dev environments. We'll need to
+    // ensure that this works with the production server in the future.
+    try {
+      const response = await fetch(
+        `${process.env.NEXUS_ROOT_URL}/api/user/verify`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'test',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            hash,
+            email,
+          }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.info('There was a problem.', error); // eslint-disable-line no-console
+    }
   },
 };

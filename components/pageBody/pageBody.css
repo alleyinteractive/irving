@@ -2,5 +2,15 @@
   display: flex;
   flex-flow: column nowrap;
   font-family: $serif;
-  margin: 0 auto;
+  width: 100%;
+}
+
+.title {
+  color: $black;
+  font-family: $sans;
+  font-size: rem(50);
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1;
+  margin-bottom: rem(20);
 }

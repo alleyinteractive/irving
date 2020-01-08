@@ -4,6 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
+import parse from 'html-react-parser';
 
 // SVGs
 import ArrowIcon from 'assets/icons/arrow.svg';
@@ -17,6 +18,7 @@ const MagazineHero = ({
   description,
   issueDate,
   issueNavigation,
+  issueType,
   letter,
   mitNewsLink,
   pdfLink,
@@ -37,7 +39,10 @@ const MagazineHero = ({
             </li>
             <li role="menuitem">
               <Link to={mitNewsLink} className={styles.publicationLink}>
-                {__('MIT News Magazine', 'mittr')}
+                {'MIT News Magazine' !== issueType ?
+                  __('MIT News Magazine', 'mittr') :
+                  __('MIT Technology Review Magazine', 'mittr')
+                }
               </Link>
             </li>
           </ul>
@@ -55,20 +60,36 @@ const MagazineHero = ({
         <div className={styles.text}>
           <h1 className={styles.title}>{title}</h1>
           <div className={styles.date}>{issueDate}</div>
-          <p className={styles.description}>{description}</p>
+          <p className={styles.description}>{parse(description)}</p>
           <Link to="#features" className={styles.readLink}>
             {__('Read the issue', 'mittr')}
           </Link>
           <Link to={pdfLink} className={styles.pdfLink}>
             {__('Open the PDF', 'mittr')}
           </Link>
-          {'' !== letter.title && '' !== letter.url && (
+          {'' !== letter.title &&
+            '' !== letter.url &&
+            'MIT News Magazine' !== issueType && (
             <div className={styles.letter}>
               <h2 className={styles.letterLabel}>
                 {__('Letter from the editor', 'mittr')}
               </h2>
               <Link to={letter.url} className={styles.letterTitle}>
                 {letter.title}
+              </Link>
+            </div>
+          )}
+          {'MIT News Magazine' === issueType && (
+            <div className={styles.letter}>
+              <h2 className={styles.letterLabel}>
+                {__('MIT Class notes', 'mittr')}
+              </h2>
+              <Link
+                to="https://alum.mit.edu/communities/class-notes-and-sites"
+                className={styles.letterTitle}
+              >
+                {__('Read class notes on the MIT Alumni Association website.',
+                  'mittr')}
               </Link>
             </div>
           )}
@@ -79,23 +100,30 @@ const MagazineHero = ({
               </h2>
               <ul className={styles.navList} aria-labelledby="navigate-issues">
                 <li className={styles.previous}>
-                  <Link
-                    to={issueNavigation.previous}
-                    className={styles.navLink}
-                  >
-                    <span className={styles.icon} aria-hidden>
-                      <ArrowIcon />
-                    </span>
-                    {__('View previous issue', 'mittr')}
-                  </Link>
+                  {(issueNavigation.previous &&
+                    window.location.href !== issueNavigation.previous) && (
+                    <Link
+                      to={issueNavigation.previous}
+                      className={styles.navLink}
+                    >
+                      <span className={styles.icon} aria-hidden>
+                        <ArrowIcon />
+                      </span>
+                      {__('View previous issue', 'mittr')}
+                    </Link>
+                  )}
+
                 </li>
                 <li className={styles.next}>
-                  <Link to={issueNavigation.next} className={styles.navLink}>
-                    {__('View next issue', 'mittr')}
-                    <span className={styles.icon} aria-hidden>
-                      <ArrowIcon />
-                    </span>
-                  </Link>
+                  {(issueNavigation.next &&
+                    window.location.href !== issueNavigation.next) && (
+                    <Link to={issueNavigation.next} className={styles.navLink}>
+                      {__('View next issue', 'mittr')}
+                      <span className={styles.icon} aria-hidden>
+                        <ArrowIcon />
+                      </span>
+                    </Link>
+                  )}
                 </li>
               </ul>
             </nav>
@@ -107,6 +135,10 @@ const MagazineHero = ({
   );
 };
 
+MagazineHero.defaultProps = {
+  issueType: '',
+};
+
 MagazineHero.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   backgroundColor: PropTypes.string.isRequired,
@@ -116,6 +148,7 @@ MagazineHero.propTypes = {
     previous: PropTypes.string,
     next: PropTypes.string,
   }).isRequired,
+  issueType: PropTypes.string,
   mitNewsLink: PropTypes.string.isRequired,
   letter: PropTypes.shape({
     url: PropTypes.string,

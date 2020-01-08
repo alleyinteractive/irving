@@ -1,8 +1,26 @@
-@import 'mixins/index';
+/**
+ * This stylesheet is enqueued directly in the WordPress admin to style the
+ * editor experience.
+ */
 
-/* stylelint-disable selector-max-specificity */
+/**
+ *  Blocks defined in other components.
+ *  These paths must be relative to the currnt directory.
+ */
+@import 'react-image-gallery/styles/css/image-gallery.css';
+@import '../../components/carousel/carousel.css';
+@import '../../components/contentList/contentList.css';
+@import '../../components/contentList/contentList.css';
+@import '../../components/imageSet/imageSet.css';
+@import '../../components/newsletter/newsletter.css';
+@import '../../components/related/related.css';
+@import '../../components/statsWidget/statsWidget.css';
+@import '../../components/magazineStory/magazineStory.css';
+
+/* Inline blocks */
 .editor-writing-flow {
   [data-type="core/freeform"] {
+    /* stylelint-disable-next-line selector-max-specificity */
     .mce-content-body {
       @include basic-editor-styles;
     }
@@ -20,27 +38,13 @@
     @include block-quote;
   }
 
-  [data-type="core/pullquote"] {
+  /* stylelint-disable selector-max-specificity */
+  [data-type="core/pullquote"],
+  [data-type="core/pullquote"][data-align=right],
+  [data-type="core/pullquote"][data-align=left] {
     @include block-pullquote;
-
-    :global(.editor-block-list__block-edit .wp-block-pullquote) {
-      @media ($xlMin) {
-        margin: 0 0 0 0;
-      }
-
-      &:global(.alignleft) {
-        @media ($xlMin) {
-          margin-left: 0;
-        }
-      }
-
-      &:global(.alignright) {
-        @media ($xlMin) {
-          margin-right: 0;
-        }
-      }
-    }
   }
+  /* stylelint-enable selector-max-specificity */
 
   [data-type="core/heading"] {
     @include block-heading;
@@ -71,6 +75,7 @@
   }
 
   [data-type="core/columns"] {
+    /* stylelint-disable selector-max-specificity */
     :global(.wp-block-columns) > :global(.editor-inner-blocks) > :global(.editor-block-list__layout) {
       display: flex;
       flex-flow: row wrap;
@@ -82,6 +87,9 @@
         min-width: 25%;
       }
     }
+
+    @include block-featured-company;
+    /* stylelint-enable */
   }
 
   [data-type="core/YouTube"] {
@@ -101,7 +109,7 @@
   }
 }
 
+/* Edtitor styles */
 .mce-content-body {
   @include basic-editor-styles;
 }
-/* stylelint-enable */

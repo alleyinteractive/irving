@@ -37,7 +37,8 @@
     width: 100%;
   }
 
-  img {
+  img,
+  span {
     height: 100%;
   }
 }

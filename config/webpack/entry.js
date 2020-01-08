@@ -23,8 +23,9 @@ module.exports = function getEntry(context) {
     case 'production_client':
       return {
         main: [...polyfills, path.join(clientRoot)],
-        // Entry point for WordPress editor styles
         fonts: path.join(clientRoot, 'fonts.js'),
+        // Entry point for WordPress editor styles
+        editor: path.join(clientRoot, 'editor.js'),
       };
 
     case 'development_client': {
@@ -39,8 +40,9 @@ module.exports = function getEntry(context) {
           `webpack-hot-middleware/client?${queryString}`,
           path.join(clientRoot),
         ],
-        // Entry point for WordPress editor styles
         fonts: path.join(clientRoot, 'fonts.js'),
+        // Entry point for WordPress editor styles
+        editor: path.join(clientRoot, 'editor.js'),
       };
     }
 

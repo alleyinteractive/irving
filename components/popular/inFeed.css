@@ -1,5 +1,10 @@
 .contentWrapper {
   position: relative;
+
+  @media ($smMax) {
+    margin: 0 auto;
+    tidy-span: 12;
+  }
 }
 
 .contentModule {

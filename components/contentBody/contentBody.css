@@ -5,37 +5,42 @@
   margin: 0 auto;
   position: relative;
   width: 100%;
+}
 
-  > * {
-    margin: 0 auto;
-    tidy-span: 10;
-
-    @media ($mdMin) {
-      tidy-offset-left: 0;
-      tidy-span: 6;
-    }
-
-    @media ($lgMin) {
-      tidy-offset-left: 0;
-      tidy-span: 6;
-    }
-  }
+.content {
+  height: 100%;
+  width: 100%;
 }
 
 .contentHidden {
+  height: 400px;
   overflow: hidden;
+  position: relative;
+
+  /* Hide aligned blocks that will be cut off. */
+  :global(.alignleft),
+  :global(.alignright) {
+    display: none;
+  }
 }
 
 .overlay {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  display: none;
   height: rem(400);
   position: absolute;
   top: 0;
+  width: 100%;
+  z-index: 2;
 
   @media ($mdMax) {
     left: 50%;
     transform: translateX(-50%);
   }
+}
+
+.overlayVisible {
+  display: block;
 }
 
 .truncationButton {

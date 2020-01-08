@@ -1,42 +1,16 @@
 /* ContentFooter component styles */
 
 .wrapper {
-  @include container-with-bleed;
-
   font-size: rem(12);
-  margin: 0 auto;
-
-  > * {
-    margin: 0 auto;
-    tidy-span: 10;
-
-    @media ($mdMin) {
-      tidy-offset-left: 1;
-      tidy-span: 6;
-    }
-
-    @media ($lgMin) {
-      tidy-offset-left: 1;
-      tidy-span: 6;
-    }
-  }
+  margin: rem(30) auto 0;
+  width: 100%;
 
   &::before {
     border-top: $border-thin--gray-light;
     content: '';
     display: block;
     margin: 0 auto rem(20);
-    tidy-span: 10;
-
-    @media ($mdMin) {
-      tidy-offset-left: 1;
-      tidy-span: 6;
-    }
-
-    @media ($lgMin) {
-      tidy-offset-left: 1;
-      tidy-span: 6;
-    }
+    width: 100%;
   }
 
   a {
@@ -51,6 +25,14 @@
 .label {
   @include label;
   tidy-span: 0.5;
+
+  @media ($mdMax) {
+    tidy-span: 0.65;
+  }
+
+  @media ($smMax) {
+    tidy-span: 1.5;
+  }
 }
 
 .row {
@@ -60,17 +42,6 @@
   margin-bottom: rem(15);
   margin-left: auto;
   margin-right: auto;
-  tidy-span: 10;
-
-  @media ($mdMin) {
-    tidy-offset-left: 1;
-    tidy-span: 6;
-  }
-
-  @media ($lgMin) {
-    tidy-offset-left: 1;
-    tidy-span: 6;
-  }
 }
 
 .social {
@@ -116,4 +87,13 @@
 
 .authorLink {
   margin-right: rem(15);
+}
+
+.imageCredit {
+  align-items: center;
+  display: flex;
+}
+
+.item {
+  font-size: rem(14);
 }

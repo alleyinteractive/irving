@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: rem(20);
+  width: 100%;
+
+  @media ($smMax) {
+    margin: 0 auto rem(20);
+    tidy-span: 12;
+  }
+}
+
+.intro {
+  border-bottom: 1px solid black;
+}
+
+.sponsoredModule {
+  margin-bottom: rem(20);
+  margin-top: rem(20);
+
+  @media ($mdMin) {
+    margin-bottom: rem(40);
+    margin-top: rem(40);
+  }
+}

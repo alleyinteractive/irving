@@ -8,7 +8,11 @@ import withThemes from '../hoc/withThemes';
 import styles from './popular.css';
 import inFeedStyles from './inFeed.css';
 
-const Popular = ({ popular, theme, themeName }) => {
+const Popular = ({
+  popular,
+  theme,
+  themeName,
+}) => {
   const [isFixed, setFixedPosition] = useState(false);
   const [maxWidth, setMaxWidth] = useState(null);
   let nodeOffset;
@@ -18,7 +22,7 @@ const Popular = ({ popular, theme, themeName }) => {
       if (960 < window.innerWidth) {
         const currentOffset = document.documentElement.scrollTop;
 
-        const node = document.getElementById('sticky__content-module');
+        const node = document.getElementById('sidebar--module');
         if (nodeOffset === undefined) {
           nodeOffset = node.getBoundingClientRect().top + window.scrollY;
 
@@ -29,12 +33,26 @@ const Popular = ({ popular, theme, themeName }) => {
           setMaxWidth(sidebarWidth);
         }
 
-        if (currentOffset > (nodeOffset - 100)) {
-          setFixedPosition(true);
+        const setPosition = () => {
+          if (currentOffset > (nodeOffset - 100)) {
+            setFixedPosition(true);
+          } else {
+            setFixedPosition(false);
+          }
+        };
+
+        const contentNode = document.getElementById('content--body');
+
+        if (null !== contentNode) {
+          const nodeHeight = contentNode.clientHeight;
+
+          if (400 < nodeHeight || 'list' === themeName) {
+            setPosition();
+          }
         }
 
-        if (currentOffset < (nodeOffset - 100)) {
-          setFixedPosition(false);
+        if ('inFeed' === themeName) {
+          setPosition();
         }
       }
     });
@@ -43,7 +61,7 @@ const Popular = ({ popular, theme, themeName }) => {
   return (
     <div
       className={theme.contentWrapper}
-      id="sticky__content-module"
+      id="sidebar--module"
       style={{
         position: isFixed ? 'fixed' : 'relative',
         top: isFixed ? 100 : 0,

@@ -20,7 +20,6 @@ const paths = require('./paths');
 const stylelintConfig = require('./stylelint.config.js');
 const cssVars = require('./css');
 const flatten = require('../utils/flatten');
-
 // Config
 module.exports = () => ({
   plugins: [
@@ -30,7 +29,7 @@ module.exports = () => ({
       files: ['mixins/index.css'],
     }),
     cssImport({
-      path: [paths.globalStyles],
+      path: paths.globalStyles,
     }), // Import files
     mixins(),
     variables({
@@ -38,17 +37,17 @@ module.exports = () => ({
     }),
     units(), // Compute rem() function
     nested(), // Allow nested syntax.
+    tidyColumns({
+      columns: 12,
+      gap: '0',
+      edge: '1.25rem', // 20px
+      siteMax: '79.5rem', // 1272px
+      breakpoints: {},
+    }),
     calc({
       mediaQueries: true,
     }),
     colorFunction(),
-    tidyColumns({
-      columns: 12,
-      gap: '0',
-      edge: '1.25rem',
-      siteMax: '79.5rem',
-      breakpoints: {},
-    }),
     focus(),
     autoprefixer({
       flexbox: 'no-2009',

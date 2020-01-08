@@ -1,26 +1,51 @@
-.wrap {
-  border-top: $border-thin;
-  padding-top: rem(20);
+/**
+ * ContentList gutenberg block styles.
+ *
+ * Needs global scope to be included in editor styles.
+ */
 
-  @media ($mdMin) {
-    margin: rem(25);
-    width: rem(215);
+@import './contentListItem/contentListItem.css';
+
+:global {
+  .contentList__wrap {
+    border-top: $border-thin;
+    clear: left;
+    float: left;
+    font-family: $sans;
+    font-size: rem(14);
+    margin-left: -16%;
+    padding: rem(20) rem(40) rem(30) rem(10);
+    position: relative;
+    width: rem(222);
+
+    &.content-right {
+      clear: right;
+      float: right;
+      margin-left: rem(40);
+      padding-left: rem(10);
+      padding-right: 0;
+    }
+
+    &.content-full {
+      margin-bottom: 0;
+      margin-left: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+      width: 100%;
+    }
   }
 
-  &:first-child {
-    margin-top: 0;
+  .contentList__header {
+    font-family: $sans;
+    font-size: rem(20);
+    font-weight: 700;
+    margin-bottom: rem(20);
+    padding-left: 0;
   }
-}
 
-.header {
-  font-family: $sans;
-  font-size: rem(20);
-  font-weight: 700;
-  margin-bottom: rem(20);
-  padding-left: 0;
-}
-
-.listWrap {
-  margin: 0;
-  padding: 0;
+  .contentList__listWrap {
+    margin: 0;
+    padding: 0;
+  }
 }

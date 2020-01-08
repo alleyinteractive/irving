@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import classNames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 import Eyebrow from '../eyebrow';
@@ -17,6 +18,7 @@ const FeedItem = ({
   postDate,
   showImage,
   title,
+  themeName,
   topic,
   topicLink,
 }) => {
@@ -52,7 +54,10 @@ const FeedItem = ({
   };
 
   return (
-    <article className={styles.wrapper}>
+    <article className={classNames(styles.wrapper, {
+      [styles.storygroup]: 'storygroup' === themeName,
+    })}
+    >
       <header className={styles.header}>
         <h1 className={styles.title}>{title}</h1>
         <div className={styles.meta}>
@@ -87,7 +92,7 @@ const FeedItem = ({
         <div className={styles.expandableBody}>
           {! expandState.isExpanded && (
             <div className={styles.textBeforeBtn}>
-              <p>{teaserContent} . . .</p>
+              <p>{teaserContent}</p>
             </div>
           )}
           <div
@@ -121,6 +126,7 @@ FeedItem.defaultProps = {
   includeExpandBtn: false,
   showImage: true,
   teaserContent: '',
+  themeName: '',
 };
 
 FeedItem.propTypes = {
@@ -131,6 +137,7 @@ FeedItem.propTypes = {
   postDate: PropTypes.string.isRequired,
   showImage: PropTypes.bool,
   title: PropTypes.string.isRequired,
+  themeName: PropTypes.string,
   topic: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,

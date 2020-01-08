@@ -6,6 +6,7 @@ import withThemes from 'components/hoc/withThemes';
 import { __ } from '@wordpress/i18n';
 import styles from './socialList.css';
 import trListStyles from './trList.css';
+import flyoutStyles from './socialList--flyout.css';
 
 const SocialList = (props) => {
   const { children: links, theme } = props;
@@ -33,7 +34,8 @@ const wrapWithStyles = withStyles(styles, trListStyles);
 
 const wrapWithThemes = withThemes('social-list', {
   default: styles,
-  'list-header': trListStyles,
+  listHeader: trListStyles,
+  flyout: flyoutStyles,
 });
 
 export default wrapWithStyles(wrapWithThemes(SocialList));

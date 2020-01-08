@@ -19,6 +19,7 @@ module.exports = {
   clientBuild: resolveDir('build/client'),
   serverBuild: resolveDir('build/server'),
   globalStyles: resolveDir('assets/styles'),
+  componentRoot: resolveDir('components'),
   rootUrl: ROOT_URL || 'http://localhost:3001',
   proxyUrl: PROXY_URL,
   assetsRoot: resolveDir('assets'),

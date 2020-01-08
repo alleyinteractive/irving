@@ -32,3 +32,8 @@ export const getUserFirstName = createSelector(
   userSelector,
   (state) => state.firstName,
 );
+
+export const getPendingEmailAddress = createSelector(
+  userSelector,
+  (state) => state.pendingEmail,
+);
