@@ -42,7 +42,8 @@
   }
 
   span,
-  figure {
+  figure,
+  a {
     display: block;
     width: 100%;
   }
