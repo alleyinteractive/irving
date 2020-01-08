@@ -6,6 +6,7 @@
   flex-flow: row wrap;
   margin-bottom: rem(15);
   padding-bottom: rem(25);
+  position: relative;
 
   > * {
     order: 1;
