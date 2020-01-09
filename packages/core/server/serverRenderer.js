@@ -11,7 +11,7 @@ import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
-import { CookiesProvider } from 'react-cookie';
+import Cookie from 'cookie-universal';
 import getEnv from 'config/webpack/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
@@ -53,7 +53,7 @@ const render = async (req, res, clientStats) => {
   dispatch(actionLocationChange('PUSH', {
     pathname: req.path,
     search: `?${search}`,
-    cookie: req.universalCookies.getAll({ doNotParse: true }),
+    cookie: Cookie(req, res).getAll({ parseJSON: false }),
     hash: '', // Only available in browser.
   }));
 
@@ -80,13 +80,11 @@ const render = async (req, res, clientStats) => {
   // Container for critical css related to this page render.
   const cssBuilder = new CriticalCssBuilder();
   const AppWrapper = () => (
-    <CookiesProvider cookies={req.universalCookies}>
-      <Provider store={store}>
-        <StyleContext.Provider value={cssBuilder.addCss}>
-          <App />
-        </StyleContext.Provider>
-      </Provider>
-    </CookiesProvider>
+    <Provider store={store}>
+      <StyleContext.Provider value={cssBuilder.addCss}>
+        <App />
+      </StyleContext.Provider>
+    </Provider>
   );
 
   // Get some template vars and allow customization by user.
