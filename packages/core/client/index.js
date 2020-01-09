@@ -39,7 +39,7 @@ history.listen((location, action) => {
     action,
     {
       ...location,
-      cookie: Cookie().getAll({ parseJSON: true }),
+      cookie: Cookie().getAll({ parseJSON: false }),
     }
   ));
 });
