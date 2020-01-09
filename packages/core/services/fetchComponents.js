@@ -121,8 +121,9 @@ export default async function cacheResult(...args) {
     return arg.toString();
   }).join(',');
   const info = { cached: false, route: args };
-
   let response = await cache.get(key);
+  console.log(key);
+
   if (! response) {
     log.info('%o', info);
     response = await fetchComponents(...args);
