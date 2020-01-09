@@ -32,6 +32,7 @@ const CardStack = ({
   const image = findChildByName('image', children);
   const logo = findChildByName('logo', children);
   const articles = filterChildrenByName('link-teaser', children);
+  const scrollItemWidth = 288;
 
   /**
    * @todo MIT-201 all these buttons do is appear and disappear based on
@@ -39,15 +40,44 @@ const CardStack = ({
    * - Actually move the slider
    * - Not appear when the slider cannot be slid in that direction any further.
    */
-  const [hasScrolled, setHasScrolled] = useState(false);
+  const [sliderState, setSliderState] = useState({
+    currentIndex: 0,
+    hasScrolled: false,
+  });
+  // eslint-disable-next-line no-unused-vars
   const [width, setWidth] = useState('auto');
 
   const sliderRef = useCallback((node) => {
     if (null !== node) {
-      console.log('node ', node.getBoundingClientRect().width);
       setWidth(node.getBoundingClientRect().width);
     }
   }, []);
+
+  const getScrollPosition = () => {
+    if (0 === sliderState.currentIndex) {
+      return '0';
+    }
+    if (sliderState.currentIndex < articles.length &&
+      0 !== sliderState.currentIndex) {
+      return `-${scrollItemWidth * sliderState.currentIndex}px`;
+    }
+    return 0;
+  };
+
+  const scrollSlider = (isNext) => {
+    if (isNext) {
+      setSliderState({
+        currentIndex: sliderState.currentIndex + 1,
+        hasScrolled: isNext,
+      });
+    } else {
+      setSliderState({
+        currentIndex: sliderState.currentIndex - 1,
+        hasScrolled: isNext,
+      });
+    }
+    getScrollPosition();
+  };
 
   return (
     <header className={theme.wrapper} style={{ backgroundColor: color }}>
@@ -92,37 +122,51 @@ const CardStack = ({
       )}
       {0 < articles.length && (
         <div
-          className={theme.slider}
-          onScroll={() => {
-            setHasScrolled(true);
-          }}
+          className={theme.sliderWrap}
+          ref={sliderRef}
         >
-          <ol className={theme.list} ref={sliderRef} style={{ width }}>
-            {articles.map((article, count) => (
-              <li className={theme.featured} key={article.props.title}>
-                <div className={theme.counter} aria-hidden>
-                  0{count + 1}.
-                </div>
-                {article}
-              </li>
-            ))}
-          </ol>
-          {hasScrolled ? (
+          <div
+            className={theme.slider}
+            style={{
+              transform: `translateX(${getScrollPosition()})`,
+            }}
+            onScroll={() => {
+              setSliderState({ hasScrolled: true });
+            }}
+          >
+            <ol className={theme.list} style={{ width }}>
+              {articles.map((article, count) => (
+                <li
+                  className={theme.listItem}
+                  key={article.props.title}
+                  // Only slide when focus passes first element so its still in the view
+                  onFocus={() => (1 <= count ? scrollSlider(true) : null)}
+                >
+                  <div className={theme.counter} aria-hidden>
+                    0{count + 1}.
+                  </div>
+                  {article}
+                </li>
+              ))}
+            </ol>
+          </div>
+          {0 !== sliderState.currentIndex && (
             <button
               type="button"
               className={theme.previous}
-              onClick={() => setHasScrolled(false)}
+              onClick={() => scrollSlider(false)}
             >
               <Arrow aria-hidden />
-              <span className="screen-reader-text">{__('Next', 'mittr')}</span>
+              <span className="screen-reader-text">
+                {__('Next', 'mittr')}
+              </span>
             </button>
-          ) : (
+          )}
+          {(sliderState.currentIndex < (articles.length - 1)) && (
             <button
               type="button"
               className={theme.next}
-              onClick={() => {
-                setHasScrolled(true);
-              }}
+              onClick={() => scrollSlider(true)}
             >
               <Arrow aria-hidden />
               <span className="screen-reader-text">
