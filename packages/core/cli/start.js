@@ -1,7 +1,7 @@
 /* eslint-disable global-require, no-console, import/order */
 const express = require('express');
 const proxy = require('http-proxy-middleware');
-const cookiesMiddleware = require('universal-cookies-express');
+const cookiesMiddleware = require('universal-cookie-express');
 
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
