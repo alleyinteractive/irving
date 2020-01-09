@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
@@ -32,26 +32,11 @@ const CardStack = ({
   const image = findChildByName('image', children);
   const logo = findChildByName('logo', children);
   const articles = filterChildrenByName('link-teaser', children);
-  const scrollItemWidth = 288;
+  const scrollItemWidth = 288; // width of each list item.
 
-  /**
-   * @todo MIT-201 all these buttons do is appear and disappear based on
-   * whether or not the user has scrolled the slider. They should:
-   * - Actually move the slider
-   * - Not appear when the slider cannot be slid in that direction any further.
-   */
   const [sliderState, setSliderState] = useState({
     currentIndex: 0,
-    hasScrolled: false,
   });
-  // eslint-disable-next-line no-unused-vars
-  const [width, setWidth] = useState('auto');
-
-  const sliderRef = useCallback((node) => {
-    if (null !== node) {
-      setWidth(node.getBoundingClientRect().width);
-    }
-  }, []);
 
   const getScrollPosition = () => {
     if (0 === sliderState.currentIndex) {
@@ -66,15 +51,9 @@ const CardStack = ({
 
   const scrollSlider = (isNext) => {
     if (isNext) {
-      setSliderState({
-        currentIndex: sliderState.currentIndex + 1,
-        hasScrolled: isNext,
-      });
+      setSliderState({ currentIndex: sliderState.currentIndex + 1 });
     } else {
-      setSliderState({
-        currentIndex: sliderState.currentIndex - 1,
-        hasScrolled: isNext,
-      });
+      setSliderState({ currentIndex: sliderState.currentIndex - 1 });
     }
     getScrollPosition();
   };
@@ -121,20 +100,14 @@ const CardStack = ({
         </div>
       )}
       {0 < articles.length && (
-        <div
-          className={theme.sliderWrap}
-          ref={sliderRef}
-        >
+        <div className={theme.sliderWrap}>
           <div
             className={theme.slider}
             style={{
               transform: `translateX(${getScrollPosition()})`,
             }}
-            onScroll={() => {
-              setSliderState({ hasScrolled: true });
-            }}
           >
-            <ol className={theme.list} style={{ width }}>
+            <ol className={theme.list}>
               {articles.map((article, count) => (
                 <li
                   className={theme.listItem}
