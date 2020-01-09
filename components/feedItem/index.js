@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 import Eyebrow from '../eyebrow';
+import Link from '../helpers/link';
 
 // Styles
 import styles from './feedItem.css';
@@ -15,6 +16,7 @@ const FeedItem = ({
   customEyebrow,
   includeExpandBtn,
   teaserContent,
+  permalink,
   postDate,
   showImage,
   title,
@@ -28,6 +30,7 @@ const FeedItem = ({
   });
   const [containerHeight, setContainerHeight] = useState(0);
   const contentRef = React.useRef();
+  const articleRef = React.useRef();
   const image = findChildByName('image', children);
   const contentFooter = findChildByName('content-footer', children);
 
@@ -53,13 +56,38 @@ const FeedItem = ({
     }
   };
 
+  const titleExpand = (e) => {
+    e.preventDefault();
+    setExpandState({
+      btnText: 'Collapse',
+      isExpanded: true,
+    });
+    setContainerHeight(
+      contentRef.current.getBoundingClientRect().height
+    );
+    const headerHeight = document
+      .getElementsByClassName('headroom-wrapper')[0]
+      .getBoundingClientRect()
+      .height;
+
+    window.scrollTo({
+      top: (articleRef.current.offsetTop - headerHeight - 5),
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <article className={classNames(styles.wrapper, {
-      [styles.storygroup]: 'storygroup' === themeName,
-    })}
+    <article
+      ref={articleRef}
+      className={classNames(styles.wrapper,
+        {
+          [styles.storygroup]: 'storygroup' === themeName,
+        })}
     >
       <header className={styles.header}>
-        <h1 className={styles.title}>{title}</h1>
+        <Link to={permalink} onClick={titleExpand}>
+          <h1 className={styles.title}>{title}</h1>
+        </Link>
         <div className={styles.meta}>
           <div className={styles.eyebrow}>
             <span className="screen-reader-text">
@@ -141,6 +169,7 @@ FeedItem.propTypes = {
   topic: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,
+  permalink: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(FeedItem);
