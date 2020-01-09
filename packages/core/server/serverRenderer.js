@@ -11,7 +11,7 @@ import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
-import Cookies from 'universal-cookie';
+import { CookiesProvider } from 'react-cookie';
 import getEnv from 'config/webpack/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
@@ -80,11 +80,13 @@ const render = async (req, res, clientStats) => {
   // Container for critical css related to this page render.
   const cssBuilder = new CriticalCssBuilder();
   const AppWrapper = () => (
-    <Provider store={store}>
-      <StyleContext.Provider value={cssBuilder.addCss}>
-        <App />
-      </StyleContext.Provider>
-    </Provider>
+    <CookiesProvider cookies={req.universalCookies}>
+      <Provider store={store}>
+        <StyleContext.Provider value={cssBuilder.addCss}>
+          <App />
+        </StyleContext.Provider>
+      </Provider>
+    </CookiesProvider>
   );
 
   // Get some template vars and allow customization by user.
