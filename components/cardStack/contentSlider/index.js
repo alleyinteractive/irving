@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 
-// Icons
+// Assets and styles.
 import Arrow from 'assets/icons/arrow.svg';
-
 import styles from './contentSlider.css';
 
 const ContentSlider = ({ articles, contentItemWidth }) => {
-  console.log('articles ', articles);
   const [sliderState, setSliderState] = useState({
     currentIndex: 0,
   });
@@ -46,7 +44,7 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
             <li
               className={styles.listItem}
               key={article.props.title}
-              // Only slide when focus passes first element so its still in the view
+              // Only scroll when focus passes first element so its still in the view
               onFocus={() => (1 <= count ? scrollSlider(true) : null)}
             >
               <div className={styles.counter} aria-hidden>
