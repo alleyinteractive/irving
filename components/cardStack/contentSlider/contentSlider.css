@@ -34,10 +34,6 @@
   padding: rem(20) rem(10);
   width: rem(230);
 
-  &:focus {
-    transform: translateX(-288px);
-  }
-
   @media ($smMin) {
     flex: 0 0 rem(288);
     width: rem(288);
