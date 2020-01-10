@@ -49,7 +49,7 @@ Button.propTypes = {
   /**
    * Style to apply to this button. Corresponds to a className in your stylesheet.
    */
-  buttonStyle: PropTypes.string.isRequired,
+  buttonStyle: PropTypes.string,
   /**
    * Contents of button.
    */
@@ -76,6 +76,7 @@ Button.defaultProps = {
   type: 'button',
   className: '',
   onClick: null,
+  buttonStyle: '',
 };
 
 const wrapWithStyles = withStyles(styles);
