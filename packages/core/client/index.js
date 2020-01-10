@@ -7,7 +7,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { actionLocationChange } from 'actions';
-import Cookie from 'cookie-universal';
+import Cookies from 'universal-cookie';
 import App from 'components/app';
 import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
@@ -31,6 +31,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, state, enhancer);
 const persistor = persistStore(store);
 const rootEl = document.getElementById('root');
+const cookies = new Cookies();
 
 sagaMiddleware.run(rootSaga);
 
@@ -39,7 +40,7 @@ history.listen((location, action) => {
     action,
     {
       ...location,
-      cookie: Cookie().getAll({ parseJSON: false }),
+      cookie: cookies.getAll({ parseJSON: false }),
     }
   ));
 });
