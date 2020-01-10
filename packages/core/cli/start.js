@@ -1,6 +1,7 @@
 /* eslint-disable global-require, no-console, import/order */
 const express = require('express');
 const proxy = require('http-proxy-middleware');
+const cookiesMiddleware = require('universal-cookie-express');
 
 // Shim window global and browser matchMedia API
 require('../utils/shimWindow');
@@ -52,6 +53,9 @@ const passthrough = proxy({
 proxyPassthrough.forEach((pattern) => {
   app.use(pattern, passthrough);
 });
+
+// Add universal cookies middleware.
+app.use(cookiesMiddleware());
 
 if ('development' === NODE_ENV) {
   require('../server/development')(app);
