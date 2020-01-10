@@ -23,9 +23,9 @@ const createGridStyles = (columns, rows, gap) => css`
 const createBreakpointStyles = (responsiveStyles, gap) => (
   responsiveStyles.map((style) => (css`
   @media (${breakpoints[style.breakpoint]}) {
-    ${'number' === typeof style.columns ?
-      columnsEqual(style.columns, style.gap || gap) :
-      columnsCustom(style.columns, style.gap || gap)}
+    ${'number' === typeof style.gridColumns ?
+      columnsEqual(style.gridColumns, style.gap || gap) :
+      columnsCustom(style.gridColumns, style.gap || gap)}
 
     ${'number' === typeof style.rows && rowsEqual(style.rows)}
     ${'string' === typeof style.rows && rowsCustom(style.rows)}
