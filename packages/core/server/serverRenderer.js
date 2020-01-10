@@ -11,7 +11,6 @@ import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
-import Cookie from 'cookie-universal';
 import getEnv from 'config/webpack/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
@@ -53,7 +52,7 @@ const render = async (req, res, clientStats) => {
   dispatch(actionLocationChange('PUSH', {
     pathname: req.path,
     search: `?${search}`,
-    cookie: Cookie(req, res).getAll({ parseJSON: false }),
+    cookie: req.universalCookies.getAll({ parseJSON: false }),
     hash: '', // Only available in browser.
   }));
 
