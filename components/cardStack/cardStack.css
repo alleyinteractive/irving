@@ -77,52 +77,6 @@
   }
 }
 
-.sliderWrap {
-  width: 100%;
-
-}
-
-.slider {
-  display: flex;
-  margin-top: rem(15);
-  overflow: scroll;
-  padding-left: rem(10);
-  position: relative;
-  transition: transform 0.5s ease 0s;
-  scroll-snap-type: none;
-  width: 100%;
-
-  @media ($mdMin) {
-    overflow: visible;
-  }
-}
-
-.list {
-  display: flex;
-  flex-flow: row nowrap;
-  width: auto;
-}
-
-.listItem {
-  border: solid 1px $white;
-  color: $white;
-  flex: 0 0 rem(230);
-  font-family: $sans;
-  list-style-type: none;
-  margin-right: rem(10);
-  padding: rem(20) rem(10);
-  width: rem(230);
-
-  &:focus {
-    transform: translateX(-288px);
-  }
-
-  @media ($smMin) {
-    flex: 0 0 rem(288);
-    width: rem(288);
-  }
-}
-
 .counter {
   color: $white;
   display: block;
@@ -130,37 +84,6 @@
   font-size: rem(14);
   line-height: 1;
   margin-bottom: rem(10);
-}
-
-.button {
-  background-color: $white;
-  background-repeat: norepeat;
-  background-size: cover;
-  border: solid 1px $black;
-  bottom: rem(10);
-  display: none;
-  height: rem(40);
-  position: absolute;
-  width: rem(40);
-
-  @media ($mdMin) {
-    display: flex;
-  }
-
-  svg {
-    margin: auto;
-  }
-}
-
-.previous {
-  composes: button;
-  left: rem(10);
-  transform: rotate(180deg);
-}
-
-.next {
-  composes: button;
-  right: rem(10);
 }
 
 .sponsored {

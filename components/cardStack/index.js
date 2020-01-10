@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
@@ -6,14 +6,14 @@ import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
 import withThemes from 'components/hoc/withThemes';
 
-// Icons
-import Arrow from 'assets/icons/arrow.svg';
+// Components
+import ContentSlider from './contentSlider';
+import Eyebrow from '../eyebrow';
 
 // Styles
 import styles from './cardStack.css';
 import horizontalTheme from './cardStack--isHorizontal.css';
 import noImageTheme from './cardStack--noImage.css';
-import Eyebrow from '../eyebrow';
 
 const CardStack = ({
   children,
@@ -32,31 +32,6 @@ const CardStack = ({
   const image = findChildByName('image', children);
   const logo = findChildByName('logo', children);
   const articles = filterChildrenByName('link-teaser', children);
-  const scrollItemWidth = 288; // width of each list item.
-
-  const [sliderState, setSliderState] = useState({
-    currentIndex: 0,
-  });
-
-  const getScrollPosition = () => {
-    if (0 === sliderState.currentIndex) {
-      return '0';
-    }
-    if (sliderState.currentIndex < articles.length &&
-      0 !== sliderState.currentIndex) {
-      return `-${scrollItemWidth * sliderState.currentIndex}px`;
-    }
-    return 0;
-  };
-
-  const scrollSlider = (isNext) => {
-    if (isNext) {
-      setSliderState({ currentIndex: sliderState.currentIndex + 1 });
-    } else {
-      setSliderState({ currentIndex: sliderState.currentIndex - 1 });
-    }
-    getScrollPosition();
-  };
 
   return (
     <header className={theme.wrapper} style={{ backgroundColor: color }}>
@@ -100,54 +75,7 @@ const CardStack = ({
         </div>
       )}
       {0 < articles.length && (
-        <div className={theme.sliderWrap}>
-          <div
-            className={theme.slider}
-            style={{
-              transform: `translateX(${getScrollPosition()})`,
-            }}
-          >
-            <ol className={theme.list}>
-              {articles.map((article, count) => (
-                <li
-                  className={theme.listItem}
-                  key={article.props.title}
-                  // Only slide when focus passes first element so its still in the view
-                  onFocus={() => (1 <= count ? scrollSlider(true) : null)}
-                >
-                  <div className={theme.counter} aria-hidden>
-                    0{count + 1}.
-                  </div>
-                  {article}
-                </li>
-              ))}
-            </ol>
-          </div>
-          {0 !== sliderState.currentIndex && (
-            <button
-              type="button"
-              className={theme.previous}
-              onClick={() => scrollSlider(false)}
-            >
-              <Arrow aria-hidden />
-              <span className="screen-reader-text">
-                {__('Next', 'mittr')}
-              </span>
-            </button>
-          )}
-          {(sliderState.currentIndex < (articles.length - 1)) && (
-            <button
-              type="button"
-              className={theme.next}
-              onClick={() => scrollSlider(true)}
-            >
-              <Arrow aria-hidden />
-              <span className="screen-reader-text">
-                {__('Previous', 'mittr')}
-              </span>
-            </button>
-          )}
-        </div>
+        <ContentSlider articles={articles} contentItemWidth={288} />
       )}
     </header>
   );
