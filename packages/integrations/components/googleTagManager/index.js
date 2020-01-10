@@ -69,7 +69,10 @@ const GoogleTagManager = (props) => {
 
 GoogleTagManager.propTypes = {
   containerId: PropTypes.string.isRequired,
-  dataLayer: PropTypes.object.isRequired,
+  dataLayer: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array, // Empty objects turn to arrays in PHP :(
+  ]).isRequired,
 };
 
 export default GoogleTagManager;
