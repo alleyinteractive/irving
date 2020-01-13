@@ -38,7 +38,10 @@ const AuthorPage = ({
 
             <div className={styles.meta}>
               <span className={styles.authorType}>
-                {'staff' === type ? 'Our Team' : 'Contributor'}
+                {'staff' === type ?
+                  __('Our Team', 'mittr') :
+                  __('Contributor', 'mittr')
+                }
               </span>
               <h1 className={styles.name}>{name}</h1>
               <span className={styles.title}>{title}</span>
