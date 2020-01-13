@@ -121,3 +121,15 @@
 .facebookIcon > svg {
   width: rem(16);
 }
+
+.postCountWrapper {
+  background-color: $color-deck;
+  color: $background-gray;
+  font-size: rem(30);
+  margin: rem(5) 0 rem(15) 0;
+  padding: rem(50) rem(20) rem(40);
+
+  & strong {
+    font-weight: 600;
+  }
+}
