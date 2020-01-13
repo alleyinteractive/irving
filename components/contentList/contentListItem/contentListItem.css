@@ -1,23 +1,25 @@
-.wrap {
-  display: block;
-  list-style: none;
-  margin-bottom: rem(20);
-}
-
-.title {
-  font-family: $sans;
-  font-size: rem(15);
-  font-weight: 700;
-  margin-bottom: rem(3);
-
-  a:hover {
-    text-decoration: underline;
+:global {
+  .contentListItem__wrap {
+    display: block;
+    list-style: none;
+    margin-bottom: rem(20);
   }
-}
 
-.description {
-  display: block;
-  font-family: $sans;
-  font-size: rem(15);
-  font-weight: 300;
+  .contentListItem__title {
+    font-family: $sans;
+    font-size: rem(15);
+    font-weight: 700;
+    margin-bottom: rem(3);
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .contentListItem__description {
+    display: block;
+    font-family: $sans;
+    font-size: rem(15);
+    font-weight: 300;
+  }
 }

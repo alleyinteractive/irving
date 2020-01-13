@@ -3,13 +3,32 @@
   :global(.wp-block-columns) {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+
+    @media ($mdMin) {
+      flex-flow: row nowrap;
+      justify-content: space-between;
+    }
   }
 
   :global(.wp-block-column) {
     flex: 1 1 auto;
     margin: 0 0 rem(36);
-    max-width: 48%;
+    max-width: 100%;
     min-width: 25%;
+    position: relative;
+
+    @media ($mdMin) {
+      max-width: 48%;
+    }
+
+    &:global(.no-margin) {
+      margin: 0;
+    }
   }
+  /* stylelint-disable-next-line selector-max-specificity */
+  :global(.editor-writing-flow [data-type="core/columns"] .wp-block-columns>.editor-inner-blocks>.editor-block-list__layout) {
+    flex-flow: row nowrap;
+  }
+
+  @include block-featured-company;
 }

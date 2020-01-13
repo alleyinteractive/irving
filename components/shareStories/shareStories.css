@@ -1,0 +1,47 @@
+.wrap {
+  background: #303030;
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+  padding: rem(30) rem(20);
+  width: 100%;
+}
+
+.title {
+  color: $white;
+  font-size: rem(30);
+  font-weight: 400;
+  margin-bottom: rem(10);
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.separator {
+  border-top: 5px solid $white;
+  width: rem(100);
+}
+
+.left {
+  flex: 1;
+  margin-right: rem(50);
+  max-width: rem(250);
+}
+
+.right {
+  flex: 1;
+  width: 50%;
+
+  p {
+    font-size: rem(20);
+    margin-bottom: rem(20);
+  }
+}
+
+.link {
+  color: $white;
+  font-size: rem(20);
+  font-weight: 600;
+  text-decoration: underline;
+}

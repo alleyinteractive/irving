@@ -6,26 +6,30 @@ import React, {
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
+import {
+  actionShowFullStory,
+  actionTruncateStory,
+} from 'actions/storyActions';
+import { connect } from 'react-redux';
+import classNames from 'classnames';
 import styles from './contentBody.css';
 
 const ContentBody = (props) => {
   const [truncateContent, setTruncation] = useState(false);
-  const [contentHeight, setContentHeight] = useState(400);
   const contentRef = useRef();
 
   const {
     children,
     truncatedCTA,
     wordCount,
+    dispatchShowFullStory,
+    dispatchTruncateStory,
+    overrideCTA,
   } = props;
 
   const showFullText = () => {
     // Remove the truncation button and height limit.
     setTruncation(false);
-    // Update the container's height to be that of the content.
-    setContentHeight(
-      contentRef.current.getBoundingClientRect().height
-    );
   };
 
   useEffect(() => {
@@ -42,23 +46,34 @@ const ContentBody = (props) => {
 
     if (0 === truncatedCTA.length) {
       showFullText();
+      dispatchShowFullStory();
     } else if (isOutsideSource) {
       setTruncation(true);
+      dispatchTruncateStory();
     } else {
       showFullText();
+      dispatchShowFullStory();
+    }
+
+    if (true === overrideCTA) {
+      showFullText();
+      dispatchShowFullStory();
     }
   }, truncateContent);
 
   return (
     <div className={styles.wrapper}>
       <div
-        className={styles.overlay}
-        style={{ display: 400 === contentHeight ? 'block' : 'none' }}
+        className={classNames(styles.overlay, {
+          [styles.overlayVisible]: truncateContent,
+        })}
       />
 
       <div
-        className={400 === contentHeight ? styles.contentHidden : ''}
-        style={{ height: contentHeight }}
+        className={classNames(styles.content, {
+          [styles.contentHidden]: truncateContent,
+        })}
+        id="content--body"
       >
         <div ref={contentRef}>
           {children}
@@ -81,12 +96,27 @@ const ContentBody = (props) => {
 
 ContentBody.defaultProps = {
   truncatedCTA: '',
+  dispatchShowFullStory: () => {},
+  dispatchTruncateStory: () => {},
+  overrideCTA: false,
 };
 
 ContentBody.propTypes = {
   children: PropTypes.node.isRequired,
   truncatedCTA: PropTypes.string,
   wordCount: PropTypes.number.isRequired,
+  dispatchShowFullStory: PropTypes.func,
+  dispatchTruncateStory: PropTypes.func,
+  overrideCTA: PropTypes.bool,
 };
 
-export default withStyles(styles)(ContentBody);
+const mapDispatchToProps = (dispatch) => ({
+  dispatchShowStory: () => dispatch(actionShowFullStory()),
+  dispatchTruncateStory: () => dispatch(actionTruncateStory()),
+});
+const withRedux = connect(
+  undefined,
+  mapDispatchToProps
+);
+
+export default withRedux(withStyles(styles)(ContentBody));

@@ -4,6 +4,8 @@ import {
   RECEIVE_REQUEST_HEADER,
   RECEIVE_USER_LOGOUT,
   RECEIVE_NEW_USER_EMAIL,
+  INITIATE_USER_REGISTRATION,
+  RECEIVE_USER_REGISTRATION,
 } from 'actions/types';
 import { user as defaultState } from './defaultState';
 
@@ -26,6 +28,15 @@ export default function userReducer(state = defaultState, { type, payload }) {
       return state;
     case RECEIVE_NEW_USER_EMAIL:
       return { ...state, email: payload.email };
+    case INITIATE_USER_REGISTRATION:
+      return { ...state, pendingEmail: payload.email };
+    case RECEIVE_USER_REGISTRATION:
+      return {
+        ...state,
+        ...payload.user,
+        pendingEmail: null,
+        pendingVerification: true,
+      };
     default:
       return state;
   }

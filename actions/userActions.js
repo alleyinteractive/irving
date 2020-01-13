@@ -8,6 +8,10 @@ import {
   SUBMIT_USER_PASSWORD,
   RECEIVE_USER_LOGOUT,
   RECEIVE_NEW_USER_EMAIL,
+  INITIATE_USER_REGISTRATION,
+  SUBMIT_USER_REGISTRATION,
+  RECEIVE_USER_REGISTRATION,
+  VERIFY_USER_EMAIL,
 } from './types';
 
 /**
@@ -89,3 +93,42 @@ export function actionReceiveNewUserEmail(email) {
   return createAction(RECEIVE_NEW_USER_EMAIL, { email });
 }
 
+/**
+ * Create a Redux action that represents browser state change when a user submits
+ * an email address for registration.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionStorePendingEmail(email) {
+  return createAction(INITIATE_USER_REGISTRATION, { email });
+}
+
+/**
+ * Create a Redux action that represents browser state change when a user completes
+ * the registration form.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionSubmitUserRegistration(body) {
+  return createAction(SUBMIT_USER_REGISTRATION, { body });
+}
+
+/**
+ * Create a Redux action that represents browser state change when a new user is
+ * returned from the Nexus.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveUserRegistration(user) {
+  return createAction(RECEIVE_USER_REGISTRATION, { user });
+}
+
+/**
+ * Create a Redux action that represents browser state change when a user verifies
+ * their email address.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionVerifyUserEmail(hash) {
+  return createAction(VERIFY_USER_EMAIL, { hash });
+}

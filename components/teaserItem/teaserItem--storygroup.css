@@ -1,0 +1,31 @@
+.wrapper {
+  composes: wrapper from './teaserItem.css';
+  flex-flow: row nowrap;
+
+  &.featuredGroup {
+    margin-bottom: 0;
+    padding: rem(15) 0;
+  }
+}
+
+.title {
+  composes: title from './teaserItem.css';
+
+  &.groupTitle {
+    font-size: rem(22);
+  }
+
+  @media ($smMin) {
+    font-size: rem(30);
+    margin-bottom: 0;
+  }
+}
+
+.text {
+  composes: text from './teaserItem.css';
+  flex: 1;
+}
+
+.shareMenu {
+  flex: 0 1 auto;
+}

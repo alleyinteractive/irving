@@ -1,0 +1,34 @@
+.link {
+  @media ($lgMin) {
+    margin-left: rem(50);
+  }
+}
+
+.icon {
+  font-size: rem(12);
+  font-weight: 600;
+  margin-right: rem(15);
+
+  a {
+    align-items: center;
+    display: flex;
+  }
+
+  .link & {
+    background-color: transparent;
+  }
+
+  svg {
+    fill: $white;
+    height: rem(18);
+    margin-left: rem(15);
+    width: auto;
+  }
+}
+
+.linkCopied {
+  color: #9d9d9d;
+  cursor: pointer;
+  margin-left: rem(10);
+  text-decoration: underline;
+}

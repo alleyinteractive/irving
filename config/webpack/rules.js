@@ -4,7 +4,6 @@ const {
   postCssConfig,
   transform,
   assetsRoot,
-  clientRoot,
 } = require('../paths');
 
 const exclude = [/node_modules/, /\.min\.js$/];
@@ -79,10 +78,25 @@ module.exports = function getRules(context) {
     },
     {
       test: /\.css$/,
+      include: /node_modules/,
+      use: [
+        {
+          loader: isServer ? 'critical-style-loader' : 'style-loader',
+          options: {
+            transform,
+          },
+        },
+        'css-loader',
+      ],
+    },
+    {
+      test: /\.css$/,
       exclude,
       oneOf: [
         {
-          issuer: [path.join(clientRoot, 'styles/fonts.js')],
+          issuer: [
+            /(fonts|editor)\.js/,
+          ],
           use: [
             MiniCSSExtractPlugin.loader,
             {
@@ -90,7 +104,7 @@ module.exports = function getRules(context) {
               options: {
                 url: true,
                 importLoaders: 1,
-                minimize: true,
+                modules: 'global',
               },
             },
             {
@@ -104,39 +118,37 @@ module.exports = function getRules(context) {
             },
           ],
         },
-      ],
-    },
-    {
-      test: /\.css$/,
-      exclude,
-      use: [
         {
-          loader: isServer ? 'critical-style-loader' : 'style-loader',
-          options: {
-            transform,
-          },
-        },
-        {
-          loader: 'css-loader',
-          options: {
-            url: true,
-            importLoaders: 1,
-            modules: {
-              mode: 'local',
-              localIdentName: '[name]__[local]--[hash:base64:5]',
+          use: [
+            {
+              loader: isServer ? 'critical-style-loader' : 'style-loader',
+              options: {
+                transform,
+              },
             },
-            sourceMap: ! isProd,
-            localsConvention: 'camelCase',
-          },
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: ! isProd,
-            config: {
-              path: postCssConfig,
+            {
+              loader: 'css-loader',
+              options: {
+                url: true,
+                importLoaders: 1,
+                modules: {
+                  mode: 'local',
+                  localIdentName: '[name]__[local]--[hash:base64:5]',
+                },
+                sourceMap: ! isProd,
+                localsConvention: 'camelCase',
+              },
             },
-          },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: ! isProd,
+                config: {
+                  path: postCssConfig,
+                },
+              },
+            },
+          ],
         },
       ],
     },

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import parse from 'html-react-parser';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
@@ -7,6 +8,8 @@ import { findChildByName } from 'utils/children';
 // Themes
 import styles from './contentHeader.css';
 import inlineTheme from './contentHeader--inline.css';
+import verticalTheme from './contentHeader--vertical.css';
+import simpleTheme from './contentHeader--simple.css';
 import Eyebrow from '../eyebrow';
 
 const ContentHeader = ({
@@ -19,6 +22,7 @@ const ContentHeader = ({
   theme,
   themeName,
 }) => {
+  const video = findChildByName('video', children);
   const image = findChildByName('image', children);
   const byline = findChildByName('byline', children);
   const sponsoredModule = findChildByName('sponsored-module', children);
@@ -26,11 +30,13 @@ const ContentHeader = ({
   const DeckTag = '' === title ? Heading : 'p';
 
   return (
-    <header className={theme.wrapper}>
-      <div className={theme.intro}>
+    <header className={theme.wrapper} id="content--header--wrapper">
+      <div className={theme.intro} id="content--header">
         {eyebrow.content && (
           <Eyebrow
-            customEyebrow=""
+            customEyebrow={eyebrow.customEyebrow}
+            subTopic={eyebrow.subTopic}
+            subTopicLink={eyebrow.subTopicLink}
             themeName="Full Story"
             topic={eyebrow.content}
             topicLink={eyebrow.link}
@@ -38,7 +44,7 @@ const ContentHeader = ({
           />
         )}
         {'' !== title && <Heading className={theme.title}>{title}</Heading>}
-        <DeckTag className={theme.deck}>{deck}</DeckTag>
+        <DeckTag className={theme.deck}>{parse(deck)}</DeckTag>
         {'inline' !== themeName && (
           <div className={theme.meta}>
             {byline}
@@ -47,11 +53,12 @@ const ContentHeader = ({
         )}
       </div>
       {sponsoredModule && (
-        <div className={styles.sponsoredModule}>
+        <div className={theme.sponsoredModule} id="sponsored-content--module">
           {sponsoredModule}
         </div>
       )}
       <div className={theme.image}>{image}</div>
+      {video}
     </header>
   );
 };
@@ -61,6 +68,9 @@ ContentHeader.propTypes = {
     link: PropTypes.string,
     color: PropTypes.string,
     content: PropTypes.string,
+    customEyebrow: PropTypes.string,
+    subTopic: PropTypes.string,
+    subTopicLink: PropTypes.string,
   }),
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   deck: PropTypes.string.isRequired,
@@ -83,7 +93,10 @@ ContentHeader.defaultProps = {
   eyebrow: {
     color: '#000000',
     content: '',
+    customEyebrow: '',
     link: '',
+    subTopic: '',
+    subTopicLink: '',
   },
   headingLevel: 1,
   themeName: '',
@@ -92,4 +105,6 @@ ContentHeader.defaultProps = {
 export default withThemes('content-header', {
   default: styles,
   inline: inlineTheme,
-})(withStyles(styles, inlineTheme)(ContentHeader));
+  isVertical: verticalTheme,
+  simple: simpleTheme,
+})(withStyles(styles, inlineTheme, verticalTheme, simpleTheme)(ContentHeader));

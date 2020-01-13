@@ -1,4 +1,6 @@
 .wrapper {
+  border-top: 2px solid $background-gray;
+  padding-top: rem(20);
   width: 100%;
 }
 
@@ -14,13 +16,29 @@
 }
 
 .author {
+  align-items: center;
   display: flex;
   flex-flow: row nowrap;
   font-size: rem(14);
+  margin-bottom: rem(15);
   width: 100%;
 }
 
 .avatar {
   height: rem(35);
   width: rem(35);
+  
+  img {
+    width: 100%;
+  }
+}
+
+.authorLink {
+  align-items: center;
+  display: flex;
+  text-decoration: underline;
+  
+  .avatar {
+    margin: rem(0 10 0 0);
+  }
 }
