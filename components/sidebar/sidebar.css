@@ -34,13 +34,14 @@
   width: rem(300);
 }
 
-@media ($lgMin) {
-  .sidebarTopics {
+.sidebarTopics {
+  @media ($lgMin) {
     display: block;
   }
 }
-@media ($lgMin) {
-  .sidebarFollow {
+
+.sidebarFollow {
+  @media ($lgMin) {
     display: block;
   }
 }

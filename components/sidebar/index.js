@@ -16,7 +16,8 @@ const Sidebar = (props) => {
     // eslint-disable-next-line no-unused-vars
     context,
     hasAd,
-    themeName,
+    // eslint-disable-next-line no-unused-vars
+    theme,
   } = props;
 
   const popular = findChildByName('popular', children);
@@ -31,7 +32,7 @@ const Sidebar = (props) => {
 
     if (
       null !== contentHeader &&
-      'raised' === themeName &&
+      'raised' === theme &&
       960 < window.innerWidth
     ) {
       const headerWrapper =
@@ -84,7 +85,7 @@ const Sidebar = (props) => {
 
   return (
     <aside
-      className={classNames(className, themeName.wrapper, themeName, {
+      className={classNames(className, theme.wrapper, theme, {
         [styles.hasAd]: hasAd,
       })}
       style={{
@@ -109,15 +110,18 @@ const Sidebar = (props) => {
           </div>
         );
       })} */}
-      <div className={themeName.widgetWrapper}>
+      <div className={theme.widgetWrapper}>
         {popular}
       </div>
-      <div className={themeName.widgetWrapper}>
+      <div className={theme.widgetWrapper}>
         {magazineModule}
       </div>
-      <div className={themeName.subSidebar}>
-        <div className={themeName.subSidebarWrapper}>
+      <div className={theme.subSidebar}>
+        <div className={theme.subSidebarWrapper}>
           {adUnit}
+        </div>
+        <div>
+          Another div for testing
         </div>
       </div>
     </aside>
@@ -129,13 +133,13 @@ Sidebar.propTypes = {
   className: PropTypes.string,
   context: PropTypes.string,
   hasAd: PropTypes.bool,
-  themeName: PropTypes.string,
+  theme: PropTypes.string,
 };
 
 Sidebar.defaultProps = {
   className: '',
   context: '',
-  themeName: '',
+  theme: '',
   hasAd: false,
 };
 

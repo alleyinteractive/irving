@@ -2,7 +2,7 @@
   display: flex;
   justify-content: flex-start;
   position: sticky;
-  top: rem(80);
+  top: 80px;
 
   @media ($mdMin) {
     justify-content: flex-end;
@@ -13,13 +13,22 @@
   width: rem(300);
 }
 
-@media ($lgMin) {
-  .sidebarTopics {
+.sidebarTopics {
+  @media ($lgMin) {
     display: block;
   }
 }
-@media ($lgMin) {
-  .sidebarFollow {
+
+.sidebarFollow {
+  @media ($lgMin) {
     display: block;
   }
+}
+
+.widgetWrapper {
+  composes: widgetWrapper from './sidebar.css';
+}
+
+.wrapper {
+  composes: wrapper from './sidebar.css';
 }
