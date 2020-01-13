@@ -46,6 +46,7 @@ import MagazineStory from 'components/magazineStory';
 import MagazineHero from 'components/magazineHero';
 import MagazineIssue from 'components/magazineIssue';
 import MagazineIssues from 'components/magazineIssues';
+import MagazineSidebar from 'components/magazineSidebar';
 import MagazineYear from 'components/magazineYear';
 import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
@@ -138,6 +139,7 @@ export const componentMap = {
   'magazine-hero': MagazineHero,
   'magazine-issue': MagazineIssue,
   'magazine-issues': MagazineIssues,
+  'magazine-module': MagazineSidebar,
   'mega-menu': MegaMenu,
   menu: Menu,
   'menu-item': MenuItem,

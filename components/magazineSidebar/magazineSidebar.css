@@ -1,0 +1,50 @@
+.wrap {
+  border-top: 4px solid #000000;
+  padding: rem(5) 0 rem(40);
+}
+
+.sidebarTitle {
+  display: block;
+  font-size: rem(14);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: rem(15);
+  text-transform: uppercase;
+}
+
+.row {
+  display: flex;
+}
+
+.imageWrap {
+  margin-right: rem(15);
+}
+
+.image {
+  height: auto;
+  max-width: rem(143);
+}
+
+.title {
+  font-size: rem(16);
+  font-weight: 600;
+  margin-bottom: rem(5);
+}
+
+.magMeta {
+
+  p {
+    font-size: rem(16);
+    margin-bottom: rem(20);
+  }
+}
+
+.link {
+  color: $black;
+  display: block;
+  font-size: rem(14);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
