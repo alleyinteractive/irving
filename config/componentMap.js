@@ -80,6 +80,7 @@ import TagLink from 'components/tagLink';
 import Tags from 'components/tags';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
+import TopicsModule from 'components/topicsModule';
 import UserGreeting from 'components/userGreeting';
 import Verify from 'components/accounts/verify';
 import Video from 'components/video';
@@ -179,6 +180,7 @@ export const componentMap = {
   'term-archive-content-list-item': TeaserItem,
   'technology-meta': ContentList,
   'topic-header': CardStack,
+  'topics-module': TopicsModule,
   'user-greeting': UserGreeting,
   verify: Verify,
   video: Video,
