@@ -1,0 +1,25 @@
+.subSidebar {
+  display: flex;
+  justify-content: flex-start;
+  position: sticky;
+  top: rem(80);
+
+  @media ($mdMin) {
+    justify-content: flex-end;
+  }
+}
+
+.subSidebarWrapper {
+  width: rem(300);
+}
+
+@media ($lgMin) {
+  .sidebarTopics {
+    display: block;
+  }
+}
+@media ($lgMin) {
+  .sidebarFollow {
+    display: block;
+  }
+}

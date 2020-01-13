@@ -1,5 +1,6 @@
 .wrapper {
   flex: 0 0 auto;
+  margin-bottom: rem(200);
   width: 100%;
 
   :global(.sidebarHTMLContent) {
@@ -11,10 +12,35 @@
   }
 }
 
-.item {
+.widgetWrapper {
   width: 100%;
 
   &:not(:empty) {
     margin-bottom: rem(40);
+  }
+}
+
+.subSidebar {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+
+  @media ($mdMin) {
+    justify-content: flex-end;
+  }
+}
+
+.subSidebarWrapper {
+  width: rem(300);
+}
+
+@media ($lgMin) {
+  .sidebarTopics {
+    display: block;
+  }
+}
+@media ($lgMin) {
+  .sidebarFollow {
+    display: block;
   }
 }

@@ -51,7 +51,7 @@ const Popular = ({
           }
         }
 
-        if ('inFeed' === themeName) {
+        if ('in-aeed' === themeName) {
           setPosition();
         }
       }
@@ -68,7 +68,6 @@ const Popular = ({
         width: maxWidth,
       }}
     >
-      <div className={styles.adUnit}>Ad unit placeholder</div>
       <div className={theme.contentModule}>
         <h3 className={theme.title}>Popular</h3>
         <ul className={theme.stories}>

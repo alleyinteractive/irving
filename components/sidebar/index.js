@@ -1,17 +1,27 @@
-import React, { useState, useEffect, cloneElement } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { findChildByName } from 'utils/children';
 import { withStyles } from 'critical-style-loader/lib';
+import withThemes from '../hoc/withThemes';
+
+// Styles
 import styles from './sidebar.css';
+import inFeedStyles from './inFeed.css';
 
 const Sidebar = (props) => {
   const {
     children,
     className,
+    // eslint-disable-next-line no-unused-vars
     context,
     hasAd,
     themeName,
   } = props;
+
+  const popular = findChildByName('popular', children);
+  const magazineModule = findChildByName('magazine-module', children);
+  const adUnit = findChildByName('ad-unit', children);
 
   const [headerHeight, setHeaderHeight] = useState(0);
 
@@ -74,7 +84,7 @@ const Sidebar = (props) => {
 
   return (
     <aside
-      className={classNames(className, styles.wrapper, styles[themeName], {
+      className={classNames(className, themeName.wrapper, themeName, {
         [styles.hasAd]: hasAd,
       })}
       style={{
@@ -82,7 +92,7 @@ const Sidebar = (props) => {
         top: `-${headerHeight}px`,
       }}
     >
-      {children.map((child) => {
+      {/* {children.map((child) => {
         const {
           props: { gtmTargetingClass },
         } = child;
@@ -98,7 +108,18 @@ const Sidebar = (props) => {
               child}
           </div>
         );
-      })}
+      })} */}
+      <div className={themeName.widgetWrapper}>
+        {popular}
+      </div>
+      <div className={themeName.widgetWrapper}>
+        {magazineModule}
+      </div>
+      <div className={themeName.subSidebar}>
+        <div className={themeName.subSidebarWrapper}>
+          {adUnit}
+        </div>
+      </div>
     </aside>
   );
 };
@@ -118,4 +139,7 @@ Sidebar.defaultProps = {
   hasAd: false,
 };
 
-export default withStyles(styles)(Sidebar);
+export default withThemes('sidebar', {
+  default: styles,
+  inFeed: inFeedStyles,
+})(withStyles(styles)(Sidebar));
