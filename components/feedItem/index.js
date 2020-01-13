@@ -4,6 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import classNames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
+import Link from 'components/helpers/link';
 import Eyebrow from '../eyebrow';
 
 // Styles
@@ -14,6 +15,7 @@ const FeedItem = ({
   color,
   customEyebrow,
   includeExpandBtn,
+  permalink,
   teaserContent,
   postDate,
   showImage,
@@ -59,7 +61,9 @@ const FeedItem = ({
     })}
     >
       <header className={styles.header}>
-        <h1 className={styles.title}>{title}</h1>
+        <h1 className={styles.title}>
+          <Link to={permalink}>{title}</Link>
+        </h1>
         <div className={styles.meta}>
           <div className={styles.eyebrow}>
             <span className="screen-reader-text">
@@ -79,7 +83,8 @@ const FeedItem = ({
           </div>
         </div>
       </header>
-      {(image && showImage) && <div className={styles.image}>{image}</div>}
+      {(image && showImage) &&
+      <div className={styles.image}><Link to={permalink}>{image}</Link></div>}
       {! includeExpandBtn && (
         <Fragment>
           <div className={styles.content}>
@@ -135,6 +140,7 @@ FeedItem.propTypes = {
   teaserContent: PropTypes.string,
   customEyebrow: PropTypes.string.isRequired,
   postDate: PropTypes.string.isRequired,
+  permalink: PropTypes.string.isRequired,
   showImage: PropTypes.bool,
   title: PropTypes.string.isRequired,
   themeName: PropTypes.string,

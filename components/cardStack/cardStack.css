@@ -5,7 +5,9 @@
   display: flex;
   flex-flow: row wrap;
   margin-bottom: rem(15);
+  overflow: hidden;
   padding-bottom: rem(25);
+  position: relative;
 
   > * {
     order: 1;
@@ -41,7 +43,8 @@
   }
 
   span,
-  figure {
+  figure,
+  a {
     display: block;
     width: 100%;
   }
@@ -74,31 +77,6 @@
   }
 }
 
-.slider {
-  overflow: visible;
-  padding-left: rem(10);
-  position: relative;
-  width: 100%;
-}
-
-.featured {
-  border: solid 1px $white;
-  color: $white;
-  flex: 0 0 rem(288);
-  font-family: $sans;
-  list-style-type: none;
-  margin-right: rem(10);
-  padding: rem(20) rem(10);
-  width: rem(288);
-}
-
-.list {
-  display: flex;
-  flex-flow: row nowrap;
-  overflow-x: hidden;
-  width: auto;
-}
-
 .counter {
   color: $white;
   display: block;
@@ -106,33 +84,6 @@
   font-size: rem(14);
   line-height: 1;
   margin-bottom: rem(10);
-}
-
-.button {
-  background-color: $white;
-  background-repeat: norepeat;
-  background-size: cover;
-  border: solid 1px $black;
-  bottom: rem(-20);
-  display: flex;
-  height: rem(40);
-  position: absolute;
-  width: rem(40);
-
-  svg {
-    margin: auto;
-  }
-}
-
-.previous {
-  composes: button;
-  left: rem(10);
-  transform: rotate(180deg);
-}
-
-.next {
-  composes: button;
-  right: rem(10);
 }
 
 .sponsored {
