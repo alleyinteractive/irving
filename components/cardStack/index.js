@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
@@ -6,14 +6,14 @@ import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
 import withThemes from 'components/hoc/withThemes';
 
-// Icons
-import Arrow from 'assets/icons/arrow.svg';
+// Components
+import ContentSlider from './contentSlider';
+import Eyebrow from '../eyebrow';
 
 // Styles
 import styles from './cardStack.css';
 import horizontalTheme from './cardStack--isHorizontal.css';
 import noImageTheme from './cardStack--noImage.css';
-import Eyebrow from '../eyebrow';
 
 const CardStack = ({
   children,
@@ -32,15 +32,6 @@ const CardStack = ({
   const image = findChildByName('image', children);
   const logo = findChildByName('logo', children);
   const articles = filterChildrenByName('link-teaser', children);
-
-  /**
-   * @todo MIT-201 all these buttons do is appear and disappear based on
-   * whether or not the user has scrolled the slider. They should:
-   * - Actually move the slider
-   * - Not appear when the slider cannot be slid in that direction any further.
-   */
-  const sliderRef = React.createRef();
-  const [hasScrolled, setHasScrolled] = useState(false);
 
   return (
     <header className={theme.wrapper} style={{ backgroundColor: color }}>
@@ -84,52 +75,7 @@ const CardStack = ({
         </div>
       )}
       {0 < articles.length && (
-        <div
-          className={theme.slider}
-          ref={sliderRef}
-          onScroll={() => {
-            setHasScrolled(true);
-          }}
-        >
-          <ol className={theme.list}>
-            {articles.map((article, count) => (
-              <li className={theme.featured} key={article.props.title}>
-                <div className={theme.counter} aria-hidden>
-                  0{count + 1}.
-                </div>
-                {article}
-              </li>
-            ))}
-          </ol>
-          {hasScrolled ? (
-            <button
-              type="button"
-              className={theme.previous}
-              onClick={() => setHasScrolled(false)}
-            >
-              <Arrow aria-hidden />
-              <span className="screen-reader-text">{__('Next', 'mittr')}</span>
-            </button>
-          ) : (
-            <button
-              type="button"
-              className={theme.next}
-              onClick={() => {
-                setHasScrolled(true);
-                // @todo MIT-210 this does not work.
-                const { offsetWidth } = sliderRef;
-                sliderRef.current.style = {
-                  transform: `translateX(-${offsetWidth}px)`,
-                };
-              }}
-            >
-              <Arrow aria-hidden />
-              <span className="screen-reader-text">
-                {__('Previous', 'mittr')}
-              </span>
-            </button>
-          )}
-        </div>
+        <ContentSlider articles={articles} contentItemWidth={288} />
       )}
     </header>
   );
