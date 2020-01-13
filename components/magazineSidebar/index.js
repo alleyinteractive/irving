@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import parse from 'html-react-parser';
+import Link from 'components/helpers/link';
 
 // Styles
 import styles from './magazineSidebar.css';
@@ -32,9 +33,9 @@ const MagazineSidebar = ({
           {title}
         </h3>
         {description && parse(description)}
-        <a href={link} className={styles.link}>
+        <Link to={link} className={styles.link}>
           {__('More issues', 'mittr')} &#62;
-        </a>
+        </Link>
       </div>
     </div>
   </div>
