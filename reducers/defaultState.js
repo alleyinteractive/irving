@@ -64,10 +64,13 @@ export const componentDataMeta = {
   data: [],
 };
 
+export const headerHeight = null; // is null right for an expected number? 0?
+
 const defaultState = {
   components,
   componentData,
   error,
+  headerHeight, // I think this should go in root slice reducer
   loading,
   player,
   route,

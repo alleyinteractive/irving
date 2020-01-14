@@ -2,8 +2,10 @@ import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
+import { actionGetHeaderHeight } from 'actions';
 import Eyebrow from '../eyebrow';
 import Link from '../helpers/link';
 
@@ -14,6 +16,7 @@ const FeedItem = ({
   children,
   color,
   customEyebrow,
+  dispatchGetHeaderHeight, // adding prop to get from redux global state
   includeExpandBtn,
   teaserContent,
   permalink,
@@ -65,13 +68,13 @@ const FeedItem = ({
     setContainerHeight(
       contentRef.current.getBoundingClientRect().height
     );
-    const headerHeight = document
-      .getElementsByClassName('headroom-wrapper')[0]
-      .getBoundingClientRect()
-      .height;
-
+    // const headerHeight = document
+    //   .getElementsByClassName('headroom-wrapper')[0]
+    //   .getBoundingClientRect()
+    //   .height;
+    const headerHeight = dispatchGetHeaderHeight();
     window.scrollTo({
-      top: (articleRef.current.offsetTop - headerHeight - 5),
+      top: (articleRef.current.offsetTop - headerHeight - 5), // using headerHeight prop
       behavior: 'smooth',
     });
   };
@@ -170,6 +173,23 @@ FeedItem.propTypes = {
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,
   permalink: PropTypes.string.isRequired,
+  dispatchGetHeaderHeight: PropTypes.number, // added prop-type
 };
 
-export default withStyles(styles)(FeedItem);
+FeedItem.defaultProps = {
+  dispatchGetHeaderHeight: null,
+};
+
+// get header size from state
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchGetHeaderHeight: () => dispatch(actionGetHeaderHeight()),
+});
+
+const withRedux = connect(
+  undefined,
+  mapDispatchToProps,
+);
+const wrapWithStyles = withStyles(styles);
+
+export default withRedux(wrapWithStyles(styles))(FeedItem); // connect to redux
