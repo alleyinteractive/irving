@@ -38,6 +38,5 @@ export const RECEIVE_AUDIO_TIME = 'RECEIVE_AUDIO_TIME';
 export const LOAD_NEXT_TRACK = 'LOAD_NEXT_TRACK';
 export const LOAD_PREVIOUS_TRACK = 'LOAD_PREVIOUS_TRACK';
 
-// Header height for scrollup
-
-export const GET_HEADER_HEIGHT = 'GET_HEADER_HEIGHT'; // added for getting header height for Feed Item
+// Header height for scroll
+export const UPDATE_HEADER_HEIGHT = 'UPDATE_HEADER_HEIGHT';

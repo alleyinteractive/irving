@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
-import { actionGetHeaderHeight } from 'actions';
 import Link from '../helpers/link';
 import Eyebrow from '../eyebrow';
 
@@ -16,7 +15,6 @@ const FeedItem = ({
   children,
   color,
   customEyebrow,
-  dispatchGetHeaderHeight, // adding prop to get from redux global state
   includeExpandBtn,
   permalink,
   teaserContent,
@@ -26,6 +24,7 @@ const FeedItem = ({
   themeName,
   topic,
   topicLink,
+  headerHeight,
 }) => {
   const [expandState, setExpandState] = useState({
     btnText: 'Expand',
@@ -44,40 +43,32 @@ const FeedItem = ({
     themeName: 'infeed',
   });
 
-  const toggleStory = () => {
+  const elementTop = (el, top = 0) => {
+    if (el.offsetParent) {
+      return elementTop(el.offsetParent, top + el.offsetTop);
+    }
+    return top + el.offsetTop;
+  };
+
+  const toggleStory = (e, fromTitle = false) => {
+    e.preventDefault();
+    const doExpand = fromTitle || ! expandState.isExpanded;
     setExpandState({
-      btnText: 'Expand' === expandState.btnText ? 'Collapse' : 'Expand',
-      isExpanded: expandState.isExpanded = ! expandState.isExpanded,
+      btnText: doExpand ? 'Collapse' : 'Expand',
+      isExpanded: doExpand,
     });
-    if (expandState.isExpanded) {
-      setContainerHeight(
-        0 === containerHeight ?
-          contentRef.current.getBoundingClientRect().height : 0
-      );
-    } else {
-      setContainerHeight(0);
+    setContainerHeight(
+      doExpand ? contentRef.current.getBoundingClientRect().height : 0
+    );
+    if (fromTitle) {
+      window.scrollTo({
+        top: elementTop(articleRef.current) - headerHeight,
+        behavior: 'smooth',
+      });
     }
   };
 
-  const titleExpand = (e) => {
-    e.preventDefault();
-    setExpandState({
-      btnText: 'Collapse',
-      isExpanded: true,
-    });
-    setContainerHeight(
-      contentRef.current.getBoundingClientRect().height
-    );
-    // const headerHeight = document
-    //   .getElementsByClassName('headroom-wrapper')[0]
-    //   .getBoundingClientRect()
-    //   .height;
-    const headerHeight = dispatchGetHeaderHeight();
-    window.scrollTo({
-      top: (articleRef.current.offsetTop - headerHeight - 5), // using headerHeight prop
-      behavior: 'smooth',
-    });
-  };
+  const titleToggle = (e) => toggleStory(e, true);
 
   return (
     <article
@@ -89,7 +80,7 @@ const FeedItem = ({
     >
       <header className={styles.header}>
         <h1 className={styles.title}>
-          <Link to={permalink} onclick={titleExpand}>{title}</Link>
+          <Link to={permalink} onClick={titleToggle}>{title}</Link>
         </h1>
         <div className={styles.meta}>
           <div className={styles.eyebrow}>
@@ -159,6 +150,7 @@ FeedItem.defaultProps = {
   showImage: true,
   teaserContent: '',
   themeName: '',
+  headerHeight: 0,
 };
 
 FeedItem.propTypes = {
@@ -174,21 +166,16 @@ FeedItem.propTypes = {
   topic: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,
-  dispatchGetHeaderHeight: PropTypes.number, // added prop-type
+  headerHeight: PropTypes.number,
 };
 
-FeedItem.defaultProps = {
-  dispatchGetHeaderHeight: null,
-};
-
-// get header size from state
-const mapDispatchToProps = (dispatch) => ({
-  dispatchGetHeaderHeight: () => dispatch(actionGetHeaderHeight()),
+const mapStateToProps = (state) => ({
+  headerHeight: state.headerHeight,
 });
 
 const withRedux = connect(
+  mapStateToProps,
   undefined,
-  mapDispatchToProps,
 );
 
 export default withRedux(withStyles(styles)(FeedItem)); // connect to redux

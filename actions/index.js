@@ -4,7 +4,7 @@ import {
   RECEIVE_COMPONENTS,
   FINISH_LOADING,
   UPDATE_VISIBILITY,
-  GET_HEADER_HEIGHT,
+  UPDATE_HEADER_HEIGHT,
 } from './types';
 
 /**
@@ -69,7 +69,6 @@ export function actionUpdateVisibility(name, isVisible = null) {
  * Create a Redux action that represents a change in header height
  * @returns {{type, payload}} - Redux action
  */
-export function actionGetHeaderHeight(name, headerHeight = null) {
-  return createAction(GET_HEADER_HEIGHT, { name, headerHeight });
+export function actionUpdateHeaderHeight(headerHeight = 0) {
+  return createAction(UPDATE_HEADER_HEIGHT, headerHeight);
 }
-

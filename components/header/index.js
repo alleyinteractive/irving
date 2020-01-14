@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Headroom from 'react-headroom';
 import { __ } from '@wordpress/i18n';
@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import Link from 'components/helpers/link';
 import useBreakpoint from 'hooks/useBreakpoint';
 import { connect } from 'react-redux';
+import { actionUpdateHeaderHeight } from 'actions';
 
 // Images
 import LogoStacked from 'assets/icons/logoStacked.svg';
@@ -18,12 +19,13 @@ import MegaMenuIcon from 'assets/icons/megaMenu.svg';
 // Styles
 import styles from './header.css';
 
-const Header = ({ homeUrl, children }) => {
+const Header = ({ homeUrl, children, dispatchUpdateHeaderHeight }) => {
   const menu = findChildByName('menu', children);
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const headroomRef = useRef();
 
   // Breakpoints
   const isSmMin = useBreakpoint('smMin');
@@ -35,10 +37,15 @@ const Header = ({ homeUrl, children }) => {
     } else {
       setIsMobile(false);
     }
-  }, [isSmMin]);
+    const headroomHeight = headroomRef.current.getBoundingClientRect().height;
+    dispatchUpdateHeaderHeight(headroomHeight);
+  });
 
   const HeaderMarkup = ({ isHeadroom }) => (
-    <header className={styles.container}>
+    <header
+      className={styles.container}
+      ref={isHeadroom ? headroomRef : null}
+    >
       <div className={styles.wrapper}>
         {! isHeadroom && ! isMobile && (
           <div className={styles.leaderboardRow}>
@@ -108,15 +115,10 @@ const Header = ({ homeUrl, children }) => {
     isHeadroom: false,
   };
 
-  const measureHeadroomHeight = () => {
-    debugger; // eslint-disable-line no-debugger
-  };
-
   return (
     <>
       <HeaderMarkup />
       <Headroom
-        ref={measureHeadroomHeight}
         disableInlineStyles
         aria-hidden
         className={styles.headroom}
@@ -131,21 +133,16 @@ const Header = ({ homeUrl, children }) => {
 Header.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   homeUrl: PropTypes.string.isRequired,
+  dispatchUpdateHeaderHeight: PropTypes.func.isRequired, // added prop-type
 };
 
-const mapStateToProps = (state) => {
-  const {
-    headerHeight,
-  } = state.headerHeight;
-
-  return {
-    headerHeight,
-  };
-};
+// set header size
+const mapDispatchToProps = (dispatch) => ({
+  dispatchUpdateHeaderHeight: (ht) => dispatch(actionUpdateHeaderHeight(ht)),
+});
 
 const withRedux = connect(
-  mapStateToProps,
   undefined,
+  mapDispatchToProps,
 );
-
 export default withRedux(withStyles(styles)(Header));
