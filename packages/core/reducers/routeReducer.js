@@ -13,6 +13,7 @@ import { route as defaultState } from 'reducers/defaultState';
  */
 export default function routeReducer(routeState = defaultState, action) {
   const { type, payload } = action;
+
   switch (type) {
     case LOCATION_CHANGE:
       return {

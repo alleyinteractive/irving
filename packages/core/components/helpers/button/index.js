@@ -77,6 +77,7 @@ Button.defaultProps = {
   type: 'button',
   className: '',
   onClick: null,
+  buttonStyle: '',
 };
 
 const wrapWithStyles = withStyles(styles);

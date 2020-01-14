@@ -23,12 +23,13 @@ webpack(
     if (stats.hasErrors()) {
       info.errors.forEach((error) => {
         const errorParts = error.match(messageRegExp);
-        console.error(
+        console.error( // eslint-disable-line no-console
           chalk.black.bgRed(errorParts[1]),
           chalk.red(errorParts[2])
         );
       });
 
+      process.exitCode = 1;
       throw new Error('build failed');
     }
 
@@ -36,14 +37,13 @@ webpack(
     if (stats.hasWarnings()) {
       info.warnings.forEach((warning) => {
         const warnParts = warning.match(messageRegExp);
-        // console.log(warnParts);
-        console.warn(
+        console.warn( // eslint-disable-line no-console
           chalk.black.bgYellow(warnParts[1]),
           chalk.yellow(warnParts[2])
         );
       });
     }
 
-    console.log('build complete');
+    console.log('build complete'); // eslint-disable-line no-console
   }
 );
