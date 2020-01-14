@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/vip-go",
-	"version": "2.2.7",
+	"version": "2.3.0",
 	"description": "Integration for WordPress VIP's Node server helpers",
 	"files": [
 		"server/**/*",
@@ -24,7 +24,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
 		"@irvingjs/babel-preset-irving": "^2.0.0",
-		"@irvingjs/core": "^2.2.7",
+		"@irvingjs/core": "^2.3.0",
 		"babel-jest": "^24.9.0",
 		"enzyme": "^3.10.0",
 		"enzyme-adapter-react-16": "^1.15.1",
