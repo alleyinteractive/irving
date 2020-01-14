@@ -99,6 +99,25 @@ const Sidebar = (props) => {
 
         const sidebarNode = document.getElementById('sidebar');
         const subSidebarNode = document.getElementById('subSidebar');
+
+        // Set position for either main sidebar or sub.
+        const setPosition = (forMain) => {
+          if (forMain) {
+            if (currentOffset > (sidebarOffset - 100)) {
+              setMainFixedPosition(true);
+            } else {
+              setMainFixedPosition(false);
+            }
+          } else {
+            // eslint-disable-next-line no-lonely-if
+            if (currentOffset > (subSidebarOffset - 100)) {
+              setSubFixedPosition(true);
+            } else {
+              setSubFixedPosition(false);
+            }
+          }
+        };
+
         if (sidebarOffset === undefined) {
           sidebarOffset = sidebarNode.getBoundingClientRect().top +
             window.scrollY;
@@ -107,25 +126,17 @@ const Sidebar = (props) => {
           const sidebarStyle = window.getComputedStyle(sidebarNode, null);
           const sidebarWidth = sidebarStyle.getPropertyValue('width');
           setMaxWidth(sidebarWidth);
+
+          setPosition(true);
         }
 
         if (subSidebarOffset === undefined) {
-          subSidebarOffset = subSidebarNode.getBoundingClientRect().top +
-           window.scrollY;
-
-          if (currentOffset > (subSidebarOffset - 100)) {
-            setMainFixedPosition(true);
+          if (subSidebarNode) {
+            subSidebarOffset = subSidebarNode.getBoundingClientRect().top +
+              window.scrollY;
           }
-          setMainFixedPosition(false);
+          setPosition(false);
         }
-
-        const setPosition = () => {
-          if (currentOffset > (subSidebarOffset - 100)) {
-            setSubFixedPosition(true);
-          } else {
-            setSubFixedPosition(false);
-          }
-        };
 
         const contentNode = document.getElementById('content--body');
 
@@ -133,12 +144,16 @@ const Sidebar = (props) => {
           const nodeHeight = contentNode.clientHeight;
 
           if (400 < nodeHeight || 'list' === themeName) {
-            setPosition();
+            setPosition(true);
           }
         }
 
         if ('inFeed' === themeName) {
-          setPosition();
+          setPosition(false);
+        }
+
+        if ('inFeed' !== themeName) {
+          setPosition(true);
         }
       }
     });
@@ -152,48 +167,37 @@ const Sidebar = (props) => {
       id="sidebar"
       style={{
         position: isMainSidebarFixed ? 'fixed' : 'relative',
-        top: isMainSidebarFixed ? `-${headerHeight}` : 0,
+        top: isMainSidebarFixed ? 100 : 0,
         width: maxWidth,
       }}
     >
-      {/* {children.map((child) => {
-        const {
-          props: { gtmTargetingClass },
-        } = child;
-
-        return (
-          <div
-            key={child.key}
-            className={styles.item}
-            id="sidebar__item"
-          >
-            {! gtmTargetingClass ?
-              cloneElement(child, { gtmTargetingClass: context }) :
-              child}
-          </div>
-        );
-      })} */}
       <div className={theme.mainSidebarWrap}>
-        <div className={theme.widgetWrapper}>
-          {popular}
-        </div>
-        <div className={theme.widgetWrapper}>
-          {magazineModule}
-        </div>
+        {popular && (
+          <div className={theme.widgetWrapper}>
+            {popular}
+          </div>
+        )}
+        {magazineModule && (
+          <div className={theme.widgetWrapper}>
+            {magazineModule}
+          </div>
+        )}
       </div>
-      <div
-        className={theme.subSidebar}
-        id="subSidebar"
-        style={{
-          position: isSubSidebarFixed ? 'fixed' : 'relative',
-          top: isSubSidebarFixed ? 100 : 0,
-          width: maxWidth,
-        }}
-      >
-        <div className={theme.subSidebarWrapper}>
-          {adUnit}
+      {'inFeed' === themeName && (
+        <div
+          className={theme.subSidebar}
+          id="subSidebar"
+          style={{
+            position: isSubSidebarFixed ? 'fixed' : 'relative',
+            top: isSubSidebarFixed ? 100 : 0,
+            width: maxWidth,
+          }}
+        >
+          <div className={theme.subSidebarWrapper}>
+            {adUnit}
+          </div>
         </div>
-      </div>
+      )}
     </aside>
   );
 };
