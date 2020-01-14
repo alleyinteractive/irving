@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
-import Link from '../helpers/link';
+import Link from 'components/helpers/link';
 import Eyebrow from '../eyebrow';
 
 // Styles
