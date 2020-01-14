@@ -15,6 +15,7 @@ const Sidebar = (props) => {
     className,
     // eslint-disable-next-line no-unused-vars
     context,
+    clientID,
     hasAd,
     theme,
     themeName,
@@ -97,7 +98,7 @@ const Sidebar = (props) => {
       if (960 < window.innerWidth) {
         const currentOffset = document.documentElement.scrollTop;
 
-        const sidebarNode = document.getElementById('sidebar');
+        const sidebarNode = document.getElementById(clientID);
         const subSidebarNode = document.getElementById('subSidebar');
 
         // Set position for either main sidebar or sub.
@@ -164,9 +165,9 @@ const Sidebar = (props) => {
       className={classNames(className, theme.wrapper, themeName, {
         [styles.hasAd]: hasAd,
       })}
-      id="sidebar"
+      id={clientID}
       style={{
-        position: isMainSidebarFixed ? 'fixed' : 'relative',
+        position: isMainSidebarFixed ? 'sticky' : 'relative',
         top: isMainSidebarFixed ? 100 : 0,
         width: maxWidth,
       }}
@@ -180,6 +181,11 @@ const Sidebar = (props) => {
         {magazineModule && (
           <div className={theme.widgetWrapper}>
             {magazineModule}
+          </div>
+        )}
+        {(adUnit && 'inFeed' !== themeName) && (
+          <div className={theme.widgetWrapper}>
+            {adUnit}
           </div>
         )}
       </div>
@@ -205,6 +211,7 @@ const Sidebar = (props) => {
 Sidebar.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  clientID: PropTypes.string,
   context: PropTypes.string,
   hasAd: PropTypes.bool,
   theme: PropTypes.object.isRequired,
@@ -214,6 +221,7 @@ Sidebar.propTypes = {
 Sidebar.defaultProps = {
   className: '',
   context: '',
+  clientID: 'sidebar',
   themeName: 'inFeed',
   hasAd: false,
 };
