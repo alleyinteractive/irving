@@ -1,6 +1,5 @@
 .wrapper {
   flex: 0 0 auto;
-  margin-bottom: rem(200);
   width: 100%;
 
   :global(.sidebarHTMLContent) {
@@ -10,6 +9,10 @@
     @include body-link;
     @include block-list;
   }
+}
+
+.mainSidebarWrap {
+  margin-bottom: rem(200);
 }
 
 .widgetWrapper {

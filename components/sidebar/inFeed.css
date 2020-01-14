@@ -9,6 +9,10 @@
   }
 }
 
+.mainSidebarWrap {
+  composes: mainSidebarWrap from './sidebar.css';
+}
+
 .subSidebarWrapper {
   width: rem(300);
 }

@@ -128,23 +128,25 @@ const FeedItem = ({
 
 FeedItem.defaultProps = {
   color: '#000000',
+  customEyebrow: '',
   includeExpandBtn: false,
   showImage: true,
   teaserContent: '',
   themeName: '',
+  topic: '',
 };
 
 FeedItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   includeExpandBtn: PropTypes.bool,
   teaserContent: PropTypes.string,
-  customEyebrow: PropTypes.string.isRequired,
+  customEyebrow: PropTypes.string,
   postDate: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   showImage: PropTypes.bool,
   title: PropTypes.string.isRequired,
   themeName: PropTypes.string,
-  topic: PropTypes.string.isRequired,
+  topic: PropTypes.string,
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,
 };

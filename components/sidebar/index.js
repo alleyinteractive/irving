@@ -16,8 +16,8 @@ const Sidebar = (props) => {
     // eslint-disable-next-line no-unused-vars
     context,
     hasAd,
-    // eslint-disable-next-line no-unused-vars
     theme,
+    themeName,
   } = props;
 
   const popular = findChildByName('popular', children);
@@ -25,6 +25,9 @@ const Sidebar = (props) => {
   const adUnit = findChildByName('ad-unit', children);
 
   const [headerHeight, setHeaderHeight] = useState(0);
+  const [isFixed, setFixedPosition] = useState(false);
+  const [maxWidth, setMaxWidth] = useState(null);
+  let nodeOffset;
 
   useEffect(() => {
     let height;
@@ -83,15 +86,53 @@ const Sidebar = (props) => {
     }
   }, headerHeight);
 
+  useEffect(() => {
+    document.addEventListener('scroll', () => {
+      if (960 < window.innerWidth) {
+        const currentOffset = document.documentElement.scrollTop;
+
+        const node = document.getElementById('subSidebar');
+        if (nodeOffset === undefined) {
+          nodeOffset = node.getBoundingClientRect().top + window.scrollY;
+
+          // Make sure that the fixed position sidebar is never wider than its parent.
+          const sidebarNode = document.getElementById('sidebar');
+          const sidebarStyle = window.getComputedStyle(sidebarNode, null);
+          const sidebarWidth = sidebarStyle.getPropertyValue('width');
+          setMaxWidth(sidebarWidth);
+        }
+
+        const setPosition = () => {
+          if (currentOffset > (nodeOffset - 100)) {
+            setFixedPosition(true);
+          } else {
+            setFixedPosition(false);
+          }
+        };
+
+        const contentNode = document.getElementById('content--body');
+
+        if (null !== contentNode) {
+          const nodeHeight = contentNode.clientHeight;
+
+          if (400 < nodeHeight || 'list' === themeName) {
+            setPosition();
+          }
+        }
+
+        if ('inFeed' === themeName) {
+          setPosition();
+        }
+      }
+    });
+  }, isFixed);
+
   return (
     <aside
-      className={classNames(className, theme.wrapper, theme, {
+      className={classNames(className, theme.wrapper, themeName, {
         [styles.hasAd]: hasAd,
       })}
-      style={{
-        position: 'relative',
-        top: `-${headerHeight}px`,
-      }}
+      id="sidebar"
     >
       {/* {children.map((child) => {
         const {
@@ -110,18 +151,25 @@ const Sidebar = (props) => {
           </div>
         );
       })} */}
-      <div className={theme.widgetWrapper}>
-        {popular}
+      <div className={theme.mainSidebarWrap}>
+        <div className={theme.widgetWrapper}>
+          {popular}
+        </div>
+        <div className={theme.widgetWrapper}>
+          {magazineModule}
+        </div>
       </div>
-      <div className={theme.widgetWrapper}>
-        {magazineModule}
-      </div>
-      <div className={theme.subSidebar}>
+      <div
+        className={theme.subSidebar}
+        id="subSidebar"
+        style={{
+          position: isFixed ? 'fixed' : 'relative',
+          top: isFixed ? 100 : 0,
+          width: maxWidth,
+        }}
+      >
         <div className={theme.subSidebarWrapper}>
           {adUnit}
-        </div>
-        <div>
-          Another div for testing
         </div>
       </div>
     </aside>
@@ -133,17 +181,18 @@ Sidebar.propTypes = {
   className: PropTypes.string,
   context: PropTypes.string,
   hasAd: PropTypes.bool,
-  theme: PropTypes.string,
+  theme: PropTypes.object.isRequired,
+  themeName: PropTypes.string,
 };
 
 Sidebar.defaultProps = {
   className: '',
   context: '',
-  theme: '',
+  themeName: 'inFeed',
   hasAd: false,
 };
 
 export default withThemes('sidebar', {
   default: styles,
   inFeed: inFeedStyles,
-})(withStyles(styles)(Sidebar));
+})(withStyles(styles, inFeedStyles)(Sidebar));
