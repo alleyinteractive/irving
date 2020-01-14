@@ -13,8 +13,6 @@ const Sidebar = (props) => {
   const {
     children,
     className,
-    // eslint-disable-next-line no-unused-vars
-    context,
     clientID,
     hasAd,
     theme,
@@ -100,7 +98,6 @@ const Sidebar = (props) => {
 
         const sidebarNode = document.getElementById(clientID);
         const subSidebarNode = document.getElementById('subSidebar');
-
         // Set position for either main sidebar or sub.
         const setPosition = (forMain) => {
           if (forMain) {
@@ -212,7 +209,6 @@ Sidebar.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   clientID: PropTypes.string,
-  context: PropTypes.string,
   hasAd: PropTypes.bool,
   theme: PropTypes.object.isRequired,
   themeName: PropTypes.string,
@@ -220,7 +216,6 @@ Sidebar.propTypes = {
 
 Sidebar.defaultProps = {
   className: '',
-  context: '',
   clientID: 'sidebar',
   themeName: 'inFeed',
   hasAd: false,
