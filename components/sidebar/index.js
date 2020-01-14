@@ -25,9 +25,12 @@ const Sidebar = (props) => {
   const adUnit = findChildByName('ad-unit', children);
 
   const [headerHeight, setHeaderHeight] = useState(0);
-  const [isFixed, setFixedPosition] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [isMainSidebarFixed, setMainFixedPosition] = useState(false);
+  const [isSubSidebarFixed, setSubFixedPosition] = useState(false);
   const [maxWidth, setMaxWidth] = useState(null);
-  let nodeOffset;
+  let sidebarOffset;
+  let subSidebarOffset;
 
   useEffect(() => {
     let height;
@@ -86,27 +89,41 @@ const Sidebar = (props) => {
     }
   }, headerHeight);
 
+  /**
+   * Listen for scroll events and position accordingly
+   */
   useEffect(() => {
     document.addEventListener('scroll', () => {
       if (960 < window.innerWidth) {
         const currentOffset = document.documentElement.scrollTop;
 
-        const node = document.getElementById('subSidebar');
-        if (nodeOffset === undefined) {
-          nodeOffset = node.getBoundingClientRect().top + window.scrollY;
+        const sidebarNode = document.getElementById('sidebar');
+        const subSidebarNode = document.getElementById('subSidebar');
+        if (sidebarOffset === undefined) {
+          sidebarOffset = sidebarNode.getBoundingClientRect().top +
+            window.scrollY;
 
           // Make sure that the fixed position sidebar is never wider than its parent.
-          const sidebarNode = document.getElementById('sidebar');
           const sidebarStyle = window.getComputedStyle(sidebarNode, null);
           const sidebarWidth = sidebarStyle.getPropertyValue('width');
           setMaxWidth(sidebarWidth);
         }
 
+        if (subSidebarOffset === undefined) {
+          subSidebarOffset = subSidebarNode.getBoundingClientRect().top +
+           window.scrollY;
+
+          if (currentOffset > (subSidebarOffset - 100)) {
+            setMainFixedPosition(true);
+          }
+          setMainFixedPosition(false);
+        }
+
         const setPosition = () => {
-          if (currentOffset > (nodeOffset - 100)) {
-            setFixedPosition(true);
+          if (currentOffset > (subSidebarOffset - 100)) {
+            setSubFixedPosition(true);
           } else {
-            setFixedPosition(false);
+            setSubFixedPosition(false);
           }
         };
 
@@ -125,7 +142,7 @@ const Sidebar = (props) => {
         }
       }
     });
-  }, isFixed);
+  }, isSubSidebarFixed);
 
   return (
     <aside
@@ -133,6 +150,11 @@ const Sidebar = (props) => {
         [styles.hasAd]: hasAd,
       })}
       id="sidebar"
+      style={{
+        position: isMainSidebarFixed ? 'fixed' : 'relative',
+        top: isMainSidebarFixed ? `-${headerHeight}` : 0,
+        width: maxWidth,
+      }}
     >
       {/* {children.map((child) => {
         const {
@@ -163,8 +185,8 @@ const Sidebar = (props) => {
         className={theme.subSidebar}
         id="subSidebar"
         style={{
-          position: isFixed ? 'fixed' : 'relative',
-          top: isFixed ? 100 : 0,
+          position: isSubSidebarFixed ? 'fixed' : 'relative',
+          top: isSubSidebarFixed ? 100 : 0,
           width: maxWidth,
         }}
       >
