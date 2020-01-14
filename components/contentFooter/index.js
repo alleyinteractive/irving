@@ -29,37 +29,39 @@ const ContentFooter = ({
         </div>
       )}
 
-      <address className={theme.author}>
-        <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
-        {authors && authors.map((author) => (
-          <Fragment>
-            {'' !== author.url ? (
-              <Link
-                to={author.url}
-                key={author.name}
-                className={theme.authorLink}
-              >
-                {author.avatar && (
-                  <Image
-                    src={author.avatar}
-                    alt={author.name}
-                    className={theme.avatar}
-                    picture={false}
-                  />
-                )}
-                <span className={theme.item}>{author.name}</span>
-              </Link>
-            ) : (
-              <span
-                className={classNames(theme.authorLink, theme.item)}
-                key={author.name}
-              >
-                {author.name}
-              </span>
-            )}
-          </Fragment>
-        ))}
-      </address>
+      {0 < authors.length && (
+        <address className={theme.author}>
+          <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
+          {authors.map((author) => (
+            <Fragment>
+              {'' !== author.url ? (
+                <Link
+                  to={author.url}
+                  key={author.name}
+                  className={theme.authorLink}
+                >
+                  {author.avatar && (
+                    <Image
+                      src={author.avatar}
+                      alt={author.name}
+                      className={theme.avatar}
+                      picture={false}
+                    />
+                  )}
+                  <span className={theme.item}>{author.name}</span>
+                </Link>
+              ) : (
+                <span
+                  className={classNames(theme.authorLink, theme.item)}
+                  key={author.name}
+                >
+                  {author.name}
+                </span>
+              )}
+            </Fragment>
+          ))}
+        </address>
+      )}
 
       {0 < imageCredit.length && (
         <div className={theme.imageCredit}>

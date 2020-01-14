@@ -19,6 +19,7 @@ const ContentList = ({
             'content-right': 'right' === align,
             'content-left': 'left' === align,
             'content-center': 'center' === align,
+            'content-full': 'full' === align,
           })}
         >
           {listTitle && (
@@ -42,9 +43,9 @@ ContentList.defaultProps = {
 };
 
 ContentList.propTypes = {
-  listTitle: PropTypes.string,
   align: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element),
+  listTitle: PropTypes.string,
 };
 
 export default withStyles(styles)(ContentList);

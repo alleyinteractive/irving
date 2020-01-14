@@ -1,0 +1,33 @@
+/**
+ * Page theme column layout (e.g. non-story pages with sidebar).
+ *
+ * Zeplin link: https://zpl.io/2jWQdy4
+ *
+ * At desktop:
+ * - 1-col offset
+ * - 7-col main columnn with no margin, no padding
+ * - 2-col gap
+ * - 3-col sidebar with 20px left margin, no right margin.
+ */
+
+.wrapper {
+  composes: wrapper from './columnArea--feed.css';
+}
+
+.main {
+  tidy-span: 12;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 7;
+  }
+}
+
+.sidebar {
+  display: none;
+
+  @media ($mdMin) {
+    display: block;
+    tidy-span: 3;
+  }
+}

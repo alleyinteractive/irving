@@ -18,6 +18,7 @@ import ContentFooter from 'components/contentFooter';
 import ContentHeader from 'components/contentHeader';
 import ContentList from 'components/contentList';
 import ContentListItem from 'components/contentList/contentListItem';
+import Container from 'components/container';
 import Disqus from 'components/disqus';
 import FeedItem from 'components/feedItem';
 import Footer from 'components/footer';
@@ -45,6 +46,7 @@ import MagazineStory from 'components/magazineStory';
 import MagazineHero from 'components/magazineHero';
 import MagazineIssue from 'components/magazineIssue';
 import MagazineIssues from 'components/magazineIssues';
+import MagazineSidebar from 'components/magazineSidebar';
 import MagazineYear from 'components/magazineYear';
 import MegaMenu from 'components/megaMenu';
 import Menu from 'components/menu';
@@ -78,6 +80,7 @@ import TagLink from 'components/tagLink';
 import Tags from 'components/tags';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
+import TopicsModule from 'components/topicsModule';
 import UserGreeting from 'components/userGreeting';
 import Verify from 'components/accounts/verify';
 import Video from 'components/video';
@@ -102,6 +105,7 @@ export const componentMap = {
   'content-footer': ContentFooter,
   'content-header': ContentHeader,
   'content-list-item': ContentListItem,
+  container: Container,
   'core/column': Column,
   'core/columns': Columns,
   disqus: Disqus,
@@ -136,6 +140,7 @@ export const componentMap = {
   'magazine-hero': MagazineHero,
   'magazine-issue': MagazineIssue,
   'magazine-issues': MagazineIssues,
+  'magazine-module': MagazineSidebar,
   'mega-menu': MegaMenu,
   menu: Menu,
   'menu-item': MenuItem,
@@ -175,6 +180,7 @@ export const componentMap = {
   'term-archive-content-list-item': TeaserItem,
   'technology-meta': ContentList,
   'topic-header': CardStack,
+  'topics-module': TopicsModule,
   'user-greeting': UserGreeting,
   verify: Verify,
   video: Video,

@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 import { actionGetHeaderHeight } from 'actions';
-import Eyebrow from '../eyebrow';
 import Link from '../helpers/link';
+import Eyebrow from '../eyebrow';
 
 // Styles
 import styles from './feedItem.css';
@@ -18,8 +18,8 @@ const FeedItem = ({
   customEyebrow,
   dispatchGetHeaderHeight, // adding prop to get from redux global state
   includeExpandBtn,
-  teaserContent,
   permalink,
+  teaserContent,
   postDate,
   showImage,
   title,
@@ -88,9 +88,9 @@ const FeedItem = ({
         })}
     >
       <header className={styles.header}>
-        <Link to={permalink} onClick={titleExpand}>
-          <h1 className={styles.title}>{title}</h1>
-        </Link>
+        <h1 className={styles.title}>
+          <Link to={permalink} onclick={titleExpand}>{title}</Link>
+        </h1>
         <div className={styles.meta}>
           <div className={styles.eyebrow}>
             <span className="screen-reader-text">
@@ -110,7 +110,8 @@ const FeedItem = ({
           </div>
         </div>
       </header>
-      {(image && showImage) && <div className={styles.image}>{image}</div>}
+      {(image && showImage) &&
+      <div className={styles.image}><Link to={permalink}>{image}</Link></div>}
       {! includeExpandBtn && (
         <Fragment>
           <div className={styles.content}>
@@ -166,13 +167,13 @@ FeedItem.propTypes = {
   teaserContent: PropTypes.string,
   customEyebrow: PropTypes.string.isRequired,
   postDate: PropTypes.string.isRequired,
+  permalink: PropTypes.string.isRequired,
   showImage: PropTypes.bool,
   title: PropTypes.string.isRequired,
   themeName: PropTypes.string,
   topic: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,
-  permalink: PropTypes.string.isRequired,
   dispatchGetHeaderHeight: PropTypes.number, // added prop-type
 };
 
@@ -181,7 +182,6 @@ FeedItem.defaultProps = {
 };
 
 // get header size from state
-
 const mapDispatchToProps = (dispatch) => ({
   dispatchGetHeaderHeight: () => dispatch(actionGetHeaderHeight()),
 });
@@ -190,6 +190,5 @@ const withRedux = connect(
   undefined,
   mapDispatchToProps,
 );
-const wrapWithStyles = withStyles(styles);
 
-export default withRedux(wrapWithStyles(styles))(FeedItem); // connect to redux
+export default withRedux(withStyles(styles)(FeedItem)); // connect to redux

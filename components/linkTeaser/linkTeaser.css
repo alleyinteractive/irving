@@ -4,9 +4,13 @@
   color: $white;
   display: flex;
   flex-flow: column nowrap;
-  font-size: rem(18);
+  font-size: rem(14);
   line-height: 1.44;
   width: 100%;
+
+  @media ($smMin) {
+    font-size: rem(18);
+  }
 }
 
 .title {
