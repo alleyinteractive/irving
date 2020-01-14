@@ -72,6 +72,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  buttonStyle: '',
   link: '',
   type: 'button',
   className: '',
