@@ -24,7 +24,6 @@ const Sidebar = (props) => {
   const adUnit = findChildByName('ad-unit', children);
 
   const [headerHeight, setHeaderHeight] = useState(0);
-  // eslint-disable-next-line no-unused-vars
   const [isMainSidebarFixed, setMainFixedPosition] = useState(false);
   const [isSubSidebarFixed, setSubFixedPosition] = useState(false);
   const [maxWidth, setMaxWidth] = useState(null);
