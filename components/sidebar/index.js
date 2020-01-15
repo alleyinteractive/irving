@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { findChildByName } from 'utils/children';
 import { withStyles } from 'critical-style-loader/lib';
+import useBreakpoint from 'hooks/useBreakpoint';
 import withThemes from '../hoc/withThemes';
 
 // Styles
@@ -29,6 +30,8 @@ const Sidebar = (props) => {
   const [maxWidth, setMaxWidth] = useState(null);
   let sidebarOffset;
   let subSidebarOffset;
+  // Breakpoints
+  const isMdMin = useBreakpoint('mdMin');
 
   useEffect(() => {
     let height;
@@ -37,7 +40,7 @@ const Sidebar = (props) => {
     if (
       null !== contentHeader &&
       'raised' === theme &&
-      960 < window.innerWidth
+      isMdMin
     ) {
       const headerWrapper =
         document.getElementById('content--header--wrapper');
@@ -92,7 +95,7 @@ const Sidebar = (props) => {
    */
   useEffect(() => {
     document.addEventListener('scroll', () => {
-      if (960 < window.innerWidth) {
+      if (isMdMin) {
         const currentOffset = document.documentElement.scrollTop;
 
         const sidebarNode = document.getElementById(clientID);
@@ -158,7 +161,7 @@ const Sidebar = (props) => {
 
   return (
     <aside
-      className={classNames(className, theme.wrapper, themeName, {
+      className={classNames(className, theme.wrapper, {
         [styles.hasAd]: hasAd,
       })}
       id={clientID}

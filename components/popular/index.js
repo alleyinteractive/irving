@@ -15,20 +15,18 @@ const Popular = ({
 }) => (
   <div
     className={theme.contentWrapper}
-    id="popular--module"
   >
     <div className={theme.contentModule}>
       <h3 className={theme.title}>Popular</h3>
       <ul className={theme.stories}>
         {popular.map((item, index) => (
           <li className={theme.story} key={item.title}>
-            { 'inFeed' !== themeName && (
+            {'inFeed' !== themeName && (
               <div className={theme.itemCount}>
                 0{index + 1}.
               </div>
             )}
-            <Link to={item.link}>{item.title}</Link>
-            <br />
+            <Link to={item.link} class={theme.itemTitle}>{item.title}</Link>
             { 'inFeed' === themeName && (
               <span className={theme.byline}>
                 {item.authorLink && (

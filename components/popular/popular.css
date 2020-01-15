@@ -18,6 +18,10 @@
   margin: rem(5) 0 rem(15) 0;
 }
 
+.itemTitle {
+  display: block;
+}
+
 .stories {
   list-style: none;
   margin: 0;
