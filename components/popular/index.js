@@ -7,7 +7,7 @@ import withThemes from '../hoc/withThemes';
 
 // Themes.
 import styles from './popular.css';
-import inFeedStyles from './inFeed.css';
+import inFeedStyles from './popular--inFeed.css';
 
 const Popular = ({
   popular,
