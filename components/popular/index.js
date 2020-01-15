@@ -18,7 +18,7 @@ const Popular = ({
     id="popular--module"
   >
     <div className={theme.contentModule}>
-      <h3 className={theme.title}>Popular</h3>
+      <h3 className={theme.title}>{__('Popular', 'mittr')}</h3>
       <ul className={theme.stories}>
         {popular.map((item, index) => (
           <li className={theme.story} key={item.title}>
