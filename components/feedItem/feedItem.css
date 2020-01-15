@@ -6,6 +6,11 @@
   margin-bottom: rem(15);
   padding: rem(20);
   width: auto;
+
+  &.storygroup {
+    border-top: 0;
+    padding: 0;
+  }
 }
 
 .content {
@@ -86,4 +91,64 @@
   @include btnWhite;
   font-size: rem(14);
   padding: rem(10) rem(20);
+}
+
+/* Sponsored post component styles */
+
+.sponsorMetaTag {
+  background-color: $brown-gray;
+  color: #ffffff;
+  font-size: rem(12);
+  font-weight: 700;
+  letter-spacing: rem(1);
+  margin-bottom: rem(2);
+  padding: rem(7) rem(14) rem(5);
+  text-transform: uppercase;
+}
+
+.sponsorExcerpt {
+  color: $color-text;
+  font-family: $sans;
+  font-size: rem(18);
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.44;
+  margin-bottom: rem(10);
+}
+
+.sponsorLink {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  /* stylelint-disable selector-max-specificity */
+  /* Increase specificity to override hover styles */
+  &:hover {
+    .sponsorTagline {
+      text-decoration: underline;
+    }
+  }
+  /* stylelint-enable selector-max-specificity */
+}
+
+.sponsorLogo {
+  display: block;
+  height: rem(50);
+  width: rem(80);
+
+  img {
+    width: 100%;
+  }
+
+  & > span {
+    height: rem(50);
+  }
+}
+
+.sponsorTagline {
+  color: $color-text;
+  font-family: $sans;
+  font-size: rem(18);
+  line-height: 1.3;
+  margin-left: rem(10);
 }

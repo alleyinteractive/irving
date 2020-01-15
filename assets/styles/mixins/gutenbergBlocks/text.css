@@ -5,7 +5,7 @@
  */
 @mixin body-content-type-styles {
   color: $black;
-  font-family: $serif;
+  font-family: $sans;
   font-size: rem(18);
   line-height: 1.55;
 }

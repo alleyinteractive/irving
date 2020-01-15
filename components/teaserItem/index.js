@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import styles from './teaserItem.css';
 import simpleTheme from './teaserItem--simple.css';
 import asideTheme from './teaserItem--aside.css';
+import storyGroupTheme from './teaserItem--storygroup.css';
 
 import Meta from './meta.js';
 
@@ -29,9 +30,14 @@ const TeaserItem = ({
   topic,
   topicLink,
 }) => {
+  const [sharingIsVisible, setSharingIsVisible] = useState(false);
   const image = findChildByName('image', children);
+  const video = findChildByName('video', children);
+  const socialSharing = findChildByName('social-sharing', children);
+
   const otherChildren = children.filter(
-    ({ props: { componentName } }) => 'image' !== componentName
+    ({ props: { componentName } }) => ('image' !== componentName) &&
+      ('video' !== componentName) && ('social-sharing' !== componentName)
   );
 
   if ('simple' === themeName) {
@@ -45,13 +51,17 @@ const TeaserItem = ({
           <p className={theme.excerpt}>{excerpt}</p>
         </div>
         {image && <div className={theme.image}>{image}</div>}
+        {video}
       </Link>
     );
   }
 
   const Header = () => (
     <header className={theme.header}>
-      <h3 className={theme.title}>
+      <h3 className={classNames(theme.title, {
+        [theme.groupTitle]: 'storygroup' === themeName,
+      })}
+      >
         <Link to={permalink}>{title}</Link>
       </h3>
       {'aside' === themeName && <p className={theme.excerpt}>{excerpt}</p>}
@@ -62,42 +72,58 @@ const TeaserItem = ({
     <article
       className={classNames(theme.wrapper, [theme[itemPosition]], {
         [theme.hasImage]: image,
+        [theme.featuredGroup]: 'storygroup' === themeName,
       })}
     >
       <div className={theme.text}>
         {('search' !== themeName && 'infeed' !== themeName) && <Header />}
-        <Meta
-          theme={theme}
-          topicLink={topicLink}
-          postDate={postDate}
-          topic={topic}
-          color={color}
-        />
+        {'storygroup' !== themeName && (
+          <Meta
+            theme={theme}
+            topicLink={topicLink}
+            postDate={postDate}
+            topic={topic}
+            color={color}
+          />
+        )}
         {/* Place the header beneath the meta info on the search template */}
         {('search' === themeName || 'infeed' === themeName) && <Header />}
       </div>
-      {'aside' !== themeName && <p className={theme.excerpt}>{excerpt}</p>}
-      {('' !== teaseCTA && 'infeed' !== themeName) && (
+      {('aside' !== themeName && 'storygroup' !== themeName) && (
+        <p className={theme.excerpt}>{excerpt}</p>
+      )}
+      {('' !== teaseCTA &&
+        'infeed' !== themeName &&
+        'storygroup' !== themeName) && (
         <Link to={permalink} className={theme.callToAction}>
           {teaseCTA}
         </Link>
       )}
-      {(image && showImage) && (
+      {(image && showImage && 'storygroup' !== themeName) && (
         <Link to={permalink} tabIndex="-1" className={theme.image}>
           {image}
         </Link>
       )}
-      {otherChildren}
+      {'storygroup' !== themeName && video}
+      {'storygroup' !== themeName && otherChildren}
       <div className={theme.shareMenu}>
         <button
           type="button"
           aria-label={__('Open share menu', 'mittr')}
           className={theme.shareMenuToggle}
+          onClick={() => {
+            setSharingIsVisible(! sharingIsVisible);
+          }}
+          aria-haspopup
+          aria-expanded={sharingIsVisible}
         >
           <div className={theme.dot} />
           <div className={theme.dot} />
           <div className={theme.dot} />
         </button>
+        <div className={theme.shareMenuFlyOut}>
+          {sharingIsVisible && socialSharing}
+        </div>
       </div>
     </article>
   );
@@ -148,4 +174,5 @@ export default withThemes('teaser-item', {
   default: styles,
   simple: simpleTheme,
   aside: asideTheme,
-})(withStyles(styles, simpleTheme, asideTheme)(TeaserItem));
+  storygroup: storyGroupTheme,
+})(withStyles(styles, simpleTheme, asideTheme, storyGroupTheme)(TeaserItem));

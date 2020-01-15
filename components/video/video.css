@@ -1,0 +1,22 @@
+.video {
+  display: block;
+  height: auto;
+  max-height: rem(700);
+  width: 100%;
+}
+
+.caption {
+  font-family: $sans;
+  font-size: rem(12);
+  letter-spacing: rem(1);
+  margin-top: rem(10);
+  text-transform: uppercase;
+}
+
+.figure {
+  margin-bottom: rem(30);
+
+  @media ($smMax) {
+    margin-left: rem(30);
+  }
+}

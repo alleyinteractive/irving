@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
+import classNames from 'classnames';
 import Link from 'components/helpers/link';
 import withThemes from 'components/hoc/withThemes';
 import { withStyles } from 'critical-style-loader/lib';
@@ -12,7 +13,9 @@ import infeedTheme from './contentFooter--infeed.css';
 import inlineTheme from './contentFooter--inline.css';
 import Image from '../image/image';
 
-const ContentFooter = ({ children, authors, theme }) => {
+const ContentFooter = ({
+  children, authors, theme, imageCredit,
+}) => {
   const socialSharing = findChildByName('social-sharing', children);
   const tags = filterChildrenByName('tags', children);
   return (
@@ -26,30 +29,53 @@ const ContentFooter = ({ children, authors, theme }) => {
         </div>
       )}
 
-      <address className={theme.author}>
-        <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
-        {authors && authors.map((author) => (
+      {0 < authors.length && (
+        <address className={theme.author}>
+          <h3 className={theme.label}>{__('Author', 'mittr')}</h3>
+          {authors.map((author) => (
+            <Fragment>
+              {'' !== author.url ? (
+                <Link
+                  to={author.url}
+                  key={author.name}
+                  className={theme.authorLink}
+                >
+                  {author.avatar && (
+                    <Image
+                      src={author.avatar}
+                      alt={author.name}
+                      className={theme.avatar}
+                      picture={false}
+                    />
+                  )}
+                  <span className={theme.item}>{author.name}</span>
+                </Link>
+              ) : (
+                <span
+                  className={classNames(theme.authorLink, theme.item)}
+                  key={author.name}
+                >
+                  {author.name}
+                </span>
+              )}
+            </Fragment>
+          ))}
+        </address>
+      )}
 
-          <Link
-            to={author.url}
-            key={author.name}
-            className={theme.authorLink}
-          >
-            {author.avatar && (
-              <Image
-                src={author.avatar}
-                alt={author.name}
-                className={theme.avatar}
-                picture={false}
-              />
-            )}
-            <span>{author.name}</span>
-          </Link>
-        ))}
-      </address>
+      {0 < imageCredit.length && (
+        <div className={theme.imageCredit}>
+          <h3 className={theme.label}>{__('Image', 'mittr')}</h3>
+          <span className={theme.item}>{imageCredit}</span>
+        </div>
+      )}
 
     </footer>
   );
+};
+
+ContentFooter.defaultProps = {
+  imageCredit: '',
 };
 
 ContentFooter.propTypes = {
@@ -67,6 +93,7 @@ ContentFooter.propTypes = {
     title: PropTypes.string,
     wrapper: PropTypes.string,
   }).isRequired,
+  imageCredit: PropTypes.string,
 };
 
 export default withThemes('content-footer', {

@@ -1,8 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import classNames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
+import Link from 'components/helpers/link';
 import Eyebrow from '../eyebrow';
 
 // Styles
@@ -13,10 +15,12 @@ const FeedItem = ({
   color,
   customEyebrow,
   includeExpandBtn,
+  permalink,
   teaserContent,
   postDate,
   showImage,
   title,
+  themeName,
   topic,
   topicLink,
 }) => {
@@ -52,9 +56,14 @@ const FeedItem = ({
   };
 
   return (
-    <article className={styles.wrapper}>
+    <article className={classNames(styles.wrapper, {
+      [styles.storygroup]: 'storygroup' === themeName,
+    })}
+    >
       <header className={styles.header}>
-        <h1 className={styles.title}>{title}</h1>
+        <h1 className={styles.title}>
+          <Link to={permalink}>{title}</Link>
+        </h1>
         <div className={styles.meta}>
           <div className={styles.eyebrow}>
             <span className="screen-reader-text">
@@ -74,7 +83,8 @@ const FeedItem = ({
           </div>
         </div>
       </header>
-      {(image && showImage) && <div className={styles.image}>{image}</div>}
+      {(image && showImage) &&
+      <div className={styles.image}><Link to={permalink}>{image}</Link></div>}
       {! includeExpandBtn && (
         <Fragment>
           <div className={styles.content}>
@@ -87,7 +97,7 @@ const FeedItem = ({
         <div className={styles.expandableBody}>
           {! expandState.isExpanded && (
             <div className={styles.textBeforeBtn}>
-              <p>{teaserContent} . . .</p>
+              <p>{teaserContent}</p>
             </div>
           )}
           <div
@@ -121,6 +131,7 @@ FeedItem.defaultProps = {
   includeExpandBtn: false,
   showImage: true,
   teaserContent: '',
+  themeName: '',
 };
 
 FeedItem.propTypes = {
@@ -129,8 +140,10 @@ FeedItem.propTypes = {
   teaserContent: PropTypes.string,
   customEyebrow: PropTypes.string.isRequired,
   postDate: PropTypes.string.isRequired,
+  permalink: PropTypes.string.isRequired,
   showImage: PropTypes.bool,
   title: PropTypes.string.isRequired,
+  themeName: PropTypes.string,
   topic: PropTypes.string.isRequired,
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,

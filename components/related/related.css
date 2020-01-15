@@ -1,33 +1,36 @@
-.wrap {
-  clear: left;
-  float: left;
-  font-family: $sans;
-  font-size: rem(14);
-  margin-left: -16%;
-  padding: rem(10) rem(40) rem(30) rem(10);
-  position: relative;
-  width: rem(222);
-}
+/**
+ * Gutenberg block styles.
+ * Because these are also included in the editor in WordPress, they must be globally scoped.
+ */
 
-.header {
-  border-top: 1px solid #000;
-  font-size: rem(16);
-  font-weight: 700;
-  margin: 0 0 rem(10);
-  padding-top: rem(10);
-}
+:global {
+  .related__wrap {
+    @include block-alignment;
+    font-family: $sans;
+    font-size: rem(14);
+    position: relative;
+  }
 
-.link {
-  font-size: rem(14);
-  font-weight: 700;
-  text-decoration: underline;
-}
+  .related__header {
+    border-top: 1px solid #000;
+    font-size: rem(16);
+    font-weight: 700;
+    margin: 0 0 rem(10);
+    padding-top: rem(10);
+  }
 
-.deck {
-  margin-top: rem(10);
-}
+  .related__link {
+    font-size: rem(14);
+    font-weight: 700;
+    text-decoration: underline;
+  }
 
-.featuredImg {
-  margin-bottom: rem(10);
-  width: 100%;
+  .related__deck {
+    margin-top: rem(10);
+  }
+
+  .related__featuredImg {
+    margin-bottom: rem(10);
+    width: 100%;
+  }
 }

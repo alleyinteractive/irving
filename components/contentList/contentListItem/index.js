@@ -10,12 +10,12 @@ const ContentListItem = (props) => {
     description,
   } = props;
   return (
-    <li className={styles.wrap}>
+    <li className="contentListItem__wrap">
       {title && (
-        <h3 className={styles.title}>{parseHTML(title)}</h3>
+        <h3 className="contentListItem__title">{parseHTML(title)}</h3>
       )}
       {description && (
-        <span className={styles.description}>
+        <span className="contentListItem__description">
           {parseHTML(description)}
         </span>
       )}
@@ -33,6 +33,4 @@ ContentListItem.propTypes = {
   description: PropTypes.string,
 };
 
-const wrapWithStyles = withStyles(styles);
-
-export default wrapWithStyles(ContentListItem);
+export default withStyles(styles)(ContentListItem);

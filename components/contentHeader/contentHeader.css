@@ -44,16 +44,13 @@
   @media ($smMin) {
     padding-left: 0;
     padding-right: 0;
-    tidy-span: 10;
+    width: 100%;
   }
 
   @media ($mdMin) {
-    order: 1;
-    tidy-offset-left: 1;
-    tidy-span: 6;
-  }
-
-  @media ($lgMin) {
+    /* @see main from ../columnArea--fullStory.css  */
+    padding-left: 0;
+    padding-right: rem(20);
     tidy-offset-left: 1;
     tidy-span: 6;
   }
@@ -61,10 +58,18 @@
 
 .intro {
   composes: headerBlock;
-  border-bottom: 1px solid black;
+
+  @media ($mdMax) {
+    margin-bottom: rem(20);
+  }
+
+  @media ($mdMin) {
+    order: 2;
+  }
 }
 
 .meta {
+  border-bottom: 1px solid black;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -74,7 +79,7 @@
 .image {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0 auto rem(30);
   overflow: hidden;
   width: 100%;
 
