@@ -1,89 +1,65 @@
-import React, { Fragment } from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { findChildByName } from 'utils/children';
 import { withStyles } from 'critical-style-loader/lib';
-import withThemes from '../hoc/withThemes';
 
 // Styles
 import styles from './sidebar.css';
-import inFeedStyles from './sidebar--inFeed.css';
 
 const Sidebar = (props) => {
   const {
     children,
     className,
+    context,
     hasAd,
-    theme,
-    themeName,
+    isSticky,
   } = props;
 
-  const popular = findChildByName('popular', children);
-  const magazineModule = findChildByName('magazine-module', children);
-  const adUnit = findChildByName('ad-unit', children);
-
   return (
-    <Fragment>
-      <aside
-        className={classNames(className, theme.wrapper, {
-          [styles.hasAd]: hasAd,
+    <aside
+      className={classNames(className, styles.wrapper, {
+        [styles.hasAd]: hasAd,
+      })}
+      style={{
+        position: isSticky ? 'sticky' : 'relative',
+        top: isSticky ? 100 : 0,
+      }}
+    >
+      <ul>
+        {children.map((child) => {
+          const {
+            props: { gtmTargetingClass },
+          } = child;
+          return (
+            <li
+              key={child['component-name']}
+              className={styles.widgetWrapper}
+            >
+              {! gtmTargetingClass ?
+                cloneElement(child, { gtmTargetingClass: context }) :
+                child
+              }
+            </li>
+          );
         })}
-        style={{
-          position: 'inFeed' === themeName ? 'relative' : 'sticky',
-          top: 'inFeed' === themeName ? 0 : 100,
-        }}
-      >
-        <div className={theme.mainSidebarWrap}>
-          {popular && (
-            <div className={theme.widgetWrapper}>
-              {popular}
-            </div>
-          )}
-          {magazineModule && (
-            <div className={theme.widgetWrapper}>
-              {magazineModule}
-            </div>
-          )}
-          {(adUnit && 'inFeed' !== themeName) && (
-            <div className={theme.widgetWrapper}>
-              {adUnit}
-            </div>
-          )}
-        </div>
-      </aside>
-      {'inFeed' === themeName && (
-        <div
-          className={theme.subSidebar}
-          id="subSidebar"
-          style={{
-            position: 'sticky',
-            top: 100,
-          }}
-        >
-          <div className={theme.subSidebarWrapper}>
-            {adUnit}
-          </div>
-        </div>
-      )}
-    </Fragment>
+      </ul>
+    </aside>
   );
 };
 
 Sidebar.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  context: PropTypes.string,
   hasAd: PropTypes.bool,
-  theme: PropTypes.object.isRequired,
-  themeName: PropTypes.string,
+  isSticky: PropTypes.bool,
 };
 
 Sidebar.defaultProps = {
   className: '',
-  themeName: 'inFeed',
+  context: '',
+  isSticky: true,
   hasAd: false,
 };
 
-export default withThemes('sidebar', {
-  default: styles,
-  inFeed: inFeedStyles,
-})(withStyles(styles, inFeedStyles)(Sidebar));
+export default (withStyles(styles)(Sidebar));
