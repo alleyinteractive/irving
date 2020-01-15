@@ -23,16 +23,26 @@
 }
 
 .stories {
-  list-style: none;
+  counter-reset: my-awesome-counter;
   margin: 0;
   padding: 0;
 }
 
 .story {
   border-bottom: 1px solid $black;
+  counter-increment: my-awesome-counter;
   font-size: rem(16);
   line-height: 1.375;
+  list-style: none;
   padding: rem(15) 0 rem(15) 0;
+
+  &::before {
+    color: $red;
+    content: '0' counter(my-awesome-counter) '.';
+    font-size: rem(12);
+    font-weight: 700;
+    padding: 0 0 rem(5) 0;
+  }
 }
 
 .byline {

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from '../helpers/link';
 import withThemes from '../hoc/withThemes';
@@ -18,14 +19,9 @@ const Popular = ({
   >
     <div className={theme.contentModule}>
       <h3 className={theme.title}>{__('Popular', 'mittr')}</h3>
-      <ul className={theme.stories}>
-        {popular.map((item, index) => (
+      <ol className={theme.stories}>
+        {popular.map((item) => (
           <li className={theme.story} key={item.title}>
-            {'inFeed' !== themeName && (
-              <div className={theme.itemCount}>
-                0{index + 1}.
-              </div>
-            )}
             <Link to={item.link} class={theme.itemTitle}>{item.title}</Link>
             { 'inFeed' === themeName && (
               <span className={theme.byline}>
@@ -37,7 +33,7 @@ const Popular = ({
             )}
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   </div>
 );
