@@ -64,10 +64,13 @@ export const componentDataMeta = {
   data: [],
 };
 
+export const headerHeight = 0;
+
 const defaultState = {
   components,
   componentData,
   error,
+  headerHeight,
   loading,
   player,
   route,

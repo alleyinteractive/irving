@@ -12,6 +12,7 @@ if: branch =~ ^.*(?<!-built)$
 branches:
   only:
     - /^travis-.*$/
+    - production
     - master
     - develop
     - preprod
