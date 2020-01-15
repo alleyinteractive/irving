@@ -13,7 +13,6 @@ const Sidebar = (props) => {
   const {
     children,
     className,
-    clientID,
     hasAd,
     theme,
     themeName,
@@ -29,7 +28,6 @@ const Sidebar = (props) => {
         className={classNames(className, theme.wrapper, {
           [styles.hasAd]: hasAd,
         })}
-        id={clientID}
         style={{
           position: 'inFeed' === themeName ? 'relative' : 'sticky',
           top: 'inFeed' === themeName ? 0 : 100,
@@ -74,7 +72,6 @@ const Sidebar = (props) => {
 Sidebar.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  clientID: PropTypes.string,
   hasAd: PropTypes.bool,
   theme: PropTypes.object.isRequired,
   themeName: PropTypes.string,
@@ -82,7 +79,6 @@ Sidebar.propTypes = {
 
 Sidebar.defaultProps = {
   className: '',
-  clientID: 'sidebar',
   themeName: 'inFeed',
   hasAd: false,
 };
