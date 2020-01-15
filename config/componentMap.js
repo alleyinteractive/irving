@@ -64,6 +64,7 @@ import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import Register from 'components/accounts/register';
 import Related from 'components/related';
+import Schema from 'components/schema';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
 import ShareStories from 'components/shareStories';
@@ -161,6 +162,7 @@ export const componentMap = {
   popular: Popular,
   'post-list': PostList,
   register: Register,
+  schema: Schema,
   'search-bar': SearchBar,
   'section-item': SectionItem,
   'share-stories': ShareStories,
