@@ -1,3 +1,4 @@
+import AdUnit from 'components/adUnit';
 import AccountPage from 'components/accounts/landingPage';
 import AccountNavigation from 'components/accounts/accountNavigation';
 import AudioElement from 'components/audio';
@@ -91,6 +92,7 @@ import withLoader from 'components/hoc/withLoader';
  * Defines which React component to render for each received API component.
  */
 export const componentMap = {
+  'ad-unit': AdUnit,
   account: AccountPage,
   'account-navigation': AccountNavigation,
   'admin-bar': Placeholder,

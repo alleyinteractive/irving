@@ -26,7 +26,7 @@ const Carousel = (props) => {
 
   return (
     <div className={classNames(
-      'wrapper',
+      'carousel__wrapper',
       isVisible ? 'isVisible' : '',
       align,
     )}

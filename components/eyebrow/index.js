@@ -74,6 +74,8 @@ Eyebrow.defaultProps = {
   dateline: '',
   subTopic: '',
   subTopicLink: '',
+  topic: '',
+  topicLink: '',
 };
 
 Eyebrow.propTypes = {
@@ -83,8 +85,8 @@ Eyebrow.propTypes = {
   subTopic: PropTypes.string,
   subTopicLink: PropTypes.string,
   themeName: PropTypes.string,
-  topic: PropTypes.string.isRequired,
-  topicLink: PropTypes.string.isRequired,
+  topic: PropTypes.string,
+  topicLink: PropTypes.string,
 };
 
 Eyebrow.defaultProps = { color: '#000000' };

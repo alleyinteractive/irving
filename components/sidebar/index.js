@@ -1,7 +1,9 @@
-import React, { useState, useEffect, cloneElement } from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
+
+// Styles
 import styles from './sidebar.css';
 
 const Sidebar = (props) => {
@@ -10,95 +12,38 @@ const Sidebar = (props) => {
     className,
     context,
     hasAd,
-    themeName,
+    isSticky,
   } = props;
-
-  const [headerHeight, setHeaderHeight] = useState(0);
-
-  useEffect(() => {
-    let height;
-    const contentHeader = document.getElementById('content--header');
-
-    if (
-      null !== contentHeader &&
-      'raised' === themeName &&
-      960 < window.innerWidth
-    ) {
-      const headerWrapper =
-        document.getElementById('content--header--wrapper');
-
-      // If the wrapper exists, include the bottom margin to be factored
-      // into the sidebar's height adjustment.
-      if (null !== headerWrapper) {
-        const headerMarginBottom = parseInt(
-          window
-            .getComputedStyle(headerWrapper)
-            .getPropertyValue('margin-bottom'),
-          10
-        );
-        height = contentHeader.clientHeight + headerMarginBottom + 15;
-      } else {
-        height = contentHeader.clientHeight;
-      }
-
-      setHeaderHeight(height);
-    }
-
-    // The sponsored content module node.
-    const sponsoredModule =
-      document.getElementById('sponsored-content--module');
-
-    // The post is a sponsored story.
-    if (null !== sponsoredModule) {
-      const moduleHeight = sponsoredModule.offsetHeight;
-      // Margins are not included in the DOM element's offsetHeight, so we'll need
-      // to retrieve the computed values.
-      const moduleMarginTop = parseInt(
-        window
-          .getComputedStyle(sponsoredModule)
-          .getPropertyValue('margin-top'),
-        10
-      );
-      const moduleMarginBottom = parseInt(
-        window
-          .getComputedStyle(sponsoredModule)
-          .getPropertyValue('margin-bottom'),
-        10
-      );
-      const nextHeight =
-        height + moduleHeight + moduleMarginTop + moduleMarginBottom;
-
-      setHeaderHeight(nextHeight);
-    }
-  }, headerHeight);
 
   return (
     <aside
-      className={classNames(className, styles.wrapper, styles[themeName], {
+      className={classNames(className, styles.wrapper, {
         [styles.hasAd]: hasAd,
       })}
       style={{
-        position: 'relative',
-        top: `-${headerHeight}px`,
+        position: isSticky ? 'sticky' : 'relative',
+        top: isSticky ? 100 : 0,
       }}
     >
-      {children.map((child) => {
-        const {
-          props: { gtmTargetingClass },
-        } = child;
-
-        return (
-          <div
-            key={child.key}
-            className={styles.item}
-            id="sidebar__item"
-          >
-            {! gtmTargetingClass ?
-              cloneElement(child, { gtmTargetingClass: context }) :
-              child}
-          </div>
-        );
-      })}
+      <ul>
+        {children.map((child, index) => {
+          const {
+            props: { gtmTargetingClass },
+          } = child;
+          return (
+            <li
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${child['component-name']}_${index}`}
+              className={styles.widgetWrapper}
+            >
+              {! gtmTargetingClass ?
+                cloneElement(child, { gtmTargetingClass: context }) :
+                child
+              }
+            </li>
+          );
+        })}
+      </ul>
     </aside>
   );
 };
@@ -108,14 +53,14 @@ Sidebar.propTypes = {
   className: PropTypes.string,
   context: PropTypes.string,
   hasAd: PropTypes.bool,
-  themeName: PropTypes.string,
+  isSticky: PropTypes.bool,
 };
 
 Sidebar.defaultProps = {
   className: '',
   context: '',
-  themeName: '',
+  isSticky: true,
   hasAd: false,
 };
 
-export default withStyles(styles)(Sidebar);
+export default (withStyles(styles)(Sidebar));

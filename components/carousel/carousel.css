@@ -1,5 +1,5 @@
 :global {
-  .wrapper {
+  .carousel__wrapper {
     margin-bottom: rem(72);
     opacity: 0;
     transition: opacity 0.2s ease;
