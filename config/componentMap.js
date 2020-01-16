@@ -1,3 +1,4 @@
+import AdUnit from 'components/adUnit';
 import AccountPage from 'components/accounts/landingPage';
 import AccountNavigation from 'components/accounts/accountNavigation';
 import AudioElement from 'components/audio';
@@ -65,6 +66,7 @@ import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import Register from 'components/accounts/register';
 import Related from 'components/related';
+import Schema from 'components/schema';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
 import ShareStories from 'components/shareStories';
@@ -92,6 +94,7 @@ import withLoader from 'components/hoc/withLoader';
  * Defines which React component to render for each received API component.
  */
 export const componentMap = {
+  'ad-unit': AdUnit,
   account: AccountPage,
   'account-navigation': AccountNavigation,
   'admin-bar': Placeholder,
@@ -164,6 +167,7 @@ export const componentMap = {
   popular: Popular,
   'post-list': PostList,
   register: Register,
+  schema: Schema,
   'search-bar': SearchBar,
   'section-item': SectionItem,
   'share-stories': ShareStories,

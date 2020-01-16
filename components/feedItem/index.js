@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
@@ -23,6 +24,7 @@ const FeedItem = ({
   themeName,
   topic,
   topicLink,
+  headerHeight,
 }) => {
   const [expandState, setExpandState] = useState({
     btnText: 'Expand',
@@ -30,6 +32,7 @@ const FeedItem = ({
   });
   const [containerHeight, setContainerHeight] = useState(0);
   const contentRef = React.useRef();
+  const articleRef = React.useRef();
   const image = findChildByName('image', children);
   const contentFooter = findChildByName('content-footer', children);
 
@@ -40,29 +43,44 @@ const FeedItem = ({
     themeName: 'infeed',
   });
 
-  const toggleStory = () => {
+  const elementTop = (el, top = 0) => {
+    if (el.offsetParent) {
+      return elementTop(el.offsetParent, top + el.offsetTop);
+    }
+    return top + el.offsetTop;
+  };
+
+  const toggleStory = (e, fromTitle = false) => {
+    e.preventDefault();
+    const doExpand = fromTitle || ! expandState.isExpanded;
     setExpandState({
-      btnText: 'Expand' === expandState.btnText ? 'Collapse' : 'Expand',
-      isExpanded: expandState.isExpanded = ! expandState.isExpanded,
+      btnText: doExpand ? 'Collapse' : 'Expand',
+      isExpanded: doExpand,
     });
-    if (expandState.isExpanded) {
-      setContainerHeight(
-        0 === containerHeight ?
-          contentRef.current.getBoundingClientRect().height : 0
-      );
-    } else {
-      setContainerHeight(0);
+    setContainerHeight(
+      doExpand ? contentRef.current.getBoundingClientRect().height : 0
+    );
+    if (fromTitle) {
+      window.scrollTo({
+        top: elementTop(articleRef.current) - headerHeight,
+        behavior: 'smooth',
+      });
     }
   };
 
+  const titleToggle = (e) => toggleStory(e, true);
+
   return (
-    <article className={classNames(styles.wrapper, {
-      [styles.storygroup]: 'storygroup' === themeName,
-    })}
+    <article
+      ref={articleRef}
+      className={classNames(styles.wrapper,
+        {
+          [styles.storygroup]: 'storygroup' === themeName,
+        })}
     >
       <header className={styles.header}>
         <h1 className={styles.title}>
-          <Link to={permalink}>{title}</Link>
+          <Link to={permalink} onClick={titleToggle}>{title}</Link>
         </h1>
         <div className={styles.meta}>
           <div className={styles.eyebrow}>
@@ -128,25 +146,38 @@ const FeedItem = ({
 
 FeedItem.defaultProps = {
   color: '#000000',
+  customEyebrow: '',
   includeExpandBtn: false,
   showImage: true,
   teaserContent: '',
   themeName: '',
+  topic: '',
+  headerHeight: 0,
 };
 
 FeedItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   includeExpandBtn: PropTypes.bool,
   teaserContent: PropTypes.string,
-  customEyebrow: PropTypes.string.isRequired,
+  customEyebrow: PropTypes.string,
   postDate: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   showImage: PropTypes.bool,
   title: PropTypes.string.isRequired,
   themeName: PropTypes.string,
-  topic: PropTypes.string.isRequired,
+  topic: PropTypes.string,
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,
+  headerHeight: PropTypes.number,
 };
 
-export default withStyles(styles)(FeedItem);
+const mapStateToProps = (state) => ({
+  headerHeight: state.headerHeight,
+});
+
+const withRedux = connect(
+  mapStateToProps,
+  undefined,
+);
+
+export default withRedux(withStyles(styles)(FeedItem)); // connect to redux
