@@ -26,13 +26,14 @@ const Sidebar = (props) => {
       }}
     >
       <ul>
-        {children.map((child) => {
+        {children.map((child, index) => {
           const {
             props: { gtmTargetingClass },
           } = child;
           return (
             <li
-              key={child['component-name']}
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${child['component-name']}_${index}`}
               className={styles.widgetWrapper}
             >
               {! gtmTargetingClass ?

@@ -23,14 +23,14 @@
 }
 
 .stories {
-  counter-reset: my-awesome-counter;
+  counter-reset: popular-counter;
   margin: 0;
   padding: 0;
 }
 
 .story {
   border-bottom: 1px solid $black;
-  counter-increment: my-awesome-counter;
+  counter-increment: popular-counter;
   font-size: rem(16);
   line-height: 1.375;
   list-style: none;
@@ -38,7 +38,7 @@
 
   &::before {
     color: $red;
-    content: '0' counter(my-awesome-counter) '.';
+    content: '0' counter(popular-counter) '.';
     font-size: rem(12);
     font-weight: 700;
     padding: 0 0 rem(5) 0;
