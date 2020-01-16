@@ -25,22 +25,25 @@ const ListMenu = ({
       {(id, uid) => {
         const listID = uid('list-menu');
         return (
-          <nav
-            className={classNames(theme.wrapper, themeName, {
-              [theme.fullBleed]: fullBleed,
-              [theme.withBorder]: withBorder,
-            })}
-            aria-label={__('List', 'mittr')}
+          <div className={classNames(theme.wrapper, {
+            [theme.withBorder]: withBorder,
+            [theme.fullBleed]: fullBleed,
+            [theme.top10]: 'top10' === themeName,
+          })}
           >
-            <h2 id={listID}>
-              <Link to={permalink} className={theme.title}>
-                {title}
-              </Link>
-            </h2>
-            <ul aria-labelledby={listID} className={theme.list}>
-              {children}
-            </ul>
-          </nav>
+            <nav
+              aria-label={__('List', 'mittr')}
+            >
+              <h2 id={listID}>
+                <Link to={permalink} className={theme.title}>
+                  {title}
+                </Link>
+              </h2>
+              <ul aria-labelledby={listID} className={theme.list}>
+                {children}
+              </ul>
+            </nav>
+          </div>
         );
       }}
     </UIDConsumer>
