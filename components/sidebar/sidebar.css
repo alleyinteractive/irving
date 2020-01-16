@@ -1,5 +1,6 @@
 .wrapper {
   flex: 0 0 auto;
+  margin-bottom: rem(200);
   width: 100%;
 
   :global(.sidebarHTMLContent) {
@@ -11,7 +12,7 @@
   }
 }
 
-.item {
+.widgetWrapper {
   width: 100%;
 
   &:not(:empty) {
