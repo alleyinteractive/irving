@@ -12,6 +12,7 @@ import styles from './teaserItem.css';
 import simpleTheme from './teaserItem--simple.css';
 import asideTheme from './teaserItem--aside.css';
 import storyGroupTheme from './teaserItem--storygroup.css';
+import sponsorTheme from './teaserItem--sponsor.css';
 
 import Meta from './meta.js';
 
@@ -175,4 +176,5 @@ export default withThemes('teaser-item', {
   simple: simpleTheme,
   aside: asideTheme,
   storygroup: storyGroupTheme,
+  sponsor: sponsorTheme,
 })(withStyles(styles, simpleTheme, asideTheme, storyGroupTheme)(TeaserItem));
