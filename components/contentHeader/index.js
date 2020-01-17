@@ -31,7 +31,7 @@ const ContentHeader = ({
   const DeckTag = '' === title ? Heading : 'p';
 
   return (
-    <header className={theme.wrapper} id="content--header--wrapper">
+    <header className={theme.wrapper} id={dashify(title)}>
       <div className={theme.intro} id="content--header">
         {eyebrow.content && (
           <Eyebrow
@@ -45,7 +45,7 @@ const ContentHeader = ({
           />
         )}
         {'' !== title && (
-          <Heading className={theme.title} id={dashify(title)}>{title}</Heading>
+          <Heading className={theme.title}>{title}</Heading>
         )}
         <DeckTag className={theme.deck}>{parse(deck)}</DeckTag>
         {'inline' !== themeName && (
