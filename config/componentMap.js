@@ -56,6 +56,7 @@ import Newsletter from 'components/newsletter';
 import NotConfigured from 'components/notConfigured';
 import Order from 'components/accounts/order';
 import OrderHistory from 'components/accounts/orderHistory';
+import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
 import PasswordInputScreen from 'components/accounts/login/enterPassword';
@@ -65,6 +66,7 @@ import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import Register from 'components/accounts/register';
 import Related from 'components/related';
+import Schema from 'components/schema';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
 import ShareStories from 'components/shareStories';
@@ -79,6 +81,7 @@ import SubtopicsSection from 'components/subtopicsSection';
 import Subscriptions from 'components/accounts/subscriptions';
 import TagLink from 'components/tagLink';
 import Tags from 'components/tags';
+import TeamModuleItem from 'components/ourTeamModule/item';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import TopicsModule from 'components/topicsModule';
@@ -157,12 +160,14 @@ export const componentMap = {
   newsletter: Newsletter,
   order: Order,
   'order-history': OrderHistory,
+  'our-team-module': OurTeamModule,
   pagination: Placeholder,
   parsely: Parsely,
   'page-body': PageBody,
   popular: Popular,
   'post-list': PostList,
   register: Register,
+  schema: Schema,
   'search-bar': SearchBar,
   'section-item': SectionItem,
   'share-stories': ShareStories,
@@ -177,6 +182,7 @@ export const componentMap = {
   'story-group': StoryGroup,
   'tag-link': TagLink,
   tags: Tags,
+  'team-module-item': TeamModuleItem,
   'teaser-item': TeaserItem,
   'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TeaserItem,
