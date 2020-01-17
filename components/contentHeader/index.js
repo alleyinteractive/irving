@@ -32,7 +32,7 @@ const ContentHeader = ({
 
   return (
     <header className={theme.wrapper} id={dashify(title)}>
-      <div className={theme.intro} id="content--header">
+      <div className={theme.intro}>
         {eyebrow.content && (
           <Eyebrow
             customEyebrow={eyebrow.customEyebrow}
