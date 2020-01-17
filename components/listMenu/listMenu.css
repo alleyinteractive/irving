@@ -1,25 +1,22 @@
 /* ListMenu component styles */
 
 .wrapper {
-  nav {
-    display: flex;
-    flex-flow: row nowrap;
-    padding: rem(20) 0;
-  }
+  @include container;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: rem(20) 0;
 }
 
 .fullBleed {
   @include container-with-bleed;
+  padding-left: rem(103);
 }
 
 .top10 {
-  padding-bottom: rem(75);
-
-  nav {
-    border-bottom: $border-thin;
-    border-top: $border-thin;
-    padding-left: 0;
-  }
+  border-bottom: $border-thin;
+  border-top: $border-thin;
+  margin-bottom: rem(75);
+  padding-left: 0;
 }
 
 .withBorder {

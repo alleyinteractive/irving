@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
+import dashify from 'dashify';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
@@ -43,7 +44,9 @@ const ContentHeader = ({
             color={eyebrow.color}
           />
         )}
-        {'' !== title && <Heading className={theme.title}>{title}</Heading>}
+        {'' !== title && (
+          <Heading className={theme.title} id={dashify(title)}>{title}</Heading>
+        )}
         <DeckTag className={theme.deck}>{parse(deck)}</DeckTag>
         {'inline' !== themeName && (
           <div className={theme.meta}>
