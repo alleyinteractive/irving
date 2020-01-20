@@ -70,16 +70,28 @@ function* watchRequestSubmit(data) {
   }
 }
 
+/**
+ * A generator that will request each Zephr form available to the app
+ * and cache it in the Redux store for future use.
+ */
 export function* requestZephrForms() {
   yield all([
     call(requestLogin),
   ]);
 }
 
+/**
+ * A generator that is called on the submission of a Zephr form. The form
+ * type is checked and a subsequent request will be made to the cooresponding
+ * endpoint in the Zephr API.
+ *
+ * @param {payload} The action payload.
+ */
 function submitZephrForm({ payload }) {
   const {
     type,
   } = payload;
+  console.log(type);
 
   switch (type) {
     case 'login':

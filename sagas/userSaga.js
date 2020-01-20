@@ -1,3 +1,3 @@
-export default function* userSaga() {
+export default [
   // Add responders to user actions.
-}
+];
