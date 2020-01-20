@@ -42,10 +42,17 @@ export default [
   takeEvery(SUBMIT_ZEPHR_FORM, submitZephrForm),
 ];
 
+/**
+ * A generator that is called on the initialization of the saga.
+ */
 function* initializeFormSaga() {
+  // Only execute after the Redux store has been rehydrated.
   while (yield take(REHYDRATE)) {
+    // Check to see if cached forms exist in the rehydrated store.
     const isCached = yield select(getCached);
 
+    // If there are no forms cached, reach out to the Zephr API and request
+    // available forms.
     if (! isCached) {
       yield put(actionRequestForms());
     }
@@ -91,7 +98,6 @@ function submitZephrForm({ payload }) {
   const {
     type,
   } = payload;
-  console.log(type);
 
   switch (type) {
     case 'login':
