@@ -1,18 +1,31 @@
 /* eslint-disable import/prefer-default-export */
 import { createAction } from '.';
 import {
+  REQUEST_ZEPHR_FORMS,
   REQUEST_FORM_FOR_ROUTE,
   RECEIVE_FORM_FOR_ROUTE,
   SUBMIT_ZEPHR_FORM,
 } from './types';
 
 /**
- * A Redux action that represents browser state change when a form is requested from Zephr.
+ * A Redux action that represents browser state change when the forms are requested.
  *
  * @returns {{type, payload}} The Redux action.
  */
-export function actionRequestForm() {
-  return createAction(REQUEST_FORM_FOR_ROUTE);
+export function actionRequestForms() {
+  return createAction(REQUEST_ZEPHR_FORMS);
+}
+
+/**
+ * A Redux action that represents browser state change when a form is requested from Zephr
+ * by the form's slug (id).
+ *
+ * @param {{id}} The form's slug.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionRequestForm(payload) {
+  return createAction(REQUEST_FORM_FOR_ROUTE, payload);
 }
 
 /**

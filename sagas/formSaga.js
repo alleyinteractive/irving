@@ -1,4 +1,9 @@
-import { call, put } from 'redux-saga/effects';
+import {
+  call,
+  put,
+  takeEvery,
+  takeLatest,
+} from 'redux-saga/effects';
 import {
   actionReceiveSubmitted,
   actionReceiveSubmitError,
@@ -7,10 +12,28 @@ import {
 import submitForm from 'services/submitForm';
 import createDebug from 'services/createDebug';
 import React from 'react';
+import {
+  actionRequestForm,
+  actionReceiveForm,
+} from 'actions/zephrActions';
+import {
+  REQUEST_SUBMIT,
+  REQUEST_ZEPHR_FORMS,
+  SUBMIT_ZEPHR_FORM,
+} from 'actions/types';
+
+// @todo remove me. this mock is temporary
+import loginFormMock from './loginFormMock.json';
 
 const debug = createDebug('sagas:form');
 
-export default function* watchRequestSubmit(data) {
+export default [
+  takeLatest(REQUEST_SUBMIT, watchRequestSubmit),
+  takeLatest(REQUEST_ZEPHR_FORMS, requestZephrForms),
+  takeEvery(SUBMIT_ZEPHR_FORM, submitZephrForm),
+];
+
+function* watchRequestSubmit(data) {
   const {
     payload: { formName, submission },
   } = data;
@@ -26,6 +49,49 @@ export default function* watchRequestSubmit(data) {
     yield put(actionReceiveSubmitError(formName, err));
     yield call(debug, err);
   }
+}
+
+export function* requestZephrForms() {
+  yield call(requestLogin);
+}
+
+function submitZephrForm({ payload }) {
+  const {
+    type,
+  } = payload;
+
+  switch (type) {
+    case 'login':
+      // do something
+      break;
+    default:
+      // do nothing
+      break;
+  }
+}
+
+function* requestLogin() {
+  // Initiate the request.
+  yield put(actionRequestForm('login'));
+
+  // const params = {
+  //   method: 'GET',
+  //   path: '/v3/forms/login',
+  //   body: '',
+  // };
+  // const header = yield call(zephrService.getRequestHeader, params);
+  // console.log(header);
+
+  const form = yield call(
+    createZephrForm,
+    {
+      input: loginFormMock,
+      submitText: 'Login',
+    }
+  );
+
+  // Send the form to the store for recall.
+  yield put(actionReceiveForm({ components: form, route: '/login' }));
 }
 
 /**

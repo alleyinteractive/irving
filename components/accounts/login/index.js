@@ -22,7 +22,7 @@ const Login = ({ isLoading, forms, submitLogin }) => {
     const email = document.getElementById('email-address').value;
     const password = document.getElementById('password').value;
 
-    submitLogin({ route: loginForm.route, credentials: { email, password } });
+    submitLogin({ type: 'login', credentials: { email, password } });
   };
 
   return (
