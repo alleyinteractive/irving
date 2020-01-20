@@ -1,3 +1,13 @@
+import { select } from 'redux-saga/effects';
+import getRouteMeta from 'selectors/getRouteMeta';
+
 export default function* onLocationChange() {
-  // Add calls to third part libraries such as GA here.
+  const { path } = yield select(getRouteMeta);
+
+  switch (path) {
+    case '/login':
+      console.log('login route hit');
+      break;
+    default:
+  }
 }

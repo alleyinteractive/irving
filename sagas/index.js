@@ -9,7 +9,6 @@ import waitToScroll from './waitToScroll';
 import watchRequestSubmit from './formSaga';
 import onLocationChange from './onLocationChange';
 import watchComponentData from './componentDataSaga';
-import loginFlow from './userSaga';
 
 /**
  * Combine all sagas, and run them continuously in parallel.
@@ -21,7 +20,5 @@ export default function* rootSaga() {
     takeLatest(REQUEST_SUBMIT, watchRequestSubmit),
     takeEvery(LOCATION_CHANGE, onLocationChange),
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
-    // User sagas.
-    ...loginFlow,
   ]);
 }
