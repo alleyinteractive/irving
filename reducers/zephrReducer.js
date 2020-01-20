@@ -19,7 +19,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
       return {
         ...state,
         isLoading: false,
-        forms: [...state.forms, payload.payload],
+        forms: [...state.forms, payload],
       };
     default:
       return state;

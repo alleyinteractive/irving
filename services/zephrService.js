@@ -16,12 +16,11 @@ export default {
         path
       } = params;
       const bodyParam = 0 < body.length ? `request_body=${body}&` : '';
+  
       const request = await fetch(
         `${process.env.API_ROOT_URL}/data/zephr_auth?${bodyParam}method=${method}&path=${path}`, // eslint-disable-line max-len
       );
-      const header = await request.json();
-
-      return header;
+      return await request.json();
     } catch (error) {
       console.info('There was a problem', error); // eslint-disable-line no-console
     }

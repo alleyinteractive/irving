@@ -2,14 +2,29 @@
 import React, { useState } from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
-import classNames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import {
+  getIsLoading,
+  getForms
+} from 'selectors/zephrSelector';
+import { actionSubmitForm } from 'actions/zephrActions';
 
 // Styles
 import styles from './login.css';
 
-const Login = () => {
+const Login = ({ isLoading, forms, submitLogin }) => {
+  const loginForm = forms.filter((form) => '/login' === form.route)[0];
+  // Create submit handler.
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById('email-address').value;
+    const password = document.getElementById('password').value;
+
+    submitLogin({ route: loginForm.route, credentials: { email, password } });
+  };
+
   return (
     <div className={styles.accountWrap}>
       <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
@@ -23,7 +38,11 @@ const Login = () => {
           'mittr'
         )}
       </p>
-      <form onSubmit={() => {}} className={styles.formWrap}>
+      <form onSubmit={onSubmit} className={styles.formWrap}>
+        {!isLoading && loginForm ? (
+          loginForm.components
+        ) : null}
+
         <h2 className={styles.ssoText} id="socialMediaSignOn">
           {__('Sign on with the following social media accounts:', 'mittr')}
         </h2>
@@ -64,10 +83,13 @@ Login.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  submitLogin: () => {},
+  submitLogin: (loginData) => dispatch(actionSubmitForm(loginData)),
 });
 const withRedux = connect(
-  undefined,
+  (state) => ({
+    isLoading: getIsLoading(state),
+    forms: getForms(state),
+  }),
   mapDispatchToProps
 );
 

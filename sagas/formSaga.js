@@ -38,9 +38,9 @@ export default function* watchRequestSubmit(data) {
 export function createZephrForm(payload) {
   const {
     input: {
+      slug,
       fields,
     },
-    onSubmit,
     submitText,
   } = payload;
 
@@ -53,19 +53,45 @@ export function createZephrForm(payload) {
       'default-value': defaultValue,
     } = field;
 
-    const props = {
+    let type = '';
+    switch (id) {
+      case 'email-address':
+        type = 'email';
+        break;
+      case 'password':
+        type = 'password';
+        break;
+      default:
+        type = 'text';
+    }
+
+    let props = {
+      key: id,
       id,
+      className: `zephr-input-${id}`,
+      type,
       placeholder,
       required,
       defaultValue,
     };
 
+    if ('email-address' === id) {
+      props = { ...props, autoComplete: 'username' };
+    }
+
+    if ('password' === id) {
+      const autoComplete =
+        'registration' === slug ? 'new-password' : 'current-password';
+
+      props = { ...props, autoComplete };
+    }
+
     return React.createElement('input', props, null);
   });
 
   const buttonProps = {
+    key: 'zephr-submit-button',
     type: 'submit',
-    onSubmit,
     value: submitText,
   };
 
