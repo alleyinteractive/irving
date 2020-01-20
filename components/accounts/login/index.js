@@ -1,12 +1,11 @@
-/* eslint-disable */
-import React, { useState } from 'react';
+import React from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   getIsLoading,
-  getForms
+  getForms,
 } from 'selectors/zephrSelector';
 import { actionSubmitForm } from 'actions/zephrActions';
 
@@ -39,7 +38,7 @@ const Login = ({ isLoading, forms, submitLogin }) => {
         )}
       </p>
       <form onSubmit={onSubmit} className={styles.formWrap}>
-        {!isLoading && loginForm ? (
+        {! isLoading && loginForm ? (
           loginForm.components
         ) : null}
 
@@ -79,6 +78,8 @@ const Login = ({ isLoading, forms, submitLogin }) => {
 };
 
 Login.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  forms: PropTypes.array.isRequired,
   submitLogin: PropTypes.func.isRequired,
 };
 
