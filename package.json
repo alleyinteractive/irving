@@ -37,6 +37,7 @@
     "bcryptjs": "^2.4.3",
     "classnames": "^2.2.5",
     "critical-style-loader": "^1.0.1",
+    "dashify": "^2.0.0",
     "debug": "^3.1.0",
     "dotenv": "^6.0.0",
     "ejs": "^2.5.7",
