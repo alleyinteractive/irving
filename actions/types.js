@@ -40,3 +40,6 @@ export const LOAD_PREVIOUS_TRACK = 'LOAD_PREVIOUS_TRACK';
 
 // Header height for scroll
 export const UPDATE_HEADER_HEIGHT = 'UPDATE_HEADER_HEIGHT';
+
+// Zephr.
+export const RECEIVE_FORM_FOR_ROUTE = 'RECEIVE_FORM_FOR_ROUTE';

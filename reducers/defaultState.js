@@ -77,4 +77,8 @@ const defaultState = {
   visible,
 };
 
+export const zephr = {
+  forms: [],
+};
+
 export default defaultState;
