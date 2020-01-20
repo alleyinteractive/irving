@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   /**
    * Retrieve the header used to as an authorization token to authenticate
