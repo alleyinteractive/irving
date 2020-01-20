@@ -1,48 +1,15 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { actionInitiateUserLogin } from 'actions/userActions';
 import PropTypes from 'prop-types';
 
 // Styles
 import styles from './login.css';
 
-const Login = ({ submitLogin }) => {
-  // Set state variable userEmailInput which we use for the form input value.
-  const [userEmailInput, setUserEmailInput] = useState('');
-  const [isEmailValid, setIsEmailValid] = useState(true);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (isEmailValid && '' !== userEmailInput) {
-      // This is not the action we really want to take on submit sign on, it is
-      // only here to demo the functionality of the email service.
-      submitLogin(userEmailInput);
-    } else {
-      // Email must be invalid it is empty.
-      setIsEmailValid(false);
-    }
-  };
-
-  const validateEmail = (email) => {
-    const validEmailTest = /^[^\s@]+@[^\s@]+\.[^\s@][^\s@]+$/.test(email);
-    setIsEmailValid(validEmailTest);
-  };
-
-  const handleInputChange = (event) => {
-    const { value } = event.target;
-    setUserEmailInput(value);
-    validateEmail(value);
-  };
-
-  const handleConnectAlum = () => {
-    // @todo stub.
-    alert('Connect Alum'); // eslint-disable-line no-alert
-  };
-
+const Login = () => {
   return (
     <div className={styles.accountWrap}>
       <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
@@ -56,41 +23,7 @@ const Login = ({ submitLogin }) => {
           'mittr'
         )}
       </p>
-      <form onSubmit={handleSubmit} className={styles.formWrap}>
-        <div className={styles.formGroup}>
-          <label htmlFor="userEmailInput">
-            <input
-              type="text"
-              id="userEmailInput"
-              name="userEmailInput"
-              value={userEmailInput}
-              onChange={handleInputChange}
-              className={classNames(styles.formInput, {
-                [styles.inputInvalid]: ! isEmailValid,
-              })}
-              placeholder={__('Enter your email address', 'mittr')}
-              aria-errormessage="email-error"
-            />
-          </label>
-          <input
-            type="submit"
-            className={styles.continueBtn}
-            value="Continue"
-          />
-        </div>
-        {! isEmailValid && (
-          <span
-            className={styles.formError}
-            aria-live="assertive"
-            id="email-error"
-          >
-            {__(
-              `Oops! Let’s try that again —
-            please enter your email address.`,
-              'mittr'
-            )}
-          </span>
-        )}
+      <form onSubmit={() => {}} className={styles.formWrap}>
         <h2 className={styles.ssoText} id="socialMediaSignOn">
           {__('Sign on with the following social media accounts:', 'mittr')}
         </h2>
@@ -114,7 +47,7 @@ const Login = ({ submitLogin }) => {
         <button
           type="button"
           className={styles.connectBtn}
-          onClick={handleConnectAlum}
+          onClick={() => {}}
         >
           {__('Connect now', 'mittr')}
         </button>
@@ -131,7 +64,7 @@ Login.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  submitLogin: (email) => dispatch(actionInitiateUserLogin(email)),
+  submitLogin: () => {},
 });
 const withRedux = connect(
   undefined,

@@ -59,7 +59,6 @@ import OrderHistory from 'components/accounts/orderHistory';
 import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
-import PasswordInputScreen from 'components/accounts/login/enterPassword';
 import Placeholder from 'components/placeholder';
 import Popular from 'components/popular';
 import PostList from 'components/postList';
@@ -115,7 +114,6 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
-  'enter-password': PasswordInputScreen,
   'feed-anchor': CardStack,
   footer: Footer,
   'google-analytics': GoogleAnalytics,
