@@ -2,7 +2,7 @@ import { call, put, select } from 'redux-saga/effects';
 import getRouteMeta from 'selectors/getRouteMeta';
 import zephrService from 'services/zephrService';
 import { createZephrForm } from 'sagas/formSaga';
-import { actionReceiveForm } from 'actions/zephrActions';
+import { actionRequestForm, actionReceiveForm } from 'actions/zephrActions';
 
 // @todo remove me. this mock is temporary
 import loginFormMock from './loginFormMock.json';
@@ -19,6 +19,9 @@ export default function* onLocationChange() {
 }
 
 function* requestLogin() {
+  // Initiate the request.
+  yield put(actionRequestForm());
+
   const params = {
     method: 'GET',
     path: '/v3/forms/login',
@@ -26,6 +29,7 @@ function* requestLogin() {
   };
   const header = yield call(zephrService.getRequestHeader, params);
   console.log(header);
+
   const form = yield call(
     createZephrForm,
     {
@@ -34,8 +38,7 @@ function* requestLogin() {
       submitText: 'Login',
     }
   );
+
   // Send the form to the store for recall.
   yield put(actionReceiveForm({ components: form, route: '/login' }));
-
-  return header;
 }

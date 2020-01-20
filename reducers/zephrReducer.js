@@ -1,4 +1,5 @@
 import {
+  REQUEST_FORM_FOR_ROUTE,
   RECEIVE_FORM_FOR_ROUTE,
 } from 'actions/types';
 import { zephr as defaultState } from './defaultState';
@@ -12,9 +13,14 @@ import { zephr as defaultState } from './defaultState';
  */
 export default function zephrReducer(state = defaultState, { type, payload }) {
   switch (type) {
+    case REQUEST_FORM_FOR_ROUTE:
+      return { ...state, isLoading: true };
     case RECEIVE_FORM_FOR_ROUTE:
-      // const { components, route } = payload; // eslint-disable-line no-case-declarations
-      return { ...state, forms: [...state.forms, payload.payload] };
+      return {
+        ...state,
+        isLoading: false,
+        forms: [...state.forms, payload.payload],
+      };
     default:
       return state;
   }
