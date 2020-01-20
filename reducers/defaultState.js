@@ -80,6 +80,7 @@ const defaultState = {
 export const zephr = {
   isLoading: false,
   forms: [],
+  cached: false,
 };
 
 export default defaultState;

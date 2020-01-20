@@ -11,3 +11,8 @@ export const getForms = createSelector(
   zephrSelector,
   (state) => state.forms,
 );
+
+export const getCached = createSelector(
+  zephrSelector,
+  (state) => state.cached,
+);

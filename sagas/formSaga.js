@@ -1,6 +1,9 @@
 import {
+  all,
   call,
   put,
+  select,
+  take,
   takeEvery,
   takeLatest,
 } from 'redux-saga/effects';
@@ -11,8 +14,10 @@ import {
 } from 'actions/formActions';
 import submitForm from 'services/submitForm';
 import createDebug from 'services/createDebug';
+import { REHYDRATE } from 'redux-persist/lib/constants';
 import React from 'react';
 import {
+  actionRequestForms,
   actionRequestForm,
   actionReceiveForm,
 } from 'actions/zephrActions';
@@ -21,6 +26,7 @@ import {
   REQUEST_ZEPHR_FORMS,
   SUBMIT_ZEPHR_FORM,
 } from 'actions/types';
+import { getCached } from 'selectors/zephrSelector';
 
 // @todo remove me. this mock is temporary
 import loginFormMock from './loginFormMock.json';
@@ -28,10 +34,23 @@ import loginFormMock from './loginFormMock.json';
 const debug = createDebug('sagas:form');
 
 export default [
+  // Initialize the saga to request Zephr forms onload.
+  call(initializeFormSaga),
+  // Form action watchers.
   takeLatest(REQUEST_SUBMIT, watchRequestSubmit),
   takeLatest(REQUEST_ZEPHR_FORMS, requestZephrForms),
   takeEvery(SUBMIT_ZEPHR_FORM, submitZephrForm),
 ];
+
+function* initializeFormSaga() {
+  while (yield take(REHYDRATE)) {
+    const isCached = yield select(getCached);
+
+    if (! isCached) {
+      yield put(actionRequestForms());
+    }
+  }
+}
 
 function* watchRequestSubmit(data) {
   const {
@@ -52,7 +71,9 @@ function* watchRequestSubmit(data) {
 }
 
 export function* requestZephrForms() {
-  yield call(requestLogin);
+  yield all([
+    call(requestLogin),
+  ]);
 }
 
 function submitZephrForm({ payload }) {
@@ -72,7 +93,7 @@ function submitZephrForm({ payload }) {
 
 function* requestLogin() {
   // Initiate the request.
-  yield put(actionRequestForm('login'));
+  yield put(actionRequestForm({ route: 'login' }));
 
   // const params = {
   //   method: 'GET',
