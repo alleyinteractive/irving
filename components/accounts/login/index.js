@@ -29,7 +29,7 @@ const Login = ({ isLoading, forms, submitLogin }) => {
     <div className={styles.accountWrap}>
       <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
       <p className={styles.accountSubHeader}>
-        {__('Please enter your email address.', 'mittr')}
+        {__('Please enter your email address and password.', 'mittr')}
       </p>
       <p className={styles.accountHeaderDescription}>
         {__(
