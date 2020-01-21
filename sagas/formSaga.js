@@ -27,6 +27,7 @@ import {
   SUBMIT_ZEPHR_FORM,
 } from 'actions/types';
 import { getCached } from 'selectors/zephrSelector';
+import zephrService from 'services/zephrService';
 
 // @todo remove me. this mock is temporary
 import loginFormMock from './loginFormMock.json';
@@ -94,14 +95,14 @@ export function* requestZephrForms() {
  *
  * @param {payload} The action payload.
  */
-function submitZephrForm({ payload }) {
+function* submitZephrForm({ payload }) {
   const {
     type,
   } = payload;
 
   switch (type) {
     case 'login':
-      // do something
+      yield call(zephrService.loginUser, payload.credentials);
       break;
     default:
       // do nothing
