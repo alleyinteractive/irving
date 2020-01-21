@@ -52,6 +52,12 @@
     tidy-span: 2;
   }
 
+  > figure > span {
+    border-radius: 50%;
+    display: block;
+    overflow: hidden;
+  }
+
   > span {
     border-radius: 50%;
     display: block;

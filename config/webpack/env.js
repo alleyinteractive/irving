@@ -18,8 +18,16 @@ module.exports = function getEnv() {
 
   // Only include whitelisted variables for client environments to avoid leaking
   // sensitive information.
+  const allowedKeys = [
+    'NODE_ENV',
+    'API_ROOT_URL',
+    'DEBUG',
+    'ROOT_URL',
+    'NEXUS_ROOT_URL',
+    'ONETRUST_ENABLE',
+  ];
   const whitelist = [
-    new RegExp('NODE_ENV|API_ROOT_URL|DEBUG|ROOT_URL|NEXUS_ROOT_URL'),
+    new RegExp(allowedKeys.join('|')),
     new RegExp('^API_QUERY_PARAM'),
   ];
   return Object.keys(process.env)
