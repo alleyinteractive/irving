@@ -20,7 +20,17 @@ const include = (filepath) => {
       ) ||
       // Anything imported within irving packages should be included in build,
       // even if located within node_modules (but not nested node modules).
-      filepath.match(/node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/)
+      filepath.match(/node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/) ||
+      // These specific node modules, which contain arrow functions that must be
+      // transpiled.
+      (
+        filepath.includes('node_modules') &&
+        (
+          filepath.includes('query-string') ||
+          filepath.includes('split-on-first') ||
+          filepath.includes('strict-uri-encode')
+        )
+      )
     ) &&
     // Exclude minified JS.
     ! filepath.match(/\.min\.js$/)
