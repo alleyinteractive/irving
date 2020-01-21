@@ -12,7 +12,6 @@ import styles from './teaserItem.css';
 import simpleTheme from './teaserItem--simple.css';
 import asideTheme from './teaserItem--aside.css';
 import storyGroupTheme from './teaserItem--storygroup.css';
-import sponsorTheme from './teaserItem--sponsor.css';
 
 import Meta from './meta.js';
 
@@ -30,20 +29,11 @@ const TeaserItem = ({
   title,
   topic,
   topicLink,
-  sponsorIntro,
-  sponsorName,
-  sponsorLogo,
-  sponsorUrl,
 }) => {
   const [sharingIsVisible, setSharingIsVisible] = useState(false);
   const image = findChildByName('image', children);
   const video = findChildByName('video', children);
   const socialSharing = findChildByName('social-sharing', children);
-  const isSponsored = (
-    (sponsorName || sponsorLogo) &&
-    sponsorUrl &&
-    'sponsored' === themeName
-  );
 
   const otherChildren = children.filter(
     ({ props: { componentName } }) => ('image' !== componentName) &&
@@ -148,23 +138,6 @@ const TeaserItem = ({
           {sharingIsVisible && socialSharing}
         </div>
       </div>
-      {isSponsored && (
-        <Link to={sponsorUrl} className={theme.sponsor}>
-          {sponsorLogo && (
-            <img
-              className={theme.sponsorLogo}
-              src={sponsorLogo}
-              alt={sponsorName || sponsorUrl}
-            />
-          )}
-          {sponsorName && (
-            <div className={theme.sponsorContent}>
-              {sponsorIntro && <span>{sponsorIntro}</span>}
-              {sponsorName}
-            </div>
-          )}
-        </Link>
-      )}
     </article>
   );
 };
@@ -197,10 +170,6 @@ TeaserItem.propTypes = {
   title: PropTypes.string.isRequired,
   topic: PropTypes.string,
   topicLink: PropTypes.string,
-  sponsorIntro: PropTypes.string,
-  sponsorName: PropTypes.string,
-  sponsorLogo: PropTypes.string,
-  sponsorUrl: PropTypes.string,
 };
 
 TeaserItem.defaultProps = {
@@ -212,10 +181,6 @@ TeaserItem.defaultProps = {
   postDate: '',
   topicLink: '',
   itemPosition: '',
-  sponsorIntro: '',
-  sponsorName: '',
-  sponsorLogo: '',
-  sponsorUrl: '',
 };
 
 export default withThemes('teaser-item', {
@@ -223,5 +188,4 @@ export default withThemes('teaser-item', {
   simple: simpleTheme,
   aside: asideTheme,
   storygroup: storyGroupTheme,
-  sponsored: sponsorTheme,
 })(withStyles(styles, simpleTheme, asideTheme, storyGroupTheme)(TeaserItem));
