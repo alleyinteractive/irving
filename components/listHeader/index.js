@@ -23,7 +23,7 @@ const ListHeader = ({ children, title, color }) => {
           </h1>
           <div className={styles.description}>{description}</div>
         </div>
-        {(image && image.length) && <div className={styles.image}>{image}</div>}
+        {(0 < image.length) && <div className={styles.image}>{image}</div>}
         <div className={styles.menus}>
           <div className={styles.menu}>{menu}</div>
           <div className={styles.socialSharing}>{socialSharing}</div>
