@@ -29,9 +29,6 @@ import {
 import { getCached } from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
 
-// @todo remove me. this mock is temporary
-import loginFormMock from './loginFormMock.json';
-
 const debug = createDebug('sagas:form');
 
 export default [
@@ -114,13 +111,12 @@ function* requestLogin() {
   // Initiate the request.
   yield put(actionRequestForm({ route: 'login' }));
 
-  // const formResponse = yield call(zephrService.getForm, 'login');
-  // console.log(formResponse);
+  const formResponse = yield call(zephrService.getForm, 'login_form');
 
   const form = yield call(
     createZephrForm,
     {
-      input: loginFormMock,
+      input: formResponse,
       submitText: 'Login',
     }
   );
