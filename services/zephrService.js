@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import PublicApiClient from './zephr-sdk/src/PublicApiClient';
 
 // The tenant to be used in client requests.
@@ -28,7 +29,7 @@ export default {
     try {
       const client = PublicApiClient.build(tenant);
 
-      return client.login({
+      return await client.login({
         identifiers: {
           email_address: email,
         },
