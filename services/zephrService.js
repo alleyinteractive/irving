@@ -1,4 +1,3 @@
-/* eslint-disable */
 import axios from 'axios';
 import { HmacSHA256, enc } from 'crypto-js';
 
@@ -29,13 +28,11 @@ function buildRequestHeader(method, path, body = '') {
 
 // For testing requests to the Zephr admin API.
 // @todo remove me.
-function createRequestString() {
-  const url = 'https://technologyreview-staging.admin.blaize.io/v3/forms/login';
-  const authorizationHeader = buildRequestHeader(
-    'GET',
-    `/v3/forms/login`
-  ); 
-  return `curl --location --request GET '${url}' --header 'Accept: application/json' --header 'Content-Type: application/json' --header 'Authorization:${authorizationHeader}'`;
+function createRequestString(method, path) {
+  const url = `https://technologyreview-staging.admin.blaize.io${path}`;
+  const authorizationHeader = buildRequestHeader(method, path);
+
+  return `curl --location --request GET '${url}' --header 'Accept: application/json' --header 'Content-Type: application/json' --header 'Authorization: ${authorizationHeader}'`; // eslint-disable-line max-len
 }
 
 const postErrorMessage = (error) => console.error(
@@ -86,31 +83,34 @@ export default {
   async getForm(type) {
     try {
       // Build the authorization header to be used in the request.
+      // eslint-disable-next-line no-unused-vars
       const authorizationHeader = buildRequestHeader(
         'GET',
         `/v3/forms/${type}`
       );
-      console.log(authorizationHeader);
-      const tenant = 'technologyreview-staging';
-      const request = axios(
-        `https://${tenant}.admin.blaize.io/v3/forms/${type}`,
-        {
-          method: 'GET',
-          mode: 'no-cors',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: authorizationHeader,
-          },
-          withCredentials: true,
-          credentials: 'include',
-        }
-      );
-     
-      return await request.json();
+      console.log(createRequestString('GET', '/v3/forms/login'));
+      // const tenant = 'technologyreview-staging';
+      // const request = axios(
+      //   `https://${tenant}.admin.blaize.io/v3/forms/${type}`,
+      //   {
+      //     method: 'GET',
+      //     mode: 'no-cors',
+      //     headers: {
+      //       Accept: 'application/json',
+      //       'Content-Type': 'application/json',
+      //       Authorization: authorizationHeader,
+      //     },
+      //     withCredentials: true,
+      //     credentials: 'include',
+      //   }
+      // );
+
+      // return await request.json();
     } catch (error) {
       return postErrorMessage(error);
     }
+    // @todo remove me after try condition is satisfied
+    return true;
   },
 };
 
