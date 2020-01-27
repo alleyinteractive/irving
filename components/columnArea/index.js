@@ -20,14 +20,14 @@ const ColumnArea = ({ children, theme }) => {
 
   return (
     <div className={theme.wrapper}>
-      {content && (
+      {!! content.length && (
         <div
           className={theme.main}
         >
           {content}
         </div>
       )}
-      {sidebar && (
+      {!! sidebar.length && (
         <div
           className={theme.sidebar}
         >
