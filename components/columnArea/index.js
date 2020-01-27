@@ -9,6 +9,7 @@ import fullStoryTheme from './columnArea--fullStory.css';
 import magazineTheme from './columnArea--magazine.css';
 import oneColumnTheme from './columnArea--oneCol.css';
 import pageTheme from './columnArea--page.css';
+import fullWidthTheme from './columnArea--fullWidth.css';
 
 const ColumnArea = ({ children, theme }) => {
   // Separate content and sidebar
@@ -50,6 +51,7 @@ export default withThemes('column-area', {
   single: oneColumnTheme,
   page: pageTheme,
   magazine: magazineTheme,
+  fullWidth: fullWidthTheme,
 })(
   withStyles(
     feedColumnTheme,
@@ -57,5 +59,6 @@ export default withThemes('column-area', {
     magazineTheme,
     oneColumnTheme,
     pageTheme,
+    fullWidthTheme,
   )(ColumnArea)
 );
