@@ -1,40 +1,14 @@
+/* eslint-disable */
 import axios from 'axios';
-import { HmacSHA256, enc } from 'crypto-js';
+import AdminApiClient from './zephr-sdk/src/AdminApiClient';
 
 /**
- * Create a valid Authorizaiton header for requests to the Zephr admin API.
+ * Format an error message to be posted to the console.
  *
- * @param {string} method The request method (e.g. GET, POST, etc).
- * @param {string} path   The request path less the host (e.g. `/v3/forms/login`).
- * @param {string} body   The request body.
+ * @param {obj} error The error digest.
  *
- * @returns {string} The signed authorization header.
+ * @returns {obj} The formatted error.
  */
-function buildRequestHeader(method, path, body = '') {
-  const timestamp = new Date().getTime();
-  const nonce = Math.round(
-    Math.random() * 1000000000000
-  ).toString(16);
-  // Set key and secret.
-  const key = 'a0d08da8-c752-4127-a28c-6127a073d0d7'; // @todo remove me.
-  const secret = '5aff5e2b-990e-4fcb-95f3-77a703bc943'; // @todo remove me.
-  const signature = HmacSHA256(
-    secret + body + path + method + timestamp + nonce,
-    key
-  ).toString(enc.Hex);
-
-  return `BLAIZE-HMAC-SHA256 ${key}:${timestamp}:${nonce}:${signature}`;
-}
-
-// For testing requests to the Zephr admin API.
-// @todo remove me.
-function createRequestString(method, path) {
-  const url = `https://technologyreview-staging.admin.blaize.io${path}`;
-  const authorizationHeader = buildRequestHeader(method, path);
-
-  return `curl --location --request GET '${url}' --header 'Accept: application/json' --header 'Content-Type: application/json' --header 'Authorization: ${authorizationHeader}'`; // eslint-disable-line max-len
-}
-
 const postErrorMessage = (error) => console.error(
   'There was a problem sending the request to Zephr.',
   error
@@ -82,35 +56,17 @@ export default {
    */
   async getForm(type) {
     try {
-      // Build the authorization header to be used in the request.
-      // eslint-disable-next-line no-unused-vars
-      const authorizationHeader = buildRequestHeader(
-        'GET',
-        `/v3/forms/${type}`
-      );
-      console.log(createRequestString('GET', '/v3/forms/login'));
-      // const tenant = 'technologyreview-staging';
-      // const request = axios(
-      //   `https://${tenant}.admin.blaize.io/v3/forms/${type}`,
-      //   {
-      //     method: 'GET',
-      //     mode: 'no-cors',
-      //     headers: {
-      //       Accept: 'application/json',
-      //       'Content-Type': 'application/json',
-      //       Authorization: authorizationHeader,
-      //     },
-      //     withCredentials: true,
-      //     credentials: 'include',
-      //   }
-      // );
+      const tenant = 'technologyreview-staging';
+      const accessKey = 'a0d08da8-c752-4127-a28c-6127a073d0d7'; // @todo remove me.
+      const secretKey = '5aff5e2b-990e-4fcb-95f3-77a703bc943'; // @todo remove me.
 
-      // return await request.json();
+      const client = AdminApiClient.build(accessKey, secretKey, tenant);
+      const response = await client.get(`/v3/forms/${type}`);
+      
+      console.log(response);
     } catch (error) {
       return postErrorMessage(error);
     }
-    // @todo remove me after try condition is satisfied
-    return true;
   },
 };
 
