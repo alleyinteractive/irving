@@ -1,6 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
-import crypto from 'crypto';
+import { HmacSHA256, enc } from 'crypto-js';
 
 /**
  * Create a valid Authorizaiton header for requests to the Zephr admin API.
@@ -19,10 +19,10 @@ function buildRequestHeader(method, path, body = '') {
   // Set key and secret.
   const key = 'a0d08da8-c752-4127-a28c-6127a073d0d7'; // @todo remove me.
   const secret = '5aff5e2b-990e-4fcb-95f3-77a703bc943'; // @todo remove me.
-
-  const signature = crypto.createHmac('sha256', key).update(
-    secret + body + path + method + timestamp + nonce
-  ).digest('base64');
+  const signature = HmacSHA256(
+    secret + body + path + method + timestamp + nonce,
+    key
+  ).toString(enc.Hex);
 
   return `BLAIZE-HMAC-SHA256 ${key}:${timestamp}:${nonce}:${signature}`;
 }
@@ -90,6 +90,7 @@ export default {
         'GET',
         `/v3/forms/${type}`
       );
+      console.log(authorizationHeader);
       const tenant = 'technologyreview-staging';
       const request = axios(
         `https://${tenant}.admin.blaize.io/v3/forms/${type}`,
