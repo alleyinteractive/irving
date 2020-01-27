@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   all,
   call,
@@ -114,24 +115,19 @@ function* requestLogin() {
   // Initiate the request.
   yield put(actionRequestForm({ route: 'login' }));
 
-  // const params = {
-  //   method: 'GET',
-  //   path: '/v3/forms/login',
-  //   body: '',
-  // };
-  // const header = yield call(zephrService.getRequestHeader, params);
-  // console.log(header);
+  const formResponse = yield call(zephrService.getForm, 'login');
+  // console.log(formResponse);
 
-  const form = yield call(
-    createZephrForm,
-    {
-      input: loginFormMock,
-      submitText: 'Login',
-    }
-  );
+  // const form = yield call(
+  //   createZephrForm,
+  //   {
+  //     input: loginFormMock,
+  //     submitText: 'Login',
+  //   }
+  // );
 
   // Send the form to the store for recall.
-  yield put(actionReceiveForm({ components: form, route: '/login' }));
+  // yield put(actionReceiveForm({ components: form, route: '/login' }));
 }
 
 /**
