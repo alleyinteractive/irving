@@ -29,6 +29,7 @@ import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
+import HubContent from 'components/hubContent';
 import Image from 'components/image/image';
 import ImageSet from 'components/imageSet';
 import InfiniteItemList from 'components/infiniteItemList';
@@ -124,6 +125,7 @@ export const componentMap = {
   head: Head,
   header: Header,
   'header-with-image': HeaderWithImage,
+  'hub-content': HubContent,
   'feed-item': FeedItem,
   html: RawHTML,
   image: Image,
