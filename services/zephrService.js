@@ -1,6 +1,10 @@
 /* eslint-disable */
 import axios from 'axios';
 import AdminApiClient from './zephr-sdk/src/AdminApiClient';
+import PublicApiClient from './zephr-sdk/src/PublicApiClient';
+
+// The tenant to be used in client requests.
+const tenant = 'technologyreview-staging';
 
 /**
  * Format an error message to be posted to the console.
@@ -25,22 +29,16 @@ export default {
    */
   async login({ email, password }) {
     try {
-      const tenant = 'technologyreview-staging';
-      const request = await axios.post(
-        `https://${tenant}.admin.blaize.io/blaize/login`,
-        {
-          identifiers: {
-            email_address: email,
-          },
-          validators: {
-            password,
-          },
-        }
-      );
-
-      const response = await request.json();
-
-      return response;
+      const client = PublicApiClient.build(tenant);
+      
+      return client.login({
+        identifiers: {
+          email_address: email,
+        },
+        validators: {
+          password: password,
+        },
+      })
     } catch (error) {
       return postErrorMessage(error);
     }
@@ -56,7 +54,6 @@ export default {
    */
   async getForm(type) {
     try {
-      const tenant = 'technologyreview-staging';
       const accessKey = 'a0d08da8-c752-4127-a28c-6127a073d0d7'; // @todo remove me.
       const secretKey = '5aff5e2b-990e-4fcb-95f3-77a703bc943'; // @todo remove me.
 

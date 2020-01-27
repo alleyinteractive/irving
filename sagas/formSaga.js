@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {
   all,
   call,
@@ -103,7 +102,7 @@ function* submitZephrForm({ payload }) {
 
   switch (type) {
     case 'login':
-      yield call(zephrService.loginUser, payload.credentials);
+      yield call(zephrService.login, payload.credentials);
       break;
     default:
       // do nothing
@@ -115,19 +114,19 @@ function* requestLogin() {
   // Initiate the request.
   yield put(actionRequestForm({ route: 'login' }));
 
-  const formResponse = yield call(zephrService.getForm, 'login');
+  // const formResponse = yield call(zephrService.getForm, 'login');
   // console.log(formResponse);
 
-  // const form = yield call(
-  //   createZephrForm,
-  //   {
-  //     input: loginFormMock,
-  //     submitText: 'Login',
-  //   }
-  // );
+  const form = yield call(
+    createZephrForm,
+    {
+      input: loginFormMock,
+      submitText: 'Login',
+    }
+  );
 
   // Send the form to the store for recall.
-  // yield put(actionReceiveForm({ components: form, route: '/login' }));
+  yield put(actionReceiveForm({ components: form, route: '/login' }));
 }
 
 /**
