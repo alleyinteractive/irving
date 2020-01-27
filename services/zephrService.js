@@ -84,7 +84,6 @@ export default {
    * @returns {obj} The form JSON.
    */
   async getForm(type) {
-    console.log(createRequestString());
     try {
       // Build the authorization header to be used in the request.
       const authorizationHeader = buildRequestHeader(
@@ -92,14 +91,18 @@ export default {
         `/v3/forms/${type}`
       );
       const tenant = 'technologyreview-staging';
-      const request = axios.get(
+      const request = axios(
         `https://${tenant}.admin.blaize.io/v3/forms/${type}`,
         {
+          method: 'GET',
+          mode: 'no-cors',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            authorization: authorizationHeader,
+            Authorization: authorizationHeader,
           },
+          withCredentials: true,
+          credentials: 'include',
         }
       );
      
