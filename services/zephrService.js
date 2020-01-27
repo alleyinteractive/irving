@@ -1,6 +1,3 @@
-/* eslint-disable */
-import axios from 'axios';
-import AdminApiClient from './zephr-sdk/src/AdminApiClient';
 import PublicApiClient from './zephr-sdk/src/PublicApiClient';
 
 // The tenant to be used in client requests.
@@ -30,15 +27,15 @@ export default {
   async login({ email, password }) {
     try {
       const client = PublicApiClient.build(tenant);
-      
+
       return client.login({
         identifiers: {
           email_address: email,
         },
         validators: {
-          password: password,
+          password,
         },
-      })
+      });
     } catch (error) {
       return postErrorMessage(error);
     }
@@ -54,13 +51,11 @@ export default {
    */
   async getForm(type) {
     try {
-      const accessKey = 'a0d08da8-c752-4127-a28c-6127a073d0d7'; // @todo remove me.
-      const secretKey = '5aff5e2b-990e-4fcb-95f3-77a703bc943'; // @todo remove me.
+      const request = await fetch(
+        `${process.env.API_ROOT_URL}/data/zephr_service?&request_type=${type}&method=GET` // eslint-disable-line max-len
+      );
 
-      const client = AdminApiClient.build(accessKey, secretKey, tenant);
-      const response = await client.get(`/v3/forms/${type}`);
-      
-      console.log(response);
+      return await request.json();
     } catch (error) {
       return postErrorMessage(error);
     }
