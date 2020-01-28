@@ -9,9 +9,8 @@
 :global {
   .contentList__wrap {
     border-top: $border-thin;
-    /* what is this clear and float left doing here? */
-    /* clear: left;
-    float: left; */
+    clear: left;
+    float: left;
     font-family: $sans;
     font-size: rem(14);
     margin-left: -16%;
@@ -28,7 +27,6 @@
       clear: right;
       float: right;
       margin-left: rem(40);
-      /* margin-right: -16%; */
       padding-left: rem(10);
       padding-right: 0;
 
@@ -57,11 +55,6 @@
 
       @media ($mdMin) {
         width: rem(222);  
-      }
-
-      @media ($lgMin) {
-        /* uncomment margin after placement is fixed */
-        /* margin-right: -16.66%; */
       }
     }
   }

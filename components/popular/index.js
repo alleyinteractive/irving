@@ -22,7 +22,7 @@ const Popular = ({
       <ol className={theme.stories}>
         {popular.map((item) => (
           <li className={theme.story} key={item.title}>
-            <Link to={item.link} class={theme.itemTitle}>{item.title}</Link>
+            <Link to={item.link} className={theme.itemTitle}>{item.title}</Link>
             { 'inFeed' === themeName && (
               <span className={theme.byline}>
                 {item.authorLink && (
