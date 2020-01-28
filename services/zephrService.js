@@ -1,8 +1,4 @@
-/* eslint-disable*/
-import PublicApiClient from './zephr-sdk/src/PublicApiClient';
-
-// The tenant to be used in client requests.
-const tenant = 'technologyreview-staging';
+import BlaizeSDK from './zephr-sdk/blaize-front-end-sdk.min.js';
 
 /**
  * Format an error message to be posted to the console.
@@ -26,31 +22,22 @@ export default {
    * @returns {obj}           The logged in user and their associated entitlements.
    */
   async login({ email, password }) {
-    try {
-      const data = JSON.stringify({
-        identifiers: {
-          email_address: email,
-        },
-        validators: {
-          password,
-        }
-      });
+    const user = {
+      identifiers: {
+        email_address: email,
+      },
+      validators: {
+        password,
+      },
+    };
 
-      const request = fetch(
-        `https://${tenant}.cdn.blaize.io/blaize/login`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: data,
-        },
-      ).then((response) => {
-        console.log(response);
-      });
-    } catch (error) {
-      return postErrorMessage(error);
-    }
+    BlaizeSDK.login(user, (error, success) => {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log(success);
+      }
+    });
   },
 
   /**
