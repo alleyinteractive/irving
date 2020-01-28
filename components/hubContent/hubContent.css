@@ -1,0 +1,28 @@
+.content {
+  display: flex;
+}
+
+.titleLogo {
+  flex: 0 1 50%;
+}
+
+.title {
+  font-size: rem(24);
+}
+
+.description {
+  flex: 0 1 50%;
+}
+
+.sponsorLogo {
+  display: block;
+  max-width: rem(120);
+
+  .sponsorName {
+    @include screenreader-only;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
