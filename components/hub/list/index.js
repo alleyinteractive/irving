@@ -11,9 +11,9 @@ const HubList = ({
 }) => {
   console.log('fuu eslint');
   return (
-    <div className={styles.wrapper}>
+    <ul className={styles.wrapper}>
       {children}
-    </div>
+    </ul>
   );
 };
 

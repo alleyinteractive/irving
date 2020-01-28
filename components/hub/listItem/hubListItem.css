@@ -1,0 +1,63 @@
+.wrapper {
+  /* @tidy gap 1rem; */
+  display: flex;
+  flex-flow: row wrap;
+
+  @media ($mdMin) {
+    flex-flow: column nowrap;
+    tidy-span: 2.5;
+    padding: rem(0 10);
+  }
+}
+
+.inner {
+  border-top: 1px solid $black;
+  padding: rem(20 0);
+}
+
+.content {
+  flex: 1 0 50%;
+  padding-right: rem(20);
+
+  @media ($mdMin) {
+    flex: 1 0 auto;
+  }
+}
+
+.eyebrow {
+  font-size: rem(16);
+  font-weight: 600;
+  margin-bottom: rem(10);
+}
+
+.title {
+  font-size: rem(24);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: rem(10);
+}
+
+.description {
+  font-size: rem(17);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.image {
+  flex: 1 0 50%;
+  margin-left: auto;
+  padding: rem(20 0 0 20);
+  width: 50%;
+
+  @media ($mdMin) {
+    flex: 1 0 auto;
+    margin: rem(20 0 0);
+    padding: 0;
+    width: 100%;
+  }
+
+  > span {
+    /* @todo remove placeholder style */
+    background-color: #eee;
+  }
+}
