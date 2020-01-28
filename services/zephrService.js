@@ -27,15 +27,26 @@ export default {
    */
   async login({ email, password }) {
     try {
-      const client = PublicApiClient.build(tenant);
-
-      return await client.login({
+      const data = JSON.stringify({
         identifiers: {
           email_address: email,
         },
         validators: {
           password,
+        }
+      });
+
+      const request = fetch(
+        `https://${tenant}.cdn.blaize.io/blaize/login`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: data,
         },
+      ).then((response) => {
+        console.log(response);
       });
     } catch (error) {
       return postErrorMessage(error);
