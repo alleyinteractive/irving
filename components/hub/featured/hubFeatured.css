@@ -1,0 +1,41 @@
+.wrapper {
+  border-top: 1px solid $black;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: rem(20);
+}
+
+.content {
+  flex: 1 0 50%;
+  padding-right: rem(20);
+}
+
+.eyebrow {
+  font-size: rem(16);
+  font-weight: 600;
+  margin-bottom: rem(20);
+}
+
+.title {
+  font-size: rem(41);
+  font-weight: 600;
+  margin-bottom: rem(20);
+}
+
+.description {
+  font-size: rem(22);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.image {
+  flex: 1 0 50%;
+  margin-left: auto;
+  padding: rem(20 0 0 20);
+  width: 50%;
+
+  > span {
+    /* @todo remove placeholder style */
+    background-color: #eee;
+  }
+}
