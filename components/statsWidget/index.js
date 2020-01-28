@@ -6,6 +6,9 @@ import styles from './statsWidget.css';
 const StatsWidget = (props) => {
   const { title } = props;
   const { description } = props;
+  if (! title && ! description) {
+    return null;
+  }
   return (
     <aside className="statsWidget__stat">
       <h2 className="statsWidget__title">{title}</h2>

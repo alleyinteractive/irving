@@ -9,30 +9,60 @@
 :global {
   .contentList__wrap {
     border-top: $border-thin;
-    clear: left;
-    float: left;
+    /* what is this clear and float left doing here? */
+    /* clear: left;
+    float: left; */
     font-family: $sans;
     font-size: rem(14);
     margin-left: -16%;
+    margin-top: 6px;
     padding: rem(20) rem(40) rem(30) rem(10);
     position: relative;
-    width: rem(222);
+    width: 100%;
+
+    @media ($smMin) {
+      width: 50%;
+    }
 
     &.content-right {
       clear: right;
       float: right;
       margin-left: rem(40);
+      /* margin-right: -16%; */
       padding-left: rem(10);
       padding-right: 0;
+
+      @media ($mdMin) {
+        margin-right: -16.66%;
+        tidy-span: 3;
+      }
+
+      @media ($lgMin) {
+        margin-right: -33.333%;
+      }
     }
 
     &.content-full {
+      clear: right;
+      float: right;
       margin-bottom: 0;
       margin-left: 0;
       padding-bottom: 0;
       padding-left: 0;
       padding-right: 0;
-      width: 100%;
+
+      @media ($smMin) {
+        width: 50%;
+      }
+
+      @media ($mdMin) {
+        width: rem(222);  
+      }
+
+      @media ($lgMin) {
+        /* uncomment margin after placement is fixed */
+        /* margin-right: -16.66%; */
+      }
     }
   }
 

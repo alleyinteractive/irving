@@ -37,7 +37,7 @@ const ContentList = ({
 );
 
 ContentList.defaultProps = {
-  align: '',
+  align: 'right',
   listTitle: '',
   children: [],
 };
