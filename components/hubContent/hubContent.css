@@ -7,11 +7,14 @@
 }
 
 .title {
-  font-size: rem(24);
+  font-size: rem(32);
 }
 
 .description {
   flex: 0 1 50%;
+  font-size: rem(17);
+  font-weight: 300;
+  line-height: 1.4;
 }
 
 .sponsorLogo {
