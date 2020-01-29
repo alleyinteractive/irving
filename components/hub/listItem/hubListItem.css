@@ -6,9 +6,9 @@
 }
 
 .inner {
+  border-top: 1px solid $black;
   display: flex;
   flex-flow: row wrap;
-  border-top: 1px solid $black;
   padding: rem(20 0);
 
   @media ($mdMin) {
