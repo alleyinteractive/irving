@@ -43,6 +43,16 @@
     @include blackBtn;
   }
   /* stylelint-enable */
+
+  &.hasError {
+    /* Disable slector specificity to allow for programatic styline of error state */
+    /* stylelint-disable selector-max-specificity */
+    input[type='email'],
+    input[type='password'] {
+      @include inputInvalid;
+    }
+    /* stylelint-enable */
+  }
 }
 
 .ssoText {
@@ -95,5 +105,4 @@
   color: $red;
   display: block;
   margin-bottom: rem(10);
-  margin-left: rem(10);
 }

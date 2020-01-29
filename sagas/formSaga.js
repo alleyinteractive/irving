@@ -22,6 +22,7 @@ import {
   actionReceiveForm,
   actionReceiveUserSession,
   actionReceiveUserProfile,
+  actionReceiveLoginError,
 } from 'actions/zephrActions';
 import {
   REQUEST_SUBMIT,
@@ -154,6 +155,8 @@ function* submitLogin(credentials) {
       // Push the user to the homepage.
       history.push('/');
     }
+  } else {
+    yield put(actionReceiveLoginError());
   }
 }
 
@@ -172,7 +175,11 @@ function* requestLogin() {
   );
 
   // Send the form to the store for recall.
-  yield put(actionReceiveForm({ components: form, route: '/login' }));
+  yield put(actionReceiveForm({
+    components: form,
+    route: '/login',
+    error: false,
+  }));
 }
 
 /**
