@@ -15,7 +15,7 @@ const HubListItem = ({
   const description = findChildByName('html', children);
   const image = findChildByName('image', children);
   return (
-    <div className={styles.wrapper}>
+    <li className={styles.wrapper}>
       <div className={styles.inner}>
         <div className={styles.content}>
           <span className={styles.eyebrow}>{eyebrow}</span>
@@ -26,7 +26,7 @@ const HubListItem = ({
         </div>
         <div className={styles.image}>{image}</div>
       </div>
-    </div>
+    </li>
   );
 };
 
