@@ -1,0 +1,10 @@
+/* One Column theme styles */
+.wrapper {
+  composes: wrapper from './columnArea--feed.css';
+}
+
+.main {
+  margin-bottom: rem(60);
+  tidy-offset: 1;
+  tidy-span: 12;
+}
