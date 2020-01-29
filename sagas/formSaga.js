@@ -21,6 +21,7 @@ import {
   actionRequestForm,
   actionReceiveForm,
   actionReceiveUserSession,
+  actionReceiveUserProfile,
 } from 'actions/zephrActions';
 import {
   REQUEST_SUBMIT,
@@ -142,7 +143,14 @@ function* submitLogin(credentials) {
     // Store the session data for later use.
     yield put(actionReceiveUserSession(sessionData));
 
-    yield call(zephrService.getProfile);
+    // Get the user's profile.
+    const profile = yield call(zephrService.getProfile);
+
+    // `null` will be returned if no profile can be found.
+    if ('object' === typeof profile) {
+      // Store user profile information.
+      yield put(actionReceiveUserProfile(profile));
+    }
   }
 }
 

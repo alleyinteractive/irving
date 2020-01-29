@@ -87,22 +87,24 @@ export default {
 
   async getProfile() {
     try {
-      BlaizeSDK.getProfile((error, profile) => {
-        if (error) {
-          postErrorMessage(error);
-        } else {
-          console.log(profile);
-        }
-      });
-      // const request = fetch(
-      //   `${process.env.ZEPHR_ROOT_URL}/blaize/profile`,
-      //   { method: 'GET' }
-      // );
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/profile`,
+        { method: 'GET' }
+      ).then((res) => res.json());
 
-      // const response = await request;
-      // console.log(response);
+      const response = await request;
+
+      const {
+        'email-address': emailAddress,
+        'first-name': firstName,
+        'last-name': lastName,
+      } = response;
+
+      return { emailAddress, firstName, lastName };
     } catch (error) {
       postErrorMessage(error);
+      // Return null to exit the profile setting portion of the saga.
+      return null;
     }
   },
 

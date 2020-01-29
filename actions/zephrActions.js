@@ -6,6 +6,7 @@ import {
   RECEIVE_FORM_FOR_ROUTE,
   SUBMIT_ZEPHR_FORM,
   RECEIVE_ZEPHR_USER_SESSION,
+  RECEIVE_ZEPHR_USER_PROFILE,
 } from './types';
 
 /**
@@ -54,10 +55,21 @@ export function actionSubmitForm(payload) {
 /**
  * A Redux action that represents browser state change when user session data is received from Zephr.
  *
- * @param {{sessionCookie, trackindId, metaCookie}} payload The form, its associated route and the submit function.
+ * @param {{sessionCookie, trackindId, metaCookie}} payload User session data.
  *
  * @returns {{type, payload}} The Redux action.
  */
 export function actionReceiveUserSession(payload) {
   return createAction(RECEIVE_ZEPHR_USER_SESSION, payload);
+}
+
+/**
+ * A Redux action that represents browser state change when a user profile is received from Zephr.
+ *
+ * @param {{emailAddress, firstName, lastName}} payload User profile.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveUserProfile(payload) {
+  return createAction(RECEIVE_ZEPHR_USER_PROFILE, payload);
 }

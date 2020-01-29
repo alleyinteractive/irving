@@ -2,6 +2,7 @@ import {
   REQUEST_FORM_FOR_ROUTE,
   RECEIVE_FORM_FOR_ROUTE,
   RECEIVE_ZEPHR_USER_SESSION,
+  RECEIVE_ZEPHR_USER_PROFILE,
 } from 'actions/types';
 import { zephr as defaultState } from './defaultState';
 
@@ -27,6 +28,11 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
       return {
         ...state,
         session: payload,
+      };
+    case RECEIVE_ZEPHR_USER_PROFILE:
+      return {
+        ...state,
+        user: payload,
       };
     default:
       return state;
