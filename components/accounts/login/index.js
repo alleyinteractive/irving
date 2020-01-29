@@ -19,10 +19,20 @@ const Login = ({ isLoading, forms, submitLogin }) => {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    const email = document.getElementById('email-address').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById('email-address');
+    const password = document.getElementById('password');
 
-    submitLogin({ type: 'login', credentials: { email, password } });
+    // Drop focus on the inputs.
+    email.blur();
+    password.blur();
+
+    submitLogin({
+      type: 'login',
+      credentials: {
+        email: email.value,
+        password: password.value,
+      },
+    });
   };
 
   let error = false;
