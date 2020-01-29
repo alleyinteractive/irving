@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
@@ -23,7 +22,7 @@ const UserGreeting = ({
   isAuthenticated,
   firstName,
   lastName,
-  themeName
+  themeName,
 }) => (
   <div className={styles.wrapper}>
     {isAuthenticated ? (
@@ -43,10 +42,10 @@ UserGreeting.defaultProps = {
 };
 
 UserGreeting.propTypes = {
-  firstName: PropTypes.string,
+  firstName: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   lastName: PropTypes.string.isRequired,
-  themeName: PropTypes.string.isRequired,
+  themeName: PropTypes.string,
 };
 
 const withRedux = connect(

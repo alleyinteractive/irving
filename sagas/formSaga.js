@@ -111,6 +111,11 @@ function* submitZephrForm({ payload }) {
   }
 }
 
+/**
+ * Submit the user login request to Zephr.
+ *
+ * @param {{ email, password }} credentials The user's login credentials.
+ */
 function* submitLogin(credentials) {
   // Submit the form to Zephr.
   const status = yield call(zephrService.login, credentials);

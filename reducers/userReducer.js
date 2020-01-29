@@ -1,9 +1,4 @@
-import {
-  RECEIVE_USER_LOGIN,
-  RECEIVE_USER_LOGOUT,
-  RECEIVE_USER_REGISTRATION,
-} from 'actions/types';
-import { user as defaultState } from './defaultState';
+import { zephr as defaultState } from './defaultState';
 
 /**
  * State container reducer for user actions.
@@ -12,17 +7,11 @@ import { user as defaultState } from './defaultState';
  * @param {*}        payload
  * @returns {object}
  */
-export default function userReducer(state = defaultState, { type, payload }) {
+export default function userReducer(
+  state = defaultState.user,
+  { type, payload }, // eslint-disable-line no-unused-vars
+) {
   switch (type) {
-    case RECEIVE_USER_LOGIN:
-      return { ...state, ...payload.user };
-    case RECEIVE_USER_LOGOUT:
-      return state;
-    case RECEIVE_USER_REGISTRATION:
-      return {
-        ...state,
-        ...payload.user,
-      };
     default:
       return state;
   }

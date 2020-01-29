@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { createAction } from '.';
 import {
   REQUEST_ZEPHR_FORMS,

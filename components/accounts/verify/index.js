@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
-import { actionVerifyUserEmail } from 'actions/userActions';
 import Link from 'components/helpers/link';
 
 // Styles
@@ -56,13 +55,9 @@ Verify.propTypes = {
   verifyHash: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = () => ({
-  verifyHash: (hash) => actionVerifyUserEmail(hash),
-});
-
 const withRedux = connect(
   null,
-  mapDispatchToProps
+  null
 );
 
 export default withRedux(
