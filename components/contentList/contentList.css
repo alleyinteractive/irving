@@ -14,7 +14,7 @@
     font-family: $sans;
     font-size: rem(14);
     margin-left: -16%;
-    margin-top: 6px;
+    margin-top: rem(6);
     padding: rem(20) rem(40) rem(30) rem(10);
     position: relative;
     width: 100%;
