@@ -16,3 +16,18 @@ export const getCached = createSelector(
   zephrSelector,
   (state) => state.cached,
 );
+
+export const getUser = createSelector(
+  zephrSelector,
+  (state) => state.user,
+);
+
+export const getFirstName = createSelector(
+  zephrSelector,
+  (state) => state.user.firstName,
+);
+
+export const getLastName = createSelector(
+  zephrSelector,
+  (state) => state.user.lastName,
+);
