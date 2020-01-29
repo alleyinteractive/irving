@@ -32,10 +32,6 @@
   input[type='password'] {
     @include formInput;
     margin-right: rem(5);
-  
-    &.inputInvalid {
-      @include inputInvalid;
-    }
   }
 
   input[type='submit'] {
