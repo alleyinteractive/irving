@@ -71,11 +71,4 @@ export const zephr = {
   user: {},
 };
 
-export const user = {
-  id: null,
-  firstName: '',
-  lastName: '',
-  email: null,
-};
-
 export default defaultState;
