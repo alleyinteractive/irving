@@ -14,6 +14,32 @@ const postErrorMessage = (error) => console.error(
 
 export default {
   /**
+   * Create a user account on Zephr.
+   *
+   * @param {{ email, password, attributes }} The registration payload.
+   */
+  async register({ email, password, attributes }) {
+    BlaizeSDK.register(
+      {
+        identifiers: {
+          email_address: email,
+        },
+        validators: {
+          password,
+        },
+        attributes,
+      },
+      (error, success) => {
+        if (error) {
+          console.error(error);
+        } else {
+          console.log(success);
+        }
+      }
+    );
+  },
+
+  /**
    * Log a user in and retrieve their entitlements.
    *
    * @param {string} email    The user's email address.
@@ -22,22 +48,62 @@ export default {
    * @returns {obj}           The logged in user and their associated entitlements.
    */
   async login({ email, password }) {
-    const user = {
-      identifiers: {
-        email_address: email,
-      },
-      validators: {
-        password,
-      },
-    };
+    try {
+      const user = {
+        identifiers: {
+          email_address: email,
+        },
+        validators: {
+          password,
+        },
+      };
 
-    BlaizeSDK.login(user, (error, success) => {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log(success);
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/login`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        }
+      ).then((res) => ({ status: res.status }));
+
+      // Get the response status code.
+      const response = await request;
+
+      if (200 === response.status) {
+        // The cookie is already set by this point, so return a success
+        // message and parse the cookies in the zephr saga.
+        return 'success';
       }
-    });
+
+      return 'failed';
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  async getProfile() {
+    try {
+      BlaizeSDK.getProfile((error, profile) => {
+        if (error) {
+          postErrorMessage(error);
+        } else {
+          console.log(profile);
+        }
+      });
+      // const request = fetch(
+      //   `${process.env.ZEPHR_ROOT_URL}/blaize/profile`,
+      //   { method: 'GET' }
+      // );
+
+      // const response = await request;
+      // console.log(response);
+    } catch (error) {
+      postErrorMessage(error);
+    }
   },
 
   /**

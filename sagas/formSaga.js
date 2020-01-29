@@ -20,6 +20,7 @@ import {
   actionRequestForms,
   actionRequestForm,
   actionReceiveForm,
+  actionReceiveUserSession,
 } from 'actions/zephrActions';
 import {
   REQUEST_SUBMIT,
@@ -99,11 +100,49 @@ function* submitZephrForm({ payload }) {
 
   switch (type) {
     case 'login':
-      yield call(zephrService.login, payload.credentials);
+      yield call(submitLogin, payload.credentials);
       break;
     default:
       // do nothing
       break;
+  }
+}
+
+function* submitLogin(credentials) {
+  // Submit the form to Zephr.
+  const status = yield call(zephrService.login, credentials);
+
+  if ('success' === status) {
+    // On success parse the cookies set by Zephr's API response.
+    const cookieArr = document.cookie
+      .split(';')
+      .reduce((res, item) => {
+        const [key, val] = item.trim().split('=').map(decodeURIComponent);
+        const allNumbers = (str) => /^\d+$/.test(str);
+        try {
+          return Object.assign(
+            res,
+            {
+              [key]: allNumbers(val) ? val : JSON.parse(val),
+            }
+          );
+        } catch (e) {
+          return Object.assign(res, { [key]: val });
+        }
+      }, {});
+
+    const {
+      blaize_session: sessionCookie,
+      blaize_tracking_id: trackingId,
+      blaize_meta: metaCookie,
+    } = cookieArr;
+
+    const sessionData = { sessionCookie, trackingId, metaCookie };
+
+    // Store the session data for later use.
+    yield put(actionReceiveUserSession(sessionData));
+
+    yield call(zephrService.getProfile);
   }
 }
 

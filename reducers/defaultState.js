@@ -67,6 +67,7 @@ export const zephr = {
   isLoading: false,
   forms: [],
   cached: false,
+  session: {},
 };
 
 export const user = {
