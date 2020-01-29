@@ -76,16 +76,8 @@ const TeaserItem = ({
       })}
     >
       <div className={theme.text}>
-        {('sponsored' === themeName) && (
-          <span className={theme.sponsoredFlag}>
-            {__('Sponsored', 'mittr')}
-          </span>
-        )}
         {('search' !== themeName && 'infeed' !== themeName) && <Header />}
-        {(
-          'storygroup' !== themeName &&
-          'sponsored' !== themeName
-        ) && (
+        {('storygroup' !== themeName) && (
           <Meta
             theme={theme}
             topicLink={topicLink}
@@ -102,8 +94,8 @@ const TeaserItem = ({
       )}
       {('' !== teaseCTA &&
         'infeed' !== themeName &&
-        'storygroup' !== themeName &&
-        'sponsored' !== themeName) && (
+        'storygroup' !== themeName
+      ) && (
         <Link to={permalink} className={theme.callToAction}>
           {teaseCTA}
         </Link>
@@ -111,7 +103,7 @@ const TeaserItem = ({
       {(
         image &&
         showImage &&
-        ('storygroup' !== themeName && 'sponsored' !== themeName)
+        'storygroup' !== themeName
       ) && (
         <Link to={permalink} tabIndex="-1" className={theme.image}>
           {image}
