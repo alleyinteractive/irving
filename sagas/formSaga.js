@@ -30,6 +30,7 @@ import {
 } from 'actions/types';
 import { getCached } from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
+import history from 'utils/history';
 
 const debug = createDebug('sagas:form');
 
@@ -150,6 +151,8 @@ function* submitLogin(credentials) {
     if ('object' === typeof profile) {
       // Store user profile information.
       yield put(actionReceiveUserProfile(profile));
+      // Push the user to the homepage.
+      history.push('/');
     }
   }
 }
