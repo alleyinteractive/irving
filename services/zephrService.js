@@ -1,4 +1,6 @@
-import BlaizeSDK from './zephr-sdk/blaize-front-end-sdk.min.js';
+// @todo keep this for mocking calls with the BrowserSDK.
+// It should be remove once the service is fully built out.
+// import BlaizeSDK from './zephr-sdk/blaize-front-end-sdk.min.js';
 
 /**
  * Format an error message to be posted to the console.
@@ -13,32 +15,6 @@ const postErrorMessage = (error) => console.error(
 );
 
 export default {
-  /**
-   * Create a user account on Zephr.
-   *
-   * @param {{ email, password, attributes }} The registration payload.
-   */
-  async register({ email, password, attributes }) {
-    BlaizeSDK.register(
-      {
-        identifiers: {
-          email_address: email,
-        },
-        validators: {
-          password,
-        },
-        attributes,
-      },
-      (error, success) => {
-        if (error) {
-          console.error(error);
-        } else {
-          console.log(success);
-        }
-      }
-    );
-  },
-
   /**
    * Log a user in and retrieve their entitlements.
    *
