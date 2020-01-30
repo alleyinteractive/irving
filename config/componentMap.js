@@ -29,6 +29,10 @@ import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
+import HubContent from 'components/hub/content';
+import HubFeatured from 'components/hub/featured';
+import HubList from 'components/hub/list';
+import HubListItem from 'components/hub/listItem';
 import Image from 'components/image/image';
 import ImageSet from 'components/imageSet';
 import InfiniteItemList from 'components/infiniteItemList';
@@ -124,6 +128,10 @@ export const componentMap = {
   head: Head,
   header: Header,
   'header-with-image': HeaderWithImage,
+  'hub-content': HubContent,
+  'hub-featured-content': HubFeatured,
+  'hub-content-list': HubList,
+  'hub-content-list-item': HubListItem,
   'feed-item': FeedItem,
   html: RawHTML,
   image: Image,
