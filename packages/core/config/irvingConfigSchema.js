@@ -22,4 +22,5 @@ module.exports = {
   stylelintConfig: [() => {}],
   styleguideConfig: [() => {}],
   styleguideSetup: [],
+  trailingSlashBlacklist: [() => []],
 };
