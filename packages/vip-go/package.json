@@ -6,6 +6,7 @@
 		"server/**/*",
 		"services/**/*",
 		"irving.config.server.js",
+		"irving.config.js",
 		"!*.test.js"
 	],
 	"main": "index.js",
