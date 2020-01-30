@@ -1,7 +1,7 @@
 import userConfig from '@irvingjs/irving.config';
-import { getConfigArray } from 'utils/getConfigValue';
+import getConfigField from 'utils/getConfigField';
 
-const trailingSlashBlacklist = getConfigArray('trailingSlashBlacklist');
+const trailingSlashBlacklist = getConfigField('trailingSlashBlacklist');
 
 /**
  * Add a trailling slash to a URL if required (and the appropriate config value is set).
