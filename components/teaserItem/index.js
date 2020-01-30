@@ -77,7 +77,7 @@ const TeaserItem = ({
     >
       <div className={theme.text}>
         {('search' !== themeName && 'infeed' !== themeName) && <Header />}
-        {('storygroup' !== themeName) && (
+        {'storygroup' !== themeName && (
           <Meta
             theme={theme}
             topicLink={topicLink}
@@ -94,17 +94,12 @@ const TeaserItem = ({
       )}
       {('' !== teaseCTA &&
         'infeed' !== themeName &&
-        'storygroup' !== themeName
-      ) && (
+        'storygroup' !== themeName) && (
         <Link to={permalink} className={theme.callToAction}>
           {teaseCTA}
         </Link>
       )}
-      {(
-        image &&
-        showImage &&
-        'storygroup' !== themeName
-      ) && (
+      {(image && showImage && 'storygroup' !== themeName) && (
         <Link to={permalink} tabIndex="-1" className={theme.image}>
           {image}
         </Link>
