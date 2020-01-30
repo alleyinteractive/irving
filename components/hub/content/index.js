@@ -9,6 +9,7 @@ import styles from './hubContent.css';
 const HubContent = ({
   children,
   title,
+  sponsorLabel,
   sponsorName,
   sponsorUrl,
 }) => {
@@ -24,19 +25,21 @@ const HubContent = ({
             to={sponsorUrl}
             className={styles.sponsorLogo}
           >
+
+            <span className={styles.sponsorLabel}>{sponsorLabel}</span>
             <span className={styles.sponsorName}>{sponsorName}</span>
             {sponsorLogo}
           </Link>
         </div>
         <div className={styles.description}>{content}</div>
       </div>
-
     </div>
   );
 };
 
 HubContent.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  sponsorLabel: PropTypes.string.isRequired,
   sponsorName: PropTypes.string.isRequired,
   sponsorUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
