@@ -60,7 +60,6 @@ you to add extra query parameters to all components requests.
 - sagas
     - location
 
-
 ### API Caching
 Requests to the API host from the app running in Node can be cached with Redis.
 If the `REDIS_URL` is set, and the `ioredis` package is installed, caching will

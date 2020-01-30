@@ -2,7 +2,7 @@
 module.exports = {
   name: '',
   babelConfig: [() => {}],
-  envWhitelist: [() => []],
+  envAllowlist: [() => []],
   cacheService: () => {},
   startServer: () => {},
   customizeServer: [() => {}],
@@ -22,4 +22,5 @@ module.exports = {
   stylelintConfig: [() => {}],
   styleguideConfig: [() => {}],
   styleguideSetup: [],
+  trailingSlashDenylist: [],
 };
