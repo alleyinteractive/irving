@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import Link from 'components/helpers/link';
-import { findChildByName } from 'utils/children';
+import { findChild } from 'utils/children';
 
 // Styles
 import styles from './feedItem.css';
@@ -16,7 +16,8 @@ const SponsoredFeedItem = ({
   children,
   sponsorTagline,
 }) => {
-  const logo = findChildByName('image', children);
+  const logo = findChild('imageSize', 'logo', children);
+
   return (
     <article className={styles.wrapper}>
       <header className={styles.header}>
