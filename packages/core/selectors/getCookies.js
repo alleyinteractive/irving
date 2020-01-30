@@ -22,12 +22,12 @@ const getCookies = createSelector(
   ],
   (routeCookies) => {
     const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
-    const cookieAllowList = env.COOKIE_MAP_LIST ?
+    const cookieAllowlist = env.COOKIE_MAP_LIST ?
       env.COOKIE_MAP_LIST.split(',') :
       [];
-    const whiteListCookies = pick(cookieAllowList)(routeCookies);
+    const allowlistCookies = pick(cookieAllowlist)(routeCookies);
 
-    return whiteListCookies;
+    return allowlistCookies;
   }
 );
 

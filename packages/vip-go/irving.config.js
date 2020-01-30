@@ -1,6 +1,6 @@
 module.exports = {
   name: 'vip-go',
-  trailingSlashBlacklist: [
+  trailingSlashDenylist: [
     '/cache-healthcheck',
   ],
 };
