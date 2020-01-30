@@ -30,16 +30,20 @@ const SponsoredFeedItem = ({
           </h4>
         </div>
       </header>
-      <div className={styles.sponsorExcerpt}>
-        <p>{teaserContent}</p>
-      </div>
+      {teaserContent && (
+        <div className={styles.sponsorExcerpt}>
+          <p>{teaserContent}</p>
+        </div>
+      )}
       <Link to={sponsorUrl} className={styles.sponsorLink}>
         <div className={styles.sponsorLogo}>
           {logo}
         </div>
-        <span className={styles.sponsorTagline}>
-          {sponsorTagline}
-        </span>
+        {sponsorTagline && (
+          <span className={styles.sponsorTagline}>
+            {sponsorTagline}
+          </span>
+        )}
       </Link>
     </article>
   );
