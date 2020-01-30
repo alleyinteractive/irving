@@ -143,7 +143,11 @@
   }
 
   & > span {
+    align-items: center;
+    display: flex;
     height: rem(50);
+    justify-content: center;
+    margin: 0;
   }
 }
 
