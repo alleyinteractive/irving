@@ -1,0 +1,19 @@
+.image {
+  background-color: $color-deck;
+  margin-bottom: rem(40);
+  padding: rem(50 0);
+
+  img {
+    margin: 0 auto;
+    max-width: rem(300);
+  }
+}
+
+.title {
+  color: $color-heading;
+  font-size: rem(32);
+}
+
+.description {
+  font-size: rem(40);
+}

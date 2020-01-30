@@ -14,9 +14,9 @@ const PodcastHeader = ({
   const image = findChildByName('image', children);
   return (
     <header className={styles.wrapper}>
-      {image}
-      <h1 className={styles.name}>{title}</h1>
-      <p className={styles.description}>{description}</p>
+      <div className={styles.image}>{image}</div>
+      <h1 className={styles.title}>{title}</h1>
+      <h2 className={styles.description}>{description}</h2>
     </header>
   );
 };
