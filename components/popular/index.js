@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from '../helpers/link';
 import withThemes from '../hoc/withThemes';
 
 // Themes.
 import styles from './popular.css';
-import inFeedStyles from './inFeed.css';
+import inFeedStyles from './popular--inFeed.css';
 
 const Popular = ({
   popular,
@@ -15,20 +16,13 @@ const Popular = ({
 }) => (
   <div
     className={theme.contentWrapper}
-    id="popular--module"
   >
     <div className={theme.contentModule}>
-      <h3 className={theme.title}>Popular</h3>
-      <ul className={theme.stories}>
-        {popular.map((item, index) => (
+      <h3 className={theme.title}>{__('Popular', 'mittr')}</h3>
+      <ol className={theme.stories}>
+        {popular.map((item) => (
           <li className={theme.story} key={item.title}>
-            { 'inFeed' !== themeName && (
-              <div className={theme.itemCount}>
-                0{index + 1}.
-              </div>
-            )}
-            <Link to={item.link}>{item.title}</Link>
-            <br />
+            <Link to={item.link} className={theme.itemTitle}>{item.title}</Link>
             { 'inFeed' === themeName && (
               <span className={theme.byline}>
                 {item.authorLink && (
@@ -39,7 +33,7 @@ const Popular = ({
             )}
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   </div>
 );

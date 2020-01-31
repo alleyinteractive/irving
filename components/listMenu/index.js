@@ -26,9 +26,10 @@ const ListMenu = ({
         const listID = uid('list-menu');
         return (
           <nav
-            className={classNames(theme.wrapper, themeName, {
-              [theme.fullBleed]: fullBleed,
+            className={classNames(theme.wrapper, {
               [theme.withBorder]: withBorder,
+              [theme.fullBleed]: fullBleed,
+              [theme.top10]: 'top10' === themeName,
             })}
             aria-label={__('List', 'mittr')}
           >

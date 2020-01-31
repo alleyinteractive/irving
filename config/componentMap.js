@@ -29,6 +29,10 @@ import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
+import HubContent from 'components/hub/content';
+import HubFeatured from 'components/hub/featured';
+import HubList from 'components/hub/list';
+import HubListItem from 'components/hub/listItem';
 import Image from 'components/image/image';
 import ImageSet from 'components/imageSet';
 import InfiniteItemList from 'components/infiniteItemList';
@@ -56,15 +60,16 @@ import Newsletter from 'components/newsletter';
 import NotConfigured from 'components/notConfigured';
 import Order from 'components/accounts/order';
 import OrderHistory from 'components/accounts/orderHistory';
+import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
-import PasswordInputScreen from 'components/accounts/login/enterPassword';
 import Placeholder from 'components/placeholder';
 import Popular from 'components/popular';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import Register from 'components/accounts/register';
 import Related from 'components/related';
+import Schema from 'components/schema';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
 import ShareStories from 'components/shareStories';
@@ -79,6 +84,7 @@ import SubtopicsSection from 'components/subtopicsSection';
 import Subscriptions from 'components/accounts/subscriptions';
 import TagLink from 'components/tagLink';
 import Tags from 'components/tags';
+import TeamModuleItem from 'components/ourTeamModule/item';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import TopicsModule from 'components/topicsModule';
@@ -112,7 +118,6 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
-  'enter-password': PasswordInputScreen,
   'feed-anchor': CardStack,
   footer: Footer,
   'google-analytics': GoogleAnalytics,
@@ -121,6 +126,10 @@ export const componentMap = {
   head: Head,
   header: Header,
   'header-with-image': HeaderWithImage,
+  'hub-content': HubContent,
+  'hub-featured-content': HubFeatured,
+  'hub-content-list': HubList,
+  'hub-content-list-item': HubListItem,
   'feed-item': FeedItem,
   html: RawHTML,
   image: Image,
@@ -157,12 +166,14 @@ export const componentMap = {
   newsletter: Newsletter,
   order: Order,
   'order-history': OrderHistory,
+  'our-team-module': OurTeamModule,
   pagination: Placeholder,
   parsely: Parsely,
   'page-body': PageBody,
   popular: Popular,
   'post-list': PostList,
   register: Register,
+  schema: Schema,
   'search-bar': SearchBar,
   'section-item': SectionItem,
   'share-stories': ShareStories,
@@ -177,6 +188,7 @@ export const componentMap = {
   'story-group': StoryGroup,
   'tag-link': TagLink,
   tags: Tags,
+  'team-module-item': TeamModuleItem,
   'teaser-item': TeaserItem,
   'term-archive-content-list': TermArchiveContentList,
   'term-archive-content-list-item': TeaserItem,

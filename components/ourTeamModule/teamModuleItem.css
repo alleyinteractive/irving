@@ -1,0 +1,33 @@
+.item {
+  display: flex;
+  list-style: none;
+  margin-bottom: rem(15);
+}
+
+.imageWrapper {
+  height: rem(70);
+  margin-right: rem(15);
+  width: rem(70);
+}
+
+.contentWrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.authorLink,
+.postLink {
+  color: $black;
+  line-height: 1.375;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.authorLink {
+  font-weight: 700;
+  margin-top: rem(2);
+}

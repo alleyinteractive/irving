@@ -1,4 +1,3 @@
-let service;
 const defaultService = {
   get: () => null,
   set: () => {},
@@ -13,20 +12,15 @@ const defaultService = {
  * @returns {CacheService}
  */
 const getService = () => {
-  // Memoize client connection, so it can reused.
-  if (service) {
-    return service;
-  }
-
-  // Redis env variables have not been configured.
-  if (! process.env.REDIS_URL) {
-    return defaultService;
-  }
-
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
   if (! process.env.BROWSER) {
+    // Redis env variables have not been configured.
+    if (! process.env.REDIS_MASTER) {
+      return defaultService;
+    }
+
     let Redis;
     // Check if optional redis client is installed.
     try {
@@ -35,12 +29,20 @@ const getService = () => {
       return defaultService;
     }
 
-    const client = new Redis(process.env.REDIS_URL);
+    const [host, port] = (process.env.REDIS_MASTER).split(':');
+    const opts = { host, port };
+
+    // Add password, if configured
+    if (process.env.REDIS_PASSWORD) {
+      opts.password = process.env.REDIS_PASSWORD;
+    }
+
+    const client = new Redis(opts);
     client.on('error', (err) => {
       console.error(err); // eslint-disable-line no-console
     });
 
-    service = {
+    return {
       client,
       async get(key) {
         return JSON.parse(await this.client.get(key));
@@ -50,15 +52,16 @@ const getService = () => {
           key,
           JSON.stringify(value),
           'EX',
-          process.env.CACHE_EXPIRE || 300
+          600
         );
       },
+      del(key) {
+        return this.client.del(key);
+      },
     };
-
-    return service;
   }
 
   return defaultService;
 };
 
-export default getService;
+module.exports = getService;

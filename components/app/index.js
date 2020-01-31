@@ -12,6 +12,7 @@ import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
 import getProviders from 'selectors/getProviders';
 import styles from './app.css';
+import OneTrust from './oneTrust';
 
 const App = (props) => {
   const { error, roots, providers } = props;
@@ -34,6 +35,7 @@ const App = (props) => {
           </RootProviders>
         </div>
       )}
+      <OneTrust />
     </ErrorBoundary>
   );
 };

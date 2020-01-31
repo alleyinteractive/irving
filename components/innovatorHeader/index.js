@@ -25,7 +25,7 @@ const InnovatorHeader = ({ children, title, color }) => {
             {__('35 Innovators Under 35', 'mittr')}
             <span className={styles.inlineTitle}>{title}</span>
           </h1>
-          <p className={styles.description}>{description}</p>
+          <div className={styles.description}>{description}</div>
         </div>
       </div>
     </header>

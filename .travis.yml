@@ -5,33 +5,51 @@ language: node_js
 node_js:
   - 10
 
-env:
-  global:
-    - API_ROOT_URL=http://live-irving.alleydev.com/wp-json/irving/v1
+# This "ignore" directive prevents Travis from processing branches with
+# a -built suffix, thus avoiding endless loops.
+if: branch =~ ^.*(?<!-built)$
 
 branches:
   only:
+    - /^travis-.*$/
     - production
+    - master
     - develop
-
-notifications:
-  email: false
-
-# Ensure node and npm major version matches from package.json
-before_install:
-  - nvm install "$(jq -r '.engines.node' package.json | egrep -oe "[0-9]+" | head -n1)"
-  - npm i -g npm@$(jq -r '.engines.npm' package.json | egrep -oe "[0-9]+" | head -n1)
-
-install:
-  - npm install
+    - preprod
 
 cache:
   directories:
     - node_modules
 
+# Ensure npm major version matches from package.json
+before_script:
+  - export TRAVIS_REPO_OWNER=${TRAVIS_REPO_SLUG%/*}
+  - npm i -g npm@$(jq -r '.engines.npm' package.json | egrep -oe "[0-9]+" | head -n1)
+  - npm --version
+
 script:
   - npm run test
   - npx stylelint '{assets,client,components,styleguide}/**/*.css' --config config/stylelint.config.js
   - npm run lint
-  - npm run start &
-  - sleep 10 # Give server enough time to spin up
+  - |
+      if [ "$TRAVIS_BRANCH" == "develop" ]; then
+        export API_ROOT_URL=https://technologyreview-com-develop.go-vip.net/wp-json/irving/v1
+        export ROOT_URL=https://irving-technologyreview-com-develop.go-vip.net
+      elif [ "$TRAVIS_BRANCH" == "preprod" ]; then
+        export API_ROOT_URL=https://technologyreview-com-preprod.go-vip.net/wp-json/irving/v1
+        export ROOT_URL=https://irving-technologyreview-com-preprod.go-vip.net
+      elif [ "$TRAVIS_BRANCH" == "master" ]; then
+        export API_ROOT_URL=https://technologyreview-com.go-vip.net/wp-json/irving/v1
+        export ROOT_URL=https://irving-technologyreview-com.go-vip.net
+      fi
+  - echo "Exported API_ROOT_URL $API_ROOT_URL, ROOT_URL $ROOT_URL for branch $TRAVIS_BRANCH"
+  - npm install
+  - npm run build
+
+# Run the build.
+# This will only happen on merges, not on PRs.
+after_script:
+  - bash -e bin/after-script.sh
+
+notifications:
+  email: false
