@@ -60,7 +60,7 @@ const Login = ({ isLoading, forms, submitLogin }) => {
         })}
       >
         {!! error && (
-          <span className={styles.formError}>
+          <span className={styles.formError} role="alert">
             {__(`Oops! Let’s try that again —
              please enter your email address and password.`,
             'mittr')}
