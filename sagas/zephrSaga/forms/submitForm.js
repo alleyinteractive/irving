@@ -36,7 +36,7 @@ function* submitLogin(credentials) {
 
   if ('success' === status) {
     // On success parse the cookies set by Zephr's API response.
-    const sessionData = getUserSession();
+    const sessionData = parseCookies();
 
     // Store the session data for later use.
     yield put(actionReceiveUserSession(sessionData));
@@ -56,20 +56,15 @@ function* submitLogin(credentials) {
   }
 }
 
-function getUserSession() {
-  const cookieArr = parseCookies();
+// function* submitRegistration(credentials) {
+//   yield call(zephrService.register, credentials);
+// }
 
-  const {
-    blaize_session: sessionCookie,
-    blaize_tracking_id: trackingId,
-    blaize_meta: metaCookie,
-  } = cookieArr;
-
-  return { sessionCookie, trackingId, metaCookie };
-}
-
+/**
+ * Parse the cookies set by the Zephr login response for storage in Redux.
+ */
 function parseCookies() {
-  return document.cookie
+  const cookieArr = document.cookie
     .split(';')
     .reduce((res, item) => {
       const [key, val] = item.trim().split('=').map(decodeURIComponent);
@@ -85,4 +80,12 @@ function parseCookies() {
         return Object.assign(res, { [key]: val });
       }
     }, {});
+
+  const {
+    blaize_session: sessionCookie,
+    blaize_tracking_id: trackingId,
+    blaize_meta: metaCookie,
+  } = cookieArr;
+
+  return { sessionCookie, trackingId, metaCookie };
 }
