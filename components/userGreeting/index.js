@@ -2,6 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 // import withThemes from 'components/hoc/withThemes';
+import { connect } from 'react-redux';
+import {
+  getUser,
+  getFirstName,
+  getLastName,
+} from 'selectors/zephrSelector';
 
 // Child components
 import Authenticated from './authenticated';
@@ -13,7 +19,10 @@ import styles from './userGreeting.css';
 // import lightStyles from './light.css';
 
 const UserGreeting = ({
-  firstName, lastName, isAuthenticated, themeName,
+  isAuthenticated,
+  firstName,
+  lastName,
+  themeName,
 }) => (
   <div className={styles.wrapper}>
     {isAuthenticated ? (
@@ -28,6 +37,10 @@ const UserGreeting = ({
   </div>
 );
 
+UserGreeting.defaultProps = {
+  themeName: 'light',
+};
+
 UserGreeting.propTypes = {
   firstName: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -35,11 +48,16 @@ UserGreeting.propTypes = {
   themeName: PropTypes.string,
 };
 
-UserGreeting.defaultProps = {
-  themeName: 'light',
-};
+const withRedux = connect(
+  (state) => ({
+    isAuthenticated: 0 < Object.keys(getUser(state)).length,
+    firstName: getFirstName(state) || '',
+    lastName: getLastName(state) || '',
+  }),
+  null
+);
 
-export default withStyles(styles)(UserGreeting);
+export default withRedux(withStyles(styles)(UserGreeting));
 
 // const wrapWithStyles = withStyles(styles, lightStyles, darkStyles);
 
