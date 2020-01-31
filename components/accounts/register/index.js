@@ -6,7 +6,6 @@ import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { actionSubmitUserRegistration } from 'actions/userActions';
 import LazyRecaptcha from './recaptcha';
 
 // Styles
@@ -318,12 +317,9 @@ Register.propTypes = {
   submitRegistration: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = () => ({
-  submitRegistration: (payload) => actionSubmitUserRegistration(payload),
-});
 const withRedux = connect(
-  undefined,
-  mapDispatchToProps
+  null,
+  null,
 );
 
 export default withRedux(

@@ -34,20 +34,6 @@ export const player = {
   volume: 0.5,
 };
 
-export const user = {
-  authorization: {
-    isValid: false,
-    validTo: null,
-    header: '',
-  },
-  id: null,
-  firstName: '',
-  lastName: '',
-  email: null,
-  pendingEmail: null,
-  pendingVerification: false,
-};
-
 export const story = {
   showFullText: false,
 };
@@ -75,6 +61,14 @@ const defaultState = {
   player,
   route,
   visible,
+};
+
+export const zephr = {
+  isLoading: false,
+  forms: [],
+  cached: false,
+  session: {},
+  user: {},
 };
 
 export default defaultState;
