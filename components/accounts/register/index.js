@@ -17,7 +17,6 @@ import styles from './register.css';
 
 const Register = ({ isLoading, forms, submitRegistration }) => {
   const registrationForm = forms.filter((form) => '/register' === form.route)[0];
-  console.log(registrationForm);
   // const [captcha, setCaptcha] = useState({
   //   isValid: false,
   //   hasError: false,
@@ -51,11 +50,9 @@ const Register = ({ isLoading, forms, submitRegistration }) => {
         {__('Complete your account information below.', 'mittr')}
       </p>
       <form onSubmit={handleSubmit} className={styles.formWrap}>
-        <div className={styles.formGroup}>
-          {! isLoading && registrationForm ? (
-            registrationForm.components
-          ) : null}
-        </div>
+        {! isLoading && registrationForm ? (
+          registrationForm.components
+        ) : null}
         <h2 className={styles.confirmationText}>
           {__(
             "We'll email you a password confirmation link. Happy reading!", // eslint-disable-line quotes

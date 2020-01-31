@@ -87,6 +87,7 @@ function generatePasswordFields(slug) {
     placeholder,
     required: true,
     defaultValue: '',
+    autoComplete: id,
   };
 
   const fields = [
@@ -104,6 +105,7 @@ function generatePasswordFields(slug) {
       placeholder: 'Confirm your password',
       required: true,
       defaultValue: '',
+      autoComplete: id,
     };
 
     fields.push(React.createElement('input', verifyProps, null));
