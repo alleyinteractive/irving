@@ -32,6 +32,11 @@ const SocialItem = ({
           className={theme.anchor}
           onClick={(e) => {
             e.preventDefault();
+            if ('email' === type) {
+              window.open(
+                url,
+              );
+            }
             window.open(
               url,
               'socialWindow',
