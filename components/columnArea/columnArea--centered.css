@@ -1,4 +1,4 @@
-/* One Column theme styles */
+/* Centered column theme styles */
 .wrapper {
   composes: wrapper from './columnArea--feed.css';
 }
