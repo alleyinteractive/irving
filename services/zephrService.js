@@ -9,7 +9,7 @@
  *
  * @returns {obj} The formatted error.
  */
-const postErrorMessage = (error) => console.error(
+const postErrorMessage = (error) => console.error( // eslint-disable-line no-console
   'There was a problem sending the request to Zephr.',
   error
 );
@@ -95,7 +95,7 @@ export default {
   async getForm(type) {
     try {
       const request = await fetch(
-        `${process.env.API_ROOT_URL}/data/zephr_service?&request_type=${type}&method=GET` // eslint-disable-line max-len
+        `${process.env.API_ROOT_URL}/data/zephr_service?&request_type=${type}` // eslint-disable-line max-len
       );
 
       return await request.json();
