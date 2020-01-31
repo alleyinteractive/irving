@@ -2,12 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
-import { __ } from '@wordpress/i18n';
+import setContrast from 'utils/setContrast';
+import hexToRgb from 'utils/hexToRgb';
 
 // Styles
 import styles from './listHeader.css';
 
-const ListHeader = ({ children, title, color }) => {
+const ListHeader = ({
+  children,
+  color,
+  listType,
+  title,
+}) => {
   const description = findChildByName('list-description', children);
   const menu = findChildByName('list-menu', children);
   const socialSharing = findChildByName('social-sharing', children);
@@ -17,8 +23,13 @@ const ListHeader = ({ children, title, color }) => {
     <header className={styles.wrapper} style={{ backgroundColor: color }}>
       <div className={styles.container}>
         <div className={styles.meta}>
-          <h1 className={styles.title}>
-            {__('35 Innovators Under 35', 'mittr')}
+          <h1
+            className={styles.title}
+            style={{
+              color: setContrast(hexToRgb(color)),
+            }}
+          >
+            {listType}
             <span className={styles.inlineTitle}>{title}</span>
           </h1>
           <div className={styles.description}>{description}</div>
@@ -37,6 +48,7 @@ ListHeader.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   title: PropTypes.string.isRequired,
   color: PropTypes.string,
+  listType: PropTypes.string.isRequired,
 };
 
 ListHeader.defaultProps = {
