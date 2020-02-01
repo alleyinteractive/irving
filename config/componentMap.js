@@ -29,7 +29,10 @@ import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
-import HubContent from 'components/hubContent';
+import HubContent from 'components/hub/content';
+import HubFeatured from 'components/hub/featured';
+import HubList from 'components/hub/list';
+import HubListItem from 'components/hub/listItem';
 import Image from 'components/image/image';
 import ImageSet from 'components/imageSet';
 import InfiniteItemList from 'components/infiniteItemList';
@@ -60,7 +63,6 @@ import OrderHistory from 'components/accounts/orderHistory';
 import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
-import PasswordInputScreen from 'components/accounts/login/enterPassword';
 import Placeholder from 'components/placeholder';
 import PodcastHeader from 'components/podcastHeader';
 import Popular from 'components/popular';
@@ -117,7 +119,6 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
-  'enter-password': PasswordInputScreen,
   'feed-anchor': CardStack,
   footer: Footer,
   'google-analytics': GoogleAnalytics,
@@ -127,6 +128,9 @@ export const componentMap = {
   header: Header,
   'header-with-image': HeaderWithImage,
   'hub-content': HubContent,
+  'hub-featured-content': HubFeatured,
+  'hub-content-list': HubList,
+  'hub-content-list-item': HubListItem,
   'feed-item': FeedItem,
   html: RawHTML,
   image: Image,
