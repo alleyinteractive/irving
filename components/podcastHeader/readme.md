@@ -1,7 +1,7 @@
-## CardStack component
+## PodcastHeader component
 
-Example use of CardStack component.
+Example use of PodcastHeader component.
 
 ```jsx
-<CardStack name='' description='' children='' color='' isSubtopic={false} />
+<PodcastHeader title='' description='' children='' />
 ```
