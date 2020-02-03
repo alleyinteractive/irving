@@ -3,6 +3,7 @@ import {
   actionReceiveUserSession,
   actionReceiveUserProfile,
   actionReceiveLoginError,
+  actionReceiveUserRegistration,
 } from 'actions/zephrActions';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
@@ -18,6 +19,9 @@ export default function* submitForm({ payload: { type, credentials } }) {
   switch (type) {
     case 'login':
       yield call(submitLogin, credentials);
+      break;
+    case 'registration':
+      yield call(submitRegistration, credentials);
       break;
     default:
       // do nothing
@@ -40,25 +44,53 @@ function* submitLogin(credentials) {
 
     // Store the session data for later use.
     yield put(actionReceiveUserSession(sessionData));
-
-    // Get the user's profile.
-    const profile = yield call(zephrService.getProfile);
-
-    // `null` will be returned if no profile can be found.
-    if ('object' === typeof profile) {
-      // Store user profile information.
-      yield put(actionReceiveUserProfile(profile));
-      // Push the user to the homepage.
-      history.push('/');
-    }
+    // Get the user's profile and redirect.
+    yield call(getProfile);
   } else {
     yield put(actionReceiveLoginError());
   }
 }
 
-// function* submitRegistration(credentials) {
-//   yield call(zephrService.register, credentials);
-// }
+/**
+ * Submit the user's registration request to Zephr.
+ *
+ * @param {{ email, password, attributes }} credentials The user's registration credentials.
+ */
+function* submitRegistration(credentials) {
+  // Submit the form to Zephr.
+  const response = yield call(zephrService.register, credentials);
+  const {
+    status,
+    cookie,
+    trackingId,
+  } = response;
+
+  if ('success' === status) {
+    // Store the session data for later use.
+    yield put(actionReceiveUserSession({ sessionCookie: cookie, trackingId }));
+    // Set the user's email verification state in the store to false on initial registration.
+    yield put(actionReceiveUserRegistration());
+    // Get the user's profile and redirect.
+    yield call(getProfile);
+  }
+}
+
+/**
+ * Use the session cookie set by logging in or registering a user with Zephr to retrieve
+ * their profile and store their information in our Redux store.
+ */
+function* getProfile() {
+  // Get the user's profile.
+  const profile = yield call(zephrService.getProfile);
+
+  // `null` will be returned if no profile can be found.
+  if ('object' === typeof profile) {
+    // Store user profile information.
+    yield put(actionReceiveUserProfile(profile));
+    // Push the user to the homepage.
+    history.push('/');
+  }
+}
 
 /**
  * Parse the cookies set by the Zephr login response for storage in Redux.

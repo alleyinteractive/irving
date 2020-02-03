@@ -7,6 +7,7 @@ import {
   RECEIVE_ZEPHR_USER_SESSION,
   RECEIVE_ZEPHR_USER_PROFILE,
   RECEIVE_LOGIN_ERROR,
+  RECEIVE_USER_REGISTRATION,
 } from './types';
 
 /**
@@ -81,4 +82,8 @@ export function actionReceiveUserProfile(payload) {
  */
 export function actionReceiveLoginError() {
   return createAction(RECEIVE_LOGIN_ERROR);
+}
+
+export function actionReceiveUserRegistration() {
+  return createAction(RECEIVE_USER_REGISTRATION);
 }

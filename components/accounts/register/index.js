@@ -24,6 +24,35 @@ const Register = ({ isLoading, forms, submitRegistration }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const fullName = document.getElementById('full-name');
+    const email = document.getElementById('email-address');
+    const password = document.getElementById('new-password');
+    const verifyPassword = document.getElementById('verify-password');
+
+    // Drop focus on the active form element.
+    const focused = document.activeElement;
+    focused.blur();
+
+    if (password.value !== verifyPassword.value) {
+      // dispatch password error.
+      console.log('error! passwords do not match');
+    } else {
+      const names = fullName.value.split(' ');
+
+      submitRegistration({
+        type: 'registration',
+        credentials: {
+          email: email.value,
+          password: password.value,
+          attributes: {
+            fullName: fullName.value,
+            firstName: names[0],
+            lastName: names[names.length - 1],
+          },
+        },
+      });
+    }
   };
 
   // const renderDynamicError = (obj) => (
@@ -67,7 +96,7 @@ const Register = ({ isLoading, forms, submitRegistration }) => {
 Register.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   forms: PropTypes.array.isRequired,
-  submitRegistration: PropTypes.func.isRequired
+  submitRegistration: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

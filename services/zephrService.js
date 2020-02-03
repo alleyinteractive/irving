@@ -16,6 +16,63 @@ const postErrorMessage = (error) => console.error( // eslint-disable-line no-con
 
 export default {
   /**
+   * Register a user and retrieve their entitlements.
+   *
+   * @param {{ email, password, attributes }} The user's credentials.
+   *
+   * @return {obj}                            The registered user and their associated entitlements.
+   */
+  async register({ email, password, attributes }) {
+    try {
+      const {
+        fullName,
+        firstName,
+        lastName,
+      } = attributes;
+
+      const user = {
+        identifiers: {
+          email_address: email,
+        },
+        validators: {
+          password,
+        },
+        attributes: {
+          'full-name': fullName,
+          'first-name': firstName,
+          'last-name': lastName,
+        },
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/register`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        }
+      ).then((res) => res.json());
+
+      const response = await request;
+
+      if ('cookie' in response) {
+        return {
+          status: 'success',
+          cookie: response.cookie,
+          trackingId: response.tracking_id,
+        };
+      }
+
+      return { status: 'failed' };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
    * Log a user in and retrieve their entitlements.
    *
    * @param {string} email    The user's email address.
