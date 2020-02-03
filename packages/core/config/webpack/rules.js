@@ -91,6 +91,7 @@ module.exports = function getRules(context) {
         {
           loader: 'url-loader',
           options: {
+            publicPath: '/',
             limit: 10000,
             emitFile: ! isServer,
             name: 'static/media/[name].[hash:8].[ext]',
