@@ -199,7 +199,7 @@ export function createZephrForm(payload) {
     input: {
       slug,
       fields,
-    },
+    } = {},
     submitText,
   } = payload;
 
