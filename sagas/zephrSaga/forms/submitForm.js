@@ -1,4 +1,4 @@
-import { call, put } from 'redux-saga';
+import { call, put } from 'redux-saga/effects';
 import {
   actionReceiveUserSession,
   actionReceiveUserProfile,
