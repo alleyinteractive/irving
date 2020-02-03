@@ -20,11 +20,11 @@ const Login = ({ isLoading, forms, submitLogin }) => {
     event.preventDefault();
 
     const email = document.getElementById('email-address');
-    const password = document.getElementById('password');
+    const password = document.getElementById('current-password');
 
     // Drop focus on the inputs.
-    email.blur();
-    password.blur();
+    const focused = document.activeElement;
+    focused.blur();
 
     submitLogin({
       type: 'login',

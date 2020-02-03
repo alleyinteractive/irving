@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { call, put } from 'redux-saga/effects';
 import {
   actionReceiveUserSession,
   actionReceiveUserProfile,
   actionReceiveLoginError,
   actionReceiveUserRegistration,
+  actionReceiveUserLogin,
 } from 'actions/zephrActions';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
@@ -36,18 +38,24 @@ export default function* submitForm({ payload: { type, credentials } }) {
  */
 function* submitLogin(credentials) {
   // Submit the form to Zephr.
-  const status = yield call(zephrService.login, credentials);
+  const response = yield call(zephrService.login, credentials);
+  const {
+    status,
+    type,
+    cookie,
+    trackingId,
+  } = response;
 
   if ('success' === status) {
-    // On success parse the cookies set by Zephr's API response.
-    const sessionData = parseCookies();
-
     // Store the session data for later use.
-    yield put(actionReceiveUserSession(sessionData));
+    yield put(actionReceiveUserSession({ sessionCookie: cookie, trackingId }));
+    // Set the user's login state and clean up any existing error state on the form.
+    yield put(actionReceiveUserLogin());
     // Get the user's profile and redirect.
     yield call(getProfile);
   } else {
-    yield put(actionReceiveLoginError());
+    // Set the error state on the form.
+    yield put(actionReceiveLoginError(type));
   }
 }
 
@@ -90,34 +98,4 @@ function* getProfile() {
     // Push the user to the homepage.
     history.push('/');
   }
-}
-
-/**
- * Parse the cookies set by the Zephr login response for storage in Redux.
- */
-function parseCookies() {
-  const cookieArr = document.cookie
-    .split(';')
-    .reduce((res, item) => {
-      const [key, val] = item.trim().split('=').map(decodeURIComponent);
-      const allNumbers = (str) => /^\d+$/.test(str);
-      try {
-        return Object.assign(
-          res,
-          {
-            [key]: allNumbers(val) ? val : JSON.parse(val),
-          }
-        );
-      } catch (e) {
-        return Object.assign(res, { [key]: val });
-      }
-    }, {});
-
-  const {
-    blaize_session: sessionCookie,
-    blaize_tracking_id: trackingId,
-    blaize_meta: metaCookie,
-  } = cookieArr;
-
-  return { sessionCookie, trackingId, metaCookie };
 }

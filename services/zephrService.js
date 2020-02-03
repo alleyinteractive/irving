@@ -101,18 +101,35 @@ export default {
           },
           body: JSON.stringify(user),
         }
-      ).then((res) => ({ status: res.status }));
+      ).then((res) => {
+        if (404 === res.status) {
+          return {
+            status: 'failed',
+            type: 'user-not-found',
+          };
+        }
 
-      // Get the response status code.
+        if (401 === res.status) {
+          return {
+            status: 'failed',
+            type: 'invalid-password',
+          };
+        }
+
+        return res.json();
+      });
+
       const response = await request;
 
-      if (200 === response.status) {
-        // The cookie is already set by this point, so return a success
-        // message and parse the cookies in the zephr saga.
-        return 'success';
+      if ('status' in response && 'failed' === response.status) {
+        return response;
       }
 
-      return 'failed';
+      return {
+        status: 'success',
+        cookie: response.cookie,
+        trackingId: response.tracking_id,
+      };
     } catch (error) {
       return postErrorMessage(error);
     }

@@ -55,20 +55,6 @@ const Register = ({ isLoading, forms, submitRegistration }) => {
     }
   };
 
-  // const renderDynamicError = (obj) => (
-  //   <span
-  //     className={styles.formError}
-  //     aria-live="assertive"
-  //     id="email-error"
-  //   >
-  //     {__(
-  //       `Oops! Let’s try that again —
-  //     ${obj.errorMessage}`,
-  //       'mittr'
-  //     )}
-  //   </span>
-  // );
-
   return (
     <div className={styles.accountWrap}>
       <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>

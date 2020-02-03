@@ -8,6 +8,7 @@ import {
   RECEIVE_ZEPHR_USER_PROFILE,
   RECEIVE_LOGIN_ERROR,
   RECEIVE_USER_REGISTRATION,
+  RECEIVE_USER_LOGIN,
 } from './types';
 
 /**
@@ -75,13 +76,17 @@ export function actionReceiveUserProfile(payload) {
   return createAction(RECEIVE_ZEPHR_USER_PROFILE, payload);
 }
 
+export function actionReceiveUserLogin() {
+  return createAction(RECEIVE_USER_LOGIN);
+}
+
 /**
  * A Redux action that represents when a user submits incorrect information in the login form.
  *
  * @returns {{type}} The Redux action.
  */
-export function actionReceiveLoginError() {
-  return createAction(RECEIVE_LOGIN_ERROR);
+export function actionReceiveLoginError(payload) {
+  return createAction(RECEIVE_LOGIN_ERROR, payload);
 }
 
 export function actionReceiveUserRegistration() {

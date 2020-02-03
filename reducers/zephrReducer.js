@@ -9,6 +9,7 @@ import {
   RECEIVE_USER_REGISTRATION,
   RECEIVE_REGISTRATION_ERROR,
 } from 'actions/types';
+import React from 'react';
 import { zephr as defaultState } from './defaultState';
 
 /**
@@ -45,7 +46,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
     case RECEIVE_USER_LOGIN:
       return setLoginFormState(state);
     case RECEIVE_LOGIN_ERROR:
-      return setLoginFormErrorState(state);
+      return setLoginFormErrorState(state, payload);
     case RECEIVE_USER_REGISTRATION:
       return setRegistrationFormState(state);
     case RECEIVE_REGISTRATION_ERROR:
@@ -87,9 +88,10 @@ function setLoginFormState(state) {
 /**
  * Set the error state for an invalid login attempt.
  *
- * @param {*} state
+ * @param {object} state
+ * @param {string} errorType
  */
-function setLoginFormErrorState(state) {
+function setLoginFormErrorState(state, errorType) {
   return {
     ...state,
     forms: [
@@ -103,28 +105,50 @@ function setLoginFormErrorState(state) {
             return {
               ...form,
               errorCount: errorCount + 1,
-              requireCaptcha: 2 < errorCount,
+              requireCaptcha: 2 <= errorCount,
             };
           }
 
-          // Add aria-invalid state to form components
-          const components = form.components.map((component) => ({
-            ...component,
+          // Get the error's target input.
+          const targetId = setErrorTargetId(errorType);
+          // Get the target's position in the components array.
+          const targetPos = form.components.map(
+            (el) => el.props.id
+          ).indexOf(targetId);
+          // Get the target.
+          const target = form.components[targetPos];
+          // Add the error state to the target.
+          const erroredTarget = {
+            ...target,
             props: {
-              ...component.props,
+              ...target.props,
               'aria-invalid': true,
             },
-          }));
-
-          const errorMessage = `Oops! Let’s try that again —
-          please enter your email address and password.`;
+          };
+          // Replace the component with the error state.
+          form.components.splice(
+            targetPos,
+            1,
+            erroredTarget,
+          );
+          // Create the error message component.
+          const errorMessage = React.createElement(
+            'span',
+            {
+              key: `${targetId}-error-message`,
+              className: 'form-error',
+            },
+            formatErrorMessage(errorType),
+          );
+          // Add the error message to the components array.
+          form.components.splice(targetPos + 1, 0, errorMessage);
 
           return {
             ...form,
-            components,
             error: true,
             errorCount: 1,
-            errorMessage,
+            errorMessage: formatErrorMessage(errorType),
+            requireCaptcha: false,
           };
         }
 
@@ -158,3 +182,29 @@ function setRegistrationFormErrorState(state) {
   // do something
   console.log(state);
 }
+
+function setErrorTargetId(type) {
+  switch (type) {
+    case 'user-not-found':
+      return 'email-address';
+    case 'invalid-password':
+      return 'current-password';
+    default:
+      return null;
+  }
+}
+
+/* eslint-disable max-len */
+function formatErrorMessage(type) {
+  const messageBase = 'Oops! Let’s try that again';
+
+  switch (type) {
+    case 'user-not-found':
+      return `${messageBase} — User not found. Please enter your email address.`;
+    case 'invalid-password':
+      return `${messageBase} — Invalid password. Please enter your password.`;
+    default:
+      return messageBase;
+  }
+}
+/* eslint-enable */
