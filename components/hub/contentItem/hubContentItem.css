@@ -58,7 +58,7 @@
   }
 
   > span {
-    /* @todo remove placeholder style */
-    background-color: #eee;
+    /* @todo confirm this is necesary on production, as image cropping was not happening locally */
+    overflow: hidden;
   }
 }
