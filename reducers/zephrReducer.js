@@ -47,47 +47,65 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
     case SUBMIT_ZEPHR_FORM:
       return submitForm(state, payload.type);
     case RECEIVE_USER_LOGIN:
-      return setLoginFormState(state);
-    case RECEIVE_LOGIN_ERROR:
-      return setLoginFormErrorState(state, payload);
-    case RECEIVE_USER_REGISTRATION:
-      return setRegistrationFormState(state);
-    case RECEIVE_REGISTRATION_ERROR:
-      return setRegistrationFormErrorState(state);
-    case RECEIVE_PASSWORD_VERIFICATION_ERROR:
-      return setRegistrationFormErrorState({
+      return {
         ...state,
-        type: 'password-verification-error',
-      });
+        forms: [
+          ...state.forms.map((form) => {
+            if ('/login' === form.route && true === form.error) {
+              return {
+                ...form,
+                error: false,
+                errorCount: null,
+              };
+            }
+
+            return form;
+          }),
+        ],
+      };
+    case RECEIVE_LOGIN_ERROR:
+      return setFormErrorState(state, '/login', payload);
+    case RECEIVE_USER_REGISTRATION:
+      return {
+        ...state,
+        forms: [
+          ...state.forms.map((form) => {
+            if ('/register' === form.route && true === form.error) {
+              return {
+                ...form,
+                error: false,
+                errorCount: null,
+              };
+            }
+
+            return form;
+          }),
+        ],
+        user: {
+          ...state.user,
+          emailVerified: false,
+        },
+      };
+    case RECEIVE_REGISTRATION_ERROR:
+      return setFormErrorState(state, '/register', payload);
+    case RECEIVE_PASSWORD_VERIFICATION_ERROR:
+      // This error needs to be thrown separately from the generic form error state so
+      // that the error state can be applied to both password fields on the registration form.
+      return setPasswordErrorState(state);
     default:
       return state;
   }
 }
 
 /**
- * Set login form state. Clean up if an error state exists.
+ * A function that is run any time a form is submitted that cleans up the state of a
+ * submitted form that contains errors. If no errors are present, the form is returned.
  *
- * @param {*} state
+ * @param {object} state   The current state.
+ * @param {string} type    The form type (e.g. login).
+ *
+ * @returns {object} state The transformed state.
  */
-function setLoginFormState(state) {
-  return {
-    ...state,
-    forms: [
-      ...state.forms.map((form) => {
-        if ('/login' === form.route && true === form.error) {
-          return {
-            ...form,
-            error: false,
-            errorCount: null,
-          };
-        }
-
-        return form;
-      }),
-    ],
-  };
-}
-
 function submitForm(state, type) {
   return {
     ...state,
@@ -131,27 +149,18 @@ function submitForm(state, type) {
 /**
  * Set the error state for an invalid login attempt.
  *
- * @param {object} state
- * @param {string} errorType
+ * @param {object} state     Current state.
+ * @param {string} route     The form's route (e.g. /login).
+ * @param {string} errorType The type of error returned from Zephr.
+ *
+ * @return {object} state    Transformed state.
  */
-function setLoginFormErrorState(state, errorType) {
+function setFormErrorState(state, route, errorType) {
   return {
     ...state,
     forms: [
       ...state.forms.map((form) => {
-        if ('/login' === form.route) {
-          // Check to see if the form is already in an error state.
-          if ('errorCount' in form) {
-            // Get the current error count.
-            const { errorCount } = form;
-
-            return {
-              ...form,
-              errorCount: errorCount + 1,
-              requireCaptcha: 2 <= errorCount,
-            };
-          }
-
+        if (route === form.route) {
           // Get the error's target input.
           const targetId = setErrorTargetId(errorType);
           // Get the target's position in the components array.
@@ -186,11 +195,22 @@ function setLoginFormErrorState(state, errorType) {
           // Add the error message to the components array.
           form.components.splice(targetPos + 1, 0, errorMessage);
 
+          // Check to see if the form is already in an error state.
+          if ('errorCount' in form) {
+            // Get the current error count.
+            const { errorCount } = form;
+
+            return {
+              ...form,
+              errorCount: errorCount + 1,
+              requireCaptcha: 1 <= errorCount,
+            };
+          }
+
           return {
             ...form,
             error: true,
             errorCount: 1,
-            errorMessage: formatErrorMessage(errorType),
             requireCaptcha: false,
           };
         }
@@ -202,30 +222,13 @@ function setLoginFormErrorState(state, errorType) {
 }
 
 /**
- * Set registration form state. Clean up if an error state exists.
+ * A function that identifies a given component ID to have and error state
+ * applied based on the error type.
  *
- * @param {*} state
- */
-function setRegistrationFormState(state) {
-  return {
-    ...state,
-    user: {
-      ...state.user,
-      emailVerified: false,
-    },
-  };
-}
-
-/**
- * Set the error state for an invalid registration attempt.
+ * @param {string} type The error type.
  *
- * @param {*} state
+ * @returns {string} The target component's ID.
  */
-function setRegistrationFormErrorState(state) {
-  // do something
-  console.log(state);
-}
-
 function setErrorTargetId(type) {
   switch (type) {
     case 'user-not-found':
@@ -237,6 +240,14 @@ function setErrorTargetId(type) {
   }
 }
 
+/**
+ * A function that formats the error message to be displayed a below an invalid form
+ * input based on the error type.
+ *
+ * @param {string} type The error type.
+ *
+ * @returns {string} The error message.
+ */
 /* eslint-disable max-len */
 function formatErrorMessage(type) {
   const messageBase = 'Oops! Let’s try that again';
@@ -251,3 +262,8 @@ function formatErrorMessage(type) {
   }
 }
 /* eslint-enable */
+
+function setPasswordErrorState(state) {
+  console.log(state);
+  // do something.
+}
