@@ -49,6 +49,9 @@ export async function fetchComponents(
     ...getExtraQueryParams(),
     ...queryString.parse(search),
     ...cookie,
+  },
+  {
+    encode: false,
   });
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
 
