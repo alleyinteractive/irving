@@ -7,11 +7,18 @@ import Link from 'components/helpers/link';
 // Styles
 import styles from './listMenuItem.css';
 
-const ListMenuItem = ({ title, url, useAnchorNav }) => {
+const ListMenuItem = ({
+  title,
+  url,
+  useAnchorNav,
+}) => {
   const anchorLink = `#${dashify(title)}`;
   return (
     <li className={styles.wrapper}>
-      <Link to={useAnchorNav ? anchorLink : url} className={styles.link}>
+      <Link
+        to={useAnchorNav ? anchorLink : url}
+        className={styles.link}
+      >
         {title}
       </Link>
     </li>

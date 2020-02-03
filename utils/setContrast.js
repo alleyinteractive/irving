@@ -3,6 +3,9 @@
  * @param {string} rgb
  */
 export default function setContrast(rgb) {
-  return 125 < (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000 ?
-    '#000000' : '#ffffff';
+  if (rgb) {
+    return 125 < (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000 ?
+      '#000000' : '#ffffff';
+  }
+  return '#ffffff';
 }

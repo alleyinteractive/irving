@@ -12,12 +12,17 @@ const ListHeader = ({
   children,
   color,
   listType,
+  textColor,
   title,
 }) => {
   const description = findChildByName('list-description', children);
   const menu = findChildByName('list-menu', children);
   const socialSharing = findChildByName('social-sharing', children);
   const image = findChildByName('image', children);
+  // If textColor is not being set from post_meta in the api, then set the
+  // appropriate text color based on the color.
+  const headerTextColor = '' === textColor ?
+    setContrast(hexToRgb(color)) : textColor;
 
   return (
     <header className={styles.wrapper} style={{ backgroundColor: color }}>
@@ -26,7 +31,7 @@ const ListHeader = ({
           <h1
             className={styles.title}
             style={{
-              color: setContrast(hexToRgb(color)),
+              color: headerTextColor,
             }}
           >
             {listType}
@@ -49,10 +54,12 @@ ListHeader.propTypes = {
   title: PropTypes.string.isRequired,
   color: PropTypes.string,
   listType: PropTypes.string.isRequired,
+  textColor: PropTypes.string,
 };
 
 ListHeader.defaultProps = {
   color: '#333333',
+  textColor: '',
 };
 
 export default withStyles(styles)(ListHeader);
