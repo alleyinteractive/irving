@@ -80,9 +80,9 @@ const wrapWithStyles = withStyles(styles, lightIconStyles);
 
 const wrapWithThemes = withThemes('social-item', {
   default: styles,
-  lightIcon: lightIconStyles,
+  light: lightIconStyles,
   flyoutIcon: flyoutIconStyles,
-  darkIcon: darkIconStyles,
+  dark: darkIconStyles,
 });
 
 export default wrapWithStyles(wrapWithThemes(SocialItem));
