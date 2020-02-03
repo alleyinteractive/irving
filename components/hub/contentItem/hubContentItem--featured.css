@@ -1,12 +1,16 @@
 .wrapper {
-  border-top: 1px solid $black;
-  display: flex;
-  flex-wrap: wrap;
   padding: rem(20 0);
 
   @media ($mdMin) {
     padding: rem(20 0 40);
   }
+}
+
+.inner {
+  border-top: 1px solid $black;
+  display: flex;
+  flex-wrap: wrap;
+  padding: rem(20 0);
 }
 
 .content {
