@@ -24,6 +24,7 @@
 }
 
 .eyebrow {
+  display: block;
   font-size: rem(15);
   font-weight: 600;
   margin-bottom: rem(20);
@@ -63,10 +64,5 @@
     flex: 1 0 50%;
     padding: rem(20 0 0 25);
     width: 50%;
-  }
-
-  > span {
-    /* @todo remove placeholder style */
-    background-color: #eee;
   }
 }

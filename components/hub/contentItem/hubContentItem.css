@@ -9,10 +9,12 @@
   border-top: 1px solid $black;
   display: flex;
   flex-flow: row wrap;
-  padding: rem(20 0);
+  padding: rem(20 0 40);
 
   @media ($mdMin) {
     flex-flow: column nowrap;
+    height: 100%;
+    justify-content: center;
   }
 }
 
@@ -26,6 +28,7 @@
 }
 
 .eyebrow {
+  display: block;
   font-size: rem(16);
   font-weight: 600;
   margin-bottom: rem(10);
@@ -36,6 +39,12 @@
   font-weight: 600;
   line-height: 1.1;
   margin-bottom: rem(10);
+
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .description {
@@ -51,7 +60,7 @@
   width: 50%;
 
   @media ($mdMin) {
-    flex: 1 0 auto;
+    flex: 0 1 auto;
     margin: rem(20 0 0);
     padding: 0;
     width: 100%;
@@ -60,5 +69,6 @@
   > span {
     /* @todo confirm this is necesary on production, as image cropping was not happening locally */
     overflow: hidden;
+    margin-bottom: 0;
   }
 }
