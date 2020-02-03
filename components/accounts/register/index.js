@@ -10,12 +10,20 @@ import {
   getIsLoading,
   getForms,
 } from 'selectors/zephrSelector';
-import { actionSubmitForm } from 'actions/zephrActions';
+import {
+  actionSubmitForm,
+  actionReceiveInvalidPassword,
+} from 'actions/zephrActions';
 
 // Styles
 import styles from './register.css';
 
-const Register = ({ isLoading, forms, submitRegistration }) => {
+const Register = ({
+  isLoading,
+  forms,
+  submitRegistration,
+  displayInvalidPasswordError
+}) => {
   const registrationForm = forms.filter((form) => '/register' === form.route)[0];
   // const [captcha, setCaptcha] = useState({
   //   isValid: false,
@@ -35,8 +43,7 @@ const Register = ({ isLoading, forms, submitRegistration }) => {
     focused.blur();
 
     if (password.value !== verifyPassword.value) {
-      // dispatch password error.
-      console.log('error! passwords do not match');
+      displayInvalidPasswordError();
     } else {
       const names = fullName.value.split(' ');
 
@@ -83,11 +90,14 @@ Register.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   forms: PropTypes.array.isRequired,
   submitRegistration: PropTypes.func.isRequired,
+  displayInvalidPasswordError: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   submitRegistration: (registrationData) =>
     dispatch(actionSubmitForm(registrationData)),
+  displayInvalidPasswordError: () =>
+    dispatch(actionReceiveInvalidPassword()),
 });
 const withRedux = connect(
   (state) => ({

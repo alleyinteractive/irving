@@ -9,6 +9,7 @@ import {
   RECEIVE_LOGIN_ERROR,
   RECEIVE_USER_REGISTRATION,
   RECEIVE_USER_LOGIN,
+  RECEIVE_PASSWORD_VERIFICATION_ERROR,
 } from './types';
 
 /**
@@ -91,4 +92,8 @@ export function actionReceiveLoginError(payload) {
 
 export function actionReceiveUserRegistration() {
   return createAction(RECEIVE_USER_REGISTRATION);
+}
+
+export function actionReceiveInvalidPassword() {
+  return createAction(RECEIVE_PASSWORD_VERIFICATION_ERROR);
 }

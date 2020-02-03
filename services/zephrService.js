@@ -145,12 +145,11 @@ export default {
       const response = await request;
 
       const {
-        'email-address': emailAddress,
         'first-name': firstName,
         'last-name': lastName,
       } = response;
 
-      return { emailAddress, firstName, lastName };
+      return { firstName, lastName };
     } catch (error) {
       postErrorMessage(error);
       // Return null to exit the profile setting portion of the saga.

@@ -45,7 +45,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         },
       };
     case SUBMIT_ZEPHR_FORM:
-      return submitForm(state, payload.type);
+      return submitForm(state, payload.route);
     case RECEIVE_USER_LOGIN:
       return {
         ...state,
@@ -102,16 +102,16 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
  * submitted form that contains errors. If no errors are present, the form is returned.
  *
  * @param {object} state   The current state.
- * @param {string} type    The form type (e.g. login).
+ * @param {string} route   The form's route (e.g. /login).
  *
  * @returns {object} state The transformed state.
  */
-function submitForm(state, type) {
+function submitForm(state, route) {
   return {
     ...state,
     forms: [
       ...state.forms.map((form) => {
-        if (form.route === `/${type}` && true === form.error) {
+        if (form.route === route && true === form.error) {
           // Remove any errors
           const componentMap = form.components.map((el) => {
             if (true === el.props['aria-invalid']) {
@@ -127,7 +127,7 @@ function submitForm(state, type) {
             return el;
           });
 
-          // Find any error messages in the components array.
+          // Find any error messages in the component map.
           const messagePos = form.components.map(
             (el) => el.type
           ).indexOf('span');
@@ -257,13 +257,86 @@ function formatErrorMessage(type) {
       return `${messageBase} — User not found. Please enter your email address.`;
     case 'invalid-password':
       return `${messageBase} — Invalid password. Please enter your password.`;
+    case 'verify-password':
+      return `${messageBase} — Passwords do not match. Please re-enter your password and try again.`;
     default:
       return messageBase;
   }
 }
 /* eslint-enable */
 
+/**
+ * A function that formats the error state for the password inputs on the registration form.
+ *
+ * @param {object} state The current state.
+ *
+ * @returns {object} state The transformed state.
+ */
 function setPasswordErrorState(state) {
-  console.log(state);
-  // do something.
+  return {
+    ...state,
+    forms: [
+      ...state.forms.map((form) => {
+        if ('/register' === form.route && false === form.error) {
+          // Create an array of available component IDs.
+          const idMap = form.components.map((el) => el.props.id);
+
+          // Get the password input's position in the array.
+          const passwordInputPos = idMap.indexOf('new-password');
+          const passwordInput = form.components[passwordInputPos];
+          // Create the password input with an error state.
+          const erroredPasswordInput = {
+            ...passwordInput,
+            props: {
+              ...passwordInput.props,
+              'aria-invalid': true,
+            },
+          };
+          // Replace the component with the error state.
+          form.components.splice(
+            passwordInputPos,
+            1,
+            erroredPasswordInput,
+          );
+
+          // Get the verification input's position in the array.
+          const verifyInputPos = idMap.indexOf('verify-password');
+          const verifyInput = form.components[verifyInputPos];
+          // Create the verification input with an error state.
+          const erroredVerifyInput = {
+            ...verifyInput,
+            props: {
+              ...verifyInput.props,
+              'aria-invalid': true,
+            },
+          };
+          // Replace the component with the error state.
+          form.components.splice(
+            verifyInputPos,
+            1,
+            erroredVerifyInput,
+          );
+          // Create the error message component.
+          const errorMessage = React.createElement(
+            'span',
+            {
+              key: 'password-verification-error-message',
+              className: 'form-error',
+            },
+            formatErrorMessage('verify-password'),
+          );
+
+          // Add the error message to the components array.
+          form.components.splice(verifyInputPos + 1, 0, errorMessage);
+
+          return {
+            ...form,
+            error: true,
+          };
+        }
+
+        return form;
+      }),
+    ],
+  };
 }

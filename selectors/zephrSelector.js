@@ -22,12 +22,17 @@ export const getUser = createSelector(
   (state) => state.user,
 );
 
+export const getProfile = createSelector(
+  zephrSelector,
+  (state) => state.user.profile,
+);
+
 export const getFirstName = createSelector(
   zephrSelector,
-  (state) => state.user.firstName,
+  (state) => state.user.profile.firstName,
 );
 
 export const getLastName = createSelector(
   zephrSelector,
-  (state) => state.user.lastName,
+  (state) => state.user.profile.lastName,
 );
