@@ -68,7 +68,7 @@
 
   > span {
     /* @todo confirm this is necesary on production, as image cropping was not happening locally */
-    overflow: hidden;
     margin-bottom: 0;
+    overflow: hidden;
   }
 }
