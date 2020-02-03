@@ -66,13 +66,13 @@
   }
   /* stylelint-enable */
 
-  &.hasError {
-    /* Disable slector specificity to allow for programatic styline of error state */
-    /* stylelint-disable selector-max-specificity */
-    input[type='email'],
-    input[type='password'] {
-      @include inputInvalid;
-    }
-    /* stylelint-enable */
+  input[aria-invalid='true'] {
+    @include inputInvalid;
+  }
+
+  :global(.form-error) {
+    color: $red;
+    display: block;
+    margin-bottom: rem(10);
   }
 }

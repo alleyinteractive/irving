@@ -8,6 +8,7 @@ import {
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
   RECEIVE_USER_REGISTRATION,
   RECEIVE_REGISTRATION_ERROR,
+  SUBMIT_ZEPHR_FORM,
 } from 'actions/types';
 import React from 'react';
 import { zephr as defaultState } from './defaultState';
@@ -43,6 +44,8 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           profile: payload,
         },
       };
+    case SUBMIT_ZEPHR_FORM:
+      return submitForm(state, payload.type);
     case RECEIVE_USER_LOGIN:
       return setLoginFormState(state);
     case RECEIVE_LOGIN_ERROR:
@@ -76,6 +79,46 @@ function setLoginFormState(state) {
             ...form,
             error: false,
             errorCount: null,
+          };
+        }
+
+        return form;
+      }),
+    ],
+  };
+}
+
+function submitForm(state, type) {
+  return {
+    ...state,
+    forms: [
+      ...state.forms.map((form) => {
+        if (form.route === `/${type}` && true === form.error) {
+          // Remove any errors
+          const componentMap = form.components.map((el) => {
+            if (true === el.props['aria-invalid']) {
+              return {
+                ...el,
+                props: {
+                  ...el.props,
+                  'aria-invalid': false,
+                },
+              };
+            }
+
+            return el;
+          });
+
+          // Find any error messages in the components array.
+          const messagePos = form.components.map(
+            (el) => el.type
+          ).indexOf('span');
+          // Remove the component.
+          componentMap.splice(messagePos, 1);
+
+          return {
+            ...form,
+            components: componentMap,
           };
         }
 

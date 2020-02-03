@@ -8,7 +8,6 @@ import {
   getForms,
 } from 'selectors/zephrSelector';
 import { actionSubmitForm } from 'actions/zephrActions';
-import classNames from 'classnames';
 
 // Styles
 import styles from './login.css';
@@ -35,11 +34,6 @@ const Login = ({ isLoading, forms, submitLogin }) => {
     });
   };
 
-  let error = false;
-  if (loginForm) {
-    error = loginForm.error; // eslint-disable-line prefer-destructuring
-  }
-
   return (
     <div className={styles.accountWrap}>
       <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
@@ -55,17 +49,8 @@ const Login = ({ isLoading, forms, submitLogin }) => {
       </p>
       <form
         onSubmit={onSubmit}
-        className={classNames(styles.formWrap, {
-          [styles.hasError]: !! error,
-        })}
+        className={styles.formWrap}
       >
-        {!! error && (
-          <span className={styles.formError} role="alert">
-            {__(`Oops! Let’s try that again —
-             please enter your email address and password.`,
-            'mittr')}
-          </span>
-        )}
         {! isLoading && loginForm ? (
           loginForm.components
         ) : null}
