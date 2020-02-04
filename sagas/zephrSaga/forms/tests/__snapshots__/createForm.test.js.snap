@@ -7,6 +7,7 @@ Array [
     className="zephr-input-email-address"
     defaultValue=""
     id="email-address"
+    invalid={false}
     placeholder="Enter your email address"
     required={false}
     type="email"
@@ -16,6 +17,7 @@ Array [
     className="zephr-input-current-password"
     defaultValue=""
     id="current-password"
+    invalid={false}
     placeholder="Enter your password"
     required={true}
     type="password"
@@ -34,6 +36,7 @@ Array [
     className="zephr-input-email-address"
     defaultValue=""
     id="email-address"
+    invalid={false}
     placeholder="Enter your email address"
     required={false}
     type="email"
@@ -43,6 +46,7 @@ Array [
     className="zephr-input-full-name"
     defaultValue=""
     id="full-name"
+    invalid={false}
     placeholder="Enter your full name"
     required={true}
     type="text"
@@ -52,6 +56,7 @@ Array [
     className="zephr-input-new-password"
     defaultValue=""
     id="new-password"
+    invalid={false}
     placeholder="Create a password for your account"
     required={true}
     type="password"
@@ -61,6 +66,7 @@ Array [
     className="zephr-input-verify-password"
     defaultValue=""
     id="verify-password"
+    invalid={false}
     placeholder="Confirm your password"
     required={true}
     type="password"
