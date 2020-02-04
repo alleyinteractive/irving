@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormInput, TermsCheckbox } from './components/formElements';
 
 /**
  * Construct a form via a response from the Zephr API.
@@ -36,7 +37,6 @@ export default function createForm(formJSON) {
     }
 
     let props = {
-      key: id,
       id,
       className: `zephr-input-${id}`,
       type,
@@ -46,10 +46,14 @@ export default function createForm(formJSON) {
     };
 
     if ('email-address' === id) {
-      props = { ...props, autoComplete: 'username' };
+      props = {
+        ...props,
+        required: false, // Email validation will be handled with a regex.
+        autoComplete: 'username',
+      };
     }
 
-    return React.createElement('input', props, null);
+    return React.createElement(FormInput, props, null);
   });
 
   if (true === registration) {
@@ -80,7 +84,6 @@ function generatePasswordFields(slug) {
       'Enter your password';
 
   const props = {
-    key: id,
     id,
     className: `zephr-input-${id}`,
     type: 'password',
@@ -91,7 +94,7 @@ function generatePasswordFields(slug) {
   };
 
   const fields = [
-    React.createElement('input', props, null),
+    React.createElement(FormInput, props, null),
   ];
 
   if ('registration' === slug) {
@@ -99,48 +102,19 @@ function generatePasswordFields(slug) {
     const verifyId = 'verify-password';
 
     const verifyProps = {
-      key: verifyId,
       id: verifyId,
       className: `zephr-input-${verifyId}`,
       type: 'password',
       placeholder: 'Confirm your password',
       required: true,
       defaultValue: '',
-      autoComplete: id,
+      autoComplete: 'new-password',
     };
 
-    fields.push(React.createElement('input', verifyProps, null));
-
-    // Create the terms of service checkbox, label, and wrapper.
-    const checkboxId = 'terms-checkbox';
-
-    const checkboxProps = {
-      key: checkboxId,
-      id: checkboxId,
-      className: `zephr-input-${checkboxId}`,
-      type: 'checkbox',
-      required: true,
-      defaultChecked: true, // @todo fix me.
-    };
-
-    fields.push(
-      React.createElement(
-        'div',
-        {
-          key: 'checkbox-wrapper',
-          className: 'zephr-input-checkbox-wrapper',
-        },
-        [
-          React.createElement('input', checkboxProps, null),
-          React.createElement('div', { className: 'styled-checkbox' }, null),
-          React.createElement(
-            'label',
-            {},
-            'I agree to the terms of service and have reviewed the privacy policy.' // eslint-disable-line max-len
-          ),
-        ],
-      )
-    );
+    // Add the password verification input.
+    fields.push(React.createElement(FormInput, verifyProps, null));
+    // Add the terms of service checkbox.
+    fields.push(React.createElement(TermsCheckbox, {}, null));
   }
 
   return fields;

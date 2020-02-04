@@ -32,6 +32,16 @@ const Register = ({
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    // Drop focus on the active form element.
+    const focused = document.activeElement;
+    focused.blur();
+
+    const fullName = document.getElementById('full-name');
+    const email = document.getElementById('email-address');
+    const password = document.getElementById('new-password');
+    const verifyPassword = document.getElementById('verify-password');
+    const termsCheckbox = document.getElementById('terms-checkbox');
+
     // Check to ensure the captcha has been validated prior to submission.
     if (false === captcha.isValid) {
       setCaptcha({
@@ -42,33 +52,51 @@ const Register = ({
       return;
     }
 
-    const fullName = document.getElementById('full-name');
-    const email = document.getElementById('email-address');
-    const password = document.getElementById('new-password');
-    const verifyPassword = document.getElementById('verify-password');
+    // Check to ensure the terms checkbox has been checked prior to submission.
+    if (false === termsCheckbox.checked) {
+      console.log('checkbox not checked');
+      // displayFormError('terms-checkbox');
+      // Exit the submit process.
+      return;
+    }
 
-    // Drop focus on the active form element.
-    const focused = document.activeElement;
-    focused.blur();
-
+    // Check to ensure that the password and it's verification value match prior to submission.
     if (password.value !== verifyPassword.value) {
       displayInvalidPasswordError();
-    } else {
-      const names = fullName.value.split(' ');
-
-      submitRegistration({
-        type: 'registration',
-        credentials: {
-          email: email.value,
-          password: password.value,
-          attributes: {
-            fullName: fullName.value,
-            firstName: names[0],
-            lastName: names[names.length - 1],
-          },
-        },
-      });
+      // Exit the submit process.
+      return;
     }
+
+    if (! fullName.value.match(/^[\\p{L} .'-]+$/g)) {
+      console.log('full name not entered');
+      // displayFormError('full-name');
+      // Exit the submit process.
+      return;
+    }
+
+    // Split the fullName value for submission to Zephr.
+    const names = fullName.value.split(' ');
+
+    // Check to ensure that the email address is valid prior to submission.
+    if (! email.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
+      console.log('invalid email address');
+      // displayFormError('email-address');
+      // Exit the submit process.
+      return;
+    }
+
+    submitRegistration({
+      type: 'registration',
+      credentials: {
+        email: email.value,
+        password: password.value,
+        attributes: {
+          fullName: fullName.value,
+          firstName: names[0],
+          lastName: names[names.length - 1],
+        },
+      },
+    });
   };
 
   const registrationForm = forms
@@ -89,15 +117,14 @@ const Register = ({
       id: 'registration-captcha',
       className: 'captcha',
       sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
-      render: 'explicit',
       verifyCallback: verifyCaptcha,
+      'aria-errormessage': 'captcha-error',
     },
     null
   );
 
   if (! isLoading && registrationForm) {
     const { components } = registrationForm;
-
     // Splice the captcha into the components array.
     const idMap = components.map((el) => el.props.id);
     // Prevent the captcha from being spliced in on subsequent renders.
@@ -123,7 +150,7 @@ const Register = ({
           <span
             className={styles.formError}
             aria-live="assertive"
-            id="terms-error"
+            id="captcha-error"
           >
             {__(
               `Oops! Let's try that again -
