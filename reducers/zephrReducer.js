@@ -165,7 +165,12 @@ function setFormErrorState(state, route, errorType) {
           const targetId = setErrorTargetId(errorType);
           // Get the target's position in the components array.
           const targetPos = form.components.map(
-            (el) => el.props.id
+            (el) => {
+              if (el) {
+                return el.props.id;
+              }
+              return null;
+            }
           ).indexOf(targetId);
           // Get the target.
           const target = form.components[targetPos];
@@ -177,6 +182,7 @@ function setFormErrorState(state, route, errorType) {
               'aria-invalid': true,
             },
           };
+          console.log(erroredTarget);
           // Replace the component with the error state.
           form.components.splice(
             targetPos,
@@ -187,6 +193,7 @@ function setFormErrorState(state, route, errorType) {
           const errorMessage = React.createElement(
             'span',
             {
+              id: `${targetId}-error`,
               key: `${targetId}-error-message`,
               className: 'form-error',
             },
@@ -235,6 +242,12 @@ function setErrorTargetId(type) {
       return 'email-address';
     case 'invalid-password':
       return 'current-password';
+    case 'email-address':
+      return 'email-address';
+    case 'full-name':
+      return 'full-name';
+    case 'terms-checkbox':
+      return 'terms-checkbox';
     default:
       return null;
   }
@@ -259,6 +272,12 @@ function formatErrorMessage(type) {
       return `${messageBase} — Invalid password. Please enter your password.`;
     case 'verify-password':
       return `${messageBase} — Passwords do not match. Please re-enter your password and try again.`;
+    case 'full-name':
+      return `${messageBase} — Please enter your full name.`;
+    case 'email-address':
+      return `${messageBase} — Please enter a valid email address.`;
+    case 'terms-checkbox':
+      return `${messageBase} — You must agree to the terms of service in order to create an account.`;
     default:
       return messageBase;
   }

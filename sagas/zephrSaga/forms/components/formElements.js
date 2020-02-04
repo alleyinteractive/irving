@@ -65,7 +65,7 @@ export const TermsCheckbox = (props) => {
         checked={isChecked}
         onChange={onChange}
         className="zephr-input-terms-checkbox"
-        aria-errormessage="terms-error"
+        aria-errormessage="terms-checkbox-error"
       />
       <div className="styled-checkbox" />
       <span className="terms-text">

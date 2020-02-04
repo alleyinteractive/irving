@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {
   useState,
 } from 'react';
@@ -12,6 +13,7 @@ import {
 import {
   actionSubmitForm,
   actionReceiveInvalidPassword,
+  actionReceiveRegistrationError,
 } from 'actions/zephrActions';
 import LazyRecaptcha from './recaptcha';
 
@@ -23,6 +25,7 @@ const Register = ({
   forms,
   submitRegistration,
   displayInvalidPasswordError,
+  displayFormError,
 }) => {
   const [captcha, setCaptcha] = useState({
     isValid: false,
@@ -54,22 +57,28 @@ const Register = ({
 
     // Check to ensure the terms checkbox has been checked prior to submission.
     if (false === termsCheckbox.checked) {
-      console.log('checkbox not checked');
-      // displayFormError('terms-checkbox');
+      displayFormError('terms-checkbox');
       // Exit the submit process.
       return;
     }
 
     // Check to ensure that the password and it's verification value match prior to submission.
     if (password.value !== verifyPassword.value) {
+      // Invalid passwords get their own dispatch action because multiple inputs need to be invalidated.
       displayInvalidPasswordError();
       // Exit the submit process.
       return;
     }
 
-    if (! fullName.value.match(/^[\\p{L} .'-]+$/g)) {
-      console.log('full name not entered');
-      // displayFormError('full-name');
+    // Check to ensure that the email address is valid prior to submission.
+    if (! email.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
+      displayFormError('email-address');
+      // Exit the submit process.
+      return;
+    }
+
+    if (! fullName.value.match(/^[\\p{L} .'-]+$/)) {
+      displayFormError('full-name');
       // Exit the submit process.
       return;
     }
@@ -77,26 +86,18 @@ const Register = ({
     // Split the fullName value for submission to Zephr.
     const names = fullName.value.split(' ');
 
-    // Check to ensure that the email address is valid prior to submission.
-    if (! email.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
-      console.log('invalid email address');
-      // displayFormError('email-address');
-      // Exit the submit process.
-      return;
-    }
-
-    submitRegistration({
-      type: 'registration',
-      credentials: {
-        email: email.value,
-        password: password.value,
-        attributes: {
-          fullName: fullName.value,
-          firstName: names[0],
-          lastName: names[names.length - 1],
-        },
-      },
-    });
+    // submitRegistration({
+    //   type: 'registration',
+    //   credentials: {
+    //     email: email.value,
+    //     password: password.value,
+    //     attributes: {
+    //       fullName: fullName.value,
+    //       firstName: names[0],
+    //       lastName: names[names.length - 1],
+    //     },
+    //   },
+    // });
   };
 
   const registrationForm = forms
@@ -176,12 +177,14 @@ Register.propTypes = {
   forms: PropTypes.array.isRequired,
   submitRegistration: PropTypes.func.isRequired,
   displayInvalidPasswordError: PropTypes.func.isRequired,
+  displayFormError: PropTypes.func.isRequired,
 };
 
 /* eslint-disable max-len */
 const mapDispatchToProps = (dispatch) => ({
   submitRegistration: (registrationData) => dispatch(actionSubmitForm(registrationData)),
   displayInvalidPasswordError: () => dispatch(actionReceiveInvalidPassword()),
+  displayFormError: (errorType) => dispatch(actionReceiveRegistrationError(errorType)),
 });
 /* eslint-enable */
 

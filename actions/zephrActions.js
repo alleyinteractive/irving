@@ -10,6 +10,7 @@ import {
   RECEIVE_USER_REGISTRATION,
   RECEIVE_USER_LOGIN,
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
+  RECEIVE_REGISTRATION_ERROR,
 } from './types';
 
 /**
@@ -112,4 +113,15 @@ export function actionReceiveUserRegistration() {
  */
 export function actionReceiveInvalidPassword() {
   return createAction(RECEIVE_PASSWORD_VERIFICATION_ERROR);
+}
+
+/**
+ * A Redux action that represents when a user submits invalid information in the registration form.
+ *
+ * @param {{errorType}} payload The error type to be returned.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveRegistrationError(payload) {
+  return createAction(RECEIVE_REGISTRATION_ERROR, payload);
 }

@@ -114,7 +114,13 @@ function generatePasswordFields(slug) {
     // Add the password verification input.
     fields.push(React.createElement(FormInput, verifyProps, null));
     // Add the terms of service checkbox.
-    fields.push(React.createElement(TermsCheckbox, {}, null));
+    fields.push(
+      React.createElement(
+        TermsCheckbox,
+        { id: 'terms-checkbox' },
+        null
+      )
+    );
   }
 
   return fields;
