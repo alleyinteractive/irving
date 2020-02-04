@@ -11,10 +11,14 @@
   flex-flow: column nowrap;
   height: 100%;
   justify-content: center;
-  padding: rem(20 0 40);
+  padding: rem(20 0);
 
   @media ($smMin) and ($mdMax) {
     flex-flow: row nowrap;
+  }
+
+  @media ($smMin) {
+    padding: rem(20 0 40);
   }
 }
 
@@ -35,10 +39,18 @@
 }
 
 .title {
-  font-size: rem(24);
+  font-size: rem(18);
   font-weight: 600;
   line-height: 1.1;
   margin-bottom: rem(10);
+
+  @media ($smMin) {
+    font-size: rem(22);
+  }
+
+  @media ($mdMin) {
+    font-size: rem(20);
+  }
 
   a {
     &:hover {
@@ -55,15 +67,14 @@
 
 .image {
   flex: 0 1 auto;
-  margin: rem(20 0 0);
-  padding: 0;
+  padding-top: rem(20);
   width: 100%;
 
   @media ($smMin) and ($mdMax) {
     flex: 0 1 30%;
     margin-left: auto;
     min-width: 30%;
-    padding: rem(0 0 0 20);
+    padding: rem(20 0 0 20);
     width: 30%;
   }
 

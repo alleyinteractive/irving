@@ -24,7 +24,7 @@ const HubContentItem = ({
     <Wrapper className={theme.wrapper}>
       <div className={theme.inner}>
         <div className={theme.content}>
-          <span className={theme.eyebrow}>{eyebrow}</span>
+          {eyebrow && <span className={theme.eyebrow}>{eyebrow}</span>}
           <h2 className={theme.title}>
             <Link to={permalink}>{title}</Link>
           </h2>
