@@ -1,5 +1,6 @@
 import {
   all,
+  call,
   takeLatest,
   takeEvery,
 } from 'redux-saga/effects';
@@ -22,9 +23,11 @@ export default function* rootSaga() {
   yield all([
     takeLatest(LOCATION_CHANGE, resolveComponents),
     takeLatest(LOCATION_CHANGE, waitToScroll),
-    takeLatest(LOCATION_CHANGE, resolveUIRules),
     takeEvery(LOCATION_CHANGE, onLocationChange),
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
+    // @todo move this into Zephr saga after
+    call(resolveUIRules),
+    takeEvery(LOCATION_CHANGE, resolveUIRules),
     ...formSaga,
     ...userSaga,
   ]);

@@ -9,7 +9,7 @@
  *
  * @returns {obj} The formatted error.
  */
-const postErrorMessage = (error) => console.error(
+const postErrorMessage = (error) => console.error( // eslint-disable-line no-console
   'There was a problem sending the request to Zephr.',
   error
 );
