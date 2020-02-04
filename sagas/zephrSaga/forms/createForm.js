@@ -11,10 +11,10 @@ import { FormInput, TermsCheckbox } from './components/formElements';
 export default function createForm(formJSON) {
   const {
     input: {
-      slug,
-      fields,
-      registration,
-    },
+      slug = '',
+      fields = [],
+      registration = false,
+    } = {},
     submitText,
   } = formJSON;
 
