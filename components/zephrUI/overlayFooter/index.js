@@ -1,41 +1,49 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import withData from 'components/hoc/withData';
-import sanitizeHtml from 'sanitize-html';
+import { connect } from 'react-redux';
 import get from 'lodash/get';
+import sanitizeHtml from 'sanitize-html';
+import { getZephrComponents } from 'selectors/zephrSelector';
 
 // Styles
 import styles from './overlayFooter.css';
 
-const OverlayFooter = withData(
-  `${process.env.ZEPHR_ROOT_URL}/wp-json/mittr/v1/zephrComponents`,
-  {
-    loading: () => (null),
-  }
-)(
-  ({ data }) => {
-    const componentMarkup = get(
-      data,
-      'overlayFooter.zephrOutput.data',
-      false
-    );
+const OverlayFooter = ({ components }) => {
+  const componentMarkup = get(
+    components,
+    'overlayFooter.zephrOutput.data',
+    false
+  );
+  return (
+    <>
+      {componentMarkup && (
+        <div className={styles.wrapper}>
+          <div
+            dangerouslySetInnerHTML={// eslint-disable-line react/no-danger
+              { __html: sanitizeHtml(componentMarkup) }
+            }
+          />
+        </div>
+      )
+      }
+    </>
+  );
+};
 
-    return (
-      <>
-        {componentMarkup && (
-          <div className={styles.wrapper}>
-            <div
-              dangerouslySetInnerHTML={// eslint-disable-line react/no-danger
-                { __html: sanitizeHtml(componentMarkup) }
-              }
-            />
-          </div>
-        )
-        }
-      </>
-    );
-  }
-);
+OverlayFooter.defaultProps = {
+  components: {},
+};
 
-export default withStyles(styles)(OverlayFooter);
+OverlayFooter.propTypes = {
+  components: PropTypes.object,
+};
+
+const mapStateToProps = (state) => ({
+  components: getZephrComponents(state),
+});
+
+const withRedux = connect(mapStateToProps);
+
+export default withRedux(withStyles(styles)(OverlayFooter));
 

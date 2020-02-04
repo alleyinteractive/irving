@@ -31,3 +31,8 @@ export const getLastName = createSelector(
   zephrSelector,
   (state) => state.user.lastName,
 );
+
+export const getZephrComponents = createSelector(
+  zephrSelector,
+  (state) => state.zephrComponents,
+);

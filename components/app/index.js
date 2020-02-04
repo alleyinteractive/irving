@@ -11,7 +11,7 @@ import ErrorBoundary from 'components/errorBoundary';
 import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
 import getProviders from 'selectors/getProviders';
-// import ZephrUI from 'components/zephrUI';
+import OverlayFooter from 'components/zephrUI/overlayFooter';
 import styles from './app.css';
 import OneTrust from './oneTrust';
 
@@ -36,6 +36,7 @@ const App = (props) => {
           </RootProviders>
         </div>
       )}
+      <OverlayFooter />
       <OneTrust />
     </ErrorBoundary>
   );
