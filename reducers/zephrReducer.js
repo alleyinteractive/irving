@@ -9,6 +9,7 @@ import {
   RECEIVE_USER_REGISTRATION,
   RECEIVE_REGISTRATION_ERROR,
   SUBMIT_ZEPHR_FORM,
+  CLEAR_FORM_ERRORS,
 } from 'actions/types';
 import React from 'react';
 import { zephr as defaultState } from './defaultState';
@@ -31,6 +32,19 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: [...state.forms, payload],
         cached: true,
       };
+    case SUBMIT_ZEPHR_FORM:
+    case CLEAR_FORM_ERRORS:
+      return {
+        ...state,
+        forms: [
+          ...state.forms.map((form) => {
+            if (form.route === payload.route && true === form.error) {
+              return clearFormErrors(form);
+            }
+            return form;
+          }),
+        ],
+      };
     case RECEIVE_ZEPHR_USER_SESSION:
       return {
         ...state,
@@ -44,8 +58,6 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           profile: payload,
         },
       };
-    case SUBMIT_ZEPHR_FORM:
-      return submitForm(state, payload.route);
     case RECEIVE_USER_LOGIN:
       return {
         ...state,
@@ -106,43 +118,32 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
  *
  * @returns {object} state The transformed state.
  */
-function submitForm(state, route) {
+function clearFormErrors(form) {
+  // Remove any errors
+  const componentMap = form.components.map((el) => {
+    if (true === el.props.invalid) {
+      return {
+        ...el,
+        props: {
+          ...el.props,
+          invalid: false,
+        },
+      };
+    }
+
+    return el;
+  });
+
+  // Find any error messages in the component map.
+  const messagePos = form.components.map(
+    (el) => el.type
+  ).indexOf('span');
+  // Remove the component.
+  componentMap.splice(messagePos, 1);
+
   return {
-    ...state,
-    forms: [
-      ...state.forms.map((form) => {
-        if (form.route === route && true === form.error) {
-          // Remove any errors
-          const componentMap = form.components.map((el) => {
-            if (true === el.props['aria-invalid']) {
-              return {
-                ...el,
-                props: {
-                  ...el.props,
-                  'aria-invalid': false,
-                },
-              };
-            }
-
-            return el;
-          });
-
-          // Find any error messages in the component map.
-          const messagePos = form.components.map(
-            (el) => el.type
-          ).indexOf('span');
-          // Remove the component.
-          componentMap.splice(messagePos, 1);
-
-          return {
-            ...form,
-            components: componentMap,
-          };
-        }
-
-        return form;
-      }),
-    ],
+    ...form,
+    components: componentMap,
   };
 }
 
@@ -179,7 +180,7 @@ function setFormErrorState(state, route, errorType) {
             ...target,
             props: {
               ...target.props,
-              'aria-invalid': true,
+              invalid: true,
             },
           };
           console.log(erroredTarget);
@@ -308,7 +309,7 @@ function setPasswordErrorState(state) {
             ...passwordInput,
             props: {
               ...passwordInput.props,
-              'aria-invalid': true,
+              invalid: true,
             },
           };
           // Replace the component with the error state.
@@ -326,7 +327,7 @@ function setPasswordErrorState(state) {
             ...verifyInput,
             props: {
               ...verifyInput.props,
-              'aria-invalid': true,
+              invalid: true,
             },
           };
           // Replace the component with the error state.

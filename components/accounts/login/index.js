@@ -7,16 +7,28 @@ import {
   getIsLoading,
   getForms,
 } from 'selectors/zephrSelector';
-import { actionSubmitForm } from 'actions/zephrActions';
+import {
+  actionSubmitForm,
+  actionClearFormErrors,
+} from 'actions/zephrActions';
 
 // Styles
 import styles from './login.css';
 
-const Login = ({ isLoading, forms, submitLogin }) => {
+const Login = ({
+  isLoading,
+  forms,
+  submitLogin,
+  clearErrors,
+}) => {
   const loginForm = forms.filter((form) => '/login' === form.route)[0];
   // Create submit handler.
   const onSubmit = (event) => {
     event.preventDefault();
+
+    if (true === loginForm.error) {
+      clearErrors({ route: '/login' });
+    }
 
     const email = document.getElementById('email-address');
     const password = document.getElementById('current-password');
@@ -26,7 +38,7 @@ const Login = ({ isLoading, forms, submitLogin }) => {
     focused.blur();
 
     submitLogin({
-      type: 'login',
+      route: '/login',
       credentials: {
         email: email.value,
         password: password.value,
@@ -94,10 +106,12 @@ Login.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   forms: PropTypes.array.isRequired,
   submitLogin: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   submitLogin: (loginData) => dispatch(actionSubmitForm(loginData)),
+  clearErrors: (routeInfo) => dispatch(actionClearFormErrors(routeInfo)),
 });
 const withRedux = connect(
   (state) => ({

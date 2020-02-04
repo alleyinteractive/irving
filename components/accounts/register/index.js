@@ -14,6 +14,7 @@ import {
   actionSubmitForm,
   actionReceiveInvalidPassword,
   actionReceiveRegistrationError,
+  actionClearFormErrors,
 } from 'actions/zephrActions';
 import LazyRecaptcha from './recaptcha';
 
@@ -26,14 +27,22 @@ const Register = ({
   submitRegistration,
   displayInvalidPasswordError,
   displayFormError,
+  clearErrors,
 }) => {
   const [captcha, setCaptcha] = useState({
     isValid: false,
     hasError: false,
   });
 
+  const registrationForm = forms
+    .filter((form) => '/register' === form.route)[0];
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (true === registrationForm.error) {
+      clearErrors({ route: '/register' });
+    }
 
     // Drop focus on the active form element.
     const focused = document.activeElement;
@@ -77,7 +86,7 @@ const Register = ({
       return;
     }
 
-    if (! fullName.value.match(/^[\\p{L} .'-]+$/)) {
+    if (! fullName.value.match(/^[a-z ,.'-]+$/i)) {
       displayFormError('full-name');
       // Exit the submit process.
       return;
@@ -86,22 +95,19 @@ const Register = ({
     // Split the fullName value for submission to Zephr.
     const names = fullName.value.split(' ');
 
-    // submitRegistration({
-    //   type: 'registration',
-    //   credentials: {
-    //     email: email.value,
-    //     password: password.value,
-    //     attributes: {
-    //       fullName: fullName.value,
-    //       firstName: names[0],
-    //       lastName: names[names.length - 1],
-    //     },
-    //   },
-    // });
+    submitRegistration({
+      route: '/register',
+      credentials: {
+        email: email.value,
+        password: password.value,
+        attributes: {
+          fullName: fullName.value,
+          firstName: names[0],
+          lastName: names[names.length - 1],
+        },
+      },
+    });
   };
-
-  const registrationForm = forms
-    .filter((form) => '/register' === form.route)[0];
 
   const verifyCaptcha = () => {
     setCaptcha({
@@ -178,6 +184,7 @@ Register.propTypes = {
   submitRegistration: PropTypes.func.isRequired,
   displayInvalidPasswordError: PropTypes.func.isRequired,
   displayFormError: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
 };
 
 /* eslint-disable max-len */
@@ -185,6 +192,7 @@ const mapDispatchToProps = (dispatch) => ({
   submitRegistration: (registrationData) => dispatch(actionSubmitForm(registrationData)),
   displayInvalidPasswordError: () => dispatch(actionReceiveInvalidPassword()),
   displayFormError: (errorType) => dispatch(actionReceiveRegistrationError(errorType)),
+  clearErrors: (routeInfo) => dispatch(actionClearFormErrors(routeInfo)),
 });
 /* eslint-enable */
 

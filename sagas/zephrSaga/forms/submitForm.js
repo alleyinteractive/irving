@@ -15,14 +15,14 @@ import history from 'utils/history';
  * type is checked and a subsequent request will be made to the cooresponding
  * endpoint in the Zephr API.
  *
- * @param {{ type, credentials }} The form to be submitted.
+ * @param {{ route, credentials }} The form to be submitted.
  */
-export default function* submitForm({ payload: { type, credentials } }) {
-  switch (type) {
-    case 'login':
+export default function* submitForm({ payload: { route, credentials } }) {
+  switch (route) {
+    case '/login':
       yield call(submitLogin, credentials);
       break;
-    case 'registration':
+    case '/register':
       yield call(submitRegistration, credentials);
       break;
     default:
@@ -53,6 +53,8 @@ function* submitLogin(credentials) {
     yield put(actionReceiveUserLogin());
     // Get the user's profile and redirect.
     yield call(getProfile);
+    // Push the user to the homepage.
+    history.push('/');
   } else {
     // Set the error state on the form.
     yield put(actionReceiveLoginError(type));
@@ -80,6 +82,8 @@ function* submitRegistration(credentials) {
     yield put(actionReceiveUserRegistration());
     // Get the user's profile and redirect.
     yield call(getProfile);
+    // Push the user to the confirmation page.
+    history.push('/register/confirmation');
   }
 }
 
@@ -95,7 +99,5 @@ function* getProfile() {
   if ('object' === typeof profile) {
     // Store user profile information.
     yield put(actionReceiveUserProfile(profile));
-    // Push the user to the homepage.
-    history.push('/');
   }
 }
