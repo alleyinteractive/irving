@@ -10,7 +10,7 @@ import MagazineDropdown from './dropdown';
 
 import styles from './magazineIssues.css';
 
-const MagazineIssues = ({ title, issueTypeId, datesAvailable }) => {
+const MagazineIssues = ({ title, issueType, datesAvailable }) => {
   const [issues, setIssues] = useState({
     issues: [],
     lastUpdate: [],
@@ -18,7 +18,7 @@ const MagazineIssues = ({ title, issueTypeId, datesAvailable }) => {
   });
   const [userRequest, setUserRequest] = useState({
     currentPage: 1,
-    endpoint: `?page=1&issueType=${issueTypeId}`,
+    endpoint: `?page=1&issueType=${issueType}`,
   });
 
   const loadItems = () => {
@@ -49,7 +49,7 @@ const MagazineIssues = ({ title, issueTypeId, datesAvailable }) => {
     setUserRequest({
       currentPage: 1,
       endpoint:
-        `?page=1&issueType=${issueTypeId}&decade=${decade}`
+        `?page=1&issueType=${issueType}&decade=${decade}`
           .replace(/(page)=[^?&]+/, `$1=${page}`),
     });
 
@@ -108,7 +108,7 @@ MagazineIssues.defaultProps = {
 
 MagazineIssues.propTypes = {
   title: PropTypes.string.isRequired,
-  issueTypeId: PropTypes.string.isRequired,
+  issueType: PropTypes.string.isRequired,
   datesAvailable: PropTypes.array,
 };
 
