@@ -30,9 +30,9 @@ const HubContentItem = ({
           </h2>
           <div className={theme.description}>{description}</div>
         </div>
-        <Link to={permalink}>
-          <div className={theme.image}>{image}</div>
-        </Link>
+        <div className={theme.image}>
+          <Link to={permalink}>{image}</Link>
+        </div>
       </div>
     </Wrapper>
   );
