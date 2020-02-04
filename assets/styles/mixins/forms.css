@@ -99,11 +99,11 @@
     width: 16px;
   }
 
-  /* styleline-disable selector-max-specificity */
+  /* stylelint-disable selector-max-specificity */
   input[type="checkbox"]:checked + :global(.styled-checkbox) {
     background-color: $black;
   }
-  /* stylelint-enable */
+  /* stylelint-enable selector-max-specificity */
 
   :global(.form-error) {
     color: $red;
