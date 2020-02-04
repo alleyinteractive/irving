@@ -99,7 +99,7 @@
     width: 16px;
   }
 
-  input[type="checkbox"][checked="true"] + :global(.styled-checkbox) {
+  input[type="checkbox"]:checked + :global(.styled-checkbox) {
     background-color: $black;
   }
 

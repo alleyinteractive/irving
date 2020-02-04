@@ -120,7 +120,7 @@ function generatePasswordFields(slug) {
       className: `zephr-input-${checkboxId}`,
       type: 'checkbox',
       required: true,
-      defaultChecked: false,
+      defaultChecked: true, // @todo fix me.
     };
 
     fields.push(
