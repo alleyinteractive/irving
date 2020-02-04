@@ -77,6 +77,11 @@ export function actionReceiveUserProfile(payload) {
   return createAction(RECEIVE_ZEPHR_USER_PROFILE, payload);
 }
 
+/**
+ * A Redux action that represents browser state change when a user has successfully logged in.
+ *
+ * @returns {{type}} The Redux action.
+ */
 export function actionReceiveUserLogin() {
   return createAction(RECEIVE_USER_LOGIN);
 }
@@ -90,10 +95,21 @@ export function actionReceiveLoginError(payload) {
   return createAction(RECEIVE_LOGIN_ERROR, payload);
 }
 
+/**
+ * A Redux action that represents browser state change when a user successfully registers.
+ *
+ * @returns {{type}} The Redux action.
+ */
 export function actionReceiveUserRegistration() {
   return createAction(RECEIVE_USER_REGISTRATION);
 }
 
+/**
+ * A Redux action that represents browser state change when a user attempts to register with a
+ * password that does not match the verification prompt.
+ *
+ * @returns {{type}} The Redux action.
+ */
 export function actionReceiveInvalidPassword() {
   return createAction(RECEIVE_PASSWORD_VERIFICATION_ERROR);
 }

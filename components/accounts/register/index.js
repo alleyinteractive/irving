@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, {
   useState,
 } from 'react';
@@ -14,6 +13,7 @@ import {
   actionSubmitForm,
   actionReceiveInvalidPassword,
 } from 'actions/zephrActions';
+import LazyRecaptcha from './recaptcha';
 
 // Styles
 import styles from './register.css';
@@ -22,16 +22,25 @@ const Register = ({
   isLoading,
   forms,
   submitRegistration,
-  displayInvalidPasswordError
+  displayInvalidPasswordError,
 }) => {
-  const registrationForm = forms.filter((form) => '/register' === form.route)[0];
-  // const [captcha, setCaptcha] = useState({
-  //   isValid: false,
-  //   hasError: false,
-  // });
+  const [captcha, setCaptcha] = useState({
+    isValid: false,
+    hasError: false,
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Check to ensure the captcha has been validated prior to submission.
+    if (false === captcha.isValid) {
+      setCaptcha({
+        hasError: true,
+        isValid: false,
+      });
+      // Exit the submit process.
+      return;
+    }
 
     const fullName = document.getElementById('full-name');
     const email = document.getElementById('email-address');
@@ -62,6 +71,41 @@ const Register = ({
     }
   };
 
+  const registrationForm = forms
+    .filter((form) => '/register' === form.route)[0];
+
+  const verifyCaptcha = () => {
+    setCaptcha({
+      isValid: true,
+      hasError: false,
+    });
+  };
+
+  // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
+  const reCaptcha = React.createElement(
+    LazyRecaptcha,
+    {
+      key: 'registration-captcha',
+      id: 'registration-captcha',
+      className: 'captcha',
+      sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
+      render: 'explicit',
+      verifyCallback: verifyCaptcha,
+    },
+    null
+  );
+
+  if (! isLoading && registrationForm) {
+    const { components } = registrationForm;
+
+    // Splice the captcha into the components array.
+    const idMap = components.map((el) => el.props.id);
+    // Prevent the captcha from being spliced in on subsequent renders.
+    if (- 1 === idMap.indexOf('registration-captcha')) {
+      components.splice(components.length - 1, 0, reCaptcha);
+    }
+  }
+
   return (
     <div className={styles.accountWrap}>
       <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
@@ -75,6 +119,20 @@ const Register = ({
         {! isLoading && registrationForm ? (
           registrationForm.components
         ) : null}
+        {true === captcha.hasError && (
+          <span
+            className={styles.formError}
+            aria-live="assertive"
+            id="terms-error"
+          >
+            {__(
+              `Oops! Let's try that again -
+               Please complete the captcha
+               in order to create your account.`,
+              'mittr'
+            )}
+          </span>
+        )}
         <h2 className={styles.confirmationText}>
           {__(
             "We'll email you a password confirmation link. Happy reading!", // eslint-disable-line quotes
@@ -93,12 +151,13 @@ Register.propTypes = {
   displayInvalidPasswordError: PropTypes.func.isRequired,
 };
 
+/* eslint-disable max-len */
 const mapDispatchToProps = (dispatch) => ({
-  submitRegistration: (registrationData) =>
-    dispatch(actionSubmitForm(registrationData)),
-  displayInvalidPasswordError: () =>
-    dispatch(actionReceiveInvalidPassword()),
+  submitRegistration: (registrationData) => dispatch(actionSubmitForm(registrationData)),
+  displayInvalidPasswordError: () => dispatch(actionReceiveInvalidPassword()),
 });
+/* eslint-enable */
+
 const withRedux = connect(
   (state) => ({
     isLoading: getIsLoading(state),

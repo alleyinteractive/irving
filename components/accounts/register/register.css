@@ -21,6 +21,12 @@
   @include zephrForm;
 }
 
+.formError {
+  color: $red;
+  display: block;
+  margin-bottom: rem(10);
+}
+
 .formCheckbox {
   border: 0;
   clip: rect(0 0 0 0);

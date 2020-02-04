@@ -51,8 +51,6 @@
     margin-bottom: rem(10);
   }
 
-  /* Disable slector specificity to allow for programatic rendering of Zephr inputs */
-  /* stylelint-disable selector-max-specificity */
   input[type='email'],
   input[type='password'],
   input[type='text'] {
@@ -64,15 +62,54 @@
     @include btn;
     @include blackBtn;
   }
-  /* stylelint-enable */
 
   input[aria-invalid='true'] {
     @include inputInvalid;
   }
 
+  :global(.zephr-input-checkbox-wrapper) {
+    align-items: center;
+    display: flex;
+    margin-bottom: rem(10);
+  }
+
+  input[type='checkbox'] {
+    border: 0;
+    clip: rect(0 0 0 0);
+    clippath: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  :global(.styled-checkbox) {
+    background-clip: content-box;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    height: 16px;
+    margin-right: 8px;
+    padding: 2px;
+    width: 16px;
+  }
+
+  input[type="checkbox"][checked="true"] + :global(.styled-checkbox) {
+    background-color: $black;
+  }
+
   :global(.form-error) {
     color: $red;
     display: block;
+    margin-bottom: rem(10);
+  }
+
+  :global(.captcha) {
     margin-bottom: rem(10);
   }
 }

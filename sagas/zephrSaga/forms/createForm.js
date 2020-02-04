@@ -95,6 +95,7 @@ function generatePasswordFields(slug) {
   ];
 
   if ('registration' === slug) {
+    // Create the password verification input.
     const verifyId = 'verify-password';
 
     const verifyProps = {
@@ -109,6 +110,37 @@ function generatePasswordFields(slug) {
     };
 
     fields.push(React.createElement('input', verifyProps, null));
+
+    // Create the terms of service checkbox, label, and wrapper.
+    const checkboxId = 'terms-checkbox';
+
+    const checkboxProps = {
+      key: checkboxId,
+      id: checkboxId,
+      className: `zephr-input-${checkboxId}`,
+      type: 'checkbox',
+      required: true,
+      defaultChecked: false,
+    };
+
+    fields.push(
+      React.createElement(
+        'div',
+        {
+          key: 'checkbox-wrapper',
+          className: 'zephr-input-checkbox-wrapper',
+        },
+        [
+          React.createElement('input', checkboxProps, null),
+          React.createElement('div', { className: 'styled-checkbox' }, null),
+          React.createElement(
+            'label',
+            {},
+            'I agree to the terms of service and have reviewed the privacy policy.' // eslint-disable-line max-len
+          ),
+        ],
+      )
+    );
   }
 
   return fields;
