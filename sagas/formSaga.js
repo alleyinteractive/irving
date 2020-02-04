@@ -197,9 +197,9 @@ function* requestLogin() {
 export function createZephrForm(payload) {
   const {
     input: {
-      slug,
-      fields,
-    },
+      slug = '',
+      fields = [],
+    } = {},
     submitText,
   } = payload;
 
