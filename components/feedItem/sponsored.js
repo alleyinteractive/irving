@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import Link from 'components/helpers/link';
-import { findChild } from 'utils/children';
+import { findChild, findChildByName } from 'utils/children';
+import ExpandableSocialShare from 'components/socialList/expandable';
 
 // Styles
 import styles from './feedItem.css';
@@ -11,12 +12,14 @@ import styles from './feedItem.css';
 const SponsoredFeedItem = ({
   permalink,
   title,
+  excerpt,
   teaserContent,
   sponsorUrl,
   children,
   sponsorTagline,
 }) => {
   const logo = findChild('imageSize', 'logo', children);
+  const socialShare = findChildByName('social-sharing', children);
 
   return (
     <article className={styles.wrapper}>
@@ -35,6 +38,7 @@ const SponsoredFeedItem = ({
           <p>{teaserContent}</p>
         </div>
       )}
+      {excerpt && <p className={styles.excerpt}>{excerpt}</p>}
       <Link to={sponsorUrl} className={styles.sponsorLink}>
         <div className={styles.sponsorLogo}>
           {logo}
@@ -45,6 +49,9 @@ const SponsoredFeedItem = ({
           </span>
         )}
       </Link>
+      <ExpandableSocialShare>
+        {socialShare}
+      </ExpandableSocialShare>
     </article>
   );
 };
@@ -53,6 +60,7 @@ SponsoredFeedItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   permalink: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  excerpt: PropTypes.string.isRequired,
   teaserContent: PropTypes.string.isRequired,
   sponsorUrl: PropTypes.string.isRequired,
   sponsorTagline: PropTypes.string.isRequired,

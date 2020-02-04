@@ -5,6 +5,7 @@
   border-top: solid rem(2) $brown-gray;
   margin-bottom: rem(15);
   padding: rem(20);
+  position: relative;
   width: auto;
 
   &.storygroup {
@@ -46,6 +47,19 @@
   margin-bottom: rem(20);
   margin-right: rem(20);
   order: 1;
+}
+
+.excerpt {
+  color: $color-text;
+  font-size: rem(16);
+  line-height: 1.375;
+  margin-bottom: rem(15);
+  width: 100%;
+
+  @media ($smMin) {
+    font-size: rem(18);
+    line-height: 1.44;
+  }
 }
 
 .expandableBody {
