@@ -2,16 +2,16 @@
 
 exports[`zephr saga => createForm HOC should render a login form of the shape 1`] = `
 Array [
-  <input
+  <FormInput
     autoComplete="username"
     className="zephr-input-email-address"
     defaultValue=""
     id="email-address"
     placeholder="Enter your email address"
-    required={true}
+    required={false}
     type="email"
   />,
-  <input
+  <FormInput
     autoComplete="current-password"
     className="zephr-input-current-password"
     defaultValue=""
@@ -29,16 +29,17 @@ Array [
 
 exports[`zephr saga => createForm HOC should render a registration form of the shape 1`] = `
 Array [
-  <input
+  <FormInput
     autoComplete="username"
     className="zephr-input-email-address"
     defaultValue=""
     id="email-address"
     placeholder="Enter your email address"
-    required={true}
+    required={false}
     type="email"
   />,
-  <input
+  <FormInput
+    autoComplete=""
     className="zephr-input-full-name"
     defaultValue=""
     id="full-name"
@@ -46,7 +47,7 @@ Array [
     required={true}
     type="text"
   />,
-  <input
+  <FormInput
     autoComplete="new-password"
     className="zephr-input-new-password"
     defaultValue=""
@@ -55,7 +56,7 @@ Array [
     required={true}
     type="password"
   />,
-  <input
+  <FormInput
     autoComplete="new-password"
     className="zephr-input-verify-password"
     defaultValue=""
@@ -63,6 +64,9 @@ Array [
     placeholder="Confirm your password"
     required={true}
     type="password"
+  />,
+  <TermsCheckbox
+    id="terms-checkbox"
   />,
   <input
     type="submit"
