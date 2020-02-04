@@ -13,13 +13,19 @@
 .inner {
   border-top: 1px solid $black;
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column nowrap;
   padding: rem(20 0);
+
+  @media ($smMin) {
+    flex-flow: row nowrap;
+  }
 }
 
 .content {
-  flex: 1 0 70%;
-  padding-right: rem(20);
+  @media ($smMin) {
+    flex: 1 0 70%;
+    padding-right: rem(20);
+  }
 
   @media ($mdMin) {
     flex: 1 0 50%;
@@ -59,10 +65,14 @@
 }
 
 .image {
-  flex: 1 0 30%;
-  margin-left: auto;
-  padding: rem(20 0 0 20);
-  width: 30%;
+  padding-top: rem(20);
+
+  @media ($smMin) {
+    flex: 1 0 30%;
+    margin-left: auto;
+    padding: rem(20 0 0 20);
+    width: 30%;
+  }
 
   @media ($mdMin) {
     flex: 1 0 50%;
