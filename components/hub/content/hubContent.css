@@ -1,5 +1,9 @@
 .wrapper {
   margin-bottom: rem(20);
+
+  @media ($smMax) {
+    padding: rem(0 10);
+  }
 }
 
 .content {

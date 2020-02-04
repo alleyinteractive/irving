@@ -1,6 +1,10 @@
 .wrapper {
   padding: rem(20 0);
 
+  @media ($smMax) {
+    padding: rem(20 10);
+  }
+
   @media ($mdMin) {
     padding: rem(20 0 40);
   }
