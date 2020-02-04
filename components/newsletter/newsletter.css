@@ -11,27 +11,21 @@
     height: 100%;
     margin-bottom: rem(20);
     padding: rem(20) rem(10);
+  }
 
-    &.storygroup {
-      background: #fff;
-      border-top: 2px solid;
-      padding: rem(15) 0;
-    }
+  .newsletter__signUpHeading,
+  span {
+    display: inline;
+    font-family: $sans;
+    font-size: rem(18);
+    font-weight: 400;
+    line-height: 1.55;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
 
-    .newsletter__signUpHeading,
-    span {
-      display: inline;
-      font-family: $sans;
-      font-size: rem(18);
-      font-weight: 400;
-      line-height: 1.55;
-      margin-bottom: 0;
-      margin-top: 0;
-    }
-
-    .newsletter__bold {
-      font-weight: 600;
-    }
+  .newsletter__bold {
+    font-weight: 600;
   }
 
   .newsletter__header {
