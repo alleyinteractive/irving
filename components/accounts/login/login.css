@@ -20,42 +20,34 @@
 .formWrap {
   font-family: $sans;
   margin-bottom: rem(50);
-}
-
-.formGroup {
-  label {
-    margin-right: rem(5);
-    width: 100%;
-  }
 
   input {
     display: block;
     margin-bottom: rem(10);
-    width: 100%;
   }
 
-  @media ($smMin) {
-    display: flex;
-    margin-bottom: rem(10);
-
-    .continueBtn {
-      display: inline-block;
-      width: auto;
-    }
-
-    input {
-      display: flex;
-      margin-bottom: 0;
-    }
+  /* Disable slector specificity to allow for programatic rendering of Zephr inputs */
+  /* stylelint-disable selector-max-specificity */
+  input[type='email'],
+  input[type='password'] {
+    @include formInput;
+    margin-right: rem(5);
   }
-}
 
-.formInput {
-  @include formInput;
-  margin-right: rem(5);
+  input[type='submit'] {
+    @include btn;
+    @include blackBtn;
+  }
+  /* stylelint-enable */
 
-  &.inputInvalid {
-    @include inputInvalid;
+  &.hasError {
+    /* Disable slector specificity to allow for programatic styline of error state */
+    /* stylelint-disable selector-max-specificity */
+    input[type='email'],
+    input[type='password'] {
+      @include inputInvalid;
+    }
+    /* stylelint-enable */
   }
 }
 
@@ -101,11 +93,6 @@
   @include btnGray;
 }
 
-.continueBtn {
-  @include btn;
-  @include blackBtn;
-}
-
 .btnLink {
   @include btnLink;
 }
@@ -114,5 +101,4 @@
   color: $red;
   display: block;
   margin-bottom: rem(10);
-  margin-left: rem(10);
 }
