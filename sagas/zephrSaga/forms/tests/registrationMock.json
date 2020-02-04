@@ -1,35 +1,38 @@
 {
-  "tenantId": "technologyreview-staging",
-  "subTenantId": "technologyreview-staging",
-  "slug": "registration",
-  "title": "Registration",
-  "registration": true,
-  "allowSocialSignIn": false,
-  "providers": [],
-  "fields": [
-    {
-      "order": 1,
-      "placeholder": "Enter your email address",
-      "required": true,
-      "slug": "email-address",
-      "default-value": "",
-      "display-condition": "always"
-    },
-    {
-      "order": 2,
-      "placeholder": "Enter your full name",
-      "required": true,
-      "slug": "full-name",
-      "default-value": "",
-      "display-condition": "always"
-    }
-  ],
-  "allowAccountRegistration": false,
-  "css": ".blaize-theme-default.blaize-form {\n margin: 20px auto;\n padding: 20px;\n border-radius: 3px;\n background-color: #fff;\n}\n.blaize-theme-default.blaize-form fieldset {\n border: none;\n padding: 0;\n margin: 0;\n}\n.blaize-theme-default.blaize-form .blaize-title {\n margin-top: 0;\n}\n.blaize-theme-default.blaize-form .blaize-error {\n display: none;\n color: #e12d2d;\n}\n.blaize-theme-default.blaize-form .blaize-success {\n display: none;\n margin: 1em 0;\n background-color: #eef5ee;\n border: 1px solid #638463;\n border-radius: 2px;\n color: #638463;\n padding: 1em;\n font-size: 0.9rem;\n}\n.blaize-theme-default.blaize-form input,\n.blaize-theme-default.blaize-form select {\n width: 100%;\n height: 42px;\n display: block;\n margin-bottom: 15px;\n border: 1px solid #e1e3e8;\n border-radius: 3px;\n background-color: white;\n}\n.blaize-theme-default.blaize-form .blaize-submit {\n display: block;\n width: 180px;\n margin: 10px auto 0;\n height: 42px;\n font-weight: bold;\n background-color: #4697ce;\n color: #fff;\n border-radius: 3px;\n}\n.blaize-theme-default.blaize-form input {\n padding: 5px 10px;\n}\n.blaize-theme-default.blaize-form input[type=\"checkbox\"] {\n display: inline-block;\n width: auto;\n height: auto;\n margin: 0 5px;\n}\n.blaize-theme-default.blaize-form .blaize-social-sign-in-footer {\n text-align: center;\n overflow: hidden;\n margin: 15px 0 10px 0;\n font-weight: bold;\n}\n.blaize-theme-default.blaize-form .blaize-social-sign-in-footer:before,\n.blaize-theme-default.blaize-form .blaize-social-sign-in-footer:after {\n border-bottom: 1px solid #e1e3e8;\n content: \"\";\n display: inline-block;\n width: 50%;\n margin: 0 6px 0 -55%;\n vertical-align: middle;\n}\n.blaize-theme-default.blaize-form .blaize-social-sign-in-footer:after {\n margin: 0 -55% 0 6px;\n}\n.blaize-theme-default.blaize-form.blaize-form-register,\n.blaize-theme-default.blaize-form.blaize-form-login,\n.blaize-theme-default.blaize-form.blaize-form-reset-password {\n max-width: 420px;\n}\n.blaize-theme-default.blaize-form.blaize-form-login,\n.blaize-theme-default.blaize-form.blaize-form-reset-password {\n display: none;\n}\n.blaize-theme-default.blaize-form.blaize-form-register .blaize-submit,\n.blaize-theme-default.blaize-form.blaize-form-login .blaize-submit {\n width: 100%;\n margin-bottom: 10px;\n}",
-  "action": "",
-  "theme": "default",
-  "allowPasswordAuthentication": true,
-  "allowPasswordlessAuthentication": false,
-  "internal-description": "Registration Form",
-  "public-description": ""
+  "input": {
+    "tenantId": "technologyreview-staging",
+    "subTenantId": "technologyreview-staging",
+    "slug": "registration",
+    "title": "Registration",
+    "registration": true,
+    "allowSocialSignIn": false,
+    "providers": [],
+    "fields": [
+      {
+        "order": 1,
+        "placeholder": "Enter your email address",
+        "required": true,
+        "slug": "email-address",
+        "default-value": "",
+        "display-condition": "always"
+      },
+      {
+        "order": 2,
+        "placeholder": "Enter your full name",
+        "required": true,
+        "slug": "full-name",
+        "default-value": "",
+        "display-condition": "always"
+      }
+    ],
+    "allowAccountRegistration": false,
+    "css": ".blaize-theme-default.blaize-form {\n margin: 20px auto;\n padding: 20px;\n border-radius: 3px;\n background-color: #fff;\n}\n.blaize-theme-default.blaize-form fieldset {\n border: none;\n padding: 0;\n margin: 0;\n}\n.blaize-theme-default.blaize-form .blaize-title {\n margin-top: 0;\n}\n.blaize-theme-default.blaize-form .blaize-error {\n display: none;\n color: #e12d2d;\n}\n.blaize-theme-default.blaize-form .blaize-success {\n display: none;\n margin: 1em 0;\n background-color: #eef5ee;\n border: 1px solid #638463;\n border-radius: 2px;\n color: #638463;\n padding: 1em;\n font-size: 0.9rem;\n}\n.blaize-theme-default.blaize-form input,\n.blaize-theme-default.blaize-form select {\n width: 100%;\n height: 42px;\n display: block;\n margin-bottom: 15px;\n border: 1px solid #e1e3e8;\n border-radius: 3px;\n background-color: white;\n}\n.blaize-theme-default.blaize-form .blaize-submit {\n display: block;\n width: 180px;\n margin: 10px auto 0;\n height: 42px;\n font-weight: bold;\n background-color: #4697ce;\n color: #fff;\n border-radius: 3px;\n}\n.blaize-theme-default.blaize-form input {\n padding: 5px 10px;\n}\n.blaize-theme-default.blaize-form input[type=\"checkbox\"] {\n display: inline-block;\n width: auto;\n height: auto;\n margin: 0 5px;\n}\n.blaize-theme-default.blaize-form .blaize-social-sign-in-footer {\n text-align: center;\n overflow: hidden;\n margin: 15px 0 10px 0;\n font-weight: bold;\n}\n.blaize-theme-default.blaize-form .blaize-social-sign-in-footer:before,\n.blaize-theme-default.blaize-form .blaize-social-sign-in-footer:after {\n border-bottom: 1px solid #e1e3e8;\n content: \"\";\n display: inline-block;\n width: 50%;\n margin: 0 6px 0 -55%;\n vertical-align: middle;\n}\n.blaize-theme-default.blaize-form .blaize-social-sign-in-footer:after {\n margin: 0 -55% 0 6px;\n}\n.blaize-theme-default.blaize-form.blaize-form-register,\n.blaize-theme-default.blaize-form.blaize-form-login,\n.blaize-theme-default.blaize-form.blaize-form-reset-password {\n max-width: 420px;\n}\n.blaize-theme-default.blaize-form.blaize-form-login,\n.blaize-theme-default.blaize-form.blaize-form-reset-password {\n display: none;\n}\n.blaize-theme-default.blaize-form.blaize-form-register .blaize-submit,\n.blaize-theme-default.blaize-form.blaize-form-login .blaize-submit {\n width: 100%;\n margin-bottom: 10px;\n}",
+    "action": "",
+    "theme": "default",
+    "allowPasswordAuthentication": true,
+    "allowPasswordlessAuthentication": false,
+    "internal-description": "Registration Form",
+    "public-description": ""
+  },
+  "submitText": "Create an account"
 }
