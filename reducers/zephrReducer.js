@@ -183,7 +183,6 @@ function setFormErrorState(state, route, errorType) {
               invalid: true,
             },
           };
-          console.log(erroredTarget);
           // Replace the component with the error state.
           form.components.splice(
             targetPos,

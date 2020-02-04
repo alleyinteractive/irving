@@ -4,7 +4,7 @@ import registrationFormMock from './registrationMock.json';
 
 describe('zephr saga => createForm HOC', () => {
   it('should render a login form of the shape', () => {
-    const form = createForm(loginFormMock);;
+    const form = createForm(loginFormMock);
     expect(form).toMatchSnapshot();
   });
 
