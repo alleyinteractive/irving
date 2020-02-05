@@ -5,6 +5,7 @@
 
   @media ($mdMin) {
     padding: rem(20 0 40);
+    tidy-offset-left: 1;
   }
 }
 
