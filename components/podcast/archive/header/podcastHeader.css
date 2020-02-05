@@ -1,3 +1,11 @@
+.wrapper {
+  margin-bottom: rem(50);
+
+  @media ($mdMax) {
+    padding: rem(0 20);
+  }
+}
+
 .image {
   background-color: $color-deck;
   margin-bottom: rem(40);
@@ -11,9 +19,17 @@
 
 .title {
   color: $color-heading;
-  font-size: rem(32);
+  font-size: rem(30);
+
+  @media ($mdMin) {
+    font-size: rem(40);
+  }
 }
 
 .description {
   font-size: rem(40);
+
+  @media ($mdMin) {
+    font-size: rem(50);
+  }
 }
