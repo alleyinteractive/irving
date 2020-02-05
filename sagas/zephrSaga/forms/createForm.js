@@ -89,7 +89,7 @@ function generatePasswordFields(formType) {
 
   if ('registration' === formType) {
     passwordId = 'new-password';
-    passwordPlaceholder = 'Create a new password for your account';
+    passwordPlaceholder = 'Create a password for your account';
   }
 
   const passwordProps = {
