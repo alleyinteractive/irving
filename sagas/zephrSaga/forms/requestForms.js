@@ -22,6 +22,10 @@ export default function* requestForms() {
   ]);
 }
 
+/**
+ * A generator the requests the login form from Zephr to be stored in the Redux
+ * store for later use.
+ */
 function* requestLogin() {
   // Initiate the request.
   yield put(actionRequestForm({ route: 'login' }));
@@ -44,6 +48,10 @@ function* requestLogin() {
   }));
 }
 
+/**
+ * A generator that requests the registration form from Zephr to be stored in the Redux
+ * store for later use.
+ */
 function* requestRegistration() {
   yield put(actionRequestForm({ route: 'register' }));
 

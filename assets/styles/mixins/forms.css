@@ -77,13 +77,13 @@
     border: 0;
     clip: rect(0 0 0 0);
     clippath: inset(50%);
-    height: 1px;
-    margin: -1px;
+    height: rem(1);
+    margin: rem(-1);
     overflow: hidden;
     padding: 0;
     position: absolute;
     white-space: nowrap;
-    width: 1px;
+    width: rem(1);
   }
 
   :global(.styled-checkbox) {
@@ -93,10 +93,10 @@
     border-radius: 50%;
     cursor: pointer;
     display: inline-block;
-    height: 16px;
-    margin-right: 8px;
-    padding: 2px;
-    width: 16px;
+    height: rem(16);
+    margin-right: rem(8);
+    padding: rem(2);
+    width: rem(16);
   }
 
   /* stylelint-disable selector-max-specificity */

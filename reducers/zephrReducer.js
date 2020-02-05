@@ -161,68 +161,68 @@ function setFormErrorState(state, route, errorType) {
     ...state,
     forms: [
       ...state.forms.map((form) => {
-        if (route === form.route) {
-          // Get the error's target input.
-          const targetId = setErrorTargetId(errorType);
-          // Get the target's position in the components array.
-          const targetPos = form.components.map(
-            (el) => {
-              if (el) {
-                return el.props.id;
-              }
-              return null;
+        if (route !== form.route) {
+          return form;
+        }
+
+        // Get the error's target input.
+        const targetId = setErrorTargetId(errorType);
+        // Get the target's position in the components array.
+        const targetPos = form.components.map(
+          (el) => {
+            if (el) {
+              return el.props.id;
             }
-          ).indexOf(targetId);
-          // Get the target.
-          const target = form.components[targetPos];
-          // Add the error state to the target.
-          const erroredTarget = {
-            ...target,
-            props: {
-              ...target.props,
-              invalid: true,
-            },
-          };
-          // Replace the component with the error state.
-          form.components.splice(
-            targetPos,
-            1,
-            erroredTarget,
-          );
-          // Create the error message component.
-          const errorMessage = React.createElement(
-            'span',
-            {
-              id: `${targetId}-error`,
-              key: `${targetId}-error-message`,
-              className: 'form-error',
-            },
-            formatErrorMessage(errorType),
-          );
-          // Add the error message to the components array.
-          form.components.splice(targetPos + 1, 0, errorMessage);
-
-          // Check to see if the form is already in an error state.
-          if ('errorCount' in form) {
-            // Get the current error count.
-            const { errorCount } = form;
-
-            return {
-              ...form,
-              errorCount: errorCount + 1,
-              requireCaptcha: 1 <= errorCount,
-            };
+            return null;
           }
+        ).indexOf(targetId);
+        // Get the target.
+        const target = form.components[targetPos];
+        // Add the error state to the target.
+        const erroredTarget = {
+          ...target,
+          props: {
+            ...target.props,
+            invalid: true,
+          },
+        };
+        // Replace the component with the error state.
+        form.components.splice(
+          targetPos,
+          1,
+          erroredTarget,
+        );
+        // Create the error message component.
+        const errorMessage = React.createElement(
+          'span',
+          {
+            id: `${targetId}-error`,
+            key: `${targetId}-error-message`,
+            className: 'form-error',
+          },
+          formatErrorMessage(errorType),
+        );
+        // Add the error message to the components array.
+        form.components.splice(targetPos + 1, 0, errorMessage);
+
+        // Check to see if the form is already in an error state.
+        if ('errorCount' in form) {
+          // Get the current error count.
+          const { errorCount } = form;
 
           return {
             ...form,
-            error: true,
-            errorCount: 1,
-            requireCaptcha: false,
+            errorCount: errorCount + 1,
+            requireCaptcha: 1 <= errorCount,
           };
         }
 
-        return form;
+        return {
+          ...form,
+          error: true,
+          errorCount: 1,
+          requireCaptcha: false,
+        };
       }),
     ],
   };
@@ -296,65 +296,65 @@ function setPasswordErrorState(state) {
     ...state,
     forms: [
       ...state.forms.map((form) => {
-        if ('/register' === form.route && false === form.error) {
-          // Create an array of available component IDs.
-          const idMap = form.components.map((el) => el.props.id);
-
-          // Get the password input's position in the array.
-          const passwordInputPos = idMap.indexOf('new-password');
-          const passwordInput = form.components[passwordInputPos];
-          // Create the password input with an error state.
-          const erroredPasswordInput = {
-            ...passwordInput,
-            props: {
-              ...passwordInput.props,
-              invalid: true,
-            },
-          };
-          // Replace the component with the error state.
-          form.components.splice(
-            passwordInputPos,
-            1,
-            erroredPasswordInput,
-          );
-
-          // Get the verification input's position in the array.
-          const verifyInputPos = idMap.indexOf('verify-password');
-          const verifyInput = form.components[verifyInputPos];
-          // Create the verification input with an error state.
-          const erroredVerifyInput = {
-            ...verifyInput,
-            props: {
-              ...verifyInput.props,
-              invalid: true,
-            },
-          };
-          // Replace the component with the error state.
-          form.components.splice(
-            verifyInputPos,
-            1,
-            erroredVerifyInput,
-          );
-          // Create the error message component.
-          const errorMessage = React.createElement(
-            'span',
-            {
-              key: 'password-verification-error-message',
-              className: 'form-error',
-            },
-            formatErrorMessage('verify-password'),
-          );
-
-          // Add the error message to the components array.
-          form.components.splice(verifyInputPos + 1, 0, errorMessage);
-
-          return {
-            ...form,
-            error: true,
-          };
+        if ('/register' !== form.route || true === form.error) {
+          return form;
         }
 
-        return form;
+        // Create an array of available component IDs.
+        const idMap = form.components.map((el) => el.props.id);
+
+        // Get the password input's position in the array.
+        const passwordInputPos = idMap.indexOf('new-password');
+        const passwordInput = form.components[passwordInputPos];
+        // Create the password input with an error state.
+        const erroredPasswordInput = {
+          ...passwordInput,
+          props: {
+            ...passwordInput.props,
+            invalid: true,
+          },
+        };
+        // Replace the component with the error state.
+        form.components.splice(
+          passwordInputPos,
+          1,
+          erroredPasswordInput,
+        );
+
+        // Get the verification input's position in the array.
+        const verifyInputPos = idMap.indexOf('verify-password');
+        const verifyInput = form.components[verifyInputPos];
+        // Create the verification input with an error state.
+        const erroredVerifyInput = {
+          ...verifyInput,
+          props: {
+            ...verifyInput.props,
+            invalid: true,
+          },
+        };
+        // Replace the component with the error state.
+        form.components.splice(
+          verifyInputPos,
+          1,
+          erroredVerifyInput,
+        );
+        // Create the error message component.
+        const errorMessage = React.createElement(
+          'span',
+          {
+            key: 'password-verification-error-message',
+            className: 'form-error',
+          },
+          formatErrorMessage('verify-password'),
+        );
+
+        // Add the error message to the components array.
+        form.components.splice(verifyInputPos + 1, 0, errorMessage);
+
+        return {
+          ...form,
+          error: true,
+        };
       }),
     ],
   };

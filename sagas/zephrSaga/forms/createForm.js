@@ -1,5 +1,8 @@
 import React from 'react';
-import { FormInput, TermsCheckbox } from './components/formElements';
+import {
+  FormInput,
+  TermsCheckbox,
+} from './components/formElements';
 
 /**
  * Construct a form via a response from the Zephr API.
@@ -66,42 +69,60 @@ export default function createForm(formJSON) {
     value: submitText,
   };
 
-  // Create the submit button.
-  const submitButton = React.createElement('input', buttonProps, null);
-
   // Append the submit button to the end of the array.
-  components = [...components, submitButton];
-
-  // Return the components array.
-  return components;
+  return [
+    ...components,
+    React.createElement('input', buttonProps, null),
+  ];
 }
 
-function generatePasswordFields(slug) {
-  const id = 'registration' === slug ? 'new-password' : 'current-password';
-  const placeholder =
-    'registration' === slug ?
-      'Create a password for your account' :
-      'Enter your password';
+/**
+ * A function that adds password fields to login and registration forms.
+ *
+ * @param {string} formType The form's type (e.g. registration, login).
+ *
+ * @returns {array} fields  The generated form field components.
+ */
+function generatePasswordFields(formType) {
+  let passwordId = 'current-password';
+  let passwordPlaceholder = 'Enter your password';
 
-  const props = {
-    id,
-    className: `zephr-input-${id}`,
+  if ('registration' === formType) {
+    passwordId = 'new-password';
+    passwordPlaceholder = 'Create a new password for your account';
+  }
+
+  const passwordProps = {
+    id: passwordId,
+    className: `zephr-input-${passwordId}`,
     type: 'password',
-    placeholder,
+    placeholder: passwordPlaceholder,
     required: true,
     defaultValue: '',
-    autoComplete: id,
+    autoComplete: passwordId,
   };
 
-  const fields = [
-    React.createElement(FormInput, props, null),
+  let fields = [
+    React.createElement(FormInput, passwordProps, null),
   ];
 
-  if ('registration' === slug) {
-    // Create the password verification input.
-    const verifyId = 'verify-password';
+  if ('registration' === formType) {
+    fields = [...fields, ...generateRegistrationFields()];
+  }
 
-    const verifyProps = {
+  return fields;
+}
+
+/**
+ * A function that adds fields specific to registration forms (password verification, terms of service checkbox).
+ *
+ * @returns {array} fields The generated form field components.
+ */
+function generateRegistrationFields() {
+  const verifyId = 'verify-password';
+  const verifyField = React.createElement(
+    FormInput,
+    {
       id: verifyId,
       className: `zephr-input-${verifyId}`,
       type: 'password',
@@ -109,19 +130,17 @@ function generatePasswordFields(slug) {
       required: true,
       defaultValue: '',
       autoComplete: 'new-password',
-    };
+    },
+    null
+  );
+  const termsField = React.createElement(
+    TermsCheckbox,
+    {
+      id: 'terms-checkbox',
+    },
+    null
+  );
 
-    // Add the password verification input.
-    fields.push(React.createElement(FormInput, verifyProps, null));
-    // Add the terms of service checkbox.
-    fields.push(
-      React.createElement(
-        TermsCheckbox,
-        { id: 'terms-checkbox' },
-        null
-      )
-    );
-  }
-
-  return fields;
+  // Return the contructed fields.
+  return [verifyField, termsField];
 }

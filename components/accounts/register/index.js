@@ -53,40 +53,53 @@ const Register = ({
     const verifyPassword = document.getElementById('verify-password');
     const termsCheckbox = document.getElementById('terms-checkbox');
 
+    // Create a counter to keep track of errors.
+    let errorCount = 0;
+
     // Check to ensure the captcha has been validated prior to submission.
     if (false === captcha.isValid) {
       setCaptcha({
         hasError: true,
         isValid: false,
       });
-      // Exit the submit process.
-      return;
+
+      // Increment the error counter.
+      errorCount += 1;
     }
 
     // Check to ensure the terms checkbox has been checked prior to submission.
     if (false === termsCheckbox.checked) {
       displayFormError('terms-checkbox');
-      // Exit the submit process.
-      return;
+
+      // Increment the error counter.
+      errorCount += 1;
     }
 
     // Check to ensure that the password and it's verification value match prior to submission.
     if (password.value !== verifyPassword.value) {
       // Invalid passwords get their own dispatch action because multiple inputs need to be invalidated.
       displayInvalidPasswordError();
-      // Exit the submit process.
-      return;
+
+      // Increment the error counter.
+      errorCount += 1;
     }
 
     // Check to ensure that the email address is valid prior to submission.
     if (! email.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
       displayFormError('email-address');
-      // Exit the submit process.
-      return;
+
+      // Increment the error counter.
+      errorCount += 1;
     }
 
     if (! fullName.value.match(/^[a-z ,.'-]+$/i)) {
       displayFormError('full-name');
+
+      // Increment the error counter.
+      errorCount += 1;
+    }
+
+    if (0 < errorCount) {
       // Exit the submit process.
       return;
     }
