@@ -1,5 +1,5 @@
 .icon {
-  composes: icon from './lightIcon.css';
+  composes: icon from './lightIcons.css';
 
   svg {
     fill: $black;
