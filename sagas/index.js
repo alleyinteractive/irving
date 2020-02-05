@@ -13,6 +13,7 @@ import onLocationChange from './onLocationChange';
 import watchComponentData from './componentDataSaga';
 import formSaga from './formSaga';
 import userSaga from './userSaga';
+import zephrSaga from './zephrSaga';
 
 /**
  * Combine all sagas, and run them continuously in parallel.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
     ...formSaga,
     ...userSaga,
+    ...zephrSaga,
   ]);
 }
