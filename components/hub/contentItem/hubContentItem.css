@@ -1,7 +1,7 @@
 .wrapper {
   @media ($mdMin) {
-    padding: rem(0 10);
     flex: 1 0 25%;
+    padding: rem(0 10);
   }
 }
 
