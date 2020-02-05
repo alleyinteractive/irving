@@ -4,7 +4,6 @@ import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
-import { __ } from '@wordpress/i18n';
 import dashify from 'dashify';
 import classNames from 'classnames';
 import ExpandableSocialShare from 'components/socialList/expandable';
