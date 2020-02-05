@@ -63,7 +63,8 @@ import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
-import PodcastHeader from 'components/podcastHeader';
+import PodcastArchiveHeader from 'components/podcast/archive/header';
+import PodcastContentItem from 'components/podcast/archive/contentItem';
 import Popular from 'components/popular';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
@@ -169,7 +170,8 @@ export const componentMap = {
   pagination: Placeholder,
   parsely: Parsely,
   'page-body': PageBody,
-  'podcast-header': PodcastHeader,
+  'podcast-archive-header': PodcastArchiveHeader,
+  'podcast-content-item': PodcastContentItem,
   popular: Popular,
   'post-list': PostList,
   register: Register,
