@@ -16,7 +16,7 @@
 .top10 {
   border-bottom: $border-thin;
   border-top: $border-thin;
-  margin-bottom: rem(75);
+  margin-bottom: 0;
   padding-left: 0;
 }
 

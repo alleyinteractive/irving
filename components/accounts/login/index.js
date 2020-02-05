@@ -7,38 +7,44 @@ import {
   getIsLoading,
   getForms,
 } from 'selectors/zephrSelector';
-import { actionSubmitForm } from 'actions/zephrActions';
-import classNames from 'classnames';
+import {
+  actionSubmitForm,
+  actionClearFormErrors,
+} from 'actions/zephrActions';
 
 // Styles
 import styles from './login.css';
 
-const Login = ({ isLoading, forms, submitLogin }) => {
+const Login = ({
+  isLoading,
+  forms,
+  submitLogin,
+  clearErrors,
+}) => {
   const loginForm = forms.filter((form) => '/login' === form.route)[0];
   // Create submit handler.
   const onSubmit = (event) => {
     event.preventDefault();
 
+    if (true === loginForm.error) {
+      clearErrors({ route: '/login' });
+    }
+
     const email = document.getElementById('email-address');
-    const password = document.getElementById('password');
+    const password = document.getElementById('current-password');
 
     // Drop focus on the inputs.
-    email.blur();
-    password.blur();
+    const focused = document.activeElement;
+    focused.blur();
 
     submitLogin({
-      type: 'login',
+      route: '/login',
       credentials: {
         email: email.value,
         password: password.value,
       },
     });
   };
-
-  let error = false;
-  if (loginForm) {
-    error = loginForm.error; // eslint-disable-line prefer-destructuring
-  }
 
   return (
     <div className={styles.accountWrap}>
@@ -55,17 +61,8 @@ const Login = ({ isLoading, forms, submitLogin }) => {
       </p>
       <form
         onSubmit={onSubmit}
-        className={classNames(styles.formWrap, {
-          [styles.hasError]: !! error,
-        })}
+        className={styles.formWrap}
       >
-        {!! error && (
-          <span className={styles.formError} role="alert">
-            {__(`Oops! Let’s try that again —
-             please enter your email address and password.`,
-            'mittr')}
-          </span>
-        )}
         {! isLoading && loginForm ? (
           loginForm.components
         ) : null}
@@ -109,10 +106,12 @@ Login.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   forms: PropTypes.array.isRequired,
   submitLogin: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   submitLogin: (loginData) => dispatch(actionSubmitForm(loginData)),
+  clearErrors: (routeInfo) => dispatch(actionClearFormErrors(routeInfo)),
 });
 const withRedux = connect(
   (state) => ({

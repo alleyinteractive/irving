@@ -1,12 +1,12 @@
 /* ListDescription component styles */
 
 --highlight-color: $color-deck;
+--letter-background-color: $white;
 
 .wrapper {
   width: 100%;
 
   p {
-    color: $white;
     font-family: $sans;
     font-size: rem(16);
     font-weight: 500;
@@ -19,7 +19,7 @@
 
     /* stylelint-disable-next-line selector-max-specificity */
     &:first-of-type::first-letter {
-      background-color: $white;
+      background-color: var(--letter-background-color);
       color: var(--highlight-color);
       float: left;
       font-family: $sans;
