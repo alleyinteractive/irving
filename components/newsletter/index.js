@@ -167,7 +167,7 @@ const NewsletterSubscribe = ({
                 className="newsletter__emailInput"
                 id={`emailInput-${clientId}`}
                 placeholder={__(
-                  'Enter your email, receive the newsletter',
+                  'Enter your email, get the newsletter',
                   'mittr',
                 )}
                 style={{
@@ -220,7 +220,7 @@ const NewsletterSubscribe = ({
               id={`upToDateOptInID-${clientId}`}
             >
               {__(
-                `Also stay updated on MIT Technology
+                `Stay updated on MIT Technology
                 Review initiatives and events?`,
                 'mittr',
               )}
