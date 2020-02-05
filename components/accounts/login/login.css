@@ -18,37 +18,7 @@
 }
 
 .formWrap {
-  font-family: $sans;
-  margin-bottom: rem(50);
-
-  input {
-    display: block;
-    margin-bottom: rem(10);
-  }
-
-  /* Disable slector specificity to allow for programatic rendering of Zephr inputs */
-  /* stylelint-disable selector-max-specificity */
-  input[type='email'],
-  input[type='password'] {
-    @include formInput;
-    margin-right: rem(5);
-  }
-
-  input[type='submit'] {
-    @include btn;
-    @include blackBtn;
-  }
-  /* stylelint-enable */
-
-  &.hasError {
-    /* Disable slector specificity to allow for programatic styline of error state */
-    /* stylelint-disable selector-max-specificity */
-    input[type='email'],
-    input[type='password'] {
-      @include inputInvalid;
-    }
-    /* stylelint-enable */
-  }
+  @include zephrForm;
 }
 
 .ssoText {

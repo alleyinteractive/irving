@@ -7,6 +7,11 @@ import {
   RECEIVE_ZEPHR_USER_SESSION,
   RECEIVE_ZEPHR_USER_PROFILE,
   RECEIVE_LOGIN_ERROR,
+  RECEIVE_USER_REGISTRATION,
+  RECEIVE_USER_LOGIN,
+  RECEIVE_PASSWORD_VERIFICATION_ERROR,
+  RECEIVE_REGISTRATION_ERROR,
+  CLEAR_FORM_ERRORS,
 } from './types';
 
 /**
@@ -75,10 +80,61 @@ export function actionReceiveUserProfile(payload) {
 }
 
 /**
+ * A Redux action that represents browser state change when a user has successfully logged in.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionReceiveUserLogin() {
+  return createAction(RECEIVE_USER_LOGIN);
+}
+
+/**
  * A Redux action that represents when a user submits incorrect information in the login form.
  *
  * @returns {{type}} The Redux action.
  */
-export function actionReceiveLoginError() {
-  return createAction(RECEIVE_LOGIN_ERROR);
+export function actionReceiveLoginError(payload) {
+  return createAction(RECEIVE_LOGIN_ERROR, payload);
+}
+
+/**
+ * A Redux action that represents browser state change when a user successfully registers.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionReceiveUserRegistration() {
+  return createAction(RECEIVE_USER_REGISTRATION);
+}
+
+/**
+ * A Redux action that represents browser state change when a user attempts to register with a
+ * password that does not match the verification prompt.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionReceiveInvalidPassword() {
+  return createAction(RECEIVE_PASSWORD_VERIFICATION_ERROR);
+}
+
+/**
+ * A Redux action that represents when a user submits invalid information in the registration form.
+ *
+ * @param {{errorType}} payload The error type to be returned.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveRegistrationError(payload) {
+  return createAction(RECEIVE_REGISTRATION_ERROR, payload);
+}
+
+/**
+ * A Redux action that represents when a user submits a form that contains errors. Those errors should
+ * be cleared for the new submission.
+ *
+ * @param {{route}} paylod The form's route.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionClearFormErrors(payload) {
+  return createAction(CLEAR_FORM_ERRORS, payload);
 }
