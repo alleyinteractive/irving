@@ -76,7 +76,7 @@ ContentHeader.propTypes = {
     subTopicLink: PropTypes.string,
   }),
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  deck: PropTypes.string.isRequired,
+  deck: PropTypes.string,
   publishDate: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   headingLevel: PropTypes.number,
@@ -103,6 +103,7 @@ ContentHeader.defaultProps = {
   },
   headingLevel: 1,
   themeName: '',
+  deck: '',
 };
 
 export default withThemes('content-header', {
