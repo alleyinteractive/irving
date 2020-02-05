@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
@@ -7,6 +7,7 @@ import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
 import dashify from 'dashify';
 import classNames from 'classnames';
+import ExpandableSocialShare from 'components/socialList/expandable';
 
 // Styles
 import styles from './teaserItem.css';
@@ -31,7 +32,6 @@ const TeaserItem = ({
   topic,
   topicLink,
 }) => {
-  const [sharingIsVisible, setSharingIsVisible] = useState(false);
   const image = findChildByName('image', children);
   const video = findChildByName('video', children);
   const socialSharing = findChildByName('social-sharing', children);
@@ -108,25 +108,9 @@ const TeaserItem = ({
       )}
       {'storygroup' !== themeName && video}
       {'storygroup' !== themeName && otherChildren}
-      <div className={theme.shareMenu}>
-        <button
-          type="button"
-          aria-label={__('Open share menu', 'mittr')}
-          className={theme.shareMenuToggle}
-          onClick={() => {
-            setSharingIsVisible(! sharingIsVisible);
-          }}
-          aria-haspopup
-          aria-expanded={sharingIsVisible}
-        >
-          <div className={theme.dot} />
-          <div className={theme.dot} />
-          <div className={theme.dot} />
-        </button>
-        <div className={theme.shareMenuFlyOut}>
-          {sharingIsVisible && socialSharing}
-        </div>
-      </div>
+      <ExpandableSocialShare>
+        {socialSharing}
+      </ExpandableSocialShare>
     </article>
   );
 };
