@@ -4,6 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
+import dashify from 'dashify';
 import classNames from 'classnames';
 import ExpandableSocialShare from 'components/socialList/expandable';
 
@@ -42,6 +43,7 @@ const TeaserItem = ({
   if ('simple' === themeName) {
     return (
       <Link
+        id={dashify(title)}
         className={classNames(theme.wrapper, [theme[itemPosition]])}
         to={permalink}
       >
