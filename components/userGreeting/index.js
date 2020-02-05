@@ -4,7 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 // import withThemes from 'components/hoc/withThemes';
 import { connect } from 'react-redux';
 import {
-  getUser,
+  getProfile,
   getFirstName,
   getLastName,
 } from 'selectors/zephrSelector';
@@ -50,7 +50,7 @@ UserGreeting.propTypes = {
 
 const withRedux = connect(
   (state) => ({
-    isAuthenticated: 0 < Object.keys(getUser(state)).length,
+    isAuthenticated: 0 < Object.keys(getProfile(state)).length,
     firstName: getFirstName(state) || '',
     lastName: getLastName(state) || '',
   }),
