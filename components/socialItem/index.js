@@ -19,6 +19,7 @@ import socialIconMap from './iconMap';
 import styles from './socialItem.css';
 import whiteIconStyles from './whiteIcon.css';
 import flyoutIconStyles from './socialItem--flyoutIcon.css';
+import blackIconStyles from './socialItem--blackIcon.css';
 
 const SocialItem = ({
   type, url, displayIcon, theme, themeName,
@@ -81,6 +82,7 @@ const wrapWithThemes = withThemes('social-item', {
   default: styles,
   whiteIcon: whiteIconStyles,
   flyoutIcon: flyoutIconStyles,
+  blackIcon: blackIconStyles,
 });
 
 export default wrapWithStyles(wrapWithThemes(SocialItem));

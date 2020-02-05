@@ -84,7 +84,7 @@
   }
 
   svg {
-    fill: $white;
+    fill: white;
     height: rem(18);
     width: auto;
   }

@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  width: auto;
+
+  &:not(last-child) {
+    margin-left: rem(10);
+    
+    @media ($mdMin) {
+      margin-left: rem(20);
+    }
+  }
+}
+
+.anchor {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.icon {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+
+  svg {
+    fill: $black;
+    height: rem(18);
+    width: auto;
+  }
+}
+
+.screenReaderLabel {
+  @include screenreader-only;
+}
+
+.label {
+  @include label;
+}

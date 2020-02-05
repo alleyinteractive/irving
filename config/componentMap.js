@@ -76,6 +76,7 @@ import ShareStories from 'components/shareStories';
 import Sidebar from 'components/sidebar';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
+import SocialFollowModule from 'components/socialFollowModule';
 import SponsoredModule from 'components/sponsoredModule';
 import SponsoredFeedItem from 'components/feedItem/sponsored';
 import StatsWidget from 'components/statsWidget';
@@ -180,7 +181,7 @@ export const componentMap = {
   'subtopics-section': SubtopicsSection,
   subscriptions: Subscriptions,
   sidebar: Sidebar,
-  'social-links': SocialList,
+  'social-follow-module': SocialFollowModule,
   'social-sharing': SocialList,
   'social-item': SocialItem,
   sponsored: SponsoredFeedItem,
