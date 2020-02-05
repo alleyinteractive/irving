@@ -25,7 +25,7 @@ export default function* rootSaga() {
     takeLatest(LOCATION_CHANGE, waitToScroll),
     takeEvery(LOCATION_CHANGE, onLocationChange),
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
-    // @todo move this into Zephr saga after
+    // @todo move this into Zephr saga after mittr-irving/177 merged.
     call(resolveUIRules),
     takeEvery(LOCATION_CHANGE, resolveUIRules),
     ...formSaga,

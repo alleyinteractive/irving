@@ -4,7 +4,6 @@ import {
   RECEIVE_ZEPHR_USER_SESSION,
   RECEIVE_ZEPHR_USER_PROFILE,
   RECEIVE_LOGIN_ERROR,
-  // REQUEST_ZEPHR_UI_COMPONENTS,
   RECEIVE_ZEPHR_UI_COMPONENTS,
 } from 'actions/types';
 import { zephr as defaultState } from './defaultState';
