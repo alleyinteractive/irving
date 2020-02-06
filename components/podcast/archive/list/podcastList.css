@@ -1,5 +1,13 @@
 .wrapper {
-  display: flex;
-  flex-flow: row wrap;
   list-style: none;
+
+  @media ($smMin) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+  }
 }

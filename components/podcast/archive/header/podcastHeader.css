@@ -1,8 +1,8 @@
 .wrapper {
   margin-bottom: rem(50);
 
-  @media ($mdMax) {
-    padding: rem(0 20);
+  @media ($mdMin) {
+    tidy-offset-left: 1;
   }
 }
 
