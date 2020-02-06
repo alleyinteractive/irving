@@ -36,12 +36,13 @@ const SocialItem = ({
               window.open(
                 url,
               );
+            } else {
+              window.open(
+                url,
+                'socialWindow',
+                'width=325,height=400'
+              );
             }
-            window.open(
-              url,
-              'socialWindow',
-              'width=325,height=400'
-            );
           }}
           target="_blank"
           rel="noopener"

@@ -3,7 +3,7 @@
   border: 1px solid $border-gray;
   display: flex;
   flex-direction: column;
-  min-width: 340px;
+  min-width: rem(340);
   position: absolute;
   right: 1rem;
   top: rem(40);
