@@ -33,11 +33,19 @@ const SocialItem = ({
           className={theme.anchor}
           onClick={(e) => {
             e.preventDefault();
-            window.open(
-              url,
-              'socialWindow',
-              'width=325,height=400'
-            );
+            if ('dark' === themeName || 'light' === theme) {
+              window.open(
+                url,
+                'socialWindow',
+                'width=100%, height=100%'
+              );
+            } else {
+              window.open(
+                url,
+                'socialWindow',
+                'width=325,height=400'
+              );
+            }
           }}
           target="_blank"
           rel="noopener"
