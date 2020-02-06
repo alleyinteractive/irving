@@ -1,7 +1,10 @@
 .wrapper {
   flex: 0 0 auto;
-  margin-bottom: rem(200);
   width: 100%;
+  
+  @media ($mdMin) {
+    margin-bottom: rem(200);
+  }
 
   :global(.sidebarHTMLContent) {
     @include basic-formatting;
