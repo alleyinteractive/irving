@@ -35,13 +35,6 @@ const TeaserItem = ({
   const video = findChildByName('video', children);
   const socialSharing = findChildByName('social-sharing', children);
 
-  if (sharingIsVisible) {
-    document.addEventListener('click', handleCloseSharing, { once: true });
-  }
-  function handleCloseSharing() {
-    setSharingIsVisible(false);
-  }
-
   const otherChildren = children.filter(
     ({ props: { componentName } }) => ('image' !== componentName) &&
       ('video' !== componentName) && ('social-sharing' !== componentName)
