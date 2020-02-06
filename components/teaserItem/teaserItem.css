@@ -88,34 +88,3 @@
   margin-bottom: rem(20);
   margin-top: rem(20);
 }
-
-.shareMenuToggle {
-  appearance: none;
-  background-color: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  height: rem(18);
-  letter-spacing: rem(1);
-  padding: 0;
-  position: absolute;
-  right: tidy-var(edge);
-  top: tidy-var(edge);
-}
-
-.dot {
-  background-color: #969696;
-  display: inline-block;
-  height: rem(4);
-  vertical-align: middle;
-  width: rem(4);
-
-  &:not(:last-child) {
-    margin-right: rem(5);
-  }
-}
-
-.image {
-  overflow: hidden;
-  width: 100%;
-}

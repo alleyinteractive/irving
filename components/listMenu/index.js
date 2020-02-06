@@ -34,7 +34,10 @@ const ListMenu = ({
             aria-label={__('List', 'mittr')}
           >
             <h2 id={listID}>
-              <Link to={permalink} className={theme.title}>
+              <Link
+                to={permalink}
+                className={theme.title}
+              >
                 {title}
               </Link>
             </h2>

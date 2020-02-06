@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`zephr saga => createForm HOC should render a login form of the shape 1`] = `
+Array [
+  <FormInput
+    autoComplete="username"
+    className="zephr-input-email-address"
+    defaultValue=""
+    id="email-address"
+    invalid={false}
+    placeholder="Enter your email address"
+    required={false}
+    type="email"
+  />,
+  <FormInput
+    autoComplete="current-password"
+    className="zephr-input-current-password"
+    defaultValue=""
+    id="current-password"
+    invalid={false}
+    placeholder="Enter your password"
+    required={true}
+    type="password"
+  />,
+  <input
+    type="submit"
+    value="Login"
+  />,
+]
+`;
+
+exports[`zephr saga => createForm HOC should render a registration form of the shape 1`] = `
+Array [
+  <FormInput
+    autoComplete="username"
+    className="zephr-input-email-address"
+    defaultValue=""
+    id="email-address"
+    invalid={false}
+    placeholder="Enter your email address"
+    required={false}
+    type="email"
+  />,
+  <FormInput
+    autoComplete=""
+    className="zephr-input-full-name"
+    defaultValue=""
+    id="full-name"
+    invalid={false}
+    placeholder="Enter your full name"
+    required={true}
+    type="text"
+  />,
+  <FormInput
+    autoComplete="new-password"
+    className="zephr-input-new-password"
+    defaultValue=""
+    id="new-password"
+    invalid={false}
+    placeholder="Create a password for your account"
+    required={true}
+    type="password"
+  />,
+  <FormInput
+    autoComplete="new-password"
+    className="zephr-input-verify-password"
+    defaultValue=""
+    id="verify-password"
+    invalid={false}
+    placeholder="Confirm your password"
+    required={true}
+    type="password"
+  />,
+  <TermsCheckbox
+    id="terms-checkbox"
+  />,
+  <input
+    type="submit"
+    value="Create an account"
+  />,
+]
+`;

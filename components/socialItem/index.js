@@ -17,7 +17,8 @@ import withThemes from 'components/hoc/withThemes';
 import CopyLink from 'components/copyLink';
 import socialIconMap from './iconMap';
 import styles from './socialItem.css';
-import whiteIconStyles from './whiteIcon.css';
+import lightIconStyles from './lightIcon.css';
+import darkIconStyles from './darkIcons.css';
 import flyoutIconStyles from './socialItem--flyoutIcon.css';
 
 const SocialItem = ({
@@ -81,12 +82,13 @@ SocialItem.propTypes = {
   themeName: PropTypes.string.isRequired,
 };
 
-const wrapWithStyles = withStyles(styles, whiteIconStyles);
+const wrapWithStyles = withStyles(styles, lightIconStyles);
 
 const wrapWithThemes = withThemes('social-item', {
   default: styles,
-  whiteIcon: whiteIconStyles,
+  light: lightIconStyles,
   flyoutIcon: flyoutIconStyles,
+  dark: darkIconStyles,
 });
 
 export default wrapWithStyles(wrapWithThemes(SocialItem));

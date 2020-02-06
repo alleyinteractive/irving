@@ -30,9 +30,8 @@ import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
 import HubContent from 'components/hub/content';
-import HubFeatured from 'components/hub/featured';
 import HubList from 'components/hub/list';
-import HubListItem from 'components/hub/listItem';
+import HubContentItem from 'components/hub/contentItem';
 import Image from 'components/image/image';
 import ImageSet from 'components/imageSet';
 import InfiniteItemList from 'components/infiniteItemList';
@@ -64,6 +63,7 @@ import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
+import PodcastHeader from 'components/podcastHeader';
 import Popular from 'components/popular';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
@@ -127,9 +127,8 @@ export const componentMap = {
   header: Header,
   'header-with-image': HeaderWithImage,
   'hub-content': HubContent,
-  'hub-featured-content': HubFeatured,
   'hub-content-list': HubList,
-  'hub-content-list-item': HubListItem,
+  'hub-content-item': HubContentItem,
   'feed-item': FeedItem,
   html: RawHTML,
   image: Image,
@@ -170,6 +169,7 @@ export const componentMap = {
   pagination: Placeholder,
   parsely: Parsely,
   'page-body': PageBody,
+  'podcast-header': PodcastHeader,
   popular: Popular,
   'post-list': PostList,
   register: Register,
