@@ -7,6 +7,7 @@ import {
 import {
   LOCATION_CHANGE,
   REQUEST_COMPONENT_DATA,
+  RECEIVE_COMPONENTS,
 } from 'actions/types';
 import resolveComponents from './resolveComponents';
 import waitToScroll from './waitToScroll';
@@ -27,7 +28,8 @@ export default function* rootSaga() {
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
     // @todo move this into Zephr saga after mittr-irving/177 merged.
     call(resolveUIRules),
-    takeEvery(LOCATION_CHANGE, resolveUIRules),
+    // takeEvery(LOCATION_CHANGE, resolveUIRules),
+    takeLatest(RECEIVE_COMPONENTS, resolveUIRules),
     ...formSaga,
     ...userSaga,
   ]);
