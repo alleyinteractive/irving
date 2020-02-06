@@ -8,6 +8,7 @@ import {
   getFirstName,
   getLastName,
 } from 'selectors/zephrSelector';
+import { actionRequestUserLogOut } from 'actions/zephrActions';
 
 // Child components
 import Authenticated from './authenticated';
@@ -23,14 +24,26 @@ const UserGreeting = ({
   firstName,
   lastName,
   themeName,
+  logOut,
 }) => (
   <div className={styles.wrapper}>
     {isAuthenticated ? (
-      <Authenticated
-        firstName={firstName}
-        lastName={lastName}
-        themeName={themeName}
-      />
+      <React.Fragment>
+        <Authenticated
+          firstName={firstName}
+          lastName={lastName}
+          themeName={themeName}
+        />
+        {/* @todo remove me. this is temporary for testing log out service */}
+        <button
+          className={styles.button}
+          type="button"
+          style={{ marginLeft: '10px' }}
+          onClick={logOut}
+        >
+          Log out
+        </button>
+      </React.Fragment>
     ) : (
       <Anonymous themeName={themeName} />
     )}
@@ -46,7 +59,12 @@ UserGreeting.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   lastName: PropTypes.string.isRequired,
   themeName: PropTypes.string,
+  logOut: PropTypes.func.isRequired,
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  logOut: () => dispatch(actionRequestUserLogOut()),
+});
 
 const withRedux = connect(
   (state) => ({
@@ -54,7 +72,7 @@ const withRedux = connect(
     firstName: getFirstName(state) || '',
     lastName: getLastName(state) || '',
   }),
-  null
+  mapDispatchToProps,
 );
 
 export default withRedux(withStyles(styles)(UserGreeting));

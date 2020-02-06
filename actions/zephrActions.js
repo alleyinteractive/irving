@@ -12,6 +12,8 @@ import {
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
   RECEIVE_REGISTRATION_ERROR,
   CLEAR_FORM_ERRORS,
+  REQUEST_USER_LOG_OUT,
+  RECEIVE_USER_LOG_OUT,
 } from './types';
 
 /**
@@ -137,4 +139,12 @@ export function actionReceiveRegistrationError(payload) {
  */
 export function actionClearFormErrors(payload) {
   return createAction(CLEAR_FORM_ERRORS, payload);
+}
+
+export function actionRequestUserLogOut() {
+  return createAction(REQUEST_USER_LOG_OUT);
+}
+
+export function actionReceiveUserLogOut() {
+  return createAction(RECEIVE_USER_LOG_OUT);
 }
