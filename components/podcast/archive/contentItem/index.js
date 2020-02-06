@@ -39,30 +39,34 @@ const PodcastContentItem = ({
             </span>
           )}
           <div className={theme.description}>{description}</div>
-
+          {(moreButtonText && 'featured' === themeName) && (
+            <Button
+              buttonStyle="primary"
+              link={permalink}
+              className={theme.moreButton}
+            >
+              {moreButtonText}
+            </Button>
+          )}
         </div>
         <div className={theme.image}>
           <Link to={permalink}>{image}</Link>
         </div>
       </div>
-      {(moreButtonText && 'featured' === themeName) && (
-        <Button
-          buttonStyle="primary"
-          link={permalink}
-          className={theme.moreButton}
-        >
-          {moreButtonText}
-        </Button>
-      )}
     </Wrapper>
   );
+};
+
+PodcastContentItem.defaultProps = {
+  eyebrow: '',
+  moreButtonText: '',
 };
 
 PodcastContentItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   date: PropTypes.string.isRequired,
-  eyebrow: PropTypes.string.isRequired,
-  moreButtonText: PropTypes.string.isRequired,
+  eyebrow: PropTypes.string,
+  moreButtonText: PropTypes.string,
   permalink: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
   themeName: PropTypes.string.isRequired,
