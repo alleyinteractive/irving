@@ -141,10 +141,20 @@ export function actionClearFormErrors(payload) {
   return createAction(CLEAR_FORM_ERRORS, payload);
 }
 
+/**
+ * A Redux action that represents when a user requests to be logged out of the application.
+ *
+ * @returns {{type}} The Redux action.
+ */
 export function actionRequestUserLogOut() {
   return createAction(REQUEST_USER_LOG_OUT);
 }
 
+/**
+ * A Redux action that represents browser state change when a user is successfully logged out.
+ *
+ * @returns {{type}} The Redux action.
+ */
 export function actionReceiveUserLogOut() {
   return createAction(RECEIVE_USER_LOG_OUT);
 }

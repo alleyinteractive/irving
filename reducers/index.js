@@ -8,7 +8,6 @@ import loadingReducer from './loadingReducer';
 import visibilityReducer from './visibilityReducer';
 import componentDataReducer from './componentDataReducer';
 import playerReducer from './playerReducer';
-import userReducer from './userReducer';
 import storyReducer from './storyReducer';
 import headerHeightReducer from './headerHeightReducer';
 import zephrReducer from './zephrReducer';
@@ -22,7 +21,6 @@ export const reducers = {
   player: playerReducer,
   route: routeReducer,
   visible: visibilityReducer,
-  user: userReducer,
   story: storyReducer,
   headerHeight: headerHeightReducer,
   zephr: zephrReducer,
