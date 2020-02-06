@@ -13,8 +13,7 @@ export default function* resolveUIRules() {
   yield put(actionRequestUIComponents());
 
   try {
-    // Need to get components.ID out of the store.
-    const pageID = select(getPageID);
+    const { pageID } = yield select(getPageID);
     const result = yield call(fetchZephrUIComponents, pageID);
     yield put(actionReceiveUIComponents(result));
   } catch (err) {

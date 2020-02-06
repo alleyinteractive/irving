@@ -8,9 +8,15 @@ const fetchOpts = {
   },
 };
 
+/**
+ * Query the component endpoint through the Zephr CDN to add any transformed
+ * components to the state.
+ *
+ * @param {string} pageID The post ID of the current page, if set.
+ */
 export default async function fetchZephrUIComponents(pageID) {
-  const endpoint = `${process.env.ZEPHR_ROOT_URL}/wp-json/mittr/v1/zephrComponents?content_id=${pageID}`; // eslint-disable-line max-len
-  // const endpoint = `/wp-json/mittr/v1/zephrComponents?content_id=${postID}`; // eslint-disable-line max-len
+  const contentQuery = pageID ? `content_id=${pageID}` : '';
+  const endpoint = `${process.env.ZEPHR_ROOT_URL}/wp-json/mittr/v1/zephrComponents?${contentQuery}`; // eslint-disable-line max-len
 
   // Fetch data for component.
   const response = await fetch(endpoint, fetchOpts);

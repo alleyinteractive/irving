@@ -8,7 +8,7 @@ import { createSelector } from 'reselect';
  */
 const getPageID = createSelector(
   [
-    get('components.page.ID'),
+    get('components.ID'),
   ],
   (pageID) => ({
     pageID,
