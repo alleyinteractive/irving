@@ -8,7 +8,38 @@ const PodcastList = ({
   children,
 }) => (
   <ul className={styles.wrapper}>
-    {children}
+    {children.map((child, idx) => {
+      const index = idx + 1;
+
+      if (0 === idx) {
+        return (
+          <>
+            <hr className="rowDivider rowDivider--top" />
+            {React.cloneElement(child)}
+          </>
+        );
+      }
+
+      if (0 === index % 3) {
+        return (
+          <>
+            {React.cloneElement(child, { className: 'rowEnd--3up' })}
+            <hr className="rowDivider rowDivider--3up" />
+          </>
+        );
+      }
+
+      if (0 === index % 2) {
+        return (
+          <>
+            {React.cloneElement(child, { className: 'rowEnd--2up' })}
+            <hr className="rowDivider rowDivider--2up" />
+          </>
+        );
+      }
+
+      return React.cloneElement(child);
+    })}
   </ul>
 );
 

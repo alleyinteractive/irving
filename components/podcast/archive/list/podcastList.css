@@ -7,7 +7,34 @@
     justify-content: space-between;
   }
 
+  @media ($smMin) and ($mdMax) {
+    :global(.rowDivider--2up) {
+      display: block;
+    }
+  }
+
   @media ($mdMin) {
     tidy-offset-left: 1;
+
+    :global(.rowDivider--3up) {
+      display: block;
+    }
+  }
+
+  :global(.rowDivider--top) {
+    display: block;
+  }
+}
+
+:global(.rowDivider) {
+  background-color: $black;
+  border: 0;
+  display: none;
+  flex: 0 0 100%;
+  height: rem(2);
+  margin: 0;
+
+  &:last-child {
+    display: none;
   }
 }

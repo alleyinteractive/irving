@@ -3,7 +3,7 @@
     flex: 1 0 calc(50% - 36px);
     margin-right: 72px;
 
-    &:nth-child(2n) {
+    &.rowEnd--2up {
       margin-right: 0;
     }
   }
@@ -12,7 +12,7 @@
     flex: 1 0 calc(33.33% - 100px);
     margin-right: 100px;
 
-    &:nth-child(3n) {
+    &.rowEnd--3up {
       margin-right: 0;
     }
   }
@@ -22,10 +22,6 @@
   display: flex;
   flex-flow: column nowrap;
   padding-top: rem(40);
-
-  @media ($mdMax) {
-    border-top: solid 2px $black;
-  }
 }
 
 .title {
