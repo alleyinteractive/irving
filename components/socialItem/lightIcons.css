@@ -25,7 +25,17 @@
   border-radius: 50%;
   display: flex;
   flex-flow: row nowrap;
+  height: rem(22);
   justify-content: center;
+  width: rem(22);
+
+  .rss & {
+    font-weight: 700;
+  }
+
+  .instagram & {
+    font-weight: 700;
+  }
 
   svg {
     fill: $white;
