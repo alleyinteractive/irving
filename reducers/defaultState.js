@@ -68,7 +68,10 @@ export const zephr = {
   forms: [],
   cached: false,
   session: {},
-  user: {},
+  user: {
+    account: {},
+    profile: {},
+  },
 };
 
 export default defaultState;

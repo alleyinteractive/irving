@@ -1,5 +1,9 @@
 .icon {
+<<<<<<< HEAD
   composes: icon from './lightIcons.css';
+=======
+  composes: icon from './lightIcon.css';
+>>>>>>> master
 
   svg {
     fill: $black;

@@ -3,7 +3,6 @@
 .wrapper {
   display: flex;
   flex-flow: column nowrap;
-  margin-bottom: rem(50);
   width: 100%;
 
   @media ($mdMin) {

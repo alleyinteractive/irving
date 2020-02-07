@@ -25,13 +25,11 @@
   border-radius: 50%;
   display: flex;
   flex-flow: row nowrap;
-  height: rem(22);
   justify-content: center;
-  width: rem(22);
 
   svg {
     fill: $white;
-    height: rem(22);
+    height: rem(18);
     width: auto;
   }
 }
