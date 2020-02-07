@@ -10,9 +10,11 @@
     }
 
     &:global(.no-margin) {
+      /* stylelint-disable selector-max-specificity */
       :global(.wp-block-column) {
         margin: 0;
       }
+      /* stylelint-enable selector-max-specificity */
     }
   }
 
@@ -33,6 +35,7 @@
   }
 
   :global(.about-columns) {
+    /* stylelint-disable selector-max-specificity */
     :global(.wp-block-column) {
       flex: 1;
       padding-right: rem(50);
@@ -41,6 +44,7 @@
         padding-right: 0;
       }
     }
+     /* stylelint-enable selector-max-specificity */
   }
   /* stylelint-disable-next-line selector-max-specificity */
   :global(.editor-writing-flow [data-type="core/columns"] .wp-block-columns>.editor-inner-blocks>.editor-block-list__layout) {
