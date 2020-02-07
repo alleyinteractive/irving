@@ -8,6 +8,12 @@
       flex-flow: row nowrap;
       justify-content: space-between;
     }
+
+    &:global(.no-margin) {
+      :global(.wp-block-column) {
+        margin: 0;
+      }
+    }
   }
 
   :global(.wp-block-column) {
@@ -23,6 +29,17 @@
 
     &:global(.no-margin) {
       margin: 0;
+    }
+  }
+
+  :global(.about-columns) {
+    :global(.wp-block-column) {
+      flex: 1;
+      padding-right: rem(50);
+
+      &:last-child {
+        padding-right: 0;
+      }
     }
   }
   /* stylelint-disable-next-line selector-max-specificity */

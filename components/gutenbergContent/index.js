@@ -11,6 +11,7 @@ const GutenbergContent = ({ children, className, theme }) => (
   <div className={classNames(theme.wrapper, className)}>
     {children.map((child) => React.cloneElement(child, {
       className: theme.content,
+      gbClassName: child.props.className,
       oembed: true,
     }))}
   </div>
