@@ -47,7 +47,7 @@
       @include figcaption;
     }
 
-    figcaption:empty {
+    figcaption:empty { /* stylelint-disable-line selector-max-specificity */
       display: none;
     }
   }

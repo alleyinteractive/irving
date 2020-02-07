@@ -1,0 +1,9 @@
+/* Centered column theme styles */
+.wrapper {
+  composes: wrapper from './columnArea--feed.css';
+}
+
+.main {
+  margin: 0 auto rem(60);
+  width: 100%;
+}
