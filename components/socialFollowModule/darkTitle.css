@@ -1,11 +1,10 @@
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  tidy-offset-left: 1;
-  tidy-span: 3;
+  composes: wrapper from './socialFollowModule.css';
 }
 
 .title {
+  border-top: 4px solid $black;
+  color: #231f20;
   font-family: $sans;
   font-size: rem(14);
   font-stretch: normal;
@@ -16,8 +15,4 @@
   margin: rem(5 0 15 0);
   padding-top: rem(5);
   text-transform: uppercase;
-}
-
-.social {
-  display: flex;
 }
