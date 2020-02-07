@@ -3,11 +3,11 @@
   flex-flow: row nowrap;
   width: auto;
 
-  &:not(last-child) {
-    margin-left: rem(10);
+  &:not(first-child) {
+    margin-right: rem(10);
     
     @media ($mdMin) {
-      margin-left: rem(20);
+      margin-right: rem(20);
     }
   }
 }
