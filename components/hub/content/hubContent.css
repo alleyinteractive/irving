@@ -1,3 +1,15 @@
+.wrapper {
+  margin-bottom: rem(20);
+
+  @media ($smMax) {
+    padding: rem(0 10);
+  }
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+  }
+}
+
 .content {
   display: flex;
 }
@@ -15,6 +27,12 @@
   font-size: rem(17);
   font-weight: 300;
   line-height: 1.4;
+}
+
+.sponsorLabel {
+  font-size: rem(14);
+  font-weight: 300;
+  margin-top: rem(10);
 }
 
 .sponsorLogo {

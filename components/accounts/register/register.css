@@ -18,49 +18,13 @@
 }
 
 .formWrap {
-  font-family: $sans;
-  margin-bottom: rem(50);
+  @include zephrForm;
 }
 
-.formGroup {
-  display: flex;
-  flex-direction: column;
-
-  label {
-    margin-bottom: rem(15);
-    margin-right: rem(5);
-    width: 100%;
-  }
-
-  input {
-    display: block;
-    margin-bottom: rem(10);
-    width: 100%;
-  }
-
-  @media ($smMin) {
-    display: flex;
-    margin-bottom: rem(10);
-
-    .createBtn {
-      display: inline-block;
-      width: auto;
-    }
-
-    input {
-      display: flex;
-      margin-bottom: 0;
-    }
-  }
-}
-
-.formInput {
-  @include formInput;
-  margin-right: rem(5);
-
-  &.inputInvalid {
-    @include inputInvalid;
-  }
+.formError {
+  color: $red;
+  display: block;
+  margin-bottom: rem(10);
 }
 
 .formCheckbox {
@@ -118,14 +82,6 @@
   @include btn;
   @include blackBtn;
   max-width: rem(228);
-}
-
-.formError {
-  color: $red;
-  display: block;
-  margin-bottom: rem(0);
-  margin-left: rem(10);
-  margin-top: rem(5);
 }
 
 .homeButton {

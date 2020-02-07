@@ -1,0 +1,18 @@
+.wrapper {
+  background-color: transparent;
+  border: 2px solid;
+  margin-bottom: rem(10);
+  padding: rem(28) rem(15) rem(22);
+
+  .signUpHeading {
+    font-weight: 600;
+  }
+}
+
+.radioWrap {
+  display: block;
+}
+
+.moreLink {
+  font-size: rem(14);
+}

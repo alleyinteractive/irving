@@ -33,6 +33,7 @@
     "@automattic/vip-go-preflight-checks": "0.0.4",
     "@babel/polyfill": "^7.2.5",
     "@wordpress/i18n": "^3.6.0",
+    "axios": "^0.19.2",
     "basic-auth": "^2.0.0",
     "bcryptjs": "^2.4.3",
     "classnames": "^2.2.5",

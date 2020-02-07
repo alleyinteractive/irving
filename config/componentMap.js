@@ -29,7 +29,9 @@ import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
 import HeaderWithImage from 'components/headerWithImage';
-import HubContent from 'components/hubContent';
+import HubContent from 'components/hub/content';
+import HubList from 'components/hub/list';
+import HubContentItem from 'components/hub/contentItem';
 import Image from 'components/image/image';
 import ImageSet from 'components/imageSet';
 import InfiniteItemList from 'components/infiniteItemList';
@@ -60,8 +62,8 @@ import OrderHistory from 'components/accounts/orderHistory';
 import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
-import PasswordInputScreen from 'components/accounts/login/enterPassword';
 import Placeholder from 'components/placeholder';
+import PodcastHeader from 'components/podcastHeader';
 import Popular from 'components/popular';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
@@ -116,7 +118,6 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
-  'enter-password': PasswordInputScreen,
   'feed-anchor': CardStack,
   footer: Footer,
   'google-analytics': GoogleAnalytics,
@@ -126,6 +127,8 @@ export const componentMap = {
   header: Header,
   'header-with-image': HeaderWithImage,
   'hub-content': HubContent,
+  'hub-content-list': HubList,
+  'hub-content-item': HubContentItem,
   'feed-item': FeedItem,
   html: RawHTML,
   image: Image,
@@ -166,6 +169,7 @@ export const componentMap = {
   pagination: Placeholder,
   parsely: Parsely,
   'page-body': PageBody,
+  'podcast-header': PodcastHeader,
   popular: Popular,
   'post-list': PostList,
   register: Register,

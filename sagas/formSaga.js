@@ -1,4 +1,8 @@
-import { call, put } from 'redux-saga/effects';
+import {
+  call,
+  put,
+  takeLatest,
+} from 'redux-saga/effects';
 import {
   actionReceiveSubmitted,
   actionReceiveSubmitError,
@@ -6,10 +10,16 @@ import {
 } from 'actions/formActions';
 import submitForm from 'services/submitForm';
 import createDebug from 'services/createDebug';
+import { REQUEST_SUBMIT } from 'actions/types';
 
 const debug = createDebug('sagas:form');
 
-export default function* watchRequestSubmit(data) {
+export default [
+  // Form action watchers.
+  takeLatest(REQUEST_SUBMIT, watchRequestSubmit),
+];
+
+function* watchRequestSubmit(data) {
   const {
     payload: { formName, submission },
   } = data;

@@ -6,14 +6,12 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
-import { actionVerifyUserEmail } from 'actions/userActions';
-import { getUserFirstName } from 'selectors/getUser';
 import Link from 'components/helpers/link';
 
 // Styles
 import styles from './verify.css';
 
-const Verify = ({ verifyHash, firstName }) => {
+const Verify = ({ verifyHash }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -30,11 +28,14 @@ const Verify = ({ verifyHash, firstName }) => {
     return <div />;
   }
 
+  // @todo replace me with the verified user from the redux store.
+  const placeholderName = 'Penelope';
+
   return (
     <div className={styles.accountWrap}>
       <p className={styles.accountSubHeader}>
         {__(
-          `Thanks ${firstName}! Your email address is now verified.`,
+          `Thanks ${placeholderName}! Your email address is now verified.`,
           'mittr'
         )}
       </p>
@@ -52,18 +53,11 @@ const Verify = ({ verifyHash, firstName }) => {
 
 Verify.propTypes = {
   verifyHash: PropTypes.func.isRequired,
-  firstName: PropTypes.string.isRequired,
 };
 
-const mapDispatchToProps = () => ({
-  verifyHash: (hash) => actionVerifyUserEmail(hash),
-});
-
 const withRedux = connect(
-  (state) => ({
-    firstName: getUserFirstName(state),
-  }),
-  mapDispatchToProps
+  null,
+  null
 );
 
 export default withRedux(
