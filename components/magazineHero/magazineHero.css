@@ -33,11 +33,15 @@
 .topper {
   @include container;
   align-items: flex-end;
-  display: flex;
+  display: block;
   flex-flow: row nowrap;
   justify-content: space-between;
   margin-bottom: rem(20);
   tidy-span: 12;
+
+  @media ($smMin) {
+    display: flex;
+  }
 
   @media ($lgMin) {
     tidy-offset-left: 1;
@@ -60,6 +64,11 @@
   ul {
     display: flex;
     flex-flow: row nowrap;
+    margin-top: rem(8);
+
+    @media ($smMin) {
+      margin-top: 0;
+    }
   }
 
   li {
@@ -89,8 +98,13 @@
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: rem(5);
+  margin-top: rem(10);
   order: -1;
   width: 100%;
+
+  @media ($smMin) {
+    margin-top: rem(30);
+  }
 
   @media ($mdMin) {
     font-size: rem(24);

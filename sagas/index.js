@@ -16,6 +16,7 @@ import watchComponentData from './componentDataSaga';
 import resolveUIRules from './resolveUIRules';
 import formSaga from './formSaga';
 import userSaga from './userSaga';
+import zephrSaga from './zephrSaga';
 
 /**
  * Combine all sagas, and run them continuously in parallel.
@@ -32,5 +33,6 @@ export default function* rootSaga() {
     takeLatest(RECEIVE_COMPONENTS, resolveUIRules),
     ...formSaga,
     ...userSaga,
+    ...zephrSaga,
   ]);
 }

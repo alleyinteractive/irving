@@ -1,5 +1,13 @@
 .wrapper {
   margin-bottom: rem(20);
+
+  @media ($smMax) {
+    padding: rem(0 10);
+  }
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+  }
 }
 
 .content {

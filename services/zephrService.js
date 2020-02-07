@@ -16,6 +16,63 @@ const postErrorMessage = (error) => console.error( // eslint-disable-line no-con
 
 export default {
   /**
+   * Register a user and retrieve their entitlements.
+   *
+   * @param {{ email, password, attributes }} The user's credentials.
+   *
+   * @return {obj}                            The registered user and their associated entitlements.
+   */
+  async register({ email, password, attributes }) {
+    try {
+      const {
+        fullName,
+        firstName,
+        lastName,
+      } = attributes;
+
+      const user = {
+        identifiers: {
+          email_address: email,
+        },
+        validators: {
+          password,
+        },
+        attributes: {
+          'full-name': fullName,
+          'first-name': firstName,
+          'last-name': lastName,
+        },
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/register`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        }
+      ).then((res) => res.json());
+
+      const response = await request;
+
+      if ('cookie' in response) {
+        return {
+          status: 'success',
+          cookie: response.cookie,
+          trackingId: response.tracking_id,
+        };
+      }
+
+      return { status: 'failed' };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
    * Log a user in and retrieve their entitlements.
    *
    * @param {string} email    The user's email address.
@@ -44,18 +101,35 @@ export default {
           },
           body: JSON.stringify(user),
         }
-      ).then((res) => ({ status: res.status }));
+      ).then((res) => {
+        if (404 === res.status) {
+          return {
+            status: 'failed',
+            type: 'user-not-found',
+          };
+        }
 
-      // Get the response status code.
+        if (401 === res.status) {
+          return {
+            status: 'failed',
+            type: 'invalid-password',
+          };
+        }
+
+        return res.json();
+      });
+
       const response = await request;
 
-      if (200 === response.status) {
-        // The cookie is already set by this point, so return a success
-        // message and parse the cookies in the zephr saga.
-        return 'success';
+      if ('status' in response && 'failed' === response.status) {
+        return response;
       }
 
-      return 'failed';
+      return {
+        status: 'success',
+        cookie: response.cookie,
+        trackingId: response.tracking_id,
+      };
     } catch (error) {
       return postErrorMessage(error);
     }
@@ -71,12 +145,11 @@ export default {
       const response = await request;
 
       const {
-        'email-address': emailAddress,
         'first-name': firstName,
         'last-name': lastName,
       } = response;
 
-      return { emailAddress, firstName, lastName };
+      return { firstName, lastName };
     } catch (error) {
       postErrorMessage(error);
       // Return null to exit the profile setting portion of the saga.
@@ -95,7 +168,7 @@ export default {
   async getForm(type) {
     try {
       const request = await fetch(
-        `${process.env.API_ROOT_URL}/data/zephr_service?&request_type=${type}&method=GET` // eslint-disable-line max-len
+        `${process.env.API_ROOT_URL}/data/zephr_service?&request_type=${type}` // eslint-disable-line max-len
       );
 
       return await request.json();
