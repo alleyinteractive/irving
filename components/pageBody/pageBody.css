@@ -1,5 +1,5 @@
 .wrapper {
-  @include container-with-bleed;
+  @include container;
   display: flex;
   flex-flow: column nowrap;
   font-family: $serif;
