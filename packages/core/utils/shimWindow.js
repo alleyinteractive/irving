@@ -14,3 +14,10 @@ window.matchMedia = window.matchMedia || (() => ({
   removeListener: () => {},
   IntersectionObserver: () => {},
 }));
+
+window.IntersectionObserver = window.IntersectionObserver ||
+  function IntersectionObserver() {
+    this.observe = () => {};
+    this.unobserve = () => {};
+    this.disconnect = () => {};
+  };
