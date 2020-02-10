@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default (opts = {}) => {
+const useIntersect = (opts = {}) => {
   const {
     root = null,
     rootMargin = '0px',
     threshold = 0,
+    delay = 250,
   } = opts;
-  const [entry, updateEntry] = useState({});
   const [node, setNode] = useState(null);
+  const [entry, updateEntry] = useState({});
 
-  // Ensure we don't re-instantiate window. every time we call this hook.
+  // Ensure we don't re-instantiate the observer every time we call this hook.
   const observer = useRef(
     new window.IntersectionObserver(
       ([intersectionEntry]) => updateEntry(intersectionEntry),
@@ -17,22 +18,26 @@ export default (opts = {}) => {
         root,
         rootMargin,
         threshold,
+        delay,
       }
     )
   );
 
-  useEffect(
-    () => {
-      const { current: currentObserver } = observer;
+  useEffect(() => {
+    const { current: currentObserver } = observer;
 
+    if (node) {
+      currentObserver.observe(node);
+    }
+
+    return () => {
       if (node) {
-        currentObserver.observe(node);
+        currentObserver.unobserve(node);
       }
-
-      return () => currentObserver.unobserve(node);
-    },
-    [node]
-  );
+    };
+  }, [node]);
 
   return [setNode, entry];
 };
+
+export default useIntersect;
