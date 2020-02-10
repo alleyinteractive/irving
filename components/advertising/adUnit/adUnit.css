@@ -1,23 +1,26 @@
-.adUnit {
-  align-items: center;
-  background-color: $background-gray;
-  border: $border-thin--gray;
-  color: $gray;
+.wrapper {
   display: flex;
-  font-family: $sans;
-  height: rem(250);
   justify-content: center;
   margin-bottom: rem(40);
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
 
-  @media ($smMax) {
-    tidy-span: 12;
-  }
+  &[loaded="false"] {
+    align-items: center;
+    background-color: $background-gray;
+    border: $border-thin--gray;
+    color: $gray;
+    font-family: $sans;
+    height: rem(250);
+    width: 100%;
 
-  @media ($mdMax) {
-    margin-top: rem(40);
-    max-width: rem(300);
+    @media ($smMax) {
+      tidy-span: 12;
+    }
+
+    @media ($mdMax) {
+      margin-top: rem(40);
+      max-width: rem(300);
+    }
   }
 }

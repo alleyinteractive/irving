@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { AdSlot, DFPManager } from 'react-dfp';
 import kebabCase from 'lodash/kebabCase';
+import styles from './adUnit.css';
 
 const AdUnit = (props) => {
   const {
@@ -36,7 +37,7 @@ const AdUnit = (props) => {
   }, [shouldLoad]);
 
   return (
-    <div loaded={loaded.toString()}>
+    <div loaded={loaded.toString()} className={styles.wrapper}>
       <AdSlot
         adUnit={adUnit}
         className={kebabCase(adUnit)}
