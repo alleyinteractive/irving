@@ -9,3 +9,43 @@
     margin-bottom: 0;
   }
 }
+
+:global {
+  /* stylelint-disable selector-max-specificity */
+  .postList__wrapper {
+    a.postList__title {
+      font-weight: 400;
+    }
+
+    ul.postList__list {
+      margin: 0;
+      padding: 0;
+    }
+
+    li.postList__listItem {
+      list-style: none;
+      margin: 0 0 rem(15) 0;
+      padding: 0;
+
+      .postList__title {
+        font-weight: 400;
+      }
+
+      p {
+        font-size: 16px;
+        margin-bottom: 0;
+      }
+    }
+
+    a.view-more-link {
+      font-size: rem(14);
+      font-weight: 400;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  /* stylelint-enable selector-max-specificity */
+}

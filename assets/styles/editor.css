@@ -16,6 +16,7 @@
 @import '../../components/related/related.css';
 @import '../../components/statsWidget/statsWidget.css';
 @import '../../components/magazineStory/magazineStory.css';
+@import '../../components/postList/postList.css';
 
 /* Inline blocks */
 .editor-writing-flow {

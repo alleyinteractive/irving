@@ -159,6 +159,7 @@ export const componentMap = {
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/image-set': ImageSet,
   'mittr-plugin-extension/newsletter': Newsletter,
+  'mittr-plugin-extension/post-list': PostList,
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
   'mittr-plugin-extension/magazine-story': MagazineStory,
