@@ -16,10 +16,13 @@ export default function componentReducer(state, action) {
 
   const currentDefaults = state.components.defaults;
   const key = getRouteKey(state);
-  const { defaults, providers, page } = payload;
+  const {
+    defaults, providers, page, ID = false,
+  } = payload;
   return flow(
     set('components.defaults', defaults.length ? defaults : currentDefaults),
     set(`components.providers.${key}`, providers),
     set(`components.page.${key}`, page),
+    set('components.ID', ID),
   )(state);
 }
