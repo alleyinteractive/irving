@@ -16,16 +16,14 @@ const PodcastList = ({ podcastName }) => {
   });
 
   const [endpointData, setEndpointData] = useState({
-    currentPage: 1,
-    endpoint: `?page=1&podcast_name=${podcastName}`,
+    page: 1,
+    name: podcastName,
   });
 
   const loadItems = () => {
-    const { endpoint, currentPage } = endpointData;
-
     setEndpointData({
-      currentPage: currentPage + 1,
-      endpoint: endpoint.replace(/(page)=[^?&]+/, `$1=${currentPage + 1}`),
+      ...endpointData,
+      page: endpointData.page + 1,
     });
   };
 
@@ -37,9 +35,10 @@ const PodcastList = ({ podcastName }) => {
     });
   };
 
-  const Results = withData(`podcasts${endpointData.endpoint}`, {})(
-    PodcastData
-  );
+  const Data = withData(
+    `podcasts?page=${endpointData.page}&podcast_name=${endpointData.name}`,
+    {}
+  )(PodcastData);
 
   return (
     <div className={styles.wrapper}>
@@ -50,7 +49,7 @@ const PodcastList = ({ podcastName }) => {
           ))}
         </ul>
 
-        <Results
+        <Data
           setData={appendEpisodes}
           lastUpdate={data.lastUpdate || []}
         />
