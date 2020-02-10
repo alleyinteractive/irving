@@ -51,5 +51,6 @@ it('should merge received components', () => {
     providers: {
       '/foo': providers,
     },
+    ID: false,
   });
 });
