@@ -36,7 +36,7 @@ const AdUnit = (props) => {
   }, [shouldLoad]);
 
   return (
-    <div loaded={loaded}>
+    <div loaded={loaded.toString()}>
       <AdSlot
         adUnit={adUnit}
         className={kebabCase(adUnit)}
