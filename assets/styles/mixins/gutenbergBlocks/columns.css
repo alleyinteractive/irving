@@ -36,18 +36,19 @@
 
   :global(.about-columns) {
     flex-flow: row wrap;
+
     @media ($lgMin) {
       flex-flow: row nowrap;
     }
     /* stylelint-disable selector-max-specificity */
     :global(.wp-block-column) {
       flex: 0 1 100%;
-
       padding-right: rem(50);
 
       &:last-child {
         padding-right: 0;
       }
+
       @media ($mdMin) {
         flex: 0 1 50%;
       }
