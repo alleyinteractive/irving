@@ -1,19 +1,50 @@
 .wrapper {
+  position: relative;
+
+  &::after {
+    background-color: $black;
+    bottom: 0;
+    content: '';
+    display: none;
+    height: 2px;
+    position: absolute;
+    right: 0;
+    width: tidy-span(12);
+  }
+
   @media ($smMin) and ($mdMax) {
-    flex: 1 0 calc(50% - 36px);
+    flex: 0 1 calc(50% - 36px);
     margin-right: 72px;
 
-    &.rowEnd--2up {
+    &:nth-child(2n) {
       margin-right: 0;
+      /* stylelint-disable selector-max-specificity */
+      &:not(:last-child) {
+        &::after {
+          display: block;
+        }
+      }
+      /* stylelint-enable */
     }
   }
 
   @media ($mdMin) {
-    flex: 1 0 calc(33.33% - 100px);
+    flex: 0 1 calc(33.33% - 100px);
     margin-right: 100px;
 
-    &.rowEnd--3up {
+    &:nth-child(3n) {
       margin-right: 0;
+      /* stylelint-disable selector-max-specificity */
+      &:not(:last-child) {
+        &::after {
+          display: block;
+          /* stylelint-disable value-keyword-case */
+          max-width: calc(tidy-var(siteMax) - (tidy-span(1) + tidy-var(edge)));
+          /* stylelint-enable */
+          width: calc(100vw - (tidy-span(1) + tidy-var(edge)));
+        }
+      }
+      /* stylelint-enable */
     }
   }
 }
