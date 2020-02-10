@@ -36,3 +36,8 @@ export const getLastName = createSelector(
   zephrSelector,
   (state) => state.user.profile.lastName,
 );
+
+export const getSession = createSelector(
+  zephrSelector,
+  (state) => state.session,
+);
