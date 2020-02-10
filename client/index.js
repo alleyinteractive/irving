@@ -21,7 +21,7 @@ if (process.env.DEBUG) {
 const sagaMiddleware = createSagaMiddleware();
 const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware));
 const state = window.__PRELOADED_STATE__ || defaultState; // eslint-disable-line no-underscore-dangle
-// @todo add zephr to the persist whitelist once registration/logout functionality has been built out.vag
+// @todo add zephr to the persist whitelist once registration/logout functionality has been built out.
 const persistConfig = {
   key: 'root',
   storage: browserStorage,
