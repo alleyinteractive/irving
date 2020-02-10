@@ -61,4 +61,8 @@
   h6 {
     font-size: 1rem;
   }
+
+  :global(.page-header) {
+    font-size: rem(40);
+  }
 }
