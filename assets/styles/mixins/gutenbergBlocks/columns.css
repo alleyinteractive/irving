@@ -44,7 +44,7 @@
         padding-right: 0;
       }
     }
-     /* stylelint-enable selector-max-specificity */
+    /* stylelint-enable selector-max-specificity */
   }
   /* stylelint-disable-next-line selector-max-specificity */
   :global(.editor-writing-flow [data-type="core/columns"] .wp-block-columns>.editor-inner-blocks>.editor-block-list__layout) {
