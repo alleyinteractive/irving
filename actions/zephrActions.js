@@ -12,6 +12,8 @@ import {
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
   RECEIVE_REGISTRATION_ERROR,
   CLEAR_FORM_ERRORS,
+  REQUEST_ZEPHR_UI_COMPONENTS,
+  RECEIVE_ZEPHR_UI_COMPONENTS,
 } from './types';
 
 /**
@@ -137,4 +139,22 @@ export function actionReceiveRegistrationError(payload) {
  */
 export function actionClearFormErrors(payload) {
   return createAction(CLEAR_FORM_ERRORS, payload);
+}
+
+/**
+ * A Redux action after the UI Components have been requested.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionRequestUIComponents() {
+  return createAction(REQUEST_ZEPHR_UI_COMPONENTS);
+}
+
+/**
+ * A Redux action after the UI Components have been received.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionReceiveUIComponents(payload) {
+  return createAction(RECEIVE_ZEPHR_UI_COMPONENTS, payload);
 }

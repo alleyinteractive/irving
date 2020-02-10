@@ -12,6 +12,7 @@ import userReducer from './userReducer';
 import storyReducer from './storyReducer';
 import headerHeightReducer from './headerHeightReducer';
 import zephrReducer from './zephrReducer';
+import zephrRulesReducer from './zephrRulesReducer';
 
 // Configure "slice" reducers.
 export const reducers = {
@@ -26,6 +27,7 @@ export const reducers = {
   story: storyReducer,
   headerHeight: headerHeightReducer,
   zephr: zephrReducer,
+  zephrRules: zephrRulesReducer,
 };
 const rootSliceReducer = combineReducers(reducers);
 
