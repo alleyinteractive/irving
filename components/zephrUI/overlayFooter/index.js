@@ -4,7 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import sanitizeHtml from 'sanitize-html';
-import { getZephrComponents } from 'selectors/zephrSelector';
+import { getZephrComponents } from 'selectors/zephrRulesSelector';
 
 // Styles
 import styles from './overlayFooter.css';
