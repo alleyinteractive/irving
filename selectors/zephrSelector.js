@@ -37,7 +37,13 @@ export const getLastName = createSelector(
   (state) => state.user.profile.lastName,
 );
 
+// needs to be rewritten from zephr rules.
 export const getZephrComponents = createSelector(
   zephrSelector,
   (state) => state.zephrComponents,
+);
+
+export const getSession = createSelector(
+  zephrSelector,
+  (state) => state.session,
 );

@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
 import reduceReducers from 'reduce-reducers';
 import defaultState from 'reducers/defaultState';
-import { persistReducer } from 'redux-persist';
-import browserStorage from 'redux-persist/lib/storage';
 import componentsReducer from './componentsReducer';
 import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
@@ -14,12 +12,7 @@ import userReducer from './userReducer';
 import storyReducer from './storyReducer';
 import headerHeightReducer from './headerHeightReducer';
 import zephrReducer from './zephrReducer';
-
-const zephrPersistConfig = {
-  key: 'zephr',
-  storage: browserStorage,
-  blacklist: ['zephrComponents'],
-};
+import zephrRulesReducer from './zephrRulesReducer';
 
 // Configure "slice" reducers.
 export const reducers = {
@@ -33,7 +26,8 @@ export const reducers = {
   user: userReducer,
   story: storyReducer,
   headerHeight: headerHeightReducer,
-  zephr: persistReducer(zephrPersistConfig, zephrReducer),
+  zephr: zephrReducer,
+  zephrRules: zephrRulesReducer,
 };
 const rootSliceReducer = combineReducers(reducers);
 

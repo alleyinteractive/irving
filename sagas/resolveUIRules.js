@@ -5,6 +5,7 @@ import {
 } from 'actions/zephrActions';
 import createDebug from 'services/createDebug';
 import getPageID from 'selectors/getPageID';
+import { getSession } from 'selectors/zephrSelector';
 import fetchZephrUIComponents from 'services/zephrUIService';
 
 const debug = createDebug('sagas:zephrUI');
@@ -14,7 +15,8 @@ export default function* resolveUIRules() {
 
   try {
     const { pageID } = yield select(getPageID);
-    const result = yield call(fetchZephrUIComponents, pageID);
+    const session = yield select(getSession);
+    const result = yield call(fetchZephrUIComponents, { pageID, session });
     yield put(actionReceiveUIComponents(result));
   } catch (err) {
     yield call(debug, err);
