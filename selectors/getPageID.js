@@ -1,6 +1,5 @@
 import { get } from 'lodash/fp';
 import { createSelector } from 'reselect';
-// import getRouteKey from './getRouteKey';
 
 /**
  * Select the current route's page ID.
