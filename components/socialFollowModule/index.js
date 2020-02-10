@@ -4,7 +4,9 @@ import withThemes from 'components/hoc/withThemes';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 // Styles
-import styles from './socialFollowModule.css';
+import defaultTheme from './socialFollowModule.css';
+import darkTitleTheme from './socialFollowModule--darkTitle.css';
+import lightTitleTheme from './socialFollowModule--lightTitle.css';
 import darkStyles from './darkTitle.css';
 import lightStyles from './lightTitle.css';
 
