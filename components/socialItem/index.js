@@ -25,7 +25,6 @@ const SocialItem = ({
   type, url, displayIcon, theme, themeName,
 }) => {
   const IconComponent = socialIconMap[type];
-
   return (
     <li className={classNames(theme.wrapper, theme[type])}>
       {'link' !== type ? (
