@@ -44,9 +44,46 @@ const PodcastList = ({ podcastName }) => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <ul className={styles.list}>
-          {data.episodes.map((episode) => (
-            toReactElement(episode, episode.config.title, {})
-          ))}
+          {data.episodes.map((episode, idx) => {
+            const index = idx + 1;
+
+            if (0 === idx) {
+              return (
+                <>
+                  <hr className="rowDivider rowDivider--top" />
+                  {toReactElement(episode, episode.config.title, {})}
+                </>
+              );
+            }
+
+            if (0 === index % 3) {
+              return (
+                <>
+                  {toReactElement(
+                    episode,
+                    episode.config.title,
+                    { className: 'rowEnd--3up' }
+                  )}
+                  <hr className="rowDivider rowDivider--3up" />
+                </>
+              );
+            }
+
+            if (0 === index % 2) {
+              return (
+                <>
+                  {toReactElement(
+                    episode,
+                    episode.config.title,
+                    { className: 'rowEnd--2up' }
+                  )}
+                  <hr className="rowDivider rowDivider--2up" />
+                </>
+              );
+            }
+
+            return toReactElement(episode, episode.config.title,);
+          })}
         </ul>
 
         <Data
