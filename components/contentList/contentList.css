@@ -49,8 +49,16 @@
       padding-left: 0;
       padding-right: 0;
 
+      @media ($smMin) {
+        margin-left: rem(32);
+      }
+
       @media ($mdMin) {
         width: rem(222);  
+      }
+
+      @media ($lgMin) {
+        margin-right: -16.66%;
       }
     }
   }

@@ -19,7 +19,7 @@ const ContentList = ({
             'content-right': 'right' === align,
             'content-left': 'left' === align,
             'content-center': 'center' === align,
-            'content-full': 'full' === align,
+            'content-full': 'full' === align, // this prop is being used for a narrow right aligned unit
           })}
         >
           {listTitle && (
