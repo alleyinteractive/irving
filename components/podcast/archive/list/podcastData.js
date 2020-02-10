@@ -18,7 +18,7 @@ const PodcastData = ({
     }
   }, [data]);
 
-  return <span className={styles.hidden}>Updated</span>;
+  return <span className={styles.updatedText}>Updated</span>;
 };
 
 PodcastData.propTypes = {

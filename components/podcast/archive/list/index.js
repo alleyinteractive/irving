@@ -9,6 +9,10 @@ import PodcastData from './podcastData';
 
 import styles from './podcastList.css';
 
+const Loading = () => (
+  <div className={styles.loadMoreIndicator}>Loading...</div>
+);
+
 const PodcastList = ({ podcastName }) => {
   const [data, setData] = useState({
     episodes: [],
@@ -38,7 +42,9 @@ const PodcastList = ({ podcastName }) => {
 
   const Data = withData(
     `podcasts?page=${endpointData.page}&podcast_name=${endpointData.name}`,
-    {}
+    {
+      loading: () => <Loading />,
+    }
   )(PodcastData);
 
   return (
@@ -87,20 +93,22 @@ const PodcastList = ({ podcastName }) => {
           })}
         </ul>
 
-        <Data
-          setData={appendEpisodes}
-          lastUpdate={data.lastUpdate || []}
-        />
+        <div className={styles.loadMoreWrapper}>
+          <Data
+            setData={appendEpisodes}
+            lastUpdate={data.lastUpdate || []}
+          />
 
-        {data.shouldDisplayLoadMore && (
-          <Button
-            className={styles.button}
-            buttonStyle="primary"
-            onClick={loadItems}
-          >
-            {__('Load more episodes', 'mittr')}
-          </Button>
-        )}
+          {data.shouldDisplayLoadMore && (
+            <Button
+              className={styles.loadMoreButton}
+              buttonStyle="primary"
+              onClick={loadItems}
+            >
+              {__('Load more episodes', 'mittr')}
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

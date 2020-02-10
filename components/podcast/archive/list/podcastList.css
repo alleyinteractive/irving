@@ -1,3 +1,9 @@
+.wrapper {
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+  }
+}
+
 .list {
   list-style: none;
 
@@ -14,8 +20,6 @@
   }
 
   @media ($mdMin) {
-    tidy-offset-left: 1;
-
     :global(.rowDivider--3up) {
       display: block;
     }
@@ -37,4 +41,24 @@
   &:last-child {
     display: none;
   }
+}
+
+.loadMoreWrapper {
+  display: inline-flex;
+  position: relative;
+}
+
+.loadMoreIndicator {
+  align-items: center;
+  background-color: $black;
+  color: $white;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+.updatedText {
+  display: none;
 }
