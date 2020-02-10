@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
 import withData from 'components/hoc/withData';
+import Button from 'components/helpers/button';
 import toReactElement from 'utils/toReactElement';
 import PodcastData from './podcastData';
 
@@ -92,9 +93,13 @@ const PodcastList = ({ podcastName }) => {
         />
 
         {data.shouldDisplayLoadMore && (
-          <button className={styles.button} type="button" onClick={loadItems}>
-            {__('Load more past episodes', 'mittr')}
-          </button>
+          <Button
+            className={styles.button}
+            buttonStyle="primary"
+            onClick={loadItems}
+          >
+            {__('Load more episodes', 'mittr')}
+          </Button>
         )}
       </div>
     </div>
