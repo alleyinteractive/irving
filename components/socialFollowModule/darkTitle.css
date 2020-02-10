@@ -3,7 +3,7 @@
 }
 
 .title {
-  border-top: 4px solid $black;
+  border-top: $border-thick;
   color: #231f20;
   font-family: $sans;
   font-size: rem(14);
