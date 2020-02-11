@@ -1,6 +1,10 @@
 .wrapper {
   margin-bottom: rem(50);
 
+  @media ($smMax) {
+    margin: rem(0 10 50);
+  }
+
   @media ($mdMin) {
     tidy-offset-left: 1;
   }
