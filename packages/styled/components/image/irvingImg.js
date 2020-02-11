@@ -22,7 +22,7 @@ const IrvingImg = (props) => {
     if (
       entry.target &&
       0 < entry.intersectionRatio &&
-      (! currentSrc || currentSrc.includes('data:'))
+      (! currentSrc || lqipSrc === currentSrc)
     ) {
       setCurrentSrc(src);
       setCurrentSrcSet(srcset);
