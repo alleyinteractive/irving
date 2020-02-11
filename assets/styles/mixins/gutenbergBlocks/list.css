@@ -9,11 +9,6 @@
     margin-left: rem(96);
     padding-left: 0;
 
-    &.postList__list {
-      margin: 0;
-      padding: 0;
-    }
-
     @media ($lgMin) {
       margin-left: rem(36);
     }
@@ -55,10 +50,5 @@
     @include body-link;
     line-height: calc(28/16);
     margin: 0 0 0 1em;
-
-    &.postList__listItem {
-      margin: 0;
-      padding: 0;
-    }
   }
 }

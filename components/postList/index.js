@@ -11,7 +11,6 @@ import Link from 'components/helpers/link';
 // Styles
 import styles from './postList.css';
 import withTitleTheme from './postList--withTitle.css';
-import gbPostListTheme from './postList--gbTheme.css';
 
 const PostList = ({
   children,
@@ -30,7 +29,10 @@ const PostList = ({
         const titleID = '' !== title ? kebabCase(title) : uid('post-list');
         const useScreenReaderTitle = ! showTitle && 'withTitle' !== themeName;
         return (
-          <div>
+          <>
+            {/* If there's no children, this is coming from the GB Post List block,
+                otherwise, its being sent from the PostList class.
+            */}
             {! children.length ? (
               <div className="postList__wrapper">
                 {headline && (
@@ -103,7 +105,7 @@ const PostList = ({
                 </ul>
               </div>
             )}
-          </div>
+          </>
         );
       }}
     </UIDConsumer>
@@ -135,5 +137,4 @@ PostList.defaultProps = {
 export default withThemes('post-list', {
   default: styles,
   withTitle: withTitleTheme,
-  gbPostList: gbPostListTheme,
-})(withStyles(styles, withTitleTheme, gbPostListTheme)(PostList));
+})(withStyles(styles, withTitleTheme)(PostList));
