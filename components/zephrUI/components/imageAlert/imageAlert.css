@@ -1,0 +1,70 @@
+:global {
+  .imageAlert__wrapper {
+    display: flex;
+    height: rem(324);
+    justify-content: space-between;
+  }
+
+  .imageAlert__bg {
+    @include container-with-bleed;
+    background-color: #303030;
+    font-family: "NeueHaas";
+  }
+
+  .imageAlert__fields,
+  .imageAlert__image {
+    color: #fff;
+    width: 45%;
+  }
+
+  .imageAlert__fields {
+    padding-top: rem(40);
+  }
+
+  .imageAlert__image img {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .imageAlert__image {
+    position: relative;
+  }
+
+  .imageAlert__slug {
+    font-size: rem(22);
+    line-height: 0.86;
+    margin-bottom: rem(40);
+  }
+
+  .imageAlert__message {
+    font-size: rem(30);
+    line-height: 1.07;
+    margin-bottom: rem(25);
+  }
+
+  .btn--subscribe {
+    font-size: rem(100);
+  }
+
+  .imageAlert__btn {
+    display: inline-flex;
+    font-size: 1rem;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1;
+    padding: rem(10 26);
+    margin-right: rem(30);
+    min-width: rem(160);
+  }
+
+  .imageAlert__btn--subscribe {
+    background-color: #fedd00;
+    border: 1px solid#fedd00;
+    color: #000;
+  }
+
+  .imageAlert__btn--signin {
+    border: 1px solid #fff;
+  }
+}
