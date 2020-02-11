@@ -67,7 +67,7 @@ module.exports = function getRules(context) {
       loader: 'svg-react-loader',
     },
     {
-      test: /\.jsx?$/,
+      test: /\.m?jsx?$/,
       exclude,
       use: {
         loader: 'babel-loader',
