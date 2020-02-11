@@ -183,6 +183,32 @@ export default {
   },
 
   /**
+   * Get the user's account information.
+   */
+  async getAccount() {
+    try {
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/account`,
+        { method: 'GET' }
+      ).then((res) => res.json());
+
+      const response = await request;
+
+      const {
+        identifiers: {
+          email_address: emailAddress,
+        },
+      } = response;
+
+      return { emailAddress };
+    } catch (error) {
+      postErrorMessage(error);
+      // Return null to exit the account setting portion of the saga.
+      return null;
+    }
+  },
+
+  /**
    * Retrieve a form from Zephr based on it's type (slug).
    *
    * @param {obj} request The key and secret.

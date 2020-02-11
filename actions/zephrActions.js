@@ -14,6 +14,7 @@ import {
   CLEAR_FORM_ERRORS,
   REQUEST_USER_LOG_OUT,
   RECEIVE_USER_LOG_OUT,
+  RECEIVE_ZEPHR_USER_ACCOUNT,
 } from './types';
 
 /**
@@ -157,4 +158,16 @@ export function actionRequestUserLogOut() {
  */
 export function actionReceiveUserLogOut() {
   return createAction(RECEIVE_USER_LOG_OUT);
+}
+
+/**
+ * A Redux action that represents browser state change when a user's account information is
+ * received from Zephr.
+ *
+ * @param {{ emailAddress }} The user's account.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveUserAccount(payload) {
+  return createAction(RECEIVE_ZEPHR_USER_ACCOUNT, payload);
 }

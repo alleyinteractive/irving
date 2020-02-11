@@ -5,13 +5,19 @@ import TwitterIcon from 'assets/icons/twitter.svg';
 import FacebookIcon from 'assets/icons/facebook.svg';
 import GoogleIcon from 'assets/icons/google.svg';
 import parse from 'html-react-parser';
+import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
+import {
+  getFirstName,
+  getEmail,
+} from 'selectors/zephrSelector';
+import { actionRequestUserLogOut } from 'actions/zephrActions';
 
 import AccountInfoForm from './infoForm';
 import styles from './landingPage.css';
 
 const AccountLandingPage = ({
-  name,
+  firstName,
   subscriptionName,
   subscriptionType,
   accountNumber,
@@ -19,6 +25,7 @@ const AccountLandingPage = ({
   newsletters,
   discounts,
   renewalDate,
+  logOut,
 }) => {
   const [formState, setFormState] = useState({
     isEditingEmail: false,
@@ -68,14 +75,12 @@ const AccountLandingPage = ({
     return str;
   };
 
-  const truncatedName = name.split(' ')[0];
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.welcomeBanner}>
         <span className={styles.welcomeMessage}>{__('Welcome', 'mittr')}</span>
         <h1 className={styles.greeting}>
-          {__('Hello', 'mittr')}, {truncatedName}!
+          {__('Hello', 'mittr')}, {firstName}!
         </h1>
         <span className={styles.accessBanner}>
           {generateAccessBanner()}{' '}
@@ -132,6 +137,15 @@ const AccountLandingPage = ({
                 placeholderValue="password"
               />
             )}
+            <button
+              id="editPasswordBtn"
+              className={styles.button}
+              type="button"
+              tabIndex="0"
+              onClick={logOut}
+            >
+              {__('Log out', 'mittr')}
+            </button>
           </div>
 
           {0 < newsletters.length && (
@@ -271,9 +285,10 @@ const AccountLandingPage = ({
 };
 
 /* eslint-disable max-len */
+// @todo The default values here are stubbed out. They will need to be pulled
+// from Zephr as the integration is further built out.
 AccountLandingPage.defaultProps = {
   accountNumber: 1635767369,
-  email: 'penelope.jackson@technologyreview.com',
   discounts: [
     {
       name: 'EmTech Next 2019 Offer',
@@ -286,7 +301,6 @@ AccountLandingPage.defaultProps = {
         '<p>Subscribers can take advantage of a 30% discount on <a href="#">MIT Press</a> publication by using the code MTECHR30 at checkout.',
     },
   ],
-  name: 'Penelope Jackson',
   newsletters: ['The Download', 'Chain Letter'],
   renewalDate: 'May 1, 2020',
   subscriptionName: 'All Access Digital',
@@ -297,12 +311,25 @@ AccountLandingPage.defaultProps = {
 AccountLandingPage.propTypes = {
   accountNumber: PropTypes.number,
   discounts: PropTypes.array,
-  email: PropTypes.string,
-  name: PropTypes.string,
+  email: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
   newsletters: PropTypes.array,
   subscriptionName: PropTypes.string,
   subscriptionType: PropTypes.string,
   renewalDate: PropTypes.string,
+  logOut: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(AccountLandingPage);
+const mapDispatchToProps = (dispatch) => ({
+  logOut: () => dispatch(actionRequestUserLogOut()),
+});
+
+const withRedux = connect(
+  (state) => ({
+    firstName: getFirstName(state),
+    email: getEmail(state),
+  }),
+  mapDispatchToProps,
+);
+
+export default withRedux(withStyles(styles)(AccountLandingPage));
