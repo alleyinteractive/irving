@@ -31,8 +31,7 @@ const StoryGroup = ({
       <h3 className={styles.title}>
         <Link to={permalink}>{title}</Link>
       </h3>
-      )
-    }
+    )}
     <div className={styles.excerpt}>
       <p>{excerpt}</p>
     </div>
