@@ -10,7 +10,6 @@ import reduceReducers from 'reduce-reducers';
 import createSagaMiddleware from 'redux-saga';
 import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import { reducers } from 'reducers';
-// import rootSaga from 'sagas';
 import resolveComponents from 'sagas/resolveComponents';
 import defaultState, {
   form,
@@ -57,7 +56,6 @@ const store = createStore(
   },
   applyMiddleware(sagaMiddleware)
 );
-// sagaMiddleware.run(rootSaga);
 sagaMiddleware.run(resolveComponents);
 // Container for critical css related to this page render.
 const cssBuilder = new CriticalCssBuilder();
