@@ -7,6 +7,7 @@ const componentGlobs = {
   hoc: path.join(paths.appRoot, 'components/hoc/**/*.js'),
   form: path.join(paths.appRoot, 'components/form/*.js'),
   helpers: path.join(paths.appRoot, 'components/helpers/**/*.js'),
+  zephrUI: path.join(paths.appRoot, 'components/zephrUI/**/*.js'),
 };
 
 module.exports = {
@@ -38,6 +39,7 @@ module.exports = {
             componentGlobs.form,
             componentGlobs.hoc,
             componentGlobs.helpers,
+            componentGlobs.zephrUI,
           ],
         },
         {
@@ -54,6 +56,11 @@ module.exports = {
           name: 'Helper Components',
           content: path.join(paths.appRoot, 'components/helpers/helpers.md'),
           components: componentGlobs.helpers,
+        },
+        {
+          name: 'Zephr UI Components',
+          content: path.join(paths.appRoot, 'components/zephrUI/readme.md'),
+          components: componentGlobs.zephrUI,
         },
       ],
     },

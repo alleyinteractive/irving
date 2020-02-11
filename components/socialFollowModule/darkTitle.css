@@ -1,0 +1,16 @@
+.wrapper {
+  composes: wrapper from './socialFollowModule.css';
+}
+
+.title {
+  border-top: $border-thick;
+  color: #231f20;
+  font-family: $sans;
+  font-size: rem(14);
+  font-weight: 700;
+  letter-spacing: rem(1);
+  line-height: 1;
+  margin: rem(5 0 15 0);
+  padding-top: rem(5);
+  text-transform: uppercase;
+}

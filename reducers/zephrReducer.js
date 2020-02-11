@@ -14,6 +14,7 @@ import {
   RECEIVE_ZEPHR_USER_ACCOUNT,
 } from 'actions/types';
 import React from 'react';
+import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
 import { zephr as defaultState } from './defaultState';
 
 /**
@@ -25,6 +26,10 @@ import { zephr as defaultState } from './defaultState';
  */
 export default function zephrReducer(state = defaultState, { type, payload }) {
   switch (type) {
+    case PERSIST:
+      return { ...state, isLoading: true };
+    case REHYDRATE:
+      return { ...state, isLoading: false };
     case REQUEST_FORM_FOR_ROUTE:
       return { ...state, isLoading: true };
     case RECEIVE_FORM_FOR_ROUTE:

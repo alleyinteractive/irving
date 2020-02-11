@@ -13,6 +13,7 @@ import playerReducer from './playerReducer';
 import storyReducer from './storyReducer';
 import headerHeightReducer from './headerHeightReducer';
 import zephrReducer from './zephrReducer';
+import zephrRulesReducer from './zephrRulesReducer';
 
 const zephrPersistConfig = {
   key: 'zephr',
@@ -32,6 +33,7 @@ export const reducers = {
   story: storyReducer,
   headerHeight: headerHeightReducer,
   zephr: persistReducer(zephrPersistConfig, zephrReducer),
+  zephrRules: zephrRulesReducer,
 };
 const rootSliceReducer = combineReducers(reducers);
 

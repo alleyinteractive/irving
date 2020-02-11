@@ -15,6 +15,8 @@ import {
   REQUEST_USER_LOG_OUT,
   RECEIVE_USER_LOG_OUT,
   RECEIVE_ZEPHR_USER_ACCOUNT,
+  REQUEST_ZEPHR_UI_COMPONENTS,
+  RECEIVE_ZEPHR_UI_COMPONENTS,
 } from './types';
 
 /**
@@ -170,4 +172,22 @@ export function actionReceiveUserLogOut() {
  */
 export function actionReceiveUserAccount(payload) {
   return createAction(RECEIVE_ZEPHR_USER_ACCOUNT, payload);
+}
+
+/*
+ * A Redux action after the UI Components have been requested.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionRequestUIComponents() {
+  return createAction(REQUEST_ZEPHR_UI_COMPONENTS);
+}
+
+/**
+ * A Redux action after the UI Components have been received.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionReceiveUIComponents(payload) {
+  return createAction(RECEIVE_ZEPHR_UI_COMPONENTS, payload);
 }
