@@ -11,14 +11,18 @@
     font-family: "NeueHaas";
   }
 
+  .imageAlert__fields {
+    padding-top: rem(40);
+    width: 100%;
+  }
+
   .imageAlert__fields,
   .imageAlert__image {
     color: #fff;
-    width: 45%;
-  }
 
-  .imageAlert__fields {
-    padding-top: rem(40);
+    @media ($mdMin) {
+      width: 45%;
+    }
   }
 
   .imageAlert__image img {
@@ -28,7 +32,12 @@
   }
 
   .imageAlert__image {
+    display: none;
     position: relative;
+
+    @media ($mdMin) {
+      display: block;
+    }
   }
 
   .imageAlert__slug {
@@ -59,7 +68,7 @@
   }
 
   .imageAlert__btn--subscribe {
-    background-color: #fedd00;
+    background-color:#fedd00;
     border: 1px solid#fedd00;
     color: #000;
   }
