@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import TwitterIcon from 'assets/icons/twitter.svg';
@@ -51,28 +51,6 @@ const AccountLandingPage = ({
       default:
         return __('You have limited access to technologyreview.com', 'mittr');
     }
-  };
-
-  const generateNewsletterString = () => {
-    let str = '';
-
-    newsletters.forEach((n, index, array) => {
-      if (index === array.length) {
-        str += n;
-      } else if (0 === index && ! 2 < array.length) {
-        str += `<strong>${n}</strong> `;
-      } else if (0 === index && 2 < array.length) {
-        str += `<strong>${n}</strong>, `;
-      } else if (index === array.length - 2) {
-        str += `<strong>${n}</strong> `;
-      } else if (index === array.length - 1) {
-        str += `and <strong>${n}</strong>`;
-      } else {
-        str += `${n}, `;
-      }
-    });
-
-    return str;
   };
 
   return (
@@ -137,25 +115,8 @@ const AccountLandingPage = ({
                 placeholderValue="password"
               />
             )}
-            <button
-              id="editPasswordBtn"
-              className={styles.button}
-              type="button"
-              tabIndex="0"
-              onClick={logOut}
-            >
-              {__('Log out', 'mittr')}
-            </button>
-          </div>
 
-          {0 < newsletters.length && (
-            <Fragment>
-              <p>
-                {__('We send you', 'mittr')}{' '}
-                {parse(generateNewsletterString())}{' '}
-                {`newsletter${1 < newsletters.length ? 's' : ''}`}{' '}
-                {__('each week.', 'mittr')}
-              </p>
+            {0 < newsletters.length && (
               <div className={styles.buttonContainer}>
                 <a
                   id="newsletterPrefsBtn"
@@ -166,8 +127,18 @@ const AccountLandingPage = ({
                   {__('Edit your newsletter preferences', 'mittr')}
                 </a>
               </div>
-            </Fragment>
-          )}
+            )}
+
+            <button
+              id="editPasswordBtn"
+              className={styles.button}
+              type="button"
+              tabIndex="0"
+              onClick={logOut}
+            >
+              {__('Log out', 'mittr')}
+            </button>
+          </div>
         </div>
 
         <div className={styles.subscription}>
