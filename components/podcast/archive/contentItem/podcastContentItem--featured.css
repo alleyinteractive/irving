@@ -51,6 +51,14 @@
   }
 }
 
+.time {
+  &::after {
+    content: '|';
+    display: inline-block;
+    margin: rem(0 5);
+  }
+}
+
 .description {
   font-size: rem(24);
   line-height: 1.08;

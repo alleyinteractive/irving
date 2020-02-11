@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { formatDistanceToNow, parseISO } from 'date-fns';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 import Button from 'components/helpers/button';
@@ -19,7 +20,11 @@ const PodcastContentItem = ({
   permalink,
   theme,
   themeName,
-  time,
+  podcastLength: {
+    hours,
+    minutes,
+    seconds,
+  },
   title,
 }) => {
   const description = findChildByName('html', children);
@@ -34,10 +39,20 @@ const PodcastContentItem = ({
           <h2 className={theme.title}>
             <Link to={permalink}>{title}</Link>
           </h2>
-          {(time || date) && (
+          {(hours || minutes || seconds || date) && (
             <span className={theme.timeDate}>
-              {time && <span className={theme.time}>{time} | </span>}
-              {date && <span className={theme.date}>{date}</span>}
+              {(hours || minutes || seconds) && (
+                <span className={theme.time}>
+                  {hours && `${hours}h `}
+                  {minutes && `${minutes}m `}
+                  {seconds && `${seconds}s`}
+                </span>
+              )}
+              {date && (
+                <span className={theme.date}>
+                  {formatDistanceToNow(parseISO(date))} ago
+                </span>
+              )}
             </span>
           )}
           <div className={theme.description}>{description}</div>
@@ -74,7 +89,7 @@ PodcastContentItem.propTypes = {
   permalink: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
   themeName: PropTypes.string.isRequired,
-  time: PropTypes.string.isRequired,
+  podcastLength: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
 };
 
