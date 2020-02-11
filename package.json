@@ -130,7 +130,7 @@
     "postcss-syntax": "^0.36.2",
     "postcss-units": "^1.2.1",
     "react-dev-utils": "^5.0.2",
-    "react-styleguidist": "^10.0.0",
+    "react-styleguidist": "^8.0.6",
     "regenerator-runtime": "^0.13.1",
     "style-loader": "^0.21.0",
     "stylelint": "^9.10.1",

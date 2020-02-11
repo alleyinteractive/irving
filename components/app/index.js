@@ -11,7 +11,7 @@ import ErrorBoundary from 'components/errorBoundary';
 import ErrorMessage from 'components/errorMessage';
 import getRoots from 'selectors/getRoots';
 import getProviders from 'selectors/getProviders';
-import OverlayFooter from 'components/zephrUI/overlayFooter';
+import OverlayFooter from 'components/zephrUI/components/overlayFooter';
 import styles from './app.css';
 import OneTrust from './oneTrust';
 
