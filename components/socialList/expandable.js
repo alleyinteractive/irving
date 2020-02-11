@@ -9,6 +9,13 @@ const ExpandableSocialShare = (props) => {
   } = props;
   const [sharingIsVisible, setSharingIsVisible] = useState(false);
 
+  if (sharingIsVisible) {
+    document.addEventListener('click', handleCloseSharing, { once: true });
+  }
+  function handleCloseSharing() {
+    setSharingIsVisible(false);
+  }
+
   return (
     <div className={styles.shareMenu}>
       <button

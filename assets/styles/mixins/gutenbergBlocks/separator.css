@@ -3,8 +3,7 @@
 @mixin block-separator {
   :global(.wp-block-separator),
   hr {
-    &:global(.is-style-default),
-    &:not(:global(.is-style-dots)):not(:global(.is-style-wide)) {
+    &:global(.is-style-default) {
       border: 1px solid #000;
       margin: rem(32) auto;
       max-width: 100%;
@@ -13,6 +12,13 @@
       &:global(.more-margin) {
         margin: rem(50) auto;
       }
+    }
+
+    &:global(.thin-style) {
+      border-top: 1px solid #767676;
+      margin: rem(32) auto;
+      max-width: 100%;
+      width: 100%;
     }
 
     &:global(.is-style-dots) {

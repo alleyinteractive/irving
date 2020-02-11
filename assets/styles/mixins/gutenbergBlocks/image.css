@@ -46,6 +46,10 @@
     figcaption {
       @include figcaption;
     }
+
+    figcaption:empty { /* stylelint-disable-line selector-max-specificity */
+      display: none;
+    }
   }
 
   /* Alignment set: <div class="wp-block-image"> wrapper around <figure class="align{left|right}"> */
