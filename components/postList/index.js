@@ -16,6 +16,7 @@ import gbPostListTheme from './postList--gbTheme.css';
 const PostList = ({
   children,
   headline,
+  inTheMedia,
   posts,
   postType,
   title,
@@ -45,6 +46,14 @@ const PostList = ({
                       >
                         {post.title}
                       </Link>
+                      {('press_release' === postType &&
+                        inTheMedia && post.eyebrow) && (
+                        <span>{`(${post.eyebrow})`}</span>
+                      )}
+                      {('press_release' === postType &&
+                        inTheMedia && post.deck) && (
+                        <p><i>{post.deck}</i></p>
+                      )}
                       {('job' === postType && post.location) && (
                         <p className={theme.content}>{post.location}</p>
                       )}
@@ -104,6 +113,7 @@ const PostList = ({
 PostList.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   headline: PropTypes.string,
+  inTheMedia: PropTypes.bool,
   posts: PropTypes.arrayOf(PropTypes.shape({})),
   postType: PropTypes.string,
   showTitle: PropTypes.bool,
@@ -114,6 +124,7 @@ PostList.propTypes = {
 
 PostList.defaultProps = {
   headline: '',
+  inTheMedia: false,
   posts: [],
   postType: '',
   title: '',

@@ -14,7 +14,9 @@
   /* stylelint-disable selector-max-specificity */
   .postList__wrapper {
     a.postList__title {
+      color: $black;
       font-weight: 400;
+      padding-right: rem(5);
     }
 
     ul.postList__list {
@@ -33,11 +35,12 @@
 
       p {
         font-size: 16px;
-        margin-bottom: 0;
+        margin: 0;
       }
     }
 
-    a.view-more-link {
+    a.view-more-link,
+    .view-more-link {
       font-size: rem(14);
       font-weight: 400;
       text-decoration: none;
@@ -48,4 +51,12 @@
     }
   }
   /* stylelint-enable selector-max-specificity */
+
+  .editor-rich-text .section-header {
+    color: #000;
+    font-family: $sans;
+    font-size: rem(24);
+    font-weight: 600;
+    margin: 0 0 rem(10) 0;
+  }
 }

@@ -18,8 +18,16 @@
 @import '../../components/magazineStory/magazineStory.css';
 @import '../../components/postList/postList.css';
 
+/* Changing width of editor to increase readability when using 3 columns
+  https://developer.wordpress.org/block-editor/developers/themes/theme-support/#changing-the-width-of-the-editor
+*/
+.wp-block {
+  max-width: 80%;
+}
+
 /* Inline blocks */
-.editor-writing-flow {
+.editor-writing-flow,
+.editor-styles-wrapper {
   [data-type="core/freeform"] {
     /* stylelint-disable-next-line selector-max-specificity */
     .mce-content-body {
@@ -79,7 +87,7 @@
     /* stylelint-disable selector-max-specificity */
     :global(.wp-block-columns) > :global(.editor-inner-blocks) > :global(.editor-block-list__layout) {
       display: flex;
-      flex-flow: row wrap;
+      flex-flow: row nowrap; /* Changing this to nowrap for bigger screen sizes. */
       justify-content: space-between;
 
       [data-type="core/column"] {
