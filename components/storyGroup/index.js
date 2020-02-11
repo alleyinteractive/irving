@@ -14,6 +14,7 @@ const StoryGroup = ({
   excerpt,
   permalink,
   title,
+  themeName,
 }) => (
   <div className={styles.wrap}>
     <div className={styles.meta}>
@@ -26,9 +27,12 @@ const StoryGroup = ({
       />
       {'' !== date && <time className={styles.timestamp}>{date}</time>}
     </div>
-    <h3 className={styles.title}>
-      <Link to={permalink}>{title}</Link>
-    </h3>
+    {'inFeedGroup' !== themeName && (
+      <h3 className={styles.title}>
+        <Link to={permalink}>{title}</Link>
+      </h3>
+    )
+    }
     <div className={styles.excerpt}>
       <p>{excerpt}</p>
     </div>
@@ -59,6 +63,7 @@ StoryGroup.propTypes = {
   excerpt: PropTypes.string,
   permalink: PropTypes.string,
   title: PropTypes.string.isRequired,
+  themeName: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(StoryGroup);
