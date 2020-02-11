@@ -33,7 +33,9 @@ const SocialItem = ({
           className={theme.anchor}
           onClick={(e) => {
             e.preventDefault();
-            if ('email' === type) {
+            if ('email' === type ||
+            'dark' === themeName ||
+            'light' === themeName) {
               window.open(
                 url,
               );

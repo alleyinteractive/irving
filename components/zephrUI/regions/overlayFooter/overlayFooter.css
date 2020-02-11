@@ -1,0 +1,11 @@
+/* OverlayFooter component styles */
+
+.wrapper {
+  background-color: #303030;
+  bottom: 0;
+  color: #FFFFFF;
+  left: 0;
+  padding: rem(20);
+  position: fixed;
+  width: 100%;
+}

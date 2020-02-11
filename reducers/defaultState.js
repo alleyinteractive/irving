@@ -74,4 +74,9 @@ export const zephr = {
   },
 };
 
+export const zephrRules = {
+  isLoading: false,
+  components: {},
+};
+
 export default defaultState;

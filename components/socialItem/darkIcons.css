@@ -1,3 +1,7 @@
+.wrapper {
+  composes: wrapper from './socialItem.css';
+}
+
 .icon {
   composes: icon from './lightIcon.css';
 
