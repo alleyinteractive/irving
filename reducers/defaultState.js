@@ -34,20 +34,6 @@ export const player = {
   volume: 0.5,
 };
 
-export const user = {
-  authorization: {
-    isValid: false,
-    validTo: null,
-    header: '',
-  },
-  id: null,
-  firstName: '',
-  lastName: '',
-  email: null,
-  pendingEmail: null,
-  pendingVerification: false,
-};
-
 export const story = {
   showFullText: false,
 };
@@ -64,14 +50,33 @@ export const componentDataMeta = {
   data: [],
 };
 
+export const headerHeight = 0;
+
 const defaultState = {
   components,
   componentData,
   error,
+  headerHeight,
   loading,
   player,
   route,
   visible,
+};
+
+export const zephr = {
+  isLoading: false,
+  forms: [],
+  cached: false,
+  session: {},
+  user: {
+    account: {},
+    profile: {},
+  },
+};
+
+export const zephrRules = {
+  isLoading: false,
+  components: {},
 };
 
 export default defaultState;

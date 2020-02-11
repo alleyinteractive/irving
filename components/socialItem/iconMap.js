@@ -5,6 +5,8 @@ import WhatsAppIcon from 'assets/icons/whatsapp.svg';
 import RedditIcon from 'assets/icons/reddit.svg';
 import EmailIcon from 'assets/icons/email.svg';
 import LinkIcon from 'assets/icons/link.svg';
+import InstagramIcon from 'assets/icons/instagram.svg';
+import RssIcon from 'assets/icons/rss.svg';
 
 export default {
   facebook: FacebookIcon,
@@ -14,4 +16,6 @@ export default {
   reddit: RedditIcon,
   email: EmailIcon,
   link: LinkIcon,
+  instagram: InstagramIcon,
+  rss: RssIcon,
 };

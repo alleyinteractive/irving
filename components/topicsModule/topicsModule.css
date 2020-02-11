@@ -1,0 +1,23 @@
+.wrapper {
+  border-top: 5px #000000 solid;
+  font-family: $sans;
+  max-width: 212px;
+}
+
+.title {
+  color: #231f20;
+  display: block;
+  font-family: $sans;
+  font-size: rem(14);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: rem(5) 0 rem(15) 0;
+  text-transform: uppercase;
+}
+
+.link {
+  color: #000000;
+  display: block;
+  font-size: rem(20);
+  margin-bottom: rem(10);
+}

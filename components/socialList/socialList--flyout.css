@@ -3,6 +3,7 @@
   border: 1px solid $border-gray;
   display: flex;
   flex-direction: column;
+  min-width: rem(340);
   position: absolute;
   right: 1rem;
   top: rem(40);
@@ -19,7 +20,8 @@
 .shareWrapper {
   align-items: center;
   display: flex;
-  padding: 1rem;
+  padding: rem(15);
+  padding-right: 0;
 }
 
 .copyWrapper {

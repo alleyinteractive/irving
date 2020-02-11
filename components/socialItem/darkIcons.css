@@ -1,0 +1,13 @@
+.wrapper {
+  composes: wrapper from './socialItem.css';
+}
+
+.icon {
+  composes: icon from './lightIcon.css';
+
+  svg {
+    fill: $black;
+    height: rem(18);
+    width: auto;
+  }
+}

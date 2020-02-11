@@ -10,6 +10,8 @@
 
 .wrapper {
   composes: wrapper from './columnArea--feed.css';
+  padding-bottom: rem(50);
+  padding-top: 0;
 }
 
 .column {

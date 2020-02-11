@@ -1,15 +1,22 @@
-import { all, takeLatest, takeEvery } from 'redux-saga/effects';
+import {
+  all,
+  call,
+  takeLatest,
+  takeEvery,
+} from 'redux-saga/effects';
 import {
   LOCATION_CHANGE,
-  REQUEST_SUBMIT,
   REQUEST_COMPONENT_DATA,
+  RECEIVE_COMPONENTS,
 } from 'actions/types';
 import resolveComponents from './resolveComponents';
 import waitToScroll from './waitToScroll';
-import watchRequestSubmit from './formSaga';
 import onLocationChange from './onLocationChange';
 import watchComponentData from './componentDataSaga';
-import loginFlow from './userSaga';
+import resolveUIRules from './resolveUIRules';
+import formSaga from './formSaga';
+import userSaga from './userSaga';
+import zephrSaga from './zephrSaga';
 
 /**
  * Combine all sagas, and run them continuously in parallel.
@@ -18,10 +25,13 @@ export default function* rootSaga() {
   yield all([
     takeLatest(LOCATION_CHANGE, resolveComponents),
     takeLatest(LOCATION_CHANGE, waitToScroll),
-    takeLatest(REQUEST_SUBMIT, watchRequestSubmit),
     takeEvery(LOCATION_CHANGE, onLocationChange),
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
-    // User sagas.
-    ...loginFlow,
+    // @todo move this into Zephr saga after mittr-irving/177 merged.
+    call(resolveUIRules),
+    takeLatest(RECEIVE_COMPONENTS, resolveUIRules),
+    ...formSaga,
+    ...userSaga,
+    ...zephrSaga,
   ]);
 }

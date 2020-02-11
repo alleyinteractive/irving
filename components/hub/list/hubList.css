@@ -1,0 +1,11 @@
+.wrapper {
+  @media ($smMax) {
+    padding: rem(0 10);
+  }
+
+  @media ($mdMin) {
+    display: flex;
+    flex-flow: row wrap;
+    tidy-offset-left: 1;
+  }
+}

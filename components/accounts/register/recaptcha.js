@@ -20,6 +20,7 @@ const lazyLoadRecaptcha = new Promise((resolve) => {
 });
 
 const LazyRecaptcha = ({
+  className,
   sitekey,
   theme,
   type,
@@ -67,10 +68,11 @@ const LazyRecaptcha = ({
     }
   });
 
-  return <div ref={containerRef} />;
+  return <div key="reCaptcha" className={className} ref={containerRef} />;
 };
 
 LazyRecaptcha.propTypes = {
+  className: PropTypes.string.isRequired,
   onloadCallback: PropTypes.func,
   verifyCallback: PropTypes.func,
   expiredCallback: PropTypes.func,

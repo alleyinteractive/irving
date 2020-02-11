@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
+import dashify from 'dashify';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
@@ -30,8 +31,8 @@ const ContentHeader = ({
   const DeckTag = '' === title ? Heading : 'p';
 
   return (
-    <header className={theme.wrapper} id="content--header--wrapper">
-      <div className={theme.intro} id="content--header">
+    <header className={theme.wrapper} id={dashify(title)}>
+      <div className={theme.intro}>
         {eyebrow.content && (
           <Eyebrow
             customEyebrow={eyebrow.customEyebrow}
@@ -43,7 +44,9 @@ const ContentHeader = ({
             color={eyebrow.color}
           />
         )}
-        {'' !== title && <Heading className={theme.title}>{title}</Heading>}
+        {'' !== title && (
+          <Heading className={theme.title}>{title}</Heading>
+        )}
         <DeckTag className={theme.deck}>{parse(deck)}</DeckTag>
         {'inline' !== themeName && (
           <div className={theme.meta}>
@@ -73,7 +76,7 @@ ContentHeader.propTypes = {
     subTopicLink: PropTypes.string,
   }),
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  deck: PropTypes.string.isRequired,
+  deck: PropTypes.string,
   publishDate: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   headingLevel: PropTypes.number,
@@ -100,6 +103,7 @@ ContentHeader.defaultProps = {
   },
   headingLevel: 1,
   themeName: '',
+  deck: '',
 };
 
 export default withThemes('content-header', {
