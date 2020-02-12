@@ -1,5 +1,7 @@
 .wrapper {
+  border-bottom: solid 2px $black;
   margin-bottom: rem(40);
+  padding-bottom: rem(40);
 
   @media ($smMax) {
     margin: rem(0 10 40);
@@ -76,8 +78,11 @@
 }
 
 .image {
-  margin-bottom: rem(15);
   order: -1;
+
+  @media ($smMax) {
+    margin-bottom: rem(15);
+  }
 
   @media ($mdMin) {
     flex: 0 1 50%;
