@@ -19,6 +19,32 @@ import userSaga from './userSaga';
 import zephrSaga from './zephrSaga';
 
 /**
+ * A temporary function to allow for local development to be done on ported
+ * instances (e.g. localhost:3001) without instantiating the Zephr saga flow.
+ *
+ * @returns {array} sagas
+ */
+const zephrSagas = (() => {
+  const {
+    port,
+  } = window.location;
+
+  if (
+    'development' === process.env.NODE_ENV &&
+    '3001' === port
+  ) {
+    return [];
+  }
+
+  return [
+    ...zephrSaga,
+    // @todo move this into Zephr saga after mittr-irving/177 merged.
+    call(resolveUIRules),
+    takeLatest(RECEIVE_COMPONENTS, resolveUIRules),
+  ];
+})();
+
+/**
  * Combine all sagas, and run them continuously in parallel.
  */
 export default function* rootSaga() {
@@ -27,11 +53,8 @@ export default function* rootSaga() {
     takeLatest(LOCATION_CHANGE, waitToScroll),
     takeEvery(LOCATION_CHANGE, onLocationChange),
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
-    // @todo move this into Zephr saga after mittr-irving/177 merged.
-    call(resolveUIRules),
-    takeLatest(RECEIVE_COMPONENTS, resolveUIRules),
     ...formSaga,
     ...userSaga,
-    ...zephrSaga,
+    ...zephrSagas,
   ]);
 }
