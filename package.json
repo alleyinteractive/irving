@@ -55,6 +55,7 @@
     "prop-types": "^15.6.1",
     "query-string": "^6.9.0",
     "react": "^16.8.6",
+    "react-dfp": "^0.17.0",
     "react-dom": "^16.8.6",
     "react-headroom": "^2.2.8",
     "react-helmet": "^5.2.1",
