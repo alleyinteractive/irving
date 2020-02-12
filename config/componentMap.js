@@ -106,6 +106,7 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
+  'core-embed': RawHTML,
   'enter-password': PasswordInputScreen,
   'feed-anchor': CardStack,
   footer: Footer,
