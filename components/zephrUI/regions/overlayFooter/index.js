@@ -20,7 +20,6 @@ const OverlayFooter = ({ components }) => {
     'overlayFooter.zephrOutput.data',
     false
   );
-  console.log({ componentMarkup }); // eslint-disable-line
   return (
     <>
       {componentMarkup && (
