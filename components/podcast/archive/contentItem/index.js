@@ -55,7 +55,9 @@ const PodcastContentItem = ({
               )}
             </span>
           )}
-          <div className={theme.description}>{description}</div>
+          {description.props.content && (
+            <div className={theme.description}>{description}</div>
+          )}
           {(moreButtonText && 'featured' === themeName) && (
             <Button
               buttonStyle="primary"
