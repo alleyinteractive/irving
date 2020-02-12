@@ -135,6 +135,31 @@ export default {
     }
   },
 
+  /**
+   * Log a user out and remove their Zephr session cookie.
+   */
+  async logOut() {
+    try {
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/logout`,
+        { method: 'POST' }
+      ).then((res) => res.json());
+
+      const response = await request;
+
+      if ('message' in response && 'Session deleted' === response.message) {
+        return 'success';
+      }
+
+      return 'failed';
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Get the user's profile (first and last name).
+   */
   async getProfile() {
     try {
       const request = fetch(
@@ -153,6 +178,32 @@ export default {
     } catch (error) {
       postErrorMessage(error);
       // Return null to exit the profile setting portion of the saga.
+      return null;
+    }
+  },
+
+  /**
+   * Get the user's account information.
+   */
+  async getAccount() {
+    try {
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/account`,
+        { method: 'GET' }
+      ).then((res) => res.json());
+
+      const response = await request;
+
+      const {
+        identifiers: {
+          email_address: emailAddress,
+        },
+      } = response;
+
+      return { emailAddress };
+    } catch (error) {
+      postErrorMessage(error);
+      // Return null to exit the account setting portion of the saga.
       return null;
     }
   },
