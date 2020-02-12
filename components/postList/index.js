@@ -22,6 +22,7 @@ const PostList = ({
   showTitle,
   theme,
   themeName,
+  viewMoreLink,
 }) => (
   <UIDReset>
     <UIDConsumer>
@@ -65,7 +66,7 @@ const PostList = ({
                     </li>
                   ))}
                 </ul>
-                <Link to="/press-room/in-the-media" className="view-more-link">
+                <Link to={viewMoreLink} className="view-more-link">
                   {__('View all', 'mittr')} {headline} &#62;
                 </Link>
               </div>
@@ -122,6 +123,7 @@ PostList.propTypes = {
   title: PropTypes.string,
   theme: PropTypes.object.isRequired,
   themeName: PropTypes.string,
+  viewMoreLink: PropTypes.string,
 };
 
 PostList.defaultProps = {
@@ -132,6 +134,7 @@ PostList.defaultProps = {
   title: '',
   showTitle: false,
   themeName: '',
+  viewMoreLink: '',
 };
 
 export default withThemes('post-list', {
