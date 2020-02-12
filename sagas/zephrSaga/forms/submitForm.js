@@ -6,6 +6,7 @@ import {
   actionReceiveLoginError,
   actionReceiveUserRegistration,
   actionReceiveUserLogin,
+  actionReceiveUserAccount,
 } from 'actions/zephrActions';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
@@ -51,8 +52,10 @@ function* submitLogin(credentials) {
     yield put(actionReceiveUserSession({ sessionCookie: cookie, trackingId }));
     // Set the user's login state and clean up any existing error state on the form.
     yield put(actionReceiveUserLogin());
-    // Get the user's profile and redirect.
+    // Get the user's profile.
     yield call(getProfile);
+    // Get the user's account.
+    yield call(getAccount);
     // Push the user to the homepage.
     history.push('/');
   } else {
@@ -80,8 +83,10 @@ function* submitRegistration(credentials) {
     yield put(actionReceiveUserSession({ sessionCookie: cookie, trackingId }));
     // Set the user's email verification state in the store to false on initial registration.
     yield put(actionReceiveUserRegistration());
-    // Get the user's profile and redirect.
+    // Get the user's profile.
     yield call(getProfile);
+    // Get the user's account.
+    yield call(getAccount);
     // Push the user to the confirmation page.
     history.push('/register/confirmation');
   }
@@ -99,5 +104,20 @@ function* getProfile() {
   if ('object' === typeof profile) {
     // Store user profile information.
     yield put(actionReceiveUserProfile(profile));
+  }
+}
+
+/**
+ * Use the session cookie set by loggin in or registering a user with Zephr to retrieve
+ * their account and store their information in our Redux store.
+ */
+function* getAccount() {
+  // Get the user's account.
+  const account = yield call(zephrService.getAccount);
+
+  // `null` will be returned if no account can be found.
+  if ('object' === typeof account) {
+    // Store user account information.
+    yield put(actionReceiveUserAccount(account));
   }
 }
