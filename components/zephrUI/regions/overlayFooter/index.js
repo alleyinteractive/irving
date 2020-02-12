@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
-import sanitizeHtml from 'sanitize-html'; // eslint-disable-line
+import sanitizeHtml from 'sanitize-html';
 import { getZephrComponents } from 'selectors/zephrRulesSelector';
 
 // Styles from UI components that may be included in this rule.
