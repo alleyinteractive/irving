@@ -121,6 +121,7 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
+  'core-embed': RawHTML,
   'feed-anchor': CardStack,
   footer: Footer,
   'google-analytics': GoogleAnalytics,
