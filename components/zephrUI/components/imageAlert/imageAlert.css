@@ -48,6 +48,7 @@
 
   .imageAlert__message {
     font-size: rem(30);
+    font-weight: 400;
     line-height: 1.07;
     margin-bottom: rem(25);
   }
