@@ -7,7 +7,7 @@ const debug = createDebug('zephr:UIComponents');
  *
  * @param {string} pageID The post ID of the current page, if set.
  */
-export default async function fetchZephrUIComponents({ pageID, session }) {
+export default async function fetchZephrUIComponents({ pageID, session }) { // eslint-disable-line no-unused-vars
   const contentQuery = pageID ? `content_id=${pageID}` : '';
   const endpoint = `${process.env.ZEPHR_ROOT_URL}/wp-json/mittr/v1/zephrComponents?${contentQuery}`; // eslint-disable-line max-len
 
@@ -18,6 +18,7 @@ export default async function fetchZephrUIComponents({ pageID, session }) {
         Accept: 'application/json',
       },
     };
+    /*
 
     // Parse sessionCookie out of session selector.
     const { sessionCookie = false } = session || {};
@@ -35,6 +36,7 @@ export default async function fetchZephrUIComponents({ pageID, session }) {
       const [sessionID] = matches;
       options.headers.blaize_session = sessionID;
     }
+    */
 
     // Return modified options object.
     return options;
