@@ -33,7 +33,7 @@ script:
   - npm run lint
   - |
       if [ "$TRAVIS_BRANCH" == "develop" ]; then
-        export API_ROOT_URL=https://wp-preprod.technologyreview.com/wp-json/irving/v1
+        export API_ROOT_URL=https://wp-develop.technologyreview.com/wp-json/irving/v1
         export ROOT_URL=https://irving-develop.technologyreview.com
         export ZEPHR_ROOT_URL=https://zephr-develop.technologyreview.com
       elif [ "$TRAVIS_BRANCH" == "preprod" ]; then
