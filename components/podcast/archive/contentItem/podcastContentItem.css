@@ -1,6 +1,57 @@
 .wrapper {
   position: relative;
 
+  @media ($smMax) {
+    &:not(:last-child) {
+      border-bottom: solid 2px black;
+      margin-bottom: rem(50);
+      padding-bottom: rem(50);
+    }
+  }
+
+  @media ($smMin) and ($mdMax) {
+    flex: 0 1 calc(50% - rem(36));
+    margin-right: rem(72);
+
+    @supports (display: grid) {
+      margin-right: 0;
+    }
+
+    &:nth-child(2n) {
+      margin-right: 0;
+      /* stylelint-disable selector-max-specificity */
+      &:not(:last-child) {
+        &::after {
+          bottom: rem(-36);
+          display: block;
+        }
+      }
+      /* stylelint-enable */
+    }
+  }
+
+  @media ($mdMin) {
+    flex: 0 1 calc(33.33% - rem(100));
+    margin-right: rem(100);
+
+    @supports (display: grid) {
+      margin-right: 0;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 0;
+      /* stylelint-disable selector-max-specificity */
+      &:not(:last-child) {
+        &::after {
+          bottom: rem(-50);
+          display: block;
+          width: calc(300% + rem(200));
+        }
+      }
+      /* stylelint-enable */
+    }
+  }
+
   &::after {
     background-color: $black;
     bottom: 0;
@@ -11,48 +62,11 @@
     right: 0;
     width: tidy-span(12);
   }
-
-  @media ($smMin) and ($mdMax) {
-    flex: 0 1 calc(50% - 36px);
-    margin-right: 72px;
-
-    &:nth-child(2n) {
-      margin-right: 0;
-      /* stylelint-disable selector-max-specificity */
-      &:not(:last-child) {
-        &::after {
-          display: block;
-        }
-      }
-      /* stylelint-enable */
-    }
-  }
-
-  @media ($mdMin) {
-    flex: 0 1 calc(33.33% - 100px);
-    margin-right: 100px;
-
-    &:nth-child(3n) {
-      margin-right: 0;
-      /* stylelint-disable selector-max-specificity */
-      &:not(:last-child) {
-        &::after {
-          display: block;
-          /* stylelint-disable value-keyword-case */
-          max-width: calc(tidy-var(siteMax) - (tidy-span(1) + tidy-var(edge)));
-          /* stylelint-enable */
-          width: calc(100vw - (tidy-span(1) + tidy-var(edge)));
-        }
-      }
-      /* stylelint-enable */
-    }
-  }
 }
 
 .inner {
   display: flex;
   flex-flow: column nowrap;
-  padding-top: rem(40);
 }
 
 .title {
@@ -68,7 +82,6 @@
 .timeDate {
   display: block;
   font-size: rem(14);
-  margin-bottom: rem(30);
 
   @media ($mdMin) {
     font-size: rem(16);
@@ -86,12 +99,11 @@
 .description {
   font-size: rem(18);
   line-height: 1.08;
-  margin-bottom: rem(30);
+  margin-top: rem(30);
 
   @media ($mdMin) {
     font-size: rem(20);
     line-height: 1.07;
-    margin-bottom: rem(50);
   }
 }
 

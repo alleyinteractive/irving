@@ -4,17 +4,32 @@
   }
 
   @media ($mdMin) {
+    margin-bottom: rem(40);
     tidy-offset-left: 1;
   }
 }
 
 .list {
   list-style: none;
+  margin-bottom: rem(40);
 
   @media ($smMin) {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+  }
+
+  @supports (display: grid) {
+    @media ($smMin) {
+      display: grid;
+      grid-gap: rem(72);
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media ($mdMin) {
+      grid-gap: rem(100);
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }
 
