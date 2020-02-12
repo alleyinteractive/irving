@@ -10,6 +10,8 @@ import {
   RECEIVE_REGISTRATION_ERROR,
   SUBMIT_ZEPHR_FORM,
   CLEAR_FORM_ERRORS,
+  RECEIVE_USER_LOG_OUT,
+  RECEIVE_ZEPHR_USER_ACCOUNT,
 } from 'actions/types';
 import React from 'react';
 import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
@@ -63,6 +65,14 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           profile: payload,
         },
       };
+    case RECEIVE_ZEPHR_USER_ACCOUNT:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          account: payload,
+        },
+      };
     case RECEIVE_USER_LOGIN:
       return {
         ...state,
@@ -109,6 +119,12 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
       // This error needs to be thrown separately from the generic form error state so
       // that the error state can be applied to both password fields on the registration form.
       return setPasswordErrorState(state);
+    case RECEIVE_USER_LOG_OUT:
+      return {
+        ...state,
+        session: defaultState.session,
+        user: defaultState.user,
+      };
     default:
       return state;
   }
