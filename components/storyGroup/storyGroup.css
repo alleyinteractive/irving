@@ -2,7 +2,7 @@
   background: $white;
   border-top: solid rem(2) $brown-gray;
   margin-bottom: rem(20);
-  padding: rem(20);
+  padding: rem(5) rem(20);
 }
 
 .meta {
