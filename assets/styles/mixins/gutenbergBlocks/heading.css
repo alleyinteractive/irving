@@ -28,6 +28,13 @@
       font-weight: 600;
       margin-bottom: rem(10);
     }
+
+    &:global(.section-header) {
+      color: $black;
+      font-family: $sans;
+      font-size: rem(24);
+      font-weight: 600;
+    }
   }
 
   h1 {
@@ -60,5 +67,9 @@
 
   h6 {
     font-size: 1rem;
+  }
+
+  :global(.page-header) {
+    font-size: rem(40);
   }
 }

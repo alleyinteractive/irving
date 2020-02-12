@@ -1,4 +1,5 @@
-import AdUnit from 'components/adUnit';
+import AdProvider from 'components/advertising/adProvider';
+import AdUnit from 'components/advertising/adUnit';
 import AccountPage from 'components/accounts/landingPage';
 import AccountNavigation from 'components/accounts/accountNavigation';
 import AudioElement from 'components/audio';
@@ -98,6 +99,7 @@ import withLoader from 'components/hoc/withLoader';
  * Defines which React component to render for each received API component.
  */
 export const componentMap = {
+  'ad-provider': AdProvider,
   'ad-unit': AdUnit,
   account: AccountPage,
   'account-navigation': AccountNavigation,
@@ -119,6 +121,7 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
+  'core-embed': RawHTML,
   'feed-anchor': CardStack,
   footer: Footer,
   'google-analytics': GoogleAnalytics,
@@ -160,6 +163,7 @@ export const componentMap = {
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/image-set': ImageSet,
   'mittr-plugin-extension/newsletter': Newsletter,
+  'mittr-plugin-extension/post-list': PostList,
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
   'mittr-plugin-extension/magazine-story': MagazineStory,
