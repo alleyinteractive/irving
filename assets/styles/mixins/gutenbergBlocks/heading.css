@@ -30,7 +30,7 @@
     }
 
     &:global(.section-header) {
-      color: #000;
+      color: $black;
       font-family: $sans;
       font-size: rem(24);
       font-weight: 600;

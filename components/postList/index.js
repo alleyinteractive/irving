@@ -36,7 +36,7 @@ const PostList = ({
             {! children.length ? (
               <div className="postList__wrapper">
                 {headline && (
-                  <h4 className="section-header">{headline}</h4>
+                  <h3 className="section-header">{headline}</h3>
                 )}
                 <ul className="postList__list">
                   {(posts && posts.length) && posts.map((post, index) => (
