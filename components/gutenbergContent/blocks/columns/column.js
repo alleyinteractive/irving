@@ -29,7 +29,10 @@ Column.propTypes = {
     PropTypes.element,
   ).isRequired,
   className: PropTypes.string,
-  width: PropTypes.string,
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 };
 
 export default Column;

@@ -64,7 +64,7 @@ const defaultState = {
 };
 
 export const zephr = {
-  isLoading: false,
+  isLoading: true,
   forms: [],
   cached: false,
   session: {},
@@ -72,6 +72,11 @@ export const zephr = {
     account: {},
     profile: {},
   },
+};
+
+export const zephrRules = {
+  isLoading: false,
+  components: {},
 };
 
 export default defaultState;

@@ -12,6 +12,11 @@ import {
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
   RECEIVE_REGISTRATION_ERROR,
   CLEAR_FORM_ERRORS,
+  REQUEST_USER_LOG_OUT,
+  RECEIVE_USER_LOG_OUT,
+  RECEIVE_ZEPHR_USER_ACCOUNT,
+  REQUEST_ZEPHR_UI_COMPONENTS,
+  RECEIVE_ZEPHR_UI_COMPONENTS,
 } from './types';
 
 /**
@@ -137,4 +142,52 @@ export function actionReceiveRegistrationError(payload) {
  */
 export function actionClearFormErrors(payload) {
   return createAction(CLEAR_FORM_ERRORS, payload);
+}
+
+/**
+ * A Redux action that represents when a user requests to be logged out of the application.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionRequestUserLogOut() {
+  return createAction(REQUEST_USER_LOG_OUT);
+}
+
+/**
+ * A Redux action that represents browser state change when a user is successfully logged out.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionReceiveUserLogOut() {
+  return createAction(RECEIVE_USER_LOG_OUT);
+}
+
+/**
+ * A Redux action that represents browser state change when a user's account information is
+ * received from Zephr.
+ *
+ * @param {{ emailAddress }} The user's account.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveUserAccount(payload) {
+  return createAction(RECEIVE_ZEPHR_USER_ACCOUNT, payload);
+}
+
+/*
+ * A Redux action after the UI Components have been requested.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionRequestUIComponents() {
+  return createAction(REQUEST_ZEPHR_UI_COMPONENTS);
+}
+
+/**
+ * A Redux action after the UI Components have been received.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionReceiveUIComponents(payload) {
+  return createAction(RECEIVE_ZEPHR_UI_COMPONENTS, payload);
 }

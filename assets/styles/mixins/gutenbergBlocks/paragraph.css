@@ -40,5 +40,25 @@
       font-weight: 600;
       line-height: 1;
     }
+
+    &:global(.section-header) {
+      color: #000;
+      font-family: $sans;
+      font-size: rem(24);
+      font-weight: 600;
+    }
+    /* stylelint-disable selector-max-specificity */
+    &:global(.view-more-link) {
+      a {
+        font-size: rem(14);
+        font-weight: 400;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    /* stylelint-enable selector-max-specificity */
   }
 }

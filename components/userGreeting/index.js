@@ -54,7 +54,7 @@ const withRedux = connect(
     firstName: getFirstName(state) || '',
     lastName: getLastName(state) || '',
   }),
-  null
+  null,
 );
 
 export default withRedux(withStyles(styles)(UserGreeting));

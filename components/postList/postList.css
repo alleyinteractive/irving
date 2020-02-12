@@ -9,3 +9,54 @@
     margin-bottom: 0;
   }
 }
+
+:global {
+  /* stylelint-disable selector-max-specificity */
+  .postList__wrapper {
+    a.postList__title {
+      color: $black;
+      font-weight: 400;
+      padding-right: rem(5);
+    }
+
+    ul.postList__list {
+      margin: 0;
+      padding: 0;
+    }
+
+    li.postList__listItem {
+      list-style: none;
+      margin: 0 0 rem(15) 0;
+      padding: 0;
+
+      .postList__title {
+        font-weight: 400;
+      }
+
+      p {
+        font-size: 16px;
+        margin: 0;
+      }
+    }
+
+    a.view-more-link,
+    .view-more-link {
+      font-size: rem(14);
+      font-weight: 400;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  /* stylelint-enable selector-max-specificity */
+
+  .editor-rich-text .section-header {
+    color: #000;
+    font-family: $sans;
+    font-size: rem(24);
+    font-weight: 600;
+    margin: 0 0 rem(10) 0;
+  }
+}

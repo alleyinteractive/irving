@@ -1,19 +1,48 @@
 import {
   all,
+  call,
   takeLatest,
   takeEvery,
 } from 'redux-saga/effects';
 import {
   LOCATION_CHANGE,
   REQUEST_COMPONENT_DATA,
+  RECEIVE_COMPONENTS,
 } from 'actions/types';
 import resolveComponents from './resolveComponents';
 import waitToScroll from './waitToScroll';
 import onLocationChange from './onLocationChange';
 import watchComponentData from './componentDataSaga';
+import resolveUIRules from './resolveUIRules';
 import formSaga from './formSaga';
 import userSaga from './userSaga';
 import zephrSaga from './zephrSaga';
+
+/**
+ * A temporary function to allow for local development to be done on ported
+ * instances (e.g. localhost:3001) without instantiating the Zephr saga flow.
+ *
+ * @returns {array} sagas
+ */
+const zephrSagas = (() => {
+  const {
+    port,
+  } = window.location;
+
+  if (
+    'development' === process.env.NODE_ENV &&
+    '3001' === port
+  ) {
+    return [];
+  }
+
+  return [
+    ...zephrSaga,
+    // @todo move this into Zephr saga after mittr-irving/177 merged.
+    call(resolveUIRules),
+    takeLatest(RECEIVE_COMPONENTS, resolveUIRules),
+  ];
+})();
 
 /**
  * Combine all sagas, and run them continuously in parallel.
@@ -26,6 +55,6 @@ export default function* rootSaga() {
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
     ...formSaga,
     ...userSaga,
-    ...zephrSaga,
+    ...zephrSagas,
   ]);
 }
