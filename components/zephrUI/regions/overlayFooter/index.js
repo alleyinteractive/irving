@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
-import sanitizeHtml from 'sanitize-html';
+import sanitizeHtml from 'sanitize-html'; // eslint-disable-line
 import { getZephrComponents } from 'selectors/zephrRulesSelector';
+
+// Styles from UI components that may be included in this rule.
+// Note they must be included manually in this component, as the HTML will be
+// included directly using the Zephr feature rules.
+import 'components/zephrUI/components/meterNotice/meterNotice.css';
 
 // Styles
 import styles from './overlayFooter.css';
@@ -15,6 +20,7 @@ const OverlayFooter = ({ components }) => {
     'overlayFooter.zephrOutput.data',
     false
   );
+  console.log({ componentMarkup }); // eslint-disable-line
   return (
     <>
       {componentMarkup && (

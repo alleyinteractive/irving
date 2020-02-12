@@ -47,4 +47,5 @@ module.exports = {
   success: '#7a8f43',
   white: '#ffffff',
   purple: '#7d38a3',
+  'call-to-action': '#fedd00',
 };
