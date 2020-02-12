@@ -4,8 +4,6 @@ const defaultService = {
   logTransaction: () => {},
 };
 
-let service;
-
 /**
  * Get the reusable monitor service instance. This service implements basic
  * application monitoring. It currently relies on newrelic, but the interface
@@ -14,39 +12,33 @@ let service;
  * @returns {object} singleton service object
  */
 const getService = () => {
-  if (service) {
-    return service;
-  }
-
-  const configured = [
-    'NEW_RELIC_APP_NAME',
-    'NEW_RELIC_LICENSE_KEY',
-  ].every((field) => ('undefined' !== typeof process.env[field]));
-  if (! configured) {
-    return defaultService;
-  }
-
   // newrelic cannot be imported in a browser environment.
   if (! process.env.BROWSER) {
-    let newrelic;
-    // Check if optional newrelic client is installed.
+    // Attempt to create newrelic client using vip go package.
     try {
-      newrelic = require('newrelic'); // eslint-disable-line global-require
+      const { newrelic, logger } = require('@automattic/vip-go'); // eslint-disable-line global-require
+      const client = newrelic({
+        logger: logger('irving:newrelic'),
+      });
+
+      // VIP Go's package can return nothing if newrelic is not installed or configured improperly.
+      if (! client) {
+        return defaultService;
+      }
+
+      return {
+        client,
+        start: () => {},
+        logError(err) {
+          client.noticeError(err);
+        },
+        logTransaction(method, status, category) {
+          client.setTransactionName(`${method} ${status} ${category}`);
+        },
+      };
     } catch (err) {
       return defaultService;
     }
-
-    service = {
-      start: defaultService.start, // Simply requiring the newrelic module starts the service.
-      logError(err) {
-        newrelic.noticeError(err);
-      },
-      logTransaction(method, status, category) {
-        newrelic.setTransactionName(`${method} ${status} ${category}`);
-      },
-    };
-
-    return service;
   }
 
   return defaultService;

@@ -1,10 +1,11 @@
 .wrapper {
   display: flex;
   flex-flow: row nowrap;
+  margin-right: rem(15);
   width: auto;
 
-  &:not(last-child) {
-    margin-right: rem(15);
+  &:last-child {
+    margin-right: 0;
   }
 }
 

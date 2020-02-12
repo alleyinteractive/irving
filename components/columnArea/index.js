@@ -2,51 +2,39 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
-import { findChildByName } from 'utils/children';
-import classNames from 'classnames';
 
 // Themes
-import styles from './columnArea.css';
-import oneColumnTheme from './oneColumn.css';
-import skinnyColumnTheme from './skinnyColumn.css';
+import feedColumnTheme from './columnArea--feed.css';
+import fullStoryTheme from './columnArea--fullStory.css';
+import magazineTheme from './columnArea--magazine.css';
+import oneColumnTheme from './columnArea--oneCol.css';
+import pageTheme from './columnArea--page.css';
+import centeredTheme from './columnArea--centered.css';
 
-const ColumnArea = ({ children, theme, themeName }) => {
-  // @todo leave this block for deprecation purposes (topics page, etc.)
-  // It may make sense to refactor this component into multiple components.
-  if ('skinny-column' === themeName) {
-    // Separate content and sidebar
-    const content = children.filter(
-      (child) => 'sidebar' !== child.props.componentName
-    );
-    const sidebar = findChildByName('sidebar', children);
-
-    return (
-      <div className={classNames(theme.wrapper)}>
-        {content && (
-          <div
-            className={classNames(theme.main, styles.main)}
-          >
-            {content}
-          </div>
-        )}
-        {sidebar && (
-          <div
-            className={classNames(theme.sidebar, styles.sidebar)}
-          >
-            {sidebar}
-          </div>
-        )}
-      </div>
-    );
-  }
+const ColumnArea = ({ children, theme }) => {
+  // Separate content and sidebar
+  const childIsSidebar = ({ componentName, isSidebar = false }) => (
+    isSidebar || 'sidebar' === componentName
+  );
+  const content = children.filter(({ props }) => ! childIsSidebar(props));
+  const sidebar = children.filter(({ props }) => childIsSidebar(props));
 
   return (
     <div className={theme.wrapper}>
-      {children.map((child) => (
-        <div className={theme.column} key={child.props.componentName}>
-          {child}
+      {!! content.length && (
+        <div
+          className={theme.main}
+        >
+          {content}
         </div>
-      ))}
+      )}
+      {!! sidebar.length && (
+        <div
+          className={theme.sidebar}
+        >
+          {sidebar}
+        </div>
+      )}
     </div>
   );
 };
@@ -54,11 +42,23 @@ const ColumnArea = ({ children, theme, themeName }) => {
 ColumnArea.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   theme: PropTypes.object.isRequired,
-  themeName: PropTypes.string.isRequired,
 };
 
 export default withThemes('column-area', {
-  default: styles,
-  oneColumn: oneColumnTheme,
-  'skinny-column': skinnyColumnTheme,
-})(withStyles(styles, oneColumnTheme, skinnyColumnTheme)(ColumnArea));
+  default: feedColumnTheme,
+  feed: feedColumnTheme,
+  fullStory: fullStoryTheme,
+  single: oneColumnTheme,
+  page: pageTheme,
+  magazine: magazineTheme,
+  centered: centeredTheme,
+})(
+  withStyles(
+    feedColumnTheme,
+    fullStoryTheme,
+    magazineTheme,
+    oneColumnTheme,
+    pageTheme,
+    centeredTheme,
+  )(ColumnArea)
+);

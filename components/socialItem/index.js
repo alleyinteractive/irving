@@ -1,34 +1,66 @@
+/**
+ * We disable the linter rule react/jsx-no-target-blank
+ * rule in this file because the desired behavior for social
+ * links is that they are opened with a referer. We instead
+ * pass rel="noopener" to the social link so that the social
+ * page will not run in the same process as our parent page.
+ */
+
+/* eslint-disable react/jsx-no-target-blank */
+
 import React from 'react';
+import { __ } from '@wordpress/i18n';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import classNames from 'classnames';
 import withThemes from 'components/hoc/withThemes';
-import Link from 'components/helpers/link';
 import CopyLink from 'components/copyLink';
 import socialIconMap from './iconMap';
 import styles from './socialItem.css';
-import whiteIconStyles from './whiteIcon.css';
+import lightIconStyles from './lightIcon.css';
+import darkIconStyles from './darkIcons.css';
+import flyoutIconStyles from './socialItem--flyoutIcon.css';
 
 const SocialItem = ({
-  type, url, displayIcon, theme,
+  type, url, displayIcon, theme, themeName,
 }) => {
   const IconComponent = socialIconMap[type];
-
   return (
     <li className={classNames(theme.wrapper, theme[type])}>
       {'link' !== type ? (
-        <Link to={url} className={theme.anchor}>
+        <a
+          href={url}
+          className={theme.anchor}
+          onClick={(e) => {
+            e.preventDefault();
+            if ('email' === type ||
+            'dark' === themeName ||
+            'light' === themeName) {
+              window.open(
+                url,
+              );
+            } else {
+              window.open(
+                url,
+                'socialWindow',
+                'width=325,height=400'
+              );
+            }
+          }}
+          target="_blank"
+          rel="noopener"
+        >
           <span className={theme.screenReaderLabel}>
-            {type}
+            {type}{__('link opens in a new window', 'mittr')}
           </span>
           {displayIcon && IconComponent && (
             <div className={theme.icon}>
               <IconComponent />
             </div>
           )}
-        </Link>
+        </a>
       ) : (
-        <CopyLink url={url} />
+        <CopyLink url={url} themeName={themeName} />
       )}
     </li>
   );
@@ -49,13 +81,16 @@ SocialItem.propTypes = {
   displayIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
     .isRequired,
   theme: PropTypes.object.isRequired,
+  themeName: PropTypes.string.isRequired,
 };
 
-const wrapWithStyles = withStyles(styles, whiteIconStyles);
+const wrapWithStyles = withStyles(styles, lightIconStyles);
 
 const wrapWithThemes = withThemes('social-item', {
   default: styles,
-  whiteIcon: whiteIconStyles,
+  light: lightIconStyles,
+  flyoutIcon: flyoutIconStyles,
+  dark: darkIconStyles,
 });
 
 export default wrapWithStyles(wrapWithThemes(SocialItem));

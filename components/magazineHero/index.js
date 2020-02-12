@@ -4,6 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
+import parse from 'html-react-parser';
 
 // SVGs
 import ArrowIcon from 'assets/icons/arrow.svg';
@@ -59,7 +60,7 @@ const MagazineHero = ({
         <div className={styles.text}>
           <h1 className={styles.title}>{title}</h1>
           <div className={styles.date}>{issueDate}</div>
-          <p className={styles.description}>{description}</p>
+          <p className={styles.description}>{parse(description)}</p>
           <Link to="#features" className={styles.readLink}>
             {__('Read the issue', 'mittr')}
           </Link>
@@ -99,23 +100,30 @@ const MagazineHero = ({
               </h2>
               <ul className={styles.navList} aria-labelledby="navigate-issues">
                 <li className={styles.previous}>
-                  <Link
-                    to={issueNavigation.previous}
-                    className={styles.navLink}
-                  >
-                    <span className={styles.icon} aria-hidden>
-                      <ArrowIcon />
-                    </span>
-                    {__('View previous issue', 'mittr')}
-                  </Link>
+                  {(issueNavigation.previous &&
+                    window.location.href !== issueNavigation.previous) && (
+                    <Link
+                      to={issueNavigation.previous}
+                      className={styles.navLink}
+                    >
+                      <span className={styles.icon} aria-hidden>
+                        <ArrowIcon />
+                      </span>
+                      {__('View previous issue', 'mittr')}
+                    </Link>
+                  )}
+
                 </li>
                 <li className={styles.next}>
-                  <Link to={issueNavigation.next} className={styles.navLink}>
-                    {__('View next issue', 'mittr')}
-                    <span className={styles.icon} aria-hidden>
-                      <ArrowIcon />
-                    </span>
-                  </Link>
+                  {(issueNavigation.next &&
+                    window.location.href !== issueNavigation.next) && (
+                    <Link to={issueNavigation.next} className={styles.navLink}>
+                      {__('View next issue', 'mittr')}
+                      <span className={styles.icon} aria-hidden>
+                        <ArrowIcon />
+                      </span>
+                    </Link>
+                  )}
                 </li>
               </ul>
             </nav>

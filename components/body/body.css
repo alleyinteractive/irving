@@ -9,6 +9,14 @@
     background-color: $background-gray;
   }
 
+  :global(.body--magazine) & {
+    padding-top: rem(40);
+
+    @media ($smMin) {
+      padding-top: rem(60);
+    }
+  }
+  
   /* @todo review if body padding makes sense on most articles. */
   :global(.body--35-list) & {
     padding: 0;

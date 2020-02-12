@@ -1,0 +1,49 @@
+.wrapper {
+  margin-bottom: rem(20);
+
+  @media ($smMax) {
+    padding: rem(0 10);
+  }
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+  }
+}
+
+.content {
+  display: flex;
+}
+
+.titleLogo {
+  flex: 0 1 50%;
+}
+
+.title {
+  font-size: rem(32);
+}
+
+.description {
+  flex: 0 1 50%;
+  font-size: rem(17);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.sponsorLabel {
+  font-size: rem(14);
+  font-weight: 300;
+  margin-top: rem(10);
+}
+
+.sponsorLogo {
+  display: block;
+  max-width: rem(120);
+
+  .sponsorName {
+    @include screenreader-only;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}

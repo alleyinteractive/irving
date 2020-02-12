@@ -1,0 +1,58 @@
+/**
+ * Feed theme column layout.
+ *
+ * At desktop:
+ * - 1-col offset
+ * - 6-col main columnn with 20px overflow on both sides
+ * - 1-col gap
+ * - 4-col sidebar with no overlap or margin
+ *
+ * Examples
+ * - Author page: https://zpl.io/29jBgRp
+ * - Topic page: https://zpl.io/VYpeMxp
+ */
+
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding-bottom: rem(15);
+  padding-top: rem(15);
+  width: 100%;
+
+  @media ($smMin) {
+    @include container;
+  }
+}
+
+.main {
+  @include container;
+  margin-bottom: rem(50);
+  width: calc((100vw/12*12) + 1.25rem); /* The tidy span calc does not work as expected with the dual-sided bleed. */
+
+  @media ($mdMin) {
+    margin-bottom: 0;
+    tidy-offset-left: 1;
+    transform: translateX(rem(-20));
+    width: calc((100vw/12*6) + 1.25rem); /* The tidy span calc does not work as expected with the dual-sided bleed. */
+  }
+
+  @media ($lgMin) {
+    width: calc(tidy-span-full(6) + 2.5rem);
+  }
+}
+
+.sidebar {
+  display: none;
+  width: 100%;
+
+  @media ($mdMin) {
+    display: block;
+    tidy-span: 4;
+  }
+
+  @media ($lgMin) {
+    margin-left: calc(tidy-span-full(1) - rem(40));  /* Account for main container bleed. */
+    tidy-span: 4;
+  }
+}

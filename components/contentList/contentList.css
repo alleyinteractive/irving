@@ -14,9 +14,14 @@
     font-family: $sans;
     font-size: rem(14);
     margin-left: -16%;
+    margin-top: rem(6);
     padding: rem(20) rem(40) rem(30) rem(10);
     position: relative;
-    width: rem(222);
+    width: 100%;
+
+    @media ($smMin) {
+      width: 50%;
+    }
 
     &.content-right {
       clear: right;
@@ -24,6 +29,37 @@
       margin-left: rem(40);
       padding-left: rem(10);
       padding-right: 0;
+
+      @media ($mdMin) {
+        margin-right: -16.66%;
+        tidy-span: 3;
+      }
+
+      @media ($lgMin) {
+        margin-right: -33.333%;
+      }
+    }
+
+    &.content-full {
+      clear: right;
+      float: right;
+      margin-bottom: 0;
+      margin-left: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+
+      @media ($smMin) {
+        margin-left: rem(32);
+      }
+
+      @media ($mdMin) {
+        width: rem(222);  
+      }
+
+      @media ($lgMin) {
+        margin-right: -16.66%;
+      }
     }
   }
 

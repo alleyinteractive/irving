@@ -37,17 +37,17 @@ module.exports = () => ({
     }),
     units(), // Compute rem() function
     nested(), // Allow nested syntax.
+    tidyColumns({
+      columns: 12,
+      gap: '0',
+      edge: '1.25rem', // 20px
+      siteMax: '81.875rem', // 1270px + 40px edges
+      breakpoints: {},
+    }),
     calc({
       mediaQueries: true,
     }),
     colorFunction(),
-    tidyColumns({
-      columns: 12,
-      gap: '0',
-      edge: '1.25rem',
-      siteMax: '79.5rem',
-      breakpoints: {},
-    }),
     focus(),
     autoprefixer({
       flexbox: 'no-2009',

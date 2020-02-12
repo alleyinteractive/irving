@@ -18,45 +18,7 @@
 }
 
 .formWrap {
-  font-family: $sans;
-  margin-bottom: rem(50);
-}
-
-.formGroup {
-  label {
-    margin-right: rem(5);
-    width: 100%;
-  }
-
-  input {
-    display: block;
-    margin-bottom: rem(10);
-    width: 100%;
-  }
-
-  @media ($smMin) {
-    display: flex;
-    margin-bottom: rem(10);
-
-    .continueBtn {
-      display: inline-block;
-      width: auto;
-    }
-
-    input {
-      display: flex;
-      margin-bottom: 0;
-    }
-  }
-}
-
-.formInput {
-  @include formInput;
-  margin-right: rem(5);
-
-  &.inputInvalid {
-    @include inputInvalid;
-  }
+  @include zephrForm;
 }
 
 .ssoText {
@@ -101,11 +63,6 @@
   @include btnGray;
 }
 
-.continueBtn {
-  @include btn;
-  @include blackBtn;
-}
-
 .btnLink {
   @include btnLink;
 }
@@ -114,5 +71,4 @@
   color: $red;
   display: block;
   margin-bottom: rem(10);
-  margin-left: rem(10);
 }

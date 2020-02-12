@@ -1,0 +1,38 @@
+/**
+ * Magazine theme column layout (e.g. non-story pages).
+ *
+ * At desktop:
+ * - 1-col offset
+ * - 6-col main columnn with 20px overlap both sides
+ * - 1-col gap
+ * - 4-col sidebar with 20px overlap, left side
+ */
+
+.wrapper {
+  composes: wrapper from './columnArea--feed.css';
+  padding-bottom: rem(50);
+  padding-top: 0;
+}
+
+.column {
+  composes: column from './columnArea--feed.css';
+}
+
+.main {
+  composes: main from './columnArea--feed.css';
+}
+
+.sidebar {
+  composes: sidebar from './columnArea--feed.css';
+  display: block;
+
+  /* Targets the title of this sidebar; it's bad practice to target
+  a heading level but we don't have access to the child class. */
+  h2 {
+    margin-right: 0;
+  }
+}
+
+.container {
+  composes: container from './columnArea--feed.css';
+}

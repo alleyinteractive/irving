@@ -3,11 +3,7 @@
 }
 
 .contentModule {
-  width: rem(300);
-
-  @media ($smMax) {
-    tidy-span: 12;
-  }
+  width: 100%;
 
   @media ($mdMax) {
     margin: 0 auto;
@@ -22,17 +18,31 @@
   margin: rem(5) 0 rem(15) 0;
 }
 
+.itemTitle {
+  display: block;
+}
+
 .stories {
-  list-style: none;
+  counter-reset: popular-counter;
   margin: 0;
   padding: 0;
 }
 
 .story {
   border-bottom: 1px solid $black;
+  counter-increment: popular-counter;
   font-size: rem(16);
   line-height: 1.375;
+  list-style: none;
   padding: rem(15) 0 rem(15) 0;
+
+  &::before {
+    color: $red;
+    content: '0' counter(popular-counter) '.';
+    font-size: rem(12);
+    font-weight: 700;
+    padding: 0 0 rem(5) 0;
+  }
 }
 
 .byline {

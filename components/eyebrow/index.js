@@ -19,7 +19,12 @@ const Eyebrow = ({
 }) => {
   if (customEyebrow) {
     return (
-      <div className={styles.eyebrow} style={{ color }}>
+      <div
+        className={classNames(styles.eyebrow, {
+          [styles.anchorEyebrow]: 'anchorEyebrow' === themeName,
+        })}
+        style={{ color }}
+      >
         {customEyebrow}
         {(
           dateline &&
@@ -69,6 +74,8 @@ Eyebrow.defaultProps = {
   dateline: '',
   subTopic: '',
   subTopicLink: '',
+  topic: '',
+  topicLink: '',
 };
 
 Eyebrow.propTypes = {
@@ -78,8 +85,8 @@ Eyebrow.propTypes = {
   subTopic: PropTypes.string,
   subTopicLink: PropTypes.string,
   themeName: PropTypes.string,
-  topic: PropTypes.string.isRequired,
-  topicLink: PropTypes.string.isRequired,
+  topic: PropTypes.string,
+  topicLink: PropTypes.string,
 };
 
 Eyebrow.defaultProps = { color: '#000000' };

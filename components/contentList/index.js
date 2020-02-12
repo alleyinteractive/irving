@@ -19,6 +19,7 @@ const ContentList = ({
             'content-right': 'right' === align,
             'content-left': 'left' === align,
             'content-center': 'center' === align,
+            'content-full': 'full' === align, // this prop is being used for a narrow right aligned unit
           })}
         >
           {listTitle && (
@@ -36,15 +37,15 @@ const ContentList = ({
 );
 
 ContentList.defaultProps = {
-  align: '',
+  align: 'right',
   listTitle: '',
   children: [],
 };
 
 ContentList.propTypes = {
-  listTitle: PropTypes.string,
   align: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element),
+  listTitle: PropTypes.string,
 };
 
 export default withStyles(styles)(ContentList);

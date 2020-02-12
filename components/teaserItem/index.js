@@ -4,8 +4,9 @@ import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
-import { __ } from '@wordpress/i18n';
+import dashify from 'dashify';
 import classNames from 'classnames';
+import ExpandableSocialShare from 'components/socialList/expandable';
 
 // Styles
 import styles from './teaserItem.css';
@@ -32,15 +33,17 @@ const TeaserItem = ({
 }) => {
   const image = findChildByName('image', children);
   const video = findChildByName('video', children);
+  const socialSharing = findChildByName('social-sharing', children);
 
   const otherChildren = children.filter(
     ({ props: { componentName } }) => ('image' !== componentName) &&
-      ('video' !== componentName)
+      ('video' !== componentName) && ('social-sharing' !== componentName)
   );
 
   if ('simple' === themeName) {
     return (
       <Link
+        id={dashify(title)}
         className={classNames(theme.wrapper, [theme[itemPosition]])}
         to={permalink}
       >
@@ -104,17 +107,9 @@ const TeaserItem = ({
       )}
       {'storygroup' !== themeName && video}
       {'storygroup' !== themeName && otherChildren}
-      <div className={theme.shareMenu}>
-        <button
-          type="button"
-          aria-label={__('Open share menu', 'mittr')}
-          className={theme.shareMenuToggle}
-        >
-          <div className={theme.dot} />
-          <div className={theme.dot} />
-          <div className={theme.dot} />
-        </button>
-      </div>
+      <ExpandableSocialShare>
+        {socialSharing}
+      </ExpandableSocialShare>
     </article>
   );
 };

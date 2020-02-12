@@ -1,0 +1,29 @@
+.wrapper {
+  background-color: #fff;
+  border: 1px solid $border-gray;
+  display: flex;
+  flex-direction: column;
+  min-width: rem(340);
+  position: absolute;
+  right: 1rem;
+  top: rem(40);
+  z-index: 1;
+}
+
+.list {
+  align-items: center;
+  display: flex;
+  width: auto;
+}
+
+.copyWrapper,
+.shareWrapper {
+  align-items: center;
+  display: flex;
+  padding: rem(15);
+  padding-right: 0;
+}
+
+.copyWrapper {
+  border-top: 1px solid $border-gray;
+}
