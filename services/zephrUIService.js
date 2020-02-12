@@ -12,22 +12,36 @@ export default async function fetchZephrUIComponents({ pageID, session }) {
   const endpoint = `${process.env.ZEPHR_ROOT_URL}/wp-json/mittr/v1/zephrComponents?${contentQuery}`; // eslint-disable-line max-len
 
   // Add the session cookie to the header, if set.
-  const { sessionCookie = false } = session || {};
-  const fetchOpts = {
-    headers: {
-      Accept: 'application/json',
-      blaize_session: (() => { // eslint-disable-line camelcase
-        if (! sessionCookie) {
-          return '';
-        }
+  const fetchOpts = () => {
+    const options = {
+      headers: {
+        Accept: 'application/json',
+      },
+    };
 
-        return sessionCookie.match(/(?<=\bblaize_session=)([^;]*)/)[0];
-      })(),
-    },
+    // Parse sessionCookie out of session selector.
+    const { sessionCookie = false } = session || {};
+
+    // If no session cookie, return the headers as they are.
+    if (! sessionCookie) {
+      return options;
+    }
+
+    // Look in the session cookie for the blaize_session id.
+    const matches = sessionCookie.match(/(?<=\bblaize_session=)([^;]*)/);
+
+    // If there are matches, add them to the header object in options.
+    if (0 < matches.length) {
+      const [sessionID] = matches;
+      options.headers.blaize_session = sessionID;
+    }
+
+    // Return modified options object.
+    return options;
   };
 
   // Fetch data for component.
-  const response = await fetch(endpoint, fetchOpts);
+  const response = await fetch(endpoint, fetchOpts());
 
   // Return data if invalid or redirected.
   if (response.ok) {
