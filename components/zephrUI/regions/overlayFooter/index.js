@@ -10,6 +10,7 @@ import { getZephrComponents } from 'selectors/zephrRulesSelector';
 // Note they must be included manually in this component, as the HTML will be
 // included directly using the Zephr feature rules.
 import 'components/zephrUI/components/meterNotice/meterNotice.css';
+import 'components/zephrUI/components/imageAlert/imageAlert.css';
 
 // Styles
 import styles from './overlayFooter.css';

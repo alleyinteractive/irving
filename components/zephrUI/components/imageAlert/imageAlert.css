@@ -1,37 +1,37 @@
 :global {
-  .imageAlert__wrapper {
+  .ImageAlert {
+    @include container-with-bleed;
+    background-color: $color-text;
+    font-family: $sans;
+  }
+
+  .ImageAlert__wrapper {
     display: flex;
     height: rem(324);
     justify-content: space-between;
   }
 
-  .imageAlert__bg {
-    @include container-with-bleed;
-    background-color: #303030;
-    font-family: "NeueHaas";
-  }
-
-  .imageAlert__fields {
+  .ImageAlert__fields {
     padding-top: rem(40);
     width: 100%;
   }
 
-  .imageAlert__fields,
-  .imageAlert__image {
-    color: #fff;
+  .ImageAlert__fields,
+  .ImageAlert__image {
+    color: $white;
 
     @media ($mdMin) {
       width: 45%;
     }
   }
 
-  .imageAlert__image img {
+  .ImageAlert__image img {
     bottom: 0;
     position: absolute;
     width: 100%;
   }
 
-  .imageAlert__image {
+  .ImageAlert__image {
     display: none;
     position: relative;
 
@@ -40,13 +40,13 @@
     }
   }
 
-  .imageAlert__slug {
+  .ImageAlert__slug {
     font-size: rem(22);
     line-height: 0.86;
     margin-bottom: rem(40);
   }
 
-  .imageAlert__message {
+  .ImageAlert__message {
     font-size: rem(30);
     font-weight: 400;
     line-height: 1.07;
@@ -57,24 +57,24 @@
     font-size: rem(100);
   }
 
-  .imageAlert__btn {
+  .ImageAlert__btn {
     display: inline-flex;
     font-size: 1rem;
     font-weight: 600;
     justify-content: center;
     line-height: 1;
-    padding: rem(10 26);
     margin-right: rem(30);
     min-width: rem(160);
+    padding: rem(10 26);
   }
 
-  .imageAlert__btn--subscribe {
-    background-color:#fedd00;
-    border: 1px solid#fedd00;
-    color: #000;
+  .ImageAlert__btn--subscribe {
+    background-color: $call-to-action;
+    border: 1px solid $call-to-action;
+    color: $black;
   }
 
-  .imageAlert__btn--signin {
-    border: 1px solid #fff;
+  .ImageAlert__btn--signin {
+    border: 1px solid $white;
   }
 }
