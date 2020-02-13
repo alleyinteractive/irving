@@ -8,26 +8,22 @@ const debug = createDebug('zephr:UIComponents');
  * @param {string} pageID The post ID of the current page, if set.
  */
 export default async function fetchZephrUIComponents({ pageID, session }) {
+  // Build the endpoint to fetch.
   const contentQuery = pageID ? `content_id=${pageID}` : '';
   const endpoint = `${process.env.ZEPHR_ROOT_URL}/wp-json/mittr/v1/zephrComponents?${contentQuery}`; // eslint-disable-line max-len
 
-  // Add the session cookie to the header, if set.
-  const { sessionCookie = false } = session || {};
-  const fetchOpts = {
-    headers: {
-      Accept: 'application/json',
-      blaize_session: (() => { // eslint-disable-line camelcase
-        if (! sessionCookie) {
-          return '';
-        }
-
-        return sessionCookie.match(/(?<=\bblaize_session=)([^;]*)/)[0];
-      })(),
-    },
-  };
+  // Get the session cookie to add the header.
+  const { sessionCookie: cookie = '' } = session || {};
 
   // Fetch data for component.
-  const response = await fetch(endpoint, fetchOpts);
+  const response = await fetch(endpoint, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      cookie,
+    },
+    credentials: 'include',
+  });
 
   // Return data if invalid or redirected.
   if (response.ok) {
