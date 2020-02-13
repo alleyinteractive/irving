@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actionRequestComponentData } from 'actions/componentDataActions';
 import { componentDataMeta } from 'reducers/defaultState';
 import createComponentDataKey from 'utils/createComponentDataKey';
+import DataPlaceholder from './placeholder';
 import DataLoading from './loading';
 import DataError from './error';
 import getRequestUrl from './getRequestUrl';
@@ -13,6 +14,7 @@ const withData = (
   opts = {}
 ) => (WrappedComponent) => {
   const {
+    placeholder: Placeholder = DataPlaceholder,
     loading: Loading = DataLoading,
     error: Error = DataError,
     refreshOnMount = false,
@@ -25,6 +27,7 @@ const withData = (
       componentData,
       fetchComponentData,
       isDataLoading,
+      isDataLoaded,
       isDataError,
     } = props;
 
@@ -53,13 +56,17 @@ const withData = (
     }
 
     // Return component.
-    return (
-      <WrappedComponent
-        {...props}
-        data={componentData}
-        refresh={() => { fetchComponentData(requestUrl, true); }}
-      />
-    );
+    if (isDataLoaded && ! isDataLoading) {
+      return (
+        <WrappedComponent
+          {...props}
+          data={componentData}
+          refresh={() => { fetchComponentData(requestUrl, true); }}
+        />
+      );
+    }
+
+    return <Placeholder />;
   };
 
   DataProvider.propTypes = {
@@ -69,6 +76,7 @@ const withData = (
     ]).isRequired,
     fetchComponentData: PropTypes.func.isRequired,
     isDataLoading: PropTypes.bool.isRequired,
+    isDataLoaded: PropTypes.bool.isRequired,
     isDataError: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.object,
@@ -85,6 +93,7 @@ const withData = (
 
     return {
       isDataLoading: meta.loading,
+      isDataLoaded: meta.loaded,
       isDataError: meta.error,
       componentData: meta.data,
     };
