@@ -32,7 +32,7 @@ export default async function fetchZephrUIComponents({ pageID, session }) {
     // If there are matches, add them to the header object in options.
     if (0 < matches.length) {
       const [sessionID] = matches;
-      options.headers['Set-Cookie'] = `blaize_session=${sessionID}`;
+      options.headers.Cookie = `blaize_session=${sessionID}`;
     }
 
     // Return modified options object.
