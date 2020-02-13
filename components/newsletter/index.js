@@ -23,6 +23,7 @@ const NewsletterSubscribe = ({
   theme,
   themeName,
 }) => {
+  const api_endpoint = 'https://eventbrite-to-blueconic.herokuapp.com/api/web/newsletters/subscriptions';
   // Set state variable userEmailInput which we use for the form input value.
   const [userEmailInput, setUserEmailInput] = useState('');
   const [selectedRadio, setSelectedRadio] = useState('Yes');
