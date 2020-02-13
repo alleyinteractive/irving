@@ -16,7 +16,6 @@ export default async function fetchZephrUIComponents({ pageID }) {
     headers: {
       Accept: 'application/json',
     },
-    credentials: 'include',
   });
 
   // Return data if invalid or redirected.
