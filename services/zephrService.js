@@ -159,12 +159,22 @@ export default {
 
   /**
    * Get the user's profile (first and last name).
+   *
+   * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
+   *
+   * @returns {object} profile The user's profile.
    */
-  async getProfile() {
+  async getProfile(sessionCookie) {
     try {
       const request = fetch(
         `${process.env.ZEPHR_ROOT_URL}/blaize/profile`,
-        { method: 'GET' }
+        {
+          method: 'GET',
+          headers: {
+            cookie: sessionCookie,
+          },
+          credentials: 'include',
+        }
       ).then((res) => res.json());
 
       const response = await request;
@@ -184,12 +194,22 @@ export default {
 
   /**
    * Get the user's account information.
+   *
+   * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
+   *
+   * @returns {object} account The user's account.
    */
-  async getAccount() {
+  async getAccount(sessionCookie) {
     try {
       const request = fetch(
         `${process.env.ZEPHR_ROOT_URL}/blaize/account`,
-        { method: 'GET' }
+        {
+          method: 'GET',
+          headers: {
+            cookie: sessionCookie,
+          },
+          credentials: 'include',
+        }
       ).then((res) => res.json());
 
       const response = await request;
