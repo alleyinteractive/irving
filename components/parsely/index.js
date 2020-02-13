@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 
 const Parsely = (props) => {
-  const { site } = props;
+  const { site, metadata } = props;
 
   // It's possible for this to be an empty string if
   // setting is unconfigured. Do not render if this is the case.
@@ -10,20 +11,37 @@ const Parsely = (props) => {
     return null;
   }
 
+  const scriptUrl = `//cdn.parsely.com/keys/${site}/p.js`;
   return (
-    <Fragment>
-      <div id="parsely-root" style={{ display: 'none' }}>
-        <span id="parsely-cfg" data-parsely-site={site} />
-      </div>
-      <Fragment>
-        <script src="https://d1z2jf7jlzjs58.cloudfront.net/p.js" async defer />
-      </Fragment>
-    </Fragment>
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify(metadata)}</script>
+      <script id="parsely-cfg" src={scriptUrl} async defer />
+    </Helmet>
   );
 };
 
 Parsely.propTypes = {
   site: PropTypes.string.isRequired,
+  metadata: PropTypes.shape({
+    '@context': PropTypes.string,
+    '@type': PropTypes.string,
+    articleSection: PropTypes.string,
+    author: PropTypes.arrayOf(PropTypes.string),
+    datePublished: PropTypes.string,
+    headline: PropTypes.string,
+    keywords: PropTypes.arrayOf(PropTypes.string),
+    post_id: PropTypes.number,
+    publisher: PropTypes.shape({
+      '@type': PropTypes.string,
+      name: PropTypes.string,
+      logo: PropTypes.shape({
+        '@type': PropTypes.string,
+        url: PropTypes.string,
+      }),
+    }),
+    thumbnailUrl: PropTypes.string,
+    url: PropTypes.string,
+  }).isRequired,
 };
 
 export default Parsely;
