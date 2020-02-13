@@ -33,6 +33,7 @@ export default async function fetchZephrUIComponents({ pageID, session }) {
     if (0 < matches.length) {
       const [sessionID] = matches;
       options.headers.Cookie = `blaize_session=${sessionID}`;
+      options.credentials = 'include';
     }
 
     // Return modified options object.
