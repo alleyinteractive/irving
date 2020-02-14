@@ -98,7 +98,7 @@ Image.propTypes = {
    */
   caption: PropTypes.string,
   /**
-   * Additional classname(s) to add to image wrapper element
+   * Additional classname(s) to add to image wrapper element.
    */
   className: PropTypes.string,
   /**
