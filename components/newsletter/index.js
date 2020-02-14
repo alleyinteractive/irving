@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import parse from 'html-react-parser';
-import jsonp from 'jsonp';
 import classNames from 'classnames';
-import queryString from 'query-string';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 
@@ -15,7 +13,9 @@ import sidebar from './newsletter--sidebar.css';
 
 const NewsletterSubscribe = ({
   clientId,
+  // eslint-disable-next-line no-unused-vars
   mailchimpId,
+  mailchimpListName,
   title,
   description,
   color,
@@ -23,70 +23,71 @@ const NewsletterSubscribe = ({
   theme,
   themeName,
 }) => {
-  const api_endpoint = 'https://eventbrite-to-blueconic.herokuapp.com/api/web/newsletters/subscriptions';
+  /* eslint-disable no-unused-vars */
+  const apiEndPoint = 'https://eventbrite-to-blueconic.herokuapp.com/api/web/newsletters/subscriptions';
+  // Match the mailchimp list name set in the api. Changing the title in the WP Admin will break this.
   // Set state variable userEmailInput which we use for the form input value.
   const [userEmailInput, setUserEmailInput] = useState('');
   const [selectedRadio, setSelectedRadio] = useState('Yes');
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [formResponseState, setFormResponseState] = useState({
-    status: 'pending',
+    submitted: 'false',
     message: '',
   });
-
-  /**
-   * Function to post to the form so the user is subscribed.
-   * @param {string} url string for the form.
-   */
-  const postFormData = (url) => {
-    jsonp(
-      url,
-      // Need to add a blank param 'c' so we don't get redirected.
-      {
-        param: 'c',
-      },
-      (err, data) => {
-        if (err) {
-          setFormResponseState({
-            status: 'error',
-            message: err,
-          });
-        } else if ('success' !== data.result) {
-          setFormResponseState({
-            status: 'error',
-            message: data.msg,
-          });
-        } else {
-          setFormResponseState({
-            status: 'success',
-            message: data.msg,
-          });
-        }
-      },
-    );
-  };
 
   /**
    * Subscribe user to newsletter group from mailchimp.
    * @param {string} email
    * @param {string} subscribeToEvents radio input value
    */
-  const submitNewsLetterSubscribe = (email, subscribeToEvents) => {
-    // Set the params. Merge fields found in MailChimp account.
+  const submitNewsLetterSubscribe = async (email, subscribeToEvents) => {
+    // If the mailchimpListName isn't set in the API, attempt to match it through the title.
     const data = {
-      u: '47c1a9cec9749a8f8cbc83e78',
-      id: 'e2349bbf6b',
-      MERGE0: email,
-      // Merge values for Initiates, Events, Updates (mirrors current functionality)
-      MERGE27: subscribeToEvents,
-      MERGE28: subscribeToEvents,
-      MERGE29: subscribeToEvents,
-      [mailchimpId]: 1,
+      newsletter: '' !== mailchimpListName ?
+        mailchimpListName :
+        title.toLowerCase().replace(' ', '_'),
+      emailAddress: email,
+      merge_fields: {
+        INITIATIVE: subscribeToEvents,
+        PARTNERS: subscribeToEvents,
+        EVENTS: subscribeToEvents,
+      },
     };
-    const formUrl =
-      'https://technologyreview.us11.list-manage.com/subscribe/post-json?';
-    const params = queryString.stringify(data);
-    const url = `${formUrl}${params}`;
-    postFormData(url);
+    const request = fetch(apiEndPoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const response = await request;
+
+    // Error.
+    if (200 !== response.status) {
+      let errorMessage = __('There was an error submitting the request.',
+        'mittr');
+      if (400 === response.status) {
+        // Get the error message(s).
+        const responseData = await response.json();
+        if (responseData && responseData.errors && responseData.errors.length) {
+          errorMessage = responseData.errors
+            .map((error) => error.message).join(' ');
+        } else if (responseData && responseData.message) {
+          errorMessage = responseData.message;
+        }
+      }
+      setFormResponseState({
+        submitted: false,
+        message: errorMessage,
+      });
+      return;
+    }
+
+    // Success.
+    setFormResponseState({
+      submitted: true,
+      errorMessage: __('Success, your form has been submitted!', 'mittr'),
+    });
   };
 
   /**
@@ -287,12 +288,14 @@ const NewsletterSubscribe = ({
 NewsletterSubscribe.defaultProps = {
   clientId: '',
   mailchimpId: '',
+  mailchimpListName: '',
   themeName: '',
 };
 
 NewsletterSubscribe.propTypes = {
   clientId: PropTypes.string,
   mailchimpId: PropTypes.string,
+  mailchimpListName: PropTypes.string,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
