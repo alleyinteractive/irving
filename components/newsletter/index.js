@@ -12,9 +12,8 @@ import storygroup from './newsletter--storygroup.css';
 import sidebar from './newsletter--sidebar.css';
 
 const NewsletterSubscribe = ({
+  apiEndPoint,
   clientId,
-  // eslint-disable-next-line no-unused-vars
-  mailchimpId,
   mailchimpListName,
   title,
   description,
@@ -23,7 +22,6 @@ const NewsletterSubscribe = ({
   theme,
   themeName,
 }) => {
-  const apiEndPoint = 'https://eventbrite-to-blueconic.herokuapp.com/api/web/newsletters/subscriptions';
   // Match the mailchimp list name set in the api. Changing the title in the WP Admin will break this.
   // Set state variable userEmailInput which we use for the form input value.
   const [userEmailInput, setUserEmailInput] = useState('');
@@ -300,15 +298,15 @@ const NewsletterSubscribe = ({
 };
 
 NewsletterSubscribe.defaultProps = {
+  apiEndPoint: 'https://eventbrite-to-blueconic.herokuapp.com/api/web/newsletters/subscriptions',
   clientId: '',
-  mailchimpId: '',
   mailchimpListName: '',
   themeName: '',
 };
 
 NewsletterSubscribe.propTypes = {
+  apiEndPoint: PropTypes.string,
   clientId: PropTypes.string,
-  mailchimpId: PropTypes.string,
   mailchimpListName: PropTypes.string,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
