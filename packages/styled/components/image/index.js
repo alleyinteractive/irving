@@ -117,7 +117,7 @@ Image.propTypes = {
    */
   showCaption: PropTypes.bool,
   /**
-   * String with contents of <img> `sizes` attribute
+   * String with contents of <img> `sizes` attribute.
    */
   sizes: PropTypes.string,
   /**
