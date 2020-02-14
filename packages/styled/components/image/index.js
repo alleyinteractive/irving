@@ -121,7 +121,7 @@ Image.propTypes = {
    */
   sizes: PropTypes.string,
   /**
-   * String with contents of <img> `src` attribute
+   * String with contents of <img> `src` attribute.
    */
   src: PropTypes.string.isRequired,
   /**
