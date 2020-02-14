@@ -134,7 +134,7 @@ Image.propTypes = {
   sourceTags: PropTypes.arrayOf(
     PropTypes.shape({
       /**
-       * String with contents of <source> `srcset` attribute
+       * String with contents of <source> `srcset` attribute.
        */
       srcset: PropTypes.string.isRequired,
       /**
