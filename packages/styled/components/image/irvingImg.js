@@ -17,12 +17,13 @@ const IrvingImg = (props) => {
   const [currentSrc, setCurrentSrc] = useState(lqipSrc);
   const [currentSrcSet, setCurrentSrcSet] = useState(null);
   const [setNode, entry] = useIntersect();
+  const hasSrc = (currentSrc && currentSrc !== lqipSrc);
   // Set src and srcset if entry matches current node and src isn't already set.
   useEffect(() => {
     if (
       entry.target &&
       0 < entry.intersectionRatio &&
-      (! currentSrc || lqipSrc === currentSrc)
+      ! hasSrc
     ) {
       setCurrentSrc(src);
       setCurrentSrcSet(srcset);
@@ -39,6 +40,7 @@ const IrvingImg = (props) => {
       onError={onError}
       lazyload={lazyload}
       ref={setNode}
+      hasSrc={hasSrc}
     />
   );
 };

@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 
+/**
+ * Hook for observing DOM nodes using IntersectionObserver.
+ * Code based on work in https://medium.com/the-non-traditional-developer/how-to-use-an-intersectionobserver-in-a-react-hook-9fb061ac6cb5
+ *
+ * @param {object} opts Options for IntersectionObserver (see https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+ */
 const useIntersect = (opts = {}) => {
   const {
     root = null,
     rootMargin = '0px',
     threshold = 0,
-    delay = 250,
+    delay = 100,
   } = opts;
   const [node, setNode] = useState(null);
   const [entry, updateEntry] = useState({});

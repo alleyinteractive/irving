@@ -50,7 +50,18 @@ export const Caption = styled.figcaption`
 
 export const Image = styled.img`
   display: block;
+  transition: filter 250ms linear;
   ${(props) => getAspectRatioStyles(props)};
+
+  ${(props) => {
+    const { hasSrc } = props;
+
+    if (! hasSrc) {
+      return 'filter: blur(3px);';
+    }
+
+    return 'filter: blur(0px);';
+  }}
 
   /* Styles for the SVG placeholder image when no image is set. */
   .placeholderImg & {
