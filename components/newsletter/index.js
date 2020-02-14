@@ -32,6 +32,7 @@ const NewsletterSubscribe = ({
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [formResponseState, setFormResponseState] = useState({
     submitted: 'false',
+    status: 'error',
     message: '',
   });
 
@@ -78,16 +79,30 @@ const NewsletterSubscribe = ({
       }
       setFormResponseState({
         submitted: false,
+        status: 'error',
         message: errorMessage,
       });
+      // Clear out message.
+      setTimeout(() => {
+        setFormResponseState({
+          message: '',
+        });
+      }, 5000);
       return;
     }
 
     // Success.
     setFormResponseState({
       submitted: true,
-      errorMessage: __('Success, your form has been submitted!', 'mittr'),
+      status: 'success',
+      message: __('Success, your form has been submitted!', 'mittr'),
     });
+    // Clear out message.
+    setTimeout(() => {
+      setFormResponseState({
+        message: '',
+      });
+    }, 5000);
   };
 
   /**
