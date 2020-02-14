@@ -15,7 +15,13 @@ const Parsely = (props) => {
   return (
     <Helmet>
       <script type="application/ld+json">{JSON.stringify(metadata)}</script>
-      <script id="parsely-cfg" src={scriptUrl} async defer />
+      <script
+        id="parsely-cfg"
+        data-parsely-site={site}
+        src={scriptUrl}
+        async
+        defer
+      />
     </Helmet>
   );
 };
