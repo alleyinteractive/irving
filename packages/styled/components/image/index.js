@@ -81,7 +81,7 @@ const Image = (props) => {
 
 Image.propTypes = {
   /**
-   * Alt text for the image
+   * Alt text for the image.
    */
   alt: PropTypes.string.isRequired,
   /**
