@@ -37,7 +37,7 @@ const OverlayFooter = ({ components }) => {
                       'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code',
                       'hr', 'br', 'div',
                       'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td',
-                      'pre', 'iframe', 'span',
+                      'pre', 'iframe', 'span', 'img',
                     ],
                     allowedAttributes: {
                       '*': [
@@ -47,6 +47,8 @@ const OverlayFooter = ({ components }) => {
                         'aria-live',
                         'aria-polite',
                         'aria-modal',
+                        'alt',
+                        'src',
                       ],
                     },
                   }
