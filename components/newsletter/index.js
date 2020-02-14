@@ -23,7 +23,6 @@ const NewsletterSubscribe = ({
   theme,
   themeName,
 }) => {
-  /* eslint-disable no-unused-vars */
   const apiEndPoint = 'https://eventbrite-to-blueconic.herokuapp.com/api/web/newsletters/subscriptions';
   // Match the mailchimp list name set in the api. Changing the title in the WP Admin will break this.
   // Set state variable userEmailInput which we use for the form input value.
