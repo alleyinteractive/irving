@@ -102,7 +102,7 @@ Image.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Wether or not to lazyload this image via react-lazyload
+   * Whether or not to lazyload this image via react-lazyload
    */
   lazyload: PropTypes.oneOfType([
     PropTypes.bool,
