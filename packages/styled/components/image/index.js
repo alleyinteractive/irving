@@ -138,7 +138,7 @@ Image.propTypes = {
        */
       srcset: PropTypes.string.isRequired,
       /**
-       * Media query for which this `<source>` tag's srcset should apply
+       * Media query for which this `<source>` tag's srcset should apply.
        */
       media: PropTypes.string.isRequired,
     })
