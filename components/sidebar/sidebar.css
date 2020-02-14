@@ -1,7 +1,7 @@
 .wrapper {
   flex: 0 0 auto;
   width: 100%;
-  
+
   @media ($mdMin) {
     margin-bottom: rem(200);
   }
@@ -17,6 +17,11 @@
 
 .widgetWrapper {
   width: 100%;
+
+  :global(.adUnit) {
+    justify-content: flex-start;
+    tidy-offset-left: 1;
+  }
 
   &:not(:empty) {
     margin-bottom: rem(40);
