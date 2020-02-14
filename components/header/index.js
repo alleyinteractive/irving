@@ -21,6 +21,7 @@ import styles from './header.css';
 
 const Header = ({ homeUrl, children, dispatchUpdateHeaderHeight }) => {
   const menu = findChildByName('menu', children);
+  const leaderboardAd = findChildByName('ad-unit', children);
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -49,8 +50,7 @@ const Header = ({ homeUrl, children, dispatchUpdateHeaderHeight }) => {
       <div className={styles.wrapper}>
         {! isHeadroom && ! isMobile && (
           <div className={styles.leaderboardRow}>
-            {/* @todo consider moving ad placeholder to its own component. */}
-            <div className={styles.leaderboard}>Advertisement placeholder</div>
+            {leaderboardAd}
           </div>
         )}
         {(isHeadroom || isMobile) && (
