@@ -125,7 +125,7 @@ Image.propTypes = {
    */
   src: PropTypes.string.isRequired,
   /**
-   * String with contents of <img> `srcset` attribute
+   * String with contents of <img> `srcset` attribute.
    */
   srcset: PropTypes.string.isRequired,
   /**
