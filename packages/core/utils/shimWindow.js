@@ -12,4 +12,12 @@ window.matchMedia = window.matchMedia || (() => ({
   matches: false,
   addListener: () => {},
   removeListener: () => {},
+  IntersectionObserver: () => {},
 }));
+
+window.IntersectionObserver = window.IntersectionObserver ||
+  function IntersectionObserver() {
+    this.observe = () => {};
+    this.unobserve = () => {};
+    this.disconnect = () => {};
+  };
