@@ -1,23 +1,57 @@
-import React, { Fragment } from 'react';
+import React, {
+  Fragment,
+  createContext,
+  useEffect,
+} from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
+import useLoadScript from 'hooks/useLoadScript';
+
+export const GTMContext = createContext({
+  loaded: false,
+  containerId: null,
+});
 
 const GoogleTagManager = (props) => {
-  const { containerId } = props;
+  const {
+    children,
+    containerId,
+    dataLayer,
+  } = props;
 
   if (! containerId) {
-    return null;
+    return children;
   }
+
+  /**
+   * Effect for pushing new data to the GTM dataLayer.
+   */
+  useEffect(() => {
+    window.dataLayer.push({
+      event: 'mittr.historyChange',
+      ...dataLayer,
+    });
+  }, [dataLayer]);
+
+  /**
+   * Is GTM loaded?
+   */
+  const loaded = useLoadScript(
+    `https://www.googletagmanager.com/gtm.js?id=${containerId}`,
+    'google-tag-manager'
+  );
 
   return (
     <Fragment>
       <Helmet>
         <script>
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${containerId}');`}
+          {`(function(w, l){
+            w[l]=w[l]||[];
+            w[l].push({
+              'gtm.start': new Date().getTime(),
+              event:'gtm.js'
+            });
+          })(window, 'dataLayer');`}
         </script>
       </Helmet>
       <noscript>
@@ -32,15 +66,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
       </noscript>
+      <GTMContext.Provider
+        value={{
+          loaded,
+          containerId,
+          dataLayer,
+        }}
+      >
+        {children}
+      </GTMContext.Provider>
     </Fragment>
   );
 };
 
 GoogleTagManager.propTypes = {
-  /**
-   * Your GTM tracking ID, found in your GTM account dashboard.
-   */
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]).isRequired,
   containerId: PropTypes.string.isRequired,
+  dataLayer: PropTypes.shape({
+    contentType: PropTypes.string,
+    contentId: PropTypes.string,
+    channel: PropTypes.string,
+    tags: PropTypes.array,
+    headline: PropTypes.string,
+  }).isRequired,
 };
 
 export default GoogleTagManager;
