@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
-import parse from 'html-react-parser';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
@@ -75,13 +74,14 @@ const NewsletterSubscribe = ({
         }
       }
       setFormResponseState({
-        submitted: false,
+        submitted: true,
         status: 'error',
         message: errorMessage,
       });
       // Clear out message.
       setTimeout(() => {
         setFormResponseState({
+          submitted: false,
           message: '',
         });
       }, 5000);
@@ -92,11 +92,12 @@ const NewsletterSubscribe = ({
     setFormResponseState({
       submitted: true,
       status: 'success',
-      message: __('Success, your form has been submitted!', 'mittr'),
+      message: __('Thanks for signing up.', 'mittr'),
     });
     // Clear out message.
     setTimeout(() => {
       setFormResponseState({
+        submitted: false,
         message: '',
       });
     }, 5000);
@@ -154,14 +155,17 @@ const NewsletterSubscribe = ({
                   <span className="newsletter__bold">{title}</span>
                 </h2>
                 &nbsp;
-                <span>{`- ${description}`}</span>
+                <span className="newsletter_description">
+                  {`- ${description}`}
+                </span>
               </div>
             )}
             {(title && 'sidebar' === themeName) && (
               <div>
                 <h2
                   className={
-                    classNames('newsletter__signUpHeading', theme.signUpHeading)
+                    classNames('newsletter__signUpHeading',
+                      theme.signUpHeading)
                   }
                   style={{ color }}
                 >
@@ -171,119 +175,127 @@ const NewsletterSubscribe = ({
               </div>
             )}
           </header>
-          <div className="newsletter__formGroup">
-            <label
-              htmlFor={`emailInput-${clientId}`}
-              className="newsletter__emailInputLabel"
-            >
-              <input
-                type="text"
-                className="newsletter__emailInput"
-                id={`emailInput-${clientId}`}
-                placeholder={__(
-                  'Enter your email, get the newsletter',
-                  'mittr',
-                )}
-                style={{
-                  borderColor: color || '#000',
-                }}
-                value={userEmailInput}
-                onChange={handleInputChange}
-              />
-            </label>
-            <button
-              type="submit"
-              id={`signUpBtn-${clientId}`}
-              className="newsletter__signUpBtn"
-              style={{
-                backgroundColor: color || '#000',
-                borderColor: color || '#000',
-              }}
-            >
-              {__('Sign up', 'mittr')}
-            </button>
-          </div>
-          {! isEmailValid && (
-            <span
-              className="newsletter__formError"
-              aria-live="assertive"
-              id="email-error"
-            >
-              {__(
-                `Oops! Let’s try that again —
-              please enter your email address.`,
-                'mittr',
-              )}
-            </span>
-          )}
           {formResponseState.message && (
             <span
               aria-live="assertive"
-              className={
-                'error' === formResponseState.status ?
-                  'newsletter__formError' :
-                  'newsletter__formSuccess'
-              }
+              className="form_message"
             >
-              {parse(formResponseState.message)}
+              {formResponseState.message}
             </span>
           )}
-          <div className={classNames('newsletter__radioWrap', theme.radioWrap)}>
-            <h3
-              className="newsletter__radioHeader"
-              id={`upToDateOptInID-${clientId}`}
-            >
-              {__(
-                `Stay updated on MIT Technology
-                Review initiatives and events?`,
-                'mittr',
+          {! formResponseState.message && (
+            <div>
+              <div className="newsletter__formGroup">
+                <label
+                  htmlFor={`emailInput-${clientId}`}
+                  className="newsletter__emailInputLabel"
+                >
+                  <input
+                    type="text"
+                    className="newsletter__emailInput"
+                    id={`emailInput-${clientId}`}
+                    placeholder={__(
+                      'Enter your email, get the newsletter',
+                      'mittr',
+                    )}
+                    style={{
+                      borderColor: color || '#000',
+                    }}
+                    value={userEmailInput}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <button
+                  type="submit"
+                  id={`signUpBtn-${clientId}`}
+                  className="newsletter__signUpBtn"
+                  style={{
+                    backgroundColor: color || '#000',
+                    borderColor: color || '#000',
+                  }}
+                >
+                  {__('Sign up', 'mittr')}
+                </button>
+              </div>
+              {! isEmailValid && (
+                <span
+                  className="newsletter__formError"
+                  aria-live="assertive"
+                  id="email-error"
+                >
+                  {__(
+                    `Oops! Let’s try that again —
+                  please enter your email address.`,
+                    'mittr',
+                  )}
+                </span>
               )}
-            </h3>
-            <div
-              className="newsletter__formGroupRadio"
-              role="radiogroup"
-              aria-labelledby={`upToDateOptInID-${clientId}`}
-            >
-              <label
-                className="newsletter__inlineRadioLabel"
-                htmlFor={`radioYesID-${clientId}`}
+              <div className={classNames('newsletter__radioWrap',
+                theme.radioWrap)}
               >
-                <input
-                  className="newsletter__radioInput"
-                  name="opt-in-radio"
-                  type="radio"
-                  id={`radioYesID-${clientId}`}
-                  value="Yes"
-                  checked={'Yes' === selectedRadio}
-                  onChange={({ target: { value } }) => setSelectedRadio(value)}
-                  style={{
-                    borderColor: color,
-                    backgroundColor: 'Yes' === selectedRadio ? color : '#fff',
-                  }}
-                />
-                {__('Yes', 'mittr')}
-              </label>
-              <label
-                className="newsletter__inlineRadioLabel"
-                htmlFor={`radioNoID-${clientId}`}
-              >
-                <input
-                  className="newsletter__radioInput"
-                  name="opt-in-radio"
-                  type="radio"
-                  id={`radioNoID-${clientId}`}
-                  value="No"
-                  checked={'No' === selectedRadio}
-                  onChange={({ target: { value } }) => setSelectedRadio(value)}
-                  style={{
-                    borderColor: color,
-                    backgroundColor: 'No' === selectedRadio ? color : '#fff',
-                  }}
-                />
-                {__('No', 'mittr')}
-              </label>
+                <h3
+                  className="newsletter__radioHeader"
+                  id={`upToDateOptInID-${clientId}`}
+                >
+                  {__(
+                    `Stay updated on MIT Technology
+                    Review initiatives and events?`,
+                    'mittr',
+                  )}
+                </h3>
+                <div
+                  className="newsletter__formGroupRadio"
+                  role="radiogroup"
+                  aria-labelledby={`upToDateOptInID-${clientId}`}
+                >
+                  <label
+                    className="newsletter__inlineRadioLabel"
+                    htmlFor={`radioYesID-${clientId}`}
+                  >
+                    <input
+                      className="newsletter__radioInput"
+                      name="opt-in-radio"
+                      type="radio"
+                      id={`radioYesID-${clientId}`}
+                      value="Yes"
+                      checked={'Yes' === selectedRadio}
+                      onChange={({
+                        target: { value },
+                      }) => setSelectedRadio(value)}
+                      style={{
+                        borderColor: color,
+                        backgroundColor: 'Yes' === selectedRadio ?
+                          color : '#fff',
+                      }}
+                    />
+                    {__('Yes', 'mittr')}
+                  </label>
+                  <label
+                    className="newsletter__inlineRadioLabel"
+                    htmlFor={`radioNoID-${clientId}`}
+                  >
+                    <input
+                      className="newsletter__radioInput"
+                      name="opt-in-radio"
+                      type="radio"
+                      id={`radioNoID-${clientId}`}
+                      value="No"
+                      checked={'No' === selectedRadio}
+                      onChange={({
+                        target: { value },
+                      }) => setSelectedRadio(value)}
+                      style={{
+                        borderColor: color,
+                        backgroundColor: 'No' === selectedRadio ?
+                          color : '#fff',
+                      }}
+                    />
+                    {__('No', 'mittr')}
+                  </label>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </form>
       </aside>
       <div className={theme.moreLink}>
@@ -302,6 +314,7 @@ NewsletterSubscribe.defaultProps = {
   clientId: '',
   mailchimpListName: '',
   themeName: '',
+  theme: 'default',
 };
 
 NewsletterSubscribe.propTypes = {
@@ -313,7 +326,7 @@ NewsletterSubscribe.propTypes = {
   color: PropTypes.string.isRequired,
   imgLogoUrl: PropTypes.string.isRequired,
   themeName: PropTypes.string,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object,
 };
 
 export default withThemes('newsletter', {
