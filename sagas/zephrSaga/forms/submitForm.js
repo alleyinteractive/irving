@@ -105,7 +105,7 @@ function* submitRegistration(credentials) {
  *
  * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
  */
-function* getProfile(sessionCookie) {
+export function* getProfile(sessionCookie) {
   // Get the user's profile.
   const profile = yield call(zephrService.getProfile, sessionCookie);
 
@@ -122,7 +122,7 @@ function* getProfile(sessionCookie) {
  *
  * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
  */
-function* getAccount(sessionCookie) {
+export function* getAccount(sessionCookie) {
   // Get the user's account.
   const account = yield call(zephrService.getAccount, sessionCookie);
 

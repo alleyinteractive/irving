@@ -115,10 +115,35 @@ export default {
           method: 'GET',
           credentials: 'include',
         }
-      ).then((res) => res.json());
+      ).then((res) => res);
 
       const response = await request;
-      console.log(response);
+
+      if (200 === response.status) {
+        // On success parse the cookies set by Zephr's API response.
+        const cookieArr = document.cookie
+          .split(';')
+          .reduce((res, item) => {
+            const [key, val] = item.trim().split('=').map(decodeURIComponent);
+            const allNumbers = (str) => /^\d+$/.test(str);
+            try {
+              return Object.assign(
+                res,
+                {
+                  [key]: allNumbers(val) ? val : JSON.parse(val),
+                }
+              );
+            } catch (e) {
+              return Object.assign(res, { [key]: val });
+            }
+          }, {});
+
+        const {
+          blaize_session: sessionCookie,
+        } = cookieArr;
+
+        return `blaize_session=${sessionCookie}`;
+      }
 
       return false;
     } catch (error) {

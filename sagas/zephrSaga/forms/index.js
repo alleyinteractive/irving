@@ -9,6 +9,8 @@ import { REHYDRATE } from 'redux-persist/lib/constants';
 import {
   actionRequestForms,
   actionReceiveUserLogOut,
+  actionReceiveUserSession,
+  actionReceiveUserVerification,
 } from 'actions/zephrActions';
 import {
   REQUEST_ZEPHR_FORMS,
@@ -20,7 +22,10 @@ import { getCached } from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
 import requestForms from './requestForms';
-import submitForm from './submitForm';
+import submitForm, {
+  getProfile,
+  getAccount,
+} from './submitForm';
 
 export default [
   // Initialize the saga to request Zephr forms onload.
@@ -68,12 +73,22 @@ function* logOut() {
 
 function* verifyToken({ payload }) {
   try {
-    yield call(zephrService.verifyEmail, payload);
+    const cookie = yield call(zephrService.verifyEmail, payload);
 
-    // Redirect the user to the homepage after a few seconds.
-    setTimeout(() => {
-      history.push('/');
-    }, 2000);
+    if (false !== cookie) {
+      // Store the session data for later use.
+      yield put(actionReceiveUserSession({ sessionCookie: cookie }));
+      // Get the user's profile.
+      yield call(getProfile, cookie);
+      // Get the user's account.
+      yield call(getAccount, cookie);
+      // Wait until profile and account details have been retrieved to redirect.
+      yield put(actionReceiveUserVerification());
+      // Redirect the user to the homepage after a few seconds.
+      // setTimeout(() => {
+      //   history.push('/');
+      // }, 5000);
+    }
   } catch (error) {
     console.error(error);
   }

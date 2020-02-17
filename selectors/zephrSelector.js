@@ -46,3 +46,8 @@ export const getSession = createSelector(
   zephrSelector,
   (state) => state.session,
 );
+
+export const getEmailVerified = createSelector(
+  zephrSelector,
+  (state) => state.user.emailVerified,
+);
