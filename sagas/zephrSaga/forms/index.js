@@ -14,6 +14,7 @@ import {
   REQUEST_ZEPHR_FORMS,
   SUBMIT_ZEPHR_FORM,
   REQUEST_USER_LOG_OUT,
+  VERIFY_ZEPHR_USER_TOKEN,
 } from 'actions/types';
 import { getCached } from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
@@ -30,6 +31,8 @@ export default [
   takeEvery(SUBMIT_ZEPHR_FORM, submitForm),
   // Listen for user log out request.
   takeEvery(REQUEST_USER_LOG_OUT, logOut),
+  // Listen for token verification request.
+  takeEvery(VERIFY_ZEPHR_USER_TOKEN, verifyToken),
 ];
 
 /**
@@ -60,5 +63,18 @@ function* logOut() {
     yield put(actionReceiveUserLogOut());
     // Redirect the user to the login page.
     history.push('/login');
+  }
+}
+
+function* verifyToken({ payload }) {
+  try {
+    yield call(zephrService.verifyEmail, payload);
+
+    // Redirect the user to the homepage after a few seconds.
+    setTimeout(() => {
+      history.push('/');
+    }, 2000);
+  } catch (error) {
+    console.error(error);
   }
 }

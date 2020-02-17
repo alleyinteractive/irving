@@ -58,15 +58,69 @@ export default {
 
       const response = await request;
 
-      if ('cookie' in response) {
+      if ('tracking_id' in response) {
         return {
           status: 'success',
-          cookie: response.cookie,
           trackingId: response.tracking_id,
         };
       }
 
       return { status: 'failed' };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  async sendVerificationEmail(email) {
+    try {
+      const body = {
+        identifiers: {
+          email_address: email,
+        },
+        delivery: {
+          method: 'email',
+          destination: email,
+          action: 'register',
+          redirect: '/',
+        },
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/token-exchange`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        }
+      ).then((res) => res.json());
+
+      const response = await request;
+
+      console.log(response);
+
+      return true;
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  async verifyEmail(token) {
+    try {
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/token-exchange?token=${token}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+        }
+      ).then((res) => res.json());
+
+      const response = await request;
+      console.log(response);
+
+      return false;
     } catch (error) {
       return postErrorMessage(error);
     }
