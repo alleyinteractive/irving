@@ -12,6 +12,7 @@ const MegaMenu = (props) => {
   const userGreeting = findChildByName('user-greeting', children);
   const menus = filterChildrenByName('menu', children);
   const socialFollowMenu = findChildByName('social-follow-module', children);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.topRow}>
