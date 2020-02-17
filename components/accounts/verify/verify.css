@@ -18,7 +18,7 @@
 
 .homeButton {
   @include btn;
-  @include blackBtn;
+  @include btnBlack;
 
   font-family: $sans;
 }
