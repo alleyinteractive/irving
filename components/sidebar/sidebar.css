@@ -18,11 +18,6 @@
 .widgetWrapper {
   width: 100%;
 
-  :global(.adUnit) {
-    justify-content: flex-start;
-    tidy-offset-left: 1;
-  }
-
   &:not(:empty) {
     margin-bottom: rem(40);
   }
