@@ -80,13 +80,13 @@
 
 .createBtn {
   @include btn;
-  @include blackBtn;
+  @include btnBlack;
   max-width: rem(228);
 }
 
 .homeButton {
   @include btn;
-  @include blackBtn;
+  @include btnBlack;
 
   font-family: $sans;
 }
