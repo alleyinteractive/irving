@@ -13,7 +13,7 @@
     padding: rem(20) rem(10);
 
     .newsletter__signUpHeading,
-    span {
+    .newsletter_description {
       display: inline;
       font-family: $sans;
       font-size: rem(18);
@@ -116,18 +116,14 @@
     }
   }
 
-  .newsletter__formError {
-    color: $red;
+  .form_message {
+    background: $black;
+    color: $white;
     display: block;
-    margin-bottom: rem(10);
-    margin-left: rem(10);
-  }
-
-  .newsletter__formSuccess {
-    color: $success;
-    display: block;
-    margin-bottom: rem(10);
-    margin-left: rem(10);
+    font-size: rem(17);
+    font-weight: 700;
+    padding: rem(5) rem(13);
+    width: 100%;
   }
 
   .newsletter__display {
