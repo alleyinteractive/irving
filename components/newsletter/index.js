@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
-import parse from 'html-react-parser';
-import jsonp from 'jsonp';
 import classNames from 'classnames';
-import queryString from 'query-string';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 
@@ -14,8 +11,9 @@ import storygroup from './newsletter--storygroup.css';
 import sidebar from './newsletter--sidebar.css';
 
 const NewsletterSubscribe = ({
+  apiEndPoint,
   clientId,
-  mailchimpId,
+  mailchimpListName,
   title,
   description,
   color,
@@ -23,69 +21,86 @@ const NewsletterSubscribe = ({
   theme,
   themeName,
 }) => {
+  // Match the mailchimp list name set in the api. Changing the title in the WP Admin will break this.
   // Set state variable userEmailInput which we use for the form input value.
   const [userEmailInput, setUserEmailInput] = useState('');
   const [selectedRadio, setSelectedRadio] = useState('Yes');
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [formResponseState, setFormResponseState] = useState({
-    status: 'pending',
+    submitted: 'false',
+    status: 'error',
     message: '',
   });
-
-  /**
-   * Function to post to the form so the user is subscribed.
-   * @param {string} url string for the form.
-   */
-  const postFormData = (url) => {
-    jsonp(
-      url,
-      // Need to add a blank param 'c' so we don't get redirected.
-      {
-        param: 'c',
-      },
-      (err, data) => {
-        if (err) {
-          setFormResponseState({
-            status: 'error',
-            message: err,
-          });
-        } else if ('success' !== data.result) {
-          setFormResponseState({
-            status: 'error',
-            message: data.msg,
-          });
-        } else {
-          setFormResponseState({
-            status: 'success',
-            message: data.msg,
-          });
-        }
-      },
-    );
-  };
 
   /**
    * Subscribe user to newsletter group from mailchimp.
    * @param {string} email
    * @param {string} subscribeToEvents radio input value
    */
-  const submitNewsLetterSubscribe = (email, subscribeToEvents) => {
-    // Set the params. Merge fields found in MailChimp account.
+  const submitNewsLetterSubscribe = async (email, subscribeToEvents) => {
+    // If the mailchimpListName isn't set in the API, attempt to match it through the title.
     const data = {
-      u: '47c1a9cec9749a8f8cbc83e78',
-      id: 'e2349bbf6b',
-      MERGE0: email,
-      // Merge values for Initiates, Events, Updates (mirrors current functionality)
-      MERGE27: subscribeToEvents,
-      MERGE28: subscribeToEvents,
-      MERGE29: subscribeToEvents,
-      [mailchimpId]: 1,
+      newsletter: '' !== mailchimpListName ?
+        mailchimpListName :
+        title.toLowerCase().replace(' ', '_'),
+      emailAddress: email,
+      merge_fields: {
+        INITIATIVE: subscribeToEvents,
+        PARTNERS: subscribeToEvents,
+        EVENTS: subscribeToEvents,
+      },
     };
-    const formUrl =
-      'https://technologyreview.us11.list-manage.com/subscribe/post-json?';
-    const params = queryString.stringify(data);
-    const url = `${formUrl}${params}`;
-    postFormData(url);
+    const request = fetch(apiEndPoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const response = await request;
+
+    // Error.
+    if (200 !== response.status) {
+      let errorMessage = __('There was an error submitting the request.',
+        'mittr');
+      if (400 === response.status) {
+        // Get the error message(s).
+        const responseData = await response.json();
+        if (responseData && responseData.errors && responseData.errors.length) {
+          errorMessage = responseData.errors
+            .map((error) => error.message).join(' ');
+        } else if (responseData && responseData.message) {
+          errorMessage = responseData.message;
+        }
+      }
+      setFormResponseState({
+        submitted: true,
+        status: 'error',
+        message: errorMessage,
+      });
+      // Clear out message.
+      setTimeout(() => {
+        setFormResponseState({
+          submitted: false,
+          message: '',
+        });
+      }, 5000);
+      return;
+    }
+
+    // Success.
+    setFormResponseState({
+      submitted: true,
+      status: 'success',
+      message: __('Thanks for signing up.', 'mittr'),
+    });
+    // Clear out message.
+    setTimeout(() => {
+      setFormResponseState({
+        submitted: false,
+        message: '',
+      });
+    }, 5000);
   };
 
   /**
@@ -140,14 +155,17 @@ const NewsletterSubscribe = ({
                   <span className="newsletter__bold">{title}</span>
                 </h2>
                 &nbsp;
-                <span>{`- ${description}`}</span>
+                <span className="newsletter_description">
+                  {`- ${description}`}
+                </span>
               </div>
             )}
             {(title && 'sidebar' === themeName) && (
               <div>
                 <h2
                   className={
-                    classNames('newsletter__signUpHeading', theme.signUpHeading)
+                    classNames('newsletter__signUpHeading',
+                      theme.signUpHeading)
                   }
                   style={{ color }}
                 >
@@ -157,119 +175,127 @@ const NewsletterSubscribe = ({
               </div>
             )}
           </header>
-          <div className="newsletter__formGroup">
-            <label
-              htmlFor={`emailInput-${clientId}`}
-              className="newsletter__emailInputLabel"
-            >
-              <input
-                type="text"
-                className="newsletter__emailInput"
-                id={`emailInput-${clientId}`}
-                placeholder={__(
-                  'Enter your email, get the newsletter',
-                  'mittr',
-                )}
-                style={{
-                  borderColor: color || '#000',
-                }}
-                value={userEmailInput}
-                onChange={handleInputChange}
-              />
-            </label>
-            <button
-              type="submit"
-              id={`signUpBtn-${clientId}`}
-              className="newsletter__signUpBtn"
-              style={{
-                backgroundColor: color || '#000',
-                borderColor: color || '#000',
-              }}
-            >
-              {__('Sign up', 'mittr')}
-            </button>
-          </div>
-          {! isEmailValid && (
-            <span
-              className="newsletter__formError"
-              aria-live="assertive"
-              id="email-error"
-            >
-              {__(
-                `Oops! Let’s try that again —
-              please enter your email address.`,
-                'mittr',
-              )}
-            </span>
-          )}
           {formResponseState.message && (
             <span
               aria-live="assertive"
-              className={
-                'error' === formResponseState.status ?
-                  'newsletter__formError' :
-                  'newsletter__formSuccess'
-              }
+              className="form_message"
             >
-              {parse(formResponseState.message)}
+              {formResponseState.message}
             </span>
           )}
-          <div className={classNames('newsletter__radioWrap', theme.radioWrap)}>
-            <h3
-              className="newsletter__radioHeader"
-              id={`upToDateOptInID-${clientId}`}
-            >
-              {__(
-                `Stay updated on MIT Technology
-                Review initiatives and events?`,
-                'mittr',
+          {! formResponseState.message && (
+            <div>
+              <div className="newsletter__formGroup">
+                <label
+                  htmlFor={`emailInput-${clientId}`}
+                  className="newsletter__emailInputLabel"
+                >
+                  <input
+                    type="text"
+                    className="newsletter__emailInput"
+                    id={`emailInput-${clientId}`}
+                    placeholder={__(
+                      'Enter your email, get the newsletter',
+                      'mittr',
+                    )}
+                    style={{
+                      borderColor: color || '#000',
+                    }}
+                    value={userEmailInput}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <button
+                  type="submit"
+                  id={`signUpBtn-${clientId}`}
+                  className="newsletter__signUpBtn"
+                  style={{
+                    backgroundColor: color || '#000',
+                    borderColor: color || '#000',
+                  }}
+                >
+                  {__('Sign up', 'mittr')}
+                </button>
+              </div>
+              {! isEmailValid && (
+                <span
+                  className="newsletter__formError"
+                  aria-live="assertive"
+                  id="email-error"
+                >
+                  {__(
+                    `Oops! Let’s try that again —
+                  please enter your email address.`,
+                    'mittr',
+                  )}
+                </span>
               )}
-            </h3>
-            <div
-              className="newsletter__formGroupRadio"
-              role="radiogroup"
-              aria-labelledby={`upToDateOptInID-${clientId}`}
-            >
-              <label
-                className="newsletter__inlineRadioLabel"
-                htmlFor={`radioYesID-${clientId}`}
+              <div className={classNames('newsletter__radioWrap',
+                theme.radioWrap)}
               >
-                <input
-                  className="newsletter__radioInput"
-                  name="opt-in-radio"
-                  type="radio"
-                  id={`radioYesID-${clientId}`}
-                  value="Yes"
-                  checked={'Yes' === selectedRadio}
-                  onChange={({ target: { value } }) => setSelectedRadio(value)}
-                  style={{
-                    borderColor: color,
-                    backgroundColor: 'Yes' === selectedRadio ? color : '#fff',
-                  }}
-                />
-                {__('Yes', 'mittr')}
-              </label>
-              <label
-                className="newsletter__inlineRadioLabel"
-                htmlFor={`radioNoID-${clientId}`}
-              >
-                <input
-                  className="newsletter__radioInput"
-                  name="opt-in-radio"
-                  type="radio"
-                  id={`radioNoID-${clientId}`}
-                  value="No"
-                  checked={'No' === selectedRadio}
-                  onChange={({ target: { value } }) => setSelectedRadio(value)}
-                  style={{
-                    borderColor: color,
-                    backgroundColor: 'No' === selectedRadio ? color : '#fff',
-                  }}
-                />
-                {__('No', 'mittr')}
-              </label>
+                <h3
+                  className="newsletter__radioHeader"
+                  id={`upToDateOptInID-${clientId}`}
+                >
+                  {__(
+                    `Stay updated on MIT Technology
+                    Review initiatives and events?`,
+                    'mittr',
+                  )}
+                </h3>
+                <div
+                  className="newsletter__formGroupRadio"
+                  role="radiogroup"
+                  aria-labelledby={`upToDateOptInID-${clientId}`}
+                >
+                  <label
+                    className="newsletter__inlineRadioLabel"
+                    htmlFor={`radioYesID-${clientId}`}
+                  >
+                    <input
+                      className="newsletter__radioInput"
+                      name="opt-in-radio"
+                      type="radio"
+                      id={`radioYesID-${clientId}`}
+                      value="Yes"
+                      checked={'Yes' === selectedRadio}
+                      onChange={({
+                        target: { value },
+                      }) => setSelectedRadio(value)}
+                      style={{
+                        borderColor: color,
+                        backgroundColor: 'Yes' === selectedRadio ?
+                          color : '#fff',
+                      }}
+                    />
+                    {__('Yes', 'mittr')}
+                  </label>
+                  <label
+                    className="newsletter__inlineRadioLabel"
+                    htmlFor={`radioNoID-${clientId}`}
+                  >
+                    <input
+                      className="newsletter__radioInput"
+                      name="opt-in-radio"
+                      type="radio"
+                      id={`radioNoID-${clientId}`}
+                      value="No"
+                      checked={'No' === selectedRadio}
+                      onChange={({
+                        target: { value },
+                      }) => setSelectedRadio(value)}
+                      style={{
+                        borderColor: color,
+                        backgroundColor: 'No' === selectedRadio ?
+                          color : '#fff',
+                      }}
+                    />
+                    {__('No', 'mittr')}
+                  </label>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </form>
       </aside>
       <div className={theme.moreLink}>
@@ -284,20 +310,23 @@ const NewsletterSubscribe = ({
 };
 
 NewsletterSubscribe.defaultProps = {
+  apiEndPoint: 'https://eventbrite-to-blueconic.herokuapp.com/api/web/newsletters/subscriptions',
   clientId: '',
-  mailchimpId: '',
+  mailchimpListName: '',
   themeName: '',
+  theme: 'default',
 };
 
 NewsletterSubscribe.propTypes = {
+  apiEndPoint: PropTypes.string,
   clientId: PropTypes.string,
-  mailchimpId: PropTypes.string,
+  mailchimpListName: PropTypes.string,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   imgLogoUrl: PropTypes.string.isRequired,
   themeName: PropTypes.string,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object,
 };
 
 export default withThemes('newsletter', {
