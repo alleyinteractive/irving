@@ -32,7 +32,6 @@ const MeterNotice = ({
     >
       <div
         className="MeterNotice__innerWrapper"
-        aria-expanded={meterIsVisible}
       >
         <h1 className="screen-reader-text" tabIndex="-1">
           Content meter notice
