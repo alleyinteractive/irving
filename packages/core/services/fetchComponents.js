@@ -29,6 +29,33 @@ function getExtraQueryParams() {
 }
 
 /**
+ * Creates the query string for both the components
+ * API endpoint and to use as a cache key.
+ * @param {string} path      - path of the request page
+ * @param {string} search    - search string
+ * @param {string} cookie    - cookie header string
+ * @param {string} [context] - "page" (page specific components) or
+ *                           "site" (all components)
+ */
+function createQueryString(
+  path,
+  search,
+  cookie = {},
+  context = CONTEXT_PAGE
+) {
+  return queryString.stringify({
+    path,
+    context,
+    ...getExtraQueryParams(),
+    ...queryString.parse(search),
+    ...cookie,
+  },
+  {
+    encode: false,
+  });
+}
+
+/**
  * Fetch components for the page from the API.
  * @param {string} path      - path of the request page
  * @param {string} search    - search string
@@ -43,16 +70,7 @@ export async function fetchComponents(
   cookie = {},
   context = CONTEXT_PAGE
 ) {
-  const query = queryString.stringify({
-    path,
-    context,
-    ...getExtraQueryParams(),
-    ...queryString.parse(search),
-    ...cookie,
-  },
-  {
-    encode: false,
-  });
+  const query = createQueryString(path, search, cookie, context);
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
 
   // Create abort controller and set timeout to abort fetch call.
@@ -110,25 +128,33 @@ export async function fetchComponents(
 
 /**
  * Cache fetchComponents responses. Return cached response if available.
- * @param {array} args - fetchComponents arguments
+ * @param {string} path      - path of the request page
+ * @param {string} search    - search string
+ * @param {string} cookie    - cookie header string
+ * @param {string} [context] - "page" (page specific components) or
+ *                           "site" (all components)
  * @returns {Promise<{object}>} - fetchComponents return value
  */
-export default async function cacheResult(...args) {
+export default async function cacheResult(
+  path,
+  search,
+  cookie = {},
+  context = CONTEXT_PAGE
+) {
   const cache = getService();
-  const key = args.map((arg) => {
-    // Some args, like cookie, are objects—stringify those using query-string.
-    if ('object' === typeof arg) {
-      return queryString.stringify(arg);
-    }
+  const key = createQueryString(
+    path,
+    search,
+    cookie,
+    context
+  );
 
-    return arg.toString();
-  }).join(',');
-  const info = { cached: false, route: args };
+  const info = { cached: false, route: key };
   let response = await cache.get(key);
 
   if (! response) {
     log.info('%o', info);
-    response = await fetchComponents(...args);
+    response = await fetchComponents(path, search, cookie, context);
     await cache.set(key, response);
   } else {
     log.info('%o', { ...info, cached: true });
