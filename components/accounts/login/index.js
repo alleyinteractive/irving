@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { connect } from 'react-redux';
@@ -14,6 +14,7 @@ import {
   actionClearFormErrors,
 } from 'actions/zephrActions';
 import history from 'utils/history';
+import LazyRecaptcha from '../register/recaptcha';
 
 // Styles
 import styles from './login.css';
@@ -30,7 +31,13 @@ const Login = ({
     history.push('/');
   }
 
+  const [captcha, setCaptcha] = useState({
+    isValid: false,
+    hasError: false,
+  });
+
   const loginForm = forms.filter((form) => '/login' === form.route)[0];
+
   // Create submit handler.
   const onSubmit = (event) => {
     event.preventDefault();
@@ -38,6 +45,8 @@ const Login = ({
     if (true === loginForm.error) {
       clearErrors({ route: '/login' });
     }
+
+    console.log(captcha);
 
     const email = document.getElementById('email-address');
     const password = document.getElementById('current-password');
@@ -54,6 +63,37 @@ const Login = ({
       },
     });
   };
+
+  const verifyCaptcha = () => {
+    setCaptcha({
+      isValid: true,
+      hasError: false,
+    });
+  };
+
+  // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
+  const reCaptcha = React.createElement(
+    LazyRecaptcha,
+    {
+      key: 'login-captcha',
+      id: 'login-captcha',
+      className: 'captcha',
+      sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
+      verifyCallback: verifyCaptcha,
+      'aria-errormessage': 'captcha-error',
+    },
+    null
+  );
+
+  if (! isLoading && loginForm && true === loginForm.requireCaptcha) {
+    const { components } = loginForm;
+    // Splice the captcha into the components array.
+    const idMap = components.map((el) => el.props.id);
+    // Prevent the captcha from being spliced in on subsequent renders.
+    if (- 1 === idMap.indexOf('login-captcha')) {
+      components.splice(components.length - 1, 0, reCaptcha);
+    }
+  }
 
   return (
     <div className={styles.accountWrap}>
