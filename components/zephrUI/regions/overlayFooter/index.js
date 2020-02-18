@@ -19,7 +19,11 @@ const OverlayFooter = ({ components }) => {
     components,
     'overlayFooter.zephrOutput.data',
     false
-  ); debugger; //eslint-disable-line
+  );
+  debugger; // eslint-disable-line
+  // We want to collapse and toggle the component in this region based on a user interaction.
+  // If a component is served that does not have a call to action button, show a dismiss button.
+  // We need a collapsable UI component and we need a dismissable UI component.
   return (
     <>
       {componentMarkup && (
