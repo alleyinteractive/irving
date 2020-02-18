@@ -58,15 +58,103 @@ export default {
 
       const response = await request;
 
-      if ('cookie' in response) {
+      if ('tracking_id' in response) {
         return {
           status: 'success',
-          cookie: response.cookie,
           trackingId: response.tracking_id,
         };
       }
 
       return { status: 'failed' };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Initiate the token exchange by sending the registered user a verification
+   * email.
+   *
+   * @param {string} email The user's email address.
+   */
+  async sendVerificationEmail(email) {
+    try {
+      const body = {
+        identifiers: {
+          email_address: email,
+        },
+        delivery: {
+          method: 'email',
+          destination: email,
+          action: 'register',
+          redirect: '/',
+        },
+      };
+
+      fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/token-exchange`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      return true;
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Use the token provided in the verification email to complete the token exchange.
+   *
+   * @param {string} token The token.
+   *
+   * @returns {string} sessionCookie The verified user's session cookie.
+   */
+  async verifyEmail(token) {
+    try {
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/token-exchange?token=${token}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+        }
+      ).then((res) => res);
+
+      const response = await request;
+
+      if (200 === response.status) {
+        // On success parse the cookies set by Zephr's API response.
+        const cookieArr = document.cookie
+          .split(';')
+          .reduce((res, item) => {
+            const [key, val] = item.trim().split('=').map(decodeURIComponent);
+            const allNumbers = (str) => /^\d+$/.test(str);
+            try {
+              return Object.assign(
+                res,
+                {
+                  [key]: allNumbers(val) ? val : JSON.parse(val),
+                }
+              );
+            } catch (e) {
+              return Object.assign(res, { [key]: val });
+            }
+          }, {});
+
+        const {
+          blaize_session: sessionCookie,
+        } = cookieArr;
+
+        return `blaize_session=${sessionCookie}`;
+      }
+
+      return false;
     } catch (error) {
       return postErrorMessage(error);
     }
