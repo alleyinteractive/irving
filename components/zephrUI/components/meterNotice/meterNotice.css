@@ -4,6 +4,7 @@
   .MeterNotice__wrapper {
     @include container;
     max-width: 100%;
+    position: relative;
   }
 
   .MeterNotice__innerWrapper {
@@ -14,6 +15,11 @@
       tidy-offset-left: 1;
       tidy-span: 11;
     }
+
+    &[aria-expanded="false"] {
+      align-items: center;
+      display: flex;
+    }
   }
 
   .MeterNotice__smallText {
@@ -23,6 +29,11 @@
     font-weight: 600;
     line-height: 0.86;
     margin-bottom: rem(40);
+
+    [aria-expanded="false"] & {
+      font-size: rem(16);
+      margin-bottom: 0;
+    }
   }
 
   .MeterNotice__count {
@@ -45,6 +56,10 @@
     @media ($lgMin) {
       max-width: tidy-span(6);
     }
+
+    [aria-expanded="false"] & {
+      display: none;
+    }
   }
 
   .MeterNotice__callsToAction {
@@ -53,6 +68,10 @@
 
     @media ($mdMin) {
       flex-flow: row nowrap;
+    }
+
+    [aria-expanded="false"] & {
+      margin-left: auto;
     }
   }
 
@@ -64,6 +83,10 @@
 
     &:not(:last-child) {
       margin-right: rem(20);
+    }
+
+    [aria-expanded="false"] & {
+      font-size: rem(14);
     }
   }
 
@@ -80,6 +103,10 @@
       background-color: $black;
       color: $call-to-action;
     }
+
+    [aria-expanded="false"] & {
+      font-size: rem(14);
+    }
   }
 
   .MeterNotice__callToAction--link {
@@ -90,4 +117,25 @@
     width: auto;
   }
 
+  .MeterNotice__toggle {
+    color: white;
+    font-size: rem(20);
+    position: absolute;
+    right: -10px;
+    top: -10px;
+
+    path {
+      stroke: white;
+    }
+
+    svg {
+      transform: rotate(90deg);
+    }
+
+    &[aria-expanded="false"] {
+      svg {
+        transform: rotate(-90deg);
+      }
+    }
+  }
 }
