@@ -7,9 +7,13 @@ import {
   actionReceiveUserRegistration,
   actionReceiveUserLogin,
   actionReceiveUserAccount,
+  actionSendUserVerificationEamil,
 } from 'actions/zephrActions';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
+import createDebug from 'services/createDebug';
+
+const debug = createDebug('sagas:submitZephrForm');
 
 /**
  * A generator that is called on the submission of a Zephr form. The form
@@ -74,21 +78,25 @@ function* submitRegistration(credentials) {
   const response = yield call(zephrService.register, credentials);
   const {
     status,
-    cookie,
     trackingId,
   } = response;
 
   if ('success' === status) {
     // Store the session data for later use.
-    yield put(actionReceiveUserSession({ sessionCookie: cookie, trackingId }));
+    yield put(actionReceiveUserSession({ trackingId }));
     // Set the user's email verification state in the store to false on initial registration.
     yield put(actionReceiveUserRegistration());
-    // Get the user's profile.
-    yield call(getProfile, cookie);
-    // Get the user's account.
-    yield call(getAccount, cookie);
-    // Push the user to the confirmation page.
-    history.push('/register/confirmation');
+    // Send the double opt-in verification link to the user's email address.
+    try {
+      yield call(zephrService.sendVerificationEmail, credentials.email);
+      // Update the state to reflect the email being sent.
+      yield put(actionSendUserVerificationEamil());
+      // // Push the user to the confirmation page.
+      history.push('/register/confirmation');
+    } catch (error) {
+      // Post the error message to the console.
+      yield call(debug, error);
+    }
   }
 }
 
@@ -98,7 +106,7 @@ function* submitRegistration(credentials) {
  *
  * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
  */
-function* getProfile(sessionCookie) {
+export function* getProfile(sessionCookie) {
   // Get the user's profile.
   const profile = yield call(zephrService.getProfile, sessionCookie);
 
@@ -115,7 +123,7 @@ function* getProfile(sessionCookie) {
  *
  * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
  */
-function* getAccount(sessionCookie) {
+export function* getAccount(sessionCookie) {
   // Get the user's account.
   const account = yield call(zephrService.getAccount, sessionCookie);
 
