@@ -60,7 +60,7 @@
 
   input[type='submit'] {
     @include btn;
-    @include blackBtn;
+    @include btnBlack;
   }
 
   input[aria-invalid='true'] {
