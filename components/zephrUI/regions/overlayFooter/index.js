@@ -6,6 +6,9 @@ import get from 'lodash/get';
 import sanitizeHtml from 'sanitize-html';
 import { getZephrComponents } from 'selectors/zephrRulesSelector';
 
+import ToggleNotice from 'components/toggleNotice';
+import DismissNotice from 'components/dismissNotice';
+
 // Styles from UI components that may be included in this rule.
 // Note they must be included manually in this component, as the HTML will be
 // included directly using the Zephr feature rules.
@@ -14,6 +17,52 @@ import 'components/zephrUI/components/meterNotice/meterNotice.css';
 // Styles
 import styles from './overlayFooter.css';
 
+const ComponentElement = ({ componentMarkup }) => (
+  <div
+    dangerouslySetInnerHTML={// eslint-disable-line react/no-danger
+      {
+        __html: sanitizeHtml(
+          componentMarkup,
+          {
+            allowedTags: [
+              'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p',
+              'a', 'ul', 'ol',
+              'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code',
+              'hr', 'br', 'div',
+              'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td',
+              'pre', 'iframe', 'span',
+            ],
+            allowedAttributes: {
+              '*': [
+                'class',
+                'style',
+                'role',
+                'aria-live',
+                'aria-polite',
+                'aria-modal',
+              ],
+            },
+          }
+        ),
+      }
+    }
+  />
+);
+
+ComponentElement.propTypes = {
+  componentMarkup: PropTypes.string.isRequired,
+};
+
+/**
+ * Checks if the markup contains the component name.
+ *
+ * @param markup          string The transformed markup to check.
+ * @param UIComponentName string The name of the component being searched for,
+ */
+const checkUIComponentType = (markup, UIComponentName) => (
+  markup && RegExp(UIComponentName).test(markup)
+);
+
 const OverlayFooter = ({ components }) => {
   const componentMarkup = get(
     components,
@@ -21,9 +70,13 @@ const OverlayFooter = ({ components }) => {
     false
   );
 
+  if (! componentMarkup) {
+    return null;
+  }
+
   // We want to collapse and toggle the component in this region based on a user interaction.
   // If a component is served that does not have a call to action button, show a dismiss button.
-  // We need a collapsable UI component and we need a dismissable UI component.
+  // We need a collapsable UI component and we need a dismissible UI component.
 
   // If it is a meter notice, then return component with toggle functionality.
   // -- create a component that holds the toggle functionality (should live outside the Zephr folder since it has no Zephr logic).
@@ -32,43 +85,31 @@ const OverlayFooter = ({ components }) => {
 
   // if component = meterNotice then <ToggleNotice>{/* div that dangerously sets componentMarkup html inside it */}</ToggleNotice>
   // if component = thankyouNotice then <DismissNotice>{/* div that dangerously sets componentMarkup html inside it */}</DismissNotice>
+  if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
+    return (
+      <div className={styles.wrapper}>
+        <ToggleNotice>
+          <ComponentElement componentMarkup={componentMarkup} />
+        </ToggleNotice>
+      </div>
+    );
+  }
+
+  if (checkUIComponentType(componentMarkup, 'ThanksNotice')) {
+    return (
+      <div className={styles.wrapper}>
+        <DismissNotice>
+          <ComponentElement componentMarkup={componentMarkup} />
+        </DismissNotice>
+      </div>
+    );
+  }
+
+  // Default case, just stick the markup inside the region.
   return (
-    <>
-      {componentMarkup && (
-        <div className={styles.wrapper}>
-          <div
-            dangerouslySetInnerHTML={// eslint-disable-line react/no-danger
-              {
-                __html: sanitizeHtml(
-                  componentMarkup,
-                  {
-                    allowedTags: [
-                      'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p',
-                      'a', 'ul', 'ol',
-                      'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code',
-                      'hr', 'br', 'div',
-                      'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td',
-                      'pre', 'iframe', 'span',
-                    ],
-                    allowedAttributes: {
-                      '*': [
-                        'class',
-                        'style',
-                        'role',
-                        'aria-live',
-                        'aria-polite',
-                        'aria-modal',
-                      ],
-                    },
-                  }
-                ),
-              }
-            }
-          />
-        </div>
-      )
-      }
-    </>
+    <div className={styles.wrapper}>
+      <ComponentElement componentMarkup={componentMarkup} />
+    </div>
   );
 };
 
