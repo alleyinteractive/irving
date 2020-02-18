@@ -22,6 +22,11 @@ export const getUser = createSelector(
   (state) => state.user,
 );
 
+export const getAccount = createSelector(
+  zephrSelector,
+  (state) => state.user.account,
+);
+
 export const getProfile = createSelector(
   zephrSelector,
   (state) => state.user.profile,

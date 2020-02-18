@@ -91,7 +91,7 @@ export default {
         },
       };
 
-      const request = fetch(
+      fetch(
         `${process.env.ZEPHR_ROOT_URL}/blaize/token-exchange`,
         {
           method: 'POST',
@@ -103,7 +103,7 @@ export default {
         }
       );
 
-      return;
+      return true;
     } catch (error) {
       return postErrorMessage(error);
     }
