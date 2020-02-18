@@ -7,6 +7,7 @@ import {
   actionReceiveUserRegistration,
   actionReceiveUserLogin,
   actionReceiveUserAccount,
+  actionSendUserVerificationEamil,
 } from 'actions/zephrActions';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
@@ -89,9 +90,9 @@ function* submitRegistration(credentials) {
     try {
       yield call(zephrService.sendVerificationEmail, credentials.email);
       // Update the state to reflect the email being sent.
-      // yield put(actionSendUserVerificationEamil());
+      yield put(actionSendUserVerificationEamil());
       // // Push the user to the confirmation page.
-      // history.push('/register/confirmation');
+      history.push('/register/confirmation');
     } catch (error) {
       // Post the error message to the console.
       yield call(debug, error);

@@ -19,6 +19,7 @@ import {
   RECEIVE_ZEPHR_UI_COMPONENTS,
   VERIFY_ZEPHR_USER_TOKEN,
   RECEIVE_ZEPHR_USER_VERIFICATION,
+  SEND_ZEPHR_VERIFICATION_EMAIL,
 } from './types';
 
 /**
@@ -192,6 +193,15 @@ export function actionRequestUIComponents() {
  */
 export function actionReceiveUIComponents(payload) {
   return createAction(RECEIVE_ZEPHR_UI_COMPONENTS, payload);
+}
+
+/**
+ * A Redux action that represents browser state change once the token exchange is initiated.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionSendUserVerificationEamil() {
+  return createAction(SEND_ZEPHR_VERIFICATION_EMAIL);
 }
 
 /**
