@@ -88,3 +88,8 @@
   margin-bottom: rem(20);
   margin-top: rem(20);
 }
+
+.image {
+  overflow: hidden;
+  width: 100%;
+}
