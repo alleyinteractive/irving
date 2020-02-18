@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   getIsLoading,
-  getForms,
+  getLoginForm,
   getProfile,
   getAccount,
 } from 'selectors/zephrSelector';
@@ -14,6 +14,7 @@ import {
   actionClearFormErrors,
 } from 'actions/zephrActions';
 import history from 'utils/history';
+import DataLoading from 'components/hoc/withData/loading';
 import LazyRecaptcha from '../register/recaptcha';
 
 // Styles
@@ -21,32 +22,32 @@ import styles from './login.css';
 
 const Login = ({
   isLoading,
-  forms,
+  loginForm,
   submitLogin,
   clearErrors,
   isAuthenticated,
 }) => {
-  // Prevent authenticated users from being able to visit this route.
-  if (isAuthenticated) {
-    history.push('/');
-  }
-
   const [captcha, setCaptcha] = useState({
     isValid: false,
     hasError: false,
   });
 
-  const loginForm = forms.filter((form) => '/login' === form.route)[0];
+  // Prevent authenticated users from being able to visit this route.
+  if (isAuthenticated) {
+    history.push('/');
+  }
 
   // Create submit handler.
   const onSubmit = (event) => {
     event.preventDefault();
 
     if (true === loginForm.error) {
-      clearErrors({ route: '/login' });
+      clearErrors('login');
     }
 
-    console.log(captcha);
+    if (true === loginForm.requireCaptcha && ! captcha.isValid) {
+      console.log('do something');
+    }
 
     const email = document.getElementById('email-address');
     const password = document.getElementById('current-password');
@@ -56,7 +57,7 @@ const Login = ({
     focused.blur();
 
     submitLogin({
-      route: '/login',
+      type: 'login',
       credentials: {
         email: email.value,
         password: password.value,
@@ -64,28 +65,29 @@ const Login = ({
     });
   };
 
-  const verifyCaptcha = () => {
-    setCaptcha({
-      isValid: true,
-      hasError: false,
-    });
-  };
-
-  // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
-  const reCaptcha = React.createElement(
-    LazyRecaptcha,
-    {
-      key: 'login-captcha',
-      id: 'login-captcha',
-      className: 'captcha',
-      sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
-      verifyCallback: verifyCaptcha,
-      'aria-errormessage': 'captcha-error',
-    },
-    null
-  );
-
+  // If the login attempt has failed multiple times and has met the threshold set
+  // in the zephrReducer, splice a captcha into form and require it to be completed
+  // in order to make subsequent attempts.
   if (! isLoading && loginForm && true === loginForm.requireCaptcha) {
+    // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
+    const reCaptcha = React.createElement(
+      LazyRecaptcha,
+      {
+        key: 'login-captcha',
+        id: 'login-captcha',
+        className: 'captcha',
+        sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
+        verifyCallback: () => {
+          setCaptcha({
+            isValid: true,
+            hasError: false,
+          });
+        },
+        'aria-errormessage': 'captcha-error',
+      },
+      null
+    );
+
     const { components } = loginForm;
     // Splice the captcha into the components array.
     const idMap = components.map((el) => el.props.id);
@@ -94,6 +96,17 @@ const Login = ({
       components.splice(components.length - 1, 0, reCaptcha);
     }
   }
+
+  // If the form has not yet been retireved, show a loader.
+  if (0 === Object.keys(loginForm).length) {
+    return (
+      <div className={styles.accountWrap}>
+        <DataLoading />
+      </div>
+    );
+  }
+
+  const { components } = loginForm || [];
 
   return (
     <div className={styles.accountWrap}>
@@ -112,9 +125,7 @@ const Login = ({
         onSubmit={onSubmit}
         className={styles.formWrap}
       >
-        {! isLoading && loginForm ? (
-          loginForm.components
-        ) : null}
+        {components}
 
         <h2 className={styles.ssoText} id="socialMediaSignOn">
           {__('Sign on with the following social media accounts:', 'mittr')}
@@ -151,9 +162,13 @@ const Login = ({
   );
 };
 
+Login.defaultProps = {
+  loginForm: {},
+};
+
 Login.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  forms: PropTypes.array.isRequired,
+  loginForm: PropTypes.object,
   submitLogin: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -163,10 +178,11 @@ const mapDispatchToProps = (dispatch) => ({
   submitLogin: (loginData) => dispatch(actionSubmitForm(loginData)),
   clearErrors: (routeInfo) => dispatch(actionClearFormErrors(routeInfo)),
 });
+
 const withRedux = connect(
   (state) => ({
     isLoading: getIsLoading(state),
-    forms: getForms(state),
+    loginForm: getLoginForm(state),
     isAuthenticated:
       0 < Object.keys(getProfile(state)).length &&
       0 < Object.keys(getAccount(state)).length,

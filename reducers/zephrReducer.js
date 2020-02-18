@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   REQUEST_FORM_FOR_ROUTE,
   RECEIVE_FORM_FOR_ROUTE,
@@ -37,22 +38,26 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
       return {
         ...state,
         isLoading: false,
-        forms: [...state.forms, payload],
+        forms: {
+          ...state.forms,
+          ...payload,
+        },
         cached: true,
       };
     case SUBMIT_ZEPHR_FORM:
-    case CLEAR_FORM_ERRORS:
-      return {
-        ...state,
-        forms: [
-          ...state.forms.map((form) => {
-            if (form.route === payload.route && true === form.error) {
-              return clearFormErrors(form);
-            }
-            return form;
-          }),
-        ],
-      };
+       return state;
+    // case CLEAR_FORM_ERRORS:
+    //   return {
+    //     ...state,
+    //     forms: [
+    //       ...state.forms.map((form) => {
+    //         if (form.route === payload.route && true === form.error) {
+    //           return clearFormErrors(form);
+    //         }
+    //         return form;
+    //       }),
+    //     ],
+    //   };
     case RECEIVE_ZEPHR_USER_SESSION:
       return {
         ...state,
@@ -95,7 +100,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         ],
       };
     case RECEIVE_LOGIN_ERROR:
-      return setFormErrorState(state, '/login', payload);
+      return setFormErrorState(state, 'login', payload);
     case RECEIVE_USER_REGISTRATION:
       return {
         ...state,
@@ -184,80 +189,110 @@ function clearFormErrors(form) {
  * Set the error state for an invalid login attempt.
  *
  * @param {object} state     Current state.
- * @param {string} route     The form's route (e.g. /login).
+ * @param {string} type      The form type (e.g. login).
  * @param {string} errorType The type of error returned from Zephr.
  *
  * @return {object} state    Transformed state.
  */
-function setFormErrorState(state, route, errorType) {
+function setFormErrorState(state, type, errorType) {
+  // Get the form.
+  const form = state.forms[type];
+
+  // Prevent the same error from being added to the form multiple times.
+  if (true === form.error && form.errors.includes(errorType)) {
+    const errorCount = form.errorCount + 1;
+
+    return {
+      ...state,
+      forms: {
+        ...state.forms,
+        [type]: {
+          ...form,
+          errorCount,
+          requireCaptcha: 2 < errorCount,
+        }
+      }
+    };
+  }
+
+  // Get the error's target input.
+  const targetId = setErrorTargetId(errorType);
+  // Get the target's position in the components array.
+  const targetPos = form.components.map(
+    (el) => {
+      if (el) {
+        return el.props.id;
+      }
+      return null;
+    }
+  ).indexOf(targetId);
+  // Get the target.
+  const target = form.components[targetPos];
+  console.log(target);
+  // Add the error state to the target.
+  const erroredTarget = {
+    ...target,
+    props: {
+      ...target.props,
+      invalid: true,
+    },
+  };
+  // Replace the component with the error state.
+  form.components.splice(
+    targetPos,
+    1,
+    erroredTarget,
+  );
+
+  // Create the error message component.
+  const errorMessage = React.createElement(
+    'span',
+    {
+      id: `${targetId}-error`,
+      key: `${targetId}-error-message`,
+      className: 'form-error',
+    },
+    formatErrorMessage(errorType),
+  );
+  // Add the error message to the components array.
+  form.components.splice(targetPos + 1, 0, errorMessage);
+
+  let newForm = {};
+  // Check to see if the form is already in an error state.
+  if ('errorCount' in form) {
+    // Get the current error count.
+    const errorCount = form.errorCount + 1;
+
+    newForm = {
+      [type]: {
+        ...form,
+        errors: [
+          ...form.errors,
+          errorType,
+        ],
+        errorCount,
+        requireCaptcha: 2 < errorCount,
+      }
+    };
+  } else {
+    // Otherwise build the form with the initial error state.
+    newForm = {
+        [type]: {
+        ...form,
+        error: true,
+        errors: [errorType],
+        errorCount: 1,
+        requireCaptcha: false,
+      }
+    };
+  }
+
   return {
     ...state,
-    forms: [
-      ...state.forms.map((form) => {
-        if (route !== form.route) {
-          return form;
-        }
-
-        // Get the error's target input.
-        const targetId = setErrorTargetId(errorType);
-        // Get the target's position in the components array.
-        const targetPos = form.components.map(
-          (el) => {
-            if (el) {
-              return el.props.id;
-            }
-            return null;
-          }
-        ).indexOf(targetId);
-        // Get the target.
-        const target = form.components[targetPos];
-        // Add the error state to the target.
-        const erroredTarget = {
-          ...target,
-          props: {
-            ...target.props,
-            invalid: true,
-          },
-        };
-        // Replace the component with the error state.
-        form.components.splice(
-          targetPos,
-          1,
-          erroredTarget,
-        );
-        // Create the error message component.
-        const errorMessage = React.createElement(
-          'span',
-          {
-            id: `${targetId}-error`,
-            key: `${targetId}-error-message`,
-            className: 'form-error',
-          },
-          formatErrorMessage(errorType),
-        );
-        // Add the error message to the components array.
-        form.components.splice(targetPos + 1, 0, errorMessage);
-
-        // Check to see if the form is already in an error state.
-        if ('errorCount' in form) {
-          // Get the current error count.
-          const { errorCount } = form;
-
-          return {
-            ...form,
-            errorCount: errorCount + 1,
-            requireCaptcha: 1 <= errorCount,
-          };
-        }
-
-        return {
-          ...form,
-          error: true,
-          errorCount: 1,
-          requireCaptcha: false,
-        };
-      }),
-    ],
+    forms: {
+      ...state.forms,
+      ...newForm,
+    },
   };
 }
 

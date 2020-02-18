@@ -40,6 +40,7 @@ export default function createForm(formJSON) {
     }
 
     let props = {
+      key: `zephr-input-${id}`,
       id,
       className: `zephr-input-${id}`,
       type,

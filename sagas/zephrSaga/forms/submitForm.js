@@ -22,12 +22,12 @@ const debug = createDebug('sagas:submitZephrForm');
  *
  * @param {{ route, credentials }} The form to be submitted.
  */
-export default function* submitForm({ payload: { route, credentials } }) {
-  switch (route) {
-    case '/login':
+export default function* submitForm({ payload: { type, credentials } }) {
+  switch (type) {
+    case 'login':
       yield call(submitLogin, credentials);
       break;
-    case '/register':
+    case 'register':
       yield call(submitRegistration, credentials);
       break;
     default:
