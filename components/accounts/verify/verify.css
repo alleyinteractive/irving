@@ -1,3 +1,8 @@
+.loadingWrap {
+  font-family: $sans;
+  margin: rem(40) auto;
+}
+
 .accountWrap {
   margin: rem(40) auto rem(50);
 }

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, {
   useState,
   useEffect,
@@ -13,6 +12,7 @@ import {
   getFirstName,
   getEmailVerified,
 } from 'selectors/zephrSelector';
+import DataLoading from 'components/hoc/withData/loading';
 
 // Styles
 import styles from './verify.css';
@@ -23,10 +23,6 @@ const Verify = ({
   emailVerified,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
-
-  if (true === emailVerified) {
-    setIsLoading(false);
-  }
 
   useEffect(() => {
     if (false === emailVerified) {
@@ -41,13 +37,19 @@ const Verify = ({
       const token = extractToken(search);
       // Dispatch the verification action.
       verifyToken(token);
-    } else {
-      setIsLoading(false);
     }
   }, []);
 
+  if (true === emailVerified && true === isLoading) {
+    setIsLoading(false);
+  }
+
   if (true === isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className={styles.loadingWrap}>
+        <DataLoading />
+      </div>
+    );
   }
 
   return (
