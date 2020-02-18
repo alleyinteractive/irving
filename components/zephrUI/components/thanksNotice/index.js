@@ -32,7 +32,9 @@ const ThanksNotice = (props) => {
 };
 
 ThanksNotice.propTypes = {
+  /** The subscriber's name */
   name: PropTypes.arrayOf(PropTypes.element).isRequired,
+  /** The text that will appear above the thank you message. */
   smallText: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
