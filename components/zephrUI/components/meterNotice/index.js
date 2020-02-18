@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Arrow from 'assets/icons/arrow.svg';
 
 // Styles
 import './meterNotice.css';
@@ -12,55 +13,74 @@ import './meterNotice.css';
  *
  * @visibleName Meter Notice
  */
+
 const MeterNotice = ({
   callToActionDestination,
   callToActionText,
   currentCount,
   largeText,
   totalMeter,
-}) => (
-  <div
-    role="dialog"
-    aria-live="polite"
-    aria-modal="true"
-    className="MeterNotice__wrapper"
-  >
-    <div className="MeterNotice__innerWrapper">
-      <h1 className="screen-reader-text" tabIndex="-1">
-        Content meter notice
-      </h1>
-      <p className="MeterNotice__smallText">
-        {'You\'ve read '}
-        <span className="MeterNotice__count">{currentCount}</span>
-        {' of '}
-        <span className="MeterNotice__count">{totalMeter}</span>
-      </p>
-      <p className="MeterNotice__largeText">
-        {largeText}
-      </p>
-      <ul
-        className="MeterNotice__callsToAction"
-        aria-label="Subscription options"
+}) => {
+  const [meterIsVisible, setMeterIsVisible] = useState(true);
+
+  return (
+    <div
+      role="dialog"
+      aria-live="polite"
+      aria-modal="true"
+      className="MeterNotice__wrapper"
+    >
+      <div
+        className="MeterNotice__innerWrapper"
+        aria-expanded={meterIsVisible}
       >
-        <li className="MeterNotice__item">
-          <a
-            href={callToActionDestination}
-            className="MeterNotice__callToAction--button"
-          >
-            {callToActionText}
-          </a>
-        </li>
-        <li className="MeterNotice__item">
-          {'Already a subscriber? '}
-          <a href="/login" className="MeterNotice__callToAction--link">
-            Sign in
-          </a>
-          {'.'}
-        </li>
-      </ul>
+        <h1 className="screen-reader-text" tabIndex="-1">
+          Content meter notice
+        </h1>
+        <p className="MeterNotice__smallText">
+          {'You\'ve read '}
+          <span className="MeterNotice__count">{currentCount}</span>
+          {' of '}
+          <span className="MeterNotice__count">{totalMeter}</span>
+        </p>
+        <p className="MeterNotice__largeText">
+          {largeText}
+        </p>
+        <ul
+          className="MeterNotice__callsToAction"
+          aria-label="Subscription options"
+        >
+          <li className="MeterNotice__item">
+            <a
+              href={callToActionDestination}
+              className="MeterNotice__callToAction--button"
+            >
+              {callToActionText}
+            </a>
+          </li>
+          <li className="MeterNotice__item">
+            {'Already a subscriber? '}
+            <a href="/login" className="MeterNotice__callToAction--link">
+              Sign in
+            </a>
+            {'.'}
+          </li>
+        </ul>
+      </div>
+      <button
+        aria-haspopup
+        aria-expanded={meterIsVisible}
+        className="MeterNotice__toggle"
+        onClick={() => {
+          setMeterIsVisible(! meterIsVisible);
+        }}
+        type="button"
+      >
+        <Arrow />
+      </button>
     </div>
-  </div>
-);
+  );
+};
 
 MeterNotice.propTypes = {
   /** Destination of the large yellow button. */
