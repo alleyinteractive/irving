@@ -71,6 +71,12 @@ export default {
     }
   },
 
+  /**
+   * Initiate the token exchange by sending the registered user a verification
+   * email.
+   *
+   * @param {string} email The user's email address.
+   */
   async sendVerificationEmail(email) {
     try {
       const body = {
@@ -95,18 +101,21 @@ export default {
           },
           body: JSON.stringify(body),
         }
-      ).then((res) => res.json());
+      );
 
-      const response = await request;
-
-      console.log(response);
-
-      return true;
+      return;
     } catch (error) {
       return postErrorMessage(error);
     }
   },
 
+  /**
+   * Use the token provided in the verification email to complete the token exchange.
+   *
+   * @param {string} token The token.
+   *
+   * @returns {string} sessionCookie The verified user's session cookie.
+   */
   async verifyEmail(token) {
     try {
       const request = fetch(

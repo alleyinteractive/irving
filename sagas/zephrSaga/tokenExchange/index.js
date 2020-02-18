@@ -33,6 +33,9 @@ export default [
   }),
 ];
 
+/**
+ * A generator that is called when a user requests verification with an email token.
+ */
 function* verifyToken({ payload }) {
   try {
     const cookie = yield call(zephrService.verifyEmail, payload);
