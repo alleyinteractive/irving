@@ -24,6 +24,14 @@ const OverlayFooter = ({ components }) => {
   // We want to collapse and toggle the component in this region based on a user interaction.
   // If a component is served that does not have a call to action button, show a dismiss button.
   // We need a collapsable UI component and we need a dismissable UI component.
+
+  // If it is a meter notice, then return component with toggle functionality.
+  // -- create a component that holds the toggle functionality (should live outside the Zephr folder since it has no Zephr logic).
+  // If it is a thank you notice (this is one we have to create), return component with dismiss functionality.
+  // If it has dismiss functionality, then never show the component again once it has been dismissed.
+
+  // if component = meterNotice then <ToggleNotice>{/* div that dangerously sets componentMarkup html inside it */}</ToggleNotice>
+  // if component = thankyouNotice then <DismissNotice>{/* div that dangerously sets componentMarkup html inside it */}</DismissNotice>
   return (
     <>
       {componentMarkup && (
