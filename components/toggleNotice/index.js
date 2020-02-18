@@ -7,20 +7,20 @@ import Arrow from 'assets/icons/arrow.svg';
 import styles from './toggleNotice.css';
 
 const ToggleNotice = (props) => {
-  const [meterIsVisible, setMeterIsVisible] = useState(true);
+  const [noticeIsVisible, setnoticeIsVisible] = useState(true);
   const { children } = props;
   return (
     <div className={styles.wrapper}>
       <div
-        aria-expanded={meterIsVisible}
+        aria-expanded={noticeIsVisible}
       >
         {children}
         <button
           aria-haspopup
-          aria-expanded={meterIsVisible}
+          aria-expanded={noticeIsVisible}
           className={styles.button}
           onClick={() => {
-            setMeterIsVisible(! meterIsVisible);
+            setnoticeIsVisible(! noticeIsVisible);
           }}
           type="button"
         >
