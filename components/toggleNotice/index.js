@@ -11,6 +11,9 @@ const ToggleNotice = (props) => {
   const { children } = props;
   return (
     <div className={styles.wrapper}>
+      {/* @todo need to revisit if the aria messaging needs to be entirely in
+      this component and outside of the UIComponent markup. Also need to add
+      controls for the button. */}
       <div
         aria-expanded={noticeIsVisible}
       >
