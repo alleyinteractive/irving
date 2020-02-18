@@ -6,10 +6,12 @@ import {
   takeLatest,
 } from 'redux-saga/effects';
 import formSaga from './forms';
+import tokenExchangeSaga from './tokenExchange';
 import resolveUIRules from './resolveUIRules';
 
 export default [
   ...formSaga,
+  ...tokenExchangeSaga,
   // Needs to be run on the first site load regardless.
   call(resolveUIRules),
   // This saga is run on receive components so that a request for new UI

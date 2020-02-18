@@ -6,11 +6,14 @@ import PropTypes from 'prop-types';
 import {
   getIsLoading,
   getForms,
+  getProfile,
+  getAccount,
 } from 'selectors/zephrSelector';
 import {
   actionSubmitForm,
   actionClearFormErrors,
 } from 'actions/zephrActions';
+import history from 'utils/history';
 
 // Styles
 import styles from './login.css';
@@ -20,7 +23,13 @@ const Login = ({
   forms,
   submitLogin,
   clearErrors,
+  isAuthenticated,
 }) => {
+  // Prevent authenticated users from being able to visit this route.
+  if (isAuthenticated) {
+    history.push('/');
+  }
+
   const loginForm = forms.filter((form) => '/login' === form.route)[0];
   // Create submit handler.
   const onSubmit = (event) => {
@@ -107,6 +116,7 @@ Login.propTypes = {
   forms: PropTypes.array.isRequired,
   submitLogin: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -117,6 +127,9 @@ const withRedux = connect(
   (state) => ({
     isLoading: getIsLoading(state),
     forms: getForms(state),
+    isAuthenticated:
+      0 < Object.keys(getProfile(state)).length &&
+      0 < Object.keys(getAccount(state)).length,
   }),
   mapDispatchToProps
 );
