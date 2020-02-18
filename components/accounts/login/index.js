@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  getIsLoading,
   getLoginForm,
   getProfile,
   getAccount,
@@ -21,21 +20,59 @@ import LazyRecaptcha from '../register/recaptcha';
 import styles from './login.css';
 
 const Login = ({
-  isLoading,
   loginForm,
   submitLogin,
   clearErrors,
   isAuthenticated,
 }) => {
-  const [captcha, setCaptcha] = useState({
-    isValid: false,
-    hasError: false,
-  });
-
   // Prevent authenticated users from being able to visit this route.
   if (isAuthenticated) {
     history.push('/');
   }
+
+  const [components, setForm] = useState([]);
+  const [captcha, setCaptcha] = useState({
+    isValid: false,
+    hasError: false,
+  });
+  useEffect(() => {
+    if (0 !== Object.keys(loginForm).length) {
+      // If the login attempt has failed multiple times and has met the threshold set
+      // in the zephrReducer, splice a captcha into form and require it to be completed
+      // in order to make subsequent attempts.
+      if (true === loginForm.requireCaptcha) {
+        // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
+        const reCaptcha = React.createElement(
+          LazyRecaptcha,
+          {
+            key: 'login-captcha',
+            id: 'login-captcha',
+            className: 'captcha',
+            sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
+            verifyCallback: () => {
+              setCaptcha({
+                isValid: true,
+                hasError: false,
+              });
+            },
+            'aria-errormessage': 'captcha-error',
+          },
+          null
+        );
+
+        // Splice the captcha into the components array.
+        const idMap = loginForm.components.map((el) => el.props.id);
+        // Prevent the captcha from being spliced in on subsequent renders.
+        if (- 1 === idMap.indexOf('login-captcha')) {
+          loginForm.components.splice(
+            loginForm.components.length - 1, 0, reCaptcha
+          );
+        }
+      }
+
+      setForm(loginForm.components);
+    }
+  }, [loginForm]);
 
   // Create submit handler.
   const onSubmit = (event) => {
@@ -65,38 +102,6 @@ const Login = ({
     });
   };
 
-  // If the login attempt has failed multiple times and has met the threshold set
-  // in the zephrReducer, splice a captcha into form and require it to be completed
-  // in order to make subsequent attempts.
-  if (! isLoading && loginForm && true === loginForm.requireCaptcha) {
-    // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
-    const reCaptcha = React.createElement(
-      LazyRecaptcha,
-      {
-        key: 'login-captcha',
-        id: 'login-captcha',
-        className: 'captcha',
-        sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
-        verifyCallback: () => {
-          setCaptcha({
-            isValid: true,
-            hasError: false,
-          });
-        },
-        'aria-errormessage': 'captcha-error',
-      },
-      null
-    );
-
-    const { components } = loginForm;
-    // Splice the captcha into the components array.
-    const idMap = components.map((el) => el.props.id);
-    // Prevent the captcha from being spliced in on subsequent renders.
-    if (- 1 === idMap.indexOf('login-captcha')) {
-      components.splice(components.length - 1, 0, reCaptcha);
-    }
-  }
-
   // If the form has not yet been retireved, show a loader.
   if (0 === Object.keys(loginForm).length) {
     return (
@@ -105,8 +110,6 @@ const Login = ({
       </div>
     );
   }
-
-  const { components } = loginForm || [];
 
   return (
     <div className={styles.accountWrap}>
@@ -167,7 +170,6 @@ Login.defaultProps = {
 };
 
 Login.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   loginForm: PropTypes.object,
   submitLogin: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
@@ -181,7 +183,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 const withRedux = connect(
   (state) => ({
-    isLoading: getIsLoading(state),
     loginForm: getLoginForm(state),
     isAuthenticated:
       0 < Object.keys(getProfile(state)).length &&

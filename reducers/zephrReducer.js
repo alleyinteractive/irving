@@ -228,7 +228,6 @@ function setFormErrorState(state, type, errorType) {
   ).indexOf(targetId);
   // Get the target.
   const target = form.components[targetPos];
-  console.log(target);
   // Add the error state to the target.
   const erroredTarget = {
     ...target,
