@@ -1,23 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'critical-style-loader/lib';
 
 // Styles
-import styles from './thanksNotice.css';
+import './thanksNotice.css';
 
 const ThanksNotice = (props) => {
-  const { children } = props;
+  const { name, smallText } = props;
   return (
-    <div className={styles.wrapper}>
-      ThanksNotice
-      {children}
+    <div
+      role="dialog"
+      aria-live="polite"
+      aria-modal="true"
+      className="ThanksNotice__wrapper"
+    >
+      <div
+        className="ThanksNotice__innerWrapper"
+      >
+        <h1 className="screen-reader-text" tabIndex="-1">
+          Subscription thank you
+        </h1>
+        <p className="ThanksNotice__smallText">
+          {smallText}
+        </p>
+        <p className="ThanksNotice__largeText">
+          {'Thanks for reading Tech Review, '}
+          <span>{name}</span>
+        </p>
+      </div>
     </div>
   );
 };
 
 ThanksNotice.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  name: PropTypes.arrayOf(PropTypes.element).isRequired,
+  smallText: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
-export default withStyles(styles)(ThanksNotice);
+export default ThanksNotice;
 
