@@ -1,6 +1,38 @@
-/* ThanksNotice component styles */
-/* @see https://zpl.io/aMNN9xR */
+/* MeterNotice component styles */
 
-.wrapper {
-  background-color: magenta;
+:global {
+  .ThanksNotice__wrapper {
+    @include container;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .ThanksNotice__innerWrapper {
+    tidy-span: 12;
+
+    @media ($lgMin) {
+      margin-right: auto;
+      tidy-offset-left: 1;
+      tidy-span: 11;
+    }
+  }
+
+  .ThanksNotice__smallText {
+    color: $white;
+    font-family: $sans;
+    font-size: rem(22);
+    font-weight: 600;
+    line-height: 0.86;
+    margin-bottom: rem(40);
+  }
+
+  .ThanksNotice__largeText {
+    color: $white;
+    display: block;
+    font-family: $sans;
+    font-size: rem(30);
+    font-weight: 500;
+    line-height: 1.07;
+    margin-bottom: rem(25);
+  }
 }
