@@ -1,5 +1,29 @@
 /* ToggleNotice component styles */
 
 .wrapper {
-  background-color: magenta;
+  @include container;
+  max-width: 100%;
+  position: relative;
+}
+
+.button {
+  color: white;
+  font-size: rem(20);
+  position: absolute;
+  right: -10px;
+  top: -10px;
+
+  path {
+    stroke: white;
+  }
+
+  svg {
+    transform: rotate(90deg);
+  }
+
+  &[aria-expanded="false"] {
+    svg {
+      transform: rotate(-90deg);
+    }
+  }
 }
