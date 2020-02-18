@@ -16,7 +16,7 @@
       tidy-span: 11;
     }
 
-    &[aria-expanded="false"] {
+    [aria-expanded="false"] & {
       align-items: center;
       display: flex;
     }
@@ -115,27 +115,5 @@
 
   .MeterNotice__item {
     width: auto;
-  }
-
-  .MeterNotice__toggle {
-    color: white;
-    font-size: rem(20);
-    position: absolute;
-    right: -10px;
-    top: -10px;
-
-    path {
-      stroke: white;
-    }
-
-    svg {
-      transform: rotate(90deg);
-    }
-
-    &[aria-expanded="false"] {
-      svg {
-        transform: rotate(-90deg);
-      }
-    }
   }
 }
