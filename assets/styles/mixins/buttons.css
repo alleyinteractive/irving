@@ -30,7 +30,7 @@
   }
 }
 
-@mixin btnBlack() {
+@mixin blackBtn() {
   background-color: #000;
   border: 1px solid #000;
   color: #fff;
@@ -85,5 +85,5 @@
   max-width: rem(150);
 
   @include btn;
-  @include btnBlack;
+  @include blackBtn;
 }
