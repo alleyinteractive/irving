@@ -12,6 +12,7 @@ import {
   CLEAR_FORM_ERRORS,
   RECEIVE_USER_LOG_OUT,
   RECEIVE_ZEPHR_USER_ACCOUNT,
+  RECEIVE_ZEPHR_USER_VERIFICATION,
 } from 'actions/types';
 import React from 'react';
 import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
@@ -55,7 +56,10 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
     case RECEIVE_ZEPHR_USER_SESSION:
       return {
         ...state,
-        session: payload,
+        session: {
+          ...state.session,
+          payload,
+        },
       };
     case RECEIVE_ZEPHR_USER_PROFILE:
       return {
@@ -124,6 +128,14 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         ...state,
         session: defaultState.session,
         user: defaultState.user,
+      };
+    case RECEIVE_ZEPHR_USER_VERIFICATION:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          emailVerified: true,
+        },
       };
     default:
       return state;

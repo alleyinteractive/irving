@@ -25,6 +25,7 @@ import styles from './header.css';
 const Header = (props) => {
   const { homeUrl, children } = props;
   const menu = findChildByName('menu', children);
+  const leaderboardAd = findChildByName('ad-unit', children);
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
   const [isMobile, setIsMobile] = useState(false);
@@ -62,8 +63,7 @@ const Header = (props) => {
       <div className={styles.wrapper}>
         {! isHeadroom && ! isMobile && (
           <div className={styles.leaderboardRow}>
-            {/* @todo consider moving ad placeholder to its own component. */}
-            <div className={styles.leaderboard}>Advertisement placeholder</div>
+            {leaderboardAd}
           </div>
         )}
         {(isHeadroom || isMobile) && (
