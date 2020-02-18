@@ -55,4 +55,9 @@
     margin-left: calc(tidy-span-full(1) - rem(40));  /* Account for main container bleed. */
     tidy-span: 4;
   }
+
+  :global(.adUnit) {
+    justify-content: flex-start;
+    tidy-offset-left: 1;
+  }
 }
