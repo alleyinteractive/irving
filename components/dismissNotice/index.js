@@ -9,7 +9,6 @@ const DismissNotice = (props) => {
   const { children } = props;
   return (
     <div className={styles.wrapper}>
-      DismissNotice
       {children}
     </div>
   );
