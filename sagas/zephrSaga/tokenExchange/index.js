@@ -28,7 +28,7 @@ export default [
   // Listen for the verification status and redirect the user.
   takeLatest(RECEIVE_ZEPHR_USER_VERIFICATION, () => {
     setTimeout(() => {
-      history.push('/');
+      history.push('/account');
     }, 5000);
   }),
 ];
