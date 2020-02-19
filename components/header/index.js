@@ -8,6 +8,7 @@ import { findChildByName } from 'utils/children';
 import classNames from 'classnames';
 import Link from 'components/helpers/link';
 import useBreakpoint from 'hooks/useBreakpoint';
+import useKeyboardFocusOutside from 'hooks/useKeyboardFocusOutside';
 import {
   actionUpdateHeaderHeight,
   actionUpdateVisibility,
@@ -54,6 +55,13 @@ const Header = (props) => {
     const headroomHeight = headroomRef.current.getBoundingClientRect().height;
     dispatchUpdateHeaderHeight(headroomHeight);
   });
+
+  const closeMegaMenu = () => {
+    toggleMegaMenu(false);
+  };
+
+  const megaMenuRef = useRef(null);
+  useKeyboardFocusOutside(megaMenuRef, closeMegaMenu);
 
   const HeaderMarkup = ({ isHeadroom }) => (
     <header
@@ -113,9 +121,11 @@ const Header = (props) => {
                 {isExpanded ? 'Close' : <MegaMenuIcon />}
               </span>
             </button>
-            {isExpanded && isHeadroom &&
-              <div className={styles.megaMenu}>{megaMenu}</div>
-            }
+            {isExpanded && isHeadroom && (
+              <div className={styles.megaMenu} ref={megaMenuRef}>
+                {megaMenu}
+              </div>
+            )}
           </div>
         </div>
       </div>
