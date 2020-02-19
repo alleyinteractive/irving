@@ -7,7 +7,7 @@ import Arrow from 'assets/icons/arrow.svg';
 import styles from './toggleNotice.css';
 
 const ToggleNotice = (props) => {
-  const [noticeIsVisible, setnoticeIsVisible] = useState(true);
+  const [noticeIsVisible, setNoticeIsVisible] = useState(true);
   const { children } = props;
   return (
     <div className={styles.wrapper}>
@@ -23,7 +23,7 @@ const ToggleNotice = (props) => {
           aria-expanded={noticeIsVisible}
           className={styles.button}
           onClick={() => {
-            setnoticeIsVisible(! noticeIsVisible);
+            setNoticeIsVisible(! noticeIsVisible);
           }}
           type="button"
         >
