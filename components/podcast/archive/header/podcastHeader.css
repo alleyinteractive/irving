@@ -1,0 +1,39 @@
+.wrapper {
+  margin-bottom: rem(50);
+
+  @media ($smMax) {
+    margin: rem(0 10 50);
+  }
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+  }
+}
+
+.image {
+  background-color: $color-deck;
+  margin-bottom: rem(40);
+  padding: rem(50 0);
+
+  img {
+    margin: 0 auto;
+    max-width: rem(300);
+  }
+}
+
+.title {
+  color: $color-heading;
+  font-size: rem(30);
+
+  @media ($mdMin) {
+    font-size: rem(40);
+  }
+}
+
+.description {
+  font-size: rem(40);
+
+  @media ($mdMin) {
+    font-size: rem(50);
+  }
+}

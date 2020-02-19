@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { AdSlot, DFPManager } from 'react-dfp';
 import kebabCase from 'lodash/kebabCase';
@@ -37,7 +38,10 @@ const AdUnit = (props) => {
   }, [shouldLoad]);
 
   return (
-    <div loaded={loaded.toString()} className={styles.wrapper}>
+    <div
+      loaded={loaded.toString()}
+      className={classNames('adUnit', styles.wrapper)}
+    >
       <AdSlot
         adUnit={adUnit}
         className={kebabCase(adUnit)}

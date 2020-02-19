@@ -1,3 +1,8 @@
+.loadingWrap {
+  font-family: $sans;
+  margin: rem(40) auto;
+}
+
 .accountWrap {
   margin: rem(40) auto rem(50);
 }
@@ -18,7 +23,7 @@
 
 .homeButton {
   @include btn;
-  @include blackBtn;
+  @include btnBlack;
 
   font-family: $sans;
 }
