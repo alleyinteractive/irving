@@ -74,7 +74,6 @@ const Login = ({
       setForm(fields);
     }
   }, [loginForm]);
-  console.log(components);
 
   // Create submit handler.
   const onSubmit = (event) => {
@@ -84,8 +83,18 @@ const Login = ({
       clearErrors('login');
     }
 
+    // Create a counter to keep track of errors.
+    let errorCount = 0;
+
+    // Check to ensure the captcha has been validated prior to submission.
     if (true === loginForm.requireCaptcha && ! captcha.isValid) {
-      console.log('do something');
+      setCaptcha({
+        hasError: true,
+        isValid: false,
+      });
+
+      // Increment the error counter.
+      errorCount += 1;
     }
 
     const email = document.getElementById('email-address');
@@ -94,6 +103,11 @@ const Login = ({
     // Drop focus on the inputs.
     const focused = document.activeElement;
     focused.blur();
+
+    if (0 < errorCount) {
+      // Exit the submit process.
+      return;
+    }
 
     submitLogin({
       type: 'login',
@@ -131,6 +145,20 @@ const Login = ({
         className={styles.formWrap}
       >
         {components}
+        {true === captcha.hasError && (
+          <span
+            className={styles.formError}
+            aria-live="assertive"
+            id="captcha-error"
+          >
+            {__(
+              `Oops! Let's try that again -
+               Please complete the captcha
+               in order to create your account.`,
+              'mittr'
+            )}
+          </span>
+        )}
         <h2 className={styles.ssoText} id="socialMediaSignOn">
           {__('Sign on with the following social media accounts:', 'mittr')}
         </h2>

@@ -79,8 +79,8 @@ const Register = ({
       setForm(fields);
     }
   }, [registrationForm]);
-  console.log(components);
 
+  // Submit handler.
   const handleSubmit = (event) => {
     event.preventDefault();
 

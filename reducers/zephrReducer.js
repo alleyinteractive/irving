@@ -9,6 +9,7 @@ import {
   RECEIVE_USER_REGISTRATION,
   RECEIVE_REGISTRATION_ERROR,
   CLEAR_FORM_ERRORS,
+  SUBMIT_ZEPHR_FORM,
   RECEIVE_USER_LOG_OUT,
   RECEIVE_ZEPHR_USER_ACCOUNT,
   RECEIVE_ZEPHR_USER_VERIFICATION,
@@ -41,6 +42,16 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...payload,
         },
         cached: true,
+      };
+    case SUBMIT_ZEPHR_FORM:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          [payload.type]: {
+            ...clearFormErrors(state.forms[payload.type]),
+          },
+        },
       };
     case CLEAR_FORM_ERRORS:
       return {
