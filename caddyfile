@@ -1,13 +1,13 @@
 localhost:443
 
-proxy /blaize https://zephr-develop.technologyreview.com {
+proxy /blaize https://technologyreview-staging.cdn.blaize.io {
   transparent
-  header_upstream Host zephr-develop.technologyreview.com
+  header_upstream Host technologyreview-staging.cdn.blaize.io
 }
 
-proxy /wp-json/mittr/v1/zephrComponents https://zephr-develop.technologyreview.com {
+proxy /wp-json/mittr/v1/zephrComponents https://technologyreview-staging.cdn.blaize.io {
   transparent
-  header_upstream Host zephr-develop.technologyreview.com
+  header_upstream Host technologyreview-staging.cdn.blaize.io
 }
 
 proxy / https://localhost:3001 {
