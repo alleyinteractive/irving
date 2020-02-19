@@ -12,6 +12,7 @@ import './meterNotice.css';
  *
  * @visibleName Meter Notice
  */
+
 const MeterNotice = ({
   callToActionDestination,
   callToActionText,
@@ -25,9 +26,11 @@ const MeterNotice = ({
     aria-modal="true"
     className="MeterNotice__wrapper"
   >
-    <div className="MeterNotice__innerWrapper">
+    <div
+      className="MeterNotice__innerWrapper"
+    >
       <h1 className="screen-reader-text" tabIndex="-1">
-        Content meter notice
+          Content meter notice
       </h1>
       <p className="MeterNotice__smallText">
         {'You\'ve read '}
@@ -53,7 +56,7 @@ const MeterNotice = ({
         <li className="MeterNotice__item">
           {'Already a subscriber? '}
           <a href="/login" className="MeterNotice__callToAction--link">
-            Sign in
+              Sign in
           </a>
           {'.'}
         </li>
