@@ -7,6 +7,7 @@ import sanitizeHtml from 'sanitize-html';
 // included directly using the Zephr feature rules.
 import './meterNotice/meterNotice.css';
 import './thanksNotice/thanksNotice.css';
+import './imageAlert/imageAlert.css';
 
 /**
  * Takes a transformed string from the Zephr response and creates an HTML
@@ -25,7 +26,7 @@ const UIComponent = ({ componentMarkup }) => (
               'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code',
               'hr', 'br', 'div',
               'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td',
-              'pre', 'iframe', 'span',
+              'pre', 'iframe', 'span', 'img',
             ],
             allowedAttributes: {
               '*': [
@@ -35,6 +36,8 @@ const UIComponent = ({ componentMarkup }) => (
                 'aria-live',
                 'aria-polite',
                 'aria-modal',
+                'alt',
+                'src',
               ],
             },
           }
