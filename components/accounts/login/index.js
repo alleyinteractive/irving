@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { connect } from 'react-redux';
@@ -30,50 +30,45 @@ const Login = ({
     history.push('/');
   }
 
-  const [components, setForm] = useState([]);
   const [captcha, setCaptcha] = useState({
     isValid: false,
     hasError: false,
   });
-  useEffect(() => {
-    if (0 !== Object.keys(loginForm).length) {
-      const { components: fields } = loginForm;
 
-      // If the login attempt has failed multiple times and has met the threshold set
-      // in the zephrReducer, splice a captcha into form and require it to be completed
-      // in order to make subsequent attempts.
-      if (true === loginForm.requireCaptcha) {
-        // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
-        const reCaptcha = React.createElement(
-          LazyRecaptcha,
-          {
-            key: 'login-captcha',
-            id: 'login-captcha',
-            className: 'captcha',
-            sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
-            verifyCallback: () => {
-              setCaptcha({
-                isValid: true,
-                hasError: false,
-              });
-            },
-            'aria-errormessage': 'captcha-error',
+  if (0 !== Object.keys(loginForm).length) {
+    const { components: fields } = loginForm;
+
+    // If the login attempt has failed multiple times and has met the threshold set
+    // in the zephrReducer, splice a captcha into form and require it to be completed
+    // in order to make subsequent attempts.
+    if (true === loginForm.requireCaptcha) {
+      // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
+      const reCaptcha = React.createElement(
+        LazyRecaptcha,
+        {
+          key: 'login-captcha',
+          id: 'login-captcha',
+          className: 'captcha',
+          sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
+          verifyCallback: () => {
+            setCaptcha({
+              isValid: true,
+              hasError: false,
+            });
           },
-          null
-        );
+          'aria-errormessage': 'captcha-error',
+        },
+        null
+      );
 
-        // Splice the captcha into the components array.
-        const idMap = fields.map((el) => el.props.id);
-        // Prevent the captcha from being spliced in on subsequent renders.
-        if (- 1 === idMap.indexOf('login-captcha')) {
-          fields.splice(fields.length - 1, 0, reCaptcha);
-        }
+      // Splice the captcha into the components array.
+      const idMap = fields.map((el) => el.props.id);
+      // Prevent the captcha from being spliced in on subsequent renders.
+      if (- 1 === idMap.indexOf('login-captcha')) {
+        fields.splice(fields.length - 1, 0, reCaptcha);
       }
-
-      // Update the form state.
-      setForm(fields);
     }
-  }, [loginForm]);
+  }
 
   // Create submit handler.
   const onSubmit = (event) => {
@@ -126,6 +121,8 @@ const Login = ({
       </div>
     );
   }
+
+  const { components } = loginForm || [];
 
   return (
     <div className={styles.accountWrap}>
