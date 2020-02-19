@@ -8,12 +8,7 @@ import { getZephrComponents } from 'selectors/zephrRulesSelector';
 
 import ToggleNotice from 'components/toggleNotice';
 import DismissNotice from 'components/dismissNotice';
-import UIComponent from 'components/zephrUI/UIComponent';
-
-// Styles from UI components that may be included in this rule.
-// Note they must be included manually in this component, as the HTML will be
-// included directly using the Zephr feature rules.
-import 'components/zephrUI/components/meterNotice/meterNotice.css';
+import UIComponent from 'components/zephrUI/components/UIComponent';
 
 // Styles
 import styles from './overlayFooter.css';
