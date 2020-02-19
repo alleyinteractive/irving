@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
 import parse from 'html-react-parser';
+import useBreakpoint from 'hooks/useBreakpoint';
 
 // SVGs
 import ArrowIcon from 'assets/icons/arrow.svg';
@@ -26,6 +27,16 @@ const MagazineHero = ({
   title,
 }) => {
   const image = findChildByName('image', children);
+  const [isMobile, setIsMobile] = useState(false);
+  // determine if mobile
+  const isSmMin = useBreakpoint('smMin');
+  useEffect(() => {
+    if (! isSmMin) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  });
   return (
     <header className={styles.wrapper}>
       <div className={styles.topper}>
@@ -109,7 +120,7 @@ const MagazineHero = ({
                       <span className={styles.icon} aria-hidden>
                         <ArrowIcon />
                       </span>
-                      {__('View previous issue', 'mittr')}
+                      {! isMobile ? __('View previous issue', 'mittr') : ''}
                     </Link>
                   )}
 
@@ -118,7 +129,7 @@ const MagazineHero = ({
                   {(issueNavigation.next &&
                     window.location.href !== issueNavigation.next) && (
                     <Link to={issueNavigation.next} className={styles.navLink}>
-                      {__('View next issue', 'mittr')}
+                      {! isMobile ? __('View next issue', 'mittr') : ''}
                       <span className={styles.icon} aria-hidden>
                         <ArrowIcon />
                       </span>
