@@ -2,6 +2,7 @@
   border-top: 5px #000000 solid;
   font-family: $sans;
   max-width: 212px;
+  tidy-offset-left: 1;
 }
 
 .title {
