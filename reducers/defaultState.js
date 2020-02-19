@@ -20,7 +20,7 @@ export const form = {
 };
 
 export const visible = {
-  test: false,
+  megaMenu: false,
 };
 
 export const player = {

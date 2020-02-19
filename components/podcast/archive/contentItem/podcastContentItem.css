@@ -1,0 +1,129 @@
+.wrapper {
+  position: relative;
+
+  @media ($smMax) {
+    &:not(:last-child) {
+      border-bottom: solid 2px black;
+      margin-bottom: rem(50);
+      padding-bottom: rem(50);
+    }
+  }
+
+  @media ($smMin) and ($mdMax) {
+    flex: 0 1 calc(50% - rem(36));
+    margin-right: rem(72);
+
+    @supports (display: grid) {
+      margin-right: 0;
+    }
+
+    &:nth-child(2n) {
+      margin-right: 0;
+      /* stylelint-disable selector-max-specificity */
+      &:not(:last-child) {
+        &::after {
+          bottom: rem(-36);
+          display: block;
+        }
+      }
+      /* stylelint-enable */
+    }
+  }
+
+  @media ($mdMin) {
+    flex: 0 1 calc(33.33% - rem(100));
+    margin-right: rem(100);
+
+    @supports (display: grid) {
+      margin-right: 0;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 0;
+      /* stylelint-disable selector-max-specificity */
+      &:not(:last-child) {
+        &::after {
+          bottom: rem(-50);
+          display: block;
+          width: calc(300% + rem(200));
+        }
+      }
+      /* stylelint-enable */
+    }
+  }
+
+  &::after {
+    background-color: $black;
+    bottom: 0;
+    content: '';
+    display: none;
+    height: 2px;
+    position: absolute;
+    right: 0;
+    width: tidy-span(12);
+  }
+}
+
+.inner {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.title {
+  font-size: rem(24);
+  line-height: 1.1;
+  margin-bottom: rem(10);
+
+  @media ($mdMin) {
+    font-size: rem(30);
+  }
+}
+
+.timeDate {
+  display: block;
+  font-size: rem(14);
+
+  @media ($mdMin) {
+    font-size: rem(16);
+  }
+}
+
+.time {
+  &::after {
+    content: '|';
+    display: inline-block;
+    margin: rem(0 5);
+  }
+}
+
+.description {
+  font-size: rem(18);
+  line-height: 1.3;
+  margin-top: rem(30);
+
+  @media ($mdMin) {
+    font-size: rem(20);
+  }
+}
+
+.image {
+  margin-bottom: rem(15);
+  order: -1;
+
+  span {
+    background-color: #eee;
+    margin: 0;
+    overflow: hidden;
+  }
+}
+/* @todo check font weight */
+.moreButton {
+  display: inline-flex;
+  font-size: rem(16);
+  min-width: rem(200);
+
+  @media ($mdMin) {
+    font-size: rem(20);
+    min-width: rem(240);
+  }
+}

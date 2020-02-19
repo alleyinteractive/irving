@@ -22,6 +22,11 @@ export const getUser = createSelector(
   (state) => state.user,
 );
 
+export const getAccount = createSelector(
+  zephrSelector,
+  (state) => state.user.account,
+);
+
 export const getProfile = createSelector(
   zephrSelector,
   (state) => state.user.profile,
@@ -45,4 +50,9 @@ export const getLastName = createSelector(
 export const getSession = createSelector(
   zephrSelector,
   (state) => state.session,
+);
+
+export const getEmailVerified = createSelector(
+  zephrSelector,
+  (state) => state.user.emailVerified,
 );

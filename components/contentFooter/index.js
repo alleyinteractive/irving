@@ -18,6 +18,8 @@ const ContentFooter = ({
 }) => {
   const socialSharing = findChildByName('social-sharing', children);
   const tags = filterChildrenByName('tags', children);
+  const footerAd = findChildByName('ad-unit', children);
+
   return (
     <footer className={theme.wrapper}>
       <h2 className={theme.title}>{__('Article meta', 'mittr')}</h2>
@@ -69,7 +71,9 @@ const ContentFooter = ({
           <span className={theme.item}>{imageCredit}</span>
         </div>
       )}
-
+      <div className={theme.footerAd}>
+        {footerAd}
+      </div>
     </footer>
   );
 };

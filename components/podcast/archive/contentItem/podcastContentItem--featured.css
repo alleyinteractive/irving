@@ -1,0 +1,109 @@
+.wrapper {
+  border-bottom: solid 2px $black;
+  margin-bottom: rem(40);
+  padding-bottom: rem(40);
+
+  @media ($smMax) {
+    margin: rem(0 10 40);
+  }
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-flow: column nowrap;
+
+  @media ($mdMin) {
+    flex-flow: row nowrap;
+  }
+}
+
+.content {
+  @media ($mdMin) {
+    flex: 0 1 50%;
+    padding-left: rem(20);
+  }
+}
+
+.eyebrow {
+  font-size: rem(18);
+  line-height: 1.3;
+
+  @media ($mdMin) {
+    font-size: rem(20);
+  }
+}
+
+.title {
+  font-size: rem(24);
+  line-height: 1.1;
+  margin-bottom: rem(10);
+
+  @media ($mdMin) {
+    font-size: rem(40);
+  }
+}
+
+.timeDate {
+  display: block;
+  font-size: rem(14);
+  margin-bottom: rem(30);
+
+  @media ($mdMin) {
+    font-size: rem(16);
+  }
+}
+
+.time {
+  &::after {
+    content: '|';
+    display: inline-block;
+    margin: rem(0 5);
+  }
+}
+
+.description {
+  font-size: rem(24);
+  line-height: 1.08;
+  margin-bottom: rem(30);
+
+  @media ($mdMin) {
+    font-size: rem(30);
+    line-height: 1.07;
+    margin-bottom: rem(50);
+  }
+}
+
+.image {
+  order: -1;
+
+  @media ($smMax) {
+    margin-bottom: rem(15);
+  }
+
+  @media ($mdMin) {
+    flex: 0 1 50%;
+    padding-right: rem(20);
+  }
+
+  span {
+    background-color: #eee;
+    margin: 0;
+    overflow: hidden;
+  }
+}
+/* @todo check font weight */
+.moreButton {
+  display: inline-flex;
+  font-size: rem(16);
+  font-weight: 600;
+  min-width: rem(200);
+
+  @media ($mdMin) {
+    font-size: rem(20);
+    min-width: rem(240);
+  }
+}

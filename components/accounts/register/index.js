@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import {
   getIsLoading,
   getForms,
+  getProfile,
+  getAccount,
 } from 'selectors/zephrSelector';
 import {
   actionSubmitForm,
@@ -15,6 +17,7 @@ import {
   actionReceiveRegistrationError,
   actionClearFormErrors,
 } from 'actions/zephrActions';
+import history from 'utils/history';
 import LazyRecaptcha from './recaptcha';
 
 // Styles
@@ -27,7 +30,13 @@ const Register = ({
   displayInvalidPasswordError,
   displayFormError,
   clearErrors,
+  isAuthenticated,
 }) => {
+  // Prevent authenticated users from being able to visit this route.
+  if (isAuthenticated) {
+    history.push('/');
+  }
+
   const [captcha, setCaptcha] = useState({
     isValid: false,
     hasError: false,
@@ -197,6 +206,7 @@ Register.propTypes = {
   displayInvalidPasswordError: PropTypes.func.isRequired,
   displayFormError: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 /* eslint-disable max-len */
@@ -212,6 +222,9 @@ const withRedux = connect(
   (state) => ({
     isLoading: getIsLoading(state),
     forms: getForms(state),
+    isAuthenticated:
+      0 < Object.keys(getProfile(state)).length &&
+      0 < Object.keys(getAccount(state)).length,
   }),
   mapDispatchToProps
 );
