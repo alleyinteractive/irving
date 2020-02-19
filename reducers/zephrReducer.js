@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {
   REQUEST_FORM_FOR_ROUTE,
   RECEIVE_FORM_FOR_ROUTE,
@@ -9,7 +8,6 @@ import {
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
   RECEIVE_USER_REGISTRATION,
   RECEIVE_REGISTRATION_ERROR,
-  SUBMIT_ZEPHR_FORM,
   CLEAR_FORM_ERRORS,
   RECEIVE_USER_LOG_OUT,
   RECEIVE_ZEPHR_USER_ACCOUNT,
@@ -44,20 +42,16 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         },
         cached: true,
       };
-    case SUBMIT_ZEPHR_FORM:
-       return state;
-    // case CLEAR_FORM_ERRORS:
-    //   return {
-    //     ...state,
-    //     forms: [
-    //       ...state.forms.map((form) => {
-    //         if (form.route === payload.route && true === form.error) {
-    //           return clearFormErrors(form);
-    //         }
-    //         return form;
-    //       }),
-    //     ],
-    //   };
+    case CLEAR_FORM_ERRORS:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          [payload]: {
+            ...clearFormErrors(state.forms[payload]),
+          },
+        },
+      };
     case RECEIVE_ZEPHR_USER_SESSION:
       return {
         ...state,
@@ -96,7 +90,15 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         },
       };
     case RECEIVE_LOGIN_ERROR:
-      return setFormErrorState(state, 'login', payload);
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          login: {
+            ...setFormErrorState(state.forms.login, payload),
+          },
+        },
+      };
     case RECEIVE_USER_REGISTRATION:
       return {
         ...state,
@@ -115,7 +117,15 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         },
       };
     case RECEIVE_REGISTRATION_ERROR:
-      return setFormErrorState(state, '/register', payload);
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          register: {
+            ...setFormErrorState(state.forms.register, payload),
+          },
+        },
+      };
     case RECEIVE_PASSWORD_VERIFICATION_ERROR:
       // This error needs to be thrown separately from the generic form error state so
       // that the error state can be applied to both password fields on the registration form.
@@ -149,6 +159,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
  * @returns {object} state The transformed state.
  */
 function clearFormErrors(form) {
+  console.log(form);
   // Remove any errors
   const componentMap = form.components.map((el) => {
     if (true === el.props.invalid) {
@@ -165,11 +176,11 @@ function clearFormErrors(form) {
   });
 
   // Find any error messages in the component map.
-  const messagePos = form.components.map(
-    (el) => el.type
-  ).indexOf('span');
-  // Remove the component.
-  componentMap.splice(messagePos, 1);
+  // const messagePos = form.components.map(
+  //   (el) => el.type
+  // ).indexOf('span');
+  // // Remove the component.
+  // componentMap.splice(messagePos, 1);
 
   return {
     ...form,
@@ -180,35 +191,25 @@ function clearFormErrors(form) {
 /**
  * Set the error state for an invalid login attempt.
  *
- * @param {object} state     Current state.
- * @param {string} type      The form type (e.g. login).
- * @param {string} errorType The type of error returned from Zephr.
+ * @param {object} form     The current form.
+ * @param {string} error    The type of error returned from Zephr.
  *
- * @return {object} state    Transformed state.
+ * @return {object} newForm The transformed form with errors.
  */
-function setFormErrorState(state, type, errorType) {
-  // Get the form.
-  const form = state.forms[type];
-
+function setFormErrorState(form, error) {
   // Prevent the same error from being added to the form multiple times.
-  if (true === form.error && form.errors.includes(errorType)) {
+  if (true === form.error && form.errors.includes(error)) {
     const errorCount = form.errorCount + 1;
 
     return {
-      ...state,
-      forms: {
-        ...state.forms,
-        [type]: {
-          ...form,
-          errorCount,
-          requireCaptcha: 2 < errorCount,
-        }
-      }
+      ...form,
+      errorCount,
+      requireCaptcha: 2 < errorCount,
     };
   }
 
   // Get the error's target input.
-  const targetId = setErrorTargetId(errorType);
+  const targetId = setErrorTargetId(error);
   // Get the target's position in the components array.
   const targetPos = form.components.map(
     (el) => {
@@ -243,7 +244,7 @@ function setFormErrorState(state, type, errorType) {
       key: `${targetId}-error-message`,
       className: 'form-error',
     },
-    formatErrorMessage(errorType),
+    formatErrorMessage(error),
   );
   // Add the error message to the components array.
   form.components.splice(targetPos + 1, 0, errorMessage);
@@ -255,36 +256,26 @@ function setFormErrorState(state, type, errorType) {
     const errorCount = form.errorCount + 1;
 
     newForm = {
-      [type]: {
-        ...form,
-        errors: [
-          ...form.errors,
-          errorType,
-        ],
-        errorCount,
-        requireCaptcha: 2 < errorCount,
-      }
+      ...form,
+      errors: [
+        ...form.errors,
+        error,
+      ],
+      errorCount,
+      requireCaptcha: 2 < errorCount,
     };
   } else {
     // Otherwise build the form with the initial error state.
     newForm = {
-        [type]: {
-        ...form,
-        error: true,
-        errors: [errorType],
-        errorCount: 1,
-        requireCaptcha: false,
-      }
+      ...form,
+      error: true,
+      errors: [error],
+      errorCount: 1,
+      requireCaptcha: false,
     };
   }
 
-  return {
-    ...state,
-    forms: {
-      ...state.forms,
-      ...newForm,
-    },
-  };
+  return newForm;
 }
 
 /**
