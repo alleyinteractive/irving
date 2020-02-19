@@ -113,7 +113,9 @@ const Header = (props) => {
                 {isExpanded ? 'Close' : <MegaMenuIcon />}
               </span>
             </button>
-            {isExpanded && <div className={styles.megaMenu}>{megaMenu}</div>}
+            {isExpanded && isHeadroom &&
+              <div className={styles.megaMenu}>{megaMenu}</div>
+            }
           </div>
         </div>
       </div>
