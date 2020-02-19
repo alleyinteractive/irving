@@ -37,6 +37,8 @@ const Login = ({
   });
   useEffect(() => {
     if (0 !== Object.keys(loginForm).length) {
+      const { components: fields } = loginForm;
+
       // If the login attempt has failed multiple times and has met the threshold set
       // in the zephrReducer, splice a captcha into form and require it to be completed
       // in order to make subsequent attempts.
@@ -61,18 +63,18 @@ const Login = ({
         );
 
         // Splice the captcha into the components array.
-        const idMap = loginForm.components.map((el) => el.props.id);
+        const idMap = fields.map((el) => el.props.id);
         // Prevent the captcha from being spliced in on subsequent renders.
         if (- 1 === idMap.indexOf('login-captcha')) {
-          loginForm.components.splice(
-            loginForm.components.length - 1, 0, reCaptcha
-          );
+          fields.splice(fields.length - 1, 0, reCaptcha);
         }
       }
 
-      setForm(loginForm.components);
+      // Update the form state.
+      setForm(fields);
     }
   }, [loginForm]);
+  console.log(components);
 
   // Create submit handler.
   const onSubmit = (event) => {
@@ -129,7 +131,6 @@ const Login = ({
         className={styles.formWrap}
       >
         {components}
-
         <h2 className={styles.ssoText} id="socialMediaSignOn">
           {__('Sign on with the following social media accounts:', 'mittr')}
         </h2>

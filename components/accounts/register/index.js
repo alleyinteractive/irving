@@ -1,15 +1,15 @@
 import React, {
   useState,
+  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { connect } from 'react-redux';
 import {
-  getIsLoading,
-  getForms,
   getProfile,
   getAccount,
+  getRegistrationForm,
 } from 'selectors/zephrSelector';
 import {
   actionSubmitForm,
@@ -18,38 +18,74 @@ import {
   actionClearFormErrors,
 } from 'actions/zephrActions';
 import history from 'utils/history';
+import DataLoading from 'components/hoc/withData/loading';
 import LazyRecaptcha from './recaptcha';
 
 // Styles
 import styles from './register.css';
 
 const Register = ({
-  isLoading,
-  forms,
-  submitRegistration,
-  displayInvalidPasswordError,
-  displayFormError,
   clearErrors,
+  displayFormError,
+  displayInvalidPasswordError,
   isAuthenticated,
+  registrationForm,
+  submitRegistration,
 }) => {
   // Prevent authenticated users from being able to visit this route.
   if (isAuthenticated) {
     history.push('/');
   }
 
+  const [components, setForm] = useState([]);
   const [captcha, setCaptcha] = useState({
     isValid: false,
     hasError: false,
   });
 
-  const registrationForm = forms
-    .filter((form) => '/register' === form.route)[0];
+  useEffect(() => {
+    if (0 !== Object.keys(registrationForm).length) {
+      const { components: fields } = registrationForm;
+
+      const verifyCaptcha = () => {
+        setCaptcha({
+          isValid: true,
+          hasError: false,
+        });
+      };
+
+      // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
+      const reCaptcha = React.createElement(
+        LazyRecaptcha,
+        {
+          key: 'registration-captcha',
+          id: 'registration-captcha',
+          className: 'captcha',
+          sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
+          verifyCallback: verifyCaptcha,
+          'aria-errormessage': 'captcha-error',
+        },
+        null
+      );
+
+      // Splice the captcha into the components array.
+      const idMap = fields.map((el) => el.props.id);
+      // Prevent the captcha from being spliced in on subsequent renders.
+      if (- 1 === idMap.indexOf('registration-captcha')) {
+        fields.splice(fields.length - 1, 0, reCaptcha);
+      }
+
+      // Set the fields.
+      setForm(fields);
+    }
+  }, [registrationForm]);
+  console.log(components);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (true === registrationForm.error) {
-      clearErrors({ route: '/register' });
+      clearErrors('register');
     }
 
     // Drop focus on the active form element.
@@ -117,7 +153,7 @@ const Register = ({
     const names = fullName.value.split(' ');
 
     submitRegistration({
-      route: '/register',
+      type: 'register',
       credentials: {
         email: email.value,
         password: password.value,
@@ -130,35 +166,13 @@ const Register = ({
     });
   };
 
-  const verifyCaptcha = () => {
-    setCaptcha({
-      isValid: true,
-      hasError: false,
-    });
-  };
-
-  // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
-  const reCaptcha = React.createElement(
-    LazyRecaptcha,
-    {
-      key: 'registration-captcha',
-      id: 'registration-captcha',
-      className: 'captcha',
-      sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
-      verifyCallback: verifyCaptcha,
-      'aria-errormessage': 'captcha-error',
-    },
-    null
-  );
-
-  if (! isLoading && registrationForm) {
-    const { components } = registrationForm;
-    // Splice the captcha into the components array.
-    const idMap = components.map((el) => el.props.id);
-    // Prevent the captcha from being spliced in on subsequent renders.
-    if (- 1 === idMap.indexOf('registration-captcha')) {
-      components.splice(components.length - 1, 0, reCaptcha);
-    }
+  // If the form has not yet been retireved, show a loader.
+  if (0 === Object.keys(registrationForm).length) {
+    return (
+      <div className={styles.accountWrap}>
+        <DataLoading />
+      </div>
+    );
   }
 
   return (
@@ -171,9 +185,7 @@ const Register = ({
         {__('Complete your account information below.', 'mittr')}
       </p>
       <form onSubmit={handleSubmit} className={styles.formWrap}>
-        {! isLoading && registrationForm ? (
-          registrationForm.components
-        ) : null}
+        {components}
         {true === captcha.hasError && (
           <span
             className={styles.formError}
@@ -199,32 +211,32 @@ const Register = ({
   );
 };
 
-Register.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  forms: PropTypes.array.isRequired,
-  submitRegistration: PropTypes.func.isRequired,
-  displayInvalidPasswordError: PropTypes.func.isRequired,
-  displayFormError: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
+Register.defaultProps = {
+  registrationForm: {},
 };
 
-/* eslint-disable max-len */
+Register.propTypes = {
+  clearErrors: PropTypes.func.isRequired,
+  displayFormError: PropTypes.func.isRequired,
+  displayInvalidPasswordError: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  registrationForm: PropTypes.object,
+  submitRegistration: PropTypes.func.isRequired,
+};
+
 const mapDispatchToProps = (dispatch) => ({
-  submitRegistration: (registrationData) => dispatch(actionSubmitForm(registrationData)),
+  clearErrors: (type) => dispatch(actionClearFormErrors(type)),
+  displayFormError: (type) => dispatch(actionReceiveRegistrationError(type)),
   displayInvalidPasswordError: () => dispatch(actionReceiveInvalidPassword()),
-  displayFormError: (errorType) => dispatch(actionReceiveRegistrationError(errorType)),
-  clearErrors: (routeInfo) => dispatch(actionClearFormErrors(routeInfo)),
+  submitRegistration: (data) => dispatch(actionSubmitForm(data)),
 });
-/* eslint-enable */
 
 const withRedux = connect(
   (state) => ({
-    isLoading: getIsLoading(state),
-    forms: getForms(state),
     isAuthenticated:
       0 < Object.keys(getProfile(state)).length &&
       0 < Object.keys(getAccount(state)).length,
+    registrationForm: getRegistrationForm(state),
   }),
   mapDispatchToProps
 );

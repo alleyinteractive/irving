@@ -85,38 +85,30 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
     case RECEIVE_USER_LOGIN:
       return {
         ...state,
-        forms: [
-          ...state.forms.map((form) => {
-            if ('/login' === form.route && true === form.error) {
-              return {
-                ...form,
-                error: false,
-                errorCount: null,
-              };
-            }
-
-            return form;
-          }),
-        ],
+        forms: {
+          ...state.forms,
+          login: {
+            ...state.forms.login,
+            error: false,
+            errors: [],
+            errorCount: null,
+          },
+        },
       };
     case RECEIVE_LOGIN_ERROR:
       return setFormErrorState(state, 'login', payload);
     case RECEIVE_USER_REGISTRATION:
       return {
         ...state,
-        forms: [
-          ...state.forms.map((form) => {
-            if ('/register' === form.route && true === form.error) {
-              return {
-                ...form,
-                error: false,
-                errorCount: null,
-              };
-            }
-
-            return form;
-          }),
-        ],
+        forms: {
+          ...state.forms,
+          register: {
+            ...state.forms.register,
+            error: false,
+            errors: [],
+            errorCount: null,
+          },
+        },
         user: {
           ...state.user,
           emailVerified: false,

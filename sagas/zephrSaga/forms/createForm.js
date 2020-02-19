@@ -94,6 +94,7 @@ function generatePasswordFields(formType) {
   }
 
   const passwordProps = {
+    key: `zephr-input-${passwordId}`,
     id: passwordId,
     className: `zephr-input-${passwordId}`,
     type: 'password',
