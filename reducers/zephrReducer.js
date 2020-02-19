@@ -8,8 +8,6 @@ import {
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
   RECEIVE_USER_REGISTRATION,
   RECEIVE_REGISTRATION_ERROR,
-  CLEAR_FORM_ERRORS,
-  SUBMIT_ZEPHR_FORM,
   RECEIVE_USER_LOG_OUT,
   RECEIVE_ZEPHR_USER_ACCOUNT,
   RECEIVE_ZEPHR_USER_VERIFICATION,
@@ -42,26 +40,6 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...payload,
         },
         cached: true,
-      };
-    case SUBMIT_ZEPHR_FORM:
-      return {
-        ...state,
-        forms: {
-          ...state.forms,
-          [payload.type]: {
-            ...clearFormErrors(state.forms[payload.type]),
-          },
-        },
-      };
-    case CLEAR_FORM_ERRORS:
-      return {
-        ...state,
-        forms: {
-          ...state.forms,
-          [payload]: {
-            ...clearFormErrors(state.forms[payload]),
-          },
-        },
       };
     case RECEIVE_ZEPHR_USER_SESSION:
       return {
@@ -140,7 +118,15 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
     case RECEIVE_PASSWORD_VERIFICATION_ERROR:
       // This error needs to be thrown separately from the generic form error state so
       // that the error state can be applied to both password fields on the registration form.
-      return setPasswordErrorState(state);
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          register: {
+            ...setPasswordErrorState(state.forms.register),
+          },
+        },
+      };
     case RECEIVE_USER_LOG_OUT:
       return {
         ...state,
@@ -167,12 +153,15 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
  * @param {object} state   The current state.
  * @param {string} route   The form's route (e.g. /login).
  *
- * @returns {object} state The transformed state.
+ * @returns {object} form  The cleared form.
  */
-function clearFormErrors(form) {
-  console.log(form);
+function clearFormErrors(form) { // eslint-disable-line
+  if (! form.error) {
+    return form;
+  }
+
   // Remove any errors
-  const componentMap = form.components.map((el) => {
+  const components = form.components.map((el) => {
     if (true === el.props.invalid) {
       return {
         ...el,
@@ -186,16 +175,26 @@ function clearFormErrors(form) {
     return el;
   });
 
-  // Find any error messages in the component map.
-  // const messagePos = form.components.map(
-  //   (el) => el.type
-  // ).indexOf('span');
-  // // Remove the component.
-  // componentMap.splice(messagePos, 1);
+  const componentKeys = components.map((el) => el.key);
+
+  const activeErrorIndexes = componentKeys.map(
+    (key, index) => {
+      if (key.includes('error-message')) {
+        return index;
+      }
+      return null;
+    }
+  ).filter((index) => null !== index);
+
+  while (activeErrorIndexes.length) {
+    components.splice(activeErrorIndexes.pop(), 1);
+  }
 
   return {
     ...form,
-    components: componentMap,
+    error: false,
+    errors: [],
+    components,
   };
 }
 
@@ -348,75 +347,64 @@ function formatErrorMessage(type) {
 /**
  * A function that formats the error state for the password inputs on the registration form.
  *
- * @param {object} state The current state.
+ * @param {object} form   The current form.
  *
- * @returns {object} state The transformed state.
+ * @returns {object} form The transformed form.
  */
-function setPasswordErrorState(state) {
+function setPasswordErrorState(form) {
+  // Create an array of available component IDs.
+  const idMap = form.components.map((el) => el.props.id);
+
+  // Get the password input's position in the array.
+  const passwordInputPos = idMap.indexOf('new-password');
+  const passwordInput = form.components[passwordInputPos];
+  // Create the password input with an error state.
+  const erroredPasswordInput = {
+    ...passwordInput,
+    props: {
+      ...passwordInput.props,
+      invalid: true,
+    },
+  };
+  // Replace the component with the error state.
+  form.components.splice(
+    passwordInputPos,
+    1,
+    erroredPasswordInput,
+  );
+
+  // Get the verification input's position in the array.
+  const verifyInputPos = idMap.indexOf('verify-password');
+  const verifyInput = form.components[verifyInputPos];
+  // Create the verification input with an error state.
+  const erroredVerifyInput = {
+    ...verifyInput,
+    props: {
+      ...verifyInput.props,
+      invalid: true,
+    },
+  };
+  // Replace the component with the error state.
+  form.components.splice(
+    verifyInputPos,
+    1,
+    erroredVerifyInput,
+  );
+  // Create the error message component.
+  const errorMessage = React.createElement(
+    'span',
+    {
+      key: 'password-verification-error-message',
+      className: 'form-error',
+    },
+    formatErrorMessage('verify-password'),
+  );
+
+  // Add the error message to the components array.
+  form.components.splice(verifyInputPos + 1, 0, errorMessage);
+
   return {
-    ...state,
-    forms: [
-      ...state.forms.map((form) => {
-        if ('/register' !== form.route || true === form.error) {
-          return form;
-        }
-
-        // Create an array of available component IDs.
-        const idMap = form.components.map((el) => el.props.id);
-
-        // Get the password input's position in the array.
-        const passwordInputPos = idMap.indexOf('new-password');
-        const passwordInput = form.components[passwordInputPos];
-        // Create the password input with an error state.
-        const erroredPasswordInput = {
-          ...passwordInput,
-          props: {
-            ...passwordInput.props,
-            invalid: true,
-          },
-        };
-        // Replace the component with the error state.
-        form.components.splice(
-          passwordInputPos,
-          1,
-          erroredPasswordInput,
-        );
-
-        // Get the verification input's position in the array.
-        const verifyInputPos = idMap.indexOf('verify-password');
-        const verifyInput = form.components[verifyInputPos];
-        // Create the verification input with an error state.
-        const erroredVerifyInput = {
-          ...verifyInput,
-          props: {
-            ...verifyInput.props,
-            invalid: true,
-          },
-        };
-        // Replace the component with the error state.
-        form.components.splice(
-          verifyInputPos,
-          1,
-          erroredVerifyInput,
-        );
-        // Create the error message component.
-        const errorMessage = React.createElement(
-          'span',
-          {
-            key: 'password-verification-error-message',
-            className: 'form-error',
-          },
-          formatErrorMessage('verify-password'),
-        );
-
-        // Add the error message to the components array.
-        form.components.splice(verifyInputPos + 1, 0, errorMessage);
-
-        return {
-          ...form,
-          error: true,
-        };
-      }),
-    ],
+    ...form,
+    error: true,
   };
 }

@@ -10,7 +10,6 @@ import {
 } from 'selectors/zephrSelector';
 import {
   actionSubmitForm,
-  actionClearFormErrors,
 } from 'actions/zephrActions';
 import history from 'utils/history';
 import DataLoading from 'components/hoc/withData/loading';
@@ -20,10 +19,9 @@ import LazyRecaptcha from '../register/recaptcha';
 import styles from './login.css';
 
 const Login = ({
+  isAuthenticated,
   loginForm,
   submitLogin,
-  clearErrors,
-  isAuthenticated,
 }) => {
   // Prevent authenticated users from being able to visit this route.
   if (isAuthenticated) {
@@ -73,10 +71,6 @@ const Login = ({
   // Create submit handler.
   const onSubmit = (event) => {
     event.preventDefault();
-
-    if (true === loginForm.error) {
-      clearErrors('login');
-    }
 
     // Create a counter to keep track of errors.
     let errorCount = 0;
@@ -196,15 +190,13 @@ Login.defaultProps = {
 };
 
 Login.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
   loginForm: PropTypes.object,
   submitLogin: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   submitLogin: (loginData) => dispatch(actionSubmitForm(loginData)),
-  clearErrors: (routeInfo) => dispatch(actionClearFormErrors(routeInfo)),
 });
 
 const withRedux = connect(

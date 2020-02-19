@@ -45,6 +45,8 @@ function* requestLogin() {
     login: {
       components: form,
       error: false,
+      errors: [],
+      errorCount: null,
     },
   }));
 }
@@ -71,6 +73,8 @@ function* requestRegistration() {
     register: {
       components: form,
       error: false,
+      errors: [],
+      errorCount: null,
     },
   }));
 }
