@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
-const YoastSchema = props => {
+const YoastSchema = (props) => {
   const { content } = props;
 
   return (
@@ -13,7 +13,7 @@ const YoastSchema = props => {
 };
 
 YoastSchema.propTypes = {
-  content: PropTypes.string.isRequired
+  content: PropTypes.string.isRequired,
 };
 
 export default YoastSchema;
