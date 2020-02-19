@@ -41,6 +41,9 @@ export async function fetchComponents(path, search, context = CONTEXT_PAGE) {
     context,
     ...getExtraQueryParams(),
     ...queryString.parse(search),
+  },
+  {
+    encode: false,
   });
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
   const options = {
