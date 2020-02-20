@@ -21,7 +21,7 @@ const SocialFollowModule = ({ children, theme }) => (
 
 SocialFollowModule.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 const wrapWithStyles = withStyles(styles, darkStyles, lightStyles);
