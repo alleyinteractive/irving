@@ -5,8 +5,12 @@ import {
   actionReceiveRegistrationError,
 } from 'actions/zephrActions';
 import defaultState from './defaultState';
-import reducer from './zephrReducer';
+import reducer, {
+  setErrorTargetId,
+  formatErrorMessage,
+} from './zephrReducer';
 
+// Default login form state to be modified in the test suite.
 const loginFormDefaultState = {
   components: [
     {
@@ -55,6 +59,7 @@ const loginFormDefaultState = {
   errorCount: null,
 };
 
+// Default registration form state to be modified in the test suite.
 const regFormDefaultState = {
   components: [
     {
@@ -141,6 +146,47 @@ const regFormDefaultState = {
   errorCount: null,
 };
 
+/**
+ * A helper function that takes the components array from a Zephr form,
+ * formats the input associated with a given error with an invalid state,
+ * and attaches the associated error message to the components array.
+ *
+ * @param {array} components   The components array without errors.
+ * @param {number} position    The target input's position in the components array.
+ * @param {string} error       The given error.
+ * 
+ * @returns {array} components The modified components array. 
+ */
+function formatComponentsWithError(components, position, error) {
+  // Create a new components array to avoid mutation.
+  const comp = [...components];
+  const input = comp[position];
+  const inputWithErrorState = {
+    ...input,
+    props: {
+      ...input.props,
+      invalid: true,
+    },
+  }
+  // Get the target's id.
+  const id = setErrorTargetId(error);
+  // Replace the component with the error state.
+  comp.splice(position, 1, inputWithErrorState);
+  // Splice the error message into the components array.
+  const errorMessage = React.createElement(
+    'span',
+    {
+      id: `${id}-error`,
+      key: `${id}-error-message`,
+      className: 'form-error',
+    },
+    formatErrorMessage(error),
+  );
+  comp.splice(position + 1, 0, errorMessage);
+  // Return the modified components array.
+  return comp;
+}
+
 describe('Zephr Reducer', () => {
   describe('Login actions', () => {
     it('Should invalidate the email address field when an incorrect email is entered', () => {
@@ -149,31 +195,16 @@ describe('Zephr Reducer', () => {
           login: loginFormDefaultState,
         },
       });
-
-      const components = [...loginFormDefaultState.components];
-      const input = components[0];
-      const inputWithErrorState = {
-        ...input,
-        props: {
-          ...input.props,
-          invalid: true,
-        },
-      }
-      // Replace the component with the error state.
-      components.splice(0, 1, inputWithErrorState);
-      // Splice the error message into the components array.
-      const error = React.createElement(
-        'span',
-        {
-          id: `email-address-error`,
-          key: `email-address-error-message`,
-          className: 'form-error',
-        },
-        'Oops! Let’s try that again — User not found. Please enter your email address.',
+      const error = 'user-not-found';
+      const position = 0;
+      const components = formatComponentsWithError(
+        loginFormDefaultState.components,
+        position,
+        error
       );
-      components.splice(1, 0, error);
 
-      const newState = reducer(mockState, actionReceiveLoginError('user-not-found'));
+      // Run the action and return the modified state.
+      const newState = reducer(mockState, actionReceiveLoginError(error));
       expect(newState).toEqual({
         ...mockState,
         forms: {
@@ -181,7 +212,7 @@ describe('Zephr Reducer', () => {
           login: {
             components,
             error: true,
-            errors: ['user-not-found'],
+            errors: [error],
             errorCount: 1,
             requireCaptcha: false,
           },
@@ -195,31 +226,16 @@ describe('Zephr Reducer', () => {
           login: loginFormDefaultState,
         },
       });
-
-      const components = [...loginFormDefaultState.components];
-      const input = components[1];
-      const inputWithErrorState = {
-        ...input,
-        props: {
-          ...input.props,
-          invalid: true,
-        },
-      }
-      // Replace the component with the error state.
-      components.splice(1, 1, inputWithErrorState);
-      // Splice the error message into the components array.
-      const error = React.createElement(
-        'span',
-        {
-          id: `current-password-error`,
-          key: `current-password-error-message`,
-          className: 'form-error',
-        },
-        'Oops! Let’s try that again — Invalid password. Please enter your password.',
+      const error = 'invalid-password';
+      const position = 1;
+      const components = formatComponentsWithError(
+        loginFormDefaultState.components,
+        position,
+        error
       );
-      components.splice(2, 0, error);
 
-      const newState = reducer(mockState, actionReceiveLoginError('invalid-password'));
+      // Run the action and return the modified state.
+      const newState = reducer(mockState, actionReceiveLoginError(error));
       expect(newState).toEqual({
         ...mockState,
         forms: {
@@ -227,7 +243,7 @@ describe('Zephr Reducer', () => {
           login: {
             components,
             error: true,
-            errors: ['invalid-password'],
+            errors: [error],
             errorCount: 1,
             requireCaptcha: false,
           },
@@ -243,32 +259,15 @@ describe('Zephr Reducer', () => {
           register: regFormDefaultState,
         },
       });
-
-      const components = [...regFormDefaultState.components];
+      const error = 'email-address';
       const position = 0;
-      const input = components[position];
-      const inputWithErrorState = {
-        ...input,
-        props: {
-          ...input.props,
-          invalid: true,
-        },
-      }
-      // Replace the component with the error state.
-      components.splice(position, 1, inputWithErrorState);
-      // Splice the error message into the components array.
-      const error = React.createElement(
-        'span',
-        {
-          id: `email-address-error`,
-          key: `email-address-error-message`,
-          className: 'form-error',
-        },
-        'Oops! Let’s try that again — Please enter a valid email address.',
+      const components = formatComponentsWithError(
+        regFormDefaultState.components,
+        position,
+        error
       );
-      components.splice(position + 1, 0, error);
 
-      const newState = reducer(mockState, actionReceiveRegistrationError('email-address'));
+      const newState = reducer(mockState, actionReceiveRegistrationError(error));
       expect(newState).toEqual({
         ...mockState,
         forms: {
@@ -276,7 +275,7 @@ describe('Zephr Reducer', () => {
           register: {
             components,
             error: true,
-            errors: ['email-address'],
+            errors: [error],
             errorCount: 1,
             requireCaptcha: false,
           },

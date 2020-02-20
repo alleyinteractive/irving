@@ -352,7 +352,7 @@ function attachErrorToForm(form, id, error) {
  *
  * @returns {string} The target component's ID.
  */
-function setErrorTargetId(type) {
+export function setErrorTargetId(type) {
   switch (type) {
     case 'user-not-found':
       return 'email-address';
@@ -378,7 +378,7 @@ function setErrorTargetId(type) {
  * @returns {string} The error message.
  */
 /* eslint-disable max-len */
-function formatErrorMessage(type) {
+export function formatErrorMessage(type) {
   const messageBase = 'Oops! Let’s try that again';
 
   switch (type) {
