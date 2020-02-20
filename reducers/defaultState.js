@@ -52,6 +52,8 @@ export const componentDataMeta = {
 
 export const headerHeight = 0;
 
+export const isNoticeVisible = true;
+
 const defaultState = {
   components,
   componentData,
