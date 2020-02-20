@@ -1,8 +1,8 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  max-width: rem(212);
   tidy-offset-left: 1;
-  tidy-span: 3;
 }
 
 .title {
