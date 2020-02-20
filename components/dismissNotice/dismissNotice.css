@@ -1,5 +1,20 @@
 /* DismissNotice component styles */
 
 .wrapper {
-  background-color: transparent;
+  @include container;
+  max-width: 100%;
+  position: relative;
+}
+
+.button {
+  border: 0;
+  font-size: rem(20);
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  svg {
+    height: rem(26);
+    width: rem(26);
+  }
 }
