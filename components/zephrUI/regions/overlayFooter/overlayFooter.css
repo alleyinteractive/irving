@@ -8,4 +8,8 @@
   padding: rem(20);
   position: fixed;
   width: 100%;
+
+  &:empty {
+    display: none;
+  }
 }
