@@ -201,10 +201,10 @@ function clearFormErrors(form) { // eslint-disable-line
 /**
  * Set the error state for an invalid login attempt.
  *
- * @param {object} form     The current form.
- * @param {string} error    The type of error returned from Zephr.
+ * @param {object} form  The current form.
+ * @param {string} error The type of error returned from Zephr.
  *
- * @return {object} newForm The transformed form with errors.
+ * @return {object} form The transformed form with errors.
  */
 function setFormErrorState(form, error) {
   // Prevent the same error from being added to the form multiple times.
@@ -259,33 +259,19 @@ function setFormErrorState(form, error) {
   // Add the error message to the components array.
   form.components.splice(targetPos + 1, 0, errorMessage);
 
-  let newForm = {};
-  // Check to see if the form is already in an error state.
-  if ('errorCount' in form) {
-    // Get the current error count.
-    const errorCount = form.errorCount + 1;
+  // Get the current error count and increment.
+  const errorCount = form.errorCount + 1;
 
-    newForm = {
-      ...form,
-      errors: [
-        ...form.errors,
-        error,
-      ],
-      errorCount,
-      requireCaptcha: 2 < errorCount,
-    };
-  } else {
-    // Otherwise build the form with the initial error state.
-    newForm = {
-      ...form,
-      error: true,
-      errors: [error],
-      errorCount: 1,
-      requireCaptcha: false,
-    };
-  }
-
-  return newForm;
+  return {
+    ...form,
+    error: true,
+    errors: [
+      ...form.errors,
+      error,
+    ],
+    errorCount,
+    requireCaptcha: 2 < errorCount,
+  };
 }
 
 /**
