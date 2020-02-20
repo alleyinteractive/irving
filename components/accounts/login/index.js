@@ -112,6 +112,7 @@ const Login = ({
       setForm(fields);
     }
   }, [loginForm, onSubmit]);
+  console.log(components);
 
   // If the form has not yet been retireved, show a loader.
   if (0 === Object.keys(loginForm).length) {
