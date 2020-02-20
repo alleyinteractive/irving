@@ -3,11 +3,13 @@ import { merge } from 'lodash/fp';
 import {
   actionReceiveLoginError,
   actionReceiveRegistrationError,
+  actionReceiveInvalidPassword,
 } from 'actions/zephrActions';
 import defaultState from './defaultState';
 import reducer, {
   setErrorTargetId,
   formatErrorMessage,
+  setPasswordErrorState,
 } from './zephrReducer';
 
 // Default login form state to be modified in the test suite.
@@ -167,7 +169,7 @@ function formatComponentsWithError(components, position, error) {
       ...input.props,
       invalid: true,
     },
-  }
+  };
   // Get the target's id.
   const id = setErrorTargetId(error);
   // Replace the component with the error state.
@@ -282,5 +284,91 @@ describe('Zephr Reducer', () => {
         },
       });
     });
-  })
+  });
+
+  it('Should invalidate the full-name field when an invalid name is entered', () => {
+    const mockState = merge(defaultState, {
+      forms: {
+        register: regFormDefaultState,
+      },
+    });
+    const error = 'full-name';
+    const position = 1;
+    const components = formatComponentsWithError(
+      regFormDefaultState.components,
+      position,
+      error
+    );
+
+    const newState = reducer(mockState, actionReceiveRegistrationError(error));
+    expect(newState).toEqual({
+      ...mockState,
+      forms: {
+        ...mockState.forms,
+        register: {
+          components,
+          error: true,
+          errors: [error],
+          errorCount: 1,
+          requireCaptcha: false,
+        },
+      },
+    });
+  });
+
+  // it('Should invalidate the new-password field when an invalid password is entered', () => {});
+
+  // it('Should invalidate both password fields when the passwords to not match', () => {
+  //   const mockState = merge(defaultState, {
+  //     forms: {
+  //       register: regFormDefaultState,
+  //     },
+  //   });
+  //   const { components } = setPasswordErrorState(regFormDefaultState);
+
+  //   const newState = reducer(mockState, actionReceiveInvalidPassword());
+  //   expect(newState).toEqual({
+  //     ...mockState,
+  //     forms: {
+  //       ...mockState.forms,
+  //       register: {
+  //         components,
+  //         error: true,
+  //         errors: ['verify-password'],
+  //         errorCount: 1,
+  //         requireCaptcha: false,
+  //       },
+  //     },
+  //   });
+  // });
+
+  it('Should invalidate the checkbox field if the TOS checkbox has not been checked', () => {
+    const mockState = merge(defaultState, {
+      forms: {
+        register: regFormDefaultState,
+      },
+    });
+    const error = 'terms-checkbox';
+    const position = 4;
+    const components = formatComponentsWithError(
+      regFormDefaultState.components,
+      position,
+      error
+    );
+
+    const newState = reducer(mockState, actionReceiveRegistrationError(error));
+    expect(newState).toEqual({
+      ...mockState,
+      forms: {
+        ...mockState.forms,
+        register: {
+          components,
+          error: true,
+          errors: [error],
+          errorCount: 1,
+          requireCaptcha: false,
+        },
+      },
+    });
+  });
 });

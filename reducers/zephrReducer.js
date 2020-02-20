@@ -244,7 +244,7 @@ function setFormErrorState(form, error) {
  *
  * @returns {object} form The transformed form.
  */
-function setPasswordErrorState(form) {
+export function setPasswordErrorState(form) {
   // Get the components.
   const { components } = form;
   // Get the password input's position in the array.
