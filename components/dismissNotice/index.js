@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withStyles } from 'critical-style-loader/lib';
 import { actionDismissNotice } from 'actions';
 import { __ } from '@wordpress/i18n';
+import CloseIcon from 'assets/icons/close.svg';
 
 // Styles
 import styles from './dismissNotice.css';
@@ -15,8 +16,11 @@ const DismissNotice = ({ children, isNoticeVisible, dismiss }) => (
         <div className={styles.component}>
           {children}
         </div>
-        <button onClick={dismiss} type="button">
-          {__('Dismiss', 'mittr')}
+        <button onClick={dismiss} type="button" className={styles.button}>
+          <span className="screen-reader-text">
+            {__('Dismiss', 'mittr')}
+          </span>
+          <span aria-hidden><CloseIcon /></span>
         </button>
       </div>
     )}
