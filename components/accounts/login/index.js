@@ -75,7 +75,9 @@ const Login = ({
 
   useEffect(() => {
     if (0 !== Object.keys(loginForm).length) {
-      const { components: fields } = loginForm;
+      const { components: compStr } = loginForm;
+      console.log(loginForm);
+      const fields = JSON.parse(compStr).map((el) => React.createElement(el));
 
       // If the login attempt has failed multiple times and has met the threshold set
       // in the zephrReducer, splice a captcha into form and require it to be completed
@@ -111,8 +113,7 @@ const Login = ({
       // Update the form state.
       setForm(fields);
     }
-  }, [loginForm, onSubmit]);
-  console.log(components);
+  }, [loginForm]);
 
   // If the form has not yet been retireved, show a loader.
   if (0 === Object.keys(loginForm).length) {
@@ -122,6 +123,7 @@ const Login = ({
       </div>
     );
   }
+  console.log(components);
 
   return (
     <div className={styles.accountWrap}>

@@ -84,7 +84,16 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: {
           ...state.forms,
           login: {
-            ...setFormErrorState(state.forms.login, payload),
+            components: JSON.stringify(
+              setFormErrorState(state.forms.login, payload)
+            ),
+            error: true,
+            errors: [
+              ...state.forms.login.errors,
+              payload,
+            ],
+            errorCount: state.forms.login.errorCount + 1,
+            requireCaptcha: state.forms.login.errorCount + 2,
           },
         },
       };
@@ -209,32 +218,14 @@ function clearFormErrors(form) { // eslint-disable-line
 function setFormErrorState(form, error) {
   // Prevent the same error from being added to the form multiple times.
   if (true === form.error && form.errors.includes(error)) {
-    const errorCount = form.errorCount + 1;
-
-    return {
-      ...form,
-      errorCount,
-      requireCaptcha: 2 < errorCount,
-    };
+    return form.components;
   }
   // Get the error's target input.
   const id = setErrorTargetId(error);
   // Format the target input and attach the appropriate error message.
   const components = attachErrorToForm(form, id, error);
-  // Get the current error count and increment.
-  const errorCount = form.errorCount + 1;
 
-  return {
-    ...form,
-    components,
-    error: true,
-    errors: [
-      ...form.errors,
-      error,
-    ],
-    errorCount,
-    requireCaptcha: 2 < errorCount,
-  };
+  return components;
 }
 
 /**
@@ -364,6 +355,12 @@ export function setErrorTargetId(type) {
       return 'full-name';
     case 'terms-checkbox':
       return 'terms-checkbox';
+    case 'email-not-verified':
+      return 'email-address';
+    case 'password-not-strong':
+      return 'new-password';
+    case 'user-already-exists':
+      return 'email-address';
     default:
       return null;
   }
@@ -394,6 +391,8 @@ export function formatErrorMessage(type) {
       return `${messageBase} — Please enter a valid email address.`;
     case 'terms-checkbox':
       return `${messageBase} — You must agree to the terms of service in order to create an account.`;
+    case 'email-not-verified':
+      return `${messageBase} — Your email has not yet been verified. Please check your inbox for a verification email and try again.`;
     default:
       return messageBase;
   }

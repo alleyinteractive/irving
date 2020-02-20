@@ -8,6 +8,7 @@ import {
   actionReceiveUserLogin,
   actionReceiveUserAccount,
   actionSendUserVerificationEamil,
+  actionReceiveRegistrationError,
 } from 'actions/zephrActions';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
@@ -56,12 +57,17 @@ function* submitLogin(credentials) {
     yield put(actionReceiveUserSession({ sessionCookie: cookie, trackingId }));
     // Set the user's login state and clean up any existing error state on the form.
     yield put(actionReceiveUserLogin());
-    // Get the user's profile.
-    yield call(getProfile, cookie);
-    // Get the user's account.
-    yield call(getAccount, cookie);
-    // Push the user to the homepage.
-    history.push('/');
+    try {
+      // Get the user's profile.
+      yield call(getProfile, cookie);
+      // Get the user's account.
+      yield call(getAccount, cookie);
+      // Push the user to the homepage.
+      history.push('/');
+    } catch (error) {
+      // Post the error message to the console.
+      yield call(debug, error);
+    }
   } else {
     // Set the error state on the form.
     yield put(actionReceiveLoginError(type));
@@ -97,6 +103,9 @@ function* submitRegistration(credentials) {
       // Post the error message to the console.
       yield call(debug, error);
     }
+  } else {
+    // Set the error state on the form.
+    yield put(actionReceiveRegistrationError(response.type));
   }
 }
 

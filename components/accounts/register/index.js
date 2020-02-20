@@ -40,7 +40,8 @@ const Register = ({
   });
 
   if (0 !== Object.keys(registrationForm).length) {
-    const { components: fields } = registrationForm;
+    const { components } = registrationForm;
+    const fields = JSON.parse(components);
 
     // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
     const reCaptcha = React.createElement(
