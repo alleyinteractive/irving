@@ -6,9 +6,8 @@ import Arrow from 'assets/icons/arrow.svg';
 // Styles
 import styles from './toggleNotice.css';
 
-const ToggleNotice = (props) => {
+const ToggleNotice = ({ children }) => {
   const [noticeIsVisible, setNoticeIsVisible] = useState(true);
-  const { children } = props;
   return (
     <div className={styles.wrapper}>
       {/* @todo need to revisit if the aria messaging needs to be entirely in
