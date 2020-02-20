@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import useIntersect from 'hooks/useIntersect';
+import useIntersect from '@irvingjs/core/hooks/useIntersect';
 import { Image } from './styles';
 
 const IrvingImg = (props) => {

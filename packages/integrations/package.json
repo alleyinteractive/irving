@@ -15,8 +15,8 @@
 	"license": "MIT",
 	"dependencies": {
 		"prop-types": "^15.7.2",
-		"react": "^16.10.2",
-		"react-dom": "^16.10.2",
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0",
 		"regenerator-runtime": "^0.13.3"
 	},
 	"devDependencies": {
