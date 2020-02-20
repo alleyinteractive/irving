@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
 
+// Styles from UI components that may be included in this rule.
+// Note they must be included manually in this component, as the HTML will be
+// included directly using the Zephr feature rules.
+import './meterNotice/meterNotice.css';
+import './thanksNotice/thanksNotice.css';
+import './imageAlert/imageAlert.css';
+
 /**
  * Takes a transformed string from the Zephr response and creates an HTML
  * element to display its value.
