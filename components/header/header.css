@@ -173,6 +173,7 @@
   height: auto;
   text-decoration: underline;
   width: auto;
+  z-index: 999;
 }
 
 .megaMenu {
