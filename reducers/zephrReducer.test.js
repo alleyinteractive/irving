@@ -37,7 +37,7 @@ const loginFormMock = {
       key: 'zephr-submit-button',
       type: 'submit',
       value: 'Login',
-    }
+    },
   ]),
   error: false,
   errors: [],
@@ -114,7 +114,7 @@ function compareFormState(type, formState, error, mockState) {
   // Run the action and return the modified state.
   let nextState = {};
   if ('login' === type) {
-    nextState = reducer(mockState, actionReceiveLoginError(error))
+    nextState = reducer(mockState, actionReceiveLoginError(error));
 
     expect(nextState).toEqual({
       ...mockState,
@@ -130,7 +130,7 @@ function compareFormState(type, formState, error, mockState) {
       },
     });
   } else if ('register' === type) {
-    nextState = reducer(mockState, actionReceiveRegistrationError(error))
+    nextState = reducer(mockState, actionReceiveRegistrationError(error));
 
     expect(nextState).toEqual({
       ...mockState,
@@ -294,7 +294,7 @@ describe('Zephr Reducer', () => {
       });
       const components = setPasswordErrorState(regFormMock);
 
-      const nextState = reducer(mockState, actionReceiveInvalidPassword())
+      const nextState = reducer(mockState, actionReceiveInvalidPassword());
       expect(nextState).toEqual({
         ...mockState,
         forms: {
