@@ -121,7 +121,6 @@ const Login = ({
       </div>
     );
   }
-  // console.log(components);
 
   return (
     <div className={styles.accountWrap}>

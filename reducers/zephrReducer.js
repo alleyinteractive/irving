@@ -11,8 +11,8 @@ import {
   RECEIVE_USER_LOG_OUT,
   RECEIVE_ZEPHR_USER_ACCOUNT,
   RECEIVE_ZEPHR_USER_VERIFICATION,
+  SUBMIT_ZEPHR_FORM,
 } from 'actions/types';
-import React from 'react';
 import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
 import { zephr as defaultState } from './defaultState';
 
@@ -40,6 +40,14 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...payload,
         },
         cached: true,
+      };
+    case SUBMIT_ZEPHR_FORM:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          [payload.type]: clearFormErrors(state.forms[payload.type]),
+        },
       };
     case RECEIVE_ZEPHR_USER_SESSION:
       return {
@@ -118,7 +126,12 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: {
           ...state.forms,
           register: {
-            ...setFormErrorState(state.forms.register, payload),
+            components: setFormErrorState(state.forms.register, payload),
+            error: true,
+            errors: [
+              ...state.forms.register.errors,
+              payload,
+            ],
           },
         },
       };
@@ -130,7 +143,12 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: {
           ...state.forms,
           register: {
-            ...setPasswordErrorState(state.forms.register),
+            components: setPasswordErrorState(state.forms.register),
+            error: true,
+            errors: [
+              ...state.forms.register.errors,
+              payload,
+            ],
           },
         },
       };
@@ -162,7 +180,8 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
  *
  * @returns {object} form  The cleared form.
  */
-function clearFormErrors(form) { // eslint-disable-line
+function clearFormErrors(form) {
+  // If there is no error, return the form.
   if (! form.error) {
     return form;
   }
@@ -258,103 +277,47 @@ function setFormErrorState(form, error) {
  * @returns {object} form The transformed form.
  */
 export function setPasswordErrorState(form) {
-  // Get the components.
-  const { components } = form;
-  // Get the password input's position in the array.
-  const position = components.map(
-    (el) => {
-      if (el) {
-        return el.props.id;
-      }
-      return null;
-    }
-  ).indexOf('new-password');
-  const input = components[position];
-  // Create the password input with an error state.
-  const erroredInput = {
-    ...input,
-    props: {
-      ...input.props,
-      invalid: true,
-    },
-  };
-  // Replace the component with the error state.
-  components.splice(
-    position,
-    1,
-    erroredInput,
-  );
-  // The error is specific to this function.
+  let obj = form;
+  if (form.error) {
+    obj = clearFormErrors(form);
+  }
+
+  // Define the error.
   const error = 'verify-password';
-  // Format the target input and attach the appropriate error message.
-  const formWithError = attachErrorToForm(form, error, error);
-  // Get the current error count and increment.
-  const errorCount = formWithError.errorCount + 1;
-
-  return {
-    ...formWithError,
-    error: true,
-    errors: [
-      ...formWithError.errors,
-      error,
-    ],
-    errorCount,
-  };
-}
-
-/**
- * A function that takes a given Zephr form, the error target, and the error
- * type and formats the components with an error state and attaches an error
- * message to the components array in the appropriate position.
- *
- * @param {object} form        The form.
- * @param {string} id          The error target's ID.
- * @param {string} error       The error type.
- *
- * @returns {array} components The formatted components.
- */
-function attachErrorToForm(form, id, error) {
   // Get the components.
-  const { components } = form;
+  const components = JSON.parse(obj.components);
   // Get the target's position in the components array.
-  const position = components.map(
-    (el) => {
-      if (el) {
-        return el.props.id;
-      }
-      return null;
-    }
-  ).indexOf(id);
-  // Get the target.
-  const target = components[position];
-  // Add the error state to the target.
-  const targetWithError = {
-    ...target,
-    props: {
-      ...target.props,
-      invalid: true,
-    },
+  const position = components.map((el) => el.id).indexOf('new-password');
+  // Get the password input.
+  const passwordInput = components[position];
+  // Update the input's state.
+  const passwordInputWithError = {
+    ...passwordInput,
+    invalid: true,
   };
-  // Replace the component with the error state.
-  components.splice(
-    position,
-    1,
-    targetWithError,
-  );
-  // Create the error message component.
-  const errorMessage = React.createElement(
-    'span',
-    {
-      id: `${id}-error`,
-      key: `${id}-error-message`,
-      className: 'form-error',
-    },
-    formatErrorMessage(error),
-  );
+  components.splice(position, 1, passwordInputWithError);
+
+  // Get the verification input.
+  const verificationInput = components[position + 1];
+  // Update the input's state.
+  const verificationInputWithError = {
+    ...verificationInput,
+    invalid: true,
+  };
+  components.splice(position + 1, 1, verificationInputWithError);
+
+  // Create the error message.
+  const message = {
+    type: 'span',
+    id: 'verify-password-error',
+    key: 'verify-password-error-message',
+    className: 'form-error',
+    message: formatErrorMessage(error),
+  };
   // Add the error message to the components array.
-  components.splice(position + 1, 0, errorMessage);
-  // Return the formatted components.
-  return components;
+  components.splice(position + 2, 0, message);
+
+  return JSON.stringify(components);
 }
 
 /**
@@ -367,21 +330,21 @@ function attachErrorToForm(form, id, error) {
  */
 export function setErrorTargetId(type) {
   switch (type) {
-    case 'user-not-found':
-      return 'email-address';
-    case 'invalid-password':
-      return 'current-password';
     case 'email-address':
-      return 'email-address';
-    case 'full-name':
-      return 'full-name';
-    case 'terms-checkbox':
-      return 'terms-checkbox';
+      return type;
     case 'email-not-verified':
       return 'email-address';
+    case 'full-name':
+      return type;
+    case 'invalid-password':
+      return 'current-password';
     case 'password-not-strong':
       return 'new-password';
+    case 'terms-checkbox':
+      return type;
     case 'user-already-exists':
+      return 'email-address';
+    case 'user-not-found':
       return 'email-address';
     default:
       return null;
@@ -401,20 +364,24 @@ export function formatErrorMessage(type) {
   const messageBase = 'Oops! Let’s try that again';
 
   switch (type) {
-    case 'user-not-found':
-      return `${messageBase} — User not found. Please enter your email address.`;
-    case 'invalid-password':
-      return `${messageBase} — Invalid password. Please enter your password.`;
-    case 'verify-password':
-      return `${messageBase} — Passwords do not match. Please re-enter your password and try again.`;
-    case 'full-name':
-      return `${messageBase} — Please enter your full name.`;
     case 'email-address':
       return `${messageBase} — Please enter a valid email address.`;
-    case 'terms-checkbox':
-      return `${messageBase} — You must agree to the terms of service in order to create an account.`;
     case 'email-not-verified':
       return `${messageBase} — Your email has not yet been verified. Please check your inbox for a verification email and try again.`;
+    case 'full-name':
+      return `${messageBase} — Please enter your full name.`;
+    case 'invalid-password':
+      return `${messageBase} — Invalid password. Please enter your password.`;
+    case 'password-not-strong':
+      return `${messageBase} — Your password must be at least 8 characters, include one uppercase letter, one lowercase letter, and one symbol (e.g. !#$%&).`;
+    case 'terms-checkbox':
+      return `${messageBase} — You must agree to the terms of service in order to create an account.`;
+    case 'user-already-exists':
+      return `${messageBase} — Account already exists!`;
+    case 'user-not-found':
+      return `${messageBase} — User not found. Please enter your email address.`;
+    case 'verify-password':
+      return `${messageBase} — Passwords do not match. Please re-enter your password and try again.`;
     default:
       return messageBase;
   }
