@@ -12,9 +12,6 @@ const defaultService = {
  * @returns {CacheService}
  */
 const getService = () => {
-  /* eslint-disable */
-  return defaultService;
-
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
