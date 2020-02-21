@@ -84,16 +84,14 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: {
           ...state.forms,
           login: {
-            components: JSON.stringify(
-              setFormErrorState(state.forms.login, payload)
-            ),
+            components: setFormErrorState(state.forms.login, payload),
             error: true,
             errors: [
               ...state.forms.login.errors,
               payload,
             ],
             errorCount: state.forms.login.errorCount + 1,
-            requireCaptcha: state.forms.login.errorCount + 2,
+            requireCaptcha: 3 < state.forms.login.errorCount + 2,
           },
         },
       };
@@ -169,26 +167,24 @@ function clearFormErrors(form) { // eslint-disable-line
     return form;
   }
 
+  // Get the component fields.
+  const fields = JSON.parse(form.components);
   // Remove any errors
-  const components = form.components.map((el) => {
-    if (true === el.props.invalid) {
+  const components = fields.map((el) => {
+    if (true === el.invalid) {
       return {
         ...el,
-        props: {
-          ...el.props,
-          invalid: false,
-        },
+        invalid: false,
       };
     }
 
     return el;
   });
-
-  const componentKeys = components.map((el) => el.key);
-
-  const activeErrorIndexes = componentKeys.map(
-    (key, index) => {
-      if (key.includes('error-message')) {
+  // Retrieve the position of any active error message.
+  const activeErrorIndexes = components.map(
+    (component, index) => {
+      const { key } = component;
+      if (key && key.includes('error-message')) {
         return index;
       }
       return null;
@@ -203,7 +199,7 @@ function clearFormErrors(form) { // eslint-disable-line
     ...form,
     error: false,
     errors: [],
-    components,
+    components: JSON.stringify(components),
   };
 }
 
@@ -217,15 +213,41 @@ function clearFormErrors(form) { // eslint-disable-line
  */
 function setFormErrorState(form, error) {
   // Prevent the same error from being added to the form multiple times.
-  if (true === form.error && form.errors.includes(error)) {
+  if (form.error && form.errors.includes(error)) {
     return form.components;
   }
-  // Get the error's target input.
-  const id = setErrorTargetId(error);
-  // Format the target input and attach the appropriate error message.
-  const components = attachErrorToForm(form, id, error);
 
-  return components;
+  let obj = form;
+  if (form.error) {
+    obj = clearFormErrors(form);
+  }
+
+  // Get the components.
+  const components = JSON.parse(obj.components);
+  // Get the targer's ID.
+  const targetId = setErrorTargetId(error);
+  // Get the target's position in the components array.
+  const position = components.map((el) => el.id).indexOf(targetId);
+  // Get the target.
+  const target = components[position];
+  // Update the target's state.
+  const targetWithError = {
+    ...target,
+    invalid: true,
+  };
+  components.splice(position, 1, targetWithError);
+  // Create the error message.
+  const message = {
+    type: 'span',
+    id: `${targetId}-error`,
+    key: `${targetId}-error-message`,
+    className: 'form-error',
+    message: formatErrorMessage(error),
+  };
+  // Add the error message to the components array.
+  components.splice(position + 1, 0, message);
+
+  return JSON.stringify(components);
 }
 
 /**

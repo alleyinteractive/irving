@@ -13,6 +13,7 @@ import {
 } from 'actions/zephrActions';
 import history from 'utils/history';
 import DataLoading from 'components/hoc/withData/loading';
+import toFormElements from 'sagas/zephrSaga/forms/toFormElements';
 import LazyRecaptcha from '../register/recaptcha';
 
 // Styles
@@ -75,10 +76,7 @@ const Login = ({
 
   useEffect(() => {
     if (0 !== Object.keys(loginForm).length) {
-      const { components: compStr } = loginForm;
-      console.log(loginForm);
-      const fields = JSON.parse(compStr).map((el) => React.createElement(el));
-
+      const fields = toFormElements(loginForm.components);
       // If the login attempt has failed multiple times and has met the threshold set
       // in the zephrReducer, splice a captcha into form and require it to be completed
       // in order to make subsequent attempts.
@@ -123,7 +121,7 @@ const Login = ({
       </div>
     );
   }
-  console.log(components);
+  // console.log(components);
 
   return (
     <div className={styles.accountWrap}>
