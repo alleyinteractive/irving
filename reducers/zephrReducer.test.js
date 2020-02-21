@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable max-len */
 import { merge } from 'lodash/fp';
 import {
   actionReceiveLoginError,
@@ -7,238 +7,209 @@ import {
 } from 'actions/zephrActions';
 import defaultState from './defaultState';
 import reducer, {
-  setErrorTargetId,
-  formatErrorMessage,
+  setFormErrorState,
   setPasswordErrorState,
 } from './zephrReducer';
 
 // Default login form state to be modified in the test suite.
-const loginFormDefaultState = {
-  components: [
+const loginFormMock = {
+  components: JSON.stringify([
     {
-      key: 'zephr-input-email-address',
-      ref: null,
-      props: {
-        id: 'email-address',
-        className: 'zephr-input-email-address',
-        type: 'email',
-        placeholder: 'Enter your email address',
-        required: false,
-        defaultValue: '',
-        autoComplete: 'username',
-        children: null,
-        invalid: false,
-      },
+      autoComplete: 'username',
+      className: 'zephr-input-email-address',
+      defaultValue: '',
+      id: 'email-address',
+      placeholder: 'Enter your email address',
+      required: false,
+      type: 'email',
     },
     {
-      key: 'zephr-input-current-password',
-      ref: null,
-      props: {
-        id: 'current-password',
-        className: 'zephr-input-current-password',
-        type: 'password',
-        placeholder: 'Enter your password',
-        required: true,
-        defaultValue: '',
-        autoComplete: 'current-password',
-        children: null,
-        invalid: false,
-      },
+      autoComplete: 'current-password',
+      className: 'zephr-input-current-password',
+      defaultValue: '',
+      id: 'current-password',
+      placeholder: 'Enter your password',
+      required: true,
+      type: 'password',
     },
     {
-      type: 'input',
+      id: 'submit-button',
       key: 'zephr-submit-button',
-      ref: null,
-      props: {
-        type: 'submit',
-        value: 'Login',
-        children: null,
-      },
-    },
-  ],
+      type: 'submit',
+      value: 'Login',
+    }
+  ]),
   error: false,
   errors: [],
   errorCount: null,
 };
 
 // Default registration form state to be modified in the test suite.
-const regFormDefaultState = {
-  components: [
+const regFormMock = {
+  components: JSON.stringify([
     {
-      key: 'zephr-input-email-address',
-      ref: null,
-      props: {
-        id: 'email-address',
-        className: 'zephr-input-email-address',
-        type: 'email',
-        placeholder: 'Enter your email address',
-        required: false,
-        defaultValue: '',
-        autoComplete: 'username',
-        children: null,
-        invalid: false,
-      },
+      autoComplete: 'username',
+      className: 'zephr-input-email-address',
+      defaultValue: '',
+      id: 'email-address',
+      placeholder: 'Enter your email address',
+      required: false,
+      type: 'email',
     },
     {
-      key: 'zephr-input-full-name',
-      ref: null,
-      props: {
-        id: 'full-name',
-        className: 'zephr-input-full-name',
-        type: 'text',
-        placeholder: 'Enter your full name',
-        required: true,
-        defaultValue: '',
-        autoComplete: '',
-        children: null,
-        invalid: false,
-      },
+      className: 'zephr-input-full-name',
+      defaultValue: '',
+      id: 'full-name',
+      placeholder: 'Enter your full name',
+      required: true,
+      type: 'text',
     },
     {
-      key: 'zephr-input-new-password',
-      ref: null,
-      props: {
-        id: 'new-password',
-        className: 'zephr-input-new-password',
-        type: 'password',
-        placeholder: 'Create a password for your account',
-        required: true,
-        defaultValue: '',
-        autoComplete: 'new-password',
-        children: null,
-        invalid: false,
-      },
+      autoComplete: 'new-password',
+      className: 'zephr-input-new-password',
+      defaultValue: '',
+      id: 'new-password',
+      placeholder: 'Create a password for your account',
+      required: true,
+      type: 'password',
     },
     {
-      key: null,
-      ref: null,
-      props: {
-        id: 'verify-password',
-        className: 'zephr-input-verify-password',
-        type: 'password',
-        placeholder: 'Confirm your password',
-        required: true,
-        defaultValue: '',
-        autoComplete: 'new-password',
-        children: null,
-        invalid: false,
-      },
+      autoComplete: 'new-password',
+      className: 'zephr-input-verify-password',
+      defaultValue: '',
+      id: 'verify-password',
+      placeholder: 'Confirm your password',
+      required: true,
+      type: 'password',
     },
     {
-      key: null,
-      ref: null,
-      props: {
-        id: 'terms-checkbox',
-        children: null,
-      },
+      id: 'terms-checkbox',
     },
     {
-      type: 'input',
+      id: 'submit-button',
       key: 'zephr-submit-button',
-      ref: null,
-      props: {
-        type: 'submit',
-        value: 'Create this account',
-        children: null,
-      },
+      type: 'submit',
+      value: 'Create an account',
     },
-  ],
+  ]),
   error: false,
   errors: [],
   errorCount: null,
 };
 
 /**
- * A helper function that takes the components array from a Zephr form,
- * formats the input associated with a given error with an invalid state,
- * and attaches the associated error message to the components array.
+ * A helper function that takes a given form type, the clean form's state,
+ * the target error, and the mocked state and tests whether or not the error
+ * applied by the `setFormErrorState` function produces the same results as
+ * the effects of a dispatched error action.
  *
- * @param {array} components   The components array without errors.
- * @param {number} position    The target input's position in the components array.
- * @param {string} error       The given error.
- * 
- * @returns {array} components The modified components array. 
+ * @param {*} type      The form type.
+ * @param {*} formState The (clean) form's state.
+ * @param {*} error     The error to be tested.
+ * @param {*} mockState The mocked state object.
  */
-function formatComponentsWithError(components, position, error) {
-  // Create a new components array to avoid mutation.
-  const comp = [...components];
-  const input = comp[position];
-  const inputWithErrorState = {
-    ...input,
-    props: {
-      ...input.props,
-      invalid: true,
-    },
-  };
-  // Get the target's id.
-  const id = setErrorTargetId(error);
-  // Replace the component with the error state.
-  comp.splice(position, 1, inputWithErrorState);
-  // Splice the error message into the components array.
-  const errorMessage = React.createElement(
-    'span',
-    {
-      id: `${id}-error`,
-      key: `${id}-error-message`,
-      className: 'form-error',
-    },
-    formatErrorMessage(error),
-  );
-  comp.splice(position + 1, 0, errorMessage);
-  // Return the modified components array.
-  return comp;
+function compareFormState(type, formState, error, mockState) {
+  const components = setFormErrorState(formState, error);
+
+  // Run the action and return the modified state.
+  let nextState = {};
+  if ('login' === type) {
+    nextState = reducer(mockState, actionReceiveLoginError(error))
+
+    expect(nextState).toEqual({
+      ...mockState,
+      forms: {
+        ...mockState.forms,
+        [type]: {
+          components,
+          error: true,
+          errors: [error],
+          errorCount: 1,
+          requireCaptcha: false,
+        },
+      },
+    });
+  } else if ('register' === type) {
+    nextState = reducer(mockState, actionReceiveRegistrationError(error))
+
+    expect(nextState).toEqual({
+      ...mockState,
+      forms: {
+        ...mockState.forms,
+        [type]: {
+          components,
+          error: true,
+          errors: [error],
+        },
+      },
+    });
+  }
 }
 
 describe('Zephr Reducer', () => {
-  describe('Login actions', () => {
+  describe('Login errors', () => {
     it('Should invalidate the email address field when an incorrect email is entered', () => {
       const mockState = merge(defaultState, {
         forms: {
-          login: loginFormDefaultState,
+          login: loginFormMock,
         },
       });
       const error = 'user-not-found';
-      const position = 0;
-      const components = formatComponentsWithError(
-        loginFormDefaultState.components,
-        position,
-        error
-      );
+      // Compare the state of manually errored form components and those formatted by the action.
+      compareFormState('login', loginFormMock, error, mockState);
 
-      // Run the action and return the modified state.
-      const newState = reducer(mockState, actionReceiveLoginError(error));
-      expect(newState).toEqual({
-        ...mockState,
+      // Create/compare a snapshot.
+      const nextState = reducer(mockState, actionReceiveLoginError(error));
+      expect(nextState).toMatchSnapshot();
+    });
+
+    it('Should invalidate the email address field when an unverified email is entered', () => {
+      const mockState = merge(defaultState, {
         forms: {
-          ...mockState.forms,
-          login: {
-            components,
-            error: true,
-            errors: [error],
-            errorCount: 1,
-            requireCaptcha: false,
-          },
+          login: loginFormMock,
         },
       });
+      const error = 'email-not-verified';
+      // Compare the state of manually errored form components and those formatted by the action.
+      compareFormState('login', loginFormMock, error, mockState);
+
+      // Create/compare a snapshot.
+      const nextState = reducer(mockState, actionReceiveLoginError(error));
+      expect(nextState).toMatchSnapshot();
     });
 
     it('Should invalidate the password field when an incorrect password is entered', () => {
       const mockState = merge(defaultState, {
         forms: {
-          login: loginFormDefaultState,
+          login: loginFormMock,
         },
       });
       const error = 'invalid-password';
-      const position = 1;
-      const components = formatComponentsWithError(
-        loginFormDefaultState.components,
-        position,
-        error
-      );
+      // Compare the state of manually errored form components and those formatted by the action.
+      compareFormState('login', loginFormMock, error, mockState);
+
+      // Create/compare a snapshot.
+      const nextState = reducer(mockState, actionReceiveLoginError(error));
+      expect(nextState).toMatchSnapshot();
+    });
+
+    it('Should require a reCAPTCHA field to be filled out if a failed attempt is made 3 or more times', () => {
+      const mockState = merge(defaultState, {
+        forms: {
+          login: {
+            ...loginFormMock,
+            error: true,
+            errorCount: 2,
+            requireCaptcha: false,
+          },
+        },
+      });
+      const error = 'user-not-found';
+      const components = setFormErrorState(loginFormMock, error);
 
       // Run the action and return the modified state.
-      const newState = reducer(mockState, actionReceiveLoginError(error));
-      expect(newState).toEqual({
+      const nextState = reducer(mockState, actionReceiveLoginError(error));
+      expect(nextState).toEqual({
         ...mockState,
         forms: {
           ...mockState.forms,
@@ -246,129 +217,111 @@ describe('Zephr Reducer', () => {
             components,
             error: true,
             errors: [error],
-            errorCount: 1,
-            requireCaptcha: false,
+            errorCount: 3,
+            requireCaptcha: true,
           },
         },
       });
     });
   });
 
-  describe('Registration actions', () => {
+  describe('Registration errors', () => {
     it('Should invalidate the email address field when an invalid email is entered', () => {
       const mockState = merge(defaultState, {
         forms: {
-          register: regFormDefaultState,
+          register: regFormMock,
         },
       });
       const error = 'email-address';
-      const position = 0;
-      const components = formatComponentsWithError(
-        regFormDefaultState.components,
-        position,
-        error
-      );
+      // Compare the state of manually errored form components and those formatted by the action.
+      compareFormState('register', regFormMock, error, mockState);
 
-      const newState = reducer(mockState, actionReceiveRegistrationError(error));
-      expect(newState).toEqual({
+      // Create/compare a snapshot.
+      const nextState = reducer(mockState, actionReceiveRegistrationError(error));
+      expect(nextState).toMatchSnapshot();
+    });
+
+    it('Should invalidate the email address field when an existing account email is entered', () => {
+      const mockState = merge(defaultState, {
+        forms: {
+          register: regFormMock,
+        },
+      });
+      const error = 'user-already-exists';
+      // Compare the state of manually errored form components and those formatted by the action.
+      compareFormState('register', regFormMock, error, mockState);
+
+      // Create/compare a snapshot.
+      const nextState = reducer(mockState, actionReceiveRegistrationError(error));
+      expect(nextState).toMatchSnapshot();
+    });
+
+    it('Should invalidate the full name field when an invalid name is entered', () => {
+      const mockState = merge(defaultState, {
+        forms: {
+          register: regFormMock,
+        },
+      });
+      const error = 'full-name';
+      // Compare the state of manually errored form components and those formatted by the action.
+      compareFormState('register', regFormMock, error, mockState);
+
+      // Create/compare a snapshot.
+      const nextState = reducer(mockState, actionReceiveRegistrationError(error));
+      expect(nextState).toMatchSnapshot();
+    });
+
+    it('Should invalidate the password field when a weak password is entered', () => {
+      const mockState = merge(defaultState, {
+        forms: {
+          register: regFormMock,
+        },
+      });
+      const error = 'password-not-strong';
+      // Compare the state of manually errored form components and those formatted by the action.
+      compareFormState('register', regFormMock, error, mockState);
+
+      // Create/compare a snapshot.
+      const nextState = reducer(mockState, actionReceiveRegistrationError(error));
+      expect(nextState).toMatchSnapshot();
+    });
+
+    it('Should invalidate the password and verification fields when the passwords do not match', () => {
+      const mockState = merge(defaultState, {
+        forms: {
+          register: regFormMock,
+        },
+      });
+      const components = setPasswordErrorState(regFormMock);
+
+      const nextState = reducer(mockState, actionReceiveInvalidPassword())
+      expect(nextState).toEqual({
         ...mockState,
         forms: {
           ...mockState.forms,
           register: {
             components,
             error: true,
-            errors: [error],
-            errorCount: 1,
-            requireCaptcha: false,
+            errors: ['verify-password'],
           },
         },
       });
+      expect(nextState).toMatchSnapshot();
     });
-  });
 
-  it('Should invalidate the full-name field when an invalid name is entered', () => {
-    const mockState = merge(defaultState, {
-      forms: {
-        register: regFormDefaultState,
-      },
-    });
-    const error = 'full-name';
-    const position = 1;
-    const components = formatComponentsWithError(
-      regFormDefaultState.components,
-      position,
-      error
-    );
-
-    const newState = reducer(mockState, actionReceiveRegistrationError(error));
-    expect(newState).toEqual({
-      ...mockState,
-      forms: {
-        ...mockState.forms,
-        register: {
-          components,
-          error: true,
-          errors: [error],
-          errorCount: 1,
-          requireCaptcha: false,
+    it('Should invalidate the terms of service checkbox if not checked', () => {
+      const mockState = merge(defaultState, {
+        forms: {
+          register: regFormMock,
         },
-      },
-    });
-  });
+      });
+      const error = 'terms-checkbox';
+      // Compare the state of manually errored form components and those formatted by the action.
+      compareFormState('register', regFormMock, error, mockState);
 
-  // it('Should invalidate the new-password field when an invalid password is entered', () => {});
-
-  // it('Should invalidate both password fields when the passwords to not match', () => {
-  //   const mockState = merge(defaultState, {
-  //     forms: {
-  //       register: regFormDefaultState,
-  //     },
-  //   });
-  //   const { components } = setPasswordErrorState(regFormDefaultState);
-
-  //   const newState = reducer(mockState, actionReceiveInvalidPassword());
-  //   expect(newState).toEqual({
-  //     ...mockState,
-  //     forms: {
-  //       ...mockState.forms,
-  //       register: {
-  //         components,
-  //         error: true,
-  //         errors: ['verify-password'],
-  //         errorCount: 1,
-  //         requireCaptcha: false,
-  //       },
-  //     },
-  //   });
-  // });
-
-  it('Should invalidate the checkbox field if the TOS checkbox has not been checked', () => {
-    const mockState = merge(defaultState, {
-      forms: {
-        register: regFormDefaultState,
-      },
-    });
-    const error = 'terms-checkbox';
-    const position = 4;
-    const components = formatComponentsWithError(
-      regFormDefaultState.components,
-      position,
-      error
-    );
-
-    const newState = reducer(mockState, actionReceiveRegistrationError(error));
-    expect(newState).toEqual({
-      ...mockState,
-      forms: {
-        ...mockState.forms,
-        register: {
-          components,
-          error: true,
-          errors: [error],
-          errorCount: 1,
-          requireCaptcha: false,
-        },
-      },
+      // Create/compare a snapshot.
+      const nextState = reducer(mockState, actionReceiveRegistrationError(error));
+      expect(nextState).toMatchSnapshot();
     });
   });
 });

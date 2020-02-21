@@ -147,7 +147,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
             error: true,
             errors: [
               ...state.forms.register.errors,
-              payload,
+              'verify-password',
             ],
           },
         },
@@ -230,7 +230,7 @@ function clearFormErrors(form) {
  *
  * @return {object} form The transformed form with errors.
  */
-function setFormErrorState(form, error) {
+export function setFormErrorState(form, error) {
   // Prevent the same error from being added to the form multiple times.
   if (form.error && form.errors.includes(error)) {
     return form.components;
