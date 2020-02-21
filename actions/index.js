@@ -5,6 +5,7 @@ import {
   FINISH_LOADING,
   UPDATE_VISIBILITY,
   UPDATE_HEADER_HEIGHT,
+  DISMISS_NOTICE,
 } from './types';
 
 /**
@@ -71,4 +72,8 @@ export function actionUpdateVisibility(name, isVisible = null) {
  */
 export function actionUpdateHeaderHeight(headerHeight = 0) {
   return createAction(UPDATE_HEADER_HEIGHT, headerHeight);
+}
+
+export function actionDismissNotice() {
+  return createAction(DISMISS_NOTICE);
 }

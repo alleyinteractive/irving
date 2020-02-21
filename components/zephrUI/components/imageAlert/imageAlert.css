@@ -1,0 +1,80 @@
+:global {
+  .ImageAlert {
+    @include container-with-bleed;
+    background-color: $color-text;
+    font-family: $sans;
+  }
+
+  .ImageAlert__wrapper {
+    display: flex;
+    height: rem(324);
+    justify-content: space-between;
+  }
+
+  .ImageAlert__fields {
+    padding-top: rem(40);
+    width: 100%;
+  }
+
+  .ImageAlert__fields,
+  .ImageAlert__image {
+    color: $white;
+
+    @media ($mdMin) {
+      width: 45%;
+    }
+  }
+
+  .ImageAlert__image img {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .ImageAlert__image {
+    display: none;
+    position: relative;
+
+    @media ($mdMin) {
+      display: block;
+    }
+  }
+
+  .ImageAlert__slug {
+    font-size: rem(22);
+    line-height: 0.86;
+    margin-bottom: rem(40);
+  }
+
+  .ImageAlert__message {
+    font-size: rem(30);
+    font-weight: 400;
+    line-height: 1.07;
+    margin-bottom: rem(25);
+  }
+
+  .btn--subscribe {
+    font-size: rem(100);
+  }
+
+  .ImageAlert__btn {
+    display: inline-flex;
+    font-size: 1rem;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1;
+    margin-right: rem(30);
+    min-width: rem(160);
+    padding: rem(10 26);
+  }
+
+  .ImageAlert__btn--subscribe {
+    background-color: $call-to-action;
+    border: 1px solid $call-to-action;
+    color: $black;
+  }
+
+  .ImageAlert__btn--signin {
+    border: 1px solid $white;
+  }
+}
