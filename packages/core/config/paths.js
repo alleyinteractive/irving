@@ -67,7 +67,7 @@ module.exports = {
   userConfig: resolveAppDir('irving.config.js'),
   serverConfig: 'test' === NODE_ENV ?
     resolveIrvingDir('test/irving-test.config.js') :
-    resolveAppDir('irving.config.server.js'),
+    resolveBuildDir('irving.config.server.js'),
   globalStyles: resolveIrvingDir('assets/styles'),
   rootUrl: ROOT_URL || 'http://localhost:3001',
   proxyUrl: PROXY_URL,
