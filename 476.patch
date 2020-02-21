@@ -1,0 +1,1134 @@
+diff --git a/.gitignore.dist b/.gitignore.dist
+index 98866ef0..5c0ff274 100644
+--- a/.gitignore.dist
++++ b/.gitignore.dist
+@@ -12,7 +12,6 @@ wp-content/uploads/
+ wp-content/mu-plugins/
+ wp-content/wp-cache-config.php
+ wp-content/plugins/hello.php
+-!build
+ 
+ /.htaccess
+ /license.txt
+diff --git a/actions/types.js b/actions/types.js
+index 2c5ebe6e..66d77582 100644
+--- a/actions/types.js
++++ b/actions/types.js
+@@ -45,6 +45,9 @@ export const CLEAR_FORM_ERRORS = 'CLEAR_FORM_ERRORS';
+ export const REQUEST_USER_LOG_OUT = 'REQUEST_USER_LOG_OUT';
+ export const RECEIVE_USER_LOG_OUT = 'RECEIVE_USER_LOG_OUT';
+ export const RECEIVE_ZEPHR_USER_ACCOUNT = 'RECEIVE_ZEPHR_USER_ACCOUNT';
++export const SEND_ZEPHR_VERIFICATION_EMAIL = 'SEND_ZEPHR_VERIFICATION_EMAIL';
++export const VERIFY_ZEPHR_USER_TOKEN = 'VERIFY_ZEPHR_USER_TOKEN';
++export const RECEIVE_ZEPHR_USER_VERIFICATION = 'RECEIVE_ZEPHR_USER_VERIFICATION'; // eslint-disable-line max-len
+ 
+ // Zephr UI
+ export const REQUEST_ZEPHR_UI_COMPONENTS = 'REQUEST_ZEPHR_UI_COMPONENTS';
+diff --git a/actions/zephrActions.js b/actions/zephrActions.js
+index ddb52ffe..ebe20e05 100644
+--- a/actions/zephrActions.js
++++ b/actions/zephrActions.js
+@@ -17,6 +17,9 @@ import {
+   RECEIVE_ZEPHR_USER_ACCOUNT,
+   REQUEST_ZEPHR_UI_COMPONENTS,
+   RECEIVE_ZEPHR_UI_COMPONENTS,
++  VERIFY_ZEPHR_USER_TOKEN,
++  RECEIVE_ZEPHR_USER_VERIFICATION,
++  SEND_ZEPHR_VERIFICATION_EMAIL,
+ } from './types';
+ 
+ /**
+@@ -191,3 +194,33 @@ export function actionRequestUIComponents() {
+ export function actionReceiveUIComponents(payload) {
+   return createAction(RECEIVE_ZEPHR_UI_COMPONENTS, payload);
+ }
++
++/**
++ * A Redux action that represents browser state change once the token exchange is initiated.
++ *
++ * @returns {{type}} The Redux action.
++ */
++export function actionSendUserVerificationEamil() {
++  return createAction(SEND_ZEPHR_VERIFICATION_EMAIL);
++}
++
++/**
++ * A Redux action that respresents browser state change once a user's token is
++ * submitted for verification.
++ *
++ * @param {{ token }} The user's verification token.
++ *
++ * @returns {{type, payload}} The Redux action.
++ */
++export function actionVerifyToken(payload) {
++  return createAction(VERIFY_ZEPHR_USER_TOKEN, payload);
++}
++
++/**
++ * A Redux action that represents browser state change once a user is verified.
++ *
++ * @returns {{type}} The Redux action.
++ */
++export function actionReceiveUserVerification() {
++  return createAction(RECEIVE_ZEPHR_USER_VERIFICATION);
++}
+diff --git a/components/accounts/login/index.js b/components/accounts/login/index.js
+index a9343248..222e7ce6 100644
+--- a/components/accounts/login/index.js
++++ b/components/accounts/login/index.js
+@@ -6,11 +6,14 @@ import PropTypes from 'prop-types';
+ import {
+   getIsLoading,
+   getForms,
++  getProfile,
++  getAccount,
+ } from 'selectors/zephrSelector';
+ import {
+   actionSubmitForm,
+   actionClearFormErrors,
+ } from 'actions/zephrActions';
++import history from 'utils/history';
+ 
+ // Styles
+ import styles from './login.css';
+@@ -20,7 +23,13 @@ const Login = ({
+   forms,
+   submitLogin,
+   clearErrors,
++  isAuthenticated,
+ }) => {
++  // Prevent authenticated users from being able to visit this route.
++  if (isAuthenticated) {
++    history.push('/');
++  }
++
+   const loginForm = forms.filter((form) => '/login' === form.route)[0];
+   // Create submit handler.
+   const onSubmit = (event) => {
+@@ -107,6 +116,7 @@ Login.propTypes = {
+   forms: PropTypes.array.isRequired,
+   submitLogin: PropTypes.func.isRequired,
+   clearErrors: PropTypes.func.isRequired,
++  isAuthenticated: PropTypes.bool.isRequired,
+ };
+ 
+ const mapDispatchToProps = (dispatch) => ({
+@@ -117,6 +127,9 @@ const withRedux = connect(
+   (state) => ({
+     isLoading: getIsLoading(state),
+     forms: getForms(state),
++    isAuthenticated:
++      0 < Object.keys(getProfile(state)).length &&
++      0 < Object.keys(getAccount(state)).length,
+   }),
+   mapDispatchToProps
+ );
+diff --git a/components/accounts/register/index.js b/components/accounts/register/index.js
+index b6fa102a..5296c609 100644
+--- a/components/accounts/register/index.js
++++ b/components/accounts/register/index.js
+@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
+ import {
+   getIsLoading,
+   getForms,
++  getProfile,
++  getAccount,
+ } from 'selectors/zephrSelector';
+ import {
+   actionSubmitForm,
+@@ -15,6 +17,7 @@ import {
+   actionReceiveRegistrationError,
+   actionClearFormErrors,
+ } from 'actions/zephrActions';
++import history from 'utils/history';
+ import LazyRecaptcha from './recaptcha';
+ 
+ // Styles
+@@ -27,7 +30,13 @@ const Register = ({
+   displayInvalidPasswordError,
+   displayFormError,
+   clearErrors,
++  isAuthenticated,
+ }) => {
++  // Prevent authenticated users from being able to visit this route.
++  if (isAuthenticated) {
++    history.push('/');
++  }
++
+   const [captcha, setCaptcha] = useState({
+     isValid: false,
+     hasError: false,
+@@ -197,6 +206,7 @@ Register.propTypes = {
+   displayInvalidPasswordError: PropTypes.func.isRequired,
+   displayFormError: PropTypes.func.isRequired,
+   clearErrors: PropTypes.func.isRequired,
++  isAuthenticated: PropTypes.bool.isRequired,
+ };
+ 
+ /* eslint-disable max-len */
+@@ -212,6 +222,9 @@ const withRedux = connect(
+   (state) => ({
+     isLoading: getIsLoading(state),
+     forms: getForms(state),
++    isAuthenticated:
++      0 < Object.keys(getProfile(state)).length &&
++      0 < Object.keys(getAccount(state)).length,
+   }),
+   mapDispatchToProps
+ );
+diff --git a/components/accounts/verify/index.js b/components/accounts/verify/index.js
+index 51ff3c5d..9a0570b0 100644
+--- a/components/accounts/verify/index.js
++++ b/components/accounts/verify/index.js
+@@ -7,35 +7,56 @@ import { withStyles } from 'critical-style-loader/lib';
+ import { connect } from 'react-redux';
+ import { __ } from '@wordpress/i18n';
+ import Link from 'components/helpers/link';
++import { actionVerifyToken } from 'actions/zephrActions';
++import {
++  getFirstName,
++  getEmailVerified,
++} from 'selectors/zephrSelector';
++import DataLoading from 'components/hoc/withData/loading';
+ 
+ // Styles
+ import styles from './verify.css';
+ 
+-const Verify = ({ verifyHash }) => {
++const Verify = ({
++  verifyToken,
++  firstName,
++  emailVerified,
++}) => {
+   const [isLoading, setIsLoading] = useState(true);
+ 
+   useEffect(() => {
+-    const { location: { pathname } } = window;
+-
+-    const hash = pathname.replace('/verify/', '');
+-
+-    verifyHash(hash);
++    if (false === emailVerified) {
++      const {
++        location: {
++          search,
++        },
++      } = window;
++      // Extract the token from the query string.
++      const extractToken = (qs) => qs.match(/(?<=\btoken=)([^&]*)/)[0];
++      // Set the token value.
++      const token = extractToken(search);
++      // Dispatch the verification action.
++      verifyToken(token);
++    }
++  }, []);
+ 
++  if (true === emailVerified && true === isLoading) {
+     setIsLoading(false);
+-  }, isLoading);
+-
+-  if (isLoading) {
+-    return <div />;
+   }
+ 
+-  // @todo replace me with the verified user from the redux store.
+-  const placeholderName = 'Penelope';
++  if (true === isLoading) {
++    return (
++      <div className={styles.loadingWrap}>
++        <DataLoading />
++      </div>
++    );
++  }
+ 
+   return (
+     <div className={styles.accountWrap}>
+       <p className={styles.accountSubHeader}>
+         {__(
+-          `Thanks ${placeholderName}! Your email address is now verified.`,
++          `Thanks ${firstName}! Your email address is now verified.`,
+           'mittr'
+         )}
+       </p>
+@@ -51,13 +72,27 @@ const Verify = ({ verifyHash }) => {
+   );
+ };
+ 
++Verify.defaultProps = {
++  firstName: '',
++  emailVerified: false,
++};
++
+ Verify.propTypes = {
+-  verifyHash: PropTypes.func.isRequired,
++  verifyToken: PropTypes.func.isRequired,
++  firstName: PropTypes.string,
++  emailVerified: PropTypes.bool,
+ };
+ 
++const mapDispatchToProps = (dispatch) => ({
++  verifyToken: (token) => dispatch(actionVerifyToken(token)),
++});
++
+ const withRedux = connect(
+-  null,
+-  null
++  (state) => ({
++    firstName: getFirstName(state),
++    emailVerified: getEmailVerified(state),
++  }),
++  mapDispatchToProps
+ );
+ 
+ export default withRedux(
+diff --git a/components/accounts/verify/verify.css b/components/accounts/verify/verify.css
+index 9a00221c..0c9352c5 100644
+--- a/components/accounts/verify/verify.css
++++ b/components/accounts/verify/verify.css
+@@ -1,3 +1,8 @@
++.loadingWrap {
++  font-family: $sans;
++  margin: rem(40) auto;
++}
++
+ .accountWrap {
+   margin: rem(40) auto rem(50);
+ }
+diff --git a/components/columnArea/columnArea--feed.css b/components/columnArea/columnArea--feed.css
+index 720b1e99..91ae53de 100644
+--- a/components/columnArea/columnArea--feed.css
++++ b/components/columnArea/columnArea--feed.css
+@@ -20,10 +20,6 @@
+   padding-top: rem(15);
+   width: 100%;
+ 
+-  &.nested {
+-    tidy-offset-left: -0.81;
+-  }
+-
+   @media ($smMin) {
+     @include container;
+   }
+diff --git a/components/columnArea/columnArea--fullStory.css b/components/columnArea/columnArea--fullStory.css
+index 8f097de0..538dac45 100644
+--- a/components/columnArea/columnArea--fullStory.css
++++ b/components/columnArea/columnArea--fullStory.css
+@@ -35,10 +35,9 @@
+ 
+   @media ($mdMin) {
+     display: block;
+-    max-width: rem(320);
+     padding-left: rem(20);
+     padding-right: 0;
+-    width: calc(tidy-span(4) - rem(20));
++    tidy-span: 4;
+   }
+ 
+   @media ($lgMin) {
+diff --git a/components/columnArea/index.js b/components/columnArea/index.js
+index 4d18fe4e..857c2446 100644
+--- a/components/columnArea/index.js
++++ b/components/columnArea/index.js
+@@ -2,7 +2,6 @@ import React from 'react';
+ import PropTypes from 'prop-types';
+ import { withStyles } from 'critical-style-loader/lib';
+ import withThemes from 'components/hoc/withThemes';
+-import classNames from 'classnames';
+ 
+ // Themes
+ import feedColumnTheme from './columnArea--feed.css';
+@@ -12,7 +11,7 @@ import oneColumnTheme from './columnArea--oneCol.css';
+ import pageTheme from './columnArea--page.css';
+ import centeredTheme from './columnArea--centered.css';
+ 
+-const ColumnArea = ({ children, theme, isNested }) => {
++const ColumnArea = ({ children, theme }) => {
+   // Separate content and sidebar
+   const childIsSidebar = ({ componentName, isSidebar = false }) => (
+     isSidebar || 'sidebar' === componentName
+@@ -21,11 +20,7 @@ const ColumnArea = ({ children, theme, isNested }) => {
+   const sidebar = children.filter(({ props }) => childIsSidebar(props));
+ 
+   return (
+-    <div
+-      className={classNames(theme.wrapper, {
+-        [theme.nested]: isNested,
+-      })}
+-    >
++    <div className={theme.wrapper}>
+       {!! content.length && (
+         <div
+           className={theme.main}
+@@ -44,14 +39,9 @@ const ColumnArea = ({ children, theme, isNested }) => {
+   );
+ };
+ 
+-ColumnArea.defaultProps = {
+-  isNested: false,
+-};
+-
+ ColumnArea.propTypes = {
+   children: PropTypes.arrayOf(PropTypes.element).isRequired,
+   theme: PropTypes.object.isRequired,
+-  isNested: PropTypes.bool,
+ };
+ 
+ export default withThemes('column-area', {
+diff --git a/components/magazineHero/index.js b/components/magazineHero/index.js
+index 99fd7308..2a1d79b1 100644
+--- a/components/magazineHero/index.js
++++ b/components/magazineHero/index.js
+@@ -1,11 +1,10 @@
+-import React, { useState, useEffect } from 'react';
++import React from 'react';
+ import PropTypes from 'prop-types';
+ import { withStyles } from 'critical-style-loader/lib';
+ import { findChildByName } from 'utils/children';
+ import Link from 'components/helpers/link';
+ import { __ } from '@wordpress/i18n';
+ import parse from 'html-react-parser';
+-import useBreakpoint from 'hooks/useBreakpoint';
+ 
+ // SVGs
+ import ArrowIcon from 'assets/icons/arrow.svg';
+@@ -27,17 +26,6 @@ const MagazineHero = ({
+   title,
+ }) => {
+   const image = findChildByName('image', children);
+-  const [isMobile, setIsMobile] = useState(false);
+-  // determine if mobile
+-  const isSmMin = useBreakpoint('smMin');
+-  useEffect(() => {
+-    if (! isSmMin) {
+-      setIsMobile(true);
+-    } else {
+-      setIsMobile(false);
+-    }
+-  });
+-  // const isMobile = 630 > window.current.getBoundingRect().width;
+   return (
+     <header className={styles.wrapper}>
+       <div className={styles.topper}>
+@@ -121,7 +109,7 @@ const MagazineHero = ({
+                       <span className={styles.icon} aria-hidden>
+                         <ArrowIcon />
+                       </span>
+-                      {! isMobile ? __('View previous issue', 'mittr') : ''}
++                      {__('View previous issue', 'mittr')}
+                     </Link>
+                   )}
+ 
+@@ -130,7 +118,7 @@ const MagazineHero = ({
+                   {(issueNavigation.next &&
+                     window.location.href !== issueNavigation.next) && (
+                     <Link to={issueNavigation.next} className={styles.navLink}>
+-                      {! isMobile ? __('View next issue', 'mittr') : ''}
++                      {__('View next issue', 'mittr')}
+                       <span className={styles.icon} aria-hidden>
+                         <ArrowIcon />
+                       </span>
+diff --git a/components/magazineHero/magazineHero.css b/components/magazineHero/magazineHero.css
+index 2fd3bba0..24956c9c 100644
+--- a/components/magazineHero/magazineHero.css
++++ b/components/magazineHero/magazineHero.css
+@@ -98,6 +98,7 @@
+   font-weight: 600;
+   line-height: 1.2;
+   margin-bottom: rem(5);
++  margin-top: rem(10);
+   order: -1;
+   width: 100%;
+ 
+diff --git a/components/popular/index.js b/components/popular/index.js
+index bff11f60..462a0199 100644
+--- a/components/popular/index.js
++++ b/components/popular/index.js
+@@ -1,4 +1,4 @@
+-import React, { useState, useEffect } from 'react';
++import React from 'react';
+ import PropTypes from 'prop-types';
+ import { __ } from '@wordpress/i18n';
+ import { withStyles } from 'critical-style-loader/lib';
+@@ -13,44 +13,30 @@ const Popular = ({
+   popular,
+   theme,
+   themeName,
+-}) => {
+-  const [popularToRender, setPopularToRender] = useState(popular);
+-  useEffect(() => {
+-    const windowSizeChanged = () => setPopularToRender(
+-      (700 >= window.innerHeight) ?
+-        popular.slice(0, 2) :
+-        popular
+-    );
+-    windowSizeChanged();
+-    window.addEventListener('resize', windowSizeChanged);
+-  }, []);
+-  return (
+-    <div
+-      className={theme.contentWrapper}
+-    >
+-      <div className={theme.contentModule}>
+-        <h3 className={theme.title}>{__('Popular', 'mittr')}</h3>
+-        <ol className={theme.stories}>
+-          {popularToRender.map((item) => (
+-            <li className={theme.story} key={item.title}>
+-              <Link to={item.link} className={theme.itemTitle}>
+-                {item.title}
+-              </Link>
+-              { 'inFeed' === themeName && (
+-                <span className={theme.byline}>
+-                  {item.authorLink && (
+-                    <Link to={item.authorLink}>{item.author}</Link>
+-                  )}
+-                  {! item.authorLink ? item.author : ''}
+-                </span>
+-              )}
+-            </li>
+-          ))}
+-        </ol>
+-      </div>
++}) => (
++  <div
++    className={theme.contentWrapper}
++  >
++    <div className={theme.contentModule}>
++      <h3 className={theme.title}>{__('Popular', 'mittr')}</h3>
++      <ol className={theme.stories}>
++        {popular.map((item) => (
++          <li className={theme.story} key={item.title}>
++            <Link to={item.link} className={theme.itemTitle}>{item.title}</Link>
++            { 'inFeed' === themeName && (
++              <span className={theme.byline}>
++                {item.authorLink && (
++                  <Link to={item.authorLink}>{item.author}</Link>
++                )}
++                {! item.authorLink ? item.author : ''}
++              </span>
++            )}
++          </li>
++        ))}
++      </ol>
+     </div>
+-  );
+-};
++  </div>
++);
+ 
+ Popular.propTypes = {
+   popular: PropTypes.array.isRequired,
+diff --git a/components/socialFollowModule/index.js b/components/socialFollowModule/index.js
+index f426fc61..72523928 100644
+--- a/components/socialFollowModule/index.js
++++ b/components/socialFollowModule/index.js
+@@ -1,4 +1,4 @@
+-import React, { useState, useEffect } from 'react';
++import React from 'react';
+ import PropTypes from 'prop-types';
+ import withThemes from 'components/hoc/withThemes';
+ import { withStyles } from 'critical-style-loader/lib';
+@@ -8,28 +8,16 @@ import styles from './socialFollowModule.css';
+ import darkStyles from './darkTitle.css';
+ import lightStyles from './lightTitle.css';
+ 
+-const SocialFollowModule = ({ children, theme }) => {
+-  const [socialToRender, setSocialToRender] = useState(true);
+-  useEffect(() => {
+-    const windowSizeChanged = () => setSocialToRender(
+-      (700 <= window.innerHeight)
+-    );
+-    windowSizeChanged();
+-    window.addEventListener('resize', windowSizeChanged);
+-  }, []);
+-  const socialModule = (
+-    <div className={theme.wrapper}>
+-      {socialToRender}
+-      <span className={theme.title}>
+-        {__('Follow', 'mittr')}
+-      </span>
+-      <ul className={styles.social}>
+-        { children }
+-      </ul>
+-    </div>
+-  );
+-  return socialToRender ? socialModule : null;
+-};
++const SocialFollowModule = ({ children, theme }) => (
++  <div className={theme.wrapper}>
++    <span className={theme.title}>
++      {__('Follow', 'mittr')}
++    </span>
++    <ul className={styles.social}>
++      { children }
++    </ul>
++  </div>
++);
+ 
+ SocialFollowModule.propTypes = {
+   children: PropTypes.arrayOf(PropTypes.element).isRequired,
+diff --git a/components/socialFollowModule/socialFollowModule.css b/components/socialFollowModule/socialFollowModule.css
+index e78ff198..32f47b27 100644
+--- a/components/socialFollowModule/socialFollowModule.css
++++ b/components/socialFollowModule/socialFollowModule.css
+@@ -1,8 +1,8 @@
+ .wrapper {
+   display: flex;
+   flex-direction: column;
+-  max-width: rem(212);
+   tidy-offset-left: 1;
++  tidy-span: 3;
+ }
+ 
+ .title {
+diff --git a/components/teaserItem/teaserItem.css b/components/teaserItem/teaserItem.css
+index 5e12afac..c2b1bdd6 100644
+--- a/components/teaserItem/teaserItem.css
++++ b/components/teaserItem/teaserItem.css
+@@ -88,3 +88,8 @@
+   margin-bottom: rem(20);
+   margin-top: rem(20);
+ }
++
++.image {
++  overflow: hidden;
++  width: 100%;
++}
+diff --git a/components/zephrUI/components/imageAlert/imageAlert.css b/components/zephrUI/components/imageAlert/imageAlert.css
+deleted file mode 100644
+index ea00fe69..00000000
+--- a/components/zephrUI/components/imageAlert/imageAlert.css
++++ /dev/null
+@@ -1,80 +0,0 @@
+-:global {
+-  .ImageAlert {
+-    @include container-with-bleed;
+-    background-color: $color-text;
+-    font-family: $sans;
+-  }
+-
+-  .ImageAlert__wrapper {
+-    display: flex;
+-    height: rem(324);
+-    justify-content: space-between;
+-  }
+-
+-  .ImageAlert__fields {
+-    padding-top: rem(40);
+-    width: 100%;
+-  }
+-
+-  .ImageAlert__fields,
+-  .ImageAlert__image {
+-    color: $white;
+-
+-    @media ($mdMin) {
+-      width: 45%;
+-    }
+-  }
+-
+-  .ImageAlert__image img {
+-    bottom: 0;
+-    position: absolute;
+-    width: 100%;
+-  }
+-
+-  .ImageAlert__image {
+-    display: none;
+-    position: relative;
+-
+-    @media ($mdMin) {
+-      display: block;
+-    }
+-  }
+-
+-  .ImageAlert__slug {
+-    font-size: rem(22);
+-    line-height: 0.86;
+-    margin-bottom: rem(40);
+-  }
+-
+-  .ImageAlert__message {
+-    font-size: rem(30);
+-    font-weight: 400;
+-    line-height: 1.07;
+-    margin-bottom: rem(25);
+-  }
+-
+-  .btn--subscribe {
+-    font-size: rem(100);
+-  }
+-
+-  .ImageAlert__btn {
+-    display: inline-flex;
+-    font-size: 1rem;
+-    font-weight: 600;
+-    justify-content: center;
+-    line-height: 1;
+-    margin-right: rem(30);
+-    min-width: rem(160);
+-    padding: rem(10 26);
+-  }
+-
+-  .ImageAlert__btn--subscribe {
+-    background-color: $call-to-action;
+-    border: 1px solid $call-to-action;
+-    color: $black;
+-  }
+-
+-  .ImageAlert__btn--signin {
+-    border: 1px solid $white;
+-  }
+-}
+diff --git a/components/zephrUI/components/imageAlert/index.js b/components/zephrUI/components/imageAlert/index.js
+deleted file mode 100644
+index 7d244a65..00000000
+--- a/components/zephrUI/components/imageAlert/index.js
++++ /dev/null
+@@ -1,69 +0,0 @@
+-import React from 'react';
+-import PropTypes from 'prop-types';
+-
+-import './imageAlert.css';
+-
+-const ImageAlert = ({
+-  smallText,
+-  largeText,
+-  callToActionPrimaryDestination,
+-  callToActionPrimaryText,
+-  callToActionSecondaryDestination,
+-  callToActionSecondaryText,
+-  imageSrc,
+-}) => (
+-  <div
+-    role="dialog"
+-    aria-live="polite"
+-    aria-modal="true"
+-    className="ImageAlert"
+-  >
+-    <div className="ImageAlert__wrapper">
+-      <h1 className="screen-reader-text" tabIndex="-1">
+-        Content meter notice
+-      </h1>
+-      <div className="ImageAlert__fields">
+-        <h2 className="ImageAlert__slug">
+-          {smallText}
+-        </h2>
+-        <p className="ImageAlert__message">
+-          {largeText}
+-        </p>
+-        <a
+-          href={callToActionPrimaryDestination}
+-          className="ImageAlert__btn ImageAlert__btn--subscribe"
+-        >
+-          {callToActionPrimaryText}
+-        </a>
+-        <a
+-          href={callToActionSecondaryDestination}
+-          className="ImageAlert__btn ImageAlert__btn--signin"
+-        >
+-          {callToActionSecondaryText}
+-        </a>
+-      </div>
+-      <div className="ImageAlert__image">
+-        <img src={imageSrc} alt="" />
+-      </div>
+-    </div>
+-  </div>
+-);
+-
+-ImageAlert.propTypes = {
+-  /** The first line of text in the modal. */
+-  smallText: PropTypes.string.isRequired,
+-  /** Second, larger line of text in the modal. */
+-  largeText: PropTypes.string.isRequired,
+-  /** URL for the destination of the large yellow button. */
+-  callToActionPrimaryDestination: PropTypes.string.isRequired,
+-  /** Text for the large yellow button. */
+-  callToActionPrimaryText: PropTypes.string.isRequired,
+-  /** URL fo the destination of the second link. */
+-  callToActionSecondaryDestination: PropTypes.string.isRequired,
+-  /** Text for the second link. */
+-  callToActionSecondaryText: PropTypes.string.isRequired,
+-  /** Src of the image to be included in the component. */
+-  imageSrc: PropTypes.string.isRequired,
+-};
+-
+-export default ImageAlert;
+diff --git a/components/zephrUI/components/imageAlert/readme.md b/components/zephrUI/components/imageAlert/readme.md
+deleted file mode 100644
+index 93073547..00000000
+--- a/components/zephrUI/components/imageAlert/readme.md
++++ /dev/null
+@@ -1,17 +0,0 @@
+-## Image Alert component
+-
+-Example use of Image Alert component.
+-
+-```jsx
+-<div style={{backgroundColor: '#303030', padding: '20px', width: '100%'}}>
+-  <ImageAlert
+-    smallText="This story is only available to subscribers."
+-    largeText="Stay informed and ahead of the curve — when you want it, where you want it."
+-    callToActionPrimaryDestination="/subsribe"
+-    callToActionPrimaryText="See my options"
+-    callToActionSecondaryDestination="/login"
+-    callToActionSecondaryText="Sign in"
+-    imageSrc="https://placeimg.com/640/480/any"
+-  />
+-</div>
+-```
+diff --git a/components/zephrUI/regions/overlayFooter/index.js b/components/zephrUI/regions/overlayFooter/index.js
+index cc98acd9..524e2382 100644
+--- a/components/zephrUI/regions/overlayFooter/index.js
++++ b/components/zephrUI/regions/overlayFooter/index.js
+@@ -10,7 +10,6 @@ import { getZephrComponents } from 'selectors/zephrRulesSelector';
+ // Note they must be included manually in this component, as the HTML will be
+ // included directly using the Zephr feature rules.
+ import 'components/zephrUI/components/meterNotice/meterNotice.css';
+-import 'components/zephrUI/components/imageAlert/imageAlert.css';
+ 
+ // Styles
+ import styles from './overlayFooter.css';
+@@ -37,7 +36,7 @@ const OverlayFooter = ({ components }) => {
+                       'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code',
+                       'hr', 'br', 'div',
+                       'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td',
+-                      'pre', 'iframe', 'span', 'img',
++                      'pre', 'iframe', 'span',
+                     ],
+                     allowedAttributes: {
+                       '*': [
+@@ -47,8 +46,6 @@ const OverlayFooter = ({ components }) => {
+                         'aria-live',
+                         'aria-polite',
+                         'aria-modal',
+-                        'alt',
+-                        'src',
+                       ],
+                     },
+                   }
+diff --git a/reducers/zephrReducer.js b/reducers/zephrReducer.js
+index e5ae16a6..df64d3d1 100644
+--- a/reducers/zephrReducer.js
++++ b/reducers/zephrReducer.js
+@@ -12,6 +12,7 @@ import {
+   CLEAR_FORM_ERRORS,
+   RECEIVE_USER_LOG_OUT,
+   RECEIVE_ZEPHR_USER_ACCOUNT,
++  RECEIVE_ZEPHR_USER_VERIFICATION,
+ } from 'actions/types';
+ import React from 'react';
+ import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
+@@ -55,7 +56,10 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
+     case RECEIVE_ZEPHR_USER_SESSION:
+       return {
+         ...state,
+-        session: payload,
++        session: {
++          ...state.session,
++          payload,
++        },
+       };
+     case RECEIVE_ZEPHR_USER_PROFILE:
+       return {
+@@ -125,6 +129,14 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
+         session: defaultState.session,
+         user: defaultState.user,
+       };
++    case RECEIVE_ZEPHR_USER_VERIFICATION:
++      return {
++        ...state,
++        user: {
++          ...state.user,
++          emailVerified: true,
++        },
++      };
+     default:
+       return state;
+   }
+diff --git a/sagas/zephrSaga/forms/submitForm.js b/sagas/zephrSaga/forms/submitForm.js
+index 7bb6210a..8486b14a 100644
+--- a/sagas/zephrSaga/forms/submitForm.js
++++ b/sagas/zephrSaga/forms/submitForm.js
+@@ -7,9 +7,13 @@ import {
+   actionReceiveUserRegistration,
+   actionReceiveUserLogin,
+   actionReceiveUserAccount,
++  actionSendUserVerificationEamil,
+ } from 'actions/zephrActions';
+ import zephrService from 'services/zephrService';
+ import history from 'utils/history';
++import createDebug from 'services/createDebug';
++
++const debug = createDebug('sagas:submitZephrForm');
+ 
+ /**
+  * A generator that is called on the submission of a Zephr form. The form
+@@ -74,21 +78,25 @@ function* submitRegistration(credentials) {
+   const response = yield call(zephrService.register, credentials);
+   const {
+     status,
+-    cookie,
+     trackingId,
+   } = response;
+ 
+   if ('success' === status) {
+     // Store the session data for later use.
+-    yield put(actionReceiveUserSession({ sessionCookie: cookie, trackingId }));
++    yield put(actionReceiveUserSession({ trackingId }));
+     // Set the user's email verification state in the store to false on initial registration.
+     yield put(actionReceiveUserRegistration());
+-    // Get the user's profile.
+-    yield call(getProfile, cookie);
+-    // Get the user's account.
+-    yield call(getAccount, cookie);
+-    // Push the user to the confirmation page.
+-    history.push('/register/confirmation');
++    // Send the double opt-in verification link to the user's email address.
++    try {
++      yield call(zephrService.sendVerificationEmail, credentials.email);
++      // Update the state to reflect the email being sent.
++      yield put(actionSendUserVerificationEamil());
++      // // Push the user to the confirmation page.
++      history.push('/register/confirmation');
++    } catch (error) {
++      // Post the error message to the console.
++      yield call(debug, error);
++    }
+   }
+ }
+ 
+@@ -98,7 +106,7 @@ function* submitRegistration(credentials) {
+  *
+  * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
+  */
+-function* getProfile(sessionCookie) {
++export function* getProfile(sessionCookie) {
+   // Get the user's profile.
+   const profile = yield call(zephrService.getProfile, sessionCookie);
+ 
+@@ -115,7 +123,7 @@ function* getProfile(sessionCookie) {
+  *
+  * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
+  */
+-function* getAccount(sessionCookie) {
++export function* getAccount(sessionCookie) {
+   // Get the user's account.
+   const account = yield call(zephrService.getAccount, sessionCookie);
+ 
+diff --git a/sagas/zephrSaga/index.js b/sagas/zephrSaga/index.js
+index 98ae0363..fb7e62d3 100644
+--- a/sagas/zephrSaga/index.js
++++ b/sagas/zephrSaga/index.js
+@@ -6,10 +6,12 @@ import {
+   takeLatest,
+ } from 'redux-saga/effects';
+ import formSaga from './forms';
++import tokenExchangeSaga from './tokenExchange';
+ import resolveUIRules from './resolveUIRules';
+ 
+ export default [
+   ...formSaga,
++  ...tokenExchangeSaga,
+   // Needs to be run on the first site load regardless.
+   call(resolveUIRules),
+   // This saga is run on receive components so that a request for new UI
+diff --git a/sagas/zephrSaga/tokenExchange/index.js b/sagas/zephrSaga/tokenExchange/index.js
+new file mode 100644
+index 00000000..1be1460e
+--- /dev/null
++++ b/sagas/zephrSaga/tokenExchange/index.js
+@@ -0,0 +1,56 @@
++import {
++  call,
++  put,
++  takeEvery,
++  takeLatest,
++} from 'redux-saga/effects';
++import {
++  actionReceiveUserSession,
++  actionReceiveUserVerification,
++} from 'actions/zephrActions';
++import {
++  VERIFY_ZEPHR_USER_TOKEN,
++  RECEIVE_ZEPHR_USER_VERIFICATION,
++} from 'actions/types';
++import zephrService from 'services/zephrService';
++import history from 'utils/history';
++import createDebug from 'services/createDebug';
++import {
++  getProfile,
++  getAccount,
++} from '../forms/submitForm';
++
++const debug = createDebug('sagas:tokenExchange');
++
++export default [
++  // Listen for token verification request.
++  takeEvery(VERIFY_ZEPHR_USER_TOKEN, verifyToken),
++  // Listen for the verification status and redirect the user.
++  takeLatest(RECEIVE_ZEPHR_USER_VERIFICATION, () => {
++    setTimeout(() => {
++      history.push('/account');
++    }, 5000);
++  }),
++];
++
++/**
++ * A generator that is called when a user requests verification with an email token.
++ */
++function* verifyToken({ payload }) {
++  try {
++    const cookie = yield call(zephrService.verifyEmail, payload);
++
++    if (false !== cookie) {
++      // Store the session data for later use.
++      yield put(actionReceiveUserSession({ sessionCookie: cookie }));
++      // Get the user's profile.
++      yield call(getProfile, cookie);
++      // Get the user's account.
++      yield call(getAccount, cookie);
++      // Wait until profile and account details have been retrieved to redirect.
++      yield put(actionReceiveUserVerification());
++    }
++  } catch (error) {
++    yield call(debug, error);
++  }
++}
+diff --git a/selectors/zephrSelector.js b/selectors/zephrSelector.js
+index dd89c008..3bd4eea3 100644
+--- a/selectors/zephrSelector.js
++++ b/selectors/zephrSelector.js
+@@ -22,6 +22,11 @@ export const getUser = createSelector(
+   (state) => state.user,
+ );
+ 
++export const getAccount = createSelector(
++  zephrSelector,
++  (state) => state.user.account,
++);
++
+ export const getProfile = createSelector(
+   zephrSelector,
+   (state) => state.user.profile,
+@@ -46,3 +51,8 @@ export const getSession = createSelector(
+   zephrSelector,
+   (state) => state.session,
+ );
++
++export const getEmailVerified = createSelector(
++  zephrSelector,
++  (state) => state.user.emailVerified,
++);
+diff --git a/services/zephrService.js b/services/zephrService.js
+index bd618b2f..489605db 100644
+--- a/services/zephrService.js
++++ b/services/zephrService.js
+@@ -58,10 +58,9 @@ export default {
+ 
+       const response = await request;
+ 
+-      if ('cookie' in response) {
++      if ('tracking_id' in response) {
+         return {
+           status: 'success',
+-          cookie: response.cookie,
+           trackingId: response.tracking_id,
+         };
+       }
+@@ -72,6 +71,95 @@ export default {
+     }
+   },
+ 
++  /**
++   * Initiate the token exchange by sending the registered user a verification
++   * email.
++   *
++   * @param {string} email The user's email address.
++   */
++  async sendVerificationEmail(email) {
++    try {
++      const body = {
++        identifiers: {
++          email_address: email,
++        },
++        delivery: {
++          method: 'email',
++          destination: email,
++          action: 'register',
++          redirect: '/',
++        },
++      };
++
++      fetch(
++        `${process.env.ZEPHR_ROOT_URL}/blaize/token-exchange`,
++        {
++          method: 'POST',
++          credentials: 'include',
++          headers: {
++            'Content-Type': 'application/json',
++          },
++          body: JSON.stringify(body),
++        }
++      );
++
++      return true;
++    } catch (error) {
++      return postErrorMessage(error);
++    }
++  },
++
++  /**
++   * Use the token provided in the verification email to complete the token exchange.
++   *
++   * @param {string} token The token.
++   *
++   * @returns {string} sessionCookie The verified user's session cookie.
++   */
++  async verifyEmail(token) {
++    try {
++      const request = fetch(
++        `${process.env.ZEPHR_ROOT_URL}/blaize/token-exchange?token=${token}`,
++        {
++          method: 'GET',
++          credentials: 'include',
++        }
++      ).then((res) => res);
++
++      const response = await request;
++
++      if (200 === response.status) {
++        // On success parse the cookies set by Zephr's API response.
++        const cookieArr = document.cookie
++          .split(';')
++          .reduce((res, item) => {
++            const [key, val] = item.trim().split('=').map(decodeURIComponent);
++            const allNumbers = (str) => /^\d+$/.test(str);
++            try {
++              return Object.assign(
++                res,
++                {
++                  [key]: allNumbers(val) ? val : JSON.parse(val),
++                }
++              );
++            } catch (e) {
++              return Object.assign(res, { [key]: val });
++            }
++          }, {});
++
++        const {
++          blaize_session: sessionCookie,
++        } = cookieArr;
++
++        return `blaize_session=${sessionCookie}`;
++      }
++
++      return false;
++    } catch (error) {
++      return postErrorMessage(error);
++    }
++  },
++
+   /**
+    * Log a user in and retrieve their entitlements.
+    *
