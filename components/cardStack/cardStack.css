@@ -114,7 +114,7 @@
   height: rem(32);
   width: auto;
 
-  > span {
+  & span {
     display: block;
     height: rem(32);
   }
