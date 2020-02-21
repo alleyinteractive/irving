@@ -103,10 +103,10 @@ const regFormMock = {
  * applied by the `setFormErrorState` function produces the same results as
  * the effects of a dispatched error action.
  *
- * @param {*} type      The form type.
- * @param {*} formState The (clean) form's state.
- * @param {*} error     The error to be tested.
- * @param {*} mockState The mocked state object.
+ * @param {string} type      The form type.
+ * @param {object} formState The (clean) form's state.
+ * @param {string} error     The error to be tested.
+ * @param {object} mockState The mocked state object.
  */
 function compareFormState(type, formState, error, mockState) {
   const components = setFormErrorState(formState, error);
