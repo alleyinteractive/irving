@@ -1,0 +1,15 @@
+.link {
+  font-size: rem(18);
+  font-weight: 500;
+  line-height: 1.33;
+  text-decoration: underline;
+
+  &:last-of-type {
+    margin-bottom: rem(60);
+  }
+
+  @media ($mdMin) {
+    font-size: rem(20);
+    line-height: 1.3;
+  }
+}

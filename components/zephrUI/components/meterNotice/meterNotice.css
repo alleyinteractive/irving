@@ -1,0 +1,119 @@
+/* MeterNotice component styles */
+
+:global {
+  .MeterNotice__wrapper {
+    @include container;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .MeterNotice__innerWrapper {
+    tidy-span: 12;
+
+    @media ($lgMin) {
+      margin-right: auto;
+      tidy-offset-left: 1;
+      tidy-span: 11;
+    }
+
+    [aria-expanded="false"] & {
+      align-items: center;
+      display: flex;
+    }
+  }
+
+  .MeterNotice__smallText {
+    color: $white;
+    font-family: $sans;
+    font-size: rem(22);
+    font-weight: 600;
+    line-height: 0.86;
+    margin-bottom: rem(40);
+
+    [aria-expanded="false"] & {
+      font-size: rem(16);
+      margin-bottom: 0;
+    }
+  }
+
+  .MeterNotice__count {
+    color: $call-to-action;
+  }
+
+  .MeterNotice__count {
+    width: auto;
+  }
+
+  .MeterNotice__largeText {
+    color: $white;
+    display: block;
+    font-family: $sans;
+    font-size: rem(30);
+    font-weight: 500;
+    line-height: 1.07;
+    margin-bottom: rem(25);
+
+    @media ($lgMin) {
+      max-width: tidy-span(6);
+    }
+
+    [aria-expanded="false"] & {
+      display: none;
+    }
+  }
+
+  .MeterNotice__callsToAction {
+    align-items: center;
+    display: flex;
+
+    @media ($mdMin) {
+      flex-flow: row nowrap;
+    }
+
+    [aria-expanded="false"] & {
+      margin-left: auto;
+    }
+  }
+
+  .MeterNotice__item {
+    color: $call-to-action;
+    font-size: rem(16);
+    font-weight: 500;
+    line-height: 1;
+
+    &:not(:last-child) {
+      margin-right: rem(20);
+    }
+
+    [aria-expanded="false"] & {
+      font-size: rem(14);
+    }
+  }
+
+  .MeterNotice__callToAction--button {
+    background-color: $call-to-action;
+    color: $black;
+    display: block;
+    font-size: rem(16);
+    font-weight: 600;
+    padding: rem(10) rem(28);
+    text-decoration: none;
+
+    &:hover {
+      background-color: $black;
+      color: $call-to-action;
+    }
+
+    [aria-expanded="false"] & {
+      font-size: rem(14);
+    }
+  }
+
+  .MeterNotice__callToAction--link {
+    text-decoration: underline;
+  }
+
+  .MeterNotice__item {
+    width: auto;
+  }
+}
