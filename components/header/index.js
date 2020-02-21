@@ -51,6 +51,7 @@ const Header = (props) => {
   // Breakpoints
   const isSmMin = useBreakpoint('smMin');
 
+  const [isAdVisible, setAdIsVisible] = useState(false);
   // When resizing, do not have the click to expand controls on desktop.
   useEffect(() => {
     if (! isSmMin) {
@@ -64,14 +65,18 @@ const Header = (props) => {
 
   // eslint-disable-next-line arrow-body-style
   const HeaderMarkup = ({ isHeadroom, headerName, isExpanded }) => {
-    console.log('isHeadroom', isHeadroom);
+    console.log(headerName, isMobile);
+    useEffect(() => {
+      setAdIsVisible(! isMobile && 'default' === headerName);
+    });
+    console.log(isAdVisible);
     return (
       <header
         className={styles.container}
         ref={isHeadroom ? headroomRef : null}
       >
         <div className={styles.wrapper}>
-          {! isHeadroom && ! isMobile && (
+          {isAdVisible && (
             <div className={styles.leaderboardRow}>
               {leaderboardAd}
             </div>
