@@ -15,6 +15,9 @@ getService().start();
 
 const createDebug = require('../services/createDebug');
 const { rootUrl } = require('../config/paths');
+const bustCache = require('./bustCache');
+const bustPageCache = require('./bustPageCache');
+const purgePageCache = require('./purgePageCache');
 
 const debug = createDebug('server:error');
 const {
@@ -25,6 +28,11 @@ const {
   HTTPS_CERT_PATH,
 } = process.env;
 const app = express();
+
+// Clearing the Redis cache.
+app.get('/bust-endpoint-cache', bustPageCache);
+app.get('/bust-entire-cache', bustCache);
+app.purge('/*', purgePageCache);
 
 app.set('views', 'server/views');
 app.set('view engine', 'ejs');
