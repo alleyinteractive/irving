@@ -30,16 +30,23 @@ const Header = (props) => {
   const megaMenu = findChildByName('mega-menu', children);
   const [isMobile, setIsMobile] = useState(false);
   const headroomRef = useRef();
+  const [currentOpenMenu, setCurrentOpenMenu] = useState('');
 
   // Redux
   const dispatch = useDispatch();
   const dispatchUpdateHeaderHeight = (ht) => {
     dispatch(actionUpdateHeaderHeight(ht));
   };
-  const toggleMegaMenu = (value) => {
+
+  const megaMenuIsExpanded = useSelector((state) => state.visible.megaMenu);
+
+  const toggleMegaMenu = (value, headerValue) => {
+    setCurrentOpenMenu(headerValue);
+    if (! value) {
+      setCurrentOpenMenu('');
+    }
     dispatch(actionUpdateVisibility('megaMenu', value));
   };
-  const isExpanded = useSelector((state) => state.visible.megaMenu);
 
   // Breakpoints
   const isSmMin = useBreakpoint('smMin');
@@ -55,8 +62,9 @@ const Header = (props) => {
     dispatchUpdateHeaderHeight(headroomHeight);
   });
 
-  const HeaderMarkup = ({ isHeadroom }) => {
-    const headroomIsExpanded = isHeadroom && isExpanded;
+  // eslint-disable-next-line arrow-body-style
+  const HeaderMarkup = ({ isHeadroom, headerName, isExpanded }) => {
+    console.log('isHeadroom', isHeadroom);
     return (
       <header
         className={styles.container}
@@ -109,7 +117,7 @@ const Header = (props) => {
                   [styles.expandedButton]: isExpanded,
                 })}
                 type="button"
-                onClick={() => toggleMegaMenu(! isExpanded)}
+                onClick={() => toggleMegaMenu(! isExpanded, headerName)}
               >
                 <span className="screen-reader-text">
                   {isExpanded ?
@@ -120,10 +128,10 @@ const Header = (props) => {
                   {isExpanded ? 'Close' : <MegaMenuIcon />}
                 </span>
               </button>
-              {(isExpanded && ! isHeadroom) && (
+              {('default' === currentOpenMenu && isExpanded) && (
                 <div className={styles.megaMenu}>{megaMenu}</div>
               )}
-              {headroomIsExpanded && (
+              {('headroom' === currentOpenMenu && isExpanded) && (
                 <div className={styles.megaMenu}>{megaMenu}</div>
               )}
             </div>
@@ -134,7 +142,9 @@ const Header = (props) => {
   };
 
   HeaderMarkup.propTypes = {
+    isExpanded: PropTypes.bool.isRequired,
     isHeadroom: PropTypes.bool,
+    headerName: PropTypes.string.isRequired,
   };
 
   HeaderMarkup.defaultProps = {
@@ -143,14 +153,24 @@ const Header = (props) => {
 
   return (
     <>
-      <HeaderMarkup isHeadroom={false} />
+      <HeaderMarkup
+        isHeadroom={false}
+        isExpanded={'default' === currentOpenMenu && megaMenuIsExpanded}
+        headerName="default"
+      />
+      {/* Only show headroom is scroll position is 260px down the page. */}
       <Headroom
         disableInlineStyles
         aria-hidden
         className={styles.headroom}
         pinStart={isMobile ? 60 : 260}
       >
-        <HeaderMarkup className={styles.headroom} isHeadroom />
+        <HeaderMarkup
+          className={styles.headroom}
+          isHeadroom
+          isExpanded={'headroom' === currentOpenMenu && megaMenuIsExpanded}
+          headerName="headroom"
+        />
       </Headroom>
     </>
   );
