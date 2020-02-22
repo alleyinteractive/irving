@@ -12,20 +12,26 @@ import {
 } from 'actions/storyActions';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import { getZephrComponents } from 'selectors/zephrRulesSelector';
+import get from 'lodash/get';
 import styles from './contentBody.css';
 
-const ContentBody = (props) => {
+const ContentBody = ({
+  children,
+  truncatedCTA,
+  wordCount,
+  dispatchShowFullStory,
+  dispatchTruncateStory,
+  overrideCTA,
+  zephrComponents,
+}) => {
   const [truncateContent, setTruncation] = useState(false);
   const contentRef = useRef();
-
-  const {
-    children,
-    truncatedCTA,
-    wordCount,
-    dispatchShowFullStory,
-    dispatchTruncateStory,
-    overrideCTA,
-  } = props;
+  const obscureContent = get(
+    zephrComponents,
+    'obscureContent.zephrOutput',
+    false
+  );
 
   const showFullText = () => {
     // Remove the truncation button and height limit.
@@ -85,6 +91,7 @@ const ContentBody = (props) => {
           className={styles.truncationButton}
           type="button"
           onClick={showFullText}
+          disabled={true === obscureContent}
         >
           <strong>{__(`${truncatedCTA}`, 'mittr')}</strong>{' '}
           {__(`${wordCount} words`, 'mittr')}
@@ -99,6 +106,7 @@ ContentBody.defaultProps = {
   dispatchShowFullStory: () => {},
   dispatchTruncateStory: () => {},
   overrideCTA: false,
+  zephrComponents: {},
 };
 
 ContentBody.propTypes = {
@@ -108,14 +116,20 @@ ContentBody.propTypes = {
   dispatchShowFullStory: PropTypes.func,
   dispatchTruncateStory: PropTypes.func,
   overrideCTA: PropTypes.bool,
+  zephrComponents: PropTypes.object,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchShowStory: () => dispatch(actionShowFullStory()),
   dispatchTruncateStory: () => dispatch(actionTruncateStory()),
 });
+
+const mapStateToProps = (state) => ({
+  zephrComponents: getZephrComponents(state),
+});
+
 const withRedux = connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
 );
 
