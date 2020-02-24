@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Heading from 'components/helpers/heading';
+import { __ } from '@wordpress/i18n';
 import Link from 'components/helpers/link';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './error404.css';
@@ -9,25 +9,31 @@ const Error404 = (props) => {
   const {
     children,
     heading,
-    link,
-    msg,
   } = props;
+
+  const goBack = (e) => {
+    e.preventDefault();
+    window.history.back();
+  };
 
   return (
     <div className={styles.wrapper}>
-      <Heading
-        className={styles.title}
-        typeStyle="step-up-three"
-        fontFamily="fira"
-        tag="h1"
-      >
+      <p className={styles.msg}>
         {heading}
-      </Heading>
-      <p className={styles.msg}>{msg}</p>
+        {__(' Try', 'mittr')}&nbsp;
+        <Link to="/search/" className={styles.link}>
+          {__('searching ', 'mittr')}
+        </Link>
+        {__('or ', 'mittr')}
+        <button
+          type="button"
+          onClick={goBack}
+          className={styles.link}
+        >
+          {__('go back.', 'mittr')}
+        </button>
+      </p>
       {children}
-      <Link to="/" className={styles.link}>
-        {link}
-      </Link>
     </div>
   );
 };
@@ -35,8 +41,6 @@ const Error404 = (props) => {
 Error404.propTypes = {
   children: PropTypes.node.isRequired,
   heading: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
-  msg: PropTypes.string.isRequired,
 };
 
 const wrapWithStyles = withStyles(styles);
