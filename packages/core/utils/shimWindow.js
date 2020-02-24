@@ -8,6 +8,8 @@ if (global && 'undefined' === typeof window) {
   };
 }
 
+window.addEventListener = window.addEventListener || (() => {});
+
 window.matchMedia = window.matchMedia || (() => ({
   matches: false,
   addListener: () => {},
