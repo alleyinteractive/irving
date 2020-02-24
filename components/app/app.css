@@ -6,6 +6,30 @@
   display: flex;
   flex-flow: column nowrap;
   min-height: 100vh;
+
+  &.obscureContent {
+    max-height: 150vh;
+    overflow: hidden;
+    position: relative;
+
+    @media screen and (orientation: landscape) {
+      /* Needs to be short enough to visibly obscure the end of the article. */
+      @media ($lgMin) {
+        max-height: 2000px;
+      }
+    }
+
+    &::after {
+      background: linear-gradient(180deg,hsla(0,0%,100%,0) 0, $white);
+      bottom: 0;
+      content: '';
+      display: block;
+      height: 100vh;
+      position: absolute;
+      width: 100%;
+      z-index: 2;
+    }
+  }
 }
 
 .skipLink {

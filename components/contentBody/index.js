@@ -39,6 +39,12 @@ const ContentBody = ({
   };
 
   useEffect(() => {
+    if (obscureContent) {
+      setTruncation(true);
+      dispatchTruncateStory();
+      return;
+    }
+
     const { referrer } = document;
     const { location: { origin } } = window;
 

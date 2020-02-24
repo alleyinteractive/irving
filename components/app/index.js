@@ -4,6 +4,9 @@ import { hot } from 'react-hot-loader/root';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { withStyles } from 'critical-style-loader/lib';
+import classNames from 'classnames';
+import { getZephrComponents } from 'selectors/zephrRulesSelector';
+import get from 'lodash/get';
 import favicon from 'assets/images/favicon.ico';
 import RootProviders from 'components/rootProviders';
 import ConnectedRoot from 'components/connectedRoot';
@@ -16,30 +19,41 @@ import styles from './app.css';
 import OneTrust from './oneTrust';
 
 const App = ({
-  error, roots, providers,
-}) => (
-  <ErrorBoundary>
-    <Helmet>
-      <link rel="shortcut icon" href={favicon} />
-    </Helmet>
-    {error ? (
-      <ErrorMessage />
-    ) : (
-      <div className={styles.wrapper}>
-        <a href="#content" className={styles.skipLink}>
+  error, roots, providers, zephrComponents,
+}) => {
+  const obscureContent = get(
+    zephrComponents,
+    'obscureContent.zephrOutput',
+    false
+  );
+  return (
+    <ErrorBoundary>
+      <Helmet>
+        <link rel="shortcut icon" href={favicon} />
+      </Helmet>
+      {error ? (
+        <ErrorMessage />
+      ) : (
+        <div className={classNames(
+          styles.wrapper,
+          { [styles.obscureContent]: obscureContent }
+        )}
+        >
+          <a href="#content" className={styles.skipLink}>
             Skip to Content
-        </a>
-        <RootProviders providers={providers}>
-          {roots.map((name) => (
-            <ConnectedRoot key={name} name={name} />
-          ))}
-        </RootProviders>
-      </div>
-    )}
-    <OverlayFooter />
-    <OneTrust />
-  </ErrorBoundary>
-);
+          </a>
+          <RootProviders providers={providers}>
+            {roots.map((name) => (
+              <ConnectedRoot key={name} name={name} />
+            ))}
+          </RootProviders>
+        </div>
+      )}
+      <OverlayFooter />
+      <OneTrust />
+    </ErrorBoundary>
+  );
+};
 
 App.propTypes = {
   /**
@@ -54,12 +68,21 @@ App.propTypes = {
    * Root provider configurations
    */
   providers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+   * The Zephr components endpoint.
+   */
+  zephrComponents: PropTypes.object,
+};
+
+App.defaultProps = {
+  zephrComponents: {},
 };
 
 const mapStateToProps = (state) => ({
   roots: getRoots(state),
   providers: getProviders(state),
   error: !! state.error,
+  zephrComponents: getZephrComponents(state),
 });
 
 const wrapWithStyles = withStyles(styles);
