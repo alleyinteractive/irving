@@ -21,11 +21,12 @@ import OneTrust from './oneTrust';
 const App = ({
   error, roots, providers, zephrComponents,
 }) => {
-  const obscureContent = get(
+  const obscureContent = true === get(
     zephrComponents,
     'obscureContent.zephrOutput',
     false
   );
+
   return (
     <ErrorBoundary>
       <Helmet>

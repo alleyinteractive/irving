@@ -27,7 +27,7 @@ const ContentBody = ({
 }) => {
   const [truncateContent, setTruncation] = useState(false);
   const contentRef = useRef();
-  const obscureContent = get(
+  const obscureContent = true === get(
     zephrComponents,
     'obscureContent.zephrOutput',
     false
