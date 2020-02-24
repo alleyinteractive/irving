@@ -64,7 +64,6 @@ const Header = (props) => {
 
   // eslint-disable-next-line arrow-body-style
   const HeaderMarkup = ({ isHeadroom, headerName, isExpanded }) => {
-    console.log('isHeadroom', isHeadroom);
     return (
       <header
         className={styles.container}
