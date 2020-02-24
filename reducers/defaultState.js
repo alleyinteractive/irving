@@ -52,6 +52,8 @@ export const componentDataMeta = {
 
 export const headerHeight = 0;
 
+export const isNoticeVisible = true;
+
 const defaultState = {
   components,
   componentData,
@@ -65,7 +67,7 @@ const defaultState = {
 
 export const zephr = {
   isLoading: true,
-  forms: [],
+  forms: {},
   cached: false,
   session: {},
   user: {

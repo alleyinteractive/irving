@@ -65,11 +65,6 @@ const Header = (props) => {
 
   // eslint-disable-next-line arrow-body-style
   const HeaderMarkup = ({ isHeadroom, headerName, isExpanded }) => {
-    console.log(headerName, isMobile);
-    useEffect(() => {
-      setAdIsVisible(! isMobile && 'default' === headerName);
-    });
-    console.log(isAdVisible);
     return (
       <header
         className={styles.container}
