@@ -112,6 +112,10 @@ export default async function cacheResult(
     context,
   ];
   const key = args.map((arg) => {
+    if ('undefined' === typeof arg) {
+      return '';
+    }
+
     // Some args, like cookie, are objects—stringify those using query-string.
     if ('object' === typeof arg) {
       return queryString.stringify(arg);
