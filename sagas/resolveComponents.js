@@ -17,7 +17,6 @@ export default function* resolveComponents() {
   const {
     path,
     search,
-    cookie,
     context,
     cached,
   } = yield select(getRouteMeta);
@@ -29,7 +28,7 @@ export default function* resolveComponents() {
   }
 
   try {
-    const result = yield call(fetchComponents, path, search, cookie, context);
+    const result = yield call(fetchComponents, path, search, context);
 
     // Don't receive components on client side if redirecting,
     // otherwise will result in a confusing flash of empty page content.

@@ -35,11 +35,7 @@ function getExtraQueryParams() {
  *                           "site" (all components)
  * @returns {Promise<{object}>}
  */
-export async function fetchComponents(
-  path,
-  search,
-  context = CONTEXT_PAGE
-) {
+export async function fetchComponents(path, search, context = CONTEXT_PAGE) {
   const query = queryString.stringify({
     path,
     context,
@@ -91,43 +87,18 @@ export async function fetchComponents(
 
 /**
  * Cache fetchComponents responses. Return cached response if available.
- * @param {string} path      - path of the request page
- * @param {string} search    - search string
- * @param {string} cookie    - cookie header string
- * @param {string} [context] - "page" (page specific components) or
- *                           "site" (all components)
+ * @param {array} args - fetchComponents arguments
  * @returns {Promise<{object}>} - fetchComponents return value
  */
-export default async function cacheResult(
-  path,
-  search,
-  cookie = {},
-  context = CONTEXT_PAGE
-) {
+export default async function cacheResult(...args) {
   const cache = getService();
-  const args = [
-    path,
-    search,
-    cookie,
-    context,
-  ];
-  const key = args.map((arg) => {
-    // Some args, like cookie, are objects—stringify those using query-string.
-    if ('object' === typeof arg) {
-      return queryString.stringify(arg);
-    }
-
-    return arg.toString();
-  }).join(',');
+  const key = args.toString();
   const info = { cached: false, route: args };
-  let response = await cache.get(key);
-  const {
-    bypassCache,
-  } = cookie;
 
-  if (! response || bypassCache) {
+  let response = await cache.get(key);
+  if (! response) {
     debug(info);
-    response = await fetchComponents(path, search, context);
+    response = await fetchComponents(...args);
     await cache.set(key, response);
   } else {
     debug({ ...info, cached: true });

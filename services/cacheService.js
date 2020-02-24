@@ -1,7 +1,6 @@
 const defaultService = {
   get: () => null,
   set: () => {},
-  del: () => null,
 };
 
 /**

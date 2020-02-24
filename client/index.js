@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Cookies from 'universal-cookie';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -33,18 +32,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, state, enhancer);
 const persistor = persistStore(store);
 const rootEl = document.getElementById('root');
-const cookies = new Cookies();
 
 sagaMiddleware.run(rootSaga);
 
 history.listen((location, action) => {
-  store.dispatch(actionLocationChange(
-    action,
-    {
-      ...location,
-      cookie: cookies.getAll({ doNotParse: true }),
-    }
-  ));
+  store.dispatch(actionLocationChange(action, location));
 });
 
 const render = () => {
