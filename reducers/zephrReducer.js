@@ -8,13 +8,11 @@ import {
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
   RECEIVE_USER_REGISTRATION,
   RECEIVE_REGISTRATION_ERROR,
-  SUBMIT_ZEPHR_FORM,
-  CLEAR_FORM_ERRORS,
   RECEIVE_USER_LOG_OUT,
   RECEIVE_ZEPHR_USER_ACCOUNT,
   RECEIVE_ZEPHR_USER_VERIFICATION,
+  SUBMIT_ZEPHR_FORM,
 } from 'actions/types';
-import React from 'react';
 import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
 import { zephr as defaultState } from './defaultState';
 
@@ -37,21 +35,19 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
       return {
         ...state,
         isLoading: false,
-        forms: [...state.forms, payload],
+        forms: {
+          ...state.forms,
+          ...payload,
+        },
         cached: true,
       };
     case SUBMIT_ZEPHR_FORM:
-    case CLEAR_FORM_ERRORS:
       return {
         ...state,
-        forms: [
-          ...state.forms.map((form) => {
-            if (form.route === payload.route && true === form.error) {
-              return clearFormErrors(form);
-            }
-            return form;
-          }),
-        ],
+        forms: {
+          ...state.forms,
+          [payload.type]: clearFormErrors(state.forms[payload.type]),
+        },
       };
     case RECEIVE_ZEPHR_USER_SESSION:
       return {
@@ -80,49 +76,82 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
     case RECEIVE_USER_LOGIN:
       return {
         ...state,
-        forms: [
-          ...state.forms.map((form) => {
-            if ('/login' === form.route && true === form.error) {
-              return {
-                ...form,
-                error: false,
-                errorCount: null,
-              };
-            }
-
-            return form;
-          }),
-        ],
+        forms: {
+          ...state.forms,
+          login: {
+            ...state.forms.login,
+            error: false,
+            errors: [],
+            errorCount: null,
+          },
+        },
       };
     case RECEIVE_LOGIN_ERROR:
-      return setFormErrorState(state, '/login', payload);
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          login: {
+            components: setFormErrorState(state.forms.login, payload),
+            error: true,
+            errors: [
+              ...state.forms.login.errors,
+              payload,
+            ],
+            errorCount: state.forms.login.errorCount + 1,
+            requireCaptcha: 3 < state.forms.login.errorCount + 2,
+          },
+        },
+      };
     case RECEIVE_USER_REGISTRATION:
       return {
         ...state,
-        forms: [
-          ...state.forms.map((form) => {
-            if ('/register' === form.route && true === form.error) {
-              return {
-                ...form,
-                error: false,
-                errorCount: null,
-              };
-            }
-
-            return form;
-          }),
-        ],
+        forms: {
+          ...state.forms,
+          register: {
+            ...state.forms.register,
+            error: false,
+            errors: [],
+            errorCount: null,
+          },
+        },
         user: {
           ...state.user,
           emailVerified: false,
         },
       };
     case RECEIVE_REGISTRATION_ERROR:
-      return setFormErrorState(state, '/register', payload);
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          register: {
+            components: setFormErrorState(state.forms.register, payload),
+            error: true,
+            errors: [
+              ...state.forms.register.errors,
+              payload,
+            ],
+          },
+        },
+      };
     case RECEIVE_PASSWORD_VERIFICATION_ERROR:
       // This error needs to be thrown separately from the generic form error state so
       // that the error state can be applied to both password fields on the registration form.
-      return setPasswordErrorState(state);
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          register: {
+            components: setPasswordErrorState(state.forms.register),
+            error: true,
+            errors: [
+              ...state.forms.register.errors,
+              'verify-password',
+            ],
+          },
+        },
+      };
     case RECEIVE_USER_LOG_OUT:
       return {
         ...state,
@@ -149,116 +178,146 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
  * @param {object} state   The current state.
  * @param {string} route   The form's route (e.g. /login).
  *
- * @returns {object} state The transformed state.
+ * @returns {object} form  The cleared form.
  */
 function clearFormErrors(form) {
+  // If there is no error, return the form.
+  if (! form.error) {
+    return form;
+  }
+
+  // Get the component fields.
+  const fields = JSON.parse(form.components);
   // Remove any errors
-  const componentMap = form.components.map((el) => {
-    if (true === el.props.invalid) {
+  const components = fields.map((el) => {
+    if (true === el.invalid) {
       return {
         ...el,
-        props: {
-          ...el.props,
-          invalid: false,
-        },
+        invalid: false,
       };
     }
 
     return el;
   });
+  // Retrieve the position of any active error message.
+  const activeErrorIndexes = components.map(
+    (component, index) => {
+      const { key } = component;
+      if (key && key.includes('error-message')) {
+        return index;
+      }
+      return null;
+    }
+  ).filter((index) => null !== index);
 
-  // Find any error messages in the component map.
-  const messagePos = form.components.map(
-    (el) => el.type
-  ).indexOf('span');
-  // Remove the component.
-  componentMap.splice(messagePos, 1);
+  while (activeErrorIndexes.length) {
+    components.splice(activeErrorIndexes.pop(), 1);
+  }
 
   return {
     ...form,
-    components: componentMap,
+    error: false,
+    errors: [],
+    components: JSON.stringify(components),
   };
 }
 
 /**
  * Set the error state for an invalid login attempt.
  *
- * @param {object} state     Current state.
- * @param {string} route     The form's route (e.g. /login).
- * @param {string} errorType The type of error returned from Zephr.
+ * @param {object} form  The current form.
+ * @param {string} error The type of error returned from Zephr.
  *
- * @return {object} state    Transformed state.
+ * @return {object} form The transformed form with errors.
  */
-function setFormErrorState(state, route, errorType) {
-  return {
-    ...state,
-    forms: [
-      ...state.forms.map((form) => {
-        if (route !== form.route) {
-          return form;
-        }
+export function setFormErrorState(form, error) {
+  // Prevent the same error from being added to the form multiple times.
+  if (form.error && form.errors.includes(error)) {
+    return form.components;
+  }
 
-        // Get the error's target input.
-        const targetId = setErrorTargetId(errorType);
-        // Get the target's position in the components array.
-        const targetPos = form.components.map(
-          (el) => {
-            if (el) {
-              return el.props.id;
-            }
-            return null;
-          }
-        ).indexOf(targetId);
-        // Get the target.
-        const target = form.components[targetPos];
-        // Add the error state to the target.
-        const erroredTarget = {
-          ...target,
-          props: {
-            ...target.props,
-            invalid: true,
-          },
-        };
-        // Replace the component with the error state.
-        form.components.splice(
-          targetPos,
-          1,
-          erroredTarget,
-        );
-        // Create the error message component.
-        const errorMessage = React.createElement(
-          'span',
-          {
-            id: `${targetId}-error`,
-            key: `${targetId}-error-message`,
-            className: 'form-error',
-          },
-          formatErrorMessage(errorType),
-        );
-        // Add the error message to the components array.
-        form.components.splice(targetPos + 1, 0, errorMessage);
+  let obj = form;
+  if (form.error) {
+    obj = clearFormErrors(form);
+  }
 
-        // Check to see if the form is already in an error state.
-        if ('errorCount' in form) {
-          // Get the current error count.
-          const { errorCount } = form;
-
-          return {
-            ...form,
-            errorCount: errorCount + 1,
-            requireCaptcha: 1 <= errorCount,
-          };
-        }
-
-        return {
-          ...form,
-          error: true,
-          errorCount: 1,
-          requireCaptcha: false,
-        };
-      }),
-    ],
+  // Get the components.
+  const components = JSON.parse(obj.components);
+  // Get the targer's ID.
+  const targetId = setErrorTargetId(error);
+  // Get the target's position in the components array.
+  const position = components.map((el) => el.id).indexOf(targetId);
+  // Get the target.
+  const target = components[position];
+  // Update the target's state.
+  const targetWithError = {
+    ...target,
+    invalid: true,
   };
+  components.splice(position, 1, targetWithError);
+  // Create the error message.
+  const message = {
+    type: 'span',
+    id: `${targetId}-error`,
+    key: `${targetId}-error-message`,
+    className: 'form-error',
+    message: formatErrorMessage(error),
+  };
+  // Add the error message to the components array.
+  components.splice(position + 1, 0, message);
+
+  return JSON.stringify(components);
+}
+
+/**
+ * A function that formats the error state for the password inputs on the registration form.
+ *
+ * @param {object} form   The current form.
+ *
+ * @returns {object} form The transformed form.
+ */
+export function setPasswordErrorState(form) {
+  let obj = form;
+  if (form.error) {
+    obj = clearFormErrors(form);
+  }
+
+  // Define the error.
+  const error = 'verify-password';
+  // Get the components.
+  const components = JSON.parse(obj.components);
+  // Get the target's position in the components array.
+  const position = components.map((el) => el.id).indexOf('new-password');
+  // Get the password input.
+  const passwordInput = components[position];
+  // Update the input's state.
+  const passwordInputWithError = {
+    ...passwordInput,
+    invalid: true,
+  };
+  components.splice(position, 1, passwordInputWithError);
+
+  // Get the verification input.
+  const verificationInput = components[position + 1];
+  // Update the input's state.
+  const verificationInputWithError = {
+    ...verificationInput,
+    invalid: true,
+  };
+  components.splice(position + 1, 1, verificationInputWithError);
+
+  // Create the error message.
+  const message = {
+    type: 'span',
+    id: 'verify-password-error',
+    key: 'verify-password-error-message',
+    className: 'form-error',
+    message: formatErrorMessage(error),
+  };
+  // Add the error message to the components array.
+  components.splice(position + 2, 0, message);
+
+  return JSON.stringify(components);
 }
 
 /**
@@ -269,18 +328,24 @@ function setFormErrorState(state, route, errorType) {
  *
  * @returns {string} The target component's ID.
  */
-function setErrorTargetId(type) {
+export function setErrorTargetId(type) {
   switch (type) {
-    case 'user-not-found':
-      return 'email-address';
-    case 'invalid-password':
-      return 'current-password';
     case 'email-address':
+      return type;
+    case 'email-not-verified':
       return 'email-address';
     case 'full-name':
-      return 'full-name';
+      return type;
+    case 'invalid-password':
+      return 'current-password';
+    case 'password-not-strong':
+      return 'new-password';
     case 'terms-checkbox':
-      return 'terms-checkbox';
+      return type;
+    case 'user-already-exists':
+      return 'email-address';
+    case 'user-not-found':
+      return 'email-address';
     default:
       return null;
   }
@@ -295,100 +360,30 @@ function setErrorTargetId(type) {
  * @returns {string} The error message.
  */
 /* eslint-disable max-len */
-function formatErrorMessage(type) {
+export function formatErrorMessage(type) {
   const messageBase = 'Oops! Let’s try that again';
 
   switch (type) {
-    case 'user-not-found':
-      return `${messageBase} — User not found. Please enter your email address.`;
-    case 'invalid-password':
-      return `${messageBase} — Invalid password. Please enter your password.`;
-    case 'verify-password':
-      return `${messageBase} — Passwords do not match. Please re-enter your password and try again.`;
-    case 'full-name':
-      return `${messageBase} — Please enter your full name.`;
     case 'email-address':
       return `${messageBase} — Please enter a valid email address.`;
+    case 'email-not-verified':
+      return `${messageBase} — Your email has not yet been verified. Please check your inbox for a verification email and try again.`;
+    case 'full-name':
+      return `${messageBase} — Please enter your full name.`;
+    case 'invalid-password':
+      return `${messageBase} — Invalid password. Please enter your password.`;
+    case 'password-not-strong':
+      return `${messageBase} — Your password must be at least 8 characters, include one uppercase letter, one lowercase letter, and one symbol (e.g. !#$%&).`;
     case 'terms-checkbox':
       return `${messageBase} — You must agree to the terms of service in order to create an account.`;
+    case 'user-already-exists':
+      return `${messageBase} — Account already exists!`;
+    case 'user-not-found':
+      return `${messageBase} — User not found. Please enter your email address.`;
+    case 'verify-password':
+      return `${messageBase} — Passwords do not match. Please re-enter your password and try again.`;
     default:
       return messageBase;
   }
 }
 /* eslint-enable */
-
-/**
- * A function that formats the error state for the password inputs on the registration form.
- *
- * @param {object} state The current state.
- *
- * @returns {object} state The transformed state.
- */
-function setPasswordErrorState(state) {
-  return {
-    ...state,
-    forms: [
-      ...state.forms.map((form) => {
-        if ('/register' !== form.route || true === form.error) {
-          return form;
-        }
-
-        // Create an array of available component IDs.
-        const idMap = form.components.map((el) => el.props.id);
-
-        // Get the password input's position in the array.
-        const passwordInputPos = idMap.indexOf('new-password');
-        const passwordInput = form.components[passwordInputPos];
-        // Create the password input with an error state.
-        const erroredPasswordInput = {
-          ...passwordInput,
-          props: {
-            ...passwordInput.props,
-            invalid: true,
-          },
-        };
-        // Replace the component with the error state.
-        form.components.splice(
-          passwordInputPos,
-          1,
-          erroredPasswordInput,
-        );
-
-        // Get the verification input's position in the array.
-        const verifyInputPos = idMap.indexOf('verify-password');
-        const verifyInput = form.components[verifyInputPos];
-        // Create the verification input with an error state.
-        const erroredVerifyInput = {
-          ...verifyInput,
-          props: {
-            ...verifyInput.props,
-            invalid: true,
-          },
-        };
-        // Replace the component with the error state.
-        form.components.splice(
-          verifyInputPos,
-          1,
-          erroredVerifyInput,
-        );
-        // Create the error message component.
-        const errorMessage = React.createElement(
-          'span',
-          {
-            key: 'password-verification-error-message',
-            className: 'form-error',
-          },
-          formatErrorMessage('verify-password'),
-        );
-
-        // Add the error message to the components array.
-        form.components.splice(verifyInputPos + 1, 0, errorMessage);
-
-        return {
-          ...form,
-          error: true,
-        };
-      }),
-    ],
-  };
-}

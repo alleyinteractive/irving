@@ -1,9 +1,3 @@
-import React from 'react';
-import {
-  FormInput,
-  TermsCheckbox,
-} from './components/formElements';
-
 /**
  * Construct a form via a response from the Zephr API.
  *
@@ -56,14 +50,15 @@ export default function createForm(formJSON) {
       };
     }
 
-    return React.createElement(FormInput, props, null);
+    return props;
   });
 
   if (true === registration) {
     components = [...components, ...generatePasswordFields(slug)];
   }
 
-  const buttonProps = {
+  const button = {
+    id: 'submit-button',
     key: 'zephr-submit-button',
     type: 'submit',
     value: submitText,
@@ -72,7 +67,7 @@ export default function createForm(formJSON) {
   // Append the submit button to the end of the array.
   return [
     ...components,
-    React.createElement('input', buttonProps, null),
+    button,
   ];
 }
 
@@ -103,7 +98,7 @@ function generatePasswordFields(formType) {
   };
 
   let fields = [
-    React.createElement(FormInput, passwordProps, null),
+    passwordProps,
   ];
 
   if ('registration' === formType) {
@@ -120,26 +115,18 @@ function generatePasswordFields(formType) {
  */
 function generateRegistrationFields() {
   const verifyId = 'verify-password';
-  const verifyField = React.createElement(
-    FormInput,
-    {
-      id: verifyId,
-      className: `zephr-input-${verifyId}`,
-      type: 'password',
-      placeholder: 'Confirm your password',
-      required: true,
-      defaultValue: '',
-      autoComplete: 'new-password',
-    },
-    null
-  );
-  const termsField = React.createElement(
-    TermsCheckbox,
-    {
-      id: 'terms-checkbox',
-    },
-    null
-  );
+  const verifyField = {
+    id: verifyId,
+    className: `zephr-input-${verifyId}`,
+    type: 'password',
+    placeholder: 'Confirm your password',
+    required: true,
+    defaultValue: '',
+    autoComplete: 'new-password',
+  };
+  const termsField = {
+    id: 'terms-checkbox',
+  };
 
   // Return the contructed fields.
   return [verifyField, termsField];

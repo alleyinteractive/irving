@@ -1,6 +1,4 @@
-// @todo keep this for mocking calls with the BrowserSDK.
-// It should be remove once the service is fully built out.
-// import BlaizeSDK from './zephr-sdk/blaize-front-end-sdk.min.js';
+import kebabCase from 'lodash/kebabCase';
 
 /**
  * Format an error message to be posted to the console.
@@ -54,7 +52,23 @@ export default {
           },
           body: JSON.stringify(user),
         }
-      ).then((res) => res.json());
+      ).then((res) => {
+        if (400 === res.status) {
+          return {
+            status: 'failed',
+            type: 'password-not-strong',
+          };
+        }
+
+        if (409 === res.status) {
+          return {
+            status: 'failed',
+            type: 'user-already-exists',
+          };
+        }
+
+        return res.json();
+      });
 
       const response = await request;
 
@@ -65,7 +79,7 @@ export default {
         };
       }
 
-      return { status: 'failed' };
+      return response;
     } catch (error) {
       return postErrorMessage(error);
     }
@@ -189,7 +203,7 @@ export default {
           },
           body: JSON.stringify(user),
         }
-      ).then((res) => {
+      ).then(async (res) => {
         if (404 === res.status) {
           return {
             status: 'failed',
@@ -198,6 +212,20 @@ export default {
         }
 
         if (401 === res.status) {
+          const responseText = await res.text();
+          const responseTitle = kebabCase(
+            new window.DOMParser().parseFromString(
+              responseText, 'text/html'
+            ).title
+          );
+
+          if ('email-verification-is-required' === responseTitle) {
+            return {
+              status: 'failed',
+              type: 'email-not-verified',
+            };
+          }
+
           return {
             status: 'failed',
             type: 'invalid-password',
