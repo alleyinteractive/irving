@@ -3,15 +3,16 @@ import reduceReducers from 'reduce-reducers';
 import defaultState from 'reducers/defaultState';
 import { persistReducer } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
-import componentsReducer from './componentsReducer';
-import routeReducer from './routeReducer';
-import errorReducer from './errorReducer';
-import loadingReducer from './loadingReducer';
-import visibilityReducer from './visibilityReducer';
 import componentDataReducer from './componentDataReducer';
-import playerReducer from './playerReducer';
-import storyReducer from './storyReducer';
+import componentsReducer from './componentsReducer';
+import errorReducer from './errorReducer';
 import headerHeightReducer from './headerHeightReducer';
+import loadingReducer from './loadingReducer';
+import playerReducer from './playerReducer';
+import routeReducer from './routeReducer';
+import storyReducer from './storyReducer';
+import dismissNoticeReducer from './dismissNoticeReducer';
+import visibilityReducer from './visibilityReducer';
 import zephrReducer from './zephrReducer';
 import zephrRulesReducer from './zephrRulesReducer';
 
@@ -23,15 +24,16 @@ const zephrPersistConfig = {
 
 // Configure "slice" reducers.
 export const reducers = {
-  components: (state = defaultState.components) => state,
   componentData: componentDataReducer,
+  components: (state = defaultState.components) => state,
   error: errorReducer,
+  headerHeight: headerHeightReducer,
+  isNoticeVisible: dismissNoticeReducer,
   loading: loadingReducer,
   player: playerReducer,
   route: routeReducer,
-  visible: visibilityReducer,
   story: storyReducer,
-  headerHeight: headerHeightReducer,
+  visible: visibilityReducer,
   zephr: persistReducer(zephrPersistConfig, zephrReducer),
   zephrRules: zephrRulesReducer,
 };

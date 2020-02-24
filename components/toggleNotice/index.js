@@ -6,9 +6,8 @@ import Arrow from 'assets/icons/arrow.svg';
 // Styles
 import styles from './toggleNotice.css';
 
-const ToggleNotice = (props) => {
-  const [noticeIsVisible, setnoticeIsVisible] = useState(true);
-  const { children } = props;
+const ToggleNotice = ({ children }) => {
+  const [noticeIsVisible, setNoticeIsVisible] = useState(true);
   return (
     <div className={styles.wrapper}>
       {/* @todo need to revisit if the aria messaging needs to be entirely in
@@ -23,7 +22,7 @@ const ToggleNotice = (props) => {
           aria-expanded={noticeIsVisible}
           className={styles.button}
           onClick={() => {
-            setnoticeIsVisible(! noticeIsVisible);
+            setNoticeIsVisible(! noticeIsVisible);
           }}
           type="button"
         >

@@ -180,4 +180,4 @@ const withRedux = connect(
   undefined,
 );
 
-export default withRedux(withStyles(styles)(FeedItem)); // connect to redux
+export default withRedux(withStyles(styles)(FeedItem));

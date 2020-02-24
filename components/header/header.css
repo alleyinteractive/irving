@@ -10,6 +10,7 @@
   min-height: rem(62);
   position: relative;
   width: 100%;
+  z-index: 3;
 }
 
 .wrapper {
@@ -30,11 +31,6 @@
 
   @media ($smMin) {
     tidy-span: 3;
-  }
-
-  @media ($mdMin) {
-    tidy-offset-left: 1;
-    tidy-span: 2;
   }
 
   &.headroomLogo {
@@ -120,10 +116,6 @@
   position: static;
   tidy-span: 5;
 
-  @media ($mdMin) {
-    tidy-span: 9;
-  }
-
   .headroom & {
     tidy-span: 5;
 
@@ -173,6 +165,7 @@
   height: auto;
   text-decoration: underline;
   width: auto;
+  z-index: 999;
 }
 
 .megaMenu {
@@ -197,7 +190,7 @@
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 100;
+  z-index: 2;
 
   :global(.headroom) {
     transform: translateY(-100%);
