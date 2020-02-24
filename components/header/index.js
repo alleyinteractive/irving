@@ -50,8 +50,6 @@ const Header = (props) => {
 
   // Breakpoints
   const isSmMin = useBreakpoint('smMin');
-
-  const [isAdVisible, setAdIsVisible] = useState(false);
   // When resizing, do not have the click to expand controls on desktop.
   useEffect(() => {
     if (! isSmMin) {
@@ -71,7 +69,7 @@ const Header = (props) => {
         ref={isHeadroom ? headroomRef : null}
       >
         <div className={styles.wrapper}>
-          {isAdVisible && (
+          {! isHeadroom && ! isMobile && (
             <div className={styles.leaderboardRow}>
               {leaderboardAd}
             </div>
