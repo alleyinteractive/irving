@@ -1,4 +1,5 @@
 const memoize = require('lodash/memoize');
+const chalk = require('chalk');
 const { getMergedFromUserConfig } = require('./getMergedConfigField');
 let config;
 
@@ -13,7 +14,14 @@ if (process.env.BUILD) {
   try {
     config = require(serverConfigPath) || {};
   } catch (e) {
-    config = {};
+    if ('MODULE_NOT_FOUND' === e.code && e.toString().includes('irving.config.server.js')) {
+      // Server config missing, which is ok (but user should still be notified.)
+      console.log(chalk.yellow('No Irving server config found, continuing with defaults.'));
+      config = {};
+    } else {
+      // Something is wrong inside the server config, stop the current process.
+      throw new Error(e);
+    }
   }
 }
 /* eslint-enable */
