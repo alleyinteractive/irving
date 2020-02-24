@@ -5,6 +5,7 @@ import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
 import parse from 'html-react-parser';
+import DownloadPDFLink from 'components/zephrUI/regions/downloadPDFLink';
 import useBreakpoint from 'hooks/useBreakpoint';
 
 // SVGs
@@ -75,9 +76,7 @@ const MagazineHero = ({
           <Link to="#features" className={styles.readLink}>
             {__('Read the issue', 'mittr')}
           </Link>
-          <Link to={pdfLink} className={styles.pdfLink}>
-            {__('Open the PDF', 'mittr')}
-          </Link>
+          <DownloadPDFLink pdfLink={pdfLink} />
           {'' !== letter.title &&
             '' !== letter.url &&
             'MIT News Magazine' !== issueType && (
