@@ -67,7 +67,7 @@ const defaultState = {
 
 export const zephr = {
   isLoading: true,
-  forms: [],
+  forms: {},
   cached: false,
   session: {},
   user: {

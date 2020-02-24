@@ -10,7 +10,10 @@ import { __ } from '@wordpress/i18n';
 import {
   getFirstName,
   getEmail,
+  getProfile,
+  getAccount,
 } from 'selectors/zephrSelector';
+import history from 'utils/history';
 import { actionRequestUserLogOut } from 'actions/zephrActions';
 
 import AccountInfoForm from './infoForm';
@@ -26,7 +29,13 @@ const AccountLandingPage = ({
   discounts,
   renewalDate,
   logOut,
+  isAuthenticated,
 }) => {
+  // Prevent unauthenticated users from being able to visit this route.
+  if (! isAuthenticated) {
+    history.push('/');
+  }
+
   const [formState, setFormState] = useState({
     isEditingEmail: false,
     isEditingPassword: false,
@@ -284,11 +293,12 @@ AccountLandingPage.propTypes = {
   discounts: PropTypes.array,
   email: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  logOut: PropTypes.func.isRequired,
   newsletters: PropTypes.array,
+  renewalDate: PropTypes.string,
   subscriptionName: PropTypes.string,
   subscriptionType: PropTypes.string,
-  renewalDate: PropTypes.string,
-  logOut: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -297,8 +307,11 @@ const mapDispatchToProps = (dispatch) => ({
 
 const withRedux = connect(
   (state) => ({
-    firstName: getFirstName(state),
     email: getEmail(state),
+    firstName: getFirstName(state),
+    isAuthenticated:
+      0 < Object.keys(getProfile(state)).length &&
+      0 < Object.keys(getAccount(state)).length,
   }),
   mapDispatchToProps,
 );
