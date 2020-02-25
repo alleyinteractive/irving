@@ -96,6 +96,7 @@
 
 .leaderboardRow {
   flex: 1 0 100%;
+  min-height: rem(150);
   width: 100%;
 
   :global(.adUnit) {
