@@ -34,6 +34,9 @@ export default function* submitForm({ payload: { type, credentials } }) {
     case 'resetRequest':
       yield call(submitResetRequest, credentials);
       break;
+    case 'reset':
+      yield call(submitReset, credentials);
+      break;
     default:
       // do nothing
       break;
@@ -148,6 +151,14 @@ export function* getAccount(sessionCookie) {
 
 function* submitResetRequest(credentials) {
   // Submit the form to Zephr.
-  const response = yield call(zephrService.requestReset, credentials);
-  console.log(response);
+  const { status, type } = yield call(zephrService.requestReset, credentials);
+
+  if ('failed' === status) {
+    console.log(type);
+  }
+}
+
+function* submitReset(credentials) {
+  // Submit the form to Zephr.
+  yield call(zephrService.resetPassword, credentials);
 }

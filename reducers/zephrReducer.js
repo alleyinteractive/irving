@@ -142,8 +142,8 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         ...state,
         forms: {
           ...state.forms,
-          register: {
-            components: setPasswordErrorState(state.forms.register),
+          [payload]: {
+            components: setPasswordErrorState(state.forms[payload]),
             error: true,
             errors: [
               ...state.forms.register.errors,

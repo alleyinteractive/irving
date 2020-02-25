@@ -29,6 +29,11 @@ export const getResetRequestForm = createSelector(
   (state) => state.forms.resetRequest,
 );
 
+export const getResetForm = createSelector(
+  zephrSelector,
+  (state) => state.forms.reset,
+);
+
 export const getCached = createSelector(
   zephrSelector,
   (state) => state.cached,

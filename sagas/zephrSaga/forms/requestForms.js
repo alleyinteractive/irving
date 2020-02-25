@@ -20,6 +20,7 @@ export default function* requestForms() {
     call(requestLogin),
     call(requestRegistration),
     call(requestReset),
+    call(buildResetForm),
   ]);
 }
 
@@ -81,7 +82,7 @@ function* requestRegistration() {
 }
 
 /**
- * A generator the requests the password reset form from Zephr to be stored in the Redux
+ * A generator the requests the password reset request form from Zephr to be stored in the Redux
  * store for later use.
  */
 function* requestReset() {
@@ -103,6 +104,33 @@ function* requestReset() {
       components: JSON.stringify(form),
       error: false,
       errors: [],
+      errorCount: null,
+    },
+  }));
+}
+
+/**
+ * A generator that builds the pasword reset form to be stored in the Redux
+ * for later use.
+ */
+function* buildResetForm() {
+  const form = yield call(
+    createForm,
+    {
+      input: {
+        slug: 'reset',
+        fields: [],
+        resetForm: true,
+      },
+      submitText: 'Reset your password',
+    }
+  );
+
+  yield put(actionReceiveForm({
+    reset: {
+      components: JSON.stringify(form),
+      error: false,
+      erros: [],
       errorCount: null,
     },
   }));

@@ -223,7 +223,7 @@ Register.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   clearErrors: (type) => dispatch(actionClearFormErrors(type)),
   displayFormError: (type) => dispatch(actionReceiveRegistrationError(type)),
-  displayInvalidPasswordError: () => dispatch(actionReceiveInvalidPassword()),
+  displayInvalidPasswordError: (type) => dispatch(actionReceiveInvalidPassword(type)), // eslint-disable-line max-len
   submitRegistration: (data) => dispatch(actionSubmitForm(data)),
 });
 

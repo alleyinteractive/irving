@@ -224,6 +224,48 @@ export default {
     }
   },
 
+  async resetPassword({ password, state }) {
+    try {
+      const body = {
+        validators: {
+          password,
+        },
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/users/reset/${state}`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      const response = await request;
+
+      if (200 === response.status) {
+        return { status: 'success' };
+      }
+
+      if (404 === response.status) {
+        return {
+          status: 'failed',
+          type: 'invalid-state',
+        };
+      }
+
+      return {
+        status: 'failed',
+        type: 'bad-request',
+      };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
   /**
    * Log a user in and retrieve their entitlements.
    *

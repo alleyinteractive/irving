@@ -73,6 +73,7 @@ import RawHTML from 'components/rawHTML';
 import Register from 'components/accounts/register';
 import Related from 'components/related';
 import ResetPasswordRequestForm from 'components/accounts/resetPassword/input';
+import ResetPasswordForm from 'components/accounts/resetPassword/reset';
 import Schema from 'components/schema';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
@@ -184,6 +185,7 @@ export const componentMap = {
   'post-list': PostList,
   register: Register,
   'reset-password': ResetPasswordRequestForm,
+  'reset-password-confirmation': ResetPasswordForm,
   schema: Schema,
   'search-bar': SearchBar,
   'section-item': SectionItem,
@@ -218,6 +220,7 @@ export const componentMap = {
  * @returns {function} - React component
  */
 export default function getComponent(name) {
+  console.log(name);
   // Custom component
   if (componentMap[name]) {
     return componentMap[name];

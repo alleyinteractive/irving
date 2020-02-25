@@ -18,6 +18,10 @@
   margin-bottom: rem(25);
 }
 
+.formWrap {
+  @include zephrForm;
+}
+
 .inlineFormWrap {
   @include zephrForm;
 
