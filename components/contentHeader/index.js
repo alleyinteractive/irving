@@ -55,13 +55,13 @@ const ContentHeader = ({
           </div>
         )}
       </div>
+      {image && <div className={theme.image}>{image}</div>}
+      {video}
       {sponsoredModule && (
         <div className={theme.sponsoredModule} id="sponsored-content--module">
           {sponsoredModule}
         </div>
       )}
-      <div className={theme.image}>{image}</div>
-      {video}
     </header>
   );
 };
