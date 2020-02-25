@@ -46,7 +46,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         ...state,
         forms: {
           ...state.forms,
-          [payload.type]: clearFormErrors(state.forms[payload.type]),
+          [payload.type]: submitForm(state.forms[payload.type]),
         },
       };
     case RECEIVE_ZEPHR_USER_SESSION:
@@ -171,6 +171,41 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
   }
 }
 
+function submitForm(form) {
+  let tmp = form;
+
+  if (form.error) {
+    tmp = clearFormErrors(form);
+  }
+
+  return {
+    ...tmp,
+    components: JSON.stringify(toggleLoadState(form, true)),
+  };
+}
+
+function toggleLoadState(form, isSubmitting) {
+  const fields = JSON.parse(form.components);
+
+  const { button, pos } = fields.map((el, key) => {
+    if ('submit-button' === el.id) {
+      return {
+        button: el,
+        pos: key,
+      };
+    }
+
+    return false;
+  }).filter((el) => false !== el)[0];
+
+  const loadingButton = {
+    ...button,
+    value: isSubmitting ? 'Loading...' : button.value,
+  };
+
+  return fields.splice(pos, 1, loadingButton);
+}
+
 /**
  * A function that is run any time a form is submitted that cleans up the state of a
  * submitted form that contains errors. If no errors are present, the form is returned.
@@ -266,7 +301,7 @@ export function setFormErrorState(form, error) {
   // Add the error message to the components array.
   components.splice(position + 1, 0, message);
 
-  return JSON.stringify(components);
+  return JSON.stringify(toggleLoadState(components, false));
 }
 
 /**
