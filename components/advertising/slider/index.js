@@ -15,11 +15,7 @@ import CloseIcon from 'assets/icons/close.svg';
 import { findChildByName } from 'utils/children';
 import styles from './sliderAd.css';
 
-const SliderAd = (props) => {
-  const {
-    enableToggle,
-    children,
-  } = props;
+const SliderAd = ({ children }) => {
   const adUnit = findChildByName('ad-unit', children);
   const adRef = useRef(null);
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -38,9 +34,6 @@ const SliderAd = (props) => {
     setHasClosed();
   };
 
-  if (! enableToggle) {
-    return null;
-  }
   const [scrollData, setScrollData] = useState({
     x: 0,
     y: 0,
@@ -121,12 +114,7 @@ const SliderAd = (props) => {
 };
 
 SliderAd.propTypes = {
-  enableToggle: PropTypes.bool,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-};
-
-SliderAd.defaultProps = {
-  enableToggle: true,
 };
 
 export default SliderAd;
