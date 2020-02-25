@@ -1,0 +1,12 @@
+.wrapper {
+  border: solid 1px $red;
+  bottom: rem(70);
+  position: fixed;
+  right: 0;
+  transform: translateX(120%);
+  transition: transform 0.3s ease-out;
+
+  &.isVisible {
+    transform: translateX(calc(-50vw + 50%));
+  }
+}
