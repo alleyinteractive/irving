@@ -46,6 +46,7 @@ const render = async (req, res, clientStats) => {
     pathname: req.path,
     search: `?${search}`,
     hash: '', // Only available in browser.
+    cookie: req.universalCookies.getAll({ doNotParse: true }),
   }));
 
   // Process location handling.
