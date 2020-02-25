@@ -72,6 +72,7 @@ import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import Register from 'components/accounts/register';
 import Related from 'components/related';
+import ResetPasswordRequestForm from 'components/accounts/resetPassword/input';
 import Schema from 'components/schema';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
@@ -182,6 +183,7 @@ export const componentMap = {
   popular: Popular,
   'post-list': PostList,
   register: Register,
+  'reset-password': ResetPasswordRequestForm,
   schema: Schema,
   'search-bar': SearchBar,
   'section-item': SectionItem,

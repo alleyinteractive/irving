@@ -31,6 +31,9 @@ export default function* submitForm({ payload: { type, credentials } }) {
     case 'register':
       yield call(submitRegistration, credentials);
       break;
+    case 'resetRequest':
+      yield call(submitResetRequest, credentials);
+      break;
     default:
       // do nothing
       break;
@@ -141,4 +144,10 @@ export function* getAccount(sessionCookie) {
     // Store user account information.
     yield put(actionReceiveUserAccount(account));
   }
+}
+
+function* submitResetRequest(credentials) {
+  // Submit the form to Zephr.
+  const response = yield call(zephrService.requestReset, credentials);
+  console.log(response);
 }

@@ -24,6 +24,11 @@ export const getRegistrationForm = createSelector(
   (state) => state.forms.register,
 );
 
+export const getResetRequestForm = createSelector(
+  zephrSelector,
+  (state) => state.forms.resetRequest,
+);
+
 export const getCached = createSelector(
   zephrSelector,
   (state) => state.cached,
