@@ -55,6 +55,32 @@ app.use('*.xsl', passthrough);
 app.use('*/amp/', passthrough);
 app.use('*/feed/', passthrough);
 app.use('/xmlrpc.php', passthrough);
+app.use('/hub/possibility-report/*', proxy({
+  changeOrigin: true,
+  followRedirects: true,
+  secure: 'development' !== NODE_ENV,
+  target: API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  // eslint-disable-next-line max-len
+  pathRewrite: {
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/possibility-report_files/*': '/wp-content/themes/mittr/inc/static/views/possibility-report_files/',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/move/': '/wp-content/themes/mittr/inc/static/views/move.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/connect/': '/wp-content/themes/mittr/inc/static/views/connect.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/heal/': '/wp-content/themes/mittr/inc/static/views/heal.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/learn/': '/wp-content/themes/mittr/inc/static/views/learn.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/build/': '/wp-content/themes/mittr/inc/static/views/build.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/grow/': '/wp-content/themes/mittr/inc/static/views/grow.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/': '/wp-content/themes/mittr/inc/static/views/possibility-report.html',
+  },
+  xfwd: true,
+}));
 
 if ('development' === NODE_ENV) {
   require('./development')(app);
