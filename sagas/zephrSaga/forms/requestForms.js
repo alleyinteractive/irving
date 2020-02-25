@@ -42,9 +42,12 @@ function* requestLogin() {
 
   // Send the form to the store for recall.
   yield put(actionReceiveForm({
-    components: form,
-    route: '/login',
-    error: false,
+    login: {
+      components: JSON.stringify(form),
+      error: false,
+      errors: [],
+      errorCount: null,
+    },
   }));
 }
 
@@ -67,8 +70,11 @@ function* requestRegistration() {
 
   // Send the form to the store for recall.
   yield put(actionReceiveForm({
-    components: form,
-    route: '/register',
-    error: false,
+    register: {
+      components: JSON.stringify(form),
+      error: false,
+      errors: [],
+      errorCount: null,
+    },
   }));
 }
