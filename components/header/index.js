@@ -8,6 +8,7 @@ import { findChildByName } from 'utils/children';
 import classNames from 'classnames';
 import Link from 'components/helpers/link';
 import useBreakpoint from 'hooks/useBreakpoint';
+import useKeyboardFocusOutside from 'hooks/useKeyboardFocusOutside';
 import {
   actionUpdateHeaderHeight,
   actionUpdateVisibility,
@@ -47,6 +48,14 @@ const Header = (props) => {
     }
     dispatch(actionUpdateVisibility('megaMenu', value));
   };
+
+  // Close menu when keyboard focus leaves it.
+  const closeMegaMenu = () => {
+    toggleMegaMenu(false);
+  };
+
+  const megaMenuRef = useRef(null);
+  useKeyboardFocusOutside(megaMenuRef, closeMegaMenu);
 
   // Breakpoints
   const isSmMin = useBreakpoint('smMin');
@@ -129,10 +138,14 @@ const Header = (props) => {
               </span>
             </button>
             {('default' === currentOpenMenu && isExpanded) && (
-              <div className={styles.megaMenu}>{megaMenu}</div>
+              <div ref={megaMenuRef} className={styles.megaMenu}>
+                {megaMenu}
+              </div>
             )}
             {('headroom' === currentOpenMenu && isExpanded) && (
-              <div className={styles.megaMenu}>{megaMenu}</div>
+              <div ref={megaMenuRef} className={styles.megaMenu}>
+                {megaMenu}
+              </div>
             )}
           </div>
         </div>
