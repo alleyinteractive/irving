@@ -49,3 +49,10 @@
     font-weight: 600;
   }
 }
+
+.homeButton {
+  @include btn;
+  @include btnBlack;
+
+  font-family: $sans;
+}

@@ -153,6 +153,9 @@ function* submitResetRequest(credentials) {
   // Submit the form to Zephr.
   const { status, type } = yield call(zephrService.requestReset, credentials);
 
+  if ('success' === status) {
+    history.push('/reset-password/request-confirmation');
+  }
   if ('failed' === status) {
     console.log(type);
   }
@@ -160,5 +163,9 @@ function* submitResetRequest(credentials) {
 
 function* submitReset(credentials) {
   // Submit the form to Zephr.
-  yield call(zephrService.resetPassword, credentials);
+  const { status, type } = yield call(zephrService.resetPassword, credentials);
+
+  if ('success' === status) {
+    history.push('/reset-password/confirmation');
+  }
 }

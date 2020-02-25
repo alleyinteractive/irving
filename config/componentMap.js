@@ -72,8 +72,10 @@ import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import Register from 'components/accounts/register';
 import Related from 'components/related';
-import ResetPasswordRequestForm from 'components/accounts/resetPassword/input';
+import ResetRequestForm from 'components/accounts/resetPassword/request';
+import ConfirmResetRequest from 'components/accounts/resetPassword/requestConfirmation'; // eslint-disable-line max-len
 import ResetPasswordForm from 'components/accounts/resetPassword/reset';
+import ConfirmReset from 'components/accounts/resetPassword/resetConfirmation';
 import Schema from 'components/schema';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
@@ -184,8 +186,10 @@ export const componentMap = {
   popular: Popular,
   'post-list': PostList,
   register: Register,
-  'reset-password': ResetPasswordRequestForm,
-  'reset-password-confirmation': ResetPasswordForm,
+  'reset-password-request': ResetRequestForm,
+  'reset-password-request-confirmation': ConfirmResetRequest,
+  'reset-password': ResetPasswordForm,
+  'reset-password-confirmation': ConfirmReset,
   schema: Schema,
   'search-bar': SearchBar,
   'section-item': SectionItem,
@@ -220,7 +224,6 @@ export const componentMap = {
  * @returns {function} - React component
  */
 export default function getComponent(name) {
-  console.log(name);
   // Custom component
   if (componentMap[name]) {
     return componentMap[name];
