@@ -9,4 +9,8 @@
   &.isVisible {
     transform: translateX(calc(-50vw + 50%));
   }
+
+  &.isHidden {
+    display: none;
+  }
 }

@@ -3,6 +3,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
+import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +23,7 @@ const SliderAd = (props) => {
   const adUnit = findChildByName('ad-unit', children);
   const adRef = useRef(null);
   const [shouldLoad, setShouldLoad] = useState(false);
-  const isOpen = useSelector((state) => state.visible.sliderAd);
+  const isVisible = useSelector((state) => state.visible.sliderAd);
   const hasClosed = useSelector((state) => state.visible.sliderAdHasClosed);
   const dispatch = useDispatch();
 
@@ -40,11 +41,40 @@ const SliderAd = (props) => {
   if (! enableToggle) {
     return null;
   }
+  const [scrollData, setScrollData] = useState({
+    x: 0,
+    y: 0,
+    direction: '',
+  });
 
-  // Conditions for slider ad visibility will go here.
+  const getScrollPosition = () => {
+    const position = document.body.getBoundingClientRect();
+    setScrollData((prev) => ({
+      x: position.left,
+      y: - position.top,
+      direction: - position.top < prev.y ? 'up' : 'down',
+    }));
+  };
+
   useEffect(() => {
-
+    document.addEventListener('scroll', debounce(() => {
+      getScrollPosition();
+    }, 50));
   }, []);
+
+  useEffect(() => {
+    setScrollData({
+      x: document.body.getBoundingClientRect().left,
+      y: - document.body.getBoundingClientRect().top,
+      ...scrollData,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (100 < scrollData.y && ! hasClosed) {
+      setTimeout(() => toggleVisibility(true), 5000);
+    }
+  }, [scrollData]);
 
   // Detect and set height once slot has rendered.
   const onSlotRender = (data) => {
@@ -53,17 +83,19 @@ const SliderAd = (props) => {
       event.slot &&
       ! event.isEmpty &&
       event.slot.getAdUnitPath().includes('__slider') &&
-      adRef.current
+      adRef.currentv
     ) {
       setShouldLoad(true);
-      toggleVisibility(true);
     }
   };
 
   return (
     <div className={classNames(
       styles.wrapper,
-      { [styles.isVisible]: isOpen }
+      {
+        [styles.isVisible]: isVisible,
+        [styles.isHidden]: hasClosed,
+      }
     )}
     >
       <button
@@ -71,14 +103,8 @@ const SliderAd = (props) => {
         onClick={closeAd}
         type="button"
       >
-        <span className={styles.toggleText}>
-          {isOpen ? ('hide') : ('show')}
-        </span>
-        <span className={classNames(
-          styles.toggleCloseIcon,
-          { [styles.hide]: ! isOpen }
-        )}
-        >
+        <span className={styles.toggleText}>hide</span>
+        <span className={styles.toggleCloseIcon}>
           <CloseIcon />
         </span>
       </button>
