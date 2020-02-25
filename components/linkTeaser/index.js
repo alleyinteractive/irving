@@ -7,6 +7,7 @@ import Link from 'components/helpers/link';
 import styles from './linkTeaser.css';
 
 const LinkTeaser = ({
+  deck,
   permalink,
   publishedDate,
   teaseCTA,
@@ -14,15 +15,22 @@ const LinkTeaser = ({
 }) => (
   <Link className={styles.wrapper} to={permalink}>
     <h4 className={styles.title}>{title}</h4>
-    <div className={styles.teaseCTA}>{teaseCTA}</div>
+    {deck && <div className={styles.deck}>{deck}</div>}
+    {teaseCTA && <div className={styles.teaseCTA}>{teaseCTA}</div>}
     <div className={styles.date}>{publishedDate}</div>
   </Link>
 );
 
+LinkTeaser.defaultProps = {
+  deck: '',
+  teaseCTA: '',
+};
+
 LinkTeaser.propTypes = {
+  deck: PropTypes.string,
   permalink: PropTypes.string.isRequired,
   publishedDate: PropTypes.string.isRequired,
-  teaseCTA: PropTypes.string.isRequired,
+  teaseCTA: PropTypes.string,
   title: PropTypes.string.isRequired,
 
 };
