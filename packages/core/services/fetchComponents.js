@@ -37,7 +37,7 @@ function getExtraQueryParams() {
  * @param {string} [context] - "page" (page specific components) or
  *                           "site" (all components)
  */
-function createQueryString(
+export function createQueryString(
   path,
   search,
   cookie = {},
@@ -52,6 +52,7 @@ function createQueryString(
   },
   {
     encode: false,
+    sort: false,
   });
 }
 
