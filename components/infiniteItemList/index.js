@@ -15,6 +15,7 @@ import styles from './infiniteItemList.css';
 
 const InfiniteItemList = ({
   topic,
+  showImage,
   slug,
   requestType,
   query,
@@ -129,12 +130,15 @@ const InfiniteItemList = ({
         {listInfo.items.map((item, index) => {
           // Check to see if we should show the image based on the index in the feed.
           // @TODO: imageIndexes should go in a config some where once its dialed in
+          let showFeedImage = showImage;
           const imageIndexes = [
             0, 2, 3, 5, 9, 10, 13, 14, 16,
             17, 20, 22, 23, 27, 30, 32, 38,
             41, 44, 48, 51, 53, 58, 60, 62,
           ];
-          const showImage = imageIndexes.includes(index);
+          if ('the_feed' === slug) {
+            showFeedImage = imageIndexes.includes(index);
+          }
           const key = item.config.title ? item.config.title : item.config.name;
           return (
             <li
@@ -145,7 +149,7 @@ const InfiniteItemList = ({
               aria-setsize={listInfo.items.length}
               aria-posinset={index + 1}
             >
-              {toReactElement(item, '', { showImage })}
+              {toReactElement(item, '', { showImage: showFeedImage })}
             </li>
           );
         })}
@@ -171,12 +175,14 @@ const InfiniteItemList = ({
 
 InfiniteItemList.defaultProps = {
   page: 1,
+  showImage: true,
   query: '',
   requestType: '',
 };
 
 InfiniteItemList.propTypes = {
   page: PropTypes.number,
+  showImage: PropTypes.bool,
   query: PropTypes.string,
   requestType: PropTypes.string,
   slug: PropTypes.string.isRequired,
