@@ -1,5 +1,4 @@
 .wrapper {
-  border: solid 1px $red;
   bottom: rem(70);
   position: fixed;
   right: 0;
@@ -7,10 +6,32 @@
   transition: transform 0.3s ease-out;
 
   &.isVisible {
-    transform: translateX(calc(-50vw + 50%));
+    transform: translateX(rem(-20));
   }
 
   &.isHidden {
     display: none;
+  }
+
+  :global(.adUnit) {
+    margin: 0;
+  }
+}
+
+.closeButton {
+  margin-left: auto;
+  display: flex;
+}
+
+.closeText {
+  @include screenreader-only;
+}
+
+.closeIcon {
+  svg {
+    path {
+      fill: $black;
+      stroke: $black;
+    }
   }
 }

@@ -99,12 +99,12 @@ const SliderAd = (props) => {
     )}
     >
       <button
-        className={styles.toggle}
+        className={styles.closeButton}
         onClick={closeAd}
         type="button"
       >
-        <span className={styles.toggleText}>hide</span>
-        <span className={styles.toggleCloseIcon}>
+        <span className={styles.closeText}>hide</span>
+        <span className={styles.closeIcon}>
           <CloseIcon />
         </span>
       </button>
