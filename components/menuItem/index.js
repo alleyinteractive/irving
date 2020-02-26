@@ -76,6 +76,9 @@ const MenuItem = (props) => {
         }
       })()}
       {isExpanded && menu && <div className={theme.childMenu}>{menu}</div>}
+      {(! isSmMin && ! isExpanded && menu) && (
+        <div className={theme.childMenu}>{menu}</div>
+      )}
     </li>
   );
 };
