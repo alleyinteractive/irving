@@ -307,7 +307,7 @@ export function setFormErrorState(form, error) {
       value = 'Login';
       break;
     case 'register':
-      value = 'Create this account';
+      value = 'Create an account';
       break;
     case 'requestReset':
       value = 'Send password reset link';
@@ -387,7 +387,7 @@ export function setPasswordErrorState(form) {
       value = 'Login';
       break;
     case 'register':
-      value = 'Create this account';
+      value = 'Create an account';
       break;
     case 'requestReset':
       value = 'Send password reset link';
