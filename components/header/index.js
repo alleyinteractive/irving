@@ -1,4 +1,3 @@
-/* eslint-disable react/no-children-prop */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Headroom from 'react-headroom';
@@ -29,8 +28,9 @@ const Header = (props) => {
         isHeadroom={false}
         homeUrl={homeUrl}
         isMobile={isMobile}
-        children={children}
-      />
+      >
+        {children}
+      </HeaderTemplate>
 
       <Headroom
         disableInlineStyles
@@ -42,8 +42,9 @@ const Header = (props) => {
           isHeadroom
           homeUrl={homeUrl}
           isMobile={isMobile}
-          children={children}
-        />
+        >
+          {children}
+        </HeaderTemplate>
       </Headroom>
     </>
   );
