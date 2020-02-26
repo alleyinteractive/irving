@@ -3,6 +3,7 @@ import React, {
   useEffect,
   useRef,
 } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
@@ -10,10 +11,8 @@ import {
   actionShowFullStory,
   actionTruncateStory,
 } from 'actions/storyActions';
-import { connect } from 'react-redux';
+import useObscureContent from 'hooks/useObscureContent';
 import classNames from 'classnames';
-import { getZephrComponents } from 'selectors/zephrRulesSelector';
-import get from 'lodash/get';
 import styles from './contentBody.css';
 
 const ContentBody = ({
@@ -23,15 +22,10 @@ const ContentBody = ({
   dispatchShowFullStory,
   dispatchTruncateStory,
   overrideCTA,
-  zephrComponents,
 }) => {
   const [truncateContent, setTruncation] = useState(false);
   const contentRef = useRef();
-  const obscureContent = true === get(
-    zephrComponents,
-    'obscureContent.zephrOutput',
-    false
-  );
+  const obscureContent = useObscureContent();
 
   const showFullText = () => {
     // Remove the truncation button and height limit.
@@ -112,7 +106,6 @@ ContentBody.defaultProps = {
   dispatchShowFullStory: () => {},
   dispatchTruncateStory: () => {},
   overrideCTA: false,
-  zephrComponents: {},
 };
 
 ContentBody.propTypes = {
@@ -122,7 +115,6 @@ ContentBody.propTypes = {
   dispatchShowFullStory: PropTypes.func,
   dispatchTruncateStory: PropTypes.func,
   overrideCTA: PropTypes.bool,
-  zephrComponents: PropTypes.object,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -130,12 +122,8 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchTruncateStory: () => dispatch(actionTruncateStory()),
 });
 
-const mapStateToProps = (state) => ({
-  zephrComponents: getZephrComponents(state),
-});
-
 const withRedux = connect(
-  mapStateToProps,
+  undefined,
   mapDispatchToProps
 );
 
