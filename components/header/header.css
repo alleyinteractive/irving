@@ -1,4 +1,7 @@
 .headroom {
+  /* This is to override an inline style that gets added by Headroom.
+      if you try to override it, the built in animations don't work. 
+  */
   /* stylelint-disable declaration-no-important */
   height: 0!important;
   /* stylelint-enable declaration-no-important */
