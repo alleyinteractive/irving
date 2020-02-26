@@ -138,14 +138,13 @@ const HeaderTemplate = ({
 HeaderTemplate.propTypes = {
   className: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  isHeadroom: PropTypes.bool,
+  isHeadroom: PropTypes.bool.isRequired,
   homeUrl: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,
 };
 
 HeaderTemplate.defaultProps = {
   className: '',
-  isHeadroom: false,
 };
 
 export default withStyles(styles)(HeaderTemplate);
