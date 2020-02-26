@@ -27,6 +27,7 @@ const Header = (props) => {
     <>
       <HeaderTemplate
         isHeadroom={false}
+        headerName="default"
         homeUrl={homeUrl}
         isMobile={isMobile}
         children={children}
@@ -39,6 +40,7 @@ const Header = (props) => {
       >
         <HeaderTemplate
           isHeadroom
+          headerName="headroom"
           homeUrl={homeUrl}
           isMobile={isMobile}
           children={children}

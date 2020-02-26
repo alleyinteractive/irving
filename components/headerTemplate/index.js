@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { __ } from '@wordpress/i18n';
@@ -23,6 +23,8 @@ import styles from './headerTemplate.css';
 const HeaderTemplate = ({
   className,
   children,
+  // eslint-disable-next-line no-unused-vars
+  headerName,
   isHeadroom,
   isMobile,
   homeUrl,
@@ -31,6 +33,7 @@ const HeaderTemplate = ({
   const leaderboardAd = findChildByName('ad-unit', children);
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const headroomRef = useRef();
 
@@ -44,6 +47,7 @@ const HeaderTemplate = ({
 
   const toggleMegaMenu = (value) => {
     dispatch(actionUpdateVisibility('megaMenu', value));
+    setIsExpanded(value);
   };
 
   // Close menu when keyboard focus leaves it.
@@ -123,7 +127,7 @@ const HeaderTemplate = ({
                 {megaMenuIsExpanded ? 'Close' : <MegaMenuIcon />}
               </span>
             </button>
-            {megaMenuIsExpanded && (
+            {(isExpanded) && (
               <div ref={megaMenuRef} className={styles.megaMenu}>
                 {megaMenu}
               </div>
@@ -138,6 +142,7 @@ const HeaderTemplate = ({
 HeaderTemplate.propTypes = {
   className: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  headerName: PropTypes.string.isRequired,
   isHeadroom: PropTypes.bool.isRequired,
   homeUrl: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,
