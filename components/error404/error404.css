@@ -1,0 +1,12 @@
+.wrapper {
+  margin-bottom: rem(40);
+}
+
+.heading {
+  display: inline;
+  font-weight: 400;
+}
+
+.link {
+  font-weight: 600;
+}
