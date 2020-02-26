@@ -22,6 +22,7 @@ import ContentList from 'components/contentList';
 import ContentListItem from 'components/contentList/contentListItem';
 import Container from 'components/container';
 import Disqus from 'components/disqus';
+import Error404 from 'components/error404';
 import FeedItem from 'components/feedItem';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
@@ -127,6 +128,7 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
+  'error-404': Error404,
   'core-embed': RawHTML,
   'feed-anchor': CardStack,
   footer: Footer,

@@ -8,6 +8,7 @@ import { findChildByName } from 'utils/children';
 import classNames from 'classnames';
 import Link from 'components/helpers/link';
 import useBreakpoint from 'hooks/useBreakpoint';
+import useKeyboardFocusOutside from 'hooks/useKeyboardFocusOutside';
 import {
   actionUpdateHeaderHeight,
   actionUpdateVisibility,
@@ -48,6 +49,14 @@ const Header = (props) => {
     dispatch(actionUpdateVisibility('megaMenu', value));
   };
 
+  // Close menu when keyboard focus leaves it.
+  const closeMegaMenu = () => {
+    toggleMegaMenu(false);
+  };
+
+  const megaMenuRef = useRef(null);
+  useKeyboardFocusOutside(megaMenuRef, closeMegaMenu);
+
   // Breakpoints
   const isSmMin = useBreakpoint('smMin');
 
@@ -63,91 +72,97 @@ const Header = (props) => {
   });
 
   // eslint-disable-next-line arrow-body-style
-  const HeaderMarkup = ({ isHeadroom, headerName, isExpanded }) => {
-    return (
-      <header
-        className={styles.container}
-        ref={isHeadroom ? headroomRef : null}
-      >
-        <div className={styles.wrapper}>
-          {! isHeadroom && ! isMobile && (
-            <div className={styles.leaderboardRow}>
-              {leaderboardAd}
+  const HeaderMarkup = ({
+    isHeadroom, headerName, isExpanded, className,
+  }) => (
+    <header
+      className={classNames(styles.container, className)}
+      ref={isHeadroom ? headroomRef : null}
+    >
+      <div className={styles.wrapper}>
+        {! isHeadroom && ! isMobile && (
+          <div className={styles.leaderboardRow}>
+            {leaderboardAd}
+          </div>
+        )}
+        {(isHeadroom || isMobile) && (
+          <Link
+            to={homeUrl}
+            tabIndex="-1"
+            aria-hidden
+            className={styles.logoT}
+          >
+            <TRGlyph />
+          </Link>
+        )}
+        <Link
+          to={homeUrl}
+          className={classNames(styles.logo, {
+            [styles.headroomLogo]: isHeadroom,
+          })}
+        >
+          <div className="screen-reader-text">
+            {__('MIT Technology Review')}
+          </div>
+          {! isHeadroom && (
+            <div className={styles.logoStacked} aria-hidden>
+              <LogoStacked />
             </div>
           )}
           {(isHeadroom || isMobile) && (
-            <Link
-              to={homeUrl}
-              tabIndex="-1"
-              aria-hidden
-              className={styles.logoT}
-            >
-              <TRGlyph />
-            </Link>
+            <div className={styles.logoHorizontal} aria-hidden>
+              <LogoHorizontal />
+            </div>
           )}
-          <Link
-            to={homeUrl}
-            className={classNames(styles.logo, {
-              [styles.headroomLogo]: isHeadroom,
-            })}
-          >
-            <div className="screen-reader-text">
-              {__('MIT Technology Review')}
-            </div>
-            {! isHeadroom && (
-              <div className={styles.logoStacked} aria-hidden>
-                <LogoStacked />
+        </Link>
+        <div className={styles.navigation}>
+          {! isHeadroom && (
+            <div className={styles.userGreeting}>{userGreeting}</div>
+          )}
+          <div className={styles.menuRow}>
+            <div className={styles.menu}>{menu}</div>
+            <button
+              className={classNames(styles.button, {
+                [styles.expandedButton]: isExpanded,
+              })}
+              type="button"
+              onClick={() => toggleMegaMenu(! isExpanded, headerName)}
+            >
+              <span className="screen-reader-text">
+                {isExpanded ?
+                  __('Close menu', 'mittr') :
+                  __('Expand menu', 'mittr')}
+              </span>
+              <span aria-hidden="true" className={styles.buttonVisualContent}>
+                {isExpanded ? 'Close' : <MegaMenuIcon />}
+              </span>
+            </button>
+            {('default' === currentOpenMenu && isExpanded) && (
+              <div ref={megaMenuRef} className={styles.megaMenu}>
+                {megaMenu}
               </div>
             )}
-            {(isHeadroom || isMobile) && (
-              <div className={styles.logoHorizontal} aria-hidden>
-                <LogoHorizontal />
+            {('headroom' === currentOpenMenu && isExpanded) && (
+              <div ref={megaMenuRef} className={styles.megaMenu}>
+                {megaMenu}
               </div>
             )}
-          </Link>
-          <div className={styles.navigation}>
-            {! isHeadroom && (
-              <div className={styles.userGreeting}>{userGreeting}</div>
-            )}
-            <div className={styles.menuRow}>
-              <div className={styles.menu}>{menu}</div>
-              <button
-                className={classNames(styles.button, {
-                  [styles.expandedButton]: isExpanded,
-                })}
-                type="button"
-                onClick={() => toggleMegaMenu(! isExpanded, headerName)}
-              >
-                <span className="screen-reader-text">
-                  {isExpanded ?
-                    __('Close menu', 'mittr') :
-                    __('Expand menu', 'mittr')}
-                </span>
-                <span aria-hidden="true" className={styles.buttonVisualContent}>
-                  {isExpanded ? 'Close' : <MegaMenuIcon />}
-                </span>
-              </button>
-              {('default' === currentOpenMenu && isExpanded) && (
-                <div className={styles.megaMenu}>{megaMenu}</div>
-              )}
-              {('headroom' === currentOpenMenu && isExpanded) && (
-                <div className={styles.megaMenu}>{megaMenu}</div>
-              )}
-            </div>
           </div>
         </div>
-      </header>
-    );
-  };
+      </div>
+    </header>
+  );
 
   HeaderMarkup.propTypes = {
+    className: PropTypes.string,
+    headerName: PropTypes.string.isRequired,
     isExpanded: PropTypes.bool.isRequired,
     isHeadroom: PropTypes.bool,
-    headerName: PropTypes.string.isRequired,
   };
 
   HeaderMarkup.defaultProps = {
     isHeadroom: false,
+    className: '',
   };
 
   return (
@@ -161,7 +176,6 @@ const Header = (props) => {
       <Headroom
         disableInlineStyles
         aria-hidden
-        className={styles.headroom}
         pinStart={isMobile ? 60 : 260}
       >
         <HeaderMarkup
