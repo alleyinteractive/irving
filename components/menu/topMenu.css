@@ -16,6 +16,7 @@
 
   > li {
     @media ($smMin) {
+      margin-bottom: rem(20);
       padding-right: 1rem;
       tidy-span: 5;
     }
