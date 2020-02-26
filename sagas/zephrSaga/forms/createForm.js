@@ -59,6 +59,7 @@ export default function createForm(formJSON) {
   }
 
   const button = {
+    el: 'button',
     id: 'submit-button',
     key: 'zephr-submit-button',
     type: 'submit',

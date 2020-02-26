@@ -5,14 +5,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   getResetForm,
-  getProfile,
-  getAccount,
 } from 'selectors/zephrSelector';
 import {
   actionSubmitForm,
   actionReceiveInvalidPassword,
 } from 'actions/zephrActions';
-import history from 'utils/history';
 import DataLoading from 'components/hoc/withData/loading';
 import toFormElements from 'sagas/zephrSaga/forms/toFormElements';
 
@@ -22,14 +19,8 @@ import styles from './reset.css';
 const ResetForm = ({
   resetForm,
   submitReset,
-  isAuthenticated,
   displayInvalidPasswordError,
 }) => {
-  // Prevent authenticated users from being able to visit this route.
-  if (isAuthenticated) {
-    history.push('/');
-  }
-
   const [components, setForm] = useState([]);
 
   // Create submit handler.
@@ -113,7 +104,6 @@ ResetForm.defaultProps = {
 };
 
 ResetForm.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
   resetForm: PropTypes.object,
   submitReset: PropTypes.func.isRequired,
   displayInvalidPasswordError: PropTypes.func.isRequired,
@@ -127,9 +117,6 @@ const mapDispatchToProps = (dispatch) => ({
 const withRedux = connect(
   (state) => ({
     resetForm: getResetForm(state),
-    isAuthenticated:
-      0 < Object.keys(getProfile(state)).length &&
-      0 < Object.keys(getAccount(state)).length,
   }),
   mapDispatchToProps
 );
