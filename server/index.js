@@ -3,6 +3,7 @@ const proxy = require('http-proxy-middleware');
 const https = require('https');
 const express = require('express');
 const { server } = require('@automattic/vip-go');
+const cookiesMiddleware = require('universal-cookie-express');
 
 // Support isomorphic environment variables from local .env file
 require('dotenv').config();
@@ -81,6 +82,8 @@ app.use('/hub/possibility-report/*', proxy({
   },
   xfwd: true,
 }));
+
+app.use(cookiesMiddleware());
 
 if ('development' === NODE_ENV) {
   require('./development')(app);
