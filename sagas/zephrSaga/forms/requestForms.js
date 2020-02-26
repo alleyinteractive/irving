@@ -45,6 +45,7 @@ function* requestLogin() {
   // Send the form to the store for recall.
   yield put(actionReceiveForm({
     login: {
+      type: 'login',
       components: JSON.stringify(form),
       error: false,
       errors: [],
@@ -73,6 +74,7 @@ function* requestRegistration() {
   // Send the form to the store for recall.
   yield put(actionReceiveForm({
     register: {
+      type: 'register',
       components: JSON.stringify(form),
       error: false,
       errors: [],
@@ -101,6 +103,7 @@ function* requestReset() {
 
   yield put(actionReceiveForm({
     resetRequest: {
+      type: 'resetRequest',
       components: JSON.stringify(form),
       error: false,
       errors: [],
@@ -128,6 +131,7 @@ function* buildResetForm() {
 
   yield put(actionReceiveForm({
     reset: {
+      type: 'reset',
       components: JSON.stringify(form),
       error: false,
       erros: [],

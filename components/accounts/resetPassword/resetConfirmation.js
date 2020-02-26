@@ -18,7 +18,7 @@ const ConfirmReset = () => (
         'mittr'
       )}
     </p>
-    <Link to="/" className={styles.homeButton}>Go Home</Link>
+    <Link to="/login" className={styles.homeButton}>Login</Link>
   </div>
 );
 

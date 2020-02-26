@@ -119,7 +119,7 @@ const Register = ({
     // Check to ensure that the password and it's verification value match prior to submission.
     if (password.value !== verifyPassword.value) {
       // Invalid passwords get their own dispatch action because multiple inputs need to be invalidated.
-      displayInvalidPasswordError();
+      displayInvalidPasswordError('register');
 
       // Increment the error counter.
       errorCount += 1;
