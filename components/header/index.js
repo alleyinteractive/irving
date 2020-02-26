@@ -33,11 +33,11 @@ const Header = (props) => {
       />
       <Headroom
         disableInlineStyles
+        className={styles.headroom}
         aria-hidden
         pinStart={isMobile ? 60 : 260}
       >
         <HeaderTemplate
-          className={styles.headroom}
           isHeadroom
           homeUrl={homeUrl}
           isMobile={isMobile}
