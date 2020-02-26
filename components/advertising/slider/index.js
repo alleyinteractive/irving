@@ -3,11 +3,10 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-
+import useScrollPosition from 'hooks/useScrollPosition';
 import {
   actionUpdateVisibility,
 } from 'actions';
@@ -34,34 +33,7 @@ const SliderAd = ({ children }) => {
     setHasClosed();
   };
 
-  const [scrollData, setScrollData] = useState({
-    x: 0,
-    y: 0,
-    direction: '',
-  });
-
-  const getScrollPosition = () => {
-    const position = document.body.getBoundingClientRect();
-    setScrollData((prev) => ({
-      x: position.left,
-      y: - position.top,
-      direction: - position.top < prev.y ? 'up' : 'down',
-    }));
-  };
-
-  useEffect(() => {
-    document.addEventListener('scroll', debounce(() => {
-      getScrollPosition();
-    }, 50));
-  }, []);
-
-  useEffect(() => {
-    setScrollData({
-      x: document.body.getBoundingClientRect().left,
-      y: - document.body.getBoundingClientRect().top,
-      ...scrollData,
-    });
-  }, []);
+  const scrollData = useScrollPosition();
 
   useEffect(() => {
     if (100 < scrollData.y && ! hasClosed) {
