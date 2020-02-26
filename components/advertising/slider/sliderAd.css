@@ -4,6 +4,7 @@
   right: 0;
   transform: translateX(120%);
   transition: transform 0.3s ease-out;
+  z-index: 1001;
 
   &.isVisible {
     transform: translateX(rem(-20));
