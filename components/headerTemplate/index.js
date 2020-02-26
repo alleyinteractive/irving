@@ -21,10 +21,11 @@ import MegaMenuIcon from 'assets/icons/megaMenu.svg';
 import styles from './headerTemplate.css';
 
 const HeaderTemplate = ({
-  isHeadroom,
+  className,
   children,
-  homeUrl,
+  isHeadroom,
   isMobile,
+  homeUrl,
 }) => {
   const menu = findChildByName('menu', children);
   const leaderboardAd = findChildByName('ad-unit', children);
@@ -61,7 +62,7 @@ const HeaderTemplate = ({
   });
   return (
     <header
-      className={styles.container}
+      className={classNames(styles.container, className)}
       ref={isHeadroom ? headroomRef : null}
     >
       <div className={styles.wrapper}>
@@ -135,6 +136,7 @@ const HeaderTemplate = ({
 };
 
 HeaderTemplate.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   isHeadroom: PropTypes.bool,
   homeUrl: PropTypes.string.isRequired,
@@ -142,6 +144,7 @@ HeaderTemplate.propTypes = {
 };
 
 HeaderTemplate.defaultProps = {
+  className: '',
   isHeadroom: false,
 };
 
