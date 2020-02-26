@@ -149,23 +149,38 @@ export function* getAccount(sessionCookie) {
   }
 }
 
+/**
+ * Send a password reset email to a given email address.
+ *
+ * @param {object} credentials The user's email address.
+ */
 function* submitResetRequest(credentials) {
   // Submit the form to Zephr.
-  const { status, type } = yield call(zephrService.requestReset, credentials);
+  const { status, type } = yield call(zephrService.requestReset, credentials); // eslint-disable-line
 
   if ('success' === status) {
     history.push('/reset-password/request-confirmation');
   }
+
   if ('failed' === status) {
-    console.log(type);
+    // yield put(actionReceiveResetRequestError(type));
   }
 }
 
+/**
+ * Submit the user's new password to Zephr.
+ *
+ * @param {object} credentials The user's selected password.
+ */
 function* submitReset(credentials) {
   // Submit the form to Zephr.
-  const { status, type } = yield call(zephrService.resetPassword, credentials);
+  const { status, type } = yield call(zephrService.resetPassword, credentials); // eslint-disable-line
 
   if ('success' === status) {
     history.push('/reset-password/confirmation');
+  }
+
+  if ('failed' === status) {
+    // yield put(actionReceiveResetError(type));
   }
 }

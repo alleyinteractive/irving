@@ -172,6 +172,14 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
   }
 }
 
+/**
+ * A function that is run on form submission. Cleans the form of any errors
+ * and applies a loading state to the submit button.
+ *
+ * @param {object} form The submitted form.
+ *
+ * @returns {object} form
+ */
 function submitForm(form) {
   let tmp = form;
 
@@ -294,7 +302,6 @@ export function setFormErrorState(form, error) {
   components.splice(position + 1, 0, message);
 
   let value = 'Submit';
-  console.log(form.type);
   switch (form.type) {
     case 'login':
       value = 'Login';
@@ -375,8 +382,6 @@ export function setPasswordErrorState(form) {
   components.splice(position + 2, 0, message);
 
   let value = 'Submit';
-  console.log(form);
-  console.log(form.type);
   switch (form.type) {
     case 'login':
       value = 'Login';
@@ -393,7 +398,6 @@ export function setPasswordErrorState(form) {
     default:
       break;
   }
-  console.log(value);
 
   return JSON.stringify(
     components.map((el) => {

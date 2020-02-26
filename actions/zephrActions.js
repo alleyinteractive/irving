@@ -118,7 +118,8 @@ export function actionReceiveUserRegistration() {
  * A Redux action that represents browser state change when a user attempts to register with a
  * password that does not match the verification prompt.
  *
- * @params {{}}
+ * @param {{formType}} payload The type of form being submitted.
+ *
  * @returns {{type}} The Redux action.
  */
 export function actionReceiveInvalidPassword(payload) {

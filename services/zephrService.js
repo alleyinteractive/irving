@@ -224,6 +224,14 @@ export default {
     }
   },
 
+  /**
+   * Complete the password reset process by submitting the new password to
+   * Zephr and redirecting the user.
+   *
+   * @param {object} credentials The user's password and the state key from the reset email.
+   *
+   * @returns {object} status The response status.
+   */
   async resetPassword({ password, state }) {
     try {
       const body = {
