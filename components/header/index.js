@@ -27,20 +27,19 @@ const Header = (props) => {
     <>
       <HeaderTemplate
         isHeadroom={false}
-        headerName="default"
         homeUrl={homeUrl}
         isMobile={isMobile}
         children={children}
       />
+
       <Headroom
         disableInlineStyles
-        className={styles.headroom}
         aria-hidden
+        className={styles.headroom}
         pinStart={isMobile ? 60 : 260}
       >
         <HeaderTemplate
           isHeadroom
-          headerName="headroom"
           homeUrl={homeUrl}
           isMobile={isMobile}
           children={children}

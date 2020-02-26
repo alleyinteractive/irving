@@ -21,10 +21,7 @@ import MegaMenuIcon from 'assets/icons/megaMenu.svg';
 import styles from './headerTemplate.css';
 
 const HeaderTemplate = ({
-  className,
   children,
-  // eslint-disable-next-line no-unused-vars
-  headerName,
   isHeadroom,
   isMobile,
   homeUrl,
@@ -66,7 +63,7 @@ const HeaderTemplate = ({
   });
   return (
     <header
-      className={classNames(styles.container, className)}
+      className={classNames(styles.container)}
       ref={isHeadroom ? headroomRef : null}
     >
       <div className={styles.wrapper}>
@@ -140,16 +137,10 @@ const HeaderTemplate = ({
 };
 
 HeaderTemplate.propTypes = {
-  className: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  headerName: PropTypes.string.isRequired,
   isHeadroom: PropTypes.bool.isRequired,
   homeUrl: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,
-};
-
-HeaderTemplate.defaultProps = {
-  className: '',
 };
 
 export default withStyles(styles)(HeaderTemplate);

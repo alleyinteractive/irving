@@ -1,17 +1,24 @@
 .headroom {
+  /* stylelint-disable declaration-no-important */
+  height: 0!important;
+  /* stylelint-enable declaration-no-important */
+}
+
+:global(.headroom) {
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 2;
+  transform: translateY(-100%);
+  transition: transform 200ms ease-in;
+  z-index: 100;
+}
 
-  :global(.headroom) {
-    transform: translateY(-100%);
-    transition: transform 200ms ease-in;
-  }
+:global(.headroom--unfixed) {
+  top: rem(-62);
+}
 
-  :global(.headroom--unpinned),
-  :global(.headroom--pinned) {
-    transform: translateY(0);
-  }
+:global(.headroom--unpinned),
+:global(.headroom--pinned) {
+  transform: translateY(0);
 }
