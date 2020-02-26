@@ -15,32 +15,31 @@ import OverlayFooter from 'components/zephrUI/regions/overlayFooter';
 import styles from './app.css';
 import OneTrust from './oneTrust';
 
-const App = (props) => {
-  const { error, roots, providers } = props;
-  return (
-    <ErrorBoundary>
-      <Helmet>
-        <link rel="shortcut icon" href={favicon} />
-      </Helmet>
-      {error ? (
-        <ErrorMessage />
-      ) : (
-        <div className={styles.wrapper}>
-          <a href="#content" className={styles.skipLink}>
+const App = ({
+  error, roots, providers,
+}) => (
+  <ErrorBoundary>
+    <Helmet>
+      <link rel="shortcut icon" href={favicon} />
+    </Helmet>
+    {error ? (
+      <ErrorMessage />
+    ) : (
+      <div className={styles.wrapper}>
+        <a href="#content" className={styles.skipLink}>
             Skip to Content
-          </a>
-          <RootProviders providers={providers}>
-            {roots.map((name) => (
-              <ConnectedRoot key={name} name={name} />
-            ))}
-          </RootProviders>
-        </div>
-      )}
-      <OverlayFooter />
-      <OneTrust />
-    </ErrorBoundary>
-  );
-};
+        </a>
+        <RootProviders providers={providers}>
+          {roots.map((name) => (
+            <ConnectedRoot key={name} name={name} />
+          ))}
+        </RootProviders>
+      </div>
+    )}
+    <OverlayFooter />
+    <OneTrust />
+  </ErrorBoundary>
+);
 
 App.propTypes = {
   /**
