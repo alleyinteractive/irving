@@ -100,5 +100,6 @@
   @media ($mdMin) {
     margin-bottom: rem(40);
     margin-top: rem(40);
+    order: 3;
   }
 }

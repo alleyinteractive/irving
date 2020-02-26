@@ -78,6 +78,8 @@ app.use('/hub/possibility-report/*', proxy({
     // eslint-disable-next-line max-len
     '^/hub/possibility-report/grow/': '/wp-content/themes/mittr/inc/static/views/grow.html',
     // eslint-disable-next-line max-len
+    '^/hub/possibility-report/all/': '/wp-content/themes/mittr/inc/static/views/all.html',
+    // eslint-disable-next-line max-len
     '^/hub/possibility-report/': '/wp-content/themes/mittr/inc/static/views/possibility-report.html',
   },
   xfwd: true,
