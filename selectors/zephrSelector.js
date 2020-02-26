@@ -2,14 +2,26 @@ import { createSelector } from 'reselect';
 
 export const zephrSelector = (state) => state.zephr;
 
+/* Load State */
 export const getIsLoading = createSelector(
   zephrSelector,
   (state) => state.isLoading,
 );
 
+/* Forms */
 export const getForms = createSelector(
   zephrSelector,
   (state) => state.forms,
+);
+
+export const getLoginForm = createSelector(
+  zephrSelector,
+  (state) => state.forms.login,
+);
+
+export const getRegistrationForm = createSelector(
+  zephrSelector,
+  (state) => state.forms.register,
 );
 
 export const getCached = createSelector(
@@ -17,6 +29,13 @@ export const getCached = createSelector(
   (state) => state.cached,
 );
 
+/* User Session */
+export const getSession = createSelector(
+  zephrSelector,
+  (state) => state.session,
+);
+
+/* User Profile/Account */
 export const getUser = createSelector(
   zephrSelector,
   (state) => state.user,
@@ -45,11 +64,6 @@ export const getFirstName = createSelector(
 export const getLastName = createSelector(
   zephrSelector,
   (state) => state.user.profile.lastName,
-);
-
-export const getSession = createSelector(
-  zephrSelector,
-  (state) => state.session,
 );
 
 export const getEmailVerified = createSelector(

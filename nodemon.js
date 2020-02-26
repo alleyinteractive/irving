@@ -21,6 +21,7 @@ const ignore = [
   'server/serverRenderer.js',
   'services/*',
   'utils/*',
+  'hooks/*',
 ];
 
 const script = 'server/index.js';
