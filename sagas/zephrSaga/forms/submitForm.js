@@ -31,6 +31,12 @@ export default function* submitForm({ payload: { type, credentials } }) {
     case 'register':
       yield call(submitRegistration, credentials);
       break;
+    case 'resetRequest':
+      yield call(submitResetRequest, credentials);
+      break;
+    case 'reset':
+      yield call(submitReset, credentials);
+      break;
     default:
       // do nothing
       break;
@@ -140,5 +146,41 @@ export function* getAccount(sessionCookie) {
   if ('object' === typeof account) {
     // Store user account information.
     yield put(actionReceiveUserAccount(account));
+  }
+}
+
+/**
+ * Send a password reset email to a given email address.
+ *
+ * @param {object} credentials The user's email address.
+ */
+function* submitResetRequest(credentials) {
+  // Submit the form to Zephr.
+  const { status, type } = yield call(zephrService.requestReset, credentials); // eslint-disable-line
+
+  if ('success' === status) {
+    history.push('/reset-password/request-confirmation');
+  }
+
+  if ('failed' === status) {
+    // yield put(actionReceiveResetRequestError(type));
+  }
+}
+
+/**
+ * Submit the user's new password to Zephr.
+ *
+ * @param {object} credentials The user's selected password.
+ */
+function* submitReset(credentials) {
+  // Submit the form to Zephr.
+  const { status, type } = yield call(zephrService.resetPassword, credentials); // eslint-disable-line
+
+  if ('success' === status) {
+    history.push('/reset-password/confirmation');
+  }
+
+  if ('failed' === status) {
+    // yield put(actionReceiveResetError(type));
   }
 }

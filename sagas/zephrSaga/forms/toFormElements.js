@@ -1,13 +1,12 @@
 import React from 'react';
+import Link from 'components/helpers/link';
 import {
   FormInput,
   TermsCheckbox,
 } from './components/formElements';
 
-export default function toFormElements(form) {
-  const components = JSON.parse(form);
-
-  return components.map((component) => {
+export default function toFormElements(fields, type) {
+  return JSON.parse(fields).map((component) => {
     const {
       id,
       key,
@@ -51,6 +50,17 @@ export default function toFormElements(form) {
           component.message
         );
       case 'submit-button':
+        if ('login' === type) {
+          return React.createElement('div',
+            { className: 'zephr-form-button-group' },
+            React.createElement('input', props, null),
+            React.createElement(Link, {
+              className: 'forgot-password-link',
+              to: '/reset-password',
+            },
+            'Forgot your password?'));
+        }
+
         return React.createElement(
           'input',
           props,

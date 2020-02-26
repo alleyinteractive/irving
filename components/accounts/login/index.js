@@ -76,7 +76,7 @@ const Login = ({
 
   useEffect(() => {
     if (0 !== Object.keys(loginForm).length) {
-      const fields = toFormElements(loginForm.components);
+      const fields = toFormElements(loginForm.components, 'login');
       // If the login attempt has failed multiple times and has met the threshold set
       // in the zephrReducer, splice a captcha into form and require it to be completed
       // in order to make subsequent attempts.

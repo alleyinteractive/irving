@@ -11,6 +11,7 @@ export default function createForm(formJSON) {
       slug = '',
       fields = [],
       registration = false,
+      resetForm = false,
     } = {},
     submitText,
   } = formJSON;
@@ -53,7 +54,7 @@ export default function createForm(formJSON) {
     return props;
   });
 
-  if (true === registration) {
+  if (true === registration || true === resetForm) {
     components = [...components, ...generatePasswordFields(slug)];
   }
 
@@ -82,7 +83,7 @@ function generatePasswordFields(formType) {
   let passwordId = 'current-password';
   let passwordPlaceholder = 'Enter your password';
 
-  if ('registration' === formType) {
+  if ('registration' === formType || 'reset' === formType) {
     passwordId = 'new-password';
     passwordPlaceholder = 'Create a password for your account';
   }
@@ -105,6 +106,10 @@ function generatePasswordFields(formType) {
     fields = [...fields, ...generateRegistrationFields()];
   }
 
+  if ('reset' === formType) {
+    fields = [...fields, ...generateRegistrationFields(false)];
+  }
+
   return fields;
 }
 
@@ -113,7 +118,7 @@ function generatePasswordFields(formType) {
  *
  * @returns {array} fields The generated form field components.
  */
-function generateRegistrationFields() {
+function generateRegistrationFields(isRegistration = true) {
   const verifyId = 'verify-password';
   const verifyField = {
     id: verifyId,
@@ -127,6 +132,10 @@ function generateRegistrationFields() {
   const termsField = {
     id: 'terms-checkbox',
   };
+
+  if (! isRegistration) {
+    return [verifyField];
+  }
 
   // Return the contructed fields.
   return [verifyField, termsField];

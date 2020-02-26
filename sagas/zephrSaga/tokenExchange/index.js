@@ -2,7 +2,7 @@ import {
   call,
   put,
   takeEvery,
-  takeLatest,
+  // takeLatest,
 } from 'redux-saga/effects';
 import {
   actionReceiveUserSession,
@@ -10,10 +10,10 @@ import {
 } from 'actions/zephrActions';
 import {
   VERIFY_ZEPHR_USER_TOKEN,
-  RECEIVE_ZEPHR_USER_VERIFICATION,
+  // RECEIVE_ZEPHR_USER_VERIFICATION,
 } from 'actions/types';
 import zephrService from 'services/zephrService';
-import history from 'utils/history';
+// import history from 'utils/history';
 import createDebug from 'services/createDebug';
 import {
   getProfile,
@@ -25,12 +25,6 @@ const debug = createDebug('sagas:tokenExchange');
 export default [
   // Listen for token verification request.
   takeEvery(VERIFY_ZEPHR_USER_TOKEN, verifyToken),
-  // Listen for the verification status and redirect the user.
-  takeLatest(RECEIVE_ZEPHR_USER_VERIFICATION, () => {
-    setTimeout(() => {
-      history.push('/account');
-    }, 5000);
-  }),
 ];
 
 /**

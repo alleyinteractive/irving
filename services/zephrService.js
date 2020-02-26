@@ -175,6 +175,106 @@ export default {
   },
 
   /**
+   * Begin the password reset process when a user provides their email address
+   * and initiate the Zephr flow to send them a link to reset their password.
+   *
+   * @param {object} credentials The user's email address.
+   *
+   * @returns {object} status The response status.
+   */
+  async requestReset({ email }) {
+    try {
+      const body = {
+        identifiers: {
+          email_address: email,
+        },
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/users/reset`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      const response = await request;
+
+      if (201 === response.status) {
+        return { status: 'success' };
+      }
+
+      if (404 === response.status) {
+        return {
+          status: 'failed',
+          type: 'user-not-found',
+        };
+      }
+
+      return {
+        status: 'failed',
+        type: 'bad-request',
+      };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Complete the password reset process by submitting the new password to
+   * Zephr and redirecting the user.
+   *
+   * @param {object} credentials The user's password and the state key from the reset email.
+   *
+   * @returns {object} status The response status.
+   */
+  async resetPassword({ password, state }) {
+    try {
+      const body = {
+        validators: {
+          password,
+        },
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/users/reset/${state}`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      const response = await request;
+
+      if (200 === response.status) {
+        return { status: 'success' };
+      }
+
+      if (404 === response.status) {
+        return {
+          status: 'failed',
+          type: 'invalid-state',
+        };
+      }
+
+      return {
+        status: 'failed',
+        type: 'bad-request',
+      };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
    * Log a user in and retrieve their entitlements.
    *
    * @param {string} email    The user's email address.
