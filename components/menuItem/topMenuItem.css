@@ -1,4 +1,8 @@
 .wrapper {
+  &.hasChildren {
+    margin-bottom: rem(20);
+  }
+
   h3 {
     font-size: rem(20);
     font-weight: 900;
@@ -10,4 +14,11 @@
   display: block;
   font-size: rem(20);
   padding-bottom: rem(5);
+}
+
+.parent {
+  color: #fff;
+  font-size: rem(20);
+  font-weight: 900;
+  margin-bottom: rem(20);
 }

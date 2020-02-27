@@ -13,6 +13,7 @@ import reducer, {
 
 // Default login form state to be modified in the test suite.
 const loginFormMock = {
+  type: 'login',
   components: JSON.stringify([
     {
       autoComplete: 'username',
@@ -95,6 +96,7 @@ const regFormMock = {
   error: false,
   errors: [],
   errorCount: null,
+  type: 'register',
 };
 
 /**
@@ -294,7 +296,7 @@ describe('Zephr Reducer', () => {
       });
       const components = setPasswordErrorState(regFormMock);
 
-      const nextState = reducer(mockState, actionReceiveInvalidPassword());
+      const nextState = reducer(mockState, actionReceiveInvalidPassword('register'));
       expect(nextState).toEqual({
         ...mockState,
         forms: {
@@ -302,7 +304,9 @@ describe('Zephr Reducer', () => {
           register: {
             components,
             error: true,
+            errorCount: null,
             errors: ['verify-password'],
+            type: 'register',
           },
         },
       });
