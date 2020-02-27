@@ -271,9 +271,11 @@ Object {
     "register": Object {
       "components": "[{\\"autoComplete\\":\\"username\\",\\"className\\":\\"zephr-input-email-address\\",\\"defaultValue\\":\\"\\",\\"id\\":\\"email-address\\",\\"placeholder\\":\\"Enter your email address\\",\\"required\\":false,\\"type\\":\\"email\\"},{\\"className\\":\\"zephr-input-full-name\\",\\"defaultValue\\":\\"\\",\\"id\\":\\"full-name\\",\\"placeholder\\":\\"Enter your full name\\",\\"required\\":true,\\"type\\":\\"text\\"},{\\"autoComplete\\":\\"new-password\\",\\"className\\":\\"zephr-input-new-password\\",\\"defaultValue\\":\\"\\",\\"id\\":\\"new-password\\",\\"placeholder\\":\\"Create a password for your account\\",\\"required\\":true,\\"type\\":\\"password\\",\\"invalid\\":true},{\\"autoComplete\\":\\"new-password\\",\\"className\\":\\"zephr-input-verify-password\\",\\"defaultValue\\":\\"\\",\\"id\\":\\"verify-password\\",\\"placeholder\\":\\"Confirm your password\\",\\"required\\":true,\\"type\\":\\"password\\",\\"invalid\\":true},{\\"type\\":\\"span\\",\\"id\\":\\"verify-password-error\\",\\"key\\":\\"verify-password-error-message\\",\\"className\\":\\"form-error\\",\\"message\\":\\"Oops! Let’s try that again — Passwords do not match. Please re-enter your password and try again.\\"},{\\"id\\":\\"terms-checkbox\\"},{\\"id\\":\\"submit-button\\",\\"key\\":\\"zephr-submit-button\\",\\"type\\":\\"submit\\",\\"value\\":\\"Create an account\\"}]",
       "error": true,
+      "errorCount": null,
       "errors": Array [
         "verify-password",
       ],
+      "type": "register",
     },
   },
   "headerHeight": 0,
