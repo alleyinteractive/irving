@@ -55,7 +55,9 @@ const SocialItem = (props) => {
           }}
           target="_blank"
           rel="noopener"
-          data-share-permalink={sharePermalink}
+          data-event-category="share-button"
+          data-event-action={`in-feed-story-footer-${type}`}
+          data-event-label={sharePermalink}
         >
           <span className={theme.screenReaderLabel}>
             {type}{__('link opens in a new window', 'mittr')}
