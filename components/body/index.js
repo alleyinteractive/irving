@@ -2,18 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { Helmet } from 'react-helmet';
-import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { getZephrComponents } from 'selectors/zephrRulesSelector';
-import get from 'lodash/get';
+import useObscureContent from 'hooks/useObscureContent';
 import styles from './body.css';
 
-const Body = ({ bodyClasses, children, zephrComponents }) => {
-  const obscureContent = true === get(
-    zephrComponents,
-    'obscureContent.zephrOutput',
-    false
-  );
+const Body = ({ bodyClasses, children }) => {
+  const obscureContent = useObscureContent();
 
   return (
     <>
@@ -44,21 +38,12 @@ Body.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.string,
   ]),
-  /**
-   * The Zephr components endpoint.
-   */
-  zephrComponents: PropTypes.object,
 };
 
 Body.defaultProps = {
   bodyClasses: [],
-  zephrComponents: {},
 };
-
-const mapStateToProps = (state) => ({
-  zephrComponents: getZephrComponents(state),
-});
 
 const wrapWithStyles = withStyles(styles);
 
-export default wrapWithStyles(connect(mapStateToProps)(Body));
+export default wrapWithStyles(Body);
