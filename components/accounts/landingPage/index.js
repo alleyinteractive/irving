@@ -103,7 +103,7 @@ const AccountLandingPage = ({
                 tabIndex="0"
                 onClick={onClickEditEmail}
               >
-                {__('Edit your email addresss', 'mittr')}
+                {__('Edit your email address', 'mittr')}
               </button>
             ) : (
               <AccountInfoForm
@@ -127,7 +127,7 @@ const AccountLandingPage = ({
               <div className={styles.buttonContainer}>
                 <a
                   id="newsletterPrefsBtn"
-                  href="/account/newsletter-preferences"
+                  href="https://forms.technologyreview.com/newsletters/?_ga=2.242102080.39622121.1582559852-436121851.1581700602"
                   className={styles.button}
                   role="button"
                 >
@@ -165,7 +165,7 @@ const AccountLandingPage = ({
           <div className={styles.buttonContainer}>
             <a
               id="subscriptionManagerBtn"
-              href="/accout/manage-subscription"
+              href="https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602"
               className={styles.button}
               role="button"
             >
@@ -195,7 +195,7 @@ const AccountLandingPage = ({
         <div className={styles.socialConnections}>
           <h2>{__('Social login connections', 'mittr')}</h2>
           <p>
-            {__(`Simplify signing in by connecting your social media accounts 
+            {__(`Simplify signing in by connecting your social media accounts
             to this site. (We will never post anything to your social media
             accounts on your behalf without explicitly asking for your
             permission first, of course.)`, 'mittr')}
