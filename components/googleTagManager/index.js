@@ -43,7 +43,7 @@ const GoogleTagManager = (props) => {
         <script>
           {`
             if (${isNode()}) {
-              var data = window.dataLayer;
+              var data = ${JSON.stringify(dataLayer)};
               data.event = 'irving.initialRender';
               window.dataLayer.push(data);
             }
