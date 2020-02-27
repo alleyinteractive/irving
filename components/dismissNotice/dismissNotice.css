@@ -1,8 +1,9 @@
 /* DismissNotice component styles */
 
 .wrapper {
-  @include container;
-  max-width: 100%;
+  composes: wrapper from '../columnArea/columnArea--feed.css';
+  margin-bottom: rem(20);
+  margin-top: rem(20);
   position: relative;
 }
 
