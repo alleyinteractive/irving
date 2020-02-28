@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
-
+import kebabCase from 'lodash.kebabcase';
 // Styles.
 import styles from './newsletter.css';
 import storyGroup from './newsletter--storyGroup.css';
@@ -94,6 +94,14 @@ const NewsletterSubscribe = ({
       status: 'success',
       message: __('Thanks for signing up.', 'mittr'),
     });
+
+    window.dataLayer.push({
+      event: 'mittr.newsletterSubscribe',
+      category: 'subscribe',
+      action: `subscribe-success-${kebabCase(title)}`,
+      label: 'test-location', // @todo make it work
+    });
+
     // Clear out message.
     setTimeout(() => {
       setFormResponseState({
