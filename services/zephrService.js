@@ -354,11 +354,20 @@ export default {
   /**
    * Log a user out and remove their Zephr session cookie.
    */
-  async logOut() {
+  async logOut(session) {
+    // Get the session cookie to add the header.
+    const { sessionCookie: cookie = '' } = session || {};
+
     try {
       const request = fetch(
         `${process.env.ZEPHR_ROOT_URL}/blaize/logout`,
-        { method: 'POST' }
+        {
+          method: 'POST',
+          headers: {
+            cookie,
+          },
+          credentials: 'include',
+        }
       ).then((res) => res.json());
 
       const response = await request;
