@@ -7,7 +7,7 @@ import withThemes from 'components/hoc/withThemes';
 
 // Styles.
 import styles from './newsletter.css';
-import storygroup from './newsletter--storygroup.css';
+import storyGroup from './newsletter--storyGroup.css';
 import sidebar from './newsletter--sidebar.css';
 
 const NewsletterSubscribe = ({
@@ -331,6 +331,6 @@ NewsletterSubscribe.propTypes = {
 
 export default withThemes('newsletter', {
   default: styles,
-  storygroup,
+  storyGroup,
   sidebar,
-})(withStyles(styles, storygroup, sidebar)(NewsletterSubscribe));
+})(withStyles(styles, storyGroup, sidebar)(NewsletterSubscribe));
