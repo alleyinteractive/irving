@@ -15,7 +15,7 @@ import {
   SUBMIT_ZEPHR_FORM,
   REQUEST_USER_LOG_OUT,
 } from 'actions/types';
-import { getCached } from 'selectors/zephrSelector';
+import { getCached, getSession } from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
 import requestForms from './requestForms';
@@ -53,7 +53,8 @@ function* initialize() {
  * A generator that is called when a user requests a log out.
  */
 function* logOut() {
-  const status = yield call(zephrService.logOut);
+  const session = yield select(getSession);
+  const status = yield call(zephrService.logOut, session);
 
   if ('success' === status) {
     // Update the redux store and clear out any stored user data.
