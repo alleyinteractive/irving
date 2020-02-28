@@ -2,9 +2,8 @@
 
 :global {
   .ThanksNotice__wrapper {
-    @include container;
-    max-width: 100%;
     position: relative;
+    width: 100%;
   }
 
   .ThanksNotice__innerWrapper {

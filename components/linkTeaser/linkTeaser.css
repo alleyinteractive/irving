@@ -17,3 +17,8 @@
   font-family: $sans;
   font-weight: 700;
 }
+
+.deck {
+  font-size: rem(17);
+  line-height: 1.2;
+}

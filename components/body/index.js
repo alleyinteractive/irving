@@ -3,15 +3,21 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
+import useObscureContent from 'hooks/useObscureContent';
 import styles from './body.css';
 
-const Body = (props) => {
-  const { bodyClasses, children } = props;
+const Body = ({ bodyClasses, children }) => {
+  const obscureContent = useObscureContent();
 
   return (
     <>
       <Helmet>
-        <body className={classNames(bodyClasses)} />
+        <body className={
+          classNames(
+            bodyClasses,
+            { [styles.obscureContent]: obscureContent }
+          )}
+        />
       </Helmet>
       <main className={styles.content} id="content">
         {children}

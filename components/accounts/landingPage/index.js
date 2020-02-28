@@ -14,7 +14,10 @@ import {
   getAccount,
 } from 'selectors/zephrSelector';
 import history from 'utils/history';
-import { actionRequestUserLogOut } from 'actions/zephrActions';
+import {
+  actionRequestUserLogOut,
+  actionSubmitForm,
+} from 'actions/zephrActions';
 
 import AccountInfoForm from './infoForm';
 import styles from './landingPage.css';
@@ -30,6 +33,7 @@ const AccountLandingPage = ({
   renewalDate,
   logOut,
   isAuthenticated,
+  submitResetRequest,
 }) => {
   // Prevent unauthenticated users from being able to visit this route.
   if (! isAuthenticated) {
@@ -46,10 +50,12 @@ const AccountLandingPage = ({
       isEditingPassword: false,
     });
   };
-  const onClickEditPassword = () => {
-    setFormState({
-      isEditingEmail: false,
-      isEditingPassword: true,
+  const onClickResetPassword = () => {
+    submitResetRequest({
+      type: 'resetRequest',
+      credentials: {
+        email,
+      },
     });
   };
 
@@ -107,23 +113,15 @@ const AccountLandingPage = ({
               />
             )}
 
-            {! formState.isEditingPassword ? (
-              <button
-                id="editPasswordBtn"
-                className={styles.button}
-                type="button"
-                tabIndex="0"
-                onClick={onClickEditPassword}
-              >
-                {__('Edit your password', 'mittr')}
-              </button>
-            ) : (
-              <AccountInfoForm
-                type="password"
-                handleSubmit={() => {}}
-                placeholderValue="password"
-              />
-            )}
+            <button
+              id="editPasswordBtn"
+              className={styles.button}
+              type="button"
+              tabIndex="0"
+              onClick={onClickResetPassword}
+            >
+              {__('Reset your password', 'mittr')}
+            </button>
 
             {0 < newsletters.length && (
               <div className={styles.buttonContainer}>
@@ -299,10 +297,12 @@ AccountLandingPage.propTypes = {
   renewalDate: PropTypes.string,
   subscriptionName: PropTypes.string,
   subscriptionType: PropTypes.string,
+  submitResetRequest: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   logOut: () => dispatch(actionRequestUserLogOut()),
+  submitResetRequest: (data) => dispatch(actionSubmitForm(data)),
 });
 
 const withRedux = connect(

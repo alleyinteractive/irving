@@ -22,6 +22,7 @@ import ContentList from 'components/contentList';
 import ContentListItem from 'components/contentList/contentListItem';
 import Container from 'components/container';
 import Disqus from 'components/disqus';
+import Error404 from 'components/error404';
 import FeedItem from 'components/feedItem';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
@@ -72,6 +73,10 @@ import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import Register from 'components/accounts/register';
 import Related from 'components/related';
+import ResetRequestForm from 'components/accounts/resetPassword/request';
+import ConfirmResetRequest from 'components/accounts/resetPassword/requestConfirmation'; // eslint-disable-line max-len
+import ResetPasswordForm from 'components/accounts/resetPassword/reset';
+import ConfirmReset from 'components/accounts/resetPassword/resetConfirmation';
 import Schema from 'components/schema';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
@@ -123,6 +128,7 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
+  'error-404': Error404,
   'core-embed': RawHTML,
   'feed-anchor': CardStack,
   footer: Footer,
@@ -182,6 +188,10 @@ export const componentMap = {
   popular: Popular,
   'post-list': PostList,
   register: Register,
+  'reset-password-request': ResetRequestForm,
+  'reset-password-request-confirmation': ConfirmResetRequest,
+  'reset-password': ResetPasswordForm,
+  'reset-password-confirmation': ConfirmReset,
   schema: Schema,
   'search-bar': SearchBar,
   'section-item': SectionItem,

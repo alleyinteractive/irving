@@ -114,4 +114,15 @@
   :global(.captcha) {
     margin-bottom: rem(10);
   }
+
+  :global(.zephr-form-button-group) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    a {
+      font-weight: 600;
+      text-decoration: underline;
+    }
+  }
 }

@@ -2,23 +2,30 @@
 
 :global {
   .MeterNotice__wrapper {
-    @include container;
-    max-width: 100%;
     position: relative;
+    width: 100%;
   }
 
   .MeterNotice__innerWrapper {
-    tidy-span: 12;
+    [aria-expanded="true"] & {
+      tidy-span: 12;
 
-    @media ($lgMin) {
-      margin-right: auto;
-      tidy-offset-left: 1;
-      tidy-span: 11;
+      @media ($lgMin) {
+        margin-right: auto;
+        tidy-offset-left: 1;
+        tidy-span: 11;
+      }
     }
 
     [aria-expanded="false"] & {
       align-items: center;
       display: flex;
+
+      @media ($lgMin) {
+        flex: 100%;
+        margin-right: auto;
+        tidy-offset-left: 1;
+      }
     }
   }
 
