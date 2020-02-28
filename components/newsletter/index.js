@@ -18,6 +18,7 @@ const NewsletterSubscribe = ({
   description,
   color,
   imgLogoUrl,
+  location, // location prop is used for GA event
   theme,
   themeName,
 }) => {
@@ -99,7 +100,7 @@ const NewsletterSubscribe = ({
       event: 'mittr.newsletterSubscribe',
       category: 'subscribe',
       action: `subscribe-success-${kebabCase(title)}`,
-      label: 'test-location', // @todo make it work
+      label: location,
     });
 
     // Clear out message.
@@ -321,6 +322,7 @@ NewsletterSubscribe.defaultProps = {
   apiEndPoint: 'https://eventbrite-to-blueconic.herokuapp.com/api/web/newsletters/subscriptions',
   clientId: '',
   mailchimpListName: '',
+  location: 'in-body', // default of `in-body` for the gutenblock version
   themeName: '',
   theme: 'default',
 };
@@ -333,6 +335,7 @@ NewsletterSubscribe.propTypes = {
   description: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   imgLogoUrl: PropTypes.string.isRequired,
+  location: PropTypes.string,
   themeName: PropTypes.string,
   theme: PropTypes.object,
 };
