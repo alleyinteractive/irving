@@ -5,8 +5,9 @@
  */
 @mixin body-content-type-styles {
   color: $black;
-  font-family: $sans;
+  font-family: $serif-text;
   font-size: rem(18);
+  font-weight: 400;
   line-height: 1.55;
 }
 
@@ -18,7 +19,7 @@
     color: inherit;
     display: inline;
     font-size: inherit;
-    font-weight: 700;
+    font-weight: 400;
     text-decoration: underline;
   }
 }
