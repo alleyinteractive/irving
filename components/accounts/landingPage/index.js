@@ -179,14 +179,16 @@ const AccountLandingPage = ({
             >
               {__('Review your order history', 'mittr')}
             </a>
-            <a
+            {/* Comment this button out for now.
+               MIT needs to flesh this feature out first. Per John. */}
+            {/* <a
               id="purchaseSubscriptionBtn"
               href="/account/purchase-gift"
               className={styles.button}
               role="button"
             >
               {__('Purchase a gift subscription', 'mittr')}
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
