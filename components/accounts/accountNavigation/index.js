@@ -19,15 +19,6 @@ const AccountNavigation = ({ currentPage }) => {
       label: __('Review your order history', 'mittr'),
       url: '/account/order-history',
     },
-    /*
-      Comment this button out for now.
-      MIT needs to flesh this feature out first. Per John.
-    */
-    // {
-    //   page: 'purchase-gift',
-    //   label: __('Purchase a gift subscription', 'mittr'),
-    //   url: '/account/purchase-gift',
-    // },
     {
       page: 'newsletter-preferences',
       label: __('Edit your newsletter preferences', 'mittr'),
