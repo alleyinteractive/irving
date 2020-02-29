@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-import { rem } from 'styles/utils';
-import { fonts, colors } from 'styles/variables';
+import { rem } from 'utils';
 
 const getAspectRatioStyles = (props) => {
   const { aspectRatio } = props;
@@ -41,9 +40,7 @@ export const Wrapper = styled.span
 
 export const Caption = styled.figcaption`
   caption-side: bottom;
-  color: ${colors.grayDark};
   display: table-caption;
-  font-family: ${fonts.graphik};
   font-size: ${rem(14)};
   line-height: ${rem(20)};
 `;
