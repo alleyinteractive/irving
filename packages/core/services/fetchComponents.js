@@ -143,12 +143,13 @@ export default async function cacheResult(
   context = CONTEXT_PAGE
 ) {
   const cache = getService();
-  const key = createQueryString(
+  const componentsQuery = createQueryString(
     path,
     search,
     cookie,
     context
   );
+  const key = `components-endpoint:${componentsQuery}`;
 
   const info = { cached: false, route: key };
   let response = await cache.get(key);
