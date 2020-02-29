@@ -23,7 +23,7 @@ const bustPageCache = async (req, res) => {
 
   // Find all keys that start with the key we received.
   const stream = service.client.scanStream({
-    match: `${key}*`,
+    match: `components-endpoint:${key}*`,
   });
 
   stream.on('data', async (keys) => {

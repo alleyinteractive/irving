@@ -1,12 +1,14 @@
 /**
  * Test redis database.
  */
+/* eslint-disable max-len */
 const mockRedisDatabase = {
-  'path=/&context=site': 'some data',
-  'path=/test-page&context=site&extra-parameter=1': 'more data',
-  'path=/test-page&context=site&extra-parameter=2': 'more data',
-  'path=/test-page&context=site&extra-parameter=3': 'more data',
+  'components-endpoint:path=/&context=site': 'some data',
+  'components-endpoint:path=/test-page&context=site&extra-parameter=1': 'more data',
+  'components-endpoint:path=/test-page&context=site&extra-parameter=2': 'more data',
+  'components-endpoint:path=/test-page&context=site&extra-parameter=3': 'more data',
 };
+/* eslint-enable max-len */
 
 /**
  * Mocks the Redis cache service with an instance of ioredis-mock.
