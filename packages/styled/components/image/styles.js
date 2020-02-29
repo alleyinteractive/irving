@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { rem } from '../utils';
 
 const getAspectRatioStyles = (props) => {
   const { aspectRatio } = props;
