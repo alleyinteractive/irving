@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import {
   actionReceiveUserSession,
   actionReceiveUserProfile,
@@ -13,17 +13,20 @@ import {
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
 import createDebug from 'services/createDebug';
+import { getZephrCookie } from 'selectors/zephrSelector';
 
 const debug = createDebug('sagas:submitZephrForm');
 
 /**
  * A generator that is called on the submission of a Zephr form. The form
- * type is checked and a subsequent request will be made to the cooresponding
+ * type is checked and a subsequent request will be made to the corresponding
  * endpoint in the Zephr API.
  *
  * @param {{ route, credentials }} The form to be submitted.
  */
 export default function* submitForm({ payload: { type, credentials } }) {
+  const cookie = yield select(getZephrCookie);
+
   switch (type) {
     case 'login':
       yield call(submitLogin, credentials);
@@ -35,7 +38,7 @@ export default function* submitForm({ payload: { type, credentials } }) {
       yield call(submitResetRequest, credentials);
       break;
     case 'reset':
-      yield call(submitReset, credentials);
+      yield call(submitReset, credentials, cookie);
       break;
     default:
       // do nothing
@@ -133,7 +136,7 @@ export function* getProfile(sessionCookie) {
 }
 
 /**
- * Use the session cookie set by loggin in or registering a user with Zephr to retrieve
+ * Use the session cookie set by login in or registering a user with Zephr to retrieve
  * their account and store their information in our Redux store.
  *
  * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
@@ -172,9 +175,13 @@ function* submitResetRequest(credentials) {
  *
  * @param {object} credentials The user's selected password.
  */
-function* submitReset(credentials) {
+function* submitReset(credentials, cookie) {
   // Submit the form to Zephr.
-  const { status, type } = yield call(zephrService.resetPassword, credentials); // eslint-disable-line
+  const { status, type } = yield call( // eslint-disable-line no-unused-vars
+    zephrService.resetPassword,
+    credentials,
+    cookie
+  );
 
   if ('success' === status) {
     history.push('/reset-password/confirmation');
