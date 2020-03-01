@@ -14,8 +14,16 @@
   z-index: 2;
 
   @media ($smMin) {
+    column-count: 2;
     left: auto;
     width: rem(350);
+  }
+
+  @media ($mdMin) {
+    @include container-with-bleed;
+    column-count: 4;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
