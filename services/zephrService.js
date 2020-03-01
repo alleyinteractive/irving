@@ -1,6 +1,4 @@
-// @todo keep this for mocking calls with the BrowserSDK.
-// It should be remove once the service is fully built out.
-// import BlaizeSDK from './zephr-sdk/blaize-front-end-sdk.min.js';
+import kebabCase from 'lodash/kebabCase';
 
 /**
  * Format an error message to be posted to the console.
@@ -54,19 +52,223 @@ export default {
           },
           body: JSON.stringify(user),
         }
-      ).then((res) => res.json());
+      ).then((res) => {
+        if (400 === res.status) {
+          return {
+            status: 'failed',
+            type: 'password-not-strong',
+          };
+        }
+
+        if (409 === res.status) {
+          return {
+            status: 'failed',
+            type: 'user-already-exists',
+          };
+        }
+
+        return res.json();
+      });
 
       const response = await request;
 
-      if ('cookie' in response) {
+      if ('tracking_id' in response) {
         return {
           status: 'success',
-          cookie: response.cookie,
           trackingId: response.tracking_id,
         };
       }
 
-      return { status: 'failed' };
+      return response;
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Initiate the token exchange by sending the registered user a verification
+   * email.
+   *
+   * @param {string} email The user's email address.
+   */
+  async sendVerificationEmail(email) {
+    try {
+      const body = {
+        identifiers: {
+          email_address: email,
+        },
+        delivery: {
+          method: 'email',
+          destination: email,
+          action: 'register',
+          redirect: '/',
+        },
+      };
+
+      fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/token-exchange`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      return true;
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Use the token provided in the verification email to complete the token exchange.
+   *
+   * @param {string} token The token.
+   *
+   * @returns {string} sessionCookie The verified user's session cookie.
+   */
+  async verifyEmail(token) {
+    try {
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/token-exchange?token=${token}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+        }
+      ).then((res) => res);
+
+      const response = await request;
+
+      if (200 === response.status) {
+        // On success parse the cookies set by Zephr's API response.
+        const cookieArr = document.cookie
+          .split(';')
+          .reduce((res, item) => {
+            const [key, val] = item.trim().split('=').map(decodeURIComponent);
+            const allNumbers = (str) => /^\d+$/.test(str);
+            try {
+              return Object.assign(
+                res,
+                {
+                  [key]: allNumbers(val) ? val : JSON.parse(val),
+                }
+              );
+            } catch (e) {
+              return Object.assign(res, { [key]: val });
+            }
+          }, {});
+
+        const {
+          blaize_session: sessionCookie,
+        } = cookieArr;
+
+        return `blaize_session=${sessionCookie}`;
+      }
+
+      return false;
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Begin the password reset process when a user provides their email address
+   * and initiate the Zephr flow to send them a link to reset their password.
+   *
+   * @param {object} credentials The user's email address.
+   *
+   * @returns {object} status The response status.
+   */
+  async requestReset({ email }) {
+    try {
+      const body = {
+        identifiers: {
+          email_address: email,
+        },
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/users/reset`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      const response = await request;
+
+      if (201 === response.status) {
+        return { status: 'success' };
+      }
+
+      if (404 === response.status) {
+        return {
+          status: 'failed',
+          type: 'user-not-found',
+        };
+      }
+
+      return {
+        status: 'failed',
+        type: 'bad-request',
+      };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Complete the password reset process by submitting the new password to
+   * Zephr and redirecting the user.
+   *
+   * @param {object} credentials The user's password and the state key from the reset email.
+   *
+   * @returns {object} status The response status.
+   */
+  async resetPassword({ password, state }) {
+    try {
+      const body = {
+        validators: {
+          password,
+        },
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/users/reset/${state}`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      const response = await request;
+
+      if (200 === response.status) {
+        return { status: 'success' };
+      }
+
+      if (404 === response.status) {
+        return {
+          status: 'failed',
+          type: 'invalid-state',
+        };
+      }
+
+      return {
+        status: 'failed',
+        type: 'bad-request',
+      };
     } catch (error) {
       return postErrorMessage(error);
     }
@@ -101,7 +303,7 @@ export default {
           },
           body: JSON.stringify(user),
         }
-      ).then((res) => {
+      ).then(async (res) => {
         if (404 === res.status) {
           return {
             status: 'failed',
@@ -110,6 +312,20 @@ export default {
         }
 
         if (401 === res.status) {
+          const responseText = await res.text();
+          const responseTitle = kebabCase(
+            new window.DOMParser().parseFromString(
+              responseText, 'text/html'
+            ).title
+          );
+
+          if ('email-verification-is-required' === responseTitle) {
+            return {
+              status: 'failed',
+              type: 'email-not-verified',
+            };
+          }
+
           return {
             status: 'failed',
             type: 'invalid-password',
@@ -135,11 +351,55 @@ export default {
     }
   },
 
-  async getProfile() {
+  /**
+   * Log a user out and remove their Zephr session cookie.
+   */
+  async logOut(session) {
+    // Get the session cookie to add the header.
+    const { sessionCookie: cookie = '' } = session || {};
+
+    try {
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/logout`,
+        {
+          method: 'POST',
+          headers: {
+            cookie,
+          },
+          credentials: 'include',
+        }
+      ).then((res) => res.json());
+
+      const response = await request;
+
+      if ('message' in response && 'Session deleted' === response.message) {
+        return 'success';
+      }
+
+      return 'failed';
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Get the user's profile (first and last name).
+   *
+   * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
+   *
+   * @returns {object} profile The user's profile.
+   */
+  async getProfile(sessionCookie) {
     try {
       const request = fetch(
         `${process.env.ZEPHR_ROOT_URL}/blaize/profile`,
-        { method: 'GET' }
+        {
+          method: 'GET',
+          headers: {
+            cookie: sessionCookie,
+          },
+          credentials: 'include',
+        }
       ).then((res) => res.json());
 
       const response = await request;
@@ -153,6 +413,42 @@ export default {
     } catch (error) {
       postErrorMessage(error);
       // Return null to exit the profile setting portion of the saga.
+      return null;
+    }
+  },
+
+  /**
+   * Get the user's account information.
+   *
+   * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
+   *
+   * @returns {object} account The user's account.
+   */
+  async getAccount(sessionCookie) {
+    try {
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/account`,
+        {
+          method: 'GET',
+          headers: {
+            cookie: sessionCookie,
+          },
+          credentials: 'include',
+        }
+      ).then((res) => res.json());
+
+      const response = await request;
+
+      const {
+        identifiers: {
+          email_address: emailAddress,
+        },
+      } = response;
+
+      return { emailAddress };
+    } catch (error) {
+      postErrorMessage(error);
+      // Return null to exit the account setting portion of the saga.
       return null;
     }
   },

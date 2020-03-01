@@ -1,0 +1,21 @@
+/* DismissNotice component styles */
+
+.wrapper {
+  composes: wrapper from '../columnArea/columnArea--feed.css';
+  margin-bottom: rem(20);
+  margin-top: rem(20);
+  position: relative;
+}
+
+.button {
+  border: 0;
+  font-size: rem(20);
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  svg {
+    height: rem(26);
+    width: rem(26);
+  }
+}

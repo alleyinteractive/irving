@@ -1,17 +1,29 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import TwitterIcon from 'assets/icons/twitter.svg';
 import FacebookIcon from 'assets/icons/facebook.svg';
 import GoogleIcon from 'assets/icons/google.svg';
 import parse from 'html-react-parser';
+import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
+import {
+  getFirstName,
+  getEmail,
+  getProfile,
+  getAccount,
+} from 'selectors/zephrSelector';
+import history from 'utils/history';
+import {
+  actionRequestUserLogOut,
+  actionSubmitForm,
+} from 'actions/zephrActions';
 
 import AccountInfoForm from './infoForm';
 import styles from './landingPage.css';
 
 const AccountLandingPage = ({
-  name,
+  firstName,
   subscriptionName,
   subscriptionType,
   accountNumber,
@@ -19,7 +31,15 @@ const AccountLandingPage = ({
   newsletters,
   discounts,
   renewalDate,
+  logOut,
+  isAuthenticated,
+  submitResetRequest,
 }) => {
+  // Prevent unauthenticated users from being able to visit this route.
+  if (! isAuthenticated) {
+    history.push('/');
+  }
+
   const [formState, setFormState] = useState({
     isEditingEmail: false,
     isEditingPassword: false,
@@ -30,10 +50,12 @@ const AccountLandingPage = ({
       isEditingPassword: false,
     });
   };
-  const onClickEditPassword = () => {
-    setFormState({
-      isEditingEmail: false,
-      isEditingPassword: true,
+  const onClickResetPassword = () => {
+    submitResetRequest({
+      type: 'resetRequest',
+      credentials: {
+        email,
+      },
     });
   };
 
@@ -46,36 +68,12 @@ const AccountLandingPage = ({
     }
   };
 
-  const generateNewsletterString = () => {
-    let str = '';
-
-    newsletters.forEach((n, index, array) => {
-      if (index === array.length) {
-        str += n;
-      } else if (0 === index && ! 2 < array.length) {
-        str += `<strong>${n}</strong> `;
-      } else if (0 === index && 2 < array.length) {
-        str += `<strong>${n}</strong>, `;
-      } else if (index === array.length - 2) {
-        str += `<strong>${n}</strong> `;
-      } else if (index === array.length - 1) {
-        str += `and <strong>${n}</strong>`;
-      } else {
-        str += `${n}, `;
-      }
-    });
-
-    return str;
-  };
-
-  const truncatedName = name.split(' ')[0];
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.welcomeBanner}>
         <span className={styles.welcomeMessage}>{__('Welcome', 'mittr')}</span>
         <h1 className={styles.greeting}>
-          {__('Hello', 'mittr')}, {truncatedName}!
+          {__('Hello', 'mittr')}, {firstName}!
         </h1>
         <span className={styles.accessBanner}>
           {generateAccessBanner()}{' '}
@@ -105,7 +103,7 @@ const AccountLandingPage = ({
                 tabIndex="0"
                 onClick={onClickEditEmail}
               >
-                {__('Edit your email addresss', 'mittr')}
+                {__('Edit your email address', 'mittr')}
               </button>
             ) : (
               <AccountInfoForm
@@ -115,45 +113,39 @@ const AccountLandingPage = ({
               />
             )}
 
-            {! formState.isEditingPassword ? (
-              <button
-                id="editPasswordBtn"
-                className={styles.button}
-                type="button"
-                tabIndex="0"
-                onClick={onClickEditPassword}
-              >
-                {__('Edit your password', 'mittr')}
-              </button>
-            ) : (
-              <AccountInfoForm
-                type="password"
-                handleSubmit={() => {}}
-                placeholderValue="password"
-              />
-            )}
-          </div>
+            <button
+              id="editPasswordBtn"
+              className={styles.button}
+              type="button"
+              tabIndex="0"
+              onClick={onClickResetPassword}
+            >
+              {__('Reset your password', 'mittr')}
+            </button>
 
-          {0 < newsletters.length && (
-            <Fragment>
-              <p>
-                {__('We send you', 'mittr')}{' '}
-                {parse(generateNewsletterString())}{' '}
-                {`newsletter${1 < newsletters.length ? 's' : ''}`}{' '}
-                {__('each week.', 'mittr')}
-              </p>
+            {0 < newsletters.length && (
               <div className={styles.buttonContainer}>
                 <a
                   id="newsletterPrefsBtn"
-                  href="/account/newsletter-preferences"
+                  href="https://forms.technologyreview.com/newsletters/?_ga=2.242102080.39622121.1582559852-436121851.1581700602"
                   className={styles.button}
                   role="button"
                 >
                   {__('Edit your newsletter preferences', 'mittr')}
                 </a>
               </div>
-            </Fragment>
-          )}
+            )}
+
+            <button
+              id="editPasswordBtn"
+              className={styles.button}
+              type="button"
+              tabIndex="0"
+              onClick={logOut}
+            >
+              {__('Log out', 'mittr')}
+            </button>
+          </div>
         </div>
 
         <div className={styles.subscription}>
@@ -173,7 +165,7 @@ const AccountLandingPage = ({
           <div className={styles.buttonContainer}>
             <a
               id="subscriptionManagerBtn"
-              href="/accout/manage-subscription"
+              href="https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602"
               className={styles.button}
               role="button"
             >
@@ -187,14 +179,6 @@ const AccountLandingPage = ({
             >
               {__('Review your order history', 'mittr')}
             </a>
-            <a
-              id="purchaseSubscriptionBtn"
-              href="/account/purchase-gift"
-              className={styles.button}
-              role="button"
-            >
-              {__('Purchase a gift subscription', 'mittr')}
-            </a>
           </div>
         </div>
       </div>
@@ -203,7 +187,7 @@ const AccountLandingPage = ({
         <div className={styles.socialConnections}>
           <h2>{__('Social login connections', 'mittr')}</h2>
           <p>
-            {__(`Simplify signing in by connecting your social media accounts 
+            {__(`Simplify signing in by connecting your social media accounts
             to this site. (We will never post anything to your social media
             accounts on your behalf without explicitly asking for your
             permission first, of course.)`, 'mittr')}
@@ -271,9 +255,10 @@ const AccountLandingPage = ({
 };
 
 /* eslint-disable max-len */
+// @todo The default values here are stubbed out. They will need to be pulled
+// from Zephr as the integration is further built out.
 AccountLandingPage.defaultProps = {
   accountNumber: 1635767369,
-  email: 'penelope.jackson@technologyreview.com',
   discounts: [
     {
       name: 'EmTech Next 2019 Offer',
@@ -286,7 +271,6 @@ AccountLandingPage.defaultProps = {
         '<p>Subscribers can take advantage of a 30% discount on <a href="#">MIT Press</a> publication by using the code MTECHR30 at checkout.',
     },
   ],
-  name: 'Penelope Jackson',
   newsletters: ['The Download', 'Chain Letter'],
   renewalDate: 'May 1, 2020',
   subscriptionName: 'All Access Digital',
@@ -297,12 +281,31 @@ AccountLandingPage.defaultProps = {
 AccountLandingPage.propTypes = {
   accountNumber: PropTypes.number,
   discounts: PropTypes.array,
-  email: PropTypes.string,
-  name: PropTypes.string,
+  email: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  logOut: PropTypes.func.isRequired,
   newsletters: PropTypes.array,
+  renewalDate: PropTypes.string,
   subscriptionName: PropTypes.string,
   subscriptionType: PropTypes.string,
-  renewalDate: PropTypes.string,
+  submitResetRequest: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(AccountLandingPage);
+const mapDispatchToProps = (dispatch) => ({
+  logOut: () => dispatch(actionRequestUserLogOut()),
+  submitResetRequest: (data) => dispatch(actionSubmitForm(data)),
+});
+
+const withRedux = connect(
+  (state) => ({
+    email: getEmail(state),
+    firstName: getFirstName(state),
+    isAuthenticated:
+      0 < Object.keys(getProfile(state)).length &&
+      0 < Object.keys(getAccount(state)).length,
+  }),
+  mapDispatchToProps,
+);
+
+export default withRedux(withStyles(styles)(AccountLandingPage));

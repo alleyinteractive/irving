@@ -1,6 +1,8 @@
 /* MegaMenu component styles */
 
 .wrapper {
+  height: 90vh;
+  overflow-y: scroll;
   padding: rem(64) rem(5) rem(20) rem(30);
   width: 100%;
 }

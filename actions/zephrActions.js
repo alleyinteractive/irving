@@ -12,8 +12,14 @@ import {
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
   RECEIVE_REGISTRATION_ERROR,
   CLEAR_FORM_ERRORS,
+  REQUEST_USER_LOG_OUT,
+  RECEIVE_USER_LOG_OUT,
+  RECEIVE_ZEPHR_USER_ACCOUNT,
   REQUEST_ZEPHR_UI_COMPONENTS,
   RECEIVE_ZEPHR_UI_COMPONENTS,
+  VERIFY_ZEPHR_USER_TOKEN,
+  RECEIVE_ZEPHR_USER_VERIFICATION,
+  SEND_ZEPHR_VERIFICATION_EMAIL,
 } from './types';
 
 /**
@@ -112,10 +118,12 @@ export function actionReceiveUserRegistration() {
  * A Redux action that represents browser state change when a user attempts to register with a
  * password that does not match the verification prompt.
  *
+ * @param {{formType}} payload The type of form being submitted.
+ *
  * @returns {{type}} The Redux action.
  */
-export function actionReceiveInvalidPassword() {
-  return createAction(RECEIVE_PASSWORD_VERIFICATION_ERROR);
+export function actionReceiveInvalidPassword(payload) {
+  return createAction(RECEIVE_PASSWORD_VERIFICATION_ERROR, payload);
 }
 
 /**
@@ -142,6 +150,36 @@ export function actionClearFormErrors(payload) {
 }
 
 /**
+ * A Redux action that represents when a user requests to be logged out of the application.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionRequestUserLogOut() {
+  return createAction(REQUEST_USER_LOG_OUT);
+}
+
+/**
+ * A Redux action that represents browser state change when a user is successfully logged out.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionReceiveUserLogOut() {
+  return createAction(RECEIVE_USER_LOG_OUT);
+}
+
+/**
+ * A Redux action that represents browser state change when a user's account information is
+ * received from Zephr.
+ *
+ * @param {{ emailAddress }} The user's account.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveUserAccount(payload) {
+  return createAction(RECEIVE_ZEPHR_USER_ACCOUNT, payload);
+}
+
+/*
  * A Redux action after the UI Components have been requested.
  *
  * @returns {{type}} The Redux action.
@@ -157,4 +195,34 @@ export function actionRequestUIComponents() {
  */
 export function actionReceiveUIComponents(payload) {
   return createAction(RECEIVE_ZEPHR_UI_COMPONENTS, payload);
+}
+
+/**
+ * A Redux action that represents browser state change once the token exchange is initiated.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionSendUserVerificationEamil() {
+  return createAction(SEND_ZEPHR_VERIFICATION_EMAIL);
+}
+
+/**
+ * A Redux action that respresents browser state change once a user's token is
+ * submitted for verification.
+ *
+ * @param {{ token }} The user's verification token.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionVerifyToken(payload) {
+  return createAction(VERIFY_ZEPHR_USER_TOKEN, payload);
+}
+
+/**
+ * A Redux action that represents browser state change once a user is verified.
+ *
+ * @returns {{type}} The Redux action.
+ */
+export function actionReceiveUserVerification() {
+  return createAction(RECEIVE_ZEPHR_USER_VERIFICATION);
 }

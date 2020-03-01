@@ -6,12 +6,18 @@ import {
   takeEvery,
 } from 'redux-saga/effects';
 import { REHYDRATE } from 'redux-persist/lib/constants';
-import { actionRequestForms } from 'actions/zephrActions';
+import {
+  actionRequestForms,
+  actionReceiveUserLogOut,
+} from 'actions/zephrActions';
 import {
   REQUEST_ZEPHR_FORMS,
   SUBMIT_ZEPHR_FORM,
+  REQUEST_USER_LOG_OUT,
 } from 'actions/types';
-import { getCached } from 'selectors/zephrSelector';
+import { getCached, getSession } from 'selectors/zephrSelector';
+import zephrService from 'services/zephrService';
+import history from 'utils/history';
 import requestForms from './requestForms';
 import submitForm from './submitForm';
 
@@ -22,6 +28,8 @@ export default [
   takeEvery(REQUEST_ZEPHR_FORMS, requestForms),
   // Listen for form submit.
   takeEvery(SUBMIT_ZEPHR_FORM, submitForm),
+  // Listen for user log out request.
+  takeEvery(REQUEST_USER_LOG_OUT, logOut),
 ];
 
 /**
@@ -38,5 +46,20 @@ function* initialize() {
     if (! isCached) {
       yield put(actionRequestForms());
     }
+  }
+}
+
+/**
+ * A generator that is called when a user requests a log out.
+ */
+function* logOut() {
+  const session = yield select(getSession);
+  const status = yield call(zephrService.logOut, session);
+
+  if ('success' === status) {
+    // Update the redux store and clear out any stored user data.
+    yield put(actionReceiveUserLogOut());
+    // Redirect the user to the login page.
+    history.push('/login');
   }
 }

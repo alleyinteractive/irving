@@ -1,0 +1,53 @@
+/* ToggleNotice component styles */
+
+.wrapper {
+  composes: wrapper from '../columnArea/columnArea--feed.css';
+  margin-bottom: rem(20);
+  margin-top: rem(20);
+  position: relative;
+
+  &.expanded {
+    flex-flow: row nowrap;
+  }
+}
+
+.button {
+  color: white;
+  display: block;
+  font-size: rem(20);
+  order: 2;
+
+  path {
+    stroke: white;
+  }
+
+  .expanded & {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+
+  .collapsed & {
+    flex: 0 0 auto;
+    margin-left: rem(37);
+
+    svg {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.notice {
+  display: block;
+  order: 1;
+  width: 100%;
+
+  .collapsed & {
+    flex: 1 0 auto;
+    width: auto;
+  }
+}

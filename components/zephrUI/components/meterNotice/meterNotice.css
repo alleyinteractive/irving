@@ -2,17 +2,30 @@
 
 :global {
   .MeterNotice__wrapper {
-    @include container;
-    max-width: 100%;
+    position: relative;
+    width: 100%;
   }
 
   .MeterNotice__innerWrapper {
-    tidy-span: 12;
+    [aria-expanded="true"] & {
+      tidy-span: 12;
 
-    @media ($lgMin) {
-      margin-right: auto;
-      tidy-offset-left: 1;
-      tidy-span: 11;
+      @media ($lgMin) {
+        margin-right: auto;
+        tidy-offset-left: 1;
+        tidy-span: 11;
+      }
+    }
+
+    [aria-expanded="false"] & {
+      align-items: center;
+      display: flex;
+
+      @media ($lgMin) {
+        flex: 100%;
+        margin-right: auto;
+        tidy-offset-left: 1;
+      }
     }
   }
 
@@ -23,6 +36,11 @@
     font-weight: 600;
     line-height: 0.86;
     margin-bottom: rem(40);
+
+    [aria-expanded="false"] & {
+      font-size: rem(16);
+      margin-bottom: 0;
+    }
   }
 
   .MeterNotice__count {
@@ -45,6 +63,10 @@
     @media ($lgMin) {
       max-width: tidy-span(6);
     }
+
+    [aria-expanded="false"] & {
+      display: none;
+    }
   }
 
   .MeterNotice__callsToAction {
@@ -53,6 +75,10 @@
 
     @media ($mdMin) {
       flex-flow: row nowrap;
+    }
+
+    [aria-expanded="false"] & {
+      margin-left: auto;
     }
   }
 
@@ -64,6 +90,10 @@
 
     &:not(:last-child) {
       margin-right: rem(20);
+    }
+
+    [aria-expanded="false"] & {
+      font-size: rem(14);
     }
   }
 
@@ -80,6 +110,10 @@
       background-color: $black;
       color: $call-to-action;
     }
+
+    [aria-expanded="false"] & {
+      font-size: rem(14);
+    }
   }
 
   .MeterNotice__callToAction--link {
@@ -89,5 +123,4 @@
   .MeterNotice__item {
     width: auto;
   }
-
 }

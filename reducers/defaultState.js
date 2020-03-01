@@ -20,7 +20,7 @@ export const form = {
 };
 
 export const visible = {
-  test: false,
+  megaMenu: false,
 };
 
 export const player = {
@@ -52,6 +52,8 @@ export const componentDataMeta = {
 
 export const headerHeight = 0;
 
+export const isNoticeVisible = true;
+
 const defaultState = {
   components,
   componentData,
@@ -64,8 +66,8 @@ const defaultState = {
 };
 
 export const zephr = {
-  isLoading: false,
-  forms: [],
+  isLoading: true,
+  forms: {},
   cached: false,
   session: {},
   user: {

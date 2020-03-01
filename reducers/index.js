@@ -1,32 +1,40 @@
 import { combineReducers } from 'redux';
 import reduceReducers from 'reduce-reducers';
 import defaultState from 'reducers/defaultState';
-import componentsReducer from './componentsReducer';
-import routeReducer from './routeReducer';
-import errorReducer from './errorReducer';
-import loadingReducer from './loadingReducer';
-import visibilityReducer from './visibilityReducer';
+import { persistReducer } from 'redux-persist';
+import browserStorage from 'redux-persist/lib/storage';
 import componentDataReducer from './componentDataReducer';
-import playerReducer from './playerReducer';
-import userReducer from './userReducer';
-import storyReducer from './storyReducer';
+import componentsReducer from './componentsReducer';
+import errorReducer from './errorReducer';
 import headerHeightReducer from './headerHeightReducer';
+import loadingReducer from './loadingReducer';
+import playerReducer from './playerReducer';
+import routeReducer from './routeReducer';
+import storyReducer from './storyReducer';
+import dismissNoticeReducer from './dismissNoticeReducer';
+import visibilityReducer from './visibilityReducer';
 import zephrReducer from './zephrReducer';
 import zephrRulesReducer from './zephrRulesReducer';
 
+const zephrPersistConfig = {
+  key: 'zephr',
+  storage: browserStorage,
+  blacklist: ['forms'],
+};
+
 // Configure "slice" reducers.
 export const reducers = {
-  components: (state = defaultState.components) => state,
   componentData: componentDataReducer,
+  components: (state = defaultState.components) => state,
   error: errorReducer,
+  headerHeight: headerHeightReducer,
+  isNoticeVisible: dismissNoticeReducer,
   loading: loadingReducer,
   player: playerReducer,
   route: routeReducer,
-  visible: visibilityReducer,
-  user: userReducer,
   story: storyReducer,
-  headerHeight: headerHeightReducer,
-  zephr: zephrReducer,
+  visible: visibilityReducer,
+  zephr: persistReducer(zephrPersistConfig, zephrReducer),
   zephrRules: zephrRulesReducer,
 };
 const rootSliceReducer = combineReducers(reducers);

@@ -3,6 +3,7 @@ const proxy = require('http-proxy-middleware');
 const https = require('https');
 const express = require('express');
 const { server } = require('@automattic/vip-go');
+const cookiesMiddleware = require('universal-cookie-express');
 
 // Support isomorphic environment variables from local .env file
 require('dotenv').config();
@@ -15,6 +16,9 @@ getService().start();
 
 const createDebug = require('../services/createDebug');
 const { rootUrl } = require('../config/paths');
+const bustCache = require('./bustCache');
+const bustPageCache = require('./bustPageCache');
+const purgePageCache = require('./purgePageCache');
 
 const debug = createDebug('server:error');
 const {
@@ -25,6 +29,11 @@ const {
   HTTPS_CERT_PATH,
 } = process.env;
 const app = express();
+
+// Clearing the Redis cache.
+app.get('/bust-endpoint-cache', bustPageCache);
+app.get('/bust-entire-cache', bustCache);
+app.purge('/*', purgePageCache);
 
 app.set('views', 'server/views');
 app.set('view engine', 'ejs');
@@ -47,6 +56,36 @@ app.use('*.xsl', passthrough);
 app.use('*/amp/', passthrough);
 app.use('*/feed/', passthrough);
 app.use('/xmlrpc.php', passthrough);
+app.use('/hub/possibility-report/*', proxy({
+  changeOrigin: true,
+  followRedirects: true,
+  secure: 'development' !== NODE_ENV,
+  target: API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  // eslint-disable-next-line max-len
+  pathRewrite: {
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/possibility-report_files/*': '/wp-content/themes/mittr/inc/static/views/possibility-report_files/',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/move/': '/wp-content/themes/mittr/inc/static/views/move.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/connect/': '/wp-content/themes/mittr/inc/static/views/connect.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/heal/': '/wp-content/themes/mittr/inc/static/views/heal.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/learn/': '/wp-content/themes/mittr/inc/static/views/learn.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/build/': '/wp-content/themes/mittr/inc/static/views/build.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/grow/': '/wp-content/themes/mittr/inc/static/views/grow.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/all/': '/wp-content/themes/mittr/inc/static/views/all.html',
+    // eslint-disable-next-line max-len
+    '^/hub/possibility-report/': '/wp-content/themes/mittr/inc/static/views/possibility-report.html',
+  },
+  xfwd: true,
+}));
+
+app.use(cookiesMiddleware());
 
 if ('development' === NODE_ENV) {
   require('./development')(app);

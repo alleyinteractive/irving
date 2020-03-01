@@ -1,4 +1,5 @@
-import AdUnit from 'components/adUnit';
+import AdProvider from 'components/advertising/adProvider';
+import AdUnit from 'components/advertising/adUnit';
 import AccountPage from 'components/accounts/landingPage';
 import AccountNavigation from 'components/accounts/accountNavigation';
 import AudioElement from 'components/audio';
@@ -21,6 +22,7 @@ import ContentList from 'components/contentList';
 import ContentListItem from 'components/contentList/contentListItem';
 import Container from 'components/container';
 import Disqus from 'components/disqus';
+import Error404 from 'components/error404';
 import FeedItem from 'components/feedItem';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
@@ -63,12 +65,18 @@ import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
 import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
-import PodcastHeader from 'components/podcastHeader';
+import PodcastArchiveHeader from 'components/podcast/archive/header';
+import PodcastContentItem from 'components/podcast/archive/contentItem';
+import PodcastList from 'components/podcast/archive/list';
 import Popular from 'components/popular';
 import PostList from 'components/postList';
 import RawHTML from 'components/rawHTML';
 import Register from 'components/accounts/register';
 import Related from 'components/related';
+import ResetRequestForm from 'components/accounts/resetPassword/request';
+import ConfirmResetRequest from 'components/accounts/resetPassword/requestConfirmation'; // eslint-disable-line max-len
+import ResetPasswordForm from 'components/accounts/resetPassword/reset';
+import ConfirmReset from 'components/accounts/resetPassword/resetConfirmation';
 import Schema from 'components/schema';
 import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
@@ -98,6 +106,7 @@ import withLoader from 'components/hoc/withLoader';
  * Defines which React component to render for each received API component.
  */
 export const componentMap = {
+  'ad-provider': AdProvider,
   'ad-unit': AdUnit,
   account: AccountPage,
   'account-navigation': AccountNavigation,
@@ -119,6 +128,8 @@ export const componentMap = {
   'core/columns': Columns,
   disqus: Disqus,
   embed: RawHTML,
+  'error-404': Error404,
+  'core-embed': RawHTML,
   'feed-anchor': CardStack,
   footer: Footer,
   'google-analytics': GoogleAnalytics,
@@ -160,6 +171,7 @@ export const componentMap = {
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/image-set': ImageSet,
   'mittr-plugin-extension/newsletter': Newsletter,
+  'mittr-plugin-extension/post-list': PostList,
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
   'mittr-plugin-extension/magazine-story': MagazineStory,
@@ -170,10 +182,16 @@ export const componentMap = {
   pagination: Placeholder,
   parsely: Parsely,
   'page-body': PageBody,
-  'podcast-header': PodcastHeader,
+  'podcast-archive-header': PodcastArchiveHeader,
+  'podcast-content-item': PodcastContentItem,
+  'podcast-list': PodcastList,
   popular: Popular,
   'post-list': PostList,
   register: Register,
+  'reset-password-request': ResetRequestForm,
+  'reset-password-request-confirmation': ConfirmResetRequest,
+  'reset-password': ResetPasswordForm,
+  'reset-password-confirmation': ConfirmReset,
   schema: Schema,
   'search-bar': SearchBar,
   'section-item': SectionItem,

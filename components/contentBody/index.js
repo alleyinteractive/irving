@@ -3,6 +3,7 @@ import React, {
   useEffect,
   useRef,
 } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
@@ -10,22 +11,21 @@ import {
   actionShowFullStory,
   actionTruncateStory,
 } from 'actions/storyActions';
-import { connect } from 'react-redux';
+import useObscureContent from 'hooks/useObscureContent';
 import classNames from 'classnames';
 import styles from './contentBody.css';
 
-const ContentBody = (props) => {
+const ContentBody = ({
+  children,
+  truncatedCTA,
+  wordCount,
+  dispatchShowFullStory,
+  dispatchTruncateStory,
+  overrideCTA,
+}) => {
   const [truncateContent, setTruncation] = useState(false);
   const contentRef = useRef();
-
-  const {
-    children,
-    truncatedCTA,
-    wordCount,
-    dispatchShowFullStory,
-    dispatchTruncateStory,
-    overrideCTA,
-  } = props;
+  const obscureContent = useObscureContent();
 
   const showFullText = () => {
     // Remove the truncation button and height limit.
@@ -33,6 +33,12 @@ const ContentBody = (props) => {
   };
 
   useEffect(() => {
+    if (obscureContent) {
+      setTruncation(true);
+      dispatchTruncateStory();
+      return;
+    }
+
     const { referrer } = document;
     const { location: { origin } } = window;
 
@@ -85,6 +91,7 @@ const ContentBody = (props) => {
           className={styles.truncationButton}
           type="button"
           onClick={showFullText}
+          disabled={true === obscureContent}
         >
           <strong>{__(`${truncatedCTA}`, 'mittr')}</strong>{' '}
           {__(`${wordCount} words`, 'mittr')}
@@ -114,6 +121,7 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchShowStory: () => dispatch(actionShowFullStory()),
   dispatchTruncateStory: () => dispatch(actionTruncateStory()),
 });
+
 const withRedux = connect(
   undefined,
   mapDispatchToProps

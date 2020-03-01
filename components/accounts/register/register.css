@@ -1,4 +1,5 @@
 .accountWrap {
+  font-family: $sans;
   margin: rem(40) auto rem(50);
   max-width: rem(758);
   padding: 0 rem(15);
@@ -80,13 +81,13 @@
 
 .createBtn {
   @include btn;
-  @include blackBtn;
+  @include btnBlack;
   max-width: rem(228);
 }
 
 .homeButton {
   @include btn;
-  @include blackBtn;
+  @include btnBlack;
 
   font-family: $sans;
 }
