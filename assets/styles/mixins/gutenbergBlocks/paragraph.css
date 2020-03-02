@@ -4,7 +4,13 @@
     @include body-content-type-styles;
     @include block-level-element;
     @include basic-formatting;
-    margin-bottom: rem(30);
+    margin-bottom: rem(20);
+
+    @media ($mdMin) {
+      margin-bottom: rem(30);
+    }
+
+    
 
     &:global(.has-small-font-size) {
       font-size: rem(13);
