@@ -20,6 +20,7 @@ import {
   VERIFY_ZEPHR_USER_TOKEN,
   RECEIVE_ZEPHR_USER_VERIFICATION,
   SEND_ZEPHR_VERIFICATION_EMAIL,
+  RECEIVE_SSO_SESSION,
 } from './types';
 
 /**
@@ -225,4 +226,8 @@ export function actionVerifyToken(payload) {
  */
 export function actionReceiveUserVerification() {
   return createAction(RECEIVE_ZEPHR_USER_VERIFICATION);
+}
+
+export function actionReceiveSsoSession(payload) {
+  return createAction(RECEIVE_SSO_SESSION, payload);
 }
