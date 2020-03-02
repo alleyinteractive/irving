@@ -97,10 +97,11 @@ const NewsletterSubscribe = ({
     });
 
     window.dataLayer.push({
-      event: 'mittr.newsletterSubscribe',
+      event: 'mittr:newsletterSubscribe',
       category: 'subscribe',
       action: `subscribe-success-${kebabCase(title)}`,
       label: location,
+      PageViewFired: true,
     });
 
     // Clear out message.
