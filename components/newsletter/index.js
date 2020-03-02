@@ -6,7 +6,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 // Styles.
 import styles from './newsletter.css';
-import storyGroup from './newsletter--storyGroup.css';
+import storyGroup from './newsletter--storygroup.css';
 import sidebar from './newsletter--sidebar.css';
 
 const NewsletterSubscribe = ({
