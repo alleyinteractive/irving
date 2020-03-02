@@ -24,15 +24,20 @@
 }
 
 .wrap {
-  border-bottom: 3px solid #000;
   display: block;
-  margin-bottom: rem(20);
-  padding-bottom: rem(7);
+  margin-bottom: rem(15);
+  padding-bottom: 0;
 
   span {
     font-size: rem(22);
     font-weight: 700;
     margin-right: 1ch;
+  }
+
+  @media ($mdMin) {
+    border-bottom: 3px solid #000;
+    margin-bottom: rem(20);
+    padding-bottom: rem(7);
   }
 }
 
