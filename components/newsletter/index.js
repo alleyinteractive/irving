@@ -4,7 +4,6 @@ import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
-import kebabCase from 'lodash.kebabcase';
 // Styles.
 import styles from './newsletter.css';
 import storyGroup from './newsletter--storyGroup.css';
@@ -99,7 +98,7 @@ const NewsletterSubscribe = ({
     window.dataLayer.push({
       event: 'mittr:newsletterSubscribe',
       category: 'subscribe',
-      action: `subscribe-success-${kebabCase(title)}`,
+      action: `subscribe-success-${data.newsletter}`,
       label: location,
       PageViewFired: true,
     });
