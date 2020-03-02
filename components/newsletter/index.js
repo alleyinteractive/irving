@@ -60,7 +60,7 @@ const NewsletterSubscribe = ({
     const response = await request;
 
     // Error.
-    if (200 !== response.status) {
+    if (200 !== response.status && 204 !== response.status) {
       let errorMessage = __('There was an error submitting the request.',
         'mittr');
       if (400 === response.status) {
