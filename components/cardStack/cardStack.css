@@ -58,7 +58,7 @@
   letter-spacing: normal;
   line-height: 1;
   margin-bottom: rem(15);
-  padding-top: rem(50);
+  padding-top: rem(32);
 
   @media ($smMin) {
     font-size: rem(50);
@@ -88,12 +88,13 @@
 }
 
 .sponsored {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   margin-bottom: rem(15);
   order: 0;
+  padding: rem(20 20 0);
   width: 100%;
 }
 
@@ -113,9 +114,10 @@
   height: rem(32);
   width: auto;
 
-  > span {
+  & span {
     display: block;
-    height: rem(32);
+    height: rem(18);
+    margin-top: rem(7);
   }
 
   img {

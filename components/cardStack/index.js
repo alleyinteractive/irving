@@ -87,6 +87,7 @@ CardStack.defaultProps = {
   isSubtopic: false,
   sponsored: {},
   isSponsored: false,
+  textColor: '#FFFFFF',
 };
 
 CardStack.propTypes = {
@@ -94,8 +95,8 @@ CardStack.propTypes = {
   color: PropTypes.string.isRequired,
   dateline: PropTypes.string,
   description: PropTypes.string.isRequired,
-  eyebrow: PropTypes.string,
-  textColor: PropTypes.string.isRequired,
+  eyebrow: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  textColor: PropTypes.string,
   name: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   isSubtopic: PropTypes.bool,
