@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import get from 'lodash/get';
 
 export const zephrSelector = (state) => state.zephr;
 
@@ -43,6 +44,16 @@ export const getCached = createSelector(
 export const getSession = createSelector(
   zephrSelector,
   (state) => state.session,
+);
+
+/* The Zephr cookie  */
+export const getZephrCookie = createSelector(
+  zephrSelector,
+  (state) => get(
+    state,
+    'session.payload.sessionCookie',
+    ''
+  )
 );
 
 /* User Profile/Account */
