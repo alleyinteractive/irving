@@ -44,4 +44,18 @@
   i {
     font-style: italic;
   }
+
+  p:first-of-type {
+    
+    strong {
+      font-family: $sans;
+      font-size: rem(16);
+      line-height: rem(24);
+
+      @media ($mdMin) {
+        font-size: rem(18);
+        line-height: rem(28);       
+      }
+    }
+  }
 }
