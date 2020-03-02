@@ -1,6 +1,10 @@
 .content {
   background-color: $white;
-  padding-top: rem(20);
+  padding-top: rem(15);
+
+  @media ($mdMin) {
+    padding-top: rem(20);
+  }
 
   :global(.body--feed) &,
   :global(.body--search) &,
