@@ -70,7 +70,7 @@ const ResetForm = ({
     }
   }, [resetForm]);
 
-  // If the form has not yet been retireved, show a loader.
+  // If the form has not yet been retrieved, show a loader.
   if (0 === Object.keys(resetForm).length) {
     return (
       <div className={styles.accountWrap}>
