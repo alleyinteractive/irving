@@ -6,7 +6,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 // Styles.
 import styles from './newsletter.css';
-import storyGroup from './newsletter--storygroup.css';
+import storygroup from './newsletter--storygroup.css';
 import sidebar from './newsletter--sidebar.css';
 
 const NewsletterSubscribe = ({
@@ -342,6 +342,6 @@ NewsletterSubscribe.propTypes = {
 
 export default withThemes('newsletter', {
   default: styles,
-  storyGroup,
+  storygroup,
   sidebar,
-})(withStyles(styles, storyGroup, sidebar)(NewsletterSubscribe));
+})(withStyles(styles, storygroup, sidebar)(NewsletterSubscribe));
