@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { DFPSlotsProvider, DFPManager } from 'react-dfp';
+import useHideAds from 'hooks/useHideAds';
 
-const AdProvider = (props) => {
-  const {
-    children,
-    dfpNetworkId,
-    viewportWidths,
-    targeting,
-  } = props;
-
+const AdProvider = ({
+  children,
+  dfpNetworkId,
+  viewportWidths,
+  targeting,
+}) => {
   if (! dfpNetworkId) {
     return children;
   }
@@ -28,6 +27,11 @@ const AdProvider = (props) => {
     // Remove listeners on unmount.
     return () => queries.map((query) => query.removeListener(refresh));
   }, []);
+
+  const hideAds = useHideAds();
+  if (hideAds) {
+    return children;
+  }
 
   return (
     <DFPSlotsProvider

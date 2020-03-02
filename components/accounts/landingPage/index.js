@@ -14,7 +14,10 @@ import {
   getAccount,
 } from 'selectors/zephrSelector';
 import history from 'utils/history';
-import { actionRequestUserLogOut } from 'actions/zephrActions';
+import {
+  actionRequestUserLogOut,
+  actionSubmitForm,
+} from 'actions/zephrActions';
 
 import AccountInfoForm from './infoForm';
 import styles from './landingPage.css';
@@ -30,6 +33,7 @@ const AccountLandingPage = ({
   renewalDate,
   logOut,
   isAuthenticated,
+  submitResetRequest,
 }) => {
   // Prevent unauthenticated users from being able to visit this route.
   if (! isAuthenticated) {
@@ -46,10 +50,12 @@ const AccountLandingPage = ({
       isEditingPassword: false,
     });
   };
-  const onClickEditPassword = () => {
-    setFormState({
-      isEditingEmail: false,
-      isEditingPassword: true,
+  const onClickResetPassword = () => {
+    submitResetRequest({
+      type: 'resetRequest',
+      credentials: {
+        email,
+      },
     });
   };
 
@@ -97,7 +103,7 @@ const AccountLandingPage = ({
                 tabIndex="0"
                 onClick={onClickEditEmail}
               >
-                {__('Edit your email addresss', 'mittr')}
+                {__('Edit your email address', 'mittr')}
               </button>
             ) : (
               <AccountInfoForm
@@ -107,29 +113,21 @@ const AccountLandingPage = ({
               />
             )}
 
-            {! formState.isEditingPassword ? (
-              <button
-                id="editPasswordBtn"
-                className={styles.button}
-                type="button"
-                tabIndex="0"
-                onClick={onClickEditPassword}
-              >
-                {__('Edit your password', 'mittr')}
-              </button>
-            ) : (
-              <AccountInfoForm
-                type="password"
-                handleSubmit={() => {}}
-                placeholderValue="password"
-              />
-            )}
+            <button
+              id="editPasswordBtn"
+              className={styles.button}
+              type="button"
+              tabIndex="0"
+              onClick={onClickResetPassword}
+            >
+              {__('Reset your password', 'mittr')}
+            </button>
 
             {0 < newsletters.length && (
               <div className={styles.buttonContainer}>
                 <a
                   id="newsletterPrefsBtn"
-                  href="/account/newsletter-preferences"
+                  href="https://forms.technologyreview.com/newsletters/?_ga=2.242102080.39622121.1582559852-436121851.1581700602"
                   className={styles.button}
                   role="button"
                 >
@@ -167,7 +165,7 @@ const AccountLandingPage = ({
           <div className={styles.buttonContainer}>
             <a
               id="subscriptionManagerBtn"
-              href="/accout/manage-subscription"
+              href="https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602"
               className={styles.button}
               role="button"
             >
@@ -181,14 +179,6 @@ const AccountLandingPage = ({
             >
               {__('Review your order history', 'mittr')}
             </a>
-            <a
-              id="purchaseSubscriptionBtn"
-              href="/account/purchase-gift"
-              className={styles.button}
-              role="button"
-            >
-              {__('Purchase a gift subscription', 'mittr')}
-            </a>
           </div>
         </div>
       </div>
@@ -197,7 +187,7 @@ const AccountLandingPage = ({
         <div className={styles.socialConnections}>
           <h2>{__('Social login connections', 'mittr')}</h2>
           <p>
-            {__(`Simplify signing in by connecting your social media accounts 
+            {__(`Simplify signing in by connecting your social media accounts
             to this site. (We will never post anything to your social media
             accounts on your behalf without explicitly asking for your
             permission first, of course.)`, 'mittr')}
@@ -299,10 +289,12 @@ AccountLandingPage.propTypes = {
   renewalDate: PropTypes.string,
   subscriptionName: PropTypes.string,
   subscriptionType: PropTypes.string,
+  submitResetRequest: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   logOut: () => dispatch(actionRequestUserLogOut()),
+  submitResetRequest: (data) => dispatch(actionSubmitForm(data)),
 });
 
 const withRedux = connect(
