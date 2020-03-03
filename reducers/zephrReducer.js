@@ -1,5 +1,7 @@
 import {
   REQUEST_FORM_FOR_ROUTE,
+  REQUEST_UPDATE_EMAIL,
+  RECEIVE_UPDATE_EMAIL,
   RECEIVE_FORM_FOR_ROUTE,
   RECEIVE_ZEPHR_USER_SESSION,
   RECEIVE_ZEPHR_USER_PROFILE,
@@ -152,6 +154,18 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
             ],
           },
         },
+      };
+
+    case REQUEST_UPDATE_EMAIL:
+      console.log('payload ', payload);
+      return {
+        ...state,
+        email: payload.email,
+      };
+    case RECEIVE_UPDATE_EMAIL:
+      return {
+        ...state,
+        password: payload,
       };
     case RECEIVE_USER_LOG_OUT:
       return {

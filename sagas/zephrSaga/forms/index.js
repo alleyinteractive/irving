@@ -14,6 +14,8 @@ import {
   REQUEST_ZEPHR_FORMS,
   SUBMIT_ZEPHR_FORM,
   REQUEST_USER_LOG_OUT,
+  REQUEST_UPDATE_EMAIL,
+  RECEIVE_UPDATE_EMAIL,
 } from 'actions/types';
 import { getCached, getSession } from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
@@ -30,6 +32,10 @@ export default [
   takeEvery(SUBMIT_ZEPHR_FORM, submitForm),
   // Listen for user log out request.
   takeEvery(REQUEST_USER_LOG_OUT, logOut),
+  // Listen for every update email request.
+  takeEvery(REQUEST_UPDATE_EMAIL, submitUpdateEmailRequest),
+
+  takeEvery(RECEIVE_UPDATE_EMAIL, submitUpdateEmail),
 ];
 
 /**
@@ -61,5 +67,46 @@ function* logOut() {
     yield put(actionReceiveUserLogOut());
     // Redirect the user to the login page.
     history.push('/login');
+  }
+}
+
+/**
+ * Send a new email to update the users email address.
+ *
+ * @param {object} credentials The user's email address.
+ */
+function* submitUpdateEmailRequest(credentials) {
+  console.log('credentials ', credentials);
+  // Submit the form to Zephr.
+  const { status, type } = yield call(zephrService.requestUpdateEmail, credentials.payload); // eslint-disable-line
+
+  if ('success' === status) {
+    history.push('/update-email/confirmation');
+  }
+
+  if ('failed' === status) {
+    console.log('status ', status);
+  }
+}
+
+/**
+ * Submit the user's password to confirm the update of the new email to Zephr.
+ *
+ * @param {object} credentials The user's selected password.
+ */
+function* submitUpdateEmail(credentials, cookie) {
+  // Submit the form to Zephr.
+  const { status, type } = yield call( // eslint-disable-line no-unused-vars
+    zephrService.updateEmail,
+    credentials,
+    cookie
+  );
+
+  if ('success' === status) {
+    history.push('/');
+  }
+
+  if ('failed' === status) {
+    // yield put(actionReceiveResetError(type));
   }
 }
