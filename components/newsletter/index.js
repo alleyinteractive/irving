@@ -4,7 +4,6 @@ import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
-
 // Styles.
 import styles from './newsletter.css';
 import storygroup from './newsletter--storygroup.css';
@@ -18,6 +17,7 @@ const NewsletterSubscribe = ({
   description,
   color,
   imgLogoUrl,
+  location, // location prop is used for GA event
   theme,
   themeName,
 }) => {
@@ -60,7 +60,7 @@ const NewsletterSubscribe = ({
     const response = await request;
 
     // Error.
-    if (200 !== response.status) {
+    if (200 !== response.status && 204 !== response.status) {
       let errorMessage = __('There was an error submitting the request.',
         'mittr');
       if (400 === response.status) {
@@ -94,6 +94,15 @@ const NewsletterSubscribe = ({
       status: 'success',
       message: __('Thanks for signing up.', 'mittr'),
     });
+
+    window.dataLayer.push({
+      event: 'mittr:newsletterSubscribe',
+      category: 'subscribe',
+      action: `subscribe-success-${data.newsletter}`,
+      label: location,
+      PageViewFired: true,
+    });
+
     // Clear out message.
     setTimeout(() => {
       setFormResponseState({
@@ -313,6 +322,7 @@ NewsletterSubscribe.defaultProps = {
   apiEndPoint: 'https://eventbrite-to-blueconic.herokuapp.com/api/web/newsletters/subscriptions',
   clientId: '',
   mailchimpListName: '',
+  location: 'in-body', // default of `in-body` for the gutenblock version
   themeName: '',
   theme: 'default',
 };
@@ -325,6 +335,7 @@ NewsletterSubscribe.propTypes = {
   description: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   imgLogoUrl: PropTypes.string.isRequired,
+  location: PropTypes.string,
   themeName: PropTypes.string,
   theme: PropTypes.object,
 };
