@@ -232,7 +232,7 @@ export default {
    *
    * @returns {object} status The response status.
    */
-  async resetPassword({ password, state }) {
+  async resetPassword({ password, state }, cookie) {
     try {
       const body = {
         validators: {
@@ -247,6 +247,7 @@ export default {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
+            cookie,
           },
           body: JSON.stringify(body),
         }
