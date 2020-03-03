@@ -3,6 +3,7 @@ if (global && 'undefined' === typeof window) {
   global.window = {
     location: {
       host: HOSTNAME && PORT ? `${HOSTNAME}:${PORT}` : 'localhost:3001',
+      port: PORT,
       hostname: HOSTNAME || 'localhost',
     },
   };
