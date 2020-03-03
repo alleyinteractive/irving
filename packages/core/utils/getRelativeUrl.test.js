@@ -51,3 +51,7 @@ it('should modify empty URLs so they lead home', () => {
 it('should not modify URLs that begin with a hash', () => {
   expect(getRelativeUrl('#test-hash')).toBe(false);
 });
+
+it('should not modify URLs at a subdomain of the current domain', () => {
+  expect(getRelativeUrl('https://content.irving.com')).toBe(false);
+});

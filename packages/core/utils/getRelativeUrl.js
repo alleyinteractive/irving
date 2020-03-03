@@ -27,6 +27,7 @@ export default function getRelativeUrl(url) {
     } = urlObj;
     const {
       protocol,
+      host,
       hostname,
       query,
       hash,
@@ -34,15 +35,15 @@ export default function getRelativeUrl(url) {
 
     /**
      * Consider provided target URL to be relative (and transform/return it accordingly) only if:
-     * - Current hostname is included in the provided target URL
+     * - Link URL host is the same as current (window.location) host
      * - URL does not begin with a hash
      * - Protocol isn't set or is either http or https
      * - Target URL does not match one of the configured passthrough proxies
      */
     if (
       (
-        hostname.includes(window.location.hostname) ||
-        window.location.hostname.includes(hostname)
+        host === window.location.host ||
+        hostname === window.location.hostname
       ) &&
       (
         'http:' === protocol ||
@@ -62,6 +63,7 @@ export default function getRelativeUrl(url) {
     // In case an error occurs, assume URL is not relative.
     result = false;
   }
+  // console.log(url, result);
 
   return result;
 }
