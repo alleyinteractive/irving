@@ -1,6 +1,4 @@
 import styled, { css } from 'styled-components';
-import { rem } from 'styles/utils';
-import { fonts, colors } from 'styles/variables';
 
 const getAspectRatioStyles = (props) => {
   const { aspectRatio } = props;
@@ -40,12 +38,7 @@ export const Wrapper = styled.span
 `;
 
 export const Caption = styled.figcaption`
-  caption-side: bottom;
-  color: ${colors.grayDark};
-  display: table-caption;
-  font-family: ${fonts.graphik};
-  font-size: ${rem(14)};
-  line-height: ${rem(20)};
+  color: black;
 `;
 
 export const Image = styled.img`
@@ -62,28 +55,6 @@ export const Image = styled.img`
 
     return 'filter: blur(0px);';
   }}
-
-  /* Styles for the SVG placeholder image when no image is set. */
-  .placeholderImg & {
-    left: 50%;
-    max-height: 80%;
-    opacity: 0.5;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-  }
-
-  /* For content item images we want the image */
-  .contentItem & {
-    height: 100%;
-    object-fit: cover;
-    width: 100%;
-  }
-
-  .featuredImage & {
-    max-width: 100%;
-    width: auto;
-  }
 `;
 
 export const Picture = styled.picture`
