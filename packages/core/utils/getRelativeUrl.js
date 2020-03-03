@@ -8,6 +8,16 @@ const proxyPassthrough = getConfigArray('proxyPassthrough');
 const proxyRegExp = proxyPassthrough.map(globToRegExp);
 
 /**
+ * Replace www.
+ *
+ * @param {string} urlString - Original URL string (or part of URL).
+ * @returns {string|boolean} - URL with replacement made.
+ */
+const replacewww = (urlString) => (
+  urlString.replace('www.', '')
+);
+
+/**
  * Normalize internal urls to be relative. Reject external urls.
  * @param {string} url
  * @returns {string|boolean} - relative url, or false if not an internal url
@@ -32,6 +42,10 @@ export default function getRelativeUrl(url) {
       query,
       hash,
     } = urlObj;
+    const urlHost = replacewww(host);
+    const urlHostname = replacewww(hostname);
+    const windowHost = replacewww(window.location.host);
+    const windowHostname = replacewww(window.location.hostname);
 
     /**
      * Consider provided target URL to be relative (and transform/return it accordingly) only if:
@@ -42,8 +56,8 @@ export default function getRelativeUrl(url) {
      */
     if (
       (
-        host === window.location.host ||
-        hostname === window.location.hostname
+        urlHost === windowHost ||
+        urlHostname === windowHostname
       ) &&
       (
         'http:' === protocol ||
