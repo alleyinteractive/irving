@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/forms",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Form components and submission functionality for Irving",
   "files": [
     "actions/**/*",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@irvingjs/babel-preset-irving": "^2.0.0",
-    "@irvingjs/core": "^2.4.0",
+    "@irvingjs/core": "^2.4.1",
     "babel-jest": "^24.9.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
