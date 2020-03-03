@@ -63,7 +63,6 @@ export default function getRelativeUrl(url) {
     // In case an error occurs, assume URL is not relative.
     result = false;
   }
-  // console.log(url, result);
 
   return result;
 }
