@@ -6,6 +6,9 @@ import addTrailingSlash from './addTrailingSlash';
 // Create RegExp version of proxy globs.
 const proxyPassthrough = getConfigArray('proxyPassthrough');
 const proxyRegExp = proxyPassthrough.map(globToRegExp);
+const makeReplacements = (url) => (
+  url.replace('www.', '')
+);
 
 /**
  * Normalize internal urls to be relative. Reject external urls.
@@ -32,6 +35,10 @@ export default function getRelativeUrl(url) {
       query,
       hash,
     } = urlObj;
+    const urlHost = makeReplacements(host);
+    const urlHostname = makeReplacements(hostname);
+    const windowHost = makeReplacements(window.location.host);
+    const windowHostname = makeReplacements(window.location.hostname);
 
     /**
      * Consider provided target URL to be relative (and transform/return it accordingly) only if:
@@ -42,8 +49,8 @@ export default function getRelativeUrl(url) {
      */
     if (
       (
-        host === window.location.host ||
-        hostname === window.location.hostname
+        urlHost === windowHost ||
+        urlHostname === windowHostname
       ) &&
       (
         'http:' === protocol ||
