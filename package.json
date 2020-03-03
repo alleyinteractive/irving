@@ -60,7 +60,6 @@
     "fetch-mock": "^7.3.0",
     "file-loader": "^1.1.11",
     "history": "^4.7.2",
-    "http-proxy-middleware": "^0.19.1",
     "lodash": "^4.17.14",
     "nodemon": "^1.17.5",
     "prop-types": "^15.7.2",
