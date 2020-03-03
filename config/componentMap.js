@@ -82,6 +82,7 @@ import SearchBar from 'components/searchBar';
 import SectionItem from 'components/subtopicsSection/sectionItem';
 import ShareStories from 'components/shareStories';
 import Sidebar from 'components/sidebar';
+import SliderAd from 'components/advertising/slider';
 import SocialItem from 'components/socialItem';
 import SocialList from 'components/socialList';
 import SocialFollowModule from 'components/socialFollowModule';
@@ -199,6 +200,7 @@ export const componentMap = {
   'subtopics-section': SubtopicsSection,
   subscriptions: Subscriptions,
   sidebar: Sidebar,
+  'slider-ad': SliderAd,
   'social-follow-module': SocialFollowModule,
   'social-sharing': SocialList,
   'social-item': SocialItem,
