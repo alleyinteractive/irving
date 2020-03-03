@@ -83,6 +83,7 @@
     "glob-to-regexp": "^0.4.1",
     "history": "^4.7.2",
     "http-proxy-middleware": "^0.20.0",
+    "ioredis-mock": "^4.19.0",
     "lodash": "^4.17.14",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.17.5",
