@@ -14,9 +14,14 @@
   z-index: 2;
 
   @media ($smMin) {
-    column-count: 2;
     left: auto;
     width: rem(350);
+  }
+}
+
+.fourColumnList {
+  @media ($smMin) {
+    column-count: 2;
   }
 
   @media ($mdMin) {
