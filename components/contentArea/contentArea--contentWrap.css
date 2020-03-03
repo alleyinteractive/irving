@@ -1,3 +1,10 @@
 .gradient {
-  background: red;
+  background: linear-gradient( 0deg, #f0f0f0 0, #fff 100px );
+  margin-top: rem(-15);
+  padding-top: rem(15);
+
+  @media ($mdMin) {
+    margin-top: rem(-20);
+    padding-top: rem(20);
+  }
 }
