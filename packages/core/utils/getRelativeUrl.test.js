@@ -15,20 +15,20 @@ it('should handle a relative url with a hash', () => {
 });
 
 it('should handle an internal, absolute URL with port', () => {
-  expect(getRelativeUrl('http://localhost:3001/foo')).toBe('/foo');
+  expect(getRelativeUrl('http://irving.com:3001/foo')).toBe('/foo');
 });
 
 it('should handle an internal absolute url with search query', () => {
-  expect(getRelativeUrl('http://localhost:3001/foo/?s=test')).toBe('/foo/?s=test');
+  expect(getRelativeUrl('http://irving.com:3001/foo/?s=test')).toBe('/foo/?s=test');
 });
 
 it('should handle an internal absolute url with hash', () => {
-  expect(getRelativeUrl('http://localhost/foo#test'))
+  expect(getRelativeUrl('http://irving.com/foo#test'))
     .toBe('/foo#test');
 });
 
 it('should handle an internal absolute url with search query and hash', () => {
-  expect(getRelativeUrl('http://localhost/foo/?s=search#test'))
+  expect(getRelativeUrl('http://irving.com/foo/?s=search#test'))
     .toBe('/foo/?s=search#test');
 });
 
@@ -52,6 +52,10 @@ it('should not modify URLs that begin with a hash', () => {
   expect(getRelativeUrl('#test-hash')).toBe(false);
 });
 
-it('should not modify URLs at a subdomain of the current domain', () => {
+it('should not modify URLs at a subdomain (unless www)', () => {
   expect(getRelativeUrl('https://content.irving.com')).toBe(false);
+});
+
+it('should consider URLs at www subdomain to be relative', () => {
+  expect(getRelativeUrl('https://www.irving.com/test')).toBe('/test');
 });

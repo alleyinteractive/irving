@@ -9,7 +9,7 @@ module.exports = {
   testMatch: [
     '**/*.test.js',
   ],
-  testURL: 'http://localhost',
+  testURL: 'https://irving.com',
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
     '^.+\\.css$': path.join(__dirname, '/test/mockCssTransform.js'),
