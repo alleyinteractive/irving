@@ -1,0 +1,38 @@
+.wrapper {
+  bottom: rem(70);
+  position: fixed;
+  right: 0;
+  transform: translateX(120%);
+  transition: transform 0.3s ease-out;
+  z-index: 1001;
+
+  &.isVisible {
+    transform: translateX(rem(-20));
+  }
+
+  &.isHidden {
+    display: none;
+  }
+
+  :global(.adUnit) {
+    margin: 0;
+  }
+}
+
+.closeButton {
+  display: flex;
+  margin-left: auto;
+}
+
+.closeText {
+  @include screenreader-only;
+}
+
+.closeIcon {
+  svg {
+    path {
+      fill: $black;
+      stroke: $black;
+    }
+  }
+}

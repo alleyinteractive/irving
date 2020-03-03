@@ -5,9 +5,15 @@
  */
 @mixin body-content-type-styles {
   color: $black;
-  font-family: $sans;
-  font-size: rem(18);
-  line-height: 1.55;
+  font-family: $serif-text;
+  font-size: rem(16);
+  font-weight: 400;
+  line-height: rem(24);
+
+  @media ($mdMin) {
+    font-size: rem(18);
+    line-height: 1.55;
+  }
 }
 
 /**
@@ -18,7 +24,7 @@
     color: inherit;
     display: inline;
     font-size: inherit;
-    font-weight: 700;
+    font-weight: 400;
     text-decoration: underline;
   }
 }
@@ -37,5 +43,19 @@
   em,
   i {
     font-style: italic;
+  }
+
+  p:first-of-type {
+    
+    strong {
+      font-family: $sans;
+      font-size: rem(16);
+      line-height: rem(24);
+
+      @media ($mdMin) {
+        font-size: rem(18);
+        line-height: rem(28);       
+      }
+    }
   }
 }
