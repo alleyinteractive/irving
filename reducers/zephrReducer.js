@@ -165,7 +165,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
     case RECEIVE_UPDATE_EMAIL:
       return {
         ...state,
-        password: payload,
+        token: payload,
       };
     case RECEIVE_USER_LOG_OUT:
       return {

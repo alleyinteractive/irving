@@ -157,7 +157,7 @@ export function actionRequestUpdateEmail(payload) {
  *
  * @returns {{type, payload}} The Redux action.
  */
-export function actionReceiveUpdateEmail(payload) {
+export function actionVerifyEmailUpdateToken(payload) {
   return createAction(RECEIVE_UPDATE_EMAIL, payload);
 }
 

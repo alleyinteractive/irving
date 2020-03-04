@@ -81,7 +81,7 @@ function* submitUpdateEmailRequest(credentials) {
   const { status, type } = yield call(zephrService.requestUpdateEmail, credentials.payload); // eslint-disable-line
 
   if ('success' === status) {
-    history.push('/update-email/confirmation');
+    history.push('/email-update/request');
   }
 
   if ('failed' === status) {
@@ -95,15 +95,17 @@ function* submitUpdateEmailRequest(credentials) {
  * @param {object} credentials The user's selected password.
  */
 function* submitUpdateEmail(credentials, cookie) {
+  console.log('credentials ', credentials);
   // Submit the form to Zephr.
   const { status, type } = yield call( // eslint-disable-line no-unused-vars
     zephrService.updateEmail,
-    credentials,
+    credentials.payload,
     cookie
   );
 
   if ('success' === status) {
-    history.push('/');
+    // history.push('/email-update/confirmation');
+    console.log('success, email has been updated!');
   }
 
   if ('failed' === status) {
