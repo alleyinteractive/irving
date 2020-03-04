@@ -20,7 +20,7 @@ const ListMenuItems = ({
   const [isExpanded, setIsExpanded] = useState(false);
   let timeoutID;
 
-  const useFourColumnLayout = 'The List' === title;
+  const useFourColumnLayout = 30 < children.length;
 
   /**
    * When keyboard focus leaves the menu.
