@@ -27,20 +27,14 @@ const Verify = ({
 
   useEffect(() => {
     if (false === emailVerified) {
-      const {
-        location: {
-          search,
-        },
-      } = window;
       // Extract the token from the query string.
-      // const extractToken = (qs) => qs.match(/(?<=\btoken=)([^&]*)/)[0];
       const extractToken = () => {
         const urlObj = new URL(window.location, true);
         const { query: { token = '' } } = urlObj.query || {};
         return token;
       };
       // Set the token value.
-      const token = extractToken(search);
+      const token = extractToken();
       // Dispatch the verification action.
       verifyToken(token);
     }

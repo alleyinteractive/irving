@@ -28,20 +28,14 @@ const ResetForm = ({
   const onSubmit = (event) => {
     event.preventDefault();
 
-    const {
-      location: {
-        search,
-      },
-    } = window;
     // Extract the token from the query string.
     const extractStateToken = () => {
       const urlObj = new URL(window.location, true);
       const { query: { state = '' } } = urlObj.query || {};
       return state;
     };
-    // const extractStateToken = (qs) => qs.match(/(?<=\bstate=)([^&]*)/)[0];
     // Set the token value.
-    const state = extractStateToken(search);
+    const state = extractStateToken();
 
     const password = document.getElementById('new-password');
     const verifyPassword = document.getElementById('verify-password');
