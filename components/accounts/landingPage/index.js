@@ -35,7 +35,6 @@ const AccountLandingPage = ({
   logOut,
   isAuthenticated,
   submitResetRequest,
-  // eslint-disable-next-line no-unused-vars
   submitUpdateEmail,
 }) => {
   // Prevent unauthenticated users from being able to visit this route.
