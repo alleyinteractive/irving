@@ -76,7 +76,6 @@ function* logOut() {
  * @param {object} credentials The user's email address.
  */
 function* submitUpdateEmailRequest(credentials) {
-  console.log('credentials ', credentials);
   // Submit the form to Zephr.
   const { status, type } = yield call(zephrService.requestUpdateEmail, credentials.payload); // eslint-disable-line
 
@@ -95,7 +94,6 @@ function* submitUpdateEmailRequest(credentials) {
  * @param {object} credentials The user's selected password.
  */
 function* submitUpdateEmail(credentials, cookie) {
-  console.log('credentials ', credentials);
   // Submit the form to Zephr.
   const { status, type } = yield call( // eslint-disable-line no-unused-vars
     zephrService.updateEmail,
@@ -104,8 +102,9 @@ function* submitUpdateEmail(credentials, cookie) {
   );
 
   if ('success' === status) {
+    // @TODO: Once Zephr has added a new email template to their Email settings,
+    // we'll need to send the user to the confirmation page.
     // history.push('/email-update/confirmation');
-    console.log('success, email has been updated!');
   }
 
   if ('failed' === status) {

@@ -25,7 +25,7 @@ const UpdateEmailConfirm = ({
       },
     } = window;
     // Extract the token from the query string.
-    const extractToken = (qs) => qs.match(/(?<=\btoken=)([^&]*)/)[0];
+    const extractToken = (url) => url.substr(url.lastIndexOf('/') + 1);
     // Set the token value.
     const token = extractToken(search);
     // Dispatch the verification action.

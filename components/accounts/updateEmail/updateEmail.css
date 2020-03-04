@@ -11,6 +11,7 @@
 
 .accountSubHeader {
   @include accountSubHeader;
+  margin-bottom: rem(20);
 }
 
 .accountHeaderDescription {

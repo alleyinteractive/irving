@@ -405,12 +405,14 @@ export default {
    * Complete the update email process by submitting the password to
    * Zephr and redirecting the user.
    *
-   * @param {object} credentials The user's password and the state key from the update email.
+   * @param {object} token The user's token to complete the email update.
    *
    * @returns {object} status The response status.
    */
   async updateEmail(token, cookie) {
-    console.log(token);
+    // @TODO: Once Zephr has added a new email template to their Email settings,
+    // we'll need to separate these requests out. On the user's new email confirmation,
+    // we would create a new function for the 2nd call.
     try {
       const request1 = fetch(
         // eslint-disable-next-line max-len
