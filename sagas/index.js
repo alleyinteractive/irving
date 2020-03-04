@@ -26,6 +26,7 @@ const zephrSagas = (() => {
     port,
   } = window.location;
 
+  // Don't load zephr on ported instances.
   if (
     'development' === process.env.NODE_ENV &&
     '3001' === port

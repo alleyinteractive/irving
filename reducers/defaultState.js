@@ -21,6 +21,8 @@ export const form = {
 
 export const visible = {
   megaMenu: false,
+  sliderAd: false,
+  sliderAdHasClosed: false,
 };
 
 export const player = {

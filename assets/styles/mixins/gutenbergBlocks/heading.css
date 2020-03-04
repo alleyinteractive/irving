@@ -54,11 +54,28 @@
   }
 
   h3 {
-    font-size: rem(28);
+    color: $black;
+    font-size: rem(18);
+    font-weight: 700;
+    line-height: rem(24);
+    margin-bottom: 0;
+
+    @media ($mdMin) {
+      font-size: rem(22);
+      line-height: rem(28);
+    }
   }
 
   h4 {
-    font-size: rem(24);
+    color: $black;
+    font-size: rem(16);
+    line-height: rem(24);
+    margin-bottom: 0;
+
+    @media ($mdMin) {
+      font-size: rem(18);
+      line-height: rem(28);
+    }    
   }
 
   h5 {

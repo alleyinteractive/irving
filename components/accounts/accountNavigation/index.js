@@ -12,7 +12,7 @@ const AccountNavigation = ({ currentPage }) => {
     {
       page: 'manage-subscription',
       label: __('Manage your subscription', 'mittr'),
-      url: '/account/manage-subscription',
+      url: 'https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602',
     },
     {
       page: 'order-history',
@@ -20,14 +20,9 @@ const AccountNavigation = ({ currentPage }) => {
       url: '/account/order-history',
     },
     {
-      page: 'purchase-gift',
-      label: __('Purchase a gift subscription', 'mittr'),
-      url: '/account/purchase-gift',
-    },
-    {
       page: 'newsletter-preferences',
       label: __('Edit your newsletter preferences', 'mittr'),
-      url: '#',
+      url: 'https://forms.technologyreview.com/newsletters/?_ga=2.242102080.39622121.1582559852-436121851.1581700602',
     },
   ];
   return (

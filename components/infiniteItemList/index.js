@@ -6,7 +6,7 @@ import React, {
 import PropTypes from 'prop-types';
 import toReactElement from 'utils/toReactElement';
 import { __ } from '@wordpress/i18n';
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 import withData from 'components/hoc/withData';
 import kebabcase from 'lodash.kebabcase';
 import { withStyles } from 'critical-style-loader/lib';
