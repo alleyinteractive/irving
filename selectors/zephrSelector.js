@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import get from 'lodash/get';
 
 export const zephrSelector = (state) => state.zephr;
 
@@ -24,6 +25,16 @@ export const getRegistrationForm = createSelector(
   (state) => state.forms.register,
 );
 
+export const getResetRequestForm = createSelector(
+  zephrSelector,
+  (state) => state.forms.resetRequest,
+);
+
+export const getResetForm = createSelector(
+  zephrSelector,
+  (state) => state.forms.reset,
+);
+
 export const getCached = createSelector(
   zephrSelector,
   (state) => state.cached,
@@ -33,6 +44,16 @@ export const getCached = createSelector(
 export const getSession = createSelector(
   zephrSelector,
   (state) => state.session,
+);
+
+/* The Zephr cookie  */
+export const getZephrCookie = createSelector(
+  zephrSelector,
+  (state) => get(
+    state,
+    'session.payload.sessionCookie',
+    ''
+  )
 );
 
 /* User Profile/Account */

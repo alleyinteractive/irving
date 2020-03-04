@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import {
   actionReceiveUserSession,
   actionReceiveUserProfile,
@@ -13,23 +13,32 @@ import {
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
 import createDebug from 'services/createDebug';
+import { getZephrCookie } from 'selectors/zephrSelector';
 
 const debug = createDebug('sagas:submitZephrForm');
 
 /**
  * A generator that is called on the submission of a Zephr form. The form
- * type is checked and a subsequent request will be made to the cooresponding
+ * type is checked and a subsequent request will be made to the corresponding
  * endpoint in the Zephr API.
  *
  * @param {{ route, credentials }} The form to be submitted.
  */
 export default function* submitForm({ payload: { type, credentials } }) {
+  const cookie = yield select(getZephrCookie);
+
   switch (type) {
     case 'login':
       yield call(submitLogin, credentials);
       break;
     case 'register':
       yield call(submitRegistration, credentials);
+      break;
+    case 'resetRequest':
+      yield call(submitResetRequest, credentials);
+      break;
+    case 'reset':
+      yield call(submitReset, credentials, cookie);
       break;
     default:
       // do nothing
@@ -127,7 +136,7 @@ export function* getProfile(sessionCookie) {
 }
 
 /**
- * Use the session cookie set by loggin in or registering a user with Zephr to retrieve
+ * Use the session cookie set by login in or registering a user with Zephr to retrieve
  * their account and store their information in our Redux store.
  *
  * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
@@ -140,5 +149,45 @@ export function* getAccount(sessionCookie) {
   if ('object' === typeof account) {
     // Store user account information.
     yield put(actionReceiveUserAccount(account));
+  }
+}
+
+/**
+ * Send a password reset email to a given email address.
+ *
+ * @param {object} credentials The user's email address.
+ */
+function* submitResetRequest(credentials) {
+  // Submit the form to Zephr.
+  const { status, type } = yield call(zephrService.requestReset, credentials); // eslint-disable-line
+
+  if ('success' === status) {
+    history.push('/reset-password/request-confirmation');
+  }
+
+  if ('failed' === status) {
+    // yield put(actionReceiveResetRequestError(type));
+  }
+}
+
+/**
+ * Submit the user's new password to Zephr.
+ *
+ * @param {object} credentials The user's selected password.
+ */
+function* submitReset(credentials, cookie) {
+  // Submit the form to Zephr.
+  const { status, type } = yield call( // eslint-disable-line no-unused-vars
+    zephrService.resetPassword,
+    credentials,
+    cookie
+  );
+
+  if ('success' === status) {
+    history.push('/reset-password/confirmation');
+  }
+
+  if ('failed' === status) {
+    // yield put(actionReceiveResetError(type));
   }
 }

@@ -1,0 +1,58 @@
+.accountWrap {
+  font-family: $sans;
+  margin: rem(40) auto rem(50);
+  max-width: rem(758);
+  padding: 0 rem(15);
+}
+
+.accountHeader {
+  @include accountHeader;
+}
+
+.accountSubHeader {
+  @include accountSubHeader;
+}
+
+.accountHeaderDescription {
+  @include accountHeaderDescription;
+  margin-bottom: rem(25);
+}
+
+.formWrap {
+  @include zephrForm;
+}
+
+.inlineFormWrap {
+  @include zephrForm;
+
+  display: flex;
+  flex-direction: row;
+  margin-bottom: rem(5);
+
+  label[for="email-address"] {
+    flex: 1;
+    margin-right: rem(5);
+  }
+}
+
+.helpLinks {
+  display: flex;
+  flex-direction: column;
+  font-size: rem(16);
+
+  span:first-of-type {
+    margin-bottom: rem(15);
+  }
+
+  a {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}
+
+.homeButton {
+  @include btn;
+  @include btnBlack;
+
+  font-family: $sans;
+}

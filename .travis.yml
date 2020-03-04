@@ -39,11 +39,11 @@ script:
       elif [ "$TRAVIS_BRANCH" == "preprod" ]; then
         export API_ROOT_URL=https://wp-preprod.technologyreview.com/wp-json/irving/v1
         export ROOT_URL=https://irving-preprod.technologyreview.com
-        export ZEPHR_ROOT_URL=https://zephr-develop.technologyreview.com
+        export ZEPHR_ROOT_URL=https://zephr.technologyreview.com
       elif [ "$TRAVIS_BRANCH" == "master" ]; then
         export API_ROOT_URL=https://wp.technologyreview.com/wp-json/irving/v1
         export ROOT_URL=https://irving.technologyreview.com
-        export ZEPHR_ROOT_URL=https://zephr-develop.technologyreview.com
+        export ZEPHR_ROOT_URL=https://zephr.technologyreview.com
       fi
   - echo "Exported API_ROOT_URL $API_ROOT_URL, ROOT_URL $ROOT_URL, ZEPHR_ROOT_URL $ZEPHR_ROOT_URL for branch $TRAVIS_BRANCH"
   - npm install

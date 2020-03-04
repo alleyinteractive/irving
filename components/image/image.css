@@ -52,6 +52,11 @@
 
 .caption {
   font-size: rem(14);
+  margin-left: rem(20);
+  
+  @media ($mdMin) {
+    margin: 0;
+  }
 }
 
 .credit {

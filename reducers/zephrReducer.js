@@ -46,7 +46,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         ...state,
         forms: {
           ...state.forms,
-          [payload.type]: clearFormErrors(state.forms[payload.type]),
+          [payload.type]: submitForm(state.forms[payload.type]),
         },
       };
     case RECEIVE_ZEPHR_USER_SESSION:
@@ -142,8 +142,9 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         ...state,
         forms: {
           ...state.forms,
-          register: {
-            components: setPasswordErrorState(state.forms.register),
+          [payload]: {
+            ...state.forms[payload],
+            components: setPasswordErrorState(state.forms[payload]),
             error: true,
             errors: [
               ...state.forms.register.errors,
@@ -169,6 +170,40 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
     default:
       return state;
   }
+}
+
+/**
+ * A function that is run on form submission. Cleans the form of any errors
+ * and applies a loading state to the submit button.
+ *
+ * @param {object} form The submitted form.
+ *
+ * @returns {object} form
+ */
+function submitForm(form) {
+  let tmp = form;
+
+  if (form.error) {
+    tmp = clearFormErrors(form);
+  }
+
+  const fields = JSON.parse(form.components);
+
+  const components = fields.map((el) => {
+    if ('submit-button' === el.id) {
+      return {
+        ...el,
+        value: 'Loading...',
+      };
+    }
+
+    return el;
+  });
+
+  return {
+    ...tmp,
+    components: JSON.stringify(components),
+  };
 }
 
 /**
@@ -236,7 +271,7 @@ export function setFormErrorState(form, error) {
     return form.components;
   }
 
-  let obj = form;
+  let obj = { ...form };
   if (form.error) {
     obj = clearFormErrors(form);
   }
@@ -266,7 +301,36 @@ export function setFormErrorState(form, error) {
   // Add the error message to the components array.
   components.splice(position + 1, 0, message);
 
-  return JSON.stringify(components);
+  let value = 'Submit';
+  switch (form.type) {
+    case 'login':
+      value = 'Login';
+      break;
+    case 'register':
+      value = 'Create an account';
+      break;
+    case 'requestReset':
+      value = 'Send password reset link';
+      break;
+    case 'reset':
+      value = 'Change your password';
+      break;
+    default:
+      break;
+  }
+
+  return JSON.stringify(
+    components.map((el) => {
+      if ('submit-button' === el.id) {
+        return {
+          ...el,
+          value,
+        };
+      }
+
+      return el;
+    })
+  );
 }
 
 /**
@@ -317,7 +381,36 @@ export function setPasswordErrorState(form) {
   // Add the error message to the components array.
   components.splice(position + 2, 0, message);
 
-  return JSON.stringify(components);
+  let value = 'Submit';
+  switch (form.type) {
+    case 'login':
+      value = 'Login';
+      break;
+    case 'register':
+      value = 'Create an account';
+      break;
+    case 'requestReset':
+      value = 'Send password reset link';
+      break;
+    case 'reset':
+      value = 'Change your password';
+      break;
+    default:
+      break;
+  }
+
+  return JSON.stringify(
+    components.map((el) => {
+      if ('submit-button' === el.id) {
+        return {
+          ...el,
+          value,
+        };
+      }
+
+      return el;
+    })
+  );
 }
 
 /**

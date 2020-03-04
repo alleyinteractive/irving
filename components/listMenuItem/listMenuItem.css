@@ -13,3 +13,7 @@
   padding: rem(5) 0 rem(10);
   width: 100%;
 }
+
+.noBorder {
+  border-top: none;
+}
