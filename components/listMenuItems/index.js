@@ -20,6 +20,8 @@ const ListMenuItems = ({
   const [isExpanded, setIsExpanded] = useState(false);
   let timeoutID;
 
+  const useFourColumnLayout = 30 < children.length;
+
   /**
    * When keyboard focus leaves the menu.
    */
@@ -68,11 +70,23 @@ const ListMenuItems = ({
               {isExpanded && (
                 <ul
                   aria-labelledby={listMenuItemsID}
-                  className={theme.list}
+                  className={classNames(theme.list, {
+                    [theme.fourColumnList]: useFourColumnLayout,
+                  })}
                   onBlur={onBlur}
                   onFocus={onFocus}
                 >
-                  {children}
+                  {children.map(
+                    (child) => (useFourColumnLayout ?
+                      {
+                        ...child,
+                        props: {
+                          ...child.props,
+                          noBorder: true,
+                        },
+                      } :
+                      child)
+                  )}
                 </ul>
               )}
             </li>
