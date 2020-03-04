@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/styleguide",
-	"version": "2.4.1",
+	"version": "2.4.2",
 	"description": "React Styleguidist for Irving",
 	"files": [
 		"config/**/*",
@@ -22,7 +22,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
 		"@irvingjs/babel-preset-irving": "^2.0.0",
-		"@irvingjs/core": "^2.4.1",
+		"@irvingjs/core": "^2.4.2",
 		"babel-jest": "^24.9.0",
 		"enzyme": "^3.10.0",
 		"enzyme-adapter-react-16": "^1.15.1",
