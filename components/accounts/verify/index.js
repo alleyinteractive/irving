@@ -29,7 +29,7 @@ const Verify = ({
     if (false === emailVerified) {
       // Extract the token from the query string.
       const extractToken = () => {
-        const urlObj = new URL(window.location, true);
+        const urlObj = new URL(window.location.href, true);
         const { query: { token = '' } } = urlObj.query || {};
         return token;
       };
