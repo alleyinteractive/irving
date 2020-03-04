@@ -3,35 +3,37 @@ import {
 } from './utils';
 
 export default {
-  initialize(response) {
-    try {
-      const {
-        data: {
-          action,
-          cookie,
-          identifier,
-          stateKey,
-        },
-      } = response;
+  async initialize(response) {
+    const {
+      data: {
+        action,
+        cookie,
+        identifier,
+        stateKey,
+      },
+    } = response;
 
-      if ('register' === action) {
-        this.register(identifier, stateKey);
-      }
+    if ('register' === action) {
+      const status = await this.register(identifier, stateKey);
 
-      if ('login' === action) {
-        // Set the cookie.
-        document.cookie = cookie;
-
+      if ('tracking_id' in status) {
         return {
           status: 'success',
-          cookie: parseSessionString(cookie),
         };
       }
-
-      return { status: 'failed' };
-    } catch (error) {
-      return console.error(error);
     }
+
+    if ('login' === action) {
+      // Set the cookie.
+      document.cookie = cookie;
+
+      return {
+        status: 'success',
+        cookie: parseSessionString(cookie),
+      };
+    }
+
+    return { status: 'failed' };
   },
 
   async register(email, token) {
@@ -42,6 +44,10 @@ export default {
         },
         validators: {
           token_exchange: token,
+        },
+        attributes: {
+          'email-address': email,
+          'sso-user': true,
         },
       };
 
@@ -66,12 +72,9 @@ export default {
           };
         });
 
-      const response = await request;
-      console.log(response);
-      return true;
+      return await request;
     } catch (error) {
-      console.log(error);
-      return false;
+      return console.error(error);
     }
   },
 

@@ -16,7 +16,6 @@ import history from 'utils/history';
 import DataLoading from 'components/hoc/withData/loading';
 import toFormElements from 'sagas/zephrSaga/forms/toFormElements';
 import sso from 'services/zephrService/sso';
-import { debounce } from 'lodash';
 import LazyRecaptcha from '../register/recaptcha';
 
 // Styles
@@ -116,25 +115,27 @@ const Login = ({
       setForm(fields);
     }
 
-    window.addEventListener('message', debounce((data) => {
+    const initSSO = async (data) => {
       const {
         data: {
           action,
+          identifier,
         },
       } = data;
-      console.log(data);
 
       if ('login' === action || 'register' === action) {
         // Get the response status and its cookie if it exists.
-        const { status, cookie } = sso.initialize(data);
+        const { status, cookie } = await sso.initialize(data);
 
         if ('success' === status) {
-          receiveSession(cookie);
+          receiveSession({ identifier, cookie, action });
         } else if ('failed' === status) {
           // do something.
         }
       }
-    }, 2000));
+    };
+
+    window.addEventListener('message', initSSO);
   }, [loginForm]);
 
   // If the form has not yet been retireved, show a loader.
