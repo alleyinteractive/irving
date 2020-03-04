@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
+import URL from 'url-parse';
 import Link from 'components/helpers/link';
 import { actionVerifyToken } from 'actions/zephrActions';
 import {
@@ -32,7 +33,12 @@ const Verify = ({
         },
       } = window;
       // Extract the token from the query string.
-      const extractToken = (qs) => qs.match(/(?<=\btoken=)([^&]*)/)[0];
+      // const extractToken = (qs) => qs.match(/(?<=\btoken=)([^&]*)/)[0];
+      const extractToken = () => {
+        const urlObj = new URL(window.location, true);
+        const { query: { token = '' } } = urlObj.query || {};
+        return token;
+      };
       // Set the token value.
       const token = extractToken(search);
       // Dispatch the verification action.
