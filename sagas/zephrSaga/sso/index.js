@@ -9,10 +9,12 @@ import {
 import {
   actionReceiveUserSession,
   actionReceiveUserLogin,
+  actionSendUserVerificationEamil,
   actionReceiveUserRegistration,
 } from 'actions/zephrActions';
 import createDebug from 'services/createDebug';
 import history from 'utils/history';
+import formService from 'services/zephrService';
 import {
   getAccount,
   getProfile,
@@ -24,13 +26,16 @@ export default [
   takeEvery(RECEIVE_SSO_SESSION, completeSignOn),
 ];
 
-function* completeSignOn({ payload: { cookie, action } }) {
+function* completeSignOn({ payload: { identifier, cookie, action } }) {
   if ('register' === action) {
     yield put(actionReceiveUserRegistration());
 
     try {
+      yield call(formService.sendVerificationEmail, identifier);
+      // Update the state to reflect the email being sent.
+      yield put(actionSendUserVerificationEamil());
       // Push the user to the confirmation page.
-      history.push('/register/sso/final-step');
+      history.push('/register/confirmation');
     } catch (error) {
       yield call(debug, error);
     }

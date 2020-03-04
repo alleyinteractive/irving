@@ -46,6 +46,11 @@ export const getSession = createSelector(
   (state) => state.session,
 );
 
+export const isSSO = createSelector(
+  zephrSelector,
+  (state) => state.user.profile.isSSO,
+);
+
 /* The Zephr cookie  */
 export const getZephrCookie = createSelector(
   zephrSelector,

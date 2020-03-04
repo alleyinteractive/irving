@@ -15,7 +15,7 @@ import {
 import history from 'utils/history';
 import DataLoading from 'components/hoc/withData/loading';
 import toFormElements from 'sagas/zephrSaga/forms/toFormElements';
-import sso from 'services/zephrService/sso';
+import sso from 'services/ssoService';
 import LazyRecaptcha from '../register/recaptcha';
 
 // Styles

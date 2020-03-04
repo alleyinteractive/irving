@@ -408,13 +408,51 @@ export default {
       const {
         'first-name': firstName,
         'last-name': lastName,
+        'sso-user': isSSO,
       } = response;
 
-      return { firstName, lastName };
+      return { firstName, lastName, isSSO };
     } catch (error) {
       postErrorMessage(error);
       // Return null to exit the profile setting portion of the saga.
       return null;
+    }
+  },
+
+  async updateProfile({ properties, cookie }) {
+    console.log(cookie);
+    try {
+      const {
+        firstName,
+        lastName,
+      } = properties;
+
+      const body = {
+        properties: {
+          'first-name': firstName,
+          'last-name': lastName,
+        },
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/profile`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            cookie,
+          },
+          credentials: 'include',
+          body: JSON.stringify(body),
+        }
+      ).then((res) => res.json());
+
+      const response = await request;
+
+      console.log(response);
+    } catch (error) {
+      console.error(error);
     }
   },
 

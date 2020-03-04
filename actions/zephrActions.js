@@ -21,6 +21,7 @@ import {
   RECEIVE_ZEPHR_USER_VERIFICATION,
   SEND_ZEPHR_VERIFICATION_EMAIL,
   RECEIVE_SSO_SESSION,
+  SUBMIT_PROFILE,
 } from './types';
 
 /**
@@ -230,4 +231,8 @@ export function actionReceiveUserVerification() {
 
 export function actionReceiveSsoSession(payload) {
   return createAction(RECEIVE_SSO_SESSION, payload);
+}
+
+export function actionSubmitProfile(payload) {
+  return createAction(SUBMIT_PROFILE, payload);
 }

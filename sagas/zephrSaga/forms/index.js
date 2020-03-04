@@ -14,6 +14,7 @@ import {
   REQUEST_ZEPHR_FORMS,
   SUBMIT_ZEPHR_FORM,
   REQUEST_USER_LOG_OUT,
+  SUBMIT_PROFILE,
 } from 'actions/types';
 import { getCached, getSession } from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
@@ -30,6 +31,8 @@ export default [
   takeEvery(SUBMIT_ZEPHR_FORM, submitForm),
   // Listen for user log out request.
   takeEvery(REQUEST_USER_LOG_OUT, logOut),
+  // Listen for profile completion for SSO accounts.
+  takeEvery(SUBMIT_PROFILE, completeProfile),
 ];
 
 /**
@@ -62,4 +65,16 @@ function* logOut() {
     // Redirect the user to the login page.
     history.push('/login');
   }
+}
+
+function* completeProfile({ payload }) {
+  const session = yield select(getSession);
+
+  yield call(
+    zephrService.updateProfile,
+    {
+      properties: payload,
+      cookie: session,
+    }
+  );
 }

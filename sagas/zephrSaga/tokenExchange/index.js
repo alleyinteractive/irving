@@ -2,7 +2,7 @@ import {
   call,
   put,
   takeEvery,
-  // takeLatest,
+  select,
 } from 'redux-saga/effects';
 import {
   actionReceiveUserSession,
@@ -10,11 +10,14 @@ import {
 } from 'actions/zephrActions';
 import {
   VERIFY_ZEPHR_USER_TOKEN,
-  // RECEIVE_ZEPHR_USER_VERIFICATION,
+  RECEIVE_ZEPHR_USER_VERIFICATION,
 } from 'actions/types';
 import zephrService from 'services/zephrService';
-// import history from 'utils/history';
+import history from 'utils/history';
 import createDebug from 'services/createDebug';
+import {
+  isSSO,
+} from 'selectors/zephrSelector';
 import {
   getProfile,
   getAccount,
@@ -25,6 +28,7 @@ const debug = createDebug('sagas:tokenExchange');
 export default [
   // Listen for token verification request.
   takeEvery(VERIFY_ZEPHR_USER_TOKEN, verifyToken),
+  takeEvery(RECEIVE_ZEPHR_USER_VERIFICATION, redirectUser),
 ];
 
 /**
@@ -46,5 +50,14 @@ function* verifyToken({ payload }) {
     }
   } catch (error) {
     yield call(debug, error);
+  }
+}
+
+function* redirectUser() {
+  console.log('receive verification');
+  const requireProfile = yield select(isSSO);
+  console.log(requireProfile);
+  if (true === requireProfile) {
+    history.push('/register/sso/final-step');
   }
 }
