@@ -71,7 +71,7 @@ const FeedItem = ({
       window.dataLayer.push({
         event: 'VirtualPageviewWithReferrer',
         virtualPageURL: permalink,
-        virtualPageTitle: `${title}| MIT Technology Review`, // @todo don't hard-code this
+        virtualPageTitle: `${title} | MIT Technology Review`, // @todo don't hard-code this maybe
         virtualPageReferrer: window.location.href,
         contentPosition: position,
         articleId,
