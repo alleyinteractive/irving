@@ -102,7 +102,7 @@ function* submitUpdateEmail(credentials, cookie) {
   );
 
   if ('success' === status) {
-    // @TODO: Once Zephr has added a new email template to their Email settings,
+    // @TODO: Once Zephr has added a new email template to their email settings,
     // we'll need to send the user to the confirmation page.
     // history.push('/email-update/confirmation');
   }
