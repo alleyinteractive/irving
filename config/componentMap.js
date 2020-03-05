@@ -41,6 +41,7 @@ import ImageSet from 'components/imageSet';
 import InfiniteItemList from 'components/infiniteItemList';
 import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
+import Link from 'components/helpers/link';
 import LinkTeaser from 'components/linkTeaser';
 import ListDescription from 'components/listDescription';
 import ListGroup from 'components/listGroup';
@@ -151,6 +152,7 @@ export const componentMap = {
   image: Image,
   'infinite-list': InfiniteItemList,
   innovator: Innovator,
+  'link-to': Link,
   'link-teaser': LinkTeaser,
   'innovator-header': InnovatorHeader,
   'list-header': ListHeader,
