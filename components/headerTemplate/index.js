@@ -107,7 +107,9 @@ const HeaderTemplate = ({
             <div className={styles.userGreeting}>{userGreeting}</div>
           )}
           <div className={styles.menuRow}>
-            <div className={styles.menu}>{menu}</div>
+            <div className={styles.menu}>
+              {menu}
+            </div>
             <button
               className={classNames(styles.button, {
                 [styles.expandedButton]: megaMenuIsExpanded,
