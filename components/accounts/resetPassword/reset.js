@@ -31,7 +31,7 @@ const ResetForm = ({
     // Extract the token from the query string.
     const extractStateToken = () => {
       const urlObj = new URL(window.location.href, true);
-      const { query: { state = '' } } = urlObj.query || {};
+      const { query: { state = '' } = {} } = urlObj || {};
       return state;
     };
     // Set the token value.
@@ -84,7 +84,7 @@ const ResetForm = ({
       <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
       <p className={styles.accountSubHeader}>
         {/* eslint-disable-next-line quotes */}
-        {__(`Okay, let's reset your password.`, 'mittr')}
+        {__(`Okay, let's reset your password`, 'mittr')}
       </p>
       <p className={styles.accountHeaderDescription}>
         {__('Enter your new password', 'mittr')}
