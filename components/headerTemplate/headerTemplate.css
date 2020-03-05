@@ -31,6 +31,11 @@
     tidy-span: 3;
   }
 
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 2;
+  }
+
   &.headroomLogo {
     tidy-span: 4;
 
@@ -82,7 +87,8 @@
   }
 
   @media ($mdMin) {
-    tidy-span: 1;
+    tidy-offset-left: 1;
+    tidy-span: 0.5;
   }
 
   svg {
