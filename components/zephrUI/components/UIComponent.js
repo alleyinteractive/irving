@@ -38,6 +38,7 @@ const UIComponent = ({ componentMarkup }) => (
                 'aria-modal',
                 'alt',
                 'src',
+                'href',
               ],
             },
           }
