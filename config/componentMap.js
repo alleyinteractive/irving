@@ -23,6 +23,7 @@ import ContentListItem from 'components/contentList/contentListItem';
 import Container from 'components/container';
 import Disqus from 'components/disqus';
 import Error404 from 'components/error404';
+import EventsPromoModule from 'components/eventsPromoModule';
 import FeedItem from 'components/feedItem';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
@@ -130,6 +131,7 @@ export const componentMap = {
   disqus: Disqus,
   embed: RawHTML,
   'error-404': Error404,
+  'events-promo-module': EventsPromoModule,
   'core-embed': RawHTML,
   'feed-anchor': CardStack,
   footer: Footer,
