@@ -107,7 +107,7 @@ Image.propTypes = {
   lazyload: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
-  ]).isRequired,
+  ]),
   /**
    * Should this component render a `<picture>` element?
    */
@@ -127,7 +127,7 @@ Image.propTypes = {
   /**
    * String with contents of <img> `srcset` attribute.
    */
-  srcset: PropTypes.string.isRequired,
+  srcset: PropTypes.string,
   /**
    * Array of objects containing values necessary for `<source>` tag attributes.
    */
@@ -143,15 +143,21 @@ Image.propTypes = {
       media: PropTypes.string.isRequired,
     })
   ),
+  /**
+   * Source for low-quality image placeholder.
+   */
+  lqipSrc: PropTypes.string.isRequired,
 };
 
 Image.defaultProps = {
   caption: '',
   className: '',
-  sourceTags: [],
   picture: false,
+  sourceTags: [],
+  srcset: '',
   sizes: '',
   showCaption: false,
+  lazyload: true,
 };
 
 export default Image;

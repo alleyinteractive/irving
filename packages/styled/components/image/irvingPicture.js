@@ -6,14 +6,12 @@ const IrvingPicture = (props) => {
   const {
     aspectRatio,
     children,
-    loaded,
     lazyload,
     sourceTags,
   } = props;
 
   return (
     <Picture
-      loaded={loaded}
       lazyload={lazyload}
       aspectRatio={aspectRatio}
     >
@@ -39,7 +37,6 @@ IrvingPicture.propTypes = {
       media: PropTypes.string.isRequired,
     })
   ).isRequired,
-  loaded: PropTypes.bool.isRequired,
   lazyload: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
