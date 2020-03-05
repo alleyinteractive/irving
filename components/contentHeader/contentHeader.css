@@ -6,10 +6,6 @@
   @media ($smMin) {
     @include container-with-bleed;
   }
-
-  @media ($mdMin) {
-    margin-bottom: rem(20);
-  }
 }
 
 .publishDate {
