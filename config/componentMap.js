@@ -31,6 +31,7 @@ import GoogleTagManager from 'components/googleTagManager';
 import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
+import Heading from 'components/helpers/heading';
 import HeaderWithImage from 'components/headerWithImage';
 import HubContent from 'components/hub/content';
 import HubList from 'components/hub/list';
@@ -140,6 +141,7 @@ export const componentMap = {
   'gutenberg-content': GutenbergContent,
   head: Head,
   header: Header,
+  heading: Heading,
   'header-with-image': HeaderWithImage,
   'hub-content': HubContent,
   'hub-content-list': HubList,
