@@ -64,7 +64,7 @@ app.use('/hub/ai-effect/*', proxy({
   // eslint-disable-next-line max-len
   pathRewrite: {
     // eslint-disable-next-line max-len
-    '^/hub/ai-effect/': '/wp-content/themes/mittr/inc/static/ai-effect/',
+    '^/hub/ai-effect/*': '/wp-content/themes/mittr/inc/static/ai-effect/',
   },
   xfwd: true,
 }));
