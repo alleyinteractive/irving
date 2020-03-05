@@ -34,7 +34,7 @@ export default [
   takeEvery(REQUEST_USER_LOG_OUT, logOut),
   // Listen for every update email request.
   takeEvery(REQUEST_UPDATE_EMAIL, submitUpdateEmailRequest),
-
+  // Listen for user submit email update request.
   takeEvery(RECEIVE_UPDATE_EMAIL, submitUpdateEmail),
 ];
 
