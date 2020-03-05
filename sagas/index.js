@@ -34,11 +34,6 @@ const zephrSagas = (() => {
     return [];
   }
 
-  // Temporarily disable all zephr requests on production until MIT-682 resolved.
-  if ('https://irving.technologyreview.com' === process.env.ROOT_URL) {
-    return [];
-  }
-
   return zephrSaga;
 })();
 
