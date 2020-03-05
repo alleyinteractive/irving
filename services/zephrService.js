@@ -410,7 +410,7 @@ export default {
    * @returns {object} status The response status.
    */
   async updateEmail(token, cookie) {
-    // @TODO: Once Zephr has added a new email template to their Email settings,
+    // @TODO: Once Zephr has added a new email template to their email settings,
     // we'll need to separate these requests out. On the user's new email confirmation,
     // we would create a new function for the 2nd call.
     try {
@@ -586,4 +586,3 @@ export default {
     }
   },
 };
-
