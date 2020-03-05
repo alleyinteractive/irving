@@ -4,7 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import Link from 'components/helpers/link';
 import { actionVerifyEmailUpdateToken } from 'actions/zephrActions';
 import {
@@ -35,12 +35,15 @@ const UpdateEmailConfirm = ({
   return (
     <div className={styles.accountWrap}>
       <p className={styles.accountSubHeader}>
-        {sprintf( 
+        {'' !== firstName ? (sprintf(
           __(
-            `Thanks %s! Your email has been successfully updated.`,
+            'Thanks %s! Your email has been successfully updated.',
             'mittr'
           ),
           firstName
+        )) : (
+          __('Thanks! Your email has been successfully updated.',
+            'mittr')
         )}
       </p>
       <p className={styles.accountHeaderDescription}>

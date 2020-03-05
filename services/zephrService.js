@@ -359,7 +359,7 @@ export default {
    *
    * @returns {obj}           The logged in user and their associated entitlements.
    */
-  async requestUpdateEmail({ email }) {
+  async requestUpdateEmail({ email, cookie }) {
     try {
       const user = {
         new_identifiers: {
@@ -374,6 +374,7 @@ export default {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
+            cookie,
           },
           body: JSON.stringify(user),
         }

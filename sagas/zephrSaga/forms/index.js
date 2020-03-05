@@ -17,7 +17,7 @@ import {
   REQUEST_UPDATE_EMAIL,
   RECEIVE_UPDATE_EMAIL,
 } from 'actions/types';
-import { getCached, getSession } from 'selectors/zephrSelector';
+import { getCached, getSession, getZephrCookie } from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
 import requestForms from './requestForms';
@@ -76,8 +76,13 @@ function* logOut() {
  * @param {object} credentials The user's email address.
  */
 function* submitUpdateEmailRequest(credentials) {
+  const cookie = yield select(getZephrCookie);
   // Submit the form to Zephr.
-  const { status, type } = yield call(zephrService.requestUpdateEmail, credentials.payload); // eslint-disable-line
+  const { status } = yield call(
+    zephrService.requestUpdateEmail,
+    credentials.payload,
+    cookie,
+  );
 
   if ('success' === status) {
     history.push('/email-update/request');
@@ -93,12 +98,13 @@ function* submitUpdateEmailRequest(credentials) {
  *
  * @param {object} credentials The user's selected password.
  */
-function* submitUpdateEmail(credentials, cookie) {
+function* submitUpdateEmail(credentials) {
+  const cookie = yield select(getZephrCookie);
   // Submit the form to Zephr.
-  const { status, type } = yield call( // eslint-disable-line no-unused-vars
+  const { status } = yield call(
     zephrService.updateEmail,
     credentials.payload,
-    cookie
+    cookie,
   );
 
   if ('success' === status) {
