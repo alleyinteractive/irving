@@ -1,0 +1,28 @@
+.wrapper {
+  :global(.adUnit) {
+    /* stylelint-disable */
+    margin: 0 auto !important;
+    /* stylelint-enable */
+  }
+}
+
+.moreLink {
+  align-items: center;
+  display: flex;
+  font-size: rem(14);
+  margin-top: rem(10);
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  svg {
+    height: rem(12);
+    margin-left: rem(2);
+    width: rem(12);
+
+    path {
+      stroke-width: 2;
+    }
+  }
+}
