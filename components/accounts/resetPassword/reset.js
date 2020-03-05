@@ -3,7 +3,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import URL from 'url-parse';
+import URL from 'url-parse';
 import {
   getResetForm,
 } from 'selectors/zephrSelector';
@@ -30,7 +30,7 @@ const ResetForm = ({
 
     // Extract the token from the query string.
     const extractStateToken = () => {
-      const urlObj = new URL(window.location, true);
+      const urlObj = new URL(window.location.href, true);
       const { query: { state = '' } } = urlObj.query || {};
       return state;
     };
