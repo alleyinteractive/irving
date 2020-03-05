@@ -46,10 +46,11 @@
   }
 
   p:first-of-type {
-    
-    strong {
+
+    &::first-line {
       font-family: $sans;
       font-size: rem(16);
+      font-weight: 600;
       line-height: rem(24);
 
       @media ($mdMin) {
