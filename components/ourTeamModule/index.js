@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import Link from 'components/helpers/link';
-
+import Heading from 'components/helpers/heading';
 // Styles
 import styles from './ourTeamModule.css';
 
 const OurTeamModule = ({ children }) => (
   <div className={styles.moduleWrapper}>
-    <span className={styles.sidebarTitle}>{__('Our Team', 'mittr')}</span>
+    <Heading tag="h3" themeName="sidebarWidget">
+      {__('Our Team', 'mittr')}
+    </Heading>
     <ul className={styles.teamList}>
       {children}
     </ul>
