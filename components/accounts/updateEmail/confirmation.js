@@ -35,9 +35,12 @@ const UpdateEmailConfirm = ({
   return (
     <div className={styles.accountWrap}>
       <p className={styles.accountSubHeader}>
-        {__(
-          `Thanks ${firstName}! Your email has been successfully updated.`,
-          'mittr'
+        {sprintf( 
+          __(
+            `Thanks %s! Your email has been successfully updated.`,
+            'mittr'
+          ),
+          firstName
         )}
       </p>
       <p className={styles.accountHeaderDescription}>
