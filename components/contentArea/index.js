@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import classNames from 'classnames';
 import withThemes from 'components/hoc/withThemes';
 
 import styles from './contentArea.css';
 import simpleTheme from './simpleContentArea.css';
+import contentWrap from './contentArea--contentWrap.css';
 
 const ContentArea = ({ children, theme }) => (
-  <div className={theme.wrapper}>
+  <div className={classNames(theme.wrapper, theme.gradient)}>
     {children}
   </div>
 );
@@ -20,4 +22,5 @@ ContentArea.propTypes = {
 export default withThemes('content-area', {
   default: styles,
   simple: simpleTheme,
-})(withStyles(styles, simpleTheme)(ContentArea));
+  contentWrap,
+})(withStyles(styles, simpleTheme, contentWrap)(ContentArea));
