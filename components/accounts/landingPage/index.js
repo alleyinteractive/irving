@@ -117,7 +117,7 @@ const AccountLandingPage = ({
             ) : (
               <AccountInfoForm
                 type="email"
-                handleSubmit={(value) => onSubmitUpdateEmail(value)}
+                handleSubmit={(event) => onSubmitUpdateEmail(event)}
                 placeholderValue={email}
               />
             )}
