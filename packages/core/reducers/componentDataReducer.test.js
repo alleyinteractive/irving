@@ -1,14 +1,9 @@
 import componentDataReducer from './componentDataReducer';
-import { merge } from 'lodash/fp';
 import {
   REQUEST_COMPONENT_DATA,
   RECEIVE_COMPONENT_DATA,
   RECEIVE_COMPONENT_DATA_ERROR,
 } from 'actions/types';
-import {
-  defaultState,
-  componentDataMeta,
-} from './defaultState';
 
 describe('componentDataReducer', () => {
 
@@ -110,8 +105,8 @@ describe('componentDataReducer', () => {
     const state = {
     testEndpoint: {
         error: false,
-        loaded: true,
-        loading: false,
+        loaded: false,
+        loading: true,
       },
     };
     const action = {
@@ -143,8 +138,8 @@ describe('componentDataReducer', () => {
     const state = {
       testEndpoint: {
         error: false,
-        loaded: true,
-        loading: false,
+        loaded: false,
+        loading: true,
       },
     };
     const error = new Error('foo');
