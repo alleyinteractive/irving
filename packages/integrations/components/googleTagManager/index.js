@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from '@irvingjs/core/utils/isNode';
-import useLoadScript from 'hooks/useLoadScript';
+import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
 
 const GoogleTagManager = (props) => {
   const {
