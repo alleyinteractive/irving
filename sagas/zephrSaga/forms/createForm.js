@@ -124,7 +124,7 @@ function generateRegistrationFields(isRegistration = true) {
     id: verifyId,
     className: `zephr-input-${verifyId}`,
     type: 'password',
-    placeholder: 'Confirm your password',
+    placeholder: 'Enter that password one more time',
     required: true,
     defaultValue: '',
     autoComplete: 'new-password',
