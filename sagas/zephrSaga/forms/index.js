@@ -16,11 +16,14 @@ import {
   REQUEST_USER_LOG_OUT,
   SUBMIT_PROFILE,
 } from 'actions/types';
-import { getCached, getSession } from 'selectors/zephrSelector';
+import {
+  getCached,
+  getSession,
+} from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
 import requestForms from './requestForms';
-import submitForm from './submitForm';
+import submitForm, { getProfile, getAccount } from './submitForm';
 
 export default [
   // Initialize the saga to request Zephr forms onload.
@@ -70,11 +73,22 @@ function* logOut() {
 function* completeProfile({ payload }) {
   const session = yield select(getSession);
 
-  yield call(
+  const status = yield call(
     zephrService.updateProfile,
     {
       properties: payload,
       cookie: session,
     }
   );
+
+  if ('success' === status) {
+    // Get the user's profile from Zephr.
+    yield call(getProfile, session);
+    // Get the user's account info from Zephr.
+    yield call(getAccount, session);
+    // Redirect the user to the homepage.
+    history.push('/');
+  } else if ('failed' === status) {
+    // yield put(actionReceiveUpdateProfileError());
+  }
 }

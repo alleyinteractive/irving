@@ -16,11 +16,7 @@ export default {
     if ('register' === action) {
       const status = await this.register(identifier, stateKey);
 
-      if ('tracking_id' in status) {
-        return {
-          status: 'success',
-        };
-      }
+      return status;
     }
 
     if ('login' === action) {
@@ -46,12 +42,15 @@ export default {
           token_exchange: token,
         },
         attributes: {
+          'full-name': '',
+          'first-name': '',
+          'last-name': '',
           'email-address': email,
           'sso-user': true,
         },
       };
 
-      const request = fetch(
+      return await fetch(
         `${process.env.ZEPHR_ROOT_URL}/blaize/register`,
         {
           method: 'POST',
@@ -61,18 +60,17 @@ export default {
           },
           body: JSON.stringify(data),
         }
-      )
-        .then((res) => {
-          if (200 === res.status) {
-            return res.json();
-          }
-
+      ).then((res) => {
+        if (200 === res.status) {
           return {
-            status: 'failed',
+            status: 'success',
           };
-        });
+        }
 
-      return await request;
+        return {
+          status: 'failed',
+        };
+      });
     } catch (error) {
       return console.error(error);
     }

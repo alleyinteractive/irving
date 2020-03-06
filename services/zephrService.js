@@ -420,18 +420,18 @@ export default {
   },
 
   async updateProfile({ properties, cookie }) {
-    console.log(cookie);
+    console.log(cookie.payload.sessionCookie);
     try {
       const {
         firstName,
+        fullName,
         lastName,
       } = properties;
 
       const body = {
-        properties: {
-          'first-name': firstName,
-          'last-name': lastName,
-        },
+        'full-name': fullName,
+        'first-name': firstName,
+        'last-name': lastName,
       };
 
       const request = fetch(
@@ -440,8 +440,7 @@ export default {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json',
-            cookie,
+            cookie: cookie.payload.sessionCookie,
           },
           credentials: 'include',
           body: JSON.stringify(body),
@@ -450,9 +449,13 @@ export default {
 
       const response = await request;
 
-      console.log(response);
+      if (200 === response.status) {
+        return 'sucess';
+      }
+
+      return 'failed';
     } catch (error) {
-      console.error(error);
+      return postErrorMessage(error);
     }
   },
 
