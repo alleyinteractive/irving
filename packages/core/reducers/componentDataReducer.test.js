@@ -12,11 +12,11 @@ import {
 
 describe('componentDataReducer', () => {
 
-  it('should return default state if no payload', () => {
+  it('Should return default state if no payload', () => {
     expect(componentDataReducer({ foo: 'bar' }, {})).toEqual( { foo: 'bar' } );
   });
 
-  it('should return default state if no type', () => {
+  it('Should return default state if no type', () => {
     expect(componentDataReducer({ foo: 'bar' }, { payload: 'whatever' })).toEqual( { foo: 'bar' });
   });
 
@@ -106,7 +106,7 @@ describe('componentDataReducer', () => {
     });
   });
 
-  it('should add the data to state when using RECEIVE_COMPONENT_DATA and data exists', () => {
+  it('Should add the data to state when using RECEIVE_COMPONENT_DATA and data exists', () => {
     const state = {
     testEndpoint: {
         error: false,
@@ -139,9 +139,9 @@ describe('componentDataReducer', () => {
     });
   });
 
-  it('should add error to state when there is an error in the payload', () => {
+  it('Should add error to state when there is an error in the payload', () => {
     const state = {
-    testEndpoint: {
+      testEndpoint: {
         error: false,
         loaded: true,
         loading: false,
