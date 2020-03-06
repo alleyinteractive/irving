@@ -44,7 +44,7 @@
   i {
     font-style: italic;
   }
-
+  /* stylelint-disable selector-max-specificity */
   :global(.body--article) & {
     p:first-of-type {
 
@@ -60,5 +60,6 @@
         }
       }
     }  
-  }  
+  }
+  /* stylelint-enable selector-max-specificity */  
 }
