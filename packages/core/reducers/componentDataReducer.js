@@ -31,6 +31,7 @@ const componentDataReducer = (state = componentData, action) => {
       return set(key, {
         ...componentDataMeta,
         loading: true,
+        loaded: false,
       }, state);
 
     case RECEIVE_COMPONENT_DATA: {
@@ -39,6 +40,7 @@ const componentDataReducer = (state = componentData, action) => {
       return set(key, {
         ...componentDataMeta,
         loading: false,
+        loaded: true,
         data,
       }, state);
     }
@@ -49,6 +51,7 @@ const componentDataReducer = (state = componentData, action) => {
       return set(key, {
         ...componentDataMeta,
         loading: false,
+        loaded: false,
         error: err,
       }, state);
     }
