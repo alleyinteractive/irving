@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 import { withStyles } from 'critical-style-loader/lib';
 // eslint-disable-next-line no-unused-vars
 import { __ } from '@wordpress/i18n';
@@ -8,11 +9,11 @@ import { __ } from '@wordpress/i18n';
 import styles from './contactForm.css';
 
 const ContactForm = ({ title }) => {
-  // eslint-disable-next-line no-unused-vars
-  const x = '';
-  const submitForm = (e) => {
-    console.log(e);
-  };
+  const {
+    register,
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   return (
     <div className="contactForm__wrap">
@@ -22,7 +23,7 @@ const ContactForm = ({ title }) => {
           {__('Contact Us', 'mittr-plugin-extension')}
         </h2>
       </header>
-      <form onSubmit={submitForm}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="contactForm__formGroup">
           <label
             htmlFor="fullName"
@@ -30,6 +31,8 @@ const ContactForm = ({ title }) => {
           >
             <input
               type="text"
+              name="fullName"
+              ref={register}
               className="contactForm__input"
               id="fullName"
               placeholder={__(
@@ -46,6 +49,8 @@ const ContactForm = ({ title }) => {
           >
             <input
               type="email"
+              name="contactName"
+              ref={register}
               className="contactForm__input"
               id="contactUsEmail"
               placeholder={__(
@@ -76,12 +81,10 @@ const ContactForm = ({ title }) => {
             >
               <input
                 className="contactForm__radioInput"
+                ref={register}
                 name="subscriberRadio"
                 type="radio"
                 id="radioYesSubscriber"
-                checked={'yes' === subscriberRadio}
-                value="yes"
-                onChange={this.handleRadioChange}
               />
               {__('Yes', 'mittr-plugin-extension')}
             </label>
@@ -91,12 +94,10 @@ const ContactForm = ({ title }) => {
             >
               <input
                 className="contactForm__radioInput"
+                ref={register}
                 name="subscriberRadio"
                 type="radio"
                 id="radioNoSubscriber"
-                checked={'no' === subscriberRadio}
-                value="no"
-                onChange={this.handleRadioChange}
               />
               {__('No', 'mittr-plugin-extension')}
             </label>
@@ -123,12 +124,10 @@ const ContactForm = ({ title }) => {
             >
               <input
                 className="contactForm__radioInput"
+                ref={register}
                 name="alumRadio"
                 type="radio"
                 id="radioYesAlum"
-                checked={'yes' === alumRadio}
-                value="yes"
-                onChange={this.handleRadioChange}
               />
               {__('Yes', 'mittr-plugin-extension')}
             </label>
@@ -138,12 +137,10 @@ const ContactForm = ({ title }) => {
             >
               <input
                 className="contactForm__radioInput"
+                ref={register}
                 name="alumRadio"
                 type="radio"
                 id="radioNoAlum"
-                checked={'no' === alumRadio}
-                value="no"
-                onChange={this.handleRadioChange}
               />
               {__('No', 'mittr-plugin-extension')}
             </label>
@@ -155,7 +152,9 @@ const ContactForm = ({ title }) => {
             htmlFor="questionSelect"
           >
             <select
+              ref={register}
               id="questionSelect"
+              name="contactUsSelect"
               className="contactForm__select"
             >
               <option>
@@ -185,13 +184,12 @@ const ContactForm = ({ title }) => {
             </select>
           </label>
         </div>
-        <button
-          type="button"
+        <input
+          type="submit"
           id="getInTouchBtn"
           className="contactForm__submitBtn"
-        >
-          {__('Get in touch', 'mittr-plugin-extension')}
-        </button>
+          value={__('Get in touch', 'mittr-plugin-extension')}
+        />
       </form>
     </div>
   );
