@@ -23,7 +23,7 @@ const GoogleTagManager = (props) => {
   );
 
   /**
-   * Effect starting up the GTM dataLayer.
+   * Effect for starting up the GTM dataLayer.
    */
   useEffect(() => {
     // gtm start function, invoked in useEffect so it doesn't fire on every render
