@@ -11,9 +11,6 @@ import {
 } from './defaultState';
 
 describe('componentDataReducer', () => {
-  // console.log(componentDataReducer({ foo: 'bar' }, { payload: {}, type: REQUEST_COMPONENT_DATA }));
-  // console.log(componentDataReducer({ foo: 'bar' }, { payload: { data: { name: 'alleybot' } }, type: RECEIVE_COMPONENT_DATA }));
-  // console.log(componentDataReducer({ foo: 'bar' }, { payload: { err: 'you did it wrong' }, type: RECEIVE_COMPONENT_DATA_ERROR }));
 
   it('should return default state if no payload', () => {
     expect(componentDataReducer({ foo: 'bar' }, {})).toEqual( { foo: 'bar' } );
@@ -109,8 +106,6 @@ describe('componentDataReducer', () => {
     });
   });
 
-  // TODO: REFACTOR LINE
-
   it('should add the data to state when using RECEIVE_COMPONENT_DATA and data exists', () => {
     const state = {
     testEndpoint: {
@@ -144,12 +139,29 @@ describe('componentDataReducer', () => {
     });
   });
 
-  /*
-  it('should return something if type is RECEIVE_COMPONENT_DATA', () => {
-    expect(componentDataReducer({ foo: 'bar' }, {})).toEqual( { foo: 'bar' } );
+  it('should add error to state when there is an error in the payload', () => {
+    const state = {
+    testEndpoint: {
+        error: false,
+        loaded: true,
+        loading: false,
+      },
+    };
+    const error = new Error('foo');
+    const action = {
+      payload: {
+        endpoint: 'testEndpoint',
+        err: error,
+      },
+      type: RECEIVE_COMPONENT_DATA_ERROR,
+    };
+    expect(componentDataReducer(state, action)).toEqual({
+      testEndpoint: {
+        data: [],
+        error,
+        loaded: false,
+        loading: false,
+      },
+    });
   });
-  it('should return somethig if type is RECEIVE_COMPONENT_DATA_ERROR', () => {
-     expect(componentDataReducer({ foo: 'bar' }, {})).toEqual( { foo: 'bar' } );
-  });
-   */
 });
