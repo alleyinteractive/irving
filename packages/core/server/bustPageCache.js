@@ -12,22 +12,40 @@ const bustPageCache = async (req, res) => {
 
   // Endpoint is required.
   if (! endpoint) {
-    return res.json('Required param (endpoint) missing.');
+    res.json('Required param (endpoint) missing.');
+    return;
   }
 
   // The endpoint is the key.
   const key = endpoint;
   const service = getService();
-  const hasCache = await service.get(key);
+  let keysDeleted = 0;
 
-  if (! hasCache) {
-    return res.json('No cache to bust.');
-  }
+  // Find all keys that start with the key we received.
+  const stream = service.client.scanStream({
+    match: `components-endpoint:${key}*`,
+  });
 
-  // Delete cache.
-  service.del(key);
+  stream.on('data', async (keys) => {
+    if (keys.length) {
+      const pipeline = service.client.pipeline();
+      keysDeleted += keys.length;
 
-  return res.json('Endpoint cache deleted.');
+      keys.forEach((foundKey) => {
+        pipeline.del(foundKey);
+      });
+      pipeline.exec();
+    }
+  });
+
+  stream.on('end', () => {
+    if (0 === keysDeleted) {
+      res.json('No cache to bust.');
+      return;
+    }
+
+    res.json(`Endpoint cache deleted, matched ${keysDeleted} keys.`);
+  });
 };
 
 module.exports = bustPageCache;
