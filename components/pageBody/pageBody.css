@@ -14,3 +14,12 @@
   line-height: 1;
   margin-bottom: rem(20);
 }
+
+.pageHeader {
+  @include accountHeader;
+}
+
+/* stylelint-disable-next-line selector-max-specificity */
+:global(.body--page .wp-block-button.alignleft.is-style-outline) {
+  margin: 0;
+}
