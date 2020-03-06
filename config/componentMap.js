@@ -14,6 +14,7 @@ import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
 import ConfirmRegistration from 'components/accounts/register/confirm';
+import ContactForm from 'components/contactForm';
 import ContentArea from 'components/contentArea';
 import ContentBody from 'components/contentBody';
 import ContentFooter from 'components/contentFooter';
@@ -168,6 +169,7 @@ export const componentMap = {
   menu: Menu,
   'menu-item': MenuItem,
   'mittr-plugin-extension/carousel': Carousel,
+  'mittr-plugin-extension/contact-form': ContactForm,
   'mittr-plugin-extension/content-list': ContentList,
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/image-set': ImageSet,
