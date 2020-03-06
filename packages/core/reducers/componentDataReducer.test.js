@@ -11,7 +11,6 @@ import {
 } from './defaultState';
 
 describe('componentDataReducer', () => {
-  // a key never gets set; componentDataMeta doesn't get included.
   // console.log(componentDataReducer({ foo: 'bar' }, { payload: {}, type: REQUEST_COMPONENT_DATA }));
   // console.log(componentDataReducer({ foo: 'bar' }, { payload: { data: { name: 'alleybot' } }, type: RECEIVE_COMPONENT_DATA }));
   // console.log(componentDataReducer({ foo: 'bar' }, { payload: { err: 'you did it wrong' }, type: RECEIVE_COMPONENT_DATA_ERROR }));
@@ -111,6 +110,39 @@ describe('componentDataReducer', () => {
   });
 
   // TODO: REFACTOR LINE
+
+  it('should add the data to state when using RECEIVE_COMPONENT_DATA and data exists', () => {
+    const state = {
+    testEndpoint: {
+        error: false,
+        loaded: true,
+        loading: false,
+      },
+    };
+    const action = {
+      payload: {
+        endpoint: 'testEndpoint',
+        data: [
+          {
+            foo: 'bar',
+          },
+        ],
+      },
+      type: RECEIVE_COMPONENT_DATA,
+    };
+    expect(componentDataReducer(state, action)).toEqual({
+      testEndpoint: {
+        data: [
+          {
+            foo: 'bar'
+          },
+        ],
+        error: false,
+        loaded: true,
+        loading: false,
+      },
+    });
+  });
 
   /*
   it('should return something if type is RECEIVE_COMPONENT_DATA', () => {
