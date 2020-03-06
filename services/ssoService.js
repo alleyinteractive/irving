@@ -3,7 +3,17 @@ import {
 } from './utils';
 
 export default {
-  async initialize(response) {
+  /**
+   * Initialize the SSO service and perform actions based on the type of connection.
+   * Log the user in and capture the session cookie if an account exists. Redirect
+   * through the Zephr registration workflow if no account exists.
+   *
+   * @param {string} provider The selected login provider (e.g. google, facebook).
+   * @param {object} response The data retrieved from the SSO authorization window.
+   *
+   * @returns {object} status The status of the SSO request.
+   */
+  async initialize(provider, response) {
     const {
       data: {
         action,
@@ -14,7 +24,7 @@ export default {
     } = response;
 
     if ('register' === action) {
-      const status = await this.register(identifier, stateKey);
+      const status = await this.register(provider, identifier, stateKey);
 
       return status;
     }
@@ -32,7 +42,16 @@ export default {
     return { status: 'failed' };
   },
 
-  async register(email, token) {
+  /**
+   * Create a user account associated with a given SSO provider in Zephr.
+   *
+   * @param {string} provider The SSO login provider.
+   * @param {string} email    The user's email address.
+   * @param {string} token    The login token retrieved from Zephr after SSO auth.
+   *
+   * @returns {object} status Status of the registration response.
+   */
+  async register(provider, email, token) {
     try {
       const data = {
         identifiers: {
@@ -47,6 +66,7 @@ export default {
           'last-name': '',
           'email-address': email,
           'sso-user': true,
+          'sso-provider': provider,
         },
       };
 
@@ -76,6 +96,9 @@ export default {
     }
   },
 
+  /**
+   * Open the Google SSO client window.
+   */
   openGoogleClient() {
     window.open(
       '/blaize/oauth/google',
@@ -84,6 +107,9 @@ export default {
     );
   },
 
+  /**
+   * Open the Facebook SSO client window.
+   */
   openFacebookClient() {
     window.open(
       '/blaize/oauth/facebook',

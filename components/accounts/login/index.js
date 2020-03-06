@@ -37,6 +37,7 @@ const Login = ({
     isValid: false,
     hasError: false,
   });
+  const [ssoProvider, captureSsoProvider] = useState('');
 
   // Create submit handler.
   const onSubmit = (event) => {
@@ -125,7 +126,7 @@ const Login = ({
 
       if ('login' === action || 'register' === action) {
         // Get the response status and its cookie if it exists.
-        const { status, cookie } = await sso.initialize(data);
+        const { status, cookie } = await sso.initialize(ssoProvider, data);
 
         if ('success' === status) {
           receiveSession({ identifier, cookie, action });
@@ -184,7 +185,13 @@ const Login = ({
         </h2>
         <ul className={styles.ssoList} aria-labelledby="socialMediaSignOn">
           <li>
-            <button type="button" onClick={sso.openGoogleClient}>
+            <button
+              type="button"
+              onClick={() => {
+                captureSsoProvider('google');
+                sso.openGoogleClient();
+              }}
+            >
               Google
             </button>/
           </li>

@@ -71,21 +71,22 @@ function* logOut() {
 }
 
 function* completeProfile({ payload }) {
-  const session = yield select(getSession);
+  const { sessionCookie } = yield select(getSession);
 
   const status = yield call(
     zephrService.updateProfile,
     {
       properties: payload,
-      cookie: session,
+      cookie: sessionCookie,
     }
   );
+  console.log(status);
 
   if ('success' === status) {
     // Get the user's profile from Zephr.
-    yield call(getProfile, session);
+    yield call(getProfile, sessionCookie);
     // Get the user's account info from Zephr.
-    yield call(getAccount, session);
+    yield call(getAccount, sessionCookie);
     // Redirect the user to the homepage.
     history.push('/');
   } else if ('failed' === status) {

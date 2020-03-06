@@ -44,7 +44,6 @@ function* completeSignOn({ payload: { identifier, cookie, action } }) {
   if ('login' === action) {
     // Store the session data for later use.
     yield put(actionReceiveUserSession({ sessionCookie: cookie }));
-
     yield put(actionReceiveUserLogin());
 
     try {
