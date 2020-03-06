@@ -45,18 +45,20 @@
     font-style: italic;
   }
 
-  p:first-of-type {
+  :global(.body--article) & {
+    p:first-of-type {
 
-    &::first-line {
-      font-family: $sans;
-      font-size: rem(16);
-      font-weight: 600;
-      line-height: rem(24);
+      &::first-line {
+        font-family: $sans;
+        font-size: rem(16);
+        font-weight: 600;
+        line-height: rem(24);
 
-      @media ($mdMin) {
-        font-size: rem(18);
-        line-height: rem(28);       
+        @media ($mdMin) {
+          font-size: rem(18);
+          line-height: rem(28);       
+        }
       }
-    }
-  }
+    }  
+  }  
 }
