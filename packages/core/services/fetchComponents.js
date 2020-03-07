@@ -1,60 +1,15 @@
-import queryString from 'query-string';
 import AbortController from 'abort-controller';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
 import getService from './cacheService';
 import getLogService from './logService';
+import createComponentsEndpointQueryString from
+  './utils/createComponentsEndpointQueryString';
 
 const log = getLogService('irving:components');
 // To access environment variables at run time in a client context we must
 // access them through a global provided by the server render.
 const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
-
-/**
- * Get any query parameters that should be included with every components request.
- *
- * @returns {object}
- */
-function getExtraQueryParams() {
-  return Object
-    .keys(env)
-    .filter((key) => 0 === key.indexOf('API_QUERY_PARAM_'))
-    .reduce((acc, key) => {
-      const param = key.replace('API_QUERY_PARAM_', '').toLowerCase();
-      return {
-        ...acc,
-        [param]: env[key],
-      };
-    }, {});
-}
-
-/**
- * Creates the query string for both the components
- * API endpoint and to use as a cache key.
- * @param {string} path      - path of the request page
- * @param {string} search    - search string
- * @param {string} cookie    - cookie header string
- * @param {string} [context] - "page" (page specific components) or
- *                           "site" (all components)
- */
-export function createQueryString(
-  path,
-  search,
-  cookie = {},
-  context = CONTEXT_PAGE
-) {
-  return queryString.stringify({
-    path,
-    context,
-    ...getExtraQueryParams(),
-    ...queryString.parse(search),
-    ...cookie,
-  },
-  {
-    encode: false,
-    sort: false,
-  });
-}
 
 /**
  * Fetch components for the page from the API.
@@ -65,13 +20,18 @@ export function createQueryString(
  *                           "site" (all components)
  * @returns {Promise<{object}>}
  */
-export async function fetchComponents(
+async function fetchComponents(
   path,
   search,
   cookie = {},
   context = CONTEXT_PAGE
 ) {
-  const query = createQueryString(path, search, cookie, context);
+  const query = createComponentsEndpointQueryString(
+    path,
+    search,
+    cookie,
+    context
+  );
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
 
   // Create abort controller and set timeout to abort fetch call.
@@ -136,14 +96,14 @@ export async function fetchComponents(
  *                           "site" (all components)
  * @returns {Promise<{object}>} - fetchComponents return value
  */
-export default async function cacheResult(
+async function cachedFetchComponents(
   path,
   search,
   cookie = {},
   context = CONTEXT_PAGE
 ) {
   const cache = getService();
-  const componentsQuery = createQueryString(
+  const componentsQuery = createComponentsEndpointQueryString(
     path,
     search,
     cookie,
@@ -164,3 +124,5 @@ export default async function cacheResult(
 
   return response;
 }
+
+module.exports = cachedFetchComponents;
