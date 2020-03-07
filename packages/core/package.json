@@ -113,6 +113,7 @@
     "universal-cookie-express": "^4.0.3",
     "url-loader": "^1.0.1",
     "url-parse": "^1.4.7",
+    "wait-for-expect": "^3.0.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-middleware": "^3.7.0",
