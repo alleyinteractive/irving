@@ -62,7 +62,7 @@ Array [
     "className": "zephr-input-verify-password",
     "defaultValue": "",
     "id": "verify-password",
-    "placeholder": "Confirm your password",
+    "placeholder": "Enter that password one more time",
     "required": true,
     "type": "password",
   },
