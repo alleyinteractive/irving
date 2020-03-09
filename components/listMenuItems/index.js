@@ -16,7 +16,6 @@ const ListMenuItems = ({
   if (0 === children.length) {
     return null;
   }
-
   const [isExpanded, setIsExpanded] = useState(false);
   let timeoutID;
 

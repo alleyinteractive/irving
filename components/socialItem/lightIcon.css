@@ -32,6 +32,30 @@
     height: rem(18);
     width: auto;
   }
+
+  .whatsapp & {
+    /* background-color: $white; */
+    position: relative;
+    
+    svg {
+      height: rem(15);
+      fill: transparent;
+    }
+  
+    &::after {
+      border-bottom: 5px solid transparent;
+      border-right: 14px solid $white;
+      border-top: 5px solid transparent;
+      content: "";
+      height: 0;
+      position: absolute;
+      right: 71%;
+      top: rem(20);
+      transform: rotate(-45deg);
+      width: 0;
+    }
+  }
+  
 }
 
 .screenReaderLabel {

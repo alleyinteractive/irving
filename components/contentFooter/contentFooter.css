@@ -73,6 +73,7 @@
 }
 
 .avatar {
+  border-radius: 50%;
   display: block;
   float: left;
   height: rem(35);

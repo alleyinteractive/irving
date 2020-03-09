@@ -68,12 +68,10 @@
   tidy-span: 10;
 
   @media ($smMin) {
-    order: 0;
     tidy-span: 9;
   }
 
   @media ($mdMin) {
-    order: 1;
     tidy-span: 8;
   }
 }
@@ -84,9 +82,8 @@
 }
 
 .image {
-  max-width: rem(220);
   order: 0;
-  tidy-span: 10;
+  tidy-span: 12;
 
   > span {
     display: block;
@@ -98,12 +95,11 @@
 
   @media ($smMin) {
     margin-right: rem(30);
-    order: 1;
+    min-width: rem(160);
     tidy-span: 3;
   }
 
   @media ($mdMin) {
-    order: 0;
     tidy-span: 4;
   }
 }

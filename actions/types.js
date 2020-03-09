@@ -29,6 +29,9 @@ export const LOAD_PREVIOUS_TRACK = 'LOAD_PREVIOUS_TRACK';
 // Header height for scroll
 export const UPDATE_HEADER_HEIGHT = 'UPDATE_HEADER_HEIGHT';
 
+// Active Year for Years List
+export const UPDATE_ACTIVE_YEAR = 'UPDATE_ACTIVE_YEAR';
+
 // Zephr
 export const REQUEST_ZEPHR_FORMS = 'REQUEST_ZEPHR_FORMS';
 export const REQUEST_FORM_FOR_ROUTE = 'REQUEST_FORM_FOR_ROUTE';
