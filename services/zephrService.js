@@ -259,6 +259,13 @@ export default {
         return { status: 'success' };
       }
 
+      if (400 === response.status) {
+        return {
+          status: 'failed',
+          type: 'password-not-strong',
+        };
+      }
+
       if (404 === response.status) {
         return {
           status: 'failed',

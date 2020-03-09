@@ -9,6 +9,7 @@ import {
   actionReceiveUserAccount,
   actionSendUserVerificationEamil,
   actionReceiveRegistrationError,
+  actionReceiveResetError,
 } from 'actions/zephrActions';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
@@ -188,6 +189,6 @@ function* submitReset(credentials, cookie) {
   }
 
   if ('failed' === status) {
-    // yield put(actionReceiveResetError(type));
+    yield put(actionReceiveResetError(type));
   }
 }

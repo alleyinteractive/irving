@@ -12,6 +12,7 @@ import {
   RECEIVE_ZEPHR_USER_ACCOUNT,
   RECEIVE_ZEPHR_USER_VERIFICATION,
   SUBMIT_ZEPHR_FORM,
+  RECEIVE_RESET_PASSWORD_ERROR,
 } from 'actions/types';
 import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
 import { zephr as defaultState } from './defaultState';
@@ -146,10 +147,20 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
             ...state.forms[payload],
             components: setPasswordErrorState(state.forms[payload]),
             error: true,
-            errors: [
-              ...state.forms.register.errors,
-              'verify-password',
-            ],
+            errors: ['verify-password'],
+          },
+        },
+      };
+    case RECEIVE_RESET_PASSWORD_ERROR:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          reset: {
+            ...state.forms.reset,
+            components: setFormErrorState(state.forms.reset, payload),
+            error: true,
+            errors: [payload],
           },
         },
       };
