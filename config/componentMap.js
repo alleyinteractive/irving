@@ -156,7 +156,7 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
-  'list-50-item': CompanyListItem,
+  'list-50-intro-item': CompanyListItem,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
