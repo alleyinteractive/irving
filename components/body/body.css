@@ -1,5 +1,4 @@
 .content {
-  background-color: $white;
   padding-top: rem(15);
 
   @media ($mdMin) {
@@ -9,10 +8,11 @@
   :global(.body--feed) &,
   :global(.body--search) &,
   :global(.body--author) &,
-  :global(.body-magazine) & {
+  :global(.body-magazine) &,
+  :global(.body--article) & {
     background-color: $background-gray;
   }
-
+  
   :global(.body--magazine) & {
     padding-top: rem(40);
 
