@@ -10,7 +10,7 @@ import { __ } from '@wordpress/i18n';
 import { connect } from 'react-redux';
 
 // Styles
-import styles from '../register.css';
+import styles from './register.css';
 
 const CompleteProfile = ({
   submitProfile,
@@ -61,7 +61,13 @@ const CompleteProfile = ({
           placeholder="Enter your full name"
         />
         {false === fullNameValid && (
-          <span>Opps! - Invalid name</span>
+          <span>
+            {__(
+              `Opps! Let's try that again —
+               Please enter your full name.`,
+              'mittr'
+            )}
+          </span>
         )}
         <input
           type="submit"
