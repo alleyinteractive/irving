@@ -27,15 +27,19 @@ const ContactForm = ({ title }) => {
       formData.first_name = names[0];
       // eslint-disable-next-line no-param-reassign, prefer-destructuring
       formData.last_name = names[names.length - 1];
+      // eslint-disable-next-line no-param-reassign
+      formData.message = {
+        subject: 'Message from technologyreview.com contact us form',
+        body: 'This is a request sent from the contact us form.',
+      };
       console.log(formData);
-      const response = submitForm('helpscout', formData);
-      console.log('response ', response.status);
-      if ('success' === response.status) {
-        setFormStatus({
-          status: response.status,
-          message: response.message,
-        });
-      }
+      submitForm('helpscout', formData)
+        .then(({ status, message }) => {
+          setFormStatus({
+            status,
+            message,
+          });
+        }).catch((err) => console.log(err));
     }
   };
 

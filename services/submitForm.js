@@ -28,6 +28,7 @@ export default async function submitForm(formName, submission) {
 
   if (res.ok || 200 === res.ok) {
     return {
+      response: res.json(),
       status: 'success',
       message: 'Your form was successfully sent!',
     };
