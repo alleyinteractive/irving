@@ -35,7 +35,7 @@ function* completeSignOn({ payload: { identifier, cookie, action } }) {
       // Update the state to reflect the email being sent.
       yield put(actionSendUserVerificationEamil());
       // Push the user to the confirmation page.
-      history.push('/register/confirmation');
+      history.push('/register/confirmation/');
     } catch (error) {
       yield call(debug, error);
     }

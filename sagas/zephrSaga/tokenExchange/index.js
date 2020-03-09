@@ -63,6 +63,6 @@ function* redirectUser() {
   const requireProfile = yield select(isSSO);
 
   if (true === requireProfile) {
-    history.push('/register/sso/final-step');
+    history.push('/register/sso/final-step/');
   }
 }

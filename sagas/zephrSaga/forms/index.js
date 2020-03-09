@@ -66,7 +66,7 @@ function* logOut() {
     // Update the redux store and clear out any stored user data.
     yield put(actionReceiveUserLogOut());
     // Redirect the user to the login page.
-    history.push('/login');
+    history.push('/login/');
   }
 }
 
