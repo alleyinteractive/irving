@@ -1,62 +1,72 @@
-import React, {
-  Fragment,
-  createContext,
-  useEffect,
-} from 'react';
-import { Helmet } from 'react-helmet';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import useLoadScript from 'hooks/useLoadScript';
-
-export const GTMContext = createContext({
-  loaded: false,
-  containerId: null,
-});
+import isNode from 'utils/isNode';
 
 const GoogleTagManager = (props) => {
   const {
-    children,
     containerId,
     dataLayer,
   } = props;
 
   if (! containerId) {
-    return children;
+    return null;
   }
 
   /**
-   * Effect for pushing new data to the GTM dataLayer.
-   */
-  useEffect(() => {
-    window.dataLayer.push({
-      event: 'mittr.historyChange',
-      ...dataLayer,
-    });
-  }, [dataLayer]);
-
-  /**
-   * Is GTM loaded?
+   * Load GTM script, but only once.
    */
   const loaded = useLoadScript(
     `https://www.googletagmanager.com/gtm.js?id=${containerId}`,
     'google-tag-manager'
   );
 
+  /**
+   * Effect for starting up the GTM dataLayer.
+   */
+  useEffect(() => {
+    // gtm start function, invoked in useEffect so it doesn't fire on every render
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'gtm.start': new Date().getTime(),
+      event: 'gtm.js',
+    });
+
+    return () => {};
+  }, [loaded]);
+
+  /**
+   * Effect for pushing new data to the GTM dataLayer.
+   */
+  useEffect(() => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'irving.historyChange',
+      ...dataLayer,
+    });
+
+    return () => {};
+  }, [dataLayer]);
+
   return (
-    <Fragment>
+    <>
       <Helmet>
+        {/* Initial SSR event. */}
         <script>
-          {`(function(w, l){
-            w[l]=w[l]||[];
-            w[l].push({
-              'gtm.start': new Date().getTime(),
-              event:'gtm.js'
-            });
-          })(window, 'dataLayer');`}
+          {`
+            window.dataLayer = window.dataLayer || [];
+            if (${isNode()}) {
+              var data = ${JSON.stringify(dataLayer)};
+              data.event = 'irving.initialRender';
+              window.dataLayer.push(data);
+            }
+          `}
         </script>
       </Helmet>
       <noscript>
         <iframe
-          title="mittr-gtm"
+          title="irving-gtm"
           src={`https://www.googletagmanager.com/ns.html?id=${containerId}`}
           height="0"
           width="0"
@@ -66,32 +76,16 @@ const GoogleTagManager = (props) => {
           }}
         />
       </noscript>
-      <GTMContext.Provider
-        value={{
-          loaded,
-          containerId,
-          dataLayer,
-        }}
-      >
-        {children}
-      </GTMContext.Provider>
-    </Fragment>
+    </>
   );
 };
 
 GoogleTagManager.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]).isRequired,
   containerId: PropTypes.string.isRequired,
-  dataLayer: PropTypes.shape({
-    contentType: PropTypes.string,
-    contentId: PropTypes.string,
-    channel: PropTypes.string,
-    tags: PropTypes.array,
-    headline: PropTypes.string,
-  }).isRequired,
+  dataLayer: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array, // Empty objects turn to arrays in PHP :(
+  ]).isRequired,
 };
 
 export default GoogleTagManager;

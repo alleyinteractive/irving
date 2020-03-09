@@ -56,6 +56,18 @@ app.use('*.xsl', passthrough);
 app.use('*/amp/', passthrough);
 app.use('*/feed/', passthrough);
 app.use('/xmlrpc.php', passthrough);
+app.use('/hub/ai-effect/*', proxy({
+  changeOrigin: true,
+  followRedirects: true,
+  secure: 'development' !== NODE_ENV,
+  target: API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  // eslint-disable-next-line max-len
+  pathRewrite: {
+    // eslint-disable-next-line max-len
+    '^/hub/ai-effect/*': '/wp-content/themes/mittr/inc/static/ai-effect/',
+  },
+  xfwd: true,
+}));
 app.use('/hub/possibility-report/*', proxy({
   changeOrigin: true,
   followRedirects: true,
