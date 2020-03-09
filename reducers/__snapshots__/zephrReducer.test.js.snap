@@ -40,6 +40,8 @@ Object {
   },
   "visible": Object {
     "megaMenu": false,
+    "sliderAd": false,
+    "sliderAdHasClosed": false,
   },
 }
 `;
@@ -84,6 +86,8 @@ Object {
   },
   "visible": Object {
     "megaMenu": false,
+    "sliderAd": false,
+    "sliderAdHasClosed": false,
   },
 }
 `;
@@ -128,6 +132,8 @@ Object {
   },
   "visible": Object {
     "megaMenu": false,
+    "sliderAd": false,
+    "sliderAdHasClosed": false,
   },
 }
 `;
@@ -170,6 +176,8 @@ Object {
   },
   "visible": Object {
     "megaMenu": false,
+    "sliderAd": false,
+    "sliderAdHasClosed": false,
   },
 }
 `;
@@ -212,6 +220,8 @@ Object {
   },
   "visible": Object {
     "megaMenu": false,
+    "sliderAd": false,
+    "sliderAdHasClosed": false,
   },
 }
 `;
@@ -254,6 +264,8 @@ Object {
   },
   "visible": Object {
     "megaMenu": false,
+    "sliderAd": false,
+    "sliderAdHasClosed": false,
   },
 }
 `;
@@ -298,6 +310,8 @@ Object {
   },
   "visible": Object {
     "megaMenu": false,
+    "sliderAd": false,
+    "sliderAdHasClosed": false,
   },
 }
 `;
@@ -340,6 +354,8 @@ Object {
   },
   "visible": Object {
     "megaMenu": false,
+    "sliderAd": false,
+    "sliderAdHasClosed": false,
   },
 }
 `;
@@ -382,6 +398,8 @@ Object {
   },
   "visible": Object {
     "megaMenu": false,
+    "sliderAd": false,
+    "sliderAdHasClosed": false,
   },
 }
 `;

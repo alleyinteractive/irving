@@ -21,16 +21,22 @@ import lightIconStyles from './lightIcon.css';
 import darkIconStyles from './darkIcons.css';
 import flyoutIconStyles from './socialItem--flyoutIcon.css';
 
-const SocialItem = ({
-  type, url, displayIcon, theme, themeName,
-}) => {
+const SocialItem = (props) => {
+  const {
+    type,
+    url,
+    sharePermalink,
+    displayIcon,
+    theme,
+    themeName,
+  } = props;
   const IconComponent = socialIconMap[type];
   return (
     <li className={classNames(theme.wrapper, theme[type])}>
       {'link' !== type ? (
         <a
           href={url}
-          className={theme.anchor}
+          className={classNames(theme.anchor, 'mittr-share-link')}
           onClick={(e) => {
             e.preventDefault();
             if ('email' === type ||
@@ -49,6 +55,9 @@ const SocialItem = ({
           }}
           target="_blank"
           rel="noopener"
+          data-event-category="share-button"
+          data-event-action={`in-feed-story-footer-${type}`}
+          data-event-label={sharePermalink}
         >
           <span className={theme.screenReaderLabel}>
             {type}{__('link opens in a new window', 'mittr')}
@@ -80,6 +89,7 @@ SocialItem.propTypes = {
    */
   displayIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
     .isRequired,
+  sharePermalink: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
   themeName: PropTypes.string.isRequired,
 };
