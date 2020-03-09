@@ -44,18 +44,22 @@
   i {
     font-style: italic;
   }
+  /* stylelint-disable selector-max-specificity */
+  :global(.body--article) & {
+    p:first-of-type {
 
-  p:first-of-type {
-    
-    strong {
-      font-family: $sans;
-      font-size: rem(16);
-      line-height: rem(24);
+      &::first-line {
+        font-family: $sans;
+        font-size: rem(16);
+        font-weight: 600;
+        line-height: rem(24);
 
-      @media ($mdMin) {
-        font-size: rem(18);
-        line-height: rem(28);       
+        @media ($mdMin) {
+          font-size: rem(18);
+          line-height: rem(28);       
+        }
       }
-    }
+    }  
   }
+  /* stylelint-enable selector-max-specificity */  
 }

@@ -43,7 +43,11 @@
 
 /* Custom styles for Eyebrows that appear on story pages */
 .fullStoryLink {
-  font-size: rem(20);
+  font-size: 1rem;
+
+  @media ($mdMin) {
+    font-size: rem(20);
+  }
 }
 
 .anchorEyebrow {
