@@ -20,6 +20,8 @@ import {
   VERIFY_ZEPHR_USER_TOKEN,
   RECEIVE_ZEPHR_USER_VERIFICATION,
   SEND_ZEPHR_VERIFICATION_EMAIL,
+  REQUEST_UPDATE_EMAIL,
+  RECEIVE_UPDATE_EMAIL,
 } from './types';
 
 /**
@@ -135,6 +137,28 @@ export function actionReceiveInvalidPassword(payload) {
  */
 export function actionReceiveRegistrationError(payload) {
   return createAction(RECEIVE_REGISTRATION_ERROR, payload);
+}
+
+/**
+ * A Redux action that represents when a user wants to edit their email.
+ *
+ * @param {{errorType}} payload The email to be sent
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionRequestUpdateEmail(payload) {
+  return createAction(REQUEST_UPDATE_EMAIL, payload);
+}
+
+/**
+ * A Redux action that represents when a user wants to edit their email.
+ *
+ * @param {{errorType}} payload The email to be sent
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionVerifyEmailUpdateToken(payload) {
+  return createAction(RECEIVE_UPDATE_EMAIL, payload);
 }
 
 /**

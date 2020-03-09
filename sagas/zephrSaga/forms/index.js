@@ -14,8 +14,10 @@ import {
   REQUEST_ZEPHR_FORMS,
   SUBMIT_ZEPHR_FORM,
   REQUEST_USER_LOG_OUT,
+  REQUEST_UPDATE_EMAIL,
+  RECEIVE_UPDATE_EMAIL,
 } from 'actions/types';
-import { getCached, getSession } from 'selectors/zephrSelector';
+import { getCached, getSession, getZephrCookie } from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
 import requestForms from './requestForms';
@@ -30,6 +32,10 @@ export default [
   takeEvery(SUBMIT_ZEPHR_FORM, submitForm),
   // Listen for user log out request.
   takeEvery(REQUEST_USER_LOG_OUT, logOut),
+  // Listen for every update email request.
+  takeEvery(REQUEST_UPDATE_EMAIL, submitUpdateEmailRequest),
+  // Listen for user submit email update request.
+  takeEvery(RECEIVE_UPDATE_EMAIL, submitUpdateEmail),
 ];
 
 /**
@@ -61,5 +67,53 @@ function* logOut() {
     yield put(actionReceiveUserLogOut());
     // Redirect the user to the login page.
     history.push('/login');
+  }
+}
+
+/**
+ * Send a new email to update the users email address.
+ *
+ * @param {object} credentials The user's email address.
+ */
+function* submitUpdateEmailRequest(credentials) {
+  const cookie = yield select(getZephrCookie);
+  // Submit the form to Zephr.
+  const { status } = yield call(
+    zephrService.requestUpdateEmail,
+    credentials.payload,
+    cookie,
+  );
+
+  if ('success' === status) {
+    history.push('/email-update/request');
+  }
+
+  if ('failed' === status) {
+    console.log('status ', status);
+  }
+}
+
+/**
+ * Submit the user's password to confirm the update of the new email to Zephr.
+ *
+ * @param {object} credentials The user's selected password.
+ */
+function* submitUpdateEmail(credentials) {
+  const cookie = yield select(getZephrCookie);
+  // Submit the form to Zephr.
+  const { status } = yield call(
+    zephrService.updateEmail,
+    credentials.payload,
+    cookie,
+  );
+
+  if ('success' === status) {
+    // @TODO: Once Zephr has added a new email template to their email settings,
+    // we'll need to send the user to the confirmation page.
+    // history.push('/email-update/confirmation');
+  }
+
+  if ('failed' === status) {
+    // yield put(actionReceiveResetError(type));
   }
 }

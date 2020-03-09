@@ -17,6 +17,7 @@ import history from 'utils/history';
 import {
   actionRequestUserLogOut,
   actionSubmitForm,
+  actionRequestUpdateEmail,
 } from 'actions/zephrActions';
 
 import AccountInfoForm from './infoForm';
@@ -34,6 +35,7 @@ const AccountLandingPage = ({
   logOut,
   isAuthenticated,
   submitResetRequest,
+  submitUpdateEmail,
 }) => {
   // Prevent unauthenticated users from being able to visit this route.
   if (! isAuthenticated) {
@@ -50,6 +52,13 @@ const AccountLandingPage = ({
       isEditingPassword: false,
     });
   };
+
+  const onSubmitUpdateEmail = (event) => {
+    submitUpdateEmail({
+      email: event.value,
+    });
+  };
+
   const onClickResetPassword = () => {
     submitResetRequest({
       type: 'resetRequest',
@@ -108,7 +117,7 @@ const AccountLandingPage = ({
             ) : (
               <AccountInfoForm
                 type="email"
-                handleSubmit={() => {}}
+                handleSubmit={(event) => onSubmitUpdateEmail(event)}
                 placeholderValue={email}
               />
             )}
@@ -290,11 +299,13 @@ AccountLandingPage.propTypes = {
   subscriptionName: PropTypes.string,
   subscriptionType: PropTypes.string,
   submitResetRequest: PropTypes.func.isRequired,
+  submitUpdateEmail: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   logOut: () => dispatch(actionRequestUserLogOut()),
   submitResetRequest: (data) => dispatch(actionSubmitForm(data)),
+  submitUpdateEmail: (payload) => dispatch(actionRequestUpdateEmail(payload)),
 });
 
 const withRedux = connect(
