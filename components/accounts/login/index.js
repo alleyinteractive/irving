@@ -129,8 +129,6 @@ const Login = ({
 
         if ('success' === status) {
           receiveSession({ identifier, cookie, action });
-        } else if ('failed' === status) {
-          // do something.
         }
       }
     };
