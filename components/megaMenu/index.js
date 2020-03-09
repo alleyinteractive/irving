@@ -12,6 +12,7 @@ const MegaMenu = (props) => {
   const userGreeting = findChildByName('user-greeting', children);
   const menus = filterChildrenByName('menu', children);
   const socialFollowMenu = findChildByName('social-follow-module', children);
+  const date = new Date();
 
   return (
     <div className={styles.wrapper}>
@@ -22,7 +23,7 @@ const MegaMenu = (props) => {
       <div className={styles.middleRow}>{menus[0]}</div>
       <div className={styles.lastRow}>{menus[1]} {socialFollowMenu}</div>
       <div className={styles.copyright}>
-        MIT Technology Review © 2019
+        MIT Technology Review © {date.getFullYear()}
         <span className={styles.symbol}>
           v.|e
           <sup>iπ</sup>|
