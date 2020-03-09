@@ -203,7 +203,7 @@ export function actionReceiveUserAccount(payload) {
   return createAction(RECEIVE_ZEPHR_USER_ACCOUNT, payload);
 }
 
-/*
+/**
  * A Redux action after the UI Components have been requested.
  *
  * @returns {{type}} The Redux action.
@@ -231,7 +231,7 @@ export function actionSendUserVerificationEmail() {
 }
 
 /**
- * A Redux action that respresents browser state change once a user's token is
+ * A Redux action that represents browser state change once a user's token is
  * submitted for verification.
  *
  * @param {{ token }} The user's verification token.
