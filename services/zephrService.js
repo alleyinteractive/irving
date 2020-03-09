@@ -410,9 +410,9 @@ export default {
         'last-name': lastName,
         'sso-user': isSSO,
         'sso-provider': ssoProvider,
+        'google-authenticated': hasGoogleAuth,
+        'facebook-authenticated': hasFacebookAuth,
       } = response;
-      console.log(response);
-      console.log(ssoProvider);
 
       if (true === isSSO) {
         return {
@@ -420,6 +420,8 @@ export default {
           lastName,
           isSSO,
           ssoProvider,
+          hasGoogleAuth,
+          hasFacebookAuth,
         };
       }
 

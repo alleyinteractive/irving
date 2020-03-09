@@ -28,6 +28,7 @@ const debug = createDebug('sagas:tokenExchange');
 export default [
   // Listen for token verification request.
   takeEvery(VERIFY_ZEPHR_USER_TOKEN, verifyToken),
+  // Listen to verification success response and run a conditional check for redirect.
   takeEvery(RECEIVE_ZEPHR_USER_VERIFICATION, redirectUser),
 ];
 
@@ -53,10 +54,14 @@ function* verifyToken({ payload }) {
   }
 }
 
+/**
+ * A generator that is invoked on a successful token verification and determines whether
+ * or not the user should be redirected to a 'final-step' page to complete their Zephr
+ * profile.
+ */
 function* redirectUser() {
-  console.log('receive verification');
   const requireProfile = yield select(isSSO);
-  console.log(requireProfile);
+
   if (true === requireProfile) {
     history.push('/register/sso/final-step');
   }

@@ -15,7 +15,7 @@ import {
 import history from 'utils/history';
 import DataLoading from 'components/hoc/withData/loading';
 import toFormElements from 'sagas/zephrSaga/forms/toFormElements';
-import sso from 'services/ssoService';
+import sso, { openConnection } from 'services/ssoService';
 import LazyRecaptcha from '../register/recaptcha';
 
 // Styles
@@ -37,7 +37,6 @@ const Login = ({
     isValid: false,
     hasError: false,
   });
-  const [ssoProvider, captureSsoProvider] = useState('');
 
   // Create submit handler.
   const onSubmit = (event) => {
@@ -126,7 +125,7 @@ const Login = ({
 
       if ('login' === action || 'register' === action) {
         // Get the response status and its cookie if it exists.
-        const { status, cookie } = await sso.initialize(ssoProvider, data);
+        const { status, cookie } = await sso.initialize(data);
 
         if ('success' === status) {
           receiveSession({ identifier, cookie, action });
@@ -188,7 +187,7 @@ const Login = ({
             <button
               type="button"
               onClick={() => {
-                captureSsoProvider('google');
+                openConnection('login', 'google');
                 sso.openGoogleClient();
               }}
             >
@@ -196,7 +195,13 @@ const Login = ({
             </button>/
           </li>
           <li>
-            <button type="button" onClick={sso.openFacebookClient}>
+            <button
+              type="button"
+              onClick={() => {
+                openConnection('login', 'facebook');
+                sso.openFacebookClient();
+              }}
+            >
               Facebook
             </button>
           </li>
