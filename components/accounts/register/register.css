@@ -91,3 +91,7 @@
 
   font-family: $sans;
 }
+
+.registerLink {
+  text-decoration: underline;
+}
