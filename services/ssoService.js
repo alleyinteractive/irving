@@ -26,7 +26,7 @@ export async function openConnection(route, service) {
       }
     );
   } catch (error) {
-    return console.error(error);
+    return console.error(error); // eslint-disable-line no-console
   }
 }
 
@@ -87,6 +87,8 @@ export default {
    * Add a SSO provider connection.
    *
    * @param {string} cookie The session cookie returned from Zephr.
+   *
+   * @returns {string} status The status (success/fail) of the request.
    */
   async addProvider(cookie) {
     try {
@@ -109,7 +111,6 @@ export default {
       );
 
       const response = await request;
-      console.log(response);
 
       if (200 === response.status) {
         return 'success';
@@ -117,7 +118,7 @@ export default {
 
       return 'failed';
     } catch (error) {
-      return console.error(error);
+      return console.error(error); // eslint-disable-line no-console
     }
   },
 
@@ -170,7 +171,7 @@ export default {
         };
       });
     } catch (error) {
-      return console.error(error);
+      return console.error(error); // eslint-disable-line no-console
     }
   },
 

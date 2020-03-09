@@ -70,6 +70,13 @@ function* logOut() {
   }
 }
 
+/**
+ * A generator that is run when a user registers an account using a
+ * third-party single sign-on (SSO) service. Zephr does not return profile
+ * information from these services, so we need to ensure they fill out
+ * the rest of the required information prior to being able to access
+ * their account.
+ */
 function* completeProfile({ payload }) {
   const { sessionCookie } = yield select(getSession);
 
@@ -80,7 +87,6 @@ function* completeProfile({ payload }) {
       cookie: sessionCookie,
     }
   );
-  console.log(status);
 
   if ('success' === status) {
     // Get the user's profile from Zephr.
@@ -89,7 +95,5 @@ function* completeProfile({ payload }) {
     yield call(getAccount, sessionCookie);
     // Redirect the user to the homepage.
     history.push('/');
-  } else if ('failed' === status) {
-    // yield put(actionReceiveUpdateProfileError());
   }
 }
