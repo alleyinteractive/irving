@@ -1,0 +1,80 @@
+/* Newsletter component styles */
+
+/**
+ * Gutenberg block styles.
+ * Because these are also included in the editor in WordPress, they must be globally scoped.
+ */
+:global {
+
+  .contactForm__wrap {
+    max-width: rem(742);
+    width: 100%;
+  }
+
+  .contactForm__formGroup {
+    margin-bottom: rem(10);
+  }
+
+  .contactForm__header-wrap {
+    margin-bottom: rem(20);
+  }
+
+  .contactForm__title {
+    @include accountHeader;
+  }
+
+  .contactForm__header {
+    @include accountSubHeader;
+    font-size: rem(50);
+  }
+
+  .contactForm__input {
+    @include formInput;
+  }
+
+  .contactForm__submitBtn {
+    @include inputBtn;
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .contactForm__radioWrap {
+    display: flex;
+    margin-bottom: rem(10);
+  }
+
+  .contactForm__radioHeader {
+    margin-right: rem(15);
+  }
+
+  .contactForm__inlineRadioLabel {
+    align-items: center;
+    display: flex;
+    margin-right: rem(10);
+  }
+
+  .contactForm__formGroupRadio {
+    display: flex;
+  }
+
+  .contactForm__inlineRadioLabel,
+  .contactForm__radioHeader {
+    font-family: $sans;
+    font-size: rem(20);
+  }
+
+  .contactForm__radioInput {
+    margin-right: rem(5);
+  }
+
+  .contactForm__select {
+    @include formInput;
+    background: #f0f0f0;
+    height: rem(46);
+  }
+}
+
+.errorMessage {
+  @include formErrorMsg;
+  font-family: $sans;
+}

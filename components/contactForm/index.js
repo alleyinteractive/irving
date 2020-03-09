@@ -1,46 +1,99 @@
 /* eslint-disable jsx-a11y/label-has-for */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { withStyles } from 'critical-style-loader/lib';
-// eslint-disable-next-line no-unused-vars
 import { __ } from '@wordpress/i18n';
+import submitForm from 'services/submitForm';
 
 import styles from './contactForm.css';
 
 const ContactForm = ({ title }) => {
   const {
+    errors,
     register,
     handleSubmit,
+    formState,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const [formStatus, setFormStatus] = useState({
+    status: 'unsubmitted',
+    message: '',
+  });
+  const onSubmit = (formData) => {
+    if (formState.isValid) {
+      // Split the full_name value for submission to HelpScout.
+      const names = formData.full_name.split(' ');
+      // eslint-disable-next-line no-param-reassign, prefer-destructuring
+      formData.first_name = names[0];
+      // eslint-disable-next-line no-param-reassign, prefer-destructuring
+      formData.last_name = names[names.length - 1];
+      console.log(formData);
+      const response = submitForm('helpscout', formData);
+      console.log('response ', response.status);
+      if ('success' === response.status) {
+        setFormStatus({
+          status: response.status,
+          message: response.message,
+        });
+      }
+    }
+  };
 
   return (
     <div className="contactForm__wrap">
-      <header className="contactForm__header">
+      <header className="contactForm__header-wrap">
         <h3 className="contactForm__title">{title}</h3>
         <h2 className="contactForm__header">
-          {__('Contact Us', 'mittr-plugin-extension')}
+          {__('Contact Us', 'mittr')}
         </h2>
       </header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="contactForm__formGroup">
           <label
-            htmlFor="fullName"
+            htmlFor="full_name"
             className="contactForm__inputLabel"
           >
             <input
               type="text"
-              name="fullName"
-              ref={register}
+              name="full_name"
+              ref={register({
+                required: true,
+                pattern: /^[a-z ,.'-]+$/i,
+              })}
+              aria-invalid={errors.full_name ? 'true' : 'false'}
+              // eslint-disable-next-line max-len
+              aria-describedby="error-full_name-required error-full_name-pattern"
               className="contactForm__input"
-              id="fullName"
+              id="full_name"
               placeholder={__(
                 'Full name',
-                'mittr-plugin-extension'
+                'mittr'
               )}
             />
           </label>
+          <span
+            role="alert"
+            id="error-full_name-required"
+            className={styles.errorMessage}
+            style={{
+              display: errors.full_name &&
+              'required' === errors.full_name.type ?
+                'block' : 'none',
+            }}
+          >
+            {__('This field is required', 'mittr')}
+          </span>
+          <span
+            role="alert"
+            id="error-full_name-pattern"
+            className={styles.errorMessage}
+            style={{
+              display: errors.full_name && 'pattern' === errors.full_name.type ?
+                'block' : 'none',
+            }}
+          >
+            {__('Field must only contain letters', 'mittr')}
+          </span>
         </div>
         <div className="contactForm__formGroup">
           <label
@@ -49,31 +102,61 @@ const ContactForm = ({ title }) => {
           >
             <input
               type="email"
-              name="contactName"
-              ref={register}
+              name="email"
+              ref={register({
+                required: true,
+                pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+              })}
               className="contactForm__input"
+              aria-invalid={errors.email ? 'true' : 'false'}
+              // eslint-disable-next-line max-len
+              aria-describedby="error-email-required error-email-pattern"
               id="contactUsEmail"
               placeholder={__(
                 'Email address',
-                'mittr-plugin-extension'
+                'mittr'
               )}
             />
           </label>
+          <span
+            role="alert"
+            id="error-email-required"
+            className={styles.errorMessage}
+            style={{
+              display: errors.email &&
+              'required' === errors.email.type ?
+                'block' : 'none',
+            }}
+          >
+            {__('This field is required', 'mittr')}
+          </span>
+          <span
+            role="alert"
+            id="error-email-pattern"
+            className={styles.errorMessage}
+            style={{
+              display: errors.email &&
+                'pattern' === errors.email.type ?
+                'block' : 'none',
+            }}
+          >
+            {__('Invalid email format', 'mittr')}
+          </span>
         </div>
         <div className="contactForm__radioWrap">
           <span
             className="contactForm__radioHeader"
-            id="areYouASubscriberLable"
+            id="areYouASubscriberLabel"
           >
             {__(
               'Are you a subscriber to MIT Technology Review?',
-              'mittr-plugin-extension'
+              'mittr'
             )}
           </span>
           <div
             className="contactForm__formGroupRadio"
             role="radiogroup"
-            aria-labelledby="areYouASubscriberLable"
+            aria-labelledby="areYouASubscriberLabel"
           >
             <label
               className="contactForm__inlineRadioLabel"
@@ -81,12 +164,18 @@ const ContactForm = ({ title }) => {
             >
               <input
                 className="contactForm__radioInput"
-                ref={register}
-                name="subscriberRadio"
+                ref={register({
+                  required: true,
+                })}
+                aria-invalid={errors.subscriber ? 'true' : 'false'}
+                // eslint-disable-next-line max-len
+                aria-describedby="error-subscriber-required"
+                value="yes"
+                name="subscriber"
                 type="radio"
                 id="radioYesSubscriber"
               />
-              {__('Yes', 'mittr-plugin-extension')}
+              {__('Yes', 'mittr')}
             </label>
             <label
               className="contactForm__inlineRadioLabel"
@@ -94,15 +183,30 @@ const ContactForm = ({ title }) => {
             >
               <input
                 className="contactForm__radioInput"
-                ref={register}
-                name="subscriberRadio"
+                ref={register({
+                  required: true,
+                })}
+                value="no"
+                name="subscriber"
                 type="radio"
                 id="radioNoSubscriber"
               />
-              {__('No', 'mittr-plugin-extension')}
+              {__('No', 'mittr')}
             </label>
           </div>
         </div>
+        <span
+          role="alert"
+          id="error-subscriber-required"
+          className={styles.errorMessage}
+          style={{
+            display: errors.subscriber &&
+              'required' === errors.subscriber.type ?
+              'block' : 'none',
+          }}
+        >
+          {__('This field is required', 'mittr')}
+        </span>
         <div className="contactForm__radioWrap">
           <span
             className="contactForm__radioHeader"
@@ -110,7 +214,7 @@ const ContactForm = ({ title }) => {
           >
             {__(
               'Are you an MIT alum?',
-              'mittr-plugin-extension'
+              'mittr'
             )}
           </span>
           <div
@@ -124,12 +228,18 @@ const ContactForm = ({ title }) => {
             >
               <input
                 className="contactForm__radioInput"
-                ref={register}
-                name="alumRadio"
+                ref={register({
+                  required: true,
+                })}
+                value="yes"
+                aria-invalid={errors.mit_alum ? 'true' : 'false'}
+                // eslint-disable-next-line max-len
+                aria-describedby="error-mit_alum-required"
+                name="mit_alum"
                 type="radio"
                 id="radioYesAlum"
               />
-              {__('Yes', 'mittr-plugin-extension')}
+              {__('Yes', 'mittr')}
             </label>
             <label
               className="contactForm__inlineRadioLabel"
@@ -137,47 +247,64 @@ const ContactForm = ({ title }) => {
             >
               <input
                 className="contactForm__radioInput"
-                ref={register}
-                name="alumRadio"
+                ref={register({
+                  required: true,
+                })}
+                value="no"
+                name="mit_alum"
                 type="radio"
                 id="radioNoAlum"
               />
-              {__('No', 'mittr-plugin-extension')}
+              {__('No', 'mittr')}
             </label>
           </div>
         </div>
+        <span
+          role="alert"
+          id="error-mit_alum-required"
+          className={styles.errorMessage}
+          style={{
+            display: errors.mit_alum &&
+              'required' === errors.mit_alum.type ?
+              'block' : 'none',
+          }}
+        >
+          {__('This field is required', 'mittr')}
+        </span>
         <div className="contactForm__formGroup">
           <label
             className="contactForm__selectLabel"
             htmlFor="questionSelect"
           >
             <select
-              ref={register}
+              ref={register({
+                required: true,
+              })}
               id="questionSelect"
-              name="contactUsSelect"
+              name="mailbox_slug"
               className="contactForm__select"
             >
-              <option>
+              <option value="subscription">
                 {__('Question about my subscription or magazine delivery',
-                  'mittr-plugin-extension')}
+                  'mittr')}
               </option>
-              <option>
+              <option value="website">
                 {__('Question about my account or using the website',
-                  'mittr-plugin-extension')}
+                  'mittr')}
               </option>
-              <option>
+              <option value="feedback">
                 {__('Comment or piece of editorial feedback to share',
                   'miir-plugin-extenstion')}
               </option>
-              <option>
+              <option value="events">
                 {__('Question about an upcoming or past event',
                   'miir-plugin-extenstion')}
               </option>
-              <option>
+              <option value="permission">
                 {__(`Permissions, reprints, syndication,
                   or licensing request`, 'miir-plugin-extenstion')}
               </option>
-              <option>
+              <option value="general">
                 {__('General question or feedback',
                   'miir-plugin-extenstion')}
               </option>
@@ -188,8 +315,11 @@ const ContactForm = ({ title }) => {
           type="submit"
           id="getInTouchBtn"
           className="contactForm__submitBtn"
-          value={__('Get in touch', 'mittr-plugin-extension')}
+          value={__('Get in touch', 'mittr')}
         />
+        {formStatus.message && (
+          <p>{formStatus.message }</p>
+        )}
       </form>
     </div>
   );
