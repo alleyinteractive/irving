@@ -22,7 +22,7 @@ const MenuItem = (props) => {
 
   const menu = findChildByName('menu', children);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
 
   // Breakpoints
   const isSmMin = useBreakpoint('smMin');
@@ -76,7 +76,7 @@ const MenuItem = (props) => {
         }
       })()}
       {isExpanded && menu && <div className={theme.childMenu}>{menu}</div>}
-      {(! isSmMin && ! isExpanded && menu) && (
+      {(! isSmMin && ! isExpanded && menu && ! isDesktop) && (
         <div className={theme.childMenu}>{menu}</div>
       )}
     </li>
