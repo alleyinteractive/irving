@@ -20,6 +20,7 @@ import LazyRecaptcha from '../register/recaptcha';
 
 // Styles
 import styles from './login.css';
+import Link from '../../helpers/link';
 
 const Login = ({
   loginForm,
@@ -147,16 +148,18 @@ const Login = ({
 
   return (
     <div className={styles.accountWrap}>
-      <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
+      <h1 className={styles.accountHeader}>{__('Account', 'mittr')}</h1>
       <p className={styles.accountSubHeader}>
-        {__('Please enter your email address and password.', 'mittr')}
+        {__('Sign in to your account below.', 'mittr')}
       </p>
       <p className={styles.accountHeaderDescription}>
         {__(
-          `If you have an account, we’ll get you signed in.
-          If not, we’ll help you set one up. Easy, right?`,
+          'Don’t have one yet? ',
           'mittr'
         )}
+        <Link to="/register/" className={styles.registerLink}>
+          {__('Create an account now.', 'mittr')}
+        </Link>
       </p>
       <form
         onSubmit={onSubmit}
