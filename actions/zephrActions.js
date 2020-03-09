@@ -165,7 +165,7 @@ export function actionVerifyEmailUpdateToken(payload) {
  * A Redux action that represents when a user submits a form that contains errors. Those errors should
  * be cleared for the new submission.
  *
- * @param {{route}} paylod The form's route.
+ * @param {{route}} payload The form's route.
  *
  * @returns {{type, payload}} The Redux action.
  */
@@ -226,7 +226,7 @@ export function actionReceiveUIComponents(payload) {
  *
  * @returns {{type}} The Redux action.
  */
-export function actionSendUserVerificationEamil() {
+export function actionSendUserVerificationEmail() {
   return createAction(SEND_ZEPHR_VERIFICATION_EMAIL);
 }
 
