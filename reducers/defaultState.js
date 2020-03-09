@@ -54,8 +54,6 @@ export const componentDataMeta = {
 
 export const headerHeight = 0;
 
-export const activeYear = '';
-
 export const isNoticeVisible = true;
 
 const defaultState = {
@@ -63,7 +61,6 @@ const defaultState = {
   componentData,
   error,
   headerHeight,
-  activeYear,
   loading,
   player,
   route,

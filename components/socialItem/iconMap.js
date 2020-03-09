@@ -2,7 +2,6 @@ import FacebookIcon from 'assets/icons/facebook.svg';
 import LinkedInIcon from 'assets/icons/linkedin.svg';
 import TwitterIcon from 'assets/icons/twitter.svg';
 import WhatsAppIcon from 'assets/icons/whatsapp.svg';
-import WhatsAppAltIcon from 'assets/icons/whatsappAlt.svg';
 import RedditIcon from 'assets/icons/reddit.svg';
 import EmailIcon from 'assets/icons/email.svg';
 import LinkIcon from 'assets/icons/link.svg';
@@ -14,7 +13,6 @@ export default {
   linkedin: LinkedInIcon,
   twitter: TwitterIcon,
   whatsapp: WhatsAppIcon,
-  whatsappalt: WhatsAppAltIcon,
   reddit: RedditIcon,
   email: EmailIcon,
   link: LinkIcon,

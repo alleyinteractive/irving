@@ -7,7 +7,6 @@ import componentDataReducer from './componentDataReducer';
 import componentsReducer from './componentsReducer';
 import errorReducer from './errorReducer';
 import headerHeightReducer from './headerHeightReducer';
-import activeYearReducer from './activeYearReducer';
 import loadingReducer from './loadingReducer';
 import playerReducer from './playerReducer';
 import routeReducer from './routeReducer';
@@ -29,7 +28,6 @@ export const reducers = {
   components: (state = defaultState.components) => state,
   error: errorReducer,
   headerHeight: headerHeightReducer,
-  activeYear: activeYearReducer,
   isNoticeVisible: dismissNoticeReducer,
   loading: loadingReducer,
   player: playerReducer,

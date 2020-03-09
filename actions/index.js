@@ -5,7 +5,6 @@ import {
   FINISH_LOADING,
   UPDATE_VISIBILITY,
   UPDATE_HEADER_HEIGHT,
-  UPDATE_ACTIVE_YEAR,
   DISMISS_NOTICE,
 } from './types';
 
@@ -73,14 +72,6 @@ export function actionUpdateVisibility(name, isVisible = null) {
  */
 export function actionUpdateHeaderHeight(headerHeight = 0) {
   return createAction(UPDATE_HEADER_HEIGHT, headerHeight);
-}
-
-/**
- * Create a Redux action that represents the active List year
- * @returns {{type, payload}} - Redux action
- */
-export function actionUpdateActiveYear(activeYear = '') {
-  return createAction(UPDATE_ACTIVE_YEAR, activeYear);
 }
 
 export function actionDismissNotice() {

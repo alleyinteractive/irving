@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import { useDispatch } from 'react-redux';
 import { findChildByName } from 'utils/children';
 import setContrast from 'utils/setContrast';
 import hexToRgb from 'utils/hexToRgb';
 
-import { actionUpdateActiveYear } from 'actions';
 // Styles
 import styles from './listHeader.css';
 
@@ -25,14 +23,6 @@ const ListHeader = ({
   // appropriate text color based on the color.
   const headerTextColor = '' === textColor ?
     setContrast(hexToRgb(color)) : textColor;
-
-  // Redux
-  const dispatch = useDispatch();
-  const dispatchUpdateActiveYear = (year) => {
-    dispatch(actionUpdateActiveYear(year));
-  };
-  const activeYear = title;
-  dispatchUpdateActiveYear(activeYear);
 
   return (
     <header className={styles.wrapper} style={{ backgroundColor: color }}>

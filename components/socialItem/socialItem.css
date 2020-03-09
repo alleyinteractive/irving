@@ -76,15 +76,6 @@
     }
   }
 
-  .whatsappAlt & {
-    background-color: $brand-whatsapp;
-    position: relative;
-
-    svg {
-      height: rem(15);
-    }
-  }
-
   .email & {
     background-color: $brand-email;
   }
