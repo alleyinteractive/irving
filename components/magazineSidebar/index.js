@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import parse from 'html-react-parser';
+import Heading from 'components/helpers/heading';
 import Link from 'components/helpers/link';
 
 // Styles
@@ -15,7 +16,9 @@ const MagazineSidebar = ({
   description,
 }) => (
   <div className={styles.wrap}>
-    <span className={styles.sidebarTitle}>{__('Magazine', 'mittr')}</span>
+    <Heading tag="h3" themeName="sidebarWidget">
+      {__('Magazine', 'mittr')}
+    </Heading>
     <div className={styles.row}>
       <div className={styles.imageWrap}>
         {coverImage.src && (
