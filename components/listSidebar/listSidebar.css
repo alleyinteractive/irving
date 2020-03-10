@@ -1,0 +1,12 @@
+.wrapper {
+  border-top: 1px solid $text-black;
+  display: none;
+
+  @media ($lgMin) {
+    display: block;
+  }
+}
+
+.listLabel {
+  text-transform: uppercase;
+}
