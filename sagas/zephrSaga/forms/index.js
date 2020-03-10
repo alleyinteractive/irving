@@ -14,12 +14,16 @@ import {
   REQUEST_ZEPHR_FORMS,
   SUBMIT_ZEPHR_FORM,
   REQUEST_USER_LOG_OUT,
+  SUBMIT_PROFILE,
 } from 'actions/types';
-import { getCached, getSession } from 'selectors/zephrSelector';
+import {
+  getCached,
+  getSession,
+} from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
 import requestForms from './requestForms';
-import submitForm from './submitForm';
+import submitForm, { getProfile, getAccount } from './submitForm';
 
 export default [
   // Initialize the saga to request Zephr forms onload.
@@ -30,6 +34,8 @@ export default [
   takeEvery(SUBMIT_ZEPHR_FORM, submitForm),
   // Listen for user log out request.
   takeEvery(REQUEST_USER_LOG_OUT, logOut),
+  // Listen for profile completion for SSO accounts.
+  takeEvery(SUBMIT_PROFILE, completeProfile),
 ];
 
 /**
@@ -60,6 +66,34 @@ function* logOut() {
     // Update the redux store and clear out any stored user data.
     yield put(actionReceiveUserLogOut());
     // Redirect the user to the login page.
-    history.push('/login');
+    history.push('/login/');
+  }
+}
+
+/**
+ * A generator that is run when a user registers an account using a
+ * third-party single sign-on (SSO) service. Zephr does not return profile
+ * information from these services, so we need to ensure they fill out
+ * the rest of the required information prior to being able to access
+ * their account.
+ */
+function* completeProfile({ payload }) {
+  const { sessionCookie } = yield select(getSession);
+
+  const status = yield call(
+    zephrService.updateProfile,
+    {
+      properties: payload,
+      cookie: sessionCookie,
+    }
+  );
+
+  if ('success' === status) {
+    // Get the user's profile from Zephr.
+    yield call(getProfile, sessionCookie);
+    // Get the user's account info from Zephr.
+    yield call(getAccount, sessionCookie);
+    // Redirect the user to the homepage.
+    history.push('/');
   }
 }
