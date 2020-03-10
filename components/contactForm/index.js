@@ -6,6 +6,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 import submitForm from 'services/submitForm';
+import LazyRecaptcha from '../accounts/register/recaptcha';
 
 import styles from './contactForm.css';
 
@@ -23,9 +24,24 @@ const ContactForm = ({ title }) => {
     status: 'unsubmitted',
     message: '',
   });
+  const [captcha, setCaptcha] = useState({
+    isValid: false,
+    hasError: false,
+  });
   const showDelivery = 'subscription' === watch('mailbox_slug');
   const onSubmit = (formData) => {
-    if (formState.isValid) {
+    if (! captcha.isValid) {
+      setFormStatus({
+        status: 'error',
+        message: __('Please confirm you\'re not a robot.', 'mittr'),
+      });
+    }
+    if (formState.isValid && captcha.isValid) {
+      // Clear form message.
+      setFormStatus({
+        status: 'submitted',
+        message: '',
+      });
       // Split the full_name value for submission to HelpScout.
       const names = formData.full_name.split(' ');
       // eslint-disable-next-line no-param-reassign, prefer-destructuring
@@ -50,7 +66,7 @@ const ContactForm = ({ title }) => {
           console.log({ err });
           setFormStatus({
             status: 'error',
-            message: 'Sorry, you request did not go through.',
+            message: __('Sorry, you request did not go through.', 'mittr'),
           });
         });
     }
@@ -191,7 +207,7 @@ const ContactForm = ({ title }) => {
                 aria-invalid={errors.subscriber ? 'true' : 'false'}
                 // eslint-disable-next-line max-len
                 aria-describedby="error-subscriber-required"
-                value="yes"
+                defaultValue="yes"
                 name="subscriber"
                 type="radio"
                 id="radioYesSubscriber"
@@ -207,7 +223,7 @@ const ContactForm = ({ title }) => {
                 ref={register({
                   required: true,
                 })}
-                value="no"
+                defaultValue="no"
                 name="subscriber"
                 type="radio"
                 id="radioNoSubscriber"
@@ -252,7 +268,7 @@ const ContactForm = ({ title }) => {
                 ref={register({
                   required: true,
                 })}
-                value="yes"
+                defaultValue="yes"
                 aria-invalid={errors.mit_alum ? 'true' : 'false'}
                 // eslint-disable-next-line max-len
                 aria-describedby="error-mit_alum-required"
@@ -271,7 +287,7 @@ const ContactForm = ({ title }) => {
                 ref={register({
                   required: true,
                 })}
-                value="no"
+                defaultValue="no"
                 name="mit_alum"
                 type="radio"
                 id="radioNoAlum"
@@ -307,7 +323,7 @@ const ContactForm = ({ title }) => {
                 [styles.inputError]: errors.mailbox_slug,
               })}
             >
-              <option value="">
+              <option defaultValue="">
                 {__('Choose a support topic',
                   'mittr')}
               </option>
@@ -427,20 +443,47 @@ const ContactForm = ({ title }) => {
             {REQUIRED_FORM_MESSAGE}
           </span>
         </div>
+        <LazyRecaptcha
+          key="contact-us-captcha"
+          id="contact-us-captcha"
+          className="captcha"
+          sitekey="6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt"
+          verifyCallback={() => {
+            setCaptcha({
+              isValid: true,
+              hasError: false,
+            });
+          }}
+          ariaErrormessage="captcha-error"
+        />
         <input
           type="submit"
           id="getInTouchBtn"
           className="contactForm__submitBtn"
           value={__('Get in touch', 'mittr')}
         />
-        {formStatus.message && (
+        {'' !== formStatus.message && (
           <div className={classNames(styles.formResponse, {
             [styles.successResponse]: 'success' === formStatus.status,
             [styles.errorResponse]: 'error' === formStatus.status,
           })}
           >
-            <p>{formStatus.message}</p>
+            {formStatus.message}
           </div>
+        )}
+        {true === captcha.hasError && (
+          <span
+            className={styles.formError}
+            aria-live="assertive"
+            id="captcha-error"
+          >
+            {__(
+              `Oops! Let's try that again -
+               Please complete the captcha
+               in order to send your message.`,
+              'mittr'
+            )}
+          </span>
         )}
       </form>
     </div>

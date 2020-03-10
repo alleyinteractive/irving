@@ -1,5 +1,7 @@
 /* Newsletter component styles */
 
+/* stylelint-disable selector-max-specificity */
+
 /**
  * Gutenberg block styles.
  * Because these are also included in the editor in WordPress, they must be globally scoped.
@@ -19,16 +21,22 @@
     margin-bottom: rem(20);
   }
 
-  .contactForm__title {
+  .contactForm__title,
+  .editor-styles-wrapper h3.contactForm__title {
     @include accountHeader;
+    margin: 0;
   }
 
-  .contactForm__header {
+  .contactForm__header,
+  .editor-styles-wrapper h2.contactForm__header {
     @include accountSubHeader;
     font-size: rem(50);
+    margin: 0;
   }
 
-  .contactForm__input {
+  .contactForm__input,
+  .edit-post-visual-editor input[type="email"].contactForm__input,
+  .edit-post-visual-editor input[type="text"].contactForm__input {
     @include formInput;
     font-style: italic;
 
@@ -37,7 +45,8 @@
     }
   }
 
-  .contactForm__textarea {
+  .contactForm__textarea,
+  .edit-post-visual-editor textarea.contactForm__textarea {
     @include formInput;
     font-style: italic;
     height: rem(92);
@@ -49,7 +58,9 @@
 
   .contactForm__submitBtn {
     @include inputBtn;
+    font-family: $sans;
     margin-left: 0;
+    margin-top: rem(20);
     max-width: 100%;
   }
 
@@ -82,11 +93,14 @@
     margin-right: rem(5);
   }
 
-  .contactForm__select {
+  .contactForm__select,
+  .edit-post-visual-editor select.contactForm__select {
     @include formInput;
+    -webkit-appearance: textfield; /* override for stupid Gutenberg styles */
     background: #f0f0f0;
     font-style: italic;
     height: rem(46);
+    max-width: 100%;
   }
 }
 
@@ -96,23 +110,16 @@
 }
 
 .formResponse {
+  color: $black;
+  font-family: $sans;
   margin: rem(15) 0;
 
   &.successResponse {
-    p {
-      color: $success;
-    }
+    color: $success;
   }
 
-  &.successResponse {
-    p {
-      color: $error;
-    }
-  }
-
-  p {
-    color: $black;
-    font-family: $sans;
+  &.errorResponse {
+    color: $error;
   }
 }
 
