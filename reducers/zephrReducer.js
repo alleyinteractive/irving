@@ -54,7 +54,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         ...state,
         session: {
           ...state.session,
-          payload,
+          ...payload,
         },
       };
     case RECEIVE_ZEPHR_USER_PROFILE:
