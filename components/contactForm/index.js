@@ -66,7 +66,7 @@ const ContactForm = ({ title }) => {
           console.log({ err });
           setFormStatus({
             status: 'error',
-            message: __('Sorry, you request did not go through.', 'mittr'),
+            message: __('Sorry, your request did not go through.', 'mittr'),
           });
         });
     }
