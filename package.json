@@ -29,8 +29,8 @@
     "npm": "6"
   },
   "dependencies": {
-    "@automattic/vip-go": "^0.3.3",
-    "@automattic/vip-go-preflight-checks": "0.0.4",
+    "@automattic/vip-go": "^1.0.0",
+    "@automattic/vip-go-preflight-checks": "^1.0.0",
     "@babel/polyfill": "^7.2.5",
     "@wordpress/i18n": "^3.6.0",
     "axios": "^0.19.2",
