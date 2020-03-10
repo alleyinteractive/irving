@@ -10,10 +10,12 @@ import {
 } from 'selectors/zephrSelector';
 import {
   actionSubmitForm,
+  actionReceiveSsoSession,
 } from 'actions/zephrActions';
 import history from 'utils/history';
 import DataLoading from 'components/hoc/withData/loading';
 import toFormElements from 'sagas/zephrSaga/forms/toFormElements';
+import sso, { openConnection } from 'services/ssoService';
 import LazyRecaptcha from '../register/recaptcha';
 
 // Styles
@@ -24,6 +26,7 @@ const Login = ({
   loginForm,
   submitLogin,
   isAuthenticated,
+  receiveSession,
 }) => {
   // Prevent authenticated users from being able to visit this route.
   if (isAuthenticated) {
@@ -112,6 +115,26 @@ const Login = ({
       // Update the form state.
       setForm(fields);
     }
+
+    const initSSO = async (data) => {
+      const {
+        data: {
+          action,
+          identifier,
+        },
+      } = data;
+
+      if ('login' === action || 'register' === action) {
+        // Get the response status and its cookie if it exists.
+        const { status, cookie } = await sso.initialize(data);
+
+        if ('success' === status) {
+          receiveSession({ identifier, cookie, action });
+        }
+      }
+    };
+
+    window.addEventListener('message', initSSO);
   }, [loginForm]);
 
   // If the form has not yet been retireved, show a loader.
@@ -162,13 +185,26 @@ const Login = ({
         </h2>
         <ul className={styles.ssoList} aria-labelledby="socialMediaSignOn">
           <li>
-            <a href="https://google.com">Google</a>/
+            <button
+              type="button"
+              onClick={() => {
+                openConnection('login', 'google');
+                sso.openGoogleClient();
+              }}
+            >
+              Google
+            </button>/
           </li>
           <li>
-            <a href="https://twitter.com">Twitter</a>/
-          </li>
-          <li>
-            <a href="https://facebook.com">Facebook</a>
+            <button
+              type="button"
+              onClick={() => {
+                openConnection('login', 'facebook');
+                sso.openFacebookClient();
+              }}
+            >
+              Facebook
+            </button>
           </li>
         </ul>
       </form>
@@ -200,10 +236,12 @@ Login.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   loginForm: PropTypes.object,
   submitLogin: PropTypes.func.isRequired,
+  receiveSession: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   submitLogin: (data) => dispatch(actionSubmitForm(data)),
+  receiveSession: (cookie) => dispatch(actionReceiveSsoSession(cookie)),
 });
 
 const withRedux = connect(

@@ -21,6 +21,8 @@ import {
   RECEIVE_ZEPHR_USER_VERIFICATION,
   SEND_ZEPHR_VERIFICATION_EMAIL,
   RECEIVE_RESET_PASSWORD_ERROR,
+  RECEIVE_SSO_SESSION,
+  SUBMIT_PROFILE,
 } from './types';
 
 /**
@@ -238,4 +240,24 @@ export function actionReceiveUserVerification() {
  */
 export function actionReceiveResetError(payload) {
   return createAction(RECEIVE_RESET_PASSWORD_ERROR, payload);
+}
+
+/**
+ * A Redux action that represents browser state change once a user logs in
+ * using a third-party single sign-on (SSO) service.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveSsoSession(payload) {
+  return createAction(RECEIVE_SSO_SESSION, payload);
+}
+
+/**
+ * A Redux action that represents browser state change once a user requests a
+ * change to their profile.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionSubmitProfile(payload) {
+  return createAction(SUBMIT_PROFILE, payload);
 }

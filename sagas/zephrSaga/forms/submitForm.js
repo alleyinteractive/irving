@@ -108,7 +108,7 @@ function* submitRegistration(credentials) {
       // Update the state to reflect the email being sent.
       yield put(actionSendUserVerificationEamil());
       // // Push the user to the confirmation page.
-      history.push('/register/confirmation');
+      history.push('/register/confirmation/');
     } catch (error) {
       // Post the error message to the console.
       yield call(debug, error);
@@ -163,7 +163,7 @@ function* submitResetRequest(credentials) {
   const { status, type } = yield call(zephrService.requestReset, credentials); // eslint-disable-line
 
   if ('success' === status) {
-    history.push('/reset-password/request-confirmation');
+    history.push('/reset-password/request-confirmation/');
   }
 
   if ('failed' === status) {
@@ -185,7 +185,7 @@ function* submitReset(credentials, cookie) {
   );
 
   if ('success' === status) {
-    history.push('/reset-password/confirmation');
+    history.push('/reset-password/confirmation/');
   }
 
   if ('failed' === status) {
