@@ -184,7 +184,7 @@ export default {
    */
   openGoogleClient() {
     window.open(
-      '/blaize/oauth/google',
+      `${process.env.ZEPHR_ROOT_URL}/blaize/oauth/google`,
       'Sign in with Google',
       'menubar=no,location=yes,resizable=no,scrollbars=no,status=no,width=500,height=600' // eslint-disable-line max-len
     );
@@ -195,7 +195,7 @@ export default {
    */
   openFacebookClient() {
     window.open(
-      '/blaize/oauth/facebook',
+      `${process.env.ZEPHR_ROOT_URL}/blaize/oauth/facebook`,
       'Sign in with Facebook',
       'menubar=no,location=yes,resizeable=no,scrollbars=no,status=no,width=500,height=600' // eslint-disable-line max-len
     );
