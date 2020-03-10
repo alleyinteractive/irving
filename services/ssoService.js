@@ -24,6 +24,8 @@ export async function openConnection(route, service) {
       }
     );
   } catch (error) {
+    // @todo Add dynamic error handling that can be displayed to the user on the front end if the
+    // connection should fail. This will be handled in MIT-794.
     return console.error(error); // eslint-disable-line no-console
   }
 }
@@ -118,6 +120,7 @@ export default {
 
       return 'failed';
     } catch (error) {
+      // @todo see line 27.
       return console.error(error); // eslint-disable-line no-console
     }
   },
@@ -171,6 +174,7 @@ export default {
         };
       });
     } catch (error) {
+      // @todo see line 27.
       return console.error(error); // eslint-disable-line no-console
     }
   },
