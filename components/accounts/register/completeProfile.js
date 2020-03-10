@@ -28,6 +28,8 @@ const CompleteProfile = ({
 
     if (! name.value.match(/^[a-z ,.'-]+$/i)) {
       invalidateForm(false);
+      // Halt the function's execution.
+      return;
     }
 
     // Split the name value for submission to Zephr.
@@ -36,7 +38,7 @@ const CompleteProfile = ({
     submitProfile({
       fullName: name.value,
       firstName: names[0],
-      lastName: names[names.length - 1],
+      lastName: 1 < names.length ? names[names.length - 1] : '',
     });
   };
 
@@ -59,9 +61,11 @@ const CompleteProfile = ({
           id="full-name"
           defaultValue=""
           placeholder="Enter your full name"
+          aria-invalid={false === fullNameValid}
+          aria-required
         />
         {false === fullNameValid && (
-          <span>
+          <span role="alert" id="full-name-alert">
             {__(
               `Opps! Let's try that again —
                Please enter your full name.`,

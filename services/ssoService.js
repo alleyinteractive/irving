@@ -1,6 +1,4 @@
-import {
-  parseSessionString,
-} from './utils';
+import Cookies from 'universal-cookie';
 import zephrService from './zephrService';
 
 let provider = '';
@@ -20,8 +18,8 @@ export async function openConnection(route, service) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          start_url: `https://localhost/${route}`,
-          target_url: `https://localhost/${'do-something'}`,
+          start_url: `${process.env.ROOT_URL}/login`,
+          target_url: `${process.env.ROOT_URL}/login`,
         }),
       }
     );
@@ -74,9 +72,11 @@ export default {
         this.addProvider(cookie);
       }
 
+      const cookies = new Cookies(cookie);
+
       return {
         status: 'success',
-        cookie: parseSessionString(cookie),
+        cookie: cookies.get('blaize_session'),
       };
     }
 

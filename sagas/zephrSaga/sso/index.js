@@ -26,6 +26,12 @@ export default [
   takeEvery(RECEIVE_SSO_SESSION, completeSignOn),
 ];
 
+/**
+ * A generator that takes a given sign-on action initiated by a single sign-on
+ * (SSO) provider and performs the correct actions.
+ *
+ * @param {object} payload The action payload.
+ */
 function* completeSignOn({ payload: { identifier, cookie, action } }) {
   if ('register' === action) {
     yield put(actionReceiveUserRegistration());
