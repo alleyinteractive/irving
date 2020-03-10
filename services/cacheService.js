@@ -1,5 +1,3 @@
-const getVipRedis = require('@automattic/vip-go');
-const getLogService = require('./logService');
 const defaultService = {
   get: () => null,
   set: () => {},
@@ -19,7 +17,8 @@ const getService = () => {
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
   if (! process.env.BROWSER) {
-    const client = getVipRedis({ logger: getLogService('irving:redis') });
+    const { redis: getVipRedis } = require('@automattic/vip-go'); // eslint-disable-line global-require
+    const client = getVipRedis();
 
     if (! client) {
       return defaultService;
