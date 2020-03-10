@@ -20,7 +20,7 @@ const ListSidebar = (props) => {
     <section className={styles.wrapper}>
       <Heading
         tag="h3"
-        className={styles.listLabel}
+        className={styles.listHeading}
       >
         {__('Sort by', 'mittr')}
       </Heading>

@@ -7,6 +7,17 @@
   }
 }
 
-.listLabel {
+.listHeading {
+  font-size: rem(16);
+  font-variant: small-caps;
+  line-height: 1.2;
+  padding: rem(8) 0;
   text-transform: uppercase;
+}
+
+.listSidebarNav {
+  li {
+    font-size: rem(25);
+    margin-top: rem(20);
+  }
 }
