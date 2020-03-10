@@ -159,7 +159,11 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
     case REQUEST_UPDATE_EMAIL:
       return {
         ...state,
-        email: payload.email,
+        user: {
+          account: {
+            emailAddress: payload.email,
+          },
+        },
       };
     case RECEIVE_UPDATE_EMAIL:
       return {
