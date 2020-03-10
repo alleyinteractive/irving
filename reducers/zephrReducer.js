@@ -303,7 +303,6 @@ export function setFormErrorState(form, error) {
   };
   // Add the error message to the components array.
   components.splice(position + 1, 0, message);
-  console.log(components);
 
   let value = 'Submit';
   switch (form.type) {
