@@ -23,7 +23,7 @@ const DownloadPDFLink = ({ components, pdfLink }) => {
         </Link>
       )}
       {! showDownloadLink && (
-        <Link to="/register" className={styles.link}>
+        <Link to="/register/" className={styles.link}>
           {__('Purchase the PDF', 'mittr')}
         </Link>
       )}
