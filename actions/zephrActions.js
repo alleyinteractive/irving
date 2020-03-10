@@ -22,6 +22,7 @@ import {
   SEND_ZEPHR_VERIFICATION_EMAIL,
   REQUEST_UPDATE_EMAIL,
   RECEIVE_UPDATE_EMAIL,
+  RECEIVE_EMAIL_UPDATE_ERROR,
 } from './types';
 
 /**
@@ -105,6 +106,15 @@ export function actionReceiveUserLogin() {
  */
 export function actionReceiveLoginError(payload) {
   return createAction(RECEIVE_LOGIN_ERROR, payload);
+}
+
+/**
+ * A Redux action that represents when an error occurred changing the user's email.
+ *
+ * @param {{tyoe}} The Redux action.
+ */
+export function actionReceiveEmailUpdateError(payload) {
+  return createAction(RECEIVE_EMAIL_UPDATE_ERROR, payload);
 }
 
 /**

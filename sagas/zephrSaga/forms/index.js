@@ -9,6 +9,7 @@ import { REHYDRATE } from 'redux-persist/lib/constants';
 import {
   actionRequestForms,
   actionReceiveUserLogOut,
+  actionReceiveEmailUpdateError,
 } from 'actions/zephrActions';
 import {
   REQUEST_ZEPHR_FORMS,
@@ -21,7 +22,7 @@ import { getCached, getSession, getZephrCookie } from 'selectors/zephrSelector';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
 import requestForms from './requestForms';
-import submitForm from './submitForm';
+import submitForm, { getAccount } from './submitForm';
 
 export default [
   // Initialize the saga to request Zephr forms onload.
@@ -78,18 +79,22 @@ function* logOut() {
 function* submitUpdateEmailRequest(credentials) {
   const cookie = yield select(getZephrCookie);
   // Submit the form to Zephr.
-  const { status } = yield call(
+  const { status, type } = yield call(
     zephrService.requestUpdateEmail,
     credentials.payload,
     cookie,
   );
 
   if ('success' === status) {
+    // Update the users' profile to show new email address.
+    yield call(getAccount, cookie);
+
+    // Navigate to the confirmation page.
     history.push('/email-update/request');
   }
 
   if ('failed' === status) {
-    console.log('status ', status);
+    yield put(actionReceiveEmailUpdateError(type));
   }
 }
 
@@ -100,20 +105,21 @@ function* submitUpdateEmailRequest(credentials) {
  */
 function* submitUpdateEmail(credentials) {
   const cookie = yield select(getZephrCookie);
+
   // Submit the form to Zephr.
-  const { status } = yield call(
+  const { status, type } = yield call(
     zephrService.updateEmail,
     credentials.payload,
     cookie,
   );
 
+  debugger; // eslint-disable-line
+
   if ('success' === status) {
-    // @TODO: Once Zephr has added a new email template to their email settings,
-    // we'll need to send the user to the confirmation page.
-    // history.push('/email-update/confirmation');
+    history.push('/email-update/confirmation');
   }
 
   if ('failed' === status) {
-    // yield put(actionReceiveResetError(type));
+    yield put(actionReceiveEmailUpdateError(type));
   }
 }

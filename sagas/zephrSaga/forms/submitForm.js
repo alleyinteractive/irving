@@ -188,6 +188,6 @@ function* submitReset(credentials, cookie) {
   }
 
   if ('failed' === status) {
-    // yield put(actionReceiveResetError(type));
+    // yield put(actionReceiveEmailUpdateError(type));
   }
 }
