@@ -1,5 +1,4 @@
-const getVipRedis = require('@automattic/vip-go');
-const getLogService = require('./logService');
+const getConfigField = require('@irvingjs/core/utils/getConfigField');
 
 /**
  * @typedef {object} CacheService
@@ -10,11 +9,15 @@ const getLogService = require('./logService');
  * @returns {CacheService}
  */
 const getService = () => {
+  const logger = getConfigField('logService');
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
   if (! process.env.BROWSER) {
-    const client = getVipRedis({ logger: getLogService('irving:redis') });
+    const { redis } = require('@automattic/vip-go'); // eslint-disable-line global-require
+    const client = redis({
+      logger: logger('irving:redis'),
+    });
 
     if (! client) {
       return false;
