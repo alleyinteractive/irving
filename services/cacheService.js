@@ -1,3 +1,5 @@
+const getVipRedis = require('@automattic/vip-go');
+const getLogService = require('./logService');
 const defaultService = {
   get: () => null,
   set: () => {},
@@ -17,31 +19,11 @@ const getService = () => {
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
   if (! process.env.BROWSER) {
-    // Redis env variables have not been configured.
-    if (! process.env.REDIS_MASTER) {
+    const client = getVipRedis({ logger: getLogService('irving:redis') });
+
+    if (! client) {
       return defaultService;
     }
-
-    let Redis;
-    // Check if optional redis client is installed.
-    try {
-      Redis = require('ioredis'); // eslint-disable-line global-require
-    } catch (err) {
-      return defaultService;
-    }
-
-    const [host, port] = (process.env.REDIS_MASTER).split(':');
-    const opts = { host, port };
-
-    // Add password, if configured
-    if (process.env.REDIS_PASSWORD) {
-      opts.password = process.env.REDIS_PASSWORD;
-    }
-
-    const client = new Redis(opts);
-    client.on('error', (err) => {
-      console.error(err); // eslint-disable-line no-console
-    });
 
     return {
       client,
@@ -53,7 +35,7 @@ const getService = () => {
           key,
           JSON.stringify(value),
           'EX',
-          600
+          process.env.CACHE_EXPIRE || 300
         );
       },
       del(key) {
