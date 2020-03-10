@@ -13,6 +13,7 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
+import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
 import ContactForm from 'components/contactForm';
 import ContentArea from 'components/contentArea';
@@ -119,6 +120,7 @@ export const componentMap = {
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
+  'complete-profile': CompleteProfile,
   'confirm-registration': ConfirmRegistration,
   'content-area': ContentArea,
   'content-body': ContentBody,
@@ -157,7 +159,7 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
-  'list-50-item': CompanyListItem,
+  'list-50-intro-item': CompanyListItem,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,

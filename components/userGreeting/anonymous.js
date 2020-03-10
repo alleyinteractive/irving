@@ -11,13 +11,13 @@ import styles from './userGreeting.css';
 const Anonymous = ({ themeName }) => (
   <>
     <Link
-      to="/login"
+      to="/login/"
       className={classNames(styles.button, styles[`button--${themeName}`])}
     >
       {__('Sign in', 'mittr')}
     </Link>
     <Link
-      to="/subscribe"
+      to="/subscribe/"
       className={classNames(
         styles.subscribe,
         styles[`subscribe--${themeName}`]

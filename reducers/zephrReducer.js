@@ -12,6 +12,7 @@ import {
   RECEIVE_ZEPHR_USER_ACCOUNT,
   RECEIVE_ZEPHR_USER_VERIFICATION,
   SUBMIT_ZEPHR_FORM,
+  RECEIVE_RESET_PASSWORD_ERROR,
 } from 'actions/types';
 import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
 import { zephr as defaultState } from './defaultState';
@@ -54,7 +55,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         ...state,
         session: {
           ...state.session,
-          payload,
+          ...payload,
         },
       };
     case RECEIVE_ZEPHR_USER_PROFILE:
@@ -146,10 +147,20 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
             ...state.forms[payload],
             components: setPasswordErrorState(state.forms[payload]),
             error: true,
-            errors: [
-              ...state.forms.register.errors,
-              'verify-password',
-            ],
+            errors: ['verify-password'],
+          },
+        },
+      };
+    case RECEIVE_RESET_PASSWORD_ERROR:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          reset: {
+            ...state.forms.reset,
+            components: setFormErrorState(state.forms.reset, payload),
+            error: true,
+            errors: [payload],
           },
         },
       };
@@ -181,46 +192,6 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
  * @returns {object} form
  */
 function submitForm(form) {
-  let tmp = form;
-
-  if (form.error) {
-    tmp = clearFormErrors(form);
-  }
-
-  const fields = JSON.parse(form.components);
-
-  const components = fields.map((el) => {
-    if ('submit-button' === el.id) {
-      return {
-        ...el,
-        value: 'Loading...',
-      };
-    }
-
-    return el;
-  });
-
-  return {
-    ...tmp,
-    components: JSON.stringify(components),
-  };
-}
-
-/**
- * A function that is run any time a form is submitted that cleans up the state of a
- * submitted form that contains errors. If no errors are present, the form is returned.
- *
- * @param {object} state   The current state.
- * @param {string} route   The form's route (e.g. /login).
- *
- * @returns {object} form  The cleared form.
- */
-function clearFormErrors(form) {
-  // If there is no error, return the form.
-  if (! form.error) {
-    return form;
-  }
-
   // Get the component fields.
   const fields = JSON.parse(form.components);
   // Remove any errors
@@ -234,6 +205,7 @@ function clearFormErrors(form) {
 
     return el;
   });
+
   // Retrieve the position of any active error message.
   const activeErrorIndexes = components.map(
     (component, index) => {
@@ -249,11 +221,20 @@ function clearFormErrors(form) {
     components.splice(activeErrorIndexes.pop(), 1);
   }
 
+  const withLoadState = components.map((el) => {
+    if ('submit-button' === el.id) {
+      return {
+        ...el,
+        value: 'Loading...',
+      };
+    }
+
+    return el;
+  });
+
   return {
     ...form,
-    error: false,
-    errors: [],
-    components: JSON.stringify(components),
+    components: JSON.stringify(withLoadState),
   };
 }
 
@@ -271,13 +252,35 @@ export function setFormErrorState(form, error) {
     return form.components;
   }
 
-  let obj = { ...form };
-  if (form.error) {
-    obj = clearFormErrors(form);
+  // Get the component fields.
+  const fields = JSON.parse(form.components);
+  // Remove any existing errors.
+  const components = fields.map((el) => {
+    if (true === el.invalid) {
+      return {
+        ...el,
+        invalid: false,
+      };
+    }
+
+    return el;
+  });
+
+  // Retrieve the position of any active error message.
+  const activeErrorIndexes = components.map(
+    (component, index) => {
+      const { key } = component;
+      if (key && key.includes('error-message')) {
+        return index;
+      }
+      return null;
+    }
+  ).filter((index) => null !== index);
+
+  while (activeErrorIndexes.length) {
+    components.splice(activeErrorIndexes.pop(), 1);
   }
 
-  // Get the components.
-  const components = JSON.parse(obj.components);
   // Get the targer's ID.
   const targetId = setErrorTargetId(error);
   // Get the target's position in the components array.
@@ -341,15 +344,37 @@ export function setFormErrorState(form, error) {
  * @returns {object} form The transformed form.
  */
 export function setPasswordErrorState(form) {
-  let obj = form;
-  if (form.error) {
-    obj = clearFormErrors(form);
+  // Get the component fields.
+  const fields = JSON.parse(form.components);
+  // Get the components.
+  const components = fields.map((el) => {
+    if (true === el.invalid) {
+      return {
+        ...el,
+        invalid: false,
+      };
+    }
+
+    return el;
+  });
+
+  // Retrieve the position of any active error message.
+  const activeErrorIndexes = components.map(
+    (component, index) => {
+      const { key } = component;
+      if (key && key.includes('error-message')) {
+        return index;
+      }
+      return null;
+    }
+  ).filter((index) => null !== index);
+
+  while (activeErrorIndexes.length) {
+    components.splice(activeErrorIndexes.pop(), 1);
   }
 
   // Define the error.
   const error = 'verify-password';
-  // Get the components.
-  const components = JSON.parse(obj.components);
   // Get the target's position in the components array.
   const position = components.map((el) => el.id).indexOf('new-password');
   // Get the password input.
