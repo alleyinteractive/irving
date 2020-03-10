@@ -10,6 +10,7 @@ import {
   actionRequestForms,
   actionReceiveUserLogOut,
   actionReceiveEmailUpdateError,
+  actionRequestEmailUpdateError,
 } from 'actions/zephrActions';
 import {
   REQUEST_ZEPHR_FORMS,
@@ -85,16 +86,16 @@ function* submitUpdateEmailRequest(credentials) {
     cookie,
   );
 
-  if ('success' === status) {
-    // Update the users' profile to show new email address.
-    yield call(getAccount, cookie);
+  // Update the users' profile to show new email address.
+  yield call(getAccount, cookie);
 
+  if ('success' === status) {
     // Navigate to the confirmation page.
     history.push('/email-update/request');
   }
 
   if ('failed' === status) {
-    yield put(actionReceiveEmailUpdateError(type));
+    yield put(actionRequestEmailUpdateError(type));
   }
 }
 
@@ -113,9 +114,10 @@ function* submitUpdateEmail(credentials) {
     cookie,
   );
 
+  // Update the users' profile to show new email address.
+  yield call(getAccount, cookie);
+
   if ('success' === status) {
-    // Update the users' profile to show new email address.
-    yield call(getAccount, cookie);
     history.push('/email-update/confirmation');
   }
 
