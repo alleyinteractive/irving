@@ -17,17 +17,13 @@
 
 .profileImage {
   border-radius: 50%;
-  height: rem(132);
+  height: rem(192);
   overflow: hidden;
-  width: rem(132);
-
-  @media ($mdMin) {
-    height: rem(192);
-    width: rem(192);
-  }
+  width: rem(192);
 }
 
 .mobileImageWrapper {
+  margin-bottom: rem(10);
   margin-right: rem(20);
 
   @media ($smMin) {
@@ -39,6 +35,7 @@
   font-size: rem(30);
   font-weight: 600;
   line-height: 1;
+  margin-bottom: rem(5);
 
   @media ($mdMin) {
     font-size: rem(40);
@@ -47,7 +44,11 @@
 
 .profile {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+
+  @media ($mdMin) {
+    flex-direction: row;
+  }
 }
 
 .meta {
@@ -78,7 +79,7 @@
   font-size: rem(16);
   font-weight: 600;
   line-height: rem(22);
-  margin-top: rem(10);
+  margin-top: rem(15);
 
   @media ($mdMin) {
     margin-top: rem(20);
