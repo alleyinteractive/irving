@@ -13,6 +13,7 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
+import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
 import ContentArea from 'components/contentArea';
 import ContentBody from 'components/contentBody';
@@ -118,6 +119,7 @@ export const componentMap = {
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
+  'complete-profile': CompleteProfile,
   'confirm-registration': ConfirmRegistration,
   'content-area': ContentArea,
   'content-body': ContentBody,

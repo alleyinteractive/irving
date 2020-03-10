@@ -8,10 +8,12 @@ import {
 import formSaga from './forms';
 import tokenExchangeSaga from './tokenExchange';
 import resolveUIRules from './resolveUIRules';
+import ssoSaga from './sso';
 
 export default [
   ...formSaga,
   ...tokenExchangeSaga,
+  ...ssoSaga,
   // Needs to be run on the first site load regardless.
   call(resolveUIRules),
   // This saga is run on receive components so that a request for new UI
