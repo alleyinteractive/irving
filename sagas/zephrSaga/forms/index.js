@@ -116,6 +116,9 @@ function* submitUpdateEmail(credentials) {
   debugger; // eslint-disable-line
 
   if ('success' === status) {
+    // Update the users' profile to show new email address.
+    yield call(getAccount, cookie);
+
     history.push('/email-update/confirmation');
   }
 
