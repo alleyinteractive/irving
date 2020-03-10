@@ -17,9 +17,14 @@
 
 .profileImage {
   border-radius: 50%;
-  height: rem(192);
+  height: rem(132);
   overflow: hidden;
-  width: rem(192);
+  width: rem(132);
+
+  @media ($mdMin) {
+    height: rem(192);
+    width: rem(192);
+  }
 }
 
 .mobileImageWrapper {
@@ -31,8 +36,13 @@
 }
 
 .authorType {
-  font-size: rem(40);
+  font-size: rem(30);
   font-weight: 600;
+  line-height: 1;
+
+  @media ($mdMin) {
+    font-size: rem(40);
+  }
 }
 
 .profile {
@@ -56,20 +66,34 @@
 }
 
 .name {
-  font-size: rem(50);
+  font-size: rem(40);
+  line-height: 1;
+
+  @media ($mdMin) {
+    font-size: rem(50);
+  }
 }
 
 .title {
   font-size: rem(16);
   font-weight: 600;
   line-height: rem(22);
-  margin-top: rem(20);
+  margin-top: rem(10);
+
+  @media ($mdMin) {
+    margin-top: rem(20);
+  }
 }
 
 .bio {
-  font-size: rem(20);
-  line-height: rem(26);
+  font-size: rem(18);
+  line-height: rem(24);
   margin-top: rem(20);
+
+  @media ($mdMin) {
+    font-size: rem(20);
+    line-height: rem(26);
+  }
 
   & a {
     border-bottom: $border-thin;
@@ -125,9 +149,14 @@
 .postCountWrapper {
   background-color: $color-deck;
   color: $background-gray;
-  font-size: rem(30);
+  font-size: rem(24);
   margin: rem(5) 0 rem(15) 0;
-  padding: rem(50) rem(20) rem(40);
+  padding: rem(40) rem(20) rem(40);
+
+  @media ($mdMin) {
+    font-size: rem(30);
+    padding: rem(50) rem(20) rem(40);
+  }
 
   & strong {
     font-weight: 600;
