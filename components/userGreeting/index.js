@@ -25,7 +25,7 @@ const UserGreeting = ({
   themeName,
 }) => (
   <div className={styles.wrapper}>
-    {isAuthenticated ? (
+    {isAuthenticated && 0 < firstName.length ? (
       <Authenticated
         firstName={firstName}
         lastName={lastName}

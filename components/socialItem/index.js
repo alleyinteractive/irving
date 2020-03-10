@@ -75,6 +75,10 @@ const SocialItem = (props) => {
   );
 };
 
+SocialItem.defaultProps = {
+  sharePermalink: true,
+};
+
 SocialItem.propTypes = {
   /**
    * What type of service is this? Should correspond to a key in `socialIconMap`
@@ -89,7 +93,7 @@ SocialItem.propTypes = {
    */
   displayIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
     .isRequired,
-  sharePermalink: PropTypes.string.isRequired,
+  sharePermalink: PropTypes.string,
   theme: PropTypes.object.isRequired,
   themeName: PropTypes.string.isRequired,
 };

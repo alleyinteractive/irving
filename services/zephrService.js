@@ -259,6 +259,13 @@ export default {
         return { status: 'success' };
       }
 
+      if (400 === response.status) {
+        return {
+          status: 'failed',
+          type: 'password-not-strong',
+        };
+      }
+
       if (404 === response.status) {
         return {
           status: 'failed',
@@ -384,7 +391,7 @@ export default {
   },
 
   /**
-   * Get the user's profile (first and last name).
+   * Get the user's profile.
    *
    * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
    *
@@ -408,13 +415,88 @@ export default {
       const {
         'first-name': firstName,
         'last-name': lastName,
+        'sso-user': isSSO,
+        'sso-provider': ssoProvider,
+        'google-authenticated': hasGoogleAuth,
+        'facebook-authenticated': hasFacebookAuth,
       } = response;
 
-      return { firstName, lastName };
+      if (true === isSSO) {
+        return {
+          firstName,
+          lastName,
+          isSSO,
+          ssoProvider,
+          hasGoogleAuth,
+          hasFacebookAuth,
+        };
+      }
+
+      return {
+        firstName,
+        lastName,
+      };
     } catch (error) {
       postErrorMessage(error);
       // Return null to exit the profile setting portion of the saga.
       return null;
+    }
+  },
+
+  /**
+   * Update the user's profile (first, last, and full name).
+   *
+   * @param {{object,string}} Profile properties to update and the current cookie.
+   *
+   * @returns {string} Request status.
+   */
+  async updateProfile({ properties, cookie }) {
+    try {
+      const {
+        firstName,
+        fullName,
+        lastName,
+      } = properties;
+
+      const body = {
+        'full-name': fullName,
+        'first-name': firstName,
+        'last-name': lastName,
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/profile`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            cookie,
+          },
+          credentials: 'include',
+          body: JSON.stringify(body),
+        }
+      ).then((res) => {
+        if (200 === res.status) {
+          return {
+            status: 200,
+            ...res.json(),
+          };
+        }
+
+        return {
+          status: 'failed',
+        };
+      });
+
+      const response = await request;
+
+      if (200 === response.status) {
+        return 'success';
+      }
+
+      return 'failed';
+    } catch (error) {
+      return postErrorMessage(error);
     }
   },
 

@@ -37,7 +37,7 @@
 }
 
 .eyebrow {
-  font-size: rem(14);
+  font-size: rem(16);
   line-height: 1.19;
   margin-bottom: rem(5);
   order: 0;
@@ -71,7 +71,7 @@
   color: $color-text;
   font-size: rem(16);
   line-height: 1.375;
-  margin-bottom: rem(15);
+  margin-top: rem(15);
   width: 100%;
 
   @media ($smMin) {
