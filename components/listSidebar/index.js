@@ -24,28 +24,30 @@ const ListSidebar = (props) => {
       >
         {__('Sort by', 'mittr')}
       </Heading>
-      <ul>
-        <li>
-          <Link to={rankLink}>
-            {__('Rank', 'mittr')}
-          </Link>
-        </li>
-        <li>
-          <Link to={nameLink}>
-            {__('Name', 'mittr')}
-          </Link>
-        </li>
-        <li>
-          <Link to={locationLink}>
-            {__('Location', 'mittr')}
-          </Link>
-        </li>
-        <li>
-          <Link to={yearsonLink}>
-            {__('Years on List', 'mittr')}
-          </Link>
-        </li>
-      </ul>
+      <nav className={styles.listSidebarNav}>
+        <ul>
+          <li>
+            <Link to={rankLink} className={styles.listSidebarNavLink}>
+              {__('Rank', 'mittr')}
+            </Link>
+          </li>
+          <li>
+            <Link to={nameLink} className={styles.listSidebarNavLink}>
+              {__('Name', 'mittr')}
+            </Link>
+          </li>
+          <li>
+            <Link to={locationLink} className={styles.listSidebarNavLink}>
+              {__('Location', 'mittr')}
+            </Link>
+          </li>
+          <li>
+            <Link to={yearsonLink} className={styles.listSidebarNavLink}>
+              {__('Years on List', 'mittr')}
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </section>
   );
 };
