@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
+import classNames from 'classnames';
 import submitForm from 'services/submitForm';
 
 import styles from './contactForm.css';
@@ -14,11 +15,15 @@ const ContactForm = ({ title }) => {
     register,
     handleSubmit,
     formState,
+    watch,
   } = useForm();
+  const REQUIRED_FORM_MESSAGE = __('Oops! Don’t forget to fill this field out.',
+    'mittr');
   const [formStatus, setFormStatus] = useState({
     status: 'unsubmitted',
     message: '',
   });
+  const showDelivery = 'subscription' === watch('mailbox_slug');
   const onSubmit = (formData) => {
     if (formState.isValid) {
       // Split the full_name value for submission to HelpScout.
@@ -27,19 +32,27 @@ const ContactForm = ({ title }) => {
       formData.first_name = names[0];
       // eslint-disable-next-line no-param-reassign, prefer-destructuring
       formData.last_name = names[names.length - 1];
+      // Must set message data or else HelpScout API will fail the reqeust.
       // eslint-disable-next-line no-param-reassign
       formData.message = {
         subject: 'Message from technologyreview.com contact us form',
-        body: 'This is a request sent from the contact us form.',
+        body: formData.message_body ||
+          'This is a request sent from the contact us form.',
       };
-      console.log(formData);
       submitForm('helpscout', formData)
         .then(({ status, message }) => {
           setFormStatus({
             status,
             message,
           });
-        }).catch((err) => console.log(err));
+        })
+        .catch((err) => {
+          console.log({ err });
+          setFormStatus({
+            status: 'error',
+            message: 'Sorry, you request did not go through.',
+          });
+        });
     }
   };
 
@@ -67,7 +80,9 @@ const ContactForm = ({ title }) => {
               aria-invalid={errors.full_name ? 'true' : 'false'}
               // eslint-disable-next-line max-len
               aria-describedby="error-full_name-required error-full_name-pattern"
-              className="contactForm__input"
+              className={classNames('contactForm__input', {
+                [styles.inputError]: errors.full_name,
+              })}
               id="full_name"
               placeholder={__(
                 'Full name',
@@ -85,7 +100,7 @@ const ContactForm = ({ title }) => {
                 'block' : 'none',
             }}
           >
-            {__('This field is required', 'mittr')}
+            {REQUIRED_FORM_MESSAGE}
           </span>
           <span
             role="alert"
@@ -111,7 +126,9 @@ const ContactForm = ({ title }) => {
                 required: true,
                 pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
               })}
-              className="contactForm__input"
+              className={classNames('contactForm__input', {
+                [styles.inputError]: errors.email,
+              })}
               aria-invalid={errors.email ? 'true' : 'false'}
               // eslint-disable-next-line max-len
               aria-describedby="error-email-required error-email-pattern"
@@ -132,7 +149,7 @@ const ContactForm = ({ title }) => {
                 'block' : 'none',
             }}
           >
-            {__('This field is required', 'mittr')}
+            {REQUIRED_FORM_MESSAGE}
           </span>
           <span
             role="alert"
@@ -209,7 +226,7 @@ const ContactForm = ({ title }) => {
               'block' : 'none',
           }}
         >
-          {__('This field is required', 'mittr')}
+          {REQUIRED_FORM_MESSAGE}
         </span>
         <div className="contactForm__radioWrap">
           <span
@@ -273,7 +290,7 @@ const ContactForm = ({ title }) => {
               'block' : 'none',
           }}
         >
-          {__('This field is required', 'mittr')}
+          {REQUIRED_FORM_MESSAGE}
         </span>
         <div className="contactForm__formGroup">
           <label
@@ -286,8 +303,14 @@ const ContactForm = ({ title }) => {
               })}
               id="questionSelect"
               name="mailbox_slug"
-              className="contactForm__select"
+              className={classNames('contactForm__select', {
+                [styles.inputError]: errors.mailbox_slug,
+              })}
             >
+              <option value="">
+                {__('Choose a support topic',
+                  'mittr')}
+              </option>
               <option value="subscription">
                 {__('Question about my subscription or magazine delivery',
                   'mittr')}
@@ -298,22 +321,111 @@ const ContactForm = ({ title }) => {
               </option>
               <option value="feedback">
                 {__('Comment or piece of editorial feedback to share',
-                  'miir-plugin-extenstion')}
+                  'mittr')}
               </option>
               <option value="events">
                 {__('Question about an upcoming or past event',
-                  'miir-plugin-extenstion')}
+                  'mittr')}
               </option>
               <option value="permission">
                 {__(`Permissions, reprints, syndication,
-                  or licensing request`, 'miir-plugin-extenstion')}
+                  or licensing request`, 'mittr')}
               </option>
               <option value="general">
                 {__('General question or feedback',
-                  'miir-plugin-extenstion')}
+                  'mittr')}
               </option>
             </select>
           </label>
+          <span
+            role="alert"
+            id="error-mailbox_slug-required"
+            className={styles.errorMessage}
+            style={{
+              display: errors.mailbox_slug &&
+                'required' === errors.mailbox_slug.type ?
+                'block' : 'none',
+            }}
+          >
+            {REQUIRED_FORM_MESSAGE}
+          </span>
+        </div>
+        {showDelivery && (
+          <div className="contactForm__formGroup">
+            <label
+              htmlFor="delivery_address"
+              className="contactForm__inputLabel"
+            >
+              <input
+                type="text"
+                name="delivery_address"
+                ref={register({
+                  required: true,
+                })}
+                aria-invalid={errors.delivery_address ? 'true' : 'false'}
+                // eslint-disable-next-line max-len
+                aria-describedby="error-delivery_address-required"
+                className={classNames('contactForm__input', {
+                  [styles.inputError]: errors.delivery_address,
+                })}
+                id="delivery_address"
+                placeholder={__(
+                  'Delivery address',
+                  'mittr'
+                )}
+              />
+            </label>
+            <span
+              role="alert"
+              id="error-delivery_address-required"
+              className={styles.errorMessage}
+              style={{
+                display: errors.delivery_address &&
+                'required' === errors.full_name.type ?
+                  'block' : 'none',
+              }}
+            >
+              {REQUIRED_FORM_MESSAGE}
+            </span>
+          </div>
+        )}
+        <div className="contactForm__formGroup">
+          <label
+            htmlFor="messageBody"
+            className="contactForm__inputLabel"
+          >
+            <textarea
+              className={classNames('contactForm__textarea', {
+                [styles.inputError]: errors.message_body,
+              })}
+              name="message_body"
+              ref={register({
+                required: true,
+              })}
+              aria-invalid={errors.message_body ? 'true' : 'false'}
+              // eslint-disable-next-line max-len
+              aria-describedby="error-message_body-required"
+              id="messageBody"
+              placeholder={__(
+                'How can we help?',
+                'mittr'
+              )}
+              cols="30"
+              rows="10"
+            />
+          </label>
+          <span
+            role="alert"
+            id="error-message_body-required"
+            className={styles.errorMessage}
+            style={{
+              display: errors.message_body &&
+                'required' === errors.message_body.type ?
+                'block' : 'none',
+            }}
+          >
+            {REQUIRED_FORM_MESSAGE}
+          </span>
         </div>
         <input
           type="submit"
@@ -322,7 +434,13 @@ const ContactForm = ({ title }) => {
           value={__('Get in touch', 'mittr')}
         />
         {formStatus.message && (
-          <p>{formStatus.message }</p>
+          <div className={classNames(styles.formResponse, {
+            [styles.successResponse]: 'success' === formStatus.status,
+            [styles.errorResponse]: 'error' === formStatus.status,
+          })}
+          >
+            <p>{formStatus.message}</p>
+          </div>
         )}
       </form>
     </div>
