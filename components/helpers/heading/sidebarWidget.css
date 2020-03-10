@@ -1,0 +1,10 @@
+.wrapper {
+  border-top: solid 4px $black;
+  display: block;
+  font-size: rem(14);
+  font-weight: 700;
+  letter-spacing: rem(1);
+  margin-bottom: rem(15);
+  padding-top: rem(5);
+  text-transform: uppercase;
+}
