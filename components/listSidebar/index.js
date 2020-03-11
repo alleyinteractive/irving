@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import Heading from 'components/helpers/heading';
@@ -16,6 +16,21 @@ const ListSidebar = (props) => {
     yearsonLink,
   } = props;
 
+  const current = window.location.href;
+  const links = [locationLink, nameLink, rankLink, yearsonLink];
+  const [defaultSort, setDefaultSort] = useState(false);
+
+  /**
+   * On page load, set the default sort to true.
+   */
+  useEffect(() => {
+    if (! links.includes(current)) {
+      setDefaultSort(true);
+    } else {
+      setDefaultSort(false);
+    }
+  });
+
   return (
     <section className={styles.wrapper}>
       <Heading
@@ -27,22 +42,38 @@ const ListSidebar = (props) => {
       <nav className={styles.listSidebarNav}>
         <ul>
           <li>
-            <Link to={rankLink} className={styles.listSidebarNavLink}>
+            <Link
+              to={rankLink}
+              className={defaultSort || rankLink === current ?
+                styles.active : ''}
+            >
               {__('Rank', 'mittr')}
             </Link>
           </li>
           <li>
-            <Link to={nameLink} className={styles.listSidebarNavLink}>
+            <Link
+              to={nameLink}
+              className={nameLink === current ?
+                styles.active : ''}
+            >
               {__('Name', 'mittr')}
             </Link>
           </li>
           <li>
-            <Link to={locationLink} className={styles.listSidebarNavLink}>
+            <Link
+              to={locationLink}
+              className={locationLink === current ?
+                styles.active : ''}
+            >
               {__('Location', 'mittr')}
             </Link>
           </li>
           <li>
-            <Link to={yearsonLink} className={styles.listSidebarNavLink}>
+            <Link
+              to={yearsonLink}
+              className={yearsonLink === current ?
+                styles.active : ''}
+            >
               {__('Years on List', 'mittr')}
             </Link>
           </li>
