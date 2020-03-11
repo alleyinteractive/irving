@@ -1,5 +1,4 @@
 const memoize = require('lodash/memoize');
-const chalk = require('chalk');
 const { getMergedFromUserConfig } = require('./getMergedConfigField');
 let config;
 
@@ -8,6 +7,7 @@ if (process.env.BUILD) {
   config = require('@irvingjs/irving.config').default || {};
 } else {
   const { serverConfig: serverConfigPath } = require('../config/paths');
+  const chalk = require('chalk');
 
   // Wrap require for server config in try/catch to ensure things will work
   // if user decides not to create a server config.
