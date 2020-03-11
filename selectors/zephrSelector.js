@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import get from 'lodash/get';
 
 export const zephrSelector = (state) => state.zephr;
 
@@ -46,14 +45,15 @@ export const getSession = createSelector(
   (state) => state.session,
 );
 
+export const isSSO = createSelector(
+  zephrSelector,
+  (state) => state.user.profile.isSSO,
+);
+
 /* The Zephr cookie  */
 export const getZephrCookie = createSelector(
   zephrSelector,
-  (state) => get(
-    state,
-    'session.payload.sessionCookie',
-    ''
-  )
+  (state) => state.session.sessionCookie
 );
 
 /* User Profile/Account */
@@ -89,6 +89,16 @@ export const getFirstName = createSelector(
 export const getLastName = createSelector(
   zephrSelector,
   (state) => state.user.profile.lastName,
+);
+
+export const getHasGoogleAuth = createSelector(
+  zephrSelector,
+  (state) => state.user.profile.hasGoogleAuth
+);
+
+export const getHasFacebookAuth = createSelector(
+  zephrSelector,
+  (state) => state.user.profile.hasFacebookAuth,
 );
 
 export const getEmailVerified = createSelector(
