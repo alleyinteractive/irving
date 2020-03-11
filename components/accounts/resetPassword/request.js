@@ -87,7 +87,7 @@ const RequestForm = ({
         <span>Questions? <Link to="/help">Visit our help section</Link>.</span>
         <span>
           Changed your mind?{' '}
-          <Link to="/login">Return to the login screen</Link>.
+          <Link to="/login/">Return to the login screen</Link>.
         </span>
       </div>
     </div>

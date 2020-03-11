@@ -14,10 +14,29 @@ const GoogleTagManager = (props) => {
   }
 
   /**
+   * Check for gtm.start in dataLayer.
+   */
+  window.dataLayer = window.dataLayer || [];
+  const started = window.dataLayer.filter((dataLayerObj) => (
+    dataLayerObj['gtm.start']
+  ));
+
+  /**
+   * Effect for starting the GTM dataLayer.
+   */
+  useEffect(() => {
+    if (0 === started.length) {
+      window.dataLayer.push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js',
+      });
+    }
+  }, []);
+
+  /**
    * Effect for pushing new data to the GTM dataLayer.
    */
   useEffect(() => {
-    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'irving.historyChange',
       ...dataLayer,
@@ -29,19 +48,11 @@ const GoogleTagManager = (props) => {
   return (
     <>
       <Helmet>
-        {/* eslint-disable max-len */}
-        <script>
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${containerId}');
-          `}
-        </script>
+        <script src={`https://www.googletagmanager.com/gtm.js?id=${containerId}`} async />
         {/* Initial SSR event. */}
         <script>
           {`
+            window.dataLayer = window.dataLayer || [];
             if (${isNode()}) {
               var data = ${JSON.stringify(dataLayer)};
               data.event = 'irving.initialRender';
@@ -49,7 +60,6 @@ const GoogleTagManager = (props) => {
             }
           `}
         </script>
-        {/* eslint-enable */}
       </Helmet>
       <noscript>
         <iframe

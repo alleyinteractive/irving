@@ -25,7 +25,7 @@ const ConfirmReset = ({ isAuthenticated }) => (
       )}
     </p>
     {! isAuthenticated ? (
-      <Link to="/login" className={styles.homeButton}>Login</Link>
+      <Link to="/login/" className={styles.homeButton}>Login</Link>
     ) : (
       <Link to="/" className={styles.homeButton}>Go Home</Link>
     )}

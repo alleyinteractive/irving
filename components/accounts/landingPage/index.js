@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import TwitterIcon from 'assets/icons/twitter.svg';
-import FacebookIcon from 'assets/icons/facebook.svg';
-import GoogleIcon from 'assets/icons/google.svg';
 import parse from 'html-react-parser';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
@@ -193,52 +190,6 @@ const AccountLandingPage = ({
       </div>
 
       <div className={styles.extraControls}>
-        <div className={styles.socialConnections}>
-          <h2>{__('Social login connections', 'mittr')}</h2>
-          <p>
-            {__(`Simplify signing in by connecting your social media accounts
-            to this site. (We will never post anything to your social media
-            accounts on your behalf without explicitly asking for your
-            permission first, of course.)`, 'mittr')}
-          </p>
-
-          <div className={styles.buttonContainer}>
-            <button
-              id="facebookConnectBtn"
-              className={styles.button}
-              type="button"
-              tabIndex="0"
-            >
-              <div className={styles.facebookIcon}>
-                <FacebookIcon />
-              </div>
-              {__('Connect Facebook', 'mittr')}
-            </button>
-            <button
-              id="twitterConnectBtn"
-              className={styles.button}
-              type="button"
-              tabIndex="0"
-            >
-              <div className={styles.twitterIcon}>
-                <TwitterIcon />
-              </div>
-              {__('Connect Twitter', 'mittr')}
-            </button>
-            <button
-              id="googleConnectBtn"
-              className={styles.button}
-              type="button"
-              tabIndex="0"
-            >
-              <div className={styles.googleIcon}>
-                <GoogleIcon />
-              </div>
-              {__('Connect Google', 'mittr')}
-            </button>
-          </div>
-        </div>
-
         {0 < discounts.length && (
           <div className={styles.discounts}>
             <h2>{__('Discounts and deals', 'mittr')}</h2>

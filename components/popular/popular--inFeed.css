@@ -8,17 +8,7 @@
 }
 
 .contentModule {
-  border-top: 4px solid #000000;
   font-family: $sans;
-}
-
-.title {
-  font-size: rem(14);
-  font-weight: 700;
-  letter-spacing: rem(1);
-  line-height: 1.142857;
-  margin: rem(5) 0 rem(15) 0;
-  text-transform: uppercase;
 }
 
 .stories {
