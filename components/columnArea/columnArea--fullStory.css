@@ -18,6 +18,7 @@
 
 .wrapper {
   composes: wrapper from './columnArea--feed.css';
+  padding-top: rem(40);
 }
 
 .main {
