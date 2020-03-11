@@ -9,6 +9,7 @@
  */
 @import 'react-image-gallery/styles/css/image-gallery.css';
 @import '../../components/carousel/carousel.css';
+@import '../../components/contactForm/contactForm.css';
 @import '../../components/contentList/contentList.css';
 @import '../../components/contentList/contentList.css';
 @import '../../components/imageSet/imageSet.css';
