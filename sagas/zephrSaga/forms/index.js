@@ -9,6 +9,8 @@ import { REHYDRATE } from 'redux-persist/lib/constants';
 import {
   actionRequestForms,
   actionReceiveUserLogOut,
+  actionReceiveEmailUpdateError,
+  actionRequestEmailUpdateError,
 } from 'actions/zephrActions';
 import {
   REQUEST_ZEPHR_FORMS,
@@ -109,18 +111,22 @@ function* completeProfile({ payload }) {
 function* submitUpdateEmailRequest(credentials) {
   const cookie = yield select(getZephrCookie);
   // Submit the form to Zephr.
-  const { status } = yield call(
+  const { status, type } = yield call(
     zephrService.requestUpdateEmail,
     credentials.payload,
     cookie,
   );
 
+  // Update the users' profile to show new email address.
+  yield call(getAccount, cookie);
+
   if ('success' === status) {
+    // Navigate to the confirmation page.
     history.push('/email-update/request');
   }
 
   if ('failed' === status) {
-    console.log('status ', status);
+    yield put(actionRequestEmailUpdateError(type));
   }
 }
 
@@ -131,20 +137,22 @@ function* submitUpdateEmailRequest(credentials) {
  */
 function* submitUpdateEmail(credentials) {
   const cookie = yield select(getZephrCookie);
+
   // Submit the form to Zephr.
-  const { status } = yield call(
+  const { status, type } = yield call(
     zephrService.updateEmail,
     credentials.payload,
     cookie,
   );
 
+  // Update the users' profile to show new email address.
+  yield call(getAccount, cookie);
+
   if ('success' === status) {
-    // @TODO: Once Zephr has added a new email template to their email settings,
-    // we'll need to send the user to the confirmation page.
-    // history.push('/email-update/confirmation');
+    history.push('/email-update/confirmation');
   }
 
   if ('failed' === status) {
-    // yield put(actionReceiveResetError(type));
+    yield put(actionReceiveEmailUpdateError(type));
   }
 }

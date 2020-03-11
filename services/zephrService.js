@@ -438,7 +438,6 @@ export default {
       const response1 = await request1;
 
       const request2 = fetch(
-        // eslint-disable-next-line max-len
         `${process.env.ZEPHR_ROOT_URL}/blaize/users/update-email/${token}`,
         {
           method: 'POST',
