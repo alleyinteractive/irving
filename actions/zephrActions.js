@@ -23,6 +23,7 @@ import {
   REQUEST_UPDATE_EMAIL,
   RECEIVE_UPDATE_EMAIL,
   RECEIVE_EMAIL_UPDATE_ERROR,
+  REQUEST_EMAIL_UPDATE_ERROR,
 } from './types';
 
 /**
@@ -109,12 +110,21 @@ export function actionReceiveLoginError(payload) {
 }
 
 /**
- * A Redux action that represents when an error occurred changing the user's email.
+ * A Redux action that represents when an error occurred receiving the token to update an email.
  *
  * @param {{tyoe}} The Redux action.
  */
 export function actionReceiveEmailUpdateError(payload) {
   return createAction(RECEIVE_EMAIL_UPDATE_ERROR, payload);
+}
+
+/**
+ * A Redux action that represents when an error occurred the user made a request to change an email.
+ *
+ * @param {{tyoe}} The Redux action.
+ */
+export function actionRequestEmailUpdateError(payload) {
+  return createAction(REQUEST_EMAIL_UPDATE_ERROR, payload);
 }
 
 /**
