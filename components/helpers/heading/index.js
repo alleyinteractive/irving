@@ -3,20 +3,30 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
+
+import withThemes from 'components/hoc/withThemes';
+
 import styles from './heading.css';
+import sidebarWidgetTheme from './sidebarWidget.css';
 
 const Heading = (props) => {
   const {
-    tag,
     children,
-    typeStyle,
-    link,
     className,
+    link,
+    tag,
+    theme,
+    typeStyle,
   } = props;
   const Tag = `${tag}`;
 
   return (
-    <Tag className={classNames(styles[`${typeStyle}`], className)}>
+    <Tag className={classNames(
+      theme[`${typeStyle}`],
+      theme.wrapper,
+      className
+    )}
+    >
       {link ?
         <Link to={link}>{children}</Link> :
         <span>{children}</span>
@@ -46,6 +56,7 @@ Heading.propTypes = {
    * Additional classname(s) to apply.
    */
   className: PropTypes.string,
+  theme: PropTypes.object.isRequired,
 };
 
 Heading.defaultProps = {
@@ -54,4 +65,7 @@ Heading.defaultProps = {
   typeStyle: 'base',
 };
 
-export default withStyles(styles)(Heading);
+export default withThemes('heading', {
+  default: styles,
+  sidebarWidget: sidebarWidgetTheme,
+})(withStyles(styles, sidebarWidgetTheme)(Heading));
