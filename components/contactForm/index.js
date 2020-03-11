@@ -460,7 +460,8 @@ const ContactForm = ({ title }) => {
           type="submit"
           id="getInTouchBtn"
           className="contactForm__submitBtn"
-          value={__('Get in touch', 'mittr')}
+          value={'submitted' === formStatus.status ?
+            __('Sending...', 'mittr') : __('Get in touch', 'mittr')}
         />
         {'' !== formStatus.message && (
           <div className={classNames(styles.formResponse, {
