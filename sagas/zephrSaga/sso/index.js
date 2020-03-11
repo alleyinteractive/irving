@@ -9,7 +9,7 @@ import {
 import {
   actionReceiveUserSession,
   actionReceiveUserLogin,
-  actionSendUserVerificationEamil,
+  actionSendUserVerificationEmail,
   actionReceiveUserRegistration,
 } from 'actions/zephrActions';
 import createDebug from 'services/createDebug';
@@ -39,7 +39,7 @@ function* completeSignOn({ payload: { identifier, cookie, action } }) {
     try {
       yield call(formService.sendVerificationEmail, identifier);
       // Update the state to reflect the email being sent.
-      yield put(actionSendUserVerificationEamil());
+      yield put(actionSendUserVerificationEmail());
       // Push the user to the confirmation page.
       history.push('/register/confirmation/');
     } catch (error) {

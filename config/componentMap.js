@@ -102,6 +102,8 @@ import TeamModuleItem from 'components/ourTeamModule/item';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import TopicsModule from 'components/topicsModule';
+import UpdateEmailRequest from 'components/accounts/updateEmail/request';
+import UpdateEmailConfirm from 'components/accounts/updateEmail/confirmation';
 import UserGreeting from 'components/userGreeting';
 import Verify from 'components/accounts/verify';
 import Video from 'components/video';
@@ -224,6 +226,8 @@ export const componentMap = {
   'technology-meta': ContentList,
   'topic-header': CardStack,
   'topics-module': TopicsModule,
+  'update-email-request': UpdateEmailRequest,
+  'update-email-confirmation': UpdateEmailConfirm,
   'user-greeting': UserGreeting,
   verify: Verify,
   video: Video,
