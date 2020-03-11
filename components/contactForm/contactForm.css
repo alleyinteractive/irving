@@ -1,0 +1,128 @@
+/* Newsletter component styles */
+
+/* stylelint-disable selector-max-specificity */
+
+/**
+ * Gutenberg block styles.
+ * Because these are also included in the editor in WordPress, they must be globally scoped.
+ */
+:global {
+
+  .contactForm__wrap {
+    max-width: rem(742);
+    width: 100%;
+  }
+
+  .contactForm__formGroup {
+    margin-bottom: rem(10);
+  }
+
+  .contactForm__header-wrap {
+    margin-bottom: rem(20);
+  }
+
+  .contactForm__title,
+  .editor-styles-wrapper h3.contactForm__title {
+    @include accountHeader;
+    margin: 0;
+  }
+
+  .contactForm__header,
+  .editor-styles-wrapper h2.contactForm__header {
+    @include accountSubHeader;
+    font-size: rem(50);
+    margin: 0;
+  }
+
+  .contactForm__input,
+  .edit-post-visual-editor input[type="email"].contactForm__input,
+  .edit-post-visual-editor input[type="text"].contactForm__input {
+    @include formInput;
+    font-style: italic;
+
+    &::placeholder { /* Chrome/Opera/Safari */
+      font-style: normal;
+    }
+  }
+
+  .contactForm__textarea,
+  .edit-post-visual-editor textarea.contactForm__textarea {
+    @include formInput;
+    font-style: italic;
+    height: rem(92);
+
+    &::placeholder { /* Chrome/Opera/Safari */
+      font-style: normal;
+    }
+  }
+
+  .contactForm__submitBtn {
+    @include inputBtn;
+    font-family: $sans;
+    margin-left: 0;
+    margin-top: rem(20);
+    max-width: 100%;
+  }
+
+  .contactForm__radioWrap {
+    display: flex;
+    margin-bottom: rem(10);
+  }
+
+  .contactForm__radioHeader {
+    margin-right: rem(15);
+  }
+
+  .contactForm__inlineRadioLabel {
+    align-items: center;
+    display: flex;
+    margin-right: rem(10);
+  }
+
+  .contactForm__formGroupRadio {
+    display: flex;
+  }
+
+  .contactForm__inlineRadioLabel,
+  .contactForm__radioHeader {
+    font-family: $sans;
+    font-size: rem(20);
+  }
+
+  .contactForm__radioInput {
+    margin-right: rem(5);
+  }
+
+  .contactForm__select,
+  .edit-post-visual-editor select.contactForm__select {
+    @include formInput;
+    -webkit-appearance: textfield; /* override for stupid Gutenberg styles */
+    background: #f0f0f0;
+    font-style: italic;
+    height: rem(46);
+    max-width: 100%;
+  }
+}
+
+.errorMessage {
+  @include formErrorMsg;
+  font-family: $sans;
+}
+
+.formResponse {
+  color: $black;
+  font-family: $sans;
+  margin: rem(15) 0;
+
+  &.successResponse {
+    color: $success;
+  }
+
+  &.errorResponse {
+    color: $error;
+  }
+}
+
+.inputError {
+  @include inputInvalid;
+}
