@@ -104,35 +104,35 @@ module.exports = function getRules(context) {
       include: [/assets\/icons/],
       use: ['svg-react-loader'],
     },
-    // {
-    //   resource: {
-    //     test: /\.jsx?$/,
-    //     or: [
-    //       include,
-    //       (filepath) => (
-    //         // These specific node modules, which contain arrow functions that must be
-    //         // transpiled.
-    //         filepath.includes('node_modules') &&
-    //           (
-    //             filepath.includes('query-string') ||
-    //             filepath.includes('split-on-first') ||
-    //             filepath.includes('strict-uri-encode') ||
-    //             filepath.includes('abort-controller') ||
-    //             filepath.includes('event-target-shim') ||
-    //             filepath.includes('regenerator-runtime')
-    //           )
-    //       ),
-    //     ],
-    //   },
-    //   use: [
-    //     {
-    //       loader: 'babel-loader',
-    //       options: {
-    //         extends: path.join(irvingRoot, 'babel.config.js'),
-    //       },
-    //     },
-    //   ],
-    // },
+    {
+      resource: {
+        test: /\.jsx?$/,
+        or: [
+          include,
+          // (filepath) => (
+          //   // These specific node modules, which contain arrow functions that must be
+          //   // transpiled.
+          //   filepath.includes('node_modules') &&
+          //     (
+          //       filepath.includes('query-string') ||
+          //       filepath.includes('split-on-first') ||
+          //       filepath.includes('strict-uri-encode') ||
+          //       filepath.includes('abort-controller') ||
+          //       filepath.includes('event-target-shim') ||
+          //       filepath.includes('regenerator-runtime')
+          //     )
+          // ),
+        ],
+      },
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            extends: path.join(irvingRoot, 'babel.config.js'),
+          },
+        },
+      ],
+    },
     {
       test: /\.css$/,
       include,
