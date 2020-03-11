@@ -17,7 +17,12 @@
 
 .listSidebarNav {
   li {
-    font-size: rem(25);
+    font-size: rem(21);
+    font-weight: 600;
     margin-top: rem(20);
   }
+}
+
+.active {
+  color: red; /* TODO: change to white after theme color is applied. */
 }
