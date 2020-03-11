@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/integrations",
-	"version": "2.5.2",
+	"version": "2.5.3",
 	"description": "Third party integrations for Irving",
 	"files": [
 		"components/**/*",
