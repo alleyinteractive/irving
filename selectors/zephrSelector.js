@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import get from 'lodash/get';
 
 export const zephrSelector = (state) => state.zephr;
 
@@ -59,17 +60,21 @@ export const getZephrCookie = createSelector(
 /* User Profile/Account */
 export const getUser = createSelector(
   zephrSelector,
-  (state) => state.user,
+  (state) => state.user
 );
 
 export const getAccount = createSelector(
   zephrSelector,
-  (state) => state.user.account,
+  (state) => state.user.account
 );
 
 export const getProfile = createSelector(
   zephrSelector,
-  (state) => state.user.profile,
+  (state) => get(
+    state,
+    'user.profile',
+    {}
+  )
 );
 
 export const getEmail = createSelector(

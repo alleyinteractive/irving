@@ -1,16 +1,5 @@
-
 .moduleWrapper {
-  border-top: 4px solid #000000;
   padding: rem(5) 0 rem(40);
-}
-
-.sidebarTitle {
-  display: block;
-  font-size: rem(14);
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: rem(15);
-  text-transform: uppercase;
 }
 
 .link {

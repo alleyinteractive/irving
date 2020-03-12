@@ -29,8 +29,8 @@
     "npm": "6"
   },
   "dependencies": {
-    "@automattic/vip-go": "^0.3.3",
-    "@automattic/vip-go-preflight-checks": "0.0.4",
+    "@automattic/vip-go": "^1.0.0",
+    "@automattic/vip-go-preflight-checks": "^1.0.0",
     "@babel/polyfill": "^7.2.5",
     "@wordpress/i18n": "^3.6.0",
     "axios": "^0.19.2",
@@ -60,6 +60,7 @@
     "react-dom": "^16.8.6",
     "react-headroom": "^2.2.8",
     "react-helmet": "^5.2.1",
+    "react-hook-form": "^4.10.2",
     "react-hot-loader": "^4.6.3",
     "react-image-gallery": "^0.9.1",
     "react-oembed-container": "^0.3.0",
