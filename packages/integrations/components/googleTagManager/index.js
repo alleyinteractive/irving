@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from '@irvingjs/core/utils/isNode';
-import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
 
 const GoogleTagManager = (props) => {
   const {
@@ -15,32 +14,29 @@ const GoogleTagManager = (props) => {
   }
 
   /**
-   * Load GTM script, but only once.
+   * Check for gtm.start in dataLayer.
    */
-  const loaded = useLoadScript(
-    `https://www.googletagmanager.com/gtm.js?id=${containerId}`,
-    'google-tag-manager'
-  );
+  window.dataLayer = window.dataLayer || [];
+  const started = window.dataLayer.filter((dataLayerObj) => (
+    dataLayerObj['gtm.start']
+  ));
 
   /**
-   * Effect for starting up the GTM dataLayer.
+   * Effect for starting the GTM dataLayer.
    */
   useEffect(() => {
-    // gtm start function, invoked in useEffect so it doesn't fire on every render
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'gtm.start': new Date().getTime(),
-      event: 'gtm.js',
-    });
-
-    return () => {};
-  }, [loaded]);
+    if (0 === started.length) {
+      window.dataLayer.push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js',
+      });
+    }
+  }, []);
 
   /**
    * Effect for pushing new data to the GTM dataLayer.
    */
   useEffect(() => {
-    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'irving.historyChange',
       ...dataLayer,
@@ -52,6 +48,7 @@ const GoogleTagManager = (props) => {
   return (
     <>
       <Helmet>
+        <script src={`https://www.googletagmanager.com/gtm.js?id=${containerId}`} async />
         {/* Initial SSR event. */}
         <script>
           {`
