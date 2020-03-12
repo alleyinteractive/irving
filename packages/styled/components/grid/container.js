@@ -21,7 +21,7 @@ const GridContainer = (props) => {
     maxWidth,
     tag,
   } = props;
-  const useProps = (gridColumns && gridGap);
+  const useProps = !! (gridColumns || gridGap);
 
   return (
     <StyledContainer
