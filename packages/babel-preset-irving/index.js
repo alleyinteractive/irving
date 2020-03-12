@@ -1,5 +1,6 @@
 module.exports = function babelPresetIrving() {
   return {
+    sourceType: 'unambiguous',
     plugins: [
       'lodash',
       'react-hot-loader/babel',
