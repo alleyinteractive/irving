@@ -120,7 +120,8 @@
     "webpack-hot-middleware": "^2.25.0",
     "webpack-hot-server-middleware": "^0.6.0",
     "webpack-node-externals": "^1.7.2",
-    "webpack-stats-plugin": "^0.3.0"
+    "webpack-stats-plugin": "^0.3.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "optionalDependencies": {
     "ioredis": "^4.14.1",
