@@ -184,62 +184,6 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
   }
 }
 
-function defaultSubmitText(type) {
-  switch (type) {
-    case 'reset':
-      return 'Reset your password';
-    case 'resetRequest':
-      return 'Send password reset link';
-    case 'login':
-      return 'Login';
-    case 'register':
-      return 'Create this account';
-    default:
-      return 'Loading...';
-  }
-}
-
-function disableLoadState(state) {
-  const {
-    forms,
-  } = state;
-
-  const cleanedForms =
-    Object.values(forms).map((form) => {
-      const { components } = form;
-      const fields = JSON.parse(components);
-      const submitButton = fields.filter(
-        (field) => 'submit-button' === field.id
-      )[0];
-
-      if ('Loading...' === submitButton.value) {
-        fields.splice(fields.length - 1, 1, {
-          ...submitButton,
-          value: defaultSubmitText(form.type),
-        });
-
-        return {
-          ...form,
-          components: JSON.stringify(fields),
-        };
-      }
-
-      return form;
-    });
-
-  let withKeys = {};
-  cleanedForms.map((form) => {
-    withKeys = {
-      ...withKeys,
-      [form.type]: form,
-    };
-
-    return true;
-  });
-
-  return withKeys;
-}
-
 /**
  * A function that is run on form submission. Cleans the form of any errors
  * and applies a loading state to the submit button.
@@ -293,6 +237,63 @@ function submitForm(form) {
     ...form,
     components: JSON.stringify(withLoadState),
   };
+}
+
+/**
+ * Ensure the 'Loading...' text is removed from any forms once
+ * we receive a user session and reset it to the default value.
+ *
+ * @param {object} state The current state.
+ *
+ * @param {object} withKeys The cleaned form state.
+ */
+function disableLoadState(state) {
+  const {
+    forms,
+  } = state;
+
+  // Create an array of forms with cleaned load state.
+  const cleanedForms =
+    Object.values(forms).map((form) => {
+      // Get the components.
+      const { components } = form;
+      // Get the form fields.
+      const fields = JSON.parse(components);
+      // Isolate the submit button.
+      const submitButton = fields.filter(
+        (field) => 'submit-button' === field.id
+      )[0];
+
+      // Only operate on forms with an active load state.
+      if ('Loading...' === submitButton.value) {
+        fields.splice(fields.length - 1, 1, {
+          ...submitButton,
+          value: defaultSubmitText(form.type),
+        });
+
+        return {
+          ...form,
+          components: JSON.stringify(fields),
+        };
+      }
+
+      return form;
+    });
+
+  let withKeys = {};
+  // Populate the withKeys object of the type { [type]: form, ... } to
+  // match the initial shape of the forms state object.
+  cleanedForms.map((form) => {
+    withKeys = {
+      ...withKeys,
+      [form.type]: form,
+    };
+
+    return true;
+  });
+
+  // Return the formatted value.
+  return withKeys;
 }
 
 /**
@@ -361,30 +362,12 @@ export function setFormErrorState(form, error) {
   // Add the error message to the components array.
   components.splice(position + 1, 0, message);
 
-  let value = 'Submit';
-  switch (form.type) {
-    case 'login':
-      value = 'Login';
-      break;
-    case 'register':
-      value = 'Create an account';
-      break;
-    case 'requestReset':
-      value = 'Send password reset link';
-      break;
-    case 'reset':
-      value = 'Change your password';
-      break;
-    default:
-      break;
-  }
-
   return JSON.stringify(
     components.map((el) => {
       if ('submit-button' === el.id) {
         return {
           ...el,
-          value,
+          value: defaultSubmitText(form.type),
         };
       }
 
@@ -463,36 +446,41 @@ export function setPasswordErrorState(form) {
   // Add the error message to the components array.
   components.splice(position + 2, 0, message);
 
-  let value = 'Submit';
-  switch (form.type) {
-    case 'login':
-      value = 'Login';
-      break;
-    case 'register':
-      value = 'Create this account';
-      break;
-    case 'requestReset':
-      value = 'Send password reset link';
-      break;
-    case 'reset':
-      value = 'Change your password';
-      break;
-    default:
-      break;
-  }
-
   return JSON.stringify(
     components.map((el) => {
       if ('submit-button' === el.id) {
         return {
           ...el,
-          value,
+          value: defaultSubmitText(form.type),
         };
       }
 
       return el;
     })
   );
+}
+
+/**
+ * A function that returns the default submit button text for
+ * a given form type.
+ *
+ * @param {string} type The form type
+ *
+ * @returns {string} Submit button text.
+ */
+function defaultSubmitText(type) {
+  switch (type) {
+    case 'reset':
+      return 'Reset your password';
+    case 'resetRequest':
+      return 'Send password reset link';
+    case 'login':
+      return 'Login';
+    case 'register':
+      return 'Create this account';
+    default:
+      return 'Loading...';
+  }
 }
 
 /**
@@ -534,31 +522,38 @@ export function setErrorTargetId(type) {
  *
  * @returns {string} The error message.
  */
-/* eslint-disable max-len */
 export function formatErrorMessage(type) {
   const messageBase = 'Oops! Let’s try that again';
 
   switch (type) {
     case 'email-address':
-      return `${messageBase} — Please enter a valid email address.`;
+      return `${messageBase} — Please enter
+       a valid email address.`;
     case 'email-not-verified':
-      return `${messageBase} — Your email has not yet been verified. Please check your inbox for a verification email and try again.`;
+      return `${messageBase} — Your email has not
+       yet been verified. Please check your inbox
+       for a verification email and try again.`;
     case 'full-name':
       return `${messageBase} — Please enter your full name.`;
     case 'invalid-password':
-      return `${messageBase} — Invalid password. Please enter your password.`;
+      return `${messageBase} — Invalid password.
+       Please enter your password.`;
     case 'password-not-strong':
-      return `${messageBase} — Your password must be at least 8 characters, include one uppercase letter, one lowercase letter, and one symbol (e.g. !#$%&).`;
+      return `${messageBase} — Your password must be at
+       least 8 characters, include one uppercase letter,
+       one lowercase letter, and one symbol (e.g. !#$%&).`;
     case 'terms-checkbox':
-      return `${messageBase} — You must agree to the terms of service in order to create an account.`;
+      return `${messageBase} — You must agree to the terms
+       of service in order to create an account.`;
     case 'user-already-exists':
       return `${messageBase} — Account already exists!`;
     case 'user-not-found':
-      return `${messageBase} — User not found. Please enter your email address.`;
+      return `${messageBase} — User not found.
+       Please enter your email address.`;
     case 'verify-password':
-      return `${messageBase} — Passwords do not match. Please re-enter your password and try again.`;
+      return `${messageBase} — Passwords do not match.
+       Please re-enter your password and try again.`;
     default:
       return messageBase;
   }
 }
-/* eslint-enable */
