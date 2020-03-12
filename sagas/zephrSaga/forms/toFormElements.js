@@ -56,7 +56,7 @@ export default function toFormElements(fields, type) {
             React.createElement('input', props, null),
             React.createElement(Link, {
               className: 'forgot-password-link',
-              to: '/reset-password',
+              to: '/reset-password/',
             },
             'Forgot your password?'));
         }
