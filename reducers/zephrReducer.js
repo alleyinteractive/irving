@@ -57,6 +57,7 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...state.session,
           ...payload,
         },
+        forms: disableLoadState(state),
       };
     case RECEIVE_ZEPHR_USER_PROFILE:
       return {
@@ -181,6 +182,62 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
     default:
       return state;
   }
+}
+
+function defaultSubmitText(type) {
+  switch (type) {
+    case 'reset':
+      return 'Reset your password';
+    case 'resetRequest':
+      return 'Send password reset link';
+    case 'login':
+      return 'Login';
+    case 'register':
+      return 'Create this account';
+    default:
+      return 'Loading...';
+  }
+}
+
+function disableLoadState(state) {
+  const {
+    forms,
+  } = state;
+
+  const cleanedForms =
+    Object.values(forms).map((form) => {
+      const { components } = form;
+      const fields = JSON.parse(components);
+      const submitButton = fields.filter(
+        (field) => 'submit-button' === field.id
+      )[0];
+
+      if ('Loading...' === submitButton.value) {
+        fields.splice(fields.length - 1, 1, {
+          ...submitButton,
+          value: defaultSubmitText(form.type),
+        });
+
+        return {
+          ...form,
+          components: JSON.stringify(fields),
+        };
+      }
+
+      return form;
+    });
+
+  let withKeys = {};
+  cleanedForms.map((form) => {
+    withKeys = {
+      ...withKeys,
+      [form.type]: form,
+    };
+
+    return true;
+  });
+
+  return withKeys;
 }
 
 /**
@@ -412,7 +469,7 @@ export function setPasswordErrorState(form) {
       value = 'Login';
       break;
     case 'register':
-      value = 'Create an account';
+      value = 'Create this account';
       break;
     case 'requestReset':
       value = 'Send password reset link';
