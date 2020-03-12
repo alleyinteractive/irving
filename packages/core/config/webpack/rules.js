@@ -116,7 +116,9 @@ module.exports = function getRules(context) {
               (
                 filepath.includes('query-string') ||
                 filepath.includes('split-on-first') ||
-                filepath.includes('strict-uri-encode')
+                filepath.includes('strict-uri-encode') ||
+                filepath.includes('abort-controller') ||
+                filepath.includes('event-target-shim')
               )
           ),
         ],

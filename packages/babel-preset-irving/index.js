@@ -15,6 +15,10 @@ module.exports = function babelPresetIrving() {
           targets: {
             browsers: 'last 3 versions, IE 11',
           },
+          corejs: {
+            version: 3,
+          },
+          useBuiltIns: 'usage',
         },
       ],
       '@babel/react',
