@@ -86,6 +86,19 @@
         margin-right: -16.66%;
       }
     }
+
+    &.content-center {
+      clear: both;
+      float: none;
+      margin: 0 auto;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+
+      @media ($mdMin) {
+        width: rem(222);
+      }
+    }
   }
 
   .contentList__header {
