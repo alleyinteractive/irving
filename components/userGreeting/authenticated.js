@@ -12,7 +12,7 @@ const Authenticated = ({ firstName, lastName, themeName }) => {
   const lastInitial = Array.from(lastName).shift();
   return (
     <Link
-      to="/account"
+      to="/account/"
       className={classNames(styles.button, styles[`button--${themeName}`])}
     >
       {sprintf(__('Hello, %(firstName)s %(lastInitial)s.', 'mittr'), {

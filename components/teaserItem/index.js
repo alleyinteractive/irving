@@ -95,7 +95,8 @@ const TeaserItem = ({
       )}
       {('' !== teaseCTA &&
         'infeed' !== themeName &&
-        'storygroup' !== themeName) && (
+        'storygroup' !== themeName &&
+        'search' !== themeName) && (
         <Link to={permalink} className={theme.callToAction}>
           {teaseCTA}
         </Link>

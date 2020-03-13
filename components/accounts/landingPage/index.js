@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import TwitterIcon from 'assets/icons/twitter.svg';
-import FacebookIcon from 'assets/icons/facebook.svg';
-import GoogleIcon from 'assets/icons/google.svg';
 import parse from 'html-react-parser';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
@@ -17,6 +14,7 @@ import history from 'utils/history';
 import {
   actionRequestUserLogOut,
   actionSubmitForm,
+  actionRequestUpdateEmail,
 } from 'actions/zephrActions';
 
 import AccountInfoForm from './infoForm';
@@ -34,6 +32,7 @@ const AccountLandingPage = ({
   logOut,
   isAuthenticated,
   submitResetRequest,
+  submitUpdateEmail,
 }) => {
   // Prevent unauthenticated users from being able to visit this route.
   if (! isAuthenticated) {
@@ -50,6 +49,13 @@ const AccountLandingPage = ({
       isEditingPassword: false,
     });
   };
+
+  const onSubmitUpdateEmail = (event) => {
+    submitUpdateEmail({
+      email: event.value,
+    });
+  };
+
   const onClickResetPassword = () => {
     submitResetRequest({
       type: 'resetRequest',
@@ -108,7 +114,7 @@ const AccountLandingPage = ({
             ) : (
               <AccountInfoForm
                 type="email"
-                handleSubmit={() => {}}
+                handleSubmit={(event) => onSubmitUpdateEmail(event)}
                 placeholderValue={email}
               />
             )}
@@ -184,52 +190,6 @@ const AccountLandingPage = ({
       </div>
 
       <div className={styles.extraControls}>
-        <div className={styles.socialConnections}>
-          <h2>{__('Social login connections', 'mittr')}</h2>
-          <p>
-            {__(`Simplify signing in by connecting your social media accounts
-            to this site. (We will never post anything to your social media
-            accounts on your behalf without explicitly asking for your
-            permission first, of course.)`, 'mittr')}
-          </p>
-
-          <div className={styles.buttonContainer}>
-            <button
-              id="facebookConnectBtn"
-              className={styles.button}
-              type="button"
-              tabIndex="0"
-            >
-              <div className={styles.facebookIcon}>
-                <FacebookIcon />
-              </div>
-              {__('Connect Facebook', 'mittr')}
-            </button>
-            <button
-              id="twitterConnectBtn"
-              className={styles.button}
-              type="button"
-              tabIndex="0"
-            >
-              <div className={styles.twitterIcon}>
-                <TwitterIcon />
-              </div>
-              {__('Connect Twitter', 'mittr')}
-            </button>
-            <button
-              id="googleConnectBtn"
-              className={styles.button}
-              type="button"
-              tabIndex="0"
-            >
-              <div className={styles.googleIcon}>
-                <GoogleIcon />
-              </div>
-              {__('Connect Google', 'mittr')}
-            </button>
-          </div>
-        </div>
-
         {0 < discounts.length && (
           <div className={styles.discounts}>
             <h2>{__('Discounts and deals', 'mittr')}</h2>
@@ -290,11 +250,13 @@ AccountLandingPage.propTypes = {
   subscriptionName: PropTypes.string,
   subscriptionType: PropTypes.string,
   submitResetRequest: PropTypes.func.isRequired,
+  submitUpdateEmail: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   logOut: () => dispatch(actionRequestUserLogOut()),
   submitResetRequest: (data) => dispatch(actionSubmitForm(data)),
+  submitUpdateEmail: (payload) => dispatch(actionRequestUpdateEmail(payload)),
 });
 
 const withRedux = connect(

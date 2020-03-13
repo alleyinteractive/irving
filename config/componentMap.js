@@ -13,7 +13,9 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
+import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
+import ContactForm from 'components/contactForm';
 import ContentArea from 'components/contentArea';
 import ContentBody from 'components/contentBody';
 import ContentFooter from 'components/contentFooter';
@@ -23,6 +25,7 @@ import ContentListItem from 'components/contentList/contentListItem';
 import Container from 'components/container';
 import Disqus from 'components/disqus';
 import Error404 from 'components/error404';
+import EventsPromoModule from 'components/eventsPromoModule';
 import FeedItem from 'components/feedItem';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
@@ -30,6 +33,7 @@ import GoogleTagManager from 'components/googleTagManager';
 import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
+import Heading from 'components/helpers/heading';
 import HeaderWithImage from 'components/headerWithImage';
 import HubContent from 'components/hub/content';
 import HubList from 'components/hub/list';
@@ -39,6 +43,7 @@ import ImageSet from 'components/imageSet';
 import InfiniteItemList from 'components/infiniteItemList';
 import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
+import Link from 'components/helpers/link';
 import LinkTeaser from 'components/linkTeaser';
 import ListDescription from 'components/listDescription';
 import ListGroup from 'components/listGroup';
@@ -99,6 +104,8 @@ import TeamModuleItem from 'components/ourTeamModule/item';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import TopicsModule from 'components/topicsModule';
+import UpdateEmailRequest from 'components/accounts/updateEmail/request';
+import UpdateEmailConfirm from 'components/accounts/updateEmail/confirmation';
 import UserGreeting from 'components/userGreeting';
 import Verify from 'components/accounts/verify';
 import Video from 'components/video';
@@ -119,6 +126,7 @@ export const componentMap = {
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
+  'complete-profile': CompleteProfile,
   'confirm-registration': ConfirmRegistration,
   'content-area': ContentArea,
   'content-body': ContentBody,
@@ -131,6 +139,7 @@ export const componentMap = {
   disqus: Disqus,
   embed: RawHTML,
   'error-404': Error404,
+  'events-promo-module': EventsPromoModule,
   'core-embed': RawHTML,
   'feed-anchor': CardStack,
   footer: Footer,
@@ -139,6 +148,7 @@ export const componentMap = {
   'gutenberg-content': GutenbergContent,
   head: Head,
   header: Header,
+  heading: Heading,
   'header-with-image': HeaderWithImage,
   'hub-content': HubContent,
   'hub-content-list': HubList,
@@ -148,6 +158,7 @@ export const componentMap = {
   image: Image,
   'infinite-list': InfiniteItemList,
   innovator: Innovator,
+  'link-to': Link,
   'link-teaser': LinkTeaser,
   'innovator-header': InnovatorHeader,
   'list-header': ListHeader,
@@ -158,7 +169,7 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
-  'list-50-item': CompanyListItem,
+  'list-50-intro-item': CompanyListItem,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
@@ -170,6 +181,7 @@ export const componentMap = {
   menu: Menu,
   'menu-item': MenuItem,
   'mittr-plugin-extension/carousel': Carousel,
+  'mittr-plugin-extension/contact-form': ContactForm,
   'mittr-plugin-extension/content-list': ContentList,
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/image-set': ImageSet,
@@ -218,6 +230,8 @@ export const componentMap = {
   'technology-meta': ContentList,
   'topic-header': CardStack,
   'topics-module': TopicsModule,
+  'update-email-request': UpdateEmailRequest,
+  'update-email-confirmation': UpdateEmailConfirm,
   'user-greeting': UserGreeting,
   verify: Verify,
   video: Video,

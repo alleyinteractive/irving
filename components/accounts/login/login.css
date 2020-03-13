@@ -41,7 +41,7 @@
     margin: 0 rem(3);
   }
 
-  a {
+  button {
     font-weight: 600;
     padding-right: rem(5);
     text-decoration: underline;

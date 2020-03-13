@@ -20,6 +20,13 @@ import {
   VERIFY_ZEPHR_USER_TOKEN,
   RECEIVE_ZEPHR_USER_VERIFICATION,
   SEND_ZEPHR_VERIFICATION_EMAIL,
+  REQUEST_UPDATE_EMAIL,
+  RECEIVE_UPDATE_EMAIL,
+  RECEIVE_EMAIL_UPDATE_ERROR,
+  REQUEST_EMAIL_UPDATE_ERROR,
+  RECEIVE_RESET_PASSWORD_ERROR,
+  RECEIVE_SSO_SESSION,
+  SUBMIT_PROFILE,
 } from './types';
 
 /**
@@ -106,6 +113,24 @@ export function actionReceiveLoginError(payload) {
 }
 
 /**
+ * A Redux action that represents when an error occurred receiving the token to update an email.
+ *
+ * @param {{type}} The Redux action.
+ */
+export function actionReceiveEmailUpdateError(payload) {
+  return createAction(RECEIVE_EMAIL_UPDATE_ERROR, payload);
+}
+
+/**
+ * A Redux action that represents when an error occurred the user made a request to change an email.
+ *
+ * @param {{type}} The Redux action.
+ */
+export function actionRequestEmailUpdateError(payload) {
+  return createAction(REQUEST_EMAIL_UPDATE_ERROR, payload);
+}
+
+/**
  * A Redux action that represents browser state change when a user successfully registers.
  *
  * @returns {{type}} The Redux action.
@@ -138,10 +163,32 @@ export function actionReceiveRegistrationError(payload) {
 }
 
 /**
+ * A Redux action that represents when a user wants to edit their email.
+ *
+ * @param {{errorType}} payload The email to be sent
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionRequestUpdateEmail(payload) {
+  return createAction(REQUEST_UPDATE_EMAIL, payload);
+}
+
+/**
+ * A Redux action that represents when a user wants to edit their email.
+ *
+ * @param {{errorType}} payload The email to be sent
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionVerifyEmailUpdateToken(payload) {
+  return createAction(RECEIVE_UPDATE_EMAIL, payload);
+}
+
+/**
  * A Redux action that represents when a user submits a form that contains errors. Those errors should
  * be cleared for the new submission.
  *
- * @param {{route}} paylod The form's route.
+ * @param {{route}} payload The form's route.
  *
  * @returns {{type, payload}} The Redux action.
  */
@@ -179,7 +226,7 @@ export function actionReceiveUserAccount(payload) {
   return createAction(RECEIVE_ZEPHR_USER_ACCOUNT, payload);
 }
 
-/*
+/**
  * A Redux action after the UI Components have been requested.
  *
  * @returns {{type}} The Redux action.
@@ -202,12 +249,12 @@ export function actionReceiveUIComponents(payload) {
  *
  * @returns {{type}} The Redux action.
  */
-export function actionSendUserVerificationEamil() {
+export function actionSendUserVerificationEmail() {
   return createAction(SEND_ZEPHR_VERIFICATION_EMAIL);
 }
 
 /**
- * A Redux action that respresents browser state change once a user's token is
+ * A Redux action that represents browser state change once a user's token is
  * submitted for verification.
  *
  * @param {{ token }} The user's verification token.
@@ -225,4 +272,36 @@ export function actionVerifyToken(payload) {
  */
 export function actionReceiveUserVerification() {
   return createAction(RECEIVE_ZEPHR_USER_VERIFICATION);
+}
+
+/**
+ * A Redux action that represents browser state change when a user enters a
+ * password that does not meet the requirements when resetting their password.
+ *
+ * @param {{type}} The error type.
+ *
+ * @returns {{type, payload}} The Redux acion.
+ */
+export function actionReceiveResetError(payload) {
+  return createAction(RECEIVE_RESET_PASSWORD_ERROR, payload);
+}
+
+/**
+ * A Redux action that represents browser state change once a user logs in
+ * using a third-party single sign-on (SSO) service.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveSsoSession(payload) {
+  return createAction(RECEIVE_SSO_SESSION, payload);
+}
+
+/**
+ * A Redux action that represents browser state change once a user requests a
+ * change to their profile.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionSubmitProfile(payload) {
+  return createAction(SUBMIT_PROFILE, payload);
 }

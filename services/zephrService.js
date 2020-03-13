@@ -259,6 +259,13 @@ export default {
         return { status: 'success' };
       }
 
+      if (400 === response.status) {
+        return {
+          status: 'failed',
+          type: 'password-not-strong',
+        };
+      }
+
       if (404 === response.status) {
         return {
           status: 'failed',
@@ -353,6 +360,118 @@ export default {
   },
 
   /**
+   * Request to update a current users email address.
+   *
+   * @param {string} email    The user's email address.
+   *
+   * @returns {obj}           The logged in user and their associated entitlements.
+   */
+  async requestUpdateEmail({ email, cookie }) {
+    try {
+      const user = {
+        new_identifiers: {
+          email_address: email,
+        },
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/users/update-email/`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            cookie,
+          },
+          body: JSON.stringify(user),
+        }
+      );
+
+      const response = await request;
+
+      if (201 === response.status) {
+        return { status: 'success' };
+      }
+
+      if (404 === response.status) {
+        return {
+          status: 'failed',
+          type: 'user-not-found',
+        };
+      }
+
+      return {
+        status: 'failed',
+        type: 'bad-request',
+      };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Complete the update email process by submitting the password to
+   * Zephr and redirecting the user.
+   *
+   * @param {object} token The user's token to complete the email update.
+   *
+   * @returns {object} status The response status.
+   */
+  async updateEmail(token, cookie) {
+    // @TODO: Once Zephr has added a new email template to their email settings,
+    // we'll need to separate these requests out. On the user's new email confirmation,
+    // we would create a new function for the 2nd call.
+    try {
+      const request1 = fetch(
+        // eslint-disable-next-line max-len
+        `${process.env.ZEPHR_ROOT_URL}/blaize/users/update-email-passwordless/${token}`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            cookie,
+          },
+        }
+      );
+
+      const response1 = await request1;
+
+      const request2 = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/users/update-email/${token}`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            cookie,
+          },
+        }
+      );
+
+      const response2 = await request2;
+
+      if (200 === response1.status && 200 === response2.status) {
+        return { status: 'success' };
+      }
+
+      if (404 === response1.status || 404 === response2.status) {
+        return {
+          status: 'failed',
+          type: 'invalid-state',
+        };
+      }
+
+      return {
+        status: 'failed',
+        type: 'bad-request',
+      };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
    * Log a user out and remove their Zephr session cookie.
    */
   async logOut(session) {
@@ -384,7 +503,7 @@ export default {
   },
 
   /**
-   * Get the user's profile (first and last name).
+   * Get the user's profile.
    *
    * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
    *
@@ -408,13 +527,88 @@ export default {
       const {
         'first-name': firstName,
         'last-name': lastName,
+        'sso-user': isSSO,
+        'sso-provider': ssoProvider,
+        'google-authenticated': hasGoogleAuth,
+        'facebook-authenticated': hasFacebookAuth,
       } = response;
 
-      return { firstName, lastName };
+      if (true === isSSO) {
+        return {
+          firstName,
+          lastName,
+          isSSO,
+          ssoProvider,
+          hasGoogleAuth,
+          hasFacebookAuth,
+        };
+      }
+
+      return {
+        firstName,
+        lastName,
+      };
     } catch (error) {
       postErrorMessage(error);
       // Return null to exit the profile setting portion of the saga.
       return null;
+    }
+  },
+
+  /**
+   * Update the user's profile (first, last, and full name).
+   *
+   * @param {{object,string}} Profile properties to update and the current cookie.
+   *
+   * @returns {string} Request status.
+   */
+  async updateProfile({ properties, cookie }) {
+    try {
+      const {
+        firstName,
+        fullName,
+        lastName,
+      } = properties;
+
+      const body = {
+        'full-name': fullName,
+        'first-name': firstName,
+        'last-name': lastName,
+      };
+
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/profile`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            cookie,
+          },
+          credentials: 'include',
+          body: JSON.stringify(body),
+        }
+      ).then((res) => {
+        if (200 === res.status) {
+          return {
+            status: 200,
+            ...res.json(),
+          };
+        }
+
+        return {
+          status: 'failed',
+        };
+      });
+
+      const response = await request;
+
+      if (200 === response.status) {
+        return 'success';
+      }
+
+      return 'failed';
+    } catch (error) {
+      return postErrorMessage(error);
     }
   },
 
@@ -474,4 +668,3 @@ export default {
     }
   },
 };
-
