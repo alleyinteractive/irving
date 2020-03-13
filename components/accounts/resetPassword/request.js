@@ -86,7 +86,7 @@ const RequestForm = ({
       <div className={styles.helpLinks}>
         <span>
           {__('Questions?', 'mittr')}
-          <Link to="/help">{__('Visit our help section', 'mittr')}</Link>.
+          <Link to="/help">{__('Visit our help section.', 'mittr')}</Link>
         </span>
         <span>
           Changed your mind?{' '}
