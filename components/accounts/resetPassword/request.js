@@ -90,7 +90,7 @@ const RequestForm = ({
         </span>
         <span>
           Changed your mind?{' '}
-          <Link to="/login/">{__('Return to the login screen', 'mittr')}</Link>.
+          <Link to="/login/">{__('Return to the login screen.', 'mittr')}</Link>
         </span>
       </div>
     </div>
