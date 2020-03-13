@@ -73,7 +73,7 @@ const RequestForm = ({
         {__('Okay, let\'s reset your password.', 'mittr')}
       </p>
       <p className={styles.accountHeaderDescription}>
-        {__(`If the account exist, we'll email
+        {__(`If the account exists, we'll email
           you a link to reset the password.`,
         'mittr')}
       </p>
