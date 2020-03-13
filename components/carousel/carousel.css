@@ -5,7 +5,7 @@
     transition: opacity 0.2s ease;
 
     @media ($mdMin) {
-      margin-bottom: rem(40);
+      margin-bottom: 13%;
     }
 
     &.isVisible {
