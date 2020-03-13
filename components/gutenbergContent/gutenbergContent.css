@@ -2,4 +2,23 @@
   @include gutenberg-block-styles;
   @include basic-editor-styles;
   width: 100%;
+
+  /* stylelint-disable selector-max-specificity */
+  &:first-of-type {
+    p:first-of-type {
+      &::first-line {
+        font-family: $sans;
+        font-size: rem(16);
+        font-weight: 600;
+        line-height: rem(24);
+
+        @media ($mdMin) {
+          font-size: rem(18);
+          line-height: rem(28);       
+        }
+      }
+    }
+  }
+
+  /* stylelint-enable selector-max-specificity */
 }
