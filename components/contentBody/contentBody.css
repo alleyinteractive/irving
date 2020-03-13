@@ -68,3 +68,7 @@
     margin: rem(15) auto;
   }
 }
+
+.summaryBullets {
+  font-family: $sans;
+}

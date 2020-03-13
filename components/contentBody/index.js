@@ -84,7 +84,11 @@ const ContentBody = ({
         id="content--body"
       >
         <div ref={contentRef}>
-          {summaryBullets && parse(summaryBullets)}
+          {summaryBullets && (
+            <div className={styles.summaryBullets}>
+              {parse(summaryBullets)}
+            </div>
+          )}
           {children}
         </div>
       </div>
