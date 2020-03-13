@@ -1,0 +1,85 @@
+/* ListHeader component styles */
+
+.wrapper {
+  background-color: $color-deck;
+  width: 100%;
+}
+
+.container {
+  @include container-with-bleed;
+  display: flex;
+  flex-flow: row wrap;
+  padding-bottom: rem(10);
+
+  @media ($mdMin) {
+    padding-bottom: rem(75);
+  }
+}
+
+.meta {
+  display: flex;
+  flex-flow: column nowrap;
+  order: 2;
+  width: 100%;
+
+  @media ($mdMin) {
+    padding-right: rem(22);
+    tidy-offset-right: 1;
+    tidy-span: 5;
+  }
+}
+
+.title {
+  color: $white;
+  font-family: $sans;
+  font-size: rem(40);
+  font-weight: 700;
+  line-height: 1;
+  width: 100%;
+
+  @media ($mdMin) {
+    font-size: rem(63);
+  }
+}
+
+.year {
+  font-weight: 400;
+}
+
+.description {
+  color: $white;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: rem(20);
+  order: 2;
+  width: 100%;
+
+  @media ($mdMin) {
+    justify-content: center;
+    margin-bottom: 0;
+    padding-left: rem(50);
+    padding-right: rem(25);
+    tidy-span: 6;
+  }
+}
+
+.menus {
+  border-bottom: $border-thin;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: rem(75);
+  order: 0;
+  width: 100%;
+}
+
+.menu {
+  width: auto;
+}
+
+.socialSharing {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  width: auto;
+}
