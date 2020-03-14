@@ -50,7 +50,7 @@ export default function* submitForm({ payload: { type, credentials } }) {
 /**
  * Submit the user login request to Zephr.
  *
- * @param {{ email, password }} credentials The user's login credentials.
+ * @param {{ email, password, redirectTo }} credentials The user's login credentials.
  */
 function* submitLogin(credentials) {
   // Submit the form to Zephr.
@@ -73,7 +73,7 @@ function* submitLogin(credentials) {
       // Get the user's account.
       yield call(getAccount, cookie);
       // Push the user to the homepage.
-      history.push('/');
+      history.push(credentials.redirectTo);
     } catch (error) {
       // Post the error message to the console.
       yield call(debug, error);
