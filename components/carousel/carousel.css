@@ -5,7 +5,7 @@
     transition: opacity 0.2s ease;
 
     @media ($mdMin) {
-      margin-bottom: 13%;
+      margin-bottom: rem(40);
     }
 
     &.isVisible {
@@ -41,7 +41,6 @@
 
       span {
         bottom: 0;
-        display: block;
         font-family: $sans;
       }
     }
@@ -59,7 +58,6 @@
         position: absolute;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: auto;
       }
     }
 
@@ -73,12 +71,15 @@
     }
 
     .image-description {
+      align-items: flex-end;
       background-color: $white;
       border-bottom: none;
       caption-side: bottom;
       color: #000;
+      display: flex;
       font-size: rem(14);
       font-weight: 200;
+      height: rem(50);
       line-height: rem(18);
       min-height: rem(40);
       padding-left: 0;
@@ -107,6 +108,10 @@
       background-color: transparent;
       padding: 0;
       top: 110%;
+
+      @media ($mdMin) {
+        top: 99%;
+      }
 
       &::before {
         content: '';
@@ -143,12 +148,16 @@
       font-size: rem(14);
       height: rem(40);
       justify-content: center;
-      left: rem(40);
+      left: rem(45);
       padding: rem(9 5 15 15);
       position: absolute;
       top: 105%;
       width: rem(60);
       z-index: 20;
+
+      @media ($mdMin) {
+        top: 95%;
+      }
 
       &::before {
         background: $white;
