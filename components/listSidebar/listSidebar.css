@@ -20,6 +20,10 @@
     font-size: rem(21);
     font-weight: 600;
     margin-top: rem(20);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
