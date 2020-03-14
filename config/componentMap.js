@@ -45,6 +45,7 @@ import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
 import Link from 'components/helpers/link';
 import LinkTeaser from 'components/linkTeaser';
+import ListContent from 'components/listContent';
 import ListDescription from 'components/listDescription';
 import ListGroup from 'components/listGroup';
 import ListHeader from 'components/listHeader';
@@ -168,6 +169,7 @@ export const componentMap = {
   'list-group': ListGroup,
   'list-item': ListItem,
   'list-50-intro-item': CompanyListItem,
+  'list-50-content': ListContent,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
