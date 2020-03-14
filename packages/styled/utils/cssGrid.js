@@ -6,6 +6,7 @@ import rem from './rem';
  */
 export const display = `
     display: flex;
+    flex-wrap: wrap;
 
     @supports (display: grid) {
       display: grid;
@@ -58,9 +59,9 @@ export const rowsCustom = (rows) => css`
  */
 export const columnSpan = (columns, gridColumns, gridGap) => {
   const gridColumnSpan = 'auto' === columns ? 'auto' : columns.join(' / ');
-  const flexboxWidth = 'auto' === columns ?
-    `calc((1 / ${gridColumns}) * 100%)` :
-    `calc(((${columns.reverse().join(' - ')}) / ${gridColumns}) * 100%)`;
+
+  const flexboxWidth = 'auto' === columns ? (1 / gridColumns) * 100 :
+    (columns.reverse().reduce((acc, curr) => acc - curr) / gridColumns) * 100;
 
   let flexboxPadding = 0;
   if ('number' === typeof gridGap) {
@@ -71,16 +72,16 @@ export const columnSpan = (columns, gridColumns, gridGap) => {
   }
 
   return (css`
-    flex: 1 0 ${flexboxWidth};
+    flex: 1 0 ${flexboxWidth}%;
     padding-left: ${flexboxPadding};
     padding-right: ${flexboxPadding};
-    width: ${flexboxWidth};
+    max-width: ${flexboxWidth}%;
 
     @supports (display: grid) {
       grid-column: ${gridColumnSpan};
       padding-left: 0;
       padding-right: 0;
-      width: auto;
+      max-width: none;
     }
   `);
 };
