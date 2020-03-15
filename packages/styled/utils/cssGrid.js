@@ -73,12 +73,14 @@ export const columnSpan = (columns, gridColumns, gridGap) => {
 
   return (css`
     flex: 1 0 ${flexboxWidth}%;
+    padding-bottom: ${'auto' === columns ? rem(gridGap) : 0};
     padding-left: ${flexboxPadding};
     padding-right: ${flexboxPadding};
     max-width: ${flexboxWidth}%;
 
     @supports (display: grid) {
       grid-column: ${gridColumnSpan};
+      padding-bottom: 0;
       padding-left: 0;
       padding-right: 0;
       max-width: none;
