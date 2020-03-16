@@ -1,30 +1,3 @@
-/**
- * Validate the hash used in the authorization header.
- *
- * @param {string} hash   sha256 hash of secret and timestamp.
- * @param {string} header The authorization header.
- */
-async function validateHash(hash, header) { // eslint-disable-line no-unused-vars
-  try {
-    const response = await fetch(
-      `${process.env.NEXUS_ROOT_URL}/api/session/verify/${hash}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'test', // @todo fix me.
-        },
-        credentials: 'include',
-      }
-    );
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.info('There was a problem.', error); // eslint-disable-line no-console
-  }
-  return {};
-}
-
 // @todo write authentication to nexus production server.
 export default {
   async getOrders() {
