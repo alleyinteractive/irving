@@ -27,10 +27,11 @@ const Login = ({
   submitLogin,
   isAuthenticated,
   receiveSession,
+  redirectTo,
 }) => {
   // Prevent authenticated users from being able to visit this route.
   if (isAuthenticated) {
-    history.push('/');
+    history.push(redirectTo);
   }
 
   const [components, setForm] = useState([]);
@@ -74,6 +75,7 @@ const Login = ({
       credentials: {
         email: email.value,
         password: password.value,
+        redirectTo,
       },
     });
   };
@@ -230,6 +232,7 @@ const Login = ({
 
 Login.defaultProps = {
   loginForm: {},
+  redirectTo: '/',
 };
 
 Login.propTypes = {
@@ -237,6 +240,7 @@ Login.propTypes = {
   loginForm: PropTypes.object,
   submitLogin: PropTypes.func.isRequired,
   receiveSession: PropTypes.func.isRequired,
+  redirectTo: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({
