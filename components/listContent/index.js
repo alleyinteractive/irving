@@ -12,11 +12,11 @@ const ListContent = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <ul className="postList__list">
-        {(children && children.length) && children.map((child, index) => (
-          <li>
-            {index}
-          </li>
+      <ul className={styles.listWrapper}>
+        {(children && children.length) && children.map((child) => (
+          <>
+            {child}
+          </>
         ))}
       </ul>
     </div>
