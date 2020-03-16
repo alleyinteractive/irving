@@ -6,6 +6,7 @@ import styles from './expandable.css';
 const ExpandableSocialShare = (props) => {
   const {
     children,
+    color,
   } = props;
   const [sharingIsVisible, setSharingIsVisible] = useState(false);
 
@@ -28,9 +29,18 @@ const ExpandableSocialShare = (props) => {
         aria-haspopup
         aria-expanded={sharingIsVisible}
       >
-        <div className={styles.dot} />
-        <div className={styles.dot} />
-        <div className={styles.dot} />
+        <div
+          className={styles.dot}
+          style={{ backgroundColor: color }}
+        />
+        <div
+          className={styles.dot}
+          style={{ backgroundColor: color }}
+        />
+        <div
+          className={styles.dot}
+          style={{ backgroundColor: color }}
+        />
       </button>
       <div className={styles.shareMenuFlyOut}>
         {sharingIsVisible && children}
@@ -39,8 +49,13 @@ const ExpandableSocialShare = (props) => {
   );
 };
 
+ExpandableSocialShare.defaultProps = {
+  color: '#969696',
+};
+
 ExpandableSocialShare.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  color: PropTypes.string,
 };
 
 export default ExpandableSocialShare;
