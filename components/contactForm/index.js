@@ -63,6 +63,7 @@ const ContactForm = ({ title }) => {
           });
         })
         .catch((err) => {
+          // eslint-disable-next-line no-console
           console.log({ err });
           setFormStatus({
             status: 'error',
