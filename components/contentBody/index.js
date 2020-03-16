@@ -13,6 +13,7 @@ import {
 } from 'actions/storyActions';
 import useObscureContent from 'hooks/useObscureContent';
 import classNames from 'classnames';
+import parse from 'html-react-parser';
 import styles from './contentBody.css';
 
 const ContentBody = ({
@@ -22,6 +23,7 @@ const ContentBody = ({
   dispatchShowFullStory,
   dispatchTruncateStory,
   overrideCTA,
+  summaryBullets,
 }) => {
   const [truncateContent, setTruncation] = useState(false);
   const contentRef = useRef();
@@ -82,6 +84,11 @@ const ContentBody = ({
         id="content--body"
       >
         <div ref={contentRef}>
+          {summaryBullets && (
+            <div className={styles.summaryBullets}>
+              {parse(summaryBullets)}
+            </div>
+          )}
           {children}
         </div>
       </div>
@@ -106,6 +113,7 @@ ContentBody.defaultProps = {
   dispatchShowFullStory: () => {},
   dispatchTruncateStory: () => {},
   overrideCTA: false,
+  summaryBullets: '',
 };
 
 ContentBody.propTypes = {
@@ -115,6 +123,7 @@ ContentBody.propTypes = {
   dispatchShowFullStory: PropTypes.func,
   dispatchTruncateStory: PropTypes.func,
   overrideCTA: PropTypes.bool,
+  summaryBullets: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({
