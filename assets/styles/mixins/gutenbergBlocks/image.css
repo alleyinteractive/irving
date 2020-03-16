@@ -1,7 +1,6 @@
 /* Styles for core image block */
 @mixin figcaption {
   @include body-link;
-  border-bottom: 1px solid $black;
   display: block;
   font-family: $sans;
   font-size: rem(14);

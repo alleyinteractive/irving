@@ -14,7 +14,7 @@ import inlineTheme from './contentFooter--inline.css';
 import Image from '../image/image';
 
 const ContentFooter = ({
-  children, authors, theme, imageCredit,
+  children, authors, theme, imageCredit, themeName,
 }) => {
   const socialSharing = findChildByName('social-sharing', children);
   const tags = filterChildrenByName('tags', children);
@@ -65,7 +65,7 @@ const ContentFooter = ({
         </address>
       )}
 
-      {0 < imageCredit.length && (
+      {0 < imageCredit.length && 'infeed' === themeName && (
         <div className={theme.imageCredit}>
           <h3 className={theme.label}>{__('Image', 'mittr')}</h3>
           <span className={theme.item}>{imageCredit}</span>
@@ -80,6 +80,7 @@ const ContentFooter = ({
 
 ContentFooter.defaultProps = {
   imageCredit: '',
+  themeName: '',
 };
 
 ContentFooter.propTypes = {
@@ -97,6 +98,7 @@ ContentFooter.propTypes = {
     title: PropTypes.string,
     wrapper: PropTypes.string,
   }).isRequired,
+  themeName: PropTypes.string,
   imageCredit: PropTypes.string,
 };
 
