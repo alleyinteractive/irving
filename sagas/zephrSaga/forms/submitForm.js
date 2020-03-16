@@ -147,17 +147,20 @@ export function* getAccount(sessionCookie) {
   // Get the user's account.
   const account = yield call(zephrService.getAccount, sessionCookie);
 
-  // Retrieve SFG account data from the nexus.
-  try {
-    // Retrieve the request header.
-    const { header } = yield call(nexusService.getRequestHeader);
-    console.log(header);
-  } catch (error) {
-    console.error(error);
-  }
-
   // `null` will be returned if no account can be found.
   if ('object' === typeof account) {
+    // Retrieve SFG account data from the nexus.
+    try {
+      const {
+        emailAddress: email,
+      } = account;
+      // Generate the request header.
+      const header = yield call(nexusService.getRequestHeader);
+
+      yield call(nexusService.getOrders, { email, header }); // @todo this will be fully built out in MIT-377
+    } catch (error) {
+      console.error(error); // eslint-disable-line no-console
+    }
     // Store user account information.
     yield put(actionReceiveUserAccount(account));
   }
