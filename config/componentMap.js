@@ -13,6 +13,7 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
+import CompanyListItemRank from 'components/companyListItemRank';
 import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
 import ContactForm from 'components/contactForm';
@@ -169,6 +170,7 @@ export const componentMap = {
   'list-group': ListGroup,
   'list-item': ListItem,
   'list-50-intro-item': CompanyListItem,
+  'list-50-item-rank': CompanyListItemRank,
   'list-50-content': ListContent,
   login: Login,
   logo: Image,
