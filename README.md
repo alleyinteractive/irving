@@ -54,3 +54,9 @@ What this service does is maps all traditional routes used in the application (s
 https://localhost/login        => https://localhost:3001/login
 https://localhost/blaize/login => https://zephr-develop.technologyreview.com/blaize/login
 ```
+
+### Set up WordPress settings
+
+You will also need to make sure that your Zehphr settings are configured within the WordPress interface. The URL to update those settings is found under Settings > Technology Review Settings > Zephr Config. (/wp-admin/options-general.php?page=mittr-settings).
+
+You can find the access key, access secret and API url from within the Zephr tenant cog menu.
