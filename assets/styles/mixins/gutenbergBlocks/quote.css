@@ -74,7 +74,7 @@
     font-family: $sans;
     padding: rem(20) 0;
 
-    p {
+    p, p::first-line {
       color: #000;
       font-size: rem(24);
       font-weight: 600;
