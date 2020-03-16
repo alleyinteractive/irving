@@ -1,9 +1,8 @@
-// @todo write authentication to nexus production server.
 export default {
-  async getOrders() {
+  async getOrders(email) {
     try {
       const request = await fetch(
-        `${process.env.NEXUS_ROOT_URL}/api/order`,
+        `${process.env.NEXUS_ROOT_URL}/api/order/${email}`,
         {
           method: 'GET',
         }

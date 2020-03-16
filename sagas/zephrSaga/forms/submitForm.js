@@ -12,6 +12,7 @@ import {
   actionReceiveResetError,
 } from 'actions/zephrActions';
 import zephrService from 'services/zephrService';
+import nexusService from 'services/nexusService';
 import history from 'utils/history';
 import createDebug from 'services/createDebug';
 import { getZephrCookie } from 'selectors/zephrSelector';
@@ -145,6 +146,15 @@ export function* getProfile(sessionCookie) {
 export function* getAccount(sessionCookie) {
   // Get the user's account.
   const account = yield call(zephrService.getAccount, sessionCookie);
+
+  // Retrieve SFG account data from the nexus.
+  try {
+    // Retrieve the request header.
+    const { header } = yield call(nexusService.getRequestHeader);
+    console.log(header);
+  } catch (error) {
+    console.error(error);
+  }
 
   // `null` will be returned if no account can be found.
   if ('object' === typeof account) {
