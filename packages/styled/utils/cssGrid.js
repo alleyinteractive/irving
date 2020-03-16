@@ -52,17 +52,27 @@ export const rowsCustom = (rows) => css`
 
 /**
  * A mixin for generating CSS grid span styles, with flexbox fallback for IE.
- * @param {array|string} columns the grid-column start and end values,
+ * @param {array|string} columns the grid-column start and end values, per CSS Grid spec, ie. [1, 4]
  * @param {number} gridColumns the number of columns set on the container element
  * @param {number|array} gridGap the grid-gap set on the container element
- * per CSS Grid spec, ie. [1, 4]
  */
 export const columnSpan = (columns, gridColumns, gridGap) => {
+  // Convert columns value to grid-column value.
   const gridColumnSpan = 'auto' === columns ? 'auto' : columns.join(' / ');
 
-  const flexboxWidth = 'auto' === columns ? (1 / gridColumns) * 100 :
-    (columns.reverse().reduce((acc, curr) => acc - curr) / gridColumns) * 100;
+  // Calculate flexbox column width based on grid columns.
+  let flexboxWidth = 0;
+  if ('auto' === columns) {
+    flexboxWidth = (1 / gridColumns) * 100;
+  }
 
+  if (Array.isArray(columns)) {
+    flexboxWidth = Math.abs(
+      (columns.reverse().reduce((acc, curr) => acc - curr) / gridColumns) * 100
+    );
+  }
+
+  // Calculate flexbox padding based on grid gap.
   let flexboxPadding = 0;
   if ('number' === typeof gridGap) {
     flexboxPadding = rem(gridGap / 2);
