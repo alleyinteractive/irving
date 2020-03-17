@@ -29,6 +29,7 @@ const SocialItem = (props) => {
     displayIcon,
     theme,
     themeName,
+    context,
   } = props;
   const IconComponent = socialIconMap[type];
   return (
@@ -55,8 +56,10 @@ const SocialItem = (props) => {
           }}
           target="_blank"
           rel="noopener"
-          data-event-category="share-button"
-          data-event-action={`in-feed-story-footer-${type}`}
+          data-event-category={
+            context ? `${context}-share-button-${type}` : `share-button-${type}`
+          }
+          data-event-action="click"
           data-event-label={sharePermalink}
         >
           <span className={theme.screenReaderLabel}>
@@ -77,6 +80,7 @@ const SocialItem = (props) => {
 
 SocialItem.defaultProps = {
   sharePermalink: true,
+  context: '',
 };
 
 SocialItem.propTypes = {
@@ -96,6 +100,7 @@ SocialItem.propTypes = {
   sharePermalink: PropTypes.string,
   theme: PropTypes.object.isRequired,
   themeName: PropTypes.string.isRequired,
+  context: PropTypes.string,
 };
 
 const wrapWithStyles = withStyles(styles, lightIconStyles);
