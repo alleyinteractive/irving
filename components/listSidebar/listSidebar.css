@@ -1,0 +1,32 @@
+.wrapper {
+  border-top: 1px solid $text-black;
+  display: none;
+
+  @media ($lgMin) {
+    display: block;
+  }
+}
+
+.listHeading {
+  font-size: rem(16);
+  font-variant: small-caps;
+  line-height: 1.2;
+  padding: rem(8) 0;
+  text-transform: uppercase;
+}
+
+.listSidebarNav {
+  li {
+    font-size: rem(21);
+    font-weight: 600;
+    margin-top: rem(20);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.active {
+  color: red; /* TODO: change to white after theme color is applied. */
+}

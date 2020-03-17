@@ -10,6 +10,7 @@ import magazineTheme from './columnArea--magazine.css';
 import oneColumnTheme from './columnArea--oneCol.css';
 import pageTheme from './columnArea--page.css';
 import centeredTheme from './columnArea--centered.css';
+import tr50Theme from './columnArea--tr50.css';
 
 const ColumnArea = ({ children, theme }) => {
   // Separate content and sidebar
@@ -52,6 +53,7 @@ export default withThemes('column-area', {
   page: pageTheme,
   magazine: magazineTheme,
   centered: centeredTheme,
+  tr50: tr50Theme,
 })(
   withStyles(
     feedColumnTheme,
@@ -60,5 +62,6 @@ export default withThemes('column-area', {
     oneColumnTheme,
     pageTheme,
     centeredTheme,
+    tr50Theme,
   )(ColumnArea)
 );
