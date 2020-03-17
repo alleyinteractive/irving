@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
+import ExpandableSocialShare from 'components/socialList/expandable';
 import Eyebrow from '../eyebrow';
 
 // Styles
@@ -39,6 +40,7 @@ const FeedItem = ({
   const articleRef = React.useRef();
   const image = findChildByName('image', children);
   const contentFooter = findChildByName('content-footer', children);
+  const socialSharing = findChildByName('social-sharing', children);
 
   // Theme content block
   const gutenbergContent = findChildByName('gutenberg-content', children);
@@ -163,6 +165,9 @@ const FeedItem = ({
           </div>
         </div>
       )}
+      <ExpandableSocialShare>
+        {socialSharing}
+      </ExpandableSocialShare>
     </article>
   );
 };

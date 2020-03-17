@@ -11,16 +11,19 @@
   height: 100%;
   width: 100%;
 
-  & > div:first-child > div:first-child > div:first-child p:first-child {
-    &::first-line {
-      font-family: $sans;
-      font-size: rem(16);
-      font-weight: 600;
-      line-height: rem(24);
+  /* Bold the first line of the first html component inside a gutenbergContent component. */
+  :global(.html_0) {
+    & > p:first-child {
+      &::first-line {
+        font-family: $sans;
+        font-size: rem(16);
+        font-weight: 600;
+        line-height: rem(24);
 
-      @media ($mdMin) {
-        font-size: rem(18);
-        line-height: rem(28);
+        @media ($mdMin) {
+          font-size: rem(18);
+          line-height: rem(28);
+        }
       }
     }
   }
