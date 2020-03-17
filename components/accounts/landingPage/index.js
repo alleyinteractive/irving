@@ -23,7 +23,6 @@ import styles from './landingPage.css';
 
 const AccountLandingPage = ({
   firstName,
-  subscriptionType,
   email,
   newsletters,
   discounts,
@@ -65,8 +64,10 @@ const AccountLandingPage = ({
   };
 
   const generateAccessBanner = () => {
-    switch (subscriptionType) {
-      case 'all-access':
+    switch (account.subscriptionType) {
+      case 'Basic Digital':
+      case 'All Access Digital':
+      case 'Online Only Access':
         return __('You have unlimited access to technologyreview.com', 'mittr');
       default:
         return __('You have limited access to technologyreview.com', 'mittr');
@@ -254,7 +255,6 @@ AccountLandingPage.defaultProps = {
     },
   ],
   newsletters: ['The Download', 'Chain Letter'],
-  subscriptionType: 'all-access',
   account: {
     orders: [],
     subscriptionType: '',
@@ -271,7 +271,6 @@ AccountLandingPage.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   logOut: PropTypes.func.isRequired,
   newsletters: PropTypes.array,
-  subscriptionType: PropTypes.string,
   submitResetRequest: PropTypes.func.isRequired,
   submitUpdateEmail: PropTypes.func.isRequired,
   account: PropTypes.object,
