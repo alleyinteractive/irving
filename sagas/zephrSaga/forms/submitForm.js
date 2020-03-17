@@ -157,12 +157,27 @@ export function* getAccount(sessionCookie) {
       // Generate the request header.
       const header = yield call(nexusService.getRequestHeader);
 
-      yield call(nexusService.getUser, { email, header });
+      const {
+        orders,
+        subscription_type: subscriptionType,
+        subscription_expire_date: subscriptionExpiration,
+        subscription_active: subscriptionActive,
+      } = yield call(nexusService.getUser, { email, header });
+
+      const accountNumber = orders[0].customer_number || 'N/A';
+
+      // Store user account information.
+      yield put(actionReceiveUserAccount({
+        ...account,
+        orders,
+        subscriptionType,
+        subscriptionExpiration,
+        subscriptionActive,
+        accountNumber,
+      }));
     } catch (error) {
       console.error(error); // eslint-disable-line no-console
     }
-    // Store user account information.
-    yield put(actionReceiveUserAccount(account));
   }
 }
 

@@ -4,6 +4,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import parse from 'html-react-parser';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
+import { format } from 'date-fns';
 import {
   getFirstName,
   getEmail,
@@ -22,13 +23,10 @@ import styles from './landingPage.css';
 
 const AccountLandingPage = ({
   firstName,
-  subscriptionName,
   subscriptionType,
-  accountNumber,
   email,
   newsletters,
   discounts,
-  renewalDate,
   logOut,
   isAuthenticated,
   submitResetRequest,
@@ -39,8 +37,6 @@ const AccountLandingPage = ({
   if (! isAuthenticated) {
     history.push('/');
   }
-  // eslint-disable-next-line no-console
-  console.log(account);
 
   const [formState, setFormState] = useState({
     isEditingEmail: false,
@@ -76,6 +72,11 @@ const AccountLandingPage = ({
         return __('You have limited access to technologyreview.com', 'mittr');
     }
   };
+
+  const renewalDate = format(
+    new Date(Date.parse(account.subscriptionExpiration)),
+    'MMMM dd, yyyy'
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -162,11 +163,11 @@ const AccountLandingPage = ({
           <p>
             {__('You are an', 'mittr')}{' '}
             <strong>
-              {subscriptionName}{' '}
+              {account.subscriptionType}{' '}
               {__('subscriber', 'mittr')}{' '}
             </strong>,{' '}
             {__('account', 'mittr')}{' '}
-            <strong>#{accountNumber}</strong>.{' '}
+            <strong>#{account.accountNumber}</strong>.{' '}
             {__('Your subscription will automatically renew on', 'mittr')}{' '}
             <strong>{renewalDate}</strong>.
           </p>
@@ -221,7 +222,6 @@ const AccountLandingPage = ({
 // @todo The default values here are stubbed out. They will need to be pulled
 // from Zephr as the integration is further built out.
 AccountLandingPage.defaultProps = {
-  accountNumber: 1635767369,
   discounts: [
     {
       name: 'EmTech Next 2019 Offer',
@@ -235,23 +235,18 @@ AccountLandingPage.defaultProps = {
     },
   ],
   newsletters: ['The Download', 'Chain Letter'],
-  renewalDate: 'May 1, 2020',
-  subscriptionName: 'All Access Digital',
   subscriptionType: 'all-access',
   account: {},
 };
 /* eslint-enable */
 
 AccountLandingPage.propTypes = {
-  accountNumber: PropTypes.number,
   discounts: PropTypes.array,
   email: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   logOut: PropTypes.func.isRequired,
   newsletters: PropTypes.array,
-  renewalDate: PropTypes.string,
-  subscriptionName: PropTypes.string,
   subscriptionType: PropTypes.string,
   submitResetRequest: PropTypes.func.isRequired,
   submitUpdateEmail: PropTypes.func.isRequired,

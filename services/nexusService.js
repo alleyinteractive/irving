@@ -6,15 +6,13 @@ export default {
    */
   async getUser({ email, requestHeader }) { // eslint-disable-line no-unused-vars
     try {
-      // eslint-disable-next-line no-param-reassign
-      email = 'cgolaski@me.com'; // For testing purposes.
       const request = await fetch(
         `${process.env.NEXUS_ROOT_URL}/api/user/email/${email}`,
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'test', // @todo Update me for authorization to the production server (requestHeader).
+            Authorization: requestHeader,
           },
         }
       );
