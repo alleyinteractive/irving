@@ -4,7 +4,6 @@
   display: block;
   font-family: $sans;
   font-size: rem(14);
-  font-style: italic;
   line-height: calc(18/14);
   padding: rem(15) 0;
   width: 100%;
@@ -15,7 +14,6 @@
   display: block;
   font-family: $sans;
   font-size: rem(12);
-  font-style: italic;
   line-height: 1;
   padding: rem(3 5 0);
   text-align: right;

@@ -53,7 +53,7 @@
 .caption {
   font-size: rem(14);
   margin-left: rem(20);
-  
+
   @media ($mdMin) {
     margin: 0;
   }
@@ -62,6 +62,7 @@
 .credit {
   display: block;
   font-size: rem(12);
+  letter-spacing: 1px;
   margin-top: rem(10);
   text-transform: uppercase;
 }
