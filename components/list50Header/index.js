@@ -26,21 +26,19 @@ const List50Header = ({
   return (
     <header className={styles.wrapper} style={{ backgroundColor: color }}>
       <div className={styles.container}>
-        <div className={styles.meta}>
-          <h1
-            className={styles.title}
-            style={{
-              color: headerTextColor,
-            }}
-          >
-            {listType}
-            {year && (
-              <>
-                {'\u00A0'}<span className={styles.year}>{year}</span>
-              </>
-            )}
-          </h1>
-        </div>
+        <h1
+          className={styles.title}
+          style={{
+            color: headerTextColor,
+          }}
+        >
+          {listType}
+          {year && (
+            <>
+              {'\u00A0'}<span className={styles.year}>{year}</span>
+            </>
+          )}
+        </h1>
         <div className={styles.description}>
           {description}
         </div>

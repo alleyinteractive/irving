@@ -9,6 +9,7 @@
   @include container-with-bleed;
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
   padding-bottom: rem(10);
 
   @media ($mdMin) {
@@ -16,33 +17,24 @@
   }
 }
 
-.meta {
-  display: flex;
-  flex-flow: column nowrap;
-  order: 2;
-  width: 100%;
-
-  @media ($mdMin) {
-    padding-right: rem(22);
-    tidy-offset-right: 1;
-    tidy-span: 5;
-  }
-}
-
 .title {
   color: $white;
+  flex: 0 1 40%;
   font-family: $sans;
   font-size: rem(40);
   font-weight: 700;
   line-height: 1;
+  order: 2;
+  padding-left: rem(30);
   width: 100%;
 
   @media ($mdMin) {
-    font-size: rem(63);
+    font-size: rem(83);
   }
 }
 
 .year {
+  display: block;
   font-weight: 400;
 }
 
@@ -55,11 +47,18 @@
   width: 100%;
 
   @media ($mdMin) {
+    flex: 0 1 rem(492);
     justify-content: center;
     margin-bottom: 0;
-    padding-left: rem(50);
-    padding-right: rem(25);
-    tidy-span: 6;
+    /* padding-left: rem(50); */
+    padding-right: rem(30);
+  }
+
+  p {
+    @media ($mdMin) {
+      font-size: rem(24);
+      line-height: 1.5;
+    }
   }
 }
 
