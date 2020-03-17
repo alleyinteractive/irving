@@ -69,7 +69,6 @@ import Order from 'components/accounts/order';
 import OrderHistory from 'components/accounts/orderHistory';
 import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
-import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import PodcastArchiveHeader from 'components/podcast/archive/header';
 import PodcastContentItem from 'components/podcast/archive/contentItem';
@@ -196,7 +195,6 @@ export const componentMap = {
   'order-history': OrderHistory,
   'our-team-module': OurTeamModule,
   pagination: Placeholder,
-  parsely: Parsely,
   'page-body': PageBody,
   'podcast-archive-header': PodcastArchiveHeader,
   'podcast-content-item': PodcastContentItem,
