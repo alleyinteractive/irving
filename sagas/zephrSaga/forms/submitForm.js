@@ -159,22 +159,18 @@ export function* getAccount(sessionCookie) {
 
       const {
         orders,
+        subscription_active: subscriptionActive,
         subscription_type: subscriptionType,
         subscription_expire_date: subscriptionExpiration,
-        subscription_active: subscriptionActive,
       } = yield call(nexusService.getUser, { email, header });
-
-      // eslint-disable-next-line max-len
-      const accountNumber = (0 < orders.length) ? orders[0].customer_number || '' : '';
 
       // Store user account information.
       yield put(actionReceiveUserAccount({
         ...account,
         orders,
+        subscriptionActive,
         subscriptionType,
         subscriptionExpiration,
-        subscriptionActive,
-        accountNumber,
       }));
     } catch (error) {
       console.error(error); // eslint-disable-line no-console

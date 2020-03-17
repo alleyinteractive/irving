@@ -72,14 +72,19 @@ const AccountLandingPage = ({
         return __('You have limited access to technologyreview.com', 'mittr');
     }
   };
-  let renewalDate;
+  let renewalDate = '';
   if (account.subscriptionExpiration) {
     renewalDate = format(
       new Date(Date.parse(account.subscriptionExpiration)),
       'MMMM dd, yyyy'
     );
-  } else {
-    renewalDate = '';
+  }
+
+  let accountNumber = '';
+  if ('undefined' !== typeof account.orders &&
+  0 < account.orders.length
+  ) {
+    accountNumber = account.orders[0].customer_number;
   }
 
   return (
@@ -164,17 +169,27 @@ const AccountLandingPage = ({
 
         <div className={styles.subscription}>
           <h2>{__('Subscription', 'mittr')}</h2>
-          <p>
-            {__('You are an', 'mittr')}{' '}
-            <strong>
-              {account.subscriptionType}{' '}
-              {__('subscriber', 'mittr')}{' '}
-            </strong>,{' '}
-            {__('account', 'mittr')}{' '}
-            <strong>#{account.accountNumber}</strong>.{' '}
-            {__('Your subscription will automatically renew on', 'mittr')}{' '}
-            <strong>{renewalDate}</strong>.
-          </p>
+          { account.subscriptionActive ? (
+            <p>
+              {__('You are an', 'mittr')}{' '}
+              <strong>
+                {account.subscriptionType}{' '}
+                {__('subscriber', 'mittr')}{' '}
+              </strong>,{' '}
+              {__('account', 'mittr')}{' '}
+              <strong>#{accountNumber}</strong>.{' '}
+              {__(
+                'Your subscription will automatically renew on',
+                'mittr'
+              )}{' '}
+              <strong>{renewalDate}</strong>.
+            </p>
+          ) :
+            (
+              <p>
+                {__('You are not a subscribed.', 'mittr')}
+              </p>
+            )}
 
           <div className={styles.buttonContainer}>
             <a
@@ -244,7 +259,7 @@ AccountLandingPage.defaultProps = {
     orders: [],
     subscriptionType: '',
     subscriptionExpiration: '',
-    accountNumber: '',
+    subscriptionActive: false,
   },
 };
 /* eslint-enable */

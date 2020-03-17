@@ -4,7 +4,7 @@ export default {
    *
    * @param {object} parameters Email to lookup and matching request header.
    */
-  async getUser({ email, requestHeader }) { // eslint-disable-line no-unused-vars
+  async getUser({ email, requestHeader }) {
     try {
       const request = await fetch(
         `${process.env.NEXUS_ROOT_URL}/api/user/email/${email}`,
@@ -16,8 +16,7 @@ export default {
           },
         }
       );
-      const response = await request.json();
-      return response;
+      return await request.json();
     } catch (error) {
       console.info('There was a problem.', error); // eslint-disable-line no-console
     }
