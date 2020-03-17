@@ -85,6 +85,7 @@
 
 .relatedStoryImage {
   max-width: rem(125);
+  overflow: hidden;
 }
 
 .relatedStoryLink {
