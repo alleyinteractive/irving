@@ -72,11 +72,15 @@ const AccountLandingPage = ({
         return __('You have limited access to technologyreview.com', 'mittr');
     }
   };
-
-  const renewalDate = format(
-    new Date(Date.parse(account.subscriptionExpiration)),
-    'MMMM dd, yyyy'
-  );
+  let renewalDate;
+  if (account.subscriptionExpiration) {
+    renewalDate = format(
+      new Date(Date.parse(account.subscriptionExpiration)),
+      'MMMM dd, yyyy'
+    );
+  } else {
+    renewalDate = '';
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -236,7 +240,12 @@ AccountLandingPage.defaultProps = {
   ],
   newsletters: ['The Download', 'Chain Letter'],
   subscriptionType: 'all-access',
-  account: {},
+  account: {
+    orders: [],
+    subscriptionType: '',
+    subscriptionExpiration: '',
+    accountNumber: '',
+  },
 };
 /* eslint-enable */
 
