@@ -9,8 +9,12 @@ import infeedTheme from './gutenbergContent--infeed.css';
 
 const GutenbergContent = ({ children, className, theme }) => (
   <div className={classNames(theme.wrapper, className)}>
-    {children.map((child) => React.cloneElement(child, {
-      className: theme.content,
+    {children.map((child, index) => React.cloneElement(child, {
+      className: classNames(
+        theme.content,
+        /* This allows us for better targeting of components . */
+        `${child.props.componentName}_${index}`,
+      ),
       gbClassName: child.props.className,
       oembed: true,
     }))}
