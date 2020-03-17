@@ -164,7 +164,8 @@ export function* getAccount(sessionCookie) {
         subscription_active: subscriptionActive,
       } = yield call(nexusService.getUser, { email, header });
 
-      const accountNumber = orders[0].customer_number || 'N/A';
+      // eslint-disable-next-line max-len
+      const accountNumber = (0 < orders.length) ? orders[0].customer_number || '' : '';
 
       // Store user account information.
       yield put(actionReceiveUserAccount({
