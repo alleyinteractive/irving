@@ -52,6 +52,7 @@ import ListItem from 'components/listItem';
 import ListMenu from 'components/listMenu';
 import ListMenuItem from 'components/listMenuItem';
 import ListMenuItems from 'components/listMenuItems';
+import ListSidebar from 'components/listSidebar';
 import Login from 'components/accounts/login/';
 import MagazineStory from 'components/magazineStory';
 import MagazineHero from 'components/magazineHero';
@@ -68,7 +69,6 @@ import Order from 'components/accounts/order';
 import OrderHistory from 'components/accounts/orderHistory';
 import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
-import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import PodcastArchiveHeader from 'components/podcast/archive/header';
 import PodcastContentItem from 'components/podcast/archive/contentItem';
@@ -167,6 +167,8 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
+  'list-50-item': CompanyListItem,
+  'list-50-sidebar': ListSidebar,
   'list-50-intro-item': CompanyListItem,
   login: Login,
   logo: Image,
@@ -193,7 +195,6 @@ export const componentMap = {
   'order-history': OrderHistory,
   'our-team-module': OurTeamModule,
   pagination: Placeholder,
-  parsely: Parsely,
   'page-body': PageBody,
   'podcast-archive-header': PodcastArchiveHeader,
   'podcast-content-item': PodcastContentItem,
