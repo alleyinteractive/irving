@@ -7,7 +7,6 @@ import {
   getAccount,
 } from 'selectors/zephrSelector';
 import { __ } from '@wordpress/i18n';
-import Link from 'components/helpers/link';
 import RegisterForm from './form.js';
 
 // Styles
@@ -31,10 +30,10 @@ const Activate = ({
           'mittr')}
       </h1>
       <p className={styles.headerDescription}>
-        {__('Already have an account? ', 'mittr')}
-        <Link to="/login/" className={styles.registerLink}>
-          {__('Sign in.', 'mittr')}
-        </Link>
+        {__(
+          'Enter your name and choose a password to claim your subscription.',
+          'mittr'
+        )}
       </p>
       <RegisterForm />
     </div>
