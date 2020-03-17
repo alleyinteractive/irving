@@ -54,6 +54,7 @@ import ListItem from 'components/listItem';
 import ListMenu from 'components/listMenu';
 import ListMenuItem from 'components/listMenuItem';
 import ListMenuItems from 'components/listMenuItems';
+import ListSidebar from 'components/listSidebar';
 import Login from 'components/accounts/login/';
 import MagazineStory from 'components/magazineStory';
 import MagazineHero from 'components/magazineHero';
@@ -168,6 +169,8 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
+  'list-50-item': CompanyListItem,
+  'list-50-sidebar': ListSidebar,
   'list-50-intro-item': CompanyListItem,
   'list-50-item-rank': CompanyListItemRank,
   'list-rank': ListContent,
