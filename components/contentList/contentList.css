@@ -21,13 +21,14 @@
     float: left;
     font-family: $sans;
     font-size: rem(14);
-    margin-left: -16%;
+    margin-left: 0;
     margin-top: rem(6);
     padding: rem(20) rem(40) rem(30) rem(10);
     position: relative;
     width: 100%;
 
     @media ($smMin) {
+      margin-left: -16%;
       width: 50%;
     }
 
