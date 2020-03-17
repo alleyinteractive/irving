@@ -54,12 +54,18 @@
     padding-right: rem(30);
   }
 
-  p {
-    @media ($mdMin) {
-      font-size: rem(24);
-      line-height: 1.5;
+  && {
+    /* stylelint-disable selector-max-specificity */
+    /* Need extra specificity to override style in listDescription.css */
+    p {
+      @media ($mdMin) {
+        font-size: rem(24);
+        line-height: 1.5;
+      }
+
     }
   }
+  /* stylelint-enable */
 }
 
 .menus {
