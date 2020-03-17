@@ -6,22 +6,42 @@ import {
   getProfile,
   getAccount,
 } from 'selectors/zephrSelector';
+import { __ } from '@wordpress/i18n';
+import Link from 'components/helpers/link';
+import RegisterForm from './form.js';
 
 // Styles
 import styles from './register.css';
 
 const Activate = ({
-  children,
   isAuthenticated,
-}) => (
-  <div className={styles.wrapper}>
-      Is Authenticated? {isAuthenticated}
-    {children}
-  </div>
-);
+}) => {
+  if (isAuthenticated) {
+    return (
+      <div className={styles.wrapper}>
+        You are authenticated and you need to logout and login again.
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.wrapper}>
+      <h1 className={styles.header}>
+        {__('Activate your account',
+          'mittr')}
+      </h1>
+      <p className={styles.headerDescription}>
+        {__('Already have an account? ', 'mittr')}
+        <Link to="/login/" className={styles.registerLink}>
+          {__('Sign in.', 'mittr')}
+        </Link>
+      </p>
+      <RegisterForm />
+    </div>
+  );
+};
 
 Activate.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
 

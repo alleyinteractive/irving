@@ -23,13 +23,13 @@ const Register = ({
   }
 
   return (
-    <div className={styles.accountWrap}>
-      <h1 className={styles.accountHeader}>{__('Account', 'mittr')}</h1>
-      <p className={styles.accountSubHeader}>
+    <div className={styles.wrapper}>
+      <h1 className={styles.header}>{__('Account', 'mittr')}</h1>
+      <p className={styles.subheader}>
         {__('Create an account to improve your experience on this site.',
           'mittr')}
       </p>
-      <p className={styles.accountHeaderDescription}>
+      <p className={styles.headerDescription}>
         {__('Already have an account? ', 'mittr')}
         <Link to="/login/" className={styles.registerLink}>
           {__('Sign in.', 'mittr')}
