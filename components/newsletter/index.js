@@ -96,9 +96,9 @@ const NewsletterSubscribe = ({
     });
 
     window.dataLayer.push({
-      event: 'mittr:newsletterSubscribe',
-      category: 'subscribe',
-      action: `subscribe-success-${data.newsletter}`,
+      event: 'subscribe',
+      category: 'newsletter-form',
+      action: `${data.newsletter}-sign-up-success`,
       label: location,
       PageViewFired: true,
     });
