@@ -33,11 +33,14 @@ const AccountLandingPage = ({
   isAuthenticated,
   submitResetRequest,
   submitUpdateEmail,
+  account,
 }) => {
   // Prevent unauthenticated users from being able to visit this route.
   if (! isAuthenticated) {
     history.push('/');
   }
+  // eslint-disable-next-line no-console
+  console.log(account);
 
   const [formState, setFormState] = useState({
     isEditingEmail: false,
@@ -235,6 +238,7 @@ AccountLandingPage.defaultProps = {
   renewalDate: 'May 1, 2020',
   subscriptionName: 'All Access Digital',
   subscriptionType: 'all-access',
+  account: {},
 };
 /* eslint-enable */
 
@@ -251,6 +255,7 @@ AccountLandingPage.propTypes = {
   subscriptionType: PropTypes.string,
   submitResetRequest: PropTypes.func.isRequired,
   submitUpdateEmail: PropTypes.func.isRequired,
+  account: PropTypes.object,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -263,6 +268,7 @@ const withRedux = connect(
   (state) => ({
     email: getEmail(state),
     firstName: getFirstName(state),
+    account: getAccount(state),
     isAuthenticated:
       0 < Object.keys(getProfile(state)).length &&
       0 < Object.keys(getAccount(state)).length,

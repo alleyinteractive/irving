@@ -157,7 +157,7 @@ export function* getAccount(sessionCookie) {
       // Generate the request header.
       const header = yield call(nexusService.getRequestHeader);
 
-      yield call(nexusService.getOrders, { email, header }); // @todo this will be fully built out in MIT-377
+      yield call(nexusService.getUser, { email, header });
     } catch (error) {
       console.error(error); // eslint-disable-line no-console
     }
