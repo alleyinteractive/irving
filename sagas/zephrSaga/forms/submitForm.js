@@ -155,8 +155,7 @@ export function* getAccount(sessionCookie) {
         emailAddress: email,
       } = account;
       // Generate the request header.
-      const header = yield call(nexusService.getRequestHeader);
-
+      const { header } = yield call(nexusService.getRequestHeader);
       const {
         orders,
         subscription_active: subscriptionActive,
