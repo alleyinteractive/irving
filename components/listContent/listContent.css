@@ -2,7 +2,7 @@
   padding-bottom: 0;
   padding-left: 0;
 
-  @media ($lgMin) {
+  @media ($mdMin) {
     padding-bottom: rem(200);
     padding-left: rem(50);
   }

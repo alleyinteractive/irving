@@ -14,6 +14,7 @@ import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
 import CompanyListItemLocation from 'components/companyListItemLocation';
+import CompanyListItemRank from 'components/companyListItemRank';
 import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
 import ContactForm from 'components/contactForm';
@@ -176,6 +177,8 @@ export const componentMap = {
   'list-50-intro-item': CompanyListItem,
   'list-50-location': ListContent,
   'list-50-location-list-item': CompanyListItemLocation,
+  'list-50-item-rank': CompanyListItemRank,
+  'list-rank': ListContent,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
@@ -207,6 +210,7 @@ export const componentMap = {
   'podcast-list': PodcastList,
   popular: Popular,
   'post-list': PostList,
+  'rank-list-item': CompanyListItemRank,
   register: Register,
   'reset-password-request': ResetRequestForm,
   'reset-password-request-confirmation': ConfirmResetRequest,
