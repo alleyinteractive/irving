@@ -21,6 +21,7 @@ const Activate = ({
 }) => {
   if (isAuthenticated) {
     logOut();
+    return null;
   }
 
   return (
