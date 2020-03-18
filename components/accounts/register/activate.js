@@ -6,6 +6,9 @@ import {
   getProfile,
   getAccount,
 } from 'selectors/zephrSelector';
+import {
+  actionRequestUserLogOut,
+} from 'actions/zephrActions';
 import { __ } from '@wordpress/i18n';
 import RegisterForm from './form.js';
 
@@ -14,13 +17,10 @@ import styles from './register.css';
 
 const Activate = ({
   isAuthenticated,
+  logOut,
 }) => {
   if (isAuthenticated) {
-    return (
-      <div className={styles.wrapper}>
-        You are authenticated and you need to logout and login again.
-      </div>
-    );
+    logOut();
   }
 
   return (
@@ -42,6 +42,7 @@ const Activate = ({
 
 Activate.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
+  logOut: PropTypes.func.isRequired,
 };
 
 const withRedux = connect(
@@ -50,7 +51,9 @@ const withRedux = connect(
       0 < Object.keys(getProfile(state)).length &&
       0 < Object.keys(getAccount(state)).length,
   }),
-  () => ({})
+  (dispatch) => ({
+    logOut: () => dispatch(actionRequestUserLogOut()),
+  })
 );
 
 export default withRedux(
