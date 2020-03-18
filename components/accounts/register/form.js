@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
-import queryString from 'query-string'; // eslint-disable-line
-import get from 'lodash.get'; // eslint-disable-line
 import {
   actionSubmitForm,
   actionReceiveInvalidPassword,
@@ -14,97 +12,12 @@ import {
 import {
   getRegistrationForm,
 } from 'selectors/zephrSelector';
-
 import DataLoading from 'components/hoc/withData/loading';
 import toFormElements from 'sagas/zephrSaga/forms/toFormElements';
-import LazyRecaptcha from './recaptcha';
+import UserFields from './UserFields';
 
 // Styles
 import styles from './register.css';
-
-class UserFields {
-  constructor(fields) {
-    this.fields = fields;
-  }
-
-  /**
-   * Splice the Recaptcha into the registration form.
-   *
-   * @param {object} fields Fields in registration form from Zephr.
-   *
-   * @returns {object} Fields with LazyRecaptcha added.
-   */
-  addRecaptchaToFields(setCaptcha) {
-    // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create).
-    // See ticket MIT-835.
-    const reCaptcha = React.createElement(
-      LazyRecaptcha,
-      {
-        key: 'registration-captcha',
-        id: 'registration-captcha',
-        className: 'captcha',
-        sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
-        verifyCallback: () => {
-          setCaptcha({
-            isValid: true,
-            hasError: false,
-          });
-        },
-        'aria-errormessage': 'captcha-error',
-      },
-      null
-    );
-
-    const { fields } = this;
-
-    // Splice the captcha into the components array.
-    const idMap = fields.map((el) => el.props.id);
-
-    // Prevent the captcha from being spliced in on subsequent renders.
-    if (- 1 === idMap.indexOf('registration-captcha')) {
-      fields.splice(fields.length - 1, 0, reCaptcha);
-    }
-
-    return new UserFields(fields);
-  }
-
-  /**
-   * Update the fields to make the email the default value, if present in the URL.
-   */
-  addEmailToFields() {
-    const { fields } = this;
-    const windowLocation = get(window, 'location.search', '');
-    const windowQuery = queryString.parse(windowLocation);
-    const { email: defaultEmail = '' } = windowQuery;
-
-    // Edit early if no email to set.
-    if ('' === defaultEmail) {
-      return new UserFields(fields);
-    }
-
-    // Update email field from within the fields.
-    return new UserFields(fields.map((field) => {
-      const id = get(field, 'props.id', '');
-
-      // If not email, do not modify
-      if ('email-address' !== id) {
-        return field;
-      }
-
-      // Update props based on defaultEmail.
-      return {
-        ...field,
-        props: {
-          ...field.props,
-          placeholder: defaultEmail,
-          defaultValue: defaultEmail,
-          value: defaultEmail,
-          readonly: true,
-        },
-      };
-    }));
-  }
-}
 
 const RegisterForm = ({
   clearErrors,
@@ -249,7 +162,7 @@ const RegisterForm = ({
       )}
       <h2 className={styles.confirmationText}>
         {__(
-          "We'll email you a password confirmation link. Happy reading!", // eslint-disable-line quotes
+          'We\'ll email you a password confirmation link. Happy reading!',
           'mittr'
         )}
       </h2>
