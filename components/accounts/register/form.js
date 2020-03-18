@@ -42,7 +42,8 @@ const RegisterForm = ({
       toFormElements(registrationForm.components)
     )
       .addRecaptchaToFields(setCaptcha)
-      .addEmailToFields();
+      .addQueryParamToFields('email-address')
+      .addQueryParamToFields('full-name');
 
     // Update the form state.
     setForm(fields);

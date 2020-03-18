@@ -60,14 +60,14 @@ export default class UserFields {
   /**
    * Update the fields to make the email the default value, if present in the URL.
    */
-  addEmailToFields() {
+  addQueryParamToFields(param) {
     const { fields } = this;
     const windowLocation = get(window, 'location.search', '');
     const windowQuery = queryString.parse(windowLocation);
-    const { email: defaultEmail = '' } = windowQuery;
+    const defaultParam = windowQuery[param] || '';
 
     // Edit early if no email to set.
-    if ('' === defaultEmail) {
+    if ('' === defaultParam) {
       return new UserFields(fields);
     }
 
@@ -76,18 +76,18 @@ export default class UserFields {
       const id = get(field, 'props.id', '');
 
       // If not email, do not modify
-      if ('email-address' !== id) {
+      if (param !== id) {
         return field;
       }
 
-      // Update props based on defaultEmail.
+      // Update props based on defaultParam.
       return {
         ...field,
         props: {
           ...field.props,
-          placeholder: defaultEmail,
-          defaultValue: defaultEmail,
-          value: defaultEmail,
+          placeholder: defaultParam,
+          defaultValue: defaultParam,
+          value: defaultParam,
           readonly: true,
         },
       };
