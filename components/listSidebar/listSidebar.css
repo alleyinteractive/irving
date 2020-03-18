@@ -1,9 +1,5 @@
 .wrapper {
-  display: none;
-
-  @media ($lgMin) {
-    display: block;
-  }
+  display: block;
 }
 
 .listSidebarNav {
