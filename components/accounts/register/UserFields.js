@@ -1,6 +1,6 @@
 import React from 'react';
 import queryString from 'query-string';
-import get from 'lodash.get';
+import get from 'lodash/get';
 import LazyRecaptcha from './recaptcha';
 
 /**
