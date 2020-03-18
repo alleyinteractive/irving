@@ -138,7 +138,7 @@ const RegisterForm = ({
   // If the form has not yet been retrieved, show a loader.
   if (0 === Object.keys(registrationForm).length) {
     return (
-      <div className={styles.accountWrap}>
+      <div className={styles.wrapper}>
         <DataLoading />
       </div>
     );

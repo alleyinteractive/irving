@@ -142,19 +142,19 @@ const Login = ({
   // If the form has not yet been retireved, show a loader.
   if (0 === Object.keys(loginForm).length) {
     return (
-      <div className={styles.accountWrap}>
+      <div className={styles.wrapper}>
         <DataLoading />
       </div>
     );
   }
 
   return (
-    <div className={styles.accountWrap}>
-      <h1 className={styles.accountHeader}>{__('Account', 'mittr')}</h1>
-      <p className={styles.accountSubHeader}>
+    <div className={styles.wrapper}>
+      <h1 className={styles.header}>{__('Account', 'mittr')}</h1>
+      <p className={styles.subheader}>
         {__('Sign in to your account below.', 'mittr')}
       </p>
-      <p className={styles.accountHeaderDescription}>
+      <p className={styles.headerDescription}>
         {__(
           'Don’t have one yet? ',
           'mittr'
