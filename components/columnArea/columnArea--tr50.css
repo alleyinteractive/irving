@@ -12,16 +12,15 @@
 }
 
 .sidebar {
-  display: none;
   order: 1;
   width: 100%;
 
   @media ($mdMin) {
-    display: block;
     tidy-span: 2;
   }
 
   @media ($lgMin) {
+    display: block;
     margin-right: calc(tidy-span-full(1) - rem(40));  /* Account for main container bleed. */
     tidy-span: 2;
   }
@@ -37,10 +36,11 @@
     margin-bottom: 0;
     tidy-offset-right: 1;
     transform: translateX(rem(-20));
-    width: calc((100vw/12*6) + 1.25rem); /* The tidy span calc does not work as expected with the dual-sided bleed. */
-  }
-
-  @media ($lgMin) {
+    /* width: calc((100vw/12*6) + 1.25rem); The tidy span calc does not work as expected with the dual-sided bleed. */
     width: calc(tidy-span-full(8) + 2.5rem);
   }
+
+  /* @media ($lgMin) {
+    width: calc(tidy-span-full(8) + 2.5rem);
+  } */
 }

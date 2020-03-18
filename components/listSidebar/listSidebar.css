@@ -1,10 +1,5 @@
 .wrapper {
   border-top: 1px solid $text-black;
-  display: none;
-
-  @media ($lgMin) {
-    display: block;
-  }
 }
 
 .listHeading {
@@ -16,10 +11,25 @@
 }
 
 .listSidebarNav {
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: rem(30);
+
+    @media ($mdMin) {
+      display: block;
+    }
+  }
+
   li {
-    font-size: rem(21);
+    font-size: 1rem;
     font-weight: 600;
-    margin-top: rem(20);
+
+    @media ($mdMin) {
+      font-size: rem(21);
+      margin-top: rem(20);
+    }
 
     &:hover {
       text-decoration: underline;
