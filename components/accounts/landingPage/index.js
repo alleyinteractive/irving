@@ -188,7 +188,7 @@ const AccountLandingPage = ({
           ) :
             (
               <p>
-                {__('You are not a subscribed.', 'mittr')}
+                {__('You are not subscribed.', 'mittr')}
               </p>
             )}
 
