@@ -13,6 +13,7 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
+import CompanyListItemName from 'components/companyListItemName';
 import CompanyListItemRank from 'components/companyListItemRank';
 import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
@@ -174,6 +175,7 @@ export const componentMap = {
   'list-50-intro-item': CompanyListItem,
   'list-50-item-rank': CompanyListItemRank,
   'list-rank': ListContent,
+  'list-name': ListContent,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
@@ -194,6 +196,7 @@ export const componentMap = {
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
   'mittr-plugin-extension/magazine-story': MagazineStory,
+  'name-list-item': CompanyListItemName,
   newsletter: Newsletter,
   order: Order,
   'order-history': OrderHistory,
