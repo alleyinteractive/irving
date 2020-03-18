@@ -67,8 +67,9 @@ export const columnSpan = (columns, gridColumns, gridGap) => {
   }
 
   if (Array.isArray(columns)) {
+    const flexColumns = columns.slice().reverse();
     flexboxWidth = Math.abs(
-      (columns.reverse().reduce((acc, curr) => acc - curr) / gridColumns) * 100
+      (flexColumns.reduce((acc, curr) => acc - curr) / gridColumns) * 100
     );
   }
 
@@ -77,6 +78,7 @@ export const columnSpan = (columns, gridColumns, gridGap) => {
   if ('number' === typeof gridGap) {
     flexboxPadding = rem(gridGap / 2);
   }
+
   if (Array.isArray(gridGap)) {
     flexboxPadding = rem((gridGap[0]) / 2);
   }
