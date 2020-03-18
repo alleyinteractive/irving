@@ -6,7 +6,7 @@
   line-height: 1.3;
 
   @media ($mdMin) {
-    font-size: rem(28);
+    font-size: rem(35);
   }
 
   @media ($lgMin) {

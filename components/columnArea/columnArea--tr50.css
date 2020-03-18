@@ -6,9 +6,7 @@
   padding-top: rem(40);
   width: 100%;
 
-  @media ($smMin) {
-    @include container;
-  }
+  @include container;
 }
 
 .sidebar {
@@ -34,13 +32,12 @@
 
   @media ($mdMin) {
     margin-bottom: 0;
-    tidy-offset-right: 1;
     transform: translateX(rem(-20));
-    /* width: calc((100vw/12*6) + 1.25rem); The tidy span calc does not work as expected with the dual-sided bleed. */
-    width: calc(tidy-span-full(8) + 2.5rem);
+    width: calc(tidy-span-full(6) + 2.5rem);
   }
 
-  /* @media ($lgMin) {
+  @media ($lgMin) {
+    tidy-offset-right: 1;
     width: calc(tidy-span-full(8) + 2.5rem);
-  } */
+  }
 }

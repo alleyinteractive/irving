@@ -17,6 +17,10 @@
     justify-content: space-around;
     margin-bottom: rem(30);
 
+    @media ($smMin) {
+      justify-content: flex-start;
+    }
+
     @media ($mdMin) {
       display: block;
     }
@@ -26,8 +30,13 @@
     font-size: 1rem;
     font-weight: 600;
 
+    @media ($smMin) {
+      margin-right: rem(20);
+    }
+
     @media ($mdMin) {
       font-size: rem(21);
+      margin-right: 0;
       margin-top: rem(20);
     }
 
