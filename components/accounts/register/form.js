@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
+import queryString from 'query-string';
+import get from 'lodash.get';
 import {
   actionSubmitForm,
   actionReceiveInvalidPassword,
@@ -12,12 +14,50 @@ import {
 import {
   getRegistrationForm,
 } from 'selectors/zephrSelector';
+
 import DataLoading from 'components/hoc/withData/loading';
 import toFormElements from 'sagas/zephrSaga/forms/toFormElements';
 import LazyRecaptcha from './recaptcha';
 
 // Styles
 import styles from './register.css';
+
+/**
+ * Splice the Recaptcha into the registration form.
+ *
+ * @param {object} fields Fields in registration form from Zephr.
+ */
+const addRecaptchaToFields = (fields, setCaptcha) => {
+  // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create).
+  // See ticket MIT-835.
+  const reCaptcha = React.createElement(
+    LazyRecaptcha,
+    {
+      key: 'registration-captcha',
+      id: 'registration-captcha',
+      className: 'captcha',
+      sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
+      verifyCallback: () => {
+        setCaptcha({
+          isValid: true,
+          hasError: false,
+        });
+      },
+      'aria-errormessage': 'captcha-error',
+    },
+    null
+  );
+
+  // Splice the captcha into the components array.
+  const idMap = fields.map((el) => el.props.id);
+
+  // Prevent the captcha from being spliced in on subsequent renders.
+  if (- 1 === idMap.indexOf('registration-captcha')) {
+    fields.splice(fields.length - 1, 0, reCaptcha);
+  }
+
+  return fields;
+};
 
 const RegisterForm = ({
   clearErrors,
@@ -26,6 +66,10 @@ const RegisterForm = ({
   submitRegistration,
   registrationForm,
 }) => {
+  const windowLocation = get(window, 'location.search', '');
+  const windowQuery = queryString.parse(windowLocation);
+  const { email: defaultEmail = '' } = windowQuery; // eslint-disable-line
+
   const [components, setForm] = useState([]);
   const [captcha, setCaptcha] = useState({
     isValid: false,
@@ -33,38 +77,16 @@ const RegisterForm = ({
   });
 
   useEffect(() => {
-    if (0 !== Object.keys(registrationForm).length) {
-      const fields = toFormElements(registrationForm.components);
-
-      // @todo define a site key/secret for the production captcha (see: https://www.google.com/u/1/recaptcha/admin/create)
-      const reCaptcha = React.createElement(
-        LazyRecaptcha,
-        {
-          key: 'registration-captcha',
-          id: 'registration-captcha',
-          className: 'captcha',
-          sitekey: '6Le-58UUAAAAANFChf85WTJ8PoZhjxIvkRyWczRt',
-          verifyCallback: () => {
-            setCaptcha({
-              isValid: true,
-              hasError: false,
-            });
-          },
-          'aria-errormessage': 'captcha-error',
-        },
-        null
-      );
-
-      // Splice the captcha into the components array.
-      const idMap = fields.map((el) => el.props.id);
-      // Prevent the captcha from being spliced in on subsequent renders.
-      if (- 1 === idMap.indexOf('registration-captcha')) {
-        fields.splice(fields.length - 1, 0, reCaptcha);
-      }
-
-      // Update the form state.
-      setForm(fields);
+    // Exit early if there are no fields in the form.
+    if (0 === Object.keys(registrationForm).length) {
+      return;
     }
+
+    const fields = toFormElements(registrationForm.components);
+    const fieldsWithCaptcha = addRecaptchaToFields(fields, setCaptcha);
+
+    // Update the form state.
+    setForm(fieldsWithCaptcha);
   }, [registrationForm]);
 
   // Submit handler.
