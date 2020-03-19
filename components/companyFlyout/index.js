@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
 import styles from './companyFlyout.css';
@@ -11,12 +12,17 @@ const CompanyFlyout = (props) => {
     description,
     detailsText,
     detailsUrl,
+    isVisible,
     statTitle,
     statDescription,
   } = props;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={classNames(
+      styles.wrapper,
+      { [styles.isVisible]: isVisible }
+    )}
+    >
       <div className={styles.description}>
         <p className={styles.descriptionTitle}>
           {descriptionTitle}
@@ -43,6 +49,7 @@ CompanyFlyout.propTypes = {
   description: PropTypes.string.isRequired,
   detailsText: PropTypes.string.isRequired,
   detailsUrl: PropTypes.string.isRequired,
+  isVisible: PropTypes.bool.isRequired,
   statTitle: PropTypes.string.isRequired,
   statDescription: PropTypes.string.isRequired,
 };

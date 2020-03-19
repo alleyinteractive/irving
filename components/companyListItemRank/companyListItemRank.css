@@ -20,6 +20,9 @@
 }
 
 .nameWrapper {
-  display: inline-block;
-  padding: 0 rem(30) 0 rem(5);
+  /* added specificity to override Button helper defaults */
+  && {
+    display: inline-block;
+    padding: 0 rem(30) 0 rem(5);
+  }
 }
