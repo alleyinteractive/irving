@@ -14,6 +14,7 @@ import Carousel from 'components/carousel';
 import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
+import CompanyFlyout from 'components/companyFlyout';
 import CompanyListItem from 'components/companyListItem';
 import CompanyListItemName from 'components/companyListItemName';
 import CompanyListItemLocation from 'components/companyListItemLocation';
@@ -181,6 +182,7 @@ export const componentMap = {
   'list-item': ListItem,
   'list-50-heading': List50Heading,
   'list-50-item': CompanyListItem,
+  'list-50-item-flyout': CompanyFlyout,
   'list-50-sidebar': ListSidebar,
   'list-50-intro-item': CompanyListItem,
   'list-50-location': ListContent,
