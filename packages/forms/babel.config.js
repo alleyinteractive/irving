@@ -12,6 +12,7 @@ module.exports = {
           config: './config',
           components: './components',
           sagas: './sagas',
+          services: './services',
         },
       },
     ],
