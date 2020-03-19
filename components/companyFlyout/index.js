@@ -14,10 +14,22 @@ const CompanyFlyout = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      {descriptionTitle}
-      {description}
-      {statTitle}
-      {statDescription}
+      <div className={styles.description}>
+        <p className={styles.descriptionTitle}>
+          {descriptionTitle}
+        </p>
+        <p className={styles.description}>
+          {description}
+        </p>
+      </div>
+      <div className={styles.stat}>
+        <p className={styles.statTitle}>
+          {statTitle}
+        </p>
+        <p className={styles.statDescription}>
+          {statDescription}
+        </p>
+      </div>
     </div>
   );
 };
