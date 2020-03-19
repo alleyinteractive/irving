@@ -139,14 +139,18 @@ const Login = ({
 
     window.addEventListener('message', initSSO);
 
+    // A function that resets the state of an active tooltip.
+    // It also removes any active event listeners for the active tooltip
+    // allowing it to be summoned in the future.
     const updateTooltipState = () => {
       if (tooltipActive) {
         setTooltipState(false);
-
+        // Remove the event listener.
         window.removeEventListener('click', updateTooltipState);
       }
     };
 
+    // Add the tooltip listenter.
     window.addEventListener('click', updateTooltipState);
   }, [loginForm, tooltipActive]);
 
@@ -210,7 +214,11 @@ const Login = ({
           </li>
           <li>
             {tooltipActive && (
-              <div className={styles.tooltip}>
+              <div
+                id="twitter-auth-desc"
+                role="tooltip"
+                className={styles.tooltip}
+              >
                 <p>
                   {__(
                     `We value your security—that’s why we
@@ -240,6 +248,7 @@ const Login = ({
             )}
             <button
               type="button"
+              aria-describedby="twitter-auth-desc"
               onClick={() => setTooltipState(true)}
             >
               Twitter
