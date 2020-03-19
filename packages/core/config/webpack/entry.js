@@ -15,8 +15,15 @@ module.exports = function getEntry(context) {
   const polyfills = [
     'core-js/stable',
     'regenerator-runtime/runtime',
-    path.join(irvingRoot, 'utils/isomorphicFetch'),
     'abort-controller/polyfill',
+  ];
+  const clientPolyfills = [
+    ...polyfills,
+    'whatwg-fetch',
+  ];
+  const serverPolyfills = [
+    ...polyfills,
+    path.join(irvingRoot, 'utils/isomorphicFetch'),
   ];
 
   switch (context) {
@@ -28,7 +35,7 @@ module.exports = function getEntry(context) {
           // so that the env preset can be dynamically configured to independently
           // target NodeJS and browser environments, thus eliminating the need to
           // require babel-polyfill for NodeJS.
-          ...polyfills,
+          ...serverPolyfills,
           serverRoot,
         ],
       };
@@ -36,7 +43,7 @@ module.exports = function getEntry(context) {
     case 'production_client':
       return {
         main: [
-          ...polyfills,
+          ...clientPolyfills,
           clientRoot,
         ],
       };
@@ -49,7 +56,7 @@ module.exports = function getEntry(context) {
 
       return {
         main: [
-          ...polyfills,
+          ...clientPolyfills,
           `webpack-hot-middleware/client?${queryString}`,
           clientRoot,
         ],
