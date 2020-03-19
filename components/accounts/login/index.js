@@ -282,7 +282,12 @@ const Login = ({
         >
           {__('Connect now', 'mittr')}
         </button>
-        <a href="https://google.com" className={styles.btnLink}>
+        <a
+          href="https://alum.mit.edu/about/infinite-connection-terms-conditions-use" // eslint-disable-line max-len
+          className={styles.btnLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {__('Learn more', 'mittr')}
         </a>
       </div>
