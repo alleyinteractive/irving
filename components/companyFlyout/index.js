@@ -2,12 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import Link from 'components/helpers/link';
 import styles from './companyFlyout.css';
 
 const CompanyFlyout = (props) => {
   const {
     descriptionTitle,
     description,
+    detailsText,
+    detailsUrl,
     statTitle,
     statDescription,
   } = props;
@@ -30,6 +33,7 @@ const CompanyFlyout = (props) => {
           {statDescription}
         </p>
       </div>
+      <Link to={detailsUrl}>{detailsText}</Link>
     </div>
   );
 };
@@ -37,6 +41,8 @@ const CompanyFlyout = (props) => {
 CompanyFlyout.propTypes = {
   descriptionTitle: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  detailsText: PropTypes.string.isRequired,
+  detailsUrl: PropTypes.string.isRequired,
   statTitle: PropTypes.string.isRequired,
   statDescription: PropTypes.string.isRequired,
 };
