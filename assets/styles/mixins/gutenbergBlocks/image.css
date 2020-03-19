@@ -56,20 +56,23 @@
       margin: 0 rem(36) rem(36) 0;
     }
 
-    :global(.alignleft),
-    :global(.alignright) {
-      max-width: 50%;
+    @media ($smMin) {
+      :global(.alignleft),
+      :global(.alignright) {
+        max-width: 50%;
+      }
+
+      :global(.alignleft) {
+        float: left;
+        margin: rem(30) calc(8.33%) rem(20) -13.33%;
+      }
+
+      :global(.alignright) {
+        float: right;
+        margin: rem(30) -13.33% rem(20) calc(8.33%);
+      }
     }
 
-    :global(.alignleft) {
-      float: left;
-      margin: rem(30) calc(8.33%) rem(20) -13.33%;
-    }
-
-    :global(.alignright) {
-      float: right;
-      margin: rem(30) -13.33% rem(20) calc(8.33%);
-    }
 
     :global(.aligncenter) {
       align-items: center;
@@ -97,13 +100,15 @@
     }
   }
 
-  :global(.alignwide) {
-    margin-left: -20%;
-    margin-right: -20%;
+  @media ($smMin) {
+    :global(.alignwide) {
+      margin-left: -20%;
+      margin-right: -20%;
 
-    img {
-      max-width: 130%;
-      width: 130%;
+      img {
+        max-width: 130%;
+        width: 130%;
+      }
     }
   }
 }
