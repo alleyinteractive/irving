@@ -39,6 +39,7 @@ const Login = ({
     isValid: false,
     hasError: false,
   });
+  const [tooltipActive, setTooltipState] = useState(false);
 
   // Create submit handler.
   const onSubmit = (event) => {
@@ -137,7 +138,17 @@ const Login = ({
     };
 
     window.addEventListener('message', initSSO);
-  }, [loginForm]);
+
+    const updateTooltipState = () => {
+      if (tooltipActive) {
+        setTooltipState(false);
+
+        window.removeEventListener('click', updateTooltipState);
+      }
+    };
+
+    window.addEventListener('click', updateTooltipState);
+  }, [loginForm, tooltipActive]);
 
   // If the form has not yet been retireved, show a loader.
   if (0 === Object.keys(loginForm).length) {
@@ -195,6 +206,43 @@ const Login = ({
               }}
             >
               Google
+            </button>/
+          </li>
+          <li>
+            {tooltipActive && (
+              <div className={styles.tooltip}>
+                <p>
+                  {__(
+                    `We value your security—that’s why we
+                    only support social logins that use OAuth2.`,
+                    'mittr'
+                  )}
+                </p>
+                <p>
+                  <span>
+                    {__(
+                      `If you were previously singing in to our site
+                      with Twitter, please `,
+                      'mittr'
+                    )}
+                  </span>
+                  <Link to="/register/">
+                    {__('create an account ', 'mittr')}
+                  </Link>
+                  <span>
+                    {__(
+                      'or sign in another way.',
+                      'mittr'
+                    )}
+                  </span>
+                </p>
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={() => setTooltipState(true)}
+            >
+              Twitter
             </button>/
           </li>
           <li>

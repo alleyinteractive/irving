@@ -36,6 +36,7 @@
   display: flex;
   margin: 0;
   padding: 0;
+  position: relative;
 
   li {
     margin: 0 rem(3);
@@ -76,4 +77,45 @@
 
 .registerLink {
   text-decoration: underline;
+}
+
+.tooltip {
+  background-color: $color-deck;
+  color: $white;
+  max-width: rem(300);
+  padding: rem(15) rem(10);
+  position: absolute;
+  top: rem(-145);
+
+  /* stylelint-disable */
+  &:after {
+    top: 100%;
+    left: rem(26);
+    border: solid transparent;
+    content: '';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-top-color: $color-deck;
+    border-width: rem(10);
+    margin-left: rem(-10);
+  }
+  /* stylelint-enable */
+
+  p {
+    color: $white;
+    font-size: rem(14);
+    letter-spacing: 1.25;
+    line-height: 1.25;
+    margin-bottom: rem(15);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+  }
 }
