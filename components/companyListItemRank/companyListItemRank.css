@@ -4,6 +4,7 @@
   font-size: rem(25);
   font-weight: 700;
   line-height: 1.3;
+  position: relative;
 
   @media ($mdMin) {
     font-size: rem(35);
