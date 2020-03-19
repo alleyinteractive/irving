@@ -218,7 +218,10 @@ const Login = ({
         <button
           type="button"
           className={styles.connectBtn}
-          onClick={() => {}}
+          onClick={() => {
+            openConnection('login', 'mitaa');
+            sso.openInfiniteConnectionClient();
+          }}
         >
           {__('Connect now', 'mittr')}
         </button>
