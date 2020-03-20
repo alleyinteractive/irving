@@ -14,8 +14,8 @@ export default function* resolveUIRules() {
 
   try {
     const session = yield select(getSession);
-    const result = yield call(fetchZephrDataLayer, session);
-    yield put(actionReceiveZephrDataLayer(result));
+    const { dataLayer } = yield call(fetchZephrDataLayer, session);
+    yield put(actionReceiveZephrDataLayer(dataLayer));
   } catch (err) {
     yield call(debug, err);
   }
