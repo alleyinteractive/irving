@@ -9,7 +9,11 @@ import { fetchZephrDataLayer } from 'services/zephrUIService';
 
 const debug = createDebug('sagas:zephrDataLayer');
 
-export default function* resolveUIRules() {
+/**
+ * Worker generator that sends actions to request and receive the dataLayer API
+ * endpoint from Zephr.
+ */
+export default function* updateDataLayer() {
   yield put(actionRequestZephrDataLayer());
 
   try {
