@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -11,6 +11,11 @@ const GoogleTagManager = (props) => {
     dataLayer,
     zephrDataLayer,
   } = props;
+
+  const [
+    lastZephrDataLayer,
+    setLastZephrDataLayer,
+  ] = useState(zephrDataLayer);
 
   if (! containerId) {
     return null;
@@ -55,10 +60,18 @@ const GoogleTagManager = (props) => {
    * Zephr dataLayer updates are received (upon history change).
    */
   useEffect(() => {
+    // Do not update if the states are identical.
+    if (
+      zephrDataLayer === lastZephrDataLayer
+    ) {
+      return;
+    }
+
     window.dataLayer.push({
       event: 'zephr.historyChange',
       ...zephrDataLayer,
     });
+    setLastZephrDataLayer(zephrDataLayer);
   }, [zephrDataLayer]);
 
   return (
