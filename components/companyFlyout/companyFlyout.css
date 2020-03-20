@@ -1,17 +1,20 @@
 .wrapper {
   color: $black;
-  display: none;
   font-family: $sans;
   font-size: rem(18);
   font-weight: 600;
+  opacity: 0;
   padding-left: rem(30);
   position: absolute;
   right: 0;
   top: 0;
+  transform: translateX(rem(-100));
+  transition: all 0.2s ease;
   width: rem(300);
 
   &.isVisible {
-    display: block;
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 

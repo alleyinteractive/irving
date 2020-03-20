@@ -29,7 +29,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: calc(100% - rem(70));
+      width: calc(100% - rem(170));
     }
   }
 }
@@ -40,6 +40,14 @@
     display: inline-block;
     position: relative;
     z-index: 1;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
