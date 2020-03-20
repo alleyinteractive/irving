@@ -27,6 +27,8 @@ import {
   RECEIVE_RESET_PASSWORD_ERROR,
   RECEIVE_SSO_SESSION,
   SUBMIT_PROFILE,
+  REQUEST_ZEPHR_DATA_LAYER,
+  RECEIVE_ZEPHR_DATA_LAYER,
 } from './types';
 
 /**
@@ -304,4 +306,22 @@ export function actionReceiveSsoSession(payload) {
  */
 export function actionSubmitProfile(payload) {
   return createAction(SUBMIT_PROFILE, payload);
+}
+
+/**
+ * A Redux action that represents when a request has been made to update the
+ * dataLayer for Google Tag Manager.
+ */
+export function actionRequestZephrDataLayer() {
+  return createAction(REQUEST_ZEPHR_DATA_LAYER);
+}
+
+/**
+ * A Redux action that represents when the Zephr API has returned information
+ * about the dataLayer for Google Tag Manager.
+ *
+ * @param {type, payload} payload The redux action.
+ */
+export function actionReceiveZephrDataLayer(payload) {
+  return createAction(RECEIVE_ZEPHR_DATA_LAYER, payload);
 }
