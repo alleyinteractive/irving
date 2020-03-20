@@ -4,21 +4,19 @@ export default {
    *
    * @param {object} parameters Email to lookup and matching request header.
    */
-  async getOrders({ email, requestHeader }) { // eslint-disable-line no-unused-vars
+  async getUser({ email, header }) {
     try {
       const request = await fetch(
-        `${process.env.NEXUS_ROOT_URL}/api/order/${email}`,
+        `${process.env.NEXUS_ROOT_URL}/api/user/email/${email}`,
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'test', // @todo Update me for authorization to the production server.
+            Authorization: header,
           },
         }
       );
-      const response = await request.json();
-
-      console.log(response); // @todo to be fully built out it MIT-377
+      return await request.json();
     } catch (error) {
       console.info('There was a problem.', error); // eslint-disable-line no-console
     }
