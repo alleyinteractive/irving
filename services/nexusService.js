@@ -4,7 +4,7 @@ export default {
    *
    * @param {object} parameters Email to lookup and matching request header.
    */
-  async getUser({ email, requestHeader }) {
+  async getUser({ email, header }) {
     try {
       const request = await fetch(
         `${process.env.NEXUS_ROOT_URL}/api/user/email/${email}`,
@@ -12,7 +12,7 @@ export default {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: requestHeader,
+            Authorization: header,
           },
         }
       );
