@@ -8,7 +8,17 @@
 
     @media ($mdMin) {
       margin-left: -20%;
+      margin-right: -20%;
       width: 130%;
+    }
+
+    img {
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media ($smMin) {
+      width: auto;
     }
 
     .wp-block-columns {
