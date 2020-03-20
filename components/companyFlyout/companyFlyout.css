@@ -4,6 +4,7 @@
   font-family: $sans;
   font-size: rem(18);
   font-weight: 600;
+  padding-left: rem(30);
   position: absolute;
   right: 0;
   top: 0;

@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 import Button from 'components/helpers/button';
@@ -8,6 +9,7 @@ import styles from './companyListItemRank.css';
 
 const CompanyListItemRank = (props) => {
   const {
+    // bgColor @todo we need this passed in
     children,
     companyName,
     rank,
@@ -15,26 +17,42 @@ const CompanyListItemRank = (props) => {
     showFlyout,
   } = props;
 
+  const bgColor = '#fff';
+
   const flyout = findChildByName('list-50-item-flyout', children);
   const toggleFlyoutVisible = () => setCompanyFlyoutVisible(companyName);
 
   return (
     <li className={styles.wrapper}>
-      <span className={styles.rankWrapper}>{rank}</span>
-      <Button
-        className={styles.nameWrapper}
-        onClick={toggleFlyoutVisible}
+      <div
+        className={classNames(
+          styles.nameWrapper,
+          { [styles.flyoutVisible]: showFlyout },
+        )}
       >
-        {companyName}
-      </Button>
+        <span className={styles.rankWrapper}>{rank}</span>
+        <Button
+          className={styles.name}
+          onClick={toggleFlyoutVisible}
+        >
+          <span
+            style={{ backgroundColor: bgColor }}
+            className={styles.nameInner}
+          >
+            {companyName}
+          </span>
+        </Button>
+      </div>
       {React.cloneElement(flyout, {
         isVisible: showFlyout,
+        bgColor,
       })}
     </li>
   );
 };
 
 CompanyListItemRank.propTypes = {
+  // bgColor: PropTypes.string.isRequired @todo we need this passed in
   children: PropTypes.node.isRequired,
   companyName: PropTypes.string.isRequired,
   rank: PropTypes.number.isRequired,

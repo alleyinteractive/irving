@@ -8,6 +8,7 @@ import styles from './companyFlyout.css';
 
 const CompanyFlyout = (props) => {
   const {
+    bgColor,
     descriptionTitle,
     description,
     detailsText,
@@ -18,10 +19,12 @@ const CompanyFlyout = (props) => {
   } = props;
 
   return (
-    <div className={classNames(
-      styles.wrapper,
-      { [styles.isVisible]: isVisible }
-    )}
+    <div
+      style={{ backgroundColor: bgColor }}
+      className={classNames(
+        styles.wrapper,
+        { [styles.isVisible]: isVisible }
+      )}
     >
       <div className={styles.description}>
         <p className={styles.descriptionTitle}>
@@ -45,6 +48,7 @@ const CompanyFlyout = (props) => {
 };
 
 CompanyFlyout.propTypes = {
+  bgColor: PropTypes.string.isRequired,
   descriptionTitle: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   detailsText: PropTypes.string.isRequired,

@@ -20,9 +20,29 @@
 }
 
 .nameWrapper {
+  &.flyoutVisible {
+    &::after {
+      border-top: solid 1px $black;
+      content: '';
+      height: 0;
+      left: rem(70);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: calc(100% - rem(70));
+    }
+  }
+}
+
+.name {
   /* added specificity to override Button helper defaults */
   && {
     display: inline-block;
-    padding: 0 rem(30) 0 rem(5);
+    position: relative;
+    z-index: 1;
   }
+}
+
+.nameInner {
+  padding: 0 rem(30) 0 rem(5);
 }
