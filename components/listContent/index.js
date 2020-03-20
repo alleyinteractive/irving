@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 
@@ -10,12 +10,17 @@ const ListContent = (props) => {
     children,
   } = props;
 
+  const [companyFlyoutVisible, setCompanyFlyoutVisible] = useState('');
+
   return (
     <div className={styles.wrapper}>
       <ul className={styles.listWrapper}>
         {(children && children.length) && children.map((child) => (
           <>
-            {child}
+            {React.cloneElement(child, {
+              setCompanyFlyoutVisible,
+              showFlyout: child.props.companyName === companyFlyoutVisible,
+            })}
           </>
         ))}
       </ul>

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
@@ -11,12 +11,13 @@ const CompanyListItemRank = (props) => {
     children,
     companyName,
     rank,
+    setCompanyFlyoutVisible,
+    showFlyout,
   } = props;
 
-  const [flyoutVisible, setFlyoutVisible] = useState(false);
-  const toggleFlyoutVisible = () => setFlyoutVisible(! flyoutVisible);
-
   const flyout = findChildByName('list-50-item-flyout', children);
+  const toggleFlyoutVisible = () => setCompanyFlyoutVisible(companyName);
+
   return (
     <li className={styles.wrapper}>
       <span className={styles.rankWrapper}>{rank}</span>
@@ -27,7 +28,7 @@ const CompanyListItemRank = (props) => {
         {companyName}
       </Button>
       {React.cloneElement(flyout, {
-        isVisible: flyoutVisible,
+        isVisible: showFlyout,
       })}
     </li>
   );
@@ -37,6 +38,8 @@ CompanyListItemRank.propTypes = {
   children: PropTypes.node.isRequired,
   companyName: PropTypes.string.isRequired,
   rank: PropTypes.number.isRequired,
+  setCompanyFlyoutVisible: PropTypes.func.isRequired,
+  showFlyout: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(CompanyListItemRank);
