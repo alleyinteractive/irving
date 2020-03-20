@@ -155,14 +155,25 @@ export function* getAccount(sessionCookie) {
         emailAddress: email,
       } = account;
       // Generate the request header.
-      const header = yield call(nexusService.getRequestHeader);
+      const { header } = yield call(nexusService.getRequestHeader);
+      const {
+        orders,
+        subscription_active: subscriptionActive,
+        subscription_type: subscriptionType,
+        subscription_expire_date: subscriptionExpiration,
+      } = yield call(nexusService.getUser, { email, header });
 
-      yield call(nexusService.getOrders, { email, header }); // @todo this will be fully built out in MIT-377
+      // Store user account information.
+      yield put(actionReceiveUserAccount({
+        ...account,
+        orders,
+        subscriptionActive,
+        subscriptionType,
+        subscriptionExpiration,
+      }));
     } catch (error) {
       console.error(error); // eslint-disable-line no-console
     }
-    // Store user account information.
-    yield put(actionReceiveUserAccount(account));
   }
 }
 
