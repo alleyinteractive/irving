@@ -13,6 +13,7 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
+import CompanyListItemName from 'components/companyListItemName';
 import CompanyListItemLocation from 'components/companyListItemLocation';
 import CompanyListItemRank from 'components/companyListItemRank';
 import CompanyListItemYears from 'components/companyListItemYears';
@@ -182,6 +183,8 @@ export const componentMap = {
   'list-50-rank-item': CompanyListItemRank,
   'list-50-years': ListContent,
   'list-50-years-item': CompanyListItemYears,
+  'list-50-name': ListContent,
+  'list-50-name-item': CompanyListItemName,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
