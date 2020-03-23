@@ -1,47 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import { __ } from '@wordpress/i18n';
 import { connect } from 'react-redux';
 import {
   getProfile,
   getAccount,
 } from 'selectors/zephrSelector';
-import history from 'utils/history';
-import Link from 'components/helpers/link';
+import {
+  actionRequestUserLogOut,
+} from 'actions/zephrActions';
+import { __ } from '@wordpress/i18n';
 import RegisterForm from './form.js';
 
 // Styles
 import styles from './register.css';
 
-const Register = ({
+const Activate = ({
   isAuthenticated,
+  logOut,
 }) => {
-  // Prevent authenticated users from being able to visit this route.
   if (isAuthenticated) {
-    history.push('/');
+    logOut();
+    return null;
   }
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.header}>{__('Account', 'mittr')}</h1>
-      <p className={styles.subheader}>
-        {__('Create an account to improve your experience on this site.',
+      <h1 className={styles.header}>
+        {__('Activate your account',
           'mittr')}
-      </p>
+      </h1>
       <p className={styles.headerDescription}>
-        {__('Already have an account? ', 'mittr')}
-        <Link to="/login/" className={styles.registerLink}>
-          {__('Sign in.', 'mittr')}
-        </Link>
+        {__(
+          'Enter your name and choose a password to claim your subscription.',
+          'mittr'
+        )}
       </p>
       <RegisterForm />
     </div>
   );
 };
 
-Register.propTypes = {
+Activate.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
+  logOut: PropTypes.func.isRequired,
 };
 
 const withRedux = connect(
@@ -50,9 +52,11 @@ const withRedux = connect(
       0 < Object.keys(getProfile(state)).length &&
       0 < Object.keys(getAccount(state)).length,
   }),
-  () => ({})
+  (dispatch) => ({
+    logOut: () => dispatch(actionRequestUserLogOut()),
+  })
 );
 
 export default withRedux(
-  withStyles(styles)(Register)
+  withStyles(styles)(Activate)
 );

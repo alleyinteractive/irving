@@ -13,8 +13,8 @@ import styles from './updateEmail.css';
 const UpdateEmailRequest = ({
   firstName,
 }) => (
-  <div className={styles.accountWrap}>
-    <p className={styles.accountSubHeader}>
+  <div className={styles.wrapper}>
+    <p className={styles.subheader}>
       {__(
         `Thanks ${firstName}! Please check your inbox at your
         current email to confirm your new email address.`,
