@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
+import Arrow from 'assets/icons/longArrow.svg';
 import styles from './companyFlyout.css';
 
 const CompanyFlyout = (props) => {
@@ -36,13 +37,16 @@ const CompanyFlyout = (props) => {
       </div>
       <div className={styles.stat}>
         <p className={styles.statTitle}>
-          {statTitle}
+          {statTitle}:
         </p>
         <p className={styles.statDescription}>
           {statDescription}
         </p>
       </div>
-      <Link to={detailsUrl}>{detailsText}</Link>
+      <Link className={styles.detailsLink} to={detailsUrl}>
+        {detailsText}
+        <Arrow />
+      </Link>
     </div>
   );
 };

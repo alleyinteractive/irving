@@ -10,12 +10,14 @@
   top: 0;
   transform: translateX(rem(-100));
   transition: all 0.2s ease;
+  visibility: hidden;
   width: rem(300);
   z-index: 1;
 
   &.isVisible {
     opacity: 1;
     transform: translateX(0);
+    visibility: visible;
   }
 }
 
@@ -25,4 +27,21 @@
 
 .stat {
   margin-bottom: rem(20);
+}
+
+.detailsLink {
+  align-items: center;
+  display: flex;
+
+  &:hover {
+    svg {
+      transform: translateX(rem(5));
+    }
+  }
+
+  svg {
+    margin-left: rem(5);
+    transition: transform 0.2s ease;
+    width: rem(33);
+  }
 }
