@@ -16,7 +16,7 @@ const getService = () => {
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
-  if (! process.env.BROWSER) {
+  if (! process.env.BROWSER && 'test' !== process.env.NODE_ENV) {
     const { redis: getVipRedis } = require('@automattic/vip-go'); // eslint-disable-line global-require
     const client = getVipRedis();
 

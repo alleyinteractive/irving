@@ -14,6 +14,10 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
+import CompanyListItemName from 'components/companyListItemName';
+import CompanyListItemLocation from 'components/companyListItemLocation';
+import CompanyListItemRank from 'components/companyListItemRank';
+import CompanyListItemYears from 'components/companyListItemYears';
 import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
 import ContactForm from 'components/contactForm';
@@ -46,6 +50,8 @@ import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
 import Link from 'components/helpers/link';
 import LinkTeaser from 'components/linkTeaser';
+import List50Heading from 'components/list50Heading';
+import ListContent from 'components/listContent';
 import ListDescription from 'components/listDescription';
 import ListGroup from 'components/listGroup';
 import ListHeader from 'components/listHeader';
@@ -169,9 +175,18 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
+  'list-50-heading': List50Heading,
   'list-50-item': CompanyListItem,
   'list-50-sidebar': ListSidebar,
   'list-50-intro-item': CompanyListItem,
+  'list-50-location': ListContent,
+  'list-50-location-item': CompanyListItemLocation,
+  'list-50-rank': ListContent,
+  'list-50-rank-item': CompanyListItemRank,
+  'list-50-years': ListContent,
+  'list-50-years-item': CompanyListItemYears,
+  'list-50-name': ListContent,
+  'list-50-name-item': CompanyListItemName,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
@@ -203,6 +218,7 @@ export const componentMap = {
   'podcast-list': PodcastList,
   popular: Popular,
   'post-list': PostList,
+  'rank-list-item': CompanyListItemRank,
   register: Register,
   'reset-password-request': ResetRequestForm,
   'reset-password-request-confirmation': ConfirmResetRequest,

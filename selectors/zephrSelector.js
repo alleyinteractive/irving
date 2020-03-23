@@ -106,3 +106,8 @@ export const getEmailVerified = createSelector(
   zephrSelector,
   (state) => state.user.emailVerified,
 );
+
+export const getZephrDataLayer = createSelector(
+  zephrSelector,
+  (state) => state.dataLayer,
+);

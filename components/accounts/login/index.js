@@ -39,6 +39,7 @@ const Login = ({
     isValid: false,
     hasError: false,
   });
+  const [tooltipActive, setTooltipState] = useState(false);
 
   // Create submit handler.
   const onSubmit = (event) => {
@@ -137,7 +138,21 @@ const Login = ({
     };
 
     window.addEventListener('message', initSSO);
-  }, [loginForm]);
+
+    // A function that resets the state of an active tooltip.
+    // It also removes any active event listeners for the active tooltip
+    // allowing it to be summoned in the future.
+    const updateTooltipState = () => {
+      if (tooltipActive) {
+        setTooltipState(false);
+        // Remove the event listener.
+        window.removeEventListener('click', updateTooltipState);
+      }
+    };
+
+    // Add the tooltip listenter.
+    window.addEventListener('click', updateTooltipState);
+  }, [loginForm, tooltipActive]);
 
   // If the form has not yet been retireved, show a loader.
   if (0 === Object.keys(loginForm).length) {
@@ -198,6 +213,48 @@ const Login = ({
             </button>/
           </li>
           <li>
+            {tooltipActive && (
+              <div
+                id="twitter-auth-desc"
+                role="tooltip"
+                className={styles.tooltip}
+              >
+                <p>
+                  {__(
+                    `We value your security—that’s why we
+                    only support social logins that use OAuth2.`,
+                    'mittr'
+                  )}
+                </p>
+                <p>
+                  <span>
+                    {__(
+                      `If you were previously signing in to our site
+                      with Twitter, please `,
+                      'mittr'
+                    )}
+                  </span>
+                  <Link to="/register/">
+                    {__('create an account ', 'mittr')}
+                  </Link>
+                  <span>
+                    {__(
+                      'or sign in another way.',
+                      'mittr'
+                    )}
+                  </span>
+                </p>
+              </div>
+            )}
+            <button
+              type="button"
+              aria-describedby="twitter-auth-desc"
+              onClick={() => setTooltipState(true)}
+            >
+              Twitter
+            </button>/
+          </li>
+          <li>
             <button
               type="button"
               onClick={() => {
@@ -218,11 +275,19 @@ const Login = ({
         <button
           type="button"
           className={styles.connectBtn}
-          onClick={() => {}}
+          onClick={() => {
+            openConnection('login', 'mitaa');
+            sso.openInfiniteConnectionClient();
+          }}
         >
           {__('Connect now', 'mittr')}
         </button>
-        <a href="https://google.com" className={styles.btnLink}>
+        <a
+          href="https://alum.mit.edu/about/infinite-connection-terms-conditions-use" // eslint-disable-line max-len
+          className={styles.btnLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {__('Learn more', 'mittr')}
         </a>
       </div>
