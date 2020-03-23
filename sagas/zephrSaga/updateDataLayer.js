@@ -20,6 +20,9 @@ export default function* updateDataLayer() {
     const session = yield select(getSession);
     const { dataLayer } = yield call(fetchZephrDataLayer, session);
     yield put(actionReceiveZephrDataLayer(dataLayer));
+    // Update the dataLayer once the data has been fetched. This is done here
+    // instead of in a component as it was triggering too many updates when it
+    // was invoked using a selector in the GTM component.
     yield call(pushDataLayer, dataLayer);
   } catch (err) {
     yield call(debug, err);
