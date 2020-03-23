@@ -73,20 +73,20 @@ const ResetForm = ({
   // If the form has not yet been retrieved, show a loader.
   if (0 === Object.keys(resetForm).length) {
     return (
-      <div className={styles.accountWrap}>
+      <div className={styles.wrapper}>
         <DataLoading />
       </div>
     );
   }
 
   return (
-    <div className={styles.accountWrap}>
-      <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
-      <p className={styles.accountSubHeader}>
+    <div className={styles.wrapper}>
+      <h1 className={styles.header}>{__('Sign in', 'mittr')}</h1>
+      <p className={styles.subheader}>
         {/* eslint-disable-next-line quotes */}
         {__(`Okay, let's reset your password`, 'mittr')}
       </p>
-      <p className={styles.accountHeaderDescription}>
+      <p className={styles.headerDescription}>
         {__('Enter your new password', 'mittr')}
       </p>
       <form

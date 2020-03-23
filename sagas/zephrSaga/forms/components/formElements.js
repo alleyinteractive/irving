@@ -11,6 +11,7 @@ export const FormInput = ({
   required,
   autoComplete,
   invalid,
+  readonly,
 }) => (
   <label key={id} htmlFor={id}>
     <input
@@ -24,6 +25,7 @@ export const FormInput = ({
       autoComplete={autoComplete}
       aria-errormessage={`${id}-error`}
       aria-invalid={invalid}
+      readOnly={readonly}
     />
   </label>
 );
@@ -32,6 +34,7 @@ FormInput.defaultProps = {
   required: false,
   autoComplete: '',
   invalid: false,
+  readonly: false,
 };
 
 FormInput.propTypes = {
@@ -43,6 +46,7 @@ FormInput.propTypes = {
   required: PropTypes.bool,
   autoComplete: PropTypes.string,
   invalid: PropTypes.bool,
+  readonly: PropTypes.bool,
 };
 
 export const TermsCheckbox = (props) => {
