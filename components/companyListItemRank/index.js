@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -18,7 +17,6 @@ const CompanyListItemRank = (props) => {
   } = props;
 
   const bgColor = '#fff';
-
   const flyout = findChildByName('list-50-item-flyout', children);
   const toggleFlyoutVisible = () => setCompanyFlyoutVisible(companyName);
 
