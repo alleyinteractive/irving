@@ -17,6 +17,10 @@
   font-size: rem(20);
   order: 2;
 
+  &:focus {
+    outline: 0;
+  }
+
   path {
     stroke: white;
   }
