@@ -18,7 +18,6 @@ const CompanyListItemLocation = (props) => {
   } = props;
 
   const bgColor = '#fff';
-
   const flyout = findChildByName('list-50-item-flyout', children);
   const toggleFlyoutVisible = () => setCompanyFlyoutVisible(companyName);
 
