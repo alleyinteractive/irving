@@ -23,16 +23,18 @@ const CompanyListItemRank = (props) => {
   const toggleFlyoutVisible = () => setCompanyFlyoutVisible(companyName);
 
   return (
-    <li className={styles.wrapper}>
+    <li
+      className={classNames(
+        styles.wrapper,
+        { [styles.flyoutVisible]: showFlyout },
+      )}
+    >
       <div
-        className={classNames(
-          styles.nameWrapper,
-          { [styles.flyoutVisible]: showFlyout },
-        )}
+        style={{ backgroundColor: bgColor }}
+        className={styles.nameWrapper}
       >
-        <span className={styles.rankWrapper}>{rank}</span>
+        <span className={styles.rank}>{rank}</span>
         <Button
-          className={styles.name}
           onClick={toggleFlyoutVisible}
         >
           <span

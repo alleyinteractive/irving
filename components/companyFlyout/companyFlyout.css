@@ -11,6 +11,7 @@
   transform: translateX(rem(-100));
   transition: all 0.2s ease;
   width: rem(300);
+  z-index: 1;
 
   &.isVisible {
     opacity: 1;

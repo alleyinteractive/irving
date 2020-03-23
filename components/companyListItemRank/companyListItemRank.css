@@ -13,13 +13,7 @@
   @media ($lgMin) {
     font-size: rem(53);
   }
-}
 
-.rankWrapper {
-  opacity: 0.25;
-}
-
-.nameWrapper {
   &.flyoutVisible {
     &::after {
       border-top: solid 1px $black;
@@ -32,6 +26,17 @@
       width: calc(100% - rem(170));
     }
   }
+}
+
+.rank {
+  opacity: 0.25;
+}
+
+.nameWrapper {
+  display: inline-block;
+  padding: 0 rem(25) 0 rem(5);
+  position: relative;
+  z-index: 1;
 }
 
 .name {
