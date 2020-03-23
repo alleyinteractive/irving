@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import Heading from 'components/helpers/heading';
 import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
 
@@ -10,6 +9,7 @@ import styles from './listSidebar.css';
 
 const ListSidebar = (props) => {
   const {
+    children,
     locationLink,
     nameLink,
     rankLink,
@@ -33,12 +33,7 @@ const ListSidebar = (props) => {
 
   return (
     <section className={styles.wrapper}>
-      <Heading
-        tag="h3"
-        className={styles.listHeading}
-      >
-        {__('Sort by', 'mittr')}
-      </Heading>
+      {children}
       <nav className={styles.listSidebarNav}>
         <ul>
           <li>
@@ -84,6 +79,7 @@ const ListSidebar = (props) => {
 };
 
 ListSidebar.propTypes = {
+  children: PropTypes.node.isRequired,
   locationLink: PropTypes.string.isRequired,
   nameLink: PropTypes.string.isRequired,
   rankLink: PropTypes.string.isRequired,
