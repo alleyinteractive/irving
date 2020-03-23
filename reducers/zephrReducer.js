@@ -285,7 +285,7 @@ function disableLoadState(state) {
 
         return {
           ...form,
-          type: form.type,
+          // type: form.type,
           components: JSON.stringify(fields),
         };
       }
