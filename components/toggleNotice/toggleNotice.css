@@ -15,10 +15,12 @@
   color: white;
   display: block;
   font-size: rem(20);
+  height: rem(30);
   order: 2;
+  width: rem(30);
 
   &:focus {
-    outline: 0;
+    @include focusRing;
   }
 
   path {
