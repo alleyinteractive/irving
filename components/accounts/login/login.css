@@ -92,14 +92,14 @@
     top: 100%;
     left: rem(26);
     border: solid transparent;
-    content: '';
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
     border-top-color: $color-deck;
     border-width: rem(10);
+    content: '';
+    height: 0;
     margin-left: rem(-10);
+    pointer-events: none;
+    position: absolute;
+    width: 0;
   }
   /* stylelint-enable */
 
