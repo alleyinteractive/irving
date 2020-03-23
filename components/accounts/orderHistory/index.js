@@ -67,7 +67,7 @@ const OrderHistory = ({ account, isAuthenticated }) => {
         >
           {
             0 === Object.keys(account).length ?
-              'Loading...' : 'Your are not subscribed.'
+              'Loading...' : 'You are not subscribed.'
           }
         </span>
       )}
