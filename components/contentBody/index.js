@@ -97,7 +97,20 @@ const ContentBody = ({
         <button
           className={styles.truncationButton}
           type="button"
-          onClick={showFullText}
+          onClick={() => {
+            /**
+             * Check for gtm.start in dataLayer.
+             */
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'StoryTruncationExpand',
+              category: 'story-truncation',
+              action: 'expand',
+              label: 'read more',
+              noninteraction: 0,
+            });
+            showFullText();
+          }}
           disabled={true === obscureContent}
         >
           <strong>{__(`${truncatedCTA}`, 'mittr')}</strong>{' '}

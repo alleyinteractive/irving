@@ -200,4 +200,15 @@ export default {
       'menubar=no,location=yes,resizeable=no,scrollbars=no,status=no,width=500,height=600' // eslint-disable-line max-len
     );
   },
+
+  /**
+   * Open the Infinite Connection SSO client window.
+   */
+  openInfiniteConnectionClient() {
+    window.open(
+      `${process.env.ZEPHR_ROOT_URL}/blaize/oauth/mitaa`,
+      'Sign in with your Infinite Connection account',
+      'menubar=no,location=yes,resizeable=no,scrollbars=no,status=no,width=500,height=600' // eslint-disable-line max-len
+    );
+  },
 };

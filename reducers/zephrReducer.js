@@ -1,18 +1,19 @@
 import {
-  REQUEST_FORM_FOR_ROUTE,
   RECEIVE_FORM_FOR_ROUTE,
-  RECEIVE_ZEPHR_USER_SESSION,
-  RECEIVE_ZEPHR_USER_PROFILE,
-  RECEIVE_USER_LOGIN,
   RECEIVE_LOGIN_ERROR,
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
-  RECEIVE_USER_REGISTRATION,
   RECEIVE_REGISTRATION_ERROR,
-  RECEIVE_USER_LOG_OUT,
-  RECEIVE_ZEPHR_USER_ACCOUNT,
-  RECEIVE_ZEPHR_USER_VERIFICATION,
-  SUBMIT_ZEPHR_FORM,
   RECEIVE_RESET_PASSWORD_ERROR,
+  RECEIVE_USER_LOG_OUT,
+  RECEIVE_USER_LOGIN,
+  RECEIVE_USER_REGISTRATION,
+  RECEIVE_ZEPHR_DATA_LAYER,
+  RECEIVE_ZEPHR_USER_ACCOUNT,
+  RECEIVE_ZEPHR_USER_PROFILE,
+  RECEIVE_ZEPHR_USER_SESSION,
+  RECEIVE_ZEPHR_USER_VERIFICATION,
+  REQUEST_FORM_FOR_ROUTE,
+  SUBMIT_ZEPHR_FORM,
 } from 'actions/types';
 import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
 import { zephr as defaultState } from './defaultState';
@@ -94,7 +95,10 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: {
           ...state.forms,
           login: {
-            components: setFormErrorState(state.forms.login, payload),
+            ...state.forms.login,
+            components: setFormErrorState(
+              disableLoadState(state).login, payload
+            ),
             error: true,
             errors: [
               ...state.forms.login.errors,
@@ -128,7 +132,10 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: {
           ...state.forms,
           register: {
-            components: setFormErrorState(state.forms.register, payload),
+            ...state.forms.register,
+            components: setFormErrorState(
+              disableLoadState(state).register, payload
+            ),
             error: true,
             errors: [
               ...state.forms.register.errors,
@@ -146,7 +153,9 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...state.forms,
           [payload]: {
             ...state.forms[payload],
-            components: setPasswordErrorState(state.forms[payload]),
+            components: setPasswordErrorState(
+              disableLoadState(state)[payload]
+            ),
             error: true,
             errors: ['verify-password'],
           },
@@ -159,7 +168,9 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...state.forms,
           reset: {
             ...state.forms.reset,
-            components: setFormErrorState(state.forms.reset, payload),
+            components: setFormErrorState(
+              disableLoadState(state).reset, payload
+            ),
             error: true,
             errors: [payload],
           },
@@ -178,6 +189,11 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...state.user,
           emailVerified: true,
         },
+      };
+    case RECEIVE_ZEPHR_DATA_LAYER:
+      return {
+        ...state,
+        dataLayer: payload,
       };
     default:
       return state;
@@ -236,6 +252,8 @@ function submitForm(form) {
   return {
     ...form,
     components: JSON.stringify(withLoadState),
+    error: false,
+    errors: [],
   };
 }
 
@@ -273,6 +291,7 @@ function disableLoadState(state) {
 
         return {
           ...form,
+          // type: form.type,
           components: JSON.stringify(fields),
         };
       }
