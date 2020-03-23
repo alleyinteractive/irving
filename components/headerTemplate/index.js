@@ -70,11 +70,12 @@ const HeaderTemplate = ({
         [styles.isHeadroom]: isHeadroom,
       })}
       >
-        {! isHeadroom && ! isMobile && (
-          <div className={styles.leaderboardRow}>
-            {leaderboardAd}
-          </div>
-        )}
+        <div className={classNames(styles.leaderboardRow, {
+          [styles.displayNone]: isHeadroom || isMobile,
+        })}
+        >
+          {leaderboardAd}
+        </div>
         {(isHeadroom || isMobile) && (
           <Link
             to={homeUrl}
