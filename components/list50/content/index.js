@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 
 // Styles
-import styles from './listContent.css';
+import styles from './list50Content.css';
 
-const ListContent = (props) => {
+const List50Content = (props) => {
   const {
     children,
   } = props;
@@ -28,8 +28,8 @@ const ListContent = (props) => {
   );
 };
 
-ListContent.propTypes = {
+List50Content.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default withStyles(styles)(ListContent);
+export default withStyles(styles)(List50Content);

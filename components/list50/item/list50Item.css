@@ -7,7 +7,7 @@
   position: relative;
 
   @media ($mdMin) {
-    font-size: rem(28);
+    font-size: rem(35);
   }
 
   @media ($lgMin) {
@@ -28,11 +28,13 @@
   }
 }
 
+.location,
+.rank,
 .years {
   opacity: 0.25;
 }
 
-.rank {
+.rankSmall {
   font-size: rem(25);
   margin-left: rem(5);
   margin-top: rem(5);

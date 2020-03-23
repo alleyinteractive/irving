@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
 import Button from 'components/helpers/button';
-import { __ } from '@wordpress/i18n';
-import styles from './companyListItemYears.css';
+import styles from './list50Item.css';
 
-const CompanyListItemYears = (props) => {
+const List50Item = (props) => {
   const {
     // bgColor @todo we need this passed in
     children,
-    yearsOnList,
     companyName,
+    componentName,
+    location,
     rank,
     setCompanyFlyoutVisible,
     showFlyout,
+    yearsOnList,
   } = props;
 
   const bgColor = '#fff';
@@ -33,16 +35,26 @@ const CompanyListItemYears = (props) => {
         style={{ backgroundColor: bgColor }}
         className={styles.nameWrapper}
       >
-        <span className={styles.years}>
-          {yearsOnList} {__('years', 'mittr')}
-        </span>
+        {'list-50-rank-item' === componentName &&
+          <span className={styles.rank}>{rank}</span>
+        }
+        { yearsOnList && (
+          <span className={styles.years}>
+            {yearsOnList} {__('years', 'mittr')}
+          </span>
+        )}
+        { location && <span className={styles.location}>{location}</span> }
         <Button
           className={styles.name}
           onClick={toggleFlyoutVisible}
         >
           {companyName}
         </Button>
-        <span className={styles.rank}>{rank}</span>
+        {'list-50-rank-item' !== componentName && (
+          <span className={classNames(styles.rank, styles.rankSmall)}>
+            {rank}
+          </span>
+        )}
       </div>
       {React.cloneElement(flyout, {
         isVisible: showFlyout,
@@ -52,14 +64,21 @@ const CompanyListItemYears = (props) => {
   );
 };
 
-CompanyListItemYears.propTypes = {
+List50Item.defaultProps = {
+  location: '',
+  yearsOnList: '',
+};
+
+List50Item.propTypes = {
   // bgColor: PropTypes.string.isRequired @todo we need this passed in
   children: PropTypes.node.isRequired,
-  yearsOnList: PropTypes.number.isRequired,
   companyName: PropTypes.string.isRequired,
+  componentName: PropTypes.string.isRequired,
+  location: PropTypes.string,
   rank: PropTypes.number.isRequired,
   setCompanyFlyoutVisible: PropTypes.func.isRequired,
   showFlyout: PropTypes.bool.isRequired,
+  yearsOnList: PropTypes.string,
 };
 
-export default withStyles(styles)(CompanyListItemYears);
+export default withStyles(styles)(List50Item);

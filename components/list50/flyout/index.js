@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
 import Arrow from 'assets/icons/longArrow.svg';
-import styles from './companyFlyout.css';
+import styles from './list50Flyout.css';
 
 const CompanyFlyout = (props) => {
   const {
