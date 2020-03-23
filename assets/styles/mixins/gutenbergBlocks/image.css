@@ -29,8 +29,12 @@
   /* No alignment set: <figure class="wp-block-image"> element only */
   :global(figure.wp-block-image) {
     display: block;
-    margin-bottom: rem(36);
+    margin-bottom: rem(20);
     max-width: 100%;
+
+    @media ($smMin) {
+      margin-bottom: rem(36);
+    }
 
     :global(.image-credit) {
       @include image-credit;

@@ -73,7 +73,7 @@
 
 .intro {
   composes: headerBlock;
-  margin-bottom: rem(15);
+  margin-bottom: rem(20);
 
   @media ($mdMax) {
     margin-bottom: rem(20);

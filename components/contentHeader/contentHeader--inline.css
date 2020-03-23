@@ -1,11 +1,30 @@
 .wrapper {
-  padding-top: rem(70);
   width: 100%;
+
+  @media ($mdMin) {
+    padding-top: rem(60);
+  }
+}
+
+.title {
+  @media ($mdMin) {
+    margin-bottom: rem(15);
+  }
+
+  composes: title from './contentHeader.css';
 }
 
 .intro {
-  composes: intro from './contentHeader.css';
+  margin-bottom: rem(20);
   margin-left: 0;
+
+  @media ($mdMax) {
+    margin-bottom: rem(20);
+  }
+
+  @media ($mdMin) {
+    order: 2;
+  }
 
   /* Increase specificity for override. */
   &.intro {
