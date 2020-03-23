@@ -38,18 +38,16 @@
 
 .nameWrapper {
   display: inline-block;
-  padding: 0 rem(25) 0 rem(5);
+  padding-left: rem(5);
   position: relative;
   z-index: 1;
 }
 
 .name {
-  /* added specificity to override Button helper defaults */
-  && {
-    display: inline-block;
-    position: relative;
-    z-index: 1;
-  }
+  display: inline-block;
+  padding-left: rem(5);
+  position: relative;
+  z-index: 1;
 
   &:focus {
     outline: 0;

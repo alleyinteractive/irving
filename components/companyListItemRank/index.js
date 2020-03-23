@@ -35,14 +35,10 @@ const CompanyListItemRank = (props) => {
       >
         <span className={styles.rank}>{rank}</span>
         <Button
+          className={styles.name}
           onClick={toggleFlyoutVisible}
         >
-          <span
-            style={{ backgroundColor: bgColor }}
-            className={styles.nameInner}
-          >
-            {companyName}
-          </span>
+          {companyName}
         </Button>
       </div>
       {React.cloneElement(flyout, {

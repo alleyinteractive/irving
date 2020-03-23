@@ -37,11 +37,7 @@ const CompanyListItemLocation = (props) => {
           className={styles.name}
           onClick={toggleFlyoutVisible}
         >
-          <span
-            className={styles.nameInner}
-          >
-            {companyName}
-          </span>
+          {companyName}
         </Button>
         <span className={styles.rank}>{rank}</span>
       </div>
