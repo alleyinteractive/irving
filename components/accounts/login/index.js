@@ -229,7 +229,7 @@ const Login = ({
                 <p>
                   <span>
                     {__(
-                      `If you were previously singing in to our site
+                      `If you were previously signing in to our site
                       with Twitter, please `,
                       'mittr'
                     )}
