@@ -95,7 +95,10 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: {
           ...state.forms,
           login: {
-            components: setFormErrorState(state.forms.login, payload),
+            ...state.forms.login,
+            components: setFormErrorState(
+              disableLoadState(state).login, payload
+            ),
             error: true,
             errors: [
               ...state.forms.login.errors,
@@ -129,7 +132,10 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: {
           ...state.forms,
           register: {
-            components: setFormErrorState(state.forms.register, payload),
+            ...state.forms.register,
+            components: setFormErrorState(
+              disableLoadState(state).register, payload
+            ),
             error: true,
             errors: [
               ...state.forms.register.errors,
@@ -147,7 +153,9 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...state.forms,
           [payload]: {
             ...state.forms[payload],
-            components: setPasswordErrorState(state.forms[payload]),
+            components: setPasswordErrorState(
+              disableLoadState(state)[payload]
+            ),
             error: true,
             errors: ['verify-password'],
           },
@@ -160,7 +168,9 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...state.forms,
           reset: {
             ...state.forms.reset,
-            components: setFormErrorState(state.forms.reset, payload),
+            components: setFormErrorState(
+              disableLoadState(state).reset, payload
+            ),
             error: true,
             errors: [payload],
           },
@@ -242,6 +252,8 @@ function submitForm(form) {
   return {
     ...form,
     components: JSON.stringify(withLoadState),
+    error: false,
+    errors: [],
   };
 }
 
@@ -279,6 +291,7 @@ function disableLoadState(state) {
 
         return {
           ...form,
+          // type: form.type,
           components: JSON.stringify(fields),
         };
       }
