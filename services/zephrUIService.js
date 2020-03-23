@@ -6,6 +6,8 @@ const debug = createDebug('zephr:UIComponents');
  * components to the state.
  *
  * @param {string} pageID The post ID of the current page, if set.
+ *
+ * @returns {object|null} The API response if returned, or null.
  */
 export async function fetchZephrUIComponents({ pageID, session }) {
   // Build the endpoint to fetch.
@@ -41,10 +43,14 @@ export async function fetchZephrUIComponents({ pageID, session }) {
 }
 
 /**
- * Get the datalayer object for the current session. All fields configured in
+ * Get the dataLayer object for the current session. All fields configured in
  * the admin console will be resolved against the current session and returned.
  *
  * @see https://s3.eu-west-2.amazonaws.com/live-site-api-docs/public-api-doc.html#web-analytics-get-datalayer-get
+ *
+ * @param {string} session The user's current active session cookie.
+ *
+ * @returns {object|null} The API response if returned, or null.
  */
 export async function fetchZephrDataLayer(session) {
   // Get the session cookie to add the header.
@@ -76,4 +82,20 @@ export async function fetchZephrDataLayer(session) {
   }
 
   return null;
+}
+/**
+ * Integration to push dataLayer data to Google Tag Manager.
+ * This is in the saga instead of the GTM c
+ *
+ * @param {object} zephrDataLayer The analytics object to send to GTM.
+ */
+export function pushDataLayer(zephrDataLayer) {
+  /**
+   * Check for gtm.start in dataLayer.
+   */
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'zephr.historyChange',
+    ...zephrDataLayer,
+  });
 }
