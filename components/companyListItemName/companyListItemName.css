@@ -44,10 +44,11 @@
 }
 
 .name {
-  display: inline-block;
-  padding-left: rem(5);
-  position: relative;
-  z-index: 1;
+  && {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+  }
 
   &:focus {
     outline: 0;
