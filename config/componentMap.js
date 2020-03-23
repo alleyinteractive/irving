@@ -13,6 +13,7 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
+import CompanyListItemLocation from 'components/companyListItemLocation';
 import CompanyListItemRank from 'components/companyListItemRank';
 import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
@@ -46,6 +47,7 @@ import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
 import Link from 'components/helpers/link';
 import LinkTeaser from 'components/linkTeaser';
+import List50Heading from 'components/list50Heading';
 import ListContent from 'components/listContent';
 import ListDescription from 'components/listDescription';
 import ListGroup from 'components/listGroup';
@@ -169,9 +171,12 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
+  'list-50-heading': List50Heading,
   'list-50-item': CompanyListItem,
   'list-50-sidebar': ListSidebar,
   'list-50-intro-item': CompanyListItem,
+  'list-50-location': ListContent,
+  'list-50-location-list-item': CompanyListItemLocation,
   'list-50-item-rank': CompanyListItemRank,
   'list-rank': ListContent,
   login: Login,
