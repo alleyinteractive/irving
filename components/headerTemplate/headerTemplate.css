@@ -102,6 +102,10 @@
   min-height: rem(150);
   width: 100%;
 
+  &.displayNone {
+    display: none;
+  }
+
   :global(.adUnit) {
     /* stylelint-disable selector-max-specificity */
     &[loaded="true"] {
