@@ -1,3 +1,4 @@
+import waitForExpect from 'wait-for-expect';
 import bustPageCache from './bustPageCache';
 
 // Set up the mocked cache service.
@@ -28,9 +29,10 @@ describe('bustPageCache', () => {
       const res = mockResponse();
 
       await bustPageCache(req, res);
-      await new Promise((wait) => setTimeout(wait, 500));
 
-      expect(res.json).toHaveBeenCalledWith('No cache to bust.');
+      await waitForExpect(() => {
+        expect(res.json).toHaveBeenCalledWith('No cache to bust.');
+      });
     }
   );
 
@@ -41,10 +43,11 @@ describe('bustPageCache', () => {
       const res = mockResponse();
 
       await bustPageCache(req, res);
-      await new Promise((wait) => setTimeout(wait, 500));
 
-      expect(res.json)
-        .toHaveBeenCalledWith('Endpoint cache deleted, matched 1 keys.');
+      await waitForExpect(() => {
+        expect(res.json)
+          .toHaveBeenCalledWith('Endpoint cache deleted, matched 1 keys.');
+      });
     }
   );
 
@@ -55,10 +58,11 @@ describe('bustPageCache', () => {
       const res = mockResponse();
 
       await bustPageCache(req, res);
-      await new Promise((wait) => setTimeout(wait, 500));
 
-      expect(res.json)
-        .toHaveBeenCalledWith('Endpoint cache deleted, matched 3 keys.');
+      await waitForExpect(() => {
+        expect(res.json)
+          .toHaveBeenCalledWith('Endpoint cache deleted, matched 3 keys.');
+      });
     }
   );
 });
