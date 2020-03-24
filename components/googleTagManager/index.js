@@ -2,11 +2,14 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from 'utils/isNode';
+import { connect } from 'react-redux';
+import { getZephrDataLayerSelector } from 'selectors/zephrDataLayerSelector';
 
 const GoogleTagManager = (props) => {
   const {
     containerId,
     dataLayer,
+    zephrDataLayer,
   } = props;
 
   if (! containerId) {
@@ -44,6 +47,45 @@ const GoogleTagManager = (props) => {
 
     return () => {};
   }, [dataLayer]);
+
+  /**
+   * Effect for pushing Zephr-related events.
+   */
+  useEffect(() => {
+    const { isLoading, dataLayer: zephrDataLayerResults } = zephrDataLayer;
+
+    // Do not update if empty or loading.
+    if (
+      isLoading ||
+      0 === Object.keys(zephrDataLayerResults)
+    ) {
+      return;
+    }
+
+    // Push values to dataLayer.
+    window.dataLayer.push({
+      event: 'zephr.meter',
+      ...zephrDataLayerResults,
+    });
+
+    // Need to refactor these so they are pushed on actions and not within the component.
+
+    // const {
+    //   loggedIn,
+    //   UserId,
+    //   remainingCredits,
+    //   usedCredits,
+    //   hasDigitalAccess,
+    // } = zephrDataLayerResults;
+
+    // // Push events based on meter rules.
+    // window.datalayer.push({
+    //   event: 'zephr.meter',
+    //   category: 'meter',
+    //   action: 'view',
+    //   label: `00${usedCredits}`,
+    // });
+  }, [zephrDataLayer]);
 
   return (
     <>
@@ -83,6 +125,20 @@ GoogleTagManager.propTypes = {
     PropTypes.object,
     PropTypes.array, // Empty objects turn to arrays in PHP :(
   ]).isRequired,
+  zephrDataLayer: PropTypes.shape({
+    isLoading: PropTypes.bool.isRequired,
+    dataLayer: PropTypes.shape({
+      loggedIn: PropTypes.bool.isRequired,
+      UserId: PropTypes.string.isRequired,
+      remainingCredits: PropTypes.string.isRequired,
+      usedCredits: PropTypes.string.isRequired,
+      hasDigitalAccess: PropTypes.bool.isRequired,
+    }).isRequired,
+  }),
 };
 
-export default GoogleTagManager;
+const mapStateToProps = (state) => ({
+  zephrDataLayer: getZephrDataLayerSelector(state),
+});
+
+export default connect(mapStateToProps)(GoogleTagManager);
