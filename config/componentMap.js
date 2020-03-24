@@ -5,6 +5,7 @@ import AccountNavigation from 'components/accounts/accountNavigation';
 import Activate from 'components/accounts/register/activate';
 import AudioElement from 'components/audio';
 import AuthorPage from 'components/authorPage';
+import Blueconic from 'components/blueconic';
 import Body from 'components/body';
 import Brightcove from 'components/brightcove';
 import Byline from 'components/byline';
@@ -130,6 +131,7 @@ export const componentMap = {
   'audio-element': AudioElement,
   'author-partial': AuthorPage,
   'bc/brightcove': Brightcove,
+  blueconic: Blueconic,
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
