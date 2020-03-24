@@ -178,7 +178,6 @@ export const componentMap = {
   'list-group': ListGroup,
   'list-item': ListItem,
   'list-50-heading': List50Heading,
-  'list-50-item': CompanyListItem,
   'list-50-header': List50Header,
   'list-50-sidebar': List50Sidebar,
   'list-50-intro-item': CompanyListItem,
