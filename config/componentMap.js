@@ -56,6 +56,7 @@ import ListContent from 'components/listContent';
 import ListDescription from 'components/listDescription';
 import ListGroup from 'components/listGroup';
 import ListHeader from 'components/listHeader';
+import List50Header from 'components/list50Header';
 import ListItem from 'components/listItem';
 import ListMenu from 'components/listMenu';
 import ListMenuItem from 'components/listMenuItem';
@@ -171,6 +172,7 @@ export const componentMap = {
   'link-teaser': LinkTeaser,
   'innovator-header': InnovatorHeader,
   'list-header': ListHeader,
+  'list-50-header': List50Header,
   'list-description': ListDescription,
   'list-menu': ListMenu,
   'list-menu-item': ListMenuItem,
