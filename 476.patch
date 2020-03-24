@@ -7,7 +7,7 @@ index 98866ef0..5c0ff274 100644
  wp-content/wp-cache-config.php
  wp-content/plugins/hello.php
 -!build
- 
+
  /.htaccess
  /license.txt
 diff --git a/actions/types.js b/actions/types.js
@@ -21,7 +21,7 @@ index 2c5ebe6e..66d77582 100644
 +export const SEND_ZEPHR_VERIFICATION_EMAIL = 'SEND_ZEPHR_VERIFICATION_EMAIL';
 +export const VERIFY_ZEPHR_USER_TOKEN = 'VERIFY_ZEPHR_USER_TOKEN';
 +export const RECEIVE_ZEPHR_USER_VERIFICATION = 'RECEIVE_ZEPHR_USER_VERIFICATION'; // eslint-disable-line max-len
- 
+
  // Zephr UI
  export const REQUEST_ZEPHR_UI_COMPONENTS = 'REQUEST_ZEPHR_UI_COMPONENTS';
 diff --git a/actions/zephrActions.js b/actions/zephrActions.js
@@ -36,7 +36,7 @@ index ddb52ffe..ebe20e05 100644
 +  RECEIVE_ZEPHR_USER_VERIFICATION,
 +  SEND_ZEPHR_VERIFICATION_EMAIL,
  } from './types';
- 
+
  /**
 @@ -191,3 +194,33 @@ export function actionRequestUIComponents() {
  export function actionReceiveUIComponents(payload) {
@@ -88,7 +88,7 @@ index a9343248..222e7ce6 100644
    actionClearFormErrors,
  } from 'actions/zephrActions';
 +import history from 'utils/history';
- 
+
  // Styles
  import styles from './login.css';
 @@ -20,7 +23,13 @@ const Login = ({
@@ -111,7 +111,7 @@ index a9343248..222e7ce6 100644
    clearErrors: PropTypes.func.isRequired,
 +  isAuthenticated: PropTypes.bool.isRequired,
  };
- 
+
  const mapDispatchToProps = (dispatch) => ({
 @@ -117,6 +127,9 @@ const withRedux = connect(
    (state) => ({
@@ -142,7 +142,7 @@ index b6fa102a..5296c609 100644
  } from 'actions/zephrActions';
 +import history from 'utils/history';
  import LazyRecaptcha from './recaptcha';
- 
+
  // Styles
 @@ -27,7 +30,13 @@ const Register = ({
    displayInvalidPasswordError,
@@ -164,7 +164,7 @@ index b6fa102a..5296c609 100644
    clearErrors: PropTypes.func.isRequired,
 +  isAuthenticated: PropTypes.bool.isRequired,
  };
- 
+
  /* eslint-disable max-len */
 @@ -212,6 +222,9 @@ const withRedux = connect(
    (state) => ({
@@ -190,10 +190,10 @@ index 51ff3c5d..9a0570b0 100644
 +  getEmailVerified,
 +} from 'selectors/zephrSelector';
 +import DataLoading from 'components/hoc/withData/loading';
- 
+
  // Styles
  import styles from './verify.css';
- 
+
 -const Verify = ({ verifyHash }) => {
 +const Verify = ({
 +  verifyToken,
@@ -201,7 +201,7 @@ index 51ff3c5d..9a0570b0 100644
 +  emailVerified,
 +}) => {
    const [isLoading, setIsLoading] = useState(true);
- 
+
    useEffect(() => {
 -    const { location: { pathname } } = window;
 -
@@ -222,7 +222,7 @@ index 51ff3c5d..9a0570b0 100644
 +      verifyToken(token);
 +    }
 +  }, []);
- 
+
 +  if (true === emailVerified && true === isLoading) {
      setIsLoading(false);
 -  }, isLoading);
@@ -230,7 +230,7 @@ index 51ff3c5d..9a0570b0 100644
 -  if (isLoading) {
 -    return <div />;
    }
- 
+
 -  // @todo replace me with the verified user from the redux store.
 -  const placeholderName = 'Penelope';
 +  if (true === isLoading) {
@@ -240,10 +240,10 @@ index 51ff3c5d..9a0570b0 100644
 +      </div>
 +    );
 +  }
- 
+
    return (
-     <div className={styles.accountWrap}>
-       <p className={styles.accountSubHeader}>
+     <div className={styles.wrapper}>
+       <p className={styles.subheader}>
          {__(
 -          `Thanks ${placeholderName}! Your email address is now verified.`,
 +          `Thanks ${firstName}! Your email address is now verified.`,
@@ -253,7 +253,7 @@ index 51ff3c5d..9a0570b0 100644
 @@ -51,13 +72,27 @@ const Verify = ({ verifyHash }) => {
    );
  };
- 
+
 +Verify.defaultProps = {
 +  firstName: '',
 +  emailVerified: false,
@@ -265,7 +265,7 @@ index 51ff3c5d..9a0570b0 100644
 +  firstName: PropTypes.string,
 +  emailVerified: PropTypes.bool,
  };
- 
+
 +const mapDispatchToProps = (dispatch) => ({
 +  verifyToken: (token) => dispatch(actionVerifyToken(token)),
 +});
@@ -279,7 +279,7 @@ index 51ff3c5d..9a0570b0 100644
 +  }),
 +  mapDispatchToProps
  );
- 
+
  export default withRedux(
 diff --git a/components/accounts/verify/verify.css b/components/accounts/verify/verify.css
 index 9a00221c..0c9352c5 100644
@@ -301,7 +301,7 @@ index 720b1e99..91ae53de 100644
 @@ -20,10 +20,6 @@
    padding-top: rem(15);
    width: 100%;
- 
+
 -  &.nested {
 -    tidy-offset-left: -0.81;
 -  }
@@ -314,7 +314,7 @@ index 8f097de0..538dac45 100644
 --- a/components/columnArea/columnArea--fullStory.css
 +++ b/components/columnArea/columnArea--fullStory.css
 @@ -35,10 +35,9 @@
- 
+
    @media ($mdMin) {
      display: block;
 -    max-width: rem(320);
@@ -323,7 +323,7 @@ index 8f097de0..538dac45 100644
 -    width: calc(tidy-span(4) - rem(20));
 +    tidy-span: 4;
    }
- 
+
    @media ($lgMin) {
 diff --git a/components/columnArea/index.js b/components/columnArea/index.js
 index 4d18fe4e..857c2446 100644
@@ -334,13 +334,13 @@ index 4d18fe4e..857c2446 100644
  import { withStyles } from 'critical-style-loader/lib';
  import withThemes from 'components/hoc/withThemes';
 -import classNames from 'classnames';
- 
+
  // Themes
  import feedColumnTheme from './columnArea--feed.css';
 @@ -12,7 +11,7 @@ import oneColumnTheme from './columnArea--oneCol.css';
  import pageTheme from './columnArea--page.css';
  import centeredTheme from './columnArea--centered.css';
- 
+
 -const ColumnArea = ({ children, theme, isNested }) => {
 +const ColumnArea = ({ children, theme }) => {
    // Separate content and sidebar
@@ -348,7 +348,7 @@ index 4d18fe4e..857c2446 100644
      isSidebar || 'sidebar' === componentName
 @@ -21,11 +20,7 @@ const ColumnArea = ({ children, theme, isNested }) => {
    const sidebar = children.filter(({ props }) => childIsSidebar(props));
- 
+
    return (
 -    <div
 -      className={classNames(theme.wrapper, {
@@ -362,7 +362,7 @@ index 4d18fe4e..857c2446 100644
 @@ -44,14 +39,9 @@ const ColumnArea = ({ children, theme, isNested }) => {
    );
  };
- 
+
 -ColumnArea.defaultProps = {
 -  isNested: false,
 -};
@@ -372,7 +372,7 @@ index 4d18fe4e..857c2446 100644
    theme: PropTypes.object.isRequired,
 -  isNested: PropTypes.bool,
  };
- 
+
  export default withThemes('column-area', {
 diff --git a/components/magazineHero/index.js b/components/magazineHero/index.js
 index 99fd7308..2a1d79b1 100644
@@ -388,7 +388,7 @@ index 99fd7308..2a1d79b1 100644
  import { __ } from '@wordpress/i18n';
  import parse from 'html-react-parser';
 -import useBreakpoint from 'hooks/useBreakpoint';
- 
+
  // SVGs
  import ArrowIcon from 'assets/icons/arrow.svg';
 @@ -27,17 +26,6 @@ const MagazineHero = ({
@@ -417,7 +417,7 @@ index 99fd7308..2a1d79b1 100644
 +                      {__('View previous issue', 'mittr')}
                      </Link>
                    )}
- 
+
 @@ -130,7 +118,7 @@ const MagazineHero = ({
                    {(issueNavigation.next &&
                      window.location.href !== issueNavigation.next) && (
@@ -438,7 +438,7 @@ index 2fd3bba0..24956c9c 100644
 +  margin-top: rem(10);
    order: -1;
    width: 100%;
- 
+
 diff --git a/components/popular/index.js b/components/popular/index.js
 index bff11f60..462a0199 100644
 --- a/components/popular/index.js
@@ -514,7 +514,7 @@ index bff11f60..462a0199 100644
 -};
 +  </div>
 +);
- 
+
  Popular.propTypes = {
    popular: PropTypes.array.isRequired,
 diff --git a/components/socialFollowModule/index.js b/components/socialFollowModule/index.js
@@ -530,7 +530,7 @@ index f426fc61..72523928 100644
 @@ -8,28 +8,16 @@ import styles from './socialFollowModule.css';
  import darkStyles from './darkTitle.css';
  import lightStyles from './lightTitle.css';
- 
+
 -const SocialFollowModule = ({ children, theme }) => {
 -  const [socialToRender, setSocialToRender] = useState(true);
 -  useEffect(() => {
@@ -563,7 +563,7 @@ index f426fc61..72523928 100644
 +    </ul>
 +  </div>
 +);
- 
+
  SocialFollowModule.propTypes = {
    children: PropTypes.arrayOf(PropTypes.element).isRequired,
 diff --git a/components/socialFollowModule/socialFollowModule.css b/components/socialFollowModule/socialFollowModule.css
@@ -578,7 +578,7 @@ index e78ff198..32f47b27 100644
    tidy-offset-left: 1;
 +  tidy-span: 3;
  }
- 
+
  .title {
 diff --git a/components/teaserItem/teaserItem.css b/components/teaserItem/teaserItem.css
 index 5e12afac..c2b1bdd6 100644
@@ -786,7 +786,7 @@ index cc98acd9..524e2382 100644
  // included directly using the Zephr feature rules.
  import 'components/zephrUI/components/meterNotice/meterNotice.css';
 -import 'components/zephrUI/components/imageAlert/imageAlert.css';
- 
+
  // Styles
  import styles from './overlayFooter.css';
 @@ -37,7 +36,7 @@ const OverlayFooter = ({ components }) => {
@@ -861,7 +861,7 @@ index 7bb6210a..8486b14a 100644
 +import createDebug from 'services/createDebug';
 +
 +const debug = createDebug('sagas:submitZephrForm');
- 
+
  /**
   * A generator that is called on the submission of a Zephr form. The form
 @@ -74,21 +78,25 @@ function* submitRegistration(credentials) {
@@ -871,7 +871,7 @@ index 7bb6210a..8486b14a 100644
 -    cookie,
      trackingId,
    } = response;
- 
+
    if ('success' === status) {
      // Store the session data for later use.
 -    yield put(actionReceiveUserSession({ sessionCookie: cookie, trackingId }));
@@ -897,7 +897,7 @@ index 7bb6210a..8486b14a 100644
 +    }
    }
  }
- 
+
 @@ -98,7 +106,7 @@ function* submitRegistration(credentials) {
   *
   * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
@@ -906,7 +906,7 @@ index 7bb6210a..8486b14a 100644
 +export function* getProfile(sessionCookie) {
    // Get the user's profile.
    const profile = yield call(zephrService.getProfile, sessionCookie);
- 
+
 @@ -115,7 +123,7 @@ function* getProfile(sessionCookie) {
   *
   * @param {string} sessionCookie The Zephr session cookie to be passed in the request's headers.
@@ -915,7 +915,7 @@ index 7bb6210a..8486b14a 100644
 +export function* getAccount(sessionCookie) {
    // Get the user's account.
    const account = yield call(zephrService.getAccount, sessionCookie);
- 
+
 diff --git a/sagas/zephrSaga/index.js b/sagas/zephrSaga/index.js
 index 98ae0363..fb7e62d3 100644
 --- a/sagas/zephrSaga/index.js
@@ -926,7 +926,7 @@ index 98ae0363..fb7e62d3 100644
  import formSaga from './forms';
 +import tokenExchangeSaga from './tokenExchange';
  import resolveUIRules from './resolveUIRules';
- 
+
  export default [
    ...formSaga,
 +  ...tokenExchangeSaga,
@@ -1002,7 +1002,7 @@ index dd89c008..3bd4eea3 100644
 @@ -22,6 +22,11 @@ export const getUser = createSelector(
    (state) => state.user,
  );
- 
+
 +export const getAccount = createSelector(
 +  zephrSelector,
 +  (state) => state.user.account,
@@ -1025,9 +1025,9 @@ index bd618b2f..489605db 100644
 --- a/services/zephrService.js
 +++ b/services/zephrService.js
 @@ -58,10 +58,9 @@ export default {
- 
+
        const response = await request;
- 
+
 -      if ('cookie' in response) {
 +      if ('tracking_id' in response) {
          return {
@@ -1039,7 +1039,7 @@ index bd618b2f..489605db 100644
 @@ -72,6 +71,95 @@ export default {
      }
    },
- 
+
 +  /**
 +   * Initiate the token exchange by sending the registered user a verification
 +   * email.

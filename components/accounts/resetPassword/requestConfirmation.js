@@ -7,13 +7,13 @@ import Link from 'components/helpers/link';
 import styles from './reset.css';
 
 const ConfirmResetRequest = () => (
-  <div className={styles.accountWrap}>
-    <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
-    <p className={styles.accountSubHeader}>
+  <div className={styles.wrapper}>
+    <h1 className={styles.header}>{__('Sign in', 'mittr')}</h1>
+    <p className={styles.subheader}>
       {__('Thanks! We’ve received your request to reset your password. ',
         'mittr')}
     </p>
-    <p className={styles.accountHeaderDescription}>
+    <p className={styles.headerDescription}>
       {__(
         `If an account exists with the email address you provided,
         we’ll send you an email in a minute or two to confirm the change.`,
