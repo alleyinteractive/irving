@@ -81,6 +81,7 @@ export const zephr = {
 export const zephrRules = {
   isLoading: false,
   components: {},
+  pageIDs: {},
 };
 
 export const zephrDataLayer = {

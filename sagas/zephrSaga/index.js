@@ -1,6 +1,7 @@
 import {
   RECEIVE_COMPONENTS,
   REQUEST_ZEPHR_UI_COMPONENTS,
+  FINISH_LOADING,
 } from 'actions/types';
 import {
   call,
@@ -24,6 +25,7 @@ export default [
   // components is made only when the content ID has been updated in the store
   // and the request can be checked against new content.
   takeLatest(RECEIVE_COMPONENTS, resolveUIRules),
+  takeLatest(FINISH_LOADING, resolveUIRules),
 
   // Every time that the components are updated, request new analytics data.
   takeLatest(REQUEST_ZEPHR_UI_COMPONENTS, updateDataLayer),
