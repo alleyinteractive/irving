@@ -48,7 +48,8 @@ import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
 import Link from 'components/helpers/link';
 import LinkTeaser from 'components/linkTeaser';
-import List50Heading from 'components/list50Heading';
+import List50Heading from 'components/list50/heading';
+import List50Header from 'components/list50/header';
 import List50Content from 'components/list50/content';
 import List50Item from 'components/list50/item';
 import List50Flyout from 'components/list50/flyout';
@@ -56,7 +57,6 @@ import List50Sidebar from 'components/list50/sidebar';
 import ListDescription from 'components/listDescription';
 import ListGroup from 'components/listGroup';
 import ListHeader from 'components/listHeader';
-import List50Header from 'components/list50Header';
 import ListItem from 'components/listItem';
 import ListMenu from 'components/listMenu';
 import ListMenuItem from 'components/listMenuItem';
@@ -171,7 +171,6 @@ export const componentMap = {
   'link-teaser': LinkTeaser,
   'innovator-header': InnovatorHeader,
   'list-header': ListHeader,
-  'list-50-header': List50Header,
   'list-description': ListDescription,
   'list-menu': ListMenu,
   'list-menu-item': ListMenuItem,
@@ -180,7 +179,7 @@ export const componentMap = {
   'list-item': ListItem,
   'list-50-heading': List50Heading,
   'list-50-item': CompanyListItem,
-  'list-50-item-flyout': List50Flyout,
+  'list-50-header': List50Header,
   'list-50-sidebar': List50Sidebar,
   'list-50-intro-item': CompanyListItem,
   'list-50-location': List50Content,
@@ -191,6 +190,7 @@ export const componentMap = {
   'list-50-years-item': List50Item,
   'list-50-name': List50Content,
   'list-50-name-item': List50Item,
+  'list-50-item-flyout': List50Flyout,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
