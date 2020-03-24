@@ -2,6 +2,7 @@ import AdProvider from 'components/advertising/adProvider';
 import AdUnit from 'components/advertising/adUnit';
 import AccountPage from 'components/accounts/landingPage';
 import AccountNavigation from 'components/accounts/accountNavigation';
+import Activate from 'components/accounts/register/activate';
 import AudioElement from 'components/audio';
 import AuthorPage from 'components/authorPage';
 import Body from 'components/body';
@@ -13,8 +14,10 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
+import CompanyListItemName from 'components/companyListItemName';
 import CompanyListItemLocation from 'components/companyListItemLocation';
 import CompanyListItemRank from 'components/companyListItemRank';
+import CompanyListItemYears from 'components/companyListItemYears';
 import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
 import ContactForm from 'components/contactForm';
@@ -122,6 +125,7 @@ export const componentMap = {
   'ad-unit': AdUnit,
   account: AccountPage,
   'account-navigation': AccountNavigation,
+  activate: Activate,
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   'author-partial': AuthorPage,
@@ -176,9 +180,13 @@ export const componentMap = {
   'list-50-sidebar': ListSidebar,
   'list-50-intro-item': CompanyListItem,
   'list-50-location': ListContent,
-  'list-50-location-list-item': CompanyListItemLocation,
-  'list-50-item-rank': CompanyListItemRank,
-  'list-rank': ListContent,
+  'list-50-location-item': CompanyListItemLocation,
+  'list-50-rank': ListContent,
+  'list-50-rank-item': CompanyListItemRank,
+  'list-50-years': ListContent,
+  'list-50-years-item': CompanyListItemYears,
+  'list-50-name': ListContent,
+  'list-50-name-item': CompanyListItemName,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,

@@ -6,7 +6,7 @@ import {
 import createDebug from 'services/createDebug';
 import getPageID from 'selectors/getPageID';
 import { getSession } from 'selectors/zephrSelector';
-import fetchZephrUIComponents from 'services/zephrUIService';
+import { fetchZephrUIComponents } from 'services/zephrUIService';
 
 const debug = createDebug('sagas:zephrUI');
 
