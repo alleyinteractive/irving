@@ -83,4 +83,9 @@ export const zephrRules = {
   components: {},
 };
 
+export const zephrDataLayer = {
+  isLoading: false,
+  dataLayer: {},
+};
+
 export default defaultState;
