@@ -47,11 +47,11 @@ const OrderHistory = ({ account, isAuthenticated }) => {
   }, [expirationDate, ordersArr]);
 
   return (
-    <div className={styles.accountWrap}>
-      <h1 className={styles.accountHeader}>
+    <div className={styles.wrapper}>
+      <h1 className={styles.header}>
         {__('Account', 'mittr')}
       </h1>
-      <h2 className={styles.accountSubHeader}>
+      <h2 className={styles.subheader}>
         {__('Review your order history', 'mittr')}
       </h2>
       {subscriptionActive ? (
@@ -67,7 +67,7 @@ const OrderHistory = ({ account, isAuthenticated }) => {
         >
           {
             0 === Object.keys(account).length ?
-              'Loading...' : 'Your are not subscribed.'
+              'Loading...' : 'You are not subscribed.'
           }
         </span>
       )}

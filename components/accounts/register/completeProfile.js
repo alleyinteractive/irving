@@ -43,12 +43,12 @@ const CompleteProfile = ({
   };
 
   return (
-    <div className={styles.accountWrap}>
-      <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
-      <p className={styles.accountSubHeader}>
+    <div className={styles.wrapper}>
+      <h1 className={styles.header}>{__('Sign in', 'mittr')}</h1>
+      <p className={styles.subheader}>
         {__('Thank you!', 'mittr')}
       </p>
-      <p className={styles.accountHeaderDescription}>
+      <p className={styles.headerDescription}>
         {__(
           `Your online account is almost complete!
             Please complete your profile below.`,

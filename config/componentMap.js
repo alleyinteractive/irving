@@ -2,6 +2,7 @@ import AdProvider from 'components/advertising/adProvider';
 import AdUnit from 'components/advertising/adUnit';
 import AccountPage from 'components/accounts/landingPage';
 import AccountNavigation from 'components/accounts/accountNavigation';
+import Activate from 'components/accounts/register/activate';
 import AudioElement from 'components/audio';
 import AuthorPage from 'components/authorPage';
 import Blueconic from 'components/blueconic';
@@ -125,6 +126,7 @@ export const componentMap = {
   'ad-unit': AdUnit,
   account: AccountPage,
   'account-navigation': AccountNavigation,
+  activate: Activate,
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   'author-partial': AuthorPage,
