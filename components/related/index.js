@@ -12,10 +12,13 @@ import styles from './related.css';
 const Related = ({
   align, headline, url, featuredImg, deck,
 }) => (
-  <aside className={classNames('related__wrap',
-    'left' === align ? 'alignleft' : '',
-    'full' === align ? 'fullWidth' : '')}
-  >
+  <aside className={classNames(
+    'related__wrap',
+    {
+      alignleft: 'left' === align,
+      fullWidth: 'full' === align,
+    }
+  )}>
     {'full' === align ? (
       <Link href={url} className="readmore__link">
         <h2 className="readmore__header">
