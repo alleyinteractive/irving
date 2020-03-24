@@ -7,8 +7,8 @@ import { Helmet } from 'react-helmet';
 import isNode from 'utils/isNode';
 
 export const GTMContext = createContext({
-  loaded: false,
-  containerId: null,
+  dataLayer: {},
+  pushEvent: () => {},
 });
 
 const GoogleTagManager = (props) => {
@@ -30,28 +30,31 @@ const GoogleTagManager = (props) => {
     dataLayerObj['gtm.start']
   ));
 
+  const pushEvent = (eventName, options = {}) => {
+    window.dataLayer.push({
+      event: eventName,
+      ...dataLayer,
+      ...options,
+    });
+  };
+
   /**
    * Effect for starting the GTM dataLayer.
    */
   useEffect(() => {
     if (0 === started.length) {
-      window.dataLayer.push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js',
-      });
+      pushEvent('gtm.js', { 'gtm.start': new Date().getTime() });
     }
   }, []);
+
+  // useeffect hook with empty array every time that also calls the push zephr event function.
+  // would do all the logic of firing the zp
 
   /**
    * Effect for pushing new data to the GTM dataLayer.
    */
   useEffect(() => {
-    window.dataLayer.push({
-      event: 'irving.historyChange',
-      ...dataLayer,
-    });
-
-    return () => {};
+    pushEvent('irving.historyChange');
   }, [dataLayer]);
 
   return (
@@ -82,7 +85,7 @@ const GoogleTagManager = (props) => {
           }}
         />
       </noscript>
-      <GTMContext.Provider value={props}>
+      <GTMContext.Provider value={{ dataLayer, pushEvent }}>
         {children}
       </GTMContext.Provider>
     </>
