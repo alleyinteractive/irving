@@ -1,5 +1,4 @@
 import React, {
-  useState,
   useEffect,
   useRef,
 } from 'react';
@@ -24,19 +23,13 @@ const ContentBody = ({
   dispatchTruncateStory,
   overrideCTA,
   summaryBullets,
+  truncateContent,
 }) => {
-  const [truncateContent, setTruncation] = useState(false);
   const contentRef = useRef();
   const obscureContent = useObscureContent();
 
-  const showFullText = () => {
-    // Remove the truncation button and height limit.
-    setTruncation(false);
-  };
-
   useEffect(() => {
     if (obscureContent) {
-      setTruncation(true);
       dispatchTruncateStory();
       return;
     }
@@ -53,18 +46,15 @@ const ContentBody = ({
       false;
 
     if (0 === truncatedCTA.length) {
-      showFullText();
       dispatchShowFullStory();
     } else if (isOutsideSource) {
-      setTruncation(true);
       dispatchTruncateStory();
     } else {
-      showFullText();
-      dispatchShowFullStory();
+      // dispatchShowFullStory(); @todo restore this
+      dispatchTruncateStory();
     }
 
     if (true === overrideCTA) {
-      showFullText();
       dispatchShowFullStory();
     }
   }, truncateContent);
@@ -73,13 +63,13 @@ const ContentBody = ({
     <div className={styles.wrapper}>
       <div
         className={classNames(styles.overlay, {
-          [styles.overlayVisible]: truncateContent,
+          [styles.overlayVisible]: ! truncateContent,
         })}
       />
 
       <div
         className={classNames(styles.content, {
-          [styles.contentHidden]: truncateContent,
+          [styles.contentHidden]: ! truncateContent,
         })}
         id="content--body"
       >
@@ -93,7 +83,7 @@ const ContentBody = ({
         </div>
       </div>
 
-      {truncateContent && (
+      {! truncateContent && (
         <button
           className={styles.truncationButton}
           type="button"
@@ -109,7 +99,7 @@ const ContentBody = ({
               label: 'read more',
               noninteraction: 0,
             });
-            showFullText();
+            dispatchShowFullStory();
           }}
           disabled={true === obscureContent}
         >
@@ -137,15 +127,20 @@ ContentBody.propTypes = {
   dispatchTruncateStory: PropTypes.func,
   overrideCTA: PropTypes.bool,
   summaryBullets: PropTypes.string,
+  truncateContent: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchShowStory: () => dispatch(actionShowFullStory()),
+  dispatchShowFullStory: () => dispatch(actionShowFullStory()),
   dispatchTruncateStory: () => dispatch(actionTruncateStory()),
 });
 
+const mapStateToProps = (state) => ({
+  truncateContent: state.story.showFullText,
+});
+
 const withRedux = connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
 );
 
