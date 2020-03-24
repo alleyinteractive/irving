@@ -18,7 +18,8 @@ const Related = ({
       alignleft: 'left' === align,
       fullWidth: 'full' === align,
     }
-  )}>
+  )}
+  >
     {'full' === align ? (
       <Link href={url} className="readmore__link">
         <h2 className="readmore__header">
