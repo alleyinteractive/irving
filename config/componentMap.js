@@ -2,8 +2,10 @@ import AdProvider from 'components/advertising/adProvider';
 import AdUnit from 'components/advertising/adUnit';
 import AccountPage from 'components/accounts/landingPage';
 import AccountNavigation from 'components/accounts/accountNavigation';
+import Activate from 'components/accounts/register/activate';
 import AudioElement from 'components/audio';
 import AuthorPage from 'components/authorPage';
+import Blueconic from 'components/blueconic';
 import Body from 'components/body';
 import Brightcove from 'components/brightcove';
 import Byline from 'components/byline';
@@ -54,6 +56,7 @@ import ListContent from 'components/listContent';
 import ListDescription from 'components/listDescription';
 import ListGroup from 'components/listGroup';
 import ListHeader from 'components/listHeader';
+import List50Header from 'components/list50Header';
 import ListItem from 'components/listItem';
 import ListMenu from 'components/listMenu';
 import ListMenuItem from 'components/listMenuItem';
@@ -124,10 +127,12 @@ export const componentMap = {
   'ad-unit': AdUnit,
   account: AccountPage,
   'account-navigation': AccountNavigation,
+  activate: Activate,
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   'author-partial': AuthorPage,
   'bc/brightcove': Brightcove,
+  blueconic: Blueconic,
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
@@ -167,6 +172,7 @@ export const componentMap = {
   'link-teaser': LinkTeaser,
   'innovator-header': InnovatorHeader,
   'list-header': ListHeader,
+  'list-50-header': List50Header,
   'list-description': ListDescription,
   'list-menu': ListMenu,
   'list-menu-item': ListMenuItem,
