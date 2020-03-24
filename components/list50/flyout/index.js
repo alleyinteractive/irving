@@ -1,6 +1,6 @@
-/* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
+import RawHTML from 'components/rawHTML';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
@@ -9,7 +9,6 @@ import styles from './list50Flyout.css';
 
 const CompanyFlyout = (props) => {
   const {
-    bgColor,
     companyName,
     descriptionTitle,
     description,
@@ -23,7 +22,6 @@ const CompanyFlyout = (props) => {
 
   return (
     <div
-      style={{ backgroundColor: bgColor }}
       className={classNames(
         styles.wrapper,
         { [styles.isVisible]: isVisible }
@@ -34,7 +32,7 @@ const CompanyFlyout = (props) => {
           {descriptionTitle}
         </p>
         <p className={styles.description}>
-          {description}
+          <RawHTML content={description} />
         </p>
       </div>
       <div className={styles.stat}>
@@ -42,7 +40,7 @@ const CompanyFlyout = (props) => {
           {statTitle}:
         </p>
         <p className={styles.statDescription}>
-          {statDescription}
+          <RawHTML content={statDescription} />
         </p>
       </div>
       <Link className={styles.detailsLink} to={detailsUrl}>
@@ -54,7 +52,6 @@ const CompanyFlyout = (props) => {
 };
 
 CompanyFlyout.propTypes = {
-  bgColor: PropTypes.string.isRequired,
   companyName: PropTypes.string.isRequired,
   descriptionTitle: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

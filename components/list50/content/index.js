@@ -20,6 +20,7 @@ const List50Content = (props) => {
     <div
       style={{
         backgroundColor: color,
+        '--list-50-bg-color': color,
         '--list-50-text-color': contentTextColor,
       }}
     >

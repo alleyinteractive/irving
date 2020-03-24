@@ -1,4 +1,5 @@
 .wrapper {
+  background-color: var(--list-50-bg-color);
   color: $black;
   font-family: $sans;
   font-size: rem(18);

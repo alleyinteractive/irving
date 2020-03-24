@@ -43,6 +43,7 @@
 }
 
 .nameWrapper {
+  background-color: var(--list-50-bg-color);
   display: inline-block;
   padding: 0 rem(25) 0 rem(5);
   position: relative;
