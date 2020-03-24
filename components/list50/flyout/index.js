@@ -10,14 +10,16 @@ import styles from './list50Flyout.css';
 const CompanyFlyout = (props) => {
   const {
     bgColor,
+    companyName,
     descriptionTitle,
     description,
     detailsText,
-    detailsUrl,
     isVisible,
     statTitle,
     statDescription,
   } = props;
+
+  const detailsUrl = `${window.location.pathname}intro#${companyName}`;
 
   return (
     <div
@@ -53,10 +55,10 @@ const CompanyFlyout = (props) => {
 
 CompanyFlyout.propTypes = {
   bgColor: PropTypes.string.isRequired,
+  companyName: PropTypes.string.isRequired,
   descriptionTitle: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   detailsText: PropTypes.string.isRequired,
-  detailsUrl: PropTypes.string.isRequired,
   isVisible: PropTypes.bool.isRequired,
   statTitle: PropTypes.string.isRequired,
   statDescription: PropTypes.string.isRequired,
