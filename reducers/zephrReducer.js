@@ -7,7 +7,6 @@ import {
   RECEIVE_USER_LOG_OUT,
   RECEIVE_USER_LOGIN,
   RECEIVE_USER_REGISTRATION,
-  RECEIVE_ZEPHR_DATA_LAYER,
   RECEIVE_ZEPHR_USER_ACCOUNT,
   RECEIVE_ZEPHR_USER_PROFILE,
   RECEIVE_ZEPHR_USER_SESSION,
@@ -189,11 +188,6 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...state.user,
           emailVerified: true,
         },
-      };
-    case RECEIVE_ZEPHR_DATA_LAYER:
-      return {
-        ...state,
-        dataLayer: payload,
       };
     default:
       return state;

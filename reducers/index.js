@@ -5,14 +5,15 @@ import { persistReducer } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
 import componentDataReducer from './componentDataReducer';
 import componentsReducer from './componentsReducer';
+import dismissNoticeReducer from './dismissNoticeReducer';
 import errorReducer from './errorReducer';
 import headerHeightReducer from './headerHeightReducer';
 import loadingReducer from './loadingReducer';
 import playerReducer from './playerReducer';
 import routeReducer from './routeReducer';
 import storyReducer from './storyReducer';
-import dismissNoticeReducer from './dismissNoticeReducer';
 import visibilityReducer from './visibilityReducer';
+import zephrDataLayerReducer from './zephrDataLayerReducer';
 import zephrReducer from './zephrReducer';
 import zephrRulesReducer from './zephrRulesReducer';
 
@@ -35,6 +36,7 @@ export const reducers = {
   story: storyReducer,
   visible: visibilityReducer,
   zephr: persistReducer(zephrPersistConfig, zephrReducer),
+  zephrDataLayer: zephrDataLayerReducer,
   zephrRules: zephrRulesReducer,
 };
 const rootSliceReducer = combineReducers(reducers);
