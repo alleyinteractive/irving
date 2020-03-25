@@ -14,7 +14,6 @@ import Carousel from 'components/carousel';
 import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
-
 import CompanyListItem from 'components/companyListItem';
 import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';

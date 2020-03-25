@@ -26,6 +26,11 @@
   margin-bottom: rem(20);
 }
 
+.descriptionBody,
+.statBody {
+  color: var(--list-50-text-color);
+}
+
 .stat {
   margin-bottom: rem(20);
 }

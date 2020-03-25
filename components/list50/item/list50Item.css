@@ -51,11 +51,17 @@
 }
 
 .name {
+  transition: color 250ms ease-in-out;
+
   && {
     display: inline-block;
     padding-left: rem(5);
     position: relative;
     z-index: 1;
+  }
+
+  .flyoutVisible & {
+    color: var(--list-50-text-color);
   }
 
   &:focus {
