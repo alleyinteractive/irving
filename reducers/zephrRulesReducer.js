@@ -6,27 +6,49 @@ import {
 import { zephrRules as defaultState } from './defaultState';
 
 export default function zephrRulesReducer(
-  state = defaultState, { type, payload }
-) {
-  switch (type) {
-    case LOCATION_CHANGE:
-      return {
-        ...state,
-        components: {},
-        isLoading: false,
-      };
-    case REQUEST_ZEPHR_UI_COMPONENTS:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case RECEIVE_ZEPHR_UI_COMPONENTS:
-      return {
-        ...state,
-        components: payload,
-        isLoading: false,
-      };
-    default:
-      return state;
+  state = defaultState,
+  {
+    type,
+    payload,
   }
+) {
+  if (LOCATION_CHANGE === type) {
+    return {
+      ...state,
+      components: {},
+      isLoading: false,
+    };
+  }
+
+  if (REQUEST_ZEPHR_UI_COMPONENTS === type) {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+
+  if (RECEIVE_ZEPHR_UI_COMPONENTS === type) {
+    const {
+      components = {},
+      routeKey = false,
+      pageID = false,
+    } = payload || {};
+
+    if (! routeKey) {
+      return state;
+    }
+
+    return {
+      ...state,
+      components,
+      pageIDs: {
+        ...state.pageIDs,
+        [routeKey]: pageID,
+      },
+      isLoading: false,
+    };
+  }
+
+  // Do nothing by default.
+  return state;
 }
