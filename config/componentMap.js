@@ -15,10 +15,6 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
-import CompanyListItemName from 'components/companyListItemName';
-import CompanyListItemLocation from 'components/companyListItemLocation';
-import CompanyListItemRank from 'components/companyListItemRank';
-import CompanyListItemYears from 'components/companyListItemYears';
 import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
 import ContactForm from 'components/contactForm';
@@ -51,19 +47,22 @@ import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
 import Link from 'components/helpers/link';
 import LinkTeaser from 'components/linkTeaser';
-import List50Heading from 'components/list50Heading';
-import ListContent from 'components/listContent';
+import List50Heading from 'components/list50/heading';
+import List50Header from 'components/list50/header';
+import List50Content from 'components/list50/content';
+import List50Item from 'components/list50/item';
+import List50Flyout from 'components/list50/flyout';
+import List50Sidebar from 'components/list50/sidebar';
 import ListDescription from 'components/listDescription';
 import ListGroup from 'components/listGroup';
 import ListHeader from 'components/listHeader';
-import List50Header from 'components/list50Header';
 import ListItem from 'components/listItem';
 import ListMenu from 'components/listMenu';
 import ListMenuItem from 'components/listMenuItem';
 import ListMenuItems from 'components/listMenuItems';
-import ListSidebar from 'components/listSidebar';
 import Login from 'components/accounts/login/';
 import MagazineStory from 'components/magazineStory';
+import MagazineStoryList from 'components/magazineStoryList';
 import MagazineHero from 'components/magazineHero';
 import MagazineIssue from 'components/magazineIssue';
 import MagazineIssues from 'components/magazineIssues';
@@ -114,6 +113,7 @@ import TermArchiveContentList from 'components/termArchiveContentList';
 import TopicsModule from 'components/topicsModule';
 import UpdateEmailRequest from 'components/accounts/updateEmail/request';
 import UpdateEmailConfirm from 'components/accounts/updateEmail/confirmation';
+import UpdateEmailRequest2 from 'components/accounts/updateEmail/requestStep2/';
 import UserGreeting from 'components/userGreeting';
 import Verify from 'components/accounts/verify';
 import Video from 'components/video';
@@ -172,7 +172,6 @@ export const componentMap = {
   'link-teaser': LinkTeaser,
   'innovator-header': InnovatorHeader,
   'list-header': ListHeader,
-  'list-50-header': List50Header,
   'list-description': ListDescription,
   'list-menu': ListMenu,
   'list-menu-item': ListMenuItem,
@@ -180,17 +179,18 @@ export const componentMap = {
   'list-group': ListGroup,
   'list-item': ListItem,
   'list-50-heading': List50Heading,
-  'list-50-item': CompanyListItem,
-  'list-50-sidebar': ListSidebar,
+  'list-50-header': List50Header,
+  'list-50-sidebar': List50Sidebar,
   'list-50-intro-item': CompanyListItem,
-  'list-50-location': ListContent,
-  'list-50-location-item': CompanyListItemLocation,
-  'list-50-rank': ListContent,
-  'list-50-rank-item': CompanyListItemRank,
-  'list-50-years': ListContent,
-  'list-50-years-item': CompanyListItemYears,
-  'list-50-name': ListContent,
-  'list-50-name-item': CompanyListItemName,
+  'list-50-location': List50Content,
+  'list-50-location-item': List50Item,
+  'list-50-rank': List50Content,
+  'list-50-rank-item': List50Item,
+  'list-50-years': List50Content,
+  'list-50-years-item': List50Item,
+  'list-50-name': List50Content,
+  'list-50-name-item': List50Item,
+  'list-50-item-flyout': List50Flyout,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
@@ -211,6 +211,7 @@ export const componentMap = {
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
   'mittr-plugin-extension/magazine-story': MagazineStory,
+  'mittr-plugin-extension/magazine-story-list': MagazineStoryList,
   newsletter: Newsletter,
   order: Order,
   'order-history': OrderHistory,
@@ -222,7 +223,6 @@ export const componentMap = {
   'podcast-list': PodcastList,
   popular: Popular,
   'post-list': PostList,
-  'rank-list-item': CompanyListItemRank,
   register: Register,
   'reset-password-request': ResetRequestForm,
   'reset-password-request-confirmation': ConfirmResetRequest,
@@ -253,6 +253,7 @@ export const componentMap = {
   'topics-module': TopicsModule,
   'update-email-request': UpdateEmailRequest,
   'update-email-confirmation': UpdateEmailConfirm,
+  'update-email-request-step-2': UpdateEmailRequest2,
   'user-greeting': UserGreeting,
   verify: Verify,
   video: Video,

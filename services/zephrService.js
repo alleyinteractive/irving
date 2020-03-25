@@ -410,19 +410,15 @@ export default {
   },
 
   /**
-   * Complete the update email process by submitting the password to
-   * Zephr and redirecting the user.
+   * Request that the confirmation email be sent to the users new email address.
    *
    * @param {object} token The user's token to complete the email update.
    *
    * @returns {object} status The response status.
    */
-  async updateEmail(token, cookie) {
-    // @TODO: Once Zephr has added a new email template to their email settings,
-    // we'll need to separate these requests out. On the user's new email confirmation,
-    // we would create a new function for the 2nd call.
+  async requestUpdateEmailConfirmation(token, cookie) {
     try {
-      const request1 = fetch(
+      const request = fetch(
         // eslint-disable-next-line max-len
         `${process.env.ZEPHR_ROOT_URL}/blaize/users/update-email-passwordless/${token}`,
         {
@@ -435,9 +431,42 @@ export default {
         }
       );
 
-      const response1 = await request1;
+      const response = await request;
 
-      const request2 = fetch(
+      if (200 === response.status) {
+        return { status: 'success' };
+      }
+
+      if (404 === response.status) {
+        return {
+          status: 'failed',
+          type: 'invalid-state',
+        };
+      }
+
+      return {
+        status: 'failed',
+        type: 'bad-request',
+      };
+    } catch (error) {
+      return postErrorMessage(error);
+    }
+  },
+
+  /**
+   * Complete the update email process by submitting the password to
+   * Zephr and redirecting the user.
+   *
+   * @param {object} token The user's token to complete the email update.
+   *
+   * @returns {object} status The response status.
+   */
+  async updateEmail(token, cookie) {
+    // @TODO: Once Zephr has added a new email template to their email settings,
+    // we'll need to separate these requests out. On the user's new email confirmation,
+    // we would create a new function for the 2nd call.
+    try {
+      const request = fetch(
         `${process.env.ZEPHR_ROOT_URL}/blaize/users/update-email/${token}`,
         {
           method: 'POST',
@@ -449,13 +478,13 @@ export default {
         }
       );
 
-      const response2 = await request2;
+      const response = await request;
 
-      if (200 === response1.status && 200 === response2.status) {
+      if (200 === response.status) {
         return { status: 'success' };
       }
 
-      if (404 === response1.status || 404 === response2.status) {
+      if (404 === response.status) {
         return {
           status: 'failed',
           type: 'invalid-state',

@@ -1,0 +1,59 @@
+/* magazineStoryList component styles */
+
+.wrap {
+  border-bottom: 4px solid #000;
+  border-top: 4px solid #000;
+  display: flex;
+  flex-flow: row wrap;
+  font-family: $sans;
+  max-width: 100%;
+  padding: rem(30) 0 rem(30) 0;
+  width: 100%;
+}
+
+.image {
+  height: auto;
+  margin-bottom: rem(10);
+  width: 100%;
+}
+
+.header {
+  width: auto;
+}
+
+.title {
+  font-family: $sans;
+  font-size: rem(14);
+  font-weight: 700;
+  margin-right: rem(30);
+  width: 180px;
+}
+
+.issueDate {
+  font-family: $sans;
+  font-size: rem(19);
+  font-weight: 700;
+  margin-bottom: rem(15);
+}
+
+.list {
+  list-style-type: none;
+}
+
+.item {
+  display: block;
+}
+
+.link {
+  color: $red;
+  display: block;
+  font-size: rem(18);
+  font-weight: 700;
+  margin-bottom: rem(10);
+
+  &::after {
+    content: ">";
+    display: inline-block;
+    margin-left: 0.5ch;
+  }
+}
