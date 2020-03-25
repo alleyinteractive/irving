@@ -25,6 +25,10 @@ export default [
   // components is made only when the content ID has been updated in the store
   // and the request can be checked against new content.
   takeLatest(RECEIVE_COMPONENTS, resolveUIRules),
+
+  // When a user navigates to a cached page in the application, this action
+  // fires. Once the new components have finished loading, make a new request
+  // for the Zephr UI rules.
   takeLatest(FINISH_LOADING, resolveUIRules),
 
   // Every time that the components are updated, request new analytics data.
