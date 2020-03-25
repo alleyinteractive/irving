@@ -15,7 +15,7 @@ export default function* resolveUIRules() {
   yield put(actionRequestUIComponents());
 
   try {
-    const { pageID } = yield select(getPageID);
+    const pageID = yield select(getPageID);
     const session = yield select(getSession);
     const routeKey = yield select(getRouteKey);
 
