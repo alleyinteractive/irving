@@ -1,10 +1,19 @@
-import React, { useEffect } from 'react';
+import React, {
+  useEffect,
+  createContext,
+} from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from 'utils/isNode';
 
+export const GTMContext = createContext({
+  dataLayer: {},
+  pushEvent: () => {},
+});
+
 const GoogleTagManager = (props) => {
   const {
+    children,
     containerId,
     dataLayer,
   } = props;
@@ -22,14 +31,25 @@ const GoogleTagManager = (props) => {
   ));
 
   /**
+   * Helper function passed by context to push events to Google Tag Manager.
+   *
+   * @param {string} eventName Name of the event.
+   * @param {object} options Options to pass to push event.
+   */
+  const pushEvent = (eventName, options = {}) => {
+    window.dataLayer.push({
+      event: eventName,
+      ...dataLayer,
+      ...options,
+    });
+  };
+
+  /**
    * Effect for starting the GTM dataLayer.
    */
   useEffect(() => {
     if (0 === started.length) {
-      window.dataLayer.push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js',
-      });
+      pushEvent('gtm.js', { 'gtm.start': new Date().getTime() });
     }
   }, []);
 
@@ -37,12 +57,7 @@ const GoogleTagManager = (props) => {
    * Effect for pushing new data to the GTM dataLayer.
    */
   useEffect(() => {
-    window.dataLayer.push({
-      event: 'irving.historyChange',
-      ...dataLayer,
-    });
-
-    return () => {};
+    pushEvent('irving.historyChange');
   }, [dataLayer]);
 
   return (
@@ -73,6 +88,9 @@ const GoogleTagManager = (props) => {
           }}
         />
       </noscript>
+      <GTMContext.Provider value={{ dataLayer, pushEvent }}>
+        {children}
+      </GTMContext.Provider>
     </>
   );
 };
@@ -82,6 +100,10 @@ GoogleTagManager.propTypes = {
   dataLayer: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array, // Empty objects turn to arrays in PHP :(
+  ]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
   ]).isRequired,
 };
 
