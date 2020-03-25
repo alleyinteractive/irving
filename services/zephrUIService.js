@@ -83,16 +83,3 @@ export async function fetchZephrDataLayer(session) {
 
   return null;
 }
-/**
- * Integration to push dataLayer data to Google Tag Manager.
- * This is in the saga instead of the GTM component.
- *
- * @param {object} zephrDataLayer The analytics object to send to GTM.
- */
-export function pushDataLayer(zephrDataLayer) {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'zephr.historyChange',
-    ...zephrDataLayer,
-  });
-}
