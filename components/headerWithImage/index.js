@@ -8,12 +8,14 @@ import styles from './headerWithImage.css';
 
 const HeaderWithImage = ({ children, title }) => {
   const image = findChildByName('image', children);
+  const video = findChildByName('video', children);
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>
         <span className={styles.innerTitle}>{title}</span>
       </h1>
-      <div className={styles.image}>{image}</div>
+      {image && <div className={styles.image}>{image}</div>}
+      {video && <div className={styles.image}>{video}</div>}
     </div>
   );
 };
