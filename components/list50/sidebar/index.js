@@ -5,9 +5,9 @@ import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
 
 // Styles
-import styles from './listSidebar.css';
+import styles from './list50Sidebar.css';
 
-const ListSidebar = (props) => {
+const List50Sidebar = (props) => {
   const {
     children,
     locationLink,
@@ -78,7 +78,7 @@ const ListSidebar = (props) => {
   );
 };
 
-ListSidebar.propTypes = {
+List50Sidebar.propTypes = {
   children: PropTypes.node.isRequired,
   locationLink: PropTypes.string.isRequired,
   nameLink: PropTypes.string.isRequired,
@@ -86,4 +86,4 @@ ListSidebar.propTypes = {
   yearsonLink: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(ListSidebar);
+export default withStyles(styles)(List50Sidebar);
