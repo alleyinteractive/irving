@@ -10,6 +10,7 @@
   @media ($mdMin) {
     display: block;
     opacity: 0;
+    padding-left: rem(30);
     position: absolute;
     right: 0;
     top: 0;
