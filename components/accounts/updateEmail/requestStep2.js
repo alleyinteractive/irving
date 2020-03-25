@@ -6,7 +6,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import { __, sprintf } from '@wordpress/i18n';
 import Link from 'components/helpers/link';
-import { actionVerifyEmailUpdateToken } from 'actions/zephrActions';
+import { actionCheckNewEmailUpdate } from 'actions/zephrActions';
 import {
   getFirstName,
 } from 'selectors/zephrSelector';
@@ -14,7 +14,7 @@ import {
 // Styles
 import styles from './updateEmail.css';
 
-const UpdateEmailConfirm = ({
+const UpdateEmailRequest2 = ({
   verifyToken,
   firstName,
 }) => {
@@ -37,13 +37,15 @@ const UpdateEmailConfirm = ({
       <p className={styles.subheader}>
         {'' !== firstName ? (sprintf(
           __(
-            'Thanks %s! Your email has been successfully updated.',
+            `Thanks %s! Please check the inbox of your new
+            email to complete the update process.`,
             'mittr'
           ),
           firstName
         )) : (
-          __('Thanks! Your email has been successfully updated.',
-            'mittr')
+          __(`Thanks! Please check the inbox of your new
+            email to complete the update process.`,
+          'mittr')
         )}
       </p>
       <Link to="/" className={styles.homeButton}>Go Home</Link>
@@ -51,17 +53,17 @@ const UpdateEmailConfirm = ({
   );
 };
 
-UpdateEmailConfirm.defaultProps = {
+UpdateEmailRequest2.defaultProps = {
   firstName: '',
 };
 
-UpdateEmailConfirm.propTypes = {
+UpdateEmailRequest2.propTypes = {
   verifyToken: PropTypes.func.isRequired,
   firstName: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  verifyToken: (token) => dispatch(actionVerifyEmailUpdateToken(token)),
+  verifyToken: (token) => dispatch(actionCheckNewEmailUpdate(token)),
 });
 
 const withRedux = connect(
@@ -72,5 +74,5 @@ const withRedux = connect(
 );
 
 export default withRedux(
-  withStyles(styles)(UpdateEmailConfirm)
+  withStyles(styles)(UpdateEmailRequest2)
 );

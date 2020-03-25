@@ -3,12 +3,120 @@
  * Because these are also included in the editor in WordPress, they must be globally scoped.
  */
 
+/* stylelint-disable selector-max-specificity */
+
 :global {
+  .block-editor-block-list__layout .block-editor-block-list__block[data-align=full] {
+    @media (min-width: 600px) {
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 43px;
+      padding-right: 43px;
+    }
+  }
+
+  .wp-block[data-align=full] {
+    max-width: 80%;
+  }
+
+  .editor-block-list__block-edit {
+    .related__featuredImg {
+      margin: rem(0 20 10 0);
+    }
+  }
+
   .related__wrap {
-    @include block-alignment;
     font-family: $sans;
     font-size: rem(14);
     position: relative;
+
+    &:global(.alignleft),
+    &:global(.alignright) {
+      display: inline-block;
+      flex: 0 0 auto;
+
+      @media ($lgMin) {
+        max-width: 50%;
+      }
+    }
+
+    &:global(.alignleft) {
+      clear: left;
+      float: left;
+      margin: rem(10) rem(40) rem(30) 0;
+      min-width: rem(200);
+      tidy-span: 2;
+
+      @media ($mdMin) {
+        margin-left: -16%;
+      }
+    }
+
+    &.fullWidth {
+      border-top: 1px solid $black;
+      max-width: 100%;
+      padding: rem(10) 0 0 0;
+      width: 100%;
+
+      .related__content-wrap {
+        @media ($smMin) {
+          flex-direction: row;
+        }
+      }
+
+      .related__header {
+        border-top: none;
+      }
+
+      .readmore__link {
+        display: block;
+      }
+
+      .readmore__header {
+        font-size: rem(26);
+        font-weight: 700;
+        padding: 0 0 rem(15);
+      }
+
+      .block-editor-rich-text {
+        color: #F90E1E;
+        font-size: rem(26);
+        font-weight: 700;
+        line-height: rem(25);
+        padding: 0 0 rem(15);
+      }
+
+      .related__link {
+        color: #F90E1E;
+        font-size: rem(19);
+        font-weight: 700;
+        line-height: rem(25);
+        text-decoration: none;
+      }
+
+      .related__deck {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: rem(20);
+        margin-top: rem(8);
+      }
+
+      .related__featuredImg {
+        min-width: rem(270);
+        width: 100%;
+      }
+
+      .related__featuredImg--link {
+        display: block;
+        margin: rem(0 20 10 0);
+      }
+    }
+    /* styleline-enable selector-max-specificity */
+  }
+
+  .related__content-wrap {
+    display: flex;
+    flex-direction: column;
   }
 
   .related__header {
