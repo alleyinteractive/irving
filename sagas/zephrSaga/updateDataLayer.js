@@ -6,6 +6,7 @@ import {
 import createDebug from 'services/createDebug';
 import { getSession } from 'selectors/zephrSelector';
 import { fetchZephrDataLayer } from 'services/zephrUIService';
+import { getZephrDataLayer } from 'selectors/zephrDataLayerSelector';
 
 const debug = createDebug('sagas:zephrDataLayer');
 
@@ -23,4 +24,20 @@ export default function* updateDataLayer() {
   } catch (err) {
     yield call(debug, err);
   }
+}
+
+/**
+ * Integration to push dataLayer data to Google Tag Manager.
+ * This is in the saga instead of the GTM c
+ *
+ * @param {object} zephrDataLayer The analytics object to send to GTM.
+ */
+export function pushDataLayer(event, options = {}) {
+  const zephrDataLayer = select(getZephrDataLayer);
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event,
+    ...zephrDataLayer,
+    ...options,
+  });
 }

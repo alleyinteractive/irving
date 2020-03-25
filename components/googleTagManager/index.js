@@ -81,8 +81,24 @@ const GoogleTagManager = (props) => {
       return;
     }
 
+    const {
+      // remainingCredits,
+      // usedCredits,
+      loggedIn,
+      hasDigitalAccess,
+    } = zephrDataLayerResults;
+
+    // @todo move this into obscureContent as this will show on a meter view.
+    // if (0 === remainingCredits && false === loggedIn) {
+    //   pushEvent('zephr.paywall', zephrDataLayerResults);
+    // }
+
+    if (loggedIn && hasDigitalAccess) {
+      pushEvent('zephr.subscriberView', zephrDataLayerResults);
+    }
+
     // Push values to dataLayer.
-    pushEvent('zephr.historyChange', zephrDataLayerResults);
+    pushEvent('zephr.meterView', zephrDataLayerResults);
     setHasZephrPushed(true);
   }, [zephrDataLayer]);
 
