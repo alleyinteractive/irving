@@ -30,6 +30,12 @@ const GoogleTagManager = (props) => {
     dataLayerObj['gtm.start']
   ));
 
+  /**
+   * Helper function passed by context to push events to Google Tag Manager.
+   *
+   * @param {string} eventName Name of the event.
+   * @param {object} options Options to pass to push event.
+   */
   const pushEvent = (eventName, options = {}) => {
     window.dataLayer.push({
       event: eventName,
@@ -46,9 +52,6 @@ const GoogleTagManager = (props) => {
       pushEvent('gtm.js', { 'gtm.start': new Date().getTime() });
     }
   }, []);
-
-  // useeffect hook with empty array every time that also calls the push zephr event function.
-  // would do all the logic of firing the zp
 
   /**
    * Effect for pushing new data to the GTM dataLayer.
