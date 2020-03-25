@@ -46,7 +46,7 @@ const CompanyFlyout = (props) => {
       </div>
       <div className={styles.stat}>
         <p className={styles.statTitle}>
-          {statTitle}:
+          {statTitle}
         </p>
         <p className={styles.statDescription}>
           {statDescription}
