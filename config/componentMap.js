@@ -64,6 +64,7 @@ import ListMenuItems from 'components/listMenuItems';
 import ListSidebar from 'components/listSidebar';
 import Login from 'components/accounts/login/';
 import MagazineStory from 'components/magazineStory';
+import MagazineStoryList from 'components/magazineStoryList';
 import MagazineHero from 'components/magazineHero';
 import MagazineIssue from 'components/magazineIssue';
 import MagazineIssues from 'components/magazineIssues';
@@ -114,6 +115,7 @@ import TermArchiveContentList from 'components/termArchiveContentList';
 import TopicsModule from 'components/topicsModule';
 import UpdateEmailRequest from 'components/accounts/updateEmail/request';
 import UpdateEmailConfirm from 'components/accounts/updateEmail/confirmation';
+import UpdateEmailRequest2 from 'components/accounts/updateEmail/requestStep2/';
 import UserGreeting from 'components/userGreeting';
 import Verify from 'components/accounts/verify';
 import Video from 'components/video';
@@ -211,6 +213,7 @@ export const componentMap = {
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
   'mittr-plugin-extension/magazine-story': MagazineStory,
+  'mittr-plugin-extension/magazine-story-list': MagazineStoryList,
   newsletter: Newsletter,
   order: Order,
   'order-history': OrderHistory,
@@ -253,6 +256,7 @@ export const componentMap = {
   'topics-module': TopicsModule,
   'update-email-request': UpdateEmailRequest,
   'update-email-confirmation': UpdateEmailConfirm,
+  'update-email-request-step-2': UpdateEmailRequest2,
   'user-greeting': UserGreeting,
   verify: Verify,
   video: Video,

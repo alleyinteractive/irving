@@ -2,7 +2,6 @@
   align-items: center;
 }
 
-.shareWrapper,
 .copyWrapper {
   align-items: center;
   display: flex;
@@ -10,12 +9,29 @@
   padding: 1rem 0;
 }
 
+.shareWrapper {
+  align-items: baseline;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 1rem 0;
+
+  @media ($smMin) {
+    align-items: center;
+    flex-flow: row nowrap;
+  }
+}
+
 .list {
   align-items: center;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
-  tidy-span: 5;
+  tidy-span: 10;
+
+  @media ($smMin) {
+    flex-flow: row nowrap;
+    tidy-span: 5;
+  }
 
   @media ($lgMin) {
     tidy-span: 5;
