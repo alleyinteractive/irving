@@ -1,5 +1,8 @@
 import { flow, set } from 'lodash/fp';
-import { RECEIVE_COMPONENTS } from 'actions/types';
+import {
+  RECEIVE_COMPONENTS,
+  LOCATION_CHANGE,
+} from 'actions/types';
 import getRouteKey from 'selectors/getRouteKey';
 
 /**
@@ -10,19 +13,29 @@ import getRouteKey from 'selectors/getRouteKey';
  */
 export default function componentReducer(state, action) {
   const { type, payload } = action;
-  if (RECEIVE_COMPONENTS !== type) {
-    return state;
+  if (LOCATION_CHANGE === type) {
+    return {
+      ...state,
+      components: {
+        ...state.components,
+        ID: false,
+      },
+    };
   }
 
-  const currentDefaults = state.components.defaults;
-  const key = getRouteKey(state);
-  const {
-    defaults, providers, page, ID = false,
-  } = payload;
-  return flow(
-    set('components.defaults', defaults.length ? defaults : currentDefaults),
-    set(`components.providers.${key}`, providers),
-    set(`components.page.${key}`, page),
-    set('components.ID', ID),
-  )(state);
+  if (RECEIVE_COMPONENTS === type) {
+    const currentDefaults = state.components.defaults;
+    const key = getRouteKey(state);
+    const {
+      defaults, providers, page, ID = false,
+    } = payload;
+    return flow(
+      set('components.defaults', defaults.length ? defaults : currentDefaults),
+      set(`components.providers.${key}`, providers),
+      set(`components.page.${key}`, page),
+      set('components.ID', ID),
+    )(state);
+  }
+
+  return state;
 }
