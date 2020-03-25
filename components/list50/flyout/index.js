@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
@@ -19,7 +19,15 @@ const CompanyFlyout = (props) => {
     statDescription,
   } = props;
 
-  const detailsUrl = `${window.location.pathname}intro#${companyName}`;
+  // Add traling slash to url if it doewsn't have one.
+  // @todo consider doing this sitewide.
+  let url;
+  useEffect(() => {
+    url = window.location.pathname;
+    if (url && '/' !== url[url.length - 1]) {
+      url = `${url}/`;
+    }
+  }, []);
 
   return (
     <div
@@ -45,7 +53,7 @@ const CompanyFlyout = (props) => {
           {statDescription}
         </p>
       </div>
-      <Link className={styles.detailsLink} to={detailsUrl}>
+      <Link className={styles.detailsLink} to={`${url}intro#${companyName}`}>
         {detailsText}
         <Arrow />
       </Link>
