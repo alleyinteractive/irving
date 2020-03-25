@@ -1,11 +1,16 @@
 .wrapper {
   display: flex;
   flex-flow: row nowrap;
+  margin-bottom: rem(15);
   margin-right: rem(15);
   width: auto;
 
   &:last-child {
     margin-right: 0;
+  }
+
+  @media ($smMin) {
+    margin-bottom: 0;
   }
 }
 
@@ -53,11 +58,11 @@
       height: rem(14);
     }
   }
-  
+
   .whatsapp & {
     background-color: $brand-whatsapp;
     position: relative;
-    
+
     svg {
       height: rem(15);
     }
