@@ -47,7 +47,9 @@ const ContentHeader = ({
         {'' !== title && (
           <Heading className={theme.title}>{title}</Heading>
         )}
-        <DeckTag className={theme.deck}>{parse(deck)}</DeckTag>
+        {deck && (
+          <DeckTag className={theme.deck}>{parse(deck)}</DeckTag>
+        )}
         {'inline' !== themeName && (
           <div className={theme.meta}>
             {byline}
