@@ -1,8 +1,9 @@
 /* eslint-disable react/no-danger */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
+import addTrailingSlash from 'utils/addTrailingSlash';
 import Link from 'components/helpers/link';
 import Arrow from 'assets/icons/longArrow.svg';
 import styles from './list50Flyout.css';
@@ -19,15 +20,13 @@ const CompanyFlyout = (props) => {
     statDescription,
   } = props;
 
-  // Add traling slash to url if it doewsn't have one.
-  // @todo consider doing this sitewide.
-  let url;
+  const [pathname, setPathname] = useState('');
+
   useEffect(() => {
-    url = window.location.pathname;
-    if (url && '/' !== url[url.length - 1]) {
-      url = `${url}/`;
-    }
+    setPathname(window.location.pathname);
   }, []);
+
+  const detailsUrl = `${addTrailingSlash(pathname)}intro#${companyName}`;
 
   return (
     <div
@@ -47,13 +46,13 @@ const CompanyFlyout = (props) => {
       </div>
       <div className={styles.stat}>
         <p className={styles.statTitle}>
-          {statTitle}
+          {statTitle}:
         </p>
         <p className={styles.statDescription}>
           {statDescription}
         </p>
       </div>
-      <Link className={styles.detailsLink} to={`${url}intro#${companyName}`}>
+      <Link className={styles.detailsLink} to={detailsUrl}>
         {detailsText}
         <Arrow />
       </Link>
