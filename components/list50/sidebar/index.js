@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
@@ -16,20 +17,19 @@ const List50Sidebar = (props) => {
     yearsonLink,
   } = props;
 
-  const current = window.location.href;
   const links = [locationLink, nameLink, rankLink, yearsonLink];
-  const [defaultSort, setDefaultSort] = useState(false);
+  const [currentSort, setCurrentSort] = useState(false);
 
   /**
    * On page load, set the default sort to true.
    */
   useEffect(() => {
-    if (! links.includes(current)) {
-      setDefaultSort(true);
-    } else {
-      setDefaultSort(false);
-    }
-  });
+    const currentHref = links.find((link) => (
+      link === window.location.href
+    ));
+
+    setCurrentSort(currentHref || rankLink);
+  }, []);
 
   return (
     <section className={styles.wrapper}>
@@ -39,8 +39,9 @@ const List50Sidebar = (props) => {
           <li>
             <Link
               to={rankLink}
-              className={defaultSort || rankLink === current ?
-                styles.active : ''}
+              className={classNames({
+                [styles.active]: rankLink === currentSort,
+              })}
             >
               {__('Rank', 'mittr')}
             </Link>
@@ -48,8 +49,9 @@ const List50Sidebar = (props) => {
           <li>
             <Link
               to={nameLink}
-              className={nameLink === current ?
-                styles.active : ''}
+              className={classNames({
+                [styles.active]: nameLink === currentSort,
+              })}
             >
               {__('Name', 'mittr')}
             </Link>
@@ -57,8 +59,9 @@ const List50Sidebar = (props) => {
           <li>
             <Link
               to={locationLink}
-              className={locationLink === current ?
-                styles.active : ''}
+              className={classNames({
+                [styles.active]: locationLink === currentSort,
+              })}
             >
               {__('Location', 'mittr')}
             </Link>
@@ -66,8 +69,9 @@ const List50Sidebar = (props) => {
           <li>
             <Link
               to={yearsonLink}
-              className={yearsonLink === current ?
-                styles.active : ''}
+              className={classNames({
+                [styles.active]: yearsonLink === currentSort,
+              })}
             >
               {__('Years on List', 'mittr')}
             </Link>
