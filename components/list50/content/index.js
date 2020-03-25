@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-
-// Styles
 import styles from './list50Content.css';
 
 const List50Content = (props) => {
@@ -16,12 +14,10 @@ const List50Content = (props) => {
     <div className={styles.wrapper}>
       <ul className={styles.listWrapper}>
         {(children && children.length) && children.map((child) => (
-          <>
-            {React.cloneElement(child, {
-              setCompanyFlyoutVisible,
-              showFlyout: child.props.companyName === companyFlyoutVisible,
-            })}
-          </>
+          React.cloneElement(child, {
+            setCompanyFlyoutVisible,
+            showFlyout: child.props.companyName === companyFlyoutVisible,
+          })
         ))}
       </ul>
     </div>
