@@ -11,12 +11,16 @@ import {
   actionReceiveUserLogOut,
   actionReceiveEmailUpdateError,
   actionRequestEmailUpdateError,
+  actionReceiveEmailUpdateSuccess,
+  actionRequestEmailConfirmationError,
+  actionRequestEmailConfirmationSuccess,
 } from 'actions/zephrActions';
 import {
   REQUEST_ZEPHR_FORMS,
   SUBMIT_ZEPHR_FORM,
   REQUEST_USER_LOG_OUT,
   REQUEST_UPDATE_EMAIL,
+  REQUEST_EMAIL_CONFIRMATION,
   RECEIVE_UPDATE_EMAIL,
   SUBMIT_PROFILE,
 } from 'actions/types';
@@ -37,6 +41,8 @@ export default [
   takeEvery(REQUEST_USER_LOG_OUT, logOut),
   // Listen for every update email request.
   takeEvery(REQUEST_UPDATE_EMAIL, submitUpdateEmailRequest),
+  // Listen for every request to send email to updated email inbox for confirmation.
+  takeEvery(REQUEST_EMAIL_CONFIRMATION, submitRequestEmailConfirmation),
   // Listen for user submit email update request.
   takeEvery(RECEIVE_UPDATE_EMAIL, submitUpdateEmail),
   // Listen for profile completion for SSO accounts.
@@ -131,6 +137,32 @@ function* submitUpdateEmailRequest(credentials) {
 }
 
 /**
+ * Submit the user's password to send an email to the users newly update email's inbox.
+ *
+ * @param {object} credentials The user's selected password.
+ */
+function* submitRequestEmailConfirmation(credentials) {
+  const cookie = yield select(getZephrCookie);
+  // Submit the form to Zephr.
+  const { status, type } = yield call(
+    zephrService.requestUpdateEmailConfirmation,
+    credentials.payload,
+    cookie,
+  );
+
+  // Update the users' profile to show new email address.
+  yield call(getAccount, cookie);
+
+  if ('success' === status) {
+    yield put(actionRequestEmailConfirmationSuccess(type));
+  }
+
+  if ('failed' === status) {
+    yield put(actionRequestEmailConfirmationError(type));
+  }
+}
+
+/**
  * Submit the user's password to confirm the update of the new email to Zephr.
  *
  * @param {object} credentials The user's selected password.
@@ -149,7 +181,7 @@ function* submitUpdateEmail(credentials) {
   yield call(getAccount, cookie);
 
   if ('success' === status) {
-    history.push('/email-update/confirmation');
+    yield put(actionReceiveEmailUpdateSuccess(type));
   }
 
   if ('failed' === status) {

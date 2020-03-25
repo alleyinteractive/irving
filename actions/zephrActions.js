@@ -21,9 +21,13 @@ import {
   RECEIVE_ZEPHR_USER_VERIFICATION,
   SEND_ZEPHR_VERIFICATION_EMAIL,
   REQUEST_UPDATE_EMAIL,
+  REQUEST_EMAIL_CONFIRMATION,
+  REQUEST_EMAIL_CONFIRMATION_ERROR,
+  REQUEST_EMAIL_CONFIRMATION_SUCCESS,
   RECEIVE_UPDATE_EMAIL,
   RECEIVE_EMAIL_UPDATE_ERROR,
   REQUEST_EMAIL_UPDATE_ERROR,
+  RECEIVE_UPDATE_EMAIL_SUCCESS,
   RECEIVE_RESET_PASSWORD_ERROR,
   RECEIVE_SSO_SESSION,
   SUBMIT_PROFILE,
@@ -182,8 +186,54 @@ export function actionRequestUpdateEmail(payload) {
  *
  * @returns {{type, payload}} The Redux action.
  */
+export function actionCheckNewEmailUpdate(payload) {
+  return createAction(REQUEST_EMAIL_CONFIRMATION, payload);
+}
+
+/**
+ * A Redux action that represents when a user request the email confirmation to be sent to new email
+ * but an error is returned.
+ *
+ * @param {{errorType}} type The redux action type.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionRequestEmailConfirmationError(payload) {
+  return createAction(REQUEST_EMAIL_CONFIRMATION_ERROR, payload);
+}
+
+/**
+ * A Redux action that represents when a user request the email confirmation to be sent to new email
+ * and a success is returned.
+ *
+ * @param {{successType}} type The redux action type.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionRequestEmailConfirmationSuccess(payload) {
+  return createAction(REQUEST_EMAIL_CONFIRMATION_SUCCESS, payload);
+}
+
+/**
+ * A Redux action that represents when a user wants to edit their email.
+ *
+ * @param {{errorType}} payload The email to be sent
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
 export function actionVerifyEmailUpdateToken(payload) {
   return createAction(RECEIVE_UPDATE_EMAIL, payload);
+}
+
+/**
+ * A Redux action that represents when a user successfully updates their email.
+ *
+ * @param {{type}} payload The redux type.
+ *
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveEmailUpdateSuccess(payload) {
+  return createAction(RECEIVE_UPDATE_EMAIL_SUCCESS, payload);
 }
 
 /**
