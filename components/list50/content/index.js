@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { withStyles } from 'critical-style-loader/lib';
 import setContrast from 'utils/setContrast';
 import hexToRgb from 'utils/hexToRgb';
 
