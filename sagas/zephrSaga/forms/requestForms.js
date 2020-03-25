@@ -134,7 +134,7 @@ function* buildResetForm() {
       type: 'reset',
       components: JSON.stringify(form),
       error: false,
-      erros: [],
+      errors: [],
       errorCount: null,
     },
   }));

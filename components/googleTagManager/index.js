@@ -1,11 +1,19 @@
-import React, { useEffect } from 'react';
+import React, {
+  useEffect,
+  createContext,
+} from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import useLoadScript from 'hooks/useLoadScript';
 import isNode from 'utils/isNode';
+
+export const GTMContext = createContext({
+  dataLayer: {},
+  pushEvent: () => {},
+});
 
 const GoogleTagManager = (props) => {
   const {
+    children,
     containerId,
     dataLayer,
   } = props;
@@ -15,43 +23,47 @@ const GoogleTagManager = (props) => {
   }
 
   /**
-   * Load GTM script, but only once.
+   * Check for gtm.start in dataLayer.
    */
-  const loaded = useLoadScript(
-    `https://www.googletagmanager.com/gtm.js?id=${containerId}`,
-    'google-tag-manager'
-  );
+  window.dataLayer = window.dataLayer || [];
+  const started = window.dataLayer.filter((dataLayerObj) => (
+    dataLayerObj['gtm.start']
+  ));
 
   /**
-   * Effect for starting up the GTM dataLayer.
+   * Helper function passed by context to push events to Google Tag Manager.
+   *
+   * @param {string} eventName Name of the event.
+   * @param {object} options Options to pass to push event.
+   */
+  const pushEvent = (eventName, options = {}) => {
+    window.dataLayer.push({
+      event: eventName,
+      ...dataLayer,
+      ...options,
+    });
+  };
+
+  /**
+   * Effect for starting the GTM dataLayer.
    */
   useEffect(() => {
-    // gtm start function, invoked in useEffect so it doesn't fire on every render
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'gtm.start': new Date().getTime(),
-      event: 'gtm.js',
-    });
-
-    return () => {};
-  }, [loaded]);
+    if (0 === started.length) {
+      pushEvent('gtm.js', { 'gtm.start': new Date().getTime() });
+    }
+  }, []);
 
   /**
    * Effect for pushing new data to the GTM dataLayer.
    */
   useEffect(() => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'irving.historyChange',
-      ...dataLayer,
-    });
-
-    return () => {};
+    pushEvent('irving.historyChange');
   }, [dataLayer]);
 
   return (
     <>
       <Helmet>
+        <script src={`https://www.googletagmanager.com/gtm.js?id=${containerId}`} async />
         {/* Initial SSR event. */}
         <script>
           {`
@@ -76,6 +88,9 @@ const GoogleTagManager = (props) => {
           }}
         />
       </noscript>
+      <GTMContext.Provider value={{ dataLayer, pushEvent }}>
+        {children}
+      </GTMContext.Provider>
     </>
   );
 };
@@ -85,6 +100,10 @@ GoogleTagManager.propTypes = {
   dataLayer: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array, // Empty objects turn to arrays in PHP :(
+  ]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
   ]).isRequired,
 };
 

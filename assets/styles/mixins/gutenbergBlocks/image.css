@@ -1,11 +1,9 @@
 /* Styles for core image block */
 @mixin figcaption {
   @include body-link;
-  border-bottom: 1px solid $black;
   display: block;
   font-family: $sans;
   font-size: rem(14);
-  font-style: italic;
   line-height: calc(18/14);
   padding: rem(15) 0;
   width: 100%;
@@ -16,7 +14,6 @@
   display: block;
   font-family: $sans;
   font-size: rem(12);
-  font-style: italic;
   line-height: 1;
   padding: rem(3 5 0);
   text-align: right;
@@ -59,19 +56,21 @@
       margin: 0 rem(36) rem(36) 0;
     }
 
-    :global(.alignleft),
-    :global(.alignright) {
-      max-width: 50%;
-    }
+    @media ($smMin) {
+      :global(.alignleft),
+      :global(.alignright) {
+        max-width: 50%;
+      }
 
-    :global(.alignleft) {
-      float: left;
-      margin: rem(30) calc(8.33%) rem(20) -13.33%;
-    }
+      :global(.alignleft) {
+        float: left;
+        margin: rem(30) calc(8.33%) rem(20) -13.33%;
+      }
 
-    :global(.alignright) {
-      float: right;
-      margin: rem(30) -13.33% rem(20) calc(8.33%);
+      :global(.alignright) {
+        float: right;
+        margin: rem(30) -13.33% rem(20) calc(8.33%);
+      }
     }
 
     :global(.aligncenter) {
@@ -100,13 +99,15 @@
     }
   }
 
-  :global(.alignwide) {
-    margin-left: -20%;
-    margin-right: -20%;
+  @media ($smMin) {
+    :global(.alignwide) {
+      margin-left: -20%;
+      margin-right: -20%;
 
-    img {
-      max-width: 130%;
-      width: 130%;
+      img {
+        max-width: 130%;
+        width: 130%;
+      }
     }
   }
 }

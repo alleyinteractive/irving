@@ -41,7 +41,6 @@
 
       span {
         bottom: 0;
-        display: block;
         font-family: $sans;
       }
     }
@@ -59,7 +58,6 @@
         position: absolute;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: auto;
       }
     }
 
@@ -73,12 +71,15 @@
     }
 
     .image-description {
+      align-items: flex-end;
       background-color: $white;
       border-bottom: none;
       caption-side: bottom;
       color: #000;
+      display: flex;
       font-size: rem(14);
       font-weight: 200;
+      height: rem(50);
       line-height: rem(18);
       min-height: rem(40);
       padding-left: 0;
@@ -109,7 +110,7 @@
       top: 110%;
 
       @media ($mdMin) {
-        top: 95%;
+        top: 99%;
       }
 
       &::before {
@@ -147,7 +148,7 @@
       font-size: rem(14);
       height: rem(40);
       justify-content: center;
-      left: rem(40);
+      left: rem(45);
       padding: rem(9 5 15 15);
       position: absolute;
       top: 105%;
@@ -155,7 +156,7 @@
       z-index: 20;
 
       @media ($mdMin) {
-        top: 92%;
+        top: 95%;
       }
 
       &::before {

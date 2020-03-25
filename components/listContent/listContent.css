@@ -1,0 +1,9 @@
+.wrapper {
+  padding-bottom: 0;
+  padding-left: 0;
+
+  @media ($mdMin) {
+    padding-bottom: rem(200);
+    padding-left: rem(50);
+  }
+}

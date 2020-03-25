@@ -15,7 +15,13 @@
   color: white;
   display: block;
   font-size: rem(20);
+  height: rem(30);
   order: 2;
+  width: rem(30);
+
+  &:focus {
+    @include focusRing;
+  }
 
   path {
     stroke: white;
@@ -25,6 +31,7 @@
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 1;
 
     svg {
       transform: rotate(90deg);

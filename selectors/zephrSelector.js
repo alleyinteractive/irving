@@ -46,30 +46,35 @@ export const getSession = createSelector(
   (state) => state.session,
 );
 
+export const isSSO = createSelector(
+  zephrSelector,
+  (state) => state.user.profile.isSSO,
+);
+
 /* The Zephr cookie  */
 export const getZephrCookie = createSelector(
   zephrSelector,
-  (state) => get(
-    state,
-    'session.payload.sessionCookie',
-    ''
-  )
+  (state) => state.session.sessionCookie
 );
 
 /* User Profile/Account */
 export const getUser = createSelector(
   zephrSelector,
-  (state) => state.user,
+  (state) => state.user
 );
 
 export const getAccount = createSelector(
   zephrSelector,
-  (state) => state.user.account,
+  (state) => state.user.account
 );
 
 export const getProfile = createSelector(
   zephrSelector,
-  (state) => state.user.profile,
+  (state) => get(
+    state,
+    'user.profile',
+    {}
+  )
 );
 
 export const getEmail = createSelector(
@@ -87,7 +92,22 @@ export const getLastName = createSelector(
   (state) => state.user.profile.lastName,
 );
 
+export const getHasGoogleAuth = createSelector(
+  zephrSelector,
+  (state) => state.user.profile.hasGoogleAuth
+);
+
+export const getHasFacebookAuth = createSelector(
+  zephrSelector,
+  (state) => state.user.profile.hasFacebookAuth,
+);
+
 export const getEmailVerified = createSelector(
   zephrSelector,
   (state) => state.user.emailVerified,
+);
+
+export const getZephrDataLayer = createSelector(
+  zephrSelector,
+  (state) => state.dataLayer,
 );

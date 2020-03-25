@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding-bottom: rem(15);
+  padding-top: rem(40);
+  width: 100%;
+
+  @include container;
+}
+
+.sidebar {
+  order: 1;
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-span: 2;
+  }
+
+  @media ($lgMin) {
+    display: block;
+    margin-right: calc(tidy-span-full(1) - rem(40));  /* Account for main container bleed. */
+    tidy-span: 2;
+  }
+}
+
+.main {
+  @include container;
+  margin-bottom: rem(50);
+  order: 2;
+  width: calc((100vw/12*12) + 1.25rem); /* The tidy span calc does not work as expected with the dual-sided bleed. */
+
+  @media ($mdMin) {
+    margin-bottom: 0;
+    transform: translateX(rem(-20));
+    width: calc(tidy-span-full(6) + 2.5rem);
+  }
+
+  @media ($lgMin) {
+    tidy-offset-right: 1;
+    width: calc(tidy-span-full(8) + 2.5rem);
+  }
+}

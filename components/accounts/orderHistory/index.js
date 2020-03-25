@@ -1,68 +1,113 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
+import { connect } from 'react-redux';
+import {
+  getAccount,
+  getProfile,
+} from 'selectors/zephrSelector';
+import { format } from 'date-fns';
+import history from 'utils/history';
+import classNames from 'classnames';
 import Order from '../order';
 import Subscriptions from '../subscriptions';
 
 // Styles
 import styles from './orderHistory.css';
 
-const OrderHistory = () => {
-  // The orders variable is dummy data and should be replaced with data from the API.
-  const orders = [
-    {
-      item: 'MIT Technology Review: November/December 2016',
-      orderDate: 'October 26, 2016',
-      downloadLink: '#',
-    },
-    {
-      item: 'MIT Technology Review: November/December 2016',
-      orderDate: 'January 9, 2017',
-      downloadLink: '#',
-    },
-    {
-      item: 'MIT Technology Review: July/August 2017',
-      orderDate: 'July 24, 2017',
-      downloadLink: '#',
-    },
-    {
-      item: 'MIT Technology Review: July/August 2018',
-      orderDate: 'July 12, 2018',
-      downloadLink: '#',
-    },
-    {
-      item: 'MIT Technology Review: November/December 2018',
-      orderDate: 'December 4, 2018',
-      downloadLink: '#',
-    },
-  ];
+const OrderHistory = ({ account, isAuthenticated }) => {
+  // Prevent unauthenticated users from being able to visit this route.
+  if (! isAuthenticated) {
+    history.push('/');
+  }
+
+  const {
+    orders = [],
+    subscriptionActive = false,
+    subscriptionExpiration,
+    subscriptionType,
+  } = account;
+
+  const [expirationDate, formatDate] = useState('');
+  const [ordersArr, setOrdersArr] = useState([]);
+  useEffect(() => {
+    if (subscriptionExpiration && '' === expirationDate) {
+      const date = format(
+        new Date(Date.parse(subscriptionExpiration)),
+        'MMMM dd, yyyy'
+      );
+
+      formatDate(date);
+    }
+
+    if (0 === ordersArr.length && 0 < orders.length) {
+      setOrdersArr(orders);
+    }
+  }, [expirationDate, ordersArr]);
+
   return (
-    <div className={styles.accountWrap}>
-      <h1 className={styles.accountHeader}>
+    <div className={styles.wrapper}>
+      <h1 className={styles.header}>
         {__('Account', 'mittr')}
       </h1>
-      <h2 className={styles.accountSubHeader}>
+      <h2 className={styles.subheader}>
         {__('Review your order history', 'mittr')}
       </h2>
-      <Subscriptions
-        type="Print + All Access Digital"
-        expiration="November 21, 2020"
-      />
-      <h3 className={styles.heading} id="orders-downloads">
-        {__('Orders and downloads', 'mittr')}
-      </h3>
-      <ul aria-labelledby="orders-downloads">
-        { orders.map((order, i) => (
-          <li>
-            <Order
-              order={order}
-              lastItem={(orders.length - 1 === i)}
-            />
-          </li>
-        ))}
-      </ul>
+      {subscriptionActive ? (
+        <Subscriptions
+          type={subscriptionType}
+          expiration={expirationDate}
+        />
+      ) : (
+        <span
+          className={classNames(styles.unsubscribedText, {
+            [styles.withSeparator]: ordersArr.length,
+          })}
+        >
+          {
+            0 === Object.keys(account).length ?
+              'Loading...' : 'You are not subscribed.'
+          }
+        </span>
+      )}
+      {orders && 0 < orders.length && (
+        <React.Fragment>
+          <h3 className={styles.heading} id="orders-downloads">
+            {__('Orders and downloads', 'mittr')}
+          </h3>
+          <ul aria-labelledby="orders-downloads">
+            {ordersArr.map((order, i) => (
+              <li key={order.created}>
+                <Order
+                  order={{
+                    ...order,
+                    type: subscriptionType,
+                  }}
+                  lastItem={(orders.length - 1 === i)}
+                />
+              </li>
+            ))}
+          </ul>
+        </React.Fragment>
+      )}
     </div>
   );
 };
 
-export default withStyles(styles)(OrderHistory);
+OrderHistory.propTypes = {
+  account: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+};
+
+const withRedux = connect(
+  (state) => ({
+    account: getAccount(state),
+    isAuthenticated:
+      0 < Object.keys(getProfile(state)).length &&
+      0 < Object.keys(getAccount(state)).length,
+  }),
+  null
+);
+
+export default withRedux(withStyles(styles)(OrderHistory));
