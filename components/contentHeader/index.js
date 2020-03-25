@@ -58,7 +58,7 @@ const ContentHeader = ({
         )}
       </div>
       {image && <div className={theme.image}>{image}</div>}
-      {video}
+      {video && <div className={theme.image}>{video}</div>}
       {sponsoredModule && (
         <div className={theme.sponsoredModule} id="sponsored-content--module">
           {sponsoredModule}
