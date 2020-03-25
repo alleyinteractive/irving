@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
 import { findChildByName } from 'utils/children';
-import Button from 'components/helpers/button';
 import styles from './list50Item.css';
 
 const List50Item = (props) => {
@@ -44,12 +43,13 @@ const List50Item = (props) => {
           </span>
         )}
         { location && <span className={styles.location}>{location}</span> }
-        <Button
+        <button
           className={styles.name}
           onClick={toggleFlyoutVisible}
+          type="button"
         >
           {companyName}
-        </Button>
+        </button>
         {'list-50-rank-item' !== componentName && (
           <span className={classNames(styles.rank, styles.rankSmall)}>
             {rank}

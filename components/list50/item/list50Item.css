@@ -55,12 +55,13 @@
 }
 
 .name {
-  && {
-    display: inline-block;
-    padding-left: rem(5);
-    position: relative;
-    z-index: 1;
-  }
+  @include button-reset;
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 700;
+  padding-left: rem(5);
+  position: relative;
+  z-index: 1;
 
   &:focus {
     outline: 0;
