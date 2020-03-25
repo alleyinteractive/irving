@@ -1,10 +1,13 @@
 import React, {
   useEffect,
   createContext,
+  useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from 'utils/isNode';
+import { connect } from 'react-redux';
+import { zephrDataLayerSelector } from 'selectors/zephrDataLayerSelector';
 
 export const GTMContext = createContext({
   dataLayer: {},
@@ -16,7 +19,10 @@ const GoogleTagManager = (props) => {
     children,
     containerId,
     dataLayer,
+    zephrDataLayer,
   } = props;
+
+  const [hasZephrPushed, setHasZephrPushed] = useState(false);
 
   if (! containerId) {
     return null;
@@ -59,6 +65,26 @@ const GoogleTagManager = (props) => {
   useEffect(() => {
     pushEvent('irving.historyChange');
   }, [dataLayer]);
+
+  /**
+   * Effect for pushing Zephr-related events.
+   */
+  useEffect(() => {
+    if (hasZephrPushed) {
+      return;
+    }
+
+    const { isLoading, dataLayer: zephrDataLayerResults } = zephrDataLayer;
+
+    // Do not update if empty or loading.
+    if (false !== isLoading || ! zephrDataLayerResults) {
+      return;
+    }
+
+    // Push values to dataLayer.
+    pushEvent('zephr.historyChange', zephrDataLayerResults);
+    setHasZephrPushed(true);
+  }, [zephrDataLayer]);
 
   return (
     <>
@@ -105,6 +131,20 @@ GoogleTagManager.propTypes = {
     PropTypes.array,
     PropTypes.object,
   ]).isRequired,
+  zephrDataLayer: PropTypes.shape({
+    isLoading: PropTypes.bool.isRequired,
+    dataLayer: PropTypes.shape({
+      loggedIn: PropTypes.bool.isRequired,
+      UserId: PropTypes.string.isRequired,
+      remainingCredits: PropTypes.string.isRequired,
+      usedCredits: PropTypes.string.isRequired,
+      hasDigitalAccess: PropTypes.bool.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
-export default GoogleTagManager;
+const mapStateToProps = (state) => ({
+  zephrDataLayer: zephrDataLayerSelector(state),
+});
+
+export default connect(mapStateToProps)(GoogleTagManager);
