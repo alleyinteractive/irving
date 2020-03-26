@@ -116,6 +116,7 @@
     margin-bottom: rem(10);
   }
 
+  /* stylelint-disable selector-max-specificity */
   :global(.zephr-form-button-group) {
     display: flex;
     flex-direction: row;
@@ -131,6 +132,7 @@
         margin-right: rem(15);
       }
     }
+    /* stylelint-enable selector-max-specificity */
 
     a {
       font-weight: 500;
