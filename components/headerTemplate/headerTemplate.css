@@ -1,6 +1,6 @@
 .container {
   background-color: $white;
-  border-bottom: $border-thin--gray;
+  border-bottom: 1px solid #c8c8c8;
   color: $black;
   display: flex;
   justify-self: flex-end;
@@ -162,6 +162,8 @@
   svg {
     display: block;
     height: rem(19);
+    position: relative;
+    top: -2px;
     width: rem(31);
   }
 }
