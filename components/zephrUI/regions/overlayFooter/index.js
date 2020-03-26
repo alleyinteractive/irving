@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
@@ -9,6 +9,7 @@ import { getZephrComponents } from 'selectors/zephrRulesSelector';
 import ToggleNotice from 'components/toggleNotice';
 import DismissNotice from 'components/dismissNotice';
 import UIComponent from 'components/zephrUI/components/UIComponent';
+import GTMContext from 'components/googleTagManager';
 
 // Styles
 import styles from './overlayFooter.css';
@@ -31,8 +32,13 @@ const OverlayFooter = ({ components }) => {
     return null;
   }
 
+  // Get the pushEvent from the Google Tag Manager
+  const { pushEvent } = useContext(GTMContext);
+
   // If it is a meter notice, then return component with toggle functionality.
   if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
+    pushEvent('zephr.meterView');
+
     return (
       <div className={styles.wrapper}>
         <ToggleNotice>
