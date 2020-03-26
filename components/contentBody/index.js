@@ -23,7 +23,7 @@ const ContentBody = ({
   dispatchTruncateStory,
   overrideCTA,
   summaryBullets,
-  truncateContent,
+  showFullStory,
 }) => {
   const contentRef = useRef();
   const obscureContent = useObscureContent();
@@ -57,19 +57,19 @@ const ContentBody = ({
     if (true === overrideCTA) {
       dispatchShowFullStory();
     }
-  }, truncateContent);
+  }, showFullStory);
 
   return (
     <div className={styles.wrapper}>
       <div
         className={classNames(styles.overlay, {
-          [styles.overlayVisible]: ! truncateContent,
+          [styles.overlayVisible]: ! showFullStory,
         })}
       />
 
       <div
         className={classNames(styles.content, {
-          [styles.contentHidden]: ! truncateContent,
+          [styles.contentHidden]: ! showFullStory,
         })}
         id="content--body"
       >
@@ -83,7 +83,7 @@ const ContentBody = ({
         </div>
       </div>
 
-      {! truncateContent && (
+      {! showFullStory && (
         <button
           className={styles.truncationButton}
           type="button"
@@ -127,7 +127,7 @@ ContentBody.propTypes = {
   dispatchTruncateStory: PropTypes.func,
   overrideCTA: PropTypes.bool,
   summaryBullets: PropTypes.string,
-  truncateContent: PropTypes.bool.isRequired,
+  showFullStory: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -136,7 +136,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  truncateContent: state.story.showFullText,
+  showFullStory: state.story.showFullStory,
 });
 
 const withRedux = connect(
