@@ -165,7 +165,7 @@ const AccountLandingPage = ({
               tabIndex="0"
               onClick={logOut}
             >
-              {__('Log out', 'mittr')}
+              {__('Sign out', 'mittr')}
             </button>
           </div>
         </div>
