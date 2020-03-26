@@ -1,4 +1,5 @@
 .wrapper {
+  background-color: var(--list-50-bg-color);
   color: $black;
   display: none;
   font-family: $sans;
@@ -33,6 +34,11 @@
 
 .description {
   margin-bottom: rem(20);
+}
+
+.descriptionBody,
+.statBody {
+  color: var(--list-50-text-color);
 }
 
 .stat {

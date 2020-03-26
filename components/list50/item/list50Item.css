@@ -48,6 +48,7 @@
 }
 
 .nameWrapper {
+  background-color: var(--list-50-bg-color);
   display: inline-block;
   padding: 0 rem(25) 0 rem(5);
   position: relative;
@@ -61,7 +62,12 @@
   font-weight: 700;
   padding-left: rem(5);
   position: relative;
+  transition: color 250ms ease-in-out;
   z-index: 1;
+
+  .flyoutVisible & {
+    color: var(--list-50-text-color);
+  }
 
   &:focus {
     outline: 0;
