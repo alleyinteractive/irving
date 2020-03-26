@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react'; // eslint-disable-line
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import checkUIComponentType from 'services/checkUIComponentType';
 import { getZephrComponents } from 'selectors/zephrRulesSelector';
+import useZephrDataLayer from 'hooks/useZephrDataLayer';
 
 import ToggleNotice from 'components/toggleNotice';
 import DismissNotice from 'components/dismissNotice';
 import UIComponent from 'components/zephrUI/components/UIComponent';
-import GTMContext from 'components/googleTagManager';
+import { GTMContext } from 'components/googleTagManager'; // eslint-disable-line
 
 // Styles
 import styles from './overlayFooter.css';
@@ -20,6 +21,11 @@ import styles from './overlayFooter.css';
  * @param {string} components The object of all zephrComponents from the store.
  */
 const OverlayFooter = ({ components }) => {
+  // Get the pushEvent from the Google Tag Manager.
+  // const { pushEvent } = useContext(GTMContext) || {};
+  const pushEvent = (args) => console.log(args); // eslint-disable-line
+  const [hasPushedAnalyticsEvent, setHasPushedAnalyticsEvent] = useState(false);
+
   // Select the markup from the components object.
   const componentMarkup = get(
     components,
@@ -32,13 +38,31 @@ const OverlayFooter = ({ components }) => {
     return null;
   }
 
-  // Get the pushEvent from the Google Tag Manager
-  const { pushEvent } = useContext(GTMContext);
+  // Get the zephrDataLayer from the store.
+  const zephrDataLayer = useZephrDataLayer();
+
+  useEffect(() => {
+    // Bail if already sent analytics on this pageview.
+    if (hasPushedAnalyticsEvent) {
+      return;
+    }
+
+    // Send a meterView event on the MeterNotice component.
+    if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
+      pushEvent('zephr.meterView', ...zephrDataLayer);
+      setHasPushedAnalyticsEvent(true);
+      return;
+    }
+
+    // Send a paywall event on the ThanksNotice component.
+    if (checkUIComponentType(componentMarkup, 'ThanksNotice')) {
+      pushEvent('zephr.paywallView', ...zephrDataLayer);
+      setHasPushedAnalyticsEvent(true);
+    }
+  }, [componentMarkup]);
 
   // If it is a meter notice, then return component with toggle functionality.
   if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
-    pushEvent('zephr.meterView');
-
     return (
       <div className={styles.wrapper}>
         <ToggleNotice>

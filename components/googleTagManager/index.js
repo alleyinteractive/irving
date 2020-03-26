@@ -6,8 +6,7 @@ import React, {
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from 'utils/isNode';
-import { connect } from 'react-redux';
-import { zephrDataLayerSelector } from 'selectors/zephrDataLayerSelector';
+import useZephrDataLayer from 'hooks/useZephrDataLayer';
 
 export const GTMContext = createContext({
   dataLayer: {},
@@ -19,14 +18,12 @@ const GoogleTagManager = (props) => {
     children,
     containerId,
     dataLayer,
-    zephrDataLayer,
   } = props;
-
-  const [hasZephrPushed, setHasZephrPushed] = useState(false);
-
   if (! containerId) {
     return children;
   }
+
+  const [hasZephrPushed, setHasZephrPushed] = useState(false);
 
   /**
    * Check for gtm.start in dataLayer.
@@ -43,11 +40,12 @@ const GoogleTagManager = (props) => {
    * @param {object} options Options to pass to push event.
    */
   const pushEvent = (eventName, options = {}) => {
-    window.dataLayer.push({
-      event: eventName,
-      ...dataLayer,
-      ...options,
-    });
+    // window.dataLayer.push({
+    //   event: eventName,
+    //   ...dataLayer,
+    //   ...options,
+    // });
+    console.log({eventName, options}); // eslint-disable-line
   };
 
   /**
@@ -69,11 +67,13 @@ const GoogleTagManager = (props) => {
   /**
    * Effect for pushing Zephr-related events.
    */
+  const zephrDataLayer = useZephrDataLayer();
   useEffect(() => {
-    if (hasZephrPushed) {
+    if (hasZephrPushed || {} === zephrDataLayer) {
       return;
     }
 
+    // Get the zephrDataLayer from the store.
     const { isLoading, dataLayer: zephrDataLayerResults } = zephrDataLayer;
 
     // Do not update if empty or loading.
@@ -82,23 +82,19 @@ const GoogleTagManager = (props) => {
     }
 
     const {
-      // remainingCredits,
-      // usedCredits,
       loggedIn,
       hasDigitalAccess,
     } = zephrDataLayerResults;
 
-    // @todo move this into obscureContent as this will show on a meter view.
-    // if (0 === remainingCredits && false === loggedIn) {
-    //   pushEvent('zephr.paywall', zephrDataLayerResults);
-    // }
-
+    // Push values to dataLayer.
     if (loggedIn && hasDigitalAccess) {
       pushEvent('zephr.subscriberView', zephrDataLayerResults);
+    } else if (loggedIn) {
+      pushEvent('zephr.userView', zephrDataLayerResults);
+    } else {
+      pushEvent('zephr.anonymousView', zephrDataLayerResults);
     }
 
-    // Push values to dataLayer.
-    pushEvent('zephr.userView', zephrDataLayerResults);
     setHasZephrPushed(true);
   }, [zephrDataLayer]);
 
@@ -147,20 +143,6 @@ GoogleTagManager.propTypes = {
     PropTypes.array,
     PropTypes.object,
   ]).isRequired,
-  zephrDataLayer: PropTypes.shape({
-    isLoading: PropTypes.bool.isRequired,
-    dataLayer: PropTypes.shape({
-      loggedIn: PropTypes.bool.isRequired,
-      UserId: PropTypes.string.isRequired,
-      remainingCredits: PropTypes.string.isRequired,
-      usedCredits: PropTypes.string.isRequired,
-      hasDigitalAccess: PropTypes.bool.isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  zephrDataLayer: zephrDataLayerSelector(state),
-});
-
-export default connect(mapStateToProps)(GoogleTagManager);
+export default GoogleTagManager;
