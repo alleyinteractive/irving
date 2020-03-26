@@ -19,7 +19,7 @@ const GoogleTagManager = (props) => {
   } = props;
 
   if (! containerId) {
-    return null;
+    return children;
   }
 
   /**
