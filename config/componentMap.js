@@ -47,6 +47,7 @@ import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
 import Link from 'components/helpers/link';
 import LinkTeaser from 'components/linkTeaser';
+import List50View from 'components/list50/view';
 import List50Heading from 'components/list50/heading';
 import List50Header from 'components/list50/header';
 import List50Content from 'components/list50/content';
@@ -178,17 +179,18 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
+  'list-50-content': List50Content,
   'list-50-heading': List50Heading,
   'list-50-header': List50Header,
   'list-50-sidebar': List50Sidebar,
   'list-50-intro-item': CompanyListItem,
-  'list-50-location': List50Content,
+  'list-50-location': List50View,
   'list-50-location-item': List50Item,
-  'list-50-rank': List50Content,
+  'list-50-rank': List50View,
   'list-50-rank-item': List50Item,
-  'list-50-years': List50Content,
+  'list-50-years': List50View,
   'list-50-years-item': List50Item,
-  'list-50-name': List50Content,
+  'list-50-name': List50View,
   'list-50-name-item': List50Item,
   'list-50-item-flyout': List50Flyout,
   login: Login,
