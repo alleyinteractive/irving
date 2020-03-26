@@ -98,7 +98,7 @@ const GoogleTagManager = (props) => {
     }
 
     // Push values to dataLayer.
-    pushEvent('zephr.meterView', zephrDataLayerResults);
+    pushEvent('zephr.userView', zephrDataLayerResults);
     setHasZephrPushed(true);
   }, [zephrDataLayer]);
 
