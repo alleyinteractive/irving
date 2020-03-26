@@ -7,25 +7,34 @@
 
 .welcomeMessage {
   color: $color-heading;
-  font-size: rem(40);
+  font-size: rem(30);
   font-weight: 600;
+  line-height: 1;
+
+  @media ($mdMin) {
+    font-size: rem(40);
+  }
 }
 
 .greeting {
   font-size: rem(40);
   line-height: 1;
+
+  @media ($mdMin) {
+    font-size: rem(50);
+  }
 }
 
 .accessBanner {
-  font-size: rem(40);
-  line-height: 1.1;
+  font-size: rem(30);
+  line-height: 1.06;
 
   & > a {
     border-bottom: 2px solid $black;
   }
 
-  @media ($smMax) {
-    font-size: rem(36);
+  @media ($mdMin) {
+    font-size: rem(40);
   }
 }
 
@@ -96,9 +105,14 @@
 
   h2 {
     color: $color-heading;
-    font-size: rem(40);
+    font-size: rem(30);
+    line-height: 1;
     margin: 0;
     padding: 0;
+
+    @media ($mdMin) {
+      font-size: rem(40);
+    }
   }
 
   p {
