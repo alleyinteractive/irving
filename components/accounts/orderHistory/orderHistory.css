@@ -1,18 +1,14 @@
-.accountWrap {
+.wrapper {
   font-family: $sans;
   margin: rem(20);
 }
 
-.accountHeader {
+.header {
   @include accountHeader;
-  font-family: $sans;
-  font-size: rem(40);
 }
 
-.accountSubHeader {
+.subheader {
   @include accountSubHeader;
-  font-family: $sans;
-  font-size: rem(50);
 }
 
 .heading {
