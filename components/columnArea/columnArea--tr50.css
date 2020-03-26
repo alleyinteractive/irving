@@ -33,11 +33,10 @@
   @media ($mdMin) {
     margin-bottom: 0;
     transform: translateX(rem(-20));
-    width: calc(tidy-span-full(6) + 2.5rem);
+    width: calc(tidy-span-full(7) + 2.5rem);
   }
 
   @media ($lgMin) {
-    tidy-offset-right: 1;
-    width: calc(tidy-span-full(8) + 2.5rem);
+    width: calc(tidy-span-full(9) + 2.5rem);
   }
 }

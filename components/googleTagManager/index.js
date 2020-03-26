@@ -25,7 +25,7 @@ const GoogleTagManager = (props) => {
   const [hasZephrPushed, setHasZephrPushed] = useState(false);
 
   if (! containerId) {
-    return null;
+    return children;
   }
 
   /**
