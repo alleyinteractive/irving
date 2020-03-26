@@ -488,7 +488,7 @@ function defaultSubmitText(type) {
     case 'resetRequest':
       return 'Send password reset link';
     case 'login':
-      return 'Login';
+      return 'Sign in';
     case 'register':
       return 'Create this account';
     default:
@@ -536,33 +536,33 @@ export function setErrorTargetId(type) {
  * @returns {string} The error message.
  */
 export function formatErrorMessage(type) {
-  const messageBase = 'Oops! Let’s try that again';
+  const messageBase = 'Oops!';
 
   switch (type) {
     case 'email-address':
       return `${messageBase} — Please enter
-       a valid email address.`;
+       a valid email address. Please try again.`;
     case 'email-not-verified':
       return `${messageBase} — Your email has not
        yet been verified. Please check your inbox
        for a verification email and try again.`;
     case 'full-name':
-      return `${messageBase} — Please enter your full name.`;
+      return `${messageBase} — Please enter your full name.  Please try again.`;
     case 'invalid-password':
-      return `${messageBase} — Invalid password.
-       Please enter your password.`;
+      return `${messageBase} — That password doesn't match
+      our records. Please try again.`;
     case 'password-not-strong':
       return `${messageBase} — Your password must be at
        least 8 characters, include one uppercase letter,
-       one lowercase letter, and one symbol (e.g. !#$%&).`;
+       one lowercase letter, and one symbol (e.g. !#$%&).  Please try again.`;
     case 'terms-checkbox':
       return `${messageBase} — You must agree to the terms
-       of service in order to create an account.`;
+       of service in order to create an account.  Please try again.`;
     case 'user-already-exists':
-      return `${messageBase} — Account already exists!`;
+      return `${messageBase} — Account already exists!  Please try again.`;
     case 'user-not-found':
-      return `${messageBase} — User not found.
-       Please enter your email address.`;
+      return `${messageBase} — We couldn't find that
+      address in our records. Please try again.`;
     case 'verify-password':
       return `${messageBase} — Passwords do not match.
        Please re-enter your password and try again.`;
