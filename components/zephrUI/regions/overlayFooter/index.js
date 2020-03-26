@@ -33,11 +33,6 @@ const OverlayFooter = ({ components }) => {
     false
   );
 
-  // Show nothing if there is no component in this rule.
-  if (! componentMarkup) {
-    return null;
-  }
-
   // Get the zephrDataLayer from the store.
   const zephrDataLayer = useZephrDataLayer();
 
@@ -60,6 +55,11 @@ const OverlayFooter = ({ components }) => {
       setHasPushedAnalyticsEvent(true);
     }
   }, [componentMarkup]);
+
+  // Show nothing if there is no component in this rule.
+  if (! componentMarkup) {
+    return null;
+  }
 
   // If it is a meter notice, then return component with toggle functionality.
   if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
