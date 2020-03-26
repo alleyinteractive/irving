@@ -47,7 +47,9 @@ const ContentHeader = ({
         {'' !== title && (
           <Heading className={theme.title}>{title}</Heading>
         )}
-        <DeckTag className={theme.deck}>{parse(deck)}</DeckTag>
+        {deck && (
+          <DeckTag className={theme.deck}>{parse(deck)}</DeckTag>
+        )}
         {'inline' !== themeName && (
           <div className={theme.meta}>
             {byline}
@@ -56,7 +58,7 @@ const ContentHeader = ({
         )}
       </div>
       {image && <div className={theme.image}>{image}</div>}
-      {video}
+      {video && <div className={theme.image}>{video}</div>}
       {sponsoredModule && (
         <div className={theme.sponsoredModule} id="sponsored-content--module">
           {sponsoredModule}

@@ -1,24 +1,34 @@
 .wrapper {
   background-color: var(--list-50-bg-color);
   color: $black;
+  display: none;
   font-family: $sans;
   font-size: rem(18);
   font-weight: 600;
-  opacity: 0;
-  padding-left: rem(30);
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform: translateX(rem(-100));
-  transition: all 0.2s ease;
-  visibility: hidden;
+  padding-left: rem(10);
   width: rem(300);
-  z-index: 1;
+
+  @media ($mdMin) {
+    display: block;
+    opacity: 0;
+    padding-left: rem(30);
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(rem(-100));
+    transition: all 0.2s ease;
+    visibility: hidden;
+    z-index: 1;
+  }
 
   &.isVisible {
-    opacity: 1;
-    transform: translateX(0);
-    visibility: visible;
+    display: block;
+
+    @media ($mdMin) {
+      opacity: 1;
+      transform: translateX(0);
+      visibility: visible;
+    }
   }
 }
 
@@ -38,6 +48,7 @@
 .detailsLink {
   align-items: center;
   display: flex;
+  font-size: rem(16);
 
   &:hover {
     svg {

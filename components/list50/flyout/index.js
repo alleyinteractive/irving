@@ -1,8 +1,10 @@
-import React from 'react';
+/* eslint-disable react/no-danger */
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RawHTML from 'components/rawHTML';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
+import addTrailingSlash from 'utils/addTrailingSlash';
 import Link from 'components/helpers/link';
 import Arrow from 'assets/icons/longArrow.svg';
 import styles from './list50Flyout.css';
@@ -18,7 +20,13 @@ const CompanyFlyout = (props) => {
     statDescription,
   } = props;
 
-  const detailsUrl = `${window.location.pathname}intro#${companyName}`;
+  const [pathname, setPathname] = useState('');
+
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
+
+  const detailsUrl = `${addTrailingSlash(pathname)}intro#${companyName}`;
 
   return (
     <div
@@ -37,7 +45,7 @@ const CompanyFlyout = (props) => {
       </div>
       <div className={styles.stat}>
         <p className={styles.statTitle}>
-          {statTitle}:
+          {statTitle}
         </p>
         <p className={styles.statBody}>
           <RawHTML content={statDescription} />

@@ -15,15 +15,20 @@
   }
 
   &.flyoutVisible {
-    &::after {
-      border-top: solid 1px $black;
-      content: '';
-      height: 0;
-      left: rem(70);
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: calc(100% - rem(170));
+    margin-bottom: rem(10);
+
+    @media ($mdMin) {
+      &::after {
+        border-top: solid 1px $black;
+        content: '';
+        height: 0;
+        left: rem(70);
+        margin-bottom: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(100% - rem(170));
+      }
     }
   }
 }
@@ -51,14 +56,14 @@
 }
 
 .name {
+  @include button-reset;
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 700;
+  padding-left: rem(5);
+  position: relative;
   transition: color 250ms ease-in-out;
-
-  && {
-    display: inline-block;
-    padding-left: rem(5);
-    position: relative;
-    z-index: 1;
-  }
+  z-index: 1;
 
   .flyoutVisible & {
     color: var(--list-50-text-color);
