@@ -3,6 +3,7 @@ import React, {
   useRef,
 } from 'react';
 import { connect } from 'react-redux';
+import NProgress from 'nprogress';
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
@@ -59,6 +60,10 @@ const ContentBody = ({
     }
   }, showFullStory);
 
+  if (showFullStory) {
+    NProgress.configure({ parent: '#siteHeader' });
+    NProgress.set(0.0);
+  }
   return (
     <div className={styles.wrapper}>
       <div
