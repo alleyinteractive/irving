@@ -75,6 +75,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: rem(10);
+    margin-top: rem(15);
     white-space: nowrap;
     width: rem(280);
   }
@@ -159,7 +160,7 @@
 }
 
 .horizontalFormGroup {
-  @include horizontalForm;  
+  @include horizontalForm;
 }
 
 .formInput {
