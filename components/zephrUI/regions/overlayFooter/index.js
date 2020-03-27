@@ -21,15 +21,7 @@ import styles from './overlayFooter.css';
  * @param {string} components The object of all zephrComponents from the store.
  */
 const OverlayFooter = ({ components, zephrDataLayer }) => {
-  // I cannot make this work.
   const { pushEvent } = useContext(GTMContext);
-  // This function does the same thing.
-  // const pushEvent = (event, options) => {
-  //   window.dataLayer.push({
-  //     event,
-  //     ...options,
-  //   });
-  // };
 
   // Select the markup from the components object.
   const componentMarkup = get(
