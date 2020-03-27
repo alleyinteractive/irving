@@ -38,7 +38,7 @@ function* requestLogin() {
     createForm,
     {
       input: formResponse,
-      submitText: 'Sign In',
+      submitText: 'Sign in',
     }
   );
 

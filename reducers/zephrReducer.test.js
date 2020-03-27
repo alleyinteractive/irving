@@ -37,7 +37,7 @@ const loginFormMock = {
       id: 'submit-button',
       key: 'zephr-submit-button',
       type: 'submit',
-      value: 'Sign In',
+      value: 'Sign in',
     },
   ]),
   error: false,

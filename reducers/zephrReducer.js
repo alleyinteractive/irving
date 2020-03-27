@@ -547,19 +547,19 @@ export function formatErrorMessage(type) {
        yet been verified. Please check your inbox
        for a verification email and try again.`;
     case 'full-name':
-      return `${messageBase} — Please enter your full name.  Please try again.`;
+      return `${messageBase} — Please enter your full name. Please try again.`;
     case 'invalid-password':
       return `${messageBase} — That password doesn't match
       our records. Please try again.`;
     case 'password-not-strong':
       return `${messageBase} — Your password must be at
        least 8 characters, include one uppercase letter,
-       one lowercase letter, and one symbol (e.g. !#$%&).  Please try again.`;
+       one lowercase letter, and one symbol (e.g. !#$%&). Please try again.`;
     case 'terms-checkbox':
       return `${messageBase} — You must agree to the terms
        of service in order to create an account.  Please try again.`;
     case 'user-already-exists':
-      return `${messageBase} — Account already exists!  Please try again.`;
+      return `${messageBase} — Account already exists! Please try again.`;
     case 'user-not-found':
       return `${messageBase} — We couldn't find that
       address in our records. Please try again.`;
