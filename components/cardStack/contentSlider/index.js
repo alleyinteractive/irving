@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import parseUrl from 'utils/getRelativeUrl';
 import history from 'utils/history';
+import { GTMContext } from 'components/googleTagManager';
 
 // Assets and styles.
 import Arrow from 'assets/icons/arrow.svg';
@@ -13,6 +14,8 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
   const [sliderState, setSliderState] = useState({
     currentIndex: 0,
   });
+
+  const { pushEvent } = useContext(GTMContext);
 
   const getScrollPosition = () => {
     if (0 === sliderState.currentIndex) {
@@ -45,13 +48,10 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
       e.preventDefault();
       history.push(relativeUrl);
 
-      if (window.dataLayer) {
-        window.dataLayer.push({
-          event: 'click',
-          category: 'minicard-stack',
-          label: `feed-unit-${count}`,
-        });
-      }
+      pushEvent('click', {
+        category: 'minicard-stack',
+        label: `feed-unit-${count}`,
+      });
     }
   };
 
