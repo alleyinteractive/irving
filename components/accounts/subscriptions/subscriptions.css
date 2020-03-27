@@ -1,12 +1,24 @@
 .subscriptionWrap {
   border-bottom: 2px solid #000;
+  font-size: rem(20);
   line-height: rem(26);
   margin: rem(20) 0 rem(40) 0;
   padding-bottom: rem(50);
+
+  @media ($smMax) {
+    font-size: rem(18);
+    line-height: rem(24);
+  }
 }
 
 .heading {
   font-family: $sans;
   font-size: rem(30);
+  line-height: rem(32);
   margin-bottom: rem(15);
+
+  @media ($smMax) {
+    font-size: rem(24);
+    line-height: rem(26);
+  }
 }
