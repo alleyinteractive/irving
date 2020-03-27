@@ -6,11 +6,11 @@ import get from 'lodash/get';
 import checkUIComponentType from 'services/checkUIComponentType';
 import { getZephrComponents } from 'selectors/zephrRulesSelector';
 import useZephrDataLayer from 'hooks/useZephrDataLayer';
+import { GTMContext } from 'components/googleTagManager';
 
 import ToggleNotice from 'components/toggleNotice';
 import DismissNotice from 'components/dismissNotice';
 import UIComponent from 'components/zephrUI/components/UIComponent';
-import { GTMContext } from 'components/googleTagManager'; // eslint-disable-line
 
 // Styles
 import styles from './overlayFooter.css';

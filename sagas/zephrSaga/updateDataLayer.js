@@ -6,7 +6,7 @@ import {
 import createDebug from 'services/createDebug';
 import { getSession } from 'selectors/zephrSelector';
 import { fetchZephrDataLayer } from 'services/zephrUIService';
-import { getZephrDataLayer } from 'selectors/zephrDataLayerSelector';
+// import { getZephrDataLayer } from 'selectors/zephrDataLayerSelector';
 
 const debug = createDebug('sagas:zephrDataLayer');
 
@@ -32,12 +32,12 @@ export default function* updateDataLayer() {
  *
  * @param {object} zephrDataLayer The analytics object to send to GTM.
  */
-export function pushDataLayer(event, options = {}) {
-  const zephrDataLayer = select(getZephrDataLayer);
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event,
-    ...zephrDataLayer,
-    ...options,
-  });
-}
+// export function pushDataLayer(event, options = {}) {
+//   const zephrDataLayer = select(getZephrDataLayer);
+//   window.dataLayer = window.dataLayer || [];
+//   window.dataLayer.push({
+//     event,
+//     ...zephrDataLayer,
+//     ...options,
+//   });
+// }
