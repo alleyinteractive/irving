@@ -5,7 +5,7 @@
 
 .slider {
   display: flex;
-  margin-top: rem(15);
+  margin-top: rem(29);
   overflow: scroll;
   padding-left: rem(10);
   position: relative;
@@ -34,6 +34,22 @@
   padding: rem(20) rem(10);
   width: rem(230);
 
+  & > div {
+    font-size: rem(14);
+    line-height: rem(14);
+  }
+
+  & > a {
+    & h4 {
+      font-weight: 600;
+    }
+
+    & div {
+      font-size: rem(18);
+      line-height: rem(26);
+    }
+  }
+
   @media ($smMin) {
     flex: 0 0 rem(288);
     width: rem(288);
@@ -45,7 +61,7 @@
   background-repeat: norepeat;
   background-size: cover;
   border: solid 1px $black;
-  bottom: rem(10);
+  bottom: rem(5);
   display: none;
   height: rem(40);
   position: absolute;

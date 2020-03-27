@@ -52,23 +52,24 @@
 
 .anchorEyebrow {
   padding-left: rem(3);
+  padding-top: rem(20);
 
   @media ($mdMin) {
-    padding-left: rem(12);
+    padding-left: rem(0);
   }
 
   &::before {
     background-color: currentColor;
     content: "";
     display: inline-block;
-    height: 0.875rem;
+    height: rem(13);
     left: 0;
     position: absolute;
-    top: 12px;
+    top: 22px;
     width: rem(15);
 
     @media ($mdMin) {
-      width: 1.563rem;
+      width: rem(15);
     }
   }
 }

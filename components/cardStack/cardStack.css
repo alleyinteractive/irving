@@ -58,14 +58,13 @@
   letter-spacing: normal;
   line-height: 1;
   margin-bottom: rem(15);
-  padding-top: rem(40);
 
   @media ($smMin) {
     font-size: rem(50);
   }
 
   @media ($mdMin) {
-    padding-top: rem(50);
+    padding-top: rem(70);
   }
 }
 
