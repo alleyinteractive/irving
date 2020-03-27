@@ -40,12 +40,11 @@ const GoogleTagManager = (props) => {
    * @param {object} options Options to pass to push event.
    */
   const pushEvent = (eventName, options = {}) => {
-    // window.dataLayer.push({
-    //   event: eventName,
-    //   ...dataLayer,
-    //   ...options,
-    // });
-    console.log({eventName, options}); // eslint-disable-line
+    window.dataLayer.push({
+      event: eventName,
+      ...dataLayer,
+      ...options,
+    });
   };
 
   /**

@@ -21,10 +21,10 @@ import styles from './overlayFooter.css';
  * @param {string} components The object of all zephrComponents from the store.
  */
 const OverlayFooter = ({ components }) => {
-  // Get the pushEvent from the Google Tag Manager.
-  // const { pushEvent } = useContext(GTMContext) || {};
-  const pushEvent = (args) => console.log(args); // eslint-disable-line
   const [hasPushedAnalyticsEvent, setHasPushedAnalyticsEvent] = useState(false);
+
+  // Get the pushEvent from the Google Tag Manager.
+  const { pushEvent } = useContext(GTMContext) || {};
 
   // Select the markup from the components object.
   const componentMarkup = get(
