@@ -72,7 +72,7 @@
   svg {
     display: block;
     height: rem(20);
-    width: rem(210);
+    width: rem(160);
 
     .headroom & {
       height: rem(15);
