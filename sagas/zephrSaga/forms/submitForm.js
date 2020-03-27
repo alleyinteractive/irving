@@ -16,7 +16,6 @@ import nexusService from 'services/nexusService';
 import history from 'utils/history';
 import createDebug from 'services/createDebug';
 import { getZephrCookie } from 'selectors/zephrSelector';
-// import { pushDataLayer } from '../updateDataLayer';
 
 const debug = createDebug('sagas:submitZephrForm');
 
@@ -69,8 +68,6 @@ function* submitLogin(credentials) {
     yield put(actionReceiveUserSession({ sessionCookie: cookie, trackingId }));
     // Set the user's login state and clean up any existing error state on the form.
     yield put(actionReceiveUserLogin());
-    // Push google analytics tag.
-    // yield call(pushDataLayer('login', { action: 'login', label: 'login' }));
     try {
       // Get the user's profile.
       yield call(getProfile, cookie);
