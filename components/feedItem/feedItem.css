@@ -42,6 +42,11 @@
   margin-bottom: rem(5);
   order: 0;
   width: auto;
+  font-size: rem(14);
+
+  @media ($mdMin) {
+    font-size: rem(16);
+  }
 }
 
 .title {
@@ -64,8 +69,8 @@
   width: 100%;
 
   @media ($smMin) {
-    font-size: rem(18);
-    line-height: 1.44;
+    font-size: rem(16);
+    line-height: rem(22);
   }
 }
 

@@ -47,6 +47,11 @@
   color: $color-deck;
   font-weight: 600;
   margin-right: rem(5);
+  font-size: rem(14);
+
+  @media ($mdMin) {
+    font-size: rem(16);
+  }
 }
 
 .title {

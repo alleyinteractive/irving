@@ -53,6 +53,16 @@
   @media ($smMin) {
     flex: 0 0 rem(288);
     width: rem(288);
+
+    & > div {
+      font-size: rem(12);
+      line-height: rem(12);
+    }
+
+    & > a > div {
+      font-size: rem(14);
+      line-height: rem(18);
+    }
   }
 }
 
