@@ -22,9 +22,11 @@
   font-family: $sans;
   font-size: rem(30);
   font-weight: 600;
+  line-height: rem(30);
 
   @media ($smMin) {
     font-size: rem(40);
+    line-height: rem(40);
   }
 }
 
@@ -39,6 +41,7 @@
 
   @media ($smMin) {
     font-size: rem(50);
+    line-height: 1;
   }
 }
 
