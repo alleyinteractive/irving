@@ -12,8 +12,9 @@ const LinkTeaser = ({
   publishedDate,
   teaseCTA,
   title,
+  onClick,
 }) => (
-  <Link className={styles.wrapper} to={permalink}>
+  <Link className={styles.wrapper} to={permalink} onClick={onClick}>
     <h4 className={styles.title}>{title}</h4>
     {deck && <div className={styles.deck}>{deck}</div>}
     {teaseCTA && <div className={styles.teaseCTA}>{teaseCTA}</div>}
@@ -24,6 +25,7 @@ const LinkTeaser = ({
 LinkTeaser.defaultProps = {
   deck: '',
   teaseCTA: '',
+  onClick: '',
 };
 
 LinkTeaser.propTypes = {
@@ -32,7 +34,7 @@ LinkTeaser.propTypes = {
   publishedDate: PropTypes.string.isRequired,
   teaseCTA: PropTypes.string,
   title: PropTypes.string.isRequired,
-
+  onClick: PropTypes.func,
 };
 
 export default withStyles(styles)(LinkTeaser);

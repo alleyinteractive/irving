@@ -8,7 +8,6 @@ import styles from './list50Item.css';
 
 const List50Item = (props) => {
   const {
-    // bgColor @todo we need this passed in
     children,
     companyName,
     componentName,
@@ -19,7 +18,6 @@ const List50Item = (props) => {
     yearsOnList,
   } = props;
 
-  const bgColor = '#fff';
   const flyout = findChildByName('list-50-item-flyout', children);
   const toggleFlyoutVisible = () => setCompanyFlyoutVisible(companyName);
 
@@ -31,7 +29,6 @@ const List50Item = (props) => {
       )}
     >
       <div
-        style={{ backgroundColor: bgColor }}
         className={styles.nameWrapper}
       >
         {'list-50-rank-item' === componentName &&
@@ -58,7 +55,6 @@ const List50Item = (props) => {
       </div>
       {React.cloneElement(flyout, {
         isVisible: showFlyout,
-        bgColor,
       })}
     </li>
   );
@@ -70,7 +66,6 @@ List50Item.defaultProps = {
 };
 
 List50Item.propTypes = {
-  // bgColor: PropTypes.string.isRequired @todo we need this passed in
   children: PropTypes.node.isRequired,
   companyName: PropTypes.string.isRequired,
   componentName: PropTypes.string.isRequired,
