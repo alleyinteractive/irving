@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { AdSlot, DFPManager } from 'react-dfp'; // eslint-disable-line
+import { AdSlot, DFPManager } from 'react-dfp';
 import kebabCase from 'lodash/kebabCase';
 import useHideAds from 'hooks/useHideAds';
 import styles from './adUnit.css';
@@ -35,7 +35,7 @@ const AdUnit = (props) => {
   const hideAds = useHideAds();
   useEffect(() => {
     if (shouldLoad && ! loaded && ! hideAds) {
-      // DFPManager.load(id);
+      DFPManager.load(id);
     }
   }, [shouldLoad]);
 
