@@ -26,7 +26,6 @@
   line-height: rem(14);
   margin-right: rem(5);
   text-decoration: none;
-  font-size: rem(14);
 
   @media ($mdMin) {
     font-size: rem(16);
