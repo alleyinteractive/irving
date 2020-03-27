@@ -89,6 +89,7 @@
 }
 
 .image {
+  margin-top: rem(20);
   overflow: hidden;
   width: 100%;
 }
