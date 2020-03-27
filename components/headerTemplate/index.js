@@ -17,8 +17,6 @@ import LogoStacked from 'assets/icons/logoStacked.svg';
 import LogoHorizontal from 'assets/icons/logoHorizontal.svg';
 import TRGlyph from 'assets/icons/trGlyph.svg';
 import MegaMenuIcon from 'components/megaMenuIcon';
-// eslint-disable-next-line no-unused-vars
-import MegaMenuWhiteIcon from 'assets/icons/megaMenu-white.svg';
 
 import styles from './headerTemplate.css';
 
