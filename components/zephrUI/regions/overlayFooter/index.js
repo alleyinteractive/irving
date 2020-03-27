@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
@@ -6,6 +6,7 @@ import get from 'lodash/get';
 import { zephrDataLayerSelector } from 'selectors/zephrDataLayerSelector';
 import checkUIComponentType from 'services/checkUIComponentType';
 import { getZephrComponents } from 'selectors/zephrRulesSelector';
+import { GTMContext } from 'components/googleTagManager';
 
 import ToggleNotice from 'components/toggleNotice';
 import DismissNotice from 'components/dismissNotice';
@@ -21,14 +22,14 @@ import styles from './overlayFooter.css';
  */
 const OverlayFooter = ({ components, zephrDataLayer }) => {
   // I cannot make this work.
-  // const { pushEvent } = useContext(GTMContext);
+  const { pushEvent } = useContext(GTMContext);
   // This function does the same thing.
-  const pushEvent = (event, options) => {
-    window.dataLayer.push({
-      event,
-      ...options,
-    });
-  };
+  // const pushEvent = (event, options) => {
+  //   window.dataLayer.push({
+  //     event,
+  //     ...options,
+  //   });
+  // };
 
   // Select the markup from the components object.
   const componentMarkup = get(
@@ -55,7 +56,7 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
     if (checkUIComponentType(componentMarkup, 'ImageAlert')) {
       pushEvent('zephr.paywallView', zephrDataLayerResults);
     }
-  }, [zephrDataLayer]);
+  }, [zephrDataLayer, componentMarkup]);
 
   // Show nothing if there is no component in this rule.
   if (! componentMarkup) {
