@@ -70,7 +70,7 @@
   color: $color-text;
   font-size: rem(16);
   line-height: 1.375;
-  margin-top: rem(15);
+  margin: rem(15) 0 rem(15) 0;
   width: 100%;
 
   @media ($smMin) {
