@@ -91,8 +91,6 @@ const GoogleTagManager = (props) => {
     } else {
       pushEvent('zephr.anonymousView', zephrDataLayerResults);
     }
-
-    // setHasZephrPushed(true);
   }, [zephrDataLayer]);
 
   if (! containerId) {
