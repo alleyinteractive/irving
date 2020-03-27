@@ -47,9 +47,8 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
 
       if (window.dataLayer) {
         window.dataLayer.push({
-          event: 'MiniCardStack',
+          event: 'click',
           category: 'minicard-stack',
-          action: 'click',
           label: `feed-unit-${count}`,
         });
       }
