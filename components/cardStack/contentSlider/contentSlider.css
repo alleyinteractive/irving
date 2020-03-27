@@ -1,6 +1,5 @@
 .sliderWrap {
   width: 100%;
-
 }
 
 .slider {
@@ -21,7 +20,7 @@
 .list {
   display: flex;
   flex-flow: row nowrap;
-  width: auto;
+  width: 0;
 }
 
 .listItem {
