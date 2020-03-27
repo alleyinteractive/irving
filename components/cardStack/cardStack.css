@@ -61,6 +61,11 @@
 
   @media ($smMin) {
     font-size: rem(50);
+    padding-top: rem(25);
+  }
+
+  @media ($mdMin) {
+    padding-top: rem(70);
   }
 }
 
