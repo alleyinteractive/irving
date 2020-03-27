@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'; // eslint-disable-line
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
+import { zephrDataLayerSelector } from 'selectors/zephrDataLayerSelector';
 import checkUIComponentType from 'services/checkUIComponentType';
 import { getZephrComponents } from 'selectors/zephrRulesSelector';
-import useZephrDataLayer from 'hooks/useZephrDataLayer';
-import { GTMContext } from 'components/googleTagManager';
 
 import ToggleNotice from 'components/toggleNotice';
 import DismissNotice from 'components/dismissNotice';
@@ -20,11 +19,16 @@ import styles from './overlayFooter.css';
  *
  * @param {string} components The object of all zephrComponents from the store.
  */
-const OverlayFooter = ({ components }) => {
-  const [hasPushedAnalyticsEvent, setHasPushedAnalyticsEvent] = useState(false);
-
-  // Get the pushEvent from the Google Tag Manager.
-  const { pushEvent } = useContext(GTMContext) || {};
+const OverlayFooter = ({ components, zephrDataLayer }) => {
+  // I cannot make this work.
+  // const { pushEvent } = useContext(GTMContext);
+  // This function does the same thing.
+  const pushEvent = (event, options) => {
+    window.dataLayer.push({
+      event,
+      ...options,
+    });
+  };
 
   // Select the markup from the components object.
   const componentMarkup = get(
@@ -33,28 +37,25 @@ const OverlayFooter = ({ components }) => {
     false
   );
 
-  // Get the zephrDataLayer from the store.
-  const zephrDataLayer = useZephrDataLayer();
-
   useEffect(() => {
-    // Bail if already sent analytics on this pageview.
-    if (hasPushedAnalyticsEvent) {
+    const { isLoading, dataLayer: zephrDataLayerResults } = zephrDataLayer;
+
+    // Bail early if required conditions are not met.
+    if (isLoading || ! componentMarkup) {
       return;
     }
 
     // Send a meterView event on the MeterNotice component.
     if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
-      pushEvent('zephr.meterView', ...zephrDataLayer);
-      setHasPushedAnalyticsEvent(true);
+      pushEvent('zephr.meterView', zephrDataLayerResults);
       return;
     }
 
-    // Send a paywall event on the ThanksNotice component.
-    if (checkUIComponentType(componentMarkup, 'ThanksNotice')) {
-      pushEvent('zephr.paywallView', ...zephrDataLayer);
-      setHasPushedAnalyticsEvent(true);
+    // Send a paywall event on the ImageAlert component.
+    if (checkUIComponentType(componentMarkup, 'ImageAlert')) {
+      pushEvent('zephr.paywallView', zephrDataLayerResults);
     }
-  }, [componentMarkup]);
+  }, [zephrDataLayer]);
 
   // Show nothing if there is no component in this rule.
   if (! componentMarkup) {
@@ -98,10 +99,22 @@ OverlayFooter.defaultProps = {
 OverlayFooter.propTypes = {
   /** Object consisting of all the ZephrComponents that may be transformed. */
   components: PropTypes.object,
+  /** Variables from the Zephr analytics layer. */
+  zephrDataLayer: PropTypes.shape({
+    isLoading: PropTypes.bool.isRequired,
+    dataLayer: PropTypes.shape({
+      loggedIn: PropTypes.bool,
+      UserId: PropTypes.string,
+      remainingCredits: PropTypes.number,
+      usedCredits: PropTypes.number,
+      hasDigitalAccess: PropTypes.bool,
+    }).isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   components: getZephrComponents(state),
+  zephrDataLayer: zephrDataLayerSelector(state),
 });
 
 const withRedux = connect(mapStateToProps);

@@ -1,7 +1,6 @@
 import React, {
   useEffect,
   createContext,
-  useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
@@ -22,19 +21,8 @@ const GoogleTagManager = (props) => {
     zephrDataLayer,
   } = props;
 
-  if (! containerId) {
-    return children;
-  }
-
-  const [hasZephrPushed, setHasZephrPushed] = useState(false);
-
-  /**
-   * Check for gtm.start in dataLayer.
-   */
+  // Define window dataLayer
   window.dataLayer = window.dataLayer || [];
-  const started = window.dataLayer.filter((dataLayerObj) => (
-    dataLayerObj['gtm.start']
-  ));
 
   /**
    * Helper function passed by context to push events to Google Tag Manager.
@@ -43,12 +31,25 @@ const GoogleTagManager = (props) => {
    * @param {object} options Options to pass to push event.
    */
   const pushEvent = (eventName, options = {}) => {
+    // Do not run if dataLayer has no values!
+    const hasValues = Object.keys(dataLayer).filter((key) => dataLayer[key]);
+    if (0 === hasValues.length) {
+      return;
+    }
+
     window.dataLayer.push({
       event: eventName,
       ...dataLayer,
       ...options,
     });
   };
+
+  /**
+   * Check for gtm.start in dataLayer.
+   */
+  const started = window.dataLayer.filter((dataLayerObj) => (
+    dataLayerObj['gtm.start']
+  ));
 
   /**
    * Effect for starting the GTM dataLayer.
@@ -73,7 +74,7 @@ const GoogleTagManager = (props) => {
     const { isLoading, dataLayer: zephrDataLayerResults } = zephrDataLayer;
 
     // Do not update if empty or loading.
-    if (hasZephrPushed || isLoading) {
+    if (isLoading) {
       return;
     }
 
@@ -91,8 +92,12 @@ const GoogleTagManager = (props) => {
       pushEvent('zephr.anonymousView', zephrDataLayerResults);
     }
 
-    setHasZephrPushed(true);
+    // setHasZephrPushed(true);
   }, [zephrDataLayer]);
+
+  if (! containerId) {
+    return children;
+  }
 
   return (
     <>
