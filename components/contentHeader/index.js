@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
 import dashify from 'dashify';
+import NProgress from 'nprogress';
 import { connect } from 'react-redux';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
+import useScrollPosition from 'hooks/useScrollPosition';
 import { findChildByName } from 'utils/children';
 
 // Themes
@@ -32,8 +34,50 @@ const ContentHeader = ({
   const Heading = `h${headingLevel}`;
   const DeckTag = '' === title ? Heading : 'p';
 
+  const [contentHeight, setContentHeight] = useState(0);
+  const scrollData = useScrollPosition();
+  const contentHeaderRef = useRef();
+
+  useEffect(() => {
+    if (showFullStory) {
+      // Initiate nprogress bar.
+      NProgress.configure({
+        parent: '#siteHeader',
+        minimum: 0,
+      });
+      NProgress.set(0);
+
+      // Calculate content height and store in state.
+      // We're calculating content height this way because:
+      // 1) Parent element is a generic contentArea component
+      // 2) We don't want to include the contentFooter
+      const contentHeader = contentHeaderRef.current;
+      const contentBody = contentHeader.nextElementSibling;
+
+      setContentHeight(
+        contentHeader.getBoundingClientRect().height +
+        contentBody.getBoundingClientRect().height
+      );
+    }
+  }, [showFullStory]);
+
+  // Get scroll progress as a number from 0 - 1, to 3 decimal places.
+  const contentScrollProgress = showFullStory ?
+    Math.round(scrollData.y / contentHeight * 1000) / 1000 : 0;
+
+  // Update nprogress bar if the content area is in view
+  if (1 > contentScrollProgress && 0 < contentScrollProgress) {
+    NProgress.set(contentScrollProgress);
+  } else {
+    NProgress.done();
+  }
+
   return (
-    <header className={theme.wrapper} id={dashify(title)}>
+    <header
+      className={theme.wrapper}
+      id={dashify(title)}
+      ref={contentHeaderRef}
+    >
       <div className={theme.intro}>
         {eyebrow.content && (
           <Eyebrow
