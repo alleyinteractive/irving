@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
 import dashify from 'dashify';
+import { connect } from 'react-redux';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import { findChildByName } from 'utils/children';
@@ -20,6 +21,7 @@ const ContentHeader = ({
   deck,
   children,
   headingLevel,
+  showFullStory,
   theme,
   themeName,
 }) => {
@@ -82,6 +84,7 @@ ContentHeader.propTypes = {
   publishDate: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   headingLevel: PropTypes.number,
+  showFullStory: PropTypes.bool.isRequired,
   theme: PropTypes.shape({
     wrapper: PropTypes.string,
     intro: PropTypes.string,
@@ -108,9 +111,22 @@ ContentHeader.defaultProps = {
   deck: '',
 };
 
+const mapStateToProps = (state) => ({
+  showFullStory: state.story.showFullStory,
+});
+
+const withRedux = connect(
+  mapStateToProps
+);
+
 export default withThemes('content-header', {
   default: styles,
   inline: inlineTheme,
   isVertical: verticalTheme,
   simple: simpleTheme,
-})(withStyles(styles, inlineTheme, verticalTheme, simpleTheme)(ContentHeader));
+})(withRedux(withStyles(
+  styles,
+  inlineTheme,
+  verticalTheme,
+  simpleTheme
+)(ContentHeader)));
