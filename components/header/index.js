@@ -4,10 +4,8 @@ import Headroom from 'react-headroom';
 import { withStyles } from 'critical-style-loader/lib';
 import useBreakpoint from 'hooks/useBreakpoint';
 import HeaderTemplate from 'components/headerTemplate';
-
-// Styles
 import styles from './header.css';
-import './nprogress.css';
+
 const Header = (props) => {
   const {
     children,

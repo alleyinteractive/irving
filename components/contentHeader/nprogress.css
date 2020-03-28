@@ -4,7 +4,7 @@
 }
 
 :global(#nprogress .bar) {
-  background: #29d;
+  background: var(--topic-color);
   height: 2px;
   left: 0;
   position: fixed;

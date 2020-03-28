@@ -14,6 +14,7 @@ import styles from './contentHeader.css';
 import inlineTheme from './contentHeader--inline.css';
 import verticalTheme from './contentHeader--vertical.css';
 import simpleTheme from './contentHeader--simple.css';
+import './nprogress.css';
 import Eyebrow from '../eyebrow';
 
 const ContentHeader = ({
@@ -44,6 +45,14 @@ const ContentHeader = ({
       NProgress.configure({
         parent: '#siteHeader',
         minimum: 0,
+        template: `
+          <div style="--topic-color: ${eyebrow.color || '#ccc'}">
+            <div
+              class="bar"
+              style="background-color: "
+              role="bar" />
+          </div>
+        `,
       });
       NProgress.set(0);
 
