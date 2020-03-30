@@ -117,7 +117,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin: 0 auto rem(-5);
+  margin: 0 auto;
   width: 100%;
 }
 

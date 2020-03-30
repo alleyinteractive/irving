@@ -33,10 +33,10 @@ const App = ({
           {roots.map((name) => (
             <ConnectedRoot key={name} name={name} />
           ))}
+          <OverlayFooter />
         </RootProviders>
       </div>
     )}
-    <OverlayFooter />
     <OneTrust />
   </ErrorBoundary>
 );
