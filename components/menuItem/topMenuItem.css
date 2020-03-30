@@ -1,6 +1,10 @@
 .wrapper {
   &.hasChildren {
     margin-bottom: rem(20);
+
+    @media ($lgMin) {
+      margin-bottom: 0;
+    }
   }
 
   h3 {
