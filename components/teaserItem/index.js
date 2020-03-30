@@ -77,7 +77,9 @@ const TeaserItem = ({
       })}
     >
       <div className={theme.text}>
-        {('search' !== themeName && 'infeed' !== themeName) && <Header />}
+        {('collection' !== themeName &&
+          'search' !== themeName &&
+          'infeed' !== themeName) && <Header />}
         {'storygroup' !== themeName && (
           <Meta
             theme={theme}
@@ -88,12 +90,15 @@ const TeaserItem = ({
           />
         )}
         {/* Place the header beneath the meta info on the search template */}
-        {('search' === themeName || 'infeed' === themeName) && <Header />}
+        {('collection' === themeName ||
+          'search' === themeName ||
+          'infeed' === themeName) && <Header />}
       </div>
       {('aside' !== themeName && 'storygroup' !== themeName) && (
         <p className={theme.excerpt}>{excerpt}</p>
       )}
       {('' !== teaseCTA &&
+        'collection' !== themeName &&
         'infeed' !== themeName &&
         'storygroup' !== themeName &&
         'search' !== themeName) && (
