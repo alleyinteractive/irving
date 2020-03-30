@@ -1,6 +1,6 @@
 .wrapper {
   display: block;
-  margin-bottom: rem(10);
+  margin-bottom: rem(15);
 }
 
 .img,
@@ -52,6 +52,7 @@
 
 .caption {
   font-size: rem(14);
+  font-weight: 500;
   margin-left: rem(20);
 
   @media ($mdMin) {
@@ -62,6 +63,7 @@
 .credit {
   display: block;
   font-size: rem(12);
+  font-weight: 500;
   letter-spacing: 1px;
   margin-top: rem(10);
   text-transform: uppercase;
