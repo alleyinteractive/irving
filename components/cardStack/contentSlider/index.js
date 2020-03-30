@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
+import parseUrl from 'utils/getRelativeUrl';
+import history from 'utils/history';
+import { GTMContext } from 'components/googleTagManager';
 
 // Assets and styles.
 import Arrow from 'assets/icons/arrow.svg';
@@ -11,6 +14,8 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
   const [sliderState, setSliderState] = useState({
     currentIndex: 0,
   });
+
+  const { pushEvent } = useContext(GTMContext);
 
   const getScrollPosition = () => {
     if (0 === sliderState.currentIndex) {
@@ -31,6 +36,25 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
     }
     getScrollPosition();
   };
+
+  // Custom onClick event for links inside a contentSlider.
+  const handleClick = (e, count, permalink) => {
+    const relativeUrl = parseUrl(permalink);
+
+    // This duplicates the default onClick logic from the Link component
+    // to ensure links use history.push instead of full page reloads
+    // which is necessary, since we are overriding the default behavior.
+    if (relativeUrl) {
+      e.preventDefault();
+      history.push(relativeUrl);
+
+      pushEvent('click', {
+        category: 'minicard-stack',
+        label: `feed-unit-${count}`,
+      });
+    }
+  };
+
   return (
     <div className={styles.sliderWrap}>
       <div
@@ -40,19 +64,33 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
         }}
       >
         <ol className={styles.list}>
-          {articles.map((article, count) => (
-            <li
-              className={styles.listItem}
-              key={article.props.title}
-              // Only scroll when focus passes first element so its still in the view
-              onFocus={() => (1 <= count ? scrollSlider(true) : null)}
-            >
-              <div className={styles.counter} aria-hidden>
-                0{count + 1}.
-              </div>
-              {article}
-            </li>
-          ))}
+          {articles.map((article, count) => {
+            const slideNum = count + 1;
+            const { permalink } = article.props;
+
+            // Add an onClick property to linkTeasers specific to this context.
+            const articleLink = {
+              ...article,
+              props: {
+                ...article.props,
+                onClick: (e) => handleClick(e, slideNum, permalink),
+              },
+            };
+
+            return (
+              <li
+                className={styles.listItem}
+                key={article.props.title}
+                // Only scroll when focus passes first element so its still in the view
+                onFocus={() => (1 <= count ? scrollSlider(true) : null)}
+              >
+                <div className={styles.counter} aria-hidden>
+                  {`${slideNum}`.padStart(2, '0')}.
+                </div>
+                {articleLink}
+              </li>
+            );
+          })}
         </ol>
       </div>
       {0 !== sliderState.currentIndex && (

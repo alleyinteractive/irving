@@ -1,31 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'critical-style-loader/lib';
-import styles from './list50Content.css';
+import setContrast from 'utils/setContrast';
+import hexToRgb from 'utils/hexToRgb';
 
 const List50Content = (props) => {
   const {
     children,
+    color,
+    textColor,
   } = props;
 
-  const [companyFlyoutVisible, setCompanyFlyoutVisible] = useState('');
+  // If textColor is not being set from post_meta in the api, then set the
+  // appropriate text color based on the color.
+  const contentTextColor = '' === textColor ?
+    setContrast(hexToRgb(color)) : textColor;
 
   return (
-    <div className={styles.wrapper}>
-      <ul className={styles.listWrapper}>
-        {(children && children.length) && children.map((child) => (
-          React.cloneElement(child, {
-            setCompanyFlyoutVisible,
-            showFlyout: child.props.companyName === companyFlyoutVisible,
-          })
-        ))}
-      </ul>
+    <div
+      style={{
+        backgroundColor: color,
+        '--list-50-bg-color': color,
+        '--list-50-text-color': contentTextColor,
+      }}
+    >
+      {children}
     </div>
   );
 };
 
 List50Content.propTypes = {
   children: PropTypes.node.isRequired,
+  color: PropTypes.string,
+  textColor: PropTypes.string,
 };
 
-export default withStyles(styles)(List50Content);
+List50Content.defaultProps = {
+  color: '#333333',
+  textColor: '',
+};
+
+export default List50Content;

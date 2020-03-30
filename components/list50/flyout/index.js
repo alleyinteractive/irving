@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import RawHTML from 'components/rawHTML';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import addTrailingSlash from 'utils/addTrailingSlash';
@@ -10,7 +11,6 @@ import styles from './list50Flyout.css';
 
 const CompanyFlyout = (props) => {
   const {
-    bgColor,
     companyName,
     descriptionTitle,
     description,
@@ -30,7 +30,6 @@ const CompanyFlyout = (props) => {
 
   return (
     <div
-      style={{ backgroundColor: bgColor }}
       className={classNames(
         styles.wrapper,
         { [styles.isVisible]: isVisible }
@@ -40,16 +39,16 @@ const CompanyFlyout = (props) => {
         <p className={styles.descriptionTitle}>
           {descriptionTitle}
         </p>
-        <p className={styles.description}>
-          {description}
+        <p className={styles.descriptionBody}>
+          <RawHTML content={description} />
         </p>
       </div>
       <div className={styles.stat}>
         <p className={styles.statTitle}>
           {statTitle}
         </p>
-        <p className={styles.statDescription}>
-          {statDescription}
+        <p className={styles.statBody}>
+          <RawHTML content={statDescription} />
         </p>
       </div>
       <Link className={styles.detailsLink} to={detailsUrl}>
@@ -61,7 +60,6 @@ const CompanyFlyout = (props) => {
 };
 
 CompanyFlyout.propTypes = {
-  bgColor: PropTypes.string.isRequired,
   companyName: PropTypes.string.isRequired,
   descriptionTitle: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

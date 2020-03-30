@@ -29,6 +29,7 @@ const CardStack = ({
   textColor,
   sponsored: { url: sponsorLink },
   theme,
+  isCollection,
 }) => {
   const image = findChildByName('image', children);
   const logo = findChildByName('logo', children);
@@ -37,9 +38,11 @@ const CardStack = ({
 
   return (
     <header className={theme.wrapper} style={{ backgroundColor: color }}>
-      <ExpandableSocialShare color={textColor}>
-        {socialSharing}
-      </ExpandableSocialShare>
+      {! isCollection && (
+        <ExpandableSocialShare color={textColor}>
+          {socialSharing}
+        </ExpandableSocialShare>
+      )}
       <div className={isSubtopic || ! image ? theme.metaFull : theme.meta}>
         { eyebrow && (
           <Eyebrow
@@ -93,6 +96,7 @@ CardStack.defaultProps = {
   sponsored: {},
   isSponsored: false,
   textColor: '#FFFFFF',
+  isCollection: false,
 };
 
 CardStack.propTypes = {
@@ -110,6 +114,7 @@ CardStack.propTypes = {
     url: PropTypes.string,
   }),
   theme: PropTypes.object.isRequired,
+  isCollection: PropTypes.bool,
 };
 
 export default withThemes('card-stack', {
