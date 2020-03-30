@@ -196,3 +196,11 @@
 .formError {
   @include formErrorMsg;
 }
+
+.secondaryButton {
+  @include btnLink;
+
+  border: none;
+  display: inherit;
+  flex-basis: 0;
+}
