@@ -62,7 +62,7 @@
 
 .anchorEyebrow {
   padding-left: rem(3);
-  padding-top: rem(20);
+  padding-top: rem(21);
 
   @media ($mdMin) {
     padding-left: rem(0);
