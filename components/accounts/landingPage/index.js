@@ -128,13 +128,19 @@ const AccountLandingPage = ({
                 {__('Edit your email address', 'mittr')}
               </button>
             ) : (
-              <AccountInfoForm
-                type="email"
-                handleSubmit={(event) => onSubmitUpdateEmail(event)}
-                placeholderValue={email}
-              />
+              <>
+                <AccountInfoForm
+                  type="email"
+                  handleSubmit={(event) => onSubmitUpdateEmail(event)}
+                  placeholderValue={email}
+                />
+                <input
+                  type="button"
+                  value="Cancel"
+                  className={styles.secondaryButton}
+                />
+              </>
             )}
-
             <button
               id="editPasswordBtn"
               className={styles.button}
