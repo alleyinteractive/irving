@@ -68,9 +68,11 @@ const AccountLandingPage = ({
       case 'Basic Digital':
       case 'All Access Digital':
       case 'Online Only Access':
-        return __('You have unlimited access to technologyreview.com', 'mittr');
+        return __(
+          'You have unlimited access to technologyreview.com. ', 'mittr'
+        );
       default:
-        return __('You have limited access to technologyreview.com', 'mittr');
+        return __('You have limited access to technologyreview.com. ', 'mittr');
     }
   };
   let renewalDate = '';
@@ -109,7 +111,7 @@ const AccountLandingPage = ({
             {__('Your email address is', 'mittr')}{' '}
             <strong>{email}</strong>
             {__(
-              '—we send all newsletters and other emails to that address',
+              '—we send all newsletters and other emails to that address.',
               'mittr'
             )}
           </p>
@@ -163,7 +165,7 @@ const AccountLandingPage = ({
               tabIndex="0"
               onClick={logOut}
             >
-              {__('Log out', 'mittr')}
+              {__('Sign out', 'mittr')}
             </button>
           </div>
         </div>
