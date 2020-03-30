@@ -50,8 +50,7 @@ const ContentBody = ({
     } else if (isOutsideSource) {
       dispatchTruncateStory();
     } else {
-      // dispatchShowFullStory(); @todo restore this
-      dispatchTruncateStory();
+      dispatchShowFullStory();
     }
 
     if (true === overrideCTA) {
