@@ -6,9 +6,6 @@
   margin-bottom: rem(20);
   margin-top: rem(30);
   position: relative;
-
-  /* &.expanded {
-  } */
 }
 
 .button {
@@ -52,9 +49,4 @@
   display: block;
   flex: 1 0 auto;
   order: 1;
-  /* width: auto; */
-  /* width: 100%; */
-
-  /* .collapsed & { */
-  /* } */
 }

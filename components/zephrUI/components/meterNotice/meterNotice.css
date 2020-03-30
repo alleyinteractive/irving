@@ -17,13 +17,6 @@
         tidy-offset-left: 1;
         width: calc(tidy-span(6) - rem(20));
       }
-      /* tidy-span: 12; */
-
-      /* @media ($lgMin) {
-        margin-right: auto;
-        tidy-offset-left: 1;
-        tidy-span: 11;
-      } */
     }
 
     [aria-expanded="false"] & {
