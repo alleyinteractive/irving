@@ -8,6 +8,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import useScrollPosition from 'hooks/useScrollPosition';
 import { findChildByName } from 'utils/children';
+import colors from 'config/css/colors';
 
 // Themes
 import styles from './contentHeader.css';
@@ -46,7 +47,7 @@ const ContentHeader = ({
         parent: '#siteHeader',
         minimum: 0,
         template: `
-          <div style="--topic-color: ${eyebrow.color || '#ccc'}">
+          <div style="--topic-color: ${eyebrow.color || colors.purple}">
             <div
               class="bar"
               style="background-color: "
@@ -72,7 +73,6 @@ const ContentHeader = ({
   }, [showFullStory]);
 
   // Get scroll progress as a number from 0 - 1, to 3 decimal places.
-
   const contentScrollProgress = showFullStory ?
     // eslint-disable-next-line max-len
     Math.round(((scrollData.y - contentPos.top) / contentPos.height) * 1000) / 1000 : 0;
