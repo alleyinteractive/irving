@@ -1,6 +1,15 @@
 .wrapper {
   :global(.adUnit) {
-    margin-bottom: rem(15);
+    margin-bottom: rem(20);
+    margin-top: rem(20);
+    /* stylelint-disable selector-max-specificity */
+    &[loaded="true"] {
+      & > div > div > div {
+        /* ensure this margin is only being applied to the add if it's actually loaded. */
+        margin-bottom: rem(0);
+      }
+    }
+    /* stylelint-enable selector-max-specificity */
   }
 }
 
