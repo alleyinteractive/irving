@@ -47,7 +47,10 @@ const ContentHeader = ({
         parent: '#siteHeader',
         minimum: 0,
         template: `
-          <div style="--topic-color: ${eyebrow.color || colors.purple}">
+          <div
+            class="barContainer"
+            style="--topic-color: ${eyebrow.color || colors.purple}"
+          >
             <div
               class="bar"
               style="background-color: "
