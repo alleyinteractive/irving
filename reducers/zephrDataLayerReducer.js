@@ -1,4 +1,5 @@
 import {
+  LOCATION_CHANGE,
   RECEIVE_ZEPHR_DATA_LAYER,
   REQUEST_ZEPHR_DATA_LAYER,
 } from 'actions/types';
@@ -8,6 +9,11 @@ export default function zephrDataLayerReducer(
   state = defaultState, { type, payload }
 ) {
   switch (type) {
+    case LOCATION_CHANGE:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case REQUEST_ZEPHR_DATA_LAYER:
       return {
         ...state,

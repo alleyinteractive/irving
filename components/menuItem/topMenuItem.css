@@ -1,6 +1,10 @@
 .wrapper {
   &.hasChildren {
     margin-bottom: rem(20);
+
+    @media ($lgMin) {
+      margin-bottom: 0;
+    }
   }
 
   h3 {
@@ -18,6 +22,7 @@
 
 .parent {
   color: #fff;
+  font-family: $sans;
   font-size: rem(20);
   font-weight: 900;
   margin-bottom: rem(20);

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
+import { zephrDataLayerSelector } from 'selectors/zephrDataLayerSelector';
 import checkUIComponentType from 'services/checkUIComponentType';
 import { getZephrComponents } from 'selectors/zephrRulesSelector';
+import { GTMContext } from 'components/googleTagManager';
 
 import ToggleNotice from 'components/toggleNotice';
 import DismissNotice from 'components/dismissNotice';
@@ -18,13 +20,35 @@ import styles from './overlayFooter.css';
  *
  * @param {string} components The object of all zephrComponents from the store.
  */
-const OverlayFooter = ({ components }) => {
+const OverlayFooter = ({ components, zephrDataLayer }) => {
+  const { pushEvent } = useContext(GTMContext);
+
   // Select the markup from the components object.
   const componentMarkup = get(
     components,
     'overlayFooter.zephrOutput.data',
     false
   );
+
+  useEffect(() => {
+    const { isLoading, dataLayer: zephrDataLayerResults } = zephrDataLayer;
+
+    // Bail early if required conditions are not met.
+    if (isLoading || ! componentMarkup) {
+      return;
+    }
+
+    // Send a meterView event on the MeterNotice component.
+    if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
+      pushEvent('zephr.meterView', zephrDataLayerResults);
+      return;
+    }
+
+    // Send a paywall event on the ImageAlert component.
+    if (checkUIComponentType(componentMarkup, 'ImageAlert')) {
+      pushEvent('zephr.paywallView', zephrDataLayerResults);
+    }
+  }, [zephrDataLayer, componentMarkup]);
 
   // Show nothing if there is no component in this rule.
   if (! componentMarkup) {
@@ -68,10 +92,22 @@ OverlayFooter.defaultProps = {
 OverlayFooter.propTypes = {
   /** Object consisting of all the ZephrComponents that may be transformed. */
   components: PropTypes.object,
+  /** Variables from the Zephr analytics layer. */
+  zephrDataLayer: PropTypes.shape({
+    isLoading: PropTypes.bool.isRequired,
+    dataLayer: PropTypes.shape({
+      loggedIn: PropTypes.bool,
+      UserId: PropTypes.string,
+      remainingCredits: PropTypes.number,
+      usedCredits: PropTypes.number,
+      hasDigitalAccess: PropTypes.bool,
+    }).isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   components: getZephrComponents(state),
+  zephrDataLayer: zephrDataLayerSelector(state),
 });
 
 const withRedux = connect(mapStateToProps);
