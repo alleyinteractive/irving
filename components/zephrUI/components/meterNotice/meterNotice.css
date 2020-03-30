@@ -78,6 +78,7 @@
     }
 
     [aria-expanded="false"] & {
+      flex-direction: row-reverse;
       margin-left: auto;
     }
   }
@@ -90,6 +91,18 @@
 
     &:not(:last-child) {
       margin-right: rem(20);
+
+      /* stylelint-disable-next-line selector-max-specificity */
+      [aria-expanded="false"] & {
+        margin-right: 0;
+      }
+    }
+
+    &:not(:first-child) {
+      /* stylelint-disable-next-line selector-max-specificity */
+      [aria-expanded="false"] & {
+        margin-right: rem(20);
+      }
     }
 
     [aria-expanded="false"] & {
