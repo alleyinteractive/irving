@@ -33,23 +33,25 @@
   padding: rem(20) rem(10);
   width: rem(230);
 
-  & > div {
-    font-size: rem(14);
-    line-height: rem(14);
-  }
-
-  & > a {
-    & h4 {
-      font-weight: 600;
+  @media ($mdMin) {
+    & > div {
+      font-size: rem(14);
+      line-height: rem(14);
     }
 
-    & div {
-      font-size: rem(18);
-      line-height: rem(26);
+    & > a {
+      & h4 {
+        font-weight: 600;
+      }
+
+      & div {
+        font-size: rem(18);
+        line-height: rem(26);
+      }
     }
   }
 
-  @media ($smMin) {
+  @media ($smMax) {
     flex: 0 0 rem(288);
     width: rem(288);
 
