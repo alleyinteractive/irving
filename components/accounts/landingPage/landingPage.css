@@ -197,10 +197,28 @@
   @include formErrorMsg;
 }
 
+.formWrapper {
+  display: block;
+
+  form {
+    flex-grow: 1;
+  }
+
+  @media ($lgMin) {
+    display: flex;
+  }
+}
+
 .secondaryButton {
   @include btnLink;
 
+  background-color: transparent;
   border: none;
   display: inherit;
   flex-basis: 0;
+  padding-left: 0;
+
+  @media ($lgMin) {
+    padding-left: rem(20);
+  }
 }
