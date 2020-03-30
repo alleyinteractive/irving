@@ -6,7 +6,12 @@ import EmbedContainer from 'react-oembed-container';
 import { plainText, richText } from 'config/html';
 
 const RawHTML = (props) => {
-  const { content, rich, oembed } = props;
+  const {
+    content,
+    rich,
+    oembed,
+    children,
+  } = props;
   const html = sanitizeHtml(content, rich ? richText : plainText);
   const newProps = omit(
     ['content', 'rich', 'children', 'componentName', 'oembed'],
@@ -20,18 +25,23 @@ const RawHTML = (props) => {
           {...newProps}
           dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
         />
+        {children}
       </EmbedContainer>
     );
   }
   return (
-    <div
-      {...newProps}
-      dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
-    />
+    <>
+      <div
+        {...newProps}
+        dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
+      />
+      {children}
+    </>
   );
 };
 
 RawHTML.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
   /**
    * HTML content to displayed using `dangerouslySetInnerHTML`
    */

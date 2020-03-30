@@ -113,7 +113,8 @@
 
       @media ($lgMin) {
         margin-right: rem(-115);
-        tidy-span: 4;
+        max-width: rem(364);
+        width: rem(364);
       }
     }
 
