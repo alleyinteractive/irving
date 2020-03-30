@@ -58,14 +58,13 @@
   letter-spacing: normal;
   line-height: 1;
   margin-bottom: rem(15);
-  padding-top: rem(40);
 
-  @media ($smMin) {
-    font-size: rem(50);
+  @media ($smMax) {
+    padding-top: rem(19);
   }
 
   @media ($mdMin) {
-    padding-top: rem(50);
+    padding-top: rem(62);
   }
 }
 
@@ -96,7 +95,6 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  margin-bottom: rem(15);
   order: 0;
   padding: rem(20 20 0);
   width: 100%;

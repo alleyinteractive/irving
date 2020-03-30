@@ -2,6 +2,7 @@ import {
   RECEIVE_COMPONENTS,
   REQUEST_ZEPHR_UI_COMPONENTS,
   FINISH_LOADING,
+  RECEIVE_USER_LOGIN,
 } from 'actions/types';
 import {
   call,
@@ -10,7 +11,7 @@ import {
 import formSaga from './forms';
 import tokenExchangeSaga from './tokenExchange';
 import resolveUIRules from './resolveUIRules';
-import updateDataLayer from './updateDataLayer';
+import updateDataLayer, { pushDataLayer } from './updateDataLayer';
 import ssoSaga from './sso';
 
 export default [
@@ -33,4 +34,13 @@ export default [
 
   // Every time that the components are updated, request new analytics data.
   takeLatest(REQUEST_ZEPHR_UI_COMPONENTS, updateDataLayer),
+
+  takeLatest(
+    RECEIVE_USER_LOGIN,
+    pushDataLayer,
+    {
+      event: 'login',
+      options: { action: 'login', label: 'login' },
+    }
+  ),
 ];
