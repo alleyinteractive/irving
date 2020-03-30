@@ -1,14 +1,18 @@
 :global {
   .ImageAlert {
-    @include container-with-bleed;
     background-color: $color-text;
     font-family: $sans;
+    width: 100%;
   }
 
   .ImageAlert__wrapper {
     display: flex;
-    height: rem(324);
+    height: auto;
     justify-content: space-between;
+
+    @media ($mdMin) {
+      height: rem(324);
+    }
   }
 
   .ImageAlert__fields {
@@ -41,7 +45,7 @@
   }
 
   .ImageAlert__slug {
-    font-size: rem(22);
+    font-size: rem(20);
     line-height: 0.86;
     margin-bottom: rem(40);
   }
