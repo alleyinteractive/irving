@@ -19,6 +19,10 @@
   margin: 0 auto;
   padding-bottom: 0;
   position: relative;
+
+  &.isHeadroom {
+    justify-content: flex-start;
+  }
 }
 
 .logo {
@@ -29,6 +33,11 @@
 
   @media ($smMin) {
     tidy-span: 3;
+  }
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 2;
   }
 
   &.headroomLogo {
@@ -75,13 +84,9 @@
 .logoT {
   align-items: center;
   display: flex;
-  tidy-span: 1;
+  tidy-span: 2;
 
   @media ($smMin) {
-    tidy-span: 0.5;
-  }
-
-  @media ($mdMin) {
     tidy-span: 1;
   }
 
@@ -96,6 +101,10 @@
   flex: 1 0 100%;
   min-height: rem(150);
   width: 100%;
+
+  &.displayNone {
+    display: none;
+  }
 
   :global(.adUnit) {
     /* stylelint-disable selector-max-specificity */
@@ -115,8 +124,12 @@
   position: static;
   tidy-span: 5;
 
-  .headroom & {
-    tidy-span: 5;
+  .isHeadroom & {
+    tidy-span: 6;
+
+    @media ($smMin) {
+      tidy-span: 7;
+    }
 
     @media ($mdMin) {
       tidy-span: 8;
@@ -136,7 +149,7 @@
   flex-flow: row nowrap;
   position: static;
 
-  @media ($smMin) {
+  @media only screen and (min-width: 790px) {
     display: flex;
   }
 }

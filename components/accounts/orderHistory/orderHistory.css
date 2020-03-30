@@ -1,22 +1,28 @@
-.accountWrap {
+.wrapper {
   font-family: $sans;
   margin: rem(20);
 }
 
-.accountHeader {
+.header {
   @include accountHeader;
-  font-family: $sans;
-  font-size: rem(40);
 }
 
-.accountSubHeader {
+.subheader {
   @include accountSubHeader;
-  font-family: $sans;
-  font-size: rem(50);
 }
 
 .heading {
   font-family: $sans;
   font-size: rem(30);
   margin-bottom: rem(15);
+}
+
+.unsubscribedText {
+  display: block;
+  margin: rem(20) 0 rem(40) 0;
+
+  &.withSeparator {
+    border-bottom: 2px solid #000;
+    padding-bottom: rem(50);
+  }
 }

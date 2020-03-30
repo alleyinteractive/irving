@@ -23,22 +23,24 @@ const UserGreeting = ({
   firstName,
   lastName,
   themeName,
+  context,
 }) => (
   <div className={styles.wrapper}>
-    {isAuthenticated ? (
+    {isAuthenticated && 0 < firstName.length ? (
       <Authenticated
         firstName={firstName}
         lastName={lastName}
         themeName={themeName}
       />
     ) : (
-      <Anonymous themeName={themeName} />
+      <Anonymous themeName={themeName} context={context} />
     )}
   </div>
 );
 
 UserGreeting.defaultProps = {
   themeName: 'light',
+  context: 'nav',
 };
 
 UserGreeting.propTypes = {
@@ -46,6 +48,7 @@ UserGreeting.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   lastName: PropTypes.string.isRequired,
   themeName: PropTypes.string,
+  context: PropTypes.string,
 };
 
 const withRedux = connect(

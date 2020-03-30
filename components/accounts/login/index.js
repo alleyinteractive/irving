@@ -10,23 +10,28 @@ import {
 } from 'selectors/zephrSelector';
 import {
   actionSubmitForm,
+  actionReceiveSsoSession,
 } from 'actions/zephrActions';
 import history from 'utils/history';
 import DataLoading from 'components/hoc/withData/loading';
 import toFormElements from 'sagas/zephrSaga/forms/toFormElements';
+import sso, { openConnection } from 'services/ssoService';
 import LazyRecaptcha from '../register/recaptcha';
 
 // Styles
 import styles from './login.css';
+import Link from '../../helpers/link';
 
 const Login = ({
   loginForm,
   submitLogin,
   isAuthenticated,
+  receiveSession,
+  redirectTo,
 }) => {
   // Prevent authenticated users from being able to visit this route.
   if (isAuthenticated) {
-    history.push('/');
+    history.push(redirectTo);
   }
 
   const [components, setForm] = useState([]);
@@ -34,6 +39,7 @@ const Login = ({
     isValid: false,
     hasError: false,
   });
+  const [tooltipActive, setTooltipState] = useState(false);
 
   // Create submit handler.
   const onSubmit = (event) => {
@@ -70,6 +76,7 @@ const Login = ({
       credentials: {
         email: email.value,
         password: password.value,
+        redirectTo,
       },
     });
   };
@@ -111,29 +118,65 @@ const Login = ({
       // Update the form state.
       setForm(fields);
     }
-  }, [loginForm]);
+
+    const initSSO = async (data) => {
+      const {
+        data: {
+          action,
+          identifier,
+        },
+      } = data;
+
+      if ('login' === action || 'register' === action) {
+        // Get the response status and its cookie if it exists.
+        const { status, cookie } = await sso.initialize(data);
+
+        if ('success' === status) {
+          receiveSession({ identifier, cookie, action });
+        }
+      }
+    };
+
+    window.addEventListener('message', initSSO);
+
+    // A function that resets the state of an active tooltip.
+    // It also removes any active event listeners for the active tooltip
+    // allowing it to be summoned in the future.
+    const updateTooltipState = () => {
+      if (tooltipActive) {
+        setTooltipState(false);
+        // Remove the event listener.
+        window.removeEventListener('click', updateTooltipState);
+      }
+    };
+
+    // Add the tooltip listenter.
+    window.addEventListener('click', updateTooltipState);
+  }, [loginForm, tooltipActive]);
 
   // If the form has not yet been retireved, show a loader.
   if (0 === Object.keys(loginForm).length) {
     return (
-      <div className={styles.accountWrap}>
+      <div className={styles.wrapper}>
         <DataLoading />
       </div>
     );
   }
 
   return (
-    <div className={styles.accountWrap}>
-      <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
-      <p className={styles.accountSubHeader}>
-        {__('Please enter your email address and password.', 'mittr')}
+    <div className={styles.wrapper}>
+      <h1 className={styles.header}>{__('Account', 'mittr')}</h1>
+      <p className={styles.subheader}>
+        {__('Sign in to your account below.', 'mittr')}
       </p>
-      <p className={styles.accountHeaderDescription}>
+      <p className={styles.headerDescription}>
         {__(
-          `If you have an account, we’ll get you signed in.
-          If not, we’ll help you set one up. Easy, right?`,
+          'Don’t have one yet? ',
           'mittr'
         )}
+        <Link to="/register/" className={styles.registerLink}>
+          {__('Create an account now.', 'mittr')}
+        </Link>
       </p>
       <form
         onSubmit={onSubmit}
@@ -159,13 +202,68 @@ const Login = ({
         </h2>
         <ul className={styles.ssoList} aria-labelledby="socialMediaSignOn">
           <li>
-            <a href="https://google.com">Google</a>/
+            <button
+              type="button"
+              onClick={() => {
+                openConnection('login', 'google');
+                sso.openGoogleClient();
+              }}
+            >
+              Google
+            </button>/
           </li>
           <li>
-            <a href="https://twitter.com">Twitter</a>/
+            {tooltipActive && (
+              <div
+                id="twitter-auth-desc"
+                role="tooltip"
+                className={styles.tooltip}
+              >
+                <p>
+                  {__(
+                    `We value your security—that’s why we
+                    only support social logins that use OAuth2.`,
+                    'mittr'
+                  )}
+                </p>
+                <p>
+                  <span>
+                    {__(
+                      `If you were previously signing in to our site
+                      with Twitter, please `,
+                      'mittr'
+                    )}
+                  </span>
+                  <Link to="/register/">
+                    {__('create an account ', 'mittr')}
+                  </Link>
+                  <span>
+                    {__(
+                      'or sign in another way.',
+                      'mittr'
+                    )}
+                  </span>
+                </p>
+              </div>
+            )}
+            <button
+              type="button"
+              aria-describedby="twitter-auth-desc"
+              onClick={() => setTooltipState(true)}
+            >
+              Twitter
+            </button>/
           </li>
           <li>
-            <a href="https://facebook.com">Facebook</a>
+            <button
+              type="button"
+              onClick={() => {
+                openConnection('login', 'facebook');
+                sso.openFacebookClient();
+              }}
+            >
+              Facebook
+            </button>
           </li>
         </ul>
       </form>
@@ -177,11 +275,19 @@ const Login = ({
         <button
           type="button"
           className={styles.connectBtn}
-          onClick={() => {}}
+          onClick={() => {
+            openConnection('login', 'mitaa');
+            sso.openInfiniteConnectionClient();
+          }}
         >
           {__('Connect now', 'mittr')}
         </button>
-        <a href="https://google.com" className={styles.btnLink}>
+        <a
+          href="https://alum.mit.edu/about/infinite-connection-terms-conditions-use" // eslint-disable-line max-len
+          className={styles.btnLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {__('Learn more', 'mittr')}
         </a>
       </div>
@@ -191,16 +297,20 @@ const Login = ({
 
 Login.defaultProps = {
   loginForm: {},
+  redirectTo: '/',
 };
 
 Login.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   loginForm: PropTypes.object,
   submitLogin: PropTypes.func.isRequired,
+  receiveSession: PropTypes.func.isRequired,
+  redirectTo: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   submitLogin: (data) => dispatch(actionSubmitForm(data)),
+  receiveSession: (cookie) => dispatch(actionReceiveSsoSession(cookie)),
 });
 
 const withRedux = connect(

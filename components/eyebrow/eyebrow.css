@@ -1,9 +1,9 @@
 .eyebrow {
   display: block;
   font-family: $sans;
-  font-size: rem(16);
+  font-size: rem(14);
   font-weight: 600;
-  line-height: 1.19;
+  line-height: rem(14);
   margin-right: 1ch;
   padding-top: rem(10);
   text-decoration: none;
@@ -12,15 +12,25 @@
     font-weight: 400;
     padding-left: rem(5);
   }
+
+  @media ($mdMin) {
+    font-size: rem(16);
+    line-height: rem(16);
+  }
 }
 
 .eyebrowLink {
   font-family: $sans;
-  font-size: rem(16);
+  font-size: rem(14);
   font-weight: 600;
-  line-height: 1.19;
+  line-height: rem(14);
   margin-right: rem(5);
   text-decoration: none;
+
+  @media ($mdMin) {
+    font-size: rem(16);
+    line-height: rem(16);
+  }
 }
 
 .wrap {
@@ -43,28 +53,33 @@
 
 /* Custom styles for Eyebrows that appear on story pages */
 .fullStoryLink {
-  font-size: rem(20);
+  font-size: 1rem;
+
+  @media ($mdMin) {
+    font-size: rem(20);
+  }
 }
 
 .anchorEyebrow {
   padding-left: rem(3);
+  padding-top: rem(21);
 
   @media ($mdMin) {
-    padding-left: rem(12);
+    padding-left: rem(0);
   }
 
   &::before {
     background-color: currentColor;
     content: "";
     display: inline-block;
-    height: 0.875rem;
+    height: rem(13);
     left: 0;
     position: absolute;
-    top: 12px;
+    top: 22px;
     width: rem(15);
 
     @media ($mdMin) {
-      width: 1.563rem;
+      width: rem(15);
     }
   }
 }

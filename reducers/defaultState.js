@@ -21,6 +21,8 @@ export const form = {
 
 export const visible = {
   megaMenu: false,
+  sliderAd: false,
+  sliderAdHasClosed: false,
 };
 
 export const player = {
@@ -79,6 +81,12 @@ export const zephr = {
 export const zephrRules = {
   isLoading: false,
   components: {},
+  pageIDs: {},
+};
+
+export const zephrDataLayer = {
+  isLoading: false,
+  dataLayer: {},
 };
 
 export default defaultState;

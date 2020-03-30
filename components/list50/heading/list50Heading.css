@@ -1,0 +1,12 @@
+.heading {
+  border-top: 1px solid $text-black;
+  font-size: rem(16);
+  font-variant: small-caps;
+  line-height: 1.2;
+  padding: rem(8) 0;
+  text-transform: uppercase;
+
+  &:not(:first-child) {
+    margin-top: rem(50);
+  }
+}

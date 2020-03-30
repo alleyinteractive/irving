@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
+import URL from 'url-parse';
 import Link from 'components/helpers/link';
 import { actionVerifyToken } from 'actions/zephrActions';
 import {
@@ -26,15 +27,14 @@ const Verify = ({
 
   useEffect(() => {
     if (false === emailVerified) {
-      const {
-        location: {
-          search,
-        },
-      } = window;
       // Extract the token from the query string.
-      const extractToken = (qs) => qs.match(/(?<=\btoken=)([^&]*)/)[0];
+      const extractToken = () => {
+        const urlObj = new URL(window.location.href, true);
+        const { query: { token = '' } = {} } = urlObj || {};
+        return token;
+      };
       // Set the token value.
-      const token = extractToken(search);
+      const token = extractToken();
       // Dispatch the verification action.
       verifyToken(token);
     }
@@ -53,14 +53,14 @@ const Verify = ({
   }
 
   return (
-    <div className={styles.accountWrap}>
-      <p className={styles.accountSubHeader}>
+    <div className={styles.wrapper}>
+      <p className={styles.subheader}>
         {__(
           `Thanks ${firstName}! Your email address is now verified.`,
           'mittr'
         )}
       </p>
-      <p className={styles.accountHeaderDescription}>
+      <p className={styles.headerDescription}>
         {__(
           `If you are not automatically redirected in a few seconds,
           click the button below to go to the homepage.`,

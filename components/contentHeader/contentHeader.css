@@ -6,10 +6,6 @@
   @media ($smMin) {
     @include container-with-bleed;
   }
-
-  @media ($mdMin) {
-    margin-bottom: rem(20);
-  }
 }
 
 .publishDate {
@@ -30,12 +26,12 @@
   font-family: $sans;
   font-size: rem(34);
   font-weight: 600;
-  line-height: rem(38);
+  line-height: rem(40);
   margin-bottom: rem(10);
 
   @media ($mdMin) {
     font-size: rem(54);
-    line-height: 1.07;
+    line-height: rem(50);
     margin-bottom: rem(20);
   }
 }
@@ -77,7 +73,7 @@
 
 .intro {
   composes: headerBlock;
-  margin-bottom: rem(15);
+  margin-bottom: rem(20);
 
   @media ($mdMax) {
     margin-bottom: rem(20);

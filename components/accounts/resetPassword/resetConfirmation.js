@@ -13,21 +13,23 @@ import {
 import styles from './reset.css';
 
 const ConfirmReset = ({ isAuthenticated }) => (
-  <div className={styles.accountWrap}>
-    <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
-    <p className={styles.accountSubHeader}>
+  <div className={styles.wrapper}>
+    <h1 className={styles.header}>{__('Sign in', 'mittr')}</h1>
+    <p className={styles.subheader}>
       {__('Thank you!', 'mittr')}
     </p>
-    <p className={styles.accountHeaderDescription}>
+    <p className={styles.headerDescription}>
       {__(
         'Your password has been reset.',
         'mittr'
       )}
     </p>
     {! isAuthenticated ? (
-      <Link to="/login" className={styles.homeButton}>Login</Link>
+      <Link to="/login/" className={styles.homeButton}>
+        {__('Login', 'mittr')}
+      </Link>
     ) : (
-      <Link to="/" className={styles.homeButton}>Go Home</Link>
+      <Link to="/" className={styles.homeButton}>{__('Go Home', 'mittr')}</Link>
     )}
   </div>
 );

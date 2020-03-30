@@ -3,6 +3,7 @@ import { withStyles } from 'critical-style-loader/lib';
 import { __ } from '@wordpress/i18n';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import URL from 'url-parse';
 import {
   getResetForm,
 } from 'selectors/zephrSelector';
@@ -27,15 +28,14 @@ const ResetForm = ({
   const onSubmit = (event) => {
     event.preventDefault();
 
-    const {
-      location: {
-        search,
-      },
-    } = window;
     // Extract the token from the query string.
-    const extractStateToken = (qs) => qs.match(/(?<=\bstate=)([^&]*)/)[0];
+    const extractStateToken = () => {
+      const urlObj = new URL(window.location.href, true);
+      const { query: { state = '' } = {} } = urlObj || {};
+      return state;
+    };
     // Set the token value.
-    const state = extractStateToken(search);
+    const state = extractStateToken();
 
     const password = document.getElementById('new-password');
     const verifyPassword = document.getElementById('verify-password');
@@ -73,20 +73,20 @@ const ResetForm = ({
   // If the form has not yet been retrieved, show a loader.
   if (0 === Object.keys(resetForm).length) {
     return (
-      <div className={styles.accountWrap}>
+      <div className={styles.wrapper}>
         <DataLoading />
       </div>
     );
   }
 
   return (
-    <div className={styles.accountWrap}>
-      <h1 className={styles.accountHeader}>{__('Sign in', 'mittr')}</h1>
-      <p className={styles.accountSubHeader}>
+    <div className={styles.wrapper}>
+      <h1 className={styles.header}>{__('Sign in', 'mittr')}</h1>
+      <p className={styles.subheader}>
         {/* eslint-disable-next-line quotes */}
-        {__(`Okay, let's reset your password.`, 'mittr')}
+        {__(`Okay, let's reset your password`, 'mittr')}
       </p>
-      <p className={styles.accountHeaderDescription}>
+      <p className={styles.headerDescription}>
         {__('Enter your new password', 'mittr')}
       </p>
       <form

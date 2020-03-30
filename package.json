@@ -11,9 +11,9 @@
     "dev": "NODE_ENV=development node nodemon.js",
     "start": "NODE_ENV=production node server/index.js",
     "postinstall": "npm run build",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "lint": "eslint --config=./.eslintrc.json ./",
-    "test:watch": "jest --watch",
+    "test:watch": "NODE_ENV=test jest --watch",
     "styleguide:dev": "NODE_ENV=development styleguidist server --config ./config/styleguide.config.js",
     "styleguide:build": "NODE_ENV=production styleguidist build --config ./config/styleguide.config.js && surge -d mit-technology-review.surge.sh -p ./styleguide"
   },
@@ -29,8 +29,8 @@
     "npm": "6"
   },
   "dependencies": {
-    "@automattic/vip-go": "^0.3.3",
-    "@automattic/vip-go-preflight-checks": "0.0.4",
+    "@automattic/vip-go": "^1.0.0",
+    "@automattic/vip-go-preflight-checks": "^1.0.0",
     "@babel/polyfill": "^7.2.5",
     "@wordpress/i18n": "^3.6.0",
     "axios": "^0.19.2",
@@ -60,6 +60,7 @@
     "react-dom": "^16.8.6",
     "react-headroom": "^2.2.8",
     "react-helmet": "^5.2.1",
+    "react-hook-form": "^4.10.2",
     "react-hot-loader": "^4.6.3",
     "react-image-gallery": "^0.9.1",
     "react-oembed-container": "^0.3.0",

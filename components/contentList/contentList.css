@@ -4,22 +4,31 @@
  * Needs global scope to be included in editor styles.
  */
 
+/* stylelint-disable selector-max-specificity */
+
 @import './contentListItem/contentListItem.css';
 
 :global {
+
+  .block-editor-block-list__layout .contentList__wrap .block-editor-block-list__block {
+    padding-left: rem(14);
+    padding-right: rem(14);
+  }
+
   .contentList__wrap {
     border-top: $border-thin;
     clear: left;
     float: left;
     font-family: $sans;
     font-size: rem(14);
-    margin-left: -16%;
+    margin-left: 0;
     margin-top: rem(6);
     padding: rem(20) rem(40) rem(30) rem(10);
     position: relative;
     width: 100%;
 
     @media ($smMin) {
+      margin-left: -16%;
       width: 50%;
     }
 
@@ -40,6 +49,23 @@
       }
     }
 
+    &.content-left {
+      clear: left;
+      float: left;
+      margin-right: rem(40);
+      padding-left: 0;
+      padding-right: rem(10);
+
+      @media ($mdMin) {
+        margin-left: -16.66%;
+        tidy-span: 3;
+      }
+
+      @media ($lgMin) {
+        margin-left: -33.333%;
+      }
+    }
+
     &.content-full {
       clear: right;
       float: right;
@@ -54,11 +80,24 @@
       }
 
       @media ($mdMin) {
-        width: rem(222);  
+        width: rem(222);
       }
 
       @media ($lgMin) {
         margin-right: -16.66%;
+      }
+    }
+
+    &.content-center {
+      clear: both;
+      float: none;
+      margin: 0 auto;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+
+      @media ($mdMin) {
+        width: rem(222);
       }
     }
   }

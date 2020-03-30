@@ -21,8 +21,13 @@ const AccountInfoForm = ({
   const uniqueId =
     `changeUser${type.charAt(0).toUpperCase() + type.substring(1)}Input`;
 
+  const handleFormSubmission = (e) => {
+    e.preventDefault();
+    handleSubmit(inputState);
+  };
+
   return (
-    <form onSubmit={handleSubmit} className={styles.formWrap}>
+    <form onSubmit={handleFormSubmission} className={styles.formWrap}>
       <div className={styles.horizontalFormGroup}>
         {! isValid && errorMessage ? errorMessage : null}
 
@@ -43,7 +48,7 @@ const AccountInfoForm = ({
         <input
           type="submit"
           className={styles.inputButton}
-          value="Save changes"
+          value={__('Save Changes', 'mittr')}
         />
         {! isValid && (
           <span

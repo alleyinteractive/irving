@@ -37,7 +37,7 @@ const loginFormMock = {
       id: 'submit-button',
       key: 'zephr-submit-button',
       type: 'submit',
-      value: 'Login',
+      value: 'Sign in',
     },
   ]),
   error: false,
@@ -123,6 +123,7 @@ function compareFormState(type, formState, error, mockState) {
       forms: {
         ...mockState.forms,
         [type]: {
+          type,
           components,
           error: true,
           errors: [error],
@@ -139,8 +140,10 @@ function compareFormState(type, formState, error, mockState) {
       forms: {
         ...mockState.forms,
         [type]: {
+          type,
           components,
           error: true,
+          errorCount: null,
           errors: [error],
         },
       },
@@ -216,6 +219,7 @@ describe('Zephr Reducer', () => {
         forms: {
           ...mockState.forms,
           login: {
+            type: 'login',
             components,
             error: true,
             errors: [error],

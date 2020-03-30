@@ -66,12 +66,16 @@ const HeaderTemplate = ({
       className={classNames(styles.container)}
       ref={isHeadroom ? headroomRef : null}
     >
-      <div className={styles.wrapper}>
-        {! isHeadroom && ! isMobile && (
-          <div className={styles.leaderboardRow}>
-            {leaderboardAd}
-          </div>
-        )}
+      <div className={classNames(styles.wrapper, {
+        [styles.isHeadroom]: isHeadroom,
+      })}
+      >
+        <div className={classNames(styles.leaderboardRow, {
+          [styles.displayNone]: isHeadroom || isMobile,
+        })}
+        >
+          {leaderboardAd}
+        </div>
         {(isHeadroom || isMobile) && (
           <Link
             to={homeUrl}
@@ -102,12 +106,17 @@ const HeaderTemplate = ({
             </div>
           )}
         </Link>
-        <div className={styles.navigation}>
+        <div className={classNames(styles.navigation, {
+          [styles.isHeadroom]: isHeadroom,
+        })}
+        >
           {! isHeadroom && (
             <div className={styles.userGreeting}>{userGreeting}</div>
           )}
           <div className={styles.menuRow}>
-            <div className={styles.menu}>{menu}</div>
+            <div className={styles.menu}>
+              {menu}
+            </div>
             <button
               className={classNames(styles.button, {
                 [styles.expandedButton]: megaMenuIsExpanded,

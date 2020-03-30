@@ -19,6 +19,19 @@
   }
 }
 
+.fourColumnList {
+  @media ($smMin) {
+    column-count: 2;
+  }
+
+  @media ($mdMin) {
+    @include container-with-bleed;
+    column-count: 4;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 .desktopOnly {
   display: none;
 

@@ -21,16 +21,23 @@ import lightIconStyles from './lightIcon.css';
 import darkIconStyles from './darkIcons.css';
 import flyoutIconStyles from './socialItem--flyoutIcon.css';
 
-const SocialItem = ({
-  type, url, displayIcon, theme, themeName,
-}) => {
+const SocialItem = (props) => {
+  const {
+    type,
+    url,
+    sharePermalink,
+    displayIcon,
+    theme,
+    themeName,
+    context,
+  } = props;
   const IconComponent = socialIconMap[type];
   return (
     <li className={classNames(theme.wrapper, theme[type])}>
       {'link' !== type ? (
         <a
           href={url}
-          className={theme.anchor}
+          className={classNames(theme.anchor, 'mittr-share-link')}
           onClick={(e) => {
             e.preventDefault();
             if ('email' === type ||
@@ -49,6 +56,11 @@ const SocialItem = ({
           }}
           target="_blank"
           rel="noopener"
+          data-event-category={
+            context ? `${context}-share-button-${type}` : `share-button-${type}`
+          }
+          data-event-action="click"
+          data-event-label={sharePermalink}
         >
           <span className={theme.screenReaderLabel}>
             {type}{__('link opens in a new window', 'mittr')}
@@ -66,6 +78,11 @@ const SocialItem = ({
   );
 };
 
+SocialItem.defaultProps = {
+  sharePermalink: true,
+  context: '',
+};
+
 SocialItem.propTypes = {
   /**
    * What type of service is this? Should correspond to a key in `socialIconMap`
@@ -80,8 +97,10 @@ SocialItem.propTypes = {
    */
   displayIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
     .isRequired,
+  sharePermalink: PropTypes.string,
   theme: PropTypes.object.isRequired,
   themeName: PropTypes.string.isRequired,
+  context: PropTypes.string,
 };
 
 const wrapWithStyles = withStyles(styles, lightIconStyles);

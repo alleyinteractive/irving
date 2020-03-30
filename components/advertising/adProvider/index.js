@@ -13,6 +13,9 @@ const AdProvider = ({
     return children;
   }
 
+  const { hostname, pathname } = window.location;
+  const targetingArgs = { ...targeting, hostname, pathname };
+
   const refresh = () => DFPManager.refresh();
 
   useEffect(() => {
@@ -37,7 +40,7 @@ const AdProvider = ({
     <DFPSlotsProvider
       collapseEmptyDivs
       dfpNetworkId={dfpNetworkId}
-      targetingArguments={targeting}
+      targetingArguments={targetingArgs}
     >
       {children}
     </DFPSlotsProvider>

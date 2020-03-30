@@ -2,7 +2,7 @@
 
 .wrapper {
   @include container-with-bleed;
-  min-height: rem(500);
+  margin-bottom: rem(10);
   position: relative;
 
   @media ($mdMin) {
@@ -10,7 +10,11 @@
   }
 
   nav + & {
-    margin-top: rem(75);
+    margin-top: rem(20);
+
+    @media ($mdMin) {
+      margin-top: rem(75);
+    }
   }
 }
 
@@ -21,7 +25,7 @@
   left: 0;
   margin-bottom: rem(30);
   max-width: rem(600);
-  padding: 0 0 0 32px;
+  padding: 0 0 0 rem(46);
   position: absolute;
   top: 50%;
   transform: translate(0, -34%);
@@ -29,8 +33,12 @@
   z-index: 1;
 
   @media ($smMin) {
-    font-size: rem(78);
+    font-size: rem(50);
     padding: 0 0 0 rem(62);
+  }
+
+  @media ($mdMin) {
+    font-size: rem(78);
   }
 
   @media ($lgMin) {

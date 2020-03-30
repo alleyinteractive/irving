@@ -1,19 +1,19 @@
-.accountWrap {
+.wrapper {
   font-family: $sans;
   margin: rem(40) auto rem(50);
   max-width: rem(758);
   padding: 0 rem(15);
 }
 
-.accountHeader {
+.header {
   @include accountHeader;
 }
 
-.accountSubHeader {
+.subheader {
   @include accountSubHeader;
 }
 
-.accountHeaderDescription {
+.headerDescription {
   @include accountHeaderDescription;
   margin-bottom: rem(25);
 }
@@ -90,4 +90,8 @@
   @include btnBlack;
 
   font-family: $sans;
+}
+
+.registerLink {
+  text-decoration: underline;
 }

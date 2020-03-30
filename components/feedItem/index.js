@@ -6,18 +6,22 @@ import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
+import ExpandableSocialShare from 'components/socialList/expandable';
 import Eyebrow from '../eyebrow';
 
 // Styles
 import styles from './feedItem.css';
 
 const FeedItem = ({
+  author,
+  articleId,
   children,
   color,
   customEyebrow,
   includeExpandBtn,
   permalink,
   teaserContent,
+  position,
   postDate,
   showImage,
   title,
@@ -25,6 +29,7 @@ const FeedItem = ({
   topic,
   topicLink,
   headerHeight,
+  wordCount,
 }) => {
   const [expandState, setExpandState] = useState({
     btnText: 'Expand',
@@ -35,6 +40,7 @@ const FeedItem = ({
   const articleRef = React.useRef();
   const image = findChildByName('image', children);
   const contentFooter = findChildByName('content-footer', children);
+  const socialSharing = findChildByName('social-sharing', children);
 
   // Theme content block
   const gutenbergContent = findChildByName('gutenberg-content', children);
@@ -53,13 +59,32 @@ const FeedItem = ({
   const toggleStory = (e, fromTitle = false) => {
     e.preventDefault();
     const doExpand = fromTitle || ! expandState.isExpanded;
+
     setExpandState({
       btnText: doExpand ? 'Collapse' : 'Expand',
       isExpanded: doExpand,
     });
+
     setContainerHeight(
       doExpand ? contentRef.current.getBoundingClientRect().height : 0
     );
+
+    if (doExpand) {
+      window.dataLayer.push({
+        event: 'VirtualPageviewWithReferrer',
+        virtualPageURL: permalink,
+        virtualPageTitle: `${title} | MIT Technology Review`, // @todo don't hard-code this maybe
+        virtualPageReferrer: window.location.href,
+        contentPosition: position,
+        articleId,
+        author: author.length ? author[0].name : '',
+        publishDate: postDate,
+        articleTopic: topic,
+        wordCount,
+        paywallType: 'Always Free',
+      });
+    }
+
     if (fromTitle) {
       window.scrollTo({
         top: elementTop(articleRef.current) - headerHeight,
@@ -140,6 +165,9 @@ const FeedItem = ({
           </div>
         </div>
       )}
+      <ExpandableSocialShare>
+        {socialSharing}
+      </ExpandableSocialShare>
     </article>
   );
 };
@@ -156,10 +184,16 @@ FeedItem.defaultProps = {
 };
 
 FeedItem.propTypes = {
+  author: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]).isRequired,
+  articleId: PropTypes.number.isRequired,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   includeExpandBtn: PropTypes.bool,
   teaserContent: PropTypes.string,
   customEyebrow: PropTypes.string,
+  position: PropTypes.number.isRequired,
   postDate: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   showImage: PropTypes.bool,
@@ -169,6 +203,7 @@ FeedItem.propTypes = {
   topicLink: PropTypes.string.isRequired,
   color: PropTypes.string,
   headerHeight: PropTypes.number,
+  wordCount: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({

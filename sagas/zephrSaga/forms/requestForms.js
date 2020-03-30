@@ -38,7 +38,7 @@ function* requestLogin() {
     createForm,
     {
       input: formResponse,
-      submitText: 'Login',
+      submitText: 'Sign in',
     }
   );
 
@@ -134,7 +134,7 @@ function* buildResetForm() {
       type: 'reset',
       components: JSON.stringify(form),
       error: false,
-      erros: [],
+      errors: [],
       errorCount: null,
     },
   }));

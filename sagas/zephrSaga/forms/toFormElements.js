@@ -52,11 +52,11 @@ export default function toFormElements(fields, type) {
       case 'submit-button':
         if ('login' === type) {
           return React.createElement('div',
-            { className: 'zephr-form-button-group' },
+            { className: 'zephr-form-button-group login-group' },
             React.createElement('input', props, null),
             React.createElement(Link, {
               className: 'forgot-password-link',
-              to: '/reset-password',
+              to: '/reset-password/',
             },
             'Forgot your password?'));
         }
