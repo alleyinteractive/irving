@@ -57,10 +57,14 @@
   font-size: rem(40);
   letter-spacing: normal;
   line-height: 1;
-  margin: rem(15) 0 rem(15) 0;
+  margin-bottom: rem(15);
 
-  @media ($smMin) {
-    font-size: rem(50);
+  @media ($smMax) {
+    padding-top: rem(19);
+  }
+
+  @media ($mdMin) {
+    padding-top: rem(62);
   }
 }
 
