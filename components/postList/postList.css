@@ -40,6 +40,7 @@
     }
 
     a.view-more-link,
+    a,
     .view-more-link {
       font-size: rem(14);
       font-weight: 400;
@@ -47,6 +48,17 @@
 
       &:hover {
         text-decoration: underline;
+      }
+      /* This is for the GB Editor View */
+      a {
+        color: $black;
+        font-size: rem(14);
+        font-weight: 400;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
