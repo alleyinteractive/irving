@@ -14,6 +14,7 @@
   color: $black;
   display: inline-flex;
   font-family: $sans;
+  font-size: rem(14);
   font-weight: 600;
   line-height: 1.14;
   padding: rem(10) rem(20);

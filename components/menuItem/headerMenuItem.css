@@ -14,6 +14,8 @@
   background-color: transparent;
   border: 0;
   color: $black;
+  font-family: $sans;
+  font-size: 1rem;
   font-weight: 600;
   padding: rem(15) rem(10);
   text-align: left;
@@ -38,7 +40,6 @@
   padding: rem(6) rem(10);
 
   &:hover {
-    background-color: $gray;
     text-decoration: underline;
   }
 }
