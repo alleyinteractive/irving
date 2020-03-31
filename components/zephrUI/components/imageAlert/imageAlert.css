@@ -1,47 +1,60 @@
 :global {
   .ImageAlert {
-    @include container-with-bleed;
+    /* Includes wrapper styles from components/columnArea/columnArea--feed.css */
+    /* Needs to be added manually as component not served through React */
     background-color: $color-text;
+    display: flex;
+    flex-flow: row wrap;
     font-family: $sans;
+    justify-content: space-between;
+    padding-bottom: rem(15);
+    width: 100%;
+
+    @media ($smMin) {
+      @include container;
+    }
   }
 
   .ImageAlert__wrapper {
     display: flex;
-    height: rem(324);
+    flex-flow: row nowrap;
+    height: auto;
     justify-content: space-between;
+    width: 100%;
   }
 
   .ImageAlert__fields {
-    padding-top: rem(40);
-    width: 100%;
-  }
-
-  .ImageAlert__fields,
-  .ImageAlert__image {
+    @include container;
     color: $white;
+    margin-bottom: rem(30);
+    margin-top: rem(40);
+    width: 100%;
 
     @media ($mdMin) {
-      width: 45%;
+      max-width: calc(tidy-span-full(6) - rem(20));
+      tidy-offset-left: 1;
+      width: calc(tidy-span(6) - rem(20));
     }
-  }
-
-  .ImageAlert__image img {
-    bottom: 0;
-    position: absolute;
-    width: 100%;
   }
 
   .ImageAlert__image {
     display: none;
+    flex: 1 0 auto;
     position: relative;
 
     @media ($mdMin) {
       display: block;
     }
+
+    img {
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+    }
   }
 
   .ImageAlert__slug {
-    font-size: rem(22);
+    font-size: rem(20);
     line-height: 0.86;
     margin-bottom: rem(40);
   }
@@ -72,6 +85,11 @@
     background-color: $call-to-action;
     border: 1px solid $call-to-action;
     color: $black;
+    margin-bottom: rem(10);
+
+    @media ($smMin) {
+      margin-bottom: 0;
+    }
   }
 
   .ImageAlert__btn--signin {
