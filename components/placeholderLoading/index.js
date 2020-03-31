@@ -1,11 +1,14 @@
 import React from 'react';
 import { withStyles } from 'critical-style-loader/lib';
-import Container from 'components/helpers/container';
-
 import styles from './placeholderLoading.css';
+import ColumnArea from '../columnArea';
 
 const PlaceholderLoading = () => (
-  <Container className={styles.wrapper} aria-hidden="true">
+  <ColumnArea
+    className={styles.wrapper}
+    aria-hidden="true"
+    themeName="fullStory"
+  >
     <div className={styles.thumb} />
     <div className={styles.content}>
       <div className={styles.textBar} />
@@ -13,7 +16,7 @@ const PlaceholderLoading = () => (
       <div className={styles.textBar} />
       <div className={styles.textBar} />
     </div>
-  </Container>
+  </ColumnArea>
 );
 
 const wrapWithStyles = withStyles(styles);
