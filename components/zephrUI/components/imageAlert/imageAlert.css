@@ -85,6 +85,11 @@
     background-color: $call-to-action;
     border: 1px solid $call-to-action;
     color: $black;
+    margin-bottom: rem(10);
+
+    @media ($smMin) {
+      margin-bottom: 0;
+    }
   }
 
   .ImageAlert__btn--signin {
