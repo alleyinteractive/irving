@@ -16,7 +16,7 @@ import {
 import LogoStacked from 'assets/icons/logoStacked.svg';
 import LogoHorizontal from 'assets/icons/logoHorizontal.svg';
 import TRGlyph from 'assets/icons/trGlyph.svg';
-import MegaMenuIcon from 'assets/icons/megaMenu.svg';
+import MegaMenuIcon from 'components/megaMenuIcon';
 
 import styles from './headerTemplate.css';
 
@@ -32,6 +32,7 @@ const HeaderTemplate = ({
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [iconHovered, setIconHovered] = useState(false);
 
   const headroomRef = useRef();
 
@@ -123,8 +124,16 @@ const HeaderTemplate = ({
               className={classNames(styles.button, {
                 [styles.expandedButton]: megaMenuIsExpanded,
               })}
+              style={{
+                background: iconHovered && ! megaMenuIsExpanded ?
+                  '#000' : '#fff',
+              }}
               type="button"
               onClick={() => toggleMegaMenu(! megaMenuIsExpanded)}
+              onMouseOver={() => setIconHovered(true)}
+              onMouseOut={() => setIconHovered(false)}
+              onBlur={() => setIconHovered(false)}
+              onFocus={() => setIconHovered(true)}
             >
               <span className="screen-reader-text">
                 {megaMenuIsExpanded ?
@@ -132,7 +141,8 @@ const HeaderTemplate = ({
                   __('Expand menu', 'mittr')}
               </span>
               <span aria-hidden="true" className={styles.buttonVisualContent}>
-                {megaMenuIsExpanded ? 'Close' : <MegaMenuIcon />}
+                {megaMenuIsExpanded ?
+                  'Close' : <MegaMenuIcon hovered={iconHovered} />}
               </span>
             </button>
             {(isExpanded) && (
