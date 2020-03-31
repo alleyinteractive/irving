@@ -5,7 +5,13 @@
   flex-flow: row nowrap;
   margin-bottom: rem(20);
   margin-top: rem(30);
+  padding-bottom: 0;
   position: relative;
+
+  &.collapsed {
+    margin-bottom: rem(10);
+    margin-top: rem(10);
+  }
 }
 
 .button {
