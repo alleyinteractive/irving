@@ -28,12 +28,10 @@ const RawHTML = (props) => {
     );
   }
   return (
-    <>
-      <div
-        {...newProps}
-        dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
-      />
-    </>
+    <div
+      {...newProps}
+      dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
+    />
   );
 };
 
