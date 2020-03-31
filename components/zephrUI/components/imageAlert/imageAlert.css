@@ -1,8 +1,18 @@
 :global {
   .ImageAlert {
-    @include container-with-bleed;
+    /* Includes wrapper styles from components/columnArea/columnArea--feed.css */
+    /* Needs to be added manually as component not served through React */
     background-color: $color-text;
+    display: flex;
+    flex-flow: row wrap;
     font-family: $sans;
+    justify-content: space-between;
+    padding-bottom: rem(15);
+    width: 100%;
+
+    @media ($smMin) {
+      @include container;
+    }
   }
 
   .ImageAlert__wrapper {
@@ -10,6 +20,7 @@
     flex-flow: row nowrap;
     height: auto;
     justify-content: space-between;
+    width: 100%;
   }
 
   .ImageAlert__fields {
