@@ -12,7 +12,6 @@ import styles from './feedItem.css';
 const SponsoredFeedItem = ({
   permalink,
   title,
-  excerpt,
   teaserContent,
   sponsorUrl,
   children,
@@ -38,7 +37,6 @@ const SponsoredFeedItem = ({
           <p>{teaserContent}</p>
         </div>
       )}
-      {excerpt && <p className={styles.excerpt}>{excerpt}</p>}
       <Link to={sponsorUrl} className={styles.sponsorLink}>
         <div className={styles.sponsorLogo}>
           {logo}
@@ -60,7 +58,6 @@ SponsoredFeedItem.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   permalink: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  excerpt: PropTypes.string.isRequired,
   teaserContent: PropTypes.string.isRequired,
   sponsorUrl: PropTypes.string.isRequired,
   sponsorTagline: PropTypes.string.isRequired,
