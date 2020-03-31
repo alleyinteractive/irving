@@ -53,14 +53,14 @@ const Verify = ({
   }
 
   return (
-    <div className={styles.wrapper}>
-      <p className={styles.subheader}>
+    <div className={styles.accountWrap}>
+      <p className={styles.accountSubHeader}>
         {__(
           `Thanks ${firstName}! Your email address is now verified.`,
           'mittr'
         )}
       </p>
-      <p className={styles.headerDescription}>
+      <p className={styles.accountHeaderDescription}>
         {__(
           `If you are not automatically redirected in a few seconds,
           click the button below to go to the homepage.`,
