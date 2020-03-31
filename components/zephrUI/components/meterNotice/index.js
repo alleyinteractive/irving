@@ -54,9 +54,9 @@ const MeterNotice = ({
           </a>
         </li>
         <li className="MeterNotice__item">
-          {'Already a subscriber? '}
+          <span className="MeterNotice__leadIn">Already a subscriber? </span>
           <a href="/login" className="MeterNotice__callToAction--link">
-              Sign in
+            Sign in
           </a>
           {'.'}
         </li>
