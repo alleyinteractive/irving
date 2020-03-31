@@ -2,8 +2,10 @@ import AdProvider from 'components/advertising/adProvider';
 import AdUnit from 'components/advertising/adUnit';
 import AccountPage from 'components/accounts/landingPage';
 import AccountNavigation from 'components/accounts/accountNavigation';
+import Activate from 'components/accounts/register/activate';
 import AudioElement from 'components/audio';
 import AuthorPage from 'components/authorPage';
+import Blueconic from 'components/blueconic';
 import Body from 'components/body';
 import Brightcove from 'components/brightcove';
 import Byline from 'components/byline';
@@ -13,7 +15,9 @@ import Column from 'components/gutenbergContent/blocks/columns/column';
 import ColumnArea from 'components/columnArea';
 import Columns from 'components/gutenbergContent/blocks/columns';
 import CompanyListItem from 'components/companyListItem';
+import CompleteProfile from 'components/accounts/register/completeProfile';
 import ConfirmRegistration from 'components/accounts/register/confirm';
+import ContactForm from 'components/contactForm';
 import ContentArea from 'components/contentArea';
 import ContentBody from 'components/contentBody';
 import ContentFooter from 'components/contentFooter';
@@ -23,6 +27,7 @@ import ContentListItem from 'components/contentList/contentListItem';
 import Container from 'components/container';
 import Disqus from 'components/disqus';
 import Error404 from 'components/error404';
+import EventsPromoModule from 'components/eventsPromoModule';
 import FeedItem from 'components/feedItem';
 import Footer from 'components/footer';
 import GoogleAnalytics from 'components/googleAnalytics';
@@ -30,6 +35,7 @@ import GoogleTagManager from 'components/googleTagManager';
 import GutenbergContent from 'components/gutenbergContent';
 import Head from 'components/head';
 import Header from 'components/header';
+import Heading from 'components/helpers/heading';
 import HeaderWithImage from 'components/headerWithImage';
 import HubContent from 'components/hub/content';
 import HubList from 'components/hub/list';
@@ -39,7 +45,15 @@ import ImageSet from 'components/imageSet';
 import InfiniteItemList from 'components/infiniteItemList';
 import Innovator from 'components/innovator';
 import InnovatorHeader from 'components/innovatorHeader';
+import Link from 'components/helpers/link';
 import LinkTeaser from 'components/linkTeaser';
+import List50View from 'components/list50/view';
+import List50Heading from 'components/list50/heading';
+import List50Header from 'components/list50/header';
+import List50Content from 'components/list50/content';
+import List50Item from 'components/list50/item';
+import List50Flyout from 'components/list50/flyout';
+import List50Sidebar from 'components/list50/sidebar';
 import ListDescription from 'components/listDescription';
 import ListGroup from 'components/listGroup';
 import ListHeader from 'components/listHeader';
@@ -49,6 +63,7 @@ import ListMenuItem from 'components/listMenuItem';
 import ListMenuItems from 'components/listMenuItems';
 import Login from 'components/accounts/login/';
 import MagazineStory from 'components/magazineStory';
+import MagazineStoryList from 'components/magazineStoryList';
 import MagazineHero from 'components/magazineHero';
 import MagazineIssue from 'components/magazineIssue';
 import MagazineIssues from 'components/magazineIssues';
@@ -63,7 +78,6 @@ import Order from 'components/accounts/order';
 import OrderHistory from 'components/accounts/orderHistory';
 import OurTeamModule from 'components/ourTeamModule';
 import PageBody from 'components/pageBody';
-import Parsely from 'components/parsely';
 import Placeholder from 'components/placeholder';
 import PodcastArchiveHeader from 'components/podcast/archive/header';
 import PodcastContentItem from 'components/podcast/archive/contentItem';
@@ -98,6 +112,9 @@ import TeamModuleItem from 'components/ourTeamModule/item';
 import TeaserItem from 'components/teaserItem';
 import TermArchiveContentList from 'components/termArchiveContentList';
 import TopicsModule from 'components/topicsModule';
+import UpdateEmailRequest from 'components/accounts/updateEmail/request';
+import UpdateEmailConfirm from 'components/accounts/updateEmail/confirmation';
+import UpdateEmailRequest2 from 'components/accounts/updateEmail/requestStep2/';
 import UserGreeting from 'components/userGreeting';
 import Verify from 'components/accounts/verify';
 import Video from 'components/video';
@@ -111,13 +128,16 @@ export const componentMap = {
   'ad-unit': AdUnit,
   account: AccountPage,
   'account-navigation': AccountNavigation,
+  activate: Activate,
   'admin-bar': Placeholder,
   'audio-element': AudioElement,
   'author-partial': AuthorPage,
   'bc/brightcove': Brightcove,
+  blueconic: Blueconic,
   body: withLoader(Body),
   byline: Byline,
   'column-area': ColumnArea,
+  'complete-profile': CompleteProfile,
   'confirm-registration': ConfirmRegistration,
   'content-area': ContentArea,
   'content-body': ContentBody,
@@ -130,6 +150,7 @@ export const componentMap = {
   disqus: Disqus,
   embed: RawHTML,
   'error-404': Error404,
+  'events-promo-module': EventsPromoModule,
   'core-embed': RawHTML,
   'feed-anchor': CardStack,
   footer: Footer,
@@ -138,6 +159,7 @@ export const componentMap = {
   'gutenberg-content': GutenbergContent,
   head: Head,
   header: Header,
+  heading: Heading,
   'header-with-image': HeaderWithImage,
   'hub-content': HubContent,
   'hub-content-list': HubList,
@@ -147,6 +169,7 @@ export const componentMap = {
   image: Image,
   'infinite-list': InfiniteItemList,
   innovator: Innovator,
+  'link-to': Link,
   'link-teaser': LinkTeaser,
   'innovator-header': InnovatorHeader,
   'list-header': ListHeader,
@@ -156,7 +179,20 @@ export const componentMap = {
   'list-menu-items': ListMenuItems,
   'list-group': ListGroup,
   'list-item': ListItem,
-  'list-50-item': CompanyListItem,
+  'list-50-content': List50Content,
+  'list-50-heading': List50Heading,
+  'list-50-header': List50Header,
+  'list-50-sidebar': List50Sidebar,
+  'list-50-intro-item': CompanyListItem,
+  'list-50-location': List50View,
+  'list-50-location-item': List50Item,
+  'list-50-rank': List50View,
+  'list-50-rank-item': List50Item,
+  'list-50-years': List50View,
+  'list-50-years-item': List50Item,
+  'list-50-name': List50View,
+  'list-50-name-item': List50Item,
+  'list-50-item-flyout': List50Flyout,
   login: Login,
   logo: Image,
   'magazine-card': MagazineYear,
@@ -168,6 +204,7 @@ export const componentMap = {
   menu: Menu,
   'menu-item': MenuItem,
   'mittr-plugin-extension/carousel': Carousel,
+  'mittr-plugin-extension/contact-form': ContactForm,
   'mittr-plugin-extension/content-list': ContentList,
   'mittr-plugin-extension/content-list-item': ContentListItem,
   'mittr-plugin-extension/image-set': ImageSet,
@@ -176,12 +213,12 @@ export const componentMap = {
   'mittr-plugin-extension/stats-widget': StatsWidget,
   'mittr-plugin-extension/related': Related,
   'mittr-plugin-extension/magazine-story': MagazineStory,
+  'mittr-plugin-extension/magazine-story-list': MagazineStoryList,
   newsletter: Newsletter,
   order: Order,
   'order-history': OrderHistory,
   'our-team-module': OurTeamModule,
   pagination: Placeholder,
-  parsely: Parsely,
   'page-body': PageBody,
   'podcast-archive-header': PodcastArchiveHeader,
   'podcast-content-item': PodcastContentItem,
@@ -216,6 +253,9 @@ export const componentMap = {
   'technology-meta': ContentList,
   'topic-header': CardStack,
   'topics-module': TopicsModule,
+  'update-email-request': UpdateEmailRequest,
+  'update-email-confirmation': UpdateEmailConfirm,
+  'update-email-request-step-2': UpdateEmailRequest2,
   'user-greeting': UserGreeting,
   verify: Verify,
   video: Video,

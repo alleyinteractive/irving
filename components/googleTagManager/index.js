@@ -1,57 +1,106 @@
-import React, { useEffect } from 'react';
+import React, {
+  useEffect,
+  createContext,
+} from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import useLoadScript from 'hooks/useLoadScript';
 import isNode from 'utils/isNode';
+import { connect } from 'react-redux';
+import { zephrDataLayerSelector } from 'selectors/zephrDataLayerSelector';
+
+export const GTMContext = createContext({
+  dataLayer: {},
+  pushEvent: () => {},
+});
 
 const GoogleTagManager = (props) => {
   const {
+    children,
     containerId,
     dataLayer,
+    zephrDataLayer,
   } = props;
 
-  if (! containerId) {
-    return null;
-  }
+  // Define window dataLayer
+  window.dataLayer = window.dataLayer || [];
 
   /**
-   * Load GTM script, but only once.
+   * Helper function passed by context to push events to Google Tag Manager.
+   *
+   * @param {string} eventName Name of the event.
+   * @param {object} options Options to pass to push event.
    */
-  const loaded = useLoadScript(
-    `https://www.googletagmanager.com/gtm.js?id=${containerId}`,
-    'google-tag-manager'
-  );
+  const pushEvent = (eventName, options = {}) => {
+    // Do not run if dataLayer has no values!
+    const hasValues = Object.keys(dataLayer).filter((key) => dataLayer[key]);
+    if (0 === hasValues.length) {
+      return;
+    }
+
+    window.dataLayer.push({
+      event: eventName,
+      ...dataLayer,
+      ...options,
+    });
+  };
 
   /**
-   * Effect for starting up the GTM dataLayer.
+   * Check for gtm.start in dataLayer.
+   */
+  const started = window.dataLayer.filter((dataLayerObj) => (
+    dataLayerObj['gtm.start']
+  ));
+
+  /**
+   * Effect for starting the GTM dataLayer.
    */
   useEffect(() => {
-    // gtm start function, invoked in useEffect so it doesn't fire on every render
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'gtm.start': new Date().getTime(),
-      event: 'gtm.js',
-    });
-
-    return () => {};
-  }, [loaded]);
+    if (0 === started.length) {
+      pushEvent('gtm.js', { 'gtm.start': new Date().getTime() });
+    }
+  }, []);
 
   /**
    * Effect for pushing new data to the GTM dataLayer.
    */
   useEffect(() => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'irving.historyChange',
-      ...dataLayer,
-    });
-
-    return () => {};
+    pushEvent('irving.historyChange');
   }, [dataLayer]);
+
+  /**
+   * Effect for pushing Zephr-related events.
+   */
+  useEffect(() => {
+    const { isLoading, dataLayer: zephrDataLayerResults } = zephrDataLayer;
+
+    // Do not update if empty or loading.
+    if (isLoading) {
+      return;
+    }
+
+    const {
+      loggedIn,
+      hasDigitalAccess,
+    } = zephrDataLayerResults;
+
+    // Push values to dataLayer.
+    if (loggedIn && hasDigitalAccess) {
+      pushEvent('zephr.subscriberView', zephrDataLayerResults);
+    } else if (loggedIn) {
+      pushEvent('zephr.userView', zephrDataLayerResults);
+    } else {
+      pushEvent('zephr.anonymousView', zephrDataLayerResults);
+    }
+  }, [zephrDataLayer]);
+
+  if (! containerId) {
+    return children;
+  }
 
   return (
     <>
       <Helmet>
+        <script src={`https://www.googletagmanager.com/gtm.js?id=${containerId}`} async />
         {/* Initial SSR event. */}
         <script>
           {`
@@ -76,6 +125,9 @@ const GoogleTagManager = (props) => {
           }}
         />
       </noscript>
+      <GTMContext.Provider value={{ dataLayer, pushEvent }}>
+        {children}
+      </GTMContext.Provider>
     </>
   );
 };
@@ -86,6 +138,24 @@ GoogleTagManager.propTypes = {
     PropTypes.object,
     PropTypes.array, // Empty objects turn to arrays in PHP :(
   ]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]).isRequired,
+  zephrDataLayer: PropTypes.shape({
+    isLoading: PropTypes.bool.isRequired,
+    dataLayer: PropTypes.shape({
+      loggedIn: PropTypes.bool,
+      UserId: PropTypes.string,
+      remainingCredits: PropTypes.number,
+      usedCredits: PropTypes.number,
+      hasDigitalAccess: PropTypes.bool,
+    }).isRequired,
+  }).isRequired,
 };
 
-export default GoogleTagManager;
+const mapStateToProps = (state) => ({
+  zephrDataLayer: zephrDataLayerSelector(state),
+});
+
+export default connect(mapStateToProps)(GoogleTagManager);

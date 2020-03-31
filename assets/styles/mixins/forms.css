@@ -1,6 +1,7 @@
 @mixin formInput() {
   background-color: #fff;
   border: 1px solid #000;
+  border-radius: 0;
   color: #222;
   font-size: rem(20);
   padding: rem(10);
@@ -48,7 +49,7 @@
 
   input {
     display: block;
-    margin-bottom: rem(10);
+    margin-bottom: rem(15);
   }
 
   input[type='email'],
@@ -115,13 +116,26 @@
     margin-bottom: rem(10);
   }
 
+  /* stylelint-disable selector-max-specificity */
   :global(.zephr-form-button-group) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: rem(15);
+
+    &:global(.login-group) {
+      align-items: center;
+      justify-content: flex-start;
+
+      :global(input[type=submit]) {
+        margin-bottom: 0;
+        margin-right: rem(15);
+      }
+    }
+    /* stylelint-enable selector-max-specificity */
 
     a {
-      font-weight: 600;
+      font-weight: 500;
       text-decoration: underline;
     }
   }

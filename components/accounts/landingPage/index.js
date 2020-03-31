@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import TwitterIcon from 'assets/icons/twitter.svg';
-import FacebookIcon from 'assets/icons/facebook.svg';
-import GoogleIcon from 'assets/icons/google.svg';
 import parse from 'html-react-parser';
 import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
+import { format } from 'date-fns';
 import {
   getFirstName,
   getEmail,
@@ -17,6 +15,7 @@ import history from 'utils/history';
 import {
   actionRequestUserLogOut,
   actionSubmitForm,
+  actionRequestUpdateEmail,
 } from 'actions/zephrActions';
 
 import AccountInfoForm from './infoForm';
@@ -24,16 +23,14 @@ import styles from './landingPage.css';
 
 const AccountLandingPage = ({
   firstName,
-  subscriptionName,
-  subscriptionType,
-  accountNumber,
   email,
   newsletters,
   discounts,
-  renewalDate,
   logOut,
   isAuthenticated,
   submitResetRequest,
+  submitUpdateEmail,
+  account,
 }) => {
   // Prevent unauthenticated users from being able to visit this route.
   if (! isAuthenticated) {
@@ -50,6 +47,13 @@ const AccountLandingPage = ({
       isEditingPassword: false,
     });
   };
+
+  const onSubmitUpdateEmail = (event) => {
+    submitUpdateEmail({
+      email: event.value,
+    });
+  };
+
   const onClickResetPassword = () => {
     submitResetRequest({
       type: 'resetRequest',
@@ -60,13 +64,31 @@ const AccountLandingPage = ({
   };
 
   const generateAccessBanner = () => {
-    switch (subscriptionType) {
-      case 'all-access':
-        return __('You have unlimited access to technologyreview.com', 'mittr');
+    switch (account.subscriptionType) {
+      case 'Basic Digital':
+      case 'All Access Digital':
+      case 'Online Only Access':
+        return __(
+          'You have unlimited access to technologyreview.com. ', 'mittr'
+        );
       default:
-        return __('You have limited access to technologyreview.com', 'mittr');
+        return __('You have limited access to technologyreview.com. ', 'mittr');
     }
   };
+  let renewalDate = '';
+  if (account.subscriptionExpiration) {
+    renewalDate = format(
+      new Date(Date.parse(account.subscriptionExpiration)),
+      'MMMM dd, yyyy'
+    );
+  }
+
+  let accountNumber = '';
+  if ('undefined' !== typeof account.orders &&
+  0 < account.orders.length
+  ) {
+    accountNumber = account.orders[0].customer_number;
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -89,7 +111,7 @@ const AccountLandingPage = ({
             {__('Your email address is', 'mittr')}{' '}
             <strong>{email}</strong>
             {__(
-              '—we send all newsletters and other emails to that address',
+              '—we send all newsletters and other emails to that address.',
               'mittr'
             )}
           </p>
@@ -108,7 +130,7 @@ const AccountLandingPage = ({
             ) : (
               <AccountInfoForm
                 type="email"
-                handleSubmit={() => {}}
+                handleSubmit={(event) => onSubmitUpdateEmail(event)}
                 placeholderValue={email}
               />
             )}
@@ -143,24 +165,34 @@ const AccountLandingPage = ({
               tabIndex="0"
               onClick={logOut}
             >
-              {__('Log out', 'mittr')}
+              {__('Sign out', 'mittr')}
             </button>
           </div>
         </div>
 
         <div className={styles.subscription}>
           <h2>{__('Subscription', 'mittr')}</h2>
-          <p>
-            {__('You are an', 'mittr')}{' '}
-            <strong>
-              {subscriptionName}{' '}
-              {__('subscriber', 'mittr')}{' '}
-            </strong>,{' '}
-            {__('account', 'mittr')}{' '}
-            <strong>#{accountNumber}</strong>.{' '}
-            {__('Your subscription will automatically renew on', 'mittr')}{' '}
-            <strong>{renewalDate}</strong>.
-          </p>
+          { account.subscriptionActive ? (
+            <p>
+              {__('You are an', 'mittr')}{' '}
+              <strong>
+                {account.subscriptionType}{' '}
+                {__('subscriber', 'mittr')}{' '}
+              </strong>,{' '}
+              {__('account', 'mittr')}{' '}
+              <strong>#{accountNumber}</strong>.{' '}
+              {__(
+                'Your subscription will automatically renew on',
+                'mittr'
+              )}{' '}
+              <strong>{renewalDate}</strong>.
+            </p>
+          ) :
+            (
+              <p>
+                {__('You are not subscribed.', 'mittr')}
+              </p>
+            )}
 
           <div className={styles.buttonContainer}>
             <a
@@ -184,52 +216,6 @@ const AccountLandingPage = ({
       </div>
 
       <div className={styles.extraControls}>
-        <div className={styles.socialConnections}>
-          <h2>{__('Social login connections', 'mittr')}</h2>
-          <p>
-            {__(`Simplify signing in by connecting your social media accounts
-            to this site. (We will never post anything to your social media
-            accounts on your behalf without explicitly asking for your
-            permission first, of course.)`, 'mittr')}
-          </p>
-
-          <div className={styles.buttonContainer}>
-            <button
-              id="facebookConnectBtn"
-              className={styles.button}
-              type="button"
-              tabIndex="0"
-            >
-              <div className={styles.facebookIcon}>
-                <FacebookIcon />
-              </div>
-              {__('Connect Facebook', 'mittr')}
-            </button>
-            <button
-              id="twitterConnectBtn"
-              className={styles.button}
-              type="button"
-              tabIndex="0"
-            >
-              <div className={styles.twitterIcon}>
-                <TwitterIcon />
-              </div>
-              {__('Connect Twitter', 'mittr')}
-            </button>
-            <button
-              id="googleConnectBtn"
-              className={styles.button}
-              type="button"
-              tabIndex="0"
-            >
-              <div className={styles.googleIcon}>
-                <GoogleIcon />
-              </div>
-              {__('Connect Google', 'mittr')}
-            </button>
-          </div>
-        </div>
-
         {0 < discounts.length && (
           <div className={styles.discounts}>
             <h2>{__('Discounts and deals', 'mittr')}</h2>
@@ -258,7 +244,6 @@ const AccountLandingPage = ({
 // @todo The default values here are stubbed out. They will need to be pulled
 // from Zephr as the integration is further built out.
 AccountLandingPage.defaultProps = {
-  accountNumber: 1635767369,
   discounts: [
     {
       name: 'EmTech Next 2019 Offer',
@@ -272,35 +257,38 @@ AccountLandingPage.defaultProps = {
     },
   ],
   newsletters: ['The Download', 'Chain Letter'],
-  renewalDate: 'May 1, 2020',
-  subscriptionName: 'All Access Digital',
-  subscriptionType: 'all-access',
+  account: {
+    orders: [],
+    subscriptionType: '',
+    subscriptionExpiration: '',
+    subscriptionActive: false,
+  },
 };
 /* eslint-enable */
 
 AccountLandingPage.propTypes = {
-  accountNumber: PropTypes.number,
   discounts: PropTypes.array,
   email: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   logOut: PropTypes.func.isRequired,
   newsletters: PropTypes.array,
-  renewalDate: PropTypes.string,
-  subscriptionName: PropTypes.string,
-  subscriptionType: PropTypes.string,
   submitResetRequest: PropTypes.func.isRequired,
+  submitUpdateEmail: PropTypes.func.isRequired,
+  account: PropTypes.object,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   logOut: () => dispatch(actionRequestUserLogOut()),
   submitResetRequest: (data) => dispatch(actionSubmitForm(data)),
+  submitUpdateEmail: (payload) => dispatch(actionRequestUpdateEmail(payload)),
 });
 
 const withRedux = connect(
   (state) => ({
     email: getEmail(state),
     firstName: getFirstName(state),
+    account: getAccount(state),
     isAuthenticated:
       0 < Object.keys(getProfile(state)).length &&
       0 < Object.keys(getAccount(state)).length,

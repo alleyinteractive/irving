@@ -1,25 +1,53 @@
-.accountWrap {
+.wrapper {
   font-family: $sans;
   margin: rem(40) auto rem(50);
   max-width: rem(758);
   padding: 0 rem(15);
 }
 
-.accountHeader {
+.header {
   @include accountHeader;
 }
 
-.accountSubHeader {
+.subheader {
   @include accountSubHeader;
 }
 
-.accountHeaderDescription {
+.headerDescription {
   @include accountHeaderDescription;
   margin-bottom: rem(25);
 }
 
 .formWrap {
   @include zephrForm;
+
+  input[type='submit'] {
+    margin-top: rem(20);
+  }
+
+  input[type='email'],
+  input[type='password'],
+  input[type='text'] {
+    font-size: rem(16);
+    margin-bottom: rem(10);
+    text-align: center;
+
+    @media ($mdMin) {
+      font-size: rem(20);
+      margin-bottom: rem(15);
+      text-align: left;
+    }
+  }
+
+  :global(.terms-text) {
+    font-size: rem(14);
+    line-height: 1.2857;
+
+    @media ($mdMin) {
+      font-size: 1rem;
+      line-height: 1.23;
+    }
+  }
 }
 
 .formError {

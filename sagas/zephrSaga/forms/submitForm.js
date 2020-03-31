@@ -7,10 +7,12 @@ import {
   actionReceiveUserRegistration,
   actionReceiveUserLogin,
   actionReceiveUserAccount,
-  actionSendUserVerificationEamil,
+  actionSendUserVerificationEmail,
   actionReceiveRegistrationError,
+  actionReceiveResetError,
 } from 'actions/zephrActions';
 import zephrService from 'services/zephrService';
+import nexusService from 'services/nexusService';
 import history from 'utils/history';
 import createDebug from 'services/createDebug';
 import { getZephrCookie } from 'selectors/zephrSelector';
@@ -49,7 +51,7 @@ export default function* submitForm({ payload: { type, credentials } }) {
 /**
  * Submit the user login request to Zephr.
  *
- * @param {{ email, password }} credentials The user's login credentials.
+ * @param {{ email, password, redirectTo }} credentials The user's login credentials.
  */
 function* submitLogin(credentials) {
   // Submit the form to Zephr.
@@ -72,7 +74,7 @@ function* submitLogin(credentials) {
       // Get the user's account.
       yield call(getAccount, cookie);
       // Push the user to the homepage.
-      history.push('/');
+      history.push(credentials.redirectTo);
     } catch (error) {
       // Post the error message to the console.
       yield call(debug, error);
@@ -105,9 +107,9 @@ function* submitRegistration(credentials) {
     try {
       yield call(zephrService.sendVerificationEmail, credentials.email);
       // Update the state to reflect the email being sent.
-      yield put(actionSendUserVerificationEamil());
+      yield put(actionSendUserVerificationEmail());
       // // Push the user to the confirmation page.
-      history.push('/register/confirmation');
+      history.push('/register/confirmation/');
     } catch (error) {
       // Post the error message to the console.
       yield call(debug, error);
@@ -147,8 +149,31 @@ export function* getAccount(sessionCookie) {
 
   // `null` will be returned if no account can be found.
   if ('object' === typeof account) {
-    // Store user account information.
-    yield put(actionReceiveUserAccount(account));
+    // Retrieve SFG account data from the nexus.
+    try {
+      const {
+        emailAddress: email,
+      } = account;
+      // Generate the request header.
+      const { header } = yield call(nexusService.getRequestHeader);
+      const {
+        orders,
+        subscription_active: subscriptionActive,
+        subscription_type: subscriptionType,
+        subscription_expire_date: subscriptionExpiration,
+      } = yield call(nexusService.getUser, { email, header });
+
+      // Store user account information.
+      yield put(actionReceiveUserAccount({
+        ...account,
+        orders,
+        subscriptionActive,
+        subscriptionType,
+        subscriptionExpiration,
+      }));
+    } catch (error) {
+      console.error(error); // eslint-disable-line no-console
+    }
   }
 }
 
@@ -162,7 +187,7 @@ function* submitResetRequest(credentials) {
   const { status, type } = yield call(zephrService.requestReset, credentials); // eslint-disable-line
 
   if ('success' === status) {
-    history.push('/reset-password/request-confirmation');
+    history.push('/reset-password/request-confirmation/');
   }
 
   if ('failed' === status) {
@@ -184,10 +209,10 @@ function* submitReset(credentials, cookie) {
   );
 
   if ('success' === status) {
-    history.push('/reset-password/confirmation');
+    history.push('/reset-password/confirmation/');
   }
 
   if ('failed' === status) {
-    // yield put(actionReceiveResetError(type));
+    yield put(actionReceiveResetError(type));
   }
 }

@@ -8,20 +8,26 @@ import classNames from 'classnames';
 // Styles
 import styles from './userGreeting.css';
 
-const Anonymous = ({ themeName }) => (
+const Anonymous = ({ themeName, context }) => (
   <>
     <Link
-      to="/login"
+      to="/login/"
       className={classNames(styles.button, styles[`button--${themeName}`])}
+      data-event-category={context}
+      data-event-action="click"
+      data-event-label="sign-in"
     >
       {__('Sign in', 'mittr')}
     </Link>
     <Link
-      to="/subscribe"
+      to="/subscribe/"
       className={classNames(
         styles.subscribe,
         styles[`subscribe--${themeName}`]
       )}
+      data-event-category={context}
+      data-event-action="click"
+      data-event-label="subscribe-button"
     >
       {__('Subscribe', 'mittr')}
     </Link>
@@ -30,6 +36,7 @@ const Anonymous = ({ themeName }) => (
 
 Anonymous.propTypes = {
   themeName: PropTypes.string.isRequired,
+  context: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Anonymous);

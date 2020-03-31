@@ -1,19 +1,19 @@
-.accountWrap {
+.wrapper {
   font-family: $sans;
   margin: rem(40) auto rem(50);
   max-width: rem(758);
   padding: 0 rem(15);
 }
 
-.accountHeader {
+.header {
   @include accountHeader;
 }
 
-.accountSubHeader {
+.subheader {
   @include accountSubHeader;
 }
 
-.accountHeaderDescription {
+.headerDescription {
   @include accountHeaderDescription;
   margin-bottom: rem(25);
 }
@@ -36,12 +36,13 @@
   display: flex;
   margin: 0;
   padding: 0;
+  position: relative;
 
   li {
     margin: 0 rem(3);
   }
 
-  a {
+  button {
     font-weight: 600;
     padding-right: rem(5);
     text-decoration: underline;
@@ -76,4 +77,45 @@
 
 .registerLink {
   text-decoration: underline;
+}
+
+.tooltip {
+  background-color: $color-deck;
+  color: $white;
+  max-width: rem(300);
+  padding: rem(15) rem(10);
+  position: absolute;
+  top: rem(-145);
+
+  /* stylelint-disable */
+  &:after {
+    top: 100%;
+    left: rem(26);
+    border: solid transparent;
+    border-top-color: $color-deck;
+    border-width: rem(10);
+    content: '';
+    height: 0;
+    margin-left: rem(-10);
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+  }
+  /* stylelint-enable */
+
+  p {
+    color: $white;
+    font-size: rem(14);
+    letter-spacing: 1.25;
+    line-height: 1.25;
+    margin-bottom: rem(15);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+  }
 }

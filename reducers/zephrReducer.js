@@ -1,16 +1,17 @@
 import {
-  REQUEST_FORM_FOR_ROUTE,
   RECEIVE_FORM_FOR_ROUTE,
-  RECEIVE_ZEPHR_USER_SESSION,
-  RECEIVE_ZEPHR_USER_PROFILE,
-  RECEIVE_USER_LOGIN,
   RECEIVE_LOGIN_ERROR,
   RECEIVE_PASSWORD_VERIFICATION_ERROR,
-  RECEIVE_USER_REGISTRATION,
   RECEIVE_REGISTRATION_ERROR,
+  RECEIVE_RESET_PASSWORD_ERROR,
   RECEIVE_USER_LOG_OUT,
+  RECEIVE_USER_LOGIN,
+  RECEIVE_USER_REGISTRATION,
   RECEIVE_ZEPHR_USER_ACCOUNT,
+  RECEIVE_ZEPHR_USER_PROFILE,
+  RECEIVE_ZEPHR_USER_SESSION,
   RECEIVE_ZEPHR_USER_VERIFICATION,
+  REQUEST_FORM_FOR_ROUTE,
   SUBMIT_ZEPHR_FORM,
 } from 'actions/types';
 import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
@@ -54,8 +55,9 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         ...state,
         session: {
           ...state.session,
-          payload,
+          ...payload,
         },
+        forms: disableLoadState(state),
       };
     case RECEIVE_ZEPHR_USER_PROFILE:
       return {
@@ -92,7 +94,10 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: {
           ...state.forms,
           login: {
-            components: setFormErrorState(state.forms.login, payload),
+            ...state.forms.login,
+            components: setFormErrorState(
+              disableLoadState(state).login, payload
+            ),
             error: true,
             errors: [
               ...state.forms.login.errors,
@@ -126,7 +131,10 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         forms: {
           ...state.forms,
           register: {
-            components: setFormErrorState(state.forms.register, payload),
+            ...state.forms.register,
+            components: setFormErrorState(
+              disableLoadState(state).register, payload
+            ),
             error: true,
             errors: [
               ...state.forms.register.errors,
@@ -144,12 +152,26 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
           ...state.forms,
           [payload]: {
             ...state.forms[payload],
-            components: setPasswordErrorState(state.forms[payload]),
+            components: setPasswordErrorState(
+              disableLoadState(state)[payload]
+            ),
             error: true,
-            errors: [
-              ...state.forms.register.errors,
-              'verify-password',
-            ],
+            errors: ['verify-password'],
+          },
+        },
+      };
+    case RECEIVE_RESET_PASSWORD_ERROR:
+      return {
+        ...state,
+        forms: {
+          ...state.forms,
+          reset: {
+            ...state.forms.reset,
+            components: setFormErrorState(
+              disableLoadState(state).reset, payload
+            ),
+            error: true,
+            errors: [payload],
           },
         },
       };
@@ -181,46 +203,6 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
  * @returns {object} form
  */
 function submitForm(form) {
-  let tmp = form;
-
-  if (form.error) {
-    tmp = clearFormErrors(form);
-  }
-
-  const fields = JSON.parse(form.components);
-
-  const components = fields.map((el) => {
-    if ('submit-button' === el.id) {
-      return {
-        ...el,
-        value: 'Loading...',
-      };
-    }
-
-    return el;
-  });
-
-  return {
-    ...tmp,
-    components: JSON.stringify(components),
-  };
-}
-
-/**
- * A function that is run any time a form is submitted that cleans up the state of a
- * submitted form that contains errors. If no errors are present, the form is returned.
- *
- * @param {object} state   The current state.
- * @param {string} route   The form's route (e.g. /login).
- *
- * @returns {object} form  The cleared form.
- */
-function clearFormErrors(form) {
-  // If there is no error, return the form.
-  if (! form.error) {
-    return form;
-  }
-
   // Get the component fields.
   const fields = JSON.parse(form.components);
   // Remove any errors
@@ -234,6 +216,7 @@ function clearFormErrors(form) {
 
     return el;
   });
+
   // Retrieve the position of any active error message.
   const activeErrorIndexes = components.map(
     (component, index) => {
@@ -249,12 +232,81 @@ function clearFormErrors(form) {
     components.splice(activeErrorIndexes.pop(), 1);
   }
 
+  const withLoadState = components.map((el) => {
+    if ('submit-button' === el.id) {
+      return {
+        ...el,
+        value: 'Loading...',
+      };
+    }
+
+    return el;
+  });
+
   return {
     ...form,
+    components: JSON.stringify(withLoadState),
     error: false,
     errors: [],
-    components: JSON.stringify(components),
   };
+}
+
+/**
+ * Ensure the 'Loading...' text is removed from any forms once
+ * we receive a user session and reset it to the default value.
+ *
+ * @param {object} state The current state.
+ *
+ * @param {object} withKeys The cleaned form state.
+ */
+function disableLoadState(state) {
+  const {
+    forms,
+  } = state;
+
+  // Create an array of forms with cleaned load state.
+  const cleanedForms =
+    Object.values(forms).map((form) => {
+      // Get the components.
+      const { components } = form;
+      // Get the form fields.
+      const fields = JSON.parse(components);
+      // Isolate the submit button.
+      const submitButton = fields.filter(
+        (field) => 'submit-button' === field.id
+      )[0];
+
+      // Only operate on forms with an active load state.
+      if ('Loading...' === submitButton.value) {
+        fields.splice(fields.length - 1, 1, {
+          ...submitButton,
+          value: defaultSubmitText(form.type),
+        });
+
+        return {
+          ...form,
+          // type: form.type,
+          components: JSON.stringify(fields),
+        };
+      }
+
+      return form;
+    });
+
+  let withKeys = {};
+  // Populate the withKeys object of the type { [type]: form, ... } to
+  // match the initial shape of the forms state object.
+  cleanedForms.map((form) => {
+    withKeys = {
+      ...withKeys,
+      [form.type]: form,
+    };
+
+    return true;
+  });
+
+  // Return the formatted value.
+  return withKeys;
 }
 
 /**
@@ -271,13 +323,35 @@ export function setFormErrorState(form, error) {
     return form.components;
   }
 
-  let obj = { ...form };
-  if (form.error) {
-    obj = clearFormErrors(form);
+  // Get the component fields.
+  const fields = JSON.parse(form.components);
+  // Remove any existing errors.
+  const components = fields.map((el) => {
+    if (true === el.invalid) {
+      return {
+        ...el,
+        invalid: false,
+      };
+    }
+
+    return el;
+  });
+
+  // Retrieve the position of any active error message.
+  const activeErrorIndexes = components.map(
+    (component, index) => {
+      const { key } = component;
+      if (key && key.includes('error-message')) {
+        return index;
+      }
+      return null;
+    }
+  ).filter((index) => null !== index);
+
+  while (activeErrorIndexes.length) {
+    components.splice(activeErrorIndexes.pop(), 1);
   }
 
-  // Get the components.
-  const components = JSON.parse(obj.components);
   // Get the targer's ID.
   const targetId = setErrorTargetId(error);
   // Get the target's position in the components array.
@@ -301,30 +375,12 @@ export function setFormErrorState(form, error) {
   // Add the error message to the components array.
   components.splice(position + 1, 0, message);
 
-  let value = 'Submit';
-  switch (form.type) {
-    case 'login':
-      value = 'Login';
-      break;
-    case 'register':
-      value = 'Create an account';
-      break;
-    case 'requestReset':
-      value = 'Send password reset link';
-      break;
-    case 'reset':
-      value = 'Change your password';
-      break;
-    default:
-      break;
-  }
-
   return JSON.stringify(
     components.map((el) => {
       if ('submit-button' === el.id) {
         return {
           ...el,
-          value,
+          value: defaultSubmitText(form.type),
         };
       }
 
@@ -341,15 +397,37 @@ export function setFormErrorState(form, error) {
  * @returns {object} form The transformed form.
  */
 export function setPasswordErrorState(form) {
-  let obj = form;
-  if (form.error) {
-    obj = clearFormErrors(form);
+  // Get the component fields.
+  const fields = JSON.parse(form.components);
+  // Get the components.
+  const components = fields.map((el) => {
+    if (true === el.invalid) {
+      return {
+        ...el,
+        invalid: false,
+      };
+    }
+
+    return el;
+  });
+
+  // Retrieve the position of any active error message.
+  const activeErrorIndexes = components.map(
+    (component, index) => {
+      const { key } = component;
+      if (key && key.includes('error-message')) {
+        return index;
+      }
+      return null;
+    }
+  ).filter((index) => null !== index);
+
+  while (activeErrorIndexes.length) {
+    components.splice(activeErrorIndexes.pop(), 1);
   }
 
   // Define the error.
   const error = 'verify-password';
-  // Get the components.
-  const components = JSON.parse(obj.components);
   // Get the target's position in the components array.
   const position = components.map((el) => el.id).indexOf('new-password');
   // Get the password input.
@@ -381,36 +459,41 @@ export function setPasswordErrorState(form) {
   // Add the error message to the components array.
   components.splice(position + 2, 0, message);
 
-  let value = 'Submit';
-  switch (form.type) {
-    case 'login':
-      value = 'Login';
-      break;
-    case 'register':
-      value = 'Create an account';
-      break;
-    case 'requestReset':
-      value = 'Send password reset link';
-      break;
-    case 'reset':
-      value = 'Change your password';
-      break;
-    default:
-      break;
-  }
-
   return JSON.stringify(
     components.map((el) => {
       if ('submit-button' === el.id) {
         return {
           ...el,
-          value,
+          value: defaultSubmitText(form.type),
         };
       }
 
       return el;
     })
   );
+}
+
+/**
+ * A function that returns the default submit button text for
+ * a given form type.
+ *
+ * @param {string} type The form type
+ *
+ * @returns {string} Submit button text.
+ */
+function defaultSubmitText(type) {
+  switch (type) {
+    case 'reset':
+      return 'Reset your password';
+    case 'resetRequest':
+      return 'Send password reset link';
+    case 'login':
+      return 'Sign in';
+    case 'register':
+      return 'Create this account';
+    default:
+      return 'Loading...';
+  }
 }
 
 /**
@@ -452,31 +535,38 @@ export function setErrorTargetId(type) {
  *
  * @returns {string} The error message.
  */
-/* eslint-disable max-len */
 export function formatErrorMessage(type) {
-  const messageBase = 'Oops! Let’s try that again';
+  const messageBase = 'Oops!';
 
   switch (type) {
     case 'email-address':
-      return `${messageBase} — Please enter a valid email address.`;
+      return `${messageBase} — Please enter
+       a valid email address. Please try again.`;
     case 'email-not-verified':
-      return `${messageBase} — Your email has not yet been verified. Please check your inbox for a verification email and try again.`;
+      return `${messageBase} — Your email has not
+       yet been verified. Please check your inbox
+       for a verification email and try again.`;
     case 'full-name':
-      return `${messageBase} — Please enter your full name.`;
+      return `${messageBase} — Please enter your full name. Please try again.`;
     case 'invalid-password':
-      return `${messageBase} — Invalid password. Please enter your password.`;
+      return `${messageBase} — That password doesn't match
+      our records. Please try again.`;
     case 'password-not-strong':
-      return `${messageBase} — Your password must be at least 8 characters, include one uppercase letter, one lowercase letter, and one symbol (e.g. !#$%&).`;
+      return `${messageBase} — Your password must be at
+       least 8 characters, include one uppercase letter,
+       one lowercase letter, and one symbol (e.g. !#$%&). Please try again.`;
     case 'terms-checkbox':
-      return `${messageBase} — You must agree to the terms of service in order to create an account.`;
+      return `${messageBase} — You must agree to the terms
+       of service in order to create an account.  Please try again.`;
     case 'user-already-exists':
-      return `${messageBase} — Account already exists!`;
+      return `${messageBase} — Account already exists! Please try again.`;
     case 'user-not-found':
-      return `${messageBase} — User not found. Please enter your email address.`;
+      return `${messageBase} — We couldn't find that
+      address in our records. Please try again.`;
     case 'verify-password':
-      return `${messageBase} — Passwords do not match. Please re-enter your password and try again.`;
+      return `${messageBase} — Passwords do not match.
+       Please re-enter your password and try again.`;
     default:
       return messageBase;
   }
 }
-/* eslint-enable */

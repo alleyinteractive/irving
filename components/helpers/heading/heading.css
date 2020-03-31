@@ -1,5 +1,4 @@
 .heading {
-  font-weight: 700;
 
   a {
     color: inherit;
@@ -27,7 +26,6 @@
 
 .base {
   composes: heading;
-  font-size: rem(16);
 }
 
 .step-up-one {

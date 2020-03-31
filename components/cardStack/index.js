@@ -5,6 +5,7 @@ import Link from 'components/helpers/link';
 import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
 import withThemes from 'components/hoc/withThemes';
+import ExpandableSocialShare from 'components/socialList/expandable';
 
 // Components
 import ContentSlider from './contentSlider';
@@ -28,13 +29,20 @@ const CardStack = ({
   textColor,
   sponsored: { url: sponsorLink },
   theme,
+  isCollection,
 }) => {
   const image = findChildByName('image', children);
   const logo = findChildByName('logo', children);
   const articles = filterChildrenByName('link-teaser', children);
+  const socialSharing = findChildByName('social-sharing', children);
 
   return (
     <header className={theme.wrapper} style={{ backgroundColor: color }}>
+      {! isCollection && (
+        <ExpandableSocialShare color={textColor}>
+          {socialSharing}
+        </ExpandableSocialShare>
+      )}
       <div className={isSubtopic || ! image ? theme.metaFull : theme.meta}>
         { eyebrow && (
           <Eyebrow
@@ -88,6 +96,7 @@ CardStack.defaultProps = {
   sponsored: {},
   isSponsored: false,
   textColor: '#FFFFFF',
+  isCollection: false,
 };
 
 CardStack.propTypes = {
@@ -105,6 +114,7 @@ CardStack.propTypes = {
     url: PropTypes.string,
   }),
   theme: PropTypes.object.isRequired,
+  isCollection: PropTypes.bool,
 };
 
 export default withThemes('card-stack', {

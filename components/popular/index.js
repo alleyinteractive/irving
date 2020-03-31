@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { withStyles } from 'critical-style-loader/lib';
-import Link from '../helpers/link';
-import withThemes from '../hoc/withThemes';
-
+import withThemes from 'components/hoc/withThemes';
+import Heading from 'components/helpers/heading';
+import Link from 'components/helpers/link';
 // Themes.
 import styles from './popular.css';
 import inFeedStyles from './popular--inFeed.css';
@@ -29,7 +30,17 @@ const Popular = ({
       className={theme.contentWrapper}
     >
       <div className={theme.contentModule}>
-        <h3 className={theme.title}>{__('Popular', 'mittr')}</h3>
+        <Heading
+          tag="h3"
+          themeName={'inFeed' === themeName ? 'sidebarWidget' : 'default'}
+          className={classNames(
+            {
+              [theme.title]: 'inFeed' !== themeName,
+            }
+          )}
+        >
+          {__('Popular', 'mittr')}
+        </Heading>
         <ol className={theme.stories}>
           {popularToRender.map((item) => (
             <li className={theme.story} key={item.title}>
