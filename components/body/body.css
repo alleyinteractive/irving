@@ -41,7 +41,8 @@
 
 .obscureContent {
   max-height: rem(1300);
-  overflow: hidden;
+  /* stylelint-disable-next-line declaration-no-important */
+  overflow: hidden !important; /* To prevent ads from modifying this attribute. */
   position: relative;
 
   @media ($smMin) {
