@@ -10,7 +10,6 @@ const RawHTML = (props) => {
     content,
     rich,
     oembed,
-    children,
   } = props;
   const html = sanitizeHtml(content, rich ? richText : plainText);
   const newProps = omit(
@@ -25,7 +24,6 @@ const RawHTML = (props) => {
           {...newProps}
           dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
         />
-        {children}
       </EmbedContainer>
     );
   }
@@ -35,13 +33,11 @@ const RawHTML = (props) => {
         {...newProps}
         dangerouslySetInnerHTML={{ __html: html }} // eslint-disable-line react/no-danger
       />
-      {children}
     </>
   );
 };
 
 RawHTML.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
   /**
    * HTML content to displayed using `dangerouslySetInnerHTML`
    */
