@@ -60,7 +60,7 @@
     font-size: rem(26);
     font-weight: 500;
     line-height: 1.07;
-    margin-bottom: rem(25);
+    margin-bottom: rem(20);
 
     [aria-expanded="false"] & {
       display: none;
