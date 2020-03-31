@@ -1,46 +1,44 @@
 :global {
   .ImageAlert {
+    @include container-with-bleed;
     background-color: $color-text;
     font-family: $sans;
-    width: 100%;
   }
 
   .ImageAlert__wrapper {
     display: flex;
+    flex-flow: row nowrap;
     height: auto;
     justify-content: space-between;
-
-    @media ($mdMin) {
-      height: rem(324);
-    }
   }
 
   .ImageAlert__fields {
-    padding-top: rem(40);
-    width: 100%;
-  }
-
-  .ImageAlert__fields,
-  .ImageAlert__image {
+    @include container;
     color: $white;
+    margin-bottom: rem(30);
+    margin-top: rem(40);
+    width: 100%;
 
     @media ($mdMin) {
-      width: 45%;
+      max-width: calc(tidy-span-full(6) - rem(20));
+      tidy-offset-left: 1;
+      width: calc(tidy-span(6) - rem(20));
     }
-  }
-
-  .ImageAlert__image img {
-    bottom: 0;
-    position: absolute;
-    width: 100%;
   }
 
   .ImageAlert__image {
     display: none;
+    flex: 1 0 auto;
     position: relative;
 
     @media ($mdMin) {
       display: block;
+    }
+
+    img {
+      bottom: 0;
+      position: absolute;
+      width: 100%;
     }
   }
 
