@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import useKeyboardFocusOutside from 'hooks/useKeyboardFocusOutside';
+import useHideAds from 'hooks/useHideAds';
 import {
   actionUpdateHeaderHeight,
   actionUpdateVisibility,
@@ -16,12 +17,13 @@ import {
 import LogoStacked from 'assets/icons/logoStacked.svg';
 import LogoHorizontal from 'assets/icons/logoHorizontal.svg';
 import TRGlyph from 'assets/icons/trGlyph.svg';
-import MegaMenuIcon from 'assets/icons/megaMenu.svg';
+import MegaMenuIcon from 'components/megaMenuIcon';
 
 import styles from './headerTemplate.css';
 
 const HeaderTemplate = ({
   children,
+  id,
   isHeadroom,
   isMobile,
   homeUrl,
@@ -30,7 +32,9 @@ const HeaderTemplate = ({
   const leaderboardAd = findChildByName('ad-unit', children);
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
+  const hideAds = useHideAds();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [iconHovered, setIconHovered] = useState(false);
 
   const headroomRef = useRef();
 
@@ -63,6 +67,7 @@ const HeaderTemplate = ({
   });
   return (
     <header
+      id={id} // used by nprogress bar
       className={classNames(styles.container)}
       ref={isHeadroom ? headroomRef : null}
     >
@@ -72,6 +77,7 @@ const HeaderTemplate = ({
       >
         <div className={classNames(styles.leaderboardRow, {
           [styles.displayNone]: isHeadroom || isMobile,
+          [styles.hideAds]: hideAds,
         })}
         >
           {leaderboardAd}
@@ -121,8 +127,16 @@ const HeaderTemplate = ({
               className={classNames(styles.button, {
                 [styles.expandedButton]: megaMenuIsExpanded,
               })}
+              style={{
+                background: iconHovered && ! megaMenuIsExpanded ?
+                  '#000' : '#fff',
+              }}
               type="button"
               onClick={() => toggleMegaMenu(! megaMenuIsExpanded)}
+              onMouseOver={() => setIconHovered(true)}
+              onMouseOut={() => setIconHovered(false)}
+              onBlur={() => setIconHovered(false)}
+              onFocus={() => setIconHovered(true)}
             >
               <span className="screen-reader-text">
                 {megaMenuIsExpanded ?
@@ -130,7 +144,8 @@ const HeaderTemplate = ({
                   __('Expand menu', 'mittr')}
               </span>
               <span aria-hidden="true" className={styles.buttonVisualContent}>
-                {megaMenuIsExpanded ? 'Close' : <MegaMenuIcon />}
+                {megaMenuIsExpanded ?
+                  'Close' : <MegaMenuIcon hovered={iconHovered} />}
               </span>
             </button>
             {(isExpanded) && (
@@ -145,7 +160,12 @@ const HeaderTemplate = ({
   );
 };
 
+HeaderTemplate.defaultProps = {
+  id: '',
+};
+
 HeaderTemplate.propTypes = {
+  id: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   isHeadroom: PropTypes.bool.isRequired,
   homeUrl: PropTypes.string.isRequired,

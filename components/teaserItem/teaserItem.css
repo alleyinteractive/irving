@@ -45,8 +45,13 @@
 
 .eyebrowLink {
   color: $color-deck;
+  font-size: rem(14);
   font-weight: 600;
   margin-right: rem(5);
+
+  @media ($mdMin) {
+    font-size: rem(16);
+  }
 }
 
 .title {
@@ -70,7 +75,7 @@
   color: $color-text;
   font-size: rem(16);
   line-height: 1.375;
-  margin-top: rem(15);
+  margin: rem(15) 0 rem(15) 0;
   width: 100%;
 
   @media ($smMin) {
@@ -89,6 +94,7 @@
 }
 
 .image {
+  margin-top: rem(6);
   overflow: hidden;
   width: 100%;
 }

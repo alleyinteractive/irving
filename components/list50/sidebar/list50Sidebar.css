@@ -39,5 +39,5 @@
 }
 
 .active {
-  color: red; /* TODO: change to white after theme color is applied. */
+  color: var(--list-50-text-color);
 }

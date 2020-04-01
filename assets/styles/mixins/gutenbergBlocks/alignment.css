@@ -54,6 +54,10 @@
     max-width: 100vw;
   }
 
+  &:global(.wp-block[data-align=full]) {
+    max-width: 80%;
+  }
+
   &:global(.alignfull img) {
     width: 100vw;
   }

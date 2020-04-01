@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import { __ } from '@wordpress/i18n';
 import withThemes from 'components/hoc/withThemes';
 import classNames from 'classnames';
 import { UIDReset, UIDConsumer } from 'react-uid';
 import kebabCase from 'lodash.kebabcase';
 import Link from 'components/helpers/link';
-
+import RawHTML from 'components/rawHTML';
 // Styles
 import styles from './postList.css';
 import withTitleTheme from './postList--withTitle.css';
@@ -66,9 +65,10 @@ const PostList = ({
                     </li>
                   ))}
                 </ul>
-                <Link to={viewMoreLink} className="view-more-link">
-                  {__('View all', 'mittr')} {headline} &#62;
-                </Link>
+                {React.createElement(RawHTML, {
+                  content: viewMoreLink,
+                  className: 'view-more-link',
+                })}
               </div>
             ) : (
               <div className={theme.wrapper}>
