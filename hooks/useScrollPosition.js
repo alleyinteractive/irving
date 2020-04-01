@@ -9,14 +9,14 @@ const useScrollPosition = () => {
   });
 
   // Set scroll position, using previous state to calculate scroll direction
-  const setScrollPosition = () => {
+  const setScrollPosition = debounce(() => {
     const position = document.body.getBoundingClientRect();
     setScrollData((prev) => ({
       x: position.left,
       y: - position.top,
       direction: - position.top < prev.y ? 'up' : 'down',
     }));
-  };
+  });
 
   // Set initial scroll position data
   useEffect(() => {
@@ -29,9 +29,11 @@ const useScrollPosition = () => {
 
   // Update scroll position data on scroll
   useEffect(() => {
-    document.addEventListener('scroll', debounce(() => {
-      setScrollPosition();
-    }, 50));
+    document.addEventListener('scroll', setScrollPosition);
+
+    return () => {
+      document.removeEventListener('scroll', setScrollPosition);
+    };
   }, []);
 
   return scrollData;
