@@ -12,6 +12,7 @@ import {
 } from 'actions';
 import CloseIcon from 'assets/icons/close.svg';
 import { findChildByName } from 'utils/children';
+import useHideAds from 'hooks/useHideAds';
 import styles from './sliderAd.css';
 
 const SliderAd = ({ children }) => {
@@ -21,6 +22,12 @@ const SliderAd = ({ children }) => {
   const isVisible = useSelector((state) => state.visible.sliderAd);
   const hasClosed = useSelector((state) => state.visible.sliderAdHasClosed);
   const dispatch = useDispatch();
+  const hideAds = useHideAds();
+
+  // Show nothing if we are supposed to hide ads.
+  if (hideAds) {
+    return null;
+  }
 
   const toggleVisibility = (value) => {
     dispatch(actionUpdateVisibility('sliderAd', value));
