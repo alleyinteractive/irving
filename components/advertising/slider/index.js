@@ -6,10 +6,13 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
+import get from 'lodash/get';
 import useScrollPosition from 'hooks/useScrollPosition';
 import {
   actionUpdateVisibility,
 } from 'actions';
+import checkUIComponentType from 'services/checkUIComponentType';
+import { getZephrComponents } from 'selectors/zephrRulesSelector';
 import CloseIcon from 'assets/icons/close.svg';
 import { findChildByName } from 'utils/children';
 import useHideAds from 'hooks/useHideAds';
@@ -21,6 +24,7 @@ const SliderAd = ({ children }) => {
   const [shouldLoad, setShouldLoad] = useState(false);
   const isVisible = useSelector((state) => state.visible.sliderAd);
   const hasClosed = useSelector((state) => state.visible.sliderAdHasClosed);
+  const zephrComponents = useSelector((state) => getZephrComponents(state));
   const dispatch = useDispatch();
   const hideAds = useHideAds();
 
@@ -28,6 +32,13 @@ const SliderAd = ({ children }) => {
   if (hideAds) {
     return null;
   }
+
+  // Select the markup from the components object.
+  const componentMarkup = get(
+    zephrComponents,
+    'overlayFooter.zephrOutput.data',
+    false
+  );
 
   const toggleVisibility = (value) => {
     dispatch(actionUpdateVisibility('sliderAd', value));
@@ -43,7 +54,12 @@ const SliderAd = ({ children }) => {
   const scrollData = useScrollPosition();
 
   useEffect(() => {
-    if (shouldLoad && 100 < scrollData.y && ! hasClosed) {
+    if (
+      shouldLoad &&
+      checkUIComponentType(componentMarkup, 'MeterNotice') &&
+      100 < scrollData.y &&
+      ! hasClosed
+    ) {
       setTimeout(() => toggleVisibility(true), 5000);
     }
   }, [scrollData]);
