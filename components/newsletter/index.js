@@ -156,7 +156,7 @@ const NewsletterSubscribe = ({
             {imgLogoUrl && (
               <img
                 src={imgLogoUrl}
-                alt="newsletter logo"
+                alt=""
                 className="newsletter__logoImg"
               />
             )}
@@ -316,7 +316,6 @@ const NewsletterSubscribe = ({
         {'sidebar' === themeName && (
           <a
             href="https://forms.technologyreview.com/newsletters/"
-            title={__('More Newsletter link', 'mittr')}
           >
             {__('More newsletters', 'mittr')} &#62;
           </a>
