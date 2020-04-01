@@ -43,7 +43,7 @@ const SliderAd = ({ children }) => {
   const scrollData = useScrollPosition();
 
   useEffect(() => {
-    if (100 < scrollData.y && ! hasClosed) {
+    if (shouldLoad && 100 < scrollData.y && ! hasClosed) {
       setTimeout(() => toggleVisibility(true), 5000);
     }
   }, [scrollData]);
@@ -55,7 +55,7 @@ const SliderAd = ({ children }) => {
       event.slot &&
       ! event.isEmpty &&
       event.slot.getAdUnitPath().includes('__slider') &&
-      adRef.currentv
+      adRef.current
     ) {
       setShouldLoad(true);
     }
