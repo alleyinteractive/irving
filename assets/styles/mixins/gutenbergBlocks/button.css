@@ -3,6 +3,7 @@
     @include block-level-element;
     @include block-alignment;
 
+    /* stylelint-disable selector-max-specificity */
     &:not(:global(.alignright)):not(:global(.alignleft)) {
       max-width: rem(300);
     }
