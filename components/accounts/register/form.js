@@ -13,6 +13,7 @@ import {
   getRegistrationForm,
 } from 'selectors/zephrSelector';
 import DataLoading from 'components/hoc/withData/loading';
+import Link from 'components/helpers/link';
 import toFormElements from 'sagas/zephrSaga/forms/toFormElements';
 import UserFields from './UserFields';
 
@@ -161,12 +162,16 @@ const RegisterForm = ({
           )}
         </span>
       )}
-      <h2 className={styles.confirmationText}>
-        {__(
-          'We\'ll email you a password confirmation link. Happy reading!',
-          'mittr'
-        )}
-      </h2>
+      <p>
+        {__('Review our ', 'mittr')}
+        <Link to="/about/terms-of-service/" className={styles.formLink}>
+          {__('terms of service', 'mittr')}
+        </Link>
+        {__(' and ', 'mittr')}
+        <Link to="/about/privacy/" className={styles.formLink}>
+          {__('privacy policy.', 'mittr')}
+        </Link>
+      </p>
     </form>
   );
 };
