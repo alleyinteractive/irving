@@ -1,6 +1,7 @@
 /* Header menu theme */
 
 .list {
+  align-items: center;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;

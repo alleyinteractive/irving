@@ -57,7 +57,7 @@
     color: $black;
     font-size: rem(18);
     font-weight: 600;
-    line-height: rem(24);
+    line-height: rem(27);
     margin-bottom: 0;
 
     @media ($mdMin) {
@@ -76,7 +76,7 @@
     @media ($mdMin) {
       font-size: rem(18);
       line-height: rem(28);
-    }    
+    }
   }
 
   h5 {
