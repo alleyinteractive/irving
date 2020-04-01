@@ -63,6 +63,13 @@ const AccountLandingPage = ({
     });
   };
 
+  const onClickCancel = () => {
+    setFormState({
+      isEditingEmail: false,
+      isEditingPassword: false,
+    });
+  };
+
   const generateAccessBanner = () => {
     switch (account.subscriptionType) {
       case 'Basic Digital':
@@ -128,13 +135,20 @@ const AccountLandingPage = ({
                 {__('Edit your email address', 'mittr')}
               </button>
             ) : (
-              <AccountInfoForm
-                type="email"
-                handleSubmit={(event) => onSubmitUpdateEmail(event)}
-                placeholderValue={email}
-              />
+              <div className={styles.formWrapper}>
+                <AccountInfoForm
+                  type="email"
+                  handleSubmit={(event) => onSubmitUpdateEmail(event)}
+                  placeholderValue={email}
+                />
+                <input
+                  type="button"
+                  value="Cancel"
+                  onClick={onClickCancel}
+                  className={styles.secondaryButton}
+                />
+              </div>
             )}
-
             <button
               id="editPasswordBtn"
               className={styles.button}
