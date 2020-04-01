@@ -6,9 +6,18 @@
   border-bottom: $border-thin;
   display: flex;
   flex-flow: row wrap;
-  padding-bottom: rem(32);
-  padding-top: rem(32);
+  padding-bottom: rem(16);
+  padding-top: rem(16);
   width: auto;
+
+  @media ($smMin) {
+    padding-bottom: rem(32);
+    padding-top: rem(32);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .link {
@@ -18,13 +27,21 @@
 }
 
 .name {
-  font-size: rem(25);
+  font-size: rem(18);
   font-weight: 600;
+
+  @media ($smMin) {
+    font-size: rem(25);
+  }
 }
 
 .subtitle {
-  font-size: rem(21);
+  font-size: rem(16);
   font-weight: 500;
+
+  @media ($smMin) {
+    font-size: rem(21);
+  }
 }
 
 .meta {
@@ -41,12 +58,14 @@
 }
 
 .image {
+  margin-right: rem(30);
+  min-width: rem(101);
   order: 0;
-  padding-left: rem(24);
-  tidy-offset-right: 1;
+  padding-left: rem(10);
   tidy-span: 2;
 
   @media ($mdMin) {
+    min-width: rem(111);
     padding-right: rem(36);
     tidy-offset-right: 0;
     tidy-span: 2;

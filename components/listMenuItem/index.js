@@ -13,6 +13,7 @@ const ListMenuItem = ({
   url,
   useAnchorNav,
   noBorder,
+  active,
 }) => {
   const anchorLink = `#${dashify(title)}`;
   return (
@@ -21,6 +22,7 @@ const ListMenuItem = ({
         to={useAnchorNav ? anchorLink : url}
         className={classNames(styles.link, {
           [styles.noBorder]: noBorder,
+          [styles.active]: active,
         })}
       >
         {title}
@@ -34,11 +36,13 @@ ListMenuItem.propTypes = {
   url: PropTypes.string.isRequired,
   useAnchorNav: PropTypes.bool,
   noBorder: PropTypes.bool,
+  active: PropTypes.bool,
 };
 
 ListMenuItem.defaultProps = {
   useAnchorNav: false,
   noBorder: false,
+  active: false,
 };
 
 export default withStyles(styles)(ListMenuItem);

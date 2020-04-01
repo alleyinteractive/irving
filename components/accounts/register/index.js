@@ -31,7 +31,7 @@ const Register = ({
       </p>
       <p className={styles.headerDescription}>
         {__('Already have an account? ', 'mittr')}
-        <Link to="/login/" className={styles.registerLink}>
+        <Link to="/login/" className={styles.formLink}>
           {__('Sign in.', 'mittr')}
         </Link>
       </p>
