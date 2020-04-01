@@ -102,7 +102,10 @@ const AccountLandingPage = ({
   let subscriptionLink = '';
   if (isAlum) {
     // If an alumni has subscription info returning from SFG, allow them to manage their account from that portal.
-    if (account.subscriptionType) {
+    if (
+      'undefined' !== typeof account.orders &&
+      0 < account.orders.length
+    ) {
       subscriptionLink = sfgLink;
     } else {
       subscriptionLink = 'https://alum.mit.edu/myaccount/';
