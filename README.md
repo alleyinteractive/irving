@@ -8,7 +8,7 @@ Your Irving application may include the following environmental variables in a l
 
 ### ROOT_URL
 
-The URL from which the application is served. For local development, use http://localhost:3001. If you are using Caddy for Zephr development (see below) choose http://lolcahost.
+The URL from which the application is served. For local development, use http://localhost:3001. If you are using Caddy for Zephr development (see below) choose https://localhost.
 
 ### API_ROOT_URL
 
