@@ -156,7 +156,7 @@ const NewsletterSubscribe = ({
             {imgLogoUrl && (
               <img
                 src={imgLogoUrl}
-                alt="newsletter logo"
+                alt=""
                 className="newsletter__logoImg"
               />
             )}
