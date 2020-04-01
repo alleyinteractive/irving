@@ -49,6 +49,7 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
       history.push(relativeUrl);
 
       pushEvent('click', {
+        action: 'click',
         category: 'minicard-stack',
         label: `feed-unit-${count}`,
       });
