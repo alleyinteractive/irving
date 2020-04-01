@@ -560,6 +560,7 @@ export default {
         'sso-provider': ssoProvider,
         'google-authenticated': hasGoogleAuth,
         'facebook-authenticated': hasFacebookAuth,
+        'mitaa-authenticated': isAlum,
       } = response;
 
       if (true === isSSO) {
@@ -570,6 +571,7 @@ export default {
           ssoProvider,
           hasGoogleAuth,
           hasFacebookAuth,
+          isAlum,
         };
       }
 
