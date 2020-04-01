@@ -2,12 +2,15 @@
 
 .wrapper {
   composes: wrapper from '../columnArea/columnArea--feed.css';
+  flex-flow: row nowrap;
   margin-bottom: rem(20);
-  margin-top: rem(20);
+  margin-top: rem(30);
+  padding-bottom: 0;
   position: relative;
 
-  &.expanded {
-    flex-flow: row nowrap;
+  &.collapsed {
+    margin-bottom: rem(10);
+    margin-top: rem(10);
   }
 }
 
@@ -40,7 +43,7 @@
 
   .collapsed & {
     flex: 0 0 auto;
-    margin-left: rem(37);
+    margin-left: rem(25);
 
     svg {
       transform: rotate(-90deg);
@@ -50,11 +53,6 @@
 
 .notice {
   display: block;
+  flex: 1 0 auto;
   order: 1;
-  width: 100%;
-
-  .collapsed & {
-    flex: 1 0 auto;
-    width: auto;
-  }
 }
