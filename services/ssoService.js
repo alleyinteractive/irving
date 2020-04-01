@@ -136,9 +136,7 @@ export default {
   async register(email, token) {
     try {
       const data = {
-        identifiers: {
-          email_address: email,
-        },
+        identifiers: {},
         validators: {
           token_exchange: token,
         },
