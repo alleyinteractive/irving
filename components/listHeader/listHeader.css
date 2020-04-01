@@ -104,7 +104,7 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  /* margin-bottom: rem(75); */
+  margin-bottom: rem(75);
   order: 0;
   width: 100%;
 }
