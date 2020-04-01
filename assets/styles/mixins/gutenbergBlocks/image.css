@@ -34,7 +34,7 @@
     max-width: 100%;
 
     @media ($smMin) {
-      margin-bottom: rem(36);
+      margin-bottom: rem(30);
     }
 
     :global(.image-credit) {
