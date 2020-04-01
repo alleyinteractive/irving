@@ -154,7 +154,7 @@ const NewsletterSubscribe = ({
         <form onSubmit={handleSubmit}>
           <header className="newsletter__subscribeHeader">
             {imgLogoUrl && (
-              <img src={imgLogoUrl} alt="" className="newsletter__logoImg" />
+              <img src={imgLogoUrl} alt="newsletter logo" className="newsletter__logoImg" />
             )}
             {(title && 'sidebar' !== themeName) && (
               <div>
