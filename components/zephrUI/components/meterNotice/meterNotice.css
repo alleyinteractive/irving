@@ -8,12 +8,14 @@
 
   .MeterNotice__innerWrapper {
     [aria-expanded="true"] & {
-      tidy-span: 12;
+      @include container;
 
-      @media ($lgMin) {
-        margin-right: auto;
+      /* cannot use composes as this markup not served through Irving.  */
+      /* @see components/columnArea/columnArea--fullStory.css */
+      @media ($mdMin) {
+        max-width: calc(tidy-span-full(6) - rem(20));
         tidy-offset-left: 1;
-        tidy-span: 11;
+        width: calc(tidy-span(6) - rem(20));
       }
     }
 
@@ -21,7 +23,7 @@
       align-items: center;
       display: flex;
 
-      @media ($lgMin) {
+      @media ($mdMin) {
         flex: 100%;
         margin-right: auto;
         tidy-offset-left: 1;
@@ -32,10 +34,10 @@
   .MeterNotice__smallText {
     color: $white;
     font-family: $sans;
-    font-size: rem(22);
+    font-size: rem(20);
     font-weight: 600;
-    line-height: 0.86;
-    margin-bottom: rem(40);
+    line-height: 1;
+    margin-bottom: rem(30);
 
     [aria-expanded="false"] & {
       font-size: rem(16);
@@ -55,14 +57,10 @@
     color: $white;
     display: block;
     font-family: $sans;
-    font-size: rem(30);
+    font-size: rem(26);
     font-weight: 500;
     line-height: 1.07;
-    margin-bottom: rem(25);
-
-    @media ($lgMin) {
-      max-width: tidy-span(6);
-    }
+    margin-bottom: rem(20);
 
     [aria-expanded="false"] & {
       display: none;
@@ -78,6 +76,7 @@
     }
 
     [aria-expanded="false"] & {
+      flex-direction: row-reverse;
       margin-left: auto;
     }
   }
@@ -90,6 +89,18 @@
 
     &:not(:last-child) {
       margin-right: rem(20);
+
+      /* stylelint-disable-next-line selector-max-specificity */
+      [aria-expanded="false"] & {
+        margin-right: 0;
+      }
+    }
+
+    &:not(:first-child) {
+      /* stylelint-disable-next-line selector-max-specificity */
+      [aria-expanded="false"] & {
+        margin-right: rem(20);
+      }
     }
 
     [aria-expanded="false"] & {
@@ -101,7 +112,7 @@
     background-color: $call-to-action;
     color: $black;
     display: block;
-    font-size: rem(16);
+    font-size: rem(14);
     font-weight: 600;
     padding: rem(10) rem(28);
     text-decoration: none;
@@ -122,5 +133,13 @@
 
   .MeterNotice__item {
     width: auto;
+  }
+
+  .MeterNotice__leadIn {
+    display: none;
+
+    [aria-expanded="true"] & {
+      display: inline;
+    }
   }
 }
