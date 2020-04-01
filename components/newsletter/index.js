@@ -24,7 +24,7 @@ const NewsletterSubscribe = ({
   // Match the mailchimp list name set in the api. Changing the title in the WP Admin will break this.
   // Set state variable userEmailInput which we use for the form input value.
   const [userEmailInput, setUserEmailInput] = useState('');
-  const [selectedRadio, setSelectedRadio] = useState('Yes');
+  const [selectedRadio, setSelectedRadio] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [formResponseState, setFormResponseState] = useState({
     submitted: 'false',
@@ -119,10 +119,10 @@ const NewsletterSubscribe = ({
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (isEmailValid && '' !== userEmailInput) {
+    if (isEmailValid && '' !== userEmailInput && '' !== selectedRadio) {
       submitNewsLetterSubscribe(userEmailInput, selectedRadio);
     } else {
-      // Email must be invalid it is empty.
+      // Email must be invalid if required fields are not filled/present.
       setIsEmailValid(false);
     }
   };
@@ -154,7 +154,11 @@ const NewsletterSubscribe = ({
         <form onSubmit={handleSubmit}>
           <header className="newsletter__subscribeHeader">
             {imgLogoUrl && (
-              <img src={imgLogoUrl} alt="" className="newsletter__logoImg" />
+              <img
+                src={imgLogoUrl}
+                alt=""
+                className="newsletter__logoImg"
+              />
             )}
             {(title && 'sidebar' !== themeName) && (
               <div>
@@ -276,6 +280,7 @@ const NewsletterSubscribe = ({
                         backgroundColor: 'Yes' === selectedRadio ?
                           color : '#fff',
                       }}
+                      required
                     />
                     {__('Yes', 'mittr')}
                   </label>
@@ -309,7 +314,9 @@ const NewsletterSubscribe = ({
       </aside>
       <div className={theme.moreLink}>
         {'sidebar' === themeName && (
-          <a href="https://forms.technologyreview.com/newsletters/" name="More Newsletter link">
+          <a
+            href="https://forms.technologyreview.com/newsletters/"
+          >
             {__('More newsletters', 'mittr')} &#62;
           </a>
         )}
