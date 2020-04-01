@@ -72,7 +72,11 @@
   }
 
   span {
-    padding: 0 rem(30);
+    padding: 0;
+    
+    @media ($mdMin) {
+      padding: 0 rem(30);
+    }
   }
 
   img {
