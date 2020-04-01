@@ -79,7 +79,7 @@ export const TermsCheckbox = (props) => {
       <span className="terms-text">
         {__(
           `I agree to the terms of service
-            and have reviewed the privacy policy.`,
+            and have reviewed the privacy policy. (See links below.)`,
           'mittr'
         )}
       </span>
