@@ -74,6 +74,12 @@
     font-family: $sans;
     padding: rem(20) 0;
 
+    &:global(.is-style-default) {
+      p {
+        font-family: $serif-text;
+      }
+    }
+
     p {
       color: #000;
       font-size: rem(24);
