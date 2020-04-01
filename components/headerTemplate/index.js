@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import useKeyboardFocusOutside from 'hooks/useKeyboardFocusOutside';
+import useHideAds from 'hooks/useHideAds';
 import {
   actionUpdateHeaderHeight,
   actionUpdateVisibility,
@@ -22,6 +23,7 @@ import styles from './headerTemplate.css';
 
 const HeaderTemplate = ({
   children,
+  id,
   isHeadroom,
   isMobile,
   homeUrl,
@@ -30,6 +32,7 @@ const HeaderTemplate = ({
   const leaderboardAd = findChildByName('ad-unit', children);
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
+  const hideAds = useHideAds();
   const [isExpanded, setIsExpanded] = useState(false);
   const [iconHovered, setIconHovered] = useState(false);
 
@@ -64,6 +67,7 @@ const HeaderTemplate = ({
   });
   return (
     <header
+      id={id} // used by nprogress bar
       className={classNames(styles.container)}
       ref={isHeadroom ? headroomRef : null}
     >
@@ -73,6 +77,7 @@ const HeaderTemplate = ({
       >
         <div className={classNames(styles.leaderboardRow, {
           [styles.displayNone]: isHeadroom || isMobile,
+          [styles.hideAds]: hideAds,
         })}
         >
           {leaderboardAd}
@@ -155,7 +160,12 @@ const HeaderTemplate = ({
   );
 };
 
+HeaderTemplate.defaultProps = {
+  id: '',
+};
+
 HeaderTemplate.propTypes = {
+  id: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   isHeadroom: PropTypes.bool.isRequired,
   homeUrl: PropTypes.string.isRequired,
