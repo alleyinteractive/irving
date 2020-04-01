@@ -106,6 +106,10 @@
     display: none;
   }
 
+  &.hideAds {
+    min-height: rem(20);
+  }
+
   :global(.adUnit) {
     /* stylelint-disable selector-max-specificity */
     &[loaded="true"] {

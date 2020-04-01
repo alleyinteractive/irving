@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import useKeyboardFocusOutside from 'hooks/useKeyboardFocusOutside';
+import useHideAds from 'hooks/useHideAds';
 import {
   actionUpdateHeaderHeight,
   actionUpdateVisibility,
@@ -30,6 +31,7 @@ const HeaderTemplate = ({
   const leaderboardAd = findChildByName('ad-unit', children);
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
+  const hideAds = useHideAds();
   const [isExpanded, setIsExpanded] = useState(false);
   const [iconHovered, setIconHovered] = useState(false);
 
@@ -73,6 +75,7 @@ const HeaderTemplate = ({
       >
         <div className={classNames(styles.leaderboardRow, {
           [styles.displayNone]: isHeadroom || isMobile,
+          [styles.hideAds]: hideAds,
         })}
         >
           {leaderboardAd}
