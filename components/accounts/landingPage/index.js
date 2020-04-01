@@ -10,6 +10,7 @@ import {
   getEmail,
   getProfile,
   getAccount,
+  isAlum as getIsAlum,
 } from 'selectors/zephrSelector';
 import history from 'utils/history';
 import {
@@ -31,6 +32,7 @@ const AccountLandingPage = ({
   submitResetRequest,
   submitUpdateEmail,
   account,
+  isAlum,
 }) => {
   // Prevent unauthenticated users from being able to visit this route.
   if (! isAuthenticated) {
@@ -64,6 +66,12 @@ const AccountLandingPage = ({
   };
 
   const generateAccessBanner = () => {
+    if (isAlum) {
+      return __(
+        'You have unlimited access to technologyreview.com. ', 'mittr'
+      );
+    }
+
     switch (account.subscriptionType) {
       case 'Basic Digital':
       case 'All Access Digital':
@@ -88,6 +96,19 @@ const AccountLandingPage = ({
   0 < account.orders.length
   ) {
     accountNumber = account.orders[0].customer_number;
+  }
+
+  const sfgLink = 'https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602'; // eslint-disable-line max-len
+  let subscriptionLink = '';
+  if (isAlum) {
+    // If an alumni has subscription info returning from SFG, allow them to manage their account from that portal.
+    if (account.subscriptionType) {
+      subscriptionLink = sfgLink;
+    } else {
+      subscriptionLink = 'https://alum.mit.edu/myaccount/';
+    }
+  } else {
+    subscriptionLink = sfgLink;
   }
 
   return (
@@ -197,7 +218,7 @@ const AccountLandingPage = ({
           <div className={styles.buttonContainer}>
             <a
               id="subscriptionManagerBtn"
-              href="https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602"
+              href={subscriptionLink}
               className={styles.button}
               role="button"
             >
@@ -263,6 +284,7 @@ AccountLandingPage.defaultProps = {
     subscriptionExpiration: '',
     subscriptionActive: false,
   },
+  isAlum: false,
 };
 /* eslint-enable */
 
@@ -276,6 +298,7 @@ AccountLandingPage.propTypes = {
   submitResetRequest: PropTypes.func.isRequired,
   submitUpdateEmail: PropTypes.func.isRequired,
   account: PropTypes.object,
+  isAlum: PropTypes.bool,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -289,6 +312,7 @@ const withRedux = connect(
     email: getEmail(state),
     firstName: getFirstName(state),
     account: getAccount(state),
+    isAlum: getIsAlum(state),
     isAuthenticated:
       0 < Object.keys(getProfile(state)).length &&
       0 < Object.keys(getAccount(state)).length,
