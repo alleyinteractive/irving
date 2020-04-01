@@ -2,9 +2,10 @@
 
 .wrapper {
   @include container-with-bleed;
+  border-top: $border-thin;
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: rem(50);
+  margin-bottom: rem(20);
 }
 
 .meta {
@@ -23,6 +24,10 @@
   margin: rem(75) 0 0;
 
   @media ($mdMin) {
+    font-size: rem(38);
+  }
+
+  @media ($lgMin) {
     font-size: rem(48);
     margin: rem(32.5) 0 rem(30);
   }

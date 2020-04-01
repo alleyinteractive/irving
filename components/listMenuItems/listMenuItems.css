@@ -50,6 +50,10 @@
   background-color: $black;
   color: $white;
 
+  .activeYear {
+    color: $gray;
+  }
+
   &::after {
     transform: rotate(45deg);
   }
