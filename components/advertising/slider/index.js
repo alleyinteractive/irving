@@ -45,6 +45,14 @@ const SliderAd = ({ children }) => {
   };
   const setHasClosed = () => {
     dispatch(actionUpdateVisibility('sliderAdHasClosed', true));
+  // Show the ad if there's no meter, and the ad slot has rendered.
+  const showAd = () => {
+    if (
+      shouldLoad &&
+      ! checkUIComponentType(componentMarkup, 'MeterNotice')
+    ) {
+      toggleVisibility(true);
+    }
   };
   const closeAd = () => {
     toggleVisibility(false);
@@ -55,12 +63,10 @@ const SliderAd = ({ children }) => {
 
   useEffect(() => {
     if (
-      shouldLoad &&
-      checkUIComponentType(componentMarkup, 'MeterNotice') &&
       100 < scrollData.y &&
       ! hasClosed
     ) {
-      setTimeout(() => toggleVisibility(true), 5000);
+      setTimeout(() => showAd(), 5000);
     }
   }, [scrollData]);
 
