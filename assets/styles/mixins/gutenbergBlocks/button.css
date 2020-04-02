@@ -3,6 +3,11 @@
     @include block-level-element;
     @include block-alignment;
 
+    /* stylelint-disable selector-max-specificity */
+    &:not(:global(.alignright)):not(:global(.alignleft)) {
+      max-width: rem(300);
+    }
+
     .aligncenter {
       display: flex;
     }
@@ -10,43 +15,21 @@
     a {
       @include basic-formatting;
       align-items: center;
-      background-color: $brand-blue;
-      color: $white;
+      border: 1px solid $black;
+      color: $black;
       display: flex;
       font-family: $sans;
-      font-size: rem(14);
-      font-weight: 700;
+      font-size: rem(15);
+      font-weight: 400;
       height: rem(42);
       justify-content: center;
-      letter-spacing: rem(1);
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: rem(9) rem(12);
       text-decoration: none;
-      text-transform: uppercase;
       transition: background-color 125ms ease-in-out;
-
-      &:hover {
-        background-color: color($brand-blue tint(25%));
-      }
-
-      &::before,
-      &::after {
-        color: $white;
-        content: "\2022";
-        display: block;
-      }
-
-      &::before {
-        margin-right: rem(5);
-      }
-
-      &::after {
-        margin-left: rem(5);
-      }
     }
   }
 
-  /* stylelint-disable selector-max-specificity */
   :global(.wp-block-button.white-btn) {
     a {
       background-color: $white;
@@ -67,5 +50,5 @@
         content: "";
       }
     }
-  }
+  }/* stylelint-enable selector-max-specificity */
 }
