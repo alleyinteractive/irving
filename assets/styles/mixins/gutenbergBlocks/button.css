@@ -30,7 +30,7 @@
     }
   }
 
-  /* stylelint-disable selector-max-specificity */
+
   :global(.wp-block-button.white-btn) {
     a {
       background-color: $white;
@@ -51,5 +51,5 @@
         content: "";
       }
     }
-  }
+  }/* stylelint-enable selector-max-specificity */
 }
