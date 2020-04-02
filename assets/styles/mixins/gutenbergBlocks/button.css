@@ -30,7 +30,6 @@
     }
   }
 
-
   :global(.wp-block-button.white-btn) {
     a {
       background-color: $white;
