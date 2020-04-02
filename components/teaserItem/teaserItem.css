@@ -55,7 +55,7 @@
 }
 
 .title {
-  font-size: rem(40);
+  font-size: rem(26);
   font-weight: 600;
   line-height: 1.07;
   order: 1;
@@ -66,7 +66,7 @@
   }
 
   @media ($smMin) {
-    font-size: rem(50);
+    font-size: rem(30);
     margin-bottom: 0;
   }
 }
