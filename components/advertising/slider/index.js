@@ -33,18 +33,22 @@ const SliderAd = ({ children }) => {
     return null;
   }
 
-  // Select the markup from the components object.
+  // Save visiblity and has closed info in redux store.
+  const toggleVisibility = (value) => {
+    dispatch(actionUpdateVisibility('sliderAd', value));
+  };
+  const setHasClosed = () => {
+    dispatch(actionUpdateVisibility('sliderAdHasClosed', true));
+  };
+
+  // Select the markup from the zephr components object, so we can detenct
+  // whether the meter is there.
   const componentMarkup = get(
     zephrComponents,
     'overlayFooter.zephrOutput.data',
     false
   );
 
-  const toggleVisibility = (value) => {
-    dispatch(actionUpdateVisibility('sliderAd', value));
-  };
-  const setHasClosed = () => {
-    dispatch(actionUpdateVisibility('sliderAdHasClosed', true));
   // Show the ad if there's no meter, and the ad slot has rendered.
   const showAd = () => {
     if (
@@ -54,13 +58,15 @@ const SliderAd = ({ children }) => {
       toggleVisibility(true);
     }
   };
+
+  // Hide the ad.
   const closeAd = () => {
     toggleVisibility(false);
     setHasClosed();
   };
 
+  // Set 5 second timer once user has scrolled 100px
   const scrollData = useScrollPosition();
-
   useEffect(() => {
     if (
       100 < scrollData.y &&
@@ -70,7 +76,7 @@ const SliderAd = ({ children }) => {
     }
   }, [scrollData]);
 
-  // Detect and set height once slot has rendered.
+  // Detect and setShouldLoad once slot has rendered.
   const onSlotRender = (data) => {
     const { event } = data;
     if (
