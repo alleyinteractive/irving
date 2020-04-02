@@ -7,6 +7,7 @@ import {
 import {
   actionReceiveUserSession,
   actionReceiveUserVerification,
+  actionReceiveUserProfile,
 } from 'actions/zephrActions';
 import {
   VERIFY_ZEPHR_USER_TOKEN,
@@ -16,7 +17,8 @@ import zephrService from 'services/zephrService';
 import history from 'utils/history';
 import createDebug from 'services/createDebug';
 import {
-  isSSO,
+  getZephrCookie,
+  getProfile as getStoredProfile,
 } from 'selectors/zephrSelector';
 import {
   getProfile,
@@ -60,9 +62,58 @@ function* verifyToken({ payload }) {
  * profile.
  */
 function* redirectUser() {
-  const requireProfile = yield select(isSSO);
+  const cookie = yield select(getZephrCookie);
+  const profile = yield select(getStoredProfile);
 
-  if (true === requireProfile) {
-    history.push('/register/sso/final-step/');
+  const {
+    firstName,
+    lastName,
+    isAlum,
+    hasFacebookAuth,
+    hasGoogleAuth,
+  } = profile;
+
+  if (! firstName && ! lastName) {
+    let extendedProfile = {};
+
+    if (isAlum) {
+      extendedProfile =
+        yield call(
+          zephrService.getExtendedProfile, { cookie, provider: '_mitaa' }
+        );
+    } else if (hasFacebookAuth) {
+      extendedProfile =
+        yield call(
+          zephrService.getExtendedProfile, { cookie, provider: '_facebook' }
+        );
+    } else if (hasGoogleAuth) {
+      extendedProfile =
+        yield call(
+          zephrService.getExtendedProfile, { cookie, provider: '_google' }
+        );
+    }
+
+    if (0 < Object.keys(extendedProfile).length) {
+      const updateRequest = yield call(
+        zephrService.updateProfile,
+        {
+          properties: extendedProfile,
+          cookie,
+        }
+      );
+
+      if ('success' === updateRequest) {
+        // Store updated user profile information.
+        yield put(actionReceiveUserProfile(extendedProfile));
+        // Redirect the user to the homepage.
+        history.push('/');
+      }
+    } else {
+      // No exteded profile could be found, redirect the user to complete their profile.
+      history.push('/register/sso/final-step/');
+    }
+  } else {
+    // User profile found, redirect to the homepage.
+    history.push('/');
   }
 }
