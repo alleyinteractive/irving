@@ -8,11 +8,16 @@
 .title {
   color: $black;
   font-family: $sans;
-  font-size: rem(50);
+  font-size: rem(24);
   font-weight: 600;
   letter-spacing: normal;
-  line-height: 1;
-  margin-bottom: rem(20);
+  line-height: rem(26);
+  margin-bottom: rem(15);
+  margin-top: rem(50);
+
+  @media ($smMin) {
+    line-height: rem(24);
+  }
 }
 
 .pageHeader {
