@@ -1,7 +1,7 @@
 .video {
   display: block;
   height: auto;
-  max-height: rem(700);
+  max-height: 100%;
   width: 100%;
 }
 
