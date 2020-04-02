@@ -121,6 +121,7 @@
     background: $black;
     color: $white;
     display: block;
+    font-family: $sans;
     font-size: rem(17);
     font-weight: 700;
     padding: rem(5) rem(13);
