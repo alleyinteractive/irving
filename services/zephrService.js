@@ -587,6 +587,73 @@ export default {
   },
 
   /**
+   * Get a user's extended profile information based on their SSO provider.
+   *
+   * @param {{ cookie, provider }} The session cookie & SSO provider ID.
+   *
+   * @returns {object} extendedProfile
+   */
+  async getExtendedProfile({ cookie, provider }) {
+    try {
+      const request = fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/profile/${provider}`,
+        {
+          method: 'GET',
+          headers: {
+            cookie,
+          },
+          credentials: 'include',
+        }
+      ).then((res) => res.json());
+
+      const response = await request;
+      console.log(response);
+
+      if ('_mitta' === provider) {
+        const {
+          firstName,
+          lastName,
+        } = response;
+
+        return {
+          firstName,
+          lastName,
+        };
+      }
+
+      if ('_facebook' === provider) {
+        const { name } = response;
+        const namesArr = name.split(' ');
+        const firstName = namesArr[0];
+        const lastName = namesArr[namesArr.length - 1];
+
+        return {
+          firstName,
+          lastName,
+        };
+      }
+
+      if ('_google' === provider) {
+        const {
+          given_name: firstName,
+          family_name: lastName,
+        } = response;
+
+        return {
+          firstName,
+          lastName,
+        };
+      }
+
+      return null;
+    } catch (error) {
+      postErrorMessage(error);
+      // Return null to exit the profile setting portion of the saga.
+      return null;
+    }
+  },
+
+  /**
    * Update the user's profile (first, last, and full name).
    *
    * @param {{object,string}} Profile properties to update and the current cookie.
