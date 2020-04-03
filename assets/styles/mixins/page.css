@@ -1,6 +1,7 @@
 /* Styles specific to pages */
 @mixin page-styles() {
   p {
+    font-family: $sans;
     font-size: rem(18);
     font-weight: 500;
     line-height: rem(24);
@@ -20,14 +21,21 @@
     }
   }
 
+  :global(ul.postList__list) {
+    font-size: 1rem;
+  }
+
   :global(hr.first-hr) {
     margin: rem(60) 0 rem(40);
   }
 
-  :global(hr.is-style-default) {
-
+  :global(hr.thin-style.team-hr) {
+    margin: rem(20) 0;
   }
 
+  /* The following class names must be entered into the Adavnced Additional CSS Class Names
+   * for these styles to take affect.
+   */
   :global(.page-subheader) {
     color: #000;
     font-family: $sans;
@@ -49,11 +57,15 @@
     margin-top: 0;
   }
 
+  /* Class name team-columns must be entered into the Adavnced Additional CSS Class Names
+   * in the Columns block for this to work.
+   */
   :global(.team-columns p:not(.section-header)) {
     font-family: $sans;
     font-size: rem(16);
     font-weight: 500;
     line-height: rem(22);
+    margin-bottom: rem(10);
   }
 
   :global(.team-columns p strong) {
