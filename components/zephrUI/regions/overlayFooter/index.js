@@ -87,11 +87,13 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
     }
   }, [zephrDataLayer, componentMarkup]);
 
+  // Show nothing if there is no component in this rule.
+  if (! componentMarkup) {
+    return null;
+  }
+
   // If it is a meter notice, then return component with toggle functionality.
-  if (
-    'MeterNotice' === component.type &&
-    'object' === typeof component.element
-  ) {
+  if ('MeterNotice' === component.type) {
     return (
       <div className={styles.wrapper}>
         <ToggleNotice>
@@ -101,16 +103,8 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
     );
   }
 
-  // Show nothing if there is no component in this rule.
-  if (! componentMarkup) {
-    return null;
-  }
-
   // If it is a thank you notice, return component with dismiss functionality.
-  if (
-    'ThanksNotice' === component.type &&
-    'object' === typeof component.element
-  ) {
+  if ('ThanksNotice' === component.type) {
     return (
       <div className={styles.wrapper}>
         <DismissNotice>
