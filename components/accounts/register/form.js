@@ -72,7 +72,9 @@ const RegisterForm = ({
     let errorCount = 0;
 
     // Check to ensure the captcha has been validated prior to submission.
-    if (false === captcha.isValid) {
+    // Only run the check if the captcha has been loaded into the DOM.
+    const captchaNotLoaded = document.getElementById('captcha-not-loaded');
+    if (! captchaNotLoaded && false === captcha.isValid) {
       setCaptcha({
         hasError: true,
         isValid: false,
