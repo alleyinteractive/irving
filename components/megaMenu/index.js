@@ -23,9 +23,7 @@ const MegaMenu = (props) => {
       <div className={styles.middleRow}>{menus[0]}</div>
       <div className={styles.lastRow}>
         {menus[1]}
-        <div className={styles.followCol}>
-          {socialFollowMenu}
-        </div>
+        {socialFollowMenu}
       </div>
       <div className={styles.copyright}>
         MIT Technology Review © {date.getFullYear()}
