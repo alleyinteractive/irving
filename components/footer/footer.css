@@ -3,7 +3,7 @@
   color: $white;
   display: block;
   justify-self: flex-end;
-  margin: 0 auto;
+  margin: rem(45) auto 0;
   width: 100%;
 }
 
