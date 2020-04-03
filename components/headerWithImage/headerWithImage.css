@@ -16,6 +16,51 @@
       margin-top: rem(75);
     }
   }
+
+  /* stylelint-disable selector-max-specificity */
+  &.altLayout {
+    margin-bottom: rem(30);
+
+    @media ($mdMin) {
+      min-height: auto;
+    }
+
+    .title {
+      align-items: center;
+      bottom: 0;
+      display: flex;
+      font-size: rem(24);
+      height: 0;
+      justify-content: center;
+      margin: auto;
+      max-width: 100%;
+      padding: 0;
+      right: 0;
+      top: 0;
+
+      @media ($smMin) {
+        font-size: rem(35);
+      }
+
+      @media ($mdMin) {
+        font-size: rem(50);
+      }
+
+      @media ($lgMin) {
+        font-size: rem(66);
+      }
+    }
+
+    .innerTitle {
+      background-color: transparent;
+      box-shadow: none;
+      color: #fff;
+      line-height: 1.15;
+      text-transform: none;
+      word-spacing: 0;
+    }
+  }
+  /* stylelint-enable selector-max-specificity */
 }
 
 .title {
