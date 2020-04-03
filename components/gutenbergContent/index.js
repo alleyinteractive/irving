@@ -13,7 +13,10 @@ const GutenbergContent = ({
   theme,
   postFormat,
 }) => (
-  <div className={classNames(theme.wrapper, className)}>
+  <div className={classNames(theme.wrapper, className, {
+    [theme.page]: 'page' === postFormat,
+  })}
+  >
     {children.map((child, index) => {
       // We need to add a T logo svg to the end of the last paragraph.
       // Check if we're on the last child and it's an html components.
