@@ -3,3 +3,27 @@
   @include basic-editor-styles;
   width: 100%;
 }
+
+.page {
+  .content {
+    p {
+      font-size: rem(18);
+      font-weight: 500;
+      line-height: rem(24);
+      margin-bottom: rem(20);
+
+      @media ($mdMin) {
+        font-size: rem(20);
+        line-height: rem(26);
+      }
+    }
+
+    ul {
+      font-size: rem(18);
+
+      @media ($mdMin) {
+        font-size: rem(20);
+      }
+    }
+  }
+}
