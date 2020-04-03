@@ -39,9 +39,9 @@ const CardStack = ({
   return (
     <article className={theme.wrapper} style={{ backgroundColor: color }}>
       <div className={theme.meta}>
-        { true && (
+        { eyebrow && (
           <Eyebrow
-            customEyebrow={`eyebrow${eyebrow}`}
+            customEyebrow={eyebrow}
             themeName="anchorEyebrow"
             color={textColor}
             dateline={dateline}
