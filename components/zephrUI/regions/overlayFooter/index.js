@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
@@ -22,6 +22,10 @@ import styles from './overlayFooter.css';
  */
 const OverlayFooter = ({ components, zephrDataLayer }) => {
   const { pushEvent } = useContext(GTMContext);
+  const [component, setComponent] = useState({
+    element: {},
+    type: '',
+  });
 
   // Select the markup from the components object.
   const componentMarkup = get(
@@ -34,29 +38,60 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
     const { isLoading, dataLayer: zephrDataLayerResults } = zephrDataLayer;
 
     // Bail early if required conditions are not met.
-    if (isLoading || ! componentMarkup) {
+    if (isLoading || ! componentMarkup || 'undefined' === typeof DOMParser) {
       return;
     }
 
+    // Extract the component markup.
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(componentMarkup, 'text/html'); // eslint-disable-line
+    if ('object' !== typeof doc.body) {
+      return;
+    }
+
+    const { firstChild } = doc.body;
+
+    const scopeString = get(
+      doc,
+      'body.firstChild.dataset.scope',
+      '{}'
+    );
+
+    const { meterChangedThisRequest = false } = JSON.parse(scopeString);
+
     // Send a meterView event on the MeterNotice component.
-    if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
-      pushEvent('zephr.meterView', zephrDataLayerResults);
+    if (checkUIComponentType(firstChild.className, 'MeterNotice')) {
+      // If a reread, push this event.
+      if (meterChangedThisRequest) {
+        pushEvent('zephr.meterViewReread', zephrDataLayerResults);
+      } else {
+        // Otherwise, push new meterView event.
+        pushEvent('zephr.meterView', zephrDataLayerResults);
+      }
+
+      setComponent({
+        element: firstChild,
+        type: 'MeterNotice',
+      });
       return;
     }
 
     // Send a paywall event on the ImageAlert component.
-    if (checkUIComponentType(componentMarkup, 'ImageAlert')) {
+    if (checkUIComponentType(firstChild.className, 'ImageAlert')) {
       pushEvent('zephr.paywallView', zephrDataLayerResults);
+
+      setComponent({
+        element: firstChild,
+        type: 'ImageAlert',
+      });
     }
   }, [zephrDataLayer, componentMarkup]);
 
-  // Show nothing if there is no component in this rule.
-  if (! componentMarkup) {
-    return null;
-  }
-
   // If it is a meter notice, then return component with toggle functionality.
-  if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
+  if (
+    'MeterNotice' === component.type &&
+    'object' === typeof component.element
+  ) {
     return (
       <div className={styles.wrapper}>
         <ToggleNotice>
@@ -66,8 +101,16 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
     );
   }
 
+  // Show nothing if there is no component in this rule.
+  if (! componentMarkup) {
+    return null;
+  }
+
   // If it is a thank you notice, return component with dismiss functionality.
-  if (checkUIComponentType(componentMarkup, 'ThanksNotice')) {
+  if (
+    'ThanksNotice' === component.type &&
+    'object' === typeof component.element
+  ) {
     return (
       <div className={styles.wrapper}>
         <DismissNotice>
