@@ -7,6 +7,7 @@ import { zephrDataLayerSelector } from 'selectors/zephrDataLayerSelector';
 import checkUIComponentType from 'services/checkUIComponentType';
 import { getZephrComponents } from 'selectors/zephrRulesSelector';
 import { GTMContext } from 'components/googleTagManager';
+import zephrExtractScope from 'utils/zephrExtractScope';
 
 import ToggleNotice from 'components/toggleNotice';
 import DismissNotice from 'components/dismissNotice';
@@ -34,42 +35,43 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
     const { isLoading, dataLayer: zephrDataLayerResults } = zephrDataLayer;
 
     // Bail early if required conditions are not met.
-    if (isLoading || ! componentMarkup || 'undefined' === typeof DOMParser) {
+    if (
+      isLoading ||
+      ! componentMarkup ||
+      'object' !== typeof zephrDataLayerResults
+    ) {
       return;
     }
 
-    // Extract the component markup.
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(componentMarkup, 'text/html'); // eslint-disable-line
-    if ('object' !== typeof doc.body) {
-      return;
-    }
+    const {
+      meterChangedThisRequest = true,
+      usedCredits = zephrDataLayerResults.usedCredits,
+      totalMeter = 3,
+    } = zephrExtractScope(componentMarkup);
 
-    const { firstChild } = doc.body;
-
-    const scopeString = get(
-      doc,
-      'body.firstChild.dataset.scope',
-      '{}'
-    );
-
-    const { meterChangedThisRequest = false } = JSON.parse(scopeString);
+    const remainingCredits = totalMeter - usedCredits;
 
     // Send a meterView event on the MeterNotice component.
-    if (checkUIComponentType(firstChild.className, 'MeterNotice')) {
+    if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
       // If a reread, push this event.
       if (! meterChangedThisRequest) {
-        pushEvent('zephr.meterViewReread', zephrDataLayerResults);
+        pushEvent(
+          'zephr.meterViewReread',
+          { ...zephrDataLayerResults, usedCredits, remainingCredits }
+        );
       } else {
         // Otherwise, push new meterView event.
-        pushEvent('zephr.meterView', zephrDataLayerResults);
+        pushEvent(
+          'zephr.meterView',
+          { ...zephrDataLayerResults, usedCredits, remainingCredits }
+        );
       }
 
       return;
     }
 
     // Send a paywall event on the ImageAlert component.
-    if (checkUIComponentType(firstChild.className, 'ImageAlert')) {
+    if (checkUIComponentType(componentMarkup, 'ImageAlert')) {
       pushEvent('zephr.paywallView', zephrDataLayerResults);
     }
   }, [zephrDataLayer, componentMarkup]);
