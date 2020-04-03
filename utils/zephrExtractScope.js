@@ -28,6 +28,10 @@ export default (componentMarkup) => {
     '{}'
   );
 
+  if ('' === scopeString) {
+    return ({});
+  }
+
   try {
     const result = JSON.parse(scopeString);
     return result;
