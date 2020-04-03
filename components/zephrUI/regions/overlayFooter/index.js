@@ -62,7 +62,7 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
     // Send a meterView event on the MeterNotice component.
     if (checkUIComponentType(firstChild.className, 'MeterNotice')) {
       // If a reread, push this event.
-      if (meterChangedThisRequest) {
+      if (! meterChangedThisRequest) {
         pushEvent('zephr.meterViewReread', zephrDataLayerResults);
       } else {
         // Otherwise, push new meterView event.
