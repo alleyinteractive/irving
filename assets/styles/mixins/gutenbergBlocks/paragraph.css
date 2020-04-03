@@ -10,8 +10,6 @@
       margin-bottom: rem(30);
     }
 
-
-
     &:global(.has-small-font-size) {
       font-size: rem(13);
     }
