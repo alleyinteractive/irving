@@ -6,7 +6,8 @@ import get from 'lodash/get';
  * @param {string} componentMarkup  A string containing an html component.
  *
  * @return {object}                 The parsed value of the object in the first
- *                                  element child's data-scope attribute.
+ *                                  element child's data-scope attribute, or an object
+ *                                  describing the error.
  */
 export default (componentMarkup) => {
   // Only works in client-side code.
@@ -27,5 +28,12 @@ export default (componentMarkup) => {
     '{}'
   );
 
-  return JSON.parse(scopeString);
+  try {
+    const result = JSON.parse(scopeString);
+    return result;
+  } catch {
+    return ({
+      error: 'There was an error parsing the JSON',
+    });
+  }
 };
