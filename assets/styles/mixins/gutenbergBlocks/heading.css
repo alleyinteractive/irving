@@ -12,7 +12,6 @@
     font-family: $sans;
     font-weight: 700;
     line-height: 1.2;
-    margin-top: rem(10);
 
     a {
       color: inherit;
@@ -23,22 +22,11 @@
         color: $brand-blue;
       }
     }
-
-    &:global(.page-header) {
-      font-weight: 600;
-      margin-bottom: rem(10);
-    }
-
-    &:global(.section-header) {
-      color: $black;
-      font-family: $sans;
-      font-size: rem(24);
-      font-weight: 600;
-    }
   }
 
   h1 {
     font-size: rem(30);
+    font-weight: 600;
 
     @media ($mdMin) {
       font-size: rem(40);
@@ -47,6 +35,7 @@
 
   h2 {
     font-size: rem(28);
+    font-weight: 600;
 
     @media ($mdMin) {
       font-size: rem(36);
@@ -54,11 +43,9 @@
   }
 
   h3 {
-    color: $black;
     font-size: rem(18);
     font-weight: 600;
     line-height: rem(27);
-    margin-bottom: 0;
 
     @media ($mdMin) {
       font-size: rem(22);
@@ -67,11 +54,9 @@
   }
 
   h4 {
-    color: $black;
     font-size: rem(16);
     font-weight: 600;
     line-height: rem(24);
-    margin-bottom: 0;
 
     @media ($mdMin) {
       font-size: rem(18);
@@ -81,10 +66,12 @@
 
   h5 {
     font-size: rem(18);
+    font-weight: 600;
   }
 
   h6 {
     font-size: 1rem;
+    font-weight: 600;
   }
 
   :global(.page-header) {

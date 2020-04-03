@@ -10,7 +10,7 @@
       margin-bottom: rem(30);
     }
 
-    
+
 
     &:global(.has-small-font-size) {
       font-size: rem(13);
@@ -40,20 +40,6 @@
       text-align: center;
     }
 
-    &:global(.page-subheader) {
-      color: #000;
-      font-family: $sans;
-      font-size: rem(50);
-      font-weight: 600;
-      line-height: 1;
-    }
-
-    &:global(.section-header) {
-      color: #000;
-      font-family: $sans;
-      font-size: rem(24);
-      font-weight: 600;
-    }
     /* stylelint-disable selector-max-specificity */
     &:global(.view-more-link) {
       a {

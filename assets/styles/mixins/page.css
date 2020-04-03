@@ -1,0 +1,62 @@
+/* Styles specific to pages */
+@mixin page-styles() {
+  p {
+    font-size: rem(18);
+    font-weight: 500;
+    line-height: rem(24);
+    margin-bottom: rem(20);
+
+    @media ($mdMin) {
+      font-size: rem(20);
+      line-height: rem(26);
+    }
+  }
+
+  ul {
+    font-size: rem(18);
+
+    @media ($mdMin) {
+      font-size: rem(20);
+    }
+  }
+
+  :global(hr.first-hr) {
+    margin: rem(60) 0 rem(40);
+  }
+
+  :global(hr.is-style-default) {
+
+  }
+
+  :global(.page-subheader) {
+    color: #000;
+    font-family: $sans;
+    font-size: rem(50);
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  :global(.section-header) {
+    color: #000;
+    font-family: $sans;
+    font-size: rem(24);
+    font-weight: 600;
+    line-height: rem(26);
+  }
+
+  :global(.about-header) {
+    margin-bottom: rem(5);
+    margin-top: 0;
+  }
+
+  :global(.team-columns p:not(.section-header)) {
+    font-family: $sans;
+    font-size: rem(16);
+    font-weight: 500;
+    line-height: rem(22);
+  }
+
+  :global(.team-columns p strong) {
+    padding-left: rem(5);
+  }
+}
