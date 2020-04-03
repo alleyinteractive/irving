@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
@@ -22,10 +22,6 @@ import styles from './overlayFooter.css';
  */
 const OverlayFooter = ({ components, zephrDataLayer }) => {
   const { pushEvent } = useContext(GTMContext);
-  const [component, setComponent] = useState({
-    element: {},
-    type: '',
-  });
 
   // Select the markup from the components object.
   const componentMarkup = get(
@@ -69,21 +65,12 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
         pushEvent('zephr.meterView', zephrDataLayerResults);
       }
 
-      setComponent({
-        element: firstChild,
-        type: 'MeterNotice',
-      });
       return;
     }
 
     // Send a paywall event on the ImageAlert component.
     if (checkUIComponentType(firstChild.className, 'ImageAlert')) {
       pushEvent('zephr.paywallView', zephrDataLayerResults);
-
-      setComponent({
-        element: firstChild,
-        type: 'ImageAlert',
-      });
     }
   }, [zephrDataLayer, componentMarkup]);
 
@@ -93,7 +80,7 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
   }
 
   // If it is a meter notice, then return component with toggle functionality.
-  if ('MeterNotice' === component.type) {
+  if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
     return (
       <div className={styles.wrapper}>
         <ToggleNotice>
@@ -104,7 +91,7 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
   }
 
   // If it is a thank you notice, return component with dismiss functionality.
-  if ('ThanksNotice' === component.type) {
+  if (checkUIComponentType(componentMarkup, 'ThanksNotice')) {
     return (
       <div className={styles.wrapper}>
         <DismissNotice>
