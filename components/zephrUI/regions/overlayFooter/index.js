@@ -7,6 +7,7 @@ import { zephrDataLayerSelector } from 'selectors/zephrDataLayerSelector';
 import checkUIComponentType from 'services/checkUIComponentType';
 import { getZephrComponents } from 'selectors/zephrRulesSelector';
 import { GTMContext } from 'components/googleTagManager';
+import zephrExtractScope from 'utils/zephrExtractScope';
 
 import ToggleNotice from 'components/toggleNotice';
 import DismissNotice from 'components/dismissNotice';
@@ -34,13 +35,38 @@ const OverlayFooter = ({ components, zephrDataLayer }) => {
     const { isLoading, dataLayer: zephrDataLayerResults } = zephrDataLayer;
 
     // Bail early if required conditions are not met.
-    if (isLoading || ! componentMarkup) {
+    if (
+      isLoading ||
+      ! componentMarkup ||
+      'object' !== typeof zephrDataLayerResults
+    ) {
       return;
     }
 
+    const {
+      meterChangedThisRequest = true,
+      usedCredits = zephrDataLayerResults.usedCredits,
+      totalMeter = 3,
+    } = zephrExtractScope(componentMarkup);
+
+    const remainingCredits = totalMeter - usedCredits;
+
     // Send a meterView event on the MeterNotice component.
     if (checkUIComponentType(componentMarkup, 'MeterNotice')) {
-      pushEvent('zephr.meterView', zephrDataLayerResults);
+      // If a reread, push this event.
+      if (! meterChangedThisRequest) {
+        pushEvent(
+          'zephr.meterViewReread',
+          { ...zephrDataLayerResults, usedCredits, remainingCredits }
+        );
+      } else {
+        // Otherwise, push new meterView event.
+        pushEvent(
+          'zephr.meterView',
+          { ...zephrDataLayerResults, usedCredits, remainingCredits }
+        );
+      }
+
       return;
     }
 
