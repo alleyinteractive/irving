@@ -68,7 +68,14 @@ const LazyRecaptcha = ({
     }
   });
 
-  return <div key="reCaptcha" className={className} ref={containerRef} />;
+  return (
+    <div
+      key="recaptcha"
+      id={`captcha${hasLoaded ? '-loaded' : '-not-loaded'}`}
+      className={className}
+      ref={containerRef}
+    />
+  );
 };
 
 LazyRecaptcha.propTypes = {
