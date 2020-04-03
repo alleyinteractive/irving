@@ -26,7 +26,7 @@
 
   h1 {
     font-size: rem(30);
-    font-weight: 600;
+    font-weight: $header-weight;
 
     @media ($mdMin) {
       font-size: rem(40);
@@ -35,7 +35,7 @@
 
   h2 {
     font-size: rem(28);
-    font-weight: 600;
+    font-weight: $header-weight;
 
     @media ($mdMin) {
       font-size: rem(36);
@@ -44,7 +44,7 @@
 
   h3 {
     font-size: rem(18);
-    font-weight: 600;
+    font-weight: $header-weight;
     line-height: rem(27);
 
     @media ($mdMin) {
@@ -55,7 +55,7 @@
 
   h4 {
     font-size: rem(16);
-    font-weight: 600;
+    font-weight: $header-weight;
     line-height: rem(24);
 
     @media ($mdMin) {
@@ -66,12 +66,12 @@
 
   h5 {
     font-size: rem(18);
-    font-weight: 600;
+    font-weight: $header-weight;
   }
 
   h6 {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: $header-weight;
   }
 
   :global(.page-header) {

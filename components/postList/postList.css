@@ -20,7 +20,7 @@
     }
 
     ul.postList__list {
-      font-size: 1rem;
+      font-size: rem(16);
       line-height: rem(22);
       margin: 0;
       padding: 0;
@@ -36,7 +36,7 @@
       }
 
       p {
-        font-size: 1rem;
+        font-size: rem(16);
         margin: 0;
       }
     }
