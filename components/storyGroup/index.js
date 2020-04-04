@@ -6,6 +6,8 @@ import Eyebrow from '../eyebrow';
 
 // Styles
 import styles from './storyGroup.css';
+import ExpandableSocialShare from '../socialList/expandable';
+import { findChildByName } from '../../utils/children';
 
 const StoryGroup = ({
   children,
@@ -15,29 +17,39 @@ const StoryGroup = ({
   permalink,
   title,
   themeName,
-}) => (
-  <div className={styles.wrap}>
-    <div className={styles.meta}>
-      <Eyebrow
-        customEyebrow={eyebrow.customEyebrow}
-        themeName="In Feed"
-        topic={eyebrow.content}
-        topicLink={eyebrow.link}
-        color={eyebrow.color}
-      />
-      {'' !== date && <time className={styles.timestamp}>{date}</time>}
+}) => {
+  const socialSharing = findChildByName('social-sharing', children);
+  const otherChildren = children.filter(
+    ({ props: { componentName } }) => 'social-sharing' !== componentName
+  );
+
+  return (
+    <div className={styles.wrap}>
+      <div className={styles.meta}>
+        <Eyebrow
+          customEyebrow={eyebrow.customEyebrow}
+          themeName="In Feed"
+          topic={eyebrow.content}
+          topicLink={eyebrow.link}
+          color={eyebrow.color}
+        />
+        {'' !== date && <time className={styles.timestamp}>{date}</time>}
+      </div>
+      {'inFeedGroup' !== themeName && (
+        <h3 className={styles.title}>
+          <Link to={permalink}>{title}</Link>
+        </h3>
+      )}
+      <div className={styles.excerpt}>
+        <p>{excerpt}</p>
+      </div>
+      <ExpandableSocialShare>
+        {socialSharing}
+      </ExpandableSocialShare>
+      {otherChildren}
     </div>
-    {'inFeedGroup' !== themeName && (
-      <h3 className={styles.title}>
-        <Link to={permalink}>{title}</Link>
-      </h3>
-    )}
-    <div className={styles.excerpt}>
-      <p>{excerpt}</p>
-    </div>
-    {children}
-  </div>
-);
+  );
+};
 
 StoryGroup.defaultProps = {
   eyebrow: {
