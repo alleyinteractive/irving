@@ -26,7 +26,11 @@
   }
 
   :global(hr.first-hr) {
-    margin: rem(60) 0 rem(40);
+    margin: rem(50) 0 rem(40);
+  }
+
+  :global(hr.about-2nd-hr) {
+    margin-bottom: rem(40);
   }
 
   :global(hr.thin-style.team-hr) {
