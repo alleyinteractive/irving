@@ -18,6 +18,7 @@ const MeterNotice = ({
   callToActionText,
   currentCount,
   largeText,
+  meterChangedThisRequest,
   totalMeter,
 }) => (
   <div
@@ -25,6 +26,7 @@ const MeterNotice = ({
     aria-live="polite"
     aria-modal="true"
     className="MeterNotice__wrapper"
+    data-scope={{ meterChangedThisRequest }}
   >
     <div
       className="MeterNotice__innerWrapper"
@@ -74,6 +76,8 @@ MeterNotice.propTypes = {
   currentCount: PropTypes.string.isRequired,
   /** Large call to action text that will appear above the button and link. */
   largeText: PropTypes.string.isRequired,
+  /** Whether or not the meter changed with this request. */
+  meterChangedThisRequest: PropTypes.bool.isRequired,
   /** Value of the total number of metered articles. */
   totalMeter: PropTypes.string.isRequired,
 };

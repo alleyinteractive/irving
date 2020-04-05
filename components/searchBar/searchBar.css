@@ -13,15 +13,10 @@
     border: 0;
     color: $white;
     font-family: $sans;
-    font-size: rem(40);
-    font-weight: 600;
+    font-size: rem(36);
     line-height: 0.91;
     padding: rem(10) rem(10) rem(4) 0;
     width: 100%;
-
-    @media ($smMin) {
-      font-size: rem(50);
-    }
   }
 
   label {
@@ -47,6 +42,15 @@
 
   & form {
     border-bottom: none;
+  }
+
+  & input {
+    font-size: rem(40);
+    font-weight: 600;
+
+    @media ($smMin) {
+      font-size: rem(50);
+    }
   }
 
   & input:focus {
