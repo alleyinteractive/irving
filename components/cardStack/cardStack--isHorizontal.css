@@ -1,9 +1,11 @@
 /* Card stacks with horizontal images */
 
-.meta {
-  padding-left: rem(20);
-  padding-right: rem(20);
-  width: 100%;
+.bodyCopy {
+  padding: rem(20) rem(20) 0;
+
+  @media ($smMin) {
+    padding-top: rem(50);
+  }
 }
 
 .image {

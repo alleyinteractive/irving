@@ -39,6 +39,7 @@ const UIComponent = ({ componentMarkup }) => (
                 'alt',
                 'src',
                 'href',
+                'data-scope',
               ],
             },
           }
