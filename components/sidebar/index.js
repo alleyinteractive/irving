@@ -13,6 +13,7 @@ const Sidebar = (props) => {
     context,
     hasAd,
     isSticky,
+    pinBottomItem,
   } = props;
 
   return (
@@ -23,6 +24,7 @@ const Sidebar = (props) => {
       style={{
         position: isSticky ? 'sticky' : 'relative',
         top: isSticky ? 100 : 0,
+        height: pinBottomItem ? '100%' : 'inherit',
       }}
     >
       <ul>
@@ -34,7 +36,12 @@ const Sidebar = (props) => {
             <li
               // eslint-disable-next-line react/no-array-index-key
               key={`${child['component-name']}_${index}`}
-              className={styles.widgetWrapper}
+              className={classNames(
+                styles.widgetWrapper,
+                pinBottomItem && (index === children.length - 1) ?
+                  'pinned-bottom-item' :
+                  ''
+              )}
             >
               {! gtmTargetingClass ?
                 cloneElement(child, { gtmTargetingClass: context }) :
@@ -54,6 +61,7 @@ Sidebar.propTypes = {
   context: PropTypes.string,
   hasAd: PropTypes.bool,
   isSticky: PropTypes.bool,
+  pinBottomItem: PropTypes.bool.isRequired,
 };
 
 Sidebar.defaultProps = {

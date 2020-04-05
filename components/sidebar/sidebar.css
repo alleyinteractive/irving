@@ -22,3 +22,8 @@
     margin-bottom: rem(40);
   }
 }
+
+:global(.pinned-bottom-item) {
+  position: absolute;
+  bottom: 0;
+}
