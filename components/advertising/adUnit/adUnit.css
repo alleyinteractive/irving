@@ -3,12 +3,4 @@
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  /* stylelint-disable selector-max-specificity */
-  &[loaded="true"] {
-    & > div > div > div {
-      /* ensure this margin is only being applied to the add if it's actually loaded. */
-      margin-bottom: rem(40);
-    }
-  }
-  /* stylelint-enable selector-max-specificity */
 }
