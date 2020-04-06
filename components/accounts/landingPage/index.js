@@ -18,7 +18,6 @@ import {
   actionSubmitForm,
   actionRequestUpdateEmail,
 } from 'actions/zephrActions';
-// import withData from 'components/hoc/withData';
 
 import AccountInfoForm from './infoForm';
 import styles from './landingPage.css';
