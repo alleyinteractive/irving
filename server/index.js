@@ -53,7 +53,6 @@ app
   .use(cookiesMiddleware())
   .use('/irving/v1/nexus_data', async (req, res) => {
     const blaizeSession = req.universalCookies.get('blaize_session');
-
     async function zephrProfile() {
       try {
         const response = await fetch(
@@ -67,7 +66,6 @@ app
         );
 
         const data = await response.json();
-
         const email = get(data, 'identifiers.email_address', false);
         return email;
       } catch (error) {
@@ -78,10 +76,15 @@ app
 
     const profile = await zephrProfile();
 
+    if (! profile) {
+      res.json({});
+      return;
+    }
+
     async function nexusProfile(email) {
       try {
         const response = await fetch(
-          `${process.env.API_ROOT_URL}/data/nexus_user?email=${email}`,
+          `${process.env.API_ROOT_URL}/data/nexus_user?email=${encodeURIComponent(email)}`,
         );
         const data = await response.json();
         return data;

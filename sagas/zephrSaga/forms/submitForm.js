@@ -165,10 +165,6 @@ export function* getAccount(sessionCookie) {
     // Retrieve SFG account data from the nexus.
     try {
       const {
-        emailAddress: email,
-      } = account;
-
-      const {
         orders,
         subscription_active: subscriptionActive,
         subscription_type: subscriptionType,
