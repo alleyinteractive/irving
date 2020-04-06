@@ -103,6 +103,11 @@
 
   figure {
     width: 100%;
+
+    figcaption {
+      margin-left: 0;
+    }
+
   }
 
   @media ($mdMin) {
