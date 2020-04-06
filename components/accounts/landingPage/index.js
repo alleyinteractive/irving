@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import parse from 'html-react-parser';
@@ -141,21 +141,24 @@ const AccountLandingPage = ({
     );
   };
 
-  const sfgLink = 'https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602'; // eslint-disable-line max-len
-  let subscriptionLink = '';
-  if (isAlum) {
-    // If an alumni has subscription info returning from SFG, allow them to manage their account from that portal.
-    if (
-      'undefined' !== typeof account.orders &&
-      0 < account.orders.length
-    ) {
-      subscriptionLink = sfgLink;
+  const [subscriptionLink, setSubscriptionLink] = useState('');
+  useEffect(() => {
+    const sfgLink = 'https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602'; // eslint-disable-line max-len
+
+    if (isAlum) {
+      // If an alumni has subscription info returning from SFG, allow them to manage their account from that portal.
+      if (
+        'undefined' !== typeof account.orders &&
+        0 < account.orders.length
+      ) {
+        setSubscriptionLink(sfgLink);
+      } else {
+        setSubscriptionLink('https://alum.mit.edu/myaccount/');
+      }
     } else {
-      subscriptionLink = 'https://alum.mit.edu/myaccount/';
+      setSubscriptionLink(sfgLink);
     }
-  } else {
-    subscriptionLink = sfgLink;
-  }
+  }, [isAlum]);
 
   return (
     <div className={styles.wrapper}>
