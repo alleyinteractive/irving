@@ -1,4 +1,4 @@
-mittr-irving.alley.test:443
+localhost:443
 
 proxy /blaize https://technologyreview-staging.cdn.blaize.io {
   transparent
