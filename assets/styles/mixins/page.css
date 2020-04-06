@@ -1,0 +1,92 @@
+/* Styles specific to pages */
+@mixin page-styles() {
+  p {
+    font-family: $sans;
+    font-size: rem(18);
+    font-weight: 500;
+    line-height: rem(24);
+    margin-bottom: rem(20);
+
+    @media ($mdMin) {
+      font-size: rem(20);
+      line-height: rem(26);
+    }
+  }
+
+  ul {
+    font-size: rem(18);
+
+    @media ($mdMin) {
+      font-size: rem(20);
+    }
+  }
+
+  :global(ul.postList__list) {
+    font-size: rem(14);
+
+    @media ($smMin) {
+      font-size: rem(16);
+    }
+  }
+
+  :global(hr.first-hr) {
+    margin: rem(50) 0 rem(40);
+  }
+
+  :global(hr.about-2nd-hr) {
+    margin-bottom: rem(40);
+  }
+
+  :global(hr.thin-style.team-hr) {
+    margin: rem(20) 0;
+  }
+
+  /* The following class names must be entered into the Adavnced Additional CSS Class Names
+   * for these styles to take affect.
+   */
+  :global(.page-subheader) {
+    color: #000;
+    font-family: $sans;
+    font-size: rem(40);
+    font-weight: 600;
+    line-height: rem(40);
+
+    @media ($smMin) {
+      font-size: rem(50);
+      line-height: rem(50);
+    }
+  }
+
+  :global(.section-header) {
+    color: #000;
+    font-family: $sans;
+    font-size: rem(24);
+    font-weight: 600;
+    line-height: rem(26);
+  }
+
+  :global(.about-header) {
+    margin-bottom: rem(5);
+    margin-top: 0;
+  }
+
+  /* Class name team-columns must be entered into the Adavnced Additional CSS Class Names
+   * in the Columns block for this to work.
+   */
+  :global(.team-columns p:not(.section-header)) {
+    font-family: $sans;
+    font-size: rem(14);
+    font-weight: 500;
+    line-height: rem(18);
+    margin-bottom: rem(10);
+
+    @media ($smMin) {
+      font-size: rem(16);
+      line-height: rem(22);
+    }
+  }
+
+  :global(.team-columns p strong) {
+    padding-left: rem(5);
+  }
+}
