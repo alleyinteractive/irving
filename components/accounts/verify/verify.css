@@ -21,9 +21,30 @@
   margin-top: rem(5);
 }
 
+.emailButton,
 .homeButton {
   @include btn;
   @include btnBlack;
 
   font-family: $sans;
+}
+
+.formWrap {
+  @include zephrForm;
+  display: flex;
+  flex-direction: row;
+
+  input[type='email'] {
+    font-size: rem(16);
+    text-align: center;
+
+    @media ($mdMin) {
+      font-size: rem(20);
+      text-align: left;
+    }
+  }
+}
+
+.loginLink {
+  text-decoration: underline;
 }
