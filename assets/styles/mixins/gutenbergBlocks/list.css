@@ -47,6 +47,7 @@
   }
 
   li {
+    @include body-content-type-styles;
     @include body-link;
     line-height: calc(28/16);
     margin: 0 0 0 1em;
