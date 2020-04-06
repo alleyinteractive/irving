@@ -12,7 +12,6 @@
     font-family: $sans;
     font-weight: 700;
     line-height: 1.2;
-    margin-top: rem(10);
 
     a {
       color: inherit;
@@ -24,21 +23,39 @@
       }
     }
 
-    &:global(.page-header) {
+    /* The following class names must be entered into the Adavnced Additional CSS Class Names
+    * for these styles to take affect.
+    */
+    &:global(.page-subheader) {
+      color: #000;
+      font-family: $sans;
+      font-size: rem(40);
       font-weight: 600;
-      margin-bottom: rem(10);
+      line-height: rem(40);
+
+      @media ($smMin) {
+        font-size: rem(50);
+        line-height: rem(50);
+      }
     }
 
     &:global(.section-header) {
-      color: $black;
+      color: #000;
       font-family: $sans;
       font-size: rem(24);
       font-weight: 600;
+      line-height: rem(26);
+    }
+
+    &:global(.about-header) {
+      margin-bottom: rem(5);
+      margin-top: 0;
     }
   }
 
   h1 {
     font-size: rem(30);
+    font-weight: $header-weight;
 
     @media ($mdMin) {
       font-size: rem(40);
@@ -47,6 +64,7 @@
 
   h2 {
     font-size: rem(28);
+    font-weight: $header-weight;
 
     @media ($mdMin) {
       font-size: rem(36);
@@ -54,11 +72,9 @@
   }
 
   h3 {
-    color: $black;
     font-size: rem(18);
-    font-weight: 600;
+    font-weight: $header-weight;
     line-height: rem(27);
-    margin-bottom: 0;
 
     @media ($mdMin) {
       font-size: rem(22);
@@ -67,11 +83,9 @@
   }
 
   h4 {
-    color: $black;
     font-size: rem(16);
-    font-weight: 600;
+    font-weight: $header-weight;
     line-height: rem(24);
-    margin-bottom: 0;
 
     @media ($mdMin) {
       font-size: rem(18);
@@ -81,10 +95,12 @@
 
   h5 {
     font-size: rem(18);
+    font-weight: $header-weight;
   }
 
   h6 {
     font-size: 1rem;
+    font-weight: $header-weight;
   }
 
   :global(.page-header) {
