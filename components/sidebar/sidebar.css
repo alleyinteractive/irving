@@ -22,3 +22,10 @@
     margin-bottom: rem(40);
   }
 }
+
+.pinnedBottom {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
