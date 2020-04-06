@@ -1,6 +1,6 @@
 import {
   RECEIVE_COMPONENTS,
-  REQUEST_ZEPHR_UI_COMPONENTS, // eslint-disable-line
+  REQUEST_ZEPHR_UI_COMPONENTS,
   FINISH_LOADING,
   RECEIVE_USER_LOGIN,
 } from 'actions/types';
@@ -11,7 +11,7 @@ import {
 import formSaga from './forms';
 import tokenExchangeSaga from './tokenExchange';
 import resolveUIRules from './resolveUIRules';
-import updateDataLayer, { pushDataLayer } from './updateDataLayer'; // eslint-disable-line
+import updateDataLayer, { pushDataLayer } from './updateDataLayer';
 import ssoSaga from './sso';
 
 export default [
@@ -33,7 +33,7 @@ export default [
   takeLatest(FINISH_LOADING, resolveUIRules),
 
   // Every time that the components are updated, request new analytics data.
-  // takeLatest(REQUEST_ZEPHR_UI_COMPONENTS, updateDataLayer),
+  takeLatest(REQUEST_ZEPHR_UI_COMPONENTS, updateDataLayer),
 
   takeLatest(
     RECEIVE_USER_LOGIN,
