@@ -11,6 +11,7 @@
   &.storygroup {
     border-top: 0;
     padding: 0;
+    position: static;
   }
 }
 
@@ -32,11 +33,12 @@
 
 .image {
   margin-bottom: rem(23);
-  margin-top: rem(5);
+  margin-top: rem(10);
   width: auto;
 
   @media ($smMax) {
-    margin-bottom: rem(18);
+    margin-bottom: rem(23);
+    margin-top: rem(5);
   }
 }
 
@@ -60,9 +62,13 @@
   font-weight: 600;
   letter-spacing: normal;
   line-height: 1.07;
-  margin-bottom: rem(10);
+  margin-bottom: rem(5);
   margin-right: rem(20);
   order: 1;
+
+  @media ($smMax) {
+    margin-bottom: rem(10);
+  }
 }
 
 .excerpt {

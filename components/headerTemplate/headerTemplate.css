@@ -1,6 +1,6 @@
 .container {
   background-color: $white;
-  border-bottom: $border-thin--gray;
+  border-bottom: 1px solid #c8c8c8;
   color: $black;
   display: flex;
   justify-self: flex-end;
@@ -63,8 +63,8 @@
 
   svg {
     display: block;
-    height: rem(75.969);
-    width: rem(154);
+    height: rem(100);
+    width: rem(184);
   }
 }
 
@@ -72,7 +72,7 @@
   svg {
     display: block;
     height: rem(20);
-    width: rem(210);
+    width: rem(160);
 
     .headroom & {
       height: rem(15);
@@ -104,6 +104,10 @@
 
   &.displayNone {
     display: none;
+  }
+
+  &.hideAds {
+    min-height: rem(20);
   }
 
   :global(.adUnit) {
@@ -162,6 +166,8 @@
   svg {
     display: block;
     height: rem(19);
+    position: relative;
+    top: -2px;
     width: rem(31);
   }
 }

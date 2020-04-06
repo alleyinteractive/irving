@@ -17,3 +17,7 @@
 .noBorder {
   border-top: none;
 }
+
+.active {
+  color: $gray;
+}

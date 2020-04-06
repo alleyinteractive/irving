@@ -12,7 +12,7 @@
   :global(.body--article) & {
     background-color: $background-gray;
   }
-  
+
   :global(.body--magazine) & {
     padding-top: rem(40);
 
@@ -40,15 +40,17 @@
 }
 
 .obscureContent {
-  max-height: 200vh;
-  overflow: hidden;
+  max-height: rem(1300);
+  /* stylelint-disable-next-line declaration-no-important */
+  overflow: hidden !important; /* To prevent ads from modifying this attribute. */
   position: relative;
 
-  @media screen and (orientation: landscape) {
-    /* Needs to be short enough to visibly obscure the end of the article. */
-    @media ($lgMin) {
-      max-height: 300vh;
-    }
+  @media ($smMin) {
+    max-height: rem(1400);
+  }
+
+  @media ($mdMin) {
+    max-height: rem(2200);
   }
 
   &::after {
