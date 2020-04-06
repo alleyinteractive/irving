@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
+import ExpandableSocialShare from 'components/socialList/expandable';
+import { findChildByName } from 'utils/children';
 import Eyebrow from '../eyebrow';
 
 // Styles
 import styles from './storyGroup.css';
-import ExpandableSocialShare from '../socialList/expandable';
-import { findChildByName } from '../../utils/children';
 
 const StoryGroup = ({
   children,
@@ -25,27 +25,29 @@ const StoryGroup = ({
 
   return (
     <div className={styles.wrap}>
-      <div className={styles.meta}>
-        <Eyebrow
-          customEyebrow={eyebrow.customEyebrow}
-          themeName="In Feed"
-          topic={eyebrow.content}
-          topicLink={eyebrow.link}
-          color={eyebrow.color}
-        />
-        {'' !== date && <time className={styles.timestamp}>{date}</time>}
-      </div>
       {'inFeedGroup' !== themeName && (
-        <h3 className={styles.title}>
-          <Link to={permalink}>{title}</Link>
-        </h3>
+        <Fragment>
+          <div className={styles.meta}>
+            <Eyebrow
+              customEyebrow={eyebrow.customEyebrow}
+              themeName="In Feed"
+              topic={eyebrow.content}
+              topicLink={eyebrow.link}
+              color={eyebrow.color}
+            />
+            {'' !== date && <time className={styles.timestamp}>{date}</time>}
+          </div>
+          <h3 className={styles.title}>
+            <Link to={permalink}>{title}</Link>
+          </h3>
+          <div className={styles.excerpt}>
+            <p>{excerpt}</p>
+          </div>
+          <ExpandableSocialShare>
+            {socialSharing}
+          </ExpandableSocialShare>
+        </Fragment>
       )}
-      <div className={styles.excerpt}>
-        <p>{excerpt}</p>
-      </div>
-      <ExpandableSocialShare>
-        {socialSharing}
-      </ExpandableSocialShare>
       {otherChildren}
     </div>
   );
