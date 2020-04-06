@@ -1,7 +1,14 @@
-
 const fetch = require('isomorphic-fetch');
 const get = require('lodash/get');
 
+/**
+ * Get the value of the email for this session with Zephr, if valid.
+ *
+ * @param {string} blaizeSession Value of the cookie to authenticate request.
+ *
+ * @return {string|bool}         The email if found, or false if the request
+ *                               fails.
+ */
 async function zephrProfile(blaizeSession) {
   try {
     const response = await fetch(
@@ -23,6 +30,15 @@ async function zephrProfile(blaizeSession) {
   }
 }
 
+/**
+ * Get the SFG order history from WordPress via Nexus for a given email. Must
+ * be used as a server-side request to obscure this endpoint from the end user.
+ *
+ * @param {string} email Account to look up.
+ *
+ * @return {object|bool} Nexus response or error message from WordPress or false
+ *                       if the request could not be made.
+ */
 async function nexusProfile(email) {
   try {
     const encodedEmail = encodeURIComponent(email);
@@ -37,6 +53,17 @@ async function nexusProfile(email) {
   }
 }
 
+/**
+ * Endpoint for retrieving Nexus data via WordPress. Before the request is made
+ * to Wordpress, this server-side endpoint independently verifies the presence
+ * of the Zephr credentials, than makes the request to WordPress (which has the
+ * Nexus keys) to return the information about the user.
+ *
+ * @param {object} req HTTPS request.
+ * @param {object} res HTTPS response.
+ *
+ * @return {object}    The response from Nexus, if available, or an empty object.
+ */
 async function nexusData(req, res) {
   // Get the cookie to authenticate the zephr account.
   const blaizeSession = req.universalCookies.get('blaize_session');
@@ -51,10 +78,10 @@ async function nexusData(req, res) {
   }
 
   // With valid profile, request the user info from Nexus.
-  const nexusData = await nexusProfile(profile);
+  const data = await nexusProfile(profile);
 
   // Return the server response.
-  res.json(nexusData);
+  res.json(data);
 }
 
 module.exports = nexusData;
