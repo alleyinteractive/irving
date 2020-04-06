@@ -22,6 +22,35 @@
         color: $brand-blue;
       }
     }
+
+    /* The following class names must be entered into the Adavnced Additional CSS Class Names
+    * for these styles to take affect.
+    */
+    :global(.page-subheader) {
+      color: #000;
+      font-family: $sans;
+      font-size: rem(40);
+      font-weight: 600;
+      line-height: rem(40);
+
+      @media ($smMin) {
+        font-size: rem(50);
+        line-height: rem(50);
+      }
+    }
+
+    :global(.section-header) {
+      color: #000;
+      font-family: $sans;
+      font-size: rem(24);
+      font-weight: 600;
+      line-height: rem(26);
+    }
+
+    :global(.about-header) {
+      margin-bottom: rem(5);
+      margin-top: 0;
+    }
   }
 
   h1 {
