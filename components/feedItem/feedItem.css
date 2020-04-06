@@ -11,6 +11,7 @@
   &.storygroup {
     border-top: 0;
     padding: 0;
+    position: static;
   }
 }
 
