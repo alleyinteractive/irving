@@ -11,3 +11,7 @@
 .image {
   width: 100%;
 }
+
+.withoutSlider {
+  margin-bottom: rem(11);
+}

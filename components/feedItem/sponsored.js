@@ -38,9 +38,11 @@ const SponsoredFeedItem = ({
         </div>
       )}
       <Link to={sponsorUrl} className={styles.sponsorLink}>
-        <div className={styles.sponsorLogo}>
-          {logo}
-        </div>
+        {logo && (
+          <div className={styles.sponsorLogo}>
+            {logo}
+          </div>
+        )}
         {sponsorTagline && (
           <span className={styles.sponsorTagline}>
             {sponsorTagline}
