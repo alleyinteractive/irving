@@ -10,6 +10,8 @@
 
 .title {
   composes: title from './teaserItem.css';
+  float: left;
+  padding-right: rem(48);
 
   &.groupTitle {
     font-size: rem(22);
