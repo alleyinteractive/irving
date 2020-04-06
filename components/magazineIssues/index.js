@@ -65,6 +65,8 @@ const MagazineIssues = ({ title, issueType, datesAvailable }) => {
     MagazineIssuesList
   );
 
+  const { currentPage } = userRequest;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -90,6 +92,7 @@ const MagazineIssues = ({ title, issueType, datesAvailable }) => {
           labelID={kebabcase(title)}
           setData={appendIssues}
           lastUpdate={issues.lastUpdate || []}
+          currentPage={currentPage}
         />
 
         {issues.shouldDisplayLoadMore && (
