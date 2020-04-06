@@ -25,5 +25,9 @@
   font-family: $sans;
   font-size: rem(20);
   font-weight: 900;
-  margin-bottom: rem(20);
+  margin-bottom: rem(10);
+
+  @media ($mdMin) {
+    margin-bottom: rem(20);
+  }
 }
