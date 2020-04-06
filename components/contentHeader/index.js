@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
 import dashify from 'dashify';
+import NProgress from 'nprogress';
+import { connect } from 'react-redux';
 import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
+import useScrollPosition from 'hooks/useScrollPosition';
 import { findChildByName } from 'utils/children';
+import colors from 'config/css/colors';
 
 // Themes
 import styles from './contentHeader.css';
 import inlineTheme from './contentHeader--inline.css';
 import verticalTheme from './contentHeader--vertical.css';
 import simpleTheme from './contentHeader--simple.css';
+import './nprogress.css';
 import Eyebrow from '../eyebrow';
 
 const ContentHeader = ({
@@ -20,6 +25,7 @@ const ContentHeader = ({
   deck,
   children,
   headingLevel,
+  showFullStory,
   theme,
   themeName,
 }) => {
@@ -30,8 +36,63 @@ const ContentHeader = ({
   const Heading = `h${headingLevel}`;
   const DeckTag = '' === title ? Heading : 'p';
 
+  const [contentPos, setContentPos] = useState({ height: 0, top: 0 });
+  const scrollData = useScrollPosition();
+  const contentHeaderRef = useRef();
+
+  useEffect(() => {
+    if (showFullStory) {
+      // Initiate nprogress bar.
+      NProgress.configure({
+        parent: '#siteHeader',
+        minimum: 0,
+        template: `
+          <div
+            class="barContainer"
+            style="--topic-color: ${eyebrow.color || colors.purple}"
+          >
+            <div
+              class="bar"
+              style="background-color: "
+              role="bar" />
+          </div>
+        `,
+      });
+      NProgress.set(0);
+
+      // Calculate content height and store in state.
+      // We're calculating content height this way because:
+      // 1) Parent element is a generic contentArea component
+      // 2) We don't want to include the contentFooter
+      const contentHeader = contentHeaderRef.current;
+      const contentBody = contentHeader.nextElementSibling;
+
+      setContentPos({
+        top: contentHeader.getBoundingClientRect().top + window.scrollY,
+        height: contentHeader.getBoundingClientRect().height +
+        contentBody.getBoundingClientRect().height,
+      });
+    }
+  }, [showFullStory]);
+
+  // Get scroll progress as a number from 0 - 1, to 3 decimal places.
+  const contentScrollProgress = showFullStory ?
+    // eslint-disable-next-line max-len
+    Math.round(((scrollData.y - contentPos.top) / contentPos.height) * 1000) / 1000 : 0;
+
+  // Update nprogress bar if the content area is in view
+  if (1 > contentScrollProgress && 0 < contentScrollProgress) {
+    NProgress.set(contentScrollProgress);
+  } else {
+    NProgress.done();
+  }
+
   return (
-    <header className={theme.wrapper} id={dashify(title)}>
+    <header
+      className={theme.wrapper}
+      id={dashify(title)}
+      ref={contentHeaderRef}
+    >
       <div className={theme.intro}>
         {eyebrow.content && (
           <Eyebrow
@@ -82,6 +143,7 @@ ContentHeader.propTypes = {
   publishDate: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   headingLevel: PropTypes.number,
+  showFullStory: PropTypes.bool.isRequired,
   theme: PropTypes.shape({
     wrapper: PropTypes.string,
     intro: PropTypes.string,
@@ -108,9 +170,22 @@ ContentHeader.defaultProps = {
   deck: '',
 };
 
+const mapStateToProps = (state) => ({
+  showFullStory: state.story.showFullStory,
+});
+
+const withRedux = connect(
+  mapStateToProps
+);
+
 export default withThemes('content-header', {
   default: styles,
   inline: inlineTheme,
   isVertical: verticalTheme,
   simple: simpleTheme,
-})(withStyles(styles, inlineTheme, verticalTheme, simpleTheme)(ContentHeader));
+})(withRedux(withStyles(
+  styles,
+  inlineTheme,
+  verticalTheme,
+  simpleTheme
+)(ContentHeader)));
