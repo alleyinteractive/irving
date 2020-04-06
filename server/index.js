@@ -4,8 +4,6 @@ const https = require('https');
 const express = require('express');
 const { server } = require('@automattic/vip-go');
 const cookiesMiddleware = require('universal-cookie-express');
-const fetch = require('isomorphic-fetch');
-const get = require('lodash/get');
 
 // Support isomorphic environment variables from local .env file
 require('dotenv').config();
@@ -21,6 +19,7 @@ const { rootUrl } = require('../config/paths');
 const bustCache = require('./bustCache');
 const bustPageCache = require('./bustPageCache');
 const purgePageCache = require('./purgePageCache');
+const nexusData = require('./nexusData');
 
 const debug = createDebug('server:error');
 const {
@@ -49,55 +48,10 @@ const passthrough = proxy({
   xfwd: true,
 });
 
+// Create server-side endpoint to query WordPress for Nexus data.
 app
   .use(cookiesMiddleware())
-  .use('/irving/v1/nexus_data', async (req, res) => {
-    const blaizeSession = req.universalCookies.get('blaize_session');
-    async function zephrProfile() {
-      try {
-        const response = await fetch(
-          `${process.env.ZEPHR_ROOT_URL}/blaize/account`,
-          {
-            headers: {
-              cookie: `blaize_session=${blaizeSession}`,
-            },
-            credentials: 'include',
-          }
-        );
-
-        const data = await response.json();
-        const email = get(data, 'identifiers.email_address', false);
-        return email;
-      } catch (error) {
-        console.log('Error confirming Zephr account', error);
-        return false;
-      }
-    }
-
-    const profile = await zephrProfile();
-
-    if (! profile) {
-      res.json({});
-      return;
-    }
-
-    async function nexusProfile(email) {
-      try {
-        const response = await fetch(
-          `${process.env.API_ROOT_URL}/data/nexus_user?email=${encodeURIComponent(email)}`,
-        );
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.log('Error querying Nexus credentials', error);
-        return false;
-      }
-    }
-
-    const nexusData = await nexusProfile(profile);
-
-    res.json(nexusData);
-  });
+  .use('/irving/v1/nexus_data', nexusData);
 
 // Proxy XML and XSL file requests directly.
 app.use('/robots.txt', passthrough);
