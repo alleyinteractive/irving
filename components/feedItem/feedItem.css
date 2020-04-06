@@ -177,7 +177,8 @@
 .sponsorLogo {
   display: block;
   height: rem(50);
-  width: rem(80);
+  margin-right: rem(10);
+  max-width: rem(80);
 
   img {
     max-height: 100%;
@@ -199,6 +200,5 @@
   font-size: rem(18);
   line-height: 1.3;
   margin-bottom: rem(5);
-  margin-left: rem(10);
   margin-top: rem(10);
 }
