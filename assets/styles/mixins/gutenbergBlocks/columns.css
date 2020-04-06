@@ -7,30 +7,51 @@
     @media ($mdMin) {
       flex-flow: row nowrap;
       justify-content: space-between;
-    }
 
-    &:global(.no-margin) {
-      /* stylelint-disable selector-max-specificity */
-      :global(.wp-block-column) {
-        margin: 0;
+      &:global(.no-margin) {
+        /* stylelint-disable selector-max-specificity */
+        :global(.wp-block-column) {
+          margin: 0;
+        }
+        /* stylelint-enable selector-max-specificity */
       }
-      /* stylelint-enable selector-max-specificity */
     }
   }
 
   :global(.wp-block-column) {
     flex: 1 1 auto;
-    margin: 0 0 rem(36);
+    margin: 0 0 rem(20);
     max-width: 100%;
     min-width: 25%;
     position: relative;
-
-    @media ($mdMin) {
-      max-width: 48%;
-    }
+    width: 100%;
 
     &:global(.no-margin) {
       margin: 0;
+    }
+
+    @media ($mdMin) {
+      max-width: 48%;
+
+      &:global(.span-9) {
+        tidy-span: 9;
+      }
+
+      &:global(.span-8) {
+        tidy-span: 8;
+      }
+
+      &:global(.span-4) {
+        tidy-span: 4;
+      }
+
+      &:global(.span-3) {
+        tidy-span: 3;
+      }
+
+      &:global(.no-margin) {
+        margin: 0;
+      }
     }
   }
 

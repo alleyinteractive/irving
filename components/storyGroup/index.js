@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
+import ExpandableSocialShare from 'components/socialList/expandable';
+import { findChildByName } from 'utils/children';
 import Eyebrow from '../eyebrow';
 
 // Styles
@@ -15,29 +17,41 @@ const StoryGroup = ({
   permalink,
   title,
   themeName,
-}) => (
-  <div className={styles.wrap}>
-    <div className={styles.meta}>
-      <Eyebrow
-        customEyebrow={eyebrow.customEyebrow}
-        themeName="In Feed"
-        topic={eyebrow.content}
-        topicLink={eyebrow.link}
-        color={eyebrow.color}
-      />
-      {'' !== date && <time className={styles.timestamp}>{date}</time>}
+}) => {
+  const socialSharing = findChildByName('social-sharing', children);
+  const otherChildren = children.filter(
+    ({ props: { componentName } }) => 'social-sharing' !== componentName
+  );
+
+  return (
+    <div className={styles.wrap}>
+      {'inFeedGroup' !== themeName && (
+        <Fragment>
+          <div className={styles.meta}>
+            <Eyebrow
+              customEyebrow={eyebrow.customEyebrow}
+              themeName="In Feed"
+              topic={eyebrow.content}
+              topicLink={eyebrow.link}
+              color={eyebrow.color}
+            />
+            {'' !== date && <time className={styles.timestamp}>{date}</time>}
+          </div>
+          <h3 className={styles.title}>
+            <Link to={permalink}>{title}</Link>
+          </h3>
+          <div className={styles.excerpt}>
+            <p>{excerpt}</p>
+          </div>
+          <ExpandableSocialShare>
+            {socialSharing}
+          </ExpandableSocialShare>
+        </Fragment>
+      )}
+      {otherChildren}
     </div>
-    {'inFeedGroup' !== themeName && (
-      <h3 className={styles.title}>
-        <Link to={permalink}>{title}</Link>
-      </h3>
-    )}
-    <div className={styles.excerpt}>
-      <p>{excerpt}</p>
-    </div>
-    {children}
-  </div>
-);
+  );
+};
 
 StoryGroup.defaultProps = {
   eyebrow: {

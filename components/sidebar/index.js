@@ -13,6 +13,7 @@ const Sidebar = (props) => {
     context,
     hasAd,
     isSticky,
+    pinBottomItem,
   } = props;
 
   return (
@@ -23,9 +24,10 @@ const Sidebar = (props) => {
       style={{
         position: isSticky ? 'sticky' : 'relative',
         top: isSticky ? 100 : 0,
+        height: pinBottomItem ? '100%' : 'inherit',
       }}
     >
-      <ul>
+      <ul className={pinBottomItem ? styles.pinnedBottom : ''}>
         {children.map((child, index) => {
           const {
             props: { gtmTargetingClass },
@@ -54,6 +56,7 @@ Sidebar.propTypes = {
   context: PropTypes.string,
   hasAd: PropTypes.bool,
   isSticky: PropTypes.bool,
+  pinBottomItem: PropTypes.bool.isRequired,
 };
 
 Sidebar.defaultProps = {
