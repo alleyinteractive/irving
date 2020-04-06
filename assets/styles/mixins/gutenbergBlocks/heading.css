@@ -26,7 +26,7 @@
     /* The following class names must be entered into the Adavnced Additional CSS Class Names
     * for these styles to take affect.
     */
-    :global(.page-subheader) {
+    &:global(.page-subheader) {
       color: #000;
       font-family: $sans;
       font-size: rem(40);
@@ -39,7 +39,7 @@
       }
     }
 
-    :global(.section-header) {
+    &:global(.section-header) {
       color: #000;
       font-family: $sans;
       font-size: rem(24);
@@ -47,7 +47,7 @@
       line-height: rem(26);
     }
 
-    :global(.about-header) {
+    &:global(.about-header) {
       margin-bottom: rem(5);
       margin-top: 0;
     }
