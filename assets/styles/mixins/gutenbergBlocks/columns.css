@@ -20,7 +20,7 @@
 
   :global(.wp-block-column) {
     flex: 1 1 auto;
-    margin: 0 0 rem(30);
+    margin: 0 0 rem(20);
     max-width: 100%;
     min-width: 25%;
     position: relative;
