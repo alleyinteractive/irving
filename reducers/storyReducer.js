@@ -14,9 +14,9 @@ import { story as defaultState } from './defaultState';
 export default function userReducer(state = defaultState, { type, payload }) {
   switch (type) {
     case SHOW_FULL_STORY:
-      return { ...state, showFullStory: true };
+      return { ...state, showFullText: true };
     case TRUNCATE_STORY:
-      return { ...state, showFullStory: false };
+      return { ...state, showFullText: false };
     default:
       return state;
   }
