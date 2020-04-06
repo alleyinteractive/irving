@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import parse from 'html-react-parser';
@@ -11,7 +11,6 @@ import {
   getProfile,
   getAccount,
   isAlum as getIsAlum,
-  getSession,
 } from 'selectors/zephrSelector';
 import history from 'utils/history';
 import {
@@ -31,7 +30,6 @@ const AccountLandingPage = ({
   discounts,
   logOut,
   isAuthenticated,
-  session,
   submitResetRequest,
   submitUpdateEmail,
   account,
@@ -159,36 +157,6 @@ const AccountLandingPage = ({
   } else {
     subscriptionLink = sfgLink;
   }
-
-  // const NexusAccount = withData('nexus_user?email=testbasic@example.com', {})(
-  //   ({ response }) => (<div>{JSON.stringify(response)}</div>)
-  // );
-
-  useEffect(() => {
-    const { sessionCookie: cookie = '' } = session;
-
-    const getUser = async () => {
-      const response = await fetch(
-        `${process.env.API_ROOT_URL}/data/nexus_user?email=testbasic@example.com`, // eslint-disable-line max-len
-        {
-          headers: {
-            Accept: 'application/json',
-            cookie,
-          },
-          credentials: 'include',
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        return data;
-      }
-
-      return null;
-    };
-
-    console.log(getUser()); // eslint-disable-line no-console
-  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -351,7 +319,6 @@ AccountLandingPage.defaultProps = {
     subscriptionActive: false,
   },
   isAlum: false,
-  session: {},
 };
 /* eslint-enable */
 
@@ -366,10 +333,6 @@ AccountLandingPage.propTypes = {
   submitUpdateEmail: PropTypes.func.isRequired,
   account: PropTypes.object,
   isAlum: PropTypes.bool,
-  session: PropTypes.shape({
-    sessionCookie: PropTypes.string,
-    trakcingId: PropTypes.string,
-  }),
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -384,7 +347,6 @@ const withRedux = connect(
     firstName: getFirstName(state),
     account: getAccount(state),
     isAlum: getIsAlum(state),
-    session: getSession(state),
     isAuthenticated:
       0 < Object.keys(getProfile(state)).length &&
       0 < Object.keys(getAccount(state)).length,

@@ -55,30 +55,40 @@ app
     const blaizeSession = req.universalCookies.get('blaize_session');
 
     async function zephrProfile() {
-      const response = await fetch(
-        `${process.env.ZEPHR_ROOT_URL}/blaize/account`,
-        {
-          headers: {
-            cookie: `blaize_session=${blaizeSession}`,
-          },
-          credentials: 'include',
-        }
-      );
+      try {
+        const response = await fetch(
+          `${process.env.ZEPHR_ROOT_URL}/blaize/account`,
+          {
+            headers: {
+              cookie: `blaize_session=${blaizeSession}`,
+            },
+            credentials: 'include',
+          }
+        );
 
-      const data = await response.json();
+        const data = await response.json();
 
-      const email = get(data, 'identifiers.email_address', false);
-      return email;
+        const email = get(data, 'identifiers.email_address', false);
+        return email;
+      } catch (error) {
+        console.log('Error confirming Zephr account', error);
+        return false;
+      }
     }
 
     const profile = await zephrProfile();
 
     async function nexusProfile(email) {
-      const response = await fetch(
-        `${process.env.API_ROOT_URL}/data/nexus_user?email=${email}`,
-      );
-      const data = await response.json();
-      return data;
+      try {
+        const response = await fetch(
+          `${process.env.API_ROOT_URL}/data/nexus_user?email=${email}`,
+        );
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.log('Error querying Nexus credentials', error);
+        return false;
+      }
     }
 
     const nexusData = await nexusProfile(profile);
