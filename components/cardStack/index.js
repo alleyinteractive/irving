@@ -38,21 +38,23 @@ const CardStack = ({
 
   return (
     <article className={theme.wrapper} style={{ backgroundColor: color }}>
-      <div className={theme.meta}>
-        { eyebrow && (
-          <Eyebrow
-            customEyebrow={eyebrow}
-            themeName="anchorEyebrow"
-            color={textColor}
-            dateline={dateline}
-          />
-        )}
-        {! isCollection && (
-          <ExpandableSocialShare color={textColor}>
-            {socialSharing}
-          </ExpandableSocialShare>
-        )}
-      </div>
+      { (eyebrow || ! isCollection) && (
+        <div className={theme.meta}>
+          { eyebrow && (
+            <Eyebrow
+              customEyebrow={eyebrow}
+              themeName="anchorEyebrow"
+              color={textColor}
+              dateline={dateline}
+            />
+          )}
+          {! isCollection && (
+            <ExpandableSocialShare color={textColor}>
+              {socialSharing}
+            </ExpandableSocialShare>
+          )}
+        </div>
+      )}
       <div className={isSubtopic || ! image ? theme.bodyFull : theme.body}>
         <div className={theme.bodyCopy}>
           {/* @todo heading level needs to be dynamic, homepage has > 1 h1 */}

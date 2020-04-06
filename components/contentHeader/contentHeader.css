@@ -103,6 +103,18 @@
 
   figure {
     width: 100%;
+
+    @media ($mdMax) {
+      span {
+        margin: 0 rem(10) 0 rem(20);
+      }
+    }
+  }
+
+  @media ($mdMax) {
+    span {
+      margin: 0 rem(10) 0 rem(20);
+    }
   }
 
   @media ($mdMin) {
