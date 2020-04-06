@@ -4,13 +4,14 @@
   background-color: $color-deck;
   margin-bottom: rem(15);
   overflow: hidden;
-  padding: rem(20) 0 rem(5);
+  padding: 0;
   position: relative;
 }
 
 .meta {
   display: flex;
   flex-flow: row wrap;
+  margin-top: rem(20);
   margin-bottom: rem(5);
   width: 100%;
 }
