@@ -30,11 +30,11 @@ const DownloadPDFLink = ({ components, pdfLink, isAuthenticated }) => {
           <Link to="/subscribe/" className={styles.link}>
             {__('Purchase', 'mittr')}
           </Link>
-          <span> or </span>
+          <span> {__('or', 'mittr')} </span>
           <Link to="/insider/subscribe/print-digital" className={styles.link}>
             {__('upgrade', 'mittr')}
           </Link>
-          <span> a subscription to download the PDF</span>
+          <span> {__('a subscription to download the PDF', 'mittr')}</span>
         </p>
       )}
       {/* I am not logged in: Purchase or log in. */}
