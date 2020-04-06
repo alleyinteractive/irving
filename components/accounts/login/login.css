@@ -20,6 +20,19 @@
 
 .formWrap {
   @include zephrForm;
+
+  input[type='email'],
+  input[type='password'] {
+    font-size: rem(16);
+    margin-bottom: rem(10);
+    text-align: center;
+
+    @media ($mdMin) {
+      font-size: rem(20);
+      margin-bottom: rem(15);
+      text-align: left;
+    }
+  }
 }
 
 .ssoText {

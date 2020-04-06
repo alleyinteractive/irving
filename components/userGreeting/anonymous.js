@@ -11,7 +11,7 @@ import styles from './userGreeting.css';
 const Anonymous = ({ themeName, context }) => (
   <>
     <Link
-      to="/login/"
+      to={`/login&redirectTo=${window.location.pathname}`}
       className={classNames(styles.button, styles[`button--${themeName}`])}
       data-event-category={context}
       data-event-action="click"
