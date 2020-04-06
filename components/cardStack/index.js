@@ -6,6 +6,7 @@ import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
 import withThemes from 'components/hoc/withThemes';
 import ExpandableSocialShare from 'components/socialList/expandable';
+import classNames from 'classnames';
 
 // Components
 import ContentSlider from './contentSlider';
@@ -35,6 +36,7 @@ const CardStack = ({
   const logo = findChildByName('logo', children);
   const articles = filterChildrenByName('link-teaser', children);
   const socialSharing = findChildByName('social-sharing', children);
+  const hasContentSlider = 0 < articles.length;
 
   return (
     <article className={theme.wrapper} style={{ backgroundColor: color }}>
@@ -66,7 +68,14 @@ const CardStack = ({
           <p className={theme.description}>{description}</p>
         </div>
         {! isSubtopic && image && (
-          <div className={theme.image}>
+          <div
+            className={classNames(
+              theme.image,
+              {
+                [theme.withoutSlider]: ! hasContentSlider,
+              }
+            )}
+          >
             <Link to={permalink}>
               {image}
             </Link>
@@ -88,7 +97,7 @@ const CardStack = ({
           </div>
         )}
       </div>
-      {0 < articles.length && (
+      {hasContentSlider && (
         <ContentSlider articles={articles} contentItemWidth={288} />
       )}
     </article>
