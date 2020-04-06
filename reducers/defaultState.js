@@ -37,7 +37,7 @@ export const player = {
 };
 
 export const story = {
-  showFullStory: false,
+  showFullText: false,
 };
 
 export const error = null;

@@ -27,13 +27,19 @@ const ContentBody = ({
   dispatchTruncateStory,
   overrideCTA,
   summaryBullets,
-  showFullStory,
 }) => {
+  const [truncateContent, setTruncation] = useState(false);
   const contentRef = useRef();
   const obscureContent = useObscureContent();
 
+  const showFullText = () => {
+    // Remove the truncation button and height limit.
+    setTruncation(false);
+  };
+
   useEffect(() => {
     if (obscureContent) {
+      setTruncation(true);
       dispatchTruncateStory();
       return;
     }
@@ -50,14 +56,18 @@ const ContentBody = ({
       false;
 
     if (0 === truncatedCTA.length) {
+      showFullText();
       dispatchShowFullStory();
     } else if (isOutsideSource) {
+      setTruncation(true);
       dispatchTruncateStory();
     } else {
+      showFullText();
       dispatchShowFullStory();
     }
 
     if (true === overrideCTA) {
+      showFullText();
       dispatchShowFullStory();
     }
   }, []);
@@ -100,13 +110,13 @@ const ContentBody = ({
     <div className={styles.wrapper}>
       <div
         className={classNames(styles.overlay, {
-          [styles.overlayVisible]: ! showFullStory,
+          [styles.overlayVisible]: truncateContent,
         })}
       />
 
       <div
         className={classNames(styles.content, {
-          [styles.contentHidden]: ! showFullStory,
+          [styles.contentHidden]: truncateContent,
         })}
         id="content--body"
       >
@@ -120,7 +130,7 @@ const ContentBody = ({
         </div>
       </div>
 
-      {! showFullStory && (
+      {truncateContent && (
         <button
           className={styles.truncationButton}
           type="button"
@@ -136,7 +146,7 @@ const ContentBody = ({
               label: 'read more',
               noninteraction: 0,
             });
-            dispatchShowFullStory();
+            showFullText();
           }}
           disabled={true === obscureContent}
         >
@@ -164,20 +174,15 @@ ContentBody.propTypes = {
   dispatchTruncateStory: PropTypes.func,
   overrideCTA: PropTypes.bool,
   summaryBullets: PropTypes.string,
-  showFullStory: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchShowFullStory: () => dispatch(actionShowFullStory()),
+  dispatchShowStory: () => dispatch(actionShowFullStory()),
   dispatchTruncateStory: () => dispatch(actionTruncateStory()),
 });
 
-const mapStateToProps = (state) => ({
-  showFullStory: state.story.showFullStory,
-});
-
 const withRedux = connect(
-  mapStateToProps,
+  undefined,
   mapDispatchToProps
 );
 
