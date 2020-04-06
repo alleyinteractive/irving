@@ -24,7 +24,7 @@ const GutenbergContent = ({
       'html' === child.props.componentName &&
       'full-story' === postFormat) {
         const htmlString = child.props.content;
-        const newStr = htmlString.trimEnd();
+        const newStr = htmlString.trim();
         // Strip the </p> and reconstruct it with the svg string + </p>
         const newHtmlConent =
           `${newStr.slice(0, - 4)}${monogramTLogo} </p>`;
