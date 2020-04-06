@@ -9,10 +9,12 @@ import {
   actionReceiveUserVerification,
   actionReceiveUserProfile,
   actionReceiveUserVerificationError,
+  actionSendUserVerificationEmail,
 } from 'actions/zephrActions';
 import {
   VERIFY_ZEPHR_USER_TOKEN,
   RECEIVE_ZEPHR_USER_VERIFICATION,
+  REQUEST_VERIFICATION_EMAIL,
 } from 'actions/types';
 import zephrService from 'services/zephrService';
 import history from 'utils/history';
@@ -31,6 +33,8 @@ const debug = createDebug('sagas:tokenExchange');
 export default [
   // Listen for token verification request.
   takeEvery(VERIFY_ZEPHR_USER_TOKEN, verifyToken),
+  // Listen for email request.
+  takeEvery(REQUEST_VERIFICATION_EMAIL, requestVerificationEmail),
   // Listen to verification success response and run a conditional check for redirect.
   takeEvery(RECEIVE_ZEPHR_USER_VERIFICATION, redirectUser),
 ];
@@ -55,6 +59,22 @@ function* verifyToken({ payload }) {
       yield put(actionReceiveUserVerificationError());
     }
   } catch (error) {
+    yield call(debug, error);
+  }
+}
+
+/**
+ * A generator that is called when a user manually submits an email for verification.
+ */
+function* requestVerificationEmail({ payload }) {
+  try {
+    yield call(zephrService.sendVerificationEmail, payload);
+    // Update the state to reflect the email being sent.
+    yield put(actionSendUserVerificationEmail());
+    // // Push the user to the confirmation page.
+    history.push('/register/confirmation/');
+  } catch (error) {
+    // Post the error message to the console.
     yield call(debug, error);
   }
 }

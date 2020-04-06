@@ -13,6 +13,7 @@ import {
   RECEIVE_ZEPHR_USER_VERIFICATION,
   REQUEST_FORM_FOR_ROUTE,
   SUBMIT_ZEPHR_FORM,
+  RECEIVE_USER_VERIFICATION_ERROR,
 } from 'actions/types';
 import { PERSIST, REHYDRATE } from 'redux-persist/lib/constants';
 import { zephr as defaultState } from './defaultState';
@@ -187,6 +188,14 @@ export default function zephrReducer(state = defaultState, { type, payload }) {
         user: {
           ...state.user,
           emailVerified: true,
+        },
+      };
+    case RECEIVE_USER_VERIFICATION_ERROR:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          verifyEmailError: true,
         },
       };
     default:
