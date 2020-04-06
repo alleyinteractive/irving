@@ -5,7 +5,7 @@
   hr {
     &:global(.is-style-default) {
       border: 1px solid #000;
-      margin: rem(32) auto;
+      margin: rem(30) auto;
       max-width: 100%;
       width: 100%;
 
@@ -16,7 +16,7 @@
 
     &:global(.thin-style) {
       border-top: 1px solid #767676;
-      margin: rem(32) auto;
+      margin: rem(30) auto;
       max-width: 100%;
       width: 100%;
     }
@@ -34,7 +34,7 @@
 
     &:global(.is-style-wide) {
       border-top: 3px solid #000;
-      margin: rem(32) auto;
+      margin: rem(30) auto;
       max-width: none;
       width: 100%;
     }
