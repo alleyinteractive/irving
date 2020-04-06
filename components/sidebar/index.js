@@ -27,7 +27,7 @@ const Sidebar = (props) => {
         height: pinBottomItem ? '100%' : 'inherit',
       }}
     >
-      <ul>
+      <ul className={pinBottomItem ? styles.pinnedBottom : ''}>
         {children.map((child, index) => {
           const {
             props: { gtmTargetingClass },
@@ -36,12 +36,7 @@ const Sidebar = (props) => {
             <li
               // eslint-disable-next-line react/no-array-index-key
               key={`${child['component-name']}_${index}`}
-              className={classNames(
-                styles.widgetWrapper,
-                pinBottomItem && (index === children.length - 1) ?
-                  'pinned-bottom-item' :
-                  ''
-              )}
+              className={styles.widgetWrapper}
             >
               {! gtmTargetingClass ?
                 cloneElement(child, { gtmTargetingClass: context }) :

@@ -23,7 +23,9 @@
   }
 }
 
-:global(.pinned-bottom-item) {
-  position: absolute;
-  bottom: 0;
+.pinnedBottom {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
 }
