@@ -69,7 +69,7 @@
   font-size: rem(18);
   letter-spacing: normal;
   line-height: 1.44;
-  margin-bottom: rem(13);
+  margin-bottom: rem(20);
 
   @media ($smMax) {
     font-size: rem(20);
