@@ -3,7 +3,7 @@
   border-bottom: 1px solid #c8c8c8;
   color: $black;
   display: flex;
-  justify-self: flex-end;
+  flex-direction: column;
   margin: 0 auto;
   min-height: rem(62);
   position: relative;
@@ -16,9 +16,13 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: rem(10) auto 0;
   padding-bottom: 0;
   position: relative;
+
+  @media ($smMin) {
+    margin: rem(30) auto 0;
+  }
 
   &.isHeadroom {
     justify-content: flex-start;
@@ -51,11 +55,13 @@
 }
 
 .logoStacked {
+  bottom: rem(8);
   display: none;
   flex-flow: row nowrap;
   justify-content: flex-start;
   margin-bottom: tidy-var(gap);
   margin-left: rem(-7); /* Vertical align the R and T on the grid */
+  position: relative;
 
   @media ($smMin) {
     display: flex;
@@ -99,7 +105,7 @@
 
 .leaderboardRow {
   flex: 1 0 100%;
-  min-height: rem(150);
+  min-height: rem(90);
   width: 100%;
 
   &.displayNone {
@@ -113,7 +119,7 @@
   :global(.adUnit) {
     /* stylelint-disable selector-max-specificity */
     &[loaded="true"] {
-      margin: rem(20 0 40);
+      margin: rem(20 0);
     }
     /* stylelint-enable */
   }
