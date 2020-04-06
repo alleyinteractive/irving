@@ -607,7 +607,6 @@ export default {
       ).then((res) => res.json());
 
       const response = await request;
-      console.log(response);
 
       if ('_mitta' === provider) {
         const {

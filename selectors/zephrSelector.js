@@ -112,6 +112,11 @@ export const getEmailVerified = createSelector(
   (state) => state.user.emailVerified,
 );
 
+export const getEmailVerificationError = createSelector(
+  zephrSelector,
+  (state) => state.user.verifyEmailError,
+);
+
 export const getZephrDataLayer = createSelector(
   zephrSelector,
   (state) => state.dataLayer,
