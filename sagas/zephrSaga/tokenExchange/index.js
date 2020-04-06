@@ -8,6 +8,7 @@ import {
   actionReceiveUserSession,
   actionReceiveUserVerification,
   actionReceiveUserProfile,
+  actionReceiveUserVerificationError,
 } from 'actions/zephrActions';
 import {
   VERIFY_ZEPHR_USER_TOKEN,
@@ -50,6 +51,8 @@ function* verifyToken({ payload }) {
       yield call(getAccount, cookie);
       // Wait until profile and account details have been retrieved to redirect.
       yield put(actionReceiveUserVerification());
+    } else {
+      yield put(actionReceiveUserVerificationError());
     }
   } catch (error) {
     yield call(debug, error);

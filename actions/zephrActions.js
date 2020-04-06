@@ -33,6 +33,7 @@ import {
   SUBMIT_PROFILE,
   REQUEST_ZEPHR_DATA_LAYER,
   RECEIVE_ZEPHR_DATA_LAYER,
+  RECEIVE_USER_VERIFICATION_ERROR,
 } from './types';
 
 /**
@@ -374,4 +375,12 @@ export function actionRequestZephrDataLayer() {
  */
 export function actionReceiveZephrDataLayer(payload) {
   return createAction(RECEIVE_ZEPHR_DATA_LAYER, payload);
+}
+
+/**
+ * A Redux action that represents when a user attempts to verify their email
+ * address after the link has expired.
+ */
+export function actionReceiveUserVerificationError() {
+  return createAction(RECEIVE_USER_VERIFICATION_ERROR);
 }
