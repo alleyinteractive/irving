@@ -3,6 +3,8 @@ export default {
    * Retrieve a user's order history through their email address.
    * The endpoint this service requests is an express endpoint from this server.
    *
+   * @see server/nexusData.js
+   *
    * @return {object} The Nexus user object if found, or an empty array.
    */
   async getUser() {
