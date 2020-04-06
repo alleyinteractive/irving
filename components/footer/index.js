@@ -13,6 +13,7 @@ const Footer = ({
   themeName,
 }) => {
   const menu = findChildByName('menu', children);
+  const date = new Date();
   return (
     <footer className={styles.container} aria-labelledby="footer">
       <div className={styles.wrapper}>
@@ -34,7 +35,9 @@ const Footer = ({
           <div className={styles.menu}>{menu}</div>
         )}
         <div className={styles.copyright}>
-          <a href={copyrightLink}>MIT Technology Review © 2019</a>
+          <a href={copyrightLink}>
+            MIT Technology Review © {date.getFullYear()}
+          </a>
         </div>
       </div>
     </footer>
