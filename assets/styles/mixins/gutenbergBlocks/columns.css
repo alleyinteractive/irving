@@ -26,6 +26,10 @@
     position: relative;
     width: 100%;
 
+    &:global(.no-margin) {
+      margin: 0;
+    }
+
     @media ($mdMin) {
       max-width: 48%;
 
