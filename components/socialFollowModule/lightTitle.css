@@ -2,6 +2,18 @@
   display: flex;
   flex-direction: column;
   tidy-span: 3;
+
+  /* stylelint-disable selector-max-specificity */
+  &.megaMenuTheme {
+    .title {
+      font-size: rem(16);
+      font-weight: 900;
+      letter-spacing: 0;
+      padding-top: 0;
+      text-transform: none;
+    }
+  }
+  /* stylelint-enable selector-max-specificity */
 }
 
 .title {
