@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import { connect } from 'react-redux';
+import Link from 'components/helpers/link';
 import {
   getProfile,
   getAccount,
@@ -32,9 +33,13 @@ const Activate = ({
       </h1>
       <p className={styles.headerDescription}>
         {__(
-          'Enter your name and choose a password to claim your subscription.',
+          'Enter your name and choose a password to claim your subscription. ',
           'mittr'
         )}
+        {__('Already have an account? ', 'mittr')}
+        <Link to="/login/" className={styles.formLink}>
+          {__('Sign in.', 'mittr')}
+        </Link>
       </p>
       <RegisterForm />
     </div>
