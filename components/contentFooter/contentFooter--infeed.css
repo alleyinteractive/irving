@@ -42,3 +42,7 @@
     margin: rem(0 10 0 0);
   }
 }
+
+.footerAd {
+  max-width: 90vw;
+}

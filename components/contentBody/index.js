@@ -1,6 +1,8 @@
 import React, {
+  useContext,
   useEffect,
   useRef,
+  useState,
 } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,7 +12,9 @@ import {
   actionShowFullStory,
   actionTruncateStory,
 } from 'actions/storyActions';
+import { GTMContext } from 'components/googleTagManager';
 import useObscureContent from 'hooks/useObscureContent';
+import useReadPercentage from 'hooks/useReadPercentage';
 import classNames from 'classnames';
 import parse from 'html-react-parser';
 import styles from './contentBody.css';
@@ -57,6 +61,40 @@ const ContentBody = ({
       dispatchShowFullStory();
     }
   }, []);
+
+  // Store which landmark we've reached in state.
+  const [landmarkReached, setLandmarkReached] = useState(false);
+  const readPercentage = useReadPercentage(contentRef);
+  const { pushEvent } = useContext(GTMContext);
+
+  useEffect(() => {
+    // Bail early if the story is truncated.
+    if (obscureContent) {
+      return;
+    }
+
+    const readLandmarks = [100, 75, 50, 25, 0];
+
+    readLandmarks.map((landmark) => {
+      if (landmark > readPercentage) {
+        return false;
+      }
+
+      const label = (landmark / 100).toFixed(2);
+
+      if (false === landmarkReached || landmark > landmarkReached) {
+        pushEvent('mittr:articleScrollDepthTracking', {
+          category: 'articleScrollDepthTracking',
+          action: 'scroll',
+          label,
+        });
+
+        setLandmarkReached(landmark);
+      }
+
+      return true;
+    });
+  }, [readPercentage]);
 
   return (
     <div className={styles.wrapper}>

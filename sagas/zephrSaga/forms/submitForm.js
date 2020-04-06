@@ -15,7 +15,10 @@ import zephrService from 'services/zephrService';
 import nexusService from 'services/nexusService';
 import history from 'utils/history';
 import createDebug from 'services/createDebug';
-import { getZephrCookie } from 'selectors/zephrSelector';
+import {
+  getZephrCookie,
+  getProfile as getUserProfile,
+} from 'selectors/zephrSelector';
 
 const debug = createDebug('sagas:submitZephrForm');
 
@@ -73,8 +76,18 @@ function* submitLogin(credentials) {
       yield call(getProfile, cookie);
       // Get the user's account.
       yield call(getAccount, cookie);
-      // Push the user to the homepage.
-      history.push(credentials.redirectTo);
+      // Access the user profile retrieved from Zephr.
+      const {
+        firstName,
+        lastName,
+      } = yield select(getUserProfile);
+      // If no profile information is found, redirect the user to complete their profile.
+      if (! firstName && ! lastName) {
+        history.push('/complete-profile');
+      } else {
+        // Else push the user to the redirect target.
+        history.push(credentials.redirectTo);
+      }
     } catch (error) {
       // Post the error message to the console.
       yield call(debug, error);

@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   margin-right: rem(20);
-  
+
   @media ($smMax) {
     display: none;
   }
@@ -123,7 +123,11 @@
   display: flex;
   flex-direction: row;
   font-weight: 700;
-  margin-top: rem(30);
+  margin-top: rem(5);
+
+  &:first-of-type {
+    margin-top: rem(15);
+  }
 
   & > span {
     display: block;

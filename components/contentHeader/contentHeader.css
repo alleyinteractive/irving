@@ -10,12 +10,13 @@
 
 .publishDate {
   font-family: $sans;
-  font-size: rem(16);
+  font-size: rem(14);
   font-weight: 400;
   margin-bottom: rem(10);
   white-space: nowrap;
 
   @media ($mdMin) {
+    font-size: rem(16);
     margin-bottom: rem(15);
   }
 }
@@ -102,6 +103,12 @@
 
   figure {
     width: 100%;
+
+    @media ($mdMax) {
+      span {
+        margin: 0 rem(10) 0 rem(20);
+      }
+    }
   }
 
   @media ($mdMin) {

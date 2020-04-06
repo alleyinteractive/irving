@@ -56,3 +56,9 @@
     font-size: rem(40);
   }
 }
+
+:global(.monogramTLogo) {
+  height: 14px;
+  margin-left: 10px;
+  width: 14px;
+}

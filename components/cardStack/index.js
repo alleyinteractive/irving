@@ -37,55 +37,61 @@ const CardStack = ({
   const socialSharing = findChildByName('social-sharing', children);
 
   return (
-    <header className={theme.wrapper} style={{ backgroundColor: color }}>
-      {! isCollection && (
-        <ExpandableSocialShare color={textColor}>
-          {socialSharing}
-        </ExpandableSocialShare>
+    <article className={theme.wrapper} style={{ backgroundColor: color }}>
+      { (eyebrow || ! isCollection) && (
+        <div className={theme.meta}>
+          { eyebrow && (
+            <Eyebrow
+              customEyebrow={eyebrow}
+              themeName="anchorEyebrow"
+              color={textColor}
+              dateline={dateline}
+            />
+          )}
+          {! isCollection && (
+            <ExpandableSocialShare color={textColor}>
+              {socialSharing}
+            </ExpandableSocialShare>
+          )}
+        </div>
       )}
-      <div className={isSubtopic || ! image ? theme.metaFull : theme.meta}>
-        { eyebrow && (
-          <Eyebrow
-            customEyebrow={eyebrow}
-            themeName="anchorEyebrow"
-            color={textColor}
-            dateline={dateline}
-          />
+      <div className={isSubtopic || ! image ? theme.bodyFull : theme.body}>
+        <div className={theme.bodyCopy}>
+          {/* @todo heading level needs to be dynamic, homepage has > 1 h1 */}
+          <h1 className={theme.name} style={{ color: textColor }}>
+            <Link to={permalink}>
+              {name}
+            </Link>
+          </h1>
+          <p className={theme.description}>{description}</p>
+        </div>
+        {! isSubtopic && image && (
+          <div className={theme.image}>
+            <Link to={permalink}>
+              {image}
+            </Link>
+          </div>
         )}
-        {/* @todo heading level needs to be dynamic, homepage has > 1 h1 */}
-        <h1 className={theme.name} style={{ color: textColor }}>
-          <Link to={permalink}>
-            {name}
-          </Link>
-        </h1>
-        <p className={theme.description}>{description}</p>
+        {isSponsored && (
+          <div className={theme.sponsored}>
+            <h2 className={theme.sponsorLabel} style={{ color }}>
+              <span aria-hidden>{__('Sponsored', 'mittr')}</span>
+              {/* Re-phrase the heading for context for screen readers. */}
+              <span className="screen-reader-text">
+                {__('Collection sponsor', 'mittr')}
+              </span>
+            </h2>
+            <Link to={sponsorLink} className={theme.sponsorLink}>
+              {/* Name of sponsor in logo alt text. */}
+              {logo}
+            </Link>
+          </div>
+        )}
       </div>
-      {! isSubtopic && image && (
-        <div className={theme.image}>
-          <Link to={permalink}>
-            {image}
-          </Link>
-        </div>
-      )}
-      {isSponsored && (
-        <div className={theme.sponsored}>
-          <h2 className={theme.sponsorLabel} style={{ color }}>
-            <span aria-hidden>{__('Sponsored', 'mittr')}</span>
-            {/* Re-phrase the heading for context for screen readers. */}
-            <span className="screen-reader-text">
-              {__('Collection sponsor', 'mittr')}
-            </span>
-          </h2>
-          <Link to={sponsorLink} className={theme.sponsorLink}>
-            {/* Name of sponsor in logo alt text. */}
-            {logo}
-          </Link>
-        </div>
-      )}
       {0 < articles.length && (
         <ContentSlider articles={articles} contentItemWidth={288} />
       )}
-    </header>
+    </article>
   );
 };
 

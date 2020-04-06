@@ -37,7 +37,7 @@
 
   b,
   strong {
-    font-weight: 700;
+    font-weight: $header-weight;
   }
 
   em,

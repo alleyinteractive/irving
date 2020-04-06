@@ -63,7 +63,7 @@
   border-top: 1px solid #646464;
   flex-flow: wrap;
   margin-top: rem(40);
-  padding-top: rem(40);
+  padding-top: rem(30);
   width: 100%;
 
   @media ($lgMin) {

@@ -90,6 +90,7 @@ const AccountLandingPage = ({
         return __('You have limited access to technologyreview.com. ', 'mittr');
     }
   };
+
   let renewalDate = '';
   if (account.subscriptionExpiration) {
     renewalDate = format(
@@ -104,6 +105,41 @@ const AccountLandingPage = ({
   ) {
     accountNumber = account.orders[0].customer_number;
   }
+
+  const generateSubscriberText = () => {
+    if (account.subscriptionActive) {
+      return (
+        <p>
+          {__('You are an', 'mittr')}{' '}
+          <strong>
+            {account.subscriptionType}{' '}
+            {__('subscriber', 'mittr')}{' '}
+          </strong>,{' '}
+          {__('account', 'mittr')}{' '}
+          <strong>#{accountNumber}</strong>.{' '}
+          {__(
+            'Your subscription will automatically renew on',
+            'mittr'
+          )}{' '}
+          <strong>{renewalDate}</strong>.
+        </p>
+      );
+    }
+
+    if (isAlum) {
+      return (
+        <p>
+          {__('You are an Infinite Connection subscriber.', 'mittr')}
+        </p>
+      );
+    }
+
+    return (
+      <p>
+        {__('You are not subscribed.', 'mittr')}
+      </p>
+    );
+  };
 
   const sfgLink = 'https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602'; // eslint-disable-line max-len
   let subscriptionLink = '';
@@ -210,27 +246,7 @@ const AccountLandingPage = ({
 
         <div className={styles.subscription}>
           <h2>{__('Subscription', 'mittr')}</h2>
-          { account.subscriptionActive ? (
-            <p>
-              {__('You are an', 'mittr')}{' '}
-              <strong>
-                {account.subscriptionType}{' '}
-                {__('subscriber', 'mittr')}{' '}
-              </strong>,{' '}
-              {__('account', 'mittr')}{' '}
-              <strong>#{accountNumber}</strong>.{' '}
-              {__(
-                'Your subscription will automatically renew on',
-                'mittr'
-              )}{' '}
-              <strong>{renewalDate}</strong>.
-            </p>
-          ) :
-            (
-              <p>
-                {__('You are not subscribed.', 'mittr')}
-              </p>
-            )}
+          {generateSubscriberText()}
 
           <div className={styles.buttonContainer}>
             <a

@@ -5,7 +5,7 @@
   font-family: $sans;
   font-size: rem(14);
   line-height: calc(18/14);
-  padding: rem(15) 0;
+  padding: 0 0 rem(10);
   width: 100%;
 }
 
@@ -15,7 +15,7 @@
   font-family: $sans;
   font-size: rem(12);
   line-height: 1;
-  padding: rem(3 5 0);
+  padding: rem(3 5 10);
   text-align: right;
 }
 
@@ -23,6 +23,7 @@
   img {
     display: block;
     height: auto;
+    margin-bottom: rem(10);
     max-width: 100%;
   }
 
@@ -33,7 +34,7 @@
     max-width: 100%;
 
     @media ($smMin) {
-      margin-bottom: rem(36);
+      margin-bottom: rem(30);
     }
 
     :global(.image-credit) {

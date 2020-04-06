@@ -72,7 +72,9 @@ const RegisterForm = ({
     let errorCount = 0;
 
     // Check to ensure the captcha has been validated prior to submission.
-    if (false === captcha.isValid) {
+    // Only run the check if the captcha has been loaded into the DOM.
+    const captchaNotLoaded = document.getElementById('captcha-not-loaded');
+    if (! captchaNotLoaded && false === captcha.isValid) {
       setCaptcha({
         hasError: true,
         isValid: false,
@@ -100,7 +102,7 @@ const RegisterForm = ({
     }
 
     // Check to ensure that the email address is valid prior to submission.
-    if (! email.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
+    if (! email.value.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]+)*$/)) { // eslint-disable-line max-len
       displayFormError('email-address');
 
       // Increment the error counter.

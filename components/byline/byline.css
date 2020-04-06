@@ -2,7 +2,11 @@
 
 .wrapper {
   font-family: $sans;
-  font-size: rem(20);
+  font-size: rem(16);
+
+  @media ($smMin) {
+    font-size: rem(20);
+  }
 }
 
 .by {
