@@ -18,7 +18,7 @@ const DownloadPDFLink = ({ components, pdfLink, isAuthenticated }) => {
   );
   return (
     <>
-      {/* I am not logged in and entitled: Download PDF. */}
+      {/* I am logged in and entitled: Download PDF. */}
       {showDownloadLink && (
         <Link to={pdfLink} className={styles.link}>
           {__('Open the PDF', 'mittr')}
