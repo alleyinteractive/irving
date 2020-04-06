@@ -27,7 +27,6 @@
 .main {
   @include container;
   margin-bottom: rem(50);
-  width: calc((100vw/12*12) + 1.25rem); /* The tidy span calc does not work as expected with the dual-sided bleed. */
 
   @media ($mdMin) {
     margin-bottom: 0;
