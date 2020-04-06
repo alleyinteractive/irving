@@ -71,13 +71,11 @@ const HeaderTemplate = ({
       className={classNames(styles.container)}
       ref={isHeadroom ? headroomRef : null}
     >
-      <div className={classNames(styles.leaderboardRow, {
-        [styles.displayNone]: isHeadroom || isMobile,
-        [styles.hideAds]: hideAds,
-      })}
-      >
-        {leaderboardAd}
-      </div>
+      {! (hideAds || isHeadroom) && (
+        <div className={styles.leaderboardRow}>
+          {leaderboardAd}
+        </div>
+      )}
       <div className={classNames(styles.wrapper, {
         [styles.isHeadroom]: isHeadroom,
       })}
