@@ -23,7 +23,6 @@ import styles from './headerTemplate.css';
 
 const HeaderTemplate = ({
   children,
-  id,
   isHeadroom,
   isMobile,
   homeUrl,
@@ -67,7 +66,6 @@ const HeaderTemplate = ({
   });
   return (
     <header
-      id={id} // used by nprogress bar
       className={classNames(styles.container)}
       ref={isHeadroom ? headroomRef : null}
     >
@@ -158,12 +156,7 @@ const HeaderTemplate = ({
   );
 };
 
-HeaderTemplate.defaultProps = {
-  id: '',
-};
-
 HeaderTemplate.propTypes = {
-  id: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   isHeadroom: PropTypes.bool.isRequired,
   homeUrl: PropTypes.string.isRequired,
