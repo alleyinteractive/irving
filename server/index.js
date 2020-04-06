@@ -47,6 +47,132 @@ const passthrough = proxy({
   xfwd: true,
 });
 
+app
+  .use(cookiesMiddleware())
+  .use('/irving/v1/nexus_data', async (req, res) => {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    const blaizeSession = req.universalCookies.get('blaize_session');
+
+    function zephrProfile(cookie) {
+      return new Promise((resolve, reject) => {
+        // const payload = [];
+
+        const request = https.request(
+          {
+            host: process.env.ZEPHR_ROOT_URL,
+            path: '/blaize/account',
+            method: 'GET',
+            headers: {
+              cookie,
+            },
+            credentials: 'include',
+          },
+          (result) => {
+            console.log(Object.keys(result), result.headers, result.statusCode);
+            if (200 !== result.statusCode) {
+              reject(new Error('Request was rejected.'));
+            } else {
+              this.data = [];
+
+              result.on('data', (chunk) => this.data.push(chunk.toString()));
+              result.on('end', () => {
+                try {
+                  this.result = JSON.parse(this.data.join(''));
+                  resolve(this.result);
+                } catch {
+                  reject(new Error('Malformed result'));
+                }
+              });
+            }
+          }
+        );
+
+        request.on('error', (err) => {
+          reject(new Error(`Error querying Zephr service: ${err.toString()}`));
+        });
+
+        // request.write(payload);
+        request.write('some random string, how does this work?');
+        request.end();
+      });
+    }
+
+    let profile;
+
+    try {
+      profile = await zephrProfile(`blaize_session: ${blaizeSession}`);
+    } catch (err) {
+      console.log('There was an error authenticating the user.', err);
+    }
+    // const profile = await zephrProfile(blaizeSession);
+    console.log(profile);
+
+    // function zephrProfile(cookie) {
+    //   console.log('this is running');
+    //   const request = https.request(
+    //     {
+    //       host: process.env.ZEPHR_ROOT_URL,
+    //       path: '/blaize/account',
+    //       method: 'GET',
+    //       headers: {
+    //         cookie,
+    //       },
+    //       credentials: 'include',
+    //     },
+    //     (result) => {
+    //       console.log({ result });
+    //       result.on('data', (data) => {
+    //         console.log(JSON.parse(data));
+    //       });
+    //     }
+    //   );
+
+    //   request.on('error', (err) => {
+    //     console.log({ err });
+    //   });
+
+    //   request.end();
+    // }
+
+    res.json(profile);
+
+    // async function getAccount(sessionCookie) {
+    //   try {
+    //     const request = https.request(
+    //       `${process.env.ZEPHR_ROOT_URL}/blaize/account`,
+    //       {
+    //         method: 'GET',
+    //         headers: {
+    //           cookie: sessionCookie,
+    //         },
+    //         credentials: 'include',
+    //       }
+    //     ).then((res) => res.json());
+
+    //     const response = await request;
+
+    //     const {
+    //       identifiers: {
+    //         email_address: emailAddress,
+    //       },
+    //     } = response;
+
+    //     return { emailAddress };
+    //   } catch (error) {
+    //     return error;
+    //   }
+    // }
+    // const account = getAccount(cookie);
+    // console.log(account);
+    // res.json(account);
+
+    // Authenticate to zephr,
+    // zephr gives user's email address
+    // build the authentication header string for nexus
+    // use the email that you now know is authenticated and send to wp
+    // call
+  });
+
 // Proxy XML and XSL file requests directly.
 app.use('/robots.txt', passthrough);
 app.use('*.xml', passthrough);
