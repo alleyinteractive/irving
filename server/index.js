@@ -4,6 +4,8 @@ const https = require('https');
 const express = require('express');
 const { server } = require('@automattic/vip-go');
 const cookiesMiddleware = require('universal-cookie-express');
+const fetch = require('isomorphic-fetch');
+const get = require('lodash/get');
 
 // Support isomorphic environment variables from local .env file
 require('dotenv').config();
@@ -50,127 +52,38 @@ const passthrough = proxy({
 app
   .use(cookiesMiddleware())
   .use('/irving/v1/nexus_data', async (req, res) => {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
     const blaizeSession = req.universalCookies.get('blaize_session');
 
-    function zephrProfile(cookie) {
-      return new Promise((resolve, reject) => {
-        // const payload = [];
-
-        const request = https.request(
-          {
-            host: process.env.ZEPHR_ROOT_URL,
-            path: '/blaize/account',
-            method: 'GET',
-            headers: {
-              cookie,
-            },
-            credentials: 'include',
+    async function zephrProfile() {
+      const response = await fetch(
+        `${process.env.ZEPHR_ROOT_URL}/blaize/account`,
+        {
+          headers: {
+            cookie: `blaize_session=${blaizeSession}`,
           },
-          (result) => {
-            console.log(Object.keys(result), result.headers, result.statusCode);
-            if (200 !== result.statusCode) {
-              reject(new Error('Request was rejected.'));
-            } else {
-              this.data = [];
+          credentials: 'include',
+        }
+      );
 
-              result.on('data', (chunk) => this.data.push(chunk.toString()));
-              result.on('end', () => {
-                try {
-                  this.result = JSON.parse(this.data.join(''));
-                  resolve(this.result);
-                } catch {
-                  reject(new Error('Malformed result'));
-                }
-              });
-            }
-          }
-        );
+      const data = await response.json();
 
-        request.on('error', (err) => {
-          reject(new Error(`Error querying Zephr service: ${err.toString()}`));
-        });
-
-        // request.write(payload);
-        request.write('some random string, how does this work?');
-        request.end();
-      });
+      const email = get(data, 'identifiers.email_address', false);
+      return email;
     }
 
-    let profile;
+    const profile = await zephrProfile();
 
-    try {
-      profile = await zephrProfile(`blaize_session: ${blaizeSession}`);
-    } catch (err) {
-      console.log('There was an error authenticating the user.', err);
+    async function nexusProfile(email) {
+      const response = await fetch(
+        `${process.env.API_ROOT_URL}/data/nexus_user?email=${email}`,
+      );
+      const data = await response.json();
+      return data;
     }
-    // const profile = await zephrProfile(blaizeSession);
-    console.log(profile);
 
-    // function zephrProfile(cookie) {
-    //   console.log('this is running');
-    //   const request = https.request(
-    //     {
-    //       host: process.env.ZEPHR_ROOT_URL,
-    //       path: '/blaize/account',
-    //       method: 'GET',
-    //       headers: {
-    //         cookie,
-    //       },
-    //       credentials: 'include',
-    //     },
-    //     (result) => {
-    //       console.log({ result });
-    //       result.on('data', (data) => {
-    //         console.log(JSON.parse(data));
-    //       });
-    //     }
-    //   );
+    const nexusData = await nexusProfile(profile);
 
-    //   request.on('error', (err) => {
-    //     console.log({ err });
-    //   });
-
-    //   request.end();
-    // }
-
-    res.json(profile);
-
-    // async function getAccount(sessionCookie) {
-    //   try {
-    //     const request = https.request(
-    //       `${process.env.ZEPHR_ROOT_URL}/blaize/account`,
-    //       {
-    //         method: 'GET',
-    //         headers: {
-    //           cookie: sessionCookie,
-    //         },
-    //         credentials: 'include',
-    //       }
-    //     ).then((res) => res.json());
-
-    //     const response = await request;
-
-    //     const {
-    //       identifiers: {
-    //         email_address: emailAddress,
-    //       },
-    //     } = response;
-
-    //     return { emailAddress };
-    //   } catch (error) {
-    //     return error;
-    //   }
-    // }
-    // const account = getAccount(cookie);
-    // console.log(account);
-    // res.json(account);
-
-    // Authenticate to zephr,
-    // zephr gives user's email address
-    // build the authentication header string for nexus
-    // use the email that you now know is authenticated and send to wp
-    // call
+    res.json(nexusData);
   });
 
 // Proxy XML and XSL file requests directly.
