@@ -10,8 +10,6 @@
       margin-bottom: rem(30);
     }
 
-    
-
     &:global(.has-small-font-size) {
       font-size: rem(13);
     }
@@ -40,12 +38,20 @@
       text-align: center;
     }
 
+    /* The following class names must be entered into the Adavnced Additional CSS Class Names
+    * for these styles to take affect.
+    */
     &:global(.page-subheader) {
       color: #000;
       font-family: $sans;
-      font-size: rem(50);
+      font-size: rem(40);
       font-weight: 600;
-      line-height: 1;
+      line-height: rem(40);
+
+      @media ($smMin) {
+        font-size: rem(50);
+        line-height: rem(50);
+      }
     }
 
     &:global(.section-header) {
@@ -53,7 +59,14 @@
       font-family: $sans;
       font-size: rem(24);
       font-weight: 600;
+      line-height: rem(26);
     }
+
+    &:global(.about-header) {
+      margin-bottom: rem(5);
+      margin-top: 0;
+    }
+
     /* stylelint-disable selector-max-specificity */
     &:global(.view-more-link) {
       a {
