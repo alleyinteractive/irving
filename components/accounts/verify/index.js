@@ -10,7 +10,6 @@ import URL from 'url-parse';
 import Link from 'components/helpers/link';
 import {
   actionVerifyToken,
-  actionRequestVerificationEmail,
 } from 'actions/zephrActions';
 import {
   getFirstName,
@@ -18,6 +17,7 @@ import {
   getEmailVerificationError,
 } from 'selectors/zephrSelector';
 import DataLoading from 'components/hoc/withData/loading';
+import ExpiredTokenForm from './expired';
 
 // Styles
 import styles from './verify.css';
@@ -27,7 +27,6 @@ const Verify = ({
   firstName,
   emailVerified,
   hasError,
-  requestEmail,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -46,47 +45,8 @@ const Verify = ({
     }
   }, []);
 
-  const sendVerificationEmail = (event) => {
-    event.preventDefault();
-
-    const email = document.getElementById('user-verification-input');
-
-    if (0 < email.value.length) {
-      requestEmail(email.value);
-    }
-  };
-
   if (true === hasError) {
-    return (
-      <div className={styles.accountWrap}>
-        <p className={styles.accountSubHeader}>
-          {__(
-            'Oops! This verification link has expired.',
-            'mittr'
-          )}
-        </p>
-        <p className={styles.accountHeaderDescription}>
-          {__(
-            `Please use the form below to send a new link your
-            email address.`,
-            'mittr'
-          )}
-        </p>
-        <form onSubmit={sendVerificationEmail}>
-          <input
-            id="user-verification-input"
-            type="email"
-            className={styles.emailInput}
-            placeholder="john.doe@example.com"
-          />
-          <input
-            type="submit"
-            className={styles.submitButton}
-            value="Send Email"
-          />
-        </form>
-      </div>
-    );
+    return <ExpiredTokenForm />;
   }
 
   if (true === emailVerified && true === isLoading) {
@@ -132,12 +92,10 @@ Verify.propTypes = {
   firstName: PropTypes.string,
   emailVerified: PropTypes.bool,
   hasError: PropTypes.bool,
-  requestEmail: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   verifyToken: (token) => dispatch(actionVerifyToken(token)),
-  requestEmail: (email) => dispatch(actionRequestVerificationEmail(email)),
 });
 
 const withRedux = connect(

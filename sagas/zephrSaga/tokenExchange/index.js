@@ -137,6 +137,8 @@ function* redirectUser() {
     }
   } else {
     // User profile found, redirect to the homepage.
-    history.push('/');
+    setTimeout(() => {
+      history.push('/');
+    }, 3000);
   }
 }
