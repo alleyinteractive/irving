@@ -104,10 +104,11 @@
   figure {
     width: 100%;
 
-    figcaption {
-      margin-left: 0;
+    @media ($mdMax) {
+      span {
+        margin: 0 rem(10) 0 rem(20);
+      }
     }
-
   }
 
   @media ($mdMin) {
