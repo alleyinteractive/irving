@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
+import classNames from 'classnames';
 import Link from 'components/helpers/link';
 import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
 import withThemes from 'components/hoc/withThemes';
 import ExpandableSocialShare from 'components/socialList/expandable';
-import classNames from 'classnames';
 
 // Components
 import ContentSlider from './contentSlider';
@@ -57,8 +57,11 @@ const CardStack = ({
           )}
         </div>
       )}
-      <div className={isSubtopic || ! image ? theme.bodyFull : theme.body}>
-        <div className={theme.bodyCopy}>
+      <div className={theme.body}>
+        <div className={classNames(theme.bodyCopy, {
+          [theme.fullWidthCopy]: isSubtopic || ! image,
+        })}
+        >
           {/* @todo heading level needs to be dynamic, homepage has > 1 h1 */}
           <h1 className={theme.name} style={{ color: textColor }}>
             <Link to={permalink}>
