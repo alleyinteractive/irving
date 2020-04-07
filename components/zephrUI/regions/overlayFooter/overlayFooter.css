@@ -5,8 +5,6 @@
   bottom: 0;
   color: #FFFFFF;
   left: 0;
-  padding-left: tidy-var(edge);
-  padding-right: tidy-var(edge);
   position: fixed;
   width: 100%;
   z-index: 1000;
