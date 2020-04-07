@@ -27,6 +27,7 @@
 .main {
   @include container;
   margin-bottom: rem(50);
+  width: 100%;
 
   @media ($mdMin) {
     margin-bottom: 0;
