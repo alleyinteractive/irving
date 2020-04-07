@@ -1,9 +1,19 @@
 /* One Column theme styles */
 .wrapper {
-  composes: wrapper from './columnArea--feed.css';
+  @include container-with-bleed;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding-bottom: rem(15);
 }
 
 .main {
-  margin: 0 auto rem(60);
-  max-width: rem(741);
+  margin-bottom: rem(60);
+  margin-top: 0;
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-left: 3;
+    tidy-span: 7;
+  }
 }
