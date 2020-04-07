@@ -19,6 +19,7 @@ const { rootUrl } = require('../config/paths');
 const bustCache = require('./bustCache');
 const bustPageCache = require('./bustPageCache');
 const purgePageCache = require('./purgePageCache');
+const nexusData = require('./nexusData');
 
 const debug = createDebug('server:error');
 const {
@@ -46,6 +47,11 @@ const passthrough = proxy({
   target: API_ROOT_URL.replace('/wp-json/irving/v1', ''),
   xfwd: true,
 });
+
+// Create server-side endpoint to query WordPress for Nexus data.
+app
+  .use(cookiesMiddleware())
+  .use('/irving/v1/nexus_data', nexusData);
 
 // Proxy XML and XSL file requests directly.
 app.use('/robots.txt', passthrough);

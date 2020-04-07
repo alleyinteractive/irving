@@ -165,16 +165,11 @@ export function* getAccount(sessionCookie) {
     // Retrieve SFG account data from the nexus.
     try {
       const {
-        emailAddress: email,
-      } = account;
-      // Generate the request header.
-      const { header } = yield call(nexusService.getRequestHeader);
-      const {
         orders,
         subscription_active: subscriptionActive,
         subscription_type: subscriptionType,
         subscription_expire_date: subscriptionExpiration,
-      } = yield call(nexusService.getUser, { email, header });
+      } = yield call(nexusService.getUser);
 
       // Store user account information.
       yield put(actionReceiveUserAccount({
