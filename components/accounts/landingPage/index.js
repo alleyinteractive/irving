@@ -43,6 +43,7 @@ const AccountLandingPage = ({
     isEditingEmail: false,
     isEditingPassword: false,
   });
+
   const onClickEditEmail = () => {
     setFormState({
       isEditingEmail: true,
@@ -91,28 +92,29 @@ const AccountLandingPage = ({
     }
   };
 
-  let renewalDate = '';
-  if (account.subscriptionExpiration) {
-    renewalDate = format(
-      new Date(Date.parse(account.subscriptionExpiration)),
-      'MMMM dd, yyyy'
-    );
-  }
+  const {
+    subscriptionExpiration, orders, subscriptionActive, subscriptionType,
+  } = account;
 
-  let accountNumber = '';
-  if ('undefined' !== typeof account.orders &&
-  0 < account.orders.length
-  ) {
-    accountNumber = account.orders[0].customer_number;
-  }
+  const renewalDate = (subscriptionExpiration) ?
+    format(
+      new Date(Date.parse(subscriptionExpiration)),
+      'MMMM dd, yyyy'
+    ) : '';
+
+  const accountNumber =
+  (
+    'undefined' !== typeof orders &&
+    0 < orders.length
+  ) ? orders[0].customer_number : '';
 
   const generateSubscriberText = () => {
-    if (account.subscriptionActive) {
+    if (subscriptionActive) {
       return (
         <p>
           {__('You are an', 'mittr')}{' '}
           <strong>
-            {account.subscriptionType}{' '}
+            {subscriptionType}{' '}
             {__('subscriber', 'mittr')}{' '}
           </strong>,{' '}
           {__('account', 'mittr')}{' '}
@@ -141,21 +143,24 @@ const AccountLandingPage = ({
     );
   };
 
-  const sfgLink = 'https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602'; // eslint-disable-line max-len
-  let subscriptionLink = '';
-  if (isAlum) {
-    // If an alumni has subscription info returning from SFG, allow them to manage their account from that portal.
-    if (
-      'undefined' !== typeof account.orders &&
-      0 < account.orders.length
-    ) {
-      subscriptionLink = sfgLink;
-    } else {
-      subscriptionLink = 'https://alum.mit.edu/myaccount/';
+  /**
+   * Determine the subscription link based on whether or not the user has orders
+   * or is an alumnus.
+   */
+  const subscriptionLink = (() => {
+    const sfgLink = 'https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602'; // eslint-disable-line max-len
+    const alumLink = 'https://alum.mit.edu/myaccount/';
+
+    if (! isAlum) {
+      return sfgLink;
     }
-  } else {
-    subscriptionLink = sfgLink;
-  }
+
+    if (orders && 0 < orders.length) {
+      return sfgLink;
+    }
+
+    return alumLink;
+  })();
 
   return (
     <div className={styles.wrapper}>
