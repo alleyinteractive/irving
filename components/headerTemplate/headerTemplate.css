@@ -8,7 +8,7 @@
   min-height: rem(62);
   position: relative;
   width: 100%;
-  z-index: 3;
+  z-index: 1100;
 }
 
 .wrapper {
