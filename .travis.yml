@@ -46,7 +46,7 @@ script:
         export ONETRUST_ENABLED=1
       elif [ "$TRAVIS_BRANCH" == "master" ]; then
         export API_ROOT_URL=https://wp.technologyreview.com/wp-json/irving/v1
-        export ROOT_URL=https://irving.technologyreview.com
+        export ROOT_URL=https://www.technologyreview.com
         export ZEPHR_ROOT_URL=https://zephr.technologyreview.com
         export NEXUS_ROOT_URL=https://nexus.technologyreview.com
         export ONETRUST_ENABLED=1
