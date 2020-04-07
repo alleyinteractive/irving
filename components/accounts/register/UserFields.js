@@ -62,8 +62,12 @@ export default class UserFields {
    */
   addQueryParamToFields(param) {
     const { fields } = this;
-    const windowLocation = get(window, 'location.search', '');
-    const windowQuery = queryString.parse(windowLocation);
+    const windowLocation = get(
+      window,
+      'location.search',
+      ''
+    ).replace('+', '%2B');
+    const windowQuery = queryString.parse(windowLocation, { decode: true });
     const defaultParam = windowQuery[param] || '';
 
     // Edit early if no email to set.
