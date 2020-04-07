@@ -102,7 +102,7 @@ const RegisterForm = ({
     }
 
     // Check to ensure that the email address is valid prior to submission.
-    if (! email.value.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]+)*$/)) { // eslint-disable-line max-len
+    if (! email.value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) { // eslint-disable-line max-len
       displayFormError('email-address');
 
       // Increment the error counter.
