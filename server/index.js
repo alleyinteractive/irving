@@ -57,7 +57,6 @@ app
 app.use('/robots.txt', passthrough);
 app.use('*.xml', passthrough);
 app.use('/wp-json/*', passthrough);
-app.use('*.rss', passthrough);
 app.use('*.xsl', passthrough);
 app.use('*/amp/', passthrough);
 app.use('*/feed/', passthrough);
