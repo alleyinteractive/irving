@@ -27,7 +27,11 @@ const addRedirectParamsToLinks = () => {
 
     if (node) {
       // Get the window location.
-      const { location: { pathname } } = window;
+      const {
+        location: {
+          pathname = '',
+        } = {},
+      } = window;
 
       // Get all the links in this component.
       const links = node.querySelectorAll('a');
