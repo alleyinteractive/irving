@@ -41,6 +41,7 @@ const FeedItem = ({
   const contentRef = React.useRef();
   const articleRef = React.useRef();
   const image = findChildByName('image', children);
+  const video = findChildByName('video', children);
   const contentFooter = findChildByName('content-footer', children);
   const socialSharing = findChildByName('social-sharing', children);
 
@@ -129,6 +130,8 @@ const FeedItem = ({
           </div>
         </div>
       </header>
+      {(video && showImage) &&
+      <div className={styles.image}>{video}</div>}
       {(image && showImage) &&
       <div className={styles.image}><Link to={permalink}>{image}</Link></div>}
       {! includeExpandBtn && (
