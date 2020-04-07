@@ -11,4 +11,9 @@
 .main {
   margin: 0 auto rem(60);
   width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 11;
+  }
 }
