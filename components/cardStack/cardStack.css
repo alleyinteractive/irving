@@ -34,6 +34,14 @@
     padding-top: rem(50);
     width: 50%;
   }
+
+  &.fullWidthCopy {
+    width: 100%;
+
+    @media ($smMin) {
+      width: 100%;
+    }
+  }
 }
 
 .image {
