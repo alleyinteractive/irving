@@ -26,6 +26,10 @@
 
   &.isHeadroom {
     justify-content: flex-start;
+
+    @media ($smMin) {
+      margin: rem(10) auto 0;
+    }
   }
 }
 
