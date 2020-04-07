@@ -43,6 +43,7 @@ const AccountLandingPage = ({
     isEditingEmail: false,
     isEditingPassword: false,
   });
+
   const onClickEditEmail = () => {
     setFormState({
       isEditingEmail: true,
@@ -72,47 +73,46 @@ const AccountLandingPage = ({
     });
   };
 
-  const generateAccessBanner = () => {
-    if (isAlum) {
+  const {
+    subscriptionExpiration, orders, subscriptionActive, subscriptionType,
+  } = account;
+
+  /**
+   * Generate the text for the access banner.
+   */
+  const accessBanner = (() => {
+    // All subscription types are granted "unlimited access"
+    if (isAlum || subscriptionType) {
       return __(
         'You have unlimited access to technologyreview.com. ', 'mittr'
       );
     }
 
-    switch (account.subscriptionType) {
-      case 'Basic Digital':
-      case 'All Access Digital':
-      case 'Online Only Access':
-        return __(
-          'You have unlimited access to technologyreview.com. ', 'mittr'
-        );
-      default:
-        return __('You have limited access to technologyreview.com. ', 'mittr');
-    }
-  };
+    return __('You have limited access to technologyreview.com. ', 'mittr');
+  })();
 
-  let renewalDate = '';
-  if (account.subscriptionExpiration) {
-    renewalDate = format(
-      new Date(Date.parse(account.subscriptionExpiration)),
+  const renewalDate = (subscriptionExpiration) ?
+    format(
+      new Date(Date.parse(subscriptionExpiration)),
       'MMMM dd, yyyy'
-    );
-  }
+    ) : '';
 
-  let accountNumber = '';
-  if ('undefined' !== typeof account.orders &&
-  0 < account.orders.length
-  ) {
-    accountNumber = account.orders[0].customer_number;
-  }
+  const accountNumber =
+  (
+    'undefined' !== typeof orders &&
+    0 < orders.length
+  ) ? orders[0].customer_number : '';
 
-  const generateSubscriberText = () => {
-    if (account.subscriptionActive) {
+  /**
+   * Generate the text to describe the user's subscription.
+   */
+  const subscriberText = (() => {
+    if (subscriptionActive) {
       return (
         <p>
           {__('You are an', 'mittr')}{' '}
           <strong>
-            {account.subscriptionType}{' '}
+            {subscriptionType}{' '}
             {__('subscriber', 'mittr')}{' '}
           </strong>,{' '}
           {__('account', 'mittr')}{' '}
@@ -139,7 +139,7 @@ const AccountLandingPage = ({
         {__('You are not subscribed.', 'mittr')}
       </p>
     );
-  };
+  })();
 
   const [subscriptionLink, setSubscriptionLink] = useState('');
   useEffect(() => {
@@ -168,7 +168,8 @@ const AccountLandingPage = ({
           {__('Hello', 'mittr')}, {firstName}!
         </h1>
         <span className={styles.accessBanner}>
-          {generateAccessBanner()}{' '}
+          {accessBanner}
+          {' '}
           <a href="/contact">{__('Please contact us', 'mittr')}</a>{' '}
           {__('if you have any questions or requests.', 'mittr')}
         </span>
@@ -249,8 +250,7 @@ const AccountLandingPage = ({
 
         <div className={styles.subscription}>
           <h2>{__('Subscription', 'mittr')}</h2>
-          {generateSubscriberText()}
-
+          {subscriberText}
           <div className={styles.buttonContainer}>
             <a
               id="subscriptionManagerBtn"
