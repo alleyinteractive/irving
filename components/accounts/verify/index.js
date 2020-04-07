@@ -8,12 +8,16 @@ import { connect } from 'react-redux';
 import { __ } from '@wordpress/i18n';
 import URL from 'url-parse';
 import Link from 'components/helpers/link';
-import { actionVerifyToken } from 'actions/zephrActions';
+import {
+  actionVerifyToken,
+} from 'actions/zephrActions';
 import {
   getFirstName,
   getEmailVerified,
+  getEmailVerificationError,
 } from 'selectors/zephrSelector';
 import DataLoading from 'components/hoc/withData/loading';
+import ExpiredTokenForm from './expired';
 
 // Styles
 import styles from './verify.css';
@@ -22,6 +26,7 @@ const Verify = ({
   verifyToken,
   firstName,
   emailVerified,
+  hasError,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -39,6 +44,10 @@ const Verify = ({
       verifyToken(token);
     }
   }, []);
+
+  if (true === hasError) {
+    return <ExpiredTokenForm />;
+  }
 
   if (true === emailVerified && true === isLoading) {
     setIsLoading(false);
@@ -75,12 +84,14 @@ const Verify = ({
 Verify.defaultProps = {
   firstName: '',
   emailVerified: false,
+  hasError: false,
 };
 
 Verify.propTypes = {
   verifyToken: PropTypes.func.isRequired,
   firstName: PropTypes.string,
   emailVerified: PropTypes.bool,
+  hasError: PropTypes.bool,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -91,6 +102,7 @@ const withRedux = connect(
   (state) => ({
     firstName: getFirstName(state),
     emailVerified: getEmailVerified(state),
+    hasError: getEmailVerificationError(state),
   }),
   mapDispatchToProps
 );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import parse from 'html-react-parser';
@@ -143,24 +143,24 @@ const AccountLandingPage = ({
     );
   };
 
-  /**
-   * Determine the subscription link based on whether or not the user has orders
-   * or is an alumnus.
-   */
-  const subscriptionLink = (() => {
+  const [subscriptionLink, setSubscriptionLink] = useState('');
+  useEffect(() => {
     const sfgLink = 'https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602'; // eslint-disable-line max-len
-    const alumLink = 'https://alum.mit.edu/myaccount/';
 
-    if (! isAlum) {
-      return sfgLink;
+    if (isAlum) {
+      // If an alumni has subscription info returning from SFG, allow them to manage their account from that portal.
+      if (
+        'undefined' !== typeof account.orders &&
+        0 < account.orders.length
+      ) {
+        setSubscriptionLink(sfgLink);
+      } else {
+        setSubscriptionLink('https://alum.mit.edu/myaccount/');
+      }
+    } else {
+      setSubscriptionLink(sfgLink);
     }
-
-    if (orders && 0 < orders.length) {
-      return sfgLink;
-    }
-
-    return alumLink;
-  })();
+  }, [isAlum]);
 
   return (
     <div className={styles.wrapper}>

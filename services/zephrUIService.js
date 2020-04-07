@@ -77,7 +77,7 @@ export async function fetchZephrDataLayer(session) {
   }
 
   if (! response.ok) {
-    debug(response.text());
+    debug(await response.text());
     throw new Error(await response.text());
   }
 
