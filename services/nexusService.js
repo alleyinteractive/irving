@@ -1,45 +1,26 @@
 export default {
   /**
    * Retrieve a user's order history through their email address.
+   * The endpoint this service requests is an express endpoint from this server.
    *
-   * @param {object} parameters Email to lookup and matching request header.
+   * @see server/nexusData.js
+   *
+   * @return {object} The Nexus user object if found, or an empty array.
    */
-  async getUser({ email, header }) {
+  async getUser() {
     try {
       const request = await fetch(
-        `${process.env.NEXUS_ROOT_URL}/api/user/email/${email}`,
+        `${process.env.ROOT_URL}/irving/v1/nexus_data`,
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: header,
           },
         }
       );
       return await request.json();
     } catch (error) {
       console.info('There was a problem.', error); // eslint-disable-line no-console
-    }
-    return {};
-  },
-
-  /**
-   * Retrieve the header used to as an authorization token to authenticate
-   * nexus requests.
-   */
-  async getRequestHeader() {
-    try {
-      const request = await fetch(
-        `${process.env.API_ROOT_URL}/data/nexus_auth`
-      );
-      const { header, timestamp } = await request.json();
-
-      return {
-        header,
-        expires: parseInt(timestamp, 10) + 300,
-      };
-    } catch (error) {
-      console.info('There was a problem', error); // eslint-disable-line no-console
     }
     return {};
   },
