@@ -106,7 +106,7 @@
     color: $color-heading;
     font-size: rem(30);
     line-height: 1;
-    margin: 0;
+    margin-bottom: rem(2);
     padding: 0;
 
     @media ($mdMin) {
