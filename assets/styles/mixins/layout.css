@@ -9,11 +9,6 @@
   @media ($lgMin) {
     max-width: calc(tidy-span-full($columns) + tidy-var(edge) * 2);
   }
-
-  @include keep-tidy {
-    max-width: calc(tidy-span-full($columns) + tidy-var(edge) * 2);
-    width: calc(tidy-span($columns) + tidy-var(edge) * 2);
-  }
 }
 
 /**
