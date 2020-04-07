@@ -138,7 +138,13 @@ export default {
           method: 'GET',
           credentials: 'include',
         }
-      ).then((res) => res);
+      ).then((res) => {
+        if (404 === res.status || 409 === res.status) {
+          return { status: 'failed' };
+        }
+
+        return res;
+      });
 
       const response = await request;
 
