@@ -7,7 +7,6 @@ import { findChildByName, filterChildrenByName } from 'utils/children';
 import { __ } from '@wordpress/i18n';
 import withThemes from 'components/hoc/withThemes';
 import ExpandableSocialShare from 'components/socialList/expandable';
-import classNames from 'classnames';
 
 // Components
 import ContentSlider from './contentSlider';
