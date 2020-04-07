@@ -78,7 +78,7 @@ const HeaderTemplate = ({
         [styles.isHeadroom]: isHeadroom,
       })}
       >
-        {(isHeadroom || isMobile) && (
+        {(isHeadroom) && (
           <Link
             to={homeUrl}
             tabIndex="-1"
@@ -103,7 +103,12 @@ const HeaderTemplate = ({
             </div>
           )}
           {(isHeadroom || isMobile) && (
-            <div className={styles.logoHorizontal} aria-hidden>
+            <div
+              className={classNames(styles.logoHorizontal, {
+                [styles.logoHorizontalHeadroom]: isHeadroom,
+              })}
+              aria-hidden
+            >
               <LogoHorizontal />
             </div>
           )}

@@ -78,13 +78,27 @@
   svg {
     display: block;
     height: rem(20);
-    width: rem(160);
+    width: rem(210);
 
     .headroom & {
       height: rem(15);
-      width: rem(160);
+      width: rem(210);
     }
   }
+
+  /* stylelint-disable selector-max-specificity */
+  &.logoHorizontalHeadroom {
+    svg {
+      height: rem(20);
+      width: rem(160);
+
+      .headroom & {
+        height: rem(15);
+        width: rem(160);
+      }
+    }
+  }
+  /* stylelint-enable selector-max-specificity */
 }
 
 .logoT {
