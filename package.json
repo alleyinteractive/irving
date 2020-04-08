@@ -44,6 +44,7 @@
     "dotenv": "^6.0.0",
     "ejs": "^2.5.7",
     "express": "^4.16.3",
+    "express-naked-redirect": "^0.1.7",
     "history": "^4.7.2",
     "html-react-parser": "^0.9.1",
     "http-proxy-middleware": "^0.19.1",
