@@ -31,6 +31,8 @@ const {
 } = process.env;
 const app = express();
 
+app.use(require('express-naked-redirect')());
+
 // Clearing the Redis cache.
 app.get('/bust-endpoint-cache', bustPageCache);
 app.get('/bust-entire-cache', bustCache);
