@@ -5,6 +5,7 @@ import { persistReducer } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
 import componentDataReducer from './componentDataReducer';
 import componentsReducer from './componentsReducer';
+import contentPositionReducer from './contentPositionReducer';
 import dismissNoticeReducer from './dismissNoticeReducer';
 import errorReducer from './errorReducer';
 import headerHeightReducer from './headerHeightReducer';
@@ -27,6 +28,7 @@ const zephrPersistConfig = {
 export const reducers = {
   componentData: componentDataReducer,
   components: (state = defaultState.components) => state,
+  contentPosition: contentPositionReducer,
   error: errorReducer,
   headerHeight: headerHeightReducer,
   isNoticeVisible: dismissNoticeReducer,

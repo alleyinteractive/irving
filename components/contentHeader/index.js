@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
 import dashify from 'dashify';
 import NProgress from 'nprogress';
 import { connect } from 'react-redux';
 import { withStyles } from 'critical-style-loader/lib';
+import { actionUpdateContentPos } from 'actions';
 import withThemes from 'components/hoc/withThemes';
 import useScrollPosition from 'hooks/useScrollPosition';
 import { findChildByName } from 'utils/children';
@@ -19,15 +20,17 @@ import './nprogress.css';
 import Eyebrow from '../eyebrow';
 
 const ContentHeader = ({
-  eyebrow,
-  title,
-  publishDate,
-  deck,
   children,
+  contentPos,
+  deck,
+  dispatchUpdateContentPos,
+  eyebrow,
   headingLevel,
+  publishDate,
   showFullStory,
   theme,
   themeName,
+  title,
 }) => {
   const video = findChildByName('video', children);
   const image = findChildByName('image', children);
@@ -36,11 +39,19 @@ const ContentHeader = ({
   const Heading = `h${headingLevel}`;
   const DeckTag = '' === title ? Heading : 'p';
 
-  const [contentPos, setContentPos] = useState({ height: 0, top: 0 });
   const scrollData = useScrollPosition();
   const contentHeaderRef = useRef();
 
   useEffect(() => {
+    const contentHeader = contentHeaderRef.current;
+    const contentBody = contentHeader.nextElementSibling;
+
+    dispatchUpdateContentPos({
+      top: contentHeader.getBoundingClientRect().top + window.scrollY,
+      height: contentHeader.getBoundingClientRect().height +
+        contentBody.getBoundingClientRect().height,
+    });
+
     if (showFullStory) {
       // Initiate nprogress bar.
       NProgress.configure({
@@ -59,32 +70,20 @@ const ContentHeader = ({
         `,
       });
       NProgress.set(0);
-
-      // Calculate content height and store in state.
-      // We're calculating content height this way because:
-      // 1) Parent element is a generic contentArea component
-      // 2) We don't want to include the contentFooter
-      const contentHeader = contentHeaderRef.current;
-      const contentBody = contentHeader.nextElementSibling;
-
-      setContentPos({
-        top: contentHeader.getBoundingClientRect().top + window.scrollY,
-        height: contentHeader.getBoundingClientRect().height +
-        contentBody.getBoundingClientRect().height,
-      });
     }
   }, [showFullStory]);
 
-  // Get scroll progress as a number from 0 - 1, to 3 decimal places.
-  const contentScrollProgress = showFullStory ?
-    // eslint-disable-next-line max-len
-    Math.round(((scrollData.y - contentPos.top) / contentPos.height) * 1000) / 1000 : 0;
+  // eslint-disable-next-line max-len
+  const contentScrollProgress = (scrollData.y - contentPos.top) / contentPos.height;
+  const contentInView = 1 > contentScrollProgress && 0 < contentScrollProgress;
 
   // Update nprogress bar if the content area is in view
-  if (1 > contentScrollProgress && 0 < contentScrollProgress) {
-    NProgress.set(contentScrollProgress);
-  } else {
-    NProgress.done();
+  if (showFullStory) {
+    if (contentInView) {
+      NProgress.set(Math.round(contentScrollProgress * 1000) / 1000);
+    } else {
+      NProgress.done();
+    }
   }
 
   return (
@@ -139,7 +138,9 @@ ContentHeader.propTypes = {
     subTopicLink: PropTypes.string,
   }),
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  contentPos: PropTypes.object.isRequired,
   deck: PropTypes.string,
+  dispatchUpdateContentPos: PropTypes.func.isRequired,
   publishDate: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   headingLevel: PropTypes.number,
@@ -172,10 +173,18 @@ ContentHeader.defaultProps = {
 
 const mapStateToProps = (state) => ({
   showFullStory: state.story.showFullStory,
+  contentPos: state.contentPosition,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchUpdateContentPos: (height) => {
+    dispatch(actionUpdateContentPos(height));
+  },
 });
 
 const withRedux = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps,
 );
 
 export default withThemes('content-header', {

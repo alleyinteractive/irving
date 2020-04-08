@@ -52,6 +52,8 @@ export const componentDataMeta = {
   data: [],
 };
 
+export const contentPos = { height: 0, top: 0 };
+
 export const headerHeight = 0;
 
 export const isNoticeVisible = true;
