@@ -125,12 +125,11 @@ const HeaderTemplate = ({
         {((isHeadroom || isMobile) && articleTitle) && (
           <div className={styles.title}>{articleTitle}</div>
         )}
-        {socialLinks && (
+        {socialLinks && isHeadroom && (
           <div className={classNames(
             styles.socialLinks,
             {
-              [styles.isVisible]: isHeadroom &&
-                isArticle &&
+              [styles.isVisible]: isArticle &&
                 'down' === scrollData.direction &&
                 contentInView,
             }
