@@ -11,6 +11,7 @@ import oneColumnTheme from './columnArea--oneCol.css';
 import pageTheme from './columnArea--page.css';
 import centeredTheme from './columnArea--centered.css';
 import tr50Theme from './columnArea--tr50.css';
+import hubTheme from './columnArea--hub.css';
 
 const ColumnArea = ({ children, theme }) => {
   // Separate content and sidebar
@@ -54,6 +55,7 @@ export default withThemes('column-area', {
   magazine: magazineTheme,
   centered: centeredTheme,
   tr50: tr50Theme,
+  hub: hubTheme,
 })(
   withStyles(
     feedColumnTheme,
@@ -63,5 +65,6 @@ export default withThemes('column-area', {
     pageTheme,
     centeredTheme,
     tr50Theme,
+    hubTheme
   )(ColumnArea)
 );
