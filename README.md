@@ -9,7 +9,7 @@ This is the front-end application for tecnologyreview.com's headless WordPress i
 1. You can merge freely into `wpcomvip/develop` and push at will for testing. Merges to `wpcomvip/develop` deploy [here](https://irving-develop.technologyreview.com/)
 1. Make a pull request for `feature/MIT-123/feature-name-description` into `origin/master` and code review by Alley members. Do not merge changes yet.
 1. Make pull request into `wpcomvip/master` simultaneously. There is no VIP code review on the node repository.
-1. Once the feature has passed internal code review and has been tested by the feature author on the staging environtment (develop branch), merge the code to the preprod branch [here](https://irving-preprod.technologyreview.com/) and perform internal QA and external UAT on this environment. Only proceed to the next step once these test have passed.
+1. Once the feature has passed internal code review and has been tested by the feature author on the staging environment (develop branch), merge the code to the preprod branch [here](https://irving-preprod.technologyreview.com/) and perform internal QA and external UAT on this environment. Only proceed to the next step once these test have passed.
 1. Merge the pull requests into `origin/master` and `wpcomvip/master`. These should be merged as close to the same time as possible so not to get out of sync with each other.
 
 ## Environmental variables
