@@ -1,12 +1,22 @@
 /* stylelint-disable selector-max-specificity */
 :global(#nprogress) {
   pointer-events: none;
+  position: relative;
+  z-index: 1;
 }
 
 :global(.nprogress-custom-parent) {
-  border-bottom: 0;
-  overflow: hidden;
+  border-bottom-color: transparent;
   position: relative;
+}
+
+:global(.nprogress-custom-parent .barContainer) {
+  background-color: $border-gray;
+  bottom: -1px;
+  height: 2px;
+  left: 0;
+  position: absolute;
+  width: 100%;
 }
 
 :global(.nprogress-custom-parent .bar) {
@@ -17,14 +27,5 @@
   position: absolute;
   width: 100%;
   z-index: 1031;
-}
-
-:global(.nprogress-custom-parent .barContainer) {
-  background-color: $border-gray;
-  bottom: 0;
-  height: 2px;
-  left: 0;
-  position: absolute;
-  width: 100%;
 }
 /* stylelint-enable */
