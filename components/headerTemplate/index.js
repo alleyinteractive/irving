@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { findChildByName } from 'utils/children';
 import Link from 'components/helpers/link';
 import useKeyboardFocusOutside from 'hooks/useKeyboardFocusOutside';
+import useScrollPosition from 'hooks/useScrollPosition';
 import useHideAds from 'hooks/useHideAds';
 import {
   actionUpdateHeaderHeight,
@@ -24,11 +25,14 @@ import styles from './headerTemplate.css';
 const HeaderTemplate = ({
   children,
   id,
+  isArticle,
   isHeadroom,
   isMobile,
   homeUrl,
 }) => {
   const menu = findChildByName('menu', children);
+  const articleTitle = findChildByName('html', children);
+  const socialLinks = findChildByName('social-sharing', children);
   const leaderboardAd = findChildByName('ad-unit', children);
   const userGreeting = findChildByName('user-greeting', children);
   const megaMenu = findChildByName('mega-menu', children);
@@ -59,12 +63,19 @@ const HeaderTemplate = ({
   const megaMenuRef = useRef(null);
   useKeyboardFocusOutside(megaMenuRef, closeMegaMenu);
 
+  const scrollData = useScrollPosition();
+  const contentPos = useSelector((state) => state.contentPosition);
+  // eslint-disable-next-line max-len
+  const contentScrollProgress = (scrollData.y - contentPos.top) / contentPos.height;
+  const contentInView = 1 > contentScrollProgress && 0 < contentScrollProgress;
+
   useEffect(() => {
     if (headroomRef.current) {
       const headroomHeight = headroomRef.current.getBoundingClientRect().height;
       dispatchUpdateHeaderHeight(headroomHeight);
     }
   });
+
   return (
     <header
       id={id} // used by nprogress bar
@@ -80,12 +91,12 @@ const HeaderTemplate = ({
         [styles.isHeadroom]: isHeadroom,
       })}
       >
-        {(isHeadroom) && (
+        {(isHeadroom || isMobile) && (
           <Link
             to={homeUrl}
             tabIndex="-1"
             aria-hidden
-            className={styles.logoT}
+            className={styles.logoHeadroomT}
           >
             <TRGlyph />
           </Link>
@@ -93,7 +104,8 @@ const HeaderTemplate = ({
         <Link
           to={homeUrl}
           className={classNames(styles.logo, {
-            [styles.headroomLogo]: isHeadroom,
+            [styles.logoHeadroom]: isHeadroom,
+            [styles.logoHeadroomArticle]: isHeadroom && isArticle,
           })}
         >
           <div className="screen-reader-text">
@@ -104,17 +116,29 @@ const HeaderTemplate = ({
               <LogoStacked />
             </div>
           )}
-          {(isHeadroom || isMobile) && (
-            <div
-              className={classNames(styles.logoHorizontal, {
-                [styles.logoHorizontalHeadroom]: isHeadroom,
-              })}
-              aria-hidden
-            >
+          {((isHeadroom || isMobile) && ! isArticle) && (
+            <div className={styles.logoHeadroomHorizontal} aria-hidden>
               <LogoHorizontal />
             </div>
           )}
         </Link>
+        {((isHeadroom || isMobile) && articleTitle) && (
+          <div className={styles.title}>{articleTitle}</div>
+        )}
+        {socialLinks && (
+          <div className={classNames(
+            styles.socialLinks,
+            {
+              [styles.isVisible]: isHeadroom &&
+                isArticle &&
+                'down' === scrollData.direction &&
+                contentInView,
+            }
+          )}
+          >
+            {socialLinks}
+          </div>
+        )}
         <div className={classNames(styles.navigation, {
           [styles.isHeadroom]: isHeadroom,
         })}
@@ -123,7 +147,16 @@ const HeaderTemplate = ({
             <div className={styles.userGreeting}>{userGreeting}</div>
           )}
           <div className={styles.menuRow}>
-            <div className={styles.menu}>
+            <div className={classNames(
+              styles.menu,
+              {
+                [styles.isHidden]: isHeadroom &&
+                  isArticle &&
+                  'down' === scrollData.direction &&
+                  contentInView,
+              }
+            )}
+            >
               {menu}
             </div>
             <button
@@ -165,11 +198,13 @@ const HeaderTemplate = ({
 
 HeaderTemplate.defaultProps = {
   id: '',
+  isArticle: false,
 };
 
 HeaderTemplate.propTypes = {
   id: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  isArticle: PropTypes.bool,
   isHeadroom: PropTypes.bool.isRequired,
   homeUrl: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,

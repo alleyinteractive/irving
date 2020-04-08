@@ -10,6 +10,7 @@ const Header = (props) => {
   const {
     children,
     homeUrl,
+    isArticle,
   } = props;
   const [isMobile, setIsMobile] = useState(false);
   // Breakpoints
@@ -41,6 +42,7 @@ const Header = (props) => {
         pinStart={isMobile ? 60 : 260}
       >
         <HeaderTemplate
+          isArticle={isArticle}
           isHeadroom
           // The article scroll progress bar depends on this ID.
           // See components/contentBody/index.js.
@@ -58,6 +60,7 @@ const Header = (props) => {
 Header.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   homeUrl: PropTypes.string.isRequired,
+  isArticle: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(Header);
