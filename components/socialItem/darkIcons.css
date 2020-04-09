@@ -10,4 +10,13 @@
     height: rem(18);
     width: auto;
   }
+
+  .whatsapp & {
+    position: relative;
+
+    svg {
+      fill: $black;
+      height: rem(25);
+    }
+  }
 }

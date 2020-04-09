@@ -55,24 +55,14 @@
   }
 
   .whatsapp & {
-    background-color: $brand-whatsapp;
+    background-color: transparent;
+    height: rem(36);
     position: relative;
+    width: rem(36);
 
     svg {
-      height: rem(15);
-    }
-
-    &::after {
-      border-bottom: 5px solid transparent;
-      border-right: 14px solid $brand-whatsapp;
-      border-top: 5px solid transparent;
-      content: "";
-      height: 0;
-      position: absolute;
-      right: 71%;
-      top: rem(20);
-      transform: rotate(-45deg);
-      width: 0;
+      fill: $brand-whatsapp;
+      height: rem(36);
     }
   }
 
