@@ -28,8 +28,12 @@
   }
 
   &.isHeadroom {
-    justify-content: flex-start;
+    justify-content: space-between;
     margin-top: 0;
+
+    @media ($mdMin) {
+      justify-content: flex-start;
+    }
   }
 }
 
@@ -49,11 +53,11 @@
   }
 
   &.logoHeadroom {
-    tidy-span: 4;
+    max-width: none;
+    width: auto;
 
     @media ($mdMin) {
       tidy-offset-left: 0;
-      tidy-span: 3;
     }
   }
 
@@ -116,20 +120,26 @@
   }
 }
 
-.logoHeadroomHorizontal {
+.logoHorizontal {
   align-items: center;
   display: flex;
   height: 100%;
-  margin-left: rem(80);
-
-  @media ($mdMin) {
-    tidy-offset-left: 1;
-  }
 
   svg {
     display: block;
-    height: rem(20);
-    width: rem(160);
+    width: rem(210);
+  }
+
+  .isHeadroom & {
+    margin-left: 0;
+
+    @media only screen and (min-width: 790px) {
+      margin-left: rem(80);
+    }
+
+    svg {
+      width: rem(160);
+    }
   }
 }
 
