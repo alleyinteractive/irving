@@ -152,7 +152,10 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  margin-left: auto;
+
+  @media only screen and (min-width: 790px) {
+    margin-left: auto;
+  }
 
   &.isHeadroom {
     right: tidy-var(edge);
@@ -182,7 +185,10 @@
 }
 
 .socialLinks {
+  margin-left: auto;
+
   @media only screen and (min-width: 790px) {
+    margin-left: 0;
     opacity: 0;
     pointer-events: none;
     position: absolute;
