@@ -6,13 +6,11 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import get from 'lodash/get';
-import useScrollPosition from 'hooks/useScrollPosition';
 import {
   actionUpdateVisibility,
 } from 'actions';
-import checkUIComponentType from 'services/checkUIComponentType';
-import { getZephrComponents } from 'selectors/zephrRulesSelector';
+import useScrollPosition from 'hooks/useScrollPosition';
+import useObscureContent from 'hooks/useObscureContent';
 import CloseIcon from 'assets/icons/close.svg';
 import { findChildByName } from 'utils/children';
 import useHideAds from 'hooks/useHideAds';
@@ -24,10 +22,9 @@ const SliderAd = ({ children }) => {
   const [shouldLoad, setShouldLoad] = useState(false);
   const isVisible = useSelector((state) => state.visible.sliderAd);
   const hasClosed = useSelector((state) => state.visible.sliderAdHasClosed);
-  const zephrComponents = useSelector((state) => getZephrComponents(state));
   const dispatch = useDispatch();
   const hideAds = useHideAds();
-
+  const obscureContent = useObscureContent();
   // Show nothing if we are supposed to hide ads.
   if (hideAds) {
     return null;
@@ -41,20 +38,9 @@ const SliderAd = ({ children }) => {
     dispatch(actionUpdateVisibility('sliderAdHasClosed', true));
   };
 
-  // Select the markup from the zephr components object, so we can detenct
-  // whether the meter is there.
-  const componentMarkup = get(
-    zephrComponents,
-    'overlayFooter.zephrOutput.data',
-    false
-  );
-
-  // Show the ad if there's no meter, and the ad slot has rendered.
+  // Show the ad if the ad slot has rendered and there's no meter modal.
   const showAd = () => {
-    if (
-      shouldLoad &&
-      ! checkUIComponentType(componentMarkup, 'MeterNotice')
-    ) {
+    if (shouldLoad && ! obscureContent) {
       toggleVisibility(true);
     }
   };
@@ -65,7 +51,8 @@ const SliderAd = ({ children }) => {
     setHasClosed();
   };
 
-  // Set 5 second timer once user has scrolled 100px
+  // Set 5 second timer once user has scrolled 100px,
+  // if the ad has not already been closed
   const scrollData = useScrollPosition();
   useEffect(() => {
     if (
