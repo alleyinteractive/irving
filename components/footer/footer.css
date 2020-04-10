@@ -10,22 +10,17 @@
 .wrapper {
   @include container-with-bleed;
   margin: 0 auto;
-  padding-bottom: 0;
-  padding-top: rem(30);
-
-  @media ($smMin) {
-    padding-top: rem(50);
-  }
+  padding-bottom: rem(50);
+  padding-top: rem(60);
 }
 
 .header {
   display: flex;
   flex-flow: column nowrap;
-  margin-bottom: rem(30);
+  margin-bottom: rem(50);
 
   @media ($smMin) {
     flex-flow: row nowrap;
-    margin-bottom: rem(50);
   }
 }
 
@@ -62,71 +57,29 @@
 }
 
 .title {
-  /* @todo determined if OK to link to CDN? */
-  background-image: url('https://cdn.technologyreview.com/_/img/horizontal-logo-v2--white.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: rem(36);
-  margin-bottom: rem(20);
-  max-width: 100%;
-  overflow: hidden;
-  text-indent: -9999px;
-  width: rem(376);
+  margin-bottom: rem(5);
+
+  svg {
+    display: block;
+    height: rem(29);
+    width: rem(308);
+  }
+}
+
+.titleText {
+  @include screenreader-only;
 }
 
 .missionStatement {
   font-family: $sans;
   font-size: rem(16);
   line-height: 1.35;
-  margin-bottom: rem(20);
-}
-
-.editionsLink {
-  @include after-image;
-  border: $border-thin--white;
-  display: flex;
-  flex-flow: column nowrap;
-  font-family: $sans;
-  font-size: rem(18);
-  font-weight: 700;
-  justify-content: flex-end;
-  line-height: 1.25;
-  margin-bottom: rem(20);
-  order: 3;
-  padding: rem(8) rem(32) rem(11) rem(8);
-  position: relative;
-  transition: $linkTransition;
-  width: 100%;
-
-  @media ($smMin) {
-    tidy-offset-left: 2;
-    tidy-span: 2;
-  }
-
-  @media ($mdMin) {
-    tidy-offset-left: 2;
-    tidy-span: 2;
-  }
-
-  &:hover {
-    background-color: $white;
-    color: $black;
-    outline: none;
-
-    &::after {
-      background-image: url(https://cdn.technologyreview.com/_/img/plus.svg);
-    }
-  }
-
-  > span {
-    display: block;
-  }
+  margin-bottom: 0;
 }
 
 .copyright {
   font-family: $sans;
   font-size: rem(14);
-  padding-bottom: rem(20);
 
   @media ($mdMin) {
     tidy-offset-left: 2;
