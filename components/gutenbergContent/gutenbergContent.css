@@ -3,3 +3,9 @@
   @include basic-editor-styles;
   width: 100%;
 }
+
+.page {
+  .content {
+    @include page-styles;
+  }
+}

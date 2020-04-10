@@ -52,17 +52,20 @@
 
 .caption {
   font-size: rem(14);
+  font-weight: 500;
+  margin-bottom: rem(10);
   margin-left: rem(20);
 
   @media ($mdMin) {
-    margin: 0;
+    margin: 0 0 rem(10);
   }
 }
 
 .credit {
   display: block;
   font-size: rem(12);
+  font-weight: 500;
   letter-spacing: 1px;
-  margin-top: rem(10);
+  margin-bottom: rem(10);
   text-transform: uppercase;
 }

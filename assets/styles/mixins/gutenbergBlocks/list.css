@@ -6,12 +6,8 @@
     @include block-level-element;
     font-family: $sans;
     font-size: 1rem;
-    margin-left: rem(96);
+    margin-left: rem(20);
     padding-left: 0;
-
-    @media ($lgMin) {
-      margin-left: rem(36);
-    }
   }
 
   ul {
@@ -47,6 +43,7 @@
   }
 
   li {
+    @include body-content-type-styles;
     @include body-link;
     line-height: calc(28/16);
     margin: 0 0 0 1em;

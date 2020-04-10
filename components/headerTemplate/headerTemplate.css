@@ -3,12 +3,12 @@
   border-bottom: 1px solid #c8c8c8;
   color: $black;
   display: flex;
-  justify-self: flex-end;
+  flex-direction: column;
   margin: 0 auto;
   min-height: rem(62);
   position: relative;
   width: 100%;
-  z-index: 3;
+  z-index: 1100;
 }
 
 .wrapper {
@@ -16,12 +16,20 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: rem(10) auto 0;
   padding-bottom: 0;
   position: relative;
 
+  @media ($smMin) {
+    margin: rem(30) auto 0;
+  }
+
   &.isHeadroom {
     justify-content: flex-start;
+
+    @media ($smMin) {
+      margin: rem(10) auto 0;
+    }
   }
 }
 
@@ -51,11 +59,13 @@
 }
 
 .logoStacked {
+  bottom: rem(8);
   display: none;
   flex-flow: row nowrap;
   justify-content: flex-start;
   margin-bottom: tidy-var(gap);
   margin-left: rem(-7); /* Vertical align the R and T on the grid */
+  position: relative;
 
   @media ($smMin) {
     display: flex;
@@ -72,13 +82,27 @@
   svg {
     display: block;
     height: rem(20);
-    width: rem(160);
+    width: rem(210);
 
     .headroom & {
       height: rem(15);
-      width: rem(160);
+      width: rem(210);
     }
   }
+
+  /* stylelint-disable selector-max-specificity */
+  &.logoHorizontalHeadroom {
+    svg {
+      height: rem(20);
+      width: rem(160);
+
+      .headroom & {
+        height: rem(15);
+        width: rem(160);
+      }
+    }
+  }
+  /* stylelint-enable selector-max-specificity */
 }
 
 .logoT {
@@ -99,21 +123,13 @@
 
 .leaderboardRow {
   flex: 1 0 100%;
-  min-height: rem(150);
+  min-height: rem(90);
   width: 100%;
-
-  &.displayNone {
-    display: none;
-  }
-
-  &.hideAds {
-    min-height: rem(20);
-  }
 
   :global(.adUnit) {
     /* stylelint-disable selector-max-specificity */
     &[loaded="true"] {
-      margin: rem(20 0 40);
+      margin: rem(20 0);
     }
     /* stylelint-enable */
   }

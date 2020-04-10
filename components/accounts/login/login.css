@@ -20,16 +20,35 @@
 
 .formWrap {
   @include zephrForm;
+
+  input[type='email'],
+  input[type='password'] {
+    font-size: rem(16);
+    margin-bottom: rem(10);
+    text-align: center;
+
+    @media ($mdMin) {
+      font-size: rem(20);
+      margin-bottom: rem(15);
+      text-align: left;
+    }
+  }
 }
 
 .ssoText {
   color: #000;
-  display: inline;
-  float: left;
+  display: block;
   font-size: rem(16);
   font-weight: 400;
-  margin-right: rem(10);
+  margin-bottom: rem(5);
   padding-left: 0;
+
+  @media ($mdMin) {
+    display: inline;
+    float: left;
+    margin-bottom: 0;
+    margin-right: rem(10);
+  }
 }
 
 .ssoList {
@@ -40,6 +59,10 @@
 
   li {
     margin: 0 rem(3);
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
   button {

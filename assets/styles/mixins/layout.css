@@ -1,14 +1,13 @@
 @mixin container-with-bleed($columns: tidy-var(columns)) {
   margin-left: auto;
   margin-right: auto;
-  max-width: calc(tidy-span-full($columns) + tidy-var(edge) * 2);
+  max-width: 100%;
   padding-left: tidy-var(edge);
   padding-right: tidy-var(edge);
   width: calc(tidy-span($columns) + tidy-var(edge) * 2);
 
-  @include keep-tidy {
+  @media ($lgMin) {
     max-width: calc(tidy-span-full($columns) + tidy-var(edge) * 2);
-    width: calc(tidy-span($columns) + tidy-var(edge) * 2);
   }
 }
 

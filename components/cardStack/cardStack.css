@@ -2,44 +2,56 @@
 
 .wrapper {
   background-color: $color-deck;
-  display: flex;
-  flex-flow: row wrap;
   margin-bottom: rem(15);
   overflow: hidden;
-  padding-bottom: rem(25);
+  padding: 0;
   position: relative;
+}
+
+.meta {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: rem(5);
+  margin-top: rem(20);
+  width: 100%;
+}
+
+.body {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: rem(10);
+  width: 100%;
 
   > * {
     order: 1;
   }
 }
 
-.meta {
-  margin-bottom: rem(10);
-  padding-left: rem(20);
-  padding-right: rem(20);
-  width: 100%;
+.bodyCopy {
+  padding: rem(20) rem(20) 0;
 
   @media ($smMin) {
+    padding-top: rem(50);
     width: 50%;
   }
-}
 
-.metaFull {
-  margin-bottom: rem(10);
-  padding-left: rem(20);
-  width: 100%;
+  &.fullWidthCopy {
+    width: 100%;
+
+    @media ($smMin) {
+      width: 100%;
+    }
+  }
 }
 
 .image {
   display: flex;
   flex-flow: row nowrap;
-  margin-bottom: rem(30);
   overflow: hidden;
-  padding: rem(30 0 0 30);
   width: 100%;
 
   @media ($smMin) {
+    padding: rem(50) rem(20) 0;
     width: 50%;
   }
 
@@ -58,14 +70,6 @@
   letter-spacing: normal;
   line-height: 1;
   margin-bottom: rem(15);
-
-  @media ($smMax) {
-    padding-top: rem(19);
-  }
-
-  @media ($mdMin) {
-    padding-top: rem(62);
-  }
 }
 
 .description {
@@ -74,10 +78,12 @@
   font-size: rem(18);
   letter-spacing: normal;
   line-height: 1.44;
+  margin-bottom: rem(20);
 
-  @media ($smMin) {
+  @media ($smMax) {
     font-size: rem(20);
     line-height: 1.3;
+    margin-bottom: rem(20);
   }
 }
 

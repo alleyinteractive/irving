@@ -23,6 +23,8 @@ const FeedItem = ({
   teaserContent,
   position,
   postDate,
+  postDateShort,
+  postType,
   showImage,
   title,
   themeName,
@@ -39,6 +41,7 @@ const FeedItem = ({
   const contentRef = React.useRef();
   const articleRef = React.useRef();
   const image = findChildByName('image', children);
+  const video = findChildByName('video', children);
   const contentFooter = findChildByName('content-footer', children);
   const socialSharing = findChildByName('social-sharing', children);
 
@@ -82,6 +85,7 @@ const FeedItem = ({
         articleTopic: topic,
         wordCount,
         paywallType: 'Always Free',
+        contentType: postType,
       });
     }
 
@@ -122,10 +126,12 @@ const FeedItem = ({
           </div>
           <div className="postDate">
             <span className="screen-reader-text">{__('Posted ', 'mittr')}</span>
-            {postDate}
+            {postDateShort}
           </div>
         </div>
       </header>
+      {(video && showImage) &&
+      <div className={styles.image}>{video}</div>}
       {(image && showImage) &&
       <div className={styles.image}><Link to={permalink}>{image}</Link></div>}
       {! includeExpandBtn && (
@@ -195,6 +201,8 @@ FeedItem.propTypes = {
   customEyebrow: PropTypes.string,
   position: PropTypes.number.isRequired,
   postDate: PropTypes.string.isRequired,
+  postDateShort: PropTypes.string.isRequired,
+  postType: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   showImage: PropTypes.bool,
   title: PropTypes.string.isRequired,

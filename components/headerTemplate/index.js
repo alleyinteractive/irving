@@ -23,7 +23,6 @@ import styles from './headerTemplate.css';
 
 const HeaderTemplate = ({
   children,
-  id,
   isHeadroom,
   isMobile,
   homeUrl,
@@ -67,22 +66,19 @@ const HeaderTemplate = ({
   });
   return (
     <header
-      id={id} // used by nprogress bar
       className={classNames(styles.container)}
       ref={isHeadroom ? headroomRef : null}
     >
+      {! (hideAds || isHeadroom) && (
+        <div className={styles.leaderboardRow}>
+          {leaderboardAd}
+        </div>
+      )}
       <div className={classNames(styles.wrapper, {
         [styles.isHeadroom]: isHeadroom,
       })}
       >
-        <div className={classNames(styles.leaderboardRow, {
-          [styles.displayNone]: isHeadroom || isMobile,
-          [styles.hideAds]: hideAds,
-        })}
-        >
-          {leaderboardAd}
-        </div>
-        {(isHeadroom || isMobile) && (
+        {(isHeadroom) && (
           <Link
             to={homeUrl}
             tabIndex="-1"
@@ -107,7 +103,12 @@ const HeaderTemplate = ({
             </div>
           )}
           {(isHeadroom || isMobile) && (
-            <div className={styles.logoHorizontal} aria-hidden>
+            <div
+              className={classNames(styles.logoHorizontal, {
+                [styles.logoHorizontalHeadroom]: isHeadroom,
+              })}
+              aria-hidden
+            >
               <LogoHorizontal />
             </div>
           )}
@@ -160,12 +161,7 @@ const HeaderTemplate = ({
   );
 };
 
-HeaderTemplate.defaultProps = {
-  id: '',
-};
-
 HeaderTemplate.propTypes = {
-  id: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   isHeadroom: PropTypes.bool.isRequired,
   homeUrl: PropTypes.string.isRequired,

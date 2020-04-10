@@ -4,7 +4,7 @@
 
 .slider {
   display: flex;
-  margin-top: rem(29);
+  margin: rem(10) 0 rem(20);
   overflow: scroll;
   padding-left: rem(10);
   position: relative;

@@ -19,6 +19,7 @@ const { rootUrl } = require('../config/paths');
 const bustCache = require('./bustCache');
 const bustPageCache = require('./bustPageCache');
 const purgePageCache = require('./purgePageCache');
+const nexusData = require('./nexusData');
 
 const debug = createDebug('server:error');
 const {
@@ -29,6 +30,8 @@ const {
   HTTPS_CERT_PATH,
 } = process.env;
 const app = express();
+
+app.use(require('express-naked-redirect')());
 
 // Clearing the Redis cache.
 app.get('/bust-endpoint-cache', bustPageCache);
@@ -47,11 +50,15 @@ const passthrough = proxy({
   xfwd: true,
 });
 
+// Create server-side endpoint to query WordPress for Nexus data.
+app
+  .use(cookiesMiddleware())
+  .use('/irving/v1/nexus_data', nexusData);
+
 // Proxy XML and XSL file requests directly.
 app.use('/robots.txt', passthrough);
 app.use('*.xml', passthrough);
 app.use('/wp-json/*', passthrough);
-app.use('*.rss', passthrough);
 app.use('*.xsl', passthrough);
 app.use('*/amp/', passthrough);
 app.use('*/feed/', passthrough);

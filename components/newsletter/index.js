@@ -73,18 +73,13 @@ const NewsletterSubscribe = ({
           errorMessage = responseData.message;
         }
       }
+
+      // Error.
       setFormResponseState({
         submitted: true,
         status: 'error',
         message: errorMessage,
       });
-      // Clear out message.
-      setTimeout(() => {
-        setFormResponseState({
-          submitted: false,
-          message: '',
-        });
-      }, 5000);
       return;
     }
 
@@ -102,14 +97,6 @@ const NewsletterSubscribe = ({
       label: location,
       PageViewFired: true,
     });
-
-    // Clear out message.
-    setTimeout(() => {
-      setFormResponseState({
-        submitted: false,
-        message: '',
-      });
-    }, 5000);
   };
 
   /**
@@ -142,7 +129,9 @@ const NewsletterSubscribe = ({
    */
   const handleInputChange = ({ target: { value } }) => {
     setUserEmailInput(value);
-    validateEmail(value);
+
+    // Let's wait 4 seconds.
+    setTimeout(() => validateEmail(value), 4000);
   };
 
   return (

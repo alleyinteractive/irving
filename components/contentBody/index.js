@@ -1,6 +1,8 @@
 import React, {
+  useContext,
   useEffect,
   useRef,
+  useState,
 } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,7 +12,9 @@ import {
   actionShowFullStory,
   actionTruncateStory,
 } from 'actions/storyActions';
+import { GTMContext } from 'components/googleTagManager';
 import useObscureContent from 'hooks/useObscureContent';
+import useReadPercentage from 'hooks/useReadPercentage';
 import classNames from 'classnames';
 import parse from 'html-react-parser';
 import styles from './contentBody.css';
@@ -23,13 +27,19 @@ const ContentBody = ({
   dispatchTruncateStory,
   overrideCTA,
   summaryBullets,
-  showFullStory,
 }) => {
+  const [truncateContent, setTruncation] = useState(false);
   const contentRef = useRef();
   const obscureContent = useObscureContent();
 
+  const showFullText = () => {
+    // Remove the truncation button and height limit.
+    setTruncation(false);
+  };
+
   useEffect(() => {
     if (obscureContent) {
+      setTruncation(true);
       dispatchTruncateStory();
       return;
     }
@@ -46,29 +56,67 @@ const ContentBody = ({
       false;
 
     if (0 === truncatedCTA.length) {
+      showFullText();
       dispatchShowFullStory();
     } else if (isOutsideSource) {
+      setTruncation(true);
       dispatchTruncateStory();
     } else {
+      showFullText();
       dispatchShowFullStory();
     }
 
     if (true === overrideCTA) {
+      showFullText();
       dispatchShowFullStory();
     }
   }, []);
+
+  // Store which landmark we've reached in state.
+  const [landmarkReached, setLandmarkReached] = useState(false);
+  const readPercentage = useReadPercentage(contentRef);
+  const { pushEvent } = useContext(GTMContext);
+
+  useEffect(() => {
+    // Bail early if the story is truncated.
+    if (obscureContent) {
+      return;
+    }
+
+    const readLandmarks = [100, 75, 50, 25, 0];
+
+    readLandmarks.map((landmark) => {
+      if (landmark > readPercentage) {
+        return false;
+      }
+
+      const label = (landmark / 100).toFixed(2);
+
+      if (false === landmarkReached || landmark > landmarkReached) {
+        pushEvent('mittr:articleScrollDepthTracking', {
+          category: 'articleScrollDepthTracking',
+          action: 'scroll',
+          label,
+        });
+
+        setLandmarkReached(landmark);
+      }
+
+      return true;
+    });
+  }, [readPercentage]);
 
   return (
     <div className={styles.wrapper}>
       <div
         className={classNames(styles.overlay, {
-          [styles.overlayVisible]: ! showFullStory,
+          [styles.overlayVisible]: truncateContent,
         })}
       />
 
       <div
         className={classNames(styles.content, {
-          [styles.contentHidden]: ! showFullStory,
+          [styles.contentHidden]: truncateContent,
         })}
         id="content--body"
       >
@@ -82,7 +130,7 @@ const ContentBody = ({
         </div>
       </div>
 
-      {! showFullStory && (
+      {truncateContent && (
         <button
           className={styles.truncationButton}
           type="button"
@@ -98,7 +146,7 @@ const ContentBody = ({
               label: 'read more',
               noninteraction: 0,
             });
-            dispatchShowFullStory();
+            showFullText();
           }}
           disabled={true === obscureContent}
         >
@@ -126,20 +174,15 @@ ContentBody.propTypes = {
   dispatchTruncateStory: PropTypes.func,
   overrideCTA: PropTypes.bool,
   summaryBullets: PropTypes.string,
-  showFullStory: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchShowFullStory: () => dispatch(actionShowFullStory()),
+  dispatchShowStory: () => dispatch(actionShowFullStory()),
   dispatchTruncateStory: () => dispatch(actionTruncateStory()),
 });
 
-const mapStateToProps = (state) => ({
-  showFullStory: state.story.showFullStory,
-});
-
 const withRedux = connect(
-  mapStateToProps,
+  undefined,
   mapDispatchToProps
 );
 

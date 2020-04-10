@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import parse from 'html-react-parser';
@@ -43,6 +43,7 @@ const AccountLandingPage = ({
     isEditingEmail: false,
     isEditingPassword: false,
   });
+
   const onClickEditEmail = () => {
     setFormState({
       isEditingEmail: true,
@@ -72,54 +73,92 @@ const AccountLandingPage = ({
     });
   };
 
-  const generateAccessBanner = () => {
-    if (isAlum) {
+  const {
+    subscriptionExpiration, orders, subscriptionActive, subscriptionType,
+  } = account;
+
+  /**
+   * Generate the text for the access banner.
+   */
+  const accessBanner = (() => {
+    // All subscription types are granted "unlimited access"
+    if (isAlum || subscriptionType) {
       return __(
         'You have unlimited access to technologyreview.com. ', 'mittr'
       );
     }
 
-    switch (account.subscriptionType) {
-      case 'Basic Digital':
-      case 'All Access Digital':
-      case 'Online Only Access':
-        return __(
-          'You have unlimited access to technologyreview.com. ', 'mittr'
-        );
-      default:
-        return __('You have limited access to technologyreview.com. ', 'mittr');
-    }
-  };
-  let renewalDate = '';
-  if (account.subscriptionExpiration) {
-    renewalDate = format(
-      new Date(Date.parse(account.subscriptionExpiration)),
+    return __('You have limited access to technologyreview.com. ', 'mittr');
+  })();
+
+  const renewalDate = (subscriptionExpiration) ?
+    format(
+      new Date(Date.parse(subscriptionExpiration)),
       'MMMM dd, yyyy'
-    );
-  }
+    ) : '';
 
-  let accountNumber = '';
-  if ('undefined' !== typeof account.orders &&
-  0 < account.orders.length
-  ) {
-    accountNumber = account.orders[0].customer_number;
-  }
+  const accountNumber =
+  (
+    'undefined' !== typeof orders &&
+    0 < orders.length
+  ) ? orders[0].customer_number : '';
 
-  const sfgLink = 'https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602'; // eslint-disable-line max-len
-  let subscriptionLink = '';
-  if (isAlum) {
-    // If an alumni has subscription info returning from SFG, allow them to manage their account from that portal.
-    if (
-      'undefined' !== typeof account.orders &&
-      0 < account.orders.length
-    ) {
-      subscriptionLink = sfgLink;
-    } else {
-      subscriptionLink = 'https://alum.mit.edu/myaccount/';
+  /**
+   * Generate the text to describe the user's subscription.
+   */
+  const subscriberText = (() => {
+    if (subscriptionActive) {
+      return (
+        <p>
+          {__('You are an', 'mittr')}{' '}
+          <strong>
+            {subscriptionType}{' '}
+            {__('subscriber', 'mittr')}{' '}
+          </strong>,{' '}
+          {__('account', 'mittr')}{' '}
+          <strong>#{accountNumber}</strong>.{' '}
+          {__(
+            'Your subscription will automatically renew on',
+            'mittr'
+          )}{' '}
+          <strong>{renewalDate}</strong>.
+        </p>
+      );
     }
-  } else {
-    subscriptionLink = sfgLink;
-  }
+
+    if (isAlum) {
+      return (
+        <p>
+          {__('You are an Infinite Connection subscriber.', 'mittr')}
+        </p>
+      );
+    }
+
+    return (
+      <p>
+        {__('You are not subscribed.', 'mittr')}
+      </p>
+    );
+  })();
+
+  const [subscriptionLink, setSubscriptionLink] = useState('');
+  useEffect(() => {
+    const sfgLink = 'https://subscribe.technologyreview.com/ecom/mtr/app/live/subcustserv?pagemode=start&org=MTR&publ=TR&php=Y&_ga=2.242102080.39622121.1582559852-436121851.1581700602'; // eslint-disable-line max-len
+
+    if (isAlum) {
+      // If an alumni has subscription info returning from SFG, allow them to manage their account from that portal.
+      if (
+        'undefined' !== typeof account.orders &&
+        0 < account.orders.length
+      ) {
+        setSubscriptionLink(sfgLink);
+      } else {
+        setSubscriptionLink('https://alum.mit.edu/myaccount/');
+      }
+    } else {
+      setSubscriptionLink(sfgLink);
+    }
+  }, [isAlum]);
 
   return (
     <div className={styles.wrapper}>
@@ -129,7 +168,8 @@ const AccountLandingPage = ({
           {__('Hello', 'mittr')}, {firstName}!
         </h1>
         <span className={styles.accessBanner}>
-          {generateAccessBanner()}{' '}
+          {accessBanner}
+          {' '}
           <a href="/contact">{__('Please contact us', 'mittr')}</a>{' '}
           {__('if you have any questions or requests.', 'mittr')}
         </span>
@@ -210,28 +250,7 @@ const AccountLandingPage = ({
 
         <div className={styles.subscription}>
           <h2>{__('Subscription', 'mittr')}</h2>
-          { account.subscriptionActive ? (
-            <p>
-              {__('You are an', 'mittr')}{' '}
-              <strong>
-                {account.subscriptionType}{' '}
-                {__('subscriber', 'mittr')}{' '}
-              </strong>,{' '}
-              {__('account', 'mittr')}{' '}
-              <strong>#{accountNumber}</strong>.{' '}
-              {__(
-                'Your subscription will automatically renew on',
-                'mittr'
-              )}{' '}
-              <strong>{renewalDate}</strong>.
-            </p>
-          ) :
-            (
-              <p>
-                {__('You are not subscribed.', 'mittr')}
-              </p>
-            )}
-
+          {subscriberText}
           <div className={styles.buttonContainer}>
             <a
               id="subscriptionManagerBtn"

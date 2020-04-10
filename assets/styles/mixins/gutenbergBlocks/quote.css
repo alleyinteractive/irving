@@ -6,16 +6,20 @@
     display: flex;
     font-family: $sans;
     font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.25;
-    margin-top: 1rem;
+    font-weight: 500;
+    line-height: rem(22);
+    margin-top: 2rem;
+    position: relative;
   }
 
   cite {
     &::before {
-      content: '–';
-      display: inline-block;
-      margin-right: rem(3);
+      border-top: 1px solid $black;
+      content: '';
+      display: block;
+      position: absolute;
+      top: rem(-10);
+      width: rem(50);
     }
   }
 }
@@ -51,10 +55,6 @@
         font-size: rem(40);
         font-style: normal;
         font-weight: 600;
-
-        @media ($lgMin) {
-          font-size: rem(45);
-        }
       }
     }
 
@@ -73,6 +73,12 @@
     @include cite;
     font-family: $sans;
     padding: rem(20) 0;
+
+    &:global(.is-style-default) {
+      p {
+        font-family: $serif-text;
+      }
+    }
 
     p {
       color: #000;
@@ -113,7 +119,8 @@
 
       @media ($lgMin) {
         margin-right: rem(-115);
-        tidy-span: 4;
+        max-width: rem(354);
+        width: rem(354);
       }
     }
 
