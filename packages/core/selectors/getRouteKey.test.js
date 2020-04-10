@@ -44,15 +44,16 @@ it('Should incorporate a cookie query if it exists', () => {
   expect(routeKey).toEqual('/test-route?myFunCookie=test');
 });
 
-it('Should incorporate both cookie query and search after a `?` if both exist', () => {
-  const mockState = {
-    route: {
-      pathname: '/test-route',
-      cookie: { myFunCookie: 'test' },
-      search: '?test-query=value',
-    },
-  };
+it('Should incorporate both cookie query and search after a `?` if both exist',
+  () => {
+    const mockState = {
+      route: {
+        pathname: '/test-route',
+        cookie: { myFunCookie: 'test' },
+        search: '?test-query=value',
+      },
+    };
 
-  const routeKey = getRouteKey(mockState);
-  expect(routeKey).toEqual('/test-route?myFunCookie=test&test-query=value');
-});
+    const routeKey = getRouteKey(mockState);
+    expect(routeKey).toEqual('/test-route?myFunCookie=test&test-query=value');
+  });

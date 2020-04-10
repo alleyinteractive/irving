@@ -5,7 +5,7 @@ const getRequestUrl = (endpoint) => {
 
   if (endpoint.includes('/')) {
     try {
-      // If endgpoint is absolute, use it as-is.
+      // If endpoint is absolute, use it as-is.
       const urlObj = new URL(endpoint);
 
       if (urlObj.host) {
