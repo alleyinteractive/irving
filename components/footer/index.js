@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { findChildByName } from 'utils/children';
 import { withStyles } from 'critical-style-loader/lib';
-import Link from 'components/helpers/link';
+import Logo from 'assets/icons/horizontal-logo-v2--white.svg';
 import styles from './footer.css';
 
 const Footer = ({
@@ -20,16 +20,14 @@ const Footer = ({
         <header className={styles.header}>
           <div className={styles.intro}>
             <h2 id="footer" className={styles.title}>
-              {__('MIT Technology Review', 'mittr')}
+              <Logo />
+              <span className={styles.titleText}>
+                {__('MIT Technology Review', 'mittr')}
+              </span>
             </h2>
             <p className={styles.missionStatement}>{missionStatement}</p>
           </div>
           <div className={styles.icon} aria-hidden="true" />
-          <Link to="/editions/" className={styles.editionsLink}>
-            <span>Browse</span>
-            <span>International</span>
-            <span>Editions</span>
-          </Link>
         </header>
         {'simpleFooter' !== themeName && (
           <div className={styles.menu}>{menu}</div>
