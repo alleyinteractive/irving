@@ -4,6 +4,7 @@ import {
   RECEIVE_COMPONENTS,
   FINISH_LOADING,
   UPDATE_VISIBILITY,
+  UPDATE_CONTENT_POSITION,
   UPDATE_HEADER_HEIGHT,
   DISMISS_NOTICE,
 } from './types';
@@ -72,6 +73,14 @@ export function actionUpdateVisibility(name, isVisible = null) {
  */
 export function actionUpdateHeaderHeight(headerHeight = 0) {
   return createAction(UPDATE_HEADER_HEIGHT, headerHeight);
+}
+
+/**
+ * Create a Redux action that represents a change in story content height
+ * @returns {{type, payload}} - Redux action
+ */
+export function actionUpdateContentPos(contentPos = { height: 0, top: 0 }) {
+  return createAction(UPDATE_CONTENT_POSITION, contentPos);
 }
 
 export function actionDismissNotice() {

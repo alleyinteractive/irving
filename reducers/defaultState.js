@@ -37,7 +37,7 @@ export const player = {
 };
 
 export const story = {
-  showFullText: false,
+  showFullStory: false,
 };
 
 export const error = null;
@@ -51,6 +51,8 @@ export const componentDataMeta = {
   error: false,
   data: [],
 };
+
+export const contentPos = { height: 0, top: 0 };
 
 export const headerHeight = 0;
 

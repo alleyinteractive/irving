@@ -4,15 +4,18 @@ import Headroom from 'react-headroom';
 import { withStyles } from 'critical-style-loader/lib';
 import useBreakpoint from 'hooks/useBreakpoint';
 import HeaderTemplate from 'components/headerTemplate';
-
-// Styles
 import styles from './header.css';
 
 const Header = (props) => {
-  const { homeUrl, children } = props;
+  const {
+    children,
+    homeUrl,
+    isArticle,
+  } = props;
   const [isMobile, setIsMobile] = useState(false);
   // Breakpoints
   const isSmMin = useBreakpoint('smMin');
+
   // When resizing, do not have the click to expand controls on desktop.
   useEffect(() => {
     if (! isSmMin) {
@@ -39,7 +42,11 @@ const Header = (props) => {
         pinStart={isMobile ? 60 : 260}
       >
         <HeaderTemplate
+          isArticle={isArticle}
           isHeadroom
+          // The article scroll progress bar depends on this ID.
+          // See components/contentBody/index.js.
+          id="siteHeader"
           homeUrl={homeUrl}
           isMobile={isMobile}
         >
@@ -53,6 +60,7 @@ const Header = (props) => {
 Header.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   homeUrl: PropTypes.string.isRequired,
+  isArticle: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(Header);

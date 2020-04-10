@@ -1,0 +1,37 @@
+.wrapper {
+  align-items: center;
+}
+
+.copyWrapper {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 1rem 0;
+}
+
+.shareWrapper {
+  align-items: baseline;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 1rem 0;
+
+  @media ($smMin) {
+    align-items: center;
+    flex-flow: row nowrap;
+  }
+}
+
+.list {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
+  li {
+    margin-bottom: 0;
+  }
+}
+
+.title {
+  display: none;
+}

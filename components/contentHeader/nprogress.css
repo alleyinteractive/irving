@@ -1,0 +1,33 @@
+/* stylelint-disable selector-max-specificity */
+:global {
+  #nprogress {
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nprogress-custom-parent {
+    border-bottom-color: transparent;
+    position: relative;
+  }
+
+  .nprogress-custom-parent .barContainer {
+    background-color: $border-gray;
+    bottom: -1px;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .nprogress-custom-parent .bar {
+    background: var(--topic-color);
+    bottom: 0;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1031;
+  }
+}
+/* stylelint-enable */
