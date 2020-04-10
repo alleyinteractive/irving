@@ -106,7 +106,11 @@ const CardStack = ({
         )}
       </div>
       {hasContentSlider && (
-        <ContentSlider articles={articles} contentItemWidth={288} />
+        <ContentSlider
+          articles={articles}
+          contentItemWidth={288}
+          textColor={textColor}
+        />
       )}
     </article>
   );
