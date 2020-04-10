@@ -68,7 +68,12 @@ const CardStack = ({
               {name}
             </Link>
           </h1>
-          <p className={theme.description}>{description}</p>
+          <p
+            className={theme.description}
+            style={{ color: textColor }}
+          >
+            {description}
+          </p>
         </div>
         {! isSubtopic && image && (
           <div
