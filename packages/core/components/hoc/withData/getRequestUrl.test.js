@@ -22,4 +22,10 @@ describe('getRequestUrl', () => {
       getRequestUrl('component/component')
     ).toEqual('https://localhost.com/component/component');
   });
+
+  it('Should return an endpoint url with path and params', () => {
+    expect(
+      getRequestUrl('component/component?param=test')
+    ).toEqual('https://localhost.com/component/component?param=test');
+  });
 });
