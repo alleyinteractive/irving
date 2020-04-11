@@ -1,0 +1,530 @@
+diff --git a/packages/core/components/helpers/button/index.js b/packages/core/components/helpers/button/index.js
+index 56e7148..c14d73f 100644
+--- a/packages/core/components/helpers/button/index.js
++++ b/packages/core/components/helpers/button/index.js
+@@ -77,7 +77,6 @@ Button.defaultProps = {
+   type: 'button',
+   className: '',
+   onClick: null,
+-  buttonStyle: '',
+ };
+ 
+ const wrapWithStyles = withStyles(styles);
+diff --git a/packages/core/components/hoc/withData/getRequestUrl.js b/packages/core/components/hoc/withData/getRequestUrl.js
+index a6008e7..cdc3ecb 100644
+--- a/packages/core/components/hoc/withData/getRequestUrl.js
++++ b/packages/core/components/hoc/withData/getRequestUrl.js
+@@ -1,26 +1,12 @@
+-import URL from 'url-parse';
+-
+ const getRequestUrl = (endpoint) => {
+-  let requestUrl;
+-
+-  if (endpoint.includes('/')) {
+-    try {
+-      // If endgpoint is absolute, use it as-is.
+-      const urlObj = new URL(endpoint);
+-
+-      if (urlObj.host) {
+-        requestUrl = endpoint;
+-      }
+-    } catch (e) {
+-      // Endpoint is relative, add it to end of configured API_ROOT_URL
+-      requestUrl = `${process.env.API_ROOT_URL}/${endpoint}`;
+-    }
+-  } else {
+-    // Use component data endpoint.
+-    requestUrl = `${process.env.API_ROOT_URL}/data/${endpoint}`;
++  switch (true) {
++    case endpoint.includes('://'):
++      return endpoint;
++    case endpoint.includes('/'):
++      return `${process.env.API_ROOT_URL}/${endpoint}`;
++    default:
++      return `${process.env.API_ROOT_URL}/data/${endpoint}`;
+   }
+-
+-  return requestUrl;
+ };
+ 
+ export default getRequestUrl;
+diff --git a/packages/core/components/hoc/withData/getRequestUrl.md b/packages/core/components/hoc/withData/getRequestUrl.md
+index 51be00b..789809d 100644
+--- a/packages/core/components/hoc/withData/getRequestUrl.md
++++ b/packages/core/components/hoc/withData/getRequestUrl.md
+@@ -1,5 +1,5 @@
+ Helper for turning a provided endpoint into a valid request URL. Here are your options:
+ 
+-* Pass in a string (not including any `/` path separators). The function will assum you mean to access an endpoint, ending in the string you provided, at your configured API_ROOT_URL at the path `/data/`. Example: if you provide `myComponent` it will opass back `API_ROOT_URL + '/data/myComponent'`
++* Pass in a string (not including any `/` path separators). The function will assume you mean to access an endpoint, ending in the string you provided, at your configured API_ROOT_URL at the path `/data/`. Example: if you provide `myComponent` it will opass back `API_ROOT_URL + '/data/myComponent'`
+ * Pass in a path. This function will then assume it is an endpoint at your API_ROOT_URL. Example: if you provide `myEndpoint/myComponent` it will pass back `API_ROOT_URL + '/myEndpoint/myComponent'`
+ * Pass in a complete URL. In this case, this function will assume it is a complete, external endpoint and pass back the URL as-is.
+diff --git a/packages/core/components/hoc/withData/getRequestUrl.test.js b/packages/core/components/hoc/withData/getRequestUrl.test.js
+new file mode 100644
+index 0000000..7cb8c9f
+--- /dev/null
++++ b/packages/core/components/hoc/withData/getRequestUrl.test.js
+@@ -0,0 +1,25 @@
++import getRequestUrl from './getRequestUrl';
++
++describe('getRequestUrl', () => {
++  beforeEach(() => {
++    process.env.API_ROOT_URL = 'https://localhost.com';
++  });
++
++  it('Should return an absolute url', () => {
++    expect(
++      getRequestUrl('https://google.com')
++    ).toEqual('https://google.com');
++  });
++
++  it('Should return a component data endpoint url', () => {
++    expect(
++      getRequestUrl('component')
++    ).toEqual('https://localhost.com/data/component');
++  });
++
++  it('Should return an endpoint url with path', () => {
++    expect(
++      getRequestUrl('component/component')
++    ).toEqual('https://localhost.com/component/component');
++  });
++});
+diff --git a/packages/core/components/hoc/withData/loading.test.js b/packages/core/components/hoc/withData/loading.test.js
+new file mode 100644
+index 0000000..457c757
+--- /dev/null
++++ b/packages/core/components/hoc/withData/loading.test.js
+@@ -0,0 +1,13 @@
++import React from 'react';
++import { mount } from 'enzyme';
++import DataLoading from './loading';
++
++describe('DataLoading', () => {
++  it('Should return a div with a loading message', () => {
++    const wrapper = mount(<DataLoading />);
++
++    expect(wrapper.text()).toEqual('loading...');
++
++    expect(wrapper.contains([<div>loading...</div>])).toBe(true);
++  });
++});
+diff --git a/packages/core/components/hoc/withData/placeholder.test.js b/packages/core/components/hoc/withData/placeholder.test.js
+new file mode 100644
+index 0000000..34343bb
+--- /dev/null
++++ b/packages/core/components/hoc/withData/placeholder.test.js
+@@ -0,0 +1,11 @@
++import React from 'react';
++import { mount } from 'enzyme';
++import DataPlaceholder from './placeholder';
++
++describe('DataLoading', () => {
++  it('Should return a div with some styles', () => {
++    const wrapper = mount(<DataPlaceholder />);
++
++    expect(wrapper.text()).toEqual('');
++  });
++});
+diff --git a/packages/core/reducers/componentDataReducer.test.js b/packages/core/reducers/componentDataReducer.test.js
+index 640c5ae..1a9b75c 100644
+--- a/packages/core/reducers/componentDataReducer.test.js
++++ b/packages/core/reducers/componentDataReducer.test.js
+@@ -1,18 +1,18 @@
+-import componentDataReducer from './componentDataReducer';
+ import {
+   REQUEST_COMPONENT_DATA,
+   RECEIVE_COMPONENT_DATA,
+   RECEIVE_COMPONENT_DATA_ERROR,
+ } from 'actions/types';
++import componentDataReducer from './componentDataReducer';
+ 
+ describe('componentDataReducer', () => {
+-
+   it('Should return default state if no payload', () => {
+-    expect(componentDataReducer({ foo: 'bar' }, {})).toEqual( { foo: 'bar' } );
++    expect(componentDataReducer({ foo: 'bar' }, {})).toEqual({ foo: 'bar' });
+   });
+ 
+   it('Should return default state if no type', () => {
+-    expect(componentDataReducer({ foo: 'bar' }, { payload: 'whatever' })).toEqual( { foo: 'bar' });
++    expect(componentDataReducer({ foo: 'bar' }, { payload: 'whatever' }))
++      .toEqual({ foo: 'bar' });
+   });
+ 
+   it('Should add the initial request for REQUEST_COMPONENT_DATA', () => {
+@@ -33,7 +33,7 @@ describe('componentDataReducer', () => {
+     });
+   });
+ 
+-  it('Should override the state with a new request for REQUEST_COMPONENT_DATA if the key exists', () => {
++  it('Should override the state with a new request for REQUEST_COMPONENT_DATA if the key exists',() => {
+     const state = {
+       testEndpoint: {
+         data: [
+@@ -103,7 +103,7 @@ describe('componentDataReducer', () => {
+ 
+   it('Should add the data to state when using RECEIVE_COMPONENT_DATA and data exists', () => {
+     const state = {
+-    testEndpoint: {
++      testEndpoint: {
+         error: false,
+         loaded: false,
+         loading: true,
+@@ -124,7 +124,7 @@ describe('componentDataReducer', () => {
+       testEndpoint: {
+         data: [
+           {
+-            foo: 'bar'
++            foo: 'bar',
+           },
+         ],
+         error: false,
+diff --git a/packages/core/reducers/errorReducer.test.js b/packages/core/reducers/errorReducer.test.js
+index 43e901d..e7708bf 100644
+--- a/packages/core/reducers/errorReducer.test.js
++++ b/packages/core/reducers/errorReducer.test.js
+@@ -1,6 +1,6 @@
+-import errorReducer from './errorReducer';
+ import { LOCATION_CHANGE, RECEIVE_ERROR } from 'actions/types';
+ import { error as errorState } from 'reducers/defaultState';
++import errorReducer from './errorReducer';
+ 
+ describe('errorReducer', () => {
+   it('Should return the errorState state when the location changes', () => {
+@@ -13,15 +13,16 @@ describe('errorReducer', () => {
+     expect(errorReducer(errorState, action)).toEqual(errorState);
+   });
+ 
+-  it('Should return the payload when the app receives an unrecoverable error', () => {
+-    const action = {
+-      type: RECEIVE_ERROR,
+-      payload: {
+-        endpoint: 'test error endpoint',
+-      },
+-    };
+-    expect(errorReducer(errorState, action)).toEqual(action.payload);
+-  });
++  it('Should return the payload when the app receives an unrecoverable error',
++    () => {
++      const action = {
++        type: RECEIVE_ERROR,
++        payload: {
++          endpoint: 'test error endpoint',
++        },
++      };
++      expect(errorReducer(errorState, action)).toEqual(action.payload);
++    });
+ 
+   it('Should return errorState when there is no type', () => {
+     const action = {
+diff --git a/packages/core/selectors/getProviders.js b/packages/core/selectors/getProviders.js
+index 8223f26..2c95994 100644
+--- a/packages/core/selectors/getProviders.js
++++ b/packages/core/selectors/getProviders.js
+@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
+ import getRouteKey from './getRouteKey';
+ 
+ /**
+- * Select the current route's page components.
++ * Select the current route's providers.
+  * @returns {function} - Redux selector
+  */
+ const getProviders = createSelector(
+diff --git a/packages/core/selectors/getProviders.test.js b/packages/core/selectors/getProviders.test.js
+new file mode 100644
+index 0000000..643563d
+--- /dev/null
++++ b/packages/core/selectors/getProviders.test.js
+@@ -0,0 +1,25 @@
++import getProviders from './getProviders';
++
++it('should get empty array', () => {
++  expect(getProviders()).toEqual([]);
++});
++
++it.only('should get empty array', () => {
++  const mockState = {
++    route: {
++      pathname: '/foo',
++    },
++    components: {
++      providers: {
++        '/foo': [
++          {
++            name: 'provider-test',
++          },
++        ],
++      },
++    },
++  };
++  expect(getProviders(mockState)).toEqual([
++    { name: 'provider-test' },
++  ]);
++});
+diff --git a/packages/core/selectors/getRoots.js b/packages/core/selectors/getRoots.js
+index de17393..ff6d744 100644
+--- a/packages/core/selectors/getRoots.js
++++ b/packages/core/selectors/getRoots.js
+@@ -1,4 +1,4 @@
+-import { get } from 'lodash/fp';
++import get from 'lodash/fp/get';
+ import { createSelector } from 'reselect';
+ 
+ /**
+@@ -10,7 +10,11 @@ const getRoots = createSelector(
+   [
+     get('components.defaults'),
+   ],
+-  (defaults) => defaults.map((component) => component.name)
++  (defaults) => (
++    Array.isArray(defaults) ?
++      defaults.map((component) => component.name) :
++      []
++  )
+ );
+ 
+ export default getRoots;
+diff --git a/packages/core/selectors/getRoots.test.js b/packages/core/selectors/getRoots.test.js
+new file mode 100644
+index 0000000..66e6dc6
+--- /dev/null
++++ b/packages/core/selectors/getRoots.test.js
+@@ -0,0 +1,43 @@
++import getRoots from './getRoots';
++
++describe('getRoots', () => {
++  it('should get a list of empty root component names', () => {
++    const mockState = {
++      components: { defaults: [] },
++    };
++    expect(getRoots(mockState)).toEqual([]);
++  });
++
++  it('should get an empty array if no component array is passed', () => {
++    expect(getRoots({})).toEqual([]);
++  });
++
++  it('should get a list of root component names', () => {
++    const mockState = {
++      components: {
++        defaults: [
++          {
++            name: 'head',
++          },
++          {
++            name: 'google-tag-manager',
++          },
++          {
++            name: 'header',
++          },
++        ],
++      },
++    };
++    expect(getRoots(mockState)).toEqual(
++      ['head', 'google-tag-manager', 'header']
++    );
++  });
++
++  it('should get a list of root component names with only one component name',
++    () => {
++      const mockState = {
++        components: { defaults: [{ name: 'head' }] },
++      };
++      expect(getRoots(mockState)).toEqual(['head']);
++    });
++});
+diff --git a/packages/core/selectors/getRouteKey.test.js b/packages/core/selectors/getRouteKey.test.js
+index e92b0e7..c297982 100644
+--- a/packages/core/selectors/getRouteKey.test.js
++++ b/packages/core/selectors/getRouteKey.test.js
+@@ -44,15 +44,16 @@ it('Should incorporate a cookie query if it exists', () => {
+   expect(routeKey).toEqual('/test-route?myFunCookie=test');
+ });
+ 
+-it('Should incorporate both cookie query and search after a `?` if both exist', () => {
+-  const mockState = {
+-    route: {
+-      pathname: '/test-route',
+-      cookie: { myFunCookie: 'test' },
+-      search: '?test-query=value',
+-    },
+-  };
+-
+-  const routeKey = getRouteKey(mockState);
+-  expect(routeKey).toEqual('/test-route?myFunCookie=test&test-query=value');
+-});
++it('Should incorporate both cookie query and search after a `?` if both exist',
++  () => {
++    const mockState = {
++      route: {
++        pathname: '/test-route',
++        cookie: { myFunCookie: 'test' },
++        search: '?test-query=value',
++      },
++    };
++
++    const routeKey = getRouteKey(mockState);
++    expect(routeKey).toEqual('/test-route?myFunCookie=test&test-query=value');
++  });
+diff --git a/packages/core/utils/getRelativeUrl.test.js b/packages/core/utils/getRelativeUrl.test.js
+index 181b211..b558a4f 100644
+--- a/packages/core/utils/getRelativeUrl.test.js
++++ b/packages/core/utils/getRelativeUrl.test.js
+@@ -1,61 +1,64 @@
+ import getRelativeUrl from './getRelativeUrl';
+ 
+-it('should handle a relative url', () => {
+-  expect(getRelativeUrl('/foo')).toBe('/foo');
+-});
++describe('getRelativeUrl', () => {
++  it('should handle a relative url', () => {
++    expect(getRelativeUrl('/foo')).toBe('/foo');
++  });
+ 
+-it('should handle a relative url with search parameters', () => {
+-  expect(getRelativeUrl('/foo/?param=test&another=second'))
+-    .toBe('/foo/?param=test&another=second');
+-});
++  it('should handle a relative url with search parameters', () => {
++    expect(getRelativeUrl('/foo/?param=test&another=second'))
++      .toBe('/foo/?param=test&another=second');
++  });
+ 
+-it('should handle a relative url with a hash', () => {
+-  expect(getRelativeUrl('/foo#some-hash'))
+-    .toBe('/foo#some-hash');
+-});
++  it('should handle a relative url with a hash', () => {
++    expect(getRelativeUrl('/foo#some-hash'))
++      .toBe('/foo#some-hash');
++  });
+ 
+-it('should handle an internal, absolute URL with port', () => {
+-  expect(getRelativeUrl('http://irving.com:3001/foo')).toBe('/foo');
+-});
++  it('should handle an internal, absolute URL with port', () => {
++    expect(getRelativeUrl('http://irving.com:3001/foo')).toBe('/foo');
++  });
+ 
+-it('should handle an internal absolute url with search query', () => {
+-  expect(getRelativeUrl('http://irving.com:3001/foo/?s=test')).toBe('/foo/?s=test');
+-});
++  it('should handle an internal absolute url with search query', () => {
++    expect(getRelativeUrl('http://irving.com:3001/foo/?s=test')).toBe('/foo/?s=test');
++  });
+ 
+-it('should handle an internal absolute url with hash', () => {
+-  expect(getRelativeUrl('http://irving.com/foo#test'))
+-    .toBe('/foo#test');
+-});
++  it('should handle an internal absolute url with hash', () => {
++    expect(getRelativeUrl('http://irving.com/foo#test'))
++      .toBe('/foo#test');
++  });
+ 
+-it('should handle an internal absolute url with search query and hash', () => {
+-  expect(getRelativeUrl('http://irving.com/foo/?s=search#test'))
+-    .toBe('/foo/?s=search#test');
+-});
++  it('should handle an internal absolute url with search query and hash',
++    () => {
++      expect(getRelativeUrl('http://irving.com/foo/?s=search#test'))
++        .toBe('/foo/?s=search#test');
++    });
+ 
+-it('should handle an external absolute url', () => {
+-  expect(getRelativeUrl('http://google.com')).toBe(false);
+-});
++  it('should handle an external absolute url', () => {
++    expect(getRelativeUrl('http://google.com')).toBe(false);
++  });
+ 
+-it('should not modify URLs with non http/https protocols', () => {
+-  expect(getRelativeUrl('mailto:ops@alley.co')).toBe(false);
+-});
++  it('should not modify URLs with non http/https protocols', () => {
++    expect(getRelativeUrl('mailto:ops@alley.co')).toBe(false);
++  });
+ 
+-it('should not modify URLs that match a configured passhtrough proxy', () => {
+-  expect(getRelativeUrl('/test/path/is/cool')).toBe(false);
+-});
++  it('should not modify URLs that match a configured passhtrough proxy', () => {
++    expect(getRelativeUrl('/test/path/is/cool')).toBe(false);
++  });
+ 
+-it('should modify empty URLs so they lead home', () => {
+-  expect(getRelativeUrl('')).toBe('/');
+-});
++  it('should modify empty URLs so they lead home', () => {
++    expect(getRelativeUrl('')).toBe('/');
++  });
+ 
+-it('should not modify URLs that begin with a hash', () => {
+-  expect(getRelativeUrl('#test-hash')).toBe(false);
+-});
++  it('should not modify URLs that begin with a hash', () => {
++    expect(getRelativeUrl('#test-hash')).toBe(false);
++  });
+ 
+-it('should not modify URLs at a subdomain (unless www)', () => {
+-  expect(getRelativeUrl('https://content.irving.com')).toBe(false);
+-});
++  it('should not modify URLs at a subdomain (unless www)', () => {
++    expect(getRelativeUrl('https://content.irving.com')).toBe(false);
++  });
+ 
+-it('should consider URLs at www subdomain to be relative', () => {
+-  expect(getRelativeUrl('https://www.irving.com/test')).toBe('/test');
++  it('should consider URLs at www subdomain to be relative', () => {
++    expect(getRelativeUrl('https://www.irving.com/test')).toBe('/test');
++  });
+ });
+diff --git a/packages/core/utils/toReactElement.test.js b/packages/core/utils/toReactElement.test.js
+index 491e38c..c75c353 100644
+--- a/packages/core/utils/toReactElement.test.js
++++ b/packages/core/utils/toReactElement.test.js
+@@ -1,7 +1,7 @@
+-import toReactElement from './toReactElement';
+ import { shallow } from 'enzyme';
++import toReactElement from './toReactElement';
+ 
+-describe( 'toReactElement', () => {
++describe('toReactElement', () => {
+   const apiComponent = {
+     name: 'foo',
+     config: {
+@@ -22,7 +22,7 @@ describe( 'toReactElement', () => {
+     children: [],
+   };
+ 
+-  it( 'converts an api component to a React element', () => {
++  it('converts an api component to a React element', () => {
+     const fooElement = toReactElement(apiComponent);
+     const wrapper = shallow(<div>{fooElement}</div>);
+ 
+@@ -30,7 +30,7 @@ describe( 'toReactElement', () => {
+     expect(wrapper.find({ color: 'red' })).toHaveLength(1);
+   });
+ 
+-  it( 'converts api component\'s children to React elements', () => {
++  it('converts api component\'s children to React elements', () => {
+     const componentWithChildren = {
+       ...apiComponent,
+       children: [apiComponent2, apiComponent3]
+@@ -43,7 +43,7 @@ describe( 'toReactElement', () => {
+     expect(wrapper.find({ componentName: 'buzz' })).toHaveLength(1);
+   });
+ 
+-  it( 'converts api component\'s component groups to React elements', () => {
++  it('converts api component\'s component groups to React elements', () => {
+     const componentWithGroups = {
+       name: 'bar',
+       config: {},
+@@ -68,4 +68,4 @@ describe( 'toReactElement', () => {
+         .find({ componentName: 'buzz' })
+     ).toHaveLength(1);
+   });
+-})
++});
