@@ -4,6 +4,7 @@
   @include container;
   display: flex;
   flex-flow: row nowrap;
+  padding: rem(8) 0;
   width: auto;
 
   @media ($mdMin) {
