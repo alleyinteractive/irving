@@ -10,7 +10,7 @@ import { GTMContext } from 'components/googleTagManager';
 import Arrow from 'assets/icons/arrow.svg';
 import styles from './contentSlider.css';
 
-const ContentSlider = ({ articles, contentItemWidth }) => {
+const ContentSlider = ({ articles, contentItemWidth, textColor }) => {
   const [sliderState, setSliderState] = useState({
     currentIndex: 0,
   });
@@ -75,6 +75,7 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
               props: {
                 ...article.props,
                 onClick: (e) => handleClick(e, slideNum, permalink),
+                textColor,
               },
             };
 
@@ -84,8 +85,13 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
                 key={article.props.title}
                 // Only scroll when focus passes first element so its still in the view
                 onFocus={() => (1 <= count ? scrollSlider(true) : null)}
+                style={{ borderColor: textColor }}
               >
-                <div className={styles.counter} aria-hidden>
+                <div
+                  className={styles.counter}
+                  aria-hidden
+                  style={{ color: textColor }}
+                >
                   {`${slideNum}`.padStart(2, '0')}.
                 </div>
                 {articleLink}
@@ -99,8 +105,9 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
           type="button"
           className={styles.previous}
           onClick={() => scrollSlider(false)}
+          style={{ background: textColor }}
         >
-          <Arrow aria-hidden />
+          <Arrow aria-hidden style={{ borderColor: textColor }} />
           <span className="screen-reader-text">
             {__('Next', 'mittr')}
           </span>
@@ -111,6 +118,7 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
           type="button"
           className={styles.next}
           onClick={() => scrollSlider(true)}
+          style={{ background: textColor }}
         >
           <Arrow aria-hidden />
           <span className="screen-reader-text">
@@ -124,12 +132,14 @@ const ContentSlider = ({ articles, contentItemWidth }) => {
 
 ContentSlider.defaultProps = {
   contentItemWidth: 288,
+  textColor: '',
 };
 
 ContentSlider.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.shape({}))
     .isRequired,
   contentItemWidth: PropTypes.number,
+  textColor: PropTypes.string,
 };
 
 export default (withStyles(styles)(ContentSlider));
