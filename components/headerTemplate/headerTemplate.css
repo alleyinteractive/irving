@@ -195,8 +195,8 @@
 }
 
 .socialLinks {
-  margin-left: auto;
   display: none;
+  margin-left: auto;
 
   @media only screen and (min-width: 790px) {
     display: block;
