@@ -6,10 +6,11 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import useScrollPosition from 'hooks/useScrollPosition';
 import {
   actionUpdateVisibility,
 } from 'actions';
+import useScrollPosition from 'hooks/useScrollPosition';
+import useObscureContent from 'hooks/useObscureContent';
 import CloseIcon from 'assets/icons/close.svg';
 import { findChildByName } from 'utils/children';
 import useHideAds from 'hooks/useHideAds';
@@ -23,39 +24,53 @@ const SliderAd = ({ children }) => {
   const hasClosed = useSelector((state) => state.visible.sliderAdHasClosed);
   const dispatch = useDispatch();
   const hideAds = useHideAds();
-
+  const obscureContent = useObscureContent();
   // Show nothing if we are supposed to hide ads.
   if (hideAds) {
     return null;
   }
 
+  // Save visiblity and has closed info in redux store.
   const toggleVisibility = (value) => {
     dispatch(actionUpdateVisibility('sliderAd', value));
   };
   const setHasClosed = () => {
     dispatch(actionUpdateVisibility('sliderAdHasClosed', true));
   };
+
+  // Show the ad if the ad slot has rendered and there's no meter modal.
+  const showAd = () => {
+    if (shouldLoad && ! obscureContent) {
+      toggleVisibility(true);
+    }
+  };
+
+  // Hide the ad.
   const closeAd = () => {
     toggleVisibility(false);
     setHasClosed();
   };
 
+  // Set 5 second timer once user has scrolled 100px,
+  // if the ad has not already been closed
   const scrollData = useScrollPosition();
-
   useEffect(() => {
-    if (100 < scrollData.y && ! hasClosed) {
-      setTimeout(() => toggleVisibility(true), 5000);
+    if (
+      100 < scrollData.y &&
+      ! hasClosed
+    ) {
+      setTimeout(() => showAd(), 5000);
     }
   }, [scrollData]);
 
-  // Detect and set height once slot has rendered.
+  // Detect and setShouldLoad once slot has rendered.
   const onSlotRender = (data) => {
     const { event } = data;
     if (
       event.slot &&
       ! event.isEmpty &&
       event.slot.getAdUnitPath().includes('__slider') &&
-      adRef.currentv
+      adRef.current
     ) {
       setShouldLoad(true);
     }
