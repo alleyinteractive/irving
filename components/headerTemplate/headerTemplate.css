@@ -195,18 +195,28 @@
 }
 
 .socialLinks {
-  margin-left: 0;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  right: rem(75);
-  top: 50%;
-  transform: translateY(-50%);
-  transition: opacity 0.1s ease;
+  margin-left: auto;
+  display: none;
+
+  @media only screen and (min-width: 790px) {
+    display: block;
+    margin-left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: rem(75);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.1s ease;
+  }
 
   &.isVisible {
-    opacity: 1;
-    pointer-events: all;
+    display: block;
+
+    @media only screen and (min-width: 790px) {
+      opacity: 1;
+      pointer-events: all;
+    }
   }
 }
 

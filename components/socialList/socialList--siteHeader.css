@@ -2,18 +2,10 @@
   align-items: center;
 }
 
-.copyWrapper {
-  align-items: center;
-  display: flex;
-  flex-flow: row nowrap;
-  padding: 1rem 0;
-}
-
 .shareWrapper {
   align-items: baseline;
   display: flex;
   flex-flow: row wrap;
-  padding: 1rem 0;
 
   @media ($smMin) {
     align-items: center;
