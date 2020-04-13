@@ -1,3 +1,4 @@
+/* eslint-disable */
 import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
@@ -38,7 +39,8 @@ function getExtraQueryParams() {
 export async function fetchComponents(
   path,
   search,
-  context = CONTEXT_PAGE
+  context = CONTEXT_PAGE,
+  cookie
 ) {
   const query = queryString.stringify({
     path,
@@ -49,6 +51,9 @@ export async function fetchComponents(
   {
     encode: false,
   });
+
+  console.log('newcook: ', cookie);
+
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
   const options = {
     headers: {
@@ -56,7 +61,13 @@ export async function fetchComponents(
     },
     credentials: 'include', // Support XHR with basic auth.
   };
+
+  if (cookie.authorizationHeader !== undefined) {
+    options.headers.Authorization = `Bearer ${cookie.authorizationHeader}`;
+  }
+
   const response = await fetch(apiUrl, { ...options });
+  console.log(apiUrl, options);
   const data = await response.json();
   const { redirectTo, redirectStatus } = data;
 
@@ -111,6 +122,7 @@ export default async function cacheResult(
     cookie,
     context,
   ];
+  console.log('cookie: ', cookie);
   const key = args.map((arg) => {
     if ('undefined' === typeof arg) {
       return '';
@@ -131,7 +143,7 @@ export default async function cacheResult(
 
   if (! response || bypassCache) {
     debug(info);
-    response = await fetchComponents(path, search, context);
+    response = await fetchComponents(path, search, context, cookie);
     await cache.set(key, response);
   } else {
     debug({ ...info, cached: true });

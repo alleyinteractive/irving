@@ -32,6 +32,7 @@ const getCookies = createSelector(
     return {
       ...allowlistCookies,
       bypassCache: cookies.get('bypassCache'),
+      authorizationHeader: cookies.get('authorizationHeader'),
     };
   }
 );
