@@ -116,15 +116,49 @@ const HeaderTemplate = ({
               <LogoStacked />
             </div>
           )}
-          {((isHeadroom || isMobile) && ! isArticle) && (
+          {/*
+            Show the horizontal logo if:
+              - sticky header
+              - on any non article page
+              - on articles:
+                - scrolling up within article content
+                - scrolling sny direction in the feed
+          */}
+          {(
+            ((isHeadroom || isMobile) && ! isArticle) ||
+            (
+              (isHeadroom || isMobile) &&
+              isArticle &&
+              ('up' === scrollData.direction || ! contentInView)
+            )
+          ) && (
             <div className={styles.logoHorizontal} aria-hidden>
               <LogoHorizontal />
             </div>
           )}
         </Link>
-        {((isHeadroom || isMobile) && isArticle && articleTitle) && (
+        {/*
+          Show the article title if:
+          - sticky header
+          - scrolling down
+          - within article content
+        */}
+        {(
+          (isHeadroom || isMobile) &&
+          isArticle &&
+          articleTitle &&
+          'down' === scrollData.direction &&
+          contentInView
+        ) && (
           <div className={styles.title}>{articleTitle}</div>
         )}
+        {/*
+          Show the social links if:
+          - sticky header
+          - on articles
+          - scrolling down
+          - within article content
+        */}
         {socialLinks && isHeadroom && (
           <div className={classNames(
             styles.socialLinks,
