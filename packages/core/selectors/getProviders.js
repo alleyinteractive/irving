@@ -1,9 +1,9 @@
-import { get } from 'lodash/fp';
+import get from 'lodash/fp/get';
 import { createSelector } from 'reselect';
 import getRouteKey from './getRouteKey';
 
 /**
- * Select the current route's page components.
+ * Select the current route's providers.
  * @returns {function} - Redux selector
  */
 const getProviders = createSelector(

@@ -1,4 +1,4 @@
-import { get } from 'lodash/fp';
+import get from 'lodash/fp/get';
 import { createSelector } from 'reselect';
 
 /**
@@ -10,7 +10,11 @@ const getRoots = createSelector(
   [
     get('components.defaults'),
   ],
-  (defaults) => defaults.map((component) => component.name)
+  (defaults) => (
+    Array.isArray(defaults) ?
+      defaults.map((component) => component.name) :
+      []
+  )
 );
 
 export default getRoots;
