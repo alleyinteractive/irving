@@ -60,10 +60,6 @@
       tidy-offset-left: 0;
     }
   }
-
-  &.logoHeadroomArticle {
-    display: none;
-  }
 }
 
 .logoStacked {
@@ -100,26 +96,6 @@
   }
 }
 
-.title {
-  align-items: center;
-  display: none;
-  flex: 1;
-  height: 100%;
-  min-width: 0;
-  padding-right: rem(15);
-  tidy-offset-left: 1;
-
-  @media ($smMin) {
-    display: flex;
-  }
-
-  > div {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
 .logoHorizontal {
   align-items: center;
   display: flex;
@@ -140,6 +116,30 @@
     svg {
       width: rem(160);
     }
+  }
+}
+
+.title {
+  align-items: center;
+  display: none;
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+  padding-right: rem(15);
+  tidy-offset-left: 1;
+
+  @media ($smMin) {
+    display: flex;
+  }
+
+  @media only screen and (min-width: 790px) {
+    margin-left: rem(80);
+  }
+
+  > div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
@@ -195,18 +195,14 @@
 }
 
 .socialLinks {
-  margin-left: auto;
+  margin-left: 0;
   opacity: 0;
   pointer-events: none;
-
-  @media only screen and (min-width: 790px) {
-    margin-left: 0;
-    position: absolute;
-    right: rem(75);
-    top: 50%;
-    transform: translateY(-50%);
-    transition: opacity 0.1s ease;
-  }
+  position: absolute;
+  right: rem(75);
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.1s ease;
 
   &.isVisible {
     opacity: 1;
