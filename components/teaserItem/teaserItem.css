@@ -43,7 +43,7 @@
   order: 0;
 }
 
-.eyebrowLink {
+.eyebrowText {
   color: $color-deck;
   font-size: rem(14);
   font-weight: 600;
