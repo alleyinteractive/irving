@@ -41,7 +41,12 @@ const MagazineHero = ({
   return (
     <header className={styles.wrapper}>
       <div className={styles.topper}>
-        <h1 className={styles.topperTitle}>{__('Magazine', 'mittr')}</h1>
+        <h1 className={styles.topperTitle}>
+          {'MIT News Magazine' === issueType ?
+            __('MIT News Magazine', 'mittr') :
+            __('Magazine', 'mittr')
+          }
+        </h1>
         <nav className={styles.publicationNav}>
           <ul role="menubar">
             <li role="menuitem">
