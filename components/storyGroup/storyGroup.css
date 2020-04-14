@@ -7,6 +7,7 @@
 }
 
 .meta {
+  align-items: center;
   display: flex;
   font-size: rem(14);
   margin-bottom: rem(5);
