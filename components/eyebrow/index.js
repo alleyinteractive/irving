@@ -29,7 +29,7 @@ const Eyebrow = ({
         {customEyebrow}
         {(
           dateline &&
-          <span>{dateline}</span>
+          <span className={styles.date}>{dateline}</span>
         )}
       </div>
     );

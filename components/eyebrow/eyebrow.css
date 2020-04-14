@@ -11,6 +11,11 @@
   }
 }
 
+.date {
+  font-weight: 400;
+  margin-left: rem(5);
+}
+
 .wrap {
   display: block;
   margin-bottom: rem(15);
