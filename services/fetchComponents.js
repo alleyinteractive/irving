@@ -52,8 +52,6 @@ export async function fetchComponents(
     encode: false,
   });
 
-  console.log('newcook: ', cookie);
-
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
   const options = {
     headers: {
@@ -62,8 +60,8 @@ export async function fetchComponents(
     credentials: 'include', // Support XHR with basic auth.
   };
 
-  if (cookie.authorizationHeader !== undefined) {
-    options.headers.Authorization = `Bearer ${cookie.authorizationHeader}`;
+  if (cookie.authorizationBearerToken) {
+    options.headers.Authorization = `Bearer ${cookie.authorizationBearerToken}`;
   }
 
   const response = await fetch(apiUrl, { ...options });
