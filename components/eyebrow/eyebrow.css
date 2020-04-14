@@ -1,7 +1,7 @@
 .eyebrow {
   display: block;
   font-family: $sans;
-  font-size: rem(16);
+  font-size: rem(14);
   font-weight: 600;
   line-height: 1;
   margin-right: rem(5);
@@ -9,7 +9,6 @@
 
   @media ($mdMin) {
     font-size: rem(16);
-    line-height: rem(16);
   }
 }
 

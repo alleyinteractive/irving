@@ -27,7 +27,12 @@
 .meta {
   display: flex;
   flex-flow: row wrap;
+  font-size: rem(14);
   width: 100%;
+
+  @media ($mdMin) {
+    font-size: rem(16);
+  }
 }
 
 .text {
@@ -37,7 +42,6 @@
 }
 
 .eyebrow {
-  font-size: rem(16);
   line-height: 1.19;
   margin-bottom: rem(5);
   order: 0;
@@ -45,13 +49,8 @@
 
 .eyebrowText {
   color: $color-deck;
-  font-size: rem(14);
   font-weight: 600;
   margin-right: rem(5);
-
-  @media ($mdMin) {
-    font-size: rem(16);
-  }
 }
 
 .title {
