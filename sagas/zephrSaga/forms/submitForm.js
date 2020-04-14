@@ -164,12 +164,15 @@ export function* getAccount(sessionCookie) {
   if ('object' === typeof account) {
     // Retrieve SFG account data from the nexus.
     try {
+      const requestToken = (Math.random() * Date.now())
+        .toString()
+        .substring(0, 9);
       const {
         orders,
         subscription_active: subscriptionActive,
         subscription_type: subscriptionType,
         subscription_expire_date: subscriptionExpiration,
-      } = yield call(nexusService.getUser);
+      } = yield call(nexusService.getUser, requestToken);
 
       // Store user account information.
       yield put(actionReceiveUserAccount({

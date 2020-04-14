@@ -7,10 +7,10 @@ export default {
    *
    * @return {object} The Nexus user object if found, or an empty array.
    */
-  async getUser() {
+  async getUser(token) {
     try {
       const request = await fetch(
-        `${process.env.ROOT_URL}/irving/v1/nexus_data`,
+        `${process.env.ROOT_URL}/irving/v1/nexus_data?token=${token}`,
         {
           method: 'GET',
           headers: {
