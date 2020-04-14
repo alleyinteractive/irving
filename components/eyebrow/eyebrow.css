@@ -1,35 +1,13 @@
 .eyebrow {
-  display: block;
   font-family: $sans;
   font-size: rem(14);
   font-weight: 600;
-  line-height: rem(14);
-  margin-right: 1ch;
-  padding-top: rem(10);
-  text-decoration: none;
-
-  span {
-    font-weight: 400;
-    padding-left: rem(5);
-  }
-
-  @media ($mdMin) {
-    font-size: rem(16);
-    line-height: rem(16);
-  }
-}
-
-.eyebrowLink {
-  font-family: $sans;
-  font-size: rem(14);
-  font-weight: 600;
-  line-height: rem(14);
+  line-height: 1;
   margin-right: rem(5);
   text-decoration: none;
 
   @media ($mdMin) {
     font-size: rem(16);
-    line-height: rem(16);
   }
 }
 
