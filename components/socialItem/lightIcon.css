@@ -5,7 +5,7 @@
 
   &:not(first-child) {
     margin-right: rem(10);
-    
+
     @media ($mdMin) {
       margin-right: rem(20);
     }
@@ -32,7 +32,13 @@
     height: rem(18);
     width: auto;
   }
-  
+
+  .whatsapp & {
+
+    svg {
+      height: rem(25);
+    }
+  }
 }
 
 .screenReaderLabel {

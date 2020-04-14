@@ -68,7 +68,12 @@ const CardStack = ({
               {name}
             </Link>
           </h1>
-          <p className={theme.description}>{description}</p>
+          <p
+            className={theme.description}
+            style={{ color: textColor }}
+          >
+            {description}
+          </p>
         </div>
         {! isSubtopic && image && (
           <div
@@ -101,7 +106,11 @@ const CardStack = ({
         )}
       </div>
       {hasContentSlider && (
-        <ContentSlider articles={articles} contentItemWidth={288} />
+        <ContentSlider
+          articles={articles}
+          contentItemWidth={288}
+          textColor={textColor}
+        />
       )}
     </article>
   );
