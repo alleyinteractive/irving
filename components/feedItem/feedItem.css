@@ -43,6 +43,7 @@
 }
 
 .meta {
+  align-items: center;
   display: flex;
   flex-flow: row nowrap;
   font-size: rem(14);
