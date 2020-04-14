@@ -9,6 +9,7 @@
 }
 
 .meta {
+  align-items: center;
   display: flex;
   flex-flow: row wrap;
   margin-bottom: rem(5);
