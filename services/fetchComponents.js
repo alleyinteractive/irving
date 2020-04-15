@@ -65,7 +65,6 @@ export async function fetchComponents(
   }
 
   const response = await fetch(apiUrl, { ...options });
-  console.log(apiUrl, options);
   const data = await response.json();
   const { redirectTo, redirectStatus } = data;
 
