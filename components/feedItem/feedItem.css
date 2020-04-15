@@ -67,6 +67,10 @@
   margin-right: rem(20);
   order: 1;
 
+  &:hover {
+    text-decoration: underline;
+  }
+
   @media ($smMax) {
     margin-bottom: rem(10);
   }

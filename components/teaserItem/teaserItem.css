@@ -60,6 +60,10 @@
   order: 1;
   width: 100%;
 
+  &:hover {
+    text-decoration: underline;
+  }
+
   &.groupTitle {
     font-size: rem(22);
   }
