@@ -1,4 +1,3 @@
-/* eslint-disable */
 import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
