@@ -15,6 +15,9 @@ const customSagas = getConfigArray('sagas');
  * Combine all sagas, and run them continuously in parallel.
  */
 export default function* rootSaga() {
+  // Ensure authorized component requests are also made after initial server-side render.
+  yield* resolveComponents();
+
   yield all([
     takeLatest(LOCATION_CHANGE, resolveComponents),
     takeLatest(LOCATION_CHANGE, waitToScroll),
