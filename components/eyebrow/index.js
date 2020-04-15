@@ -19,18 +19,28 @@ const Eyebrow = ({
 }) => {
   if (customEyebrow) {
     return (
-      <div
-        className={classNames(
-          styles.eyebrow,
-          { [styles.anchorEyebrow]: 'anchorEyebrow' === themeName }
-        )}
-        style={{ color }}
+      <div className={classNames({
+        [styles.wrap]:
+          'In Feed' !== themeName && 'anchorEyebrow' !== themeName,
+      })}
       >
-        {customEyebrow}
-        {(
-          dateline &&
-          <span className={styles.date}>{dateline}</span>
-        )}
+        <div
+          className={classNames(
+            styles.eyebrow,
+            {
+              [styles.anchorEyebrow]: 'anchorEyebrow' === themeName,
+              [styles.fullStoryEyebrow]:
+                'In Feed' !== themeName && 'anchorEyebrow' !== themeName,
+            }
+          )}
+          style={{ color }}
+        >
+          {customEyebrow}
+          {(
+            dateline &&
+            <span className={styles.date}>{dateline}</span>
+          )}
+        </div>
       </div>
     );
   }
@@ -41,7 +51,11 @@ const Eyebrow = ({
         <Link
           className={classNames(
             styles.eyebrow,
-            { [styles.fullStoryLink]: 'In Feed' !== themeName }
+            {
+              [styles.anchorEyebrow]: 'anchorEyebrow' === themeName,
+              [styles.fullStoryEyebrow]:
+                'In Feed' !== themeName && 'anchorEyebrow' !== themeName,
+            }
           )}
           to={topicLink}
           style={{ color }}
@@ -59,7 +73,7 @@ const Eyebrow = ({
         <Link
           className={classNames(
             styles.eyebrowLink,
-            { [styles.fullStoryLink]: 'In Feed' !== themeName }
+            { [styles.fullStoryEyebrow]: 'In Feed' !== themeName }
           )}
           to={subTopicLink}
           style={{ color }}

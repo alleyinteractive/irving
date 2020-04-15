@@ -93,7 +93,7 @@ const ContentHeader = ({
       ref={contentHeaderRef}
     >
       <div className={theme.intro}>
-        {eyebrow.content && (
+        {(eyebrow.content || eyebrow.customEyebrow) && (
           <Eyebrow
             customEyebrow={eyebrow.customEyebrow}
             subTopic={eyebrow.subTopic}
