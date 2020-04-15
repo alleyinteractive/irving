@@ -1,0 +1,19 @@
+/* Centered column theme styles */
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 0;
+  padding-bottom: rem(15);
+  padding-top: rem(40);
+}
+
+.main {
+  margin: 0 auto rem(60);
+  width: 100%;
+
+  @media ($mdMin) {
+    tidy-offset-left: 1;
+    tidy-span: 11;
+  }
+}
