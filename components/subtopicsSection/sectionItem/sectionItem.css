@@ -10,4 +10,8 @@
 .link {
   display: block;
   padding-bottom: rem(12);
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
