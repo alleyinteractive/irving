@@ -30,14 +30,6 @@ export function actionLocationChange(action, location) {
 }
 
 /**
- * Create a Redux action that represents an authorized, uncached request for components.
- * @returns {{type, payload}}
- */
-export function actionRequestComponentsAuthorized() {
-  return createAction(REQUEST_COMPONENTS_AUTHORIZED);
-}
-
-/**
  * Create a Redux action that represents the app receiving API components.
  * @param {object}   data
  * @param {object[]} data.defaults - default components

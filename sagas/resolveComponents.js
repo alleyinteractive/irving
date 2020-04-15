@@ -1,6 +1,5 @@
 import { call, select, put } from 'redux-saga/effects';
 import {
-  actionRequestComponentsAuthorized,
   actionReceiveComponents,
   actionReceiveError,
   actionFinishLoading,
@@ -55,8 +54,6 @@ export default function* resolveComponents() {
         window.location = result.redirectTo;
       }
     }
-
-    yield put(actionRequestComponentsAuthorized());
   } catch (err) {
     yield call(debug, err);
     yield put(actionReceiveError(err));
