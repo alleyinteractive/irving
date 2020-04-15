@@ -35,7 +35,7 @@
 }
 
 /* Custom styles for Eyebrows that appear on story pages */
-.fullStoryLink {
+.fullStoryEyebrow {
   font-size: 1rem;
 
   @media ($mdMin) {
