@@ -6,7 +6,6 @@ import {
 import {
   LOCATION_CHANGE,
   REQUEST_COMPONENT_DATA,
-  // REQUEST_COMPONENTS_AUTHORIZED,
 } from 'actions/types';
 import resolveComponents from './resolveComponents';
 import waitToScroll from './waitToScroll';
