@@ -2,6 +2,7 @@
 import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
+import getBearerToken from 'utils/getBearerToken';
 import getService from './cacheService';
 import createDebug from './createDebug';
 
@@ -39,8 +40,8 @@ function getExtraQueryParams() {
 export async function fetchComponents(
   path,
   search,
-  context = CONTEXT_PAGE,
-  cookie
+  cookie,
+  context = CONTEXT_PAGE
 ) {
   const query = queryString.stringify({
     path,
@@ -60,8 +61,9 @@ export async function fetchComponents(
     credentials: 'include', // Support XHR with basic auth.
   };
 
-  if (cookie.authorizationBearerToken) {
-    options.headers.Authorization = `Bearer ${cookie.authorizationBearerToken}`;
+  const authorizationBearerToken = getBearerToken(cookie);
+  if (authorizationBearerToken) {
+    options.headers.Authorization = `Bearer ${authorizationBearerToken}`;
   }
 
   const response = await fetch(apiUrl, { ...options });
@@ -119,7 +121,6 @@ export default async function cacheResult(
     cookie,
     context,
   ];
-  console.log('cookie: ', cookie);
   const key = args.map((arg) => {
     if ('undefined' === typeof arg) {
       return '';
@@ -140,7 +141,7 @@ export default async function cacheResult(
 
   if (! response || bypassCache) {
     debug(info);
-    response = await fetchComponents(path, search, context, cookie);
+    response = await fetchComponents(...args);
     await cache.set(key, response);
   } else {
     debug({ ...info, cached: true });

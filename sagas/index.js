@@ -6,6 +6,7 @@ import {
 import {
   LOCATION_CHANGE,
   REQUEST_COMPONENT_DATA,
+  // REQUEST_COMPONENTS_AUTHORIZED,
 } from 'actions/types';
 import resolveComponents from './resolveComponents';
 import waitToScroll from './waitToScroll';
@@ -45,6 +46,7 @@ export default function* rootSaga() {
     takeLatest(LOCATION_CHANGE, resolveComponents),
     takeLatest(LOCATION_CHANGE, waitToScroll),
     takeEvery(LOCATION_CHANGE, onLocationChange),
+    takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
     takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
     ...formSaga,
     ...userSaga,

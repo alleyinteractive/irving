@@ -1,15 +1,18 @@
 import { call, select, put } from 'redux-saga/effects';
 import {
+  actionRequestComponentsAuthorized,
   actionReceiveComponents,
   actionReceiveError,
   actionFinishLoading,
 } from 'actions';
 import getRouteMeta from 'selectors/getRouteMeta';
-import fetchComponents from 'services/fetchComponents';
+import cacheResult from 'services/fetchComponents';
+import getBearerToken from 'utils/getBearerToken';
 import history from 'utils/history';
 import isNode from 'utils/isNode';
 import getRelativeUrl from 'utils/getRelativeUrl';
 import createDebug from 'services/createDebug';
+import resolveComponentsAuthorized from './resolveComponentsAuthorized';
 
 const debug = createDebug('sagas:location');
 
@@ -22,6 +25,11 @@ export default function* resolveComponents() {
     cached,
   } = yield select(getRouteMeta);
 
+  if (getBearerToken(cookie)) {
+    yield* resolveComponentsAuthorized();
+    return;
+  }
+
   // Skip fetching components if we already have them cached in memory.
   if (cached) {
     yield put(actionFinishLoading());
@@ -29,7 +37,7 @@ export default function* resolveComponents() {
   }
 
   try {
-    const result = yield call(fetchComponents, path, search, cookie, context);
+    const result = yield call(cacheResult, path, search, cookie, context);
 
     // Don't receive components on client side if redirecting,
     // otherwise will result in a confusing flash of empty page content.
@@ -47,6 +55,8 @@ export default function* resolveComponents() {
         window.location = result.redirectTo;
       }
     }
+
+    yield put(actionRequestComponentsAuthorized());
   } catch (err) {
     yield call(debug, err);
     yield put(actionReceiveError(err));
