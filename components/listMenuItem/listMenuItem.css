@@ -12,6 +12,10 @@
   font-weight: 700;
   padding: rem(5) 0 rem(10);
   width: 100%;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .noBorder {

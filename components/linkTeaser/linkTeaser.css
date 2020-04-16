@@ -16,6 +16,10 @@
 .title {
   font-family: $sans;
   font-weight: 700;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .deck {
