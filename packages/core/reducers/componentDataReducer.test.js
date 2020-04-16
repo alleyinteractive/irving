@@ -33,7 +33,7 @@ describe('componentDataReducer', () => {
     });
   });
 
-  it('Should override the state with a new request for REQUEST_COMPONENT_DATA if the key exists',() => {
+  it('Should override the state with a new request for REQUEST_COMPONENT_DATA if the key exists', () => {
     const state = {
       testEndpoint: {
         data: [
