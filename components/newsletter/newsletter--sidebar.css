@@ -15,4 +15,8 @@
 
 .moreLink {
   font-size: rem(14);
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
