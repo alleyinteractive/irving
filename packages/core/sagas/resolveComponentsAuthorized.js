@@ -9,9 +9,9 @@ import {
 } from 'actions';
 import getRouteMeta from 'selectors/getRouteMeta';
 import { fetchComponents } from 'services/fetchComponents';
-import createDebug from 'services/createDebug';
+import getLogService from 'services/logService';
 
-const debug = createDebug('sagas:components:authorized');
+const debug = getLogService('irving:sagas:authorization');
 
 export default function* resolveComponentsAuthorized() {
   const {

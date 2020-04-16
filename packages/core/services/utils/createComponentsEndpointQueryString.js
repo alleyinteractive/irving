@@ -30,4 +30,4 @@ function createComponentsEndpointQueryString(
   });
 }
 
-module.exports = createComponentsEndpointQueryString;
+export default createComponentsEndpointQueryString;
