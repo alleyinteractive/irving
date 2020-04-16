@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import pick from 'lodash/fp/pick';
 import get from 'lodash/fp/get';
+import defaultCookies from 'config/defaultCookies';
 
 /**
  * Get any query parameters that should be mapped from the
@@ -26,8 +27,7 @@ const getCookies = createSelector(
       env.COOKIE_MAP_LIST.split(',') :
       [];
     const allowlistCookies = [
-      'bypassCache',
-      'authorizationBearerToken',
+      ...defaultCookies,
       ...envAllowList,
     ];
 

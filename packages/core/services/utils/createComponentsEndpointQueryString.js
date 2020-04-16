@@ -1,5 +1,7 @@
+import omit from 'lodash/fp/omit';
 import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
+import defaultCookies from 'config/defaultCookies';
 import getExtraQueryParams from './getExtraQueryParams';
 
 /**
@@ -22,7 +24,7 @@ function createComponentsEndpointQueryString(
     context,
     ...getExtraQueryParams(),
     ...queryString.parse(search),
-    ...cookie,
+    ...omit(defaultCookies, cookie),
   },
   {
     encode: false,
