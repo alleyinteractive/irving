@@ -1,18 +1,18 @@
-import componentDataReducer from './componentDataReducer';
 import {
   REQUEST_COMPONENT_DATA,
   RECEIVE_COMPONENT_DATA,
   RECEIVE_COMPONENT_DATA_ERROR,
 } from 'actions/types';
+import componentDataReducer from './componentDataReducer';
 
 describe('componentDataReducer', () => {
-
   it('Should return default state if no payload', () => {
-    expect(componentDataReducer({ foo: 'bar' }, {})).toEqual( { foo: 'bar' } );
+    expect(componentDataReducer({ foo: 'bar' }, {})).toEqual({ foo: 'bar' });
   });
 
   it('Should return default state if no type', () => {
-    expect(componentDataReducer({ foo: 'bar' }, { payload: 'whatever' })).toEqual( { foo: 'bar' });
+    expect(componentDataReducer({ foo: 'bar' }, { payload: 'whatever' }))
+      .toEqual({ foo: 'bar' });
   });
 
   it('Should add the initial request for REQUEST_COMPONENT_DATA', () => {
@@ -103,7 +103,7 @@ describe('componentDataReducer', () => {
 
   it('Should add the data to state when using RECEIVE_COMPONENT_DATA and data exists', () => {
     const state = {
-    testEndpoint: {
+      testEndpoint: {
         error: false,
         loaded: false,
         loading: true,
@@ -124,7 +124,7 @@ describe('componentDataReducer', () => {
       testEndpoint: {
         data: [
           {
-            foo: 'bar'
+            foo: 'bar',
           },
         ],
         error: false,
