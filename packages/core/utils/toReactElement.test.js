@@ -1,7 +1,7 @@
-import toReactElement from './toReactElement';
 import { shallow } from 'enzyme';
+import toReactElement from './toReactElement';
 
-describe( 'toReactElement', () => {
+describe('toReactElement', () => {
   const apiComponent = {
     name: 'foo',
     config: {
@@ -68,4 +68,4 @@ describe( 'toReactElement', () => {
         .find({ componentName: 'buzz' })
     ).toHaveLength(1);
   });
-})
+});
