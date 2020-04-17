@@ -18,6 +18,10 @@
   display: block;
   font-size: rem(20);
   padding-bottom: rem(5);
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .parent {

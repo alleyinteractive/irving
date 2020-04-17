@@ -43,6 +43,7 @@
 }
 
 .meta {
+  align-items: center;
   display: flex;
   flex-flow: row nowrap;
   font-size: rem(14);
@@ -65,6 +66,10 @@
   margin-bottom: rem(5);
   margin-right: rem(20);
   order: 1;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   @media ($smMax) {
     margin-bottom: rem(10);

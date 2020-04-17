@@ -21,4 +21,8 @@
   display: block;
   font-size: rem(20);
   margin-bottom: rem(10);
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

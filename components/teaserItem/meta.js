@@ -4,17 +4,35 @@ import Link from 'components/helpers/link';
 import { __ } from '@wordpress/i18n';
 
 const Meta = ({
-  theme, topicLink, postDate, topic, color,
+  theme,
+  topicLink,
+  postDate,
+  topic,
+  color,
 }) => (
   <div className={theme.meta}>
     <div className={theme.eyebrow}>
-      {'' !== topicLink && (
-        <Link className={theme.eyebrowLink} to={topicLink} style={{ color }}>
+      {'' !== topicLink ? (
+        <Link
+          className={theme.eyebrowText}
+          to={topicLink}
+          style={{ color }}
+        >
           <span className="screen-reader-text">
             {__('Categorized in ', 'mittr')}
           </span>
           {topic}
         </Link>
+      ) : (
+        <span
+          className={theme.eyebrowText}
+          style={{ color }}
+        >
+          <span className="screen-reader-text">
+            {__('Categorized in ', 'mittr')}
+          </span>
+          {topic}
+        </span>
       )}
       {'' !== postDate && <time className={theme.timestamp}>{postDate}</time>}
     </div>

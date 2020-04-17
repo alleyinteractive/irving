@@ -9,6 +9,7 @@
 }
 
 .meta {
+  align-items: center;
   display: flex;
   flex-flow: row wrap;
   margin-bottom: rem(5);
@@ -70,6 +71,10 @@
   letter-spacing: normal;
   line-height: 1;
   margin-bottom: rem(15);
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .description {
