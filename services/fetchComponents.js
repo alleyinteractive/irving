@@ -62,6 +62,7 @@ export async function fetchComponents(
 
   const authorizationBearerToken = getBearerToken(cookie);
   if (authorizationBearerToken) {
+    options.credentials = 'same-origin'; // Set to same origin so we don't conflict with WP session cookies.
     options.headers.Authorization = `Bearer ${authorizationBearerToken}`;
   }
 
