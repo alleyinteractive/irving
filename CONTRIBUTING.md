@@ -12,7 +12,8 @@ Specific branches will be used for specific purposes in this repo. Considering t
 ### If you are a community contributor:
 1. Fork the Irving repo.
 2. Create a new branch based on `master`. If your branch relates to a specific github issue, reference that issue in your branch name. Example: `feature/issue-17-branch-title` where `branch-title` should correspond rougly to the topic of the issue you're addressing.
-3. Work on your brach, using `npm link` where necessary to test out your code.
+3. If you've fixed a bug or added a new feature, please write tests! Ensure the tests pass using `npm run test` and/or `npm run test:watch` (for running tests on change). These commands can be run from within the package you are modifying or at the root of the repo if you want to run all tests for all packages.
+4. Work on your brach, using `npm link` where necessary to test out your code.
 5. When ready, push up your branch and create a pull request into `master`. Your code will be reviewed by someone at Alley.
 6. Assuming your branch passes review, someone at Alley will merge it.
 7. Your code should be availabile on npm in the next prerelease.
