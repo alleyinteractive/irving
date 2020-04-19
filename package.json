@@ -98,6 +98,7 @@
   "devDependencies": {
     "commitizen": "^4.0.4",
     "cz-conventional-changelog": "^3.0.2",
+    "cz-lerna-changelog": "^2.0.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^24.9.0",
@@ -115,7 +116,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-lerna-changelog"
     }
   }
 }
