@@ -1,17 +1,19 @@
 import flatten from './flatten';
 
-it('should flatten a nested object', () => {
-  const nestedObj = {
-    foo: {
-      bar: 'foo',
-    },
-    bar: {
-      baz: 'qux',
-    },
-  };
+describe('flatten', () => {
+  it('should flatten a nested object', () => {
+    const nestedObj = {
+      foo: {
+        bar: 'foo',
+      },
+      bar: {
+        baz: 'qux',
+      },
+    };
 
-  expect(flatten(nestedObj)).toEqual({
-    bar: 'foo',
-    baz: 'qux',
+    expect(flatten(nestedObj)).toEqual({
+      bar: 'foo',
+      baz: 'qux',
+    });
   });
 });

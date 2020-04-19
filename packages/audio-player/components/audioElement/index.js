@@ -1,12 +1,15 @@
-import React, {
-  useRef,
+import {
+  useState,
   useEffect,
 } from 'react';
-import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
+import pick from 'lodash/fp/pick';
+import PropTypes from 'prop-types';
+import { Howl } from 'howler/dist/howler.core.min';
 import { connect } from 'react-redux';
 import {
   actionPlayAudio,
+  actionStopAudio,
   actionReceiveAudioTime,
 } from 'actions/playerActions';
 
@@ -17,76 +20,93 @@ const AudioElement = (props) => {
     playing,
     seek,
     src,
+    stop,
+    receiveTime,
     volume,
   } = props;
-  const audioRef = useRef(null);
-  const onTimeUpdate = throttle(({ target: player }) => {
-    props.receiveTime(player.currentTime, player.duration);
-  }, 1000);
-
-  // Add listeners.
-  useEffect(() => {
-    const player = audioRef.current;
-
+  const [player, setPlayer] = useState(null);
+  const updateTime = throttle(() => {
     if (player) {
-      player.addEventListener('loadedmetadata', (e) => {
-        onReady(e);
+      const currentSeek = player.seek() || 0;
 
-        // Play on load
-        play();
+      // If the sound is still playing, continue stepping.
+      if (playing) {
+        if ('number' === typeof currentSeek) {
+          receiveTime(currentSeek, player.duration());
+        }
+        requestAnimationFrame(updateTime);
+      }
+    }
+  }, 100);
+  const onLoad = () => {
+    onReady();
+
+    // Play on load
+    if (! playing) {
+      window.setTimeout(play, 1000);
+    }
+  };
+
+  const onEnd = () => {
+    stop();
+  };
+
+  // Watch for src changes and create new howl.
+  useEffect(() => {
+    let howl;
+
+    if (src) {
+      // Create howl
+      howl = new Howl({
+        src: [src],
+        format: ['mp3'],
+        html5: true,
       });
 
-      player.addEventListener('timeupdate', onTimeUpdate);
+      // Create handlers
+      howl.on('load', onLoad);
+      howl.on('end', onEnd);
+
+      // Set player instance.
+      setPlayer(howl);
     }
-  }, [audioRef.current]);
+
+    return () => {
+      if (howl) {
+        howl.off('load');
+        howl.off('end');
+        howl.unload();
+      }
+    };
+  }, [src]);
 
   // Manage play/pause state changes.
   useEffect(() => {
-    const player = audioRef.current;
-
     if (player) {
-      if (player.playing !== playing) {
-        if (playing) {
-          player.play();
-        } else {
-          player.pause();
-        }
+      if (playing && ! player.playing()) {
+        player.play();
+        requestAnimationFrame(updateTime);
+      } else if (! playing && player.playing()) {
+        player.pause();
       }
     }
   }, [playing]);
 
   // Manage seek changes.
   useEffect(() => {
-    const player = audioRef.current;
-    const seekNormalized = parseFloat(seek);
-
-    if (player && 'number' === typeof seekNormalized) {
-      const seekTime = seekNormalized * (player.duration || 0);
-
-      if (player.currentTime !== seekTime) {
-        player.currentTime = seekTime;
-      }
+    if (player) {
+      player.seek(seek);
     }
   }, [seek]);
 
   // Manage volume changes.
   useEffect(() => {
-    const player = audioRef.current;
-
     if (player && player.volume !== volume) {
-      player.volume = volume;
+      player.volume(volume);
     }
   }, [volume]);
 
-  /* eslint-disable jsx-a11y/media-has-caption */
-  return (
-    <audio
-      src={src}
-      ref={audioRef}
-      controls={false}
-    />
-  );
-  /* eslint-enable */
+  return null;
 };
 
 AudioElement.propTypes = {
@@ -107,17 +127,23 @@ AudioElement.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  ...state.player,
+  ...pick([
+    'src',
+    'playing',
+    'seek',
+    'volume',
+  ], state.player),
 });
 
 const mapDispatchToProps = {
   receiveTime: actionReceiveAudioTime,
   play: actionPlayAudio,
+  stop: actionStopAudio,
 };
 
 const withRedux = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 );
 
 export default withRedux(AudioElement);

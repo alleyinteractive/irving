@@ -25,6 +25,7 @@ export const componentData = {};
 
 export const componentDataMeta = {
   loading: false,
+  loaded: false,
   error: false,
   data: [],
 };

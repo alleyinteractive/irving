@@ -2,14 +2,16 @@ import { get } from 'lodash/fp';
 import { createSelector } from 'reselect';
 import { CONTEXT_PAGE, CONTEXT_SITE } from 'config/constants';
 import getPageComponents from 'selectors/getPageComponents';
+import getCookies from 'selectors/getCookies';
 
 const getRouteMeta = createSelector(
   [
     get('route'),
     get('components'),
+    getCookies,
     getPageComponents,
   ],
-  (route, components, pageComponents) => {
+  (route, components, cookies, pageComponents) => {
     let context;
 
     // Allow `context` to be set with the route state, or if not
@@ -25,7 +27,7 @@ const getRouteMeta = createSelector(
       path: route.pathname,
       search: route.search,
       hash: route.hash,
-      cookie: route.cookie,
+      cookie: cookies,
       context,
       cached: !! pageComponents.length,
     };

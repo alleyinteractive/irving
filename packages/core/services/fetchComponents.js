@@ -1,60 +1,15 @@
-import queryString from 'query-string';
-import { Cookies } from 'react-cookie';
-import { pick } from 'lodash/fp';
 import AbortController from 'abort-controller';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
 import getService from './cacheService';
 import getLogService from './logService';
+import createComponentsEndpointQueryString from
+  './utils/createComponentsEndpointQueryString';
 
 const log = getLogService('irving:components');
 // To access environment variables at run time in a client context we must
 // access them through a global provided by the server render.
 const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
-
-/**
- * Get any query parameters that should be included with every components request.
- *
- * @returns {object}
- */
-function getExtraQueryParams() {
-  return Object
-    .keys(env)
-    .filter((key) => 0 === key.indexOf('API_QUERY_PARAM_'))
-    .reduce((acc, key) => {
-      const param = key.replace('API_QUERY_PARAM_', '').toLowerCase();
-      return {
-        ...acc,
-        [param]: env[key],
-      };
-    }, {});
-}
-
-/**
- * Get any query parameters that should be mapped from the
- * cookies in the request.
- * ---
- * This can be used to pass cookie values as parameters in the components
- * request URL. In many cases, we won't be able to use cookies in the
- * Components API, so this can be used to pass the values we need as a parameter
- * instead.
- * ---
- * The specific cookies to be mapped to query params can be set as a comma-separated
- * list in the `COOKIE_MAP_LIST` environment variable.
- *
- * @returns {object}
- */
-function getQueryParamsFromCookies(cookieData) {
-  const cookieAllowList = env.COOKIE_MAP_LIST ?
-    env.COOKIE_MAP_LIST.split(',') :
-    [];
-
-  const cookies = new Cookies(cookieData);
-  const cookieObject = cookies.getAll({ doNotParse: true });
-  const cookieQueryParams = pick(cookieAllowList)(cookieObject);
-
-  return cookieQueryParams;
-}
 
 /**
  * Fetch components for the page from the API.
@@ -65,19 +20,18 @@ function getQueryParamsFromCookies(cookieData) {
  *                           "site" (all components)
  * @returns {Promise<{object}>}
  */
-export async function fetchComponents(
+async function fetchComponents(
   path,
   search,
-  cookie = '',
+  cookie = {},
   context = CONTEXT_PAGE
 ) {
-  const query = queryString.stringify({
+  const query = createComponentsEndpointQueryString(
     path,
-    context,
-    ...getExtraQueryParams(),
-    ...queryString.parse(search),
-    ...getQueryParamsFromCookies(cookie),
-  });
+    search,
+    cookie,
+    context
+  );
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
 
   // Create abort controller and set timeout to abort fetch call.
@@ -135,18 +89,34 @@ export async function fetchComponents(
 
 /**
  * Cache fetchComponents responses. Return cached response if available.
- * @param {array} args - fetchComponents arguments
+ * @param {string} path      - path of the request page
+ * @param {string} search    - search string
+ * @param {string} cookie    - cookie header string
+ * @param {string} [context] - "page" (page specific components) or
+ *                           "site" (all components)
  * @returns {Promise<{object}>} - fetchComponents return value
  */
-export default async function cacheResult(...args) {
+async function cachedFetchComponents(
+  path,
+  search,
+  cookie = {},
+  context = CONTEXT_PAGE
+) {
   const cache = getService();
-  const key = args.toString();
-  const info = { cached: false, route: args };
+  const componentsQuery = createComponentsEndpointQueryString(
+    path,
+    search,
+    cookie,
+    context
+  );
+  const key = `components-endpoint:${componentsQuery}`;
 
+  const info = { cached: false, route: key };
   let response = await cache.get(key);
+
   if (! response) {
     log.info('%o', info);
-    response = await fetchComponents(...args);
+    response = await fetchComponents(path, search, cookie, context);
     await cache.set(key, response);
   } else {
     log.info('%o', { ...info, cached: true });
@@ -154,3 +124,5 @@ export default async function cacheResult(...args) {
 
   return response;
 }
+
+module.exports = cachedFetchComponents;
