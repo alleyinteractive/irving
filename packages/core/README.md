@@ -81,6 +81,3 @@ for additional newrelic configuration options.
 In production HTTPS will typically be handled by the load balancer of the
 hosting environment. If you would like HTTPS for local development set the
 `PROXY_URL`, `HTTP_KEY_PATH`, and `HTTPS_CERT_PATH` environment variables.
-
-### This is a test section
-This is a test section in the docs.
