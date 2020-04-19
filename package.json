@@ -15,7 +15,7 @@
     "build": "BABEL_ENV=app lerna run build",
     "preinstall": "npx check-node-version --package",
     "release:canary": "lerna publish --conventional-prerelease",
-    "release": "lerna publish --conventional-commits",
+    "release": "lerna publish --conventional-release",
     "//": "nohoist option is used to prevent internal packages from being hoisted/deleted by lerna (which is a bug, I think)",
     "bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
     "link": "lerna exec --parallel -- npm link",
