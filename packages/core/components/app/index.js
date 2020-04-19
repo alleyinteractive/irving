@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { hot } from 'react-hot-loader/root';
-import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { withStyles } from 'critical-style-loader/lib';
-import favicon from 'assets/images/favicon.ico';
 import RootProviders from 'components/rootProviders';
 import ConnectedRoot from 'components/connectedRoot';
 import ErrorBoundary from 'components/errorBoundary';
@@ -33,9 +31,6 @@ const App = (props) => {
 
   return (
     <ErrorBoundary>
-      <Helmet>
-        <link rel="shortcut icon" href={favicon} />
-      </Helmet>
       {error ? (
         <ErrorMessage />
       ) : (

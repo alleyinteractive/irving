@@ -6,32 +6,48 @@ beforeEach(() => {
   fetchMock.restore();
 });
 
-it('should append extra query params that are defined', async (done) => {
-  process.env.API_QUERY_PARAM_BAR = 'baz';
+it(
+  'should append extra query params that are defined',
+  async (done) => {
+    process.env.API_QUERY_PARAM_BAR = 'baz';
 
-  // Throws an error if the request doesn't match.
-  fetchMock.get('https://foo.com/api/components', {}, {
-    query: {
-      path: '/foo',
-      context: 'page',
-      bar: 'baz',
-    },
-  });
+    // Throws an error if the request doesn't match.
+    fetchMock.get(
+      'https://foo.com/api/components',
+      {},
+      {
+        query: {
+          path: '/foo',
+          context: 'page',
+          bar: 'baz',
+        },
+      }
+    );
 
-  await fetchComponents('/foo');
-  done();
-});
+    const result = await fetchComponents('/foo');
 
-it('should pass query params from the request to the api', async (done) => {
-  // Throws an error if the request doesn't match.
-  fetchMock.get('https://foo.com/api/components', {}, {
-    query: {
-      path: '/foo',
-      context: 'page',
-      bar: 'baz',
-    },
-  });
+    expect(result).toBeDefined();
 
-  await fetchComponents('/foo', '?bar=baz');
-  done();
-});
+    done();
+  }
+);
+
+it(
+  'should pass query params from the request to the api',
+  async (done) => {
+    // Throws an error if the request doesn't match.
+    fetchMock.get('https://foo.com/api/components', {}, {
+      query: {
+        path: '/foo',
+        context: 'page',
+        bar: 'baz',
+      },
+    });
+
+    const result = await fetchComponents('/foo', '?bar=baz');
+
+    expect(result).toBeDefined();
+
+    done();
+  }
+);

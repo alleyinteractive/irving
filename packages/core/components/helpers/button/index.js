@@ -49,7 +49,7 @@ Button.propTypes = {
   /**
    * Style to apply to this button. Corresponds to a className in your stylesheet.
    */
-  buttonStyle: PropTypes.string.isRequired,
+  buttonStyle: PropTypes.string,
   /**
    * Contents of button.
    */
@@ -72,6 +72,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  buttonStyle: '',
   link: '',
   type: 'button',
   className: '',

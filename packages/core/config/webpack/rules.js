@@ -91,6 +91,7 @@ module.exports = function getRules(context) {
         {
           loader: 'url-loader',
           options: {
+            publicPath: '/',
             limit: 10000,
             emitFile: ! isServer,
             name: 'static/media/[name].[hash:8].[ext]',
@@ -104,8 +105,24 @@ module.exports = function getRules(context) {
       use: ['svg-react-loader'],
     },
     {
-      test: /\.jsx?$/,
-      include,
+      resource: {
+        test: /\.jsx?$/,
+        or: [
+          include,
+          (filepath) => (
+            // These specific node modules, which contain arrow functions that must be
+            // transpiled.
+            filepath.includes('node_modules') &&
+              (
+                filepath.includes('query-string') ||
+                filepath.includes('split-on-first') ||
+                filepath.includes('strict-uri-encode') ||
+                filepath.includes('abort-controller') ||
+                filepath.includes('event-target-shim')
+              )
+          ),
+        ],
+      },
       use: [
         {
           loader: 'babel-loader',

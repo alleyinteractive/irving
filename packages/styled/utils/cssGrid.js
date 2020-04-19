@@ -6,6 +6,7 @@ import rem from './rem';
  */
 export const display = `
     display: flex;
+    flex-wrap: wrap;
 
     @supports (display: grid) {
       display: grid;
@@ -51,36 +52,50 @@ export const rowsCustom = (rows) => css`
 
 /**
  * A mixin for generating CSS grid span styles, with flexbox fallback for IE.
- * @param {array|string} columns the grid-column start and end values,
+ * @param {array|string} columns the grid-column start and end values, per CSS Grid spec, ie. [1, 4]
  * @param {number} gridColumns the number of columns set on the container element
  * @param {number|array} gridGap the grid-gap set on the container element
- * per CSS Grid spec, ie. [1, 4]
  */
 export const columnSpan = (columns, gridColumns, gridGap) => {
+  // Convert columns value to grid-column value.
   const gridColumnSpan = 'auto' === columns ? 'auto' : columns.join(' / ');
-  const flexboxWidth = 'auto' === columns ?
-    `calc((1 / ${gridColumns}) * 100%)` :
-    `calc(((${columns.reverse().join(' - ')}) / ${gridColumns}) * 100%)`;
 
+  // Calculate flexbox column width based on grid columns.
+  let flexboxWidth = 0;
+  if ('auto' === columns) {
+    flexboxWidth = (1 / gridColumns) * 100;
+  }
+
+  if (Array.isArray(columns)) {
+    const flexColumns = columns.slice().reverse();
+    flexboxWidth = Math.abs(
+      (flexColumns.reduce((acc, curr) => acc - curr) / gridColumns) * 100
+    );
+  }
+
+  // Calculate flexbox padding based on grid gap.
   let flexboxPadding = 0;
   if ('number' === typeof gridGap) {
     flexboxPadding = rem(gridGap / 2);
   }
+
   if (Array.isArray(gridGap)) {
     flexboxPadding = rem((gridGap[0]) / 2);
   }
 
   return (css`
-    flex: 1 0 ${flexboxWidth};
+    flex: 1 0 ${flexboxWidth}%;
+    padding-bottom: ${'auto' === columns ? rem(gridGap) : 0};
     padding-left: ${flexboxPadding};
     padding-right: ${flexboxPadding};
-    width: ${flexboxWidth};
+    max-width: ${flexboxWidth}%;
 
     @supports (display: grid) {
       grid-column: ${gridColumnSpan};
+      padding-bottom: 0;
       padding-left: 0;
       padding-right: 0;
-      width: auto;
+      max-width: none;
     }
   `);
 };

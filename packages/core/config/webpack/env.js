@@ -17,9 +17,9 @@ module.exports = function getEnv() {
     require('dotenv').config(); // eslint-disable-line global-require
   }
 
-  // Only include whitelisted variables for client environments to avoid leaking
+  // Only include allowlisted variables for client environments to avoid leaking
   // sensitive information.
-  const whitelistArray = getConfigArray('envWhitelist', [
+  const allowlistArray = getConfigArray('envAllowlist', [
     'NODE_ENV',
     'API_ROOT_URL',
     'DEBUG',
@@ -27,13 +27,13 @@ module.exports = function getEnv() {
     'COOKIE_MAP_LIST',
     'FETCH_TIMEOUT',
   ]);
-  const whitelist = [
-    new RegExp(whitelistArray.join('|')),
+  const allowlist = [
+    new RegExp(allowlistArray.join('|')),
     new RegExp('^API_QUERY_PARAM'),
   ];
   return Object
     .keys(process.env)
-    .filter((key) => whitelist.some((regex) => regex.test(key)))
+    .filter((key) => allowlist.some((regex) => regex.test(key)))
     .reduce((acc, key) => ({
       ...acc,
       [key]: process.env[key],

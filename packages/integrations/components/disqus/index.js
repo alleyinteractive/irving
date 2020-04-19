@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import useLoadScript from 'hooks/useLoadScript';
+import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
 import validateDisqusConfig from './validate';
 
 const DisqusEmbed = (props) => {

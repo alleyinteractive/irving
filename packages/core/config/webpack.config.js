@@ -17,6 +17,7 @@ module.exports = (env, argv) => {
       resolve: {
         extensions,
         alias: client.getAlias(),
+        symlinks: ! isProd,
       },
       devtool: client.getDevTool(),
       entry: client.getEntry(),
@@ -42,6 +43,7 @@ module.exports = (env, argv) => {
       resolve: {
         extensions,
         alias: server.getAlias(),
+        symlinks: ! isProd,
       },
       // Quiet bundle size errors, as they are not applicable for code executed in NodeJS.
       performance: {

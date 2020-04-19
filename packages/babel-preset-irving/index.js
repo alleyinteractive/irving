@@ -1,5 +1,6 @@
 module.exports = function babelPresetIrving() {
   return {
+    sourceType: 'unambiguous',
     plugins: [
       'lodash',
       'react-hot-loader/babel',
@@ -15,6 +16,10 @@ module.exports = function babelPresetIrving() {
           targets: {
             browsers: 'last 3 versions, IE 11',
           },
+          corejs: {
+            version: 3,
+          },
+          useBuiltIns: 'usage',
         },
       ],
       '@babel/react',
