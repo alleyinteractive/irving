@@ -1,4 +1,4 @@
-import { get } from 'lodash/fp';
+import get from 'lodash/fp/get';
 import { createSelector } from 'reselect';
 import getPageComponents from './getPageComponents';
 
