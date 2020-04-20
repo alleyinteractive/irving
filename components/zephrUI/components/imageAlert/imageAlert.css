@@ -2,6 +2,7 @@
   .ImageAlert {
     /* Includes wrapper styles from components/columnArea/columnArea--feed.css */
     /* Needs to be added manually as component not served through React */
+    @include container;
     background-color: $color-text;
     display: flex;
     flex-flow: row wrap;
@@ -9,10 +10,6 @@
     justify-content: space-between;
     padding-bottom: rem(15);
     width: 100%;
-
-    @media ($smMin) {
-      @include container;
-    }
   }
 
   .ImageAlert__wrapper {
