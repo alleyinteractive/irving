@@ -33,7 +33,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 9. Run your project and test your code!
 10. Once you’re satisfied with your code, open up a pull request to the `master` branch.
 11. Once your code passes review, merge it into `master` when ready.
-12. `git checkout mastert && git pull origin master` - checkout `master` and pull down your newly-merged code.
+12. `git checkout master && git pull origin master` - checkout `master` and pull down your newly-merged code.
 13. `npm run prerelease:beta` - publish a new release to the `@beta` tag in npm.
 14. Coordinate with others at Alley to:
 * Test out your changes for themselves.
