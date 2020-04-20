@@ -23,7 +23,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 ### If you are a part of the Alley organization and have publish capabilities for the npm packages:
 1. Clone the irving repo
 2. Create a new branch based on `master`. If your branch relates to a specific github issue, reference that issue in your branch name (and all subsequent commits).
-* Example: `feature/issue-17-branch-title` where `branch-title` should correspond rougly to the topic of the issue you're addressing.
+* Example: `feature/issue-17/branch-title` where `branch-title` should correspond roughly to the topic of the issue you're addressing.
 * Defer to using the issue number over a Jira ticket number to keep pull requests and commits consistent.
 3. Work on your branch, using `npm link` where necessary.
 4. Merge at will into the `canary` branch and test using `npm link` and/or `npm run release:canary` to release on the `@canary` tag.
