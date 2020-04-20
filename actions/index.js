@@ -1,5 +1,6 @@
 import {
   LOCATION_CHANGE,
+  REQUEST_COMPONENTS_AUTHORIZED,
   RECEIVE_ERROR,
   RECEIVE_COMPONENTS,
   FINISH_LOADING,
@@ -26,6 +27,14 @@ export function createAction(type, payload = null) {
  */
 export function actionLocationChange(action, location) {
   return createAction(LOCATION_CHANGE, { action, ...location });
+}
+
+/**
+ * Create a Redux action that represents an authorized request for components
+ * @returns {{type, payload}}
+ */
+export function actionRequestComponentsAuthorized() {
+  return createAction(REQUEST_COMPONENTS_AUTHORIZED);
 }
 
 /**
