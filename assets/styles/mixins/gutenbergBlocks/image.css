@@ -10,13 +10,13 @@
 }
 
 @mixin image-credit {
-  color: $gray;
+  color: $black;
   display: block;
   font-family: $sans;
   font-size: rem(12);
+  letter-spacing: 1px;
   line-height: 1;
-  padding: rem(3 5 10);
-  text-align: right;
+  padding: rem(3 5 10 0);
 }
 
 @mixin block-image {
