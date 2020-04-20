@@ -2,7 +2,7 @@
 This document is intended to make contributing to this project easier, more transparent, and more standardized.
 
 ## Commitizen
-This project uses [Commitizen](https://github.com/commitizen/cz-cli) and [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog) to standardize commit messages and changelogs. This means when you enter `git commit` to commit your code you will see a (maybe) unfamiliar, interactive series of questions. These questions will result in a standardized format for your commit message. If you have any questions about the possible categories, scopes, etc. please create an issue in github and we will do our best to respond.
+This project uses [Commitizen](https://github.com/commitizen/cz-cli) and [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog) to standardize commit messages and changelogs. This means when you enter `git commit` to commit your code you will see a (maybe) unfamiliar, interactive series of questions. These questions will result in a standardized format for your commit message. If you have any questions about the possible categories, scopes, etc. please create an issue in GitHub and we will do our best to respond.
 
 Note: For merge commits, just use `chore` for the type of change, `merge` for the scope, and `merge commit` for the message. Likely, however, it will not matter what you put into Commitizen as you'll just get a normal merge commit message such as `Merge branch 'my-branch' into canary`.
 
@@ -12,7 +12,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 ### If you are a community contributor:
 1. Fork the Irving repo.
 2. `git checkout master` - check out the NPM package release branch.
-3. `git checkout -b feature/issue-17-branch-title` - create a new feature branch based on master. If your branch relates to a specific github issue, reference that issue in your branch name (and all subsequent commits).
+3. `git checkout -b feature/issue-17-branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
 4. `npm run test` and/or `npm run test:watch` - If you've fixed a bug or added a new feature, please write tests! These commands can be used to run tests from within the package you are modifying or at the root of the repo if you want to run all tests for all packages.
 5. Work on your branch, using `npm link` where necessary to test out your code.
 6. When ready, push your code and create a pull request into the `master` branch. Your code will be reviewed by someone at Alley.
@@ -24,7 +24,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 ### If you are a part of the Alley organization and have publish capabilities for the npm packages:
 1. Clone the irving repo
 2. `git checkout master` - check out the NPM package release branch.
-3. `git checkout -b feature/issue-17-branch-title` - create a new feature branch based on master. If your branch relates to a specific github issue, reference that issue in your branch name (and all subsequent commits).
+3. `git checkout -b feature/issue-17-branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
 4. Work on your branch, using `npm link` where necessary.
 5. `git checkout canary` - check out the testing/canary release branch. Merge your code at will to this branch and test using `npm link` or, optionally...
 6. `npm run prerelease:canary` - publish a release to the npm `@canary` tag using the `-alpha` prerelease identifier.
