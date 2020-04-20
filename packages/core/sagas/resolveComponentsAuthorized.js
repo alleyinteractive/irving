@@ -21,7 +21,7 @@ export default function* resolveComponentsAuthorized() {
     cookie,
     context,
   } = yield select(getRouteMeta);
-  yield put(resolveComponentsAuthorized());
+  yield put(actionRequestComponentsAuthorized());
 
   try {
     const result = yield call(fetchComponents, path, search, cookie, context);
