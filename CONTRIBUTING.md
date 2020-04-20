@@ -16,7 +16,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 4. Work on your branch, using `npm link` where necessary to test out your code.
 5. When ready, push up your branch and create a pull request into `master`. Your code will be reviewed by someone at Alley.
 6. Assuming your branch passes review, someone at Alley will merge it.
-7. Your code should be availabile on npm in the next prerelease.
+7. Your code should be available on npm in the next prerelease.
 8. Keep an eye on the releases page. When you see your code has been release, _install and test it!_.
 9. Assuming neither you nor someone at Alley finds issues with your code, it will also be included in the next production release.
 
