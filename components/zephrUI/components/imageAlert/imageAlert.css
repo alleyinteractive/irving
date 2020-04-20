@@ -9,7 +9,6 @@
     font-family: $sans;
     justify-content: space-between;
     padding-bottom: rem(15);
-    width: 100%;
   }
 
   .ImageAlert__wrapper {
@@ -73,9 +72,13 @@
     font-weight: 600;
     justify-content: center;
     line-height: 1;
-    margin-right: rem(30);
+    margin-right: rem(20);
     min-width: rem(160);
     padding: rem(10 26);
+
+    @media ($smMin) {
+      margin-right: rem(30);
+    }
   }
 
   .ImageAlert__btn--subscribe {
