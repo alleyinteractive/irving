@@ -15,9 +15,9 @@ Specific branches will be used for specific purposes in this repo. Considering t
 3. `git checkout -b feature/issue-17/branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
 4. `npm run test` and/or `npm run test:watch` - If you've fixed a bug or added a new feature, please write tests! These commands can be used to run tests from within the package you are modifying or at the root of the repo if you want to run all tests for all packages.
 5. Work on your branch, using `npm link` where necessary to test out your code.
-6. When ready, push your code and create a pull request into both the `preprod` and `master` branches.
+6. When ready, push your code and create a pull request into `master` branches.
 7. Your code will be reviewed by someone at Alley.
-8. Once your code passes review, someone at Alley will merge it into `preprod` and include it in the next publish to npm on the `@beta` or `@rc` tag.
+8. Once your code passes review, someone at Alley will merge it into `master` and include it in the next publish to npm on the `@beta` or `@rc` tag.
 10. Keep an eye on the releases page. When you see your code has been released, _install and test it!_.
 11. Assuming neither you nor someone at Alley finds issues with your code, someone at Alley will approve and merge your PR to `master` and include it in the next `@latest` release.
 
