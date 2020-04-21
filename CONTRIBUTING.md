@@ -21,24 +21,8 @@ Specific branches will be used for specific purposes in this repo. Considering t
 9. Keep an eye on the releases page. When you see your code has been released, _install and test it!_.
 10. Assuming neither you nor someone at Alley finds issues with your code, it will also be included in the next `@rc` and, subsequently, `@latest` releases.
 
-### If you are a part of the Alley organization and have publish capabilities for the npm packages:
-1. Clone the irving repo
-2. `git checkout master` - check out the NPM package release branch.
-3. `git checkout -b feature/issue-17/branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
-4. Work on your branch, using `npm link` where necessary.
-5. `git checkout canary` - check out the testing/canary release branch. Merge your code at will to this branch and test using `npm link` or, optionally...
-6. `npm run prerelease:canary` - publish a release to the npm `@canary` tag using the `-alpha` prerelease identifier.
-7. `cd my-irving-project` - navigate to an project.
-8. `npm install @irvingjs/core@canary` - Install your recently-published `@canary` for every Irving package you’re working on.
-9. Run your project and test your code!
-10. Once you’re satisfied with your code, open up a pull request to the `master` branch.
-11. Once your code passes review, merge it into `master` when ready.
-12. `git checkout master && git pull origin master` - checkout `master` and pull down your newly-merged code.
-13. `npm run prerelease:beta` - publish a new release to the `@beta` tag in npm.
-14. Coordinate with others at Alley to:
-* Test out your changes for themselves.
-* Determine a release schedule for your changes.
-15. Assuming no one finds issues with your code, it will also be included in the next `@rc` and, subsequently, `@latest` releases.
+### Publishing Irving
+If you are a part of the Alley organization and have publish capabilities for the npm packages, check out the (publishing docs)[PUBLISHING.md]
 
 ### If an issue is found with your code in a prerelease:
 1. If someone at Alley finds an issue with your code, we will ask you to address the issue. Hopefully any issues will be caught before this point, however.
