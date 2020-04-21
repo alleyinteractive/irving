@@ -12,7 +12,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 ### If you are a community contributor:
 1. Fork the Irving repo.
 2. `git checkout master` - check out the NPM package release branch.
-3. `git checkout -b feature/issue-17-branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
+3. `git checkout -b feature/issue-17/branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
 4. `npm run test` and/or `npm run test:watch` - If you've fixed a bug or added a new feature, please write tests! These commands can be used to run tests from within the package you are modifying or at the root of the repo if you want to run all tests for all packages.
 5. Work on your branch, using `npm link` where necessary to test out your code.
 6. When ready, push your code and create a pull request into the `master` branch. Your code will be reviewed by someone at Alley.
