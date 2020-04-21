@@ -123,3 +123,7 @@
 .mce-content-body {
   @include basic-editor-styles;
 }
+
+.compat-field-vertical_orientation .field {
+  width: 50%;
+}
