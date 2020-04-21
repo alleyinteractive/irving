@@ -17,8 +17,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 5. Work on your branch, using `npm link` where necessary to test out your code.
 6. When ready, push your code and create a pull request into both the `preprod` and `master` branches.
 7. Your code will be reviewed by someone at Alley.
-8. Once your code passes review, someone at Alley will merge it into `preprod` and include it in the next publish to npm on the `@rc` tag.
-9. Your code should be available on npm in the next prerelease in the npm `@rc` tag.
+8. Once your code passes review, someone at Alley will merge it into `preprod` and include it in the next publish to npm on the `@beta` or `@rc` tag.
 10. Keep an eye on the releases page. When you see your code has been released, _install and test it!_.
 11. Assuming neither you nor someone at Alley finds issues with your code, someone at Alley will approve and merge your PR to `master` and include it in the next `@latest` release.
 
