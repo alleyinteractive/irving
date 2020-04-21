@@ -24,7 +24,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 ### If you are a part of the Alley organization and have publish capabilities for the npm packages:
 1. Clone the irving repo
 2. `git checkout master` - check out the NPM package release branch.
-3. `git checkout -b feature/issue-17-branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
+3. `git checkout -b feature/issue-17/branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
 4. Work on your branch, using `npm link` where necessary.
 5. `git checkout canary` - check out the testing/canary release branch. Merge your code at will to this branch and test using `npm link` or, optionally...
 6. `npm run prerelease:canary` - publish a release to the npm `@canary` tag using the `-alpha` prerelease identifier.
