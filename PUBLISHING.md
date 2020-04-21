@@ -3,6 +3,7 @@ These are notes and guidelines for publishing the Irving NPM packages. This will
 
 ## Available NPM scripts
 * `npm run prerelease:canary` - publish a prerelease to both git and npm. This will use the npm `@canary` tag using the `-beta` prerelease identifier. This command is intende for use on the `develop` branch. You can and should use this command as much as necessary to test out a real `npm install` of the packages you're working on. Don't worry about publishing a broken package on the `@canary` tag.
+* `npm run prerelease:beta` - publish a prerelease to both git and npm. This will use the npm `@beta` tag using the `-beta` prerelease identifier. Publishes to the `@beta` tag should be considered stable. This is the last check before publishing a new, stable release. Ideally, multiple folks at Alley should install and try out this code before a stable release.
 * `npm run prerelease:rc` - publish a prerelease to both git and npm. This will use the npm `@rc` tag using the `-rc` prerelease identifier. Publishes to the `@rc` tag should be considered stable. This is the last check before publishing a new, stable release. Ideally, multiple folks at Alley should install and try out this code before a stable release.
 * `npm run release` - publish a stable release to the npm `@latest` tag. This is the only type of release that can contain code from multiple issues and/or contributors.
 
