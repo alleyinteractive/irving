@@ -54,7 +54,7 @@ proxyPassthrough.forEach((pattern) => {
   app.use(pattern, passthrough);
 });
 
-// Add universal cookies middleware. test.
+// Add universal cookies middleware.
 app.use(cookiesMiddleware());
 
 if ('development' === NODE_ENV) {
