@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/babel-preset-irving",
-  "version": "2.5.5",
+  "version": "2.5.9-alpha.0",
   "description": "Babel preset for working with irving",
   "main": "index.js",
   "repository": {
@@ -27,5 +27,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "85578c1d60d5e9edba93f26800ac1ce7a012e53f"
+  "gitHead": "2b57a99dc78a57506cc60cf709b756d1cc5ecef5"
 }
