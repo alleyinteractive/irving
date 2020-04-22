@@ -15,7 +15,7 @@
       ]
     },
     "version": {
-      "allowBranch": ["master", "preprod", "develop"]
+      "allowBranch": "master"
     }
   }
 }
