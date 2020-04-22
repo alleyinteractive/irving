@@ -14,7 +14,7 @@
   "scripts": {
     "build": "BABEL_ENV=app lerna run build",
     "preinstall": "npx check-node-version --package",
-    "prerelease:canary": "lerna publish prerelease --no-git-tag-version --no-changelog --preid alpha --dist-tag canary",
+    "prerelease:canary": "lerna publish prerelease --no-changelog --preid alpha --dist-tag canary",
     "prerelease:beta": "lerna publish --conventional-commits --conventional-prerelease --preid beta --dist-tag beta",
     "prerelease:rc": "lerna publish --conventional-commits --conventional-prerelease --preid rc --dist-tag rc",
     "release": "lerna publish --conventional-commits --create-release github",
