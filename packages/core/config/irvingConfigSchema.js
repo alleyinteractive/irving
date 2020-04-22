@@ -5,6 +5,7 @@ module.exports = {
   envAllowlist: [() => []],
   cacheService: () => {},
   startServer: () => {},
+  exportServer: () => {},
   customizeServer: [() => {}],
   customizeDevServer: [() => {}],
   customizeProdServer: [() => {}],
