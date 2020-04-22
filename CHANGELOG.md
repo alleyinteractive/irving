@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.9](https://github.com/alleyinteractive/irving/compare/v2.5.9-rc.2...v2.5.9) (2020-04-22)
+
+
+### Bug Fixes
+
+* **package.json:** fix rc and release commands ([977a367](https://github.com/alleyinteractive/irving/commit/977a367ece7d4f1ba11a19ec8298fdb24fca8a9f))
+
+
+
+
+
 ## [2.5.9-rc.2](https://github.com/alleyinteractive/irving/compare/v2.5.9-rc.1...v2.5.9-rc.2) (2020-04-22)
 
 **Note:** Version bump only for package irving
