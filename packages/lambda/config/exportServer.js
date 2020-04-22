@@ -2,4 +2,4 @@
 const serverless = require('serverless-http');
 const app = require('@irvingjs/core/server');
 
-modules.exports.handler = serverless(app);
+module.exports.handler = serverless(app);
