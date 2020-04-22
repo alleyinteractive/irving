@@ -1,10 +1,14 @@
 const { rootUrl } = require('../config/paths');
+const getConfigField = require('../utils/getConfigField');
 const startServer = require('../server/startServer');
 const app = require('../server');
 
 const { NODE_ENV } = process.env;
 
-if (!app) {
+// Run all customize server functions.
+const server = getConfigField('startServer')(app);
+
+if (!server) {
   startServer(app);
 }
 
