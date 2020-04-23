@@ -7,7 +7,14 @@
 }
 
 .meta {
+  align-items: center;
   display: flex;
+  font-size: rem(14);
+  margin-bottom: rem(5);
+
+  @media ($mdMin) {
+    font-size: rem(16);
+  }
 }
 
 .title {
@@ -18,13 +25,13 @@
   max-width: rem(575);
   order: 1;
 
+  &:hover {
+    text-decoration: underline;
+  }
+
   @media ($smMin) {
     font-size: rem(30);
   }
-}
-
-.meta {
-  margin-bottom: rem(5);
 }
 
 .excerpt {

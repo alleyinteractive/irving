@@ -11,6 +11,7 @@
   &.collapsed {
     margin-bottom: rem(10);
     margin-top: rem(10);
+    padding: rem(0 10 0 20);
   }
 }
 
@@ -32,7 +33,7 @@
 
   .expanded & {
     position: absolute;
-    right: 0;
+    right: rem(10);
     top: 0;
     z-index: 1;
 

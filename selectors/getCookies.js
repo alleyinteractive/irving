@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 import pick from 'lodash/fp/pick';
 import get from 'lodash/fp/get';
-import Cookies from 'universal-cookie';
 
 /**
  * Get any query parameters that should be mapped from the
@@ -22,17 +21,17 @@ const getCookies = createSelector(
     get('route.cookie'),
   ],
   (routeCookies) => {
-    const cookies = new Cookies(routeCookies);
     const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
-    const cookieAllowlist = env.COOKIE_MAP_LIST ?
+    const envAllowList = env.COOKIE_MAP_LIST ?
       env.COOKIE_MAP_LIST.split(',') :
       [];
-    const allowlistCookies = pick(cookieAllowlist)(routeCookies);
+    const cookieAllowlist = [
+      'bypassCache',
+      'authorizationBearerToken',
+      ...envAllowList,
+    ];
 
-    return {
-      ...allowlistCookies,
-      bypassCache: cookies.get('bypassCache'),
-    };
+    return pick(cookieAllowlist)(routeCookies);
   }
 );
 

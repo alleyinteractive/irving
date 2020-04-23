@@ -84,3 +84,9 @@
     max-width: rem(300);
   }
 }
+
+.itemTitle {
+  &:hover {
+    text-decoration: underline;
+  }
+}

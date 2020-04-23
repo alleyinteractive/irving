@@ -1,6 +1,7 @@
 import queryString from 'query-string';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
+import getBearerToken from 'utils/getBearerToken';
 import getService from './cacheService';
 import createDebug from './createDebug';
 
@@ -38,6 +39,7 @@ function getExtraQueryParams() {
 export async function fetchComponents(
   path,
   search,
+  cookie,
   context = CONTEXT_PAGE
 ) {
   const query = queryString.stringify({
@@ -49,6 +51,7 @@ export async function fetchComponents(
   {
     encode: false,
   });
+
   const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
   const options = {
     headers: {
@@ -56,6 +59,13 @@ export async function fetchComponents(
     },
     credentials: 'include', // Support XHR with basic auth.
   };
+
+  const authorizationBearerToken = getBearerToken(cookie);
+  if (authorizationBearerToken) {
+    options.credentials = 'same-origin'; // Set to same origin so we don't conflict with WP session cookies.
+    options.headers.Authorization = `Bearer ${authorizationBearerToken}`;
+  }
+
   const response = await fetch(apiUrl, { ...options });
   const data = await response.json();
   const { redirectTo, redirectStatus } = data;
@@ -131,7 +141,7 @@ export default async function cacheResult(
 
   if (! response || bypassCache) {
     debug(info);
-    response = await fetchComponents(path, search, context);
+    response = await fetchComponents(...args);
     await cache.set(key, response);
   } else {
     debug({ ...info, cached: true });
