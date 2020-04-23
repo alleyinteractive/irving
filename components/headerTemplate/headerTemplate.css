@@ -53,6 +53,7 @@
   }
 
   &.logoHeadroom {
+    margin-right: auto;
     max-width: none;
     width: auto;
 
@@ -107,11 +108,7 @@
   }
 
   .isHeadroom & {
-    margin-left: 0;
-
-    @media only screen and (min-width: 790px) {
-      margin-left: rem(80);
-    }
+    margin-left: rem(80);
 
     svg {
       width: rem(160);
