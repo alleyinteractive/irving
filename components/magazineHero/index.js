@@ -97,13 +97,13 @@ const MagazineHero = ({
           {'MIT News Magazine' === issueType && (
             <div className={styles.letter}>
               <h2 className={styles.letterLabel}>
-                {__('MIT Class notes', 'mittr')}
+                {__('MIT Class notes and Course news', 'mittr')}
               </h2>
               <Link
                 to="https://alum.mit.edu/communities/class-notes-and-sites"
                 className={styles.letterTitle}
               >
-                {__('Read class notes on the MIT Alumni Association website.',
+                {__('Read Class notes and Course news on the MIT Alumni Association website',
                   'mittr')}
               </Link>
             </div>
