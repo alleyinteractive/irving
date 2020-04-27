@@ -16,8 +16,8 @@
     "preinstall": "npx check-node-version --package",
     "prerelease:canary": "lerna publish prerelease --no-changelog --preid alpha --dist-tag canary",
     "prerelease:beta": "lerna publish --conventional-commits --conventional-prerelease --preid beta --dist-tag beta",
-    "prerelease:rc": "lerna publish --conventional-commits --conventional-prerelease --preid rc --dist-tag rc",
-    "release": "lerna publish --conventional-commits --create-release github",
+    "prerelease:rc": "lerna publish --force-publish --conventional-commits --conventional-prerelease --preid rc --dist-tag rc",
+    "release": "dotenv lerna publish --force-publish --conventional-commits --create-release github",
     "//": "nohoist option is used to prevent internal packages from being hoisted/deleted by lerna (which is a bug, I think)",
     "bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
     "link": "lerna exec --parallel -- npm link",
@@ -100,6 +100,7 @@
   "devDependencies": {
     "commitizen": "^4.0.4",
     "cz-conventional-changelog": "^3.0.2",
+    "dotenv-cli": "^3.1.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "husky": "^4.2.5",
