@@ -103,7 +103,7 @@ const MagazineHero = ({
                 to="https://alum.mit.edu/communities/class-notes-and-sites"
                 className={styles.letterTitle}
               >
-                {__('Read Class notes and Course news on the MIT Alumni Association website',
+                {__('Read Class notes and Course news on the MIT Alumni Association website', // eslint-disable-line max-len
                   'mittr')}
               </Link>
             </div>
