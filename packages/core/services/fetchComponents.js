@@ -1,6 +1,7 @@
 import AbortController from 'abort-controller';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
+import getBearerToken from 'utils/getBearerToken';
 import getService from './cacheService';
 import getLogService from './logService';
 import createComponentsEndpointQueryString from
@@ -20,7 +21,7 @@ const env = Object.keys(process.env).length ? process.env : window.__ENV__; // e
  *                           "site" (all components)
  * @returns {Promise<{object}>}
  */
-async function fetchComponents(
+export async function fetchComponents(
   path,
   search,
   cookie = {},
@@ -50,6 +51,14 @@ async function fetchComponents(
     credentials: 'include', // Support XHR with basic auth.
     signal: controller.signal,
   };
+
+  // Set up Authorization header, if applicable.
+  const authorizationBearerToken = getBearerToken(cookie);
+  if (authorizationBearerToken) {
+    options.credentials = 'same-origin'; // Set to same origin so we don't conflict with other cookies.
+    options.headers.Authorization = `Bearer ${authorizationBearerToken}`;
+  }
+
   const response = await fetch(apiUrl, options);
 
   // Clear timeout once response is returned (no matter what it is).
@@ -110,11 +119,11 @@ async function cachedFetchComponents(
     context
   );
   const key = `components-endpoint:${componentsQuery}`;
-
   const info = { cached: false, route: key };
   let response = await cache.get(key);
+  const { bypassCache } = cookie;
 
-  if (! response) {
+  if (! response || bypassCache) {
     log.info('%o', info);
     response = await fetchComponents(path, search, cookie, context);
     await cache.set(key, response);
@@ -125,4 +134,4 @@ async function cachedFetchComponents(
   return response;
 }
 
-module.exports = cachedFetchComponents;
+export default cachedFetchComponents;
