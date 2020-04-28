@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/alleyinteractive/irving/compare/v2.6.0-rc.0...v2.6.0) (2020-04-28)
+
+
+### Bug Fixes
+
+* **package.json:** add double dashes to dotenv to fix prerelease publishes ([99bce02](https://github.com/alleyinteractive/irving/commit/99bce02dc3b8fc0489b53d69cb2abc7d5a33ac79))
+* **package.json:** use --conventional-graduate for main release ([44807c8](https://github.com/alleyinteractive/irving/commit/44807c8b49b78991d147de6f805eb9d24fcabbf5))
+
+
+
+
+
 # [2.6.0-rc.0](https://github.com/alleyinteractive/irving/compare/v2.5.9...v2.6.0-rc.0) (2020-04-28)
 
 
