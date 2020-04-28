@@ -29,15 +29,10 @@
 
 .logo {
   display: block;
-  max-width: rem(200);
+  max-width: rem(250);
 
   > * {
-    height: 100%;
-    width: 100%;
-  }
-
-  img,
-  span {
-    height: 100%;
+    height: auto;
+    max-width: 100%;
   }
 }
