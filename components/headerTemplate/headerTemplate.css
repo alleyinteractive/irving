@@ -108,7 +108,7 @@
   }
 
   .isHeadroom & {
-    margin-left: rem(80);
+    tidy-offset-left: 1;
 
     svg {
       width: rem(160);
