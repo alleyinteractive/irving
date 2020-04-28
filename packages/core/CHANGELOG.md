@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-rc.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.5.9...v2.6.0-rc.0) (2020-04-28)
+
+
+### Features
+
+* **fetchcomponents.js:** add flags to canary, move comment ([6c5b2dd](https://github.com/alleyinteractive/irving/packages/core/commit/6c5b2dd3e49b6126bcd795fef3fff42e1236a56a))
+
+
+
+
+
 ## [2.5.9](https://github.com/alleyinteractive/irving/packages/core/compare/v2.5.9-rc.2...v2.5.9) (2020-04-22)
 
 **Note:** Version bump only for package @irvingjs/core
