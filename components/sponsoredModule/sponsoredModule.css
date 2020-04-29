@@ -29,16 +29,15 @@
 
 .logo {
   display: block;
-  height: rem(50);
-  width: rem(50);
+  max-width: rem(250);
 
   > * {
-    height: 100%;
-    width: 100%;
+    height: auto;
+    max-width: 100%;
   }
 
-  img,
-  span {
-    height: 100%;
+  img {
+    height: auto;
+    max-width: 100%;
   }
 }
