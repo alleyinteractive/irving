@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/alleyinteractive/irving/compare/v2.6.0-rc.0...v2.6.0) (2020-04-28)
+
+
+### Bug Fixes
+
+* **package.json:** add double dashes to dotenv to fix prerelease publishes ([99bce02](https://github.com/alleyinteractive/irving/commit/99bce02dc3b8fc0489b53d69cb2abc7d5a33ac79))
+* **package.json:** use --conventional-graduate for main release ([44807c8](https://github.com/alleyinteractive/irving/commit/44807c8b49b78991d147de6f805eb9d24fcabbf5))
+
+
+
+
+
+# [2.6.0-rc.0](https://github.com/alleyinteractive/irving/compare/v2.5.9...v2.6.0-rc.0) (2020-04-28)
+
+
+### Bug Fixes
+
+* **package.json:** fix arg for --create-release ([b961609](https://github.com/alleyinteractive/irving/commit/b961609c25eeb5e492bfd7e72bfac4ffc03fc492))
+
+
+### Features
+
+* **fetchcomponents.js:** add flags to canary, move comment ([6c5b2dd](https://github.com/alleyinteractive/irving/commit/6c5b2dd3e49b6126bcd795fef3fff42e1236a56a))
+* **package.json:** beta + rc should use --create-release ([b14208c](https://github.com/alleyinteractive/irving/commit/b14208c8aa52c94257de6df508108374ff444cfd))
+
+
+
+
+
 ## [2.5.9](https://github.com/alleyinteractive/irving/compare/v2.5.9-rc.2...v2.5.9) (2020-04-22)
 
 
