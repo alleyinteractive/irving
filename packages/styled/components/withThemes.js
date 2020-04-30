@@ -1,36 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import getDisplayName from '@irvingjs/core/utils/getDisplayName';
-import assign from 'lodash/fp/assign';
+import withThemes from './hoc/withThemes';
 
-const withThemes = (themeMap) => (WrappedComponent) => {
-  const ThemedComponent = (props) => {
-    const { themeName } = props;
-    const theme = assign(
-      themeMap.default,
-      themeMap[themeName]
-    );
-
-    return (
-      <WrappedComponent theme={theme} {...props} />
-    );
-  };
-
-  ThemedComponent.propTypes = {
-    /**
-     * Prop indicating which theme to use.
-     */
-    themeName: PropTypes.oneOf(Object.keys(themeMap)),
-  };
-
-  ThemedComponent.defaultProps = {
-    themeName: 'default',
-  };
-
-  ThemedComponent.displayName = getDisplayName('withThemes', WrappedComponent);
-
-  return ThemedComponent;
-};
-
-/** @component */
+/**
+ * This exists just to prevent projects with existing imports for this file from breaking.
+ *
+ * @todo remove this file at next major release.
+ */
 export default withThemes;
