@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import createWithUserThemes from '../hoc/createWithUserThemes';
 import IrvingPicture from './irvingPicture';
 import IrvingImg from './irvingImg';
-import {
-  Caption,
-  Wrapper,
-  WrapperElementFigure,
-} from './styles';
+import * as defaultTheme from './styles';
 
 const Image = (props) => {
   const {
@@ -22,7 +19,13 @@ const Image = (props) => {
     srcset,
     sizes,
     sourceTags,
+    theme,
   } = props;
+  const {
+    Caption,
+    Wrapper,
+    WrapperElementFigure,
+  } = theme;
   const [error, setError] = useState(false);
   const onError = () => setError(true);
 
@@ -109,6 +112,10 @@ Image.propTypes = {
     PropTypes.string,
   ]).isRequired,
   /**
+   * Low Quality Image Placeholder (LQIP) source.
+   */
+  lqipSrc: PropTypes.string,
+  /**
    * Should this component render a `<picture>` element?
    */
   picture: PropTypes.bool,
@@ -143,11 +150,16 @@ Image.propTypes = {
       media: PropTypes.string.isRequired,
     })
   ),
+  /**
+   * Theme for this component
+   */
+  theme: PropTypes.object.isRequired,
 };
 
 Image.defaultProps = {
   caption: '',
   className: '',
+  lqipSrc: '',
   sourceTags: [],
   picture: false,
   sizes: '',
@@ -155,3 +167,4 @@ Image.defaultProps = {
 };
 
 export default Image;
+export const themeImage = createWithUserThemes(Image, defaultTheme);
