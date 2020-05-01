@@ -153,7 +153,7 @@ Image.propTypes = {
   /**
    * Theme for this component
    */
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object,
 };
 
 Image.defaultProps = {
@@ -164,6 +164,7 @@ Image.defaultProps = {
   picture: false,
   sizes: '',
   showCaption: false,
+  theme: defaultTheme,
 };
 
 export default Image;
