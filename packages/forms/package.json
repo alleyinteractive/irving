@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/forms",
-  "version": "2.7.0-alpha.1",
+  "version": "2.7.0-alpha.2",
   "description": "Form components and submission functionality for Irving",
   "files": [
     "actions/**/*",
