@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
-import RawHTML from 'components/rawHTML';
+import RawHTML from '@components/rawHTML';
 import styles from './state.css';
 
 const State = ({
