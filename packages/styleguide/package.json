@@ -27,7 +27,7 @@
 		"babel-plugin-module-resolver": "^4.0.0",
 		"enzyme": "^3.10.0",
 		"enzyme-adapter-react-16": "^1.15.1",
-		"jest": "^24.9.0",
+		"jest": "^25.5.3",
 		"jest-environment-enzyme": "^7.1.1",
 		"jest-enzyme": "^7.1.1"
 	},
