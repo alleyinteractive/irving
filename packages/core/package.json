@@ -121,7 +121,7 @@
   },
   "gitHead": "2b57a99dc78a57506cc60cf709b756d1cc5ecef5",
   "devDependencies": {
-    "enzyme": "^3.10.0",
+    "enzyme": "^3.11.0",
     "fetch-mock": "^7.7.3",
     "ioredis-mock": "^4.19.0",
     "jest": "^25.5.3",

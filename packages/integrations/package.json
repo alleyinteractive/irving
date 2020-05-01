@@ -16,8 +16,7 @@
 	"dependencies": {
 		"prop-types": "^15.7.2",
 		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
-		"regenerator-runtime": "^0.13.3"
+		"react-dom": "^16.13.1"
 	},
 	"devDependencies": {
 		"@irvingjs/core": "^2.6.0",
