@@ -6,6 +6,7 @@ import {
 import {
   actionReceiveComponents,
   actionReceiveError,
+  actionRequestComponentsAuthorized,
 } from 'actions';
 import getRouteMeta from 'selectors/getRouteMeta';
 // Use uncached version of fetchComponents.
@@ -21,6 +22,7 @@ export default function* resolveComponentsAuthorized() {
     cookie,
     context,
   } = yield select(getRouteMeta);
+  yield put(actionRequestComponentsAuthorized());
 
   try {
     const result = yield call(fetchComponents, path, search, cookie, context);
