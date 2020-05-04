@@ -15,7 +15,7 @@ module.exports = {
     '^.+\\.css$': path.join(__dirname, '/test/mockCssTransform.js'),
   },
   transformIgnorePatterns: [
-    '/node_modules/',
+    '/node_modules/(?!@irvingjs)',
     '<rootDir>/packages/[^/]+/lib/',
   ],
 };
