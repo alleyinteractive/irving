@@ -72,9 +72,10 @@
   }
 
   h3 {
+    color: #000;
     font-size: rem(18);
     font-weight: $header-weight;
-    line-height: rem(27);
+    line-height: rem(24);
 
     @media ($mdMin) {
       font-size: rem(22);
@@ -83,6 +84,7 @@
   }
 
   h4 {
+    color: #000;
     font-size: rem(16);
     font-weight: $header-weight;
     line-height: rem(24);
