@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.1](https://github.com/alleyinteractive/irving/compare/v2.6.0...v2.6.1) (2020-05-04)
+
+
+### Bug Fixes
+
+* **image:** add default theme to image ([5821178](https://github.com/alleyinteractive/irving/commit/58211789845307d629cf41c58e2a242137d80ecf))
+* **withthemes:** add back in a components/withThemes export to prevent breakage ([0e1d335](https://github.com/alleyinteractive/irving/commit/0e1d335259aa8682d1079b34257275c37673a69e))
+* **withthemes.js:** move withThemes file ([ca13fc3](https://github.com/alleyinteractive/irving/commit/ca13fc3e13b4ab9279beed757d243b566caee346))
+
+
+
+
+
 # [2.6.0](https://github.com/alleyinteractive/irving/compare/v2.6.0-rc.0...v2.6.0) (2020-04-28)
 
 
