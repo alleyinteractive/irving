@@ -5,3 +5,4 @@
 * [fetchComponents.js](https://github.com/alleyinteractive/irving/blob/production/services/fetchComponents.js) - Service for the [Components API](https://github.com/alleyinteractive/irving/wiki/Components-API).
 * [fetchComponents.test.js](https://github.com/alleyinteractive/irving/blob/production/services/fetchComponents.test.js) - Test for `fetchComponents.js`
 * [monitorService.js](https://github.com/alleyinteractive/irving/blob/production/services/monitorService.js) - Service for [New Relic](https://github.com/alleyinteractive/irving/wiki/Setting-up-New-Relic).
+* [submitForm.js](https://github.com/alleyinteractive/irving/blob/production/services/submitForm.js) - Process for the [Form API](https://github.com/alleyinteractive/irving/wiki/Form-API).

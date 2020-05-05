@@ -5,7 +5,7 @@ import {
   actionReceiveSubmitInvalid,
 } from 'actions/formActions';
 import submitForm from 'services/submitForm';
-import getLogService from '@irvingjs/core/services/logService';
+import getLogService from 'services/logService';
 
 const debug = getLogService('irving:sagas:form');
 

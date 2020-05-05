@@ -20,7 +20,7 @@ if (process.env.BUILD) {
       config = {};
     } else {
       // Something is wrong inside the server config, stop the current process.
-      throw new Error(chalk.red(e));
+      throw new Error(e);
     }
   }
 }
