@@ -20,6 +20,7 @@ import styles from './socialItem.css';
 import lightIconStyles from './lightIcon.css';
 import darkIconStyles from './darkIcons.css';
 import flyoutIconStyles from './socialItem--flyoutIcon.css';
+import siteHeaderStyles from './socialItem--siteHeader.css';
 
 const SocialItem = (props) => {
   const {
@@ -106,10 +107,11 @@ SocialItem.propTypes = {
 const wrapWithStyles = withStyles(styles, lightIconStyles);
 
 const wrapWithThemes = withThemes('social-item', {
-  default: styles,
-  light: lightIconStyles,
-  flyoutIcon: flyoutIconStyles,
   dark: darkIconStyles,
+  default: styles,
+  flyoutIcon: flyoutIconStyles,
+  light: lightIconStyles,
+  siteHeader: siteHeaderStyles,
 });
 
 export default wrapWithStyles(wrapWithThemes(SocialItem));

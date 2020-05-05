@@ -1,0 +1,29 @@
+.wrapper {
+  align-items: center;
+}
+
+.shareWrapper {
+  align-items: baseline;
+  display: flex;
+  flex-flow: row wrap;
+
+  @media ($smMin) {
+    align-items: center;
+    flex-flow: row nowrap;
+  }
+}
+
+.list {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
+  li {
+    margin-bottom: 0;
+  }
+}
+
+.title {
+  display: none;
+}

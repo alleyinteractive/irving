@@ -7,6 +7,7 @@ import { __ } from '@wordpress/i18n';
 import styles from './socialList.css';
 import trListStyles from './trList.css';
 import flyoutStyles from './socialList--flyout.css';
+import siteHeaderStyles from './socialList--siteHeader.css';
 
 const SocialList = (props) => {
   const { children: links, theme, themeName } = props;
@@ -46,8 +47,9 @@ const wrapWithStyles = withStyles(styles, trListStyles);
 
 const wrapWithThemes = withThemes('social-list', {
   default: styles,
-  listHeader: trListStyles,
   flyout: flyoutStyles,
+  listHeader: trListStyles,
+  siteHeader: siteHeaderStyles,
 });
 
 export default wrapWithStyles(wrapWithThemes(SocialList));
