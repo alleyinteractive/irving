@@ -76,6 +76,7 @@
     font-size: rem(18);
     font-weight: $header-weight;
     line-height: rem(24);
+    margin-bottom: 0;
 
     @media ($mdMin) {
       font-size: rem(22);
@@ -88,6 +89,7 @@
     font-size: rem(16);
     font-weight: $header-weight;
     line-height: rem(24);
+    margin-bottom: 0;
 
     @media ($mdMin) {
       font-size: rem(18);
