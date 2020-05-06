@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "2.6.0",
+  "version": "2.7.0-rc.0",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -120,7 +120,7 @@
   },
   "gitHead": "2b57a99dc78a57506cc60cf709b756d1cc5ecef5",
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^2.6.0",
+    "@irvingjs/babel-preset-irving": "^2.7.0-rc.0",
     "enzyme": "^3.11.0",
     "fetch-mock": "^7.7.3",
     "ioredis-mock": "^4.19.0",
