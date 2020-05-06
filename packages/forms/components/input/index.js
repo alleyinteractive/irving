@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'critical-style-loader/lib';
 import omit from 'lodash/fp/omit';
-import Label from './label';
+import Label from '../label';
 import styles from './input.css';
 
 const Input = (props) => {
