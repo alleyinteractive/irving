@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/alleyinteractive/irving/compare/v2.7.0...v2.7.1) (2020-05-07)
+
+
+### Bug Fixes
+
+* **package.json:** fix missing dependency for irving babel preset in core package ([6183d4f](https://github.com/alleyinteractive/irving/commit/6183d4f7192d42e7163d3da5b69d749f4d6ab98f))
+
+
+
+
+
 # [2.7.0](https://github.com/alleyinteractive/irving/compare/v2.7.0-rc.0...v2.7.0) (2020-05-06)
 
 **Note:** Version bump only for package irving
