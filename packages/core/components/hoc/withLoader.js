@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getDisplayName from 'utils/getDisplayName';
-import PlaceholderLoading from 'components/placeholderLoading';
 
-const withLoader = (WrappedComponent) => {
+const withLoader = (WrappedComponent, DefaultLoadingComponent) => {
   const Loader = (props) => {
     const { loading } = props;
     return loading ? (
-      <PlaceholderLoading />
+      <DefaultLoadingComponent />
     ) : (
       <WrappedComponent {...props} />
     );
