@@ -18,6 +18,17 @@ let service;
  */
 const getService = () => {
   const configService = getConfigField('cacheService')();
+  const retryStrategy = (times) => (
+    // Wait 2 seconds maximum before attempting reconnection
+    Math.min(times * 50, 2000)
+  );
+  const {
+    BROWSER,
+    CACHE_EXPIRE = 300,
+    REDIS_MASTER = '',
+    REDIS_PASSWORD = null,
+    QUEUED_CONNECTION_ATTEMPTS = 3,
+  } = process.env;
 
   // Set user- or package-configured cache service, if applicable.
   if (configService) {
@@ -34,14 +45,14 @@ const getService = () => {
   }
 
   // Redis env variables have not been configured.
-  if (! process.env.REDIS_URL) {
+  if (! REDIS_MASTER) {
     return defaultService;
   }
 
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
-  if (! process.env.BROWSER) {
+  if (! BROWSER) {
     let Redis;
 
     // Check if optional redis client is installed.
@@ -51,7 +62,21 @@ const getService = () => {
       return defaultService;
     }
 
-    const client = new Redis(process.env.REDIS_URL);
+    // Must be in the format `host:port`
+    if (! REDIS_MASTER || ! REDIS_MASTER.match(/^[\w\-\_\.]+:\d+$/)) {
+      return defaultService;
+    }
+
+    const [host, port] = REDIS_MASTER.split(':');
+    const client = new Redis({
+      host,
+      port,
+      REDIS_PASSWORD,
+      retryStrategy,
+      enableOfflineQueue: true,
+      maxRetriesPerRequest: QUEUED_CONNECTION_ATTEMPTS,
+    });
+
     client.on('error', (err) => {
       console.error(err); // eslint-disable-line no-console
     });
@@ -66,7 +91,7 @@ const getService = () => {
           key,
           JSON.stringify(value),
           'EX',
-          process.env.CACHE_EXPIRE || 300
+          CACHE_EXPIRE
         );
       },
       del(key) {
