@@ -1,4 +1,4 @@
-const getService = require('../services/cacheService');
+const cacheService = require('../services/cacheService')();
 
 /**
  * Bust the entire cache from Redis.
@@ -7,17 +7,15 @@ const getService = require('../services/cacheService');
  * @param {object} res  Response object.
  * @returns {*}
  */
-const bustCache = async (req, res) => {
-  const service = getService();
-
+const purgeCache = async (req, res) => {
   // Create a readable stream (object mode).
   // This approach is better for performance.
-  const stream = await service.client.scanStream();
+  const stream = await cacheService.client.scanStream();
 
   stream.on('data', async (keys) => {
     // `keys` is an array of strings representing key names
     if (keys.length) {
-      const pipeline = service.client.pipeline();
+      const pipeline = cacheService.client.pipeline();
       keys.forEach((key) => {
         pipeline.del(key);
       });
@@ -30,4 +28,4 @@ const bustCache = async (req, res) => {
   stream.on('end', () => res.json('Entire Redis cache deleted.'));
 };
 
-module.exports = bustCache;
+module.exports = purgeCache;

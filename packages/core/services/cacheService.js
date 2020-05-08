@@ -22,13 +22,8 @@ const getService = () => {
     // Wait 2 seconds maximum before attempting reconnection
     Math.min(times * 50, 2000)
   );
-  const {
-    BROWSER,
-    CACHE_EXPIRE = 300,
-    REDIS_MASTER = '',
-    REDIS_PASSWORD = null,
-    QUEUED_CONNECTION_ATTEMPTS = 3,
-  } = process.env;
+  const hostAndPort = process.env.REDIS_MASTER || '';
+  const password = process.env.REDIS_PASSWORD || null;
 
   // Set user- or package-configured cache service, if applicable.
   if (configService) {
@@ -45,14 +40,14 @@ const getService = () => {
   }
 
   // Redis env variables have not been configured.
-  if (! REDIS_MASTER) {
+  if (! hostAndPort) {
     return defaultService;
   }
 
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
-  if (! BROWSER) {
+  if (! process.env.BROWSER) {
     let Redis;
 
     // Check if optional redis client is installed.
@@ -63,18 +58,18 @@ const getService = () => {
     }
 
     // Must be in the format `host:port`
-    if (! REDIS_MASTER || ! REDIS_MASTER.match(/^[\w\-\_\.]+:\d+$/)) {
+    if (! hostAndPort || ! hostAndPort.match(/^[\w\-_.]+:\d+$/)) {
       return defaultService;
     }
 
-    const [host, port] = REDIS_MASTER.split(':');
+    const [host, port] = hostAndPort.split(':');
     const client = new Redis({
       host,
       port,
-      REDIS_PASSWORD,
+      password,
       retryStrategy,
       enableOfflineQueue: true,
-      maxRetriesPerRequest: QUEUED_CONNECTION_ATTEMPTS,
+      maxRetriesPerRequest: process.env.QUEUED_CONNECTION_ATTEMPTS,
     });
 
     client.on('error', (err) => {
@@ -91,7 +86,7 @@ const getService = () => {
           key,
           JSON.stringify(value),
           'EX',
-          CACHE_EXPIRE
+          process.env.CACHE_EXPIRE || 300
         );
       },
       del(key) {
