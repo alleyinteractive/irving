@@ -22,14 +22,23 @@
     "bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
     "link": "lerna exec --parallel -- npm link",
     "test": "BABEL_ENV=test lerna run test --parallel",
-    "test:watch": "BABEL_ENV=test lerna run test:watch --parallel"
+    "test:watch": "BABEL_ENV=test lerna run test:watch --parallel",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-docs": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
     "babel-jest": "^25.5.1",
+    "babel-loader": "^8.1.0",
     "commitizen": "^4.0.5",
     "cz-conventional-changelog": "^3.1.0",
     "dotenv-cli": "^3.1.0",
