@@ -31,8 +31,20 @@ DefaultLoading.defaultProps = {
 };
 
 DefaultLoading.propTypes = {
+  /**
+   * Whether or not the loader component should cover the entire screen.
+   * default: false
+   */
   fullScreen: PropTypes.bool,
+  /**
+   * Allows for defining a custom component to be displayed for the loading state.
+   * default: <Spinner />
+   */
   loadingComponent: PropTypes.element,
+  /**
+   * Custom props to pass to the <Spinner /> component.
+   * default: {},
+   */
   spinnerProps: PropTypes.object,
 };
 

@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import getDisplayName from 'utils/getDisplayName';
 import DefaultLoading from 'components/helpers/defaultLoading';
 
+/**
+ * @param {*} WrappedComponent component that gets the conditional loading state
+ * @param {object} loadingProps optional props passed to the DefaultLoading component
+ */
 const withLoader = (WrappedComponent, loadingProps) => {
   const Loader = (props) => {
     const { loading } = props;
