@@ -15,9 +15,8 @@ const getLogService = require('../services/logService');
 const log = getLogService('irving:server:error');
 const startServer = require('../server/startServer');
 const { rootUrl } = require('../config/paths');
-const bustCache = require('../server/bustCache');
-const bustPageCache = require('../server/bustPageCache');
-const purgePageCache = require('../server/purgePageCache');
+const purgeCache = require('../server/purgeCache');
+const purgeEndpointCache = require('../server/purgeEndpointCache');
 
 const {
   API_ROOT_URL,
@@ -27,9 +26,8 @@ const {
 const app = express();
 
 // Clearing the Redis cache.
-app.get('/bust-endpoint-cache', bustPageCache);
-app.get('/bust-entire-cache', bustCache);
-app.purge('/*', purgePageCache);
+app.get('/purge-cache', purgeCache);
+app.purge('/*', purgeEndpointCache);
 
 // Set view engine.
 app.set('view engine', 'ejs');

@@ -1,4 +1,5 @@
-const getService = require('../services/cacheService');
+const queryString = require('query-string');
+const cacheService = require('../services/cacheService')();
 
 /**
  * Bust page/post/endpoint cache from Redis.
@@ -7,28 +8,25 @@ const getService = require('../services/cacheService');
  * @param {object} res  Response object.
  * @returns {*}
  */
-const bustPageCache = async (req, res) => {
-  const { endpoint } = req.query;
-
-  // Endpoint is required.
-  if (! endpoint) {
-    res.json('Required param (endpoint) missing.');
-    return;
-  }
-
-  // The endpoint is the key.
-  const key = endpoint;
-  const service = getService();
+const purgeEndpointCache = async (req, res) => {
+  const endpoint = req.originalUrl;
+  const key = queryString.stringify({
+    path: endpoint,
+    context: 'site',
+  }, {
+    encode: false,
+    sort: false,
+  });
   let keysDeleted = 0;
 
   // Find all keys that start with the key we received.
-  const stream = service.client.scanStream({
+  const stream = cacheService.client.scanStream({
     match: `components-endpoint:${key}*`,
   });
 
   stream.on('data', async (keys) => {
     if (keys.length) {
-      const pipeline = service.client.pipeline();
+      const pipeline = cacheService.client.pipeline();
       keysDeleted += keys.length;
 
       keys.forEach((foundKey) => {
@@ -48,4 +46,4 @@ const bustPageCache = async (req, res) => {
   });
 };
 
-module.exports = bustPageCache;
+module.exports = purgeEndpointCache;

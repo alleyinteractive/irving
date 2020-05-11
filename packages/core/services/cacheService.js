@@ -18,6 +18,12 @@ let service;
  */
 const getService = () => {
   const configService = getConfigField('cacheService')();
+  const retryStrategy = (times) => (
+    // Wait 2 seconds maximum before attempting reconnection
+    Math.min(times * 50, 2000)
+  );
+  const hostAndPort = process.env.REDIS_MASTER || '';
+  const password = process.env.REDIS_PASSWORD || null;
 
   // Set user- or package-configured cache service, if applicable.
   if (configService) {
@@ -34,7 +40,7 @@ const getService = () => {
   }
 
   // Redis env variables have not been configured.
-  if (! process.env.REDIS_URL) {
+  if (! hostAndPort) {
     return defaultService;
   }
 
@@ -51,7 +57,21 @@ const getService = () => {
       return defaultService;
     }
 
-    const client = new Redis(process.env.REDIS_URL);
+    // Must be in the format `host:port`
+    if (! hostAndPort || ! hostAndPort.match(/^[\w\-_.]+:\d+$/)) {
+      return defaultService;
+    }
+
+    const [host, port] = hostAndPort.split(':');
+    const client = new Redis({
+      host,
+      port,
+      password,
+      retryStrategy,
+      enableOfflineQueue: true,
+      maxRetriesPerRequest: process.env.QUEUED_CONNECTION_ATTEMPTS,
+    });
+
     client.on('error', (err) => {
       console.error(err); // eslint-disable-line no-console
     });

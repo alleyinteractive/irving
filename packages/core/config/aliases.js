@@ -1,6 +1,6 @@
 const path = require('path');
 const { maybeResolveBuildModule } = require('../utils/userModule');
-const { buildContext } = require('./paths');
+const { buildContext, appRoot } = require('./paths');
 
 // App aliases, exported in case we need them elsewhere.
 module.exports = {
@@ -24,4 +24,5 @@ module.exports = {
     buildContext,
     'componentMap.js'
   ),
+  react: path.join(appRoot, './node_modules/react'),
 };
