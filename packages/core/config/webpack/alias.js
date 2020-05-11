@@ -13,6 +13,7 @@ module.exports = function getAlias(context) {
       return {};
 
     case 'development_client':
+      // Use the app version of these packages to prevent duplicate react errors with npm link
       return {
         'react-dom': path.join(appRoot, './node_modules/@hot-loader/react-dom'),
         react: path.join(appRoot, './node_modules/react'),
