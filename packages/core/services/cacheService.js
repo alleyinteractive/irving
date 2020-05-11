@@ -57,12 +57,18 @@ const getService = () => {
       return defaultService;
     }
 
+    const match = hostAndPort.match(
+      /((redis:\/\/([\w]*:)?)?[\w.\-_@]+):([\d]+)/
+    );
+
     // Must be in the format `host:port`
-    if (! hostAndPort || ! hostAndPort.match(/^[\w\-_.]+:\d+$/)) {
+    if (! hostAndPort || ! match) {
       return defaultService;
     }
 
-    const [host, port] = hostAndPort.split(':');
+    const host = match[1];
+    const port = match[4];
+
     const client = new Redis({
       host,
       port,
