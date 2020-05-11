@@ -31,7 +31,7 @@ site.
 * `NODE_TLS_REJECT_UNAUTHORIZED` - Only disable this when attempting to execute
 http requests to development APIs with self signed certificates. Never disable
 this in production.
-* `REDIS_URL` - url of redis instance using `redis://` protocol.
+* `REDIS_URL` or `REDIS_MASTER` - url of redis instance using `redis://` protocol.
 * `CACHE_DURATION` - time in seconds redis entries will persist before being
 automatically deleted, defaults to 5 minutes
 * `BASIC_AUTH_USERNAME`

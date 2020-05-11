@@ -9,9 +9,9 @@ const cacheService = require('../services/cacheService')();
  * @returns {*}
  */
 const purgeEndpointCache = async (req, res) => {
-  const endpoint = req.originalUrl;
+  const path = req.originalUrl;
   const key = queryString.stringify({
-    path: endpoint,
+    path,
     context: 'site',
   }, {
     encode: false,

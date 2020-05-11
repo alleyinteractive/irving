@@ -25,7 +25,6 @@ export default function* resolveComponents() {
   } = yield select(getRouteMeta);
 
   if (getBearerToken(cookie)) {
-    console.log('hi');
     yield* resolveComponentsAuthorized();
     return;
   }
