@@ -23,7 +23,8 @@
     "babel.config.js",
     "irving.config.js",
     "irving.config.server.js",
-    "!*.test.js"
+    "!*.test.js",
+    "!__mocks__/**/*"
   ],
   "repository": {
     "type": "git",
