@@ -54,20 +54,7 @@ module.exports = (api) => {
             {
               root: [irvingRoot],
               // Tests need an irving config, use an alias so it doesn't override user config.
-              alias: {
-                '@irvingjs/irving.config': path.join(
-                  irvingRoot,
-                  'test/irving-test.config.js'
-                ),
-                '@irvingjs/irving.config.server': path.join(
-                  irvingRoot,
-                  'test/irving-test.config.js'
-                ),
-                '@irvingjs/componentMap': path.join(
-                  irvingRoot,
-                  'test/componentMap.js'
-                ),
-              },
+              alias: {},
             },
           ],
         ],

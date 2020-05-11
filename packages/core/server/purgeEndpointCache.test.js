@@ -1,17 +1,11 @@
 import waitForExpect from 'wait-for-expect';
-import bustPageCache from './bustPageCache';
+import purgeEndpointCache from './purgeEndpointCache';
 
-// Set up the mocked cache service.
-jest.mock(
-  '../services/cacheService',
-  // eslint-disable-next-line global-require
-  () => require('../test/cacheService')
-);
+jest.mock('../services/cacheService');
+require('../services/cacheService')();
 
 const mockRequest = (key) => ({
-  query: {
-    endpoint: key,
-  },
+  originalUrl: key,
 });
 
 const mockResponse = () => {
@@ -21,14 +15,14 @@ const mockResponse = () => {
   return res;
 };
 
-describe('bustPageCache', () => {
+describe('purgeEndpointCache', () => {
   it(
     'should display "No cache to bust" if no matching keys are found',
     async () => {
-      const req = mockRequest('path=/no-key-for-this&context=site');
+      const req = mockRequest('/no-key-for-this');
       const res = mockResponse();
 
-      await bustPageCache(req, res);
+      await purgeEndpointCache(req, res);
 
       await waitForExpect(() => {
         expect(res.json).toHaveBeenCalledWith('No cache to bust.');
@@ -39,10 +33,10 @@ describe('bustPageCache', () => {
   it(
     'should delete exact matches',
     async () => {
-      const req = mockRequest('path=/&context=site');
+      const req = mockRequest('/');
       const res = mockResponse();
 
-      await bustPageCache(req, res);
+      await purgeEndpointCache(req, res);
 
       await waitForExpect(() => {
         expect(res.json)
@@ -54,10 +48,10 @@ describe('bustPageCache', () => {
   it(
     'should delete any keys prefixed with the passed key',
     async () => {
-      const req = mockRequest('path=/test-page&context=site');
+      const req = mockRequest('/test-page');
       const res = mockResponse();
 
-      await bustPageCache(req, res);
+      await purgeEndpointCache(req, res);
 
       await waitForExpect(() => {
         expect(res.json)
