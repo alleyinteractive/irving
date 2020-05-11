@@ -22,7 +22,7 @@ const getService = () => {
     // Wait 2 seconds maximum before attempting reconnection
     Math.min(times * 50, 2000)
   );
-  const hostAndPort = process.env.REDIS_MASTER || '';
+  const hostAndPort = process.env.REDIS_MASTER || process.env.REDIS_URL || '';
   const password = process.env.REDIS_PASSWORD || null;
 
   // Set user- or package-configured cache service, if applicable.
