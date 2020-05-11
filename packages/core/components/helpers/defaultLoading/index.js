@@ -7,17 +7,20 @@ import styles from './defaultLoading.css';
 const DefaultLoading = (props) => {
   const {
     fullScreen,
+    fullScreenBgColor,
     loadingComponent,
     spinnerProps,
   } = props;
 
   return (
-    <div className={classNames(
-      styles.wrapper,
-      {
-        [styles.fullScreen]: fullScreen,
-      }
-    )}
+    <div
+      className={classNames(
+        styles.wrapper,
+        {
+          [styles.fullScreen]: fullScreen,
+        }
+      )}
+      style={{ backgroundColor: fullScreenBgColor }}
     >
       {loadingComponent || <Spinner {...spinnerProps} />}
     </div>
@@ -26,6 +29,7 @@ const DefaultLoading = (props) => {
 
 DefaultLoading.defaultProps = {
   fullScreen: false,
+  fullScreenBgColor: '#FFF',
   loadingComponent: null,
   spinnerProps: {},
 };
@@ -36,6 +40,11 @@ DefaultLoading.propTypes = {
    * default: false
    */
   fullScreen: PropTypes.bool,
+  /**
+   * Background color for full screen loader
+   * default: `#FFF`
+   */
+  fullScreenBgColor: PropTypes.string,
   /**
    * Allows for defining a custom component to be displayed for the loading state.
    * default: <Spinner />
