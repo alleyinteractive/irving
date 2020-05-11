@@ -6,7 +6,7 @@ This HOC accepts a `loadingProps` argument which can be used to pass optional pr
 import withLoader from './withLoader';
 const ComponentWithLoader = withLoader(<div />, {
   fullScreen: true,
-  loadingComponent:
+  loadingComponent: <div>My Custom Loading Component</div>,
 });
 
 <ComponentWithLoader />
