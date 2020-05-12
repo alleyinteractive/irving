@@ -3,11 +3,11 @@
   display: flex;
   justify-content: center;
   padding: 2rem;
+}
 
-  &.fullScreen {
-    background-color: #fff;
-    height: 100%;
-    position: fixed;
-    width: 100%;
-  }
+.fullScreen {
+  background-color: #fff;
+  height: 100%;
+  position: fixed;
+  width: 100%;
 }
