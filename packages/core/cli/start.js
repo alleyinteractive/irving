@@ -15,6 +15,7 @@ const getLogService = require('../services/logService');
 const log = getLogService('irving:server:error');
 const startServer = require('../server/startServer');
 const { rootUrl } = require('../config/paths');
+const nakedRedirect = require('../server/nakedRedirect');
 const bustCache = require('../server/bustCache');
 const bustPageCache = require('../server/bustPageCache');
 const purgePageCache = require('../server/purgePageCache');
@@ -56,6 +57,9 @@ proxyPassthrough.forEach((pattern) => {
 
 // Add universal cookies middleware.
 app.use(cookiesMiddleware());
+
+// Naked Redirect.
+app.use(nakedRedirect());
 
 if ('development' === NODE_ENV) {
   require('../server/development')(app);

@@ -114,7 +114,9 @@
   },
   "optionalDependencies": {
     "ioredis": "^4.16.3",
-    "newrelic": "^5.13.1"
+    "newrelic": "^5.13.1",
+    "express-naked-redirect": "^0.1.7",
+    "url-pattern": "^1.0.3"
   },
   "publishConfig": {
     "access": "public"
