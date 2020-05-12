@@ -1,4 +1,5 @@
 import getRelativeUrl from './getRelativeUrl';
+jest.mock('../irving.config.server.js');
 
 describe('getRelativeUrl', () => {
   it('should handle a relative url', () => {

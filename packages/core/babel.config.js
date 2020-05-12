@@ -4,6 +4,7 @@ const getConfigField = require('./utils/getConfigField');
 const {
   irvingRoot,
   buildContext,
+  mocks,
 } = require('./config/paths');
 const aliases = require('./config/aliases');
 const scopeDir = path.join(__dirname, '../');
@@ -54,7 +55,17 @@ module.exports = (api) => {
             {
               root: [irvingRoot],
               // Tests need an irving config, use an alias so it doesn't override user config.
-              alias: {},
+              alias: {
+                '@irvingjs/irving.config': path.join(
+                  mocks, 'irving.config.js'
+                ),
+                '@irvingjs/irving.config.server': path.join(
+                  mocks, 'irving.config.server.js'
+                ),
+                '@irvingjs/componentMap': path.join(
+                  mocks, 'componentMap.js'
+                ),
+              },
             },
           ],
         ],
