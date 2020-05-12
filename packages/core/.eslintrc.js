@@ -21,7 +21,6 @@ module.exports = {
     node: true,
     jquery: false,
     jasmine: true,
-    'jest/globals': true,
   },
   settings: {
     'import/resolver': {
@@ -32,12 +31,12 @@ module.exports = {
   rules: {
     'array-bracket-spacing': [2, 'never'],
     'arrow-parens': ['error', 'always'],
-    "comma-dangle": ["error", {
-      "arrays": "always-multiline",
-      "objects": "always-multiline",
-      "imports": "always-multiline",
-      "exports": "always-multiline",
-      "functions": "never",
+    'comma-dangle': ['error', {
+      arrays: 'always-multiline',
+      objects: 'always-multiline',
+      imports: 'always-multiline',
+      exports: 'always-multiline',
+      functions: 'never',
     }],
     'dot-location': [2, 'property'],
     'func-names': [1, 'always'],
@@ -46,14 +45,14 @@ module.exports = {
       properties: 'never',
       exceptions: ['x', 'y', 'i', 'e', 'n', 'k'],
     }],
-    indent: [2, 2, {SwitchCase: 1}],
-    'keyword-spacing': ['error', {after: true}],
+    indent: [2, 2, { SwitchCase: 1 }],
+    'keyword-spacing': ['error', { after: true }],
     'max-len': [2, 80, 4, {
       ignoreComments: true,
       ignoreUrls: true
     }],
     'no-bitwise': [2],
-    'no-confusing-arrow': ['error', {allowParens: true}],
+    'no-confusing-arrow': ['error', { allowParens: true }],
     'no-constant-condition': ['error'],
     'no-var': [2],
     'no-use-before-define': [2, 'nofunc'],
@@ -75,9 +74,9 @@ module.exports = {
     'jasmine/valid-expect': [2],
     'jasmine/no-global-setup': [2],
     'jasmine/no-expect-in-setup-teardown': [2],
-    'jsx-a11y/anchor-is-valid': [ 'error', {
-      components: [ 'Link' ],
-      specialLink: [ 'to' ]
+    'jsx-a11y/anchor-is-valid': ['error', {
+      components: ['Link'],
+      specialLink: ['to'],
     }],
     'react/prefer-stateless-function': 'off',
     'react/jsx-filename-extension': [0],
@@ -87,7 +86,7 @@ module.exports = {
     'react/state-in-constructor': [0],
     semi: [2, 'always'],
     'space-before-blocks': [2, 'always'],
-    'space-unary-ops': [2, {words: true, nonwords: true}],
+    'space-unary-ops': [2, { words: true, nonwords: true }],
     'space-in-parens': [2, 'never'],
     'spaced-comment': [2, 'always'],
     yoda: [2, 'always'],
