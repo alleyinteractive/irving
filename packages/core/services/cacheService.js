@@ -1,4 +1,5 @@
 const getConfigField = require('../utils/getConfigField');
+const getRedisOptions = require('./utils/getRedisOptions');
 const defaultService = {
   client: {},
   get: () => null,
@@ -22,8 +23,7 @@ const getService = () => {
     // Wait 2 seconds maximum before attempting reconnection
     Math.min(times * 50, 2000)
   );
-  const hostAndPort = process.env.REDIS_MASTER || process.env.REDIS_URL || '';
-  const password = process.env.REDIS_PASSWORD || null;
+  const [host, port, password] = getRedisOptions();
 
   // Set user- or package-configured cache service, if applicable.
   if (configService) {
@@ -40,7 +40,7 @@ const getService = () => {
   }
 
   // Redis env variables have not been configured.
-  if (! hostAndPort) {
+  if (! host || ! port) {
     return defaultService;
   }
 
@@ -56,18 +56,6 @@ const getService = () => {
     } catch (err) {
       return defaultService;
     }
-
-    const match = hostAndPort.match(
-      /((redis:\/\/([\w]*:)?)?[\w.\-_@]+):([\d]+)/
-    );
-
-    // Must be in the format `host:port`
-    if (! hostAndPort || ! match) {
-      return defaultService;
-    }
-
-    const host = match[1];
-    const port = match[4];
 
     const client = new Redis({
       host,
