@@ -47,7 +47,7 @@ DefaultLoading.propTypes = {
   fullScreenBgColor: PropTypes.string,
   /**
    * Allows for defining a custom component to be displayed for the loading state.
-   * default: <Spinner />
+   * default: null (<Spinner />)
    */
   loadingComponent: PropTypes.element,
   /**

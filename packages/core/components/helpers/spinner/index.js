@@ -14,8 +14,10 @@ const Spinner = (props) => {
     theme,
   } = props;
 
-  // Using inline styles allows for centering to prevent jumpiness when component is loaded.
-  // Also allows passing a color prop, since we have `stroke: `currentColor` on the path.
+  // Using inline styles for centering prevents jumpiness as the component is
+  // loaded, and allows passing color and size props to  inline styles.
+  // `stroke="currentColor"` on the SVG `<g>` or `<path>` element allows the
+  // `color` CSS property from the parent `<svg>` to cascade.
   const inlineStyle = {
     color,
     display: 'block',
