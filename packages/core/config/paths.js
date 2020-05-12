@@ -6,7 +6,6 @@ require('dotenv').config();
 const {
   PROXY_URL,
   ROOT_URL,
-  NODE_ENV,
   APP_ROOT,
   BUILD_CONTEXT,
 } = process.env;
