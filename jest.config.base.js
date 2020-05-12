@@ -12,7 +12,7 @@ module.exports = {
   testURL: 'https://irving.com',
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
-    '^.+\\.css$': path.join(__dirname, '/test/mockCssTransform.js'),
+    '^.+\\.css$': path.join(__dirname, '/__mocks__/mockCssTransform.js'),
   },
   transformIgnorePatterns: [
     '/node_modules/(?!@irvingjs)',
