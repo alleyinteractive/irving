@@ -10,11 +10,7 @@ module.exports = {
     },
     sourceType: 'module'
   },
-  plugins: [
-    'react',
-    'jest',
-    'jasmine'
-  ],
+  plugins: [ 'react' ],
   env: {
     es6: true,
     browser: true,
@@ -68,12 +64,6 @@ module.exports = {
     'import/no-extraneous-dependencies': [0],
     'import/no-unresolved': [0],
     'import/prefer-default-export': [0],
-    'jasmine/no-focused-tests': [1],
-    'jasmine/no-disabled-tests': [1],
-    'jasmine/missing-expect': [2],
-    'jasmine/valid-expect': [2],
-    'jasmine/no-global-setup': [2],
-    'jasmine/no-expect-in-setup-teardown': [2],
     'jsx-a11y/anchor-is-valid': ['error', {
       components: ['Link'],
       specialLink: ['to'],
