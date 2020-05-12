@@ -1,7 +1,7 @@
 import AbortController from 'abort-controller';
 import { CONTEXT_PAGE } from 'config/constants';
 import isNode from 'utils/isNode';
-import getBearerToken from 'utils/getBearerToken';
+import shouldAuthorize from 'utils/shouldAuthorize';
 import getService from './cacheService';
 import getLogService from './logService';
 import createComponentsEndpointQueryString from
@@ -53,7 +53,7 @@ export async function fetchComponents(
   };
 
   // Set up Authorization header, if applicable.
-  const authorizationBearerToken = getBearerToken(cookie);
+  const authorizationBearerToken = shouldAuthorize(cookie);
   if (authorizationBearerToken) {
     // Set to same origin so we don't conflict with other cookies.
     options.credentials = 'same-origin';
