@@ -1,28 +1,15 @@
+const expressNakedRedirect = require('express-naked-redirect');
 const getConfigField = require('../utils/getConfigField');
 
-const nakedRedirect = (req, res, next) => {
-  const nakedRedirectConfig = getConfigField('nakedRedirect');
+module.exports = function () {
+  const config = getConfigField('nakedRedirect');
 
-  if (nakedRedirectConfig) {
-    let expressNakedRedirect;
-    try {
-      // Require the package.
-      expressNakedRedirect = require('express-naked-redirect'); // eslint-disable-line global-require
-
-      // Only load this package if used.
-      if (nakedRedirectConfig.except) {
-        require('url-pattern'); // eslint-disable-line global-require
-      }
-    } catch (err) {
-      expressNakedRedirect = null;
-    }
-
-    if (expressNakedRedirect) {
-      return expressNakedRedirect(nakedRedirectConfig);
-    }
+  // Move on if not config is added.
+  if (Object.keys(config).length === 0) {
+    return function (req, res, next) {
+      return next();
+    };
   }
 
-  return next();
+  return expressNakedRedirect(config);
 };
-
-module.exports = nakedRedirect;
