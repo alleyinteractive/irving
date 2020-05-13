@@ -26,8 +26,7 @@ const {
 const app = express();
 
 // Clearing the Redis cache.
-app.get('/purge-cache', purgeCache);
-app.purge('/*', purgeEndpointCache);
+app.post('/purge-cache', purgeCache);
 
 // Set view engine.
 app.set('view engine', 'ejs');
