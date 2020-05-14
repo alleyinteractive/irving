@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getDisplayName from 'utils/getDisplayName';
-import PlaceholderLoading from 'components/placeholderLoading';
+import DefaultLoading from 'components/helpers/defaultLoading';
 
-const withLoader = (WrappedComponent) => {
+/**
+ * @param {*} WrappedComponent component that gets the conditional loading state
+ * @param {object} loadingProps optional props passed to the DefaultLoading component
+ */
+const withLoader = (WrappedComponent, loadingProps) => {
   const Loader = (props) => {
     const { loading } = props;
     return loading ? (
-      <PlaceholderLoading />
+      <DefaultLoading {...loadingProps} />
     ) : (
       <WrappedComponent {...props} />
     );

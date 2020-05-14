@@ -13,6 +13,7 @@ module.exports = {
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
     '^.+\\.css$': path.join(__dirname, '/__mocks__/mockCssTransform.js'),
+    '^.+\\.svg$': path.join(__dirname, '/__mocks__/mockSvgTransform.js'),
   },
   transformIgnorePatterns: [
     '/node_modules/(?!@irvingjs)',

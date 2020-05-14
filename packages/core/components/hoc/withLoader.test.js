@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import defaultState from 'reducers/defaultState';
-import PlaceholderLoading from 'components/placeholderLoading';
+import DefaultLoading from 'components/helpers/defaultLoading';
 import withLoader from './withLoader';
 
 it('should skip rendering wrapped component if loading', () => {
@@ -18,7 +18,7 @@ it('should skip rendering wrapped component if loading', () => {
     </Provider>
   );
 
-  expect(wrapper.find(PlaceholderLoading)).toHaveLength(1);
+  expect(wrapper.find(DefaultLoading)).toHaveLength(1);
 });
 
 it('should render wrapped component if not loading', () => {
