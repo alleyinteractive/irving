@@ -7,15 +7,19 @@ const cookiesMiddleware = require('universal-cookie-express');
 require('../utils/shimWindow');
 
 const getConfigField = require('../utils/getConfigField');
-const { getConfigArray } = require('../utils/getConfigValue');
+const {
+  getConfigArray
+} = require('../utils/getConfigValue');
 const getService = require('../services/monitorService');
 getService().start();
 
 const getLogService = require('../services/logService');
 const log = getLogService('irving:server:error');
 const startServer = require('../server/startServer');
-const { rootUrl } = require('../config/paths');
-const nakedRedirect = require('../server/nakedRedirect');
+const {
+  rootUrl
+} = require('../config/paths');
+const customizeRedirect = require('../server/customizeRedirect');
 const bustCache = require('../server/bustCache');
 const bustPageCache = require('../server/bustPageCache');
 const purgePageCache = require('../server/purgePageCache');
@@ -59,7 +63,7 @@ proxyPassthrough.forEach((pattern) => {
 app.use(cookiesMiddleware());
 
 // Naked Redirect.
-app.use(nakedRedirect());
+app.use(customizeRedirect());
 
 if ('development' === NODE_ENV) {
   require('../server/development')(app);
@@ -81,7 +85,7 @@ app.use((err, req, res, next) => {
 // Allow customization of how server is created.
 // Run all customize server functions.
 const server = getConfigField('startServer')(app);
-if (! server) {
+if (!server) {
   startServer(app);
 }
 
