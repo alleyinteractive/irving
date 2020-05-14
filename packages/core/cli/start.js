@@ -1,5 +1,6 @@
 /* eslint-disable global-require, no-console, import/order */
 const express = require('express');
+const bodyParser = require('body-parser');
 const proxy = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 
@@ -16,7 +17,6 @@ const log = getLogService('irving:server:error');
 const startServer = require('../server/startServer');
 const { rootUrl } = require('../config/paths');
 const purgeCache = require('../server/purgeCache');
-const purgeEndpointCache = require('../server/purgeEndpointCache');
 
 const {
   API_ROOT_URL,
@@ -26,7 +26,7 @@ const {
 const app = express();
 
 // Clearing the Redis cache.
-app.post('/purge-cache', purgeCache);
+app.post('/purge-cache', bodyParser.json(), purgeCache);
 
 // Set view engine.
 app.set('view engine', 'ejs');

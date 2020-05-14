@@ -1,19 +1,19 @@
 const get = require('lodash/fp/get');
+const chalk = require('chalk');
 const queryString = require('query-string');
 const cacheService = require('../services/cacheService')();
 
 /**
  * Turn a fully-qualified URL into a key for cache purging.
  *
- * @param {string} url URL to transform
+ * @param {string} path URL to transform
  * @returns {string} Path to be used as a redis key.
  */
-const createKeyFromUrl = (url) => {
-  if (! url) {
+const createKeyFromPath = (path) => {
+  if (! path) {
     return false;
   }
 
-  const path = url.replace(process.env.ROOT_URL, '');
   const normalizedPath = [...path].reduce(
     (acc, letter, idx) => {
       // Normalize to include preceeding slash.
@@ -65,35 +65,28 @@ const createKeyFromUrl = (url) => {
  * @param {string} key Base path to use for purging keys.
  * @returns {Promise}
  */
-const executeStream = async (key = '') => {
+const executeStream = async (pipeline, res, key = '') => {
   const stream = await cacheService.client.scanStream({
     match: key,
   });
+  const keyMessage = key ? ` for key ${key}` : '';
+  let matches = 0;
 
-  return new Promise((resolve) => {
-    let keysDeleted = 0;
+  return new Promise((resolve, reject) => {
+    stream.on('data', (keys) => {
+      keys.forEach((foundKey) => {
+        matches += 1;
+        pipeline.del(foundKey);
+      });
+    });
 
-    stream.on('data', async (keys) => {
-      // `keys` is an array of strings representing key names
-      if (keys.length) {
-        const pipeline = cacheService.client.pipeline();
-        keysDeleted += keys.length;
-
-        keys.forEach((foundKey) => {
-          pipeline.del(foundKey);
-        });
-        pipeline.exec();
-      }
+    stream.on('error', (e) => {
+      reject(e);
     });
 
     stream.on('end', () => {
-      const keyMessage = key ? ` for key ${key}` : '';
-
-      if (0 === keysDeleted) {
-        resolve(`No keys matched${keyMessage}`);
-      }
-
-      resolve(`matched ${keysDeleted} keys${keyMessage}`);
+      res.write(`Purged ${matches} entries${keyMessage}\n`);
+      resolve();
     });
   });
 };
@@ -106,30 +99,31 @@ const executeStream = async (key = '') => {
  * @returns {*}
  */
 const purgeCache = async (req, res) => {
-  const urls = get('urls', req.body) || [];
+  const paths = get('paths', req.body) || [];
+  const pipeline = cacheService.client.pipeline();
 
   // Create a readable stream (object mode).
   // This approach is better for performance.
-  if (urls.length) {
+  if (paths.length) {
     Promise.all(
-      urls.map(async (url) => (
-        executeStream(createKeyFromUrl(url))
+      paths.map(async (path) => (
+        executeStream(pipeline, res, createKeyFromPath(path))
       ))
-    ).then((values) => {
-      res.write('Cache purge successful: ');
-
-      values.forEach((value) => {
-        res.write(value);
-      });
-
+    ).then(() => {
+      pipeline.exec();
+      res.write('Cache purge successful!');
       res.end();
-    });
+    }).catch(
+      (e) => console.log(chalk.red(e)) // eslint-disable-line no-console
+    );
 
     return;
   }
 
-  const response = await executeStream();
-  res.send(`Cache purge successful: ${response}`);
+  await executeStream(pipeline, res);
+  pipeline.exec();
+  res.write('Cache purge successful!');
+  res.end();
 };
 
 module.exports = purgeCache;

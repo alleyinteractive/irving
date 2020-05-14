@@ -6,7 +6,7 @@ require('../services/cacheService')();
 
 const mockRequest = (keys) => ({
   body: {
-    urls: keys,
+    paths: keys,
   },
 });
 
@@ -34,7 +34,8 @@ describe('purgeCache', () => {
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe('Cache purge successful: No keys matched for key components-endpoint:path=/no-key-for-this*');
+          .toBe(`Purged 0 entries for key components-endpoint:path=/no-key-for-this*
+Cache purge successful!`);
       });
     }
   );
@@ -49,7 +50,8 @@ describe('purgeCache', () => {
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe('Cache purge successful: matched 1 keys for key components-endpoint:path=/&context=site');
+          .toBe(`Purged 1 entries for key components-endpoint:path=/&context=site
+Cache purge successful!`);
       });
     }
   );
@@ -64,7 +66,8 @@ describe('purgeCache', () => {
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe('Cache purge successful: matched 3 keys for key components-endpoint:path=/test-page*');
+          .toBe(`Purged 3 entries for key components-endpoint:path=/test-page*
+Cache purge successful!`);
       });
     }
   );
@@ -79,7 +82,9 @@ describe('purgeCache', () => {
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe('Cache purge successful: matched 2 keys for key components-endpoint:path=/test-article*matched 2 keys for key components-endpoint:path=/test-term*');
+          .toBe(`Purged 2 entries for key components-endpoint:path=/test-article*
+Purged 2 entries for key components-endpoint:path=/test-term*
+Cache purge successful!`);
       });
     }
   );
@@ -93,8 +98,9 @@ describe('purgeCache', () => {
       await purgeCache(req, res);
 
       await waitForExpect(() => {
-        expect(res.send)
-          .toHaveBeenCalledWith('Cache purge successful: matched 1 keys');
+        expect(res.body)
+          .toBe(`Purged 1 entries
+Cache purge successful!`);
       });
     }
   );

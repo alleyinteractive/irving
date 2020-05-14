@@ -75,7 +75,7 @@ const getService = () => {
       async get(key) {
         return JSON.parse(await this.client.get(key));
       },
-      set(key, value) {
+      async set(key, value) {
         return this.client.set(
           key,
           JSON.stringify(value),
