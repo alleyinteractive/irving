@@ -4,7 +4,7 @@ import config from './irving.config';
 
 export default config;
 
-export  {
+export {
   AudioElement,
   PlayPauseButton,
 };

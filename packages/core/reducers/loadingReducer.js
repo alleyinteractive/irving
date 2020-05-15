@@ -1,5 +1,6 @@
 import {
   LOCATION_CHANGE,
+  REQUEST_COMPONENTS_AUTHORIZED,
   RECEIVE_COMPONENTS,
   RECEIVE_ERROR,
   FINISH_LOADING,
@@ -16,6 +17,7 @@ export default function loadingReducer(loadingState = defaultState, action) {
   const { type } = action;
   switch (type) {
     case LOCATION_CHANGE:
+    case REQUEST_COMPONENTS_AUTHORIZED:
       return true;
 
     case FINISH_LOADING:
