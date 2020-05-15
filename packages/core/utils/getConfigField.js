@@ -19,7 +19,7 @@ if (process.env.BUILD) {
       e.toString().includes('irving.config.server.js')
     ) {
       // Server config missing, which is ok (but user should still be notified.)
-      console.log(
+      console.log( // eslint-disable-line no-console
         chalk.yellow('No Irving server config found, continuing with defaults.')
       );
       config = {};
