@@ -8,7 +8,7 @@ describe('cacheService', () => {
   });
 
   it('should allow usage of REDIS_URL env var', () => {
-    process.env.REDIS_URL = '127.0.0.1:6379';
+    process.env.REDIS_URL = '127.0.0.1:6379'; // This is not a real redis host.
     const [host] = getRedisOptions();
 
     expect(host).toBe('127.0.0.1');
@@ -30,7 +30,7 @@ describe('cacheService', () => {
   });
 
   it('should match host with redis protocol', () => {
-    process.env.REDIS_MASTER = 'redis://h:pf11eaf6aa741db6178b99@ec2-3-211.compute-1.amazonaws.com:11839';
+    process.env.REDIS_MASTER = 'redis://h:pf11eaf6aa741db6178b99@ec2-3-211.compute-1.amazonaws.com:11839'; // This is not a real redis host.
     const [host, port] = getRedisOptions();
 
     expect(host).toBe('redis://h:pf11eaf6aa741db6178b99@ec2-3-211.compute-1.amazonaws.com');
