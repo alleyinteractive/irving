@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.2-beta.3](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v2.7.2-beta.2...v2.7.2-beta.3) (2020-05-15)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
 ## [2.7.2-beta.2](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v2.7.2-beta.1...v2.7.2-beta.2) (2020-05-12)
 
 **Note:** Version bump only for package @irvingjs/audio-player
