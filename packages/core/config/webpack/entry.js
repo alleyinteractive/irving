@@ -13,7 +13,6 @@ const {
  */
 module.exports = function getEntry(context) {
   const polyfills = [
-    'core-js/stable',
     'regenerator-runtime/runtime',
     'abort-controller/polyfill',
   ];
