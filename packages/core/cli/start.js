@@ -3,7 +3,7 @@
 const getEnv = require('../config/env');
 const {
   API_ROOT_URL,
-  API_ORIGN,
+  API_ORIGIN,
   NODE_ENV,
 } = getEnv();
 
@@ -15,7 +15,6 @@ getService().start();
 require('../utils/shimWindow');
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const proxy = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const getConfigField = require('../utils/getConfigField');
@@ -23,15 +22,11 @@ const { getConfigArray } = require('../utils/getConfigValue');
 const getLogService = require('../services/logService');
 const startServer = require('../server/startServer');
 const { rootUrl } = require('../config/paths');
-const purgeCache = require('../server/purgeCache');
-const getCacheKeys = require('../server/getCacheKeys');
-
 const log = getLogService('irving:server');
 const app = express();
 
-// Clearing the Redis cache.
-app.post('/purge-cache', bodyParser.json(), purgeCache);
-app.get('/cache-keys', getCacheKeys);
+// Cache-related endpoints.
+require('../server/cache')(app);
 
 // Set view engine.
 app.set('view engine', 'ejs');
@@ -47,7 +42,7 @@ const passthrough = proxy({
   followRedirects: true,
   secure: 'development' !== NODE_ENV,
   // @todo make this not specific to WP eventually.
-  target: API_ORIGN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
   xfwd: true,
 });
 

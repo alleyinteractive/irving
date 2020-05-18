@@ -13,18 +13,18 @@ const {
  * @param {function} next
  * @returns {*}
  */
-function checkAuthenticated(req, res, next) {
+const createCheckAuth = (realm) => (req, res, next) => {
   if (! username || ! password) {
     return next();
   }
 
   const user = auth(req);
   if (! user || user.name !== username || user.pass !== password) {
-    res.set('WWW-Authenticate', 'Basic realm="example"');
+    res.set('WWW-Authenticate', `Basic realm="${realm}"`);
     return res.status(401).send();
   }
 
   return next();
-}
+};
 
-module.exports = checkAuthenticated;
+module.exports = createCheckAuth;
