@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const { maybeResolveUserModule } = require('../../utils/userModule');
-const getEnv = require('./env');
+const getEnv = require('../env');
 const { rootUrl } = require('../paths');
 
 /**

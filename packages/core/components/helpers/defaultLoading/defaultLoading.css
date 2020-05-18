@@ -2,11 +2,12 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  padding: 4rem;
 }
 
 .fullScreen {
   height: 100%;
   position: fixed;
   width: 100%;
+  z-index: 1000;
 }

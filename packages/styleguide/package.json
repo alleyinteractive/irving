@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/styleguide",
-	"version": "2.7.2-beta.2",
+	"version": "2.7.2-beta.4",
 	"description": "React Styleguidist for Irving",
 	"files": [
 		"config/**/*",
@@ -21,7 +21,7 @@
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "^2.7.2-beta.2",
-		"@irvingjs/core": "^2.7.2-beta.2",
+		"@irvingjs/core": "^2.7.2-beta.4",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"jest": "^25.5.3"
 	},
