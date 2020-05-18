@@ -6,6 +6,7 @@ module.exports = {
   cacheService: () => {},
   startServer: () => {},
   exportServer: [() => {}],
+  customizeRedirect: {},
   customizeServer: [() => {}],
   customizeDevServer: [() => {}],
   customizeProdServer: [() => {}],

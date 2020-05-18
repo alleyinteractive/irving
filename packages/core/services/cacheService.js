@@ -1,4 +1,5 @@
 const getConfigField = require('../utils/getConfigField');
+const getRedisOptions = require('./utils/getRedisOptions');
 const defaultService = {
   client: {},
   get: () => null,
@@ -18,6 +19,11 @@ let service;
  */
 const getService = () => {
   const configService = getConfigField('cacheService')();
+  const retryStrategy = (times) => (
+    // Wait 2 seconds maximum before attempting reconnection
+    Math.min(times * 50, 2000)
+  );
+  const [host, port, password] = getRedisOptions();
 
   // Set user- or package-configured cache service, if applicable.
   if (configService) {
@@ -34,7 +40,7 @@ const getService = () => {
   }
 
   // Redis env variables have not been configured.
-  if (! process.env.REDIS_URL) {
+  if (! host || ! port) {
     return defaultService;
   }
 
@@ -51,7 +57,15 @@ const getService = () => {
       return defaultService;
     }
 
-    const client = new Redis(process.env.REDIS_URL);
+    const client = new Redis({
+      host,
+      port,
+      password,
+      retryStrategy,
+      enableOfflineQueue: true,
+      maxRetriesPerRequest: process.env.QUEUED_CONNECTION_ATTEMPTS,
+    });
+
     client.on('error', (err) => {
       console.error(err); // eslint-disable-line no-console
     });
@@ -61,7 +75,7 @@ const getService = () => {
       async get(key) {
         return JSON.parse(await this.client.get(key));
       },
-      set(key, value) {
+      async set(key, value) {
         return this.client.set(
           key,
           JSON.stringify(value),

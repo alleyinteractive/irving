@@ -6,13 +6,20 @@ import DefaultLoading from 'components/helpers/defaultLoading';
 
 /**
  * @param {*} WrappedComponent component that gets the conditional loading state
- * @param {object} loadingProps optional props passed to the DefaultLoading component
+ * @param {object} opts Options for this HOC
+ * @param {object} opts.loadingProps - Props for the default loading component
+ * @param {object} opts.LoadingComponent - Loading component to use instead of the default.
  */
-const withLoader = (WrappedComponent, loadingProps) => {
+const withLoader = (WrappedComponent, opts = {}) => {
+  const {
+    loadingProps = {},
+    LoadingComponent = DefaultLoading,
+  } = opts;
+
   const Loader = (props) => {
     const { loading } = props;
     return loading ? (
-      <DefaultLoading {...loadingProps} />
+      <LoadingComponent {...loadingProps} />
     ) : (
       <WrappedComponent {...props} />
     );

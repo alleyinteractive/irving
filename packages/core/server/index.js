@@ -1,29 +1,39 @@
 /* eslint-disable global-require, no-console, import/order */
-const express = require('express');
-const proxy = require('http-proxy-middleware');
-const cookiesMiddleware = require('universal-cookie-express');
+// Get environmental variables
+const getEnv = require('../config/env');
+const {
+  API_ROOT_URL,
+  API_ORIGN,
+  NODE_ENV,
+} = getEnv();
 
-// Shim window global and browser matchMedia API
-require('../utils/shimWindow');
-
-const getConfigField = require('../utils/getConfigField');
-const { getConfigArray } = require('../utils/getConfigValue');
+// Start monitor service as early as possible.
 const getService = require('../services/monitorService');
 getService().start();
 
-const getLogService = require('../services/logService');
-const log = getLogService('irving:server:error');
-const bustCache = require('./bustCache');
-const bustPageCache = require('./bustPageCache');
-const purgePageCache = require('./purgePageCache');
+// Shim some browser-only global variables.
+require('../utils/shimWindow');
 
-const { API_ROOT_URL, API_ORIGN, NODE_ENV } = process.env;
+const express = require('express');
+const bodyParser = require('body-parser');
+const proxy = require('http-proxy-middleware');
+const cookiesMiddleware = require('universal-cookie-express');
+const getConfigField = require('../utils/getConfigField');
+const {
+  getConfigArray
+} = require('../utils/getConfigValue');
+
+const getLogService = require('../services/logService');
+const customizeRedirect = require('../server/customizeRedirect');
+const purgeCache = require('../server/purgeCache');
+const getCacheKeys = require('../server/getCacheKeys');
+
+const log = getLogService('irving:server');
 const app = express();
 
 // Clearing the Redis cache.
-app.get('/bust-endpoint-cache', bustPageCache);
-app.get('/bust-entire-cache', bustCache);
-app.purge('/*', purgePageCache);
+app.post('/purge-cache', bodyParser.json(), purgeCache);
+app.get('/cache-keys', getCacheKeys);
 
 // Set view engine.
 app.set('view engine', 'ejs');
@@ -51,10 +61,13 @@ proxyPassthrough.forEach((pattern) => {
 // Add universal cookies middleware.
 app.use(cookiesMiddleware());
 
+// Naked Redirect.
+app.use(customizeRedirect());
+
 if ('development' === NODE_ENV) {
-  require('./development')(app);
+  require('../server/development')(app);
 } else {
-  require('./production')(app);
+  require('../server/production')(app);
 }
 
 // Default error handler

@@ -8,5 +8,5 @@ Some noteworthy components to flag,
 * [Connected Root](https://github.com/alleyinteractive/irving/tree/production/components/connectedRoot)
 * [Error Boundary](https://github.com/alleyinteractive/irving/tree/production/components/errorBoundary)
 * [Placeholder](https://github.com/alleyinteractive/irving/tree/production/components/placeholder)
-* [Placeholder Loading](https://github.com/alleyinteractive/irving/tree/production/components/placeholderLoading)
+* [Placeholder Loading](https://github.com/alleyinteractive/irving/tree/production/components/defaultLoading)
 * [Root Providers](https://github.com/alleyinteractive/irving/tree/production/components/rootProviders)
