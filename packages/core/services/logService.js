@@ -44,19 +44,19 @@ const getService = (namespace) => {
   return Object.keys(defaultService)
     .reduce((acc, method) => {
       acc[method] = (...messages) => {
-        // In development the app should crash fast when encountering any errors.
-        if ('development' === env) {
-          messages.forEach((message) => {
-            if (message instanceof Error) {
+        messages.forEach((message) => {
+          if (message instanceof Error) {
+            // In development the app should crash fast when encountering any errors.
+            if ('development' === env) {
               throw message;
             }
-          });
-        }
 
-        // Send error to production monitoring service.
-        if ('production' === env) {
-          monitor.logError();
-        }
+            // Send error to production monitoring service.
+            if ('production' === env) {
+              monitor.logError(message);
+            }
+          }
+        });
 
         log(...messages);
       };

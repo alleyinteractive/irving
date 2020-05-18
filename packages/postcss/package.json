@@ -1,36 +1,36 @@
 {
-	"name": "@irvingjs/postcss",
-	"version": "2.8.0-alpha.9",
-	"description": "PostCSS configuration functionality for Irving",
-	"files": [
-		"config/**/*",
-		"irving.config.server.js",
-		"!*.test.js"
-	],
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/alleyinteractive/irving/packages/integrations"
-	},
-	"author": "Alley (Alley.co)",
-	"license": "MIT",
-	"dependencies": {
-		"autoprefixer": "^9.7.6",
-		"postcss-loader": "^3.0.0",
-		"stylelint": "^13.3.3",
-		"stylelint-order": "^4.0.0"
-	},
-	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^2.8.0-alpha.9",
-		"@irvingjs/core": "^2.8.0-alpha.9",
-		"babel-plugin-module-resolver": "^4.0.0",
-		"jest": "^25.5.3"
-	},
-	"peerDependencies": {
-		"@irvingjs/core": ">=2.0.0"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"gitHead": "2b57a99dc78a57506cc60cf709b756d1cc5ecef5"
+  "name": "@irvingjs/postcss",
+  "version": "2.8.0-alpha.9",
+  "description": "PostCSS configuration functionality for Irving",
+  "files": [
+    "config/**/*",
+    "irving.config.server.js",
+    "!*.test.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/integrations"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "^9.7.6",
+    "postcss-loader": "^3.0.0",
+    "stylelint": "^13.3.3",
+    "stylelint-order": "^4.0.0"
+  },
+  "devDependencies": {
+    "@irvingjs/babel-preset-irving": "^2.8.0-alpha.9",
+    "@irvingjs/core": "^2.8.0-alpha.9",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "jest": "^25.5.3"
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">=2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "2b57a99dc78a57506cc60cf709b756d1cc5ecef5"
 }
