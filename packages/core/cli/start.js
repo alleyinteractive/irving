@@ -21,8 +21,6 @@ const getConfigField = require('../utils/getConfigField');
 const {
   getConfigArray
 } = require('../utils/getConfigValue');
-const getService = require('../services/monitorService');
-getService().start();
 
 const getLogService = require('../services/logService');
 const startServer = require('../server/startServer');
