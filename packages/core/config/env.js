@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { appRoot } = require('../paths');
-const { getConfigArray } = require('../../utils/getConfigValue');
+const { appRoot } = require('./paths');
+const { getConfigArray } = require('../utils/getConfigValue');
 
 /**
  * Get the client available environment variables.

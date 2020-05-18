@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/postcss",
-	"version": "2.6.0",
+	"version": "2.7.2-beta.4",
 	"description": "PostCSS configuration functionality for Irving",
 	"files": [
 		"config/**/*",
@@ -15,22 +15,16 @@
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
-		"autoprefixer": "^9.6.5",
+		"autoprefixer": "^9.7.6",
 		"postcss-loader": "^3.0.0",
-		"stylelint": "^11.1.1",
-		"stylelint-order": "^3.1.1"
+		"stylelint": "^13.3.3",
+		"stylelint-order": "^4.0.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.8.6",
-		"@irvingjs/babel-preset-irving": "^2.6.0",
-		"@irvingjs/core": "^2.6.0",
-		"babel-jest": "^25.1.0",
+		"@irvingjs/babel-preset-irving": "^2.7.2-beta.2",
+		"@irvingjs/core": "^2.7.2-beta.4",
 		"babel-plugin-module-resolver": "^4.0.0",
-		"enzyme": "^3.10.0",
-		"enzyme-adapter-react-16": "^1.15.1",
-		"jest": "^24.9.0",
-		"jest-environment-enzyme": "^7.1.1",
-		"jest-enzyme": "^7.1.1"
+		"jest": "^25.5.3"
 	},
 	"peerDependencies": {
 		"@irvingjs/core": ">=2.0.0"

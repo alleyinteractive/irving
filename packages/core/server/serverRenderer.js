@@ -2,7 +2,7 @@
 import 'source-map-support/register';
 import React from 'react';
 import { Provider } from 'react-redux';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
@@ -11,7 +11,7 @@ import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
-import getEnv from 'config/webpack/env';
+import getEnv from 'config/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import addTrailingSlash from 'utils/addTrailingSlash';
