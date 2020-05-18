@@ -39,7 +39,7 @@ module.exports = {
 
 ### Environment
 * `VIP_GO_APP_ID` - ID of your VIP Go app. This is not necessary (and should not be added to) your development environment.
-* `REDIS_MASTER` - Host and port of redis instance (separated by `:`)
+* `REDIS_MASTER` - Host and port of redis instance (separated by `:`) (NOTE: Irving Core's `REDIS_URL` env var will not work for this package).
 * `REDIS_PASSWORD` - Password necessary for interacting with Redis instance.
 * `NEW_RELIC_APP_NAME` - The name of this application, for reporting to New Relic's servers. This value can be also be a comma-delimited list of names.
 * `NEW_RELIC_LICENSE_KEY` - Your New Relic license key.
