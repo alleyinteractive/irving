@@ -8,11 +8,11 @@ describe('getDisplayName', () => {
   });
 
   it('should return the name of the component)', () => {
-    const Baz = () => <div>Baz</div>;
+    const Baz = () => <div>Baz.</div>;
     expect(getDisplayName('Testing', Baz)).toBe('Testing(Baz)');
   });
 
-  it('should return fallbck component name)', () => {
+  it('should return fallback component name)', () => {
     expect(getDisplayName('Testing', '')).toBe('Testing(Component)');
   });
 });
