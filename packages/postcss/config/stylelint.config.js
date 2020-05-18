@@ -4,6 +4,7 @@ module.exports = {
   plugins: [
     require.resolve('stylelint-order'),
   ],
+  ignoreFiles: ['./node_modules/**/*.css'],
   rules: {
     'at-rule-empty-line-before': ['always', {
       except: [
