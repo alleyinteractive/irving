@@ -120,7 +120,11 @@ async function cachedFetchComponents(
     context
   );
   const key = `components-endpoint:${componentsQuery}`;
-  const info = { cached: false, route: key };
+  const info = {
+    cached: false,
+    endpoint: `${process.env.API_ROOT_URL}/components?${componentsQuery}`,
+    cacheKey: key,
+  };
   let response = await cache.get(key);
   const { bypassCache } = cookie;
 

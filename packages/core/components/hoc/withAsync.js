@@ -1,9 +1,9 @@
 import universal from 'react-universal-component';
-import PlaceholderLoading from 'components/placeholderLoading';
+import DefaultLoading from 'components/defaultLoading';
 
 const withAsync = (importer) => (
   universal(importer, {
-    loading: PlaceholderLoading,
+    loading: DefaultLoading,
     minDelay: 300,
     ignoreBabelRename: true,
   })

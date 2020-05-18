@@ -1,29 +1,32 @@
 /* eslint-disable global-require, no-console, import/order */
+// Get environmental variables
+const getEnv = require('../config/env');
+const {
+  API_ROOT_URL,
+  API_ORIGN,
+  NODE_ENV,
+} = getEnv();
+
+// Start monitor service as early as possible.
+const getService = require('../services/monitorService');
+getService().start();
+
+// Shim some browser-only global variables.
+require('../utils/shimWindow');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const proxy = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
-
-// Shim window global and browser matchMedia API
-require('../utils/shimWindow');
-
 const getConfigField = require('../utils/getConfigField');
 const { getConfigArray } = require('../utils/getConfigValue');
-const getService = require('../services/monitorService');
-getService().start();
-
 const getLogService = require('../services/logService');
-const log = getLogService('irving:server:error');
 const startServer = require('../server/startServer');
 const { rootUrl } = require('../config/paths');
 const purgeCache = require('../server/purgeCache');
 const getCacheKeys = require('../server/getCacheKeys');
 
-const {
-  API_ROOT_URL,
-  API_ORIGN,
-  NODE_ENV,
-} = process.env;
+const log = getLogService('irving:server');
 const app = express();
 
 // Clearing the Redis cache.
