@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.7.2...v2.8.0-beta.0) (2020-05-18)
+
+
+### Bug Fixes
+
+* **aliases:** add comment, fix alias object ([519c03f](https://github.com/alleyinteractive/irving/packages/core/commit/519c03fe90191578236c800a2429aa15123ea9f2))
+* **aliases:** add react alias in attempt to fix npm link ([ff57eed](https://github.com/alleyinteractive/irving/packages/core/commit/ff57eed26c32b3f83dcd69bcb123cdcda3d39292))
+* **aliases:** prevent duplicate react error with npm link ([a5d7f5b](https://github.com/alleyinteractive/irving/packages/core/commit/a5d7f5b1175448e570d6b9530a410b37c16086db))
+* **mocks:** add back in babel aliasas to mock configs ([2223e7a](https://github.com/alleyinteractive/irving/packages/core/commit/2223e7a00e47447423d361c26b946cfc0b9cdd47))
+* **redis:** allow REDIS_URL again for cache service to support heroku ([4567097](https://github.com/alleyinteractive/irving/packages/core/commit/456709777ee7ca9c28fffb8760f4833aacafccfa))
+* **redis:** bypass redis when auth token cookie exists, even if we aren't making an auth request ([f0b103d](https://github.com/alleyinteractive/irving/packages/core/commit/f0b103de62748283b2d0a7e0412355db79e8500a))
+* **redis:** fix matching logic for redis host/port ([3fc9c6f](https://github.com/alleyinteractive/irving/packages/core/commit/3fc9c6f71f9052a677798b835e5a797c1ff216bf))
+
+
+### Features
+
+* **cacheservice:** update cacheService to use same env vars as vip-go package ([6c08299](https://github.com/alleyinteractive/irving/packages/core/commit/6c08299f2cdf3ad0178404d1fa6fa9bce56caf5b))
+* **purgecache:** consolidate logic for purgeCache to accomodate urls or entire cache ([068ff35](https://github.com/alleyinteractive/irving/packages/core/commit/068ff356fc2e784640ee8e19dc54aab2d33e74a1))
+* **redis:** add in endpoint to get all redis cache keys ([973b3b3](https://github.com/alleyinteractive/irving/packages/core/commit/973b3b324f2d945402b9c17148901dd43d1976b2))
+* **redis:** update redis env vars, modify cache purge functionality ([ae53bb0](https://github.com/alleyinteractive/irving/packages/core/commit/ae53bb019f60133953fad9c9292c43a804408f67))
+
+
+
+
+
 ## [2.7.2](https://github.com/alleyinteractive/irving/packages/core/compare/v2.7.2-beta.4...v2.7.2) (2020-05-18)
 
 **Note:** Version bump only for package @irvingjs/core

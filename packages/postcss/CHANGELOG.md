@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.7.2...v2.8.0-beta.0) (2020-05-18)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
 ## [2.7.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.7.2-beta.4...v2.7.2) (2020-05-18)
 
 **Note:** Version bump only for package @irvingjs/postcss
