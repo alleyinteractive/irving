@@ -19,9 +19,13 @@ const bodyParser = require('body-parser');
 const proxy = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const getConfigField = require('../utils/getConfigField');
-const { getConfigArray } = require('../utils/getConfigValue');
+const {
+  getConfigArray
+} = require('../utils/getConfigValue');
+
 const getLogService = require('../services/logService');
 const startServer = require('../server/startServer');
+const customizeRedirect = require('../server/customizeRedirect');
 const { rootUrl } = require('../config/paths');
 const purgeCache = require('../server/purgeCache');
 const getCacheKeys = require('../server/getCacheKeys');
@@ -59,6 +63,9 @@ proxyPassthrough.forEach((pattern) => {
 // Add universal cookies middleware.
 app.use(cookiesMiddleware());
 
+// Naked Redirect.
+app.use(customizeRedirect());
+
 if ('development' === NODE_ENV) {
   require('../server/development')(app);
 } else {
@@ -79,7 +86,7 @@ app.use((err, req, res, next) => {
 // Allow customization of how server is created.
 // Run all customize server functions.
 const server = getConfigField('startServer')(app);
-if (! server) {
+if (!server) {
   startServer(app);
 }
 

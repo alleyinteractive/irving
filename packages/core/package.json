@@ -109,7 +109,9 @@
     "webpack-hot-server-middleware": "^0.6.0",
     "webpack-node-externals": "^1.7.2",
     "webpack-stats-plugin": "^0.3.1",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.0.0",
+    "express-naked-redirect": "^0.1.7",
+    "url-pattern": "^1.0.3"
   },
   "optionalDependencies": {
     "ioredis": "^4.16.3",
