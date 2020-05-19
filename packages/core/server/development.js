@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
-const proxy = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const getConfig = require('../config/webpack.config.js');
 const getConfigField = require('../utils/getConfigField');
 
@@ -35,7 +35,7 @@ const developmentMiddleware = (app) => {
   app.use(webpackHotServerMiddleware(multiCompiler));
   // Support local HTTPS through a proxy.
   if (PROXY_URL) {
-    app.use(proxy('**', {
+    app.use(createProxyMiddleware('**', {
       context: '**',
       target: PROXY_URL,
       changeOrigin: true,
