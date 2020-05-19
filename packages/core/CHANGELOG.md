@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0...v2.8.1) (2020-05-19)
+
+
+### Bug Fixes
+
+* **customizeredirect:** don't run express-naked-redirect in development ([0f859bd](https://github.com/alleyinteractive/irving/packages/core/commit/0f859bd2be10cc4a47282b054185c83c6e42a6a4))
+
+
+
+
+
 # [2.8.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.5...v2.8.0) (2020-05-19)
 
 **Note:** Version bump only for package @irvingjs/core
