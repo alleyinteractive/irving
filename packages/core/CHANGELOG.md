@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.0...v2.8.1-alpha.0) (2020-05-19)
+
+
+### Bug Fixes
+
+* **packagejson:** update http-proxy-middleware and imports for the package ([7d187d3](https://github.com/alleyinteractive/irving/packages/core/commit/7d187d3e4a48c1ce4fbe4906bcb02c3057360695))
+* **packagejson:** update react-oembed-container ([cc8005d](https://github.com/alleyinteractive/irving/packages/core/commit/cc8005dba0d0ead2ee0d37f56704a301fc68be98))
+* removing duplicte code left from a merge conflict ([78104c1](https://github.com/alleyinteractive/irving/packages/core/commit/78104c1f3d2b2a4e09c31380c9c717358a0bf34c))
+
+
+### Features
+
+* adding support to the Express Naked Redirect package ([a5f0928](https://github.com/alleyinteractive/irving/packages/core/commit/a5f09286ad14c05616cab5b6973c243f9dbf39fd))
+
+
+
+
+
 # [2.8.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.7.2...v2.8.0-beta.0) (2020-05-18)
 
 
