@@ -1,1 +1,0 @@
-Simple component intended to indicate to users that the page is in the process of loading. It is used in combination with the `withLoader` HOC to connect to redux state. Modify/update this component to indicate different loading states.

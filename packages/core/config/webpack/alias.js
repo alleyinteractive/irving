@@ -1,3 +1,6 @@
+const path = require('path');
+const { appRoot } = require('../paths');
+
 /**
  * Get the context specific alias configuration.
  * @param {string} context - the configuration context
@@ -10,14 +13,15 @@ module.exports = function getAlias(context) {
       return {};
 
     case 'development_client':
+      // Use the app version of these packages to prevent duplicate react errors with npm link
       return {
-        'react-dom': '@hot-loader/react-dom',
+        'react-dom': path.join(appRoot, './node_modules/@hot-loader/react-dom'),
+        react: path.join(appRoot, './node_modules/react'),
+        'react-redux': path.join(appRoot, './node_modules/react-redux'),
       };
 
     case 'production_client':
-      return {
-        'react-dom': 'react-dom',
-      };
+      return {};
 
     default:
       throw new Error(`Unknown configuration context ${context}`);

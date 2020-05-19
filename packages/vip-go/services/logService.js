@@ -37,10 +37,19 @@ const getService = (namespace) => {
     service = Object.keys(defaultService)
       .reduce((acc, method) => {
         acc[method] = (...messages) => {
-          // Send error to production monitoring service.
-          if ('production' === env) {
-            monitor.logError();
-          }
+          messages.forEach((message) => {
+            if (message instanceof Error) {
+              // In development the app should crash fast when encountering any errors.
+              if ('development' === env) {
+                throw message;
+              }
+
+              // Send error to production monitoring service.
+              if ('production' === env) {
+                monitor.logError(message);
+              }
+            }
+          });
 
           log[method](...messages);
         };
