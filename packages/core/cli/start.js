@@ -16,7 +16,7 @@ require('../utils/shimWindow');
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const proxy = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const getConfigField = require('../utils/getConfigField');
 const {
@@ -46,7 +46,7 @@ irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 // Set up a reusable proxy for responses that should be served directly.
 const proxyPassthrough = getConfigArray('proxyPassthrough');
-const passthrough = proxy({
+const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
   secure: 'development' !== NODE_ENV,
