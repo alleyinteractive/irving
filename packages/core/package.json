@@ -72,7 +72,7 @@
     "file-loader": "^6.0.0",
     "glob-to-regexp": "^0.4.1",
     "history": "^4.10.1",
-    "http-proxy-middleware": "^0.20.0",
+    "http-proxy-middleware": "^1.0.4",
     "lodash": "^4.17.15",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.3",
