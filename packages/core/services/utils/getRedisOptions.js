@@ -13,7 +13,7 @@ const getRedisOptions = () => {
     /((redis:\/\/([\w]*:)?)?[\w.\-_@]+):([\d]+)/
   );
 
-  if (! match) {
+  if (!match) {
     return [];
   }
 

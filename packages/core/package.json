@@ -115,6 +115,7 @@
   },
   "optionalDependencies": {
     "ioredis": "^4.16.3",
+    "petty-cache": "3.0.1",
     "newrelic": "^5.13.1"
   },
   "publishConfig": {

@@ -40,24 +40,26 @@ const getService = () => {
   }
 
   // Redis env variables have not been configured.
-  if (! host || ! port) {
+  if (!host || !port) {
     return defaultService;
   }
 
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
-  if (! process.env.BROWSER) {
+  if (!process.env.BROWSER) {
     let Redis;
+    let PettyCache;
 
     // Check if optional redis client is installed.
     try {
       Redis = require('ioredis'); // eslint-disable-line global-require
+      PettyCache = require('petty-cache');
     } catch (err) {
       return defaultService;
     }
 
-    const client = new Redis({
+    const redisClient = new Redis({
       host,
       port,
       password,
@@ -66,25 +68,24 @@ const getService = () => {
       maxRetriesPerRequest: process.env.QUEUED_CONNECTION_ATTEMPTS,
     });
 
-    client.on('error', (err) => {
-      console.error(err); // eslint-disable-line no-console
-    });
+    const pettyCache = new PettyCache(redisClient);
 
     service = {
-      client,
+      client: redisClient,
+      petty: pettyCache,
       async get(key) {
-        return JSON.parse(await this.client.get(key));
+        return JSON.parse(await this.petty.get(key));
       },
       async set(key, value) {
-        return this.client.set(
+        return this.petty.set(
           key,
-          JSON.stringify(value),
-          'EX',
-          process.env.CACHE_EXPIRE || 300
+          JSON.stringify(value), {
+            ttl: process.env.CACHE_EXPIRE || 300
+          }
         );
       },
       del(key) {
-        return this.client.del(key);
+        return this.petty.del(key);
       },
     };
 

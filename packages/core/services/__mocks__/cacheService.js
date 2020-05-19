@@ -21,18 +21,22 @@ const mockRedisDatabase = {
 const cacheService = () => {
   // eslint-disable-next-line global-require
   const Redis = require('ioredis-mock');
+  const PettyCache = require('petty-cache');
 
-  const redis = new Redis({
+  const redisClient = new Redis({
     data: mockRedisDatabase,
   });
 
+  const pettyCache = new PettyCache(redisClient);
+
   return {
-    client: redis,
-    async get(key) {
-      return JSON.parse(await this.client.get(key));
+    client: redisClient,
+    petty: pettyCache,
+    get(key) {
+      return JSON.parse(this.petty.get(key));
     },
     set(key, value) {
-      return this.client.set(
+      return this.petty.set(
         key,
         JSON.stringify(value),
         'EX',
@@ -40,7 +44,7 @@ const cacheService = () => {
       );
     },
     del(key) {
-      return this.client.del(key);
+      return this.petty.del(key);
     },
   };
 };
