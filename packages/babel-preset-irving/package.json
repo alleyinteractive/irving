@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/babel-preset-irving",
-  "version": "2.8.0-beta.3",
+  "version": "2.8.0-beta.4",
   "description": "Babel preset for working with irving",
   "main": "index.js",
   "repository": {
