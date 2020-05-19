@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0-beta.1](https://github.com/alleyinteractive/irving/compare/v2.9.0-beta.0...v2.9.0-beta.1) (2020-05-19)
+
+
+### Bug Fixes
+
+* **customizeredirect:** fix default value for customizeRedirect ([7eeef58](https://github.com/alleyinteractive/irving/commit/7eeef58aeea93f230144bc9f5c12c60349ea994c))
+
+
+
+
+
 # [2.9.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.8.1...v2.9.0-beta.0) (2020-05-19)
 
 
