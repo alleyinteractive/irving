@@ -3,13 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.0...v2.8.1-alpha.0) (2020-05-19)
+# [2.8.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.5...v2.8.0) (2020-05-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.8.0-beta.5](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2020-05-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.8.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2020-05-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.1...v2.8.0-beta.3) (2020-05-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.1...v2.8.0-beta.2) (2020-05-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.0...v2.8.0-beta.1) (2020-05-19)
 
 
 ### Bug Fixes
 
-* **packagejson:** update http-proxy-middleware and imports for the package ([7d187d3](https://github.com/alleyinteractive/irving/packages/core/commit/7d187d3e4a48c1ce4fbe4906bcb02c3057360695))
-* **packagejson:** update react-oembed-container ([cc8005d](https://github.com/alleyinteractive/irving/packages/core/commit/cc8005dba0d0ead2ee0d37f56704a301fc68be98))
 * removing duplicte code left from a merge conflict ([78104c1](https://github.com/alleyinteractive/irving/packages/core/commit/78104c1f3d2b2a4e09c31380c9c717358a0bf34c))
 
 

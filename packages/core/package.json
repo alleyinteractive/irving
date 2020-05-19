@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "2.9.0-alpha.0",
+  "version": "2.8.0",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -43,7 +43,7 @@
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@hot-loader/react-dom": "^16.13.0",
-    "@irvingjs/babel-preset-irving": "^2.8.1-alpha.0",
+    "@irvingjs/babel-preset-irving": "^2.8.0",
     "abort-controller": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
@@ -56,7 +56,7 @@
     "core-js": "^3.6.5",
     "critical-style-loader": "^1.1.0",
     "css-loader": "^3.5.3",
-    "debug": "^4.1.1",
+    "debug": "^3.2.6",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.2",
     "eslint": "^7.0.0",
@@ -72,25 +72,25 @@
     "file-loader": "^6.0.0",
     "glob-to-regexp": "^0.4.1",
     "history": "^4.10.1",
-    "http-proxy-middleware": "^1.0.4",
+    "http-proxy-middleware": "^0.20.0",
     "lodash": "^4.17.15",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.3",
     "prop-types": "^15.7.2",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
-    "react-dev-utils": "^10.2.1",
+    "react-dev-utils": "^5.0.3",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "react-hot-loader": "^4.12.21",
-    "react-oembed-container": "^1.0.0",
+    "react-oembed-container": "^0.3.0",
     "react-redux": "^7.2.0",
     "react-transition-group": "^4.3.0",
     "react-universal-component": "^4.0.1",
-    "reduce-reducers": "^1.0.4",
+    "reduce-reducers": "^0.3.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-persist": "^6.0.0",
+    "redux-persist": "^5.10.0",
     "redux-saga": "^1.1.3",
     "regenerator-runtime": "^0.13.5",
     "reselect": "^3.0.1",
@@ -115,7 +115,7 @@
   },
   "optionalDependencies": {
     "ioredis": "^4.16.3",
-    "newrelic": "^6.7.1"
+    "newrelic": "^5.13.1"
   },
   "publishConfig": {
     "access": "public"
@@ -123,14 +123,10 @@
   "gitHead": "2b57a99dc78a57506cc60cf709b756d1cc5ecef5",
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^2.7.0",
-    "babel-jest": "^25.5.1",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
     "fetch-mock": "^7.7.3",
     "ioredis-mock": "^4.19.0",
     "jest": "^25.5.3",
-    "jest-environment-enzyme": "^7.1.2",
-    "jest-enzyme": "^7.1.2",
     "wait-for-expect": "^3.0.2"
   }
 }
