@@ -15,24 +15,27 @@ getService().start();
 require('../utils/shimWindow');
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const getConfigField = require('../utils/getConfigField');
-const { getConfigArray } = require('../utils/getConfigValue');
+const {
+  getConfigArray
+} = require('../utils/getConfigValue');
+
 const getLogService = require('../services/logService');
 const startServer = require('../server/startServer');
+const customizeRedirect = require('../server/customizeRedirect');
 const { rootUrl } = require('../config/paths');
-const bustCache = require('../server/bustCache');
-const bustPageCache = require('../server/bustPageCache');
-const purgePageCache = require('../server/purgePageCache');
+const purgeCache = require('../server/purgeCache');
+const getCacheKeys = require('../server/getCacheKeys');
 
 const log = getLogService('irving:server');
 const app = express();
 
 // Clearing the Redis cache.
-app.get('/bust-endpoint-cache', bustPageCache);
-app.get('/bust-entire-cache', bustCache);
-app.purge('/*', purgePageCache);
+app.post('/purge-cache', bodyParser.json(), purgeCache);
+app.get('/cache-keys', getCacheKeys);
 
 // Set view engine.
 app.set('view engine', 'ejs');
@@ -60,6 +63,9 @@ proxyPassthrough.forEach((pattern) => {
 // Add universal cookies middleware.
 app.use(cookiesMiddleware());
 
+// Naked Redirect.
+app.use(customizeRedirect());
+
 if ('development' === NODE_ENV) {
   require('../server/development')(app);
 } else {
@@ -80,7 +86,7 @@ app.use((err, req, res, next) => {
 // Allow customization of how server is created.
 // Run all customize server functions.
 const server = getConfigField('startServer')(app);
-if (! server) {
+if (!server) {
   startServer(app);
 }
 

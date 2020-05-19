@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.7.2...v2.8.0-beta.0) (2020-05-18)
+
+
+### Bug Fixes
+
+* **redis:** allow REDIS_URL again for cache service to support heroku ([4567097](https://github.com/alleyinteractive/irving/packages/vip-go/commit/456709777ee7ca9c28fffb8760f4833aacafccfa))
+
+
+
+
+
+## [2.7.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.7.2-beta.4...v2.7.2) (2020-05-18)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+## [2.7.2-beta.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.7.2-beta.3...v2.7.2-beta.4) (2020-05-18)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
 ## [2.7.2-beta.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.7.2-beta.2...v2.7.2-beta.3) (2020-05-15)
 
 **Note:** Version bump only for package @irvingjs/vip-go

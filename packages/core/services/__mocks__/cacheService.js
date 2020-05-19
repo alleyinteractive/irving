@@ -3,10 +3,15 @@
  */
 /* eslint-disable max-len */
 const mockRedisDatabase = {
-  'components-endpoint:path=/&context=site': 'some data',
-  'components-endpoint:path=/test-page&context=site&extra-parameter=1': 'more data',
-  'components-endpoint:path=/test-page&context=site&extra-parameter=2': 'more data',
-  'components-endpoint:path=/test-page&context=site&extra-parameter=3': 'more data',
+  'components-endpoint:path=/&context=site': 'data',
+  'components-endpoint:path=/test-page&context=site': 'data',
+  'components-endpoint:path=/test-page&context=site&extra-parameter=2': 'data',
+  'components-endpoint:path=/test-page&context=site&extra-parameter=3': 'data',
+  'components-endpoint:path=/test-article&context=site': 'data',
+  'components-endpoint:path=/test-article/&context=site': 'data',
+  'components-endpoint:path=/test-term&context=site': 'data',
+  'components-endpoint:path=/test-term&context=site&another-param': 'data',
+  'components-endpoint:path=/test-test-test': 'data',
 };
 /* eslint-enable max-len */
 
