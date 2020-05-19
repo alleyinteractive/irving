@@ -31,9 +31,12 @@ These are notes and guidelines for publishing the Irving NPM packages. This will
 12. Assuming no one takes issue with your code, get someone to slap an approval on it and merge into `master`.
 13. `git checkout master && git pull origin master` - checkout `master` and pull down your newly-merged code.
 14. `npm run release` - publish a stable release!
+15. `git checkout develop` - check out the develop branch
+16. `git merge master && npm run reconcile` - update `develop` with `master` and reconcile the differences in version numbers.
 
 ## Tips and Gotchas
 * Please read about [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) before publishing. The type of commit you choose will have ramifications on the semver version number you release. For example, a type of `fix` will indicate a `patch` release, a type of `feat` will indicate a `minor` release.
 * In order to publish a release you will need to create GitHub authentication token (under Settings > Developer settings > Personal access tokens). Once you have your token token, create a `.env` file at the root of the cloned Irving repo and assign it to a `GH_TOKEN` environmental variable.
 * Canary releases may become a bit off. If you find this is happening, you can run `git checkout develop && git rebase --onto master develop`, then force push to the remote `develop` branch. This should get canary releases back up to date.
 * When you want to test out a newly published package, don't forget the npm tag. For example, for a canary release, run `npm install @irvingjs/core@canary --save-dev`.
+* If lerna hangs on `Creating Releases...` or `Skipping Releases...` just use `ctrl + C` to get it to continue with the release.
