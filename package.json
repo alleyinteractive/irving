@@ -14,6 +14,7 @@
   "scripts": {
     "build": "BABEL_ENV=app lerna run build",
     "preinstall": "npx check-node-version --package",
+    "reconcile": "git ls-tree -r --name-only master | grep -E \".*((package|package-lock|lerna)\\.json|CHANGELOG\\.md)$\" | xargs git checkout master --",
     "prerelease:canary": "lerna publish --conventional-commits --conventional-prerelease --no-changelog --preid alpha --dist-tag canary",
     "prerelease:beta": "dotenv -- lerna publish --conventional-commits --conventional-prerelease --create-release github --preid beta --dist-tag beta",
     "prerelease:rc": "dotenv -- lerna publish --force-publish --conventional-commits --conventional-prerelease --create-release github --preid rc --dist-tag rc",
