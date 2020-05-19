@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.8.1...v2.9.0-beta.0) (2020-05-19)
+
+
+### Bug Fixes
+
+* **packagejson:** update http-proxy-middleware and imports for the package ([7d187d3](https://github.com/alleyinteractive/irving/commit/7d187d3e4a48c1ce4fbe4906bcb02c3057360695))
+* **packagejson:** update react-oembed-container ([cc8005d](https://github.com/alleyinteractive/irving/commit/cc8005dba0d0ead2ee0d37f56704a301fc68be98))
+
+
+### Features
+
+* **packagejson:** update newrelic ([a98a303](https://github.com/alleyinteractive/irving/commit/a98a3032dd03a25b0dba3feeb7d293baffd16cdf))
+* **packagejson:** update reduce-reducers to latest, make related/necessary code changes ([d9bb4b4](https://github.com/alleyinteractive/irving/commit/d9bb4b41f10ea9f351f1e714158a4229653961bb))
+* **packagejson:** update redux-persist to latest version ([7f5ee74](https://github.com/alleyinteractive/irving/commit/7f5ee74247ce7c07eb5ae95125748087164aa9b6))
+
+
+
+
+
 ## [2.8.1](https://github.com/alleyinteractive/irving/compare/v2.8.0...v2.8.1) (2020-05-19)
 
 
