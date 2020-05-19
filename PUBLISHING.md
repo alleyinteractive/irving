@@ -1,6 +1,11 @@
 # Publishing Irving
 These are notes and guidelines for publishing the Irving NPM packages. This will mostly apply to those on the Alley team with NPM credentials.
 
+**IMPORTANT NOTES**:
+In order to publish you will need to:
+* Create GitHub authentication token (under Settings > Developer settings > Personal access tokens). Once you have your token token, create a `.env` file at the root of the cloned Irving repo and assign it to a `GH_TOKEN` environmental variable.
+* Log in to Alley's npm account via `npm adduser` to gain publish permissions. If you are unsure of how to do this, ask Owen.
+
 ## Available NPM scripts
 * `npm run prerelease:canary` - publish a prerelease to npm. This will use the npm `@canary` tag using the `-alpha` prerelease identifier. This command is intended for use on the `develop` branch, specifically for commit-level releases. You can and should use this command as much as necessary to test out a real `npm install` of the packages you're working on. Don't worry about publishing a broken package on the `@canary` tag.
 * `npm run prerelease:beta` - publish a prerelease to both git and npm. This will use the npm `@beta` tag using the `-beta` prerelease identifier. Publishes to the `@beta` tag don't need to be 100% stable, but shuld inidcate you're finished with the work on your branch and ready for it to be reviewed and tested. Beta releases should be made from the `master` branch.
@@ -36,7 +41,6 @@ These are notes and guidelines for publishing the Irving NPM packages. This will
 
 ## Tips and Gotchas
 * Please read about [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) before publishing. The type of commit you choose will have ramifications on the semver version number you release. For example, a type of `fix` will indicate a `patch` release, a type of `feat` will indicate a `minor` release.
-* In order to publish a release you will need to create GitHub authentication token (under Settings > Developer settings > Personal access tokens). Once you have your token token, create a `.env` file at the root of the cloned Irving repo and assign it to a `GH_TOKEN` environmental variable.
 * Canary releases may become a bit off. If you find this is happening, you can run `git checkout develop && git rebase --onto master develop`, then force push to the remote `develop` branch. This should get canary releases back up to date.
 * When you want to test out a newly published package, don't forget the npm tag. For example, for a canary release, run `npm install @irvingjs/core@canary --save-dev`.
 * If lerna hangs on `Creating Releases...` or `Skipping Releases...` just use `ctrl + C` to get it to continue with the release.
