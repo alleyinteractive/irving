@@ -9,6 +9,7 @@ import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import { plainText, richText } from 'config/html';
 import styles from './rawHTML.css';
 
+/* eslint-disable */
 const RawHTML = (props) => {
   const {
     content,

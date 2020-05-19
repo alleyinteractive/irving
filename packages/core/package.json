@@ -68,6 +68,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^4.0.0",
     "express": "^4.17.1",
+    "express-naked-redirect": "^0.1.7",
     "file-loader": "^6.0.0",
     "glob-to-regexp": "^0.4.1",
     "history": "^4.10.1",
@@ -86,7 +87,7 @@
     "react-redux": "^7.2.0",
     "react-transition-group": "^4.3.0",
     "react-universal-component": "^4.0.1",
-    "reduce-reducers": "^0.3.0",
+    "reduce-reducers": "^1.0.4",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^5.10.0",
@@ -101,6 +102,7 @@
     "universal-cookie-express": "^4.0.3",
     "url-loader": "^4.1.0",
     "url-parse": "^1.4.7",
+    "url-pattern": "^1.0.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-middleware": "^3.7.2",
@@ -109,9 +111,7 @@
     "webpack-hot-server-middleware": "^0.6.0",
     "webpack-node-externals": "^1.7.2",
     "webpack-stats-plugin": "^0.3.1",
-    "whatwg-fetch": "^3.0.0",
-    "express-naked-redirect": "^0.1.7",
-    "url-pattern": "^1.0.3"
+    "whatwg-fetch": "^3.0.0"
   },
   "optionalDependencies": {
     "ioredis": "^4.16.3",
