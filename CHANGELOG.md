@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/alleyinteractive/irving/compare/v2.9.0...v2.9.1) (2020-05-20)
+
+
+### Bug Fixes
+
+* **auth:** fix production basic auth from causing halt in server start ([ea16e2a](https://github.com/alleyinteractive/irving/commit/ea16e2a9037158d9e62a04de66c3d71eb5a9e76e))
+
+
+
+
+
 # [2.9.0](https://github.com/alleyinteractive/irving/compare/v2.9.0-beta.2...v2.9.0) (2020-05-20)
 
 **Note:** Version bump only for package irving
