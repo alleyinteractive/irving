@@ -23,7 +23,7 @@ const customizeRedirect = () => {
       return next();
     }
 
-    return expressNakedRedirect(config)(req, res, next);
+    expressNakedRedirect(config)(req, res, next);
   };
 };
 

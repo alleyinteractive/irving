@@ -34,6 +34,7 @@ const cacheMiddleware = (app) => {
     createCheckAuth('cache', corsMiddleware),
     purgeCache
   );
+  console.log('butts');
 
   app.get(
     '/cache-keys',
