@@ -6,6 +6,7 @@ const defaultService = {
   set: () => {},
   del: () => null,
 };
+
 let service;
 
 /**
@@ -49,17 +50,17 @@ const getService = () => {
   // while compiling.
   if (!process.env.BROWSER) {
     let Redis;
-    let PettyCache;
+    let Stampede;
 
     // Check if optional redis client is installed.
     try {
       Redis = require('ioredis'); // eslint-disable-line global-require
-      PettyCache = require('petty-cache');
+      Stampede = require('cache-stampede'); // eslint-disable-line global-require
     } catch (err) {
       return defaultService;
-    }
+    }​
 
-    const redisClient = new Redis({
+    const client = new Redis({
       host,
       port,
       password,
@@ -68,26 +69,43 @@ const getService = () => {
       maxRetriesPerRequest: process.env.QUEUED_CONNECTION_ATTEMPTS,
     });
 
-    const pettyCache = new PettyCache(redisClient);
+    client.on('error', (err) => {
+      console.error(err); // eslint-disable-line no-console
+    });​
+
+    const get = async (key) => {
+      return JSON.parse(await client.get(key));
+    };​
+
+    const set = async (key, value) => {
+      return client.set(
+        key,
+        JSON.stringify(value),
+        'EX',
+        process.env.CACHE_EXPIRE || 300
+      );
+    };​
+
+    const del = (key) => {
+      return client.del(key);
+    };​
+
+    const ioredisService = {
+      client,
+      get,
+      set,
+      del,
+      insert: get,
+      remove: del,
+      close: () => {},
+    };​
+
+    const stampedeService = Stampede(service);​
 
     service = {
-      client: redisClient,
-      petty: pettyCache,
-      async get(key) {
-        return JSON.parse(await this.petty.get(key));
-      },
-      async set(key, value) {
-        return this.petty.set(
-          key,
-          JSON.stringify(value), {
-            ttl: process.env.CACHE_EXPIRE || 300
-          }
-        );
-      },
-      del(key) {
-        return this.petty.del(key);
-      },
-    };
+      ...ioredisService,
+      ...stampedeService
+    };​
 
     return service;
   }
