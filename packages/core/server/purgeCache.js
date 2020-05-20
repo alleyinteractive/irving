@@ -103,7 +103,7 @@ const executeStream = async (pipeline, res, key = '') => {
  * @param {object} res  Response object.
  * @returns {*}
  */
-const purgeCache = async (req, res) => {
+const purgeCache = async (req, res, next) => {
   const paths = get('paths', req.body) || [];
   const pipeline = cacheService.client.pipeline();
   const completeMessage = 'Cache purge successful!';
@@ -120,9 +120,10 @@ const purgeCache = async (req, res) => {
       log.info(completeMessage);
       res.write(completeMessage);
       return res.end();
-    }).catch(
-      (e) => console.log(chalk.red(e)) // eslint-disable-line no-console
-    );
+    }).catch((e) => {
+      log.error(e) // eslint-disable-line no-console
+      return res.send(e);
+    });
   } else {
     await executeStream(pipeline, res);
     pipeline.exec();
