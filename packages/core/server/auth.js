@@ -13,13 +13,25 @@ const {
  * @param {function} next
  * @returns {*}
  */
-const createCheckAuth = (realm) => (req, res, next) => {
+const createCheckAuth = (realm, passthrough = true) => (req, res, next) => {
+  const hasFallback = 'function' === typeof passthrough;
+
   if (! username || ! password) {
-    return next();
+    if (! passthrough) {
+      return res.status(401).send();
+    }
+
+    if (! hasFallback) {
+      return next();
+    }
   }
 
   const user = auth(req);
   if (! user || user.name !== username || user.pass !== password) {
+    if (hasFallback) {
+      return passthrough(req, res, next);
+    }
+
     res.set('WWW-Authenticate', `Basic realm="${realm}"`);
     return res.status(401).send();
   }
