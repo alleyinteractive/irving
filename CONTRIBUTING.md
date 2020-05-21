@@ -22,7 +22,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 11. Assuming neither you nor someone at Alley finds issues with your code, someone at Alley will approve and merge your PR to `master` and include it in the next `@latest` release.
 
 ### Publishing Irving
-If you are a part of the Alley organization and have publish capabilities for the npm packages, check out the (publishing docs)[PUBLISHING.md]
+If you are a part of the Alley organization and have publish capabilities for the npm packages, check out the [publishing docs](PUBLISHING.md).
 
 ### If an issue is found with your code in a prerelease:
 1. If someone at Alley finds an issue with your code, we will ask you to address the issue. Hopefully any issues will be caught before this point, however.

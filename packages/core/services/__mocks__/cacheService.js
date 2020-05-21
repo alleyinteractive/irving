@@ -21,27 +21,46 @@ const mockRedisDatabase = {
 const cacheService = () => {
   // eslint-disable-next-line global-require
   const Redis = require('ioredis-mock');
+  const Stampede = require('cache-stampede');
 
-  const redis = new Redis({
+  const client = new Redis({
     data: mockRedisDatabase,
   });
 
+  const get = (key) => {
+    return client.get(key);
+  };
+
+  const set = (key, value) => {
+    return client.set(
+      key,
+      JSON.stringify(value),
+      'EX',
+      process.env.CACHE_EXPIRE || 300
+    );
+  };
+
+  const del = (key) => {
+    return client.del(key);
+  };
+
+  const ioredisService = {
+    client,
+    get,
+    set,
+    del,
+    insert: set,
+    remove: del,
+    close: () => {},
+  };
+
+  const stampedeService = Stampede({
+    adapter: ioredisService
+  });
+
   return {
-    client: redis,
-    get(key) {
-      return JSON.parse(this.redis.get(key));
-    },
-    set(key, value) {
-      return this.redis.set(
-        key,
-        JSON.stringify(value),
-        'EX',
-        300
-      );
-    },
-    del(key) {
-      return this.redis.del(key);
-    },
+    ...ioredisService,
+    ...stampedeService
   };
 };
 

@@ -5,6 +5,9 @@ const defaultService = {
   get: () => null,
   set: () => {},
   del: () => null,
+  insert: () => null,
+  remove: () => null,
+  close: () => {},
 };
 
 let service;
@@ -54,11 +57,12 @@ const getService = () => {
 
     // Check if optional redis client is installed.
     try {
-      Redis = require('ioredis'); // eslint-disable-line global-require
-      Stampede = require('cache-stampede'); // eslint-disable-line global-require
+      // eslint-disable-next-line global-require
+      Redis = require('ioredis');
+      Stampede = require('cache-stampede');
     } catch (err) {
       return defaultService;
-    }​
+    }
 
     const client = new Redis({
       host,
@@ -71,41 +75,43 @@ const getService = () => {
 
     client.on('error', (err) => {
       console.error(err); // eslint-disable-line no-console
-    });​
+    });
 
     const get = async (key) => {
       return JSON.parse(await client.get(key));
-    };​
+    };
 
     const set = async (key, value) => {
-      return client.set(
+      return await client.set(
         key,
         JSON.stringify(value),
         'EX',
         process.env.CACHE_EXPIRE || 300
       );
-    };​
+    };
 
     const del = (key) => {
       return client.del(key);
-    };​
+    };
 
     const ioredisService = {
       client,
       get,
       set,
       del,
-      insert: get,
+      insert: set,
       remove: del,
       close: () => {},
-    };​
+    };
 
-    const stampedeService = Stampede(service);​
+    const stampedeService = Stampede({
+      adapter: ioredisService
+    });
 
     service = {
       ...ioredisService,
       ...stampedeService
-    };​
+    };
 
     return service;
   }
