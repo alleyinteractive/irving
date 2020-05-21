@@ -27,8 +27,8 @@ const cacheService = () => {
     data: mockRedisDatabase,
   });
 
-  const get = (key) => {
-    return client.get(key);
+  const get = async (key) => {
+    return JSON.parse(await client.get(key));
   };
 
   const set = (key, value) => {
@@ -49,19 +49,46 @@ const cacheService = () => {
     get,
     set,
     del,
+    update: set,
     insert: set,
     remove: del,
+    cached: () => {},
     close: () => {},
   };
 
   const stampedeService = Stampede({
+    upsert: false,
     adapter: ioredisService
   });
 
-  return {
+  const service = {
     ...ioredisService,
-    ...stampedeService
+    get: async (key, options, retry) => {
+      let result;
+      try {
+        const {
+          data
+        } = await stampedeService.get(key, options, retry);
+
+        result = data;
+      } catch (error) {
+        result = null;
+      }
+
+      return result;
+    },
+    set: (key, fn, options) => {
+      return stampedeService.set(key, fn, options);
+    },
+    insert: (key, fn, options) => {
+      return stampedeService.set(key, fn, options);
+    },
+    cached: (key, fn, options) => {
+      return stampedeService.cached(key, fn, options);
+    },
   };
+
+  return service;
 };
 
 module.exports = cacheService;
