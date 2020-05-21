@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const { maybeResolveUserModule } = require('../../utils/userModule');
+console.log('process.env.BUILD:', process.env.BUILD);
 const getEnv = require('../env');
 const { rootUrl } = require('../paths');
 
@@ -11,7 +12,6 @@ const { rootUrl } = require('../paths');
  * @returns {array} - a plugins configuration value
  */
 module.exports = function getPlugins(context) {
-  console.log('process.env.BUILD:', process.env.BUILD);
   const env = getEnv();
 
   // Define paths to app and error templates at compile time because express needs paths, not the template module itself.
