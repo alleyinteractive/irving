@@ -11,6 +11,7 @@ const { rootUrl } = require('../paths');
  * @returns {array} - a plugins configuration value
  */
 module.exports = function getPlugins(context) {
+  console.log('process.env.BUILD:', process.env.BUILD);
   const env = getEnv();
 
   // Define paths to app and error templates at compile time because express needs paths, not the template module itself.
