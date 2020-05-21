@@ -1,7 +1,10 @@
 const get = require('lodash/fp/get');
 const chalk = require('chalk');
 const queryString = require('query-string');
+const getService = require('../services/logService');
 const cacheService = require('../services/cacheService')();
+
+const log = getService('irving:cache:purge');
 
 /**
  * Turn a fully-qualified URL into a key for cache purging.
@@ -85,7 +88,9 @@ const executeStream = async (pipeline, res, key = '') => {
     });
 
     stream.on('end', () => {
-      res.write(`Purged ${matches} entries${keyMessage}\n`);
+      const message = `Purged ${matches} entries${keyMessage}`;
+      log.info(message);
+      res.write(`${message}\n`);
       resolve();
     });
   });
@@ -98,9 +103,10 @@ const executeStream = async (pipeline, res, key = '') => {
  * @param {object} res  Response object.
  * @returns {*}
  */
-const purgeCache = async (req, res) => {
+const purgeCache = async (req, res, next) => {
   const paths = get('paths', req.body) || [];
   const pipeline = cacheService.client.pipeline();
+  const completeMessage = 'Cache purge successful!';
 
   // Create a readable stream (object mode).
   // This approach is better for performance.
@@ -111,19 +117,20 @@ const purgeCache = async (req, res) => {
       ))
     ).then(() => {
       pipeline.exec();
-      res.write('Cache purge successful!');
-      res.end();
-    }).catch(
-      (e) => console.log(chalk.red(e)) // eslint-disable-line no-console
-    );
-
-    return;
+      log.info(completeMessage);
+      res.write(completeMessage);
+      return res.end();
+    }).catch((e) => {
+      log.error(e) // eslint-disable-line no-console
+      return res.send(e);
+    });
+  } else {
+    await executeStream(pipeline, res);
+    pipeline.exec();
+    log.info(completeMessage);
+    res.write(completeMessage);
+    return res.end();
   }
-
-  await executeStream(pipeline, res);
-  pipeline.exec();
-  res.write('Cache purge successful!');
-  res.end();
 };
 
 module.exports = purgeCache;
