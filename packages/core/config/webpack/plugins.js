@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const { maybeResolveUserModule } = require('../../utils/userModule');
-console.log('process.env.BUILD:', process.env.BUILD);
 const getEnv = require('../env');
 const { rootUrl } = require('../paths');
 
@@ -31,7 +30,7 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new CleanPlugin(),
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           ...env,
         }),
         // Ensures async components can be rendered sync server-side.
@@ -45,7 +44,7 @@ module.exports = function getPlugins(context) {
       return [
         ...commonPlugins,
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           ...env,
         }),
         // Ensures async components can be rendered sync server-side.
@@ -59,7 +58,7 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new CleanPlugin(),
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           BROWSER: true,
           ...env,
         }),
@@ -85,7 +84,7 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new webpack.NamedModulesPlugin(),
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           BROWSER: true,
           ...env,
         }),
