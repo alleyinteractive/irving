@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "2.9.0-beta.1",
+  "version": "2.9.1",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -54,6 +54,7 @@
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^2.0.2",
     "core-js": "^3.6.5",
+    "cors": "^2.8.5",
     "critical-style-loader": "^1.1.0",
     "css-loader": "^3.5.3",
     "debug": "^4.1.1",
