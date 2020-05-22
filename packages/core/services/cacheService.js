@@ -7,6 +7,7 @@ const defaultService = {
   del: () => null,
   insert: () => null,
   remove: () => null,
+  cached: () => {},
   close: () => {},
 };
 
@@ -55,7 +56,7 @@ const getService = () => {
     let Redis;
     let Stampede;
 
-    // Check if optional redis client is installed.
+    // Check if optional redis client and cache-stampede are installed.
     try {
       // eslint-disable-next-line global-require
       Redis = require('ioredis');
@@ -99,18 +100,43 @@ const getService = () => {
       get,
       set,
       del,
+      update: set,
       insert: set,
       remove: del,
+      cached: () => {},
       close: () => {},
     };
 
     const stampedeService = Stampede({
+      upsert: false,
       adapter: ioredisService
     });
 
-    service = {
+    const service = {
       ...ioredisService,
-      ...stampedeService
+      get: async (key, options, retry) => {
+        let result;
+        try {
+          const {
+            data
+          } = await stampedeService.get(key, options, retry);
+
+          result = data;
+        } catch (error) {
+          result = null;
+        }
+
+        return result;
+      },
+      set: (key, fn, options) => {
+        return stampedeService.set(key, fn, options);
+      },
+      insert: (key, fn, options) => {
+        return stampedeService.set(key, fn, options);
+      },
+      cached: (key, fn, options) => {
+        return stampedeService.cached(key, fn, options);
+      },
     };
 
     return service;

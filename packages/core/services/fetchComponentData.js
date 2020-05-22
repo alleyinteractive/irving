@@ -20,30 +20,36 @@ export default async function fetchComponentData(endpoint) {
     return data;
   }
 
-  if (! response.ok) {
+  if (!response.ok) {
     throw new Error(await response.text());
   }
 
   return null;
-}
+};
 
 /**
  * Cache fetchComponentData responses. Return cached response if available.
  *
- * @param {array} args - fetchComponentData arguments
+ * @param {string} string - fetchComponentData endpoint
  * @returns {Promise<{object}>} - fetchComponentData return value
  */
 export async function cacheResult(endpoint) {
   const cache = getService();
-  const info = { cached: false, route: endpoint };
+  const info = {
+    cached: false,
+    route: endpoint
+  };
 
   let response = await cache.get(endpoint);
-  if (! response) {
+  if (!response) {
     log.info('%o', info);
     response = await fetchComponentData(endpoint);
     await cache.set(endpoint, response);
   } else {
-    log.info('%o', { ...info, cached: true });
+    log.info('%o', {
+      ...info,
+      cached: true
+    });
   }
 
   return response;
