@@ -1,13 +1,31 @@
+/* eslint-disable import/no-dynamic-require, global-require */
 const fs = require('fs');
 const path = require('path');
+
+/**
+ * This module will not be touched by webpack or babel,
+ * so we need to make sure we find the correct location for the paths.js config
+ * in both a testing and development context.
+ */
+const pathsModuleLocation = path.join(
+  process.cwd(),
+  'node_modules/@irvingjs/core/config/paths.js'
+);
+let paths = {};
+
+if (fs.existsSync(pathsModuleLocation)) {
+  paths = require(pathsModuleLocation);
+} else {
+  paths = require('../config/paths.js');
+}
+
 const {
   appRoot,
   buildContext,
   appIrvingRoot,
   irvingRoot,
-} = require('../config/paths');
+} = paths;
 
-/* eslint-disable import/no-dynamic-require, global-require */
 /**
  * Resolve the path to a module required in the build, fall back to irving core.
  *
@@ -57,5 +75,15 @@ module.exports.maybeRequireUserModule = (userPath, corePath) => (
   require(
     maybeResolveUserModule(userPath, corePath)
   )
+);
+
+/**
+ * Alias for node require statement.
+ * Necessary to prevent webpack from attempting to resolve node-only require statements.
+ *
+ * @param {string} requirePath Path to user-defined module, relative to user app root.
+ */
+module.exports.nodeRequire = (requirePath) => (
+  require(requirePath)
 );
 /* eslint-enable */

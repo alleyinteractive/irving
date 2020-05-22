@@ -1,21 +1,20 @@
+import { nodeRequire } from 'utils/nodeRequire';
+import { clientBuild } from 'config/paths';
+import serverRenderer from './serverRenderer';
 const path = require('path');
 const express = require('express');
-const auth = require('./auth');
-const { clientBuild, serverBuild } = require('../config/paths');
-const getConfigField = require('../utils/getConfigField');
 // App must be built using the build command before production mode can be run.
-/* eslint-disable import/no-dynamic-require */
-const clientStats = require(path.join(clientBuild, 'stats.json'));
-const {
-  default: serverRenderer,
-} = require(path.join(serverBuild, 'main.bundle'));
-/* eslint-enable */
+const clientStats = nodeRequire(
+  path.join(clientBuild, 'stats.json')
+);
+const auth = require('./auth');
+const getConfigField = require('../utils/getConfigField');
 
 /**
  * Add the required middleware to support running the app in production mode.
  * @param {object} app - express application
  */
-const productionMiddleware = (app) => {
+const productionMiddleware = async (app) => {
   // Allow customization of production server
   const irvingProdMiddleware = getConfigField('customizeProdServer');
   irvingProdMiddleware.forEach((middleware) => middleware(app));
@@ -31,4 +30,4 @@ const productionMiddleware = (app) => {
   app.use(serverRenderer(options));
 };
 
-module.exports = productionMiddleware;
+export default productionMiddleware;

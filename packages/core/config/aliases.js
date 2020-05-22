@@ -1,5 +1,5 @@
 const path = require('path');
-const { maybeResolveBuildModule } = require('../utils/userModule');
+const { maybeResolveBuildModule } = require('../utils/nodeRequire');
 const { buildContext } = require('./paths');
 
 // App aliases, exported in case we need them elsewhere.
@@ -20,8 +20,5 @@ module.exports = {
   '@irvingjs/irving.config.server': maybeResolveBuildModule(
     'irving.config.server.js'
   ),
-  '@irvingjs/componentMap': path.join(
-    buildContext,
-    'componentMap.js'
-  ),
+  '@irvingjs/componentMap': path.join(buildContext, 'componentMap.js'),
 };

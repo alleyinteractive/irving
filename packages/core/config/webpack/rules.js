@@ -4,7 +4,7 @@ const {
   buildContext,
   irvingRoot,
 } = require('../paths');
-const { maybeResolveBuildModule } = require('../../utils/userModule');
+const { maybeResolveBuildModule } = require('../../utils/nodeRequire');
 
 const include = (filepath) => {
   const matches = (
