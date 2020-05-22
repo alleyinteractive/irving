@@ -30,7 +30,7 @@ export default async function fetchComponentData(endpoint) {
 /**
  * Cache fetchComponentData responses. Return cached response if available.
  *
- * @param {string} string - fetchComponentData endpoint
+ * @param {string} endpoint - fetchComponentData endpoint
  * @returns {Promise<{object}>} - fetchComponentData return value
  */
 export async function cacheResult(endpoint) {
