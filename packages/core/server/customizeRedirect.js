@@ -20,10 +20,10 @@ const customizeRedirect = () => {
       0 === Object.keys(config).length ||
       'development' === NODE_ENV
     ) {
-      next();
-    } else {
-      expressNakedRedirect(config)(req, res, next);
+      return next();
     }
+
+    expressNakedRedirect(config)(req, res, next);
   };
 };
 
