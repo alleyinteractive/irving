@@ -1,5 +1,5 @@
 jest.mock('./cacheService');
-const cacheService = require('./cacheService');
+import cacheService from './cacheService';
 const cache = cacheService();
 const testKey = 'test-key';
 const testValue = 'test-value';
@@ -26,51 +26,38 @@ describe('cacheService', () => {
   it('should return a non-empty value from a valid cached key', async (done) => {
     await cache.set(testKey, testValue);
 
-    const value = await cache.get(testKey);
-
-    expect(value).toEqual(testValue);
-    expect(value).not.toBeNull();
-
+    expect(await cache.get(testKey)).not.toBeNull();
     done();
   });
 
   it('should return null when trying to get an uncached key', async (done) => {
     expect(await cache.get('invalid-test-key')).toBeNull();
-
     done();
   });
 
   it('should return null after trying to get a deleted cached key', async (done) => {
     await cache.set(testKey, testValue);
 
-    const value = await cache.get(testKey);
-
-    expect(value).toEqual(testValue);
-    expect(value).not.toBeNull();
-
+    expect(await cache.get(testKey)).not.toBeNull();
     await cache.del(testKey);
 
     expect(await cache.get(testKey)).toBeNull();
-
     done();
   });
 
   it('should return an already cached valued with the cached method', async (done) => {
-    const keyValue = 'Value';
-
     const value = await cache.cached(testKey, () => {
-      return keyValue;
+      return testValue;
     });
 
-    expect(value).toEqual(keyValue);
+    expect(value).toEqual(testValue);
     expect(value).not.toBeNull();
 
     const cachedValue = await cache.cached(testKey, () => {
       return 'New Value';
     });
 
-    expect(cachedValue).toEqual(keyValue);
-
+    expect(cachedValue).toEqual(testValue);
     done();
   });
 
@@ -82,7 +69,8 @@ describe('cacheService', () => {
         async () => (
           new Promise(
             (resolve) => setTimeout(
-              async () => resolve(await cache.cached('race', i++)), 100
+              async () => resolve(await cache.cached('race', i++)),
+                100
             )
           )
         )
@@ -91,7 +79,6 @@ describe('cacheService', () => {
 
     // You should get all items with 1 as result.
     expect(results.every(item => item === 1)).toBeTruthy();
-
     done();
   });
 });

@@ -15,10 +15,18 @@ const mockRedisDatabase = {
 };
 /* eslint-enable max-len */
 
+let service;
+
 /**
  * Mocks the Redis cache service with an instance of ioredis-mock.
  */
 const cacheService = () => {
+
+  // Memoize client connection, so it can reused.
+  if (service) {
+    return service;
+  }
+
   // eslint-disable-next-line global-require
   const Redis = require('ioredis-mock');
   const Stampede = require('cache-stampede');
@@ -61,7 +69,7 @@ const cacheService = () => {
     adapter: ioredisService
   });
 
-  const service = {
+  service = {
     ...ioredisService,
     get: async (key, options, retry) => {
       let result;

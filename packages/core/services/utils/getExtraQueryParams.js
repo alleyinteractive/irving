@@ -7,7 +7,7 @@ const env = Object.keys(process.env).length ? process.env : window.__ENV__; // e
  *
  * @returns {object}
  */
-function getExtraQueryParams() {
+const getExtraQueryParams = () => {
   return Object
     .keys(env)
     .filter((key) => 0 === key.indexOf('API_QUERY_PARAM_'))
@@ -18,6 +18,6 @@ function getExtraQueryParams() {
         [param]: env[key],
       };
     }, {});
-}
+};
 
 module.exports = getExtraQueryParams;

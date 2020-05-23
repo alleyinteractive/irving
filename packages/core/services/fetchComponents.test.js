@@ -1,51 +1,138 @@
+jest.mock('./cacheService');
 import fetchMock from 'fetch-mock';
-import fetchComponents from './fetchComponents';
+import cacheService from './cacheService';
+import cachedFetchComponents, {
+  fetchComponents,
+} from 'services/fetchComponents';
+const cache = cacheService();
+const cacheKey = 'components-endpoint:path=/cache&context=page&bar=baz';
 
 beforeEach(() => {
   process.env.API_ROOT_URL = 'https://foo.com/api';
+  cache.del(cacheKey);
   fetchMock.restore();
 });
 
-it(
-  'should append extra query params that are defined',
-  async (done) => {
-    process.env.API_QUERY_PARAM_BAR = 'baz';
+describe('fetchComponents', () => {
+  it(
+    'should append extra query params that are defined',
+    async (done) => {
+      process.env.API_QUERY_PARAM_BAR = 'baz';
 
-    // Throws an error if the request doesn't match.
-    fetchMock.get(
-      'https://foo.com/api/components', {}, {
+      // Throws an error if the request doesn't match.
+      fetchMock.get(
+        'https://foo.com/api/components', {}, {
+          query: {
+            path: '/foo',
+            context: 'page',
+            bar: 'baz',
+          },
+        }
+      );
+
+      expect(await fetchComponents('/foo')).toBeDefined();
+      done();
+    }
+  );
+
+  it(
+    'should pass query params from the request to the api',
+    async (done) => {
+      // Throws an error if the request doesn't match.
+      fetchMock.get('https://foo.com/api/components', {}, {
         query: {
           path: '/foo',
           context: 'page',
           bar: 'baz',
         },
-      }
-    );
+      });
 
-    const result = await fetchComponents('/foo');
+      expect(await fetchComponents('/foo', '?bar=baz')).toBeDefined();
+      done();
+    }
+  );
+});
 
-    expect(result).toBeDefined();
+describe('cachedFetchComponents', () => {
+  it(
+    'should get fetch response from cached',
+    async (done) => {
+      // Throws an error if the request doesn't match.
+      fetchMock.get('https://foo.com/api/components', {}, {
+        query: {
+          path: '/cache',
+          context: 'page',
+          bar: 'baz',
+        },
+      });
 
-    done();
-  }
-);
+      const result = await cachedFetchComponents('/cache', '?bar=baz');
+      expect(result).toBeDefined();
 
-it(
-  'should pass query params from the request to the api',
-  async (done) => {
-    // Throws an error if the request doesn't match.
-    fetchMock.get('https://foo.com/api/components', {}, {
-      query: {
-        path: '/foo',
-        context: 'page',
-        bar: 'baz',
-      },
-    });
+      // Getting directly from cache.
+      const getCached = await cache.get(cacheKey);
+      expect(result).toEqual(getCached);
 
-    const result = await fetchComponents('/foo', '?bar=baz');
+      // Second Request.
+      const firstCachedResponse = await cachedFetchComponents('/cache', '?bar=baz');
+      expect(result).toEqual(firstCachedResponse);
 
-    expect(result).toBeDefined();
+      // Third Request.
+      const secondCachedResponse = await cachedFetchComponents('/cache', '?bar=baz');
+      expect(result).toEqual(secondCachedResponse);
+      done();
+    }
+  );
 
-    done();
-  }
-);
+  it(
+    'should bypasse the cache',
+    async (done) => {
+      // Throws an error if the request doesn't match.
+      fetchMock.get('https://foo.com/api/components', {}, {
+        query: {
+          path: '/cache',
+          context: 'page',
+          bar: 'baz',
+        },
+      });
+
+      const result = await cachedFetchComponents('/cache', '?bar=baz', {
+        bypassCache: true
+      });
+
+      expect(result).toBeDefined();
+      expect(result.data).toBeUndefined();
+      done();
+    }
+  );
+
+  it(
+    'should return true meaning the cache stampede works',
+    async (done) => {
+      // Throws an error if the request doesn't match.
+      fetchMock.get('https://foo.com/api/components', {}, {
+        query: {
+          path: '/cache',
+          context: 'page',
+          bar: 'baz',
+        },
+      });
+
+      const results = await Promise.all(
+        [...Array(100)].map(
+          async () => (
+            new Promise(
+              (resolve) => setTimeout(
+                async () => resolve(await cachedFetchComponents('/cache', '?bar=baz')),
+                  100
+              )
+            )
+          )
+        )
+      );
+
+      expect(results.every(item => item.status === 200)).toBeTruthy();
+      done();
+    }
+  );
+});
