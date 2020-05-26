@@ -60,7 +60,7 @@ const getService = () => {
     try {
       // eslint-disable-next-line global-require
       Redis = require('ioredis');
-      Stampede = require('cache-stampede');
+      Stampede = require('cache-stampede/stampede');
     } catch (err) {
       return defaultService;
     }
@@ -107,7 +107,7 @@ const getService = () => {
       close: () => {},
     };
 
-    const stampedeService = Stampede({
+    const stampedeService = new Stampede({
       upsert: false,
       adapter: ioredisService
     });

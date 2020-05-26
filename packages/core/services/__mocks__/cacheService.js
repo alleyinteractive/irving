@@ -29,7 +29,7 @@ const cacheService = () => {
 
   // eslint-disable-next-line global-require
   const Redis = require('ioredis-mock');
-  const Stampede = require('cache-stampede');
+  const Stampede = require('cache-stampede/stampede');
 
   const client = new Redis({
     data: mockRedisDatabase,
@@ -64,7 +64,7 @@ const cacheService = () => {
     close: () => {},
   };
 
-  const stampedeService = Stampede({
+  const stampedeService = new Stampede({
     upsert: false,
     adapter: ioredisService
   });
