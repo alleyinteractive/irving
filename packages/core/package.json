@@ -116,7 +116,8 @@
   },
   "optionalDependencies": {
     "ioredis": "^4.16.3",
-    "newrelic": "^5.13.1"
+    "newrelic": "^6.7.1",
+    "cache-stampede": "^0.9.5"
   },
   "publishConfig": {
     "access": "public"

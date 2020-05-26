@@ -5,7 +5,12 @@ const defaultService = {
   get: () => null,
   set: () => {},
   del: () => null,
+  insert: () => null,
+  remove: () => null,
+  cached: () => {},
+  close: () => {},
 };
+
 let service;
 
 /**
@@ -40,19 +45,22 @@ const getService = () => {
   }
 
   // Redis env variables have not been configured.
-  if (! host || ! port) {
+  if (!host || !port) {
     return defaultService;
   }
 
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
-  if (! process.env.BROWSER) {
+  if (!process.env.BROWSER) {
     let Redis;
+    let Stampede;
 
-    // Check if optional redis client is installed.
+    // Check if optional redis client and cache-stampede are installed.
     try {
-      Redis = require('ioredis'); // eslint-disable-line global-require
+      // eslint-disable-next-line global-require
+      Redis = require('ioredis');
+      Stampede = require('cache-stampede/stampede');
     } catch (err) {
       return defaultService;
     }
@@ -70,21 +78,64 @@ const getService = () => {
       console.error(err); // eslint-disable-line no-console
     });
 
-    service = {
+    const get = async (key) => {
+      return JSON.parse(await client.get(key));
+    };
+
+    const set = async (key, value) => {
+      return await client.set(
+        key,
+        JSON.stringify(value),
+        'EX',
+        process.env.CACHE_EXPIRE || 300
+      );
+    };
+
+    const del = (key) => {
+      return client.del(key);
+    };
+
+    const ioredisService = {
       client,
-      async get(key) {
-        return JSON.parse(await this.client.get(key));
+      get,
+      set,
+      del,
+      update: set,
+      insert: set,
+      remove: del,
+      cached: () => {},
+      close: () => {},
+    };
+
+    const stampedeService = new Stampede({
+      upsert: false,
+      adapter: ioredisService
+    });
+
+    const service = {
+      ...ioredisService,
+      get: async (key, options, retry) => {
+        let result;
+        try {
+          const {
+            data
+          } = await stampedeService.get(key, options, retry);
+
+          result = data;
+        } catch (error) {
+          result = null;
+        }
+
+        return result;
       },
-      async set(key, value) {
-        return this.client.set(
-          key,
-          JSON.stringify(value),
-          'EX',
-          process.env.CACHE_EXPIRE || 300
-        );
+      set: (key, fn, options) => {
+        return stampedeService.set(key, fn, options);
       },
-      del(key) {
-        return this.client.del(key);
+      insert: (key, fn, options) => {
+        return stampedeService.set(key, fn, options);
+      },
+      cached: (key, fn, options) => {
+        return stampedeService.cached(key, fn, options);
       },
     };
 
