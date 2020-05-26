@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 
-if (! process.env.BUILD) {
+if (! process.env.WEBPACK_BUILD) {
   module.exports = require('./irving.config.server.js');
 } else {
   module.exports = require('./irving.config.js');
