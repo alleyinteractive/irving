@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.10.0-rc.0...v2.10.0) (2020-05-26)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [2.10.0-rc.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.10.0-beta.0...v2.10.0-rc.0) (2020-05-26)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [2.10.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.9.1...v2.10.0-beta.0) (2020-05-26)
+
+
+### Features
+
+* rename env var to prevent conflicts ([d08c165](https://github.com/alleyinteractive/irving/packages/vip-go/commit/d08c16533c94c3aadd82119610b2ea41153b3b41))
+
+
+
+
+
 ## [2.9.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.9.0...v2.9.1) (2020-05-20)
 
 **Note:** Version bump only for package @irvingjs/vip-go
