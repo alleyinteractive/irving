@@ -1,19 +1,25 @@
 service: irving
 
 plugins:
-  - serverless-offline // This for testing purposes.
+  - serverless-offline # Used for testing locally.
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs12.x
 
   stage: dev
   region: sa-east-1
-  memorySize: 128
+  memorySize: 512
+
+package:
+  exclude:
+    - .git/**
+    - .gitignore
+    - readme.md
 
 functions:
-  api:
-    handler: build/server/main.bundle.exportServer
+  app:
+    handler: index.handler
     events:
       - http:
           path: / # this matches the base path

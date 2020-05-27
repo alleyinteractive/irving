@@ -1,6 +1,6 @@
-const awsLambdaConfig = require('./config/awsLambdaConfig');
+const lambdaConfig = require('./config/lambdaConfig');
 
 module.exports = {
   name: 'aws-lambda',
-  exportServer: awsLambdaConfig,
+  exportServer: lambdaConfig,
 };
