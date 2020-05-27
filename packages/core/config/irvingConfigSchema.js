@@ -16,7 +16,7 @@ module.exports = {
   monitorService: () => {},
   packages: [],
   postcssConfig: [() => {}],
-  preExportServer: [() => {}],
+  exportServer: [() => {}],
   proxyPassthrough: [() => []],
   reducers: [() => {}],
   webpackConfig: [() => {}],

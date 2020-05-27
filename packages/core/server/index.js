@@ -38,7 +38,6 @@ const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
   secure: 'development' !== process.env.NODE_ENV,
-  // @todo make this not specific to WP eventually.
   target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
   xfwd: true,
 });
@@ -72,7 +71,7 @@ app.use((err, req, res, next) => {
 });
 
 // Run all export server functions.
-const serverExportMiddleware = getConfigField('preExportServer');
+const serverExportMiddleware = getConfigField('exportServer');
 serverExportMiddleware.forEach((middleware) => middleware(app));
 
 module.exports = app;
