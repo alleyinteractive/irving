@@ -1,5 +1,5 @@
 const path = require('path');
-const { maybeResolveBuildModule } = require('../utils/nodeRequire');
+const { maybeResolveBuildModule } = require('../utils/userModule');
 const { buildContext } = require('./paths');
 
 // App aliases, exported in case we need them elsewhere.

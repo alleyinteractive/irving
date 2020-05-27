@@ -1,12 +1,4 @@
 /* eslint-disable global-require, no-console, import/order */
-// Get environmental variables
-const getEnv = require('../config/env');
-const {
-  API_ROOT_URL,
-  API_ORIGN,
-  NODE_ENV,
-} = getEnv();
-
 // Start monitor service as early as possible.
 const getService = require('../services/monitorService');
 getService().start();
@@ -26,6 +18,11 @@ const customizeRedirect = require('./customizeRedirect');
 const getLogService = require('../services/logService');
 const log = getLogService('irving:server');
 const app = express();
+const {
+  API_ROOT_URL,
+  API_ORIGIN,
+} = process.env;
+const test = 'development';
 
 // Clearing the Redis cache.
 app.post('/purge-cache', bodyParser.json(), purgeCache);
@@ -43,9 +40,8 @@ const proxyPassthrough = getConfigArray('proxyPassthrough');
 const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
-  secure: 'development' !== NODE_ENV,
-  // @todo make this not specific to WP eventually.
-  target: API_ORIGN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  secure: 'development' !== process.env.NODE_ENV,
+  target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
   xfwd: true,
 });
 
@@ -60,7 +56,8 @@ app.use(cookiesMiddleware());
 // Naked Redirect.
 app.use(customizeRedirect());
 
-if ('development' === NODE_ENV) {
+// Only load the appropriate middleware for the current env.
+if (test === process.env.NODE_ENV) {
   require('./development').default(app);
 } else {
   require('./production').default(app);
