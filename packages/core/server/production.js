@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const auth = require('./auth');
+const createCheckAuth = require('./auth');
 const { clientBuild, serverBuild } = require('../config/paths');
 const getConfigField = require('../utils/getConfigField');
 // App must be built using the build command before production mode can be run.
@@ -20,8 +20,7 @@ const productionMiddleware = (app) => {
   const irvingProdMiddleware = getConfigField('customizeProdServer');
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 
-  // @todo should this be included in core or optional?
-  app.use(auth);
+  app.use(createCheckAuth('irving'));
 
   app.use(express.static(path.resolve('./build/client'), {
     maxAge: 86400000,

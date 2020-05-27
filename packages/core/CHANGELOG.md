@@ -3,6 +3,166 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.10.0-rc.0...v2.10.0) (2020-05-26)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.10.0-rc.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.10.0-beta.0...v2.10.0-rc.0) (2020-05-26)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.10.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.9.1...v2.10.0-beta.0) (2020-05-26)
+
+
+### Features
+
+* rename env var to prevent conflicts ([d08c165](https://github.com/alleyinteractive/irving/packages/core/commit/d08c16533c94c3aadd82119610b2ea41153b3b41))
+
+
+
+
+
+## [2.9.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.9.0...v2.9.1) (2020-05-20)
+
+
+### Bug Fixes
+
+* **auth:** fix production basic auth from causing halt in server start ([ea16e2a](https://github.com/alleyinteractive/irving/packages/core/commit/ea16e2a9037158d9e62a04de66c3d71eb5a9e76e))
+
+
+
+
+
+# [2.9.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.9.0-beta.2...v2.9.0) (2020-05-20)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.9.0-beta.2](https://github.com/alleyinteractive/irving/packages/core/compare/v2.9.0-beta.1...v2.9.0-beta.2) (2020-05-20)
+
+
+### Bug Fixes
+
+* **cache:** begin adding some protections to cache endpoints ([0433d9c](https://github.com/alleyinteractive/irving/packages/core/commit/0433d9c740cf20a8746008fa955bcb0579ef55ca))
+* **redis:** minor update to purgeCache response ([9fed4df](https://github.com/alleyinteractive/irving/packages/core/commit/9fed4dfdd415978578ec9da9de8d976f7a4bb641))
+
+
+### Features
+
+* **redis:** add some protection on top of cache endpoints ([210da79](https://github.com/alleyinteractive/irving/packages/core/commit/210da79df84e765ac958d62c3ba70fa1237583ad))
+
+
+
+
+
+# [2.9.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.9.0-beta.0...v2.9.0-beta.1) (2020-05-19)
+
+
+### Bug Fixes
+
+* **customizeredirect:** fix default value for customizeRedirect ([7eeef58](https://github.com/alleyinteractive/irving/packages/core/commit/7eeef58aeea93f230144bc9f5c12c60349ea994c))
+
+
+
+
+
+# [2.9.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.1...v2.9.0-beta.0) (2020-05-19)
+
+
+### Bug Fixes
+
+* **packagejson:** update http-proxy-middleware and imports for the package ([7d187d3](https://github.com/alleyinteractive/irving/packages/core/commit/7d187d3e4a48c1ce4fbe4906bcb02c3057360695))
+* **packagejson:** update react-oembed-container ([cc8005d](https://github.com/alleyinteractive/irving/packages/core/commit/cc8005dba0d0ead2ee0d37f56704a301fc68be98))
+
+
+### Features
+
+* **packagejson:** update newrelic ([a98a303](https://github.com/alleyinteractive/irving/packages/core/commit/a98a3032dd03a25b0dba3feeb7d293baffd16cdf))
+* **packagejson:** update reduce-reducers to latest, make related/necessary code changes ([d9bb4b4](https://github.com/alleyinteractive/irving/packages/core/commit/d9bb4b41f10ea9f351f1e714158a4229653961bb))
+* **packagejson:** update redux-persist to latest version ([7f5ee74](https://github.com/alleyinteractive/irving/packages/core/commit/7f5ee74247ce7c07eb5ae95125748087164aa9b6))
+
+
+
+
+
+## [2.8.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0...v2.8.1) (2020-05-19)
+
+
+### Bug Fixes
+
+* **customizeredirect:** don't run express-naked-redirect in development ([0f859bd](https://github.com/alleyinteractive/irving/packages/core/commit/0f859bd2be10cc4a47282b054185c83c6e42a6a4))
+
+
+
+
+
+# [2.8.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.5...v2.8.0) (2020-05-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.8.0-beta.5](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2020-05-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.8.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2020-05-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.1...v2.8.0-beta.3) (2020-05-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.1...v2.8.0-beta.2) (2020-05-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.0...v2.8.0-beta.1) (2020-05-19)
+
+
+### Bug Fixes
+
+* removing duplicte code left from a merge conflict ([78104c1](https://github.com/alleyinteractive/irving/packages/core/commit/78104c1f3d2b2a4e09c31380c9c717358a0bf34c))
+
+
+### Features
+
+* adding support to the Express Naked Redirect package ([a5f0928](https://github.com/alleyinteractive/irving/packages/core/commit/a5f09286ad14c05616cab5b6973c243f9dbf39fd))
+
+
+
+
+
 # [2.8.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.7.2...v2.8.0-beta.0) (2020-05-18)
 
 

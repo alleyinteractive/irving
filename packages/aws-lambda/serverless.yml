@@ -1,0 +1,20 @@
+service: irving
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+  stage: dev
+  region: sa-east-1
+  memorySize: 128
+
+functions:
+  api:
+    handler: build/client/main.bundle.handler
+    events:
+      - http:
+          path: / # this matches the base path
+          method: ANY
+      - http:
+          path: /{any+} # this matches any path, the token 'any' doesn't mean anything special
+          method: ANY

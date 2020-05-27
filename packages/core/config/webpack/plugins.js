@@ -30,7 +30,7 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new CleanPlugin(),
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           ...env,
         }),
         // Ensures async components can be rendered sync server-side.
@@ -44,7 +44,7 @@ module.exports = function getPlugins(context) {
       return [
         ...commonPlugins,
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           ...env,
         }),
         // Ensures async components can be rendered sync server-side.
@@ -58,7 +58,7 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new CleanPlugin(),
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           BROWSER: true,
           ...env,
         }),
@@ -84,7 +84,7 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new webpack.NamedModulesPlugin(),
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           BROWSER: true,
           ...env,
         }),

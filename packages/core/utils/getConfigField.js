@@ -3,7 +3,7 @@ const { getMergedFromUserConfig } = require('./getMergedConfigField');
 let config;
 
 /* eslint-disable import/no-dynamic-require, global-require */
-if (process.env.BUILD) {
+if (process.env.WEBPACK_BUILD) {
   config = require('@irvingjs/irving.config').default || {};
 } else {
   const { serverConfig: serverConfigPath } = require('../config/paths');
