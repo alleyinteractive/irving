@@ -130,36 +130,37 @@ async function cachedFetchComponents(
   const info = {
     cached: false,
     __caching__: false,
+    data: {},
     endpoint: `${process.env.API_ROOT_URL}/components?${componentsQuery}`,
     cacheKey: key,
+    updated: null,
   };
   const {
     bypassCache
   } = cookie;
 
-  if (bypassCache) {
+  if (bypassCache || Object.keys(cache.client).length === 0) {
     const result = await fetchComponents(path, search, cookie, context);
 
     log.info('%o', {
       ...info,
       data: result,
-      updated: new Date()
     });
 
     return result;
   }
 
-  const result = await cache.cached(key, await fetchComponents(path, search, cookie, context), {
+  const cachedResult = await cache.cached(key, await fetchComponents(path, search, cookie, context), {
     payload: true,
   });
 
   log.info('%o', {
     ...info,
-    ...result,
+    ...cachedResult,
     cached: true,
   });
 
-  return result.data ? result.data : result;
+  return cachedResult.data ? cachedResult.data : cachedResult;
 }
 
 export default cachedFetchComponents;
