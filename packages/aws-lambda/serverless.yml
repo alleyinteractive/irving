@@ -1,12 +1,11 @@
 service: irving
 
 plugins:
-  - serverless-offline # Used for testing locally.
+  - serverless-offline # Used for testing AWS Lambda locally.
 
 provider:
   name: aws
   runtime: nodejs12.x
-
   stage: dev
   region: sa-east-1
   memorySize: 512
