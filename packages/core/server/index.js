@@ -71,7 +71,7 @@ app.use((err, req, res, next) => {
   return res.sendStatus(500);
 });
 
-// Run all export server functions.
+// Run all pre-export server functions.
 const serverExportMiddleware = getConfigField('preExportServer');
 serverExportMiddleware.forEach((middleware) => middleware(app));
 
