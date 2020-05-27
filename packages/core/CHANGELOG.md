@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.10.0...v2.10.1) (2020-05-27)
+
+
+### Bug Fixes
+
+* **server:** fix eslint errors, remove top-level eslint config ([966639e](https://github.com/alleyinteractive/irving/packages/core/commit/966639e14999d2ec363e2eebb11cd91540870b1d))
+* **server:** uncomment commented code ([e58500c](https://github.com/alleyinteractive/irving/packages/core/commit/e58500c4d9baa4987d63b161479bc1d8df2032ec))
+
+
+
+
+
 # [2.10.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.10.0-rc.0...v2.10.0) (2020-05-26)
 
 **Note:** Version bump only for package @irvingjs/core
