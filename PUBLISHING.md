@@ -8,7 +8,7 @@ In order to publish you will need to:
 
 ## Available NPM scripts
 * `npm run prerelease:canary` - publish a prerelease to npm. This will use the npm `@canary` tag using the `-alpha` prerelease identifier. This command is intended for use on the `develop` branch, specifically for commit-level releases. You can and should use this command as much as necessary to test out a real `npm install` of the packages you're working on. Don't worry about publishing a broken package on the `@canary` tag.
-* `npm run prerelease:beta` - publish a prerelease to both git and npm. This will use the npm `@beta` tag using the `-beta` prerelease identifier. Publishes to the `@beta` tag don't need to be 100% stable, but shuld inidcate you're finished with the work on your branch and ready for it to be reviewed and tested. Beta releases should be made from the `master` branch.
+* `npm run prerelease:beta` - publish a prerelease to both git and npm. This will use the npm `@beta` tag using the `-beta` prerelease identifier. Publishes to the `@beta` tag don't need to be 100% stable, but should indicate you're finished with the work on your branch and ready for it to be reviewed and tested. Beta releases should be made from the `master` branch.
 * `npm run prerelease:rc` - publish a prerelease (a release candidate) to both git and npm. This will use the npm `@rc` tag using the `-rc` prerelease identifier. Publishes to the `@rc` tag should be considered stable. This is the last check before publishing a new, stable release. Ideally, multiple folks at Alley should install and try out this code before a stable release. Release Candidates should be made from the `master` branch.
 * `npm run release` - publish a stable release to the npm `@latest` tag. This is the only type of release that can contain code from multiple issues and/or contributors.
 
@@ -31,7 +31,7 @@ In order to publish you will need to:
   * Install and test your code a one more time.
 10. (optional) if you're releasing some serious changes (usually something other than a `patch`), make a release candidate:
   * `npm run prerelease:rc`- publish a new release to the `@rc` tag in npm.
-  * Ideally at this point you would have someone else at alley install and test out your `@rc` release.
+  * Ideally at this point you would have someone else at Alley install and test out your `@rc` release.
 11. When ready, call attention to your upcoming release. This is an opportunity to have a conversation with others about code they might also want to release or objections they might have to releasing your code.
 12. Assuming no one takes issue with your code, get someone to slap an approval on it and merge into `master`.
 13. `git checkout master && git pull origin master` - checkout `master` and pull down your newly-merged code.

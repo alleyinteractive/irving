@@ -1,4 +1,3 @@
-const auth = require('basic-auth');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const purgeCache = require('./purgeCache');
@@ -8,8 +7,6 @@ const createCheckAuth = require('./auth');
 const {
   API_ROOT_URL,
   API_ORIGIN,
-  BASIC_AUTH_USERNAME: username,
-  BASIC_AUTH_PASSWORD: password,
 } = process.env;
 
 const corsMiddleware = cors({
@@ -34,7 +31,6 @@ const cacheMiddleware = (app) => {
     createCheckAuth('cache', corsMiddleware),
     purgeCache
   );
-  console.log('butts');
 
   app.get(
     '/cache-keys',
