@@ -50,7 +50,7 @@ proxyPassthrough.forEach((pattern) => {
 // Add universal cookies middleware.
 app.use(cookiesMiddleware());
 
-// Naked Redirect.
+// Customize Redirect.
 app.use(customizeRedirect());
 
 if ('development' === process.env.NODE_ENV) {
