@@ -1,7 +1,12 @@
 const path = require('path');
 const express = require('express');
 const createCheckAuth = require('./auth');
-const { clientBuild, serverBuild } = require('../config/paths');
+const {
+  clientBuild,
+  serverBuild,
+  serverConfig,
+} = require('../config/paths');
+const userConfig = require(serverConfig);
 const getConfigField = require('../utils/getConfigField');
 // App must be built using the build command before production mode can be run.
 /* eslint-disable import/no-dynamic-require */
@@ -20,7 +25,10 @@ const productionMiddleware = (app) => {
   const irvingProdMiddleware = getConfigField('customizeProdServer');
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 
-  app.use(createCheckAuth('irving'));
+  // Add basic auth handling if user configures it.
+  if (userConfig.basicAuth) {
+    app.use(createCheckAuth('irving'));
+  }
 
   app.use(express.static(path.resolve('./build/client'), {
     maxAge: 86400000,
