@@ -1,3 +1,4 @@
+/* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const path = require('path');
 const express = require('express');
 const createCheckAuth = require('./auth');
