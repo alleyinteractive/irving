@@ -25,6 +25,10 @@ const rootSliceReducer = combineReducers(reducers);
 
 // "State" reducers are composed together. The order they are passed into
 // reduceReducers determines the order they will be run in.
-const rootReducer = reduceReducers(defaultState, rootSliceReducer, componentsReducer);
+const rootReducer = reduceReducers(
+  defaultState,
+  rootSliceReducer,
+  componentsReducer
+);
 
 export default rootReducer;
