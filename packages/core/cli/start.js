@@ -13,7 +13,7 @@ const {
 // Allow customization of how server is created.
 // Run all customize server functions.
 const server = getConfigField('startServer')(app);
-if (!server) {
+if (! server) {
   startServer(app);
 }
 
