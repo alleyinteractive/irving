@@ -7,7 +7,7 @@ const express = require('express');
 const clientStats = nodeRequire(
   path.join(clientBuild, 'stats.json')
 );
-const auth = require('./auth');
+const createCheckAuth = require('./auth');
 const getConfigField = require('../utils/getConfigField');
 
 /**
@@ -19,8 +19,7 @@ const productionMiddleware = async (app) => {
   const irvingProdMiddleware = getConfigField('customizeProdServer');
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 
-  // @todo should this be included in core or optional?
-  app.use(auth);
+  app.use(createCheckAuth('irving'));
 
   app.use(express.static(path.resolve('./build/client'), {
     maxAge: 86400000,

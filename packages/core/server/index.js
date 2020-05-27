@@ -22,7 +22,6 @@ const {
   API_ROOT_URL,
   API_ORIGIN,
 } = process.env;
-const test = 'development';
 
 // Clearing the Redis cache.
 app.post('/purge-cache', bodyParser.json(), purgeCache);
@@ -57,7 +56,7 @@ app.use(cookiesMiddleware());
 app.use(customizeRedirect());
 
 // Only load the appropriate middleware for the current env.
-if (test === process.env.NODE_ENV) {
+if ('development' === process.env.NODE_ENV) {
   require('./development').default(app);
 } else {
   require('./production').default(app);

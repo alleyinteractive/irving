@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.1](https://github.com/alleyinteractive/irving/compare/v2.10.0...v2.10.1) (2020-05-27)
+
+
+### Bug Fixes
+
+* **server:** fix eslint errors, remove top-level eslint config ([966639e](https://github.com/alleyinteractive/irving/commit/966639e14999d2ec363e2eebb11cd91540870b1d))
+* **server:** uncomment commented code ([e58500c](https://github.com/alleyinteractive/irving/commit/e58500c4d9baa4987d63b161479bc1d8df2032ec))
+
+
+
+
+
+# [2.10.0](https://github.com/alleyinteractive/irving/compare/v2.10.0-rc.0...v2.10.0) (2020-05-26)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.10.0-rc.0](https://github.com/alleyinteractive/irving/compare/v2.10.0-beta.0...v2.10.0-rc.0) (2020-05-26)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.10.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.9.1...v2.10.0-beta.0) (2020-05-26)
+
+
+### Features
+
+* rename env var to prevent conflicts ([d08c165](https://github.com/alleyinteractive/irving/commit/d08c16533c94c3aadd82119610b2ea41153b3b41))
+
+
+
+
+
+## [2.9.1](https://github.com/alleyinteractive/irving/compare/v2.9.0...v2.9.1) (2020-05-20)
+
+
+### Bug Fixes
+
+* **auth:** fix production basic auth from causing halt in server start ([ea16e2a](https://github.com/alleyinteractive/irving/commit/ea16e2a9037158d9e62a04de66c3d71eb5a9e76e))
+
+
+
+
+
+# [2.9.0](https://github.com/alleyinteractive/irving/compare/v2.9.0-beta.2...v2.9.0) (2020-05-20)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.9.0-beta.2](https://github.com/alleyinteractive/irving/compare/v2.9.0-beta.1...v2.9.0-beta.2) (2020-05-20)
+
+
+### Bug Fixes
+
+* **cache:** begin adding some protections to cache endpoints ([0433d9c](https://github.com/alleyinteractive/irving/commit/0433d9c740cf20a8746008fa955bcb0579ef55ca))
+* **redis:** minor update to purgeCache response ([9fed4df](https://github.com/alleyinteractive/irving/commit/9fed4dfdd415978578ec9da9de8d976f7a4bb641))
+
+
+### Features
+
+* **redis:** add some protection on top of cache endpoints ([210da79](https://github.com/alleyinteractive/irving/commit/210da79df84e765ac958d62c3ba70fa1237583ad))
+
+
+
+
+
 # [2.9.0-beta.1](https://github.com/alleyinteractive/irving/compare/v2.9.0-beta.0...v2.9.0-beta.1) (2020-05-19)
 
 
