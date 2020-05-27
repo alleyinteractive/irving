@@ -1,4 +1,4 @@
-// const nodeExternals = require('webpack-node-externals');
+const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
 const { buildContext } = require('./paths');
 const getConfigField = require('../utils/getConfigField');
@@ -51,22 +51,22 @@ module.exports = (env, argv) => {
       },
       // Don't polyfill NodeJS APIs, as we require a LTS NodeJS environment.
       node: false,
-      externals: {
-        // nodeExternals({
-        //   whitelist: [
-        //     // Allow references to vendor css, so we can include them in our bundle.
-        //     /\.css$/,
-        //     /babel-plugin-universal-import/,
-        //     /react-universal-component/,
-        //     /webpack-flush-chunks/,
-        //     // Include other irving packages in node_modules.
-        //     /@irvingjs/,
-        //   ],
-        // }),
-        fs: 'fs',
-        path: 'path',
-        '@newrelic/native-metrics': '@newrelic/native-metrics',
-      },
+      externals: [
+        nodeExternals({
+          whitelist: [
+            // Allow references to vendor css, so we can include them in our bundle.
+            /\.css$/,
+            /babel-plugin-universal-import/,
+            /react-universal-component/,
+            /webpack-flush-chunks/,
+            // Include other irving packages in node_modules.
+            /@irvingjs/,
+          ],
+        }),
+        // fs: 'fs',
+        // path: 'path',
+        // '@newrelic/native-metrics': '@newrelic/native-metrics',
+      ],
       entry: server.getEntry(),
       output: server.getOutput(),
       module: {

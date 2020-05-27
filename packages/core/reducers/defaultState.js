@@ -30,8 +30,6 @@ export const componentDataMeta = {
   data: [],
 };
 
-const customDefaultState = getConfigObject('defaultState');
-
 const defaultState = {
   components,
   componentData,
@@ -39,7 +37,6 @@ const defaultState = {
   loading,
   route,
   visible,
-  ...customDefaultState,
 };
 
-export default defaultState;
+export default getConfigObject('defaultState', defaultState);

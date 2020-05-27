@@ -22,6 +22,10 @@ module.exports = function getPlugins(context) {
         maybeResolveUserModule('server/views/error.ejs')
       ),
     }),
+    new webpack.EnvironmentPlugin({
+      IRVING_EXECUTION_CONTEXT: context,
+      ...env,
+    }),
   ];
 
   switch (context) {
@@ -29,10 +33,6 @@ module.exports = function getPlugins(context) {
       return [
         ...commonPlugins,
         new CleanPlugin(),
-        new webpack.EnvironmentPlugin({
-          WEBPACK_BUILD: true,
-          ...env,
-        }),
         // Ensures async components can be rendered sync server-side.
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
@@ -43,10 +43,6 @@ module.exports = function getPlugins(context) {
     case 'development_server':
       return [
         ...commonPlugins,
-        new webpack.EnvironmentPlugin({
-          WEBPACK_BUILD: true,
-          ...env,
-        }),
         // Ensures async components can be rendered sync server-side.
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
@@ -57,11 +53,6 @@ module.exports = function getPlugins(context) {
       return [
         ...commonPlugins,
         new CleanPlugin(),
-        new webpack.EnvironmentPlugin({
-          WEBPACK_BUILD: true,
-          BROWSER: true,
-          ...env,
-        }),
         new StatsWriterPlugin({
           stats: {
             all: false,
@@ -83,11 +74,6 @@ module.exports = function getPlugins(context) {
       return [
         ...commonPlugins,
         new webpack.NamedModulesPlugin(),
-        new webpack.EnvironmentPlugin({
-          WEBPACK_BUILD: true,
-          BROWSER: true,
-          ...env,
-        }),
         new webpack.HotModuleReplacementPlugin(),
       ];
 

@@ -10,9 +10,13 @@ const getConfigField = require('./getConfigField');
 const getConfigObject = (key, initial = {}) => {
   const getters = getConfigField(key);
 
-  return getters.reduce((acc, getter) => (
-    { ...acc, ...getter(acc) }
-  ), initial);
+  return getters.reduce(
+    (acc, getter) => {
+      const configObject = 'function' === typeof getter ? getter(acc) : getter;
+      return { ...acc, ...configObject };
+    },
+    initial
+  );
 };
 
 /**
@@ -25,9 +29,13 @@ const getConfigObject = (key, initial = {}) => {
 const getConfigArray = (key, initial = []) => {
   const getters = getConfigField(key);
 
-  return getters.reduce((acc, getter) => (
-    [...acc, ...getter(acc)]
-  ), initial);
+  return getters.reduce(
+    (acc, getter) => {
+      const configArray = 'function' === typeof getter ? getter(acc) : getter;
+      return [...acc, ...configArray];
+    },
+    initial
+  );
 };
 
 module.exports = {

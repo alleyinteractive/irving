@@ -1,7 +1,7 @@
 // I realize this isn't actually a schema—it will be eventually.
 module.exports = {
   name: '',
-  babelConfig: [() => {}],
+  babelConfig: [],
   envAllowlist: [() => []],
   cacheService: () => {},
   startServer: () => {},
@@ -16,8 +16,8 @@ module.exports = {
   monitorService: () => {},
   packages: [],
   postcssConfig: [() => {}],
-  proxyPassthrough: [() => []],
-  reducers: [() => {}],
+  proxyPassthrough: [],
+  reducers: [],
   webpackConfig: [() => {}],
   sagas: [() => {}],
   stylelintConfig: [() => {}],

@@ -3,31 +3,16 @@ const { getMergedFromUserConfig } = require('./getMergedConfigField');
 let config;
 
 /* eslint-disable import/no-dynamic-require, global-require */
-if (process.env.WEBPACK_BUILD) {
+if (
+  'development_client' === process.env.IRVING_EXECUTION_CONTEXT ||
+  'production_client' === process.env.IRVING_EXECUTION_CONTEXT
+) {
   config = require('@irvingjs/irving.config').default || {};
+} else if ('test' === process.env.BABEL_ENV) {
+  config = require('../irving.config.js');
 } else {
-  const { serverConfig: serverConfigPath } = require('../config/paths');
-  const chalk = require('chalk');
-
-  // Wrap require for server config in try/catch to ensure things will work
-  // if user decides not to create a server config.
-  try {
-    config = require(serverConfigPath) || {};
-  } catch (e) {
-    if (
-      'MODULE_NOT_FOUND' === e.code &&
-      e.toString().includes('irving.config.server.js')
-    ) {
-      // Server config missing, which is ok (but user should still be notified.)
-      console.log( // eslint-disable-line no-console
-        chalk.yellow('No Irving server config found, continuing with defaults.')
-      );
-      config = {};
-    } else {
-      // Something is wrong inside the server config, stop the current process.
-      throw new Error(chalk.red(e));
-    }
-  }
+  const { maybeResolveBuildModule } = require('./userModule');
+  config = require(maybeResolveBuildModule('irving.config.js'));
 }
 /* eslint-enable */
 

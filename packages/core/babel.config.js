@@ -45,6 +45,7 @@ module.exports = (api) => {
     appConfig
   );
 
+
   return {
     env: {
       app: processedConfigs,
@@ -58,9 +59,6 @@ module.exports = (api) => {
               alias: {
                 '@irvingjs/irving.config': path.join(
                   mocks, 'irving.config.js'
-                ),
-                '@irvingjs/irving.config.server': path.join(
-                  mocks, 'irving.config.server.js'
                 ),
                 '@irvingjs/componentMap': path.join(
                   mocks, 'componentMap.js'

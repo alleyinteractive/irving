@@ -37,8 +37,8 @@
     "irving": "./bin/irving"
   },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "BABEL_ENV=test jest",
+    "test:watch": "BABEL_ENV=test jest --watch"
   },
   "dependencies": {
     "@babel/core": "^7.9.6",

@@ -10,9 +10,6 @@ const schema = require('../config/irvingConfigSchema');
 function getConfigFieldType(value) {
   // Infer type of data based on schema.
   switch (true) {
-    case (Array.isArray(value) && 'function' === typeof value[0]):
-      return 'func-array';
-
     case Array.isArray(value):
       return 'array';
 
@@ -20,7 +17,7 @@ function getConfigFieldType(value) {
       return 'function';
 
     default:
-      return 'object';
+      return 'array';
   }
 }
 
@@ -33,15 +30,11 @@ function getConfigFieldType(value) {
 function getInitialValue(type) {
   // Infer type of data based on schema.
   switch (type) {
-    case 'func-array':
     case 'array':
       return [];
 
     case 'function':
       return () => {};
-
-    case 'object':
-      return {};
 
     default:
       return [];
@@ -81,17 +74,12 @@ const getMergedConfigField = (configs, key) => {
     // Merge together config fields based on type.
     switch (type) {
       case 'array':
-        return [...acc, ...config[key]];
-
-      case 'func-array':
-        return acc.concat(config[key]);
+        acc.push(config[key]);
+        return acc;
 
       // There should only be one configured function, so return the latest.
       case 'function':
         return config[key];
-
-      case 'object':
-        return { ...acc, ...config[key] };
 
       default:
         return acc;

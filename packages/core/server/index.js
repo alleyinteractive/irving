@@ -23,6 +23,15 @@ const {
   API_ORIGIN,
 } = process.env;
 
+const devOnly = (callback) => {
+  if (
+    'development_client' === process.env.IRVING_EXECUTION_CONTEXT ||
+    'development_server' === process.env.IRVING_EXECUTION_CONTEXT
+  ) {
+    callback();
+  }
+};
+
 // Clearing the Redis cache.
 app.post('/purge-cache', bodyParser.json(), purgeCache);
 app.get('/cache-keys', getCacheKeys);
@@ -56,7 +65,10 @@ app.use(cookiesMiddleware());
 app.use(customizeRedirect());
 
 // Only load the appropriate middleware for the current env.
-if ('development' === process.env.NODE_ENV) {
+if (
+  'development_client' === process.env.IRVING_EXECUTION_CONTEXT ||
+  'development_server' === process.env.IRVING_EXECUTION_CONTEXT
+) {
   require('./development').default(app);
 } else {
   require('./production').default(app);
