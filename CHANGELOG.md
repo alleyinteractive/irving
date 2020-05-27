@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.10.1...v2.11.0-beta.0) (2020-05-27)
+
+
+### Bug Fixes
+
+* **auth:** skip by basic auth on the entire site if new basicAuth config field isn't true ([c3cebb6](https://github.com/alleyinteractive/irving/commit/c3cebb685db249feff4c9da27c48078ae9b80e1a))
+
+
+### Features
+
+* **server:** begin relocating server creation and export ([12e8b8f](https://github.com/alleyinteractive/irving/commit/12e8b8f447cd54486c1c7ecbe35463936c02853d))
+
+
+
+
+
 ## [2.10.1](https://github.com/alleyinteractive/irving/compare/v2.10.0...v2.10.1) (2020-05-27)
 
 
