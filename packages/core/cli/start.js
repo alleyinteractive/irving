@@ -30,7 +30,7 @@ const log = getLogService('irving:server');
 const app = express();
 
 // Cache-related endpoints.
-// require('../server/cache')(app);
+require('../server/cache')(app);
 
 // Set view engine.
 app.set('view engine', 'ejs');
@@ -40,26 +40,26 @@ const irvingServerMiddleware = getConfigField('customizeServer');
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 // Set up a reusable proxy for responses that should be served directly.
-// const proxyPassthrough = getConfigArray('proxyPassthrough');
-// const passthrough = createProxyMiddleware({
-//   changeOrigin: true,
-//   followRedirects: true,
-//   secure: 'development' !== NODE_ENV,
-//   // @todo make this not specific to WP eventually.
-//   target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
-//   xfwd: true,
-// });
+const proxyPassthrough = getConfigArray('proxyPassthrough');
+const passthrough = createProxyMiddleware({
+  changeOrigin: true,
+  followRedirects: true,
+  secure: 'development' !== NODE_ENV,
+  // @todo make this not specific to WP eventually.
+  target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  xfwd: true,
+});
 
 // Create proxies for each configured proxy pattern.
-// proxyPassthrough.forEach((pattern) => {
-//   app.use(pattern, passthrough);
-// });
+proxyPassthrough.forEach((pattern) => {
+  app.use(pattern, passthrough);
+});
 
 // Add universal cookies middleware.
 app.use(cookiesMiddleware());
 
 // Naked Redirect.
-// app.use(customizeRedirect());
+app.use(customizeRedirect());
 
 if ('development' === NODE_ENV) {
   require('../server/development')(app);
