@@ -1,5 +1,8 @@
 service: irving
 
+plugins:
+  - serverless-offline // This for testing purposes.
+
 provider:
   name: aws
   runtime: nodejs10.x
@@ -10,7 +13,7 @@ provider:
 
 functions:
   api:
-    handler: build/client/main.bundle.handler
+    handler: build/server/main.bundle.exportServer
     events:
       - http:
           path: / # this matches the base path
