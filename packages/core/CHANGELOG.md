@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.9](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.8...v2.11.0-beta.9) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
 # [2.11.0-beta.8](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.7...v2.11.0-beta.8) (2020-05-28)
 
 **Note:** Version bump only for package @irvingjs/core
