@@ -5,7 +5,12 @@ const defaultService = {
   get: () => null,
   set: () => {},
   del: () => null,
+  insert: () => null,
+  remove: () => null,
+  cached: () => {},
+  close: () => {},
 };
+
 let service;
 
 /**
@@ -49,10 +54,15 @@ const getService = () => {
   // while compiling.
   if (! process.env.BROWSER) {
     let Redis;
+    let Stampede;
 
-    // Check if optional redis client is installed.
+    // Check if optional redis client and cache-stampede are installed.
     try {
-      Redis = require('ioredis'); // eslint-disable-line global-require
+      // eslint-disable-next-line global-require
+      Redis = require('ioredis');
+
+      // eslint-disable-next-line global-require
+      Stampede = require('cache-stampede/stampede');
     } catch (err) {
       return defaultService;
     }
@@ -70,22 +80,53 @@ const getService = () => {
       console.error(err); // eslint-disable-line no-console
     });
 
-    service = {
+    const get = async (key) => JSON.parse(await client.get(key));
+
+    const set = async (key, value) => client.set(
+      key,
+      JSON.stringify(value),
+      'EX',
+      process.env.CACHE_EXPIRE || 300
+    );
+
+    const del = (key) => client.del(key);
+
+    const ioredisService = {
       client,
-      async get(key) {
-        return JSON.parse(await this.client.get(key));
+      get,
+      set,
+      del,
+      update: set,
+      insert: set,
+      remove: del,
+      cached: () => {},
+      close: () => {},
+    };
+
+    const stampedeService = new Stampede({
+      upsert: false,
+      adapter: ioredisService,
+    });
+
+    service = {
+      ...ioredisService,
+      get: async (key, options, retry) => {
+        let result;
+        try {
+          const {
+            data,
+          } = await stampedeService.get(key, options, retry);
+
+          result = data;
+        } catch (error) {
+          result = null;
+        }
+
+        return result;
       },
-      async set(key, value) {
-        return this.client.set(
-          key,
-          JSON.stringify(value),
-          'EX',
-          process.env.CACHE_EXPIRE || 300
-        );
-      },
-      del(key) {
-        return this.client.del(key);
-      },
+      set: (key, fn, options) => stampedeService.set(key, fn, options),
+      insert: (key, fn, options) => stampedeService.set(key, fn, options),
+      cached: (key, fn, options) => stampedeService.cached(key, fn, options),
     };
 
     return service;
