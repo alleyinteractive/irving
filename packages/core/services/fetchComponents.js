@@ -1,12 +1,13 @@
 import AbortController from 'abort-controller';
 import {
-  CONTEXT_PAGE
+  CONTEXT_PAGE,
 } from 'config/constants';
 import isNode from 'utils/isNode';
 import shouldAuthorize from 'utils/shouldAuthorize';
 import getService from './cacheService';
 import getLogService from './logService';
-import createComponentsEndpointQueryString from './utils/createComponentsEndpointQueryString';
+import createComponentsEndpointQueryString
+  from './utils/createComponentsEndpointQueryString';
 
 const log = getLogService('irving:components');
 
@@ -71,7 +72,7 @@ export async function fetchComponents(
   const data = await response.json();
   const {
     redirectTo,
-    redirectStatus
+    redirectStatus,
   } = data;
 
   if (isNode() && redirectTo) {
@@ -89,8 +90,8 @@ export async function fetchComponents(
 
   // Abort if error is encountered, except 404s, which we will handle ourselves.
   if (
-    !response.ok &&
-    !redirectTo &&
+    ! response.ok &&
+    ! redirectTo &&
     404 !== response.status
   ) {
     throw new Error(`API error: ${data.message}`);
@@ -136,10 +137,10 @@ async function cachedFetchComponents(
     updated: null,
   };
   const {
-    bypassCache
+    bypassCache,
   } = cookie;
 
-  if (bypassCache || Object.keys(cache.client).length === 0) {
+  if (bypassCache || 0 === Object.keys(cache.client).length) {
     const result = await fetchComponents(path, search, cookie, context);
 
     log.info('%o', {
@@ -150,9 +151,13 @@ async function cachedFetchComponents(
     return result;
   }
 
-  const cachedResult = await cache.cached(key, await fetchComponents(path, search, cookie, context), {
-    payload: true,
-  });
+  const cachedResult = await cache.cached(
+    key,
+    await fetchComponents(path, search, cookie, context),
+    {
+      payload: true,
+    }
+  );
 
   log.info('%o', {
     ...info,

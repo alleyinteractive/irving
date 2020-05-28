@@ -9,7 +9,6 @@ const log = getLogService('irving:components:data');
 const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
 
 export default async function fetchComponentData(endpoint) {
-
   // Create abort controller and set timeout to abort fetch call.
   // Default timeout is 10s, but can be configured with env var.
   const controller = new AbortController();
@@ -31,15 +30,15 @@ export default async function fetchComponentData(endpoint) {
 
   // Return data if invalid or redirected.
   if (response.ok) {
-    return await response.json();
+    return response.json();
   }
 
-  if (!response.ok) {
+  if (! response.ok) {
     throw new Error(await response.text());
   }
 
   return null;
-};
+}
 
 /**
  * Cache fetchComponentData responses. Return cached response if available.
@@ -53,13 +52,13 @@ export async function cacheResult(endpoint) {
     cached: false,
     __caching__: false,
     data: {},
-    endpoint: endpoint,
+    endpoint,
     updated: new Date(),
-    cacheKey: endpoint
+    cacheKey: endpoint,
   };
 
   // Check if we have a cache client set up.
-  if (Object.keys(cache.client).length === 0) {
+  if (0 === Object.keys(cache.client).length) {
     const result = await fetchComponentData(endpoint);
 
     log.info('%o', {
@@ -70,9 +69,13 @@ export async function cacheResult(endpoint) {
     return result;
   }
 
-  const response = await cache.cached(endpoint, await fetchComponentData(endpoint), {
-    payload: true,
-  });
+  const response = await cache.cached(
+    endpoint,
+    await fetchComponentData(endpoint),
+    {
+      payload: true,
+    }
+  );
 
   log.info('%o', {
     ...info,

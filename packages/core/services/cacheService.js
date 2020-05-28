@@ -45,14 +45,14 @@ const getService = () => {
   }
 
   // Redis env variables have not been configured.
-  if (!host || !port) {
+  if (! host || ! port) {
     return defaultService;
   }
 
   // We need to be explicit that redis is only imported when not executing
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
-  if (!process.env.BROWSER) {
+  if (! process.env.BROWSER) {
     let Redis;
     let Stampede;
 
@@ -60,6 +60,8 @@ const getService = () => {
     try {
       // eslint-disable-next-line global-require
       Redis = require('ioredis');
+
+      // eslint-disable-next-line global-require
       Stampede = require('cache-stampede/stampede');
     } catch (err) {
       return defaultService;
@@ -78,22 +80,16 @@ const getService = () => {
       console.error(err); // eslint-disable-line no-console
     });
 
-    const get = async (key) => {
-      return JSON.parse(await client.get(key));
-    };
+    const get = async (key) => JSON.parse(await client.get(key));
 
-    const set = async (key, value) => {
-      return await client.set(
-        key,
-        JSON.stringify(value),
-        'EX',
-        process.env.CACHE_EXPIRE || 300
-      );
-    };
+    const set = async (key, value) => client.set(
+      key,
+      JSON.stringify(value),
+      'EX',
+      process.env.CACHE_EXPIRE || 300
+    );
 
-    const del = (key) => {
-      return client.del(key);
-    };
+    const del = (key) => client.del(key);
 
     const ioredisService = {
       client,
@@ -109,16 +105,16 @@ const getService = () => {
 
     const stampedeService = new Stampede({
       upsert: false,
-      adapter: ioredisService
+      adapter: ioredisService,
     });
 
-    const service = {
+    service = {
       ...ioredisService,
       get: async (key, options, retry) => {
         let result;
         try {
           const {
-            data
+            data,
           } = await stampedeService.get(key, options, retry);
 
           result = data;
@@ -128,15 +124,9 @@ const getService = () => {
 
         return result;
       },
-      set: (key, fn, options) => {
-        return stampedeService.set(key, fn, options);
-      },
-      insert: (key, fn, options) => {
-        return stampedeService.set(key, fn, options);
-      },
-      cached: (key, fn, options) => {
-        return stampedeService.cached(key, fn, options);
-      },
+      set: (key, fn, options) => stampedeService.set(key, fn, options),
+      insert: (key, fn, options) => stampedeService.set(key, fn, options),
+      cached: (key, fn, options) => stampedeService.cached(key, fn, options),
     };
 
     return service;
