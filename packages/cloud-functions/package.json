@@ -15,7 +15,8 @@
     "@irvingjs/core": ">=2.10.0"
   },
   "scripts": {
-    "gcf-start": "functions-framework --target=irving --source=index.js"
+    "gcf-start": "functions-framework --target=irving --source=index.js",
+    "gcf-deploy": "gcloud functions deploy irving --entry-point=index.js --region=us-east1 --runtime=nodejs10 --trigger-http"
   },
   "publishConfig": {
     "access": "public"
