@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.1](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.0...v2.11.0-beta.1) (2020-05-28)
+
+
+### Bug Fixes
+
+* **server:** use reduce on exportServer instead of forEach ([bb849ef](https://github.com/alleyinteractive/irving/commit/bb849efd3ae98320bb363f4eccf294921dee95c4))
+
+
+
+
+
+# [2.11.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.10.1...v2.11.0-beta.0) (2020-05-27)
+
+
+### Bug Fixes
+
+* **auth:** skip by basic auth on the entire site if new basicAuth config field isn't true ([c3cebb6](https://github.com/alleyinteractive/irving/commit/c3cebb685db249feff4c9da27c48078ae9b80e1a))
+
+
+### Features
+
+* **server:** begin relocating server creation and export ([12e8b8f](https://github.com/alleyinteractive/irving/commit/12e8b8f447cd54486c1c7ecbe35463936c02853d))
+
+
+
+
+
+## [2.10.1](https://github.com/alleyinteractive/irving/compare/v2.10.0...v2.10.1) (2020-05-27)
+
+
+### Bug Fixes
+
+* **server:** fix eslint errors, remove top-level eslint config ([966639e](https://github.com/alleyinteractive/irving/commit/966639e14999d2ec363e2eebb11cd91540870b1d))
+* **server:** uncomment commented code ([e58500c](https://github.com/alleyinteractive/irving/commit/e58500c4d9baa4987d63b161479bc1d8df2032ec))
+
+
+
+
+
 # [2.10.0](https://github.com/alleyinteractive/irving/compare/v2.10.0-rc.0...v2.10.0) (2020-05-26)
 
 **Note:** Version bump only for package irving
