@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.17](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.16...v2.11.0-beta.17) (2020-05-28)
+
+
+### Bug Fixes
+
+* **publish:** add HUSKY_SKIP_HOOKS to prevent it from hanging ([5124c3c](https://github.com/alleyinteractive/irving/commit/5124c3c2af622e33d1790b933fca626f4771a410))
+
+
+
+
+
 # [2.11.0-beta.16](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.15...v2.11.0-beta.16) (2020-05-28)
 
 **Note:** Version bump only for package irving
