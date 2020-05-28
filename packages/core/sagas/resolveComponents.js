@@ -1,4 +1,8 @@
-import { call, select, put } from 'redux-saga/effects';
+import {
+  call,
+  select,
+  put
+} from 'redux-saga/effects';
 import {
   actionReceiveComponents,
   actionReceiveError,
@@ -8,7 +12,9 @@ import getRouteMeta from 'selectors/getRouteMeta';
 import cachedFetchComponents, {
   fetchComponents,
 } from 'services/fetchComponents';
-import shouldAuthorize, { getBearerToken } from 'utils/shouldAuthorize';
+import shouldAuthorize, {
+  getBearerToken
+} from 'utils/shouldAuthorize';
 import history from 'utils/history';
 import isNode from 'utils/isNode';
 import getRelativeUrl from 'utils/getRelativeUrl';
@@ -51,7 +57,7 @@ export default function* resolveComponents() {
 
     // Don't receive components on client side if redirecting,
     // otherwise will result in a confusing flash of empty page content.
-    if ((result.redirectTo && isNode()) || ! result.redirectTo) {
+    if ((result.redirectTo && isNode()) || !result.redirectTo) {
       yield put(actionReceiveComponents(result));
     }
 

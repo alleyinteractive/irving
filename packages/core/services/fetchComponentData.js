@@ -50,10 +50,25 @@ export default async function fetchComponentData(endpoint) {
 export async function cacheResult(endpoint) {
   const cache = getService();
   const info = {
-    route: endpoint,
-    cacheKey: endpoint,
     cached: false,
+    __caching__: false,
+    data: {},
+    endpoint: endpoint,
+    updated: new Date(),
+    cacheKey: endpoint
   };
+
+  // Check if we have a cache client set up.
+  if (Object.keys(cache.client).length === 0) {
+    const result = await fetchComponentData(endpoint);
+
+    log.info('%o', {
+      ...info,
+      data: result,
+    });
+
+    return result;
+  }
 
   const response = await cache.cached(endpoint, await fetchComponentData(endpoint), {
     payload: true,
