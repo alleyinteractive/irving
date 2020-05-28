@@ -1,24 +1,26 @@
+/* eslint-disable global-require, no-console, import/order */
 const {
   rootUrl
 } = require('../config/paths');
-
 const getConfigField = require('../utils/getConfigField');
-const startServer = require('../server/startServer');
 const app = require('../server');
+const startServer = require('../server/startServer');
+const getLogService = require('../services/logService');
+const log = getLogService('irving:server');
 
-const {
-  NODE_ENV
-} = process.env;
+// Set up environmental variables as early as possible.
+const getEnv = require('../config/env');
+getEnv();
 
 // Allow customization of how server is created.
 // Run all customize server functions.
 const server = getConfigField('startServer')(app);
-if (! server) {
+if (!server) {
   startServer(app);
 }
 
 // Open app for convenience and to get the initial build started.
-if ('development' === NODE_ENV) {
+if ('development' === process.env.NODE_ENV) {
   const openBrowser = require('react-dev-utils/openBrowser');
   openBrowser(rootUrl);
 }
@@ -27,7 +29,7 @@ if ('development' === NODE_ENV) {
 process.on('unhandledRejection', (err) => {
   log.error(err);
 
-  if ('production' !== NODE_ENV) {
+  if ('production' !== process.env.NODE_ENV) {
     throw err;
   }
 });

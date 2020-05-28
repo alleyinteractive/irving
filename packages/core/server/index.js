@@ -1,11 +1,8 @@
 /* eslint-disable global-require, no-console, import/order */
-// Get environmental variables
-const getEnv = require('../config/env');
 const {
   API_ROOT_URL,
   API_ORIGIN,
-  NODE_ENV,
-} = getEnv();
+} = process.env;
 
 // Start monitor service as early as possible.
 const getService = require('../services/monitorService');
@@ -25,12 +22,12 @@ const {
 } = require('../utils/getConfigValue');
 
 const getLogService = require('../services/logService');
-const customizeRedirect = require('../server/customizeRedirect');
+const customizeRedirect = require('./customizeRedirect');
 const log = getLogService('irving:server');
 const app = express();
 
 // Cache-related endpoints.
-require('../server/cache')(app);
+require('./cache')(app);
 
 // Set view engine.
 app.set('view engine', 'ejs');
@@ -44,8 +41,7 @@ const proxyPassthrough = getConfigArray('proxyPassthrough');
 const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
-  secure: 'development' !== NODE_ENV,
-  // @todo make this not specific to WP eventually.
+  secure: 'development' !== process.env.NODE_ENV,
   target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
   xfwd: true,
 });
@@ -61,10 +57,10 @@ app.use(cookiesMiddleware());
 // Customize Redirect.
 app.use(customizeRedirect());
 
-if ('development' === NODE_ENV) {
-  require('../server/development')(app);
+if ('development' === process.env.NODE_ENV) {
+  require('./development')(app);
 } else {
-  require('../server/production')(app);
+  require('./production')(app);
 }
 
 // Default error handler
@@ -78,5 +74,17 @@ app.use((err, req, res, next) => {
   return res.sendStatus(500);
 });
 
-// Export it.
-module.exports = app;
+// Run all export server functions.
+const serverExportMiddleware = getConfigField('exportServer');
+module.exports = serverExportMiddleware.reduce(
+  (acc, middleware) => {
+    const exportApp = middleware(app);
+
+    if (exportApp) {
+      return exportApp;
+    }
+
+    return acc;
+  },
+  app
+);
