@@ -72,6 +72,15 @@ app.use((err, req, res, next) => {
 
 // Run all export server functions.
 const serverExportMiddleware = getConfigField('exportServer');
-serverExportMiddleware.forEach((middleware) => middleware(app));
+module.exports = serverExportMiddleware.reduce(
+  (acc, middleware) => {
+    const exportApp = middleware(app);
 
-module.exports = app;
+    if (exportApp) {
+      return exportApp;
+    }
+
+    return acc;
+  },
+  app
+);
