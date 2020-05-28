@@ -1,0 +1,28 @@
+service: irving
+
+plugins:
+  - serverless-offline # Used for testing AWS Lambda locally.
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: sa-east-1
+  memorySize: 512
+
+package:
+  exclude:
+    - .git/**
+    - .gitignore
+    - readme.md
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          path: / # this matches the base path
+          method: ANY
+      - http:
+          path: /{any+} # this matches any path, the token 'any' doesn't mean anything special
+          method: ANY
