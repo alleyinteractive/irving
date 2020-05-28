@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.17](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.16...v2.11.0-beta.17) (2020-05-28)
+
+
+### Bug Fixes
+
+* **publish:** add HUSKY_SKIP_HOOKS to prevent it from hanging ([5124c3c](https://github.com/alleyinteractive/irving/commit/5124c3c2af622e33d1790b933fca626f4771a410))
+
+
+
+
+
+# [2.11.0-beta.16](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.15...v2.11.0-beta.16) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.15](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.14...v2.11.0-beta.15) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.14](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.13...v2.11.0-beta.14) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.13](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.12...v2.11.0-beta.13) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.12](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.10...v2.11.0-beta.12) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.11](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.10...v2.11.0-beta.11) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.10](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.9...v2.11.0-beta.10) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
 # [2.11.0-beta.9](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.8...v2.11.0-beta.9) (2020-05-28)
 
 **Note:** Version bump only for package irving
