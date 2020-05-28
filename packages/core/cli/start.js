@@ -1,7 +1,7 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const path = require('path');
 const { serverBuild, rootUrl } = require('../config/paths');
-const getConfigField = require('../utils/getConfigField');
+const getConfigFiles = require('../utils/getConfigFiles');
 const startServer = require('../server/startServer');
 const getLogService = require('../services/logService');
 const log = getLogService('irving:server');
@@ -9,7 +9,7 @@ const app = require(path.join(serverBuild, 'main.bundle'));
 
 // Allow customization of how server is created.
 // Run all customize server functions.
-const server = getConfigField('startServer')(app);
+const server = getConfigFiles('server/startServer.js', startServer);
 if (! server) {
   startServer(app);
 }

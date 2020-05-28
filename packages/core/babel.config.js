@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const getConfigField = require('./utils/getConfigField');
+const getConfigFiles = require('./utils/getConfigFiles');
 const {
   irvingRoot,
   buildContext,
@@ -37,18 +37,13 @@ module.exports = (api) => {
     ],
   };
 
-  const configGetters = getConfigField('babelConfig');
-  // Call all config getters, passing in configs in succession.
-  // Only allow users to modify app config, not test.
-  const processedConfigs = configGetters.reduce(
-    (acc, getter) => getter(acc),
-    appConfig
-  );
-
+  // Only allow user to modify app config, not test.
+  const processedConfig = getConfigFiles('babel.config.js', appConfig);
+  console.log(processedConfig);
 
   return {
     env: {
-      app: processedConfigs,
+      app: processedConfig,
       test: {
         plugins: [
           [

@@ -1,4 +1,4 @@
-import { nodeRequire } from 'utils/nodeRequire';
+import nodeRequire from 'utils/nodeRequire';
 import { clientBuild } from 'config/paths';
 import serverRenderer from './serverRenderer';
 const path = require('path');

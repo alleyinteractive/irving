@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { appRoot } = require('./paths');
-const { getConfigArray } = require('../utils/getConfigValue');
+const { getMergedConfigArray } = require('../utils/getConfigValue');
 
 /**
  * Get the client available environment variables.
@@ -19,7 +19,7 @@ module.exports = function getEnv() {
 
   // Only include allowlisted variables for client environments to avoid leaking
   // sensitive information.
-  const allowlistArray = getConfigArray('envAllowlist', [
+  const allowlistArray = getMergedConfigArray('envAllowlist', [
     'NODE_ENV',
     'API_ROOT_URL',
     'DEBUG',

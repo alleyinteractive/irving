@@ -23,15 +23,6 @@ const {
   API_ORIGIN,
 } = process.env;
 
-const devOnly = (callback) => {
-  if (
-    'development_client' === process.env.IRVING_EXECUTION_CONTEXT ||
-    'development_server' === process.env.IRVING_EXECUTION_CONTEXT
-  ) {
-    callback();
-  }
-};
-
 // Clearing the Redis cache.
 app.post('/purge-cache', bodyParser.json(), purgeCache);
 app.get('/cache-keys', getCacheKeys);
