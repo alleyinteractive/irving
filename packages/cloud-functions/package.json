@@ -1,0 +1,27 @@
+{
+  "name": "@irvingjs/cloud-functions",
+  "version": "0.1.0",
+  "description": "Run Irving on Google Cloud Functions",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/cloud-functions"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^1.5.1"
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">=2.10.0"
+  },
+  "scripts": {
+    "test-gcf": "functions-framework --target=irving --source=index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
