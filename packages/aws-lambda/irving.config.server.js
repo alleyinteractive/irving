@@ -1,6 +1,7 @@
-const lambdaConfig = require('./config/lambdaConfig');
+const serverless = require('serverless-http');
 
 module.exports = {
-  name: 'aws-lambda',
-  exportServer: lambdaConfig,
+  exportServer: (app) => {
+    return serverless(app);
+  }
 };
