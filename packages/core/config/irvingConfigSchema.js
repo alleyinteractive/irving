@@ -1,6 +1,7 @@
 // I realize this isn't actually a schema—it will be eventually.
 module.exports = {
   name: '',
+  appComponents: [() => []],
   babelConfig: [() => {}],
   envAllowlist: [() => []],
   cacheService: () => {},
