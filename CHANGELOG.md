@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.1](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.0...v2.11.0-beta.1) (2020-05-28)
+
+
+### Bug Fixes
+
+* **server:** use reduce on exportServer instead of forEach ([bb849ef](https://github.com/alleyinteractive/irving/commit/bb849efd3ae98320bb363f4eccf294921dee95c4))
+
+
+
+
+
 # [2.11.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.10.1...v2.11.0-beta.0) (2020-05-27)
 
 
