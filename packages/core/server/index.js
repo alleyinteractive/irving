@@ -1,9 +1,4 @@
 /* eslint-disable global-require, no-console, import/order */
-const {
-  API_ROOT_URL,
-  API_ORIGIN,
-} = process.env;
-
 // Start monitor service as early as possible.
 const getService = require('../services/monitorService');
 getService().start();
@@ -38,8 +33,8 @@ const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
   secure: 'development' !== process.env.NODE_ENV,
-  // @todo make this not specific to WP eventually.
-  target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  // eslint-disable-next-line max-len
+  target: process.env.API_ORIGIN || process.env.API_ROOT_URL.replace('/wp-json/irving/v1', ''),
   xfwd: true,
 });
 
