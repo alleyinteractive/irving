@@ -1,27 +1,45 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import getRouteMeta from '@irvingjs/core/selectors/getRouteMeta';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './adminBar.css';
 
-const AdminBar = (props) => {
+const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
+const {
+  API_ORIGIN,
+  API_ROOT_URL,
+} = env;
+
+const AdminBar = () => {
+  const iframeOrigin = API_ORIGIN ||
+    API_ROOT_URL.replace('/wp-json/irving/v1', '');
   const {
-    iframeSrc,
-  } = props;
+    path,
+  } = useSelector(getRouteMeta);
+  const [hover, setHover] = useState(false);
+
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.origin === iframeOrigin) {
+        setHover('admin bar hovered' === event.data);
+      }
+    };
+    window.addEventListener('message', handleMessage);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  });
 
   return (
     <iframe
       title="Admin Bar Iframe"
-      src={iframeSrc}
+      src={`${iframeOrigin}${path}`}
       className={styles.iframe}
+      style={{
+        height: hover ? '100%' : '32px',
+      }}
     />
   );
-};
-
-AdminBar.propTypes = {
-  /**
-   * Source URL for the admin bar iframe.
-   */
-  iframeSrc: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(AdminBar);

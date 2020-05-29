@@ -1,3 +1,3 @@
-import config from './irving.config';
+import AdminBar from './components/adminBar';
 
-export default config;
+export default AdminBar;
