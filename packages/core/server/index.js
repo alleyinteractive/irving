@@ -1,4 +1,12 @@
 /* eslint-disable global-require, no-console, import/order */
+
+// Set up environmental variables as early as possible.
+const getEnv = require('../config/env');
+const {
+  API_ROOT_URL,
+  API_ORIGIN,
+} = getEnv();
+
 // Start monitor service as early as possible.
 const getService = require('../services/monitorService');
 getService().start();
@@ -33,8 +41,7 @@ const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
   secure: 'development' !== process.env.NODE_ENV,
-  // eslint-disable-next-line max-len
-  target: process.env.API_ORIGIN || process.env.API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
   xfwd: true,
 });
 
