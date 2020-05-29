@@ -3,6 +3,170 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.17](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.16...v2.11.0-beta.17) (2020-05-28)
+
+
+### Bug Fixes
+
+* **publish:** add HUSKY_SKIP_HOOKS to prevent it from hanging ([5124c3c](https://github.com/alleyinteractive/irving/commit/5124c3c2af622e33d1790b933fca626f4771a410))
+
+
+
+
+
+# [2.11.0-beta.16](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.15...v2.11.0-beta.16) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.15](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.14...v2.11.0-beta.15) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.14](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.13...v2.11.0-beta.14) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.13](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.12...v2.11.0-beta.13) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.12](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.10...v2.11.0-beta.12) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.11](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.10...v2.11.0-beta.11) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.10](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.9...v2.11.0-beta.10) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.9](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.8...v2.11.0-beta.9) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.8](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.7...v2.11.0-beta.8) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.7](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.6...v2.11.0-beta.7) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.6](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.5...v2.11.0-beta.6) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.5](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.4...v2.11.0-beta.5) (2020-05-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.4](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.1...v2.11.0-beta.4) (2020-05-28)
+
+
+### Bug Fixes
+
+* creating Stampende instance correctly ([e99c66c](https://github.com/alleyinteractive/irving/commit/e99c66c3294cb61ced0980fa53e982cd8d2d9f4c))
+* fixes a bug where no cache client is set ([f61d8fd](https://github.com/alleyinteractive/irving/commit/f61d8fd467df307ee416806efe82f3bfa59fcfa0))
+* fixing eslint errors ([1e84560](https://github.com/alleyinteractive/irving/commit/1e845609f042314b6d8032799badf6c1db575369))
+* **tests:** adding unit tests for the cache stampede race condition ([c253b4f](https://github.com/alleyinteractive/irving/commit/c253b4fa4dc367c9c8c12b635308952af9ab7b5a))
+
+
+### Features
+
+* **caching:** adding basic support to cache stampede ([0f13355](https://github.com/alleyinteractive/irving/commit/0f13355658d15e6b594799c8720d3dde265f87a4))
+
+
+
+
+
+# [2.11.0-beta.3](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.1...v2.11.0-beta.3) (2020-05-28)
+
+
+### Bug Fixes
+
+* creating Stampende instance correctly ([e99c66c](https://github.com/alleyinteractive/irving/commit/e99c66c3294cb61ced0980fa53e982cd8d2d9f4c))
+* fixes a bug where no cache client is set ([f61d8fd](https://github.com/alleyinteractive/irving/commit/f61d8fd467df307ee416806efe82f3bfa59fcfa0))
+* fixing eslint errors ([1e84560](https://github.com/alleyinteractive/irving/commit/1e845609f042314b6d8032799badf6c1db575369))
+* **tests:** adding unit tests for the cache stampede race condition ([c253b4f](https://github.com/alleyinteractive/irving/commit/c253b4fa4dc367c9c8c12b635308952af9ab7b5a))
+
+
+### Features
+
+* **caching:** adding basic support to cache stampede ([0f13355](https://github.com/alleyinteractive/irving/commit/0f13355658d15e6b594799c8720d3dde265f87a4))
+
+
+
+
+
+# [2.11.0-beta.2](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.1...v2.11.0-beta.2) (2020-05-28)
+
+
+### Bug Fixes
+
+* creating Stampende instance correctly ([e99c66c](https://github.com/alleyinteractive/irving/commit/e99c66c3294cb61ced0980fa53e982cd8d2d9f4c))
+* fixes a bug where no cache client is set ([f61d8fd](https://github.com/alleyinteractive/irving/commit/f61d8fd467df307ee416806efe82f3bfa59fcfa0))
+* fixing eslint errors ([1e84560](https://github.com/alleyinteractive/irving/commit/1e845609f042314b6d8032799badf6c1db575369))
+* **tests:** adding unit tests for the cache stampede race condition ([c253b4f](https://github.com/alleyinteractive/irving/commit/c253b4fa4dc367c9c8c12b635308952af9ab7b5a))
+
+
+### Features
+
+* **caching:** adding basic support to cache stampede ([0f13355](https://github.com/alleyinteractive/irving/commit/0f13355658d15e6b594799c8720d3dde265f87a4))
+
+
+
+
+
 # [2.11.0-beta.1](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.0...v2.11.0-beta.1) (2020-05-28)
 
 
