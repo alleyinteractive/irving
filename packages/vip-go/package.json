@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/vip-go",
-	"version": "2.11.0-alpha.3",
+	"version": "2.11.0-alpha.4",
 	"description": "Integration for WordPress VIP's Node server helpers",
 	"files": [
 		"server/**/*",
@@ -24,7 +24,7 @@
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "^2.11.0-alpha.0",
-		"@irvingjs/core": "^2.11.0-alpha.3",
+		"@irvingjs/core": "^2.11.0-alpha.4",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"jest": "^25.5.3"
 	},
