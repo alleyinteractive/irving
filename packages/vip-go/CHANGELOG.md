@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-alpha.5...v2.12.0-alpha.0) (2020-05-30)
+
+
+### Features
+
+* **cache:** separate client and service creation for cache ([5a40671](https://github.com/alleyinteractive/irving/packages/vip-go/commit/5a40671ede6e51eb9b84132845d224d5601621fa))
+
+
+
+# [2.11.0-beta.17](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.16...v2.11.0-beta.17) (2020-05-28)
+
+
+
+# [2.11.0-beta.16](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.15...v2.11.0-beta.16) (2020-05-28)
+
+
+
+# [2.11.0-beta.15](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.14...v2.11.0-beta.15) (2020-05-28)
+
+
+
+# [2.11.0-beta.14](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.13...v2.11.0-beta.14) (2020-05-28)
+
+
+
+# [2.11.0-beta.13](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.12...v2.11.0-beta.13) (2020-05-28)
+
+
+
+# [2.11.0-beta.12](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.10...v2.11.0-beta.12) (2020-05-28)
+
+
+
+# [2.11.0-beta.10](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.9...v2.11.0-beta.10) (2020-05-28)
+
+
+
+# [2.11.0-beta.9](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.8...v2.11.0-beta.9) (2020-05-28)
+
+
+
+# [2.11.0-beta.8](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.7...v2.11.0-beta.8) (2020-05-28)
+
+
+
+# [2.11.0-beta.7](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.6...v2.11.0-beta.7) (2020-05-28)
+
+
+
+# [2.11.0-beta.6](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.5...v2.11.0-beta.6) (2020-05-28)
+
+
+
+# [2.11.0-beta.5](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.4...v2.11.0-beta.5) (2020-05-28)
+
+
+
+# [2.11.0-beta.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-alpha.3...v2.11.0-beta.4) (2020-05-28)
+
+
+
+# [2.11.0-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.0...v2.11.0-beta.1) (2020-05-28)
+
+
+
+# [2.11.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-alpha.1...v2.11.0-beta.0) (2020-05-27)
+
+
+
+
+
 # [2.11.0-beta.17](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.11.0-beta.16...v2.11.0-beta.17) (2020-05-28)
 
 **Note:** Version bump only for package @irvingjs/vip-go
