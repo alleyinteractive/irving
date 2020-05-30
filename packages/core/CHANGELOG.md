@@ -3,6 +3,197 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.17](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.16...v2.11.0-beta.17) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.16](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.15...v2.11.0-beta.16) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.15](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.14...v2.11.0-beta.15) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.14](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.13...v2.11.0-beta.14) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.13](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.12...v2.11.0-beta.13) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.12](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.10...v2.11.0-beta.12) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.11](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.10...v2.11.0-beta.11) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.10](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.9...v2.11.0-beta.10) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.9](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.8...v2.11.0-beta.9) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.8](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.7...v2.11.0-beta.8) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.7](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.6...v2.11.0-beta.7) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.6](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.5...v2.11.0-beta.6) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.5](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.4...v2.11.0-beta.5) (2020-05-28)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.11.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.1...v2.11.0-beta.4) (2020-05-28)
+
+
+### Bug Fixes
+
+* creating Stampende instance correctly ([e99c66c](https://github.com/alleyinteractive/irving/packages/core/commit/e99c66c3294cb61ced0980fa53e982cd8d2d9f4c))
+* fixes a bug where no cache client is set ([f61d8fd](https://github.com/alleyinteractive/irving/packages/core/commit/f61d8fd467df307ee416806efe82f3bfa59fcfa0))
+* fixing eslint errors ([1e84560](https://github.com/alleyinteractive/irving/packages/core/commit/1e845609f042314b6d8032799badf6c1db575369))
+* **tests:** adding unit tests for the cache stampede race condition ([c253b4f](https://github.com/alleyinteractive/irving/packages/core/commit/c253b4fa4dc367c9c8c12b635308952af9ab7b5a))
+
+
+### Features
+
+* **caching:** adding basic support to cache stampede ([0f13355](https://github.com/alleyinteractive/irving/packages/core/commit/0f13355658d15e6b594799c8720d3dde265f87a4))
+* **caching:** cache Stampede Protection ([dd393fc](https://github.com/alleyinteractive/irving/packages/core/commit/dd393fcebc4693dfa40bd808a4248d3094143570))
+
+
+
+
+
+# [2.11.0-beta.3](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.1...v2.11.0-beta.3) (2020-05-28)
+
+
+### Bug Fixes
+
+* creating Stampende instance correctly ([e99c66c](https://github.com/alleyinteractive/irving/packages/core/commit/e99c66c3294cb61ced0980fa53e982cd8d2d9f4c))
+* fixes a bug where no cache client is set ([f61d8fd](https://github.com/alleyinteractive/irving/packages/core/commit/f61d8fd467df307ee416806efe82f3bfa59fcfa0))
+* fixing eslint errors ([1e84560](https://github.com/alleyinteractive/irving/packages/core/commit/1e845609f042314b6d8032799badf6c1db575369))
+* **tests:** adding unit tests for the cache stampede race condition ([c253b4f](https://github.com/alleyinteractive/irving/packages/core/commit/c253b4fa4dc367c9c8c12b635308952af9ab7b5a))
+
+
+### Features
+
+* **caching:** adding basic support to cache stampede ([0f13355](https://github.com/alleyinteractive/irving/packages/core/commit/0f13355658d15e6b594799c8720d3dde265f87a4))
+* **caching:** cache Stampede Protection ([dd393fc](https://github.com/alleyinteractive/irving/packages/core/commit/dd393fcebc4693dfa40bd808a4248d3094143570))
+
+
+
+
+
+# [2.11.0-beta.2](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.1...v2.11.0-beta.2) (2020-05-28)
+
+
+### Bug Fixes
+
+* creating Stampende instance correctly ([e99c66c](https://github.com/alleyinteractive/irving/packages/core/commit/e99c66c3294cb61ced0980fa53e982cd8d2d9f4c))
+* fixes a bug where no cache client is set ([f61d8fd](https://github.com/alleyinteractive/irving/packages/core/commit/f61d8fd467df307ee416806efe82f3bfa59fcfa0))
+* fixing eslint errors ([1e84560](https://github.com/alleyinteractive/irving/packages/core/commit/1e845609f042314b6d8032799badf6c1db575369))
+* **tests:** adding unit tests for the cache stampede race condition ([c253b4f](https://github.com/alleyinteractive/irving/packages/core/commit/c253b4fa4dc367c9c8c12b635308952af9ab7b5a))
+
+
+### Features
+
+* **caching:** adding basic support to cache stampede ([0f13355](https://github.com/alleyinteractive/irving/packages/core/commit/0f13355658d15e6b594799c8720d3dde265f87a4))
+* **caching:** cache Stampede Protection ([dd393fc](https://github.com/alleyinteractive/irving/packages/core/commit/dd393fcebc4693dfa40bd808a4248d3094143570))
+
+
+
+
+
+# [2.11.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.0...v2.11.0-beta.1) (2020-05-28)
+
+
+### Bug Fixes
+
+* **server:** use reduce on exportServer instead of forEach ([bb849ef](https://github.com/alleyinteractive/irving/packages/core/commit/bb849efd3ae98320bb363f4eccf294921dee95c4))
+
+
+
+
+
+# [2.11.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.10.1...v2.11.0-beta.0) (2020-05-27)
+
+
+### Bug Fixes
+
+* **auth:** skip by basic auth on the entire site if new basicAuth config field isn't true ([c3cebb6](https://github.com/alleyinteractive/irving/packages/core/commit/c3cebb685db249feff4c9da27c48078ae9b80e1a))
+
+
+### Features
+
+* **server:** begin relocating server creation and export ([12e8b8f](https://github.com/alleyinteractive/irving/packages/core/commit/12e8b8f447cd54486c1c7ecbe35463936c02853d))
+
+
+
+
+
 ## [2.10.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.10.0...v2.10.1) (2020-05-27)
 
 
