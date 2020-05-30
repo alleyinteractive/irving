@@ -53,7 +53,7 @@ proxyPassthrough.forEach((pattern) => {
 // Add universal cookies middleware.
 app.use(cookiesMiddleware());
 
-// Naked Redirect.
+// Customize Redirect.
 app.use(customizeRedirect());
 
 if ('development' === process.env.NODE_ENV) {
@@ -74,7 +74,16 @@ app.use((err, req, res, next) => {
 });
 
 // Run all export server functions.
-const serverExportMiddleware = getConfigField('preExportServer');
-serverExportMiddleware.forEach((middleware) => middleware(app));
+const serverExportMiddleware = getConfigField('exportServer');
+module.exports = serverExportMiddleware.reduce(
+  (acc, middleware) => {
+    const exportApp = middleware(app);
 
-module.exports = app;
+    if (exportApp) {
+      return exportApp;
+    }
+
+    return acc;
+  },
+  app
+);

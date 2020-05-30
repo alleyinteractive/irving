@@ -1,8 +1,7 @@
 import waitForExpect from 'wait-for-expect';
 import getCacheKeys from './getCacheKeys';
 
-jest.mock('../services/cacheService');
-require('../services/cacheService')();
+jest.mock('ioredis');
 
 const mockResponse = () => {
   const res = {};
