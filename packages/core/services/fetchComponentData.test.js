@@ -1,14 +1,15 @@
-jest.mock('./cacheService');
 import fetchMock from 'fetch-mock';
-import cacheService from './cacheService';
 import fetchComponentData, {
-  cacheResult
-} from 'services/fetchComponentData';
+  cacheResult,
+} from './fetchComponentData';
+import cacheService from './cacheService/getService';
+
+jest.mock('ioredis');
 
 const cache = cacheService();
 const endpoint = 'https://foo.com/api';
 const content = {
-  data: 'random content'
+  data: 'random content',
 };
 
 beforeEach(() => {
@@ -20,7 +21,7 @@ describe('fetchComponentData', () => {
     'should return proper uncached response',
     async (done) => {
       // Throws an error if the request doesn't match.
-      fetchMock.get(endpoint, content);
+      fetchMock.mock(endpoint, content);
 
       const result = await fetchComponentData(endpoint);
 

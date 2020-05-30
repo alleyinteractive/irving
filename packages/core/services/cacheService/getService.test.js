@@ -1,5 +1,6 @@
-jest.mock('./cacheService');
-import cacheService from './cacheService';
+import cacheService from './getService';
+
+jest.mock('ioredis');
 const cache = cacheService();
 const testKey = 'test-key';
 const testValue = 'test-value';
