@@ -1,4 +1,9 @@
 /* eslint-disable global-require, no-console, import/order */
+const {
+  API_ROOT_URL,
+  API_ORIGIN,
+} = process.env;
+
 // Start monitor service as early as possible.
 const getService = require('../services/monitorService');
 getService().start();
@@ -18,10 +23,6 @@ const customizeRedirect = require('./customizeRedirect');
 const getLogService = require('../services/logService');
 const log = getLogService('irving:server');
 const app = express();
-const {
-  API_ROOT_URL,
-  API_ORIGIN,
-} = process.env;
 
 // Clearing the Redis cache.
 app.post('/purge-cache', bodyParser.json(), purgeCache);
@@ -76,4 +77,17 @@ app.use((err, req, res, next) => {
   return res.sendStatus(500);
 });
 
-module.exports = app;
+// Run all export server functions.
+const serverExportMiddleware = getConfigField('exportServer');
+module.exports = serverExportMiddleware.reduce(
+  (acc, middleware) => {
+    const exportApp = middleware(app);
+
+    if (exportApp) {
+      return exportApp;
+    }
+
+    return acc;
+  },
+  app
+);

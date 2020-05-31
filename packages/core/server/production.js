@@ -1,5 +1,6 @@
+/* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 import nodeRequire from 'utils/nodeRequire';
-import { clientBuild } from 'config/paths';
+import { clientBuild, serverConfig } from 'config/paths';
 import serverRenderer from './serverRenderer';
 const path = require('path');
 const express = require('express');
@@ -8,6 +9,7 @@ const clientStats = nodeRequire(
   path.join(clientBuild, 'stats.json')
 );
 const createCheckAuth = require('./auth');
+const userConfig = require(serverConfig);
 const getConfigField = require('../utils/getConfigField');
 
 /**
@@ -19,7 +21,10 @@ const productionMiddleware = async (app) => {
   const irvingProdMiddleware = getConfigField('customizeProdServer');
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 
-  app.use(createCheckAuth('irving'));
+  // Add basic auth handling if user configures it.
+  if (userConfig.basicAuth) {
+    app.use(createCheckAuth('irving'));
+  }
 
   app.use(express.static(path.resolve('./build/client'), {
     maxAge: 86400000,

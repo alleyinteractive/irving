@@ -7,6 +7,10 @@ const getLogService = require('../services/logService');
 const log = getLogService('irving:server');
 const app = require(path.join(serverBuild, 'main.bundle'));
 
+// Set up environmental variables as early as possible.
+const getEnv = require('../config/env');
+getEnv();
+
 // Allow customization of how server is created.
 // Run all customize server functions.
 const server = getConfigFiles('server/startServer.js', startServer);
