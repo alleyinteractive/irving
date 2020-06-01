@@ -1,7 +1,7 @@
 service: irving
 
-plugins:
-  - serverless-offline # Used for testing AWS Lambda locally.
+# plugins:
+  # - serverless-offline # Used for testing AWS Lambda locally.
 
 provider:
   name: aws
@@ -18,11 +18,11 @@ package:
 
 functions:
   app:
-    handler: index.handler
+    handler: index.irving
     events:
       - http:
-          path: / # this matches the base path
-          method: ANY
+          method: GET
+          path: /
       - http:
-          path: /{any+} # this matches any path, the token 'any' doesn't mean anything special
-          method: ANY
+          method: GET
+          path: /{any+}

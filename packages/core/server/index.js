@@ -16,12 +16,12 @@ require('../utils/shimWindow');
 
 const express = require('express');
 const {
-  createProxyMiddleware
+  createProxyMiddleware,
 } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const getConfigField = require('../utils/getConfigField');
 const {
-  getConfigArray
+  getConfigArray,
 } = require('../utils/getConfigValue');
 
 const getLogService = require('../services/logService');
@@ -45,7 +45,7 @@ const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
   secure: 'development' !== process.env.NODE_ENV,
-  target: process.env.API_ORIGIN || process.env.API_ROOT_URL.replace('/wp-json/irving/v1', ''),
+  target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
   xfwd: true,
 });
 
