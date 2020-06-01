@@ -15,10 +15,14 @@ getService().start();
 require('../utils/shimWindow');
 
 const express = require('express');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const {
+  createProxyMiddleware,
+} = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const getConfigField = require('../utils/getConfigField');
-const { getConfigArray } = require('../utils/getConfigValue');
+const {
+  getConfigArray,
+} = require('../utils/getConfigValue');
 
 const getLogService = require('../services/logService');
 const customizeRedirect = require('./customizeRedirect');
