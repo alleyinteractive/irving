@@ -1,5 +1,4 @@
 /* eslint-disable global-require, no-console, import/order */
-
 // Set up environmental variables as early as possible.
 const getEnv = require('../config/env');
 const {
