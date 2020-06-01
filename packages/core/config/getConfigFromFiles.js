@@ -2,22 +2,27 @@
 const path = require('path');
 const fs = require('fs');
 const memoize = require('lodash/memoize');
-const { getMergedConfig } = require('./getConfigValue');
-const { buildContext } = require('../config/paths');
+const { nodeRequire } = require('../utils/nodeRequire');
+const { getConfigValue } = require('./getConfigValue');
+const { buildContext } = require('./paths');
 const packagejson = path.join(buildContext, 'package.json');
 
 /**
  * Resolve the path to a config file.
  *
  * @param {string} filepath Path to config file we're looking for.
+ * @param {string} base Base filepath to look for files in.
  */
-const maybeRequireConfigFile = (filepath, base = buildContext) => {
-  const searchPath = path.resolve(base, filepath);
+const maybeRequireConfigFile = (
+  filepath,
+  base,
+) => {
+  const resolvedPath = path.resolve(path.resolve(base, filepath));
 
   // If file exists in build context, assume the same file exists in the appRoot.
   // This will support app finding appropriate file if build happens in a different place than app execution.
-  if (fs.existsSync(path.resolve(searchPath))) {
-    return require(searchPath);
+  if (fs.existsSync(resolvedPath)) {
+    return nodeRequire(resolvedPath);
   }
 
   return null;
@@ -27,8 +32,9 @@ const maybeRequireConfigFile = (filepath, base = buildContext) => {
  * Resolve config files and merge them together.
  *
  * @param {string} filepath Path to config file we're looking for.
+ * @param {string} base Base filepath to look for files in.
  */
-const requirePackageConfigs = (filepath) => {
+const getPackageConfigs = (filepath, base) => {
   // Search for package versions of this file.
   const packageData = fs.readFileSync(packagejson, 'utf8');
   const userPackage = JSON.parse(packageData);
@@ -41,7 +47,8 @@ const requirePackageConfigs = (filepath) => {
     }
 
     const configFile = maybeRequireConfigFile(
-      path.join('node_modules', dep, filepath)
+      path.join('node_modules', dep, filepath),
+      base,
     );
 
     return configFile;
@@ -52,10 +59,16 @@ const requirePackageConfigs = (filepath) => {
  * Resolve config files and return them as an array of `require`d modules.
  *
  * @param {string} filepath Path to config file we're looking for.
+ * @param {string} base Base filepath to look for files in.
  * @param {bool} isSingleFunction Is this config a single function?
+ * @param {bool} require Should the files be required, or just resolved?
  */
-const getConfigModules = memoize((filepath, isSingleFunction = false) => {
-  const userConfig = maybeRequireConfigFile(filepath);
+const getConfigModules = (
+  filepath,
+  base,
+  isSingleFunction = false,
+) => {
+  const userConfig = maybeRequireConfigFile(filepath, base);
 
   // If we're only looking for a single file,
   // rely on the user's version of it first if it exists.
@@ -63,7 +76,7 @@ const getConfigModules = memoize((filepath, isSingleFunction = false) => {
     return userConfig;
   }
 
-  const configs = requirePackageConfigs(filepath);
+  const configs = getPackageConfigs(filepath, base);
 
   // Return the final config file found if we're looking for a singular file.
   // @todo figure out a better way to control which is used.
@@ -78,17 +91,19 @@ const getConfigModules = memoize((filepath, isSingleFunction = false) => {
   }
 
   return configs;
-});
+};
 
 /**
  * Resolve config files and merge them together.
  *
  * @param {string} filepath Path to config file we're looking for.
+ * @param {string} base Base filepath to look for files in.
  * @param {array|object} defaultValue Default value to merge found configs with.
  */
-const getMergedConfigFromFilesystem = (
+const getConfigFromFiles = memoize((
   filepath,
-  defaultValue
+  base,
+  defaultValue,
 ) => {
   // We need a default in order to know what to return.
   if (! defaultValue) {
@@ -96,7 +111,7 @@ const getMergedConfigFromFilesystem = (
   }
 
   const isSingleFunction = 'function' === typeof defaultValue;
-  const configs = getConfigModules(filepath, isSingleFunction);
+  const configs = getConfigModules(filepath, base, isSingleFunction);
 
   // Return any single-fuction config results as-is.
   if (isSingleFunction) {
@@ -108,7 +123,10 @@ const getMergedConfigFromFilesystem = (
   }
 
   // Merge arrays if config default is an array, otherwise merge objects.
-  return getMergedConfig(configs, defaultValue);
-};
+  return getConfigValue(configs, defaultValue);
+});
 
-module.exports = getMergedConfigFromFilesystem;
+module.exports = {
+  getConfigFromFiles,
+  getConfigModules,
+};

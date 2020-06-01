@@ -10,7 +10,8 @@ const clientStats = nodeRequire(
 );
 const createCheckAuth = require('./auth');
 const userConfig = require(serverConfig);
-const getConfigField = require('../utils/getConfigField');
+const { appRoot } = require('../config/paths');
+const { getConfigFromFiles } = require('../config/getConfigFromFiles');
 
 /**
  * Add the required middleware to support running the app in production mode.
@@ -18,7 +19,11 @@ const getConfigField = require('../utils/getConfigField');
  */
 const productionMiddleware = async (app) => {
   // Allow customization of production server
-  const irvingProdMiddleware = getConfigField('customizeProdServer');
+  const irvingProdMiddleware = getConfigFromFiles(
+    'server/customizeProdServer.js',
+    appRoot,
+    () => {}
+  );
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 
   // Add basic auth handling if user configures it.

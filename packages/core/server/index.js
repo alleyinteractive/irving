@@ -3,10 +3,13 @@ const {
   API_ROOT_URL,
   API_ORIGIN,
 } = process.env;
+const { appRoot } = require('../config/paths');
+const { getMonitorService, getLogService } = require('../services');
+const { getConfigFromFiles } = require('../config/getConfigFromFiles');
 
 // Start monitor service as early as possible.
-const getService = require('../services/monitorService');
-getService().start();
+const monitorService = getMonitorService();
+monitorService().start();
 
 // Shim some browser-only global variables.
 require('../utils/shimWindow');
@@ -15,13 +18,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
-const getConfigField = require('../utils/getConfigField');
-const { getConfigArray } = require('../utils/getConfigValue');
+const { getConfigFromProject } = require('../config/getConfigFromProject');
 const purgeCache = require('./purgeCache');
 const getCacheKeys = require('./getCacheKeys');
 const customizeRedirect = require('./customizeRedirect');
-const getLogService = require('../services/logService');
-const log = getLogService('irving:server');
+
+// Start log service.
+const logService = getLogService();
+const log = logService('irving:server');
+
+// Create app.
 const app = express();
 
 // Clearing the Redis cache.
@@ -32,11 +38,15 @@ app.get('/cache-keys', getCacheKeys);
 app.set('view engine', 'ejs');
 
 // Run all customize server functions.
-const irvingServerMiddleware = getConfigField('customizeServer');
+const irvingServerMiddleware = getConfigFromFiles(
+  'server/customizeServer.js',
+  appRoot,
+  () => {}
+);
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 // Set up a reusable proxy for responses that should be served directly.
-const proxyPassthrough = getConfigArray('proxyPassthrough');
+const proxyPassthrough = getConfigFromProject('proxyPassthrough', []);
 const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
@@ -78,7 +88,11 @@ app.use((err, req, res, next) => {
 });
 
 // Run all export server functions.
-const serverExportMiddleware = getConfigField('exportServer');
+const serverExportMiddleware = getConfigFromFiles(
+  'server/exportServer.js',
+  appRoot,
+  () => {}
+);
 module.exports = serverExportMiddleware.reduce(
   (acc, middleware) => {
     const exportApp = middleware(app);

@@ -1,7 +1,13 @@
-import userConfig from '@irvingjs/irving.config';
-import getConfigField from 'utils/getConfigField';
+import {
+  getConfigFromProject,
+  getValueFromUserConfig,
+} from 'config/getConfigFromProject';
 
-const trailingSlashDenylist = getConfigField('trailingSlashDenylist');
+const forceTrailingSlashes = getValueFromUserConfig(
+  'forceTrailingSlashes',
+  false
+);
+const trailingSlashDenylist = getConfigFromProject('trailingSlashDenylist', []);
 
 /**
  * Add a trailling slash to a URL if required (and the appropriate config value is set).
@@ -10,7 +16,7 @@ const trailingSlashDenylist = getConfigField('trailingSlashDenylist');
  */
 export default function addTrailingSlash(
   url,
-  replace = userConfig.forceTrailingSlashes
+  replace = forceTrailingSlashes
 ) {
   // Add a trailing slash, if relevant env var is configured.
   if (replace) {

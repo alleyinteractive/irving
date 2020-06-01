@@ -1,6 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const stylelint = require('stylelint');
-const { getConfigObject } = require('@irvingjs/core/utils/getConfigValue');
+const { getConfigObject } = require('@irvingjs/core/config/getConfigFromProject');
 const stylelintConfig = require('./stylelint.config.js');
 
 // Config

@@ -1,24 +1,5 @@
 const mergeWith = require('lodash/mergeWith');
 const isPlainObject = require('lodash/isPlainObject');
-const getConfigField = require('./getConfigField');
-
-/**
- * Get or return values (if it's already an array).
- *
- * @param {array|string} values Config to check.
- * @returns {array}
- */
-const resolveConfigArray = (values) => {
-  if (Array.isArray(values)) {
-    return values;
-  }
-
-  if ('string' === typeof values) {
-    return getConfigField(values);
-  }
-
-  return false;
-};
 
 /**
  * Call all config functions and spread configs into an object.
@@ -27,14 +8,8 @@ const resolveConfigArray = (values) => {
  * @param {object} initial initial value.
  * @returns {object}
  */
-const getMergedConfigObject = (configs, initial = {}) => {
-  const configsToMerge = resolveConfigArray(configs);
-
-  if (! configsToMerge) {
-    return false;
-  }
-
-  return configsToMerge.reduce(
+const getMergedConfigObject = (configs, initial = {}) => (
+  configs.reduce(
     (acc, config) => {
       if (! config) {
         return acc;
@@ -53,8 +28,8 @@ const getMergedConfigObject = (configs, initial = {}) => {
       });
     },
     initial
-  );
-};
+  )
+);
 
 /**
  * Call all config functions and spread into an array.
@@ -63,14 +38,8 @@ const getMergedConfigObject = (configs, initial = {}) => {
  * @param {array} initial initial value.
  * @returns {array}
  */
-const getMergedConfigArray = (configs, initial = []) => {
-  const configsToMerge = resolveConfigArray(configs);
-
-  if (! configsToMerge) {
-    return false;
-  }
-
-  return configsToMerge.reduce(
+const getMergedConfigArray = (configs, initial = []) => (
+  configs.reduce(
     (acc, config) => {
       if (! config) {
         return acc;
@@ -83,8 +52,8 @@ const getMergedConfigArray = (configs, initial = []) => {
       return acc.concat(config);
     },
     initial
-  );
-};
+  )
+);
 
 /**
  * Determine which merge strategy to use based on a default value.
@@ -93,7 +62,7 @@ const getMergedConfigArray = (configs, initial = []) => {
  * @param {array} initial initial value.
  * @returns {array}
  */
-const getMergedConfig = (configs, initial) => {
+const getConfigValue = (configs, initial) => {
   if (Array.isArray(initial)) {
     return getMergedConfigArray(configs, initial);
   }
@@ -108,5 +77,5 @@ const getMergedConfig = (configs, initial) => {
 module.exports = {
   getMergedConfigArray,
   getMergedConfigObject,
-  getMergedConfig,
+  getConfigValue,
 };

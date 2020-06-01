@@ -1,4 +1,4 @@
-import { getConfigObject } from '../utils/getConfigValue';
+import { getConfigFromProject } from 'config/getConfigFromProject';
 
 export const components = {
   defaults: [],
@@ -39,4 +39,4 @@ const defaultState = {
   visible,
 };
 
-export default getConfigObject('defaultState', defaultState);
+export default getConfigFromProject('defaultState', defaultState);

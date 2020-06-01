@@ -1,7 +1,7 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const path = require('path');
-const { serverBuild, rootUrl } = require('../config/paths');
-const getMergedConfigFromFilesystem = require('../utils/getConfigFiles');
+const { serverBuild, appRoot, rootUrl } = require('../config/paths');
+const { getConfigFromFiles } = require('../config/getConfigFromFiles');
 const startServer = require('../server/startServer');
 const { getLogService } = require('../services');
 const createLogger = getLogService();
@@ -13,8 +13,9 @@ const getEnv = require('../config/env');
 getEnv();
 
 // Allow customization of how server is created.
-const configStartServer = getMergedConfigFromFilesystem(
+const configStartServer = getConfigFromFiles(
   'server/startServer.js',
+  appRoot,
   startServer
 );
 

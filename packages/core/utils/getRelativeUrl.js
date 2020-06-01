@@ -1,10 +1,10 @@
 import URL from 'url-parse';
 import globToRegExp from 'glob-to-regexp';
-import { getConfigArray } from 'utils/getConfigValue';
+import { getConfigFromProject } from 'config/getConfigFromProject';
 import addTrailingSlash from './addTrailingSlash';
 
 // Create RegExp version of proxy globs.
-const proxyPassthrough = getConfigArray('proxyPassthrough');
+const proxyPassthrough = getConfigFromProject('proxyPassthrough', []);
 const proxyRegExp = proxyPassthrough.map(globToRegExp);
 
 /**

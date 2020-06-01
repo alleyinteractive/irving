@@ -1,7 +1,7 @@
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
 const { buildContext } = require('./paths');
-const getMergedConfigFromFilesystem = require('../utils/getConfigFiles');
+const { getConfigFromFiles } = require('./getConfigFromFiles');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
@@ -83,12 +83,14 @@ module.exports = (env, argv) => {
   ];
 
   // Process configs separately if env-specific files are provided.
-  const clientConfig = getMergedConfigFromFilesystem(
+  const clientConfig = getConfigFromFiles(
     'webpack.config.client.js',
+    buildContext,
     multiConfig[0]
   );
-  const serverConfig = getMergedConfigFromFilesystem(
+  const serverConfig = getConfigFromFiles(
     'webpack.config.server.js',
+    buildContext,
     multiConfig[1]
   );
 
@@ -97,7 +99,7 @@ module.exports = (env, argv) => {
     clientConfig,
     serverConfig,
   ].map((config) => (
-    getMergedConfigFromFilesystem('webpack.config.js', config)
+    getConfigFromFiles('webpack.config.js', buildContext, config)
   ));
 
   return finalConfigs;

@@ -1,12 +1,12 @@
 const expressNakedRedirect = require('express-naked-redirect');
-const { getConfigObject } = require('../utils/getConfigValue');
+const { getConfigFromProject } = require('../config/getConfigFromProject');
 const {
   NODE_ENV,
   ROOT_URL,
 } = process.env;
 
 const customizeRedirect = () => {
-  const config = getConfigObject('customizeRedirect');
+  const config = getConfigFromProject('customizeRedirect', {});
 
   return (req, res, next) => {
     /**

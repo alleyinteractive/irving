@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-const coreGetClient = require('./getClient');
 const defaultService = require('./defaultService');
 let service;
 
@@ -20,7 +19,17 @@ const getService = () => {
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {
-    const cacheClient = coreGetClient();
+    const coreCacheClient = require('./getClient');
+    const { appRoot } = require('../../config/paths');
+    const {
+      getConfigFromFiles,
+    } = require('../../config/getConfigFromFiles');
+    const getClient = getConfigFromFiles(
+      'services/cacheClient.js',
+      appRoot,
+      coreCacheClient
+    );
+    const cacheClient = getClient();
     let Stampede;
 
     if (! cacheClient) {

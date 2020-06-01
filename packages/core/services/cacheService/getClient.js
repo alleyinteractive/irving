@@ -1,11 +1,8 @@
 /* eslint-disable global-require */
-const getConfigField = require('../../utils/getConfigField');
 const getRedisOptions = require('./getRedisOptions');
 let client = null;
 
 const getClient = () => {
-  const configClient = getConfigField('cacheClient')();
-
   // Set user- or package-configured cache service, if applicable.
   if (configClient) {
     client = configClient;

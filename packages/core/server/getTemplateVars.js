@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { getConfigObject } from '../utils/getConfigValue';
+import { getConfigFromProject } from 'config/getConfigFromProject';
 
 /**
  *
@@ -8,7 +8,7 @@ import { getConfigObject } from '../utils/getConfigValue';
  * @param {object} initialVars Variables passed in from serverRenderer
  */
 export default function getTemplateVars(key, initialVars) {
-  const customTemplateVars = getConfigObject(key, initialVars);
+  const customTemplateVars = getConfigFromProject(key, initialVars);
 
   // Delete Wrapper and renderToString.
   // This needs to happen first to ensure proper SSR rendering of stylesheets.

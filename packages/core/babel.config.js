@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const getMergedConfigFromFilesystem = require('./utils/getConfigFiles');
+const { getConfigFromFiles } = require('./config/getConfigFromFiles');
 const {
   irvingRoot,
   buildContext,
@@ -38,8 +38,9 @@ module.exports = (api) => {
   };
 
   // Only allow user to modify app config, not test.
-  const processedConfig = getMergedConfigFromFilesystem(
+  const processedConfig = getConfigFromFiles(
     'babel.config.js',
+    buildContext,
     appConfig
   );
 

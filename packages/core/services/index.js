@@ -1,4 +1,5 @@
-const getMergedConfigFromFilesystem = require('../utils/getConfigFiles');
+const { appRoot } = require('../config/paths');
+const { getConfigFromFiles } = require('../config/getConfigFromFiles');
 const coreLogService = require('./logService');
 const coreMonitorService = require('./monitorService');
 const defaultMonitorService = require('./monitorService/defaultService');
@@ -11,8 +12,9 @@ const defaultCacheService = require('./cacheService/defaultService');
  * Get the configured log service or use core's service.
  */
 const getLogService = () => {
-  const service = getMergedConfigFromFilesystem(
+  const service = getConfigFromFiles(
     'services/logService.js',
+    appRoot,
     coreLogService
   );
 
@@ -23,8 +25,9 @@ const getLogService = () => {
  * Get the configured cache service or use core's service.
  */
 const getCacheService = () => {
-  const service = getMergedConfigFromFilesystem(
+  const service = getConfigFromFiles(
     'services/cacheService.js',
+    appRoot,
     coreCacheService
   );
 
@@ -39,8 +42,9 @@ const getCacheService = () => {
  * Get the configured monitor service or use core's service.
  */
 const getMonitorService = () => {
-  const service = getMergedConfigFromFilesystem(
+  const service = getConfigFromFiles(
     'services/monitorService.js',
+    appRoot,
     coreMonitorService
   );
 
