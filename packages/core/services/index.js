@@ -2,7 +2,7 @@ const getMergedConfigFromFilesystem = require('../utils/getConfigFiles');
 const coreLogService = require('./logService');
 const coreMonitorService = require('./monitorService');
 const defaultMonitorService = require('./monitorService/defaultService');
-// const coreCacheService = require('./cacheService');
+const coreCacheService = require('./cacheService');
 const defaultCacheService = require('./cacheService/defaultService');
 
 /** CONTEXT: NODE-ONLY */
@@ -25,7 +25,7 @@ const getLogService = () => {
 const getCacheService = () => {
   const service = getMergedConfigFromFilesystem(
     'services/cacheService.js',
-    defaultCacheService
+    coreCacheService
   );
 
   if (! service) {

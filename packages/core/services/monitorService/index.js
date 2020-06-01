@@ -22,7 +22,10 @@ const getService = () => {
   }
 
   // newrelic cannot be imported in a browser environment.
-  if (! process.env.BROWSER) {
+  if (
+    'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
+    'development_server' === process.env.IRVING_EXECUTION_CONTEXT
+  ) {
     let newrelic;
     // Check if optional newrelic client is installed.
     try {
@@ -32,7 +35,7 @@ const getService = () => {
     }
 
     service = {
-      start: false.start, // Simply requiring the newrelic module starts the service.
+      start: () => {}, // Simply requiring the newrelic module starts the service.
       logError(err) {
         newrelic.noticeError(err);
       },

@@ -6,8 +6,7 @@ const startServer = require('../server/startServer');
 const { getLogService } = require('../services');
 const createLogger = getLogService();
 const log = createLogger('irving:server');
-// const app = require(path.join(serverBuild, 'main.bundle'));
-const app = require('express')();
+const app = require(path.join(serverBuild, 'main.bundle'));
 
 // Set up environmental variables as early as possible.
 const getEnv = require('../config/env');

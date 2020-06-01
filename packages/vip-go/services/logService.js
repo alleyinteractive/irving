@@ -1,5 +1,5 @@
 const defaultService = require(
-  '@irvingjs/core/service/logService/defaultService'
+  '@irvingjs/core/services/logService/defaultService'
 );
 const getMonitorService = require('./monitorService');
 const monitor = getMonitorService();
@@ -18,13 +18,14 @@ const getService = (namespace) => {
   let service;
 
   /* eslint-disable global-require */
-  if (! process.env.BROWSER) {
+  if (
+    'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
+    'development_server' === process.env.IRVING_EXECUTION_CONTEXT
+  ) {
     const { logger } = require('@automattic/vip-go');
     const log = logger(namespace, {
       silent: 'test' === env,
     });
-
-    console.log(log);
 
     // Map log levels to winston log levels in node.
     service = Object.keys(defaultService)

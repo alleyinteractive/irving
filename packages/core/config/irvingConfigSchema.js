@@ -2,6 +2,7 @@ module.exports = {
   name: '',
   babelConfig: [], // filesystem
   envAllowlist: [],
+  cacheClient: () => {}, // filesystem
   cacheService: () => {}, // filesystem
   startServer: () => {}, // filesystem
   exportServer: [() => {}], // filesystem

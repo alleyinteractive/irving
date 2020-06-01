@@ -1,4 +1,5 @@
 import AbortController from 'abort-controller';
+import omit from 'lodash/fp/omit';
 import {
   CONTEXT_PAGE,
 } from 'config/constants';
@@ -131,7 +132,6 @@ async function cachedFetchComponents(
   const info = {
     cached: false,
     __caching__: false,
-    data: {},
     endpoint: `${process.env.API_ROOT_URL}/components?${componentsQuery}`,
     cacheKey: key,
     updated: null,
@@ -142,12 +142,7 @@ async function cachedFetchComponents(
 
   if (bypassCache || 0 === Object.keys(cache.client).length) {
     const result = await fetchComponents(path, search, cookie, context);
-
-    log.info('%o', {
-      ...info,
-      data: result,
-    });
-
+    log.info('%o', info);
     return result;
   }
 
@@ -161,7 +156,7 @@ async function cachedFetchComponents(
 
   log.info('%o', {
     ...info,
-    ...cachedResult,
+    ...omit('data', cachedResult),
     cached: true,
   });
 

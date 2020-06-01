@@ -1,9 +1,11 @@
-jest.mock('./cacheService');
 import fetchMock from 'fetch-mock';
-import cacheService from './cacheService';
 import cachedFetchComponents, {
   fetchComponents,
 } from 'services/fetchComponents';
+import cacheService from './cacheService';
+
+jest.mock('ioredis');
+
 const cache = cacheService();
 const cacheKey = 'components-endpoint:path=/cache&context=page&bar=baz';
 

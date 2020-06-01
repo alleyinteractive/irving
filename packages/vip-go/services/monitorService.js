@@ -13,7 +13,10 @@ const defaultService = {
  */
 const getService = () => {
   // newrelic cannot be imported in a browser environment.
-  if (! process.env.BROWSER) {
+  if (
+    'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
+    'development_server' === process.env.IRVING_EXECUTION_CONTEXT
+  ) {
     // Attempt to create newrelic client using vip go package.
     try {
       const { newrelic, logger } = require('@automattic/vip-go'); // eslint-disable-line global-require

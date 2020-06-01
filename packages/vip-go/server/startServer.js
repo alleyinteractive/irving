@@ -10,8 +10,6 @@ const {
 module.exports = function startServer(app) {
   let vipServer;
 
-  console.log('in-vip-go');
-
   if ('development' !== NODE_ENV) {
     vipServer = server(app, { PORT });
     vipServer.listen();
