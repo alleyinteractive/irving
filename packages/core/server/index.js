@@ -1,4 +1,12 @@
 /* eslint-disable global-require, no-console, import/order */
+
+// Set up environmental variables as early as possible.
+const getEnv = require('../config/env');
+const {
+  API_ROOT_URL,
+  API_ORIGIN,
+} = getEnv();
+
 // Start monitor service as early as possible.
 const getService = require('../services/monitorService');
 getService().start();
