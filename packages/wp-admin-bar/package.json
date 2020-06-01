@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/wp-admin-bar",
-  "version": "2.12.0-alpha.3",
+  "version": "2.12.0-alpha.4",
   "description": "Integration for WordPress admin bar",
   "files": [
     "components/**/*",
