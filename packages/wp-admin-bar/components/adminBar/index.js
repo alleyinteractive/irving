@@ -17,11 +17,18 @@ const AdminBar = () => {
     path,
   } = useSelector(getRouteMeta);
   const [hover, setHover] = useState(false);
+  const [height, setHeight] = useState(0);
 
   useEffect(() => {
     const handleMessage = (event) => {
-      if (event.origin === iframeOrigin) {
-        setHover('admin bar hovered' === event.data);
+      if (event.origin !== iframeOrigin) {
+        return;
+      }
+      if ('undefined' !== typeof event.data.hovered) {
+        setHover(event.data.hovered);
+      }
+      if ('undefined' !== typeof event.data.height) {
+        setHeight(event.data.height);
       }
     };
     window.addEventListener('message', handleMessage);
@@ -31,14 +38,22 @@ const AdminBar = () => {
   });
 
   return (
-    <iframe
-      title="Admin Bar Iframe"
-      src={`${iframeOrigin}${path}`}
-      className={styles.iframe}
-      style={{
-        height: hover ? '100%' : '32px',
-      }}
-    />
+    <>
+      <iframe
+        title="Admin Bar Iframe"
+        src={`${iframeOrigin}${path}`}
+        className={styles.iframe}
+        style={{
+          height: hover ? '100%' : `${height}px`,
+        }}
+      />
+      <div
+        className={styles.spacer}
+        style={{
+          height: `${height}px`,
+        }}
+      />
+    </>
   );
 };
 
