@@ -1,0 +1,39 @@
+{
+  "name": "@irvingjs/wp-admin-bar",
+  "version": "2.12.0-alpha.1",
+  "description": "Integration for WordPress admin bar",
+  "files": [
+    "components/**/*",
+    "!*.test.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/wp-admin-bar"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "critical-style-loader": "^1.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0"
+  },
+  "devDependencies": {
+    "@irvingjs/babel-preset-irving": "^2.10.0",
+    "@irvingjs/core": "^2.10.1",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "enzyme": "^3.11.0",
+    "jest": "^25.5.3"
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">=2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
