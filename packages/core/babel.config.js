@@ -39,7 +39,6 @@ module.exports = (api) => {
 
   // Only allow user to modify app config, not test.
   const processedConfig = getConfigFiles('babel.config.js', appConfig);
-  console.log(processedConfig);
 
   return {
     env: {

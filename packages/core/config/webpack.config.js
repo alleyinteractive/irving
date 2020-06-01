@@ -1,7 +1,7 @@
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
 const { buildContext } = require('./paths');
-const getConfigField = require('../utils/getConfigField');
+const getConfigFiles = require('../utils/getConfigFiles');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
@@ -81,11 +81,9 @@ module.exports = (env, argv) => {
       },
     },
   ];
-  const configGetters = getConfigField('webpackConfig');
-  // Call all config getters, passing in configs in succession.
-  const processedConfigs = configGetters.reduce((acc, getter) => (
-    getter(acc, mode)
-  ), multiConfig);
 
-  return processedConfigs;
+  const processedConfig = getConfigFiles('webpack.config.js', multiConfig);
+  // console.log(processedConfig);
+
+  return processedConfig;
 };

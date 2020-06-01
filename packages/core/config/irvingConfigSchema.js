@@ -1,27 +1,27 @@
 module.exports = {
   name: '',
-  // babelConfig: [],
+  babelConfig: [], // filesystem
   envAllowlist: [],
-  // cacheService: () => {},
-  // startServer: () => {},
-  // exportServer: [() => {}],
+  cacheService: () => {}, // filesystem
+  startServer: () => {}, // filesystem
+  exportServer: [() => {}], // filesystem
   customizeRedirect: [],
   customizeServer: [],
   customizeDevServer: [],
   customizeProdServer: [],
-  // logService: () => {},
+  logService: () => {}, // filesystem
   defaultState: [],
   getAppTemplateVars: [],
   getErrorTemplateVars: [],
-  // monitorService: () => {},
+  monitorService: () => {}, // filesystem
   packages: [],
-  // postcssConfig: [],
+  postcssConfig: [], // filesystem
   proxyPassthrough: [],
   reducers: [],
-  // webpackConfig: [],
+  webpackConfig: [], // filesystem
   sagas: [],
-  // stylelintConfig: [],
-  // styleguideConfig: [],
-  // styleguideSetup: [],
+  stylelintConfig: [], // filesystem
+  styleguideConfig: [], // filesystem
+  styleguideSetup: [], // filesystem
   trailingSlashDenylist: [],
 };

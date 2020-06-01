@@ -1,10 +1,8 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const path = require('path');
 const fs = require('fs');
-const {
-  getMergedConfigObject,
-  getMergedConfigArray,
-} = require('./getConfigValue');
+const memoize = require('lodash/memoize');
+const { getMergedConfig } = require('./getConfigValue');
 const { buildContext } = require('../config/paths');
 const packagejson = path.join(buildContext, 'package.json');
 
@@ -30,7 +28,7 @@ const maybeRequireConfigFile = (filepath, base = buildContext) => {
  *
  * @param {string} filepath Path to config file we're looking for.
  */
-const retsolvePackageConfigs = (filepath) => {
+const requirePackageConfigs = (filepath) => {
   // Search for package versions of this file.
   const packageData = fs.readFileSync(packagejson, 'utf8');
   const userPackage = JSON.parse(packageData);
@@ -51,6 +49,38 @@ const retsolvePackageConfigs = (filepath) => {
 };
 
 /**
+ * Resolve config files and return them as an array of `require`d modules.
+ *
+ * @param {string} filepath Path to config file we're looking for.
+ * @param {bool} singular Should this return only a singular value instead of an array of values to merge?
+ */
+const getConfigModules = memoize((filepath, singular = false) => {
+  const userConfig = maybeRequireConfigFile(filepath);
+
+  // If we're only looking for a single file,
+  // rely on the user's version of it first if it exists.
+  if (userConfig && singular) {
+    return userConfig;
+  }
+
+  const configs = requirePackageConfigs(filepath);
+
+  // Return the final config file found if we're looking for a singular file.
+  // @todo figure out a better way to control which is used.
+  const lastConfig = configs[configs.length - 1];
+  if (lastConfig && singular) {
+    return lastConfig;
+  }
+
+  // Add on user config and filter if it was found.
+  if (userConfig) {
+    configs.push(userConfig);
+  }
+
+  return configs;
+});
+
+/**
  * Resolve config files and merge them together.
  *
  * @param {string} filepath Path to config file we're looking for.
@@ -68,41 +98,10 @@ const getMergedConfigFromFilesystem = (
   }
 
   const shouldReturnSingular = singular || 'function' === typeof defaultValue;
-  const userFile = maybeRequireConfigFile(filepath);
-
-  // If we're only looking for a single file,
-  // rely on the user's version of it first if it exists.
-  if (userFile && shouldReturnSingular) {
-    return userFile;
-  }
-
-  const packageConfigs = retsolvePackageConfigs(filepath);
-
-  // Return the final config file found if we're looking for a singular file.
-  // @todo figure out a better way to control which is used.
-  const lastConfig = packageConfigs[packageConfigs.length - 1];
-  if (lastConfig && shouldReturnSingular) {
-    return lastConfig;
-  }
-
-  // Add on user config and filter if it was found.
-  if (userFile) {
-    packageConfigs.push(userFile);
-  }
+  const configs = getConfigModules(filepath, shouldReturnSingular);
 
   // Merge arrays if config default is an array, otherwise merge objects.
-  let merged;
-  if (Array.isArray(defaultValue)) {
-    merged = getMergedConfigArray(packageConfigs, defaultValue);
-  } else {
-    merged = getMergedConfigObject(packageConfigs, defaultValue);
-  }
-
-  if (! merged) {
-    return defaultValue;
-  }
-
-  return merged;
+  return getMergedConfig(configs, defaultValue);
 };
 
 module.exports = getMergedConfigFromFilesystem;
