@@ -1,17 +1,8 @@
+const defaultService = require(
+  '@irvingjs/core/service/logService/defaultService'
+);
 const getMonitorService = require('./monitorService');
 const monitor = getMonitorService();
-/* eslint-disable no-console */
-const defaultService = {
-  emerg: console.error,
-  alert: console.error,
-  crit: console.error,
-  error: console.error,
-  warning: console.log,
-  notice: console.log,
-  info: console.info,
-  debug: console.debug,
-};
-/* eslint-enable */
 
 /**
  * Create a debug logger that will conditionally handle logged errors based on
@@ -32,6 +23,8 @@ const getService = (namespace) => {
     const log = logger(namespace, {
       silent: 'test' === env,
     });
+
+    console.log(log);
 
     // Map log levels to winston log levels in node.
     service = Object.keys(defaultService)

@@ -1,22 +1,26 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const path = require('path');
 const { serverBuild, rootUrl } = require('../config/paths');
-const getConfigFiles = require('../utils/getConfigFiles');
+const getMergedConfigFromFilesystem = require('../utils/getConfigFiles');
 const startServer = require('../server/startServer');
-const getLogService = require('../services/logService');
-const log = getLogService('irving:server');
-const app = require(path.join(serverBuild, 'main.bundle'));
+const { getLogService } = require('../services');
+const createLogger = getLogService();
+const log = createLogger('irving:server');
+// const app = require(path.join(serverBuild, 'main.bundle'));
+const app = require('express')();
 
 // Set up environmental variables as early as possible.
 const getEnv = require('../config/env');
 getEnv();
 
 // Allow customization of how server is created.
-// Run all customize server functions.
-const server = getConfigFiles('server/startServer.js', startServer);
-if (! server) {
-  startServer(app);
-}
+const configStartServer = getMergedConfigFromFilesystem(
+  'server/startServer.js',
+  startServer
+);
+
+// Start the server.
+configStartServer(app);
 
 // Open app for convenience and to get the initial build started.
 if ('development' === process.env.NODE_ENV) {

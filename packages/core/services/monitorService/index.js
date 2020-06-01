@@ -1,9 +1,3 @@
-const getConfigField = require('../utils/getConfigField');
-const defaultService = {
-  start: () => {},
-  logError: () => {},
-  logTransaction: () => {},
-};
 let service;
 
 /**
@@ -14,13 +8,6 @@ let service;
  * @returns {object} singleton service object
  */
 const getService = () => {
-  const configService = getConfigField('monitorService')();
-
-  // Set user- or package-configured cache service, if applicable.
-  if (configService) {
-    service = configService;
-  }
-
   // Memoize service, so it can reused.
   if (service) {
     return service;
@@ -31,7 +18,7 @@ const getService = () => {
     'NEW_RELIC_LICENSE_KEY',
   ].every((field) => ('undefined' !== typeof process.env[field]));
   if (! configured) {
-    return defaultService;
+    return false;
   }
 
   // newrelic cannot be imported in a browser environment.
@@ -41,11 +28,11 @@ const getService = () => {
     try {
       newrelic = require('newrelic'); // eslint-disable-line global-require
     } catch (err) {
-      return defaultService;
+      return false;
     }
 
     service = {
-      start: defaultService.start, // Simply requiring the newrelic module starts the service.
+      start: false.start, // Simply requiring the newrelic module starts the service.
       logError(err) {
         newrelic.noticeError(err);
       },
@@ -57,7 +44,7 @@ const getService = () => {
     return service;
   }
 
-  return defaultService;
+  return false;
 };
 
 module.exports = getService;

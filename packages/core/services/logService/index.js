@@ -1,17 +1,6 @@
-const getConfigField = require('../utils/getConfigField');
-const getMonitorService = require('./monitorService');
+const getMonitorService = require('../monitorService');
+const defaultService = require('./defaultService');
 const monitor = getMonitorService();
-/* eslint-disable no-console */
-const defaultService = {
-  emerg: console.error,
-  alert: console.error,
-  crit: console.error,
-  error: console.error,
-  warning: console.warn,
-  notice: console.log,
-  info: console.info,
-  debug: console.debug,
-};
 let service;
 /* eslint-enable */
 
@@ -26,12 +15,6 @@ let service;
  */
 const getService = (namespace) => {
   const env = process.env.NODE_ENV;
-  const configService = getConfigField('logService')(namespace);
-
-  // Set user- or package-configured cache service, if applicable.
-  if (configService) {
-    service = configService;
-  }
 
   // Memoize service, so it can reused.
   if (service) {

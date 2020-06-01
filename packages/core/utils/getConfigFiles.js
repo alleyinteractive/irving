@@ -52,14 +52,14 @@ const requirePackageConfigs = (filepath) => {
  * Resolve config files and return them as an array of `require`d modules.
  *
  * @param {string} filepath Path to config file we're looking for.
- * @param {bool} singular Should this return only a singular value instead of an array of values to merge?
+ * @param {bool} isSingleFunction Is this config a single function?
  */
-const getConfigModules = memoize((filepath, singular = false) => {
+const getConfigModules = memoize((filepath, isSingleFunction = false) => {
   const userConfig = maybeRequireConfigFile(filepath);
 
   // If we're only looking for a single file,
   // rely on the user's version of it first if it exists.
-  if (userConfig && singular) {
+  if (userConfig && isSingleFunction) {
     return userConfig;
   }
 
@@ -68,7 +68,7 @@ const getConfigModules = memoize((filepath, singular = false) => {
   // Return the final config file found if we're looking for a singular file.
   // @todo figure out a better way to control which is used.
   const lastConfig = configs[configs.length - 1];
-  if (lastConfig && singular) {
+  if (lastConfig && isSingleFunction) {
     return lastConfig;
   }
 
@@ -85,20 +85,27 @@ const getConfigModules = memoize((filepath, singular = false) => {
  *
  * @param {string} filepath Path to config file we're looking for.
  * @param {array|object} defaultValue Default value to merge found configs with.
- * @param {bool} singular Should this return only a singular value instead of an array of values to merge?
  */
 const getMergedConfigFromFilesystem = (
   filepath,
-  defaultValue,
-  singular = false
+  defaultValue
 ) => {
   // We need a default in order to know what to return.
   if (! defaultValue) {
     return null;
   }
 
-  const shouldReturnSingular = singular || 'function' === typeof defaultValue;
-  const configs = getConfigModules(filepath, shouldReturnSingular);
+  const isSingleFunction = 'function' === typeof defaultValue;
+  const configs = getConfigModules(filepath, isSingleFunction);
+
+  // Return any single-fuction config results as-is.
+  if (isSingleFunction) {
+    if ('function' === typeof configs) {
+      return configs;
+    }
+
+    return defaultValue;
+  }
 
   // Merge arrays if config default is an array, otherwise merge objects.
   return getMergedConfig(configs, defaultValue);
