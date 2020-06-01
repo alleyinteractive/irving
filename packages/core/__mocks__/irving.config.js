@@ -1,6 +1,6 @@
 import { takeLatest, takeEvery } from 'redux-saga/effects';
 
-module.exports = {
+export default {
   packages: [
     {
       reducers: () => ({
@@ -16,8 +16,26 @@ module.exports = {
       ]),
     },
   ],
+  customizeRedirect: {
+    subDomain: 'www',
+  },
+  defaultState: {
+    testState: true,
+  },
+  envAllowList: [
+    'TEST_ENV',
+  ],
+  getAppTemplateVars: {
+    testVal: 'this is a fun field for the app',
+  },
+  getErrorTemplateVars: {
+    testVal: 'this is a fun field for the error',
+  },
   proxyPassthrough: [
     '/test-two/**/*',
+  ],
+  trailingSlashDenylist: [
+    '/do/not/trailing/slash/me',
   ],
   reducers: {
     userSlice: () => {},

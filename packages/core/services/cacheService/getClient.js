@@ -3,11 +3,6 @@ const getRedisOptions = require('./getRedisOptions');
 let client = null;
 
 const getClient = () => {
-  // Set user- or package-configured cache service, if applicable.
-  if (configClient) {
-    client = configClient;
-  }
-
   if (client) {
     return client;
   }
@@ -17,7 +12,6 @@ const getClient = () => {
     Math.min(times * 50, 2000)
   );
   const [host, port, password] = getRedisOptions();
-  console.log(host, port);
 
   // Redis env variables have not been configured.
   if ((! host || ! port) && 'test' !== process.env.BABEL_ENV) {

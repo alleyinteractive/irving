@@ -21,9 +21,7 @@ const getService = () => {
   ) {
     const coreCacheClient = require('./getClient');
     const { appRoot } = require('../../config/paths');
-    const {
-      getConfigFromFiles,
-    } = require('../../config/getConfigFromFiles');
+    const { getConfigFromFiles } = require('../../config/getConfigFromFiles');
     const getClient = getConfigFromFiles(
       'services/cacheClient.js',
       appRoot,
