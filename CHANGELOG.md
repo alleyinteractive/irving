@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.21](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.20...v2.11.0-beta.21) (2020-06-02)
+
+
+### Features
+
+* **cache:** separate client and service creation for cache ([5a40671](https://github.com/alleyinteractive/irving/commit/5a40671ede6e51eb9b84132845d224d5601621fa))
+
+
+
+
+
 # [2.11.0-beta.20](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.19...v2.11.0-beta.20) (2020-06-02)
 
 **Note:** Version bump only for package irving
