@@ -12,9 +12,6 @@
   "dependencies": {
     "serverless-http": "^2.5.0"
   },
-  "devDependencies": {
-    "serverless-offline": "^6.1.7"
-  },
   "peerDependencies": {
     "@irvingjs/core": ">=2.10.0"
   },

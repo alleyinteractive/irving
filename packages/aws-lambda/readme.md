@@ -47,21 +47,24 @@ functions:
     events:
       - http:
           path: /
-          method: ANY
+          method: GET
       - http:
           path: /{any+}
-          method: ANY
+          method: GET
 ```
 5. When you are ready to deploy your app, `npm install --production` to remove development dependencies
 6. And run `npm run build` to build the app files
 7. Finally, run `sls deploy` or `serverless deploy`
 
+> Be aware of the [50MB limit for direct upload/deployment](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) from AWS. 
+
 ## Checking AWS Lambda support locally
 
-The `@irvingjs/aws-lambda` packages comes with the `serverless-offline` package so that you can test your Irving site before deploying. Here are the steps if you need to use this package:
+To test AWS Lambda support locally, we recommend installing the `serverless-offline` package.Here are the steps if you need to use this package:
 
 1. [Set up your project](#Project-setup) for AWS Lambda integration.
-2. Add the `serverless-offline` plugin to the list:
+2. `npm install serverless-offline`
+3. Add the `serverless-offline` plugin to the list:
 ```yml
 service: irving
 
@@ -70,4 +73,4 @@ plugins:
 
 ...
 ```
-3. Finally, run `serverless offline` or `sls offline`.
+4. Finally, run `serverless offline` or `sls offline`.
