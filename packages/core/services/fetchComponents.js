@@ -144,8 +144,6 @@ async function cachedFetchComponents(
     log.info('%o', info);
 
     return fetchComponents(path, search, cookie, context);
-    log.info('%o', info);
-    return result;
   }
 
   const cachedResult = await cache.cached(
