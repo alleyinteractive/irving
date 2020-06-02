@@ -16,7 +16,7 @@ The `@irvingjs/aws-lambda` package makes use of the [serverless-http](https://ww
 module.exports.irving = require('@irvingjs/core/server');
 ```
 > The `irving` name exported will be the entry point for your AWS Lambda function to run your Irving site.
-3. You also need to add the `aws-lambda` to the list of packages in `irving.config.server.js`. **There is no need to add it to the `irving.config.js`**:
+3. You also need to add the `aws-lambda` to the list of packages in `irving.config.server.js`. **There is no need to add it to the `irving.config.js`** since this is a server configuration:
 ```javascript
 // irving.config.server.js
 
@@ -52,7 +52,7 @@ functions:
           path: /{any+}
           method: GET
 ```
-5. When you are ready to deploy your app, `npm install --production` to remove development dependencies
+5. When you are ready to deploy your app, `npm install --production` to remove development dependencies (`serverless` does this for you but it is a good practice)
 6. And run `npm run build` to build the app files
 7. Finally, run `sls deploy` or `serverless deploy`
 
@@ -74,3 +74,9 @@ plugins:
 ...
 ```
 4. Finally, run `serverless offline` or `sls offline`.
+
+## About Large Apps/Sites (Bundle Size)
+
+If you have a really large site/app, your bundle size will probably surpass the AWS Lambda upload limit of 50MB. We are testing with the `serverless-webpack` to find ways to optimize the bundle as much as possible for size.
+
+More docs about it soon. :)
