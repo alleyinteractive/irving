@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.20](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.19...v2.11.0-beta.20) (2020-06-02)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.19](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.18...v2.11.0-beta.19) (2020-06-02)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.11.0-beta.18](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.17...v2.11.0-beta.18) (2020-06-02)
+
+
+### Bug Fixes
+
+* adding AWS Lambda package documentation and minor tweaks ([684bd88](https://github.com/alleyinteractive/irving/commit/684bd88174062e0c925f0d85e67d841c5f16267b))
+* initializing the env variables correctly ([a1ccf28](https://github.com/alleyinteractive/irving/commit/a1ccf2844d6fde88a86430d9ba73240d3633875a))
+
+
+### Features
+
+* better docs and eslint fixes ([316e08c](https://github.com/alleyinteractive/irving/commit/316e08c8cc49c25c6a37872a27d93b6ef7d8b94f))
+* gg ([cf6cb75](https://github.com/alleyinteractive/irving/commit/cf6cb75782d425c8f8240b119d2726f0c4e2030b))
+
+
+
+
+
 # [2.11.0-beta.17](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.16...v2.11.0-beta.17) (2020-05-28)
 
 
