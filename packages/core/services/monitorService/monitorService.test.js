@@ -1,4 +1,6 @@
-import monitorService from './monitorService';
+import { getMonitorService } from '..';
+
+const monitorService = getMonitorService();
 
 describe('monitorService', () => {
   it('should return an object of the correct shape', () => {

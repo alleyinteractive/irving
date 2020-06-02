@@ -1,5 +1,5 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
-import nodeRequire from 'utils/nodeRequire';
+import { nodeRequire } from 'utils/nodeRequire';
 import { clientBuild, serverConfig } from 'config/paths';
 import serverRenderer from './serverRenderer';
 const path = require('path');
@@ -11,7 +11,7 @@ const clientStats = nodeRequire(
 const createCheckAuth = require('./auth');
 const userConfig = require(serverConfig);
 const { appRoot } = require('../config/paths');
-const { getConfigFromFiles } = require('../config/getConfigFromFiles');
+const getConfigFromFiles = require('../config/getConfigFromFiles');
 
 /**
  * Add the required middleware to support running the app in production mode.

@@ -1,3 +1,4 @@
+const defaultService = require('./defaultService');
 let service;
 
 /**
@@ -17,8 +18,9 @@ const getService = () => {
     'NEW_RELIC_APP_NAME',
     'NEW_RELIC_LICENSE_KEY',
   ].every((field) => ('undefined' !== typeof process.env[field]));
+
   if (! configured) {
-    return false;
+    return defaultService;
   }
 
   // newrelic cannot be imported in a browser environment.
@@ -31,7 +33,7 @@ const getService = () => {
     try {
       newrelic = require('newrelic'); // eslint-disable-line global-require
     } catch (err) {
-      return false;
+      return defaultService;
     }
 
     service = {
@@ -47,7 +49,7 @@ const getService = () => {
     return service;
   }
 
-  return false;
+  return defaultService;
 };
 
 module.exports = getService;

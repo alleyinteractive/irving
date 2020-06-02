@@ -4,7 +4,7 @@ import {
   actionReceiveComponentDataError,
 } from 'actions/componentDataActions';
 import fetchComponentData from 'services/fetchComponentData';
-import getLogService from 'services/logService';
+import getLogService from '@irvingjs/services/logService';
 
 const debug = getLogService('irving:sagas:componentData');
 

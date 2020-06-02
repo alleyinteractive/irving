@@ -1,114 +1,7 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
-const path = require('path');
-const fs = require('fs');
 const memoize = require('lodash/memoize');
-const { nodeRequire } = require('../utils/nodeRequire');
 const { getConfigValue } = require('./getConfigValue');
-const { buildContext } = require('./paths');
-const packagejson = path.join(buildContext, 'package.json');
-const ignorePackages = [
-  '@irvingjs/core',
-  '@irvingjs/babel-preset-irving',
-];
-
-/**
- * Resolve the path to a config file.
- *
- * @param {string} filepath Path to config file we're looking for.
- * @param {string} base Base filepath to look for files in.
- */
-const maybeRequireConfigFile = (filepath, base) => {
-  const resolvedPath = path.resolve(path.resolve(base, filepath));
-
-  // If file exists in build context, assume the same file exists in the appRoot.
-  // This will support app finding appropriate file if build happens in a different place than app execution.
-  if (fs.existsSync(resolvedPath)) {
-    // This is hacky, but I can't think of a better way to test it.
-    if ('test' === process.env.BABEL_ENV) {
-      try {
-        return JSON.parse(fs.readFileSync(resolvedPath, 'utf8'));
-      } catch (e) {
-        return eval(fs.readFileSync(resolvedPath, 'utf8'));
-      }
-    }
-
-    return nodeRequire(resolvedPath);
-  }
-
-  return null;
-};
-
-/**
- * Resolve config files and merge them together.
- *
- * @param {string} filepath Path to config file we're looking for.
- * @param {string} base Base filepath to look for files in.
- */
-const getPackageConfigs = (filepath, base) => {
-  // Search for package versions of this file.
-  const packageData = fs.readFileSync(packagejson, 'utf8');
-  const userPackage = JSON.parse(packageData);
-  const irvingDeps = Object.keys(userPackage.dependencies)
-    .filter((dep) => dep.includes('@irvingjs'));
-  return irvingDeps.map((dep) => {
-    // Ignore certain dependencies to prevent infinite loops.
-    if (ignorePackages.includes(dep)) {
-      return null;
-    }
-
-    const configFile = maybeRequireConfigFile(
-      path.join('node_modules', dep, filepath),
-      base
-    );
-
-    return configFile;
-  }).filter((config) => !! config);
-};
-
-/**
- * Resolve config files and return them as an array of `require`d modules.
- *
- * @param {string} filepath Path to config file we're looking for.
- * @param {string} base Base filepath to look for files in.
- * @param {bool} isSingleFunction Is this config a single function?
- * @param {bool} require Should the files be required, or just resolved?
- */
-const getConfigModules = (
-  filepath,
-  base,
-  isSingleFunction = false
-) => {
-  let userConfig;
-
-  // Prevent infinite loops in testing.
-  if ('test' === process.env.BABEL_ENV && filepath.includes('babel.config.js')) {
-    userConfig = null;
-  } else {
-    userConfig = maybeRequireConfigFile(filepath, base);
-  }
-
-  // If we're only looking for a single file,
-  // rely on the user's version of it first if it exists.
-  if (userConfig && isSingleFunction) {
-    return userConfig;
-  }
-
-  const configs = getPackageConfigs(filepath, base);
-
-  // Return the final config file found if we're looking for a singular file.
-  // @todo figure out a better way to control which is used.
-  const lastConfig = configs[configs.length - 1];
-  if (lastConfig && isSingleFunction) {
-    return lastConfig;
-  }
-
-  // Add on user config and filter if it was found.
-  if (userConfig) {
-    configs.push(userConfig);
-  }
-
-  return configs;
-};
+const requireConfigModules = require('./requireConfigModules');
 
 /**
  * Resolve config files and merge them together.
@@ -123,12 +16,15 @@ const getConfigFromFiles = memoize((
   defaultValue
 ) => {
   const isSingleFunction = 'function' === typeof defaultValue;
-  const configs = getConfigModules(filepath, base, isSingleFunction);
+  const configs = requireConfigModules(filepath, base, isSingleFunction);
 
   // Return any single-fuction config results as-is.
   if (isSingleFunction) {
-    if ('function' === typeof configs) {
-      return configs;
+    // Return the final config file found if we're looking for a singular file.
+    // @todo figure out a better way to control which is used.
+    const lastConfig = configs[configs.length - 1];
+    if (lastConfig && 'function' === typeof lastConfig) {
+      return lastConfig;
     }
 
     return defaultValue;
@@ -138,7 +34,4 @@ const getConfigFromFiles = memoize((
   return getConfigValue(configs, defaultValue);
 });
 
-module.exports = {
-  getConfigFromFiles,
-  getConfigModules,
-};
+module.exports = getConfigFromFiles;

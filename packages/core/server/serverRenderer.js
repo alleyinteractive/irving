@@ -15,13 +15,13 @@ import getEnv from 'config/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackScripts from 'utils/getWebpackScripts';
 import addTrailingSlash from 'utils/addTrailingSlash';
-import getLogService from 'services/logService';
-import getService from 'services/monitorService';
+import getLogService from '@irvingjs/services/logService';
+import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
 import getTemplateVars from './getTemplateVars';
 
-const monitor = getService();
+const monitor = getMonitorService();
 const logError = getLogService('irving:render:error');
 const logRequest = getLogService('irving:render:request');
 

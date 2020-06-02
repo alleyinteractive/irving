@@ -5,7 +5,7 @@ const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const getConfig = require('../config/webpack.config.js');
 const { appRoot } = require('../config/paths');
-const { getConfigFromFiles } = require('../config/getConfigFromFiles');
+const getConfigFromFiles = require('../config/getConfigFromFiles');
 
 const config = getConfig({}, { mode: 'development' });
 const matchClient = ({ name }) => 'client' === name;

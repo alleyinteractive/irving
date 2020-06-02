@@ -1,4 +1,5 @@
-import cacheService from './getService';
+import { getCacheService } from '..';
+const cacheService = getCacheService();
 
 jest.mock('ioredis');
 const cache = cacheService();

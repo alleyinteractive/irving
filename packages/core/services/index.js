@@ -1,12 +1,10 @@
 const { appRoot } = require('../config/paths');
-const { getConfigFromFiles } = require('../config/getConfigFromFiles');
+const getConfigFromFiles = require('../config/getConfigFromFiles');
 const coreLogService = require('./logService');
 const coreMonitorService = require('./monitorService');
 const defaultMonitorService = require('./monitorService/defaultService');
 const coreCacheService = require('./cacheService');
 const defaultCacheService = require('./cacheService/defaultService');
-
-/** CONTEXT: NODE-ONLY */
 
 /**
  * Get the configured log service or use core's service.
@@ -32,7 +30,7 @@ const getCacheService = () => {
   );
 
   if (! service) {
-    return defaultCacheService;
+    return () => defaultCacheService;
   }
 
   return service;
@@ -49,7 +47,7 @@ const getMonitorService = () => {
   );
 
   if (! service) {
-    return defaultMonitorService;
+    return () => defaultMonitorService;
   }
 
   return service;

@@ -5,8 +5,8 @@ import {
 } from 'config/constants';
 import isNode from 'utils/isNode';
 import shouldAuthorize from 'utils/shouldAuthorize';
-import getService from './cacheService';
-import getLogService from './logService';
+import getLogService from '@irvingjs/services/logService';
+import getCacheService from '@irvingjs/services/cacheService';
 import createComponentsEndpointQueryString
   from './utils/createComponentsEndpointQueryString';
 
@@ -121,7 +121,7 @@ async function cachedFetchComponents(
   cookie = {},
   context = CONTEXT_PAGE
 ) {
-  const cache = getService();
+  const cache = getCacheService();
   const componentsQuery = createComponentsEndpointQueryString(
     path,
     search,

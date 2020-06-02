@@ -14,7 +14,7 @@ const {
  * @param {string} userPath Path to user-defined module.
  * @param {string} corePath Path to Irving core module, if different from user path.
  */
-module.exports.maybeResolveBuildModule = (userPath, corePath) => {
+const maybeResolveBuildModule = (userPath, corePath) => {
   const defaultPath = corePath || userPath;
 
   // Resolve file relative to build context if it exists.
@@ -45,4 +45,7 @@ const maybeResolveUserModule = (userPath, corePath) => {
   return path.resolve(appIrvingRoot, defaultPath);
 };
 
-module.exports.maybeResolveUserModule = maybeResolveUserModule;
+module.exports = {
+  maybeResolveUserModule,
+  maybeResolveBuildModule,
+};

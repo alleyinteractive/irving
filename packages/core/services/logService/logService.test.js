@@ -1,4 +1,4 @@
-import getService from './logService';
+import getService from '.';
 
 describe('logService', () => {
   it('should return an object of the correct shape', () => {

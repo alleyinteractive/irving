@@ -1,7 +1,7 @@
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
 const { buildContext } = require('./paths');
-const { getConfigFromFiles } = require('./getConfigFromFiles');
+const getConfigFromFiles = require('./getConfigFromFiles');
 
 module.exports = (env, argv) => {
   const { mode } = argv;

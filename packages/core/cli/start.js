@@ -1,12 +1,18 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const path = require('path');
 const { serverBuild, appRoot, rootUrl } = require('../config/paths');
-const { getConfigFromFiles } = require('../config/getConfigFromFiles');
+const getConfigFromFiles = require('../config/getConfigFromFiles');
 const startServer = require('../server/startServer');
-const { getLogService } = require('../services');
-const createLogger = getLogService();
-const log = createLogger('irving:server');
 const app = require(path.join(serverBuild, 'main.bundle'));
+
+// Create logger
+const coreLogService = require('./logService');
+const createLogger = getConfigFromFiles(
+  'services/logService.js',
+  appRoot,
+  coreLogService
+)();
+const log = createLogger('irving:server');
 
 // Set up environmental variables as early as possible.
 const getEnv = require('../config/env');

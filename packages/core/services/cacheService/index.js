@@ -19,14 +19,7 @@ const getService = () => {
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {
-    const coreCacheClient = require('./getClient');
-    const { appRoot } = require('../../config/paths');
-    const { getConfigFromFiles } = require('../../config/getConfigFromFiles');
-    const getClient = getConfigFromFiles(
-      'services/cacheClient.js',
-      appRoot,
-      coreCacheClient
-    );
+    const getClient = require('@irvingjs/services/cacheClient'); // this is an alias.
     const cacheClient = getClient();
     let Stampede;
 
@@ -70,7 +63,7 @@ const getService = () => {
     };
 
     const stampedeService = new Stampede({
-      upsert: false,
+      upsert: null,
       adapter: clientAdapter,
     });
 
