@@ -141,7 +141,9 @@ async function cachedFetchComponents(
   } = cookie;
 
   if (bypassCache || 0 === Object.keys(cache.client).length) {
-    const result = await fetchComponents(path, search, cookie, context);
+    log.info('%o', info);
+    
+    return fetchComponents(path, search, cookie, context);
     log.info('%o', info);
     return result;
   }
