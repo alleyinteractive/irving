@@ -1,5 +1,5 @@
 module.exports = {
-  client: {},
+  client: null,
   get: () => null,
   set: () => {},
   del: () => null,

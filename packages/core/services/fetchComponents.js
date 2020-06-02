@@ -140,9 +140,9 @@ async function cachedFetchComponents(
     bypassCache,
   } = cookie;
 
-  if (bypassCache || 0 === Object.keys(cache.client).length) {
+  if (bypassCache || ! cache.client) {
     log.info('%o', info);
-    
+
     return fetchComponents(path, search, cookie, context);
     log.info('%o', info);
     return result;
