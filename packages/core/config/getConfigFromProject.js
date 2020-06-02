@@ -4,8 +4,7 @@ const { getConfigValue } = require('./getConfigValue');
 let userConfig = {};
 
 if (
-  'development_client' === process.env.IRVING_EXECUTION_CONTEXT ||
-  'production_client' === process.env.IRVING_EXECUTION_CONTEXT ||
+  process.env.IRVING_EXECUTION_CONTEXT ||
   'test' === process.env.BABEL_ENV
 ) {
   userConfig = require('@irvingjs/irving.config').default || {};

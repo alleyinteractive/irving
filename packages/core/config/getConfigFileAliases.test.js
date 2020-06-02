@@ -9,7 +9,7 @@ describe('getConfigFromFiles', () => {
   beforeEach(createMock);
   afterEach(mock.restore);
 
-  it('should return an object of aliases for each config field', () => {
+  it('should return an object of aliases for each config field, using core files as fallbacks', () => {
     const aliases = getConfigFileAliases();
 
     expect(aliases).toEqual({

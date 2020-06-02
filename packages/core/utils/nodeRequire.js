@@ -1,5 +1,4 @@
 /* eslint-disable import/no-dynamic-require, global-require */
-const path = require('path');
 const fs = require('fs');
 /**
  * IMPORTANT NOTE: THIS FILE IS NOT PROCESSED BY WEBPACK OR BABEL, PROCEED WITH CAUTION.

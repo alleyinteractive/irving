@@ -1,7 +1,8 @@
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
 const { buildContext } = require('./paths');
-const getConfigFromFiles = require('./getConfigFromFiles');
+// Use unmemoized version for webpack.
+const { getConfigFromFiles } = require('./getConfigFromFiles');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
@@ -63,9 +64,6 @@ module.exports = (env, argv) => {
             /@irvingjs/,
           ],
         }),
-        // fs: 'fs',
-        // path: 'path',
-        // '@newrelic/native-metrics': '@newrelic/native-metrics',
       ],
       entry: server.getEntry(),
       output: server.getOutput(),

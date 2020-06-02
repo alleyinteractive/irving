@@ -42,7 +42,7 @@ app.set('view engine', 'ejs');
 const irvingServerMiddleware = getConfigFromFiles(
   'server/customizeServer.js',
   appRoot,
-  () => {}
+  []
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
@@ -92,8 +92,9 @@ app.use((err, req, res, next) => {
 const serverExportMiddleware = getConfigFromFiles(
   'server/exportServer.js',
   appRoot,
-  () => {}
+  []
 );
+
 module.exports = serverExportMiddleware.reduce(
   (acc, middleware) => {
     const exportApp = middleware(app);

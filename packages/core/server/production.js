@@ -22,7 +22,7 @@ const productionMiddleware = async (app) => {
   const irvingProdMiddleware = getConfigFromFiles(
     'server/customizeProdServer.js',
     appRoot,
-    () => {}
+    []
   );
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 

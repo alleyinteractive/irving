@@ -24,7 +24,7 @@ const developmentMiddleware = (app) => {
   const irvingDevMiddleware = getConfigFromFiles(
     'server/customizeDevServer.js',
     appRoot,
-    () => {}
+    []
   );
   irvingDevMiddleware.forEach((middleware) => middleware(app));
 

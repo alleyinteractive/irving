@@ -10,7 +10,7 @@ const requireConfigModules = require('./requireConfigModules');
  * @param {string} base Base filepath to look for files in.
  * @param {array|object} defaultValue Default value to merge found configs with.
  */
-const getConfigFromFiles = memoize((
+const getConfigFromFiles = (
   filepath,
   base,
   defaultValue
@@ -32,6 +32,10 @@ const getConfigFromFiles = memoize((
 
   // Merge arrays if config default is an array, otherwise merge objects.
   return getConfigValue(configs, defaultValue);
-});
+};
 
-module.exports = getConfigFromFiles;
+const getConfigFromFilesMemo = memoize(getConfigFromFiles);
+
+// Export non-memoized version as well (named export).
+getConfigFromFilesMemo.getConfigFromFiles = getConfigFromFiles;
+module.exports = getConfigFromFilesMemo;
