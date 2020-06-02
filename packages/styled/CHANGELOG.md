@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0-beta.21](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.11.0-beta.20...v2.11.0-beta.21) (2020-06-02)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [2.11.0-beta.20](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.11.0-beta.19...v2.11.0-beta.20) (2020-06-02)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [2.11.0-beta.19](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.11.0-beta.18...v2.11.0-beta.19) (2020-06-02)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [2.11.0-beta.18](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.11.0-beta.17...v2.11.0-beta.18) (2020-06-02)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
 # [2.11.0-beta.17](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.11.0-beta.16...v2.11.0-beta.17) (2020-05-28)
 
 **Note:** Version bump only for package @irvingjs/styled

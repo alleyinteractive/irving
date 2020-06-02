@@ -1,5 +1,7 @@
 /* eslint-disable global-require, no-console, import/order */
-const { rootUrl } = require('../config/paths');
+const {
+  rootUrl,
+} = require('../config/paths');
 const getConfigField = require('../utils/getConfigField');
 const app = require('../server');
 const startServer = require('../server/startServer');
