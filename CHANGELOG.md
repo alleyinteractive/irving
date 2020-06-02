@@ -79,11 +79,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
+<<<<<<< HEAD
 * **server:** use reduce on exportServer instead of forEach ([bb849ef](https://github.com/alleyinteractive/irving/commit/bb849efd3ae98320bb363f4eccf294921dee95c4))
 
 
 
 # [2.11.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.11.0-alpha.1...v2.11.0-beta.0) (2020-05-27)
+=======
+* adding AWS Lambda package documentation and minor tweaks ([684bd88](https://github.com/alleyinteractive/irving/commit/684bd88174062e0c925f0d85e67d841c5f16267b))
+* initializing the env variables correctly ([a1ccf28](https://github.com/alleyinteractive/irving/commit/a1ccf2844d6fde88a86430d9ba73240d3633875a))
+
+
+### Features
+
+* better docs and eslint fixes ([316e08c](https://github.com/alleyinteractive/irving/commit/316e08c8cc49c25c6a37872a27d93b6ef7d8b94f))
+* gg ([cf6cb75](https://github.com/alleyinteractive/irving/commit/cf6cb75782d425c8f8240b119d2726f0c4e2030b))
+>>>>>>> debug-auth
 
 
 

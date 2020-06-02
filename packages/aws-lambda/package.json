@@ -1,6 +1,10 @@
 {
   "name": "@irvingjs/aws-lambda",
+<<<<<<< HEAD
   "version": "2.12.0-alpha.4",
+=======
+  "version": "2.11.0",
+>>>>>>> debug-auth
   "description": "Run Irving on AWS Lambda",
   "main": "index.js",
   "repository": {
@@ -11,9 +15,6 @@
   "license": "MIT",
   "dependencies": {
     "serverless-http": "^2.5.0"
-  },
-  "devDependencies": {
-    "serverless-offline": "^6.1.7"
   },
   "peerDependencies": {
     "@irvingjs/core": ">=2.10.0"

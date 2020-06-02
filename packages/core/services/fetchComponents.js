@@ -59,9 +59,8 @@ export async function fetchComponents(
 
   // Set up Authorization header, if applicable.
   const authorizationBearerToken = shouldAuthorize(cookie);
-  console.log('here 1', authorizationBearerToken);
+  console.log('cookies', cookie);
   if (authorizationBearerToken) {
-    console.log('here 2');
     // Set to same origin so we don't conflict with other cookies.
     options.credentials = 'same-origin';
     options.headers.Authorization = `Bearer ${authorizationBearerToken}`;
@@ -143,9 +142,9 @@ async function cachedFetchComponents(
   } = cookie;
 
   if (bypassCache || 0 === Object.keys(cache.client).length) {
-    const result = await fetchComponents(path, search, cookie, context);
     log.info('%o', info);
-    return result;
+
+    return fetchComponents(path, search, cookie, context);
   }
 
   const cachedResult = await cache.cached(

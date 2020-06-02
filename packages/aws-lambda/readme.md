@@ -16,7 +16,7 @@ The `@irvingjs/aws-lambda` package makes use of the [serverless-http](https://ww
 module.exports.irving = require('@irvingjs/core/server');
 ```
 > The `irving` name exported will be the entry point for your AWS Lambda function to run your Irving site.
-3. You also need to add the `aws-lambda` to the list of packages in `irving.config.server.js`. **There is no need to add it to the `irving.config.js`**:
+3. You also need to add the `aws-lambda` to the list of packages in `irving.config.server.js`. **There is no need to add it to the `irving.config.js`** since this is a server configuration:
 ```javascript
 // irving.config.server.js
 
@@ -47,21 +47,24 @@ functions:
     events:
       - http:
           path: /
-          method: ANY
+          method: GET
       - http:
           path: /{any+}
-          method: ANY
+          method: GET
 ```
-5. When you are ready to deploy your app, `npm install --production` to remove development dependencies
+5. When you are ready to deploy your app, `npm install --production` to remove development dependencies (`serverless` does this for you but it is a good practice)
 6. And run `npm run build` to build the app files
 7. Finally, run `sls deploy` or `serverless deploy`
 
+> Be aware of the [50MB limit for direct upload/deployment](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) from AWS. 
+
 ## Checking AWS Lambda support locally
 
-The `@irvingjs/aws-lambda` packages comes with the `serverless-offline` package so that you can test your Irving site before deploying. Here are the steps if you need to use this package:
+To test AWS Lambda support locally, we recommend installing the `serverless-offline` package.Here are the steps if you need to use this package:
 
 1. [Set up your project](#Project-setup) for AWS Lambda integration.
-2. Add the `serverless-offline` plugin to the list:
+2. `npm install serverless-offline`
+3. Add the `serverless-offline` plugin to the list:
 ```yml
 service: irving
 
@@ -70,4 +73,10 @@ plugins:
 
 ...
 ```
-3. Finally, run `serverless offline` or `sls offline`.
+4. Finally, run `serverless offline` or `sls offline`.
+
+## About Large Apps/Sites (Bundle Size)
+
+If you have a really large site/app, your bundle size will probably surpass the AWS Lambda upload limit of 50MB. We are testing with the `serverless-webpack` to find ways to optimize the bundle as much as possible for size.
+
+More docs about it soon. :)
