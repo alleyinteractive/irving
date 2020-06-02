@@ -1,0 +1,15 @@
+{
+	"name": "irving/post-featured-media",
+	"category": "Post",
+	"description": "Display the post featured media.",
+	"config": {
+		"post_id": {
+			"default": 0,
+			"required": true,
+			"type": "integer"
+		}
+	},
+	"use_context": {
+		"irving/post_id": "post_id"
+	}
+}

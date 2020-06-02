@@ -1,0 +1,11 @@
+{
+	"name": "irving/fragment",
+	"category": "Common",
+	"description": "Render children in a React fragment or any other HTML tag.",
+	"config": {
+		"tag": {
+			"type": "string",
+			"required": false
+		}
+	}
+}

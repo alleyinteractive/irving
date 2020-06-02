@@ -1,0 +1,15 @@
+{
+	"name": "irving/logo",
+	"category": "Modules",
+	"description": "Display the site name or logo.",
+	"config": {
+		"site_name": {
+			"type": "string",
+			"required": true
+		},
+		"logo_url": {
+			"type": "string",
+			"required": false
+		}
+	}
+}

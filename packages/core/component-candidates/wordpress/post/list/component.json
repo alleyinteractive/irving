@@ -1,0 +1,13 @@
+{
+	"name": "irving/post-list",
+	"description": "Iterate through a WP_Query's posts.",
+	"config": {
+		"templates": {
+			"type": "array"
+		},
+		"query_args": {
+			"type": "array",
+			"required": false
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"name": "irving/container",
+	"category": "Layouts",
+	"description": "Base wrapper component for creating layouts.",
+	"config": {
+		"background_image_url": {
+			"default": "",
+			"required": true,
+			"type": "string"
+		},
+		"max_width": {
+			"default": "",
+			"required": true,
+			"type": "string"
+		},
+		"style": {
+			"default": [],
+			"required": true,
+			"type": "array"
+		},
+		"tag": {
+			"default": "div",
+			"required": true,
+			"type": "string"
+		}
+	}
+}

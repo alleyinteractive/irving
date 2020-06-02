@@ -1,0 +1,17 @@
+{
+	"name": "irving/bloginfo",
+	"category": "Site",
+	"description": "Easily call bloginfo()",
+	"config": {
+		"content": {
+			"default": "",
+			"required": true,
+			"type": "string"
+		},
+		"show": {
+			"default": "name",
+			"required": true,
+			"type": "string"
+		}
+	}
+}

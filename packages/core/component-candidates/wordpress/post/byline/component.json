@@ -1,0 +1,39 @@
+{
+	"name": "irving/post-byline",
+	"description": "Get the post byline.",
+	"config": {
+		"single_delimiter": {
+			"default": " and ",
+			"type": "string",
+			"required": true
+		},
+		"multi_delimiter": {
+			"default": ", ",
+			"type": "string",
+			"required": true
+		},
+		"last_delimiter": {
+			"default": ", and ",
+			"type": "string",
+			"required": true
+		},
+		"post_id": {
+			"default": 0,
+			"required": true,
+			"type": "integer"
+		},
+		"pre_text": {
+			"default": "By&nbsp;",
+			"type": "string",
+			"required": true
+		},
+		"timestamp_format": {
+			"type": "string",
+			"default": "F j, Y \\a\\t g:ia",
+			"required": true
+		}
+	},
+	"use_context": {
+		"irving/post_id": "post_id"
+	}
+}
