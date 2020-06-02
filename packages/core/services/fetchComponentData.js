@@ -1,5 +1,6 @@
 import AbortController from 'abort-controller';
-import getService from './cacheService';
+import omit from 'lodash/fp/omit';
+import getService from './cacheService/getService';
 import getLogService from './logService';
 
 const log = getLogService('irving:components:data');
@@ -51,7 +52,6 @@ export async function cacheResult(endpoint) {
   const info = {
     cached: false,
     __caching__: false,
-    data: {},
     endpoint,
     updated: new Date(),
     cacheKey: endpoint,
@@ -59,13 +59,10 @@ export async function cacheResult(endpoint) {
 
   // Check if we have a cache client set up.
   if (0 === Object.keys(cache.client).length) {
-    const result = await fetchComponentData(endpoint);
-
-    log.info('%o', {
-      ...info,
-      data: result,
-    });
-
+    log.info('%o', info);
+    
+    return fetchComponentData(endpoint);
+    log.info('%o', info);
     return result;
   }
 
@@ -79,7 +76,7 @@ export async function cacheResult(endpoint) {
 
   log.info('%o', {
     ...info,
-    ...response,
+    ...omit('data', response),
     cached: true,
   });
 

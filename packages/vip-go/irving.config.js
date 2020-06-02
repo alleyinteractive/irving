@@ -1,4 +1,4 @@
-const cacheService = require('./services/cacheService');
+const cacheClient = require('./services/cacheClient');
 const logService = require('./services/logService');
 const monitorService = require('./services/monitorService');
 
@@ -7,7 +7,7 @@ module.exports = {
   trailingSlashDenylist: [
     '/cache-healthcheck',
   ],
-  cacheService,
+  cacheClient,
   logService,
   monitorService,
 };
