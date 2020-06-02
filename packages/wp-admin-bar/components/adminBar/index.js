@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import getRouteMeta from '@irvingjs/core/selectors/getRouteMeta';
+import PropTypes from 'prop-types';
 import { withStyles } from 'critical-style-loader/lib';
 import styles from './adminBar.css';
 
@@ -10,14 +9,18 @@ const {
   API_ROOT_URL,
 } = env;
 
-const AdminBar = () => {
+const AdminBar = (props) => {
+  const {
+    iframeSrc,
+  } = props;
   const iframeOrigin = API_ORIGIN ||
     API_ROOT_URL.replace('/wp-json/irving/v1', '');
-  const {
-    path,
-  } = useSelector(getRouteMeta);
   const [hover, setHover] = useState(false);
   const [height, setHeight] = useState(0);
+
+  if (! iframeSrc) {
+    return null;
+  }
 
   useEffect(() => {
     const handleMessage = (event) => {
@@ -41,7 +44,7 @@ const AdminBar = () => {
     <>
       <iframe
         title="Admin Bar Iframe"
-        src={`${iframeOrigin}${path}`}
+        src={iframeSrc}
         className={styles.iframe}
         style={{
           height: hover ? '100%' : `${height}px`,
@@ -55,6 +58,17 @@ const AdminBar = () => {
       />
     </>
   );
+};
+
+AdminBar.defaultProps = {
+  iframeSrc: '',
+};
+
+AdminBar.propTypes = {
+  /**
+   * Source URL for the admin bar iframe.
+   */
+  iframeSrc: PropTypes.string,
 };
 
 export default withStyles(styles)(AdminBar);
