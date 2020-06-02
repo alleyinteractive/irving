@@ -59,7 +59,6 @@ export async function fetchComponents(
 
   // Set up Authorization header, if applicable.
   const authorizationBearerToken = shouldAuthorize(cookie);
-  console.log('cookies', cookie);
   if (authorizationBearerToken) {
     // Set to same origin so we don't conflict with other cookies.
     options.credentials = 'same-origin';
