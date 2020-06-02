@@ -3,75 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<<<<<<< HEAD
-# [2.12.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-alpha.5...v2.12.0-alpha.0) (2020-05-30)
-
-
-### Features
-
-* **cache:** separate client and service creation for cache ([5a40671](https://github.com/alleyinteractive/irving/packages/core/commit/5a40671ede6e51eb9b84132845d224d5601621fa))
-
-
-
-# [2.11.0-beta.17](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.16...v2.11.0-beta.17) (2020-05-28)
-
-
-
-# [2.11.0-beta.16](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.15...v2.11.0-beta.16) (2020-05-28)
-
-
-
-# [2.11.0-beta.15](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.14...v2.11.0-beta.15) (2020-05-28)
-
-
-
-# [2.11.0-beta.14](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.13...v2.11.0-beta.14) (2020-05-28)
-
-
-
-# [2.11.0-beta.13](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.12...v2.11.0-beta.13) (2020-05-28)
-
-
-
-# [2.11.0-beta.12](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.10...v2.11.0-beta.12) (2020-05-28)
-
-
-
-# [2.11.0-beta.10](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.9...v2.11.0-beta.10) (2020-05-28)
-
-
-
-# [2.11.0-beta.9](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.8...v2.11.0-beta.9) (2020-05-28)
-
-
-
-# [2.11.0-beta.8](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.7...v2.11.0-beta.8) (2020-05-28)
-
-
-
-# [2.11.0-beta.7](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.6...v2.11.0-beta.7) (2020-05-28)
-
-
-
-# [2.11.0-beta.6](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.5...v2.11.0-beta.6) (2020-05-28)
-
-
-
-# [2.11.0-beta.5](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.4...v2.11.0-beta.5) (2020-05-28)
-
-
-
-# [2.11.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-alpha.3...v2.11.0-beta.4) (2020-05-28)
-
-
-### Bug Fixes
-
-* fixing eslint errors ([1e84560](https://github.com/alleyinteractive/irving/packages/core/commit/1e845609f042314b6d8032799badf6c1db575369))
-
-
-
-# [2.11.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.0...v2.11.0-beta.1) (2020-05-28)
-=======
 # [2.11.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-rc.0...v2.11.0) (2020-06-02)
 
 **Note:** Version bump only for package @irvingjs/core
@@ -116,18 +47,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [2.11.0-beta.18](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.17...v2.11.0-beta.18) (2020-06-02)
->>>>>>> debug-auth
 
 
 ### Bug Fixes
 
-<<<<<<< HEAD
-* **server:** use reduce on exportServer instead of forEach ([bb849ef](https://github.com/alleyinteractive/irving/packages/core/commit/bb849efd3ae98320bb363f4eccf294921dee95c4))
-
-
-
-# [2.11.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-alpha.1...v2.11.0-beta.0) (2020-05-27)
-=======
 * initializing the env variables correctly ([a1ccf28](https://github.com/alleyinteractive/irving/packages/core/commit/a1ccf2844d6fde88a86430d9ba73240d3633875a))
 
 
@@ -135,7 +58,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * better docs and eslint fixes ([316e08c](https://github.com/alleyinteractive/irving/packages/core/commit/316e08c8cc49c25c6a37872a27d93b6ef7d8b94f))
 * gg ([cf6cb75](https://github.com/alleyinteractive/irving/packages/core/commit/cf6cb75782d425c8f8240b119d2726f0c4e2030b))
->>>>>>> debug-auth
 
 
 
