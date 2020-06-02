@@ -60,7 +60,6 @@ export async function cacheResult(endpoint) {
   // Check if we have a cache client set up.
   if (! cache.client) {
     log.info('%o', info);
-
     return fetchComponentData(endpoint);
   }
 

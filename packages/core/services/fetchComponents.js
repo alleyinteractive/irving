@@ -142,7 +142,6 @@ async function cachedFetchComponents(
 
   if (bypassCache || ! cache.client) {
     log.info('%o', info);
-
     return fetchComponents(path, search, cookie, context);
   }
 
