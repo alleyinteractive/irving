@@ -142,10 +142,8 @@ async function cachedFetchComponents(
 
   if (bypassCache || 0 === Object.keys(cache.client).length) {
     log.info('%o', info);
-    
+
     return fetchComponents(path, search, cookie, context);
-    log.info('%o', info);
-    return result;
   }
 
   const cachedResult = await cache.cached(

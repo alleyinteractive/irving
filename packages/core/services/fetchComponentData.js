@@ -53,17 +53,15 @@ export async function cacheResult(endpoint) {
     cached: false,
     __caching__: false,
     endpoint,
-    updated: new Date(),
     cacheKey: endpoint,
+    updated: null,
   };
 
   // Check if we have a cache client set up.
   if (0 === Object.keys(cache.client).length) {
     log.info('%o', info);
-    
+
     return fetchComponentData(endpoint);
-    log.info('%o', info);
-    return result;
   }
 
   const response = await cache.cached(
