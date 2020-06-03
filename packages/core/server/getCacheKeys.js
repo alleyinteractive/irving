@@ -1,9 +1,13 @@
 const cacheService = require('../services/cacheService/getService')();
 
 const getCacheKeys = async (req, res) => {
-  const keyList = [];
+  if (! cacheService.client) {
+    return res.send('Redis client is not configured.');
+  }
 
+  const keyList = [];
   const stream = await cacheService.client.scanStream({ match: '*' });
+
   stream.on('data', async (keys) => {
     keys.forEach((key) => {
       keyList.push(key);
