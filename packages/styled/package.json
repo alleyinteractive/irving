@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/styled",
-	"version": "2.11.0",
+	"version": "2.11.1",
 	"description": "Integration for React components with attached styles for Irving",
 	"files": [
 		"server/**/*",
@@ -36,7 +36,7 @@
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "^2.11.0",
-		"@irvingjs/core": "^2.11.0",
+		"@irvingjs/core": "^2.11.1",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"enzyme": "^3.11.0",
 		"jest": "^25.5.3"

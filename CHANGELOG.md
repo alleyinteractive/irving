@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/alleyinteractive/irving/compare/v2.11.0...v2.11.1) (2020-06-03)
+
+
+### Bug Fixes
+
+* **cache:** check for cache client and return early if null (and it's necessary) ([512912c](https://github.com/alleyinteractive/irving/commit/512912c7e17e8538e17a3aa84129a4a1ddedce87))
+
+
+
+
+
 # [2.11.0](https://github.com/alleyinteractive/irving/compare/v2.11.0-rc.0...v2.11.0) (2020-06-02)
 
 **Note:** Version bump only for package irving
