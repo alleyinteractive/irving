@@ -1,17 +1,24 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
-import { nodeRequire } from 'utils/nodeRequire';
-import { clientBuild, serverConfig } from 'config/paths';
-import serverRenderer from './serverRenderer';
+const { nodeRequire } = require('../utils/nodeRequire');
+const {
+  clientBuild,
+  serverConfig,
+  serverBuild,
+} = require('../config/paths');
 const path = require('path');
 const express = require('express');
-// App must be built using the build command before production mode can be run.
-const clientStats = nodeRequire(
-  path.join(clientBuild, 'stats.json')
-);
 const createCheckAuth = require('./auth');
 const userConfig = require(serverConfig);
 const { appRoot } = require('../config/paths');
 const getConfigFromFiles = require('../config/getConfigFromFiles');
+
+// App must be built using the build command before production mode can be run.
+const clientStats = nodeRequire(
+  path.join(clientBuild, 'stats.json')
+);
+const {
+  default: serverRenderer,
+} = require(path.join(serverBuild, 'main.bundle'));
 
 /**
  * Add the required middleware to support running the app in production mode.

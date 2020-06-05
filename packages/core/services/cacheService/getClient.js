@@ -27,12 +27,12 @@ const getClient = () => {
   ) {
     let Redis;
 
-    // Check if optional redis client and cache-stampede are installed.
+    // Check if optional Redis client is installed.
     try {
       // eslint-disable-next-line global-require
       Redis = require('ioredis');
     } catch (err) {
-      return false;
+      return null;
     }
 
     client = new Redis({

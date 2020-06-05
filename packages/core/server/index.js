@@ -1,31 +1,31 @@
-/* eslint-disable global-require, no-console, import/first */
-import getMonitorService from '@irvingjs/services/monitorService';
-import logService from '@irvingjs/services/getLogService';
-import { appRoot } from '../config/paths';
-import getConfigFromFiles from '../config/getConfigFromFiles';
-
-const {
-  API_ROOT_URL,
-  API_ORIGIN,
-} = process.env;
-
+/* eslint-disable global-require, no-console, import/first, import/order */
 // Start monitor service as early as possible.
+const getMonitorService = require('@irvingjs/services/monitorService');
 const monitorService = getMonitorService();
 monitorService().start();
 
+const getEnv = require('../config/env');
+const {
+  API_ROOT_URL,
+  API_ORIGIN,
+} = getEnv();
+
 // Shim some browser-only global variables.
-import '../utils/shimWindow';
+require('../utils/shimWindow');
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
+const { appRoot } = require('../config/paths');
+const getConfigFromFiles = require('../config/getConfigFromFiles');
 const { getConfigFromProject } = require('../config/getConfigFromProject');
 const purgeCache = require('./purgeCache');
 const getCacheKeys = require('./getCacheKeys');
 const customizeRedirect = require('./customizeRedirect');
 
 // Start log service.
+import logService from '@irvingjs/services/getLogService';
 const log = logService('irving:server');
 
 // Create app.

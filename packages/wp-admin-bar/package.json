@@ -1,37 +1,33 @@
 {
-  "name": "@irvingjs/forms",
+  "name": "@irvingjs/wp-admin-bar",
   "version": "2.11.1",
-  "description": "Form components and submission functionality for Irving",
+  "description": "Integration for WordPress admin bar",
   "files": [
-    "actions/**/*",
     "components/**/*",
-    "reducers/**/*",
-    "sagas/**/*",
-    "services/**/*",
-    "irving.config.js",
     "!*.test.js"
   ],
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alleyinteractive/irving/packages/forms"
+    "url": "https://github.com/alleyinteractive/irving/packages/wp-admin-bar"
   },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
   "scripts": {
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch"
   },
-  "author": "Alley (Alley.co)",
-  "license": "MIT",
   "dependencies": {
+    "critical-style-loader": "^1.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-use-form-state": "^0.12.1"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^2.11.0",
+    "@irvingjs/babel-preset-irving": "^2.10.0",
     "@irvingjs/core": "^2.11.1",
     "babel-plugin-module-resolver": "^4.0.0",
+    "enzyme": "^3.11.0",
     "jest": "^25.5.3"
   },
   "peerDependencies": {
@@ -39,6 +35,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "2b57a99dc78a57506cc60cf709b756d1cc5ecef5"
+  }
 }

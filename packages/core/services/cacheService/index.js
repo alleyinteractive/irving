@@ -27,7 +27,7 @@ const getService = () => {
       return defaultService;
     }
 
-    // Check if optional redis client and cache-stampede are installed.
+    // Check if optional cache-stampede is installed.
     try {
       // eslint-disable-next-line global-require
       Stampede = require('cache-stampede/stampede');
