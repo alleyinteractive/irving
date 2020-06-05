@@ -97,7 +97,7 @@
     "reselect": "^3.0.1",
     "sanitize-html": "^1.23.0",
     "source-map-support": "^0.5.19",
-    "style-loader": "^0.21.0",
+    "style-loader": "^1.2.1",
     "svg-react-loader": "^0.4.6",
     "universal-cookie": "^4.0.3",
     "universal-cookie-express": "^4.0.3",
