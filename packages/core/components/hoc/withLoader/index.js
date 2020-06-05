@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getDisplayName from 'utils/getDisplayName';
 import DefaultLoading from 'components/helpers/defaultLoading';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import styles from './styles.css';
 
 /**
  * @param {*} WrappedComponent component that gets the conditional loading state
@@ -10,6 +12,7 @@ import DefaultLoading from 'components/helpers/defaultLoading';
  * @param {object} opts.loadingProps - Props for the default loading component
  * @param {object} opts.LoadingComponent - Loading component to use instead of the default.
  */
+
 const withLoader = (WrappedComponent, opts = {}) => {
   const {
     loadingProps = {},
@@ -18,10 +21,23 @@ const withLoader = (WrappedComponent, opts = {}) => {
 
   const Loader = (props) => {
     const { loading } = props;
-    return loading ? (
-      <LoadingComponent {...loadingProps} />
-    ) : (
-      <WrappedComponent {...props} />
+    return (
+      <SwitchTransition>
+        <CSSTransition
+          key={loading ? 'loading' : 'loaded'}
+          in={loading}
+          appear
+          exit
+        >
+          <div className={styles.wrapper}>
+            {loading ? (
+              <LoadingComponent {...loadingProps} />
+            ) : (
+              <WrappedComponent {...props} />
+            )}
+          </div>
+        </CSSTransition>
+      </SwitchTransition>
     );
   };
 
