@@ -1,10 +1,9 @@
-import { getMonitorService } from '..';
-
-const monitorService = getMonitorService();
+import getMonitorService from './getServiceFromFilesystem';
 
 describe('monitorService', () => {
+  const monitorService = getMonitorService();
+
   it('should return an object of the correct shape', () => {
-    const service = monitorService();
-    expect(Object.keys(service)).toMatchObject(['start', 'logError', 'logTransaction']);
+    expect(Object.keys(monitorService)).toMatchObject(['start', 'logError', 'logTransaction']);
   });
 });

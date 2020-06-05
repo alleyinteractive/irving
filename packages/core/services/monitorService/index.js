@@ -1,4 +1,3 @@
-const defaultService = require('./defaultService');
 let service;
 
 /**
@@ -20,7 +19,7 @@ const getService = () => {
   ].every((field) => ('undefined' !== typeof process.env[field]));
 
   if (! configured) {
-    return defaultService;
+    return null;
   }
 
   // newrelic cannot be imported in a browser environment.
@@ -33,7 +32,7 @@ const getService = () => {
     try {
       newrelic = require('newrelic'); // eslint-disable-line global-require
     } catch (err) {
-      return defaultService;
+      return null;
     }
 
     service = {
@@ -49,7 +48,7 @@ const getService = () => {
     return service;
   }
 
-  return defaultService;
+  return null;
 };
 
 module.exports = getService;

@@ -49,7 +49,7 @@ const getMergedConfigArray = (configs, initial = []) => (
         return config(acc);
       }
 
-      return acc.concat(config);
+      return [...acc, ...config];
     },
     initial
   )

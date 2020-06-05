@@ -1,8 +1,18 @@
-const getMonitorService = require('../monitorService'); // @todo
+/* eslint-disable global-require */
 const defaultService = require('./defaultService');
-const monitor = getMonitorService();
 let service;
-/* eslint-enable */
+let getMonitorService;
+
+if (
+  process.env.IRVING_EXECUTION_CONTEXT &&
+  'test' === process.env.BABEL_ENV
+) {
+  getMonitorService = require('@irvingjs/services/monitorService');
+} else {
+  getMonitorService = require('../monitorService/getServiceFromFilesystem');
+}
+
+const monitor = getMonitorService();
 
 /**
  * Create a debug logger that will conditionally handle logged errors based on
