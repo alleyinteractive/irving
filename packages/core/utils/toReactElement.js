@@ -39,7 +39,7 @@ export function createComponentGroups(componentGroups) {
 export default function toReactElement(apiComponent, keyPrefix = '') {
   const {
     name,
-    alias = '',
+    _alias: alias = '',
     config,
     children,
     componentGroups = {},
@@ -52,7 +52,7 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     ...config,
     componentName: name,
     componentGroups: convertedGroups,
-    key: `${keyPrefix}_ ${name}`,
+    key: `${keyPrefix}_${name}`,
   };
 
   // Recursively convert children to react elements.
