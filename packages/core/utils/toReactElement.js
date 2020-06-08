@@ -39,6 +39,7 @@ export function createComponentGroups(componentGroups) {
 export default function toReactElement(apiComponent, keyPrefix = '') {
   const {
     name,
+    alias = '',
     config,
     children,
     componentGroups = {},
@@ -60,7 +61,7 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     isString(child) ? child : toReactElement(child, String(index))
   ));
 
-  const type = getReactComponent(name);
+  const type = 0 !== alias.length ? getReactComponent(alias) : getReactComponent(name);
   const isNativeDOMElm = 'string' === typeof type;
   if (isNativeDOMElm) {
     // Strip invalid attributes for native dom elements.
