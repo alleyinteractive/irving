@@ -18,7 +18,7 @@ const getWebpackScripts = (clientStats) => {
     before: ['common'],
     after: ['main'],
   });
-  const { assets } = clientStats;
+  const { assetsByChunkName: chunks } = clientStats;
   // Verify we're not loading an resource twice using both this
   // function and webpack-flush-chunks.
   const isPrerendered = (assetPath) => (
@@ -26,18 +26,15 @@ const getWebpackScripts = (clientStats) => {
       .some((chunkFilename) => chunkFilename === assetPath)
   );
   const scripts = [];
-  const runtime = assets.find(
-    (asset) => asset.name.includes('runtime~main')
-  );
+  const runtime = chunks['runtime~main'];
 
   // Abstracted webpack runtime asset.
   if (runtime) {
-    const { name } = runtime;
-
-    if (! isPrerendered(name)) {
+    if (! isPrerendered('runtime~main')) {
       // Memoize file operation for optimal performance.
       if (! runtimeSrc) {
-        runtimeSrc = fs.readFileSync(`${clientBuild}/${name}`);
+        const runtimeJsPath = runtime.find((asset) => asset.includes('.js'));
+        runtimeSrc = fs.readFileSync(`${clientBuild}/${runtimeJsPath}`);
       }
 
       // Webpack runtime source should be inlined for optimal performance.
@@ -45,32 +42,34 @@ const getWebpackScripts = (clientStats) => {
     }
   }
 
-  clientStats.assets.forEach((asset) => {
-    const { name } = asset;
+  // Prioritize flushed chunks.
+  scripts.push(asyncChunks);
 
+  // Include any other webpack assets that haven't been included yet.
+  Object.keys(chunks).forEach((chunkName) => {
     // Runtime main is rendered inline above.
-    if ('runtime~main' === name) {
+    if ('runtime~main' === chunkName) {
       return;
     }
 
-    if (! isPrerendered(name)) {
-      if (name.match(/\.js$/)) {
-        scripts.push(
-          `<script defer src="${rootUrl}/${name}"></script>`
-        );
-      }
+    const assets = Array.isArray(chunks[chunkName]) ?
+      chunks[chunkName] : [chunks[chunkName]];
 
-      if (name.match(/\.css$/)) {
-        scripts.push(
-          `<link rel="stylesheet" href="${rootUrl}/${name}"></link>`
-        );
-      }
-    }
+    assets.forEach((assetPath) => {
+      if (! isPrerendered(assetPath)) {
+        if (assetPath.match(/\.js$/)) {
+          scripts.push(
+            `<script defer src="${rootUrl}/${assetPath}"></script>`
+          );
+        }
 
-    if (name.includes('common')) {
-      // Render this after common, just in case.
-      scripts.push(asyncChunks);
-    }
+        if (assetPath.match(/\.css$/)) {
+          scripts.push(
+            `<link rel="stylesheet" href="${rootUrl}/${assetPath}"></link>`
+          );
+        }
+      }
+    });
   });
 
   return scripts;
