@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.0-beta.0...v2.12.0-beta.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **server:** move around some logic in getWebpackScripts to prevent duplication ([80ec7f5](https://github.com/alleyinteractive/irving/packages/core/commit/80ec7f5dcf5e70152b7ca8996ec49f53afb819de))
+* **serverrenderer:** assets aren't accessible in build, use assentsByChunkName ([3bd46f3](https://github.com/alleyinteractive/irving/packages/core/commit/3bd46f3134d4bd1548575950c56694b13c0f16f2))
+
+
+
+
+
 # [2.12.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.2-beta.0...v2.12.0-beta.0) (2020-06-09)
 
 
