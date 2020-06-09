@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.2-beta.0...v2.12.0-beta.0) (2020-06-09)
+
+
+### Features
+
+* **webpack:** add loader for external css from node_modules ([97ccfd9](https://github.com/alleyinteractive/irving/packages/core/commit/97ccfd9e51d30a537158ae0a229eb6ab5db2ce0e))
+
+
+
+
+
 ## [2.11.2-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.1...v2.11.2-beta.0) (2020-06-09)
 
 
