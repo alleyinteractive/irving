@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withThemes from 'component-candidates/hoc/withThemes';
+import withThemes from 'components/hoc/withThemes';
 import MenuItem from './menuItem';
 import * as defaultStyles from './themes/default';
 import * as defaultVerticalStyles from './themes/defaultVertical';

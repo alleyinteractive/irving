@@ -1,7 +1,7 @@
 import React from 'react';
 import { decode } from 'he';
 import PropTypes from 'prop-types';
-import withThemes from 'component-candidates/hoc/withThemes';
+import withThemes from 'components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**

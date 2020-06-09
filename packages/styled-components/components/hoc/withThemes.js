@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getDisplayName from 'utils/getDisplayName';
+import getDisplayName from '@irvingjs/core/utils/getDisplayName';
 import assign from 'lodash/fp/assign';
 
 const withThemes = (themeMap) => (WrappedComponent) => {

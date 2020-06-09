@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
 import EmbedContainer from 'react-oembed-container';
-import { richText } from 'config/html';
-import withThemes from 'component-candidates/hoc/withThemes';
+import { richText } from '@irvingjs/core/config/html';
+import withThemes from 'components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 import * as unstyled from './themes/unstyled';
 
