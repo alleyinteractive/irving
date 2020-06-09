@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/integrations",
-	"version": "2.13.1-alpha.0",
+	"version": "2.11.1",
 	"description": "Third party integrations for Irving",
 	"files": [
 		"components/**/*",
@@ -19,8 +19,8 @@
 		"react-dom": "^16.13.1"
 	},
 	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^2.13.1-alpha.0",
-		"@irvingjs/core": "^2.13.1-alpha.0",
+		"@irvingjs/babel-preset-irving": "^2.11.0",
+		"@irvingjs/core": "^2.11.1",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"jest": "^25.5.3"
 	},

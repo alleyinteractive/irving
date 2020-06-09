@@ -3,113 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.13.1-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.13.0-alpha.0...v2.13.1-alpha.0) (2020-06-02)
-
-**Note:** Version bump only for package @irvingjs/core
-
-
-
-
-
-# [2.13.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0...v2.13.0-alpha.0) (2020-06-02)
+## [2.11.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0...v2.11.1) (2020-06-03)
 
 
 ### Bug Fixes
 
-* log the cookies ([322b12a](https://github.com/alleyinteractive/irving/packages/core/commit/322b12a418676e52ada5024549f5bd1750e5a77d))
-* merge ([c2db0f5](https://github.com/alleyinteractive/irving/packages/core/commit/c2db0f5b3e99e8019bebb46ecb155570e071e5bc))
-
-
-
-# [2.12.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.0-alpha.5...v2.12.0-alpha.6) (2020-06-02)
-
-
-
-# [2.12.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.0-alpha.3...v2.12.0-alpha.4) (2020-06-01)
-
-
-
-# [2.12.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.0-alpha.2...v2.12.0-alpha.3) (2020-06-01)
-
-
-
-# [2.12.0-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.0-alpha.1...v2.12.0-alpha.2) (2020-06-01)
-
-
-### Features
-
-* last fix ([b3198e6](https://github.com/alleyinteractive/irving/packages/core/commit/b3198e6c27c514e2d8a084a4a1b58adb96cddbf5))
-
-
-### Performance Improvements
-
-* merging latest from AWS Lambda ([e1581b4](https://github.com/alleyinteractive/irving/packages/core/commit/e1581b460c863c94432a8ce71430461dd1697812))
-
-
-
-# [2.12.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.0-alpha.0...v2.12.0-alpha.1) (2020-06-01)
-
-
-
-# [2.12.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-alpha.5...v2.12.0-alpha.0) (2020-05-30)
-
-
-
-# [2.11.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-alpha.4...v2.11.0-alpha.5) (2020-05-29)
-
-
-### Bug Fixes
-
-* adding env variables to server/index ([a940a27](https://github.com/alleyinteractive/irving/packages/core/commit/a940a27adbe2b161b2c2e509804503c40939d078))
-
-
-
-# [2.11.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-beta.17...v2.11.0-alpha.4) (2020-05-29)
-
-
-### Bug Fixes
-
-* fix ([1773e6c](https://github.com/alleyinteractive/irving/packages/core/commit/1773e6c0de7ed9bcc081a4760b380abfe3d60ef5))
-
-
-
-# [2.11.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0-alpha.2...v2.11.0-alpha.3) (2020-05-28)
-
-
-
-# [2.11.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.10.1...v2.11.0-alpha.1) (2020-05-27)
-
-
-
-# [2.11.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.10.0...v2.11.0-alpha.0) (2020-05-26)
-
-
-
-# [2.10.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.9.2-alpha.2...v2.10.0-alpha.0) (2020-05-21)
-
-
-
-## [2.9.2-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v2.9.2-alpha.1...v2.9.2-alpha.2) (2020-05-21)
-
-
-
-## [2.9.2-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.9.2-alpha.0...v2.9.2-alpha.1) (2020-05-21)
-
-
-
-## [2.9.2-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.9.1...v2.9.2-alpha.0) (2020-05-21)
-
-
-
-# [2.9.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0...v2.9.0-alpha.1) (2020-05-19)
-
-
-
-# [2.9.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.1...v2.9.0-alpha.0) (2020-05-19)
-
-
-
-## [2.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.8.0-beta.0...v2.8.1-alpha.0) (2020-05-19)
+* **cache:** check for cache client and return early if null (and it's necessary) ([512912c](https://github.com/alleyinteractive/irving/packages/core/commit/512912c7e17e8538e17a3aa84129a4a1ddedce87))
 
 
 
