@@ -103,6 +103,10 @@ const executeStream = async (pipeline, res, key = '') => {
  * @returns {*}
  */
 const purgeCache = async (req, res) => {
+  if (! cacheService.client) {
+    return res.send('Redis client is not configured.');
+  }
+
   const paths = get('paths', req.body) || [];
   const pipeline = cacheService.client.pipeline();
   const completeMessage = 'Cache purge successful!';

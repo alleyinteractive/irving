@@ -18,11 +18,7 @@ const getWebpackScripts = (clientStats) => {
     before: ['common'],
     after: ['main'],
   });
-  const assets = clientStats.assetsByChunkName;
-  // If external sourcemaps are generated each asset will be an array.
-  const getAssetPath = (name) => (
-    Array.isArray(assets[name]) ? assets[name][0] : assets[name]
-  );
+  const { assets } = clientStats;
   // Verify we're not loading an resource twice using both this
   // function and webpack-flush-chunks.
   const isPrerendered = (assetPath) => (
@@ -30,15 +26,18 @@ const getWebpackScripts = (clientStats) => {
       .some((chunkFilename) => chunkFilename === assetPath)
   );
   const scripts = [];
+  const runtime = assets.find(
+    (asset) => asset.name.includes('runtime~main')
+  );
 
   // Abstracted webpack runtime asset.
-  if (assets['runtime~main']) {
-    const runtimePublicPath = getAssetPath('runtime~main');
+  if (runtime) {
+    const { name } = runtime;
 
-    if (! isPrerendered(runtimePublicPath)) {
+    if (! isPrerendered(name)) {
       // Memoize file operation for optimal performance.
       if (! runtimeSrc) {
-        runtimeSrc = fs.readFileSync(`${clientBuild}/${runtimePublicPath}`);
+        runtimeSrc = fs.readFileSync(`${clientBuild}/${name}`);
       }
 
       // Webpack runtime source should be inlined for optimal performance.
@@ -46,28 +45,33 @@ const getWebpackScripts = (clientStats) => {
     }
   }
 
-  // Vendor assets
-  if (assets.common) {
-    const commonPublicPath = getAssetPath('common');
+  clientStats.assets.forEach((asset) => {
+    const { name } = asset;
 
-    if (! isPrerendered(commonPublicPath)) {
-      scripts.push(
-        `<script defer src="${rootUrl}/${commonPublicPath}"></script>`
-      );
+    // Runtime main is rendered inline above.
+    if ('runtime~main' === name) {
+      return;
     }
-  }
 
-  // Render this in between common and main, just in case.
-  scripts.push(asyncChunks);
+    if (! isPrerendered(name)) {
+      if (name.match(/\.js$/)) {
+        scripts.push(
+          `<script defer src="${rootUrl}/${name}"></script>`
+        );
+      }
 
-  // Main asset
-  const mainPublicPath = getAssetPath('main');
+      if (name.match(/\.css$/)) {
+        scripts.push(
+          `<link rel="stylesheet" href="${rootUrl}/${name}"></link>`
+        );
+      }
+    }
 
-  if (! isPrerendered(mainPublicPath)) {
-    scripts.push(
-      `<script defer src="${rootUrl}/${mainPublicPath}"></script>`
-    );
-  }
+    if (name.includes('common')) {
+      // Render this after common, just in case.
+      scripts.push(asyncChunks);
+    }
+  });
 
   return scripts;
 };
