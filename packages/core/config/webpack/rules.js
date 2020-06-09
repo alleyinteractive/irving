@@ -1,6 +1,6 @@
 const path = require('path');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const {
-  transform,
   buildContext,
   irvingRoot,
 } = require('../paths');
@@ -37,6 +37,20 @@ const include = (filepath) => {
 module.exports = function getRules(context) {
   const isProd = context.includes('production');
   const isServer = context.includes('server');
+
+  const cssLoader = {
+    loader: 'css-loader',
+    options: {
+      url: true,
+      importLoaders: 1,
+      modules: {
+        mode: 'local',
+        localIdentName: '[name]__[local]--[hash:base64:5]',
+      },
+      sourceMap: ! isProd,
+      localsConvention: 'camelCase',
+    },
+  };
 
   return [
     {
@@ -135,26 +149,20 @@ module.exports = function getRules(context) {
     {
       test: /\.css$/,
       include,
-      use: [
-        {
-          loader: isServer ? 'critical-style-loader' : 'style-loader',
-          options: {
-            transform,
-          },
-        },
-        {
-          loader: 'css-loader',
-          options: {
-            url: true,
-            importLoaders: 1,
-            modules: {
-              mode: 'local',
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-            sourceMap: ! isProd,
-            localsConvention: 'camelCase',
-          },
-        },
+      use: isServer ? [
+        'critical-style-loader',
+        cssLoader,
+      ] : [
+        // {
+        //   loader: MiniCSSExtractPlugin.loader,
+        //   options: {
+        //     hmr: ! isProd,
+        //   },
+        // },
+        // 'style-loader',
+        'style-loader',
+        'critical-style-loader',
+        cssLoader,
       ],
     },
   ];
