@@ -45,7 +45,11 @@ const getWebpackScripts = (clientStats) => {
     }
   }
 
-  clientStats.assets.forEach((asset) => {
+  // Prioritize flushed chunks.
+  scripts.push(asyncChunks);
+
+  // Include any other webpack assets that haven't been included yet.
+  assets.forEach((asset) => {
     const { name } = asset;
 
     // Runtime main is rendered inline above.
@@ -65,11 +69,6 @@ const getWebpackScripts = (clientStats) => {
           `<link rel="stylesheet" href="${rootUrl}/${name}"></link>`
         );
       }
-    }
-
-    if (name.includes('common')) {
-      // Render this after common, just in case.
-      scripts.push(asyncChunks);
     }
   });
 
