@@ -148,18 +148,19 @@ module.exports = function getRules(context) {
     },
     {
       test: /\.css$/,
+      include: /node_modules\/(?!@irvingjs)/,
+      use: [
+        MiniCSSExtractPlugin.loader,
+        'css-loader',
+      ],
+    },
+    {
+      test: /\.css$/,
       include,
       use: isServer ? [
         'critical-style-loader',
         cssLoader,
       ] : [
-        // {
-        //   loader: MiniCSSExtractPlugin.loader,
-        //   options: {
-        //     hmr: ! isProd,
-        //   },
-        // },
-        // 'style-loader',
         'style-loader',
         'critical-style-loader',
         cssLoader,
