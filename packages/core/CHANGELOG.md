@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.2-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.1...v2.11.2-beta.0) (2020-06-09)
+
+
+### Bug Fixes
+
+* **packagejson:** update style-loader to latest version ([3df8e11](https://github.com/alleyinteractive/irving/packages/core/commit/3df8e11a73dd50ccd3dfb43c6d62ede13e1176ce))
+* **webpack:** update css loader array to support latest style-loader ([087c467](https://github.com/alleyinteractive/irving/packages/core/commit/087c4671ee4a381004196cacb280a3bb72596edc))
+
+
+
+
+
 ## [2.11.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.0...v2.11.1) (2020-06-03)
 
 
