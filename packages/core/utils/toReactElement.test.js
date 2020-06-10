@@ -22,6 +22,13 @@ describe('toReactElement', () => {
     children: [],
   };
 
+  const apiComponent4 = {
+    name: 'bizz',
+    '_alias': 'foo',
+    config: {},
+    children: [],
+  };
+
   it( 'converts an api component to a React element', () => {
     const fooElement = toReactElement(apiComponent);
     const wrapper = shallow(<div>{fooElement}</div>);
@@ -67,5 +74,13 @@ describe('toReactElement', () => {
         .dive()
         .find({ componentName: 'buzz' })
     ).toHaveLength(1);
+  });
+
+  it( 'converts an api component\'s alias to a React element', () => {
+    const fooElement = toReactElement(apiComponent4);
+    const wrapper = shallow(<div>{fooElement}</div>);
+
+    expect(wrapper.find({ componentName: 'bizz' })).toHaveLength(1);
+    expect(wrapper.text()).toBe('<foo />');
   });
 });
