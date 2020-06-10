@@ -1,21 +1,19 @@
-import HTML from 'components/common/html';
-import Link from 'components/common/link';
-import App from 'components/layouts/app';
-import Container from 'components/layouts/container';
-import Fragment from 'components/layouts/fragment';
-import Logo from 'components/modules/logo';
-import Menu from 'components/modules/menu';
-import Byline from 'components/wordpress/post/byline';
-import Permalink from 'components/wordpress/post/permalink';
+import App from 'components/app';
+import Byline from 'components/byline';
+import Container from 'components/container';
+import Fragment from 'components/fragment';
+import HTML from 'components/html';
+import Link from 'components/link';
+import Logo from 'components/logo';
+import Menu from 'components/menu';
 
 export {
-  HTML,
-  Link,
   App,
+  Byline,
   Container,
   Fragment,
+  HTML,
+  Link,
   Logo,
   Menu,
-  Byline,
-  Permalink,
 };
