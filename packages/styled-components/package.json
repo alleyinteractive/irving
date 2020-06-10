@@ -25,6 +25,7 @@
 		"he": "^1.2.0",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
+		"react-helmet": "^6.1.0",
 		"styled-components": "^5.1.0",
 		"stylelint": "^13.3.3",
 		"stylelint-config-styled-components": "^0.1.1",
