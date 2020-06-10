@@ -1,7 +1,7 @@
 import React from 'react';
 import { decode } from 'he';
 import PropTypes from 'prop-types';
-import withThemes from 'components/hoc/withThemes';
+import withThemes from '@irvingjs/styled/components/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**

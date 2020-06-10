@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import parseUrl from '@irvingjs/core/utils/getRelativeUrl';
 import history from '@irvingjs/core/utils/history';
-import withThemes from 'components/hoc/withThemes';
+import withThemes from '@irvingjs/styled/components/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**

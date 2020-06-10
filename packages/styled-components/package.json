@@ -21,6 +21,7 @@
 		"test:watch": "jest --watch"
 	},
 	"dependencies": {
+		"@irvingjs/styled": "^2.12.1",
 		"babel-plugin-styled-components": "^1.10.7",
 		"he": "^1.2.0",
 		"react": "^16.13.1",

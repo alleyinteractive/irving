@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 /* eslint-disable import/prefer-default-export */
-export const Wrapper = styled.span`
+export const LogoWrapper = styled.span`
   display: block;
 
   img {
@@ -10,5 +10,11 @@ export const Wrapper = styled.span`
   }
 `;
 
-export const Link = styled.a``;
+export const LogoLink = styled.a``;
+
+export const LogoImage = styled.span``;
+
+export const SiteName = styled.span`
+  font-size: 2rem;
+`;
 /* eslint-enable */

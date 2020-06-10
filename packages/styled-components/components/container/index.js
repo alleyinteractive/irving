@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withThemes from 'components/hoc/withThemes';
+import withThemes from '@irvingjs/styled/components/withThemes';
 import * as defaultStyles from './themes/default';
 
 const widths = {
