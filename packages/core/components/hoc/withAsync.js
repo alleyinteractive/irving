@@ -1,5 +1,5 @@
 import universal from 'react-universal-component';
-import DefaultLoading from 'components/defaultLoading';
+import DefaultLoading from 'components/helpers/defaultLoading';
 
 const withAsync = (importer) => (
   universal(importer, {
