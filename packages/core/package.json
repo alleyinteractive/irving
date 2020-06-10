@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "2.11.0-beta.17",
+  "version": "2.12.0",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -38,13 +38,13 @@
     "irving": "./bin/irving"
   },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "BABEL_ENV=test jest",
+    "test:watch": "BABEL_ENV=test jest --watch"
   },
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@hot-loader/react-dom": "^16.13.0",
-    "@irvingjs/babel-preset-irving": "^2.11.0-beta.17",
+    "@irvingjs/babel-preset-irving": "^2.11.0",
     "abort-controller": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",

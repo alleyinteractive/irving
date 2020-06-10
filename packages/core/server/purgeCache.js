@@ -1,8 +1,7 @@
 const get = require('lodash/fp/get');
-const chalk = require('chalk');
 const queryString = require('query-string');
 const getService = require('../services/logService');
-const cacheService = require('../services/cacheService')();
+const cacheService = require('../services/cacheService/getService')();
 
 const log = getService('irving:cache:purge');
 
@@ -103,7 +102,11 @@ const executeStream = async (pipeline, res, key = '') => {
  * @param {object} res  Response object.
  * @returns {*}
  */
-const purgeCache = async (req, res, next) => {
+const purgeCache = async (req, res) => {
+  if (! cacheService.client) {
+    return res.send('Redis client is not configured.');
+  }
+
   const paths = get('paths', req.body) || [];
   const pipeline = cacheService.client.pipeline();
   const completeMessage = 'Cache purge successful!';

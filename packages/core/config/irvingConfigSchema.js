@@ -3,6 +3,7 @@ module.exports = {
   name: '',
   babelConfig: [() => {}],
   envAllowlist: [() => []],
+  cacheClient: () => {},
   cacheService: () => {},
   startServer: () => {},
   customizeRedirect: [() => {}],
