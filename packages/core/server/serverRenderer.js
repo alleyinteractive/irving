@@ -13,7 +13,7 @@ import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
 import getEnv from 'config/env';
 import resolveComponents from 'sagas/resolveComponents';
-import getWebpackScripts from 'utils/getWebpackScripts';
+import getWebpackAssetTags from 'utils/getWebpackAssetTags';
 import addTrailingSlash from 'utils/addTrailingSlash';
 import getLogService from 'services/logService';
 import getService from 'services/monitorService';
@@ -89,7 +89,7 @@ const render = async (req, res, clientStats) => {
   // Get some template vars and allow customization by user.
   const customTemplateVars = getTemplateVars('getAppTemplateVars', {
     Wrapper: AppWrapper,
-    irvingHead: getWebpackScripts(clientStats).join(''),
+    irvingHead: getWebpackAssetTags(clientStats).join(''),
   });
 
   // Clear head data to avoid memory leak.

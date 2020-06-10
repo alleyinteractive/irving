@@ -8,7 +8,7 @@ Various utility methods.
 * [getDisplayName.js](https://github.com/alleyinteractive/irving/blob/production/utils/getDisplayName.js) - Get a display name for a component. Makes it easier to identify from which component an error originates when utilizing a HOC.
 * [getRelativeUrl.js](https://github.com/alleyinteractive/irving/blob/production/utils/getRelativeUrl.js) - Convert an absolute, internal URL to a relative one or return an already relative URL as-is. If a URL is absolute and external, return `false`.
 * [getRelativeUrl.test.js](https://github.com/alleyinteractive/irving/blob/production/utils/getRelativeUrl.test.js) - Unit tests for `getRelativeUrl.js`.
-* [getWebpackScripts.js](https://github.com/alleyinteractive/irving/blob/production/utils/getWebpackScripts.js) - Retrieve the public path to crucial app scripts from a Webpack stats object. This is used for fetching the `src` value to provide to script tags in SSR templates.
+* [getWebpackAssetTags.js](https://github.com/alleyinteractive/irving/blob/production/utils/getWebpackAssetTags.js) - Retrieve the public path to crucial app scripts from a Webpack stats object. This is used for fetching the `src` value to provide to script tags in SSR templates.
 * [history.js](https://github.com/alleyinteractive/irving/blob/production/utils/history.js) - Returns a shim for the `history` API on the server side, or the history API if we're on the client side.
 * [isNode.js](https://github.com/alleyinteractive/irving/blob/production/utils/isNode.js) - Helper for determining if the app is currently executing in a node context.
 * [mockCssTransform.js](https://github.com/alleyinteractive/irving/blob/production/utils/mockCssTransform.js) - Helper for mocking the CSS transform used by `critical-style-loader`.
