@@ -6,7 +6,6 @@ import { Helmet } from 'react-helmet';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
-import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
@@ -76,13 +75,9 @@ const render = async (req, res, clientStats) => {
 
   clearChunks();
 
-  // Container for critical css related to this page render.
-  const cssBuilder = new CriticalCssBuilder();
   const AppWrapper = () => (
     <Provider store={store}>
-      <StyleContext.Provider value={cssBuilder.addCss}>
-        <App />
-      </StyleContext.Provider>
+      <App />
     </Provider>
   );
 
@@ -98,8 +93,6 @@ const render = async (req, res, clientStats) => {
   const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
   const templateVars = {
     helmet,
-    criticalCss: cssBuilder.getCss(),
-    styleRefs: cssBuilder.getEncodedMap(),
     preRenderedState: stateEncoded,
     env: JSON.stringify(getEnv()),
     ...customTemplateVars,
@@ -136,12 +129,9 @@ export default function serverRenderer(options) {
       logError.error('%o', { url: req.originalUrl, err });
 
       // Render a error page.
-      const cssBuilder = new CriticalCssBuilder();
       const ErrorMessageComponent = getComponent('error-message');
       const ErrorMessageWrapper = () => (
-        <StyleContext.Provider value={cssBuilder.addCss}>
-          <ErrorMessageComponent />
-        </StyleContext.Provider>
+        <ErrorMessageComponent />
       );
 
       // Get some template vars and allow customization by user.
@@ -149,10 +139,7 @@ export default function serverRenderer(options) {
         Wrapper: ErrorMessageWrapper,
         irvingHead: '',
       });
-      const templateVars = {
-        criticalCss: cssBuilder.getCss(),
-        ...customTemplateVars,
-      };
+      const templateVars = customTemplateVars;
 
       res.status(500);
       res.render(errorView, templateVars, (templateErr, html) => {
