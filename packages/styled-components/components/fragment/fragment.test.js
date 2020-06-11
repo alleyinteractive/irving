@@ -7,7 +7,6 @@ describe('<Fragment />', () => {
     expect(wrapper.text()).toBe('Foo Bar');
   });
 
-
   it('renders the correct tag', () => {
     const wrapper = shallow(<Fragment tag="section" children={['Foo Bar']} />);
     expect(wrapper.render()[0].name).toBe('section');

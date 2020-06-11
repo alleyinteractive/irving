@@ -17,3 +17,21 @@ export {
   Logo,
   Menu,
 };
+
+const ComponentMap = {
+  '': Fragment,
+  'irving/body-wrapper': Fragment,
+  'irving/byline': Byline,
+  'irving/container': Container,
+  'irving/footer-wrapper': Fragment,
+  'irving/fragment': Fragment,
+  'irving/header-wrapper': Fragment,
+  'irving/html': HTML,
+  'irving/link': Link,
+  'irving/logo': Logo,
+  'irving/menu': Menu,
+  'irving/text': Fragment,
+  app: App,
+};
+
+export default ComponentMap;
