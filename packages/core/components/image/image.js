@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'critical-style-loader/lib';
+
 import withThemes from 'components/hoc/withThemes';
 import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import IrvingPicture from './irvingPicture';
@@ -183,8 +183,8 @@ Image.defaultProps = {
   showCaption: false,
 };
 
-const wrapWithStyles = withStyles(styles);
+
 const wrapWithThemes = withThemes('Image', { default: styles });
 
 export const themeImage = createWithUserThemes(Image, styles);
-export default wrapWithThemes(wrapWithStyles(Image));
+export default wrapWithThemes(Image);

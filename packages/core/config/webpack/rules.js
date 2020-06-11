@@ -157,13 +157,26 @@ module.exports = function getRules(context) {
     {
       test: /\.css$/,
       include,
-      use: isServer ? [
-        'critical-style-loader',
-        cssLoader,
-      ] : [
-        'style-loader',
-        'critical-style-loader',
-        cssLoader,
+      use: [
+        {
+          loader: MiniCSSExtractPlugin.loader,
+          options: {
+            hmr: ! isProd,
+          },
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            url: true,
+            importLoaders: 1,
+            modules: {
+              mode: 'local',
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
+            sourceMap: ! isProd,
+            localsConvention: 'camelCase',
+          },
+        },
       ],
     },
   ];

@@ -8,7 +8,6 @@ import {
 } from 'redux';
 import reduceReducers from 'reduce-reducers';
 import createSagaMiddleware from 'redux-saga';
-import { StyleContext, CriticalCssBuilder } from 'critical-style-loader/lib';
 import { reducers } from '@irvingjs/core/reducers';
 import rootSaga from '@irvingjs/core/sagas';
 import defaultState, {
@@ -53,16 +52,12 @@ const store = createStore(
   applyMiddleware(sagaMiddleware)
 );
 sagaMiddleware.run(rootSaga);
-// Container for critical css related to this page render.
-const cssBuilder = new CriticalCssBuilder();
 
 const Wrapper = (props) => {
   const { children } = props;
   return (
     <Provider store={store}>
-      <StyleContext.Provider value={cssBuilder.addCss}>
-        {children}
-      </StyleContext.Provider>
+      {children}
     </Provider>
   );
 };

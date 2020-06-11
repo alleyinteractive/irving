@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'critical-style-loader/lib';
 import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
-import styles from './body.css';
+import './body.css';
 
 const Body = (props) => {
   const { bodyClasses, children } = props;
@@ -38,6 +37,4 @@ Body.defaultProps = {
   bodyClasses: [],
 };
 
-const wrapWithStyles = withStyles(styles);
-
-export default wrapWithStyles(Body);
+export default Body;

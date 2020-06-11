@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'critical-style-loader/lib';
 import RawHTML from '@components/rawHTML';
 import styles from './state.css';
 
@@ -86,4 +85,4 @@ State.defaultProps = {
   successText: 'Success! Thank you for your submission.',
 };
 
-export default withStyles(styles)(State);
+export default State;

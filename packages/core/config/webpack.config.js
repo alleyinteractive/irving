@@ -26,13 +26,7 @@ module.exports = (env, argv) => {
         rules: client.getRules(),
       },
       plugins: client.getPlugins(),
-      optimization: {
-        splitChunks: {
-          name: 'common',
-          chunks: 'all',
-        },
-        runtimeChunk: isProd,
-      },
+      optimization: client.getOptimization(),
     },
     {
       context: buildContext,
@@ -70,11 +64,7 @@ module.exports = (env, argv) => {
         rules: server.getRules(),
       },
       plugins: server.getPlugins(),
-      optimization: {
-        // This keeps the emitted code readable if we need to review it manually.
-        // Minimization isn't useful for NodeJS anyways.
-        minimize: false,
-      },
+      optimization: server.getOptimization(),
     },
   ];
   const configGetters = getConfigField('webpackConfig');
