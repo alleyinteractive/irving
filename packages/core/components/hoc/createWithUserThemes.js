@@ -1,4 +1,3 @@
-import { withStyles } from 'critical-style-loader/lib';
 import withThemes from './withThemes';
 
 const createWithUserThemes = (WrappedComponent, defaultStyles = {}) => (
@@ -10,19 +9,15 @@ const createWithUserThemes = (WrappedComponent, defaultStyles = {}) => (
     default: defaultStyles,
     ...themeMap,
   };
-  // Get stylesheets from user-provided themes for SSR.
-  const styleSheets = Object.keys(mergedThemeMap)
-    .map((themeName) => mergedThemeMap[themeName]);
 
   // Create HoCs.
-  const wrapWithStyles = withStyles(...styleSheets);
   const wrapWithThemes = withThemes(
     WrappedComponent.displayName,
     mergedThemeMap,
     composes
   );
 
-  return wrapWithThemes(wrapWithStyles(WrappedComponent));
+  return wrapWithThemes(WrappedComponent);
 };
 
 /** @component */

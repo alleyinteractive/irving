@@ -1,7 +1,6 @@
 import { omit } from 'lodash/fp';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import Heading from 'components/helpers/heading';
@@ -73,8 +72,8 @@ Placeholder.defaultProps = {
   url: '',
 };
 
-const wrapWithStyles = withStyles(styles);
+
 const wrapWithThemes = withThemes('Placeholder', { default: styles });
 
 export const themePlaceholder = createWithUserThemes(Placeholder, styles);
-export default wrapWithThemes(wrapWithStyles(Placeholder));
+export default wrapWithThemes(Placeholder);

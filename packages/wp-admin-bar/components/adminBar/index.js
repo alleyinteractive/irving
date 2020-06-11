@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'critical-style-loader/lib';
 import styles from './adminBar.css';
 
 const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
@@ -71,4 +70,4 @@ AdminBar.propTypes = {
   iframeSrc: PropTypes.string,
 };
 
-export default withStyles(styles)(AdminBar);
+export default AdminBar;

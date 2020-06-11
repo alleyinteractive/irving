@@ -27,14 +27,13 @@ const getWebpackAssetTags = (clientStats) => {
       .some((chunkFilename) => chunkFilename === assetPath)
   );
   const tags = [];
-  const runtime = chunks['runtime~main'];
+  const runtimeJsPath = chunks['runtime~main'];
 
   // Abstracted webpack runtime asset.
-  if (runtime) {
+  if (runtimeJsPath) {
     if (! isPrerendered('runtime~main')) {
       // Memoize file operation for optimal performance.
       if (! runtimeSrc) {
-        const runtimeJsPath = runtime.find((asset) => asset.includes('.js'));
         runtimeSrc = fs.readFileSync(`${clientBuild}/${runtimeJsPath}`);
       }
 

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { withStyles } from 'critical-style-loader/lib';
 import {
   actionLoadAudio,
   actionPauseAudio,
@@ -124,6 +123,6 @@ const withRedux = connect(
   mapStateToProps,
   mapDispatchToProps
 );
-const wrapWithStyles = withStyles(styles);
 
-export default withRedux(wrapWithStyles(PlayPauseButton));
+
+export default withRedux(PlayPauseButton);
