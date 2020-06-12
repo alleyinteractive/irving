@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'critical-style-loader/lib';
 import styles from './label.css';
 
 // This rule is both deprecated and appears to be causing an erroneous warning
@@ -58,4 +57,4 @@ Label.defaultProps = {
   required: false,
 };
 
-export default withStyles(styles)(Label);
+export default Label;

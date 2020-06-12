@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'critical-style-loader/lib';
 import styles from './fieldset.css';
 
 const Fieldset = (props) => {
@@ -37,4 +36,4 @@ Fieldset.defaultProps = {
   heading: '',
 };
 
-export default withStyles(styles)(Fieldset);
+export default Fieldset;

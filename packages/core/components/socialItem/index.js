@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'components/helpers/link';
-import { withStyles } from 'critical-style-loader/lib';
 import FacebookIcon from 'assets/icons/facebook.svg';
 import TwitterIcon from 'assets/icons/twitter.svg';
 import LinkedInIcon from 'assets/icons/linkedin.svg';
@@ -59,8 +58,8 @@ SocialItem.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-const wrapWithStyles = withStyles(styles);
+
 const wrapWithThemes = withThemes('SocialItem', { default: styles });
 export const themeSocialItem = createWithUserThemes(SocialItem, styles);
 
-export default wrapWithThemes(wrapWithStyles(SocialItem));
+export default wrapWithThemes(SocialItem);
