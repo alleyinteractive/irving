@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'components/link';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -11,6 +12,7 @@ import * as defaultStyles from './themes/default';
  */
 const MenuItem = (props) => {
   const {
+    attributeTitle,
     classes,
     children,
     id,
@@ -27,26 +29,25 @@ const MenuItem = (props) => {
   } = theme;
 
   return (
-    <ItemWrapper key={id} classnames={classes}>
-      <li>
-        <a href={url} target={target}>{title}</a>
-        {children && (
-          <Dropdown>
-            {children.map((child) => (
-              <MenuItem
-                key={child.props.id}
-                level={level + 1}
-                {...child.props}
-              />
-            ))}
-          </Dropdown>
-        )}
-      </li>
+    <ItemWrapper key={id} classnames={classes} title={attributeTitle}>
+      <Link href={url} target={target}>{title}</Link>
+      {children && (
+        <Dropdown>
+          {children.map((child) => (
+            <MenuItem
+              key={child.props.id}
+              level={level + 1}
+              {...child.props}
+            />
+          ))}
+        </Dropdown>
+      )}
     </ItemWrapper>
   );
 };
 
 MenuItem.defaultProps = {
+  attributeTitle: '',
   classes: [],
   id: 0,
   level: 1,
@@ -57,6 +58,10 @@ MenuItem.defaultProps = {
 };
 
 MenuItem.propTypes = {
+  /**
+   * Value of the title attribute.
+   */
+  attributeTitle: PropTypes.string,
   /**
    * Children of the component.
    */
