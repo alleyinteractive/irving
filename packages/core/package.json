@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "2.12.0-beta.3",
+  "version": "2.13.0",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -8,6 +8,7 @@
     "bin/**/*",
     "cli/**/*",
     "client/**/*",
+    "component-candidates/**/*",
     "components/**/*",
     "components/**/*.md",
     "config/**/*",
@@ -43,7 +44,7 @@
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@hot-loader/react-dom": "^16.13.0",
-    "@irvingjs/babel-preset-irving": "^2.11.2-beta.0",
+    "@irvingjs/babel-preset-irving": "^2.11.0",
     "abort-controller": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
@@ -71,6 +72,7 @@
     "express-naked-redirect": "^0.1.7",
     "file-loader": "^6.0.0",
     "glob-to-regexp": "^0.4.1",
+    "he": "^1.2.0",
     "history": "^4.10.1",
     "http-proxy-middleware": "^1.0.4",
     "lodash": "^4.17.15",
@@ -98,6 +100,8 @@
     "reselect": "^3.0.1",
     "sanitize-html": "^1.23.0",
     "source-map-support": "^0.5.19",
+    "style-loader": "^0.21.0",
+    "styled-components": "^5.1.1",
     "svg-react-loader": "^0.4.6",
     "terser-webpack-plugin": "^3.0.3",
     "universal-cookie": "^4.0.3",

@@ -3,7 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.12.0-beta.3](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.0-beta.2...v2.12.0-beta.3) (2020-06-11)
+# [2.13.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.13.0-rc.0...v2.13.0) (2020-06-12)
+
+
+### Features
+
+* **moves candidate components to a new package in the repo root:** moves candidate components ([c668bdc](https://github.com/alleyinteractive/irving/packages/core/commit/c668bdc9dfe2ef9d2d056d13a3d4265718ce60d5))
+* adds new components to Irving core for use in the framework iteration of Irving ([7bb6d03](https://github.com/alleyinteractive/irving/packages/core/commit/7bb6d03684e2d35e51e24a10f5db7ad22947e11f))
+
+
+
+
+
+# [2.13.0-rc.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.1...v2.13.0-rc.0) (2020-06-12)
 
 
 ### Bug Fixes
@@ -19,7 +31,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.12.0-beta.2](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.0-beta.1...v2.12.0-beta.2) (2020-06-10)
+## [2.12.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.0...v2.12.1) (2020-06-10)
 
 **Note:** Version bump only for package @irvingjs/core
 
@@ -27,36 +39,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.12.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.12.0-beta.0...v2.12.0-beta.1) (2020-06-09)
+# [2.12.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.1...v2.12.0) (2020-06-10)
 
-
-### Bug Fixes
-
-* **server:** move around some logic in getWebpackScripts to prevent duplication ([80ec7f5](https://github.com/alleyinteractive/irving/packages/core/commit/80ec7f5dcf5e70152b7ca8996ec49f53afb819de))
-* **serverrenderer:** assets aren't accessible in build, use assentsByChunkName ([3bd46f3](https://github.com/alleyinteractive/irving/packages/core/commit/3bd46f3134d4bd1548575950c56694b13c0f16f2))
-
-
-
-
-
-# [2.12.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.2-beta.0...v2.12.0-beta.0) (2020-06-09)
-
-
-### Features
-
-* **webpack:** add loader for external css from node_modules ([97ccfd9](https://github.com/alleyinteractive/irving/packages/core/commit/97ccfd9e51d30a537158ae0a229eb6ab5db2ce0e))
-
-
-
-
-
-## [2.11.2-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.11.1...v2.11.2-beta.0) (2020-06-09)
-
-
-### Bug Fixes
-
-* **packagejson:** update style-loader to latest version ([3df8e11](https://github.com/alleyinteractive/irving/packages/core/commit/3df8e11a73dd50ccd3dfb43c6d62ede13e1176ce))
-* **webpack:** update css loader array to support latest style-loader ([087c467](https://github.com/alleyinteractive/irving/packages/core/commit/087c4671ee4a381004196cacb280a3bb72596edc))
+**Note:** Version bump only for package @irvingjs/core
 
 
 

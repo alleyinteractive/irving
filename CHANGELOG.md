@@ -3,7 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.12.0-beta.3](https://github.com/alleyinteractive/irving/compare/v2.12.0-beta.2...v2.12.0-beta.3) (2020-06-11)
+# [2.13.0](https://github.com/alleyinteractive/irving/compare/v2.13.0-rc.0...v2.13.0) (2020-06-12)
+
+
+### Features
+
+* **moves candidate components to a new package in the repo root:** moves candidate components ([c668bdc](https://github.com/alleyinteractive/irving/commit/c668bdc9dfe2ef9d2d056d13a3d4265718ce60d5))
+* adds new components to Irving core for use in the framework iteration of Irving ([7bb6d03](https://github.com/alleyinteractive/irving/commit/7bb6d03684e2d35e51e24a10f5db7ad22947e11f))
+
+
+
+
+
+# [2.13.0-rc.0](https://github.com/alleyinteractive/irving/compare/v2.12.1...v2.13.0-rc.0) (2020-06-12)
 
 
 ### Bug Fixes
@@ -19,7 +31,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.12.0-beta.2](https://github.com/alleyinteractive/irving/compare/v2.12.0-beta.1...v2.12.0-beta.2) (2020-06-10)
+## [2.12.1](https://github.com/alleyinteractive/irving/compare/v2.12.0...v2.12.1) (2020-06-10)
 
 **Note:** Version bump only for package irving
 
@@ -27,139 +39,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.12.0-beta.1](https://github.com/alleyinteractive/irving/compare/v2.12.0-beta.0...v2.12.0-beta.1) (2020-06-09)
+# [2.12.0](https://github.com/alleyinteractive/irving/compare/v2.11.1...v2.12.0) (2020-06-10)
 
-
-### Bug Fixes
-
-* **server:** move around some logic in getWebpackScripts to prevent duplication ([80ec7f5](https://github.com/alleyinteractive/irving/commit/80ec7f5dcf5e70152b7ca8996ec49f53afb819de))
-* **serverrenderer:** assets aren't accessible in build, use assentsByChunkName ([3bd46f3](https://github.com/alleyinteractive/irving/commit/3bd46f3134d4bd1548575950c56694b13c0f16f2))
-
-
-
-
-
-# [2.12.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.11.2-beta.0...v2.12.0-beta.0) (2020-06-09)
-
-
-### Features
-
-* **webpack:** add loader for external css from node_modules ([97ccfd9](https://github.com/alleyinteractive/irving/commit/97ccfd9e51d30a537158ae0a229eb6ab5db2ce0e))
-
-
-
-
-
-## [2.11.2-beta.0](https://github.com/alleyinteractive/irving/compare/v2.11.1...v2.11.2-beta.0) (2020-06-09)
-
-
-### Bug Fixes
-
-* **packagejson:** update style-loader to latest version ([3df8e11](https://github.com/alleyinteractive/irving/commit/3df8e11a73dd50ccd3dfb43c6d62ede13e1176ce))
-* **webpack:** update css loader array to support latest style-loader ([087c467](https://github.com/alleyinteractive/irving/commit/087c4671ee4a381004196cacb280a3bb72596edc))
-
-
-
-## [2.13.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v2.13.0-alpha.0...v2.13.1-alpha.0) (2020-06-02)
-
-
-
-# [2.13.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v2.11.0...v2.13.0-alpha.0) (2020-06-02)
-
-
-### Bug Fixes
-
-* log the cookies ([322b12a](https://github.com/alleyinteractive/irving/commit/322b12a418676e52ada5024549f5bd1750e5a77d))
-
-
-
-# [2.12.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v2.12.0-alpha.5...v2.12.0-alpha.6) (2020-06-02)
-
-
-
-# [2.12.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v2.12.0-alpha.4...v2.12.0-alpha.5) (2020-06-02)
-
-
-
-# [2.12.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v2.12.0-alpha.3...v2.12.0-alpha.4) (2020-06-01)
-
-
-
-# [2.12.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v2.12.0-alpha.2...v2.12.0-alpha.3) (2020-06-01)
-
-
-
-# [2.12.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v2.12.0-alpha.1...v2.12.0-alpha.2) (2020-06-01)
-
-
-
-# [2.12.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v2.12.0-alpha.0...v2.12.0-alpha.1) (2020-06-01)
-
-
-
-# [2.12.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v2.11.0-alpha.5...v2.12.0-alpha.0) (2020-05-30)
-
-
-
-# [2.11.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v2.11.0-alpha.4...v2.11.0-alpha.5) (2020-05-29)
-
-
-### Bug Fixes
-
-* adding env variables to server/index ([a940a27](https://github.com/alleyinteractive/irving/commit/a940a27adbe2b161b2c2e509804503c40939d078))
-
-
-
-# [2.11.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.17...v2.11.0-alpha.4) (2020-05-29)
-
-
-### Bug Fixes
-
-* fix ([1773e6c](https://github.com/alleyinteractive/irving/commit/1773e6c0de7ed9bcc081a4760b380abfe3d60ef5))
-
-
-
-# [2.11.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v2.11.0-alpha.2...v2.11.0-alpha.3) (2020-05-28)
-
-
-
-# [2.11.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v2.11.0-beta.1...v2.11.0-alpha.2) (2020-05-28)
-
-
-
-# [2.11.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v2.10.1...v2.11.0-alpha.1) (2020-05-27)
-
-
-
-# [2.11.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v2.10.0...v2.11.0-alpha.0) (2020-05-26)
-
-
-
-# [2.10.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v2.9.2-alpha.2...v2.10.0-alpha.0) (2020-05-21)
-
-
-
-## [2.9.2-alpha.2](https://github.com/alleyinteractive/irving/compare/v2.9.2-alpha.1...v2.9.2-alpha.2) (2020-05-21)
-
-
-
-## [2.9.2-alpha.1](https://github.com/alleyinteractive/irving/compare/v2.9.2-alpha.0...v2.9.2-alpha.1) (2020-05-21)
-
-
-
-## [2.9.2-alpha.0](https://github.com/alleyinteractive/irving/compare/v2.9.1...v2.9.2-alpha.0) (2020-05-21)
-
-
-
-# [2.9.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v2.8.0...v2.9.0-alpha.1) (2020-05-19)
-
-
-
-# [2.9.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v2.8.0-beta.1...v2.9.0-alpha.0) (2020-05-19)
-
-
-
-## [2.8.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v2.8.0-beta.0...v2.8.1-alpha.0) (2020-05-19)
+**Note:** Version bump only for package irving
 
 
 
