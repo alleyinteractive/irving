@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import sanitizeHtml from 'sanitize-html';
 import EmbedContainer from 'react-oembed-container';
-import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import { plainText, richText } from 'config/html';
@@ -68,8 +67,7 @@ RawHTML.defaultProps = {
   className: '',
 };
 
-const wrapWithStyles = withStyles(styles);
 const wrapWithThemes = withThemes('RawHTML', { default: styles });
 
 export const themeRawHTML = createWithUserThemes(RawHTML, styles);
-export default wrapWithStyles(wrapWithThemes(RawHTML));
+export default wrapWithThemes(RawHTML);

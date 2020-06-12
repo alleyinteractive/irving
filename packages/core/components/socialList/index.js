@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'critical-style-loader/lib';
 import withThemes from 'components/hoc/withThemes';
 import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import styles from './socialList.css';
@@ -31,8 +30,8 @@ SocialList.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-const wrapWithStyles = withStyles(styles);
+
 const wrapWithThemes = withThemes('SocialList', { default: styles });
 
 export const themeSocialList = createWithUserThemes(SocialList, styles);
-export default wrapWithThemes(wrapWithStyles(SocialList));
+export default wrapWithThemes(SocialList);
