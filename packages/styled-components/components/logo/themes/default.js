@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const LogoWrapper = styled.span`
   display: block;
 
+  /* @todo can we use relative units for this? */
   img {
     max-width: 250px;
     padding: 10px;

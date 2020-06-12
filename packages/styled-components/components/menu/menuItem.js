@@ -11,7 +11,6 @@ import * as defaultStyles from './themes/default';
  */
 const MenuItem = (props) => {
   const {
-    attributeTitle,
     classes,
     children,
     id,
@@ -30,7 +29,7 @@ const MenuItem = (props) => {
   return (
     <ItemWrapper key={id} classnames={classes}>
       <li>
-        <a href={url} target={target} title={attributeTitle}>{title}</a>
+        <a href={url} target={target}>{title}</a>
         {children && (
           <Dropdown>
             {children.map((child) => (
@@ -48,7 +47,6 @@ const MenuItem = (props) => {
 };
 
 MenuItem.defaultProps = {
-  attributeTitle: '',
   classes: [],
   id: 0,
   level: 1,
@@ -59,10 +57,6 @@ MenuItem.defaultProps = {
 };
 
 MenuItem.propTypes = {
-  /**
-   * Value of the title attribute.
-   */
-  attributeTitle: PropTypes.string,
   /**
    * Children of the component.
    */

@@ -11,6 +11,9 @@ import * as unstyled from './themes/unstyled';
  * HTML component.
  *
  * Use `dangerouslySetInnerHTML` to render HTML.
+ *
+ * @todo Revisit the default styles for this.
+ * @todo Replace with relative units.
  */
 const HTML = (props) => {
   const {

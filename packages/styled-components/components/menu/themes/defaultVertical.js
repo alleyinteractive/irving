@@ -14,7 +14,7 @@ export const NameWrapper = styled.h3`
   padding-bottom: 1rem;
 `;
 
-export const Inner = styled.ul`
+export const Inner = styled.ol`
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -22,27 +22,25 @@ export const Inner = styled.ul`
   list-style: none;
 `;
 
-export const ItemWrapper = styled.span`
+export const ItemWrapper = styled.li`
   flex: 1 0 auto;
   margin-bottom: .2rem;
   padding: 0;
 
-  li {
-    a {
-      color: #12121c;
-      display: block;
-      font-size: 1rem;
-      padding: 0 0 .5rem 0;
-      text-decoration: none;
-    }
+  a {
+    color: #12121c;
+    display: block;
+    font-size: 1rem;
+    padding: 0 0 .5rem 0;
+    text-decoration: none;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  a:hover {
+    text-decoration: underline;
   }
 `;
 
-export const Dropdown = styled.ul`
+export const Dropdown = styled.ol`
   display: none;
 `;
 /* eslint-enable */

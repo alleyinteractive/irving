@@ -13,32 +13,30 @@ export const NameWrapper = styled.h3`
   display: none;
 `;
 
-export const Inner = styled.ul`
+export const Inner = styled.ol`
   align-items: center;
   display: flex;
   justify-content: center;
   list-style: none;
 `;
 
-export const ItemWrapper = styled.span`
+export const ItemWrapper = styled.li`
   flex: 1 0 auto;
   padding: 0 1.625rem;
 
-  li {
-    a {
-      color: #12121c;
-      font-size: 1.2rem;
-      font-weight: 600;
-      text-decoration: none;
-    }
+  a {
+    color: #12121c;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  a:hover {
+    text-decoration: underline;
   }
 `;
 
-export const Dropdown = styled.ul`
+export const Dropdown = styled.ol`
   display: none;
 `;
 /* eslint-enable */

@@ -19,7 +19,7 @@ export const AuthorWrapper = styled.span`
   }
 `;
 
-export const TimestampWrapper = styled.span`
+export const TimestampWrapper = styled.time`
   font-size: .9rem;
 `;
 /* eslint-enable */

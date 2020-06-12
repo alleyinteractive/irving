@@ -9,6 +9,8 @@ import * as defaultStyles from './themes/default';
  * Link.
  *
  * Custom anchor.
+ *
+ * @todo Setup a default focus value for improved accessibility.
  */
 const Link = (props) => {
   const {
