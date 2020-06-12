@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0-rc.0](https://github.com/alleyinteractive/irving/compare/v2.12.1...v2.13.0-rc.0) (2020-06-12)
+
+
+### Bug Fixes
+
+* **serverrenderer:** remove style context and builder from server render logic ([6c97c50](https://github.com/alleyinteractive/irving/commit/6c97c50f591d6a27909581f0d8f1a4371f2ee412))
+
+
+### Features
+
+* **webpack:** switch to using mini-css-extract-plugin and deprecate style-loader ([e667cf7](https://github.com/alleyinteractive/irving/commit/e667cf701ff6571afadd3f6ea68713c46442d86a))
+
+
+
+
+
 ## [2.12.1](https://github.com/alleyinteractive/irving/compare/v2.12.0...v2.12.1) (2020-06-10)
 
 **Note:** Version bump only for package irving
