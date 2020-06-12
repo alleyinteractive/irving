@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.1](https://github.com/alleyinteractive/irving/compare/v2.12.0...v2.12.1) (2020-06-10)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.12.0](https://github.com/alleyinteractive/irving/compare/v2.11.1...v2.12.0) (2020-06-10)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
 ## [2.11.1](https://github.com/alleyinteractive/irving/compare/v2.11.0...v2.11.1) (2020-06-03)
 
 
