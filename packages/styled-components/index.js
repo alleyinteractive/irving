@@ -5,6 +5,7 @@ import Fragment from 'components/fragment';
 import Link from 'components/link';
 import Logo from 'components/logo';
 import Menu from 'components/menu';
+import Pagination from 'components/pagination';
 import Text from 'components/text';
 
 export {
@@ -15,6 +16,8 @@ export {
   Link,
   Logo,
   Menu,
+  Pagination,
+  Text,
 };
 
 const ComponentMap = {
@@ -28,6 +31,7 @@ const ComponentMap = {
   'irving/link': Link,
   'irving/logo': Logo,
   'irving/menu': Menu,
+  'irving/pagination': Pagination,
   'irving/text': Text,
   app: App,
 };
