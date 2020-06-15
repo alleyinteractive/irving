@@ -13,5 +13,5 @@ export const SocialSharingItemWrapper = styled.li`
 `;
 
 export const IconWrapper = styled.span`
-  margin-right: 5px;
+  margin-right: 6px;
 `;
