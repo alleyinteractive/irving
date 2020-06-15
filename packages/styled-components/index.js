@@ -6,6 +6,7 @@ import HTML from 'components/html';
 import Link from 'components/link';
 import Logo from 'components/logo';
 import Menu from 'components/menu';
+import SocialSharing from 'components/socialSharing';
 
 export {
   App,
@@ -16,6 +17,7 @@ export {
   Link,
   Logo,
   Menu,
+  SocialSharing,
 };
 
 const ComponentMap = {
@@ -30,6 +32,7 @@ const ComponentMap = {
   'irving/link': Link,
   'irving/logo': Logo,
   'irving/menu': Menu,
+  'irving/social-sharing': SocialSharing,
   'irving/text': Fragment,
   app: App,
 };
