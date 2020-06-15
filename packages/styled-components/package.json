@@ -22,6 +22,7 @@
 	},
 	"dependencies": {
 		"@irvingjs/styled": "^2.12.1",
+		"@wordpress/i18n": "^3.10.0",
 		"babel-plugin-styled-components": "^1.10.7",
 		"he": "^1.2.0",
 		"react": "^16.13.1",
