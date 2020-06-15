@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.14.0-beta.0...v2.14.0-beta.1) (2020-06-15)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
 # [2.13.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.13.0-rc.0...v2.13.0) (2020-06-12)
 
 **Note:** Version bump only for package @irvingjs/vip-go
