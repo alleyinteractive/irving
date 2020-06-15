@@ -1,9 +1,19 @@
+/* eslint max-len: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
 import withThemes from '@irvingjs/styled/components/withThemes';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
 
+/**
+ * Using the same props from a Pagination component, build the url for a given
+ * page.
+ *
+ * @param {object}  props Pagination component props.
+ * @param {integer} page  Page for the url.
+ * @return {string}
+ */
 const buildUrl = (props, page) => {
   const {
     baseUrl,
@@ -11,8 +21,13 @@ const buildUrl = (props, page) => {
   } = props;
 
   const paginationPart = paginationFormat.replace('%1$d', page);
+  const currentQueryVars = queryString.parse(window.location.search);
 
-  return `${baseUrl}${paginationPart}?s=post`;
+  if (1 === page) {
+    return `${baseUrl}?${queryString.stringify(currentQueryVars)}`;
+  }
+
+  return `${baseUrl}${paginationPart}?${queryString.stringify(currentQueryVars)}`;
 };
 
 /**
@@ -21,13 +36,13 @@ const buildUrl = (props, page) => {
  * Pagination UI.
  *
  * @todo Setup I18N.
+ * @todo Write tests.
  */
 const Pagination = (props) => {
   const {
     // eslint-disable-next-line no-unused-vars
     baseUrl,
     currentPage,
-    // eslint-disable-next-line no-unused-vars
     displayFirstAndLast,
     displayPrevAndNext,
     // eslint-disable-next-line no-unused-vars
@@ -50,17 +65,6 @@ const Pagination = (props) => {
   const pages = [];
 
   /**
-   * Display the `Prev` button to navigate back a single page.
-   */
-  if (displayPrevAndNext && 1 < currentPage) {
-    pages.push(
-      <NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage - 1)}>
-        Prev
-      </NextAndPrevNavWrapper>
-    );
-  }
-
-  /**
    * Do some math to determine the start and end range of navigation buttons.
    */
   const newRange = Math.floor(range / 2);
@@ -72,56 +76,79 @@ const Pagination = (props) => {
     (currentPage + newRange);
 
   /**
-   * Display a link for the first page, followed by an ellipses indicating a
-   * skip in nav ui.
-   */
-  if (2 < startRange) {
-    pages.push(
-      <NavWrapper as={Link} href={buildUrl(props, 1)}>
-        First
-      </NavWrapper>
-    );
-    pages.push(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
-  }
-
-  /**
    * Render a handful of pagination buttons around the current page.
    */
   // eslint-disable-next-line no-plusplus
   for (let i = startRange; i <= endRange; i ++) {
     if (i === currentPage) {
-      pages.push(<CurrentPageNavWrapper>{i}</CurrentPageNavWrapper>);
+      pages.push(<CurrentPageNavWrapper className="irving-pagination-current-page">{i}</CurrentPageNavWrapper>);
     } else {
-      pages.push(
-        <NavWrapper as={Link} href={buildUrl(props, i)}>
-          {i}
-        </NavWrapper>
-      );
+      pages.push(<NavWrapper as={Link} href={buildUrl(props, i)}>{i}</NavWrapper>);
     }
   }
 
   /**
-   * Display a link for the next page, followed by an ellipses indicating a
-   * skip in the nav ui.
+   * Display the first and last pagination buttons.
+   *
+   * If the range is close enough, we'll just render the actual pagination
+   * elements instead.
+   *
+   * This logic only applies when `displayFirstAndLast` is true, otherwise we respect
+   * the range value in the logic above.
    */
-  if (endRange < (totalPages - 1)) {
-    pages.push(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
-    pages.push(
-      <NavWrapper as={Link} href={buildUrl(props, totalPages)}>
-        Last
-      </NavWrapper>
-    );
+  if (displayFirstAndLast) {
+    switch (true) {
+      default:
+      case (1 === startRange):
+        break;
+
+      case (2 === startRange):
+        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 1)}>1</NavWrapper>);
+        break;
+
+      case (3 === startRange):
+        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 2)}>2</NavWrapper>);
+        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 1)}>1</NavWrapper>);
+        break;
+
+      case (4 <= startRange):
+        pages.unshift(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
+        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 1)}>1</NavWrapper>);
+        break;
+    }
+
+    switch (true) {
+      default:
+      case ((totalPages) === endRange):
+        break;
+
+      case ((totalPages - 1) === endRange):
+        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages)}>{totalPages}</NavWrapper>);
+        break;
+
+      case ((totalPages - 2) === endRange):
+        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages - 1)}>{totalPages - 1}</NavWrapper>);
+        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages)}>{totalPages}</NavWrapper>);
+        break;
+
+      case ((totalPages - 3) >= endRange):
+        pages.push(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
+        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages)}>{totalPages}</NavWrapper>);
+        break;
+    }
   }
 
   /**
-   * Display the `Next` button to navigate back a single page.
+   * Display `Prev` and `Next` buttons.
    */
-  if (displayPrevAndNext && totalPages > currentPage) {
-    pages.push(
-      <NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage + 1)}>
-        Next
-      </NextAndPrevNavWrapper>
-    );
+  if (displayPrevAndNext) {
+    if (1 < currentPage) {
+      pages.unshift(<NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage - 1)}>Prev</NextAndPrevNavWrapper>);
+    }
+
+    if (totalPages > currentPage) {
+      pages.push(<NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage + 1)}>Next</NextAndPrevNavWrapper>);
+    }
   }
 
   // Don't display if there aren't any pages.
@@ -152,7 +179,7 @@ Pagination.defaultProps = {
 
 Pagination.propTypes = {
   /**
-   * [baseUrl description]
+   * Base url. Usually the url of the first page of results.
    */
   baseUrl: PropTypes.string,
   /**
