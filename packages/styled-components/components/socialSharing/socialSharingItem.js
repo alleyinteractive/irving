@@ -10,7 +10,7 @@ import {
   Twitter,
   WhatsApp,
 } from '@material-ui/icons';
-import Link from '../../../common/link';
+import Link from '../link';
 import * as defaultStyles from './themes/default';
 
 const socialIconMap = {
