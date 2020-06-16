@@ -9,16 +9,25 @@ import * as defaultStyles from './themes/default';
 const Fragment = (props) => {
   const {
     children,
-    tag,
+    style,
     theme,
+  } = props;
+
+  let {
+    tag,
   } = props;
 
   const { Element } = theme;
 
+  // If we have something in `style` and element is empty, require a tag.
+  if (null === tag && Object.keys(style).length && ! style.length) {
+    tag = 'span';
+  }
+
   return (
     <>
       {tag ? (
-        <Element as={tag}>{children}</Element>
+        <Element as={tag} style={style}>{children}</Element>
       ) : (
         children
       )}
@@ -28,6 +37,7 @@ const Fragment = (props) => {
 
 Fragment.defaultProps = {
   children: {},
+  style: {},
   tag: null,
 };
 
@@ -36,6 +46,10 @@ Fragment.propTypes = {
    * Children of the component.
    */
   children: PropTypes.node,
+  /**
+   * CSS styles.
+   */
+  style: PropTypes.object,
   /**
    * Tag used to render.
    */
