@@ -7,6 +7,7 @@ import Logo from 'components/logo';
 import Menu from 'components/menu';
 import Pagination from 'components/pagination';
 import SearchForm from 'components/searchForm';
+import SocialSharing from 'components/socialSharing';
 import Text from 'components/text';
 
 export {
@@ -19,6 +20,7 @@ export {
   Menu,
   Pagination,
   SearchForm,
+  SocialSharing,
   Text,
 };
 
@@ -35,6 +37,7 @@ const ComponentMap = {
   'irving/menu': Menu,
   'irving/pagination': Pagination,
   'irving/search-form': SearchForm,
+  'irving/social-sharing': SocialSharing,
   'irving/text': Text,
   app: App,
 };
