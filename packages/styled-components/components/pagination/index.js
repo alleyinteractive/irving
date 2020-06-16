@@ -10,6 +10,8 @@ import * as defaultStyles from './themes/default';
  * Using the same props from a Pagination component, build the url for a given
  * page.
  *
+ * @todo Refactor so only necessary props are passed.
+ *
  * @param {object}  props Pagination component props.
  * @param {integer} page  Page for the url.
  * @return {string}
@@ -37,6 +39,7 @@ const buildUrl = (props, page) => {
  *
  * @todo Setup I18N.
  * @todo Write tests.
+ * @todo Update to use a custom hook.
  */
 const Pagination = (props) => {
   const {
@@ -61,6 +64,13 @@ const Pagination = (props) => {
     NextAndPrevNavWrapper,
     NoResults,
   } = theme;
+
+  // Don't display if there aren't any pages.
+  if (1 === totalPages) {
+    return (
+      <NoResults />
+    );
+  }
 
   const pages = [];
 
@@ -149,13 +159,6 @@ const Pagination = (props) => {
     if (totalPages > currentPage) {
       pages.push(<NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage + 1)}>Next</NextAndPrevNavWrapper>);
     }
-  }
-
-  // Don't display if there aren't any pages.
-  if (1 === totalPages) {
-    return (
-      <NoResults />
-    );
   }
 
   return (

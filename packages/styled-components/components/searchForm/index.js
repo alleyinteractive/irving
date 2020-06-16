@@ -9,7 +9,7 @@ import * as defaultStyles from './themes/default';
 /**
  * Search input.
  *
- * Display meta information about the search results.
+ * Form with an input field for search.
  */
 const SearchForm = (props) => {
   const {

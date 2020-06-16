@@ -31,7 +31,7 @@ const Fragment = (props) => {
   const { TextWrapper } = theme;
 
   switch (true) {
-    case 0 === content.length:
+    case ! content.length:
       return false;
 
     case true === oembed:

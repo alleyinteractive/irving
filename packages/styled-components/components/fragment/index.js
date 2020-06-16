@@ -19,8 +19,8 @@ const Fragment = (props) => {
 
   const { Element } = theme;
 
-  // If we have something in `style` and element is empty, set it to span.
-  if (0 !== Object.keys(style).length && 0 === style.length) {
+  // If we have something in `style` and element is empty, require a tag.
+  if (null === tag && Object.keys(style).length && ! style.length) {
     tag = 'span';
   }
 
