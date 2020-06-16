@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'critical-style-loader/lib';
 import Link from 'components/helpers/link';
 import styles from './heading.css';
 
@@ -53,4 +52,4 @@ Heading.defaultProps = {
   typeStyle: 'base',
 };
 
-export default withStyles(styles)(Heading);
+export default Heading;

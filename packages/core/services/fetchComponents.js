@@ -1,23 +1,28 @@
 import AbortController from 'abort-controller';
-import { CONTEXT_PAGE } from 'config/constants';
+import omit from 'lodash/fp/omit';
+import {
+  CONTEXT_PAGE,
+} from 'config/constants';
 import isNode from 'utils/isNode';
-import getBearerToken from 'utils/getBearerToken';
-import getService from './cacheService';
+import shouldAuthorize from 'utils/shouldAuthorize';
+import getService from './cacheService/getService';
 import getLogService from './logService';
-import createComponentsEndpointQueryString from
-  './utils/createComponentsEndpointQueryString';
+import createComponentsEndpointQueryString
+  from './utils/createComponentsEndpointQueryString';
 
 const log = getLogService('irving:components');
+
 // To access environment variables at run time in a client context we must
 // access them through a global provided by the server render.
 const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
 
 /**
  * Fetch components for the page from the API.
+ *
  * @param {string} path      - path of the request page
  * @param {string} search    - search string
- * @param {string} cookie    - cookie header string
- * @param {string} [context] - "page" (page specific components) or
+ * @param {object} cookie    - cookie header string
+ * @param {string} context   - "page" (page specific components) or
  *                           "site" (all components)
  * @returns {Promise<{object}>}
  */
@@ -53,7 +58,7 @@ export async function fetchComponents(
   };
 
   // Set up Authorization header, if applicable.
-  const authorizationBearerToken = getBearerToken(cookie);
+  const authorizationBearerToken = shouldAuthorize(cookie);
   if (authorizationBearerToken) {
     // Set to same origin so we don't conflict with other cookies.
     options.credentials = 'same-origin';
@@ -66,7 +71,10 @@ export async function fetchComponents(
   clearTimeout(timeout);
 
   const data = await response.json();
-  const { redirectTo, redirectStatus } = data;
+  const {
+    redirectTo,
+    redirectStatus,
+  } = data;
 
   if (isNode() && redirectTo) {
     // Execute request without automatic redirect resolution, so we can
@@ -99,10 +107,11 @@ export async function fetchComponents(
 
 /**
  * Cache fetchComponents responses. Return cached response if available.
+ *
  * @param {string} path      - path of the request page
  * @param {string} search    - search string
- * @param {string} cookie    - cookie header string
- * @param {string} [context] - "page" (page specific components) or
+ * @param {object} cookie    - cookie header string
+ * @param {string} context   - "page" (page specific components) or
  *                           "site" (all components)
  * @returns {Promise<{object}>} - fetchComponents return value
  */
@@ -120,19 +129,37 @@ async function cachedFetchComponents(
     context
   );
   const key = `components-endpoint:${componentsQuery}`;
-  const info = { cached: false, route: key };
-  let response = await cache.get(key);
-  const { bypassCache } = cookie;
+  const info = {
+    cached: false,
+    __caching__: false,
+    endpoint: `${process.env.API_ROOT_URL}/components?${componentsQuery}`,
+    cacheKey: key,
+    updated: null,
+  };
+  const {
+    bypassCache,
+  } = cookie;
 
-  if (! response || bypassCache) {
+  if (bypassCache || ! cache.client) {
     log.info('%o', info);
-    response = await fetchComponents(path, search, cookie, context);
-    await cache.set(key, response);
-  } else {
-    log.info('%o', { ...info, cached: true });
+    return fetchComponents(path, search, cookie, context);
   }
 
-  return response;
+  const cachedResult = await cache.cached(
+    key,
+    await fetchComponents(path, search, cookie, context),
+    {
+      payload: true,
+    }
+  );
+
+  log.info('%o', {
+    ...info,
+    ...omit('data', cachedResult),
+    cached: true,
+  });
+
+  return cachedResult.data ? cachedResult.data : cachedResult;
 }
 
 export default cachedFetchComponents;

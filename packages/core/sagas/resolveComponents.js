@@ -1,12 +1,20 @@
-import { call, select, put } from 'redux-saga/effects';
+import {
+  call,
+  select,
+  put,
+} from 'redux-saga/effects';
 import {
   actionReceiveComponents,
   actionReceiveError,
   actionFinishLoading,
 } from 'actions';
 import getRouteMeta from 'selectors/getRouteMeta';
-import cachedFetchComponents from 'services/fetchComponents';
-import getBearerToken from 'utils/getBearerToken';
+import cachedFetchComponents, {
+  fetchComponents,
+} from 'services/fetchComponents';
+import shouldAuthorize, {
+  getBearerToken,
+} from 'utils/shouldAuthorize';
 import history from 'utils/history';
 import isNode from 'utils/isNode';
 import getRelativeUrl from 'utils/getRelativeUrl';
@@ -23,8 +31,11 @@ export default function* resolveComponents() {
     context,
     cached,
   } = yield select(getRouteMeta);
+  // If bearer token cookie is set, bypass redis when fetching components.
+  const bearerToken = getBearerToken(cookie);
+  const fetchService = bearerToken ? fetchComponents : cachedFetchComponents;
 
-  if (getBearerToken(cookie)) {
+  if (shouldAuthorize(cookie)) {
     yield* resolveComponentsAuthorized();
     return;
   }
@@ -36,7 +47,13 @@ export default function* resolveComponents() {
   }
 
   try {
-    const result = yield call(cachedFetchComponents, path, search, cookie, context);
+    const result = yield call(
+      fetchService,
+      path,
+      search,
+      cookie,
+      context
+    );
 
     // Don't receive components on client side if redirecting,
     // otherwise will result in a confusing flash of empty page content.

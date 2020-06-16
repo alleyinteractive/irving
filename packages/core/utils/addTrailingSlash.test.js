@@ -1,4 +1,5 @@
 import addTrailingSlash from './addTrailingSlash';
+jest.mock('../irving.config.server.js');
 
 describe('addTrailingSlash', () => {
   it('should add a trailling slash to URLs without one', () => {
@@ -19,5 +20,9 @@ describe('addTrailingSlash', () => {
   it('should do nothing if the appropriate ENV var is not set', () => {
     expect(addTrailingSlash('/foo')).toBe('/foo');
     expect(addTrailingSlash('https://www.test.com/foo')).toBe('https://www.test.com/foo');
+  });
+
+  it('should skip by urls on the configured trailingSlashDenyList', () => {
+    expect(addTrailingSlash('/no-trailing-slash')).toBe('/no-trailing-slash');
   });
 });

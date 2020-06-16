@@ -1,7 +1,5 @@
 import React from 'react';
 import Heading from 'components/helpers/heading';
-import { withStyles } from 'critical-style-loader/lib';
-
 import styles from './errorMessage.css';
 
 const DefaultErrorMessage = () => (
@@ -17,6 +15,4 @@ const DefaultErrorMessage = () => (
   </div>
 );
 
-const wrapWithStyles = withStyles(styles);
-
-export default wrapWithStyles(DefaultErrorMessage);
+export default DefaultErrorMessage;

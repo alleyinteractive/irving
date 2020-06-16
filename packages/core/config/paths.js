@@ -6,7 +6,6 @@ require('dotenv').config();
 const {
   PROXY_URL,
   ROOT_URL,
-  NODE_ENV,
   APP_ROOT,
   BUILD_CONTEXT,
 } = process.env;
@@ -57,22 +56,20 @@ const resolveBuildDir = (relativePath) => (
 
 module.exports = {
   appRoot,
-  irvingRoot,
   appIrvingRoot,
-  buildContext,
-  clientRoot: resolveIrvingDir('client'),
-  serverRoot: resolveIrvingDir('server/serverRenderer.js'),
-  clientBuild: resolveBuildDir('build/client'),
-  serverBuild: resolveBuildDir('build/server'),
-  userConfig: resolveAppDir('irving.config.js'),
-  serverConfig: 'test' === NODE_ENV ?
-    resolveIrvingDir('test/irving-test.config.js') :
-    resolveBuildDir('irving.config.server.js'),
-  globalStyles: resolveIrvingDir('assets/styles'),
-  rootUrl: ROOT_URL || 'http://localhost:3001',
-  proxyUrl: PROXY_URL,
   assetsRoot: resolveIrvingDir('assets'),
+  buildContext,
+  clientBuild: resolveBuildDir('build/client'),
+  clientRoot: resolveIrvingDir('client'),
+  globalStyles: resolveIrvingDir('assets/styles'),
+  irvingRoot,
+  mocks: resolveIrvingDir('__mocks__'),
   nodeModules: resolveIrvingDir('node_modules'),
   postCssConfig: resolveIrvingDir('config/postcss.config.js'),
-  transform: require.resolve('critical-style-loader/lib/filterCriticalCss.js'),
+  proxyUrl: PROXY_URL,
+  rootUrl: ROOT_URL || 'http://localhost:3001',
+  serverBuild: resolveBuildDir('build/server'),
+  serverConfig: resolveBuildDir('irving.config.server.js'),
+  serverRoot: resolveIrvingDir('server/serverRenderer.js'),
+  userConfig: resolveAppDir('irving.config.js'),
 };

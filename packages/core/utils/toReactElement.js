@@ -39,6 +39,7 @@ export function createComponentGroups(componentGroups) {
 export default function toReactElement(apiComponent, keyPrefix = '') {
   const {
     name,
+    _alias: alias = '',
     config,
     children,
     componentGroups = {},
@@ -51,7 +52,7 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     ...config,
     componentName: name,
     componentGroups: convertedGroups,
-    key: `${keyPrefix}_ ${name}`,
+    key: `${keyPrefix}_${name}`,
   };
 
   // Recursively convert children to react elements.
@@ -60,7 +61,10 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     isString(child) ? child : toReactElement(child, String(index))
   ));
 
-  const type = getReactComponent(name);
+  const type = 0 !== alias.length ?
+    getReactComponent(alias) :
+    getReactComponent(name);
+
   const isNativeDOMElm = 'string' === typeof type;
   if (isNativeDOMElm) {
     // Strip invalid attributes for native dom elements.

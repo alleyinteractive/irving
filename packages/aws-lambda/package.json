@@ -1,0 +1,21 @@
+{
+  "name": "@irvingjs/aws-lambda",
+  "version": "2.14.0",
+  "description": "Run Irving on AWS Lambda",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/aws-lambda"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "dependencies": {
+    "serverless-http": "^2.5.0"
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">=2.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

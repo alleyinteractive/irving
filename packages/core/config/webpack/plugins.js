@@ -1,8 +1,9 @@
 const webpack = require('webpack');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const { maybeResolveUserModule } = require('../../utils/userModule');
-const getEnv = require('./env');
+const getEnv = require('../env');
 const { rootUrl } = require('../paths');
 
 /**
@@ -30,7 +31,7 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new CleanPlugin(),
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           ...env,
         }),
         // Ensures async components can be rendered sync server-side.
@@ -38,18 +39,26 @@ module.exports = function getPlugins(context) {
           maxChunks: 1,
         }),
         new webpack.HashedModuleIdsPlugin(),
+        new MiniCSSExtractPlugin({
+          filename: '[name].[hash].css',
+          chunkFilename: '[id].[hash].css',
+        }),
       ];
 
     case 'development_server':
       return [
         ...commonPlugins,
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           ...env,
         }),
         // Ensures async components can be rendered sync server-side.
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
+        }),
+        new MiniCSSExtractPlugin({
+          filename: '[name].css',
+          chunkFilename: '[id].css',
         }),
       ];
 
@@ -58,7 +67,7 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new CleanPlugin(),
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           BROWSER: true,
           ...env,
         }),
@@ -77,6 +86,10 @@ module.exports = function getPlugins(context) {
           noSources: true,
           publicPath: `${rootUrl}/`,
         }),
+        new MiniCSSExtractPlugin({
+          filename: '[name].[hash].css',
+          chunkFilename: '[id].[hash].css',
+        }),
       ];
 
     case 'development_client':
@@ -84,11 +97,15 @@ module.exports = function getPlugins(context) {
         ...commonPlugins,
         new webpack.NamedModulesPlugin(),
         new webpack.EnvironmentPlugin({
-          BUILD: true,
+          WEBPACK_BUILD: true,
           BROWSER: true,
           ...env,
         }),
         new webpack.HotModuleReplacementPlugin(),
+        new MiniCSSExtractPlugin({
+          filename: '[name].css',
+          chunkFilename: '[id].css',
+        }),
       ];
 
     default:

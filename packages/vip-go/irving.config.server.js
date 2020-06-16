@@ -1,12 +1,12 @@
 const startServer = require('./server/startServer');
-const cacheService = require('./services/cacheService');
+const cacheClient = require('./services/cacheClient');
 const logService = require('./services/logService');
 const monitorService = require('./services/monitorService');
 
 module.exports = {
   name: 'vip-go',
   startServer,
-  cacheService,
+  cacheClient,
   logService,
   monitorService,
 };
