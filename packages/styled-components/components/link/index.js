@@ -15,6 +15,7 @@ import * as defaultStyles from './themes/default';
 const Link = (props) => {
   const {
     children,
+    className,
     href,
     onClick,
     rel,
@@ -38,6 +39,7 @@ const Link = (props) => {
 
   return (
     <LinkWrapper
+      className={className}
       href={relativeUrl || href}
       onClick={onClick || defaultOnClick}
       rel={rel}
@@ -50,6 +52,7 @@ const Link = (props) => {
 };
 
 Link.defaultProps = {
+  className: '',
   onClick: false,
   rel: '',
   style: {},
@@ -62,6 +65,10 @@ Link.propTypes = {
    * Child nodes
    */
   children: PropTypes.node.isRequired,
+  /**
+   * Class name.
+   */
+  className: PropTypes.string,
   /**
    * Destination for anchor tag (`href` attribute)
    */
