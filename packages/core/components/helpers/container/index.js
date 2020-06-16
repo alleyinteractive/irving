@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'critical-style-loader/lib';
+
 import withThemes from 'components/hoc/withThemes';
 import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import styles from './container.css';
@@ -50,8 +50,8 @@ Container.defaultProps = {
   className: '',
 };
 
-const wrapWithStyles = withStyles(styles);
+
 const wrapWithThemes = withThemes('Container', { default: styles });
 export const themeContainer = createWithUserThemes(Container, styles);
 
-export default wrapWithThemes(wrapWithStyles(Container));
+export default wrapWithThemes(Container);

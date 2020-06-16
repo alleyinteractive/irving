@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { hot } from 'react-hot-loader/root';
 import { connect } from 'react-redux';
-import { withStyles } from 'critical-style-loader/lib';
 import RootProviders from 'components/rootProviders';
 import ConnectedRoot from 'components/connectedRoot';
 import ErrorBoundary from 'components/errorBoundary';
@@ -69,15 +68,15 @@ const mapStateToProps = (state) => ({
   error: !! state.error,
 });
 
-const wrapWithStyles = withStyles(styles);
+
 const withRedux = connect(mapStateToProps);
 let hotApp; // eslint-disable-line import/no-mutable-exports
 
 if ('production_client' === process.env.IRVING_EXECUTION_CONTEXT ||
 'development_client' === process.env.IRVING_EXECUTION_CONTEXT) {
-  hotApp = hot(wrapWithStyles(withRedux(App)));
+  hotApp = hot(withRedux(App));
 } else {
-  hotApp = wrapWithStyles(withRedux(App));
+  hotApp = withRedux(App);
 }
 
 /** @component */

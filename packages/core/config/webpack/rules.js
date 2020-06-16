@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const {
   transform,
   buildContext,
@@ -134,12 +135,20 @@ module.exports = function getRules(context) {
     },
     {
       test: /\.css$/,
+      include: /node_modules\/(?!@irvingjs)/,
+      use: [
+        MiniCSSExtractPlugin.loader,
+        'css-loader',
+      ],
+    },
+    {
+      test: /\.css$/,
       include,
       use: [
         {
-          loader: isServer ? 'critical-style-loader' : 'style-loader',
+          loader: MiniCSSExtractPlugin.loader,
           options: {
-            transform,
+            hmr: ! isProd,
           },
         },
         {

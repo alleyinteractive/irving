@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Link from 'components/helpers/link';
-import { withStyles } from 'critical-style-loader/lib';
+
 import withThemes from 'components/hoc/withThemes';
 import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import styles from './button.css';
@@ -79,8 +79,7 @@ Button.defaultProps = {
   onClick: null,
 };
 
-const wrapWithStyles = withStyles(styles);
 const wrapWithThemes = withThemes('Button', { default: styles });
 export const themeButton = createWithUserThemes(Button, styles);
 
-export default wrapWithThemes(wrapWithStyles(Button));
+export default wrapWithThemes(Button);

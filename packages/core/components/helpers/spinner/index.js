@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SpinnerSVG from 'assets/icons/spinner.svg';
-import { withStyles } from 'critical-style-loader/lib';
+
 import withThemes from 'components/hoc/withThemes';
 import createWithUserThemes from 'components/hoc/createWithUserThemes';
 import styles from './spinner.css';
@@ -45,8 +45,8 @@ Spinner.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-const wrapWithStyles = withStyles(styles);
+
 const wrapWithThemes = withThemes('Spinner', { default: styles });
 export const themeSpinner = createWithUserThemes(Spinner, styles);
 
-export default wrapWithThemes(wrapWithStyles(Spinner));
+export default wrapWithThemes(Spinner);

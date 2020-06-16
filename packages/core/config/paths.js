@@ -71,6 +71,5 @@ module.exports = {
   rootUrl: ROOT_URL || 'http://localhost:3001',
   serverBuild: resolveBuildDir('build/server'),
   serverRoot: resolveIrvingDir('server/serverRenderer'),
-  transform: require.resolve('critical-style-loader/lib/filterCriticalCss.js'),
   userConfig: resolveAppDir('irving.config.js'),
 };

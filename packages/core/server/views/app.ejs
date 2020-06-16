@@ -9,9 +9,6 @@
     <%- helmet.base.toString() %>
     <%- helmet.style.toString() %>
 
-    <%# critical CSS for core Irving required to avoid FOUC before client JS takes control. %>
-    <style id="critical-css"><%- criticalCss %></style>
-
     <%# Runtime accessible environment variables %>
     <script>
       window.__ENV__ = <%- env %>;
@@ -22,11 +19,6 @@
     <%# pre-rendered serialized Redux state %>
     <script defer id="preload">
       window.__PRELOADED_STATE__ = <%- preRenderedState %>;
-    </script>
-
-    <%# css module refs for critical css %>
-    <script defer>
-      <%- styleRefs %>;
     </script>
 
     <%# webpack runtime, main app bundle, initial chunks, and any other tags user adds %>
