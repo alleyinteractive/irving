@@ -1,4 +1,4 @@
-const getConfigFromFiles = require('../../config/getConfigFromFiles');
+const getValueFromFiles = require('../../config/irving/getValueFromFiles');
 const { appRoot } = require('../../config/paths');
 const coreCacheService = require('.');
 const defaultCacheService = require('./defaultService');
@@ -7,7 +7,7 @@ const defaultCacheService = require('./defaultService');
  * Get the configured cache service or use core's service.
  */
 const getService = () => {
-  const service = getConfigFromFiles(
+  const service = getValueFromFiles(
     'services/cacheService.js',
     appRoot,
     coreCacheService

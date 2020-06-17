@@ -1,9 +1,9 @@
-import { getConfigFromProject } from './getConfigFromProject';
+import { getValueFromMergedConfig } from './getValueFromMergedConfig';
 
-describe('getConfigFromProject', () => {
-  const reducers = getConfigFromProject('reducers', {});
-  const sagas = getConfigFromProject('sagas', []);
-  const proxyPassthrough = getConfigFromProject('proxyPassthrough', []);
+describe('getValueFromMergedConfig', () => {
+  const reducers = getValueFromMergedConfig('reducers', {});
+  const sagas = getValueFromMergedConfig('sagas', []);
+  const proxyPassthrough = getValueFromMergedConfig('proxyPassthrough', []);
 
   it(
     'should merge both config object or array and a function returning config object or array, from pacakges and user',

@@ -1,12 +1,12 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const { appRoot, rootUrl } = require('../config/paths');
-const getConfigFromFiles = require('../config/getConfigFromFiles');
+const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const coreStartServer = require('../server/startServer');
 const coreLogService = require('../services/logService');
 const app = require('../server');
 
 // Create logger
-const createLogger = getConfigFromFiles(
+const createLogger = getValueFromFiles(
   'services/logService.js',
   appRoot,
   coreLogService
@@ -18,7 +18,7 @@ const getEnv = require('../config/env');
 getEnv();
 
 // Allow customization of how server is created.
-const startServer = getConfigFromFiles(
+const startServer = getValueFromFiles(
   'server/startServer.js',
   appRoot,
   coreStartServer

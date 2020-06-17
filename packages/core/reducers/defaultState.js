@@ -1,4 +1,4 @@
-import { getConfigFromProject } from 'config/getConfigFromProject';
+import { getValueFromMergedConfig } from 'config/irving/getValueFromMergedConfig';
 
 export const components = {
   defaults: [],
@@ -39,4 +39,4 @@ const defaultState = {
   visible,
 };
 
-export default getConfigFromProject('defaultState', defaultState);
+export default getValueFromMergedConfig('defaultState', defaultState);

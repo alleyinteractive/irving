@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const getConfigFromFiles = require('./config/getConfigFromFiles');
+const getValueFromFiles = require('./config/irving/getValueFromFiles');
 const getConfigFileAliases = require('./config/getConfigFileAliases');
 const {
   irvingRoot,
@@ -39,7 +39,7 @@ module.exports = (api) => {
   };
 
   // Only allow user to modify app config, not test.
-  const processedConfig = getConfigFromFiles(
+  const processedConfig = getValueFromFiles(
     'babel.config.js',
     buildContext,
     appConfig

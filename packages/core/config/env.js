@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { appRoot } = require('./paths');
-const { getConfigFromProject } = require('./getConfigFromProject');
+const { getValueFromMergedConfig } = require('./irving/getValueFromMergedConfig');
 
 /**
  * Get the client available environment variables.
@@ -19,7 +19,7 @@ module.exports = function getEnv() {
 
   // Only include allowlisted variables for client environments to avoid leaking
   // sensitive information.
-  const allowlistArray = getConfigFromProject('envAllowlist', [
+  const allowlistArray = getValueFromMergedConfig('envAllowlist', [
     'NODE_ENV',
     'API_ROOT_URL',
     'DEBUG',

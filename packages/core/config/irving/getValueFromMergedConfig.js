@@ -42,7 +42,7 @@ const getValueFromUserConfig = (key, defaultValue) => {
  * @param {mixed} defaultValue Default value to merge found configs with.
  * @returns {mixed}
  */
-const getConfigFromProject = memoize((key, defaultValue) => {
+const getValueFromMergedConfig = memoize((key, defaultValue) => {
   let { packages = [] } = userConfig;
 
   // User empty array or user configured pacakges.
@@ -62,6 +62,6 @@ const getConfigFromProject = memoize((key, defaultValue) => {
 });
 
 module.exports = {
-  getConfigFromProject,
   getValueFromUserConfig,
+  getValueFromMergedConfig,
 };

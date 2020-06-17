@@ -1,21 +1,21 @@
 import mock from 'mock-fs';
 import { buildContext } from './paths';
-import getConfigFromFiles from './getConfigFromFiles';
+import getValueFromFiles from './getValueFromFiles';
 import createMock from '../__mocks__/fsConfig';
 
 jest.mock('../utils/nodeRequire.js');
 
-describe('getConfigFromFiles', () => {
+describe('getValueFromFiles', () => {
   beforeEach(createMock);
   afterEach(mock.restore);
 
   it('should return only a user module if default is a single function', () => {
-    const configValue = getConfigFromFiles('test-function.js', buildContext, () => {});
+    const configValue = getValueFromFiles('test-function.js', buildContext, () => {});
     expect(configValue.toString()).toEqual('() => { \'this is a test\' }');
   });
 
   it('should merge objects from user and package files', () => {
-    const configValue = getConfigFromFiles('test.js', buildContext, {});
+    const configValue = getValueFromFiles('test.js', buildContext, {});
     expect(configValue).toEqual({
       field: 'test two',
       fieldTwo: 'another test',

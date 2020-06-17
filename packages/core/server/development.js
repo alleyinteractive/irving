@@ -5,7 +5,7 @@ const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const getConfig = require('../config/webpack.config.js');
 const { appRoot } = require('../config/paths');
-const getConfigFromFiles = require('../config/getConfigFromFiles');
+const getValueFromFiles = require('../config/irving/getValueFromFiles');
 
 const config = getConfig({}, { mode: 'development' });
 const matchClient = ({ name }) => 'client' === name;
@@ -21,7 +21,7 @@ const { PROXY_URL } = process.env;
  */
 const developmentMiddleware = (app) => {
   // Allow customization of development server
-  const irvingDevMiddleware = getConfigFromFiles(
+  const irvingDevMiddleware = getValueFromFiles(
     'server/customizeDevServer.js',
     appRoot,
     []

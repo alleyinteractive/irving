@@ -1,13 +1,13 @@
 import {
-  getConfigFromProject,
+  getValueFromMergedConfig,
   getValueFromUserConfig,
-} from 'config/getConfigFromProject';
+} from 'config/irving/getValueFromMergedConfig';
 
 const forceTrailingSlashes = getValueFromUserConfig(
   'forceTrailingSlashes',
   false
 );
-const trailingSlashDenylist = getConfigFromProject('trailingSlashDenylist', []);
+const trailingSlashDenylist = getValueFromMergedConfig('trailingSlashDenylist', []);
 
 /**
  * Add a trailling slash to a URL if required (and the appropriate config value is set).

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import reduceReducers from 'reduce-reducers';
 import defaultState from 'reducers/defaultState';
-import { getConfigFromProject } from 'config/getConfigFromProject';
+import { getValueFromMergedConfig } from 'config/irving/getValueFromMergedConfig';
 import componentsReducer from './componentsReducer';
 import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
@@ -10,7 +10,7 @@ import visibilityReducer from './visibilityReducer';
 import componentDataReducer from './componentDataReducer';
 
 // Configure "slice" reducers.
-export const reducers = getConfigFromProject('reducers', {
+export const reducers = getValueFromMergedConfig('reducers', {
   components: (state = defaultState.components) => state,
   componentData: componentDataReducer,
   error: errorReducer,

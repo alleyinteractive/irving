@@ -10,7 +10,7 @@ const express = require('express');
 const createCheckAuth = require('./auth');
 const userConfig = require(serverConfig);
 const { appRoot } = require('../config/paths');
-const getConfigFromFiles = require('../config/getConfigFromFiles');
+const getValueFromFiles = require('../config/irving/getValueFromFiles');
 
 // App must be built using the build command before production mode can be run.
 const clientStats = nodeRequire(
@@ -26,7 +26,7 @@ const {
  */
 const productionMiddleware = async (app) => {
   // Allow customization of production server
-  const irvingProdMiddleware = getConfigFromFiles(
+  const irvingProdMiddleware = getValueFromFiles(
     'server/customizeProdServer.js',
     appRoot,
     []

@@ -18,8 +18,8 @@ const bodyParser = require('body-parser');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const { appRoot } = require('../config/paths');
-const getConfigFromFiles = require('../config/getConfigFromFiles');
-const { getConfigFromProject } = require('../config/getConfigFromProject');
+const getValueFromFiles = require('../config/irving/getValueFromFiles');
+const { getValueFromMergedConfig } = require('../config/irving/getValueFromMergedConfig');
 const purgeCache = require('./purgeCache');
 const getCacheKeys = require('./getCacheKeys');
 const customizeRedirect = require('./customizeRedirect');
@@ -39,7 +39,7 @@ app.get('/cache-keys', getCacheKeys);
 app.set('view engine', 'ejs');
 
 // Run all customize server functions.
-const irvingServerMiddleware = getConfigFromFiles(
+const irvingServerMiddleware = getValueFromFiles(
   'server/customizeServer.js',
   appRoot,
   []
@@ -47,7 +47,7 @@ const irvingServerMiddleware = getConfigFromFiles(
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 // Set up a reusable proxy for responses that should be served directly.
-const proxyPassthrough = getConfigFromProject('proxyPassthrough', []);
+const proxyPassthrough = getValueFromMergedConfig('proxyPassthrough', []);
 const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
@@ -89,7 +89,7 @@ app.use((err, req, res, next) => {
 });
 
 // Run all export server functions.
-const serverExportMiddleware = getConfigFromFiles(
+const serverExportMiddleware = getValueFromFiles(
   'server/exportServer.js',
   appRoot,
   []

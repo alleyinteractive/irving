@@ -5,7 +5,7 @@ import createMock from '../__mocks__/fsConfig';
 
 jest.mock('../utils/nodeRequire.js');
 
-describe('getConfigFromFiles', () => {
+describe('getValueFromFiles', () => {
   beforeEach(createMock);
   afterEach(mock.restore);
 

@@ -2,7 +2,7 @@ const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
 const { buildContext } = require('./paths');
 // Use unmemoized version for webpack.
-const { getConfigFromFiles } = require('./getConfigFromFiles');
+const { getValueFromFiles } = require('./irving/getValueFromFiles');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
@@ -71,12 +71,12 @@ module.exports = (env, argv) => {
   ];
 
   // Process configs separately if env-specific files are provided.
-  const clientConfig = getConfigFromFiles(
+  const clientConfig = getValueFromFiles(
     'webpack.config.client.js',
     buildContext,
     multiConfig[0]
   );
-  const serverConfig = getConfigFromFiles(
+  const serverConfig = getValueFromFiles(
     'webpack.config.server.js',
     buildContext,
     multiConfig[1]
@@ -87,7 +87,7 @@ module.exports = (env, argv) => {
     clientConfig,
     serverConfig,
   ].map((config) => (
-    getConfigFromFiles('webpack.config.js', buildContext, config)
+    getValueFromFiles('webpack.config.js', buildContext, config)
   ));
 
   return finalConfigs;
