@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
   stories: [
     '../stories/**/*.stories.js',
@@ -8,4 +10,12 @@ module.exports = {
     '@storybook/addon-docs',
     '@storybook/addon-links',
   ],
+  webpackFinal: (config) => {
+    config.plugins.push(
+      new webpack.EnvironmentPlugin({
+        WEBPACK_BUILD: true,
+      })
+    );
+    return config;
+  },
 };

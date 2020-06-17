@@ -24,8 +24,9 @@
     "link": "lerna exec --parallel -- npm link",
     "test": "BABEL_ENV=test lerna run test --parallel",
     "test:watch": "BABEL_ENV=test lerna run test:watch --parallel",
-    "styled-components-storybook": "start-storybook -p 6006 -c .storybook-styled-components",
-    "build-styled-components-storybook": "build-storybook -c .storybook-styled-components"
+    "styled-components-storybook": "WEBPACK_BUILD=true start-storybook -p 6006",
+    "build-styled-components-storybook": "build-storybook -o .storybook-styled-components",
+    "deploy-styled-components-storybook": "surge .storybook-styled-components --domain irving-styled-components.surge.sh"
   },
   "dependencies": {
     "@irvingjs/babel-preset-irving": "^2.14.0",
