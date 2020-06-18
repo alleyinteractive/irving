@@ -26,7 +26,6 @@
 		"@material-ui/icons": "^4.9.1",
 		"@wordpress/i18n": "^3.10.0",
 		"babel-plugin-styled-components": "^1.10.7",
-		"he": "^1.2.0",
 		"query-string": "^6.13.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
