@@ -4,7 +4,6 @@ Storybook is an open source tool for developing UI components in isolation for R
 **Available Storybooks**
 * [Styled Components](styled-components-storybook.irvingjs.com)
 
-
 **Workflow**
 As part of the Irving package release process, you should also deploy all storybooks.
 

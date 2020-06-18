@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const BylineWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  white-space: pre; // Ensure that whitespace in our delimiters is respected.
   width: 100%;
 `;
 
@@ -17,9 +18,5 @@ export const AuthorWrapper = styled.span`
   a {
     font-weight: bold;
   }
-`;
-
-export const TimestampWrapper = styled.time`
-  font-size: .9rem;
 `;
 /* eslint-enable */
