@@ -5,9 +5,9 @@ import withThemes from '@irvingjs/styled/components/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**
- * Post byline.
+ * Byline.
  *
- * Get the post byline.
+ * Display a byline and timestamp.
  */
 const Byline = (props) => {
   const {
@@ -16,6 +16,7 @@ const Byline = (props) => {
     multiDelimiter,
     preText,
     singleDelimiter,
+    style,
     theme,
     timestamp,
   } = props;
@@ -33,14 +34,14 @@ const Byline = (props) => {
     default:
     case 0:
       return (
-        <BylineWrapper>
+        <BylineWrapper style={style}>
           <TimestampWrapper>{timestamp}</TimestampWrapper>
         </BylineWrapper>
       );
 
     case 1:
       return (
-        <BylineWrapper>
+        <BylineWrapper style={style}>
           <AuthorsWrapper>
             {preText && <span>{decode(preText)}</span>}
             <AuthorWrapper>{children}</AuthorWrapper>
@@ -51,7 +52,7 @@ const Byline = (props) => {
 
     case 2:
       return (
-        <BylineWrapper>
+        <BylineWrapper style={style}>
           <AuthorsWrapper>
             {preText && <span>{decode(preText)}</span>}
             <span>
@@ -66,7 +67,7 @@ const Byline = (props) => {
 
     case (2 < children.length):
       return (
-        <BylineWrapper>
+        <BylineWrapper style={style}>
           <AuthorsWrapper>
             {preText && <span>{decode(preText)}</span>}
             {children.map((child, index) => {
@@ -74,7 +75,7 @@ const Byline = (props) => {
               if (index < (children.length - 2)) {
                 return (
                   <>
-                    <AuthorWrapper>{child}</AuthorWrapper>
+                    <AuthorWrapper key={index}>{child}</AuthorWrapper>
                     {decode(multiDelimiter)}
                   </>
                 );
@@ -84,7 +85,7 @@ const Byline = (props) => {
               if (index < (children.length - 1)) {
                 return (
                   <>
-                    <AuthorWrapper>{child}</AuthorWrapper>
+                    <AuthorWrapper key={index}>{child}</AuthorWrapper>
                     {decode(lastDelimiter)}
                   </>
                 );
@@ -92,7 +93,7 @@ const Byline = (props) => {
 
               // Last author.
               return (
-                <AuthorWrapper>
+                <AuthorWrapper key={index}>
                   {child}
                 </AuthorWrapper>
               );
@@ -105,10 +106,12 @@ const Byline = (props) => {
 };
 
 Byline.defaultProps = {
+  children: [],
   lastDelimiter: ', and',
   multiDelimiter: ', ',
-  preText: 'By ',
+  preText: 'By&nbsp;',
   singleDelimiter: ' and ',
+  style: {},
   theme: defaultStyles,
   timestamp: '',
 };
@@ -117,7 +120,7 @@ Byline.propTypes = {
   /**
    * Children of the component.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Last delimiter.
    */
@@ -135,6 +138,10 @@ Byline.propTypes = {
    */
   singleDelimiter: PropTypes.string,
   /**
+   * CSS styles.
+   */
+  style: PropTypes.object,
+  /**
    * Timestamp.
    */
   timestamp: PropTypes.string,
@@ -147,5 +154,7 @@ Byline.propTypes = {
 const menuThemeMap = {
   default: defaultStyles,
 };
+
+export { Byline as PureByline };
 
 export default withThemes(menuThemeMap)(Byline);

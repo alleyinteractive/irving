@@ -135,17 +135,20 @@ SocialSharing.propTypes = {
   /**
    * Theme (styles) to apply to the component.
    */
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object,
 };
 
 SocialSharing.defaultProps = {
   postExcerpt: '',
   postThumbnail: '',
   cta: '',
+  theme: defaultStyles,
 };
 
 const socialSharingThemeMap = {
   default: defaultStyles,
 };
+
+export { SocialSharing as PureSocialSharing };
 
 export default withThemes(socialSharingThemeMap)(SocialSharing);

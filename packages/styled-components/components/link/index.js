@@ -103,4 +103,6 @@ const themeMap = {
   default: defaultStyles,
 };
 
+export { Link as PureLink };
+
 export default withThemes(themeMap)(Link);
