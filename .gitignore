@@ -11,6 +11,9 @@
 /styleguide/build
 /styleguide/static
 
+# storybook
+.storybook-styled-components/
+
 # misc
 .DS_Store
 .env*
