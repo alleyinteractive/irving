@@ -17,7 +17,7 @@ const authors = [
   <Link href="#">Ebenezer Irving</Link>
 ];
 
-export const BasicEample = () => <Byline>{[authors[0]]}</Byline>;
+export const BasicExample = () => <Byline>{[authors[0]]}</Byline>;
 
 /**
  * Example bylines with varying numbers of authors.
