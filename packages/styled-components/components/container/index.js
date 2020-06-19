@@ -94,4 +94,6 @@ const themeMap = {
   default: defaultStyles,
 };
 
+export { Container as PureContainer };
+
 export default withThemes(themeMap)(Container);

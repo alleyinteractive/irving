@@ -6,6 +6,7 @@ export const SocialSharingWrapper = styled.div`
 
 export const SocialSharingList = styled.ul`
   margin-top: 10px;
+  padding: 0;
 `;
 
 export const SocialSharingItemWrapper = styled.li`

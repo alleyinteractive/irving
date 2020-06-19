@@ -18,7 +18,7 @@ import * as h6Styles from './themes/h6';
 /**
  * Output text.
  */
-const Fragment = (props) => {
+const Text = (props) => {
   const {
     content,
     html,
@@ -61,7 +61,7 @@ const Fragment = (props) => {
   }
 };
 
-Fragment.defaultProps = {
+Text.defaultProps = {
   content: '',
   html: false,
   oembed: false,
@@ -70,7 +70,7 @@ Fragment.defaultProps = {
   theme: defaultStyles,
 };
 
-Fragment.propTypes = {
+Text.propTypes = {
   /**
    * Markup to render.
    */
@@ -110,4 +110,6 @@ const themeMap = {
   h6: h6Styles,
 };
 
-export default withThemes(themeMap)(Fragment);
+export { Text as PureText };
+
+export default withThemes(themeMap)(Text);

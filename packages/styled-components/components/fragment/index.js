@@ -39,6 +39,7 @@ Fragment.defaultProps = {
   children: {},
   style: {},
   tag: null,
+  theme: defaultStyles,
 };
 
 Fragment.propTypes = {
@@ -57,11 +58,13 @@ Fragment.propTypes = {
   /**
    * Theme (styles) to apply to the component.
    */
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object,
 };
 
 const themeMap = {
   default: defaultStyles,
 };
+
+export { Fragment as PureFragment };
 
 export default withThemes(themeMap)(Fragment);
