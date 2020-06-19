@@ -1,27 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withThemes from '@irvingjs/styled/components/withThemes';
-import {
-  Email,
-  Facebook,
-  LinkedIn,
-  Pinterest,
-  Reddit,
-  Twitter,
-  WhatsApp,
-} from '@material-ui/icons';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
-
-const socialIconMap = {
-  email: Email,
-  facebook: Facebook,
-  linkedin: LinkedIn,
-  pinterest: Pinterest,
-  reddit: Reddit,
-  twitter: Twitter,
-  whatsapp: WhatsApp,
-};
 
 const SocialSharingItem = (props) => {
   const {
@@ -29,7 +10,6 @@ const SocialSharingItem = (props) => {
     theme,
     url,
   } = props;
-  const IconComponent = socialIconMap[platform];
 
   const {
     IconWrapper,
@@ -42,9 +22,7 @@ const SocialSharingItem = (props) => {
         href={url}
       >
         <IconWrapper>
-          <IconComponent
-            title={platform}
-          />
+          <p>{platform} (CORE ICON TODO)</p>
         </IconWrapper>
       </Link>
     </SocialSharingItemWrapper>
