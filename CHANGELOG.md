@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/alleyinteractive/irving/compare/v2.15.0...v2.16.0) (2020-06-19)
+
+
+### Features
+
+* **byline component:** cleanup some of the Byline component logic ([a3fce14](https://github.com/alleyinteractive/irving/commit/a3fce14a0f237a06302d8010fdced1fcc442d9a1))
+* scaffold storybook stories for all components ([ec3e43d](https://github.com/alleyinteractive/irving/commit/ec3e43d32257b7c88827a5699cfbcba574e66739))
+* **update storybook config to build correctly and add <link /> story:** fixes build proccess ([771be6b](https://github.com/alleyinteractive/irving/commit/771be6b8004a83c5de854be14ad5b12bb53a08e5))
+
+
+
+
+
 # [2.15.0](https://github.com/alleyinteractive/irving/compare/v2.14.0...v2.15.0) (2020-06-16)
 
 **Note:** Version bump only for package irving
