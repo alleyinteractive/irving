@@ -80,4 +80,6 @@ const themeMap = {
   default: defaultStyles,
 };
 
+export { Logo as PureLogo };
+
 export default withThemes(themeMap)(Logo);

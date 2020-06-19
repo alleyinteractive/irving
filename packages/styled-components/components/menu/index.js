@@ -44,6 +44,7 @@ const Menu = (props) => {
 };
 
 Menu.defaultProps = {
+  children: [],
   displayName: false,
   location: '',
   menuName: '',
@@ -54,7 +55,7 @@ Menu.propTypes = {
   /**
    * Children of the component.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Flag to display the menu name.
    */
@@ -77,5 +78,7 @@ const themeMap = {
   default: defaultStyles,
   defaultVertical: defaultVerticalStyles,
 };
+
+export { Menu as PureMenu };
 
 export default withThemes(themeMap)(Menu);

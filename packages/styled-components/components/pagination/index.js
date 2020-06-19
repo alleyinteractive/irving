@@ -223,4 +223,6 @@ const themeMap = {
   default: defaultStyles,
 };
 
+export { Pagination as PurePagination };
+
 export default withThemes(themeMap)(Pagination);

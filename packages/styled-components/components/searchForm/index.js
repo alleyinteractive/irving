@@ -94,4 +94,6 @@ const themeMap = {
   default: defaultStyles,
 };
 
+export { SearchForm as PureSearchForm };
+
 export default withThemes(themeMap)(SearchForm);
