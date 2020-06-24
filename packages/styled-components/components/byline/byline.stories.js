@@ -7,7 +7,7 @@ import Text from '../text';
 
 export default {
   component: Byline,
-  title: 'Irving/Byline',
+  title: 'Styled Components|Byline',
 };
 
 const authors = [

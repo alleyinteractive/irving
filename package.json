@@ -24,10 +24,10 @@
     "link": "lerna exec --parallel -- npm link",
     "test": "BABEL_ENV=test lerna run test --parallel",
     "test:watch": "BABEL_ENV=test lerna run test:watch --parallel",
-    "styled-components-storybook": "WEBPACK_BUILD=true start-storybook -p 6006",
-    "build-styled-components-storybook": "build-storybook -o .storybook-styled-components",
-    "deploy-styled-components-storybook": "surge .storybook-styled-components --domain styled-components-storybook.irvingjs.com",
-    "release-storybooks": "npm run build-styled-components-storybook && npm run deploy-styled-components-storybook"
+    "storybook": "WEBPACK_BUILD=true start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "surge storybook-static --domain storybook.irvingjs.com",
+    "release-storybook": "npm run build-storybook && npm run deploy-storybook"
   },
   "dependencies": {
     "@irvingjs/babel-preset-irving": "^2.14.0",

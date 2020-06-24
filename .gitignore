@@ -12,7 +12,7 @@
 /styleguide/static
 
 # storybook
-.storybook-styled-components/
+/storybook-static/
 
 # misc
 .DS_Store
