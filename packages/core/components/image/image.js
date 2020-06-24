@@ -183,7 +183,6 @@ Image.defaultProps = {
   showCaption: false,
 };
 
-
 const wrapWithThemes = withThemes('Image', { default: styles });
 
 export const themeImage = createWithUserThemes(Image, styles);

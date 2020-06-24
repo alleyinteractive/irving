@@ -1,4 +1,5 @@
-/* global appView, errorView */
+// Global passed in via webpack define plugin
+/* global appView, errorView, irvingEnv */
 import 'source-map-support/register';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -10,7 +11,6 @@ import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
-import getEnv from 'config/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackAssetTags from 'utils/getWebpackAssetTags';
 import addTrailingSlash from 'utils/addTrailingSlash';
@@ -21,6 +21,7 @@ import getComponent from 'config/componentMap';
 import getTemplateVars from './getTemplateVars';
 
 const monitor = getMonitorService();
+console.log(monitor);
 const logError = getLogService('irving:render:error');
 const logRequest = getLogService('irving:render:request');
 
@@ -94,7 +95,7 @@ const render = async (req, res, clientStats) => {
   const templateVars = {
     helmet,
     preRenderedState: stateEncoded,
-    env: JSON.stringify(getEnv()),
+    env: irvingEnv,
     ...customTemplateVars,
   };
 

@@ -1,5 +1,5 @@
-module.exports = {
+module.exports = () => ({
   start: () => {},
   logError: () => {},
   logTransaction: () => {},
-};
+});

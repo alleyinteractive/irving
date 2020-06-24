@@ -1,8 +1,10 @@
 /* eslint-disable global-require, no-console, import/first, import/order */
 // Start monitor service as early as possible.
-const getMonitorService = require('@irvingjs/services/monitorService');
+const getMonitorService = require(
+  '../services/monitorService/getServiceFromFilesystem'
+);
 const monitorService = getMonitorService();
-monitorService().start();
+monitorService.start();
 
 const getEnv = require('../config/env');
 const {
@@ -18,14 +20,14 @@ const bodyParser = require('body-parser');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const { appRoot } = require('../config/paths');
+const proxyPassthrough = require('../config/proxyPassthrough');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
-const { getValueFromMergedConfig } = require('../config/irving/getValueFromMergedConfig');
 const purgeCache = require('./purgeCache');
 const getCacheKeys = require('./getCacheKeys');
 const customizeRedirect = require('./customizeRedirect');
 
 // Start log service.
-import logService from '@irvingjs/services/getLogService';
+const logService = require('../services/logService/getServiceFromFilesystem');
 const log = logService('irving:server');
 
 // Create app.
@@ -47,7 +49,6 @@ const irvingServerMiddleware = getValueFromFiles(
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 // Set up a reusable proxy for responses that should be served directly.
-const proxyPassthrough = getValueFromMergedConfig('proxyPassthrough', []);
 const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
@@ -68,13 +69,10 @@ app.use(cookiesMiddleware());
 app.use(customizeRedirect());
 
 // Only load the appropriate middleware for the current env.
-if (
-  'development_client' === process.env.IRVING_EXECUTION_CONTEXT ||
-  'development_server' === process.env.IRVING_EXECUTION_CONTEXT
-) {
-  require('./development').default(app);
+if ('development' === process.env.NODE_ENV) {
+  require('./development')(app);
 } else {
-  require('./production').default(app);
+  require('./production')(app);
 }
 
 // Default error handler

@@ -1,7 +1,7 @@
 const getValueFromFiles = require('../../config/irving/getValueFromFiles');
 const { appRoot } = require('../../config/paths');
 const coreMonitorService = require('.');
-const defaultMonitorService = require('./defaultService');
+const getDefaultService = require('./defaultService');
 
 /**
  * Get the configured cache service or use core's service.
@@ -14,7 +14,7 @@ const getService = () => {
   )();
 
   if (! service) {
-    return defaultMonitorService;
+    return getDefaultService();
   }
 
   return service;

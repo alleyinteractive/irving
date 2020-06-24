@@ -2,9 +2,10 @@ const webpack = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
-const { maybeResolveUserModule } = require('../../utils/userModule');
 const getEnv = require('../env');
 const { rootUrl } = require('../paths');
+const proxyPassthrough = require('../proxyPassthrough');
+const { maybeResolveUserModule } = require('../../utils/userModule');
 
 /**
  * Get the context specific plugins configuration.
@@ -22,10 +23,12 @@ module.exports = function getPlugins(context) {
       errorView: JSON.stringify(
         maybeResolveUserModule('server/views/error.ejs')
       ),
+      irvingEnv: JSON.stringify(env),
+      proxyPassthrough: JSON.stringify(proxyPassthrough),
     }),
     new webpack.EnvironmentPlugin({
-      IRVING_EXECUTION_CONTEXT: context,
       ...env,
+      IRVING_EXECUTION_CONTEXT: context,
     }),
   ];
 

@@ -1,7 +1,3 @@
-const defaultService = require(
-  '@irvingjs/core/services/monitorService/defaultService'
-);
-
 /**
  * Get the reusable monitor service instance. This service implements basic
  * application monitoring. It currently relies on newrelic, but the interface
@@ -24,7 +20,7 @@ const getService = () => {
 
       // VIP Go's package can return nothing if newrelic is not instsalled or configured improperly.
       if (! client) {
-        return defaultService;
+        return null;
       }
 
       return {
@@ -38,11 +34,11 @@ const getService = () => {
         },
       };
     } catch (err) {
-      return defaultService;
+      return null;
     }
   }
 
-  return defaultService;
+  return null;
 };
 
 module.exports = getService;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { getValueFromMergedConfig } from 'config/irving/getValueFromMergedConfig';
+import {
+  getValueFromMergedConfig,
+} from 'config/irving/getValueFromMergedConfig';
 
 /**
  *

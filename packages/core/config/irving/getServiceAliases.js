@@ -1,34 +1,6 @@
-const fs = require('fs');
 const path = require('path');
-const { buildContext, irvingRoot } = require('../paths');
-const resolvePackageConfigs = require('./resolvePackageConfigs');
-
-/**
- * Convert config paths into aliases.
- *
- * @param {string} configPath Path to config file we're looking for.
- */
-const resolveConfigFilepath = (configPath) => {
-  // Get config paths.
-  const packageConfigPaths = resolvePackageConfigs(configPath, buildContext);
-  const userConfigPath = path.join(buildContext, configPath);
-  const configs = packageConfigPaths.concat(userConfigPath);
-
-  if (configs.length) {
-    // Start from the user's config, as it should take precedence.
-    const configArray = configs.reverse();
-
-    for (let i = 0; i < configs.length; i += 1) {
-      const fileWithExtension = `${configArray[i]}.js`;
-
-      if (fs.existsSync(fileWithExtension)) {
-        return fileWithExtension;
-      }
-    }
-  }
-
-  return null;
-};
+const { irvingRoot } = require('../paths');
+const resolveConfigFilepath = require('./resolveConfigFilepath');
 
 /**
  * Convert config paths into aliases.

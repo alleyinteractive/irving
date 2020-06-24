@@ -4,7 +4,7 @@ let service;
 let getMonitorService;
 
 if (
-  process.env.IRVING_EXECUTION_CONTEXT &&
+  process.env.IRVING_EXECUTION_CONTEXT ||
   'test' === process.env.BABEL_ENV
 ) {
   getMonitorService = require('@irvingjs/services/monitorService');

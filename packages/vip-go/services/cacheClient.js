@@ -20,6 +20,8 @@ const getClient = () => {
       logger: logger('irving:redis'),
     });
 
+    console.log('vip-goooooo');
+
     if (! client) {
       return null;
     }

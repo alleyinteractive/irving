@@ -68,7 +68,6 @@ const mapStateToProps = (state) => ({
   error: !! state.error,
 });
 
-
 const withRedux = connect(mapStateToProps);
 let hotApp; // eslint-disable-line import/no-mutable-exports
 

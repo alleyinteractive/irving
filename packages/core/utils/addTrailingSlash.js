@@ -7,7 +7,10 @@ const forceTrailingSlashes = getValueFromUserConfig(
   'forceTrailingSlashes',
   false
 );
-const trailingSlashDenylist = getValueFromMergedConfig('trailingSlashDenylist', []);
+const trailingSlashDenylist = getValueFromMergedConfig(
+  'trailingSlashDenylist',
+  []
+);
 
 /**
  * Add a trailling slash to a URL if required (and the appropriate config value is set).

@@ -72,12 +72,12 @@ module.exports = (env, argv) => {
 
   // Process configs separately if env-specific files are provided.
   const clientConfig = getValueFromFiles(
-    'webpack.config.client.js',
+    'config/webpack.config.client.js',
     buildContext,
     multiConfig[0]
   );
   const serverConfig = getValueFromFiles(
-    'webpack.config.server.js',
+    'config/webpack.config.server.js',
     buildContext,
     multiConfig[1]
   );
@@ -87,7 +87,7 @@ module.exports = (env, argv) => {
     clientConfig,
     serverConfig,
   ].map((config) => (
-    getValueFromFiles('webpack.config.js', buildContext, config)
+    getValueFromFiles('config/webpack.config.js', buildContext, config)
   ));
 
   return finalConfigs;

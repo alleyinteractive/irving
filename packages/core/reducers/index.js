@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 import reduceReducers from 'reduce-reducers';
 import defaultState from 'reducers/defaultState';
-import { getValueFromMergedConfig } from 'config/irving/getValueFromMergedConfig';
+import {
+  getValueFromMergedConfig,
+} from 'config/irving/getValueFromMergedConfig';
 import componentsReducer from './componentsReducer';
 import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';

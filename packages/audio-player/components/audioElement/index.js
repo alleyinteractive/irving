@@ -143,7 +143,7 @@ const mapDispatchToProps = {
 
 const withRedux = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 );
 
 export default withRedux(AudioElement);

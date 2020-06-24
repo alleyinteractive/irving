@@ -29,6 +29,7 @@ module.exports = function getEnv() {
       'ROOT_URL',
       'COOKIE_MAP_LIST',
       'FETCH_TIMEOUT',
+      'IRVING_EXECUTION_CONTEXT',
     ]
   );
   const allowlist = [

@@ -2,13 +2,11 @@
 const { nodeRequire } = require('../utils/nodeRequire');
 const {
   clientBuild,
-  serverConfig,
   serverBuild,
 } = require('../config/paths');
 const path = require('path');
 const express = require('express');
 const createCheckAuth = require('./auth');
-const userConfig = require(serverConfig);
 const { appRoot } = require('../config/paths');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
 
@@ -34,7 +32,7 @@ const productionMiddleware = async (app) => {
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 
   // Add basic auth handling if user configures it.
-  if (userConfig.basicAuth) {
+  if (process.env.BASIC_AUTH) {
     app.use(createCheckAuth('irving'));
   }
 
@@ -46,4 +44,4 @@ const productionMiddleware = async (app) => {
   app.use(serverRenderer(options));
 };
 
-export default productionMiddleware;
+module.exports = productionMiddleware;

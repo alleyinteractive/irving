@@ -124,5 +124,4 @@ const withRedux = connect(
   mapDispatchToProps
 );
 
-
 export default withRedux(PlayPauseButton);

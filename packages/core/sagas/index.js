@@ -3,7 +3,9 @@ import {
   LOCATION_CHANGE,
   REQUEST_COMPONENT_DATA,
 } from 'actions/types';
-import { getValueFromMergedConfig } from 'config/irving/getValueFromMergedConfig';
+import {
+  getValueFromMergedConfig,
+} from 'config/irving/getValueFromMergedConfig';
 import resolveComponents from './resolveComponents';
 import waitToScroll from './waitToScroll';
 import onLocationChange from './onLocationChange';

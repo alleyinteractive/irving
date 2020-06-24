@@ -1,6 +1,7 @@
 /* eslint-disable import/no-dynamic-require, global-require */
 const fs = require('fs');
 const path = require('path');
+
 /**
  * IMPORTANT NOTE: THIS FILE IS NOT PROCESSED BY WEBPACK OR BABEL, PROCEED WITH CAUTION.
  */
@@ -20,11 +21,11 @@ const nodeRequire = (requirePath) => (
  *
  * @param {string} requirePath Path to file we're looking for.
  */
-const maybeRequire = (requirePath) => {
+const maybeResolve = (requirePath) => {
   // If file exists in build context, assume the same file exists in the appRoot.
   // This will support app finding appropriate file if build happens in a different place than app execution.
   if (fs.existsSync(requirePath)) {
-    return nodeRequire(requirePath);
+    return requirePath;
   }
 
   // Don't look for an index.js file if we already have an extension.
@@ -35,7 +36,22 @@ const maybeRequire = (requirePath) => {
   // Look for an index.js file also.
   const indexPath = path.join(requirePath, 'index.js');
   if (fs.existsSync(indexPath)) {
-    return nodeRequire(indexPath);
+    return indexPath;
+  }
+
+  return null;
+};
+
+/**
+ * Resolve the path to a file from specified base path.
+ *
+ * @param {string} requirePath Path to file we're looking for.
+ */
+const maybeRequire = (requirePath) => {
+  const validatedPath = maybeResolve(requirePath);
+
+  if (validatedPath) {
+    return nodeRequire(validatedPath);
   }
 
   return null;
@@ -43,6 +59,7 @@ const maybeRequire = (requirePath) => {
 
 module.exports = {
   nodeRequire,
+  maybeResolve,
   maybeRequire,
 };
 /* eslint-enable */

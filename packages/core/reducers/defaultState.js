@@ -1,4 +1,6 @@
-import { getValueFromMergedConfig } from 'config/irving/getValueFromMergedConfig';
+import {
+  getValueFromMergedConfig,
+} from 'config/irving/getValueFromMergedConfig';
 
 export const components = {
   defaults: [],
