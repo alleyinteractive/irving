@@ -4,7 +4,7 @@ import { PureFragment as Fragment } from '.';
 
 export default {
   component: Fragment,
-  title: 'Irving/Fragment',
+  title: 'Styled Components|Fragment',
 };
 
 export const BasicEample = () => <Fragment>Basic Example</Fragment>;

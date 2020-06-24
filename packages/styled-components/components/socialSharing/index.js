@@ -31,6 +31,7 @@ const SocialSharing = (props) => {
     description,
     imageUrl,
     platforms,
+    style,
     theme,
     title,
     url,
@@ -41,7 +42,7 @@ const SocialSharing = (props) => {
     SocialSharingWrapper,
   } = theme;
 
-  const getEmailUrl = `mailto:${
+  const getEmailUrl = `mailto:?${
     queryString.stringify({
       subject: title,
       body: url,
@@ -107,7 +108,7 @@ const SocialSharing = (props) => {
   };
 
   return (
-    <SocialSharingWrapper>
+    <SocialSharingWrapper style={style}>
       {platforms && 0 !== platforms.length && (
         <SocialSharingList>
           {platforms.map((platform) => (
@@ -128,6 +129,7 @@ SocialSharing.defaultProps = {
   description: '',
   imageUrl: '',
   platforms: ["email", "facebook", "twitter"],
+  style: {},
   theme: defaultStyles,
   title: '',
   url: '',
@@ -146,6 +148,13 @@ SocialSharing.propTypes = {
    * An array of social sharing platforms.
    */
   platforms: PropTypes.arrayOf(PropTypes.oneOf(SupportedPlatforms)),
+  /**
+   * CSS styles.
+   */
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Theme (styles) to apply to the component.
    */

@@ -4,7 +4,7 @@ import { PureContainer as Container } from '.';
 
 export default {
   component: Container,
-  title: 'Irving/Container',
+  title: 'Styled Components|Container',
 };
 
 export const BasicEample = () => <Container>Basic Example</Container>;

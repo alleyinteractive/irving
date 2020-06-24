@@ -5,7 +5,7 @@ import { facebook, twitter, youtube, instagram } from 'react-oembed-container/te
 
 export default {
   component: Text,
-  title: 'Irving/Text',
+  title: 'Styled Components|Text',
 };
 
 export const PlainTextExample = () => <Text content="Hello World" />;
