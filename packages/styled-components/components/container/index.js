@@ -35,7 +35,7 @@ const Container = (props) => {
   // Setup a max-width style.
   if ('string' === typeof maxWidth && undefined !== widths[maxWidth]) {
     style.maxWidth = `${widths[maxWidth]}px`; // Use one of our predefined sizes.
-  }else if ('string' === typeof maxWidth ) {
+  } else if ('string' === typeof maxWidth ) {
     style.maxWidth = maxWidth; // Use the string value 1:1.
   } else if ('number' === typeof maxWidth) {
     style.maxWidth = `${maxWidth}px`; // Use the interger value as pixels.
