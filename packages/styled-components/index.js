@@ -11,6 +11,16 @@ import SearchForm from 'components/searchForm';
 import SocialSharing from 'components/socialSharing';
 import Text from 'components/text';
 
+/**
+ * Include support for using the `styled-css-grid` package.
+ *
+ * @see https://github.com/azz/styled-css-grid
+ */
+import {
+  Grid as StyledCSSGrid,
+  Cell as StyledCSSGridCell,
+} from 'styled-css-grid';
+
 export {
   App,
   Byline,
@@ -23,6 +33,8 @@ export {
   Pagination,
   SearchForm,
   SocialSharing,
+  StyledCSSGrid
+  StyledCSSGridCell
   Text,
 };
 
@@ -42,6 +54,8 @@ const ComponentMap = {
   'irving/search-form': SearchForm,
   'irving/social-sharing': SocialSharing,
   'irving/text': Text,
+  'styled-css-grid/cell': StyledCSSGridCell,
+  'styled-css-grid/grid': StyledCSSGrid,
   app: App,
 };
 
