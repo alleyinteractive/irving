@@ -23,13 +23,11 @@ const getAspectRatioStyles = (props) => {
   return '';
 };
 
-/* eslint-disable import/prefer-default-export */
 export const FigureWrapper = styled.figure`
   display: block;
   max-width: ${(props) => `${props.maxWidth}px`};
 `;
 
-/* eslint-disable import/prefer-default-export */
 export const ImageWrapper = styled.span
   .attrs((props) => {
     const { aspectRatio } = props;
@@ -66,4 +64,3 @@ export const ImageCaption = styled.figcaption``;
 export const ImageCredit = styled.span`
   text-align: right;
 `;
-/* eslint-enable */
