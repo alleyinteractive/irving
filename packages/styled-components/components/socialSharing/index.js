@@ -6,15 +6,35 @@ import withThemes from '@irvingjs/styled/components/withThemes';
 import SocialSharingItem from './socialSharingItem';
 import * as defaultStyles from './themes/default';
 
+/**
+ * Supported platforms.
+ *
+ * @type {Array}
+ */
+export const SupportedPlatforms = [
+  'email',
+  'facebook',
+  'linkedin',
+  'pinterest',
+  'reddit',
+  'twitter',
+  'whatsapp'
+];
+
+/**
+ * Social sharing.
+ *
+ * Displays a list of platforms to share content on.
+ */
 const SocialSharing = (props) => {
   const {
-    cta,
+    description,
+    imageUrl,
     platforms,
-    postExcerpt,
-    postPermalink,
-    postThumbnail,
-    postTitle,
+    style,
     theme,
+    title,
+    url,
   } = props;
 
   const {
@@ -22,54 +42,53 @@ const SocialSharing = (props) => {
     SocialSharingWrapper,
   } = theme;
 
-  const getEmailUrl = queryString.stringify(
-    {
-      subject: postTitle,
-      body: postPermalink,
-    },
-    'mailto:'
-  );
+  const getEmailUrl = `mailto:?${
+    queryString.stringify({
+      subject: title,
+      body: url,
+    })
+  }`;
 
   const getFacebookUrl = `https://www.facebook.com/sharer.php?${
     queryString.stringify({
-      u: postPermalink,
+      u: url,
     })
   }`;
 
   const getLinkedInUrl = `https://www.linkedin.com/shareArticle/?${
     queryString.stringify({
-      url: postPermalink,
-      title: postTitle,
-      summary: postExcerpt,
+      url,
+      title: title,
+      summary: description,
     })
   }`;
 
   const getPinterestUrl = `https://pinterest.com/pin/create/button?${
     queryString.stringify({
-      url: postPermalink,
-      media: postThumbnail,
-      description: postExcerpt,
+      url,
+      media: imageUrl,
+      description,
     })
   }`;
 
   const getRedditUrl = `http://www.reddit.com/submit/?${
     queryString.stringify({
-      title: postTitle,
-      url: postPermalink,
+      title: title,
+      url,
     })
   }`;
 
   const getTwitterUrl = `https://twitter.com/intent/tweet?${
     queryString.stringify({
-      text: postTitle,
-      url: postPermalink,
+      text: title,
+      url,
     })
   }`;
 
   const whatsAppStory = sprintf( // Translators: %1$s - article title, %2$s - article url.
-    __('Check out this story: %1$s %2$s', 'irving'),
-    postTitle,
-    postPermalink
+    __('Check out this story: %1$s %2$s', 'irving-styled-components'),
+    title,
+    url
   );
 
   const getWhatsAppUrl = `https://api.whatsapp.com/send/?${
@@ -89,8 +108,7 @@ const SocialSharing = (props) => {
   };
 
   return (
-    <SocialSharingWrapper>
-      <span>{cta}</span>
+    <SocialSharingWrapper style={style}>
       {platforms && 0 !== platforms.length && (
         <SocialSharingList>
           {platforms.map((platform) => (
@@ -107,45 +125,54 @@ const SocialSharing = (props) => {
   );
 };
 
+SocialSharing.defaultProps = {
+  description: '',
+  imageUrl: '',
+  platforms: ["email", "facebook", "twitter"],
+  style: {},
+  theme: defaultStyles,
+  title: '',
+  url: '',
+};
+
 SocialSharing.propTypes = {
   /**
-   * An array of social sharing platforms
+   * Description of the shared content.
    */
-  platforms: PropTypes.array.isRequired,
+  description: PropTypes.string,
   /**
-   * Excerpt for the post
+   * Preview image for the shared content.
    */
-  postExcerpt: PropTypes.string,
+  imageUrl: PropTypes.string,
   /**
-   * Permalink for the post
+   * An array of social sharing platforms.
    */
-  postPermalink: PropTypes.string.isRequired,
+  platforms: PropTypes.arrayOf(PropTypes.oneOf(SupportedPlatforms)),
   /**
-   * Tnumbnail for the post
+   * CSS styles.
    */
-  postThumbnail: PropTypes.string,
-  /**
-   * Title for the post
-   */
-  postTitle: PropTypes.string.isRequired,
-  /**
-   * CTA for social sharing
-   */
-  cta: PropTypes.string,
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Theme (styles) to apply to the component.
    */
-  theme: PropTypes.object.isRequired,
-};
-
-SocialSharing.defaultProps = {
-  postExcerpt: '',
-  postThumbnail: '',
-  cta: '',
+  theme: PropTypes.object,
+  /**
+   * Title of the shared content.
+   */
+  title: PropTypes.string,
+  /**
+   * URL of the shared content.
+   */
+  url: PropTypes.string,
 };
 
 const socialSharingThemeMap = {
   default: defaultStyles,
 };
+
+export { SocialSharing as PureSocialSharing };
 
 export default withThemes(socialSharingThemeMap)(SocialSharing);

@@ -88,7 +88,10 @@ Link.propTypes = {
   /**
    * CSS styles.
    */
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Anchor target.
    */
@@ -102,5 +105,7 @@ Link.propTypes = {
 const themeMap = {
   default: defaultStyles,
 };
+
+export { Link as PureLink };
 
 export default withThemes(themeMap)(Link);

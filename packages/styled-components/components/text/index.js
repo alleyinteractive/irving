@@ -18,8 +18,9 @@ import * as h6Styles from './themes/h6';
 /**
  * Output text.
  */
-const Fragment = (props) => {
+const Text = (props) => {
   const {
+    className,
     content,
     html,
     oembed,
@@ -39,6 +40,7 @@ const Fragment = (props) => {
         <EmbedContainer markup={content}>
           <TextWrapper
             as={tag}
+            className={className}
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(content, richText) }} // eslint-disable-line react/no-danger, max-len
             style={style}
           />
@@ -49,6 +51,7 @@ const Fragment = (props) => {
       return (
         <TextWrapper
           as={tag}
+          className={className}
           dangerouslySetInnerHTML={{ __html: sanitizeHtml(content, richText) }} // eslint-disable-line react/no-danger
           style={style}
         />
@@ -56,12 +59,19 @@ const Fragment = (props) => {
 
     default:
       return (
-        <TextWrapper as={tag} style={style}>{content}</TextWrapper>
+        <TextWrapper
+          as={tag}
+          className={className}
+          style={style}
+        >
+          {content}
+        </TextWrapper>
       );
   }
 };
 
-Fragment.defaultProps = {
+Text.defaultProps = {
+  className: '',
   content: '',
   html: false,
   oembed: false,
@@ -70,7 +80,11 @@ Fragment.defaultProps = {
   theme: defaultStyles,
 };
 
-Fragment.propTypes = {
+Text.propTypes = {
+  /**
+   * Class name.
+   */
+  className: PropTypes.string,
   /**
    * Markup to render.
    */
@@ -86,7 +100,10 @@ Fragment.propTypes = {
   /**
    * CSS styles.
    */
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Wrapping element.
    */
@@ -110,4 +127,6 @@ const themeMap = {
   h6: h6Styles,
 };
 
-export default withThemes(themeMap)(Fragment);
+export { Text as PureText };
+
+export default withThemes(themeMap)(Text);
