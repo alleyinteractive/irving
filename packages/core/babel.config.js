@@ -40,7 +40,9 @@ module.exports = (api) => {
       ],
     ],
     presets: [
-      '@irvingjs/irving',
+      ['@irvingjs/irving', {
+        test: 'butts',
+      }],
     ],
   };
 

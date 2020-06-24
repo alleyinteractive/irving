@@ -10,7 +10,7 @@ describe('requireConfigModules', () => {
   afterEach(mock.restore);
 
   it('should read files from both packages and a user project', () => {
-    const modules = requireConfigModules('test.js', buildContext);
+    const modules = requireConfigModules('test.js', { base: buildContext });
 
     expect(modules).toEqual([
       { field: 'test' },

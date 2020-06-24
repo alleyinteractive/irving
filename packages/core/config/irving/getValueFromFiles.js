@@ -1,6 +1,6 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const memoize = require('lodash/memoize');
-const { appRoot } = require('./config/paths');
+const { appRoot } = require('../paths');
 const { getConfigValue } = require('./getConfigValue');
 const requireConfigModules = require('./requireConfigModules');
 
@@ -8,23 +8,23 @@ const requireConfigModules = require('./requireConfigModules');
  * Resolve config files and merge them together.
  *
  * @param {string} filepath Path to config file we're looking for.
- * @param {string} base Base filepath to look for files in.
  * @param {array|object} defaultValue Default value to merge found configs with.
+ * @param {object} opts Options for finding config files.
+ * @param {string} opts.base - Base filepath to look for config files in.
+ * @param {array}  opts.ignorePackages - Array of packages to ignore when looking for files.
  */
 const getValueFromFiles = (
   filepath,
   defaultValue,
   opts = {}
 ) => {
-  const {
-    base = appRoot,
-    ignorePackages = [
-      '@irvingjs/core',
-      '@irvingjs/babel-preset-irving',
-    ],
-  } = opts;
+  const normalizedOpts = {
+    base: appRoot,
+    ignorePackages: [],
+    ...opts,
+  };
   const isSingleFunction = 'function' === typeof defaultValue;
-  const configs = requireConfigModules(filepath, base, isSingleFunction);
+  const configs = requireConfigModules(filepath, normalizedOpts);
 
   // Return any single-fuction config results as-is.
   if (isSingleFunction) {

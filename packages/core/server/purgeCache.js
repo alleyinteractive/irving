@@ -3,7 +3,7 @@ const queryString = require('query-string');
 const logService = require('../services/logService/getServiceFromFilesystem');
 const cacheService = require(
   '../services/cacheService/getServiceFromFilesystem'
-);
+)();
 
 const log = logService('irving:cache:purge');
 

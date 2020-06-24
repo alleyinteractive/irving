@@ -1,6 +1,10 @@
+const {
+  getValueFromFiles,
+} = require('@irvingjs/core/config/irving/getValueFromFiles');
+const { buildContext } = require('@irvingjs/core/config/paths');
 const propertyOrder = require('./stylelintPropertyOrder');
 
-module.exports = {
+const baseConfig = {
   plugins: [
     'stylelint-order',
   ],
@@ -73,3 +77,12 @@ module.exports = {
     'value-no-vendor-prefix': true,
   },
 };
+
+module.exports = getValueFromFiles(
+  'config/stylelint.config.js',
+  baseConfig,
+  {
+    base: buildContext,
+    ignorePackages: ['@irvingjs/styled'],
+  }
+);

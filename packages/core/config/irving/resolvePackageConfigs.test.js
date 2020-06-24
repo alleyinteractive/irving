@@ -8,7 +8,7 @@ describe('resolvePackageConfigs', () => {
   afterEach(mock.restore);
 
   it('should return filepaths for provided config file sourced from irving packages', () => {
-    const modules = resolvePackageConfigs('test.js', buildContext);
+    const modules = resolvePackageConfigs('test.js', { base: buildContext });
 
     expect(modules).toEqual([
       '/Users/owenstowe/broadway/www/irving/packages/core/node_modules/@irvingjs/test-package/test.js',

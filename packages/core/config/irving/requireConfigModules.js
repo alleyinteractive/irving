@@ -6,11 +6,13 @@ const resolvePackageConfigs = require('./resolvePackageConfigs');
  * Resolve config files and return them as an array of `require`d modules.
  *
  * @param {string} filepath Path to config file we're looking for.
- * @param {string} base Base filepath to look for files in.
+ * @param {object} opts Options for finding config files.
+ * @param {string} opts.base - Base filepath to look for config files in.
+ * @param {array}  opts.ignorePackages - Array of packages to ignore when looking for files.
  */
-const requireConfigModules = (filepath, base) => {
+const requireConfigModules = (filepath, opts) => {
   // Get package configs.
-  const configs = resolvePackageConfigs(filepath, base);
+  const configs = resolvePackageConfigs(filepath, opts);
   const configModules = configs.map((configFilepath) => (
     maybeRequire(configFilepath)
   ));
@@ -24,7 +26,7 @@ const requireConfigModules = (filepath, base) => {
   }
 
   // add user config.
-  const userConfig = maybeRequire(path.join(base, filepath));
+  const userConfig = maybeRequire(path.join(opts.base, filepath));
   if (userConfig) {
     configModules.push(userConfig);
   }

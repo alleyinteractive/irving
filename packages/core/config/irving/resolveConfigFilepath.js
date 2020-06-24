@@ -10,7 +10,7 @@ const resolvePackageConfigs = require('./resolvePackageConfigs');
  */
 const resolveConfigFilepath = (configPath) => {
   // Get config paths.
-  const packageConfigPaths = resolvePackageConfigs(configPath, buildContext);
+  const packageConfigPaths = resolvePackageConfigs(configPath, { base: buildContext });
   const userConfigPath = path.join(buildContext, configPath);
   const configs = packageConfigPaths.concat(userConfigPath);
 

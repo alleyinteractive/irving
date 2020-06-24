@@ -10,12 +10,12 @@ describe('getValueFromFiles', () => {
   afterEach(mock.restore);
 
   it('should return only a user module if default is a single function', () => {
-    const configValue = getValueFromFiles('test-function.js', buildContext, () => {});
+    const configValue = getValueFromFiles('test-function.js', () => {}, { base: buildContext });
     expect(configValue.toString()).toEqual('() => { \'this is a test\' }');
   });
 
   it('should merge objects from user and package files', () => {
-    const configValue = getValueFromFiles('test.js', buildContext, {});
+    const configValue = getValueFromFiles('test.js', {}, { base: buildContext });
     expect(configValue).toEqual({
       field: 'test two',
       fieldTwo: 'another test',
