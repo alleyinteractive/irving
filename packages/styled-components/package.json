@@ -38,8 +38,7 @@
 		"stylelint-config-styled-components": "^0.1.1",
 		"stylelint-custom-processor-loader": "^0.6.0",
 		"stylelint-order": "^4.0.0",
-		"stylelint-processor-styled-components": "^1.10.0",
-		"theme-ui": "^0.3.1"
+		"stylelint-processor-styled-components": "^1.10.0"
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "^2.14.0",
