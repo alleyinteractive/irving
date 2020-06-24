@@ -1,5 +1,34 @@
-module.exports = function babelPresetIrving(context) {
-  console.log(context.getEnv());
+const getTarget = (caller) => (
+  (caller && 'babel-loader' === caller.name) ? caller.target : null
+);
+
+module.exports = function babelPresetIrving(api) {
+  const target = api.caller(getTarget);
+  let envConfig;
+
+  // Configure babel preset env based on webpack target.
+  switch (target) {
+    case 'web':
+      envConfig = {
+        targets: {
+          browsers: 'last 3 versions, IE 11',
+        },
+        corejs: {
+          version: 3,
+        },
+        useBuiltIns: 'usage',
+      };
+      break;
+
+    case 'node':
+    default:
+      envConfig = {
+        targets: {
+          node: '12',
+        },
+      };
+      break;
+  }
 
   return {
     sourceType: 'unambiguous',
@@ -14,15 +43,7 @@ module.exports = function babelPresetIrving(context) {
     presets: [
       [
         '@babel/env',
-        {
-          targets: {
-            browsers: 'last 3 versions, IE 11',
-          },
-          corejs: {
-            version: 3,
-          },
-          useBuiltIns: 'usage',
-        },
+        envConfig,
       ],
       '@babel/react',
     ],
