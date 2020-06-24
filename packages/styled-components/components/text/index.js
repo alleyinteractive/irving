@@ -20,6 +20,7 @@ import * as h6Styles from './themes/h6';
  */
 const Text = (props) => {
   const {
+    className,
     content,
     html,
     oembed,
@@ -39,6 +40,7 @@ const Text = (props) => {
         <EmbedContainer markup={content}>
           <TextWrapper
             as={tag}
+            className={className}
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(content, richText) }} // eslint-disable-line react/no-danger, max-len
             style={style}
           />
@@ -49,6 +51,7 @@ const Text = (props) => {
       return (
         <TextWrapper
           as={tag}
+          className={className}
           dangerouslySetInnerHTML={{ __html: sanitizeHtml(content, richText) }} // eslint-disable-line react/no-danger
           style={style}
         />
@@ -56,12 +59,19 @@ const Text = (props) => {
 
     default:
       return (
-        <TextWrapper as={tag} style={style}>{content}</TextWrapper>
+        <TextWrapper
+          as={tag}
+          className={className}
+          style={style}
+        >
+          {content}
+        </TextWrapper>
       );
   }
 };
 
 Text.defaultProps = {
+  className: '',
   content: '',
   html: false,
   oembed: false,
@@ -71,6 +81,10 @@ Text.defaultProps = {
 };
 
 Text.propTypes = {
+  /**
+   * Class name.
+   */
+  className: PropTypes.string,
   /**
    * Markup to render.
    */

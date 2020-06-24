@@ -42,7 +42,7 @@ const SocialSharing = (props) => {
     SocialSharingWrapper,
   } = theme;
 
-  const getEmailUrl = `mailto:${
+  const getEmailUrl = `mailto:?${
     queryString.stringify({
       subject: title,
       body: url,
