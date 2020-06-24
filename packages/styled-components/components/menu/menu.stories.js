@@ -4,7 +4,7 @@ import { PureMenu as Menu } from '.';
 
 export default {
   component: Menu,
-  title: 'Irving/Menu',
+  title: 'Styled Components|Menu',
 };
 
 const menuItems = [

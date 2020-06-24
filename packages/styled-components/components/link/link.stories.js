@@ -4,12 +4,11 @@ import { PureLink as Link } from '.';
 
 export default {
   component: Link,
-  title: 'Irving/Link',
+  title: 'Styled Components|Link',
 };
 
 /**
  * Base example.
- * @return {[type]} [description]
  */
 export const PlainTextExample = () => <Link href="#">Hello World</Link>;
 
