@@ -4,7 +4,7 @@ import { PurePagination as Pagination } from '.';
 
 export default {
   component: Pagination,
-  title: 'Irving/Pagination',
+  title: 'Styled Components|Pagination',
 };
 
 export const BasicEample = () => <Pagination totalPages={5} />;

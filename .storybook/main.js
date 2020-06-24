@@ -2,6 +2,7 @@ const webpack = require('webpack');
 
 module.exports = {
   stories: [
+    '../stories/**/*.stories.(js|mdx)',
     '../packages/styled-components/components/**/*.stories.(js|mdx)',
   ],
   addons: [

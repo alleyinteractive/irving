@@ -4,7 +4,7 @@ import { PureLogo as Logo } from '.';
 
 export default {
   component: Logo,
-  title: 'Irving/Logo',
+  title: 'Styled Components|Logo',
 };
 
 export const BasicEample = () => <Logo siteName="Example Site" />;
