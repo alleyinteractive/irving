@@ -33,8 +33,8 @@ export {
   Pagination,
   SearchForm,
   SocialSharing,
-  StyledCSSGrid
-  StyledCSSGridCell
+  StyledCSSGrid,
+  StyledCSSGridCell,
   Text,
 };
 
