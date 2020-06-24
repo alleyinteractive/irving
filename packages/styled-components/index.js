@@ -2,6 +2,7 @@ import App from 'components/app';
 import Byline from 'components/byline';
 import Container from 'components/container';
 import Fragment from 'components/fragment';
+import Image from 'components/image';
 import Link from 'components/link';
 import Logo from 'components/logo';
 import Menu from 'components/menu';
@@ -25,14 +26,15 @@ export {
   Byline,
   Container,
   Fragment,
+  Image,
   Link,
   Logo,
   Menu,
   Pagination,
   SearchForm,
   SocialSharing,
-  StyledCSSGrid
-  StyledCSSGridCell
+  StyledCSSGrid,
+  StyledCSSGridCell,
   Text,
 };
 
@@ -44,6 +46,7 @@ const ComponentMap = {
   'irving/footer-wrapper': Fragment,
   'irving/fragment': Fragment,
   'irving/header-wrapper': Fragment,
+  'irving/image': Image,
   'irving/link': Link,
   'irving/logo': Logo,
   'irving/menu': Menu,
