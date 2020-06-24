@@ -10,6 +10,13 @@ import SearchForm from 'components/searchForm';
 import SocialSharing from 'components/socialSharing';
 import Text from 'components/text';
 
+/**
+ * Include support for using the `hedron` flexbox grid package.
+ *
+ * @see https://github.com/garetmckinley/hedron
+ */
+import HedronGrid from 'hedron'
+
 export {
   App,
   Byline,
@@ -26,6 +33,9 @@ export {
 
 const ComponentMap = {
   '': Fragment,
+  'hedron/grid-bounds': HedronGrid.Bounds,
+  'hedron/grid-box': HedronGrid.Box,
+  'hedron/grid-provider': HedronGrid.Provider,
   'irving/body-wrapper': Fragment,
   'irving/byline': Byline,
   'irving/container': Container,
