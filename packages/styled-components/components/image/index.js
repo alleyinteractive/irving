@@ -12,11 +12,11 @@ import * as defaultStyles from './themes/default';
  * @type {Object}
  */
 const aspectRatioMapping = {
-  "1:1": 1,
-  "square": 1,
-  "4:3": 0.75,
-  "3:2": 0.6667,
-  "16:9": 0.5625,
+  '1:1': 1,
+  square: 1,
+  '4:3': 0.75,
+  '3:2': 0.6667,
+  '16:9': 0.5625,
 };
 
 /**
@@ -39,7 +39,9 @@ const Image = (props) => {
     fallbackSrc,
     loading,
     objectFit,
+    // eslint-disable-next-line no-unused-vars
     photonTransformations,
+    // eslint-disable-next-line no-unused-vars
     pictureSources,
     showMeta,
     src,
@@ -49,7 +51,7 @@ const Image = (props) => {
 
   const {
     FigureWrapper,
-    Image,
+    ImageTag,
     ImageCaption,
     ImageCredit,
     ImageMeta,
@@ -61,7 +63,10 @@ const Image = (props) => {
 
   // Allow using an aspect ratio mapping.
   let { aspectRatio } = props;
-  if ('string' === typeof aspectRatio && undefined !== aspectRatioMapping[aspectRatio]) {
+  if (
+    'string' === typeof aspectRatio &&
+    undefined !== aspectRatioMapping[aspectRatio]
+  ) {
     aspectRatio = aspectRatioMapping[aspectRatio];
   }
 
@@ -73,9 +78,10 @@ const Image = (props) => {
       style={style}
     >
       <ImageWrapper aspectRatio={aspectRatio}>
-        <Image
+        <ImageTag
           alt={alt}
           aspectRatio={aspectRatio}
+          loading={loading}
           objectFit={objectFit}
           src={src || fallbackSrc}
         />
@@ -94,7 +100,7 @@ const Image = (props) => {
           )}
         </ImageMeta>
       )}
-      {!!children.length && children}
+      {0 !== children.length && children}
     </FigureWrapper>
   );
 };
@@ -135,7 +141,7 @@ Image.propTypes = {
     PropTypes.bool,
     PropTypes.string,
     PropTypes.oneOf(aspectRatioMapping),
-  ]).isRequired,
+  ]),
   /**
    * Caption.
    */

@@ -21,6 +21,8 @@ import {
   Cell as StyledCSSGridCell,
 } from 'styled-css-grid';
 
+import SiteThemeProvider from '../styled/components/site-theme-provider';
+
 export {
   App,
   Byline,
@@ -39,6 +41,7 @@ export {
 };
 
 const ComponentMap = {
+  'irving/site-theme': SiteThemeProvider,
   '': Fragment,
   'irving/body-wrapper': Fragment,
   'irving/byline': Byline,

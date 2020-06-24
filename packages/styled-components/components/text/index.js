@@ -1,4 +1,5 @@
 import React from 'react';
+// import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
 import EmbedContainer from 'react-oembed-container';
@@ -14,6 +15,9 @@ import * as h3Styles from './themes/h3';
 import * as h4Styles from './themes/h4';
 import * as h5Styles from './themes/h5';
 import * as h6Styles from './themes/h6';
+// import {
+//   SiteThemeContext,
+// } from '../../../styled/components/site-theme-provider';
 
 /**
  * Output text.
@@ -30,6 +34,12 @@ const Text = (props) => {
   } = props;
 
   const { TextWrapper } = theme;
+
+  // const {
+  //   theme: SiteTheme,
+  // } = useContext(SiteThemeContext);
+
+  // console.log(SiteTheme.colors.primary);
 
   switch (true) {
     case ! content.length:

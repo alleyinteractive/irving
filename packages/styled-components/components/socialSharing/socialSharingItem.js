@@ -42,7 +42,7 @@ const SocialSharingItem = (props) => {
     url,
   } = props;
 
-  const IconComponent = (undefined !== socialIconMap[platform] ) ?
+  const IconComponent = (undefined !== socialIconMap[platform]) ?
     socialIconMap[platform] :
     null;
 

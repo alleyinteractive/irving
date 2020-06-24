@@ -5,5 +5,9 @@ import styled from 'styled-components';
 export const TextWrapper = styled.div`
   font-size: 2.25rem;
   margin-bottom: 1rem;
+  ${(props) => {
+    console.log('propsyo', props);
+    return 'yeah';
+  }}
 `;
 // eslint-enable.
