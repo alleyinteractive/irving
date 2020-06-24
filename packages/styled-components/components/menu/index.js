@@ -14,6 +14,7 @@ const Menu = (props) => {
     displayName,
     menuName,
     location,
+    style,
     theme = defaultStyles,
   } = props;
 
@@ -24,7 +25,7 @@ const Menu = (props) => {
   } = theme;
 
   return (
-    <Wrapper data-location={location}>
+    <Wrapper data-location={location} style={style}>
       {(displayName && menuName) && (
         <NameWrapper>
           {menuName}
@@ -48,6 +49,7 @@ Menu.defaultProps = {
   displayName: false,
   location: '',
   menuName: '',
+  style: {},
   theme: defaultStyles,
 };
 
@@ -68,6 +70,13 @@ Menu.propTypes = {
    * Menu name.
    */
   menuName: PropTypes.string,
+  /**
+   * CSS styles.
+   */
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Theme (styles) to apply to the component.
    */

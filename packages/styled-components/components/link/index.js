@@ -88,7 +88,10 @@ Link.propTypes = {
   /**
    * CSS styles.
    */
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Anchor target.
    */
