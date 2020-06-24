@@ -30,11 +30,17 @@ const Container = (props) => {
 
   const { ContainerWrapper } = theme;
 
+  if (0 === children.length) {
+    return false;
+  }
+
   // Setup a max-width style.
-  if ('string' === typeof maxWidth) {
-    style.maxWidth = `${widths[maxWidth]}px`;
+  if ('string' === typeof maxWidth && undefined !== widths[maxWidth]) {
+    style.maxWidth = `${widths[maxWidth]}px`; // Use one of our predefined sizes.
+  } else if ('string' === typeof maxWidth ) {
+    style.maxWidth = maxWidth; // Use the string value 1:1.
   } else if ('number' === typeof maxWidth) {
-    style.maxWidth = `${maxWidth}px`;
+    style.maxWidth = `${maxWidth}px`; // Use the interger value as pixels.
   }
 
   // Setup a background image.
@@ -79,7 +85,10 @@ Container.propTypes = {
   /**
    * CSS styles.
    */
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Tag used to render.
    */
