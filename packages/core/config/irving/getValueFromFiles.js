@@ -1,5 +1,6 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const memoize = require('lodash/memoize');
+const { appRoot } = require('./config/paths');
 const { getConfigValue } = require('./getConfigValue');
 const requireConfigModules = require('./requireConfigModules');
 
@@ -12,9 +13,16 @@ const requireConfigModules = require('./requireConfigModules');
  */
 const getValueFromFiles = (
   filepath,
-  base,
-  defaultValue
+  defaultValue,
+  opts = {}
 ) => {
+  const {
+    base = appRoot,
+    ignorePackages = [
+      '@irvingjs/core',
+      '@irvingjs/babel-preset-irving',
+    ],
+  } = opts;
   const isSingleFunction = 'function' === typeof defaultValue;
   const configs = requireConfigModules(filepath, base, isSingleFunction);
 

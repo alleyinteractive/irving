@@ -1,6 +1,19 @@
 /* eslint-disable global-require */
 const defaultService = require('./defaultService')();
 let service;
+let getClient;
+
+if (process.env.IRVING_EXECUTION_CONTEXT) {
+  getClient = require('@irvingjs/services/cacheClient'); // this is an alias.
+} else {
+  const getValueFromFiles = require('../../config/irving/getValueFromFiles');
+  const coreCacheClient = require('./cacheClient');
+
+  getClient = getValueFromFiles(
+    'services/cacheClient',
+    coreCacheClient
+  );
+}
 
 /**
  * @typedef {object} CacheService
@@ -16,10 +29,10 @@ const getService = () => {
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
   if (
+    ! process.env.IRVING_EXECUTION_CONTEXT ||
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {
-    const getClient = require('@irvingjs/services/cacheClient'); // this is an alias.
     const cacheClient = getClient();
     let Stampede;
 

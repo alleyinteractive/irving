@@ -25,6 +25,7 @@ const getService = () => {
 
   // newrelic cannot be imported in a browser environment.
   if (
+    ! process.env.IRVING_EXECUTION_CONTEXT ||
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {

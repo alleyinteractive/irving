@@ -19,6 +19,7 @@ const getService = (namespace) => {
 
   /* eslint-disable global-require */
   if (
+    ! process.env.IRVING_EXECUTION_CONTEXT ||
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {

@@ -19,7 +19,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
-const { appRoot } = require('../config/paths');
 const proxyPassthrough = require('../config/proxyPassthrough');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const purgeCache = require('./purgeCache');
@@ -43,7 +42,6 @@ app.set('view engine', 'ejs');
 // Run all customize server functions.
 const irvingServerMiddleware = getValueFromFiles(
   'server/customizeServer.js',
-  appRoot,
   []
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
@@ -89,7 +87,6 @@ app.use((err, req, res, next) => {
 // Run all export server functions.
 const serverExportMiddleware = getValueFromFiles(
   'server/exportServer.js',
-  appRoot,
   []
 );
 

@@ -15,6 +15,7 @@ module.exports = () => {
       dependencies: {
         '@irvingjs/test-package': '0.0.0',
         '@irvingjs/test-package-two': '0.0.0',
+        '@irvingjs/test-package-three': '0.0.0',
       },
     }),
     [path.join(testPackage, 'test.js')]: JSON.stringify({ field: 'test' }),

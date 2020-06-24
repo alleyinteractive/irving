@@ -21,7 +21,6 @@ import getComponent from 'config/componentMap';
 import getTemplateVars from './getTemplateVars';
 
 const monitor = getMonitorService();
-console.log(monitor);
 const logError = getLogService('irving:render:error');
 const logRequest = getLogService('irving:render:request');
 

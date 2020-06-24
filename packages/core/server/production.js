@@ -7,7 +7,6 @@ const {
 const path = require('path');
 const express = require('express');
 const createCheckAuth = require('./auth');
-const { appRoot } = require('../config/paths');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
 
 // App must be built using the build command before production mode can be run.
@@ -26,7 +25,6 @@ const productionMiddleware = async (app) => {
   // Allow customization of production server
   const irvingProdMiddleware = getValueFromFiles(
     'server/customizeProdServer.js',
-    appRoot,
     []
   );
   irvingProdMiddleware.forEach((middleware) => middleware(app));

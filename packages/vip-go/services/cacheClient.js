@@ -12,6 +12,7 @@ const getClient = () => {
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
   if (
+    ! process.env.IRVING_EXECUTION_CONTEXT ||
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {
@@ -19,8 +20,6 @@ const getClient = () => {
     const client = redis({
       logger: logger('irving:redis'),
     });
-
-    console.log('vip-goooooo');
 
     if (! client) {
       return null;

@@ -1,6 +1,6 @@
 const path = require('path');
 const { buildContext } = require('../paths');
-const { maybeResolve } = require('../../utils/nodeRequire');
+const { maybeResolve } = require('../../utils/userModule');
 const resolvePackageConfigs = require('./resolvePackageConfigs');
 /**
  * Resolve a filepath for a single config file.

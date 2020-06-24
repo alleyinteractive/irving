@@ -47,8 +47,8 @@ module.exports = (api) => {
   // Only allow user to modify app config, not test.
   const processedConfig = getValueFromFiles(
     'config/babel.config.js',
-    buildContext,
-    appConfig
+    appConfig,
+    { base: buildContext }
   );
 
   return {

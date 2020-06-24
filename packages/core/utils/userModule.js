@@ -45,7 +45,37 @@ const maybeResolveUserModule = (userPath, corePath) => {
   return path.resolve(appIrvingRoot, defaultPath);
 };
 
+/**
+ * Resolve the path to a file from specified base path.
+ *
+ * @param {string} requirePath Path to file we're looking for.
+ */
+const maybeResolve = (requirePath) => {
+  const parts = path.parse(requirePath);
+  const initialPath = ! parts.ext ? `${requirePath}.js` : requirePath;
+  const indexPath = path.join(requirePath, 'index.js');
+
+  // If file exists in build context, assume the same file exists in the appRoot.
+  // This will support app finding appropriate file if build happens in a different place than app execution.
+  if (fs.existsSync(initialPath)) {
+    return initialPath;
+  }
+
+  // Don't look for an index.js file if we already have an extension.
+  if (parts.ext) {
+    return null;
+  }
+
+  // Look for an index.js file also.
+  if (fs.existsSync(indexPath)) {
+    return indexPath;
+  }
+
+  return null;
+};
+
 module.exports = {
+  maybeResolve,
   maybeResolveUserModule,
   maybeResolveBuildModule,
 };

@@ -22,6 +22,7 @@ const getClient = () => {
   // within a browser context, so that webpack can ignore this execution path
   // while compiling.
   if (
+    ! process.env.IRVING_EXECUTION_CONTEXT ||
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {
@@ -32,7 +33,7 @@ const getClient = () => {
       // eslint-disable-next-line global-require
       Redis = require('ioredis');
     } catch (err) {
-      return null;
+      return client;
     }
 
     client = new Redis({

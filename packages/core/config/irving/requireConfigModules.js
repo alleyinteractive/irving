@@ -29,7 +29,7 @@ const requireConfigModules = (filepath, base) => {
     configModules.push(userConfig);
   }
 
-  return configModules;
+  return configModules.filter((module) => module);
 };
 
 module.exports = requireConfigModules;

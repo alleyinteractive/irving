@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { appRoot, buildContext } = require('./paths');
+const { appRoot } = require('./paths');
 const { getValueFromFiles } = require('./irving/getValueFromFiles');
 
 /**
@@ -21,7 +21,6 @@ module.exports = function getEnv() {
   // sensitive information.
   const allowlistArray = getValueFromFiles(
     'config/envAllowlist.js',
-    buildContext,
     [
       'NODE_ENV',
       'API_ROOT_URL',

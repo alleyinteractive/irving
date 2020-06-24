@@ -13,6 +13,7 @@ describe('resolvePackageConfigs', () => {
     expect(modules).toEqual([
       '/Users/owenstowe/broadway/www/irving/packages/core/node_modules/@irvingjs/test-package/test.js',
       '/Users/owenstowe/broadway/www/irving/packages/core/node_modules/@irvingjs/test-package-two/test.js',
+      '/Users/owenstowe/broadway/www/irving/packages/core/node_modules/@irvingjs/test-package-three/test.js',
     ]);
   });
 });

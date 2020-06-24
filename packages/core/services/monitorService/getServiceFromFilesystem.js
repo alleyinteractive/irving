@@ -1,5 +1,4 @@
 const getValueFromFiles = require('../../config/irving/getValueFromFiles');
-const { appRoot } = require('../../config/paths');
 const coreMonitorService = require('.');
 const getDefaultService = require('./defaultService');
 
@@ -9,7 +8,6 @@ const getDefaultService = require('./defaultService');
 const getService = () => {
   const service = getValueFromFiles(
     'services/monitorService',
-    appRoot,
     coreMonitorService
   )();
 

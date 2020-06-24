@@ -1,5 +1,5 @@
-const path = require('path');
 const fs = require('fs');
+const { maybeResolve } = require('../userModule');
 
 /**
  * Resolve the path to a config file.
@@ -7,8 +7,8 @@ const fs = require('fs');
  * @param {string} filepath Path to config file we're looking for.
  * @param {string} base Base filepath to look for files in.
  */
-const maybeRequire = (filepath, base) => {
-  const resolvedPath = path.resolve(base, filepath);
+const maybeRequire = (filepath) => {
+  const resolvedPath = maybeResolve(filepath);
 
   if (! fs.existsSync(resolvedPath)) {
     return null;
@@ -22,5 +22,6 @@ const maybeRequire = (filepath, base) => {
 };
 
 module.exports = {
+  maybeResolve,
   maybeRequire,
 };

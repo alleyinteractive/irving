@@ -1,13 +1,11 @@
 const expressNakedRedirect = require('express-naked-redirect');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
-const { buildContext } = require('../config/paths');
 const {
   NODE_ENV,
   ROOT_URL,
 } = process.env;
 const config = getValueFromFiles(
   'server/customizeRedirect.js',
-  buildContext,
   {}
 );
 
