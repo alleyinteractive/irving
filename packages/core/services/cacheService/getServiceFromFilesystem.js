@@ -8,7 +8,7 @@ const defaultCacheService = require('./defaultService');
  */
 const getService = () => {
   const service = getValueFromFiles(
-    'services/cacheService.js',
+    'services/cacheService',
     appRoot,
     coreCacheService
   )();

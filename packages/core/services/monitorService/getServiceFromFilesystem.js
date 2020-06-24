@@ -8,7 +8,7 @@ const defaultMonitorService = require('./defaultService');
  */
 const getService = () => {
   const service = getValueFromFiles(
-    'services/monitorService.js',
+    'services/monitorService',
     appRoot,
     coreMonitorService
   )();

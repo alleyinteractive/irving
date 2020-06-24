@@ -9,7 +9,7 @@ if (
 ) {
   userConfig = require('@irvingjs/irving.config').default || {};
 } else {
-  const { buildContext } = require('./paths');
+  const { buildContext } = require('../paths');
   const path = require('path');
   const fs = require('fs');
   const configPath = path.resolve(buildContext, 'irving.config.js');

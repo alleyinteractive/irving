@@ -1,5 +1,5 @@
 const path = require('path');
-const { maybeRequire } = require('../utils/nodeRequire');
+const { maybeRequire } = require('../../utils/nodeRequire');
 const resolvePackageConfigs = require('./resolvePackageConfigs');
 
 /**

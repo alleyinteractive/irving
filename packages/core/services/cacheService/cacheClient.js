@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 const getRedisOptions = require('./getRedisOptions');
-let client = null;
+let client = require('./defaultClient');
 
 const getClient = () => {
   if (client) {

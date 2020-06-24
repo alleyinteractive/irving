@@ -1,7 +1,7 @@
 import mock from 'mock-fs';
-import { buildContext } from './paths';
+import { buildContext } from '../paths';
 import resolvePackageConfigs from './resolvePackageConfigs';
-import createMock from '../__mocks__/fsConfig';
+import createMock from '../../__mocks__/fsConfig';
 
 describe('resolvePackageConfigs', () => {
   beforeEach(createMock);

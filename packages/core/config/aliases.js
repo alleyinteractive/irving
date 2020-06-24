@@ -1,11 +1,9 @@
 const path = require('path');
 const { maybeResolveBuildModule } = require('../utils/userModule');
-const getConfigFileAliases = require('./getConfigFileAliases');
 const { buildContext } = require('./paths');
 
 // App aliases, exported in case we need them elsewhere.
 module.exports = {
-  ...getConfigFileAliases(),
   '@components': '@irvingjs/core/components',
   actions: './actions',
   assets: './assets',

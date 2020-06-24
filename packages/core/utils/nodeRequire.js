@@ -1,5 +1,6 @@
 /* eslint-disable import/no-dynamic-require, global-require */
 const fs = require('fs');
+const path = require('path');
 /**
  * IMPORTANT NOTE: THIS FILE IS NOT PROCESSED BY WEBPACK OR BABEL, PROCEED WITH CAUTION.
  */
@@ -24,6 +25,17 @@ const maybeRequire = (requirePath) => {
   // This will support app finding appropriate file if build happens in a different place than app execution.
   if (fs.existsSync(requirePath)) {
     return nodeRequire(requirePath);
+  }
+
+  // Don't look for an index.js file if we already have an extension.
+  if (requirePath.includes('.js')) {
+    return null;
+  }
+
+  // Look for an index.js file also.
+  const indexPath = path.join(requirePath, 'index.js');
+  if (fs.existsSync(indexPath)) {
+    return nodeRequire(indexPath);
   }
 
   return null;

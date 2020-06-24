@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const { buildContext } = require('./paths');
+const { buildContext } = require('../paths');
 const packagejson = path.join(buildContext, 'package.json');
 const ignorePackages = [
   '@irvingjs/core',

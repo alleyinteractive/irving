@@ -1,9 +1,9 @@
 import mock from 'mock-fs';
-import { buildContext } from './paths';
+import { buildContext } from '../paths';
 import requireConfigModules from './requireConfigModules';
-import createMock from '../__mocks__/fsConfig';
+import createMock from '../../__mocks__/fsConfig';
 
-jest.mock('../utils/nodeRequire.js');
+jest.mock('../../utils/nodeRequire.js');
 
 describe('requireConfigModules', () => {
   beforeEach(createMock);
