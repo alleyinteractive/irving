@@ -1,4 +1,5 @@
 /* eslint-disable global-require */
+const defaultService = require('./defaultService')();
 let service;
 
 /**
@@ -23,7 +24,7 @@ const getService = () => {
     let Stampede;
 
     if (! cacheClient) {
-      return null;
+      return defaultService;
     }
 
     // Check if optional cache-stampede is installed.
@@ -31,7 +32,7 @@ const getService = () => {
       // eslint-disable-next-line global-require
       Stampede = require('cache-stampede/stampede');
     } catch (err) {
-      return null;
+      return defaultService;
     }
 
     const get = async (key) => JSON.parse(await cacheClient.get(key));
@@ -90,7 +91,7 @@ const getService = () => {
     return service;
   }
 
-  return null;
+  return defaultService;
 };
 
 module.exports = getService;
