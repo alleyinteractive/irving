@@ -17,8 +17,6 @@ const widths = {
  * @todo Is there a better way to handle the maxWidth and background image
  *       functionality? We want this functionality to be independent from
  *       themes.
- * @todo If children is empty, should we render anything? Do we want a
- *       container with no children? Or would it be useful to hide it?
  */
 const Container = (props) => {
   const {
@@ -31,6 +29,10 @@ const Container = (props) => {
   } = props;
 
   const { ContainerWrapper } = theme;
+
+  if (0 === children.length) {
+    return false;
+  }
 
   // Setup a max-width style.
   if ('string' === typeof maxWidth && undefined !== widths[maxWidth]) {
