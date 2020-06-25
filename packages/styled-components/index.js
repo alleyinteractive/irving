@@ -8,6 +8,7 @@ import Logo from 'components/logo';
 import Menu from 'components/menu';
 import Pagination from 'components/pagination';
 import SearchForm from 'components/searchForm';
+import SiteThemeProvider from 'components/siteThemeProvider';
 import SocialSharing from 'components/socialSharing';
 import Text from 'components/text';
 
@@ -21,8 +22,6 @@ import {
   Cell as StyledCSSGridCell,
 } from 'styled-css-grid';
 
-import SiteThemeProvider from '../styled/components/site-theme-provider';
-
 export {
   App,
   Byline,
@@ -34,6 +33,7 @@ export {
   Menu,
   Pagination,
   SearchForm,
+  SiteThemeProvider,
   SocialSharing,
   StyledCSSGrid,
   StyledCSSGridCell,
@@ -41,7 +41,6 @@ export {
 };
 
 const ComponentMap = {
-  'irving/site-theme': SiteThemeProvider,
   '': Fragment,
   'irving/body-wrapper': Fragment,
   'irving/byline': Byline,
@@ -55,6 +54,7 @@ const ComponentMap = {
   'irving/menu': Menu,
   'irving/pagination': Pagination,
   'irving/search-form': SearchForm,
+  'irving/site-theme': SiteThemeProvider,
   'irving/social-sharing': SocialSharing,
   'irving/text': Text,
   'styled-css-grid/cell': StyledCSSGridCell,

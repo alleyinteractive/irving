@@ -8,11 +8,11 @@ import { ThemeProvider } from 'styled-components';
 const SiteThemeProvider = (props) => {
   const {
     children,
-    themeTest,
+    theme,
   } = props;
 
   return (
-    <ThemeProvider theme={themeTest}>
+    <ThemeProvider theme={theme}>
       {children}
     </ThemeProvider>
   );
@@ -20,7 +20,7 @@ const SiteThemeProvider = (props) => {
 
 SiteThemeProvider.defaultProps = {
   children: [],
-  themeTest: {},
+  theme: {},
 };
 
 SiteThemeProvider.propTypes = {
@@ -31,7 +31,7 @@ SiteThemeProvider.propTypes = {
   /**
    * Site theme.
    */
-  themeTest: PropTypes.object,
+  theme: PropTypes.object,
 };
 
 export default SiteThemeProvider;
