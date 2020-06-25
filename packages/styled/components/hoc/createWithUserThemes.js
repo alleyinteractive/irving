@@ -4,6 +4,7 @@ const createWithUserThemes = (
   WrappedComponent,
   defaultThemeMap = {}
 ) => (themeMap) => {
+
   // Merge user theme map with defaults.
   const mergedThemeMap = {
     default: defaultThemeMap,

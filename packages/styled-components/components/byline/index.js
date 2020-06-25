@@ -66,7 +66,7 @@ const Byline = (props) => {
               if (index < (children.length - 2)) {
                 return (
                   <>
-                    <AuthorWrapper key={index}>{child}</AuthorWrapper>
+                    <AuthorWrapper>{child}</AuthorWrapper>
                     {multiDelimiter}
                   </>
                 );
@@ -76,7 +76,7 @@ const Byline = (props) => {
               if (index < (children.length - 1)) {
                 return (
                   <>
-                    <AuthorWrapper key={index}>{child}</AuthorWrapper>
+                    <AuthorWrapper>{child}</AuthorWrapper>
                     {lastDelimiter}
                   </>
                 );
@@ -84,7 +84,7 @@ const Byline = (props) => {
 
               // Last author.
               return (
-                <AuthorWrapper key={index}>{child}</AuthorWrapper>
+                <AuthorWrapper>{child}</AuthorWrapper>
               );
             })}
           </AuthorsWrapper>
