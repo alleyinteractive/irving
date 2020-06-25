@@ -120,7 +120,7 @@ Image.defaultProps = {
   pictureSources: [],
   showMeta: true,
   src: '',
-  style: [],
+  style: {},
   theme: defaultStyles,
 };
 
@@ -140,7 +140,7 @@ Image.propTypes = {
     PropTypes.number,
     PropTypes.bool,
     PropTypes.string,
-    PropTypes.oneOf(aspectRatioMapping),
+    PropTypes.oneOf(Object.keys(aspectRatioMapping)),
   ]),
   /**
    * Caption.
@@ -191,7 +191,10 @@ Image.propTypes = {
   /**
    * CSS styles.
    */
-  style: PropTypes.array,
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Theme (styles) to apply to the component.
    */

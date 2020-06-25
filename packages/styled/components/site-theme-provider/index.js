@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
+/**
+ * Site theme context provider.
+ */
 const SiteThemeProvider = (props) => {
   const {
     children,
-    theme,
+    themeTest,
   } = props;
 
-  console.log('This is my cool theme', theme);
-
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeTest}>
       {children}
     </ThemeProvider>
   );
@@ -19,7 +20,7 @@ const SiteThemeProvider = (props) => {
 
 SiteThemeProvider.defaultProps = {
   children: [],
-  theme: {},
+  themeTest: {},
 };
 
 SiteThemeProvider.propTypes = {
@@ -30,7 +31,7 @@ SiteThemeProvider.propTypes = {
   /**
    * Site theme.
    */
-  theme: PropTypes.object,
+  themeTest: PropTypes.object,
 };
 
 export default SiteThemeProvider;

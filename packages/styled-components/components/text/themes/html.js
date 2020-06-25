@@ -1,5 +1,6 @@
 /* eslint max-len: 0 */
 import styled from 'styled-components';
+import get from 'lodash/get';
 
 const htmlVars = {
   '--nc-font-sans': '\'Inter\',-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -64,8 +65,8 @@ export const TextWrapper = styled.div`
   }
 
   p {
-    color: ${htmlVars['--nc-tx-2']};
-    font-family: ${htmlVars['--nc-font-sans']};
+    color: ${(props) => get(props, 'theme.colors.text.primary')};
+    font-family: ${(props) => get(props, 'theme.fonts.body.variant1')};
     font-size: 1.2rem;
     line-height: 1.4;
   }
