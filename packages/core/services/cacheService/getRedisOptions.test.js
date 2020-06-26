@@ -29,11 +29,10 @@ describe('cacheService', () => {
     expect(port).toBe('6379');
   });
 
-  it('should match host with redis protocol', () => {
+  it('should return a host with a redis protocol as-is for use in ioredis', () => {
     process.env.REDIS_MASTER = 'redis://h:pf11eaf6aa741db6178b99@ec2-3-211.compute-1.amazonaws.com:11839'; // This is not a real redis host.
-    const [host, port] = getRedisOptions();
+    const [host] = getRedisOptions();
 
-    expect(host).toBe('redis://h:pf11eaf6aa741db6178b99@ec2-3-211.compute-1.amazonaws.com');
-    expect(port).toBe('11839');
+    expect(host).toBe('redis://h:pf11eaf6aa741db6178b99@ec2-3-211.compute-1.amazonaws.com:11839');
   });
 });
