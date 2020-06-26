@@ -45,7 +45,6 @@ Spinner.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-
 const wrapWithThemes = withThemes('Spinner', { default: styles });
 export const themeSpinner = createWithUserThemes(Spinner, styles);
 
