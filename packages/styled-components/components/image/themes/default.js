@@ -45,7 +45,7 @@ export const ImageWrapper = styled.span
   position: ${(props) => (props.aspectRatio ? 'relative' : 'static')};
 `;
 
-export const Image = styled.img`
+export const ImageTag = styled.img`
   display: block;
   max-width: 100%;
   object-fit: ${(props) => props.objectFit};
