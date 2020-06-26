@@ -18,7 +18,7 @@ export const SupportedPlatforms = [
   'pinterest',
   'reddit',
   'twitter',
-  'whatsapp'
+  'whatsapp',
 ];
 
 /**
@@ -58,7 +58,7 @@ const SocialSharing = (props) => {
   const getLinkedInUrl = `https://www.linkedin.com/shareArticle/?${
     queryString.stringify({
       url,
-      title: title,
+      title,
       summary: description,
     })
   }`;
@@ -73,7 +73,7 @@ const SocialSharing = (props) => {
 
   const getRedditUrl = `http://www.reddit.com/submit/?${
     queryString.stringify({
-      title: title,
+      title,
       url,
     })
   }`;
@@ -128,7 +128,7 @@ const SocialSharing = (props) => {
 SocialSharing.defaultProps = {
   description: '',
   imageUrl: '',
-  platforms: ["email", "facebook", "twitter"],
+  platforms: ['email', 'facebook', 'twitter'],
   style: {},
   theme: defaultStyles,
   title: '',
