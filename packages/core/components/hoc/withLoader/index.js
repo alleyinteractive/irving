@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getDisplayName from 'utils/getDisplayName';
@@ -15,20 +16,43 @@ import styles from './styles.css';
 
 const withLoader = (WrappedComponent, opts = {}) => {
   const {
+    transition = {
+      enabled: false,
+      type: 'fade',
+    },
     loadingProps = {},
     LoadingComponent = DefaultLoading,
   } = opts;
-
+  // const poop = true;
   const Loader = (props) => {
     const { loading } = props;
     return (
-      <SwitchTransition>
-        <CSSTransition
-          key={loading ? 'loading' : 'loaded'}
-          in={loading}
-          appear
-          exit
-        >
+      <>
+        {transition.enabled ? (
+          <SwitchTransition>
+            <CSSTransition
+              classNames={transition.type}
+              key={loading ? 'loading' : 'loaded'}
+              in={loading}
+              enter
+              appear
+              exit
+            >
+              <div className={classNames(
+                styles.wrapper,
+                styles.transition,
+                styles[transition.type]
+              )}
+              >
+                {loading ? (
+                  <LoadingComponent {...loadingProps} />
+                ) : (
+                  <WrappedComponent {...props} />
+                )}
+              </div>
+            </CSSTransition>
+          </SwitchTransition>
+        ) : (
           <div className={styles.wrapper}>
             {loading ? (
               <LoadingComponent {...loadingProps} />
@@ -36,8 +60,8 @@ const withLoader = (WrappedComponent, opts = {}) => {
               <WrappedComponent {...props} />
             )}
           </div>
-        </CSSTransition>
-      </SwitchTransition>
+        )}
+      </>
     );
   };
 
