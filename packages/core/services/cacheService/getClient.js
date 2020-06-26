@@ -45,20 +45,20 @@ const getClient = () => {
       return null;
     }
 
+    const opts = {
+      retryStrategy,
+      enableOfflineQueue: true,
+      maxRetriesPerRequest: process.env.QUEUED_CONNECTION_ATTEMPTS,
+    };
+
     if (isRedisUrl(host)) {
-      client = new Redis(host, {
-        retryStrategy,
-        enableOfflineQueue: true,
-        maxRetriesPerRequest: process.env.QUEUED_CONNECTION_ATTEMPTS,
-      });
+      client = new Redis(host, opts);
     } else {
       client = new Redis({
         host,
         port,
         password,
-        retryStrategy,
-        enableOfflineQueue: true,
-        maxRetriesPerRequest: process.env.QUEUED_CONNECTION_ATTEMPTS,
+        ...opts,
       });
     }
 
