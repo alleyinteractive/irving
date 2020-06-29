@@ -13,6 +13,11 @@ import {
 import Link from '../link';
 import * as defaultStyles from './themes/default';
 
+/**
+ * Icons for supported platforms.
+ *
+ * @type {Array}
+ */
 const socialIconMap = {
   email: Email,
   facebook: Facebook,
@@ -23,13 +28,23 @@ const socialIconMap = {
   whatsapp: WhatsApp,
 };
 
+/**
+ * A single social sharing item.
+ *
+ * @todo Refactor into a single component file if possible.
+ * @todo Update how Icons are used once we have a better solution. Material UI
+ *       dependency is temporary.
+ */
 const SocialSharingItem = (props) => {
   const {
     platform,
     theme,
     url,
   } = props;
-  const IconComponent = socialIconMap[platform];
+
+  const IconComponent = (undefined !== socialIconMap[platform]) ?
+    socialIconMap[platform] :
+    null;
 
   const {
     IconWrapper,
@@ -42,9 +57,7 @@ const SocialSharingItem = (props) => {
         href={url}
       >
         <IconWrapper>
-          <IconComponent
-            title={platform}
-          />
+          <IconComponent title={platform} />
         </IconWrapper>
       </Link>
     </SocialSharingItemWrapper>

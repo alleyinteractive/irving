@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.18.0...v2.18.1) (2020-06-26)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [2.18.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.17.0...v2.18.0) (2020-06-26)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [2.17.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.16.0...v2.17.0) (2020-06-24)
+
+
+### Bug Fixes
+
+* **styled-components:** remove refs that error out with local deps in a new theme ([8d564cc](https://github.com/alleyinteractive/irving/packages/styled/commit/8d564cc1ab70eeedb15fe1a29413aff7d9a385ed))
+
+
+
+
+
 # [2.14.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.14.0-beta.1...v2.14.0) (2020-06-15)
 
 **Note:** Version bump only for package @irvingjs/styled

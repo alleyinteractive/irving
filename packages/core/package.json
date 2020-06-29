@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "2.14.0",
+  "version": "2.18.1",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -101,7 +101,6 @@
     "sanitize-html": "^1.23.0",
     "source-map-support": "^0.5.19",
     "style-loader": "^0.21.0",
-    "styled-components": "^5.1.1",
     "svg-react-loader": "^0.4.6",
     "terser-webpack-plugin": "^3.0.3",
     "universal-cookie": "^4.0.3",

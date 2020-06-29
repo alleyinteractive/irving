@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v2.18.0...v2.18.1) (2020-06-26)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
+# [2.18.0](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v2.17.0...v2.18.0) (2020-06-26)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
+# [2.17.0](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v2.16.0...v2.17.0) (2020-06-24)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
 # [2.14.0](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v2.14.0-beta.1...v2.14.0) (2020-06-15)
 
 **Note:** Version bump only for package @irvingjs/wp-admin-bar

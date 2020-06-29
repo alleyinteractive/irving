@@ -23,14 +23,28 @@
     "bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
     "link": "lerna exec --parallel -- npm link",
     "test": "BABEL_ENV=test lerna run test --parallel",
-    "test:watch": "BABEL_ENV=test lerna run test:watch --parallel"
+    "test:watch": "BABEL_ENV=test lerna run test:watch --parallel",
+    "storybook": "WEBPACK_BUILD=true start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "surge storybook-static --domain storybook.irvingjs.com",
+    "release-storybook": "npm run build-storybook && npm run deploy-storybook"
   },
   "dependencies": {
+    "@irvingjs/babel-preset-irving": "^2.14.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-docs": "^5.3.18",
+    "@storybook/addon-info": "^5.3.19",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
     "babel-jest": "^25.5.1",
+    "babel-loader": "^8.1.0",
     "commitizen": "^4.0.5",
     "cz-conventional-changelog": "^3.1.0",
     "dotenv-cli": "^3.1.0",
@@ -40,7 +54,8 @@
     "jest": "^25.5.3",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
-    "lerna": "^3.20.2"
+    "lerna": "^3.20.2",
+    "surge": "^0.21.3"
   },
   "engines": {
     "node": "12",
