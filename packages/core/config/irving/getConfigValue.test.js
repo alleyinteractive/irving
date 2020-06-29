@@ -53,4 +53,25 @@ describe('getConfigValue', () => {
       })
     }
   );
+
+  it(
+    'should concat together an array of function if initial value is an array with a function as its first element',
+    () => {
+      const configs = [
+        (config) => { return {...config, foo: 'bar' }},
+        (config) => { return {...config, bing: 'bong' }},
+      ];
+      const merged = getConfigValue(configs, [() => ({ test: 'test' })]);
+      const result = merged.reduce(
+        (acc, func) => ({ ...acc, ...func(acc) }),
+        {}
+      );
+
+      expect(result).toEqual({
+        test: 'test',
+        foo: 'bar',
+        bing: 'bong',
+      })
+    }
+  );
 });
