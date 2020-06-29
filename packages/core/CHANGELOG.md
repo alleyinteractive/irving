@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.18.0...v2.18.1) (2020-06-26)
+
+
+### Bug Fixes
+
+* **cache:** update cache service to properly support URLs using the redis:// protocol ([2759571](https://github.com/alleyinteractive/irving/packages/core/commit/275957111470c1e256070ffaa5719a047d5a78fe))
+
+
+
+
+
 # [2.18.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.17.0...v2.18.0) (2020-06-26)
 
 **Note:** Version bump only for package @irvingjs/core

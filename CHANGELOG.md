@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/alleyinteractive/irving/compare/v2.19.0-beta.0...v2.19.0) (2020-06-29)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.19.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.18.1...v2.19.0-beta.0) (2020-06-29)
+
+
+### Bug Fixes
+
+* **package:** add HUSKY_SKIP_HOOKS to canary release script as well ([11f67c3](https://github.com/alleyinteractive/irving/commit/11f67c308e70ebfd54b375b3de054ed512fe7dfd))
+
+
+### Features
+
+* **site theme.:** implements a site theme provider component ([14bcbea](https://github.com/alleyinteractive/irving/commit/14bcbea44d787b8a5e7fe5d80b3b4bc92a77f692))
+
+
+
+
+
+## [2.18.1](https://github.com/alleyinteractive/irving/compare/v2.18.0...v2.18.1) (2020-06-26)
+
+
+### Bug Fixes
+
+* **cache:** update cache service to properly support URLs using the redis:// protocol ([2759571](https://github.com/alleyinteractive/irving/commit/275957111470c1e256070ffaa5719a047d5a78fe))
+
+
+
+
+
 # [2.18.0](https://github.com/alleyinteractive/irving/compare/v2.17.0...v2.18.0) (2020-06-26)
 
 **Note:** Version bump only for package irving

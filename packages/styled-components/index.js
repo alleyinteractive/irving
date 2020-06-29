@@ -1,4 +1,6 @@
+import SiteThemeProvider from '@irvingjs/styled/components/SiteThemeProvider';
 import App from 'components/app';
+import BodyWrapper from 'components/bodyWrapper';
 import Byline from 'components/byline';
 import Container from 'components/container';
 import Fragment from 'components/fragment';
@@ -25,6 +27,7 @@ import SiteThemeProvider from '../styled/components/site-theme-provider';
 
 export {
   App,
+  BodyWrapper,
   Byline,
   Container,
   Fragment,
@@ -34,6 +37,7 @@ export {
   Menu,
   Pagination,
   SearchForm,
+  SiteThemeProvider,
   SocialSharing,
   StyledCSSGrid,
   StyledCSSGridCell,
@@ -43,7 +47,7 @@ export {
 const ComponentMap = {
   'irving/site-theme': SiteThemeProvider,
   '': Fragment,
-  'irving/body-wrapper': Fragment,
+  'irving/body-wrapper': BodyWrapper,
   'irving/byline': Byline,
   'irving/container': Container,
   'irving/footer-wrapper': Fragment,
@@ -55,6 +59,7 @@ const ComponentMap = {
   'irving/menu': Menu,
   'irving/pagination': Pagination,
   'irving/search-form': SearchForm,
+  'irving/site-theme': SiteThemeProvider,
   'irving/social-sharing': SocialSharing,
   'irving/text': Text,
   'styled-css-grid/cell': StyledCSSGridCell,
