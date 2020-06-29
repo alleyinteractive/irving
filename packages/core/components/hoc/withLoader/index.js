@@ -10,20 +10,30 @@ import styles from './styles.css';
 /**
  * @param {*} WrappedComponent component that gets the conditional loading state
  * @param {object} opts Options for this HOC
- * @param {object} opts.loadingProps - Props for the default loading component
- * @param {object} opts.LoadingComponent - Loading component to use instead of the default.
+ * @param {object} opts.transition Transition configuration
+ * @param {object} opts.loadingProps Props for the default loading component
+ * @param {object} opts.LoadingComponent Loading component to use instead of the default.
  */
 
 const withLoader = (WrappedComponent, opts = {}) => {
   const {
     transition = {
-      enabled: false,
+      enabled: true,
       type: 'fade',
+      property: 'all',
+      ease: 'ease',
+      duration: '0.3s',
     },
     loadingProps = {},
     LoadingComponent = DefaultLoading,
   } = opts;
-  // const poop = true;
+
+  const transitionStyle = {
+    transitionProperty: transition.property,
+    transitionTimingFunction: transition.ease,
+    transitionDuration: transition.duration,
+  };
+
   const Loader = (props) => {
     const { loading } = props;
     return (
@@ -38,11 +48,13 @@ const withLoader = (WrappedComponent, opts = {}) => {
               appear
               exit
             >
-              <div className={classNames(
-                styles.wrapper,
-                styles.transition,
-                styles[transition.type]
-              )}
+              <div
+                className={classNames(
+                  styles.wrapper,
+                  styles.transition,
+                  styles[transition.type]
+                )}
+                style={transitionStyle}
               >
                 {loading ? (
                   <LoadingComponent {...loadingProps} />
