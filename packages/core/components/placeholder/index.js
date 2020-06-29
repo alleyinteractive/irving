@@ -72,7 +72,6 @@ Placeholder.defaultProps = {
   url: '',
 };
 
-
 const wrapWithThemes = withThemes('Placeholder', { default: styles });
 
 export const themePlaceholder = createWithUserThemes(Placeholder, styles);
