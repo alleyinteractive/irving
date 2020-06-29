@@ -13,22 +13,37 @@ const withThemes = (themeMap) => (WrappedComponent) => {
       themeMap[themeName]
     );
 
-    // If the value of a property in a styled components `style` property is
-    // available in the styled component theme, use that value. This allows us
-    // to do things like `color: theme.colors.black` and have it become
-    // `color: #000000`.
+    // Using the `styled-components` ThemeContext, attempt to use dynamic
+    // values in CSS properties.
     const themeContext = useContext(ThemeContext);
-    const newProps = props;
-    Object.keys(style).forEach((property) => {
-      newProps.style[property] = get(
-        themeContext,
-        newProps.style[property],
-        newProps.style[property]
-      );
-    });
+    const newStyle = Object.keys(style)
+      .reduce((acc, property) => {
+
+        /**
+         * For every value passed in the style prop, check if the value is
+         * actually a path to our ThemeContext.
+         *
+         * Example,
+         *   Match:
+         *    {color: theme.colors.black} => {color: #000;}
+         *
+         *   No Match:
+         *     {color: #000} => {color: #000;}
+         */
+        const themeStyle = get(
+          themeContext,
+          style[property],
+          style[property]
+        );
+
+        return {
+          ...acc,
+          [property]: themeStyle,
+        };
+      }, style);
 
     return (
-      <WrappedComponent theme={theme} {...newProps} />
+      <WrappedComponent theme={theme} {...props} style={newStyle} />
     );
   };
 
