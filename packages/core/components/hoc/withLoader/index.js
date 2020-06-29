@@ -47,6 +47,7 @@ const withLoader = (WrappedComponent, opts = {}) => {
               enter
               appear
               exit
+              timeout={0}
             >
               <div
                 className={classNames(
