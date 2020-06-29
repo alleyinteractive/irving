@@ -15,8 +15,6 @@ module.exports = {
     es6: true,
     browser: true,
     node: true,
-    jquery: false,
-    jasmine: true,
   },
   settings: {
     'import/resolver': {

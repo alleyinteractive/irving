@@ -12,10 +12,8 @@ import {
 export default function getTemplateVars(key, initialVars) {
   const customTemplateVars = getValueFromMergedConfig(key, initialVars);
 
-  // Delete Wrapper and renderToString.
   // This needs to happen first to ensure proper SSR rendering of stylesheets.
   const AppWrapper = customTemplateVars.Wrapper;
-  delete customTemplateVars.Wrapper;
   customTemplateVars.appHtml = renderToString(<AppWrapper />);
 
   // Call any template vars that are functions.

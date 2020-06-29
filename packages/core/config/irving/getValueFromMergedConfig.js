@@ -1,24 +1,7 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const memoize = require('lodash/memoize');
 const { getConfigValue } = require('./getConfigValue');
-let userConfig = {};
-
-if (
-  process.env.IRVING_EXECUTION_CONTEXT ||
-  'test' === process.env.BABEL_ENV
-) {
-  userConfig = require('@irvingjs/irving.config').default || {};
-} else {
-  const { buildContext } = require('../paths');
-  const path = require('path');
-  const fs = require('fs');
-  const configPath = path.resolve(buildContext, 'irving.config.js');
-
-  // Resolve file relative to build context if it exists.
-  if (fs.existsSync(configPath)) {
-    userConfig = require(configPath);
-  }
-}
+const userConfig = require('@irvingjs/irving.config').default || {};
 
 /**
  * Get a single value from the user config.
