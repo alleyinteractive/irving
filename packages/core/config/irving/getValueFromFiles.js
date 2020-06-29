@@ -1,7 +1,7 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const memoize = require('lodash/memoize');
 const { appRoot } = require('../paths');
-const { getConfigValue } = require('./getConfigValue');
+const { mergeConfigValues } = require('./mergeConfigValues');
 const requireConfigModules = require('./requireConfigModules');
 
 /**
@@ -39,7 +39,7 @@ const getValueFromFiles = (
   }
 
   // Merge arrays if config default is an array, otherwise merge objects.
-  return getConfigValue(configs, defaultValue);
+  return mergeConfigValues(configs, defaultValue);
 };
 
 const getValueFromFilesMemo = memoize(getValueFromFiles);

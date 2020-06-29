@@ -1,8 +1,8 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import {
-  getValueFromMergedConfig,
-} from 'config/irving/getValueFromMergedConfig';
+  getValueFromConfigNoMemo,
+} from 'config/irving/getValueFromConfig';
 
 /**
  *
@@ -10,7 +10,7 @@ import {
  * @param {object} initialVars Variables passed in from serverRenderer
  */
 export default function getTemplateVars(key, initialVars) {
-  const customTemplateVars = getValueFromMergedConfig(key, initialVars);
+  const customTemplateVars = getValueFromConfigNoMemo(key, initialVars);
 
   // This needs to happen first to ensure proper SSR rendering of stylesheets.
   const AppWrapper = customTemplateVars.Wrapper;

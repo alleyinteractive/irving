@@ -4,8 +4,8 @@ import {
   REQUEST_COMPONENT_DATA,
 } from 'actions/types';
 import {
-  getValueFromMergedConfig,
-} from 'config/irving/getValueFromMergedConfig';
+  getValueFromConfig,
+} from 'config/irving/getValueFromConfig';
 import resolveComponents from './resolveComponents';
 import waitToScroll from './waitToScroll';
 import onLocationChange from './onLocationChange';
@@ -19,7 +19,7 @@ export default function* rootSaga() {
   yield* resolveComponents();
 
   yield all(
-    getValueFromMergedConfig('sagas', [
+    getValueFromConfig('sagas', [
       takeLatest(LOCATION_CHANGE, resolveComponents),
       takeLatest(LOCATION_CHANGE, waitToScroll),
       takeEvery(LOCATION_CHANGE, onLocationChange),

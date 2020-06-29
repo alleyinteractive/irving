@@ -1,6 +1,6 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
 const memoize = require('lodash/memoize');
-const { getConfigValue } = require('./getConfigValue');
+const { mergeConfigValues } = require('./mergeConfigValues');
 const userConfig = require('@irvingjs/irving.config').default || {};
 
 /**
@@ -19,13 +19,12 @@ const getValueFromUserConfig = (key, defaultValue) => {
 };
 
 /**
- * Get merged value from user's irving.config.js file (including configured packages).
+ * Get merged configs
  *
- * @param {string} key key to search for in config.
- * @param {mixed} defaultValue Default value to merge found configs with.
- * @returns {mixed}
+ * @param {string} key Config Key
+ * @returns {array} Config values
  */
-const getValueFromMergedConfig = memoize((key, defaultValue) => {
+const getConfigValues = (key) => {
   let { packages = [] } = userConfig;
 
   // User empty array or user configured pacakges.
@@ -33,18 +32,29 @@ const getValueFromMergedConfig = memoize((key, defaultValue) => {
     packages = userConfig.packages;
   }
 
-  const configValues = [...packages, userConfig].map((config) => {
+  return [...packages, userConfig].map((config) => {
     if (config[key]) {
       return config[key];
     }
 
     return null;
   }).filter((value) => !! value);
+};
 
-  return getConfigValue(configValues, defaultValue);
-});
+/**
+ * Get merged value from user's irving.config.js file (including configured packages).
+ *
+ * @param {string} key key to search for in config.
+ * @param {mixed} defaultValue Default value to merge found configs with.
+ * @returns {mixed}
+ */
+const getValueFromConfig = (key, defaultValue) => {
+  const configValues = getConfigValues(key);
+  return mergeConfigValues(configValues, defaultValue);
+};
 
 module.exports = {
   getValueFromUserConfig,
-  getValueFromMergedConfig,
+  getValueFromConfigNoMemo: getValueFromConfig,
+  getValueFromConfig: memoize(getValueFromConfig),
 };

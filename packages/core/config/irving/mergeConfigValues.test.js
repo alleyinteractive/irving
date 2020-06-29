@@ -1,6 +1,6 @@
-import { getConfigValue } from './getConfigValue';
+import { mergeConfigValues } from './mergeConfigValues';
 
-describe('getConfigValue', () => {
+describe('mergeConfigValues', () => {
   it(
     'should merge config arrays together',
     () => {
@@ -9,7 +9,7 @@ describe('getConfigValue', () => {
         ['test-two'],
       ];
 
-      expect(getConfigValue(configs, [])).toEqual([
+      expect(mergeConfigValues(configs, [])).toEqual([
         'test',
         'test-two',
       ])
@@ -27,7 +27,7 @@ describe('getConfigValue', () => {
         { configField: ['test-three', 'test-four'] },
       ];
 
-      expect(getConfigValue(configs, {})).toEqual({
+      expect(mergeConfigValues(configs, {})).toEqual({
         configField: [
           'test',
           'test-two',
@@ -47,7 +47,7 @@ describe('getConfigValue', () => {
         (config) => { return {...config, bing: 'bong' }},
       ];
 
-      expect(getConfigValue(configs, { foo: 'foo' })).toEqual({
+      expect(mergeConfigValues(configs, { foo: 'foo' })).toEqual({
         foo: 'bar',
         bing: 'bong',
       })
@@ -61,7 +61,7 @@ describe('getConfigValue', () => {
         (config) => { return {...config, foo: 'bar' }},
         (config) => { return {...config, bing: 'bong' }},
       ];
-      const merged = getConfigValue(configs, [() => ({ test: 'test' })]);
+      const merged = mergeConfigValues(configs, [() => ({ test: 'test' })]);
       const result = merged.reduce(
         (acc, func) => ({ ...acc, ...func(acc) }),
         {}
