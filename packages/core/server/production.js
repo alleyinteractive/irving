@@ -25,7 +25,7 @@ const productionMiddleware = async (app) => {
   // Allow customization of production server
   const irvingProdMiddleware = getValueFromFiles(
     'server/customizeProdServer.js',
-    []
+    [() => {}]
   );
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 

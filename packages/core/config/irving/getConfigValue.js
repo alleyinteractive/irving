@@ -64,6 +64,11 @@ const getMergedConfigArray = (configs, initial = []) => (
  */
 const getConfigValue = (configs, initial) => {
   if (Array.isArray(initial)) {
+    // This should result in an array of functions, to be called inline.
+    if (initial.length && 'function' === typeof initial[0]) {
+      return configs.reduce((acc, config) => acc.concat(config), initial);
+    }
+
     return getMergedConfigArray(configs, initial);
   }
 
