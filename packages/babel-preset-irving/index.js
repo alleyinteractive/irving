@@ -1,5 +1,5 @@
-module.exports = function babelPresetIrving(context) {
-  console.log(context.getEnv());
+module.exports = function babelPresetIrving() {
+  // console.log(context.getEnv());
 
   return {
     sourceType: 'unambiguous',

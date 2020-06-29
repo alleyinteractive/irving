@@ -50,7 +50,6 @@ Container.defaultProps = {
   className: '',
 };
 
-
 const wrapWithThemes = withThemes('Container', { default: styles });
 export const themeContainer = createWithUserThemes(Container, styles);
 

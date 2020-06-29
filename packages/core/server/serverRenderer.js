@@ -94,7 +94,7 @@ const render = async (req, res, clientStats) => {
   const templateVars = {
     helmet,
     preRenderedState: stateEncoded,
-    env: irvingEnv,
+    env: JSON.stringify(irvingEnv),
     ...customTemplateVars,
   };
 

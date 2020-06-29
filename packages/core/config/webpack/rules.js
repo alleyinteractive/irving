@@ -103,7 +103,7 @@ module.exports = function getRules(context) {
     {
       test: /\.svg$/,
       include: [/assets\/icons/],
-      use: ['svg-react-loader'],
+      use: ['@svgr/webpack'],
     },
     {
       resource: {

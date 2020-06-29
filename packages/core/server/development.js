@@ -22,7 +22,7 @@ const developmentMiddleware = (app) => {
   // Allow customization of development server
   const irvingDevMiddleware = getValueFromFiles(
     'server/customizeDevServer.js',
-    []
+    [() => {}]
   );
   irvingDevMiddleware.forEach((middleware) => middleware(app));
 
