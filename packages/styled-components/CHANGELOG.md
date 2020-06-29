@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.18.1...v2.19.0-beta.0) (2020-06-29)
+
+
+### Features
+
+* **site theme.:** implements a site theme provider component ([14bcbea](https://github.com/alleyinteractive/irving/packages/styled-components/commit/14bcbea44d787b8a5e7fe5d80b3b4bc92a77f692))
+
+
+
+
+
 ## [2.18.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.18.0...v2.18.1) (2020-06-26)
 
 **Note:** Version bump only for package @irvingjs/styled-components
