@@ -61,7 +61,7 @@ module.exports = {
   buildContext,
   clientBuild: resolveBuildDir('build/client'),
   clientRoot: resolveIrvingDir('client'),
-  config: resolveBuildDir('irving.config.js'),
+  config: resolveAppDir('irving.config.js'),
   globalStyles: resolveIrvingDir('assets/styles'),
   irvingRoot,
   mocks: resolveIrvingDir('__mocks__'),
@@ -71,5 +71,4 @@ module.exports = {
   rootUrl: ROOT_URL || 'http://localhost:3001',
   serverBuild: resolveBuildDir('build/server'),
   serverRoot: resolveIrvingDir('server/serverRenderer'),
-  userConfig: resolveAppDir('irving.config.js'),
 };

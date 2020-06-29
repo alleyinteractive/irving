@@ -8,7 +8,7 @@ const isPlainObject = require('lodash/isPlainObject');
  * @param {object} initial initial value.
  * @returns {object}
  */
-const getMergedConfigObject = (configs, initial = {}) => (
+const mergeConfigObject = (configs, initial = {}) => (
   configs.reduce(
     (acc, config) => {
       if (! config) {
@@ -38,7 +38,7 @@ const getMergedConfigObject = (configs, initial = {}) => (
  * @param {array} initial initial value.
  * @returns {array}
  */
-const getMergedConfigArray = (configs, initial = []) => (
+const mergeConfigArray = (configs, initial = []) => (
   configs.reduce(
     (acc, config) => {
       if (! config) {
@@ -62,25 +62,25 @@ const getMergedConfigArray = (configs, initial = []) => (
  * @param {array} initial initial value.
  * @returns {array}
  */
-const getConfigValue = (configs, initial) => {
+const mergeConfigValues = (configs, initial) => {
   if (Array.isArray(initial)) {
     // This should result in an array of functions, to be called inline.
     if (initial.length && 'function' === typeof initial[0]) {
       return configs.reduce((acc, config) => acc.concat(config), initial);
     }
 
-    return getMergedConfigArray(configs, initial);
+    return mergeConfigArray(configs, initial);
   }
 
   if (isPlainObject(initial)) {
-    return getMergedConfigObject(configs, initial);
+    return mergeConfigObject(configs, initial);
   }
 
   return initial;
 };
 
 module.exports = {
-  getMergedConfigArray,
-  getMergedConfigObject,
-  getConfigValue,
+  mergeConfigArray,
+  mergeConfigObject,
+  mergeConfigValues,
 };

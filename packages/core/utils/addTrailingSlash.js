@@ -1,13 +1,13 @@
 import {
-  getValueFromMergedConfig,
+  getValueFromConfig,
   getValueFromUserConfig,
-} from 'config/irving/getValueFromMergedConfig';
+} from 'config/irving/getValueFromConfig';
 
 const forceTrailingSlashes = getValueFromUserConfig(
   'forceTrailingSlashes',
   false
 );
-const trailingSlashDenylist = getValueFromMergedConfig(
+const trailingSlashDenylist = getValueFromConfig(
   'trailingSlashDenylist',
   []
 );
