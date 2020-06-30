@@ -93,10 +93,12 @@ SearchForm.propTypes = {
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export { SearchForm as PureSearchForm };
+export { SearchForm as PureComponent };
 
-export default withThemes(themeMap)(SearchForm);
+export const StyledComponent = withThemes(themeMap)(SearchForm);
+
+export default StyledComponent;

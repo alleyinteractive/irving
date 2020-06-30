@@ -99,10 +99,12 @@ Container.propTypes = {
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export { Container as PureContainer };
+export { Container as PureComponent };
 
-export default withThemes(themeMap)(Container);
+export const StyledComponent = withThemes(themeMap)(Container);
+
+export default StyledComponent;

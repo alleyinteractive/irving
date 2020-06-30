@@ -4,6 +4,7 @@ import sanitizeHtml from 'sanitize-html';
 import EmbedContainer from 'react-oembed-container';
 import { richText } from '@irvingjs/core/config/html';
 import withThemes from '@irvingjs/styled/components/withThemes';
+import createWithUserThemes from '@irvingjs/styled/components/hoc/createWithUserThemes';
 import * as defaultStyles from './themes/default';
 import * as htmlStyles from './themes/html';
 import * as unstyledStyles from './themes/unstyled';
@@ -114,7 +115,7 @@ Text.propTypes = {
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
   html: htmlStyles,
   unstyled: unstyledStyles,
@@ -127,6 +128,9 @@ const themeMap = {
   h6: h6Styles,
 };
 
-export { Text as PureText };
+export { Text as PureComponent };
 
-export default withThemes(themeMap)(Text);
+export const StyledComponent = withThemes(themeMap)(Text);
+
+export default StyledComponent;
+
