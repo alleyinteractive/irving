@@ -102,7 +102,7 @@ Link.propTypes = {
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 

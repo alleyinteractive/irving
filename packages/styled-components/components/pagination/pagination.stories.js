@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { PurePagination as Pagination } from '.';
+import { PureComponent as Pagination } from '.';
 
 export default {
   component: Pagination,

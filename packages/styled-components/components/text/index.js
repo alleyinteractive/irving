@@ -4,7 +4,6 @@ import sanitizeHtml from 'sanitize-html';
 import EmbedContainer from 'react-oembed-container';
 import { richText } from '@irvingjs/core/config/html';
 import withThemes from '@irvingjs/styled/components/withThemes';
-import createWithUserThemes from '@irvingjs/styled/components/hoc/createWithUserThemes';
 import * as defaultStyles from './themes/default';
 import * as htmlStyles from './themes/html';
 import * as unstyledStyles from './themes/unstyled';

@@ -63,10 +63,11 @@ const defaultMapping = {
 };
 
 /**
- * Return a component map of styled components.
+ * Build a mapping of component names to React components. Inject any
+ * user-defined themes into the component's default themeMap.
  *
- * @param  {[type]} userThemesToInject [description]
- * @return {[type]}                    [description]
+ * @param {object} userThemesToInject A theme map.
+ * @return {object}
  */
 const ComponentMap = (userThemesToInject) => {
 

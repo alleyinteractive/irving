@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { PureContainer as Container } from '.';
+import { PureComponent as Container } from '.';
 
 export default {
   component: Container,
