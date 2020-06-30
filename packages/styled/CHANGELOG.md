@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.2](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.19.1...v2.19.2) (2020-06-30)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+## [2.19.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.19.0...v2.19.1) (2020-06-30)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
 # [2.19.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.19.0-beta.0...v2.19.0) (2020-06-29)
 
 **Note:** Version bump only for package @irvingjs/styled
