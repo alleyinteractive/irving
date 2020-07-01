@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/wp-admin-bar",
-  "version": "2.19.3-beta.0",
+  "version": "2.20.0",
   "description": "Integration for WordPress admin bar",
   "files": [
     "components/**/*",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^2.19.2",
-    "@irvingjs/core": "^2.19.3-beta.0",
+    "@irvingjs/core": "^2.20.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "enzyme": "^3.11.0",
     "jest": "^25.5.3"

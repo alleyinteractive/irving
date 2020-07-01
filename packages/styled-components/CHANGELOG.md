@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.19.3-beta.0...v2.20.0) (2020-07-01)
+
+
+### Bug Fixes
+
+* **theme injection and docs:** update docs for theme injection changes ([13f5b97](https://github.com/alleyinteractive/irving/packages/styled-components/commit/13f5b9772bee60d1a0349f4cb83d1e5484fb8369))
+
+
+### Features
+
+* **theme injection:** implements a theme injection system for styled components ([faaa2a4](https://github.com/alleyinteractive/irving/packages/styled-components/commit/faaa2a454ca70f06d6d7aca961bd07e5aa150b35))
+
+
+
+
+
 ## [2.19.3-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.19.2...v2.19.3-beta.0) (2020-07-01)
 
 **Note:** Version bump only for package @irvingjs/styled-components
