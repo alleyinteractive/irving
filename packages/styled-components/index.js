@@ -1,5 +1,6 @@
 import SiteThemeProvider from '@irvingjs/styled/components/SiteThemeProvider';
 import App from 'components/app';
+import BodyWrapper from 'components/bodyWrapper';
 import Byline from 'components/byline';
 import Container from 'components/container';
 import Fragment from 'components/fragment';
@@ -24,6 +25,7 @@ import {
 
 export {
   App,
+  BodyWrapper,
   Byline,
   Container,
   Fragment,
@@ -42,7 +44,7 @@ export {
 
 const ComponentMap = {
   '': Fragment,
-  'irving/body-wrapper': Fragment,
+  'irving/body-wrapper': BodyWrapper,
   'irving/byline': Byline,
   'irving/container': Container,
   'irving/footer-wrapper': Fragment,
