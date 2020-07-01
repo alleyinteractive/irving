@@ -11,9 +11,6 @@ const {
 const getService = require('../services/monitorService');
 getService().start();
 
-// Shim some browser-only global variables.
-require('../utils/shimWindow');
-
 const express = require('express');
 const {
   createProxyMiddleware,
