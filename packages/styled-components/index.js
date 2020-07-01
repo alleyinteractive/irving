@@ -26,7 +26,7 @@ import {
 } from 'styled-css-grid';
 
 // Map the entire export for each component.
-const components = {
+export const components = {
   'irving/body-wrapper': BodyWrapper,
   'irving/byline': Byline,
   'irving/container': Container,
@@ -42,7 +42,7 @@ const components = {
 }
 
 // Map the default styled components.
-const defaultMapping = {
+export const defaultMapping = {
   '': Fragment.StyledComponent,
   'irving/body-wrapper': BodyWrapper.StyledComponent,
   'irving/byline': Byline.StyledComponent,
@@ -56,7 +56,7 @@ const defaultMapping = {
   'irving/menu': Menu.StyledComponent,
   'irving/pagination': Pagination.StyledComponent,
   'irving/search-form': SearchForm.StyledComponent,
-  'irving/site-theme': SiteThemeProvider.StyledComponent,
+  'irving/site-theme': SiteThemeProvider,
   'irving/social-sharing': SocialSharing.StyledComponent,
   'irving/text': Text.StyledComponent,
   'styled-css-grid/cell': StyledCSSGridCell,
