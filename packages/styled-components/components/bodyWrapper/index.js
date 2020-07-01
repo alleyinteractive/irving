@@ -50,4 +50,8 @@ const themeMap = {
   default: defaultStyles,
 };
 
-export default withThemes(themeMap)(withLoader(BodyWrapper));
+export { BodyWrapper as PureComponent };
+
+export const StyledComponent = withThemes(themeMap)(withLoader(BodyWrapper));
+
+export default StyledComponent;

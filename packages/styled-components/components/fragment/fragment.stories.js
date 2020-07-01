@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { PureFragment as Fragment } from '.';
+import { PureComponent as Fragment } from '.';
 
 export default {
   component: Fragment,

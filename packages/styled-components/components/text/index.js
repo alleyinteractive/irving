@@ -114,7 +114,7 @@ Text.propTypes = {
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
   html: htmlStyles,
   unstyled: unstyledStyles,
@@ -127,6 +127,9 @@ const themeMap = {
   h6: h6Styles,
 };
 
-export { Text as PureText };
+export { Text as PureComponent };
 
-export default withThemes(themeMap)(Text);
+export const StyledComponent = withThemes(themeMap)(Text);
+
+export default StyledComponent;
+
