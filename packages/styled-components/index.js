@@ -2,6 +2,7 @@ import SiteThemeProvider from '@irvingjs/styled/components/SiteThemeProvider';
 import createWithUserThemes from '@irvingjs/styled/components/hoc/createWithUserThemes';
 
 import App from 'components/app';
+import * as BodyWrapper from 'components/bodyWrapper';
 import * as Byline from 'components/byline';
 import * as Container from 'components/container';
 import * as Fragment from 'components/fragment';
@@ -26,6 +27,7 @@ import {
 
 // Map the entire export for each component.
 const components = {
+  'irving/body-wrapper': BodyWrapper,
   'irving/byline': Byline,
   'irving/container': Container,
   'irving/fragment': Fragment,
@@ -42,7 +44,7 @@ const components = {
 // Map the default styled components.
 const defaultMapping = {
   '': Fragment.StyledComponent,
-  'irving/body-wrapper': Fragment.StyledComponent,
+  'irving/body-wrapper': BodyWrapper.StyledComponent,
   'irving/byline': Byline.StyledComponent,
   'irving/container': Container.StyledComponent,
   'irving/footer-wrapper': Fragment.StyledComponent,
