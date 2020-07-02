@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/alleyinteractive/irving/compare/v2.20.0...v2.21.0) (2020-07-02)
+
+
+### Features
+
+* **text component - responsive video theme:** adds a new responsiveVideo theme to irving/text ([aaba0b7](https://github.com/alleyinteractive/irving/commit/aaba0b7be10730b2314ab40620b9d95b41e83aa6))
+
+
+
+
+
 # [2.20.0](https://github.com/alleyinteractive/irving/compare/v2.19.3-beta.0...v2.20.0) (2020-07-01)
 
 
