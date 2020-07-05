@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.21.0...v2.21.1) (2020-07-05)
+
+
+### Bug Fixes
+
+* **text component theme:** fix the include for responsiveEmbed ([ac3e480](https://github.com/alleyinteractive/irving/packages/styled-components/commit/ac3e4809246cea6d448c1eefca8c0d9a8b3a4803))
+
+
+
+
+
 # [2.21.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.20.0...v2.21.0) (2020-07-02)
 
 
