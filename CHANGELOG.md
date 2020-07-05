@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.2](https://github.com/alleyinteractive/irving/compare/v2.21.1...v2.21.2) (2020-07-05)
+
+
+### Bug Fixes
+
+* **fix the sitethemeprovider import being case-sensitie:** update siteThemeProvider import case ([4bbf4c9](https://github.com/alleyinteractive/irving/commit/4bbf4c9356a5351ecb4bdbb06acea119678b4a6d))
+
+
+
+
+
 ## [2.21.1](https://github.com/alleyinteractive/irving/compare/v2.21.0...v2.21.1) (2020-07-05)
 
 
