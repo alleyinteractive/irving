@@ -1,4 +1,4 @@
-import SiteThemeProvider from '@irvingjs/styled/components/SiteThemeProvider';
+import SiteThemeProvider from '@irvingjs/styled/components/siteThemeProvider';
 import createWithUserThemes from '@irvingjs/styled/components/hoc/createWithUserThemes';
 
 import App from 'components/app';
