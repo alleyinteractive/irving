@@ -16,6 +16,11 @@ module.exports = {
         WEBPACK_BUILD: true,
       })
     );
+    config.module.rules[0].exclude.push([
+      /\bcore-js\b/,
+      /\bwebpack\/buildin\b/
+    ]);
+
     return config;
   },
 };

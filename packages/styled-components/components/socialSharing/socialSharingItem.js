@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withThemes from '@irvingjs/styled/components/withThemes';
-import {
-  Email,
-  Facebook,
-  LinkedIn,
-  Pinterest,
-  Reddit,
-  Twitter,
-  WhatsApp,
-} from '@material-ui/icons';
+import Email from '@material-ui/icons/Email';
+import Facebook from '@material-ui/icons/Facebook';
+import LinkedIn from '@material-ui/icons/LinkedIn';
+import Pinterest from '@material-ui/icons/Pinterest';
+import Reddit from '@material-ui/icons/Reddit';
+import Twitter from '@material-ui/icons/Twitter';
+import WhatsApp from '@material-ui/icons/WhatsApp';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
 
