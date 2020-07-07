@@ -1,8 +1,6 @@
 const defaultService = require(
   '@irvingjs/core/services/logService/defaultService'
 );
-const getMonitorService = require('./monitorService');
-const monitor = getMonitorService();
 
 /**
  * Create a debug logger that will conditionally handle logged errors based on
@@ -15,7 +13,7 @@ const monitor = getMonitorService();
  */
 const getService = (namespace) => {
   const env = process.env.NODE_ENV;
-  let service;
+  let service = defaultService;
 
   /* eslint-disable global-require */
   // This is still required for log service, as core expects the log service to be isomorphic.
@@ -24,6 +22,8 @@ const getService = (namespace) => {
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {
+    const getMonitorService = require('./monitorService');
+    const monitor = getMonitorService();
     const { logger } = require('@automattic/vip-go');
     const log = logger(namespace, {
       silent: 'test' === env,
