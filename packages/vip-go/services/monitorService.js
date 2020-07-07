@@ -1,6 +1,6 @@
 const defaultService = require(
   '@irvingjs/core/services/monitorService/defaultService'
-)
+)();
 
 /**
  * Get the reusable monitor service instance. This service implements basic
