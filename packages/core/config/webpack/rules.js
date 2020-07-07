@@ -1,7 +1,6 @@
 const path = require('path');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const {
-  transform,
   buildContext,
   irvingRoot,
 } = require('../paths');

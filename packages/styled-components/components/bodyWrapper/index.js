@@ -8,7 +8,6 @@ import * as defaultStyles from './themes/default';
 
 const BodyWrapper = (props) => {
   const { bodyClasses, children, theme } = props;
-  console.log(bodyClasses);
   const { Main } = theme;
 
   return (

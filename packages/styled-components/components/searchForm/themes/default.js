@@ -9,15 +9,15 @@ export const SearchFormWrapper = styled.form`
 
 export const SearchFormTerm = styled.input`
   border-radius: 0;
-  border: 1px solid black;
   border-right: none;
+  border: 1px solid black;
   flex-grow: 1;
   font-size: 1rem;
   padding: 1rem;
 `;
 
 export const SearchFormSubmitButton = styled.button`
-  border: 1px solid black;
   border-radius: 0;
+  border: 1px solid black;
 `;
 // eslint-enable.
