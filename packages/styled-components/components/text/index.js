@@ -134,4 +134,3 @@ export { Text as PureComponent };
 export const StyledComponent = withThemes(themeMap)(Text);
 
 export default StyledComponent;
-

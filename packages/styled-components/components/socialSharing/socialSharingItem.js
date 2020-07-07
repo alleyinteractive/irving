@@ -1,30 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withThemes from '@irvingjs/styled/components/withThemes';
-import Email from '@material-ui/icons/Email';
-import Facebook from '@material-ui/icons/Facebook';
-import LinkedIn from '@material-ui/icons/LinkedIn';
-import Pinterest from '@material-ui/icons/Pinterest';
-import Reddit from '@material-ui/icons/Reddit';
-import Twitter from '@material-ui/icons/Twitter';
-import WhatsApp from '@material-ui/icons/WhatsApp';
+import toReactElement from '@irvingjs/core/utils/toReactElement';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
-
-/**
- * Icons for supported platforms.
- *
- * @type {Array}
- */
-const socialIconMap = {
-  email: Email,
-  facebook: Facebook,
-  linkedin: LinkedIn,
-  pinterest: Pinterest,
-  reddit: Reddit,
-  twitter: Twitter,
-  whatsapp: WhatsApp,
-};
 
 /**
  * A single social sharing item.
@@ -40,9 +19,14 @@ const SocialSharingItem = (props) => {
     url,
   } = props;
 
-  const IconComponent = (undefined !== socialIconMap[platform]) ?
-    socialIconMap[platform] :
-    null;
+  // Build the icon.
+  const Icon = toReactElement({
+    name: `irving/${platform}-icon`,
+    config: {
+      title: `Share on ${platform}`,
+    },
+    children: [],
+  });
 
   const {
     IconWrapper,
@@ -55,7 +39,7 @@ const SocialSharingItem = (props) => {
         href={url}
       >
         <IconWrapper>
-          <IconComponent title={platform} />
+          {Icon.type.displayName ? Icon : platform}
         </IconWrapper>
       </Link>
     </SocialSharingItemWrapper>
@@ -65,7 +49,6 @@ const SocialSharingItem = (props) => {
 SocialSharingItem.defaultProps = {
   url: '',
 };
-
 
 SocialSharingItem.propTypes = {
   /**

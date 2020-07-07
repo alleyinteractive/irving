@@ -9,4 +9,9 @@ export const SocialSharingItemWrapper = styled.li`
 
 export const IconWrapper = styled.span`
   margin-right: 6px;
+
+  svg {
+    height: 1.5em;
+    width: 1.5em;
+  }
 `;

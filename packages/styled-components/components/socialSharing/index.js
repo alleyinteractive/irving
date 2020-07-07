@@ -178,4 +178,3 @@ export { SocialSharing as PureComponent };
 export const StyledComponent = withThemes(themeMap)(SocialSharing);
 
 export default StyledComponent;
-

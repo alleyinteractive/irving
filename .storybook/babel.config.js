@@ -1,3 +1,4 @@
+const path = require('path');
 const aliases = require('../packages/core/config/aliases');
 
 module.exports = {
@@ -9,7 +10,13 @@ module.exports = {
           "./packages/core/"
         ],
         cwd: "packagejson",
-        alias: aliases,
+        alias: {
+          ...aliases,
+          '@irvingjs/componentMap': path.resolve(
+            __dirname,
+            'componentMap.js'
+          ),
+        },
       },
     ],
   ],
