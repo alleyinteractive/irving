@@ -201,10 +201,12 @@ Image.propTypes = {
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export { Image as PureImage };
+export { Image as PureComponent };
 
-export default withThemes(themeMap)(Image);
+export const StyledComponent = withThemes(themeMap)(Image);
+
+export default StyledComponent;

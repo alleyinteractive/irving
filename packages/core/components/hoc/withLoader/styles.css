@@ -1,0 +1,7 @@
+.transition.fade {
+  opacity: 0;
+}
+
+.transition.fade:global(.fade-enter-done) {
+  opacity: 1;
+}

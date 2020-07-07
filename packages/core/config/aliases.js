@@ -15,6 +15,7 @@ module.exports = {
   server: './server',
   services: './services',
   utils: './utils',
+  config: './config',
   // maybeResolveBuildModule is appropraite here because config will never be used
   // outside build, we'll only rely on filesystem.
   '@irvingjs/irving.config': maybeResolveBuildModule('irving.config.js'),

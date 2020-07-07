@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { PureLogo as Logo } from '.';
+import { PureComponent as Logo } from '.';
 
 export default {
   component: Logo,
