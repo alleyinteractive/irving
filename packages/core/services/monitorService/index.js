@@ -23,34 +23,25 @@ const getService = () => {
     return defaultService;
   }
 
-  // newrelic cannot be imported in a browser environment.
-  if (
-    ! process.env.IRVING_EXECUTION_CONTEXT ||
-    'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
-    'development_server' === process.env.IRVING_EXECUTION_CONTEXT
-  ) {
-    let newrelic;
-    // Check if optional newrelic client is installed.
-    try {
-      newrelic = require('newrelic'); // eslint-disable-line global-require
-    } catch (err) {
-      return defaultService;
-    }
-
-    service = {
-      start: () => {}, // Simply requiring the newrelic module starts the service.
-      logError(err) {
-        newrelic.noticeError(err);
-      },
-      logTransaction(method, status, category) {
-        newrelic.setTransactionName(`${method} ${status} ${category}`);
-      },
-    };
-
-    return service;
+  let newrelic;
+  // Check if optional newrelic client is installed.
+  try {
+    newrelic = require('newrelic'); // eslint-disable-line global-require
+  } catch (err) {
+    return defaultService;
   }
 
-  return defaultService;
+  service = {
+    start: () => {}, // Simply requiring the newrelic module starts the service.
+    logError(err) {
+      newrelic.noticeError(err);
+    },
+    logTransaction(method, status, category) {
+      newrelic.setTransactionName(`${method} ${status} ${category}`);
+    },
+  };
+
+  return service;
 };
 
 module.exports = getService;

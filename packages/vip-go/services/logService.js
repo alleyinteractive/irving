@@ -18,6 +18,7 @@ const getService = (namespace) => {
   let service;
 
   /* eslint-disable global-require */
+  // This is still required for log service, as core expects the log service to be isomorphic.
   if (
     ! process.env.IRVING_EXECUTION_CONTEXT ||
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
