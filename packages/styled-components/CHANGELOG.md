@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.21.2...v2.21.3) (2020-07-07)
+
+
+### Bug Fixes
+
+* **storybook:** add componentMap to storybook to prevent errors ([9da288f](https://github.com/alleyinteractive/irving/packages/styled-components/commit/9da288f0d5316a68b82964e30a8c981762c32f32))
+* **storybook:** fix storybook js loader exclude ([a1f5820](https://github.com/alleyinteractive/irving/packages/styled-components/commit/a1f58204b566a937f68a42001f5060c8af5c91e6))
+
+
+
+
+
 ## [2.21.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.21.1...v2.21.2) (2020-07-05)
 
 

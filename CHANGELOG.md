@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.3](https://github.com/alleyinteractive/irving/compare/v2.21.2...v2.21.3) (2020-07-07)
+
+
+### Bug Fixes
+
+* **storybook:** fix storybook js loader exclude ([a1f5820](https://github.com/alleyinteractive/irving/commit/a1f58204b566a937f68a42001f5060c8af5c91e6))
+
+
+
+
+
 ## [2.21.2](https://github.com/alleyinteractive/irving/compare/v2.21.1...v2.21.2) (2020-07-05)
 
 

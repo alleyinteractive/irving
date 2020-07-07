@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/styled-components",
-  "version": "2.21.2",
+  "version": "2.21.3",
   "description": "Integration for React components with attached styles for Irving",
   "files": [
     "components/**/*",
@@ -21,7 +21,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@irvingjs/styled": "^2.20.0",
+    "@irvingjs/styled": "^2.21.3",
     "@use-hooks/image-size": "^1.0.5",
     "@wordpress/i18n": "^3.10.0",
     "query-string": "^6.13.1",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^2.19.2",
-    "@irvingjs/core": "^2.20.0",
+    "@irvingjs/core": "^2.21.3",
     "babel-plugin-module-resolver": "^4.0.0",
     "enzyme": "^3.11.0",
     "jest": "^25.5.3"
