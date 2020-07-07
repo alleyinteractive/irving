@@ -54,7 +54,7 @@ const withThemes = (themeMap) => (WrappedComponent) => {
     /**
      * CSS style.
      */
-    style: PropTypes.oneOf([
+    style: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
     ]),
