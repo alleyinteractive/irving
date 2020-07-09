@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.3](https://github.com/alleyinteractive/irving/compare/v2.21.2...v2.21.3) (2020-07-07)
+
+
+### Bug Fixes
+
+* **storybook:** fix storybook js loader exclude ([a1f5820](https://github.com/alleyinteractive/irving/commit/a1f58204b566a937f68a42001f5060c8af5c91e6))
+
+
+
+
+
+## [2.21.2](https://github.com/alleyinteractive/irving/compare/v2.21.1...v2.21.2) (2020-07-05)
+
+
+### Bug Fixes
+
+* **fix the sitethemeprovider import being case-sensitie:** update siteThemeProvider import case ([4bbf4c9](https://github.com/alleyinteractive/irving/commit/4bbf4c9356a5351ecb4bdbb06acea119678b4a6d))
+
+
+
+
+
+## [2.21.1](https://github.com/alleyinteractive/irving/compare/v2.21.0...v2.21.1) (2020-07-05)
+
+
+### Bug Fixes
+
+* **text component theme:** fix the include for responsiveEmbed ([ac3e480](https://github.com/alleyinteractive/irving/commit/ac3e4809246cea6d448c1eefca8c0d9a8b3a4803))
+
+
+
+
+
+# [2.21.0](https://github.com/alleyinteractive/irving/compare/v2.20.0...v2.21.0) (2020-07-02)
+
+
+### Features
+
+* **text component - responsive video theme:** adds a new responsiveVideo theme to irving/text ([aaba0b7](https://github.com/alleyinteractive/irving/commit/aaba0b7be10730b2314ab40620b9d95b41e83aa6))
+
+
+
+
+
+# [2.20.0](https://github.com/alleyinteractive/irving/compare/v2.19.3-beta.0...v2.20.0) (2020-07-01)
+
+
+### Bug Fixes
+
+* **theme injection and docs:** update docs for theme injection changes ([13f5b97](https://github.com/alleyinteractive/irving/commit/13f5b9772bee60d1a0349f4cb83d1e5484fb8369))
+
+
+### Features
+
+* **theme injection:** implements a theme injection system for styled components ([faaa2a4](https://github.com/alleyinteractive/irving/commit/faaa2a454ca70f06d6d7aca961bd07e5aa150b35))
+
+
+
+
+
+## [2.19.3-beta.0](https://github.com/alleyinteractive/irving/compare/v2.19.2...v2.19.3-beta.0) (2020-07-01)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
 ## [2.19.2](https://github.com/alleyinteractive/irving/compare/v2.19.1...v2.19.2) (2020-06-30)
 
 **Note:** Version bump only for package irving

@@ -222,10 +222,12 @@ Pagination.propTypes = {
   totalPages: PropTypes.number,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export { Pagination as PurePagination };
+export { Pagination as PureComponent };
 
-export default withThemes(themeMap)(Pagination);
+export const StyledComponent = withThemes(themeMap)(Pagination);
+
+export default StyledComponent;

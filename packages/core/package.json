@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "2.19.2",
+  "version": "2.21.3",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -65,7 +65,7 @@
     "eslint-import-resolver-babel-module": "^5.1.2",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^4.0.0",
     "express": "^4.17.1",
@@ -89,7 +89,7 @@
     "react-hot-loader": "^4.12.21",
     "react-oembed-container": "^1.0.0",
     "react-redux": "^7.2.0",
-    "react-transition-group": "^4.3.0",
+    "react-transition-group": "^4.4.1",
     "react-universal-component": "^4.0.1",
     "reduce-reducers": "^1.0.4",
     "redux": "^4.0.5",

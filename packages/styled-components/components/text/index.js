@@ -6,6 +6,7 @@ import { richText } from '@irvingjs/core/config/html';
 import withThemes from '@irvingjs/styled/components/withThemes';
 import * as defaultStyles from './themes/default';
 import * as htmlStyles from './themes/html';
+import * as responsiveEmbedStyles from './themes/responsiveEmbed';
 import * as unstyledStyles from './themes/unstyled';
 import * as captionStyles from './themes/caption';
 import * as h1Styles from './themes/h1';
@@ -114,9 +115,10 @@ Text.propTypes = {
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
   html: htmlStyles,
+  responsiveEmbed: responsiveEmbedStyles,
   unstyled: unstyledStyles,
   caption: captionStyles,
   h1: h1Styles,
@@ -127,6 +129,8 @@ const themeMap = {
   h6: h6Styles,
 };
 
-export { Text as PureText };
+export { Text as PureComponent };
 
-export default withThemes(themeMap)(Text);
+export const StyledComponent = withThemes(themeMap)(Text);
+
+export default StyledComponent;

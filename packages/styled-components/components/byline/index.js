@@ -137,10 +137,12 @@ Byline.propTypes = {
   theme: PropTypes.object,
 };
 
-const menuThemeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export { Byline as PureByline };
+export { Byline as PureComponent };
 
-export default withThemes(menuThemeMap)(Byline);
+export const StyledComponent = withThemes(themeMap)(Byline);
+
+export default StyledComponent;

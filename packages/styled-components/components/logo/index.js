@@ -79,10 +79,12 @@ Logo.propTypes = {
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export { Logo as PureLogo };
+export { Logo as PureComponent };
 
-export default withThemes(themeMap)(Logo);
+export const StyledComponent = withThemes(themeMap)(Logo);
+
+export default StyledComponent;
