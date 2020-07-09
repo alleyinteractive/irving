@@ -1,5 +1,6 @@
 import URL from 'url-parse';
 import globToRegExp from 'glob-to-regexp';
+import isBrowser from 'utils/isBrowser';
 import { getConfigArray } from 'utils/getConfigValue';
 import addTrailingSlash from './addTrailingSlash';
 
@@ -25,7 +26,7 @@ const replacewww = (urlString) => (
 export default function getRelativeUrl(url) {
   let result = false;
 
-  if ('string' !== typeof url) {
+  if ('string' !== typeof url || ! isBrowser()) {
     return false;
   }
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from '@irvingjs/core/utils/isNode';
+import isBrowser from '@irvingjs/core/utils/isBrowser';
 
 const GoogleTagManager = (props) => {
   const {
@@ -9,7 +10,7 @@ const GoogleTagManager = (props) => {
     dataLayer,
   } = props;
 
-  if (! containerId) {
+  if (! containerId && ! isBrowser()) {
     return null;
   }
 

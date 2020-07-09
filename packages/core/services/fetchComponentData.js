@@ -1,5 +1,6 @@
 import AbortController from 'abort-controller';
 import omit from 'lodash/fp/omit';
+import getEnvIsomorphic from 'utils/getEnvIsomorphic';
 import getService from './cacheService/getService';
 import getLogService from './logService';
 
@@ -7,7 +8,7 @@ const log = getLogService('irving:components:data');
 
 // To access environment variables at run time in a client context we must
 // access them through a global provided by the server render.
-const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
+const env = getEnvIsomorphic(); // eslint-disable-line no-underscore-dangle
 
 export default async function fetchComponentData(endpoint) {
   // Create abort controller and set timeout to abort fetch call.

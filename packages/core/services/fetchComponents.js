@@ -5,6 +5,7 @@ import {
 } from 'config/constants';
 import isNode from 'utils/isNode';
 import shouldAuthorize from 'utils/shouldAuthorize';
+import getEnvIsomorphic from 'utils/getEnvIsomorphic';
 import getService from './cacheService/getService';
 import getLogService from './logService';
 import createComponentsEndpointQueryString
@@ -14,7 +15,7 @@ const log = getLogService('irving:components');
 
 // To access environment variables at run time in a client context we must
 // access them through a global provided by the server render.
-const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
+const env = getEnvIsomorphic(); // eslint-disable-line no-underscore-dangle
 
 /**
  * Fetch components for the page from the API.

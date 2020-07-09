@@ -1,9 +1,14 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import isBrowser from '@irvingjs/core/utils/isBrowser';
 import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
 import validateDisqusConfig from './validate';
 
 const DisqusEmbed = (props) => {
+  if (! isBrowser()) {
+    return null;
+  }
+
   const { forumShortname } = props;
   const config = validateDisqusConfig(props, window.location.pathname);
 

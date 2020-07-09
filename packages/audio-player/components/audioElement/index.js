@@ -5,6 +5,7 @@ import {
 import throttle from 'lodash/throttle';
 import pick from 'lodash/fp/pick';
 import PropTypes from 'prop-types';
+import isBrowser from '@irvingjs/core/utils/isBrowser';
 import { Howl } from 'howler/dist/howler.core.min';
 import { connect } from 'react-redux';
 import {
@@ -42,7 +43,7 @@ const AudioElement = (props) => {
     onReady();
 
     // Play on load
-    if (! playing) {
+    if (! playing && isBrowser()) {
       window.setTimeout(play, 1000);
     }
   };

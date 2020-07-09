@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useFormState } from 'react-use-form-state';
 import PropTypes from 'prop-types';
 import getDisplayName from 'utils/getDisplayName';
+import isBrowser from 'utils/isBrowser';
 import curry from 'lodash/fp/curry';
 import { actionRequestSubmit } from 'actions/formActions';
 
@@ -20,7 +21,7 @@ const withFormHandler = (
     const [formState, inputTypes] = useFormState(defaultState);
 
     // Redirect post-submission
-    if (redirect) {
+    if (redirect && isBrowser()) {
       window.location = redirect;
     }
 

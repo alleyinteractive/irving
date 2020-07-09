@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import pick from 'lodash/fp/pick';
 import get from 'lodash/fp/get';
 import defaultCookies from 'config/defaultCookies';
+import getEnvIsomorphic from 'utils/getEnvIsomorphic';
 
 /**
  * Get any query parameters that should be mapped from the
@@ -22,7 +23,7 @@ const getCookies = createSelector(
     get('route.cookie'),
   ],
   (routeCookies) => {
-    const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
+    const env = getEnvIsomorphic(); // eslint-disable-line no-underscore-dangle
     const envAllowList = env.COOKIE_MAP_LIST ?
       env.COOKIE_MAP_LIST.split(',') :
       [];

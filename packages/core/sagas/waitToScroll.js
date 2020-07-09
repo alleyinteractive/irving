@@ -4,6 +4,7 @@ import {
   select,
   take,
 } from 'redux-saga/effects';
+import isBrowser from 'utils/isBrowser';
 import { FINISH_LOADING, RECEIVE_COMPONENTS } from 'actions/types';
 import getRouteMeta from 'selectors/getRouteMeta';
 
@@ -13,6 +14,10 @@ import getRouteMeta from 'selectors/getRouteMeta';
  * - Scroll to id if url hash is present.
  */
 export default function* waitToScroll() {
+  if (! isBrowser()) {
+    return;
+  }
+
   const { hash, cached } = yield select(getRouteMeta);
   // Wait for new content to be received before scrolling.
   if (! cached) {

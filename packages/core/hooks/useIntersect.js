@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import isBrowser from  'utils/isBrowser';
 
 /**
  * Hook for observing DOM nodes using IntersectionObserver.
@@ -7,6 +8,10 @@ import { useEffect, useRef, useState } from 'react';
  * @param {object} opts Options for IntersectionObserver (see https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
  */
 const useIntersect = (opts = {}) => {
+  if (! isBrowser()) {
+    return;
+  }
+
   const {
     root = null,
     rootMargin = '0px',
