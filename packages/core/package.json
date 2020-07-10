@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "3.0.0-alpha.9",
+  "version": "3.0.0-alpha.10",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -44,7 +44,7 @@
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@hot-loader/react-dom": "^16.13.0",
-    "@irvingjs/babel-preset-irving": "^3.0.0-alpha.6",
+    "@irvingjs/babel-preset-irving": "^3.0.0-alpha.10",
     "@svgr/webpack": "^5.4.0",
     "abort-controller": "^3.0.0",
     "babel-eslint": "^10.1.0",
