@@ -122,6 +122,7 @@ module.exports = function getRules(context) {
               )
           ),
         ],
+        not: [/shimDom/],
       },
       use: [
         {

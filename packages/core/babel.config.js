@@ -20,6 +20,10 @@ const getTarget = (caller) => (
 module.exports = (api) => {
   // Cache computed config forever.
   const target = api.caller(getTarget);
+  const shimPath = path.join(
+    buildContext,
+    'node_modules/@irvingjs/core/utils/shimDom'
+  );
 
   // Base app babel config.
   const appConfig = {
@@ -38,29 +42,18 @@ module.exports = (api) => {
           },
         },
       ],
-    ],
-    presets: [
-      '@irvingjs/irving',
-    ],
-  };
-
-  // Add transform globals plugin for shimming DOM APIs.
-  if (! target || 'node' === target) {
-    const shimPath = path.join(
-      buildContext,
-      'node_modules/@irvingjs/core/utils/shimWindow'
-    );
-
-    appConfig.plugins.push(
       ['transform-globals', {
         import: {
           [shimPath]: {
             window: 'default',
           },
         },
-      }]
-    );
-  }
+      }],
+    ],
+    presets: [
+      '@irvingjs/irving',
+    ],
+  };
 
   // Only allow user to modify app config, not test.
   const processedConfig = getValueFromFiles(
