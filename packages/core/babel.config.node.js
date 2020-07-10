@@ -32,7 +32,7 @@ const config = {
       },
     ],
     ['transform-globals', {
-      import: {
+      require: {
         [shimPath]: {
           window: 'default',
         },
