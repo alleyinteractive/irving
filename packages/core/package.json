@@ -50,6 +50,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-transform-globals": "^1.0.1",
     "basic-auth": "^2.0.1",
     "chalk": "^4.0.0",
     "check-node-version": "^4.0.3",

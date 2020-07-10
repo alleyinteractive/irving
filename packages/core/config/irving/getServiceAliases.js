@@ -9,7 +9,7 @@ const resolveConfigFilepath = require('./resolveConfigFilepath');
  */
 const getServiceAliases = (target) => {
   let cacheClientValue = resolveConfigFilepath('services/cacheClient');
-  if ('web' === target) {
+  if (! target || 'web' === target) {
     cacheClientValue = path.join(
       irvingRoot,
       'services/cacheService/defaultClient.js'
@@ -22,7 +22,7 @@ const getServiceAliases = (target) => {
   }
 
   let cacheServiceValue = resolveConfigFilepath('services/cacheService');
-  if ('web' === target) {
+  if (! target || 'web' === target) {
     cacheServiceValue = path.join(
       irvingRoot,
       'services/cacheService/defaultService.js'
@@ -35,7 +35,7 @@ const getServiceAliases = (target) => {
   }
 
   let monitorServiceValue = resolveConfigFilepath('services/monitorService');
-  if ('web' === target) {
+  if (! target || 'web' === target) {
     monitorServiceValue = path.join(
       irvingRoot,
       'services/monitorService/defaultService.js'

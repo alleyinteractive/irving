@@ -39,11 +39,6 @@ module.exports = function babelPresetIrving(api) {
       require('@babel/plugin-proposal-object-rest-spread'),
       require('@babel/plugin-proposal-class-properties'),
       require('@babel/plugin-syntax-dynamic-import'),
-      [require('babel-plugin-transform-globals'), {
-        'utils/shimWindow': {
-          window: 'default',
-        },
-      }],
       [require('@babel/plugin-transform-runtime'), {
         corejs: 3,
       }],
@@ -54,7 +49,7 @@ module.exports = function babelPresetIrving(api) {
         require('@babel/preset-env'),
         envConfig,
       ],
-      require('@babel/react'),
+      require('@babel/preset-react'),
     ],
   };
   /* eslint-enable */

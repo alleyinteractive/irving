@@ -13,7 +13,7 @@ const packageDirs = fs.readdirSync(scopeDir);
 const packageRoots = ! packageDirs.length ? [] :
   packageDirs.map((dir) => path.join(scopeDir, dir));
 const getTarget = (caller) => (
-  (caller && 'babel-loader' === caller.name) ? caller.target : null
+  (caller && caller.target) ? caller.target : null
 );
 
 // Main config function.
@@ -43,6 +43,24 @@ module.exports = (api) => {
       '@irvingjs/irving',
     ],
   };
+
+  // Add transform globals plugin for shimming DOM APIs.
+  if (! target || 'node' === target) {
+    const shimPath = path.join(
+      buildContext,
+      'node_modules/@irvingjs/core/utils/shimWindow'
+    );
+
+    appConfig.plugins.push(
+      ['transform-globals', {
+        import: {
+          [shimPath]: {
+            window: 'default',
+          },
+        },
+      }]
+    );
+  }
 
   // Only allow user to modify app config, not test.
   const processedConfig = getValueFromFiles(
