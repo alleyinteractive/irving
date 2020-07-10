@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import getEnv from 'utils/universalEnv';
+import getEnv from '@irvingjs/core/utils/universalEnv';
 import styles from './adminBar.css';
 
 const env = getEnv();
