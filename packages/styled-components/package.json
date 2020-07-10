@@ -24,13 +24,11 @@
     "@irvingjs/styled": "^2.21.3",
     "@use-hooks/image-size": "^1.0.5",
     "@wordpress/i18n": "^3.10.0",
-    "html-react-parser": "^0.13.0",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^5.7.2",
-    "react-html-parser": "^2.0.2",
     "react-icons": "^3.10.0",
     "styled-css-grid": "^1.2.1"
   },
