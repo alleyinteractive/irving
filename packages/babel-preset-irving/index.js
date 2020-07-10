@@ -30,22 +30,32 @@ module.exports = function babelPresetIrving(api) {
       break;
   }
 
+  /* eslint-disable global-require */
   return {
     sourceType: 'unambiguous',
     plugins: [
-      'lodash',
-      'react-hot-loader/babel',
-      '@babel/plugin-proposal-object-rest-spread',
-      '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-syntax-dynamic-import',
-      'universal-import',
+      require('babel-plugin-lodash'),
+      require('react-hot-loader/babel'),
+      require('@babel/plugin-proposal-object-rest-spread'),
+      require('@babel/plugin-proposal-class-properties'),
+      require('@babel/plugin-syntax-dynamic-import'),
+      [require('babel-plugin-transform-globals'), {
+        'utils/shimWindow': {
+          window: 'default',
+        },
+      }],
+      [require('@babel/plugin-transform-runtime'), {
+        corejs: 3,
+      }],
+      require('babel-plugin-universal-import'),
     ],
     presets: [
       [
-        '@babel/env',
+        require('@babel/preset-env'),
         envConfig,
       ],
-      '@babel/react',
+      require('@babel/react'),
     ],
   };
+  /* eslint-enable */
 };
