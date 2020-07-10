@@ -1,4 +1,6 @@
-import { getValueFromConfig } from './getValueFromConfig';
+import {
+  getValueFromConfigNoMemo as getValueFromConfig,
+} from './getValueFromConfig';
 
 describe('getValueFromConfig', () => {
   const reducers = getValueFromConfig('reducers', {});
