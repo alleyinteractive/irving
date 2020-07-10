@@ -1,4 +1,4 @@
-import isNode from './isNode';
+const isNode = require('./isNode');
 
 let createHistory; // eslint-disable-line import/no-mutable-exports
 /* eslint-disable global-require */
@@ -20,4 +20,4 @@ if (isNode()) {
 }
 /* eslint-enable */
 
-export default createHistory();
+module.exports = createHistory();
