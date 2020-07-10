@@ -1,4 +1,4 @@
-const isNode = require('./isNode');
+const isNode = require('./isNode').default;
 
 let createHistory; // eslint-disable-line import/no-mutable-exports
 /* eslint-disable global-require */

@@ -132,7 +132,9 @@ module.exports = function getRules(context) {
         {
           loader: 'babel-loader',
           options: {
-            extends: path.join(irvingRoot, 'babel.config.js'),
+            extends: isServer ?
+              path.join(irvingRoot, 'babel.config.node.js') :
+              path.join(irvingRoot, 'babel.config.web.js'),
           },
         },
       ],

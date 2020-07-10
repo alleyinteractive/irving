@@ -11,7 +11,7 @@ module.exports = {
   ],
   testURL: 'https://irving.com',
   transform: {
-    '^.+\\.(js|jsx)$': 'babel-jest',
+    '^.+\\.(js|jsx)$': path.join(__dirname, 'babelTransform.js'),
     '^.+\\.css$': path.join(__dirname, '/__mocks__/mockCssTransform.js'),
     '^.+\\.svg$': path.join(__dirname, '/__mocks__/mockSvgTransform.js'),
   },

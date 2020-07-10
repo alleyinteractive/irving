@@ -6,6 +6,8 @@ module.exports = function babelPresetIrving(api) {
   const target = api.caller(getTarget);
   let envConfig;
 
+  console.log(target);
+
   // Configure babel preset env based on webpack target.
   switch (target) {
     case 'web':
