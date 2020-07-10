@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-/* eslint-disable import/prefer-default-export */
 export const BylineWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,4 +18,3 @@ export const AuthorWrapper = styled.span`
     font-weight: bold;
   }
 `;
-/* eslint-enable */
