@@ -1,17 +1,17 @@
-import cacheService from './getService';
+import getCacheService from './getServiceFromFilesystem';
+const cacheService = getCacheService();
 
 jest.mock('ioredis');
-const cache = cacheService();
 const testKey = 'test-key';
 const testValue = 'test-value';
 
 beforeEach(() => {
-  cache.del(testKey);
+  cacheService.del(testKey);
 });
 
 describe('cacheService', () => {
   it('should return an object of the correct shape', () => {
-    expect(Object.keys(cache)).toMatchObject([
+    expect(Object.keys(cacheService)).toMatchObject([
       'client',
       'get',
       'set',
@@ -25,36 +25,36 @@ describe('cacheService', () => {
   });
 
   it('should return a non-empty value from a valid cached key', async (done) => {
-    await cache.set(testKey, testValue);
+    await cacheService.set(testKey, testValue);
 
-    expect(await cache.get(testKey)).not.toBeNull();
+    expect(await cacheService.get(testKey)).not.toBeNull();
     done();
   });
 
   it('should return null when trying to get an uncached key', async (done) => {
-    expect(await cache.get('invalid-test-key')).toBeNull();
+    expect(await cacheService.get('invalid-test-key')).toBeNull();
     done();
   });
 
   it('should return null after trying to get a deleted cached key', async (done) => {
-    await cache.set(testKey, testValue);
+    await cacheService.set(testKey, testValue);
 
-    expect(await cache.get(testKey)).not.toBeNull();
-    await cache.del(testKey);
+    expect(await cacheService.get(testKey)).not.toBeNull();
+    await cacheService.del(testKey);
 
-    expect(await cache.get(testKey)).toBeNull();
+    expect(await cacheService.get(testKey)).toBeNull();
     done();
   });
 
   it('should return an already cached valued with the cached method', async (done) => {
-    const value = await cache.cached(testKey, () => {
+    const value = await cacheService.cached(testKey, () => {
       return testValue;
     });
 
     expect(value).toEqual(testValue);
     expect(value).not.toBeNull();
 
-    const cachedValue = await cache.cached(testKey, () => {
+    const cachedValue = await cacheService.cached(testKey, () => {
       return 'New Value';
     });
 
@@ -70,7 +70,7 @@ describe('cacheService', () => {
         async () => (
           new Promise(
             (resolve) => setTimeout(
-              async () => resolve(await cache.cached('race', i++)),
+              async () => resolve(await cacheService.cached('race', i++)),
                 100
             )
           )

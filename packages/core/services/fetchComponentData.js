@@ -1,13 +1,14 @@
 import AbortController from 'abort-controller';
 import omit from 'lodash/fp/omit';
-import getService from './cacheService/getService';
-import getLogService from './logService';
+import getLogService from '@irvingjs/services/logService';
+import getCacheService from '@irvingjs/services/cacheService';
+import getEnv from 'utils/universalEnv';
 
 const log = getLogService('irving:components:data');
 
 // To access environment variables at run time in a client context we must
 // access them through a global provided by the server render.
-const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
+const env = getEnv();
 
 export default async function fetchComponentData(endpoint) {
   // Create abort controller and set timeout to abort fetch call.
@@ -48,7 +49,7 @@ export default async function fetchComponentData(endpoint) {
  * @returns {Promise<{object}>} - fetchComponentData return value
  */
 export async function cacheResult(endpoint) {
-  const cache = getService();
+  const cache = getCacheService();
   const info = {
     cached: false,
     __caching__: false,

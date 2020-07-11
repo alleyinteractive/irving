@@ -10,7 +10,7 @@ import {
 } from 'actions';
 import getRouteMeta from 'selectors/getRouteMeta';
 import { fetchComponents } from 'services/fetchComponents';
-import getLogService from 'services/logService';
+import getLogService from '@irvingjs/services/logService';
 
 const debug = getLogService('irving:sagas:authorization');
 

@@ -1,9 +1,11 @@
 const get = require('lodash/fp/get');
 const queryString = require('query-string');
-const getService = require('../services/logService');
-const cacheService = require('../services/cacheService/getService')();
+const logService = require('../services/logService/getServiceFromFilesystem');
+const cacheService = require(
+  '../services/cacheService/getServiceFromFilesystem'
+)();
 
-const log = getService('irving:cache:purge');
+const log = logService('irving:cache:purge');
 
 /**
  * Turn a fully-qualified URL into a key for cache purging.
@@ -124,7 +126,7 @@ const purgeCache = async (req, res) => {
       res.write(completeMessage);
       return res.end();
     }).catch((e) => {
-      log.error(e) // eslint-disable-line no-console
+      log.error(e); // eslint-disable-line no-console
       return res.send(e);
     });
   } else {
@@ -134,6 +136,8 @@ const purgeCache = async (req, res) => {
     res.write(completeMessage);
     return res.end();
   }
+
+  return res.end();
 };
 
 module.exports = purgeCache;

@@ -30,7 +30,7 @@
     "release-storybook": "npm run build-storybook && npm run deploy-storybook"
   },
   "dependencies": {
-    "@irvingjs/babel-preset-irving": "^2.19.2",
+    "@irvingjs/babel-preset-irving": "^2.14.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"

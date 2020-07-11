@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/aws-lambda",
-  "version": "2.19.2",
+  "version": "3.0.0-alpha.0",
   "description": "Run Irving on AWS Lambda",
   "main": "index.js",
   "repository": {
@@ -17,6 +17,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
+  }
 }

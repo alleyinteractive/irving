@@ -6,17 +6,15 @@ module.exports = {
     ecmaFeatures: {
       globalReturn: true,
       impliedStrict: true,
-      jsx: true
+      jsx: true,
     },
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  plugins: [ 'react' ],
+  plugins: ['react'],
   env: {
     es6: true,
     browser: true,
     node: true,
-    jquery: false,
-    jasmine: true,
   },
   settings: {
     'import/resolver': {

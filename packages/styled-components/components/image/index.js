@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
-import useImageSize from '@use-hooks/image-size';
+// import useImageSize from '@use-hooks/image-size';
 import { richText } from '@irvingjs/core/config/html';
 import withThemes from '@irvingjs/styled/components/withThemes';
 import * as defaultStyles from './themes/default';
@@ -59,7 +59,7 @@ const Image = (props) => {
   } = theme;
 
   // Get the image width to limit the meta width.
-  const [width] = useImageSize(src || fallbackSrc);
+  // const [width] = useImageSize(src || fallbackSrc);
 
   // Allow using an aspect ratio mapping.
   let { aspectRatio } = props;
@@ -74,7 +74,7 @@ const Image = (props) => {
     <FigureWrapper
       allowUpscaling={allowUpscaling}
       classsName={className}
-      maxWidth={width}
+      // maxWidth={width}
       style={style}
     >
       <ImageWrapper aspectRatio={aspectRatio}>

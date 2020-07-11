@@ -1,6 +1,8 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { getConfigObject } from '../utils/getConfigValue';
+import {
+  getValueFromConfigNoMemo,
+} from 'config/irving/getValueFromConfig';
 
 /**
  *
@@ -8,12 +10,10 @@ import { getConfigObject } from '../utils/getConfigValue';
  * @param {object} initialVars Variables passed in from serverRenderer
  */
 export default function getTemplateVars(key, initialVars) {
-  const customTemplateVars = getConfigObject(key, initialVars);
+  const customTemplateVars = getValueFromConfigNoMemo(key, initialVars);
 
-  // Delete Wrapper and renderToString.
   // This needs to happen first to ensure proper SSR rendering of stylesheets.
   const AppWrapper = customTemplateVars.Wrapper;
-  delete customTemplateVars.Wrapper;
   customTemplateVars.appHtml = renderToString(<AppWrapper />);
 
   // Call any template vars that are functions.

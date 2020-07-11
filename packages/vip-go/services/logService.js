@@ -1,17 +1,6 @@
-const getMonitorService = require('./monitorService');
-const monitor = getMonitorService();
-/* eslint-disable no-console */
-const defaultService = {
-  emerg: console.error,
-  alert: console.error,
-  crit: console.error,
-  error: console.error,
-  warning: console.log,
-  notice: console.log,
-  info: console.info,
-  debug: console.debug,
-};
-/* eslint-enable */
+const defaultService = require(
+  '@irvingjs/core/services/logService/defaultService'
+);
 
 /**
  * Create a debug logger that will conditionally handle logged errors based on
@@ -24,10 +13,17 @@ const defaultService = {
  */
 const getService = (namespace) => {
   const env = process.env.NODE_ENV;
-  let service;
+  let service = defaultService;
 
   /* eslint-disable global-require */
-  if (! process.env.BROWSER) {
+  // This is still required for log service, as core expects the log service to be isomorphic.
+  if (
+    ! process.env.IRVING_EXECUTION_CONTEXT ||
+    'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
+    'development_server' === process.env.IRVING_EXECUTION_CONTEXT
+  ) {
+    const getMonitorService = require('./monitorService');
+    const monitor = getMonitorService();
     const { logger } = require('@automattic/vip-go');
     const log = logger(namespace, {
       silent: 'test' === env,

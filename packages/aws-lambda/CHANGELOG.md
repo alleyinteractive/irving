@@ -3,22 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.19.2](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v2.19.1...v2.19.2) (2020-06-30)
-
-**Note:** Version bump only for package @irvingjs/aws-lambda
-
-
-
-
-
-## [2.19.1](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v2.19.0...v2.19.1) (2020-06-30)
-
-**Note:** Version bump only for package @irvingjs/aws-lambda
-
-
-
-
-
 # [2.14.0](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v2.14.0-beta.1...v2.14.0) (2020-06-15)
 
 **Note:** Version bump only for package @irvingjs/aws-lambda

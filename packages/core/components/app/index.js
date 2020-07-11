@@ -71,7 +71,10 @@ const mapStateToProps = (state) => ({
 const withRedux = connect(mapStateToProps);
 let hotApp; // eslint-disable-line import/no-mutable-exports
 
-if (process.env.BROWSER) {
+if (
+  'production_client' === process.env.IRVING_EXECUTION_CONTEXT ||
+  'development_client' === process.env.IRVING_EXECUTION_CONTEXT
+) {
   hotApp = hot(withRedux(App));
 } else {
   hotApp = withRedux(App);

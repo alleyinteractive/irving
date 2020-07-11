@@ -1,33 +1,36 @@
 /* eslint-disable global-require, no-console, import/order, import/no-dynamic-require */
-const path = require('path');
-const express = require('express');
-const createCheckAuth = require('./auth');
+const { nodeRequire } = require('../utils/nodeRequire');
 const {
   clientBuild,
   serverBuild,
-  serverConfig,
 } = require('../config/paths');
-const userConfig = require(serverConfig);
-const getConfigField = require('../utils/getConfigField');
+const path = require('path');
+const express = require('express');
+const createCheckAuth = require('./auth');
+const getValueFromFiles = require('../config/irving/getValueFromFiles');
+
 // App must be built using the build command before production mode can be run.
-/* eslint-disable import/no-dynamic-require */
-const clientStats = require(path.join(clientBuild, 'stats.json'));
+const clientStats = nodeRequire(
+  path.join(clientBuild, 'stats.json')
+);
 const {
   default: serverRenderer,
 } = require(path.join(serverBuild, 'main.bundle'));
-/* eslint-enable */
 
 /**
  * Add the required middleware to support running the app in production mode.
  * @param {object} app - express application
  */
-const productionMiddleware = (app) => {
+const productionMiddleware = async (app) => {
   // Allow customization of production server
-  const irvingProdMiddleware = getConfigField('customizeProdServer');
+  const irvingProdMiddleware = getValueFromFiles(
+    'server/customizeProdServer.js',
+    [() => {}]
+  );
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 
   // Add basic auth handling if user configures it.
-  if (userConfig.basicAuth) {
+  if (process.env.BASIC_AUTH) {
     app.use(createCheckAuth('irving'));
   }
 

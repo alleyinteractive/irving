@@ -1,10 +1,10 @@
+// Global passed in via webpack define plugin
+/* global proxyPassthrough */
 import URL from 'url-parse';
 import globToRegExp from 'glob-to-regexp';
-import { getConfigArray } from 'utils/getConfigValue';
 import addTrailingSlash from './addTrailingSlash';
 
 // Create RegExp version of proxy globs.
-const proxyPassthrough = getConfigArray('proxyPassthrough');
 const proxyRegExp = proxyPassthrough.map(globToRegExp);
 
 /**

@@ -5,8 +5,9 @@ import {
 } from 'config/constants';
 import isNode from 'utils/isNode';
 import shouldAuthorize from 'utils/shouldAuthorize';
-import getService from './cacheService/getService';
-import getLogService from './logService';
+import getEnv from 'utils/universalEnv';
+import getLogService from '@irvingjs/services/logService';
+import getCacheService from '@irvingjs/services/cacheService';
 import createComponentsEndpointQueryString
   from './utils/createComponentsEndpointQueryString';
 
@@ -14,7 +15,7 @@ const log = getLogService('irving:components');
 
 // To access environment variables at run time in a client context we must
 // access them through a global provided by the server render.
-const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
+const env = getEnv();
 
 /**
  * Fetch components for the page from the API.
@@ -121,7 +122,7 @@ async function cachedFetchComponents(
   cookie = {},
   context = CONTEXT_PAGE
 ) {
-  const cache = getService();
+  const cache = getCacheService();
   const componentsQuery = createComponentsEndpointQueryString(
     path,
     search,
