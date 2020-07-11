@@ -93,7 +93,6 @@
     "react-oembed-container": "^1.0.0",
     "react-redux": "^7.2.0",
     "react-transition-group": "^4.3.0",
-    "react-universal-component": "^4.0.1",
     "reduce-reducers": "^1.0.4",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",

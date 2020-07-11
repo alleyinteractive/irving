@@ -42,7 +42,6 @@ module.exports = function babelPresetIrving(api) {
       [require('@babel/plugin-transform-runtime'), {
         corejs: 3,
       }],
-      require('babel-plugin-universal-import'),
     ],
     presets: [
       [
