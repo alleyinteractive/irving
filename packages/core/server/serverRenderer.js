@@ -7,7 +7,6 @@ import { Helmet } from 'react-helmet';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
-import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
@@ -73,8 +72,6 @@ const render = async (req, res, clientStats) => {
     return;
   }
 
-  clearChunks();
-
   const AppWrapper = () => (
     <Provider store={store}>
       <App />
@@ -135,11 +132,10 @@ export default function serverRenderer(options) {
       );
 
       // Get some template vars and allow customization by user.
-      const customTemplateVars = getTemplateVars('getErrorTemplateVars', {
+      const templateVars = getTemplateVars('getErrorTemplateVars', {
         Wrapper: ErrorMessageWrapper,
         irvingHead: '',
       });
-      const templateVars = customTemplateVars;
 
       res.status(500);
       res.render(errorView, templateVars, (templateErr, html) => {
