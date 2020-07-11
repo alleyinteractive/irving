@@ -1,5 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import { mergeConfigValues } from 'config/irving/mergeConfigValues';
 import {
   getValueFromConfigNoMemo,
 } from 'config/irving/getValueFromConfig';
@@ -13,16 +14,22 @@ export default function getTemplateVars(key, initialVars) {
   const customTemplateVars = getValueFromConfigNoMemo(key, initialVars);
 
   // This needs to happen first to ensure proper SSR rendering of stylesheets.
-  const AppWrapper = customTemplateVars.Wrapper;
-  customTemplateVars.appHtml = renderToString(<AppWrapper />);
+  const { Wrapper } = customTemplateVars;
+  customTemplateVars.appHtml = renderToString(<Wrapper />);
 
   // Call any template vars that are functions.
   return Object.keys(customTemplateVars).reduce((acc, templateVar) => {
+    // These have already been handled above.
+    if ('Wrapper' === templateVar || 'appHtml' === templateVar) {
+      return acc;
+    }
+
     const value = customTemplateVars[templateVar];
+    const initial = initialVars[templateVar] || [];
 
     return {
       ...acc,
-      [templateVar]: 'function' === typeof value ? value() : value,
+      [templateVar]: mergeConfigValues(value, initial),
     };
   }, {});
 }

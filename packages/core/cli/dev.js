@@ -29,6 +29,7 @@ const ignore = [
   'irving.config.js',
   'irving.config.server.js',
   'componentMap.js',
+  'react-loadable.json',
 ];
 const script = path.join(__dirname, './start.js');
 

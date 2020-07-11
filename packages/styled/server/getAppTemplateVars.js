@@ -12,6 +12,6 @@ export default function getAppTemplateVars(templateVars) {
     Wrapper: () => sheet.collectStyles(
       <AppWrapper />
     ),
-    irvingHead: () => `${irvingHead}${sheet.getStyleTags()}`,
+    irvingHead: [() => `${irvingHead}${sheet.getStyleTags()}`],
   };
 }

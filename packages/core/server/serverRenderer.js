@@ -81,7 +81,7 @@ const render = async (req, res, clientStats) => {
   // Get some template vars and allow customization by user.
   const customTemplateVars = getTemplateVars('getAppTemplateVars', {
     Wrapper: AppWrapper,
-    irvingHead: getWebpackAssetTags(clientStats).join(''),
+    irvingHead: [getWebpackAssetTags(clientStats)],
   });
 
   // Clear head data to avoid memory leak.
@@ -127,14 +127,14 @@ export default function serverRenderer(options) {
 
       // Render a error page.
       const ErrorMessageComponent = getComponent('error-message');
-      const ErrorMessageWrapper = () => (
+      const ErrorWrapper = () => (
         <ErrorMessageComponent />
       );
 
       // Get some template vars and allow customization by user.
       const templateVars = getTemplateVars('getErrorTemplateVars', {
-        Wrapper: ErrorMessageWrapper,
-        irvingHead: '',
+        Wrapper: ErrorWrapper,
+        irvingHead: [],
       });
 
       res.status(500);
