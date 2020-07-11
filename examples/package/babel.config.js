@@ -1,5 +1,8 @@
 const path = require('path');
 
+/**
+ * This babel config will be used exclusively for testing.
+ */
 module.exports = {
   plugins: [
     [
