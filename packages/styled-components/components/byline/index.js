@@ -35,7 +35,7 @@ const Byline = (props) => {
     case (1 === children.length):
       return (
         <BylineWrapper style={style}>
-          <AuthorsWrapper>
+          <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
             <AuthorWrapper>{children}</AuthorWrapper>
           </AuthorsWrapper>
@@ -45,7 +45,7 @@ const Byline = (props) => {
     case (2 === children.length):
       return (
         <BylineWrapper style={style}>
-          <AuthorsWrapper>
+          <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
             <span>
               <AuthorWrapper>{children[0]}</AuthorWrapper>
@@ -59,7 +59,7 @@ const Byline = (props) => {
     case (3 <= children.length):
       return (
         <BylineWrapper style={style}>
-          <AuthorsWrapper>
+          <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
             {children.map((child, index) => {
               // First through second to last author.
