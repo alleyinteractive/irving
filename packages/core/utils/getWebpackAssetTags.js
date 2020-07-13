@@ -35,7 +35,6 @@ const getWebpackAssetTags = (clientStats) => {
       chunks[chunkName] : [chunks[chunkName]];
 
     assets.forEach((assetPath) => {
-      console.log(assetPath);
       if (assetPath.match(/\.js$/)) {
         tags.push(
           `<script defer src="${rootUrl}/${assetPath}"></script>`

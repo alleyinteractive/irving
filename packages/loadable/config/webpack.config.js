@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
   plugins: [
     new ReactLoadablePlugin({
-      filename: path.join(process.cwd(), 'build/react-loadable.json'),
+      filename: path.join(process.cwd(), 'build/client/react-loadable.json'),
     }),
   ],
 };

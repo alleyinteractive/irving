@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import getDisplayName from 'utils/getDisplayName';
 import DefaultLoading from 'components/helpers/defaultLoading';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import isNode from 'utils/isNode';
 import styles from './styles.css';
 
 /**
@@ -38,7 +39,7 @@ const withLoader = (WrappedComponent, opts = {}) => {
     const { loading } = props;
     return (
       <>
-        {transition.enabled ? (
+        {(transition.enabled && ! isNode()) ? (
           <SwitchTransition>
             <CSSTransition
               classNames={transition.type}

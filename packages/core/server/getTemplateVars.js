@@ -19,13 +19,13 @@ export default function getTemplateVars(key, initialVars) {
 
   // Call any template vars that are functions.
   return Object.keys(customTemplateVars).reduce((acc, templateVar) => {
-    // These have already been handled above.
-    if ('Wrapper' === templateVar || 'appHtml' === templateVar) {
-      return acc;
-    }
-
     const value = customTemplateVars[templateVar];
     const initial = initialVars[templateVar] || [];
+
+    // These have already been handled above.
+    if ('Wrapper' === templateVar || 'appHtml' === templateVar) {
+      return { ...acc, [templateVar]: value };
+    }
 
     return {
       ...acc,
