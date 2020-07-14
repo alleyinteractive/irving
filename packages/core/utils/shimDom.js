@@ -1,5 +1,5 @@
 const { HOSTNAME, PORT } = process.env;
-const shimDom = {
+module.exports = {
   location: {
     host: HOSTNAME && PORT ? `${HOSTNAME}:${PORT}` : 'localhost:3001',
     port: PORT,
@@ -17,5 +17,3 @@ const shimDom = {
     this.disconnect = () => {};
   },
 };
-
-export default shimDom;
