@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useFormState } from 'react-use-form-state';
 import PropTypes from 'prop-types';
-import getDisplayName from 'utils/getDisplayName';
+import getDisplayName from '@irvingjs/core/utils/getDisplayName';
 import curry from 'lodash/fp/curry';
 import { actionRequestSubmit } from 'actions/formActions';
 
@@ -94,7 +94,7 @@ const withFormHandler = (
 
     const withRedux = connect(
       mapStateToProps,
-      mapDispatchToProps,
+      mapDispatchToProps
     );
 
     return withRedux(FormHandler);

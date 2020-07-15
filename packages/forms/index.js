@@ -9,5 +9,6 @@ export {
   Input,
   Label,
   State,
-  config,
 };
+
+export default config;
