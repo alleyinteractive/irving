@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.22.0...v2.22.1) (2020-07-15)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
 # [2.22.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.21.3...v2.22.0) (2020-07-14)
 
 **Note:** Version bump only for package @irvingjs/styled-components

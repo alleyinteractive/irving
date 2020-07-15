@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.1](https://github.com/alleyinteractive/irving/compare/v2.22.0...v2.22.1) (2020-07-15)
+
+
+### Bug Fixes
+
+* **forms:** fix broken imports in form package ([14db436](https://github.com/alleyinteractive/irving/commit/14db436835b27243520fa33e2fc38afa003ac52e))
+
+
+
+
+
 # [2.22.0](https://github.com/alleyinteractive/irving/compare/v2.21.3...v2.22.0) (2020-07-14)
 
 **Note:** Version bump only for package irving
