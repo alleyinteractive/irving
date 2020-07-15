@@ -38,7 +38,7 @@
     "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/react": "^10.4.5",
     "babel-plugin-module-resolver": "^4.0.0",
-    "enzyme": "^3.11.0",
+    "babel-plugin-react-remove-properties": "^0.3.0",
     "jest": "^25.5.3"
   },
   "peerDependencies": {
@@ -48,7 +48,9 @@
     "access": "public"
   },
   "jest": {
-    "modulePaths": ["<rootDir>"]
+    "modulePaths": [
+      "<rootDir>"
+    ]
   },
   "gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
 }
