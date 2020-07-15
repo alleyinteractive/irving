@@ -10,6 +10,7 @@ import * as defaultStyles from './themes/default';
  */
 const Byline = (props) => {
   const {
+    className,
     children,
     lastDelimiter,
     multiDelimiter,
@@ -34,7 +35,7 @@ const Byline = (props) => {
 
     case (1 === children.length):
       return (
-        <BylineWrapper style={style}>
+        <BylineWrapper style={style} className={className}>
           <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
             <AuthorWrapper>{children}</AuthorWrapper>
@@ -44,7 +45,7 @@ const Byline = (props) => {
 
     case (2 === children.length):
       return (
-        <BylineWrapper style={style}>
+        <BylineWrapper style={style} className={className}>
           <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
             <span>
@@ -58,7 +59,7 @@ const Byline = (props) => {
 
     case (3 <= children.length):
       return (
-        <BylineWrapper style={style}>
+        <BylineWrapper style={style} className={className}>
           <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
             {children.map((child, index) => {
@@ -95,6 +96,7 @@ const Byline = (props) => {
 
 Byline.defaultProps = {
   children: [],
+  className: '',
   lastDelimiter: ', and ',
   multiDelimiter: ', ',
   preText: 'By ',
@@ -108,6 +110,10 @@ Byline.propTypes = {
    * Children of the component.
    */
   children: PropTypes.node,
+  /**
+   * Class name.
+   */
+  className: PropTypes.string,
   /**
    * Last delimiter.
    */
