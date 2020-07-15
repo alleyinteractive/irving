@@ -3,6 +3,7 @@ import createWithUserThemes
   from '@irvingjs/styled/components/hoc/createWithUserThemes';
 
 import App from 'components/app';
+import Head from 'components/head';
 import * as BodyWrapper from 'components/bodyWrapper';
 import * as Byline from 'components/byline';
 import * as Container from 'components/container';
@@ -77,6 +78,7 @@ export const defaultMapping = {
   'irving/container': Container.StyledComponent,
   'irving/footer-wrapper': Fragment.StyledComponent,
   'irving/fragment': Fragment.StyledComponent,
+  'irving/head': Head,
   'irving/header-wrapper': Fragment.StyledComponent,
   'irving/image': Image.StyledComponent,
   'irving/link': Link.StyledComponent,
@@ -90,6 +92,7 @@ export const defaultMapping = {
   'styled-css-grid/cell': StyledCSSGridCell,
   'styled-css-grid/grid': StyledCSSGrid,
   app: App,
+  head: Head,
 };
 
 /**
