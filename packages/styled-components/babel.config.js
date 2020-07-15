@@ -11,15 +11,16 @@ module.exports = {
         },
       },
     ],
-    [
-      'react-remove-properties',
-      {
-        properties: [
-          'data-testid',
-        ],
-      },
-    ],
   ],
+  env: {
+    build: {
+      plugins: [
+        'react-remove-properties', {
+          properties: ['data-testid']
+        }
+      ],
+    }
+  },
   presets: [
     '@irvingjs/irving',
   ],
