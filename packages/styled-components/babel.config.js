@@ -12,15 +12,6 @@ module.exports = {
       },
     ],
   ],
-  env: {
-    build: {
-      plugins: [
-        'react-remove-properties', {
-          properties: ['data-testid']
-        }
-      ],
-    }
-  },
   presets: [
     '@irvingjs/irving',
   ],
