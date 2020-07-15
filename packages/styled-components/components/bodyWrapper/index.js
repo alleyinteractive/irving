@@ -7,19 +7,31 @@ import withThemes from '@irvingjs/styled/components/withThemes';
 import * as defaultStyles from './themes/default';
 
 const BodyWrapper = (props) => {
-  const { bodyClasses, children, theme } = props;
+  const {
+    bodyClasses,
+    children,
+    style,
+    theme,
+  } = props;
+
   const { Main } = theme;
 
   return (
     <>
       <Helmet>
-        <body className={classNames(bodyClasses)} />
+        <body className={classNames(bodyClasses)} style={style} />
       </Helmet>
       <Main role="main" id="content">
         {children}
       </Main>
     </>
   );
+};
+
+BodyWrapper.defaultProps = {
+  bodyClasses: [],
+  style: {},
+  theme: defaultStyles,
 };
 
 BodyWrapper.propTypes = {
@@ -35,14 +47,16 @@ BodyWrapper.propTypes = {
     PropTypes.string,
   ]),
   /**
+   * Inline CSS styles.
+   */
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  /**
    * Theme (styles) to apply to the component.
    */
   theme: PropTypes.object,
-};
-
-BodyWrapper.defaultProps = {
-  bodyClasses: [],
-  theme: defaultStyles,
 };
 
 const themeMap = {
