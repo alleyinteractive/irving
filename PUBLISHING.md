@@ -42,3 +42,4 @@ In order to publish you will need to:
 * Canary releases may become a bit off. If you find this is happening, you can run `git checkout develop && git rebase --onto master develop`, then force push to the remote `develop` branch. This should get canary releases back up to date.
 * When you want to test out a newly published package, don't forget the npm tag. For example, for a canary release, run `npm install @irvingjs/core@canary --save-dev`.
 * If lerna hangs on `Creating Releases...` or `Skipping Releases...` just use `ctrl + C` to get it to continue with the release.
+* When commitizen kicks in for a merge, choose `chore` for the type, `merge` for the scope, and `merge` for the commit message. Everything else can be skipped.
