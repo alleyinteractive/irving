@@ -1,10 +1,10 @@
-import createFormReducer from './createFormReducer';
+import formReducer from './formReducer';
 
 export default function getReducers() {
   return [
     {
       slice: null,
-      reducer: createFormReducer,
+      reducer: formReducer,
     },
   ];
 }

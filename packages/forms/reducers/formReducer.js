@@ -8,25 +8,27 @@ import {
   RECEIVE_SUBMIT_ERROR,
   RECEIVE_SUBMIT_INVALID,
 } from '../actions/types';
-import getDefaultState from './defaultState';
+import defaultState from './defaultState';
 
 /**
  * Create a state slice reducer for form related actions.
  * @param {string} name form state slice name
  * @return {function}
  */
-const createFormReducer = (name) => (
-  formState = getDefaultState(),
-  { type, payload }
-) => {
-  if (name !== get('formName', payload)) {
-    return formState;
+const formReducer = (state = {}, action) => {
+  const { type, payload } = action;
+  const formName = get('formName', payload);
+
+  if (! formName) {
+    return defaultState;
   }
+
+  const formState = get('formName', state) || defaultState;
 
   switch (type) {
     case REQUEST_SUBMIT: {
       return flow(
-        set('validation', {}),
+        set(`${formName}.validation`, {}),
         merge({
           submitting: true,
           failed: false,
@@ -58,4 +60,4 @@ const createFormReducer = (name) => (
   }
 };
 
-export default createFormReducer;
+export default formReducer;
