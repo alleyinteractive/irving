@@ -1,13 +1,10 @@
 import { call, put } from 'redux-saga/effects';
-import getLogService from '@irvingjs/core/services/logService';
 import {
   actionReceiveSubmitted,
   actionReceiveSubmitError,
   actionReceiveSubmitInvalid,
 } from '../actions/formActions';
 import submitForm from '../services/submitForm';
-
-const debug = getLogService('irving:sagas:form');
 
 export default function* watchRequestSubmit(data) {
   const {
@@ -23,6 +20,5 @@ export default function* watchRequestSubmit(data) {
     }
   } catch (err) {
     yield put(actionReceiveSubmitError(formName, err));
-    yield call(debug.error, err);
   }
 }

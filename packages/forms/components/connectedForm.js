@@ -1,8 +1,10 @@
 import React, { createContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import get from 'lodash/fp/get';
 import PropTypes from 'prop-types';
 import { actionRequestSubmit } from 'actions/formActions';
+import { formState as defaultState } from 'reducers/defaultState';
 
 export const ConnectedFormContext = createContext({});
 
@@ -12,7 +14,7 @@ const ConnectedForm = (props) => {
     children,
     formName,
   } = props;
-  const formState = useSelector((state) => state[formName]);
+  const formState = useSelector((state) => get(`forms.${formName}`, state) || defaultState);
   const dispatch = useDispatch();
   const { redirect } = formState;
   const formApi = useForm(useFormOpts);
