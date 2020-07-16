@@ -1,4 +1,4 @@
-import getSagas from 'sagas';
+import getSagas from './sagas';
 
 export default {
   sagas: getSagas,

@@ -4,25 +4,25 @@ import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { actionRequestSubmit } from 'actions/formActions';
 
-const ConnectedFormContext = createContext({});
+export const ConnectedFormContext = createContext({});
 
 const ConnectedForm = (props) => {
   const {
     useFormOpts,
     children,
-    connectedFormName,
+    formName,
   } = props;
-  const formState = useSelector((state) => state[connectedFormName]);
+  const formState = useSelector((state) => state[formName]);
   const dispatch = useDispatch();
   const { redirect } = formState;
   const formApi = useForm(useFormOpts);
   const { getValues } = formApi;
   const submitForm = () => {
-    dispatch(actionRequestSubmit(connectedFormName, getValues()));
+    dispatch(actionRequestSubmit(formName, getValues()));
   };
   const createOnSubmit = (submission) => (e) => {
     e.preventDefault();
-    dispatch(actionRequestSubmit(connectedFormName, submission));
+    dispatch(actionRequestSubmit(formName, submission));
   };
 
   // Redirect post-submission
@@ -66,7 +66,7 @@ ConnectedForm.propTypes = {
   /**
    * Form name for storing connected form state in redux.
    */
-  connectedFormName: PropTypes.string.isRequired,
+  formName: PropTypes.string.isRequired,
 };
 
 export default ConnectedForm;
