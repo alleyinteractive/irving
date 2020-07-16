@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.22.1...v2.23.0-beta.0) (2020-07-16)
+
+
+### Features
+
+* **byline component:** add className prop to Byline component ([34860fb](https://github.com/alleyinteractive/irving/commit/34860fb02fbc315251d4446b1f128c524f51fb36))
+
+
+
+
+
 ## [2.22.1](https://github.com/alleyinteractive/irving/compare/v2.22.0...v2.22.1) (2020-07-15)
 
 
