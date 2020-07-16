@@ -5,6 +5,7 @@
   "files": [
     "actions/**/*",
     "components/**/*",
+    "hooks/**/*",
     "reducers/**/*",
     "sagas/**/*",
     "services/**/*",
