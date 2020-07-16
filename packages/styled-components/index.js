@@ -42,8 +42,6 @@ import {
   Cell as StyledCSSGridCell,
 } from 'styled-css-grid';
 
-import SiteThemeProvider from '../styled/components/site-theme-provider';
-
 export {
   App,
   BodyWrapper,
