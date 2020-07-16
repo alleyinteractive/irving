@@ -35,7 +35,7 @@ In order to publish you will need to:
 11. When ready, call attention to your upcoming release. This is an opportunity to have a conversation with others about code they might also want to release or objections they might have to releasing your code.
 14. `npm run release` - Assuming no one takes issue with your code, publish a stable release from the `master` branch!
 15. `git checkout develop` - check out the develop branch
-16. `git merge master && npm run reconcile` - update `develop` with `master` and reconcile the differences in version numbers.
+16. `git merge master` then, if you encounter merge conflicts, `npm run reconcile`. This will update `develop` with `master` and reconcile the differences in version numbers.
 
 ## Tips and Gotchas
 * Please read about [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) before publishing. The type of commit you choose will have ramifications on the semver version number you release. For example, a type of `fix` will indicate a `patch` release, a type of `feat` will indicate a `minor` release.
