@@ -1,1 +1,0 @@
-Irving offers a pre-built configuration for handling forms connected to your backend using a `<ConnectedForm>` component.
