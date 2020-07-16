@@ -8,7 +8,7 @@ import {
   RECEIVE_SUBMIT_ERROR,
   RECEIVE_SUBMIT_INVALID,
 } from '../actions/types';
-import defaultState from './defaultState';
+import { formState as defaultState } from './defaultState';
 
 /**
  * Create a state slice reducer for form related actions.
@@ -20,44 +20,52 @@ const formReducer = (state = {}, action) => {
   const formName = get('formName', payload);
 
   if (! formName) {
-    return defaultState;
+    return state;
   }
 
-  const formState = get('formName', state) || defaultState;
+  const formState = get(formName, state) || defaultState;
+  let newFormState;
 
   switch (type) {
-    case REQUEST_SUBMIT: {
-      return flow(
-        set(`${formName}.validation`, {}),
-        merge({
-          submitting: true,
-          failed: false,
-        })
-      )(formState);
-    }
+    case REQUEST_SUBMIT:
+      newFormState = {
+        validation: {},
+        submitting: true,
+        failed: false,
+      };
+      break;
 
     case RECEIVE_SUBMITTED:
-      return merge(formState, {
+      newFormState = {
         submitting: false,
         submitted: true,
         redirect: get('response.redirect', payload),
-      });
+      };
+      break;
 
     case RECEIVE_SUBMIT_ERROR:
-      return merge(formState, {
+      newFormState = {
         submitting: false,
         failed: true,
-      });
+      };
+      break;
 
     case RECEIVE_SUBMIT_INVALID:
-      return flow(
-        set('submitting', false),
-        set('validation', payload.messageMap)
-      )(formState);
+      newFormState = {
+        submitting: false,
+        validation: payload.messageMap,
+      };
+      break;
 
     default:
-      return formState;
+      newFormState = formState;
   }
+
+  return set(
+    formName,
+    merge(formState, newFormState),
+    state
+  );
 };
 
 export default formReducer;

@@ -1,9 +1,8 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import get from 'lodash/fp/get';
-import { actionRequestSubmit } from 'actions/formActions';
-import { formState as defaultState } from 'reducers/defaultState';
+import { actionRequestSubmit } from '../actions/formActions';
+import { formState as defaultState } from '../reducers/defaultState';
 
 const useConnectedForm = (formName, useFormOpts) => {
   const formState = useSelector(
