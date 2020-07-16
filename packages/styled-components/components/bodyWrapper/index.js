@@ -9,6 +9,7 @@ import * as defaultStyles from './themes/default';
 const BodyWrapper = (props) => {
   const {
     bodyClasses,
+    className,
     children,
     style,
     theme,
@@ -21,7 +22,7 @@ const BodyWrapper = (props) => {
       <Helmet>
         <body className={classNames(bodyClasses)} style={style} />
       </Helmet>
-      <Main role="main" id="content">
+      <Main role="main" className={className}>
         {children}
       </Main>
     </>
@@ -30,6 +31,7 @@ const BodyWrapper = (props) => {
 
 BodyWrapper.defaultProps = {
   bodyClasses: [],
+  className: '',
   style: {},
   theme: defaultStyles,
 };
@@ -40,12 +42,16 @@ BodyWrapper.propTypes = {
    */
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   /**
-   * Additional classes to apply to the <body> tag using react-helmet.
+   * Additional classes to apply to the `<body>` tag using react-helmet.
    */
   bodyClasses: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.string,
   ]),
+  /**
+   * CSS classname, applied to the `<main>` element, which wraps children of this component.
+   */
+  className: PropTypes.string,
   /**
    * Inline CSS styles.
    */
