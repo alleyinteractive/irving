@@ -1,7 +1,5 @@
-import ConnectedForm, {
-  ConnectedFormContext,
-} from './components/connectedForm';
+import useConnectedForm from './hooks/useConnectedForm';
 import config from './irving.config';
 
-export { ConnectedForm, ConnectedFormContext };
+export { useConnectedForm };
 export default config;
