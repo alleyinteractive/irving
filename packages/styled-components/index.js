@@ -42,28 +42,8 @@ import {
   Cell as StyledCSSGridCell,
 } from 'styled-css-grid';
 
-export {
-  App,
-  BodyWrapper,
-  Byline,
-  Container,
-  Fragment,
-  Image,
-  Link,
-  Logo,
-  Menu,
-  Pagination,
-  SearchForm,
-  SiteThemeProvider,
-  SocialSharing,
-  StyledCSSGrid,
-  StyledCSSGridCell,
-  Text,
-};
-
-const ComponentMap = {
-  'irving/site-theme': SiteThemeProvider,
-  '': Fragment,
+// Map the entire export for each component.
+export const components = {
   'irving/body-wrapper': BodyWrapper,
   'irving/byline': Byline,
   'irving/container': Container,
