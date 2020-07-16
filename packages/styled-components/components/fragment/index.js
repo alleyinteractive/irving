@@ -64,10 +64,12 @@ Fragment.propTypes = {
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export { Fragment as PureFragment };
+export { Fragment as PureComponent };
 
-export default withThemes(themeMap)(Fragment);
+export const StyledComponent = withThemes(themeMap)(Fragment);
+
+export default StyledComponent;

@@ -1,50 +1,49 @@
 {
-	"name": "@irvingjs/styled-components",
-	"version": "2.20.0-alpha.0",
-	"description": "Integration for React components with attached styles for Irving",
-	"files": [
-		"components/**/*",
-		"config/**/*",
-		"irving.config.server.js",
-		"irving.config.js",
-		"!*.test.js"
-	],
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/alleyinteractive/irving/packages/styled-components"
-	},
-	"author": "Alley (Alley.co)",
-	"license": "MIT",
-	"scripts": {
-		"test": "jest",
-		"test:watch": "jest --watch"
-	},
-	"dependencies": {
-		"@irvingjs/styled": "^2.20.0-alpha.0",
-		"@material-ui/core": "^4.10.2",
-		"@material-ui/icons": "^4.9.1",
-		"@use-hooks/image-size": "^1.0.5",
-		"@wordpress/i18n": "^3.10.0",
-		"query-string": "^6.13.1",
-		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
-		"react-helmet": "^6.1.0",
-		"react-hook-form": "^5.7.2",
-		"styled-css-grid": "^1.2.1"
-	},
-	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^2.14.0",
-		"@irvingjs/core": "^2.20.0-alpha.0",
-		"babel-plugin-module-resolver": "^4.0.0",
-		"enzyme": "^3.11.0",
-		"jest": "^25.5.3"
-	},
-	"peerDependencies": {
-		"@irvingjs/core": ">=2.0.0"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"gitHead": "2b57a99dc78a57506cc60cf709b756d1cc5ecef5"
+  "name": "@irvingjs/styled-components",
+  "version": "2.22.1",
+  "description": "Integration for React components with attached styles for Irving",
+  "files": [
+    "components/**/*",
+    "config/**/*",
+    "irving.config.server.js",
+    "irving.config.js",
+    "!*.test.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/styled-components"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "@irvingjs/styled": "^2.21.3",
+    "@use-hooks/image-size": "^1.0.5",
+    "@wordpress/i18n": "^3.10.0",
+    "query-string": "^6.13.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^5.7.2",
+    "react-icons": "^3.10.0",
+    "styled-css-grid": "^1.2.1"
+  },
+  "devDependencies": {
+    "@irvingjs/babel-preset-irving": "^2.19.2",
+    "@irvingjs/core": "^2.21.3",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "enzyme": "^3.11.0",
+    "jest": "^25.5.3"
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">=2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
 }

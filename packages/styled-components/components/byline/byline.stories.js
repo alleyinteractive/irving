@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { PureByline as Byline } from '.';
+import { PureComponent as Byline } from '.';
 import Container from '../container';
 import Link from '../link';
 import Text from '../text';

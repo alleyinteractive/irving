@@ -33,9 +33,7 @@ In order to publish you will need to:
   * `npm run prerelease:rc`- publish a new release to the `@rc` tag in npm.
   * Ideally at this point you would have someone else at Alley install and test out your `@rc` release.
 11. When ready, call attention to your upcoming release. This is an opportunity to have a conversation with others about code they might also want to release or objections they might have to releasing your code.
-12. Assuming no one takes issue with your code, get someone to slap an approval on it and merge into `master`.
-13. `git checkout master && git pull origin master` - checkout `master` and pull down your newly-merged code.
-14. `npm run release` - publish a stable release!
+14. `npm run release` - Assuming no one takes issue with your code, publish a stable release from the `master` branch!
 15. `git checkout develop` - check out the develop branch
 16. `git merge master && npm run reconcile` - update `develop` with `master` and reconcile the differences in version numbers.
 

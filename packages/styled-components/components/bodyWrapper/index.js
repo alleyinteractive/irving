@@ -8,7 +8,6 @@ import * as defaultStyles from './themes/default';
 
 const BodyWrapper = (props) => {
   const { bodyClasses, children, theme } = props;
-  console.log(bodyClasses);
   const { Main } = theme;
 
   return (
@@ -50,4 +49,8 @@ const themeMap = {
   default: defaultStyles,
 };
 
-export default withThemes(themeMap)(withLoader(BodyWrapper));
+export { BodyWrapper as PureComponent };
+
+export const StyledComponent = withThemes(themeMap)(withLoader(BodyWrapper));
+
+export default StyledComponent;

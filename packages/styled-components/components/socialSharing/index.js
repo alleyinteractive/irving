@@ -169,10 +169,12 @@ SocialSharing.propTypes = {
   url: PropTypes.string,
 };
 
-const socialSharingThemeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export { SocialSharing as PureSocialSharing };
+export { SocialSharing as PureComponent };
 
-export default withThemes(socialSharingThemeMap)(SocialSharing);
+export const StyledComponent = withThemes(themeMap)(SocialSharing);
+
+export default StyledComponent;

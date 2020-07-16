@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "2.20.0-alpha.0",
+  "version": "2.21.3",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -44,7 +44,7 @@
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@hot-loader/react-dom": "^16.13.0",
-    "@irvingjs/babel-preset-irving": "^2.14.0",
+    "@irvingjs/babel-preset-irving": "^2.19.2",
     "abort-controller": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
@@ -65,7 +65,7 @@
     "eslint-import-resolver-babel-module": "^5.1.2",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^4.0.0",
     "express": "^4.17.1",
@@ -126,7 +126,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "2b57a99dc78a57506cc60cf709b756d1cc5ecef5",
+  "gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406",
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^2.7.0",
     "babel-jest": "^25.5.1",

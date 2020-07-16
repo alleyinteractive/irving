@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { PureMenu as Menu } from '.';
+import { PureComponent as Menu } from '.';
 
 export default {
   component: Menu,
