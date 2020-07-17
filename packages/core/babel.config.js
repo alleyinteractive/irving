@@ -31,6 +31,14 @@ module.exports = (api) => {
           alias: aliases,
         },
       ],
+      [
+        'react-remove-properties',
+        {
+          properties: [
+            'data-testid'
+          ]
+        },
+      ],
     ],
     presets: [
       '@irvingjs/irving',
