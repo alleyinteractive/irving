@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.1-beta.0](https://github.com/alleyinteractive/irving/compare/v2.23.0...v2.23.1-beta.0) (2020-07-19)
+
+
+### Bug Fixes
+
+* **forms:** fix form reducer logic to properly set and merge default form state ([d5564f1](https://github.com/alleyinteractive/irving/commit/d5564f15f3a3b99ed7623a23ef3ac839c1918c49))
+* **forms:** fix publish files to include hooks ([c7ecd0a](https://github.com/alleyinteractive/irving/commit/c7ecd0af807c6c63874a680f4a25bc9769dd52b1))
+* **forms:** fix some imports, make them relative ([909718d](https://github.com/alleyinteractive/irving/commit/909718d8d0b46d61a5e12c86830f3322ec9b0146))
+* **forms:** fix the way we're pulling default state, add other configs ([6e95d28](https://github.com/alleyinteractive/irving/commit/6e95d28366991ce44f41b0382e124d6cf1d636f3))
+* **forms:** standardize how config functions look ([91d22a3](https://github.com/alleyinteractive/irving/commit/91d22a3cebc81fa436a76ca0baa4db45b3580223))
+
+
+
+
+
 # [2.23.0](https://github.com/alleyinteractive/irving/compare/v2.23.0-beta.0...v2.23.0) (2020-07-16)
 
 **Note:** Version bump only for package irving
