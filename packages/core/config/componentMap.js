@@ -2,22 +2,13 @@ import DefaultAppContent from 'components/app/defaultAppContent';
 import DefaultErrorMessage from 'components/defaultErrorMessage';
 import NotConfigured from 'components/notConfigured';
 import Body from 'components/body';
-import Head from 'components/head';
-import Image from 'components/image/image';
-import RawHTML from 'components/rawHTML';
-import Placeholder from 'components/placeholder';
 import withLoader from 'components/hoc/withLoader';
 import userComponentMap from '@irvingjs/componentMap';
 
 const defaultComponents = {
   app: DefaultAppContent,
   body: withLoader(Body),
-  embed: RawHTML,
   'error-message': DefaultErrorMessage,
-  head: Head,
-  header: Placeholder,
-  html: RawHTML,
-  image: Image,
 };
 
 /**
