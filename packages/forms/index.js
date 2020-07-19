@@ -1,14 +1,5 @@
-import Fieldset from './components/fieldset';
-import Input from './components/input';
-import Label from './components/label';
-import State from './components/state';
+import useConnectedForm from './hooks/useConnectedForm';
 import config from './irving.config';
 
-export {
-  Fieldset,
-  Input,
-  Label,
-  State,
-};
-
+export { useConnectedForm };
 export default config;

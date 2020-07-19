@@ -1,3 +1,4 @@
+/* stylelint-disable selector-max-specificity */
 .wrapper {
   display: block;
 }
@@ -42,3 +43,4 @@
 .apsectRatio .placeholder {
   height: 100%;
 }
+/* stylelint-enable */
