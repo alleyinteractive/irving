@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from 'components/helpers/spinner';
 import classNames from 'classnames';
+import Spinner from './spinner';
 import styles from './defaultLoading.css';
 
 const DefaultLoading = (props) => {

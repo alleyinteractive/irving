@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
 // import useImageSize from '@use-hooks/image-size';
 import { richText } from '@irvingjs/core/config/html';
-import withThemes from '@irvingjs/styled/components/withThemes';
+import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**

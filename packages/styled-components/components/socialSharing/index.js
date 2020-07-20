@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { __, sprintf } from '@wordpress/i18n';
 import queryString from 'query-string';
-import withThemes from '@irvingjs/styled/components/withThemes';
+import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import SocialSharingItem from './socialSharingItem';
 import * as defaultStyles from './themes/default';
 
