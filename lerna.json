@@ -19,7 +19,7 @@
       "allowBranch": [
         "master",
         "develop",
-        "release/3.0.0"
+        "release/*"
       ]
     }
   }
