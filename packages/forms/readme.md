@@ -6,7 +6,7 @@ This package contains utilities, logic, and configuration for helping users crea
 ### Configuration
 Configuration for submitting forms and managing their state in redux is a simple process. Import the irving config from the forms package, and add the imported config to the `packages` section of your project's config. Example:
 ```js javascript
-import formsConfig from '@irvingjs/forrms';
+import formsConfig from '@irvingjs/forms';
 
 export default {
     packages: [
