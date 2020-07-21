@@ -4,7 +4,7 @@
   "description": "Form components and submission functionality for Irving",
   "files": [
     "actions/**/*",
-    "components/**/*",
+    "utils/**/*",
     "hooks/**/*",
     "reducers/**/*",
     "sagas/**/*",
