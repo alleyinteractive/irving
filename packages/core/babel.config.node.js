@@ -38,6 +38,14 @@ const config = {
         },
       },
     }],
+    [
+      'react-remove-properties',
+      {
+        properties: [
+          'data-testid'
+        ]
+      },
+    ],
   ],
   presets: [
     '@irvingjs/irving',
