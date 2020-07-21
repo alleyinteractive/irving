@@ -1,6 +1,4 @@
 module.exports = function babelPresetIrving() {
-  // console.log(context.getEnv());
-
   return {
     sourceType: 'unambiguous',
     plugins: [
