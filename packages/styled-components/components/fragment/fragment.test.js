@@ -5,7 +5,7 @@ import Fragment from './';
 
 describe('<Fragment />', () => {
   it('renders children components', () => {
-    render(<Fragment children={['Foo Bar']} />);
+    render(<Fragment children={['Foo Bar']} style={{ color: 'poop' }} />);
     expect(screen.getByText('Foo Bar')).toBeInTheDocument();
   });
 
