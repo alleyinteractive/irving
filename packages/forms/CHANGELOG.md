@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.1-beta.4](https://github.com/alleyinteractive/irving/packages/forms/compare/v2.23.1-beta.3...v2.23.1-beta.4) (2020-07-21)
+
+
+### Bug Fixes
+
+* **forms:** more stringent check for validationg ([18d2b86](https://github.com/alleyinteractive/irving/packages/forms/commit/18d2b861df7609b8e13ee75f25dae9442210abd9))
+
+
+
+
+
 ## [2.23.1-beta.3](https://github.com/alleyinteractive/irving/packages/forms/compare/v2.23.1-beta.2...v2.23.1-beta.3) (2020-07-21)
 
 
