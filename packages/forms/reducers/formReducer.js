@@ -17,6 +17,7 @@ import { formState as defaultState } from './defaultState';
 const formReducer = (state = {}, action) => {
   const { type, payload } = action;
   const formEndpoint = get('formEndpoint', payload);
+  const formResponse = get('response', payload);
 
   if (! formEndpoint) {
     return state;
@@ -38,7 +39,7 @@ const formReducer = (state = {}, action) => {
       newFormState = {
         submitting: false,
         submitted: true,
-        redirect: get('redirect', formState),
+        redirect: get('redirect', formResponse),
       };
       break;
 
@@ -46,13 +47,14 @@ const formReducer = (state = {}, action) => {
       newFormState = {
         submitting: false,
         failed: true,
+        error: get('error', formResponse),
       };
       break;
 
     case RECEIVE_SUBMIT_INVALID:
       newFormState = {
         submitting: false,
-        validation: get('validation', formState),
+        validation: get('validation', formResponse),
       };
       break;
 

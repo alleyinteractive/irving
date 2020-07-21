@@ -32,7 +32,7 @@ export function actionReceiveSubmitted(formEndpoint, response) {
  * @returns {{type, payload}}
  */
 export function actionReceiveSubmitError(formEndpoint, err) {
-  return createAction(RECEIVE_SUBMIT_ERROR, { formEndpoint, message: err.message });
+  return createAction(RECEIVE_SUBMIT_ERROR, { formEndpoint, error: err.message });
 }
 
 /**
