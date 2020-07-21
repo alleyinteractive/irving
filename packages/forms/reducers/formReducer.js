@@ -38,7 +38,7 @@ const formReducer = (state = {}, action) => {
       newFormState = {
         submitting: false,
         submitted: true,
-        redirect: get('response.redirect', payload),
+        redirect: get('response.redirect', formState),
       };
       break;
 
@@ -52,7 +52,7 @@ const formReducer = (state = {}, action) => {
     case RECEIVE_SUBMIT_INVALID:
       newFormState = {
         submitting: false,
-        validation: payload.messageMap,
+        validation: formState.messageMap,
       };
       break;
 
