@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.1-beta.1](https://github.com/alleyinteractive/irving/packages/forms/compare/v2.23.1-beta.0...v2.23.1-beta.1) (2020-07-21)
+
+
+### Bug Fixes
+
+* **forms:** add utils to published files for forms package ([0578a16](https://github.com/alleyinteractive/irving/packages/forms/commit/0578a16b6111aac4af81a34dc9f24efb9d6832cc))
+
+
+
+
+
 ## [2.23.1-beta.0](https://github.com/alleyinteractive/irving/packages/forms/compare/v2.23.0...v2.23.1-beta.0) (2020-07-19)
 
 
