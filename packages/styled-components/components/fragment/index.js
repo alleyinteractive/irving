@@ -9,16 +9,25 @@ import * as defaultStyles from './themes/default';
 const Fragment = (props) => {
   const {
     children,
-    tag,
+    style,
     theme,
+  } = props;
+
+  let {
+    tag,
   } = props;
 
   const { Element } = theme;
 
+  // If we have something in `style` and element is empty, require a tag.
+  if (null === tag && Object.keys(style).length && ! style.length) {
+    tag = 'span';
+  }
+
   return (
     <>
       {tag ? (
-        <Element as={tag}>{children}</Element>
+        <Element as={tag} style={style}>{children}</Element>
       ) : (
         children
       )}
@@ -28,7 +37,9 @@ const Fragment = (props) => {
 
 Fragment.defaultProps = {
   children: {},
+  style: {},
   tag: null,
+  theme: defaultStyles,
 };
 
 Fragment.propTypes = {
@@ -37,17 +48,28 @@ Fragment.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * CSS styles.
+   */
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  /**
    * Tag used to render.
    */
   tag: PropTypes.string,
   /**
    * Theme (styles) to apply to the component.
    */
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export default withThemes(themeMap)(Fragment);
+export { Fragment as PureComponent };
+
+export const StyledComponent = withThemes(themeMap)(Fragment);
+
+export default StyledComponent;

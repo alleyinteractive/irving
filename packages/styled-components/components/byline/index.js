@@ -1,81 +1,74 @@
 import React from 'react';
-import { decode } from 'he';
 import PropTypes from 'prop-types';
 import withThemes from '@irvingjs/styled/components/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**
- * Post byline.
+ * Byline.
  *
- * Get the post byline.
+ * Display a list of content authors.
  */
 const Byline = (props) => {
   const {
+    className,
     children,
     lastDelimiter,
     multiDelimiter,
     preText,
     singleDelimiter,
+    style,
     theme,
-    timestamp,
   } = props;
 
   const {
     BylineWrapper,
     AuthorsWrapper,
     AuthorWrapper,
-    TimestampWrapper,
   } = theme;
 
   // Modify the output depending on the number of authors. This allows us to
   // change the delimiter(s) accordingly.
-  switch (children.length) {
+  switch (true) {
     default:
-    case 0:
-      return (
-        <BylineWrapper>
-          <TimestampWrapper>{timestamp}</TimestampWrapper>
-        </BylineWrapper>
-      );
+    case (0 === children.length):
+      return false;
 
-    case 1:
+    case (1 === children.length):
       return (
-        <BylineWrapper>
-          <AuthorsWrapper>
-            {preText && <span>{decode(preText)}</span>}
+        <BylineWrapper style={style} className={className}>
+          <AuthorsWrapper data-testid="authors-wrapper">
+            {preText && <span>{preText}</span>}
             <AuthorWrapper>{children}</AuthorWrapper>
           </AuthorsWrapper>
-          <TimestampWrapper>{timestamp}</TimestampWrapper>
         </BylineWrapper>
       );
 
-    case 2:
+    case (2 === children.length):
       return (
-        <BylineWrapper>
-          <AuthorsWrapper>
-            {preText && <span>{decode(preText)}</span>}
+        <BylineWrapper style={style} className={className}>
+          <AuthorsWrapper data-testid="authors-wrapper">
+            {preText && <span>{preText}</span>}
             <span>
               <AuthorWrapper>{children[0]}</AuthorWrapper>
               {singleDelimiter}
               <AuthorWrapper>{children[1]}</AuthorWrapper>
             </span>
           </AuthorsWrapper>
-          <TimestampWrapper>{timestamp}</TimestampWrapper>
         </BylineWrapper>
       );
 
-    case (2 < children.length):
+    case (3 <= children.length):
       return (
-        <BylineWrapper>
-          <AuthorsWrapper>
-            {preText && <span>{decode(preText)}</span>}
+        <BylineWrapper style={style} className={className}>
+          <AuthorsWrapper data-testid="authors-wrapper">
+            {preText && <span>{preText}</span>}
             {children.map((child, index) => {
               // First through second to last author.
               if (index < (children.length - 2)) {
                 return (
                   <>
                     <AuthorWrapper>{child}</AuthorWrapper>
-                    {decode(multiDelimiter)}
+                    {multiDelimiter}
                   </>
                 );
               }
@@ -85,39 +78,42 @@ const Byline = (props) => {
                 return (
                   <>
                     <AuthorWrapper>{child}</AuthorWrapper>
-                    {decode(lastDelimiter)}
+                    {lastDelimiter}
                   </>
                 );
               }
 
               // Last author.
               return (
-                <AuthorWrapper>
-                  {child}
-                </AuthorWrapper>
+                <AuthorWrapper>{child}</AuthorWrapper>
               );
             })}
           </AuthorsWrapper>
-          <TimestampWrapper>{timestamp}</TimestampWrapper>
         </BylineWrapper>
       );
   }
 };
 
 Byline.defaultProps = {
-  lastDelimiter: ', and',
+  children: [],
+  className: '',
+  lastDelimiter: ', and ',
   multiDelimiter: ', ',
   preText: 'By ',
   singleDelimiter: ' and ',
+  style: {},
   theme: defaultStyles,
-  timestamp: '',
 };
 
 Byline.propTypes = {
   /**
    * Children of the component.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+  /**
+   * Class name.
+   */
+  className: PropTypes.string,
   /**
    * Last delimiter.
    */
@@ -135,17 +131,24 @@ Byline.propTypes = {
    */
   singleDelimiter: PropTypes.string,
   /**
-   * Timestamp.
+   * CSS styles.
    */
-  timestamp: PropTypes.string,
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Theme (styles) to apply to the component.
    */
   theme: PropTypes.object,
 };
 
-const menuThemeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export default withThemes(menuThemeMap)(Byline);
+export { Byline as PureComponent };
+
+export const StyledComponent = withThemes(themeMap)(Byline);
+
+export default StyledComponent;

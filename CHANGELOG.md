@@ -3,6 +3,280 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.1](https://github.com/alleyinteractive/irving/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [2.23.1-beta.4](https://github.com/alleyinteractive/irving/compare/v2.23.1-beta.3...v2.23.1-beta.4) (2020-07-21)
+
+
+### Bug Fixes
+
+* **forms:** more stringent check for validationg ([18d2b86](https://github.com/alleyinteractive/irving/commit/18d2b861df7609b8e13ee75f25dae9442210abd9))
+
+
+
+
+
+## [2.23.1-beta.3](https://github.com/alleyinteractive/irving/compare/v2.23.1-beta.2...v2.23.1-beta.3) (2020-07-21)
+
+
+### Bug Fixes
+
+* **forms:** pull validation, redirect, error from reponse instead of state ([89404d9](https://github.com/alleyinteractive/irving/commit/89404d9e2adf160ca98512c9e148367f1eadb6af))
+
+
+
+
+
+## [2.23.1-beta.2](https://github.com/alleyinteractive/irving/compare/v2.23.1-beta.1...v2.23.1-beta.2) (2020-07-21)
+
+
+### Bug Fixes
+
+* **forms:** fix issue with pulling out redirect, validation ([2067eed](https://github.com/alleyinteractive/irving/commit/2067eed51230227b8c29a5273cf5f0347f7e3fcb))
+* **forms:** fix name of validation object ([75a9a90](https://github.com/alleyinteractive/irving/commit/75a9a9073d12dfa17b809bccd52f911ffd4e98ea))
+
+
+
+
+
+## [2.23.1-beta.1](https://github.com/alleyinteractive/irving/compare/v2.23.1-beta.0...v2.23.1-beta.1) (2020-07-21)
+
+
+### Bug Fixes
+
+* **forms:** add utils to published files for forms package ([0578a16](https://github.com/alleyinteractive/irving/commit/0578a16b6111aac4af81a34dc9f24efb9d6832cc))
+
+
+
+
+
+## [2.23.1-beta.0](https://github.com/alleyinteractive/irving/compare/v2.23.0...v2.23.1-beta.0) (2020-07-19)
+
+
+### Bug Fixes
+
+* **forms:** fix form reducer logic to properly set and merge default form state ([d5564f1](https://github.com/alleyinteractive/irving/commit/d5564f15f3a3b99ed7623a23ef3ac839c1918c49))
+* **forms:** fix publish files to include hooks ([c7ecd0a](https://github.com/alleyinteractive/irving/commit/c7ecd0af807c6c63874a680f4a25bc9769dd52b1))
+* **forms:** fix some imports, make them relative ([909718d](https://github.com/alleyinteractive/irving/commit/909718d8d0b46d61a5e12c86830f3322ec9b0146))
+* **forms:** fix the way we're pulling default state, add other configs ([6e95d28](https://github.com/alleyinteractive/irving/commit/6e95d28366991ce44f41b0382e124d6cf1d636f3))
+* **forms:** standardize how config functions look ([91d22a3](https://github.com/alleyinteractive/irving/commit/91d22a3cebc81fa436a76ca0baa4db45b3580223))
+
+
+
+
+
+# [2.23.0](https://github.com/alleyinteractive/irving/compare/v2.23.0-beta.0...v2.23.0) (2020-07-16)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.23.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.22.1...v2.23.0-beta.0) (2020-07-16)
+
+
+### Features
+
+* **byline component:** add className prop to Byline component ([34860fb](https://github.com/alleyinteractive/irving/commit/34860fb02fbc315251d4446b1f128c524f51fb36))
+
+
+
+
+
+## [2.22.1](https://github.com/alleyinteractive/irving/compare/v2.22.0...v2.22.1) (2020-07-15)
+
+
+### Bug Fixes
+
+* **forms:** fix broken imports in form package ([14db436](https://github.com/alleyinteractive/irving/commit/14db436835b27243520fa33e2fc38afa003ac52e))
+
+
+
+
+
+# [2.22.0](https://github.com/alleyinteractive/irving/compare/v2.21.3...v2.22.0) (2020-07-14)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [2.21.3](https://github.com/alleyinteractive/irving/compare/v2.21.2...v2.21.3) (2020-07-07)
+
+
+### Bug Fixes
+
+* **storybook:** fix storybook js loader exclude ([a1f5820](https://github.com/alleyinteractive/irving/commit/a1f58204b566a937f68a42001f5060c8af5c91e6))
+
+
+
+
+
+## [2.21.2](https://github.com/alleyinteractive/irving/compare/v2.21.1...v2.21.2) (2020-07-05)
+
+
+### Bug Fixes
+
+* **fix the sitethemeprovider import being case-sensitie:** update siteThemeProvider import case ([4bbf4c9](https://github.com/alleyinteractive/irving/commit/4bbf4c9356a5351ecb4bdbb06acea119678b4a6d))
+
+
+
+
+
+## [2.21.1](https://github.com/alleyinteractive/irving/compare/v2.21.0...v2.21.1) (2020-07-05)
+
+
+### Bug Fixes
+
+* **text component theme:** fix the include for responsiveEmbed ([ac3e480](https://github.com/alleyinteractive/irving/commit/ac3e4809246cea6d448c1eefca8c0d9a8b3a4803))
+
+
+
+
+
+# [2.21.0](https://github.com/alleyinteractive/irving/compare/v2.20.0...v2.21.0) (2020-07-02)
+
+
+### Features
+
+* **text component - responsive video theme:** adds a new responsiveVideo theme to irving/text ([aaba0b7](https://github.com/alleyinteractive/irving/commit/aaba0b7be10730b2314ab40620b9d95b41e83aa6))
+
+
+
+
+
+# [2.20.0](https://github.com/alleyinteractive/irving/compare/v2.19.3-beta.0...v2.20.0) (2020-07-01)
+
+
+### Bug Fixes
+
+* **theme injection and docs:** update docs for theme injection changes ([13f5b97](https://github.com/alleyinteractive/irving/commit/13f5b9772bee60d1a0349f4cb83d1e5484fb8369))
+
+
+### Features
+
+* **theme injection:** implements a theme injection system for styled components ([faaa2a4](https://github.com/alleyinteractive/irving/commit/faaa2a454ca70f06d6d7aca961bd07e5aa150b35))
+
+
+
+
+
+## [2.19.3-beta.0](https://github.com/alleyinteractive/irving/compare/v2.19.2...v2.19.3-beta.0) (2020-07-01)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [2.19.2](https://github.com/alleyinteractive/irving/compare/v2.19.1...v2.19.2) (2020-06-30)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [2.19.1](https://github.com/alleyinteractive/irving/compare/v2.19.0...v2.19.1) (2020-06-30)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.19.0](https://github.com/alleyinteractive/irving/compare/v2.19.0-beta.0...v2.19.0) (2020-06-29)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.19.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.18.1...v2.19.0-beta.0) (2020-06-29)
+
+
+### Bug Fixes
+
+* **package:** add HUSKY_SKIP_HOOKS to canary release script as well ([11f67c3](https://github.com/alleyinteractive/irving/commit/11f67c308e70ebfd54b375b3de054ed512fe7dfd))
+
+
+### Features
+
+* **site theme.:** implements a site theme provider component ([14bcbea](https://github.com/alleyinteractive/irving/commit/14bcbea44d787b8a5e7fe5d80b3b4bc92a77f692))
+
+
+
+
+
+## [2.18.1](https://github.com/alleyinteractive/irving/compare/v2.18.0...v2.18.1) (2020-06-26)
+
+
+### Bug Fixes
+
+* **cache:** update cache service to properly support URLs using the redis:// protocol ([2759571](https://github.com/alleyinteractive/irving/commit/275957111470c1e256070ffaa5719a047d5a78fe))
+
+
+
+
+
+# [2.18.0](https://github.com/alleyinteractive/irving/compare/v2.17.0...v2.18.0) (2020-06-26)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [2.17.0](https://github.com/alleyinteractive/irving/compare/v2.16.0...v2.17.0) (2020-06-24)
+
+
+### Bug Fixes
+
+* **proptypes for styles:** update style to allow either an array or object prop type ([70575d4](https://github.com/alleyinteractive/irving/commit/70575d4bfed80f4785268c0a0d298f37890d7ba1))
+* **styled-components:** remove refs that error out with local deps in a new theme ([8d564cc](https://github.com/alleyinteractive/irving/commit/8d564cc1ab70eeedb15fe1a29413aff7d9a385ed))
+
+
+### Features
+
+* **adds a css grid solution.:** adds a sane default/option for developers wanting to use CSS Grid ([d092689](https://github.com/alleyinteractive/irving/commit/d092689c9c45d533dce1d28535145df6e024ce49))
+* **container component.:** if a <container> is empty, do not render it ([c5e72b9](https://github.com/alleyinteractive/irving/commit/c5e72b905d43301820f8e33d7abffb513ac5743a))
+* **image component.:** implement the first alpha of an Image component ([b13341e](https://github.com/alleyinteractive/irving/commit/b13341e62534812d009e390f4f3f244d040a80ed))
+* **multiple components:** update and tweak the functionality on some components ([6b20b4d](https://github.com/alleyinteractive/irving/commit/6b20b4d01ce8c8226bb3a8dd538c4d0e86c60fa1))
+
+
+
+
+
+# [2.16.0](https://github.com/alleyinteractive/irving/compare/v2.15.0...v2.16.0) (2020-06-19)
+
+
+### Features
+
+* **byline component:** cleanup some of the Byline component logic ([a3fce14](https://github.com/alleyinteractive/irving/commit/a3fce14a0f237a06302d8010fdced1fcc442d9a1))
+* scaffold storybook stories for all components ([ec3e43d](https://github.com/alleyinteractive/irving/commit/ec3e43d32257b7c88827a5699cfbcba574e66739))
+* **update storybook config to build correctly and add <link /> story:** fixes build proccess ([771be6b](https://github.com/alleyinteractive/irving/commit/771be6b8004a83c5de854be14ad5b12bb53a08e5))
+
+
+
+
+
+# [2.15.0](https://github.com/alleyinteractive/irving/compare/v2.14.0...v2.15.0) (2020-06-16)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
 # [2.14.0](https://github.com/alleyinteractive/irving/compare/v2.14.0-beta.1...v2.14.0) (2020-06-15)
 
 **Note:** Version bump only for package irving

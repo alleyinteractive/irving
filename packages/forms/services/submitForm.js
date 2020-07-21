@@ -1,14 +1,16 @@
+import getEndpointUrl from '../utils/getEndpointUrl';
 /**
  * Execute HTTP request to submit a form
- * @param {string} formName
+ * @param {string} formEndpoint
  * @param {object} submission
  * @param {string} submission.verificationValue
  * @param {string} submission.verificationType
  * @returns {Promise.<null|Object>}  Returns null if operation was successful.
  * Returns an object of validation messages if operation was invalid.
  */
-export default async function submitForm(formName, submission) {
-  const res = await fetch(`${process.env.API_ROOT_URL}/form/${formName}`, {
+export default async function submitForm(formEndpoint, submission) {
+  const endpoint = getEndpointUrl(formEndpoint);
+  const res = await fetch(endpoint, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

@@ -69,15 +69,22 @@ Logo.propTypes = {
   /**
    * CSS styles.
    */
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Theme (styles) to apply to the component.
    */
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
-export default withThemes(themeMap)(Logo);
+export { Logo as PureComponent };
+
+export const StyledComponent = withThemes(themeMap)(Logo);
+
+export default StyledComponent;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
-import CssReset from 'styles/reset';
+import CssReset from '@irvingjs/styled/components/reset';
 
 /**
  * Top-level app component.

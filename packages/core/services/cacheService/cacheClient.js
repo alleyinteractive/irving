@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 const getRedisOptions = require('./getRedisOptions');
+const isRedisUrl = require('./isRedisUrl');
 let client = require('./defaultClient');
 
 const getClient = () => {
@@ -14,7 +15,11 @@ const getClient = () => {
   const [host, port, password] = getRedisOptions();
 
   // Redis env variables have not been configured.
-  if ((! host || ! port) && 'test' !== process.env.BABEL_ENV) {
+  if (
+    ! isRedisUrl(host) &&
+    (! host || ! port) &&
+    'test' !== process.env.BABEL_ENV
+  ) {
     return client;
   }
 
@@ -36,14 +41,22 @@ const getClient = () => {
       return client;
     }
 
-    client = new Redis({
-      host,
-      port,
-      password,
+    const opts = {
       retryStrategy,
       enableOfflineQueue: true,
       maxRetriesPerRequest: process.env.QUEUED_CONNECTION_ATTEMPTS,
-    });
+    };
+
+    if (isRedisUrl(host)) {
+      client = new Redis(host, opts);
+    } else {
+      client = new Redis({
+        host,
+        port,
+        password,
+        ...opts,
+      });
+    }
 
     client.on('error', (err) => {
       console.error(err); // eslint-disable-line no-console

@@ -14,6 +14,7 @@ const Menu = (props) => {
     displayName,
     menuName,
     location,
+    style,
     theme = defaultStyles,
   } = props;
 
@@ -24,7 +25,7 @@ const Menu = (props) => {
   } = theme;
 
   return (
-    <Wrapper data-location={location}>
+    <Wrapper data-location={location} style={style}>
       {(displayName && menuName) && (
         <NameWrapper>
           {menuName}
@@ -44,9 +45,11 @@ const Menu = (props) => {
 };
 
 Menu.defaultProps = {
+  children: [],
   displayName: false,
   location: '',
   menuName: '',
+  style: {},
   theme: defaultStyles,
 };
 
@@ -54,7 +57,7 @@ Menu.propTypes = {
   /**
    * Children of the component.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Flag to display the menu name.
    */
@@ -68,14 +71,25 @@ Menu.propTypes = {
    */
   menuName: PropTypes.string,
   /**
+   * CSS styles.
+   */
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  /**
    * Theme (styles) to apply to the component.
    */
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
   defaultVertical: defaultVerticalStyles,
 };
 
-export default withThemes(themeMap)(Menu);
+export { Menu as PureComponent };
+
+export const StyledComponent = withThemes(themeMap)(Menu);
+
+export default StyledComponent;

@@ -3,6 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.23.1-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.23.0...v2.23.1-beta.0) (2020-07-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.23.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.23.0-beta.0...v2.23.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.23.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.22.1...v2.23.0-beta.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.21.3](https://github.com/alleyinteractive/irving/packages/core/compare/v2.21.2...v2.21.3) (2020-07-07)
+
+
+### Bug Fixes
+
+* **storybook:** add componentMap to storybook to prevent errors ([9da288f](https://github.com/alleyinteractive/irving/packages/core/commit/9da288f0d5316a68b82964e30a8c981762c32f32))
+
+
+
+
+
+# [2.20.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.19.3-beta.0...v2.20.0) (2020-07-01)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.19.3-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.19.2...v2.19.3-beta.0) (2020-07-01)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.19.2](https://github.com/alleyinteractive/irving/packages/core/compare/v2.19.1...v2.19.2) (2020-06-30)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.19.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.19.0...v2.19.1) (2020-06-30)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.18.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.18.0...v2.18.1) (2020-06-26)
+
+
+### Bug Fixes
+
+* **cache:** update cache service to properly support URLs using the redis:// protocol ([2759571](https://github.com/alleyinteractive/irving/packages/core/commit/275957111470c1e256070ffaa5719a047d5a78fe))
+
+
+
+
+
+# [2.18.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.17.0...v2.18.0) (2020-06-26)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.17.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.16.0...v2.17.0) (2020-06-24)
+
+
+### Bug Fixes
+
+* **styled-components:** remove refs that error out with local deps in a new theme ([8d564cc](https://github.com/alleyinteractive/irving/packages/core/commit/8d564cc1ab70eeedb15fe1a29413aff7d9a385ed))
+
+
+
+
+
 # [2.14.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.14.0-beta.1...v2.14.0) (2020-06-15)
 
 **Note:** Version bump only for package @irvingjs/core

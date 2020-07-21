@@ -1,35 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withThemes from '@irvingjs/styled/components/withThemes';
-import {
-  Email,
-  Facebook,
-  LinkedIn,
-  Pinterest,
-  Reddit,
-  Twitter,
-  WhatsApp,
-} from '@material-ui/icons';
+import toReactElement from '@irvingjs/core/utils/toReactElement';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
 
-const socialIconMap = {
-  email: Email,
-  facebook: Facebook,
-  linkedin: LinkedIn,
-  pinterest: Pinterest,
-  reddit: Reddit,
-  twitter: Twitter,
-  whatsapp: WhatsApp,
-};
-
+/**
+ * A single social sharing item.
+ *
+ * @todo Refactor into a single component file if possible.
+ * @todo Update how Icons are used once we have a better solution. Material UI
+ *       dependency is temporary.
+ */
 const SocialSharingItem = (props) => {
   const {
     platform,
     theme,
     url,
   } = props;
-  const IconComponent = socialIconMap[platform];
+
+  // Build the icon.
+  const Icon = toReactElement({
+    name: `irving/${platform}-icon`,
+    config: {
+      title: `Share on ${platform}`,
+    },
+    children: [],
+  });
 
   const {
     IconWrapper,
@@ -42,9 +39,7 @@ const SocialSharingItem = (props) => {
         href={url}
       >
         <IconWrapper>
-          <IconComponent
-            title={platform}
-          />
+          {Icon.type.displayName ? Icon : platform}
         </IconWrapper>
       </Link>
     </SocialSharingItemWrapper>
@@ -54,7 +49,6 @@ const SocialSharingItem = (props) => {
 SocialSharingItem.defaultProps = {
   url: '',
 };
-
 
 SocialSharingItem.propTypes = {
   /**

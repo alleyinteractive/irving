@@ -3,6 +3,102 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+## [2.23.1-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.23.0...v2.23.1-beta.0) (2020-07-19)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+# [2.23.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.23.0-beta.0...v2.23.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+# [2.23.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.22.1...v2.23.0-beta.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+## [2.21.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.21.2...v2.21.3) (2020-07-07)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+# [2.20.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.19.3-beta.0...v2.20.0) (2020-07-01)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+## [2.19.3-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.19.2...v2.19.3-beta.0) (2020-07-01)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+## [2.19.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.19.1...v2.19.2) (2020-06-30)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+## [2.19.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.19.0...v2.19.1) (2020-06-30)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+## [2.18.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.18.0...v2.18.1) (2020-06-26)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+# [2.18.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.17.0...v2.18.0) (2020-06-26)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+# [2.17.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.16.0...v2.17.0) (2020-06-24)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
 # [2.14.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v2.14.0-beta.1...v2.14.0) (2020-06-15)
 
 **Note:** Version bump only for package @irvingjs/postcss
