@@ -1,6 +1,6 @@
 import {
-  getValueFromMergedConfig,
-} from 'config/irving/getValueFromMergedConfig';
+  getValueFromConfig,
+} from 'config/irving/getValueFromConfig';
 
 export const components = {
   defaults: [],
@@ -41,4 +41,4 @@ const defaultState = {
   visible,
 };
 
-export default getValueFromMergedConfig('defaultState', defaultState);
+export default getValueFromConfig('defaultState', defaultState);

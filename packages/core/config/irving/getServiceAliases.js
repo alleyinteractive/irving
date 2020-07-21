@@ -12,7 +12,7 @@ const getServiceAliases = (target) => {
   if ('web' === target) {
     cacheClientValue = path.join(
       irvingRoot,
-      'services/cacheService/defaultCacheClient.js'
+      'services/cacheService/defaultClient.js'
     );
   } else if (! cacheClientValue) {
     cacheClientValue = path.join(

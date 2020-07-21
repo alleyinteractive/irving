@@ -42,7 +42,7 @@ app.set('view engine', 'ejs');
 // Run all customize server functions.
 const irvingServerMiddleware = getValueFromFiles(
   'server/customizeServer.js',
-  []
+  [() => {}]
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
@@ -87,7 +87,7 @@ app.use((err, req, res, next) => {
 // Run all export server functions.
 const serverExportMiddleware = getValueFromFiles(
   'server/exportServer.js',
-  []
+  [() => {}]
 );
 
 module.exports = serverExportMiddleware.reduce(

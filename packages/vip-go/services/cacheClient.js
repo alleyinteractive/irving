@@ -1,4 +1,8 @@
 /* eslint-disable global-require */
+const defaultService = require(
+  '@irvingjs/core/services/cacheService/defaultService'
+)();
+
 /**
  * @typedef {object} CacheService
  * @property {function} get
@@ -8,27 +12,16 @@
  * @returns {CacheService}
  */
 const getClient = () => {
-  // We need to be explicit that redis is only imported when not executing
-  // within a browser context, so that webpack can ignore this execution path
-  // while compiling.
-  if (
-    ! process.env.IRVING_EXECUTION_CONTEXT ||
-    'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
-    'development_server' === process.env.IRVING_EXECUTION_CONTEXT
-  ) {
-    const { redis, logger } = require('@automattic/vip-go');
-    const client = redis({
-      logger: logger('irving:redis'),
-    });
+  const { redis, logger } = require('@automattic/vip-go');
+  const client = redis({
+    logger: logger('irving:redis'),
+  });
 
-    if (! client) {
-      return null;
-    }
-
-    return client;
+  if (! client) {
+    return defaultService;
   }
 
-  return null;
+  return client;
 };
 
 module.exports = getClient;
