@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.1-beta.2](https://github.com/alleyinteractive/irving/compare/v2.23.1-beta.1...v2.23.1-beta.2) (2020-07-21)
+
+
+### Bug Fixes
+
+* **forms:** fix issue with pulling out redirect, validation ([2067eed](https://github.com/alleyinteractive/irving/commit/2067eed51230227b8c29a5273cf5f0347f7e3fcb))
+* **forms:** fix name of validation object ([75a9a90](https://github.com/alleyinteractive/irving/commit/75a9a9073d12dfa17b809bccd52f911ffd4e98ea))
+
+
+
+
+
 ## [2.23.1-beta.1](https://github.com/alleyinteractive/irving/compare/v2.23.1-beta.0...v2.23.1-beta.1) (2020-07-21)
 
 
