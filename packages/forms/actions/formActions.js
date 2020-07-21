@@ -38,9 +38,9 @@ export function actionReceiveSubmitError(formEndpoint, err) {
 /**
  * Create a action to receive validation messages.
  * @param {string} formEndpoint
- * @param {Object} messageMap
+ * @param {Object} validation
  * @returns {{type, payload}}
  */
-export function actionReceiveSubmitInvalid(formEndpoint, messageMap) {
-  return createAction(RECEIVE_SUBMIT_INVALID, { formEndpoint, messageMap });
+export function actionReceiveSubmitInvalid(formEndpoint, validation) {
+  return createAction(RECEIVE_SUBMIT_INVALID, { formEndpoint, validation });
 }
