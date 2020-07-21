@@ -3,26 +3,26 @@ import {
   actionReceiveSubmitted,
   actionReceiveSubmitError,
   actionReceiveSubmitInvalid,
-} from 'actions/formActions';
-import submitForm from 'services/submitForm';
-import getLogService from '@irvingjs/core/services/logService';
-
-const debug = getLogService('irving:sagas:form');
+} from '../actions/formActions';
+import submitForm from '../services/submitForm';
 
 export default function* watchRequestSubmit(data) {
   const {
-    payload: { formName, submission },
+    payload: { formEndpoint, submission },
   } = data;
 
   try {
-    const response = yield call(submitForm, formName, submission);
-    if (response && response.validation) {
-      yield put(actionReceiveSubmitInvalid(formName, response.validation));
+    const response = yield call(submitForm, formEndpoint, submission);
+    if (
+      response &&
+      response.validation &&
+      Object.keys(response.validation).length
+    ) {
+      yield put(actionReceiveSubmitInvalid(formEndpoint, response.validation));
     } else {
-      yield put(actionReceiveSubmitted(formName, response));
+      yield put(actionReceiveSubmitted(formEndpoint, response));
     }
   } catch (err) {
-    yield put(actionReceiveSubmitError(formName, err));
-    yield call(debug.error, err);
+    yield put(actionReceiveSubmitError(formEndpoint, err));
   }
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/integrations",
-	"version": "2.18.1",
+	"version": "2.23.1",
 	"description": "Third party integrations for Irving",
 	"files": [
 		"components/**/*",
@@ -19,8 +19,8 @@
 		"react-dom": "^16.13.1"
 	},
 	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^2.14.0",
-		"@irvingjs/core": "^2.18.1",
+		"@irvingjs/babel-preset-irving": "^2.19.2",
+		"@irvingjs/core": "^2.23.1",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"jest": "^25.5.3"
 	},
@@ -30,5 +30,5 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"gitHead": "2b57a99dc78a57506cc60cf709b756d1cc5ecef5"
+	"gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
 }

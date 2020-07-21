@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { PureLink as Link } from '.';
+import { PureComponent as Link } from '.';
 
 export default {
   component: Link,

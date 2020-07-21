@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import {
-  PureSocialSharing as SocialSharing,
+  PureComponent as SocialSharing,
   SupportedPlatforms,
 } from '.';
 

@@ -83,11 +83,13 @@ Menu.propTypes = {
   theme: PropTypes.object,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
   defaultVertical: defaultVerticalStyles,
 };
 
-export { Menu as PureMenu };
+export { Menu as PureComponent };
 
-export default withThemes(themeMap)(Menu);
+export const StyledComponent = withThemes(themeMap)(Menu);
+
+export default StyledComponent;

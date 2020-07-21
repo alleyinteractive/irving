@@ -15,7 +15,7 @@
     "build": "BABEL_ENV=app lerna run build",
     "preinstall": "npx check-node-version --package",
     "reconcile": "git ls-tree -r --name-only master | grep -E \".*((package|package-lock|lerna)\\.json|CHANGELOG\\.md)$\" | xargs git checkout master --",
-    "prerelease:canary": "lerna publish --conventional-prerelease --no-changelog --preid alpha --dist-tag canary",
+    "prerelease:canary": "HUSKY_SKIP_HOOKS=1 lerna publish --conventional-prerelease --no-changelog --preid alpha --dist-tag canary",
     "prerelease:beta": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-prerelease --create-release github --preid beta --dist-tag beta",
     "prerelease:rc": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-prerelease --create-release github --preid rc --dist-tag rc",
     "release": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-commits --conventional-graduate --create-release github",
@@ -30,13 +30,14 @@
     "release-storybook": "npm run build-storybook && npm run deploy-storybook"
   },
   "dependencies": {
-    "@irvingjs/babel-preset-irving": "^2.14.0",
+    "@irvingjs/babel-preset-irving": "^2.19.2",
     "babel-plugin-module-resolver": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
+    "@babel/core": "^7.10.4",
+    "@storybook/addon-a11y": "^5.3.18",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-docs": "^5.3.18",
     "@storybook/addon-info": "^5.3.19",
