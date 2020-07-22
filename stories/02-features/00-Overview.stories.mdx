@@ -1,0 +1,31 @@
+<Meta title="Features|Overview of Features" />
+
+# Overview of Features
+
+## Authentication
+### Basic Authentication
+Basic auth can be enabled by enabling two environment variables. They will automatically apply the Authorization header for requests to the app. This will prompt the user to enter the valid credentials to access the site.
+
+* `BASIC_AUTH_USERNAME`
+* `BASIC_AUTH_PASSWORD`
+
+## Caching
+## Cookies
+## Logging
+## Monitoring
+Transactions and errors can be logged to a monitoring service.
+
+### New Relic
+Basic support for New Relic is included in Irving. Set the following environment variables to enable,
+
+* `NEW_RELIC_LICENSE_KEY` - Your New Relic license key.
+* `NEW_RELIC_APP_NAME` - The name of this application, for reporting to New Relic's servers. This value can be also be a comma-delimited list of names.
+
+See [here](https://github.com/newrelic/node-newrelic#configuring-the-module) for additional newrelic configuration options.
+
+
+## Performance and Scaling
+## Proxying
+## Redirects
+## Security
+## SEO
