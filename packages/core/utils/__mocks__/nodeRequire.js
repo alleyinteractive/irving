@@ -5,7 +5,6 @@ const { maybeResolve } = require('../userModule');
  * Resolve the path to a config file.
  *
  * @param {string} filepath Path to config file we're looking for.
- * @param {string} base Base filepath to look for files in.
  */
 const maybeRequire = (filepath) => {
   const resolvedPath = maybeResolve(filepath);

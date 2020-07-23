@@ -49,6 +49,7 @@ const maybeResolveUserModule = (userPath, corePath) => {
  * Resolve the path to a file from specified base path.
  *
  * @param {string} requirePath Path to file we're looking for.
+ * @returns {?string} Path to file, index.js file, or null if file cannot be found.
  */
 const maybeResolve = (requirePath) => {
   const parts = path.parse(requirePath);

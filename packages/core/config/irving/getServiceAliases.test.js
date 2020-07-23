@@ -15,7 +15,7 @@ describe('getServiceAliases', () => {
     expect(aliases).toEqual({
       '@irvingjs/services/cacheClient': path.join(
         process.cwd(),
-        'services/cacheService/defaultCacheClient.js'
+        'services/cacheService/defaultClient.js'
       ),
       '@irvingjs/services/cacheService': path.join(
         process.cwd(),
