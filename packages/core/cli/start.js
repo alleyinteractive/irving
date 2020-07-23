@@ -7,7 +7,7 @@ const app = require('../server');
 
 // Create logger
 const createLogger = getValueFromFiles(
-  'services/logService',
+  'services/logService.js',
   coreLogService
 );
 const log = createLogger('irving:server');

@@ -5,6 +5,7 @@ import {
 } from 'config/irving/getValueFromConfig';
 
 /**
+ * Retrieve configured variables for a given express template (app or error)
  *
  * @param {string} key Key for configured functions for getting template vars.
  * @param {object} initialVars Variables passed in from serverRenderer

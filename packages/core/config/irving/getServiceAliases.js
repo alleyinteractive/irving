@@ -8,6 +8,13 @@ const resolveConfigFilepath = require('./resolveConfigFilepath');
  * @param {string} target What target is this executing for (web or node)?
  */
 const getServiceAliases = (target) => {
+  /**
+   * Get cache client.
+   *
+   * web: return path to default cache client
+   * node: return path to configured cache client
+   * undefined: return path to core's cache client
+   */
   let cacheClientValue = resolveConfigFilepath('services/cacheClient');
   if ('web' === target) {
     cacheClientValue = path.join(
@@ -21,6 +28,13 @@ const getServiceAliases = (target) => {
     );
   }
 
+  /**
+   * Get cache service.
+   *
+   * web: return path to default cache service
+   * node: return path to configured cache service
+   * undefined: return path to core's cache service
+   */
   let cacheServiceValue = resolveConfigFilepath('services/cacheService');
   if ('web' === target) {
     cacheServiceValue = path.join(
@@ -34,6 +48,13 @@ const getServiceAliases = (target) => {
     );
   }
 
+  /**
+   * Get monitor service.
+   *
+   * web: return path to default monitor service
+   * node: return path to configured monitor service
+   * undefined: return path to core's monitor service
+   */
   let monitorServiceValue = resolveConfigFilepath('services/monitorService');
   if ('web' === target) {
     monitorServiceValue = path.join(
@@ -47,6 +68,12 @@ const getServiceAliases = (target) => {
     );
   }
 
+  /**
+   * Get monitor service.
+   *
+   * web and node: return path to configured log service
+   * undefined: return path to core's log service
+   */
   let logServiceValue = resolveConfigFilepath('services/logService');
   if (! logServiceValue) {
     logServiceValue = path.join(

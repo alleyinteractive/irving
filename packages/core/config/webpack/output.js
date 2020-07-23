@@ -2,8 +2,9 @@ const { serverBuild, clientBuild, rootUrl } = require('../paths');
 
 /**
  * Get the context specific output configuration.
- * @param {string} context - the configuration context
- * @returns {object} - a output configuration value
+ *
+ * @param {string} context The configuration context
+ * @returns {object} An output configuration value
  */
 module.exports = function getOutput(context) {
   switch (context) {

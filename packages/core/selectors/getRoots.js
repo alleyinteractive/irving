@@ -3,8 +3,9 @@ import { createSelector } from 'reselect';
 
 /**
  * Select the api root component names.
- * @param {object} state - Redux state
- * @return {function} - Redux selector
+ *
+ * @param {object} state Redux state
+ * @return {function} Redux selector
  */
 const getRoots = createSelector(
   [

@@ -9,8 +9,9 @@ const { maybeResolveUserModule } = require('../../utils/userModule');
 
 /**
  * Get the context specific plugins configuration.
- * @param {string} context - the configuration context
- * @returns {array} - a plugins configuration value
+ *
+ * @param {string} context The configuration context
+ * @returns {array} A plugins configuration value
  */
 module.exports = function getPlugins(context) {
   const env = getEnv();

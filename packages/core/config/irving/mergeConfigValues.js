@@ -5,7 +5,7 @@ const isPlainObject = require('lodash/isPlainObject');
  * Call all config functions and spread configs into an object.
  *
  * @param {array} configs Configs to merge.
- * @param {object} initial initial value.
+ * @param {object} initial Initial value.
  * @returns {object}
  */
 const mergeConfigObject = (configs, initial = {}) => (
@@ -35,7 +35,7 @@ const mergeConfigObject = (configs, initial = {}) => (
  * Call all config functions and spread into an array.
  *
  * @param {array} configs Configs to merge.
- * @param {array} initial initial value.
+ * @param {array} initial Initial value.
  * @returns {array}
  */
 const mergeConfigArray = (configs, initial = []) => (
@@ -59,10 +59,10 @@ const mergeConfigArray = (configs, initial = []) => (
  * Determine which merge strategy to use based on a default value.
  *
  * @param {array} configs Configs to merge.
- * @param {array} initial initial value.
- * @returns {array}
+ * @param {?(array|object|string|bool)} initial Initial value.
+ * @returns {?(array|object|string|bool}
  */
-const mergeConfigValues = (configs, initial) => {
+const mergeConfigValues = (configs, initial = null) => {
   if (Array.isArray(initial)) {
     // This should result in an array of functions, to be called inline.
     if (initial.length && 'function' === typeof initial[0]) {

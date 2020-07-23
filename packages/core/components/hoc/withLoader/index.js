@@ -8,7 +8,7 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import styles from './styles.css';
 
 /**
- * @param {*} WrappedComponent component that gets the conditional loading state
+ * @param {*} WrappedComponent Component that gets the conditional loading state
  * @param {object} opts Options for this HOC
  * @param {object} opts.transition Transition configuration
  * @param {object} opts.loadingProps Props for the default loading component
