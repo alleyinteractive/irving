@@ -3,8 +3,9 @@ const { appRoot } = require('../paths');
 
 /**
  * Get the context specific alias configuration.
- * @param {string} context - the configuration context
- * @returns {object} - an alias configuration value.
+ *
+ * @param {string} context The configuration context
+ * @returns {object} An alias configuration value.
  */
 module.exports = function getAlias(context) {
   switch (context) {

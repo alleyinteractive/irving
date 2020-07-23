@@ -1,7 +1,7 @@
 import AbortController from 'abort-controller';
 import omit from 'lodash/fp/omit';
-import getService from './cacheService/getService';
-import getLogService from './logService';
+import getLogService from '@irvingjs/services/logService';
+import getCacheService from '@irvingjs/services/cacheService';
 
 const log = getLogService('irving:components:data');
 
@@ -44,11 +44,11 @@ export default async function fetchComponentData(endpoint) {
 /**
  * Cache fetchComponentData responses. Return cached response if available.
  *
- * @param {string} endpoint - fetchComponentData endpoint
- * @returns {Promise<{object}>} - fetchComponentData return value
+ * @param {string} endpoint Endpoint for fetching data
+ * @returns {Promise<{object}>}
  */
 export async function cacheResult(endpoint) {
-  const cache = getService();
+  const cache = getCacheService();
   const info = {
     cached: false,
     __caching__: false,

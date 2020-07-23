@@ -32,8 +32,9 @@ const include = (filepath) => {
 
 /**
  * Get the context specific rules configuration.
- * @param {string} context - the configuration context
- * @returns {array} - a rules configuration value
+ *
+ * @param {string} context The configuration context
+ * @returns {array} A rules configuration value
  */
 module.exports = function getRules(context) {
   const isProd = context.includes('production');
@@ -103,7 +104,7 @@ module.exports = function getRules(context) {
     {
       test: /\.svg$/,
       include: [/assets\/icons/],
-      use: ['svg-react-loader'],
+      use: ['@svgr/webpack'],
     },
     {
       resource: {

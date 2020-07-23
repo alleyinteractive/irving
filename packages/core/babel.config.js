@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
-const getConfigField = require('./utils/getConfigField');
+const getValueFromFiles = require('./config/irving/getValueFromFiles');
+const getServiceAliases = require('./config/irving/getServiceAliases');
 const {
   irvingRoot,
   buildContext,
@@ -11,11 +12,14 @@ const scopeDir = path.join(__dirname, '../');
 const packageDirs = fs.readdirSync(scopeDir);
 const packageRoots = ! packageDirs.length ? [] :
   packageDirs.map((dir) => path.join(scopeDir, dir));
+const getTarget = (caller) => (
+  (caller && 'babel-loader' === caller.name) ? caller.target : null
+);
 
 // Main config function.
 module.exports = (api) => {
   // Cache computed config forever.
-  api.cache(true);
+  const target = api.caller(getTarget);
 
   // Base app babel config.
   const appConfig = {
@@ -28,7 +32,10 @@ module.exports = (api) => {
             ...packageRoots,
           ],
           cwd: 'packagejson',
-          alias: aliases,
+          alias: {
+            ...getServiceAliases(target),
+            ...aliases,
+          },
         },
       ],
       [
@@ -45,17 +52,16 @@ module.exports = (api) => {
     ],
   };
 
-  const configGetters = getConfigField('babelConfig');
-  // Call all config getters, passing in configs in succession.
-  // Only allow users to modify app config, not test.
-  const processedConfigs = configGetters.reduce(
-    (acc, getter) => getter(acc),
-    appConfig
+  // Only allow user to modify app config, not test.
+  const processedConfig = getValueFromFiles(
+    'config/babel.config.js',
+    appConfig,
+    { base: buildContext }
   );
 
   return {
     env: {
-      app: processedConfigs,
+      app: processedConfig,
       test: {
         plugins: [
           [
@@ -64,14 +70,14 @@ module.exports = (api) => {
               root: [irvingRoot],
               // Tests need an irving config, use an alias so it doesn't override user config.
               alias: {
+                ...getServiceAliases('node'),
                 '@irvingjs/irving.config': path.join(
-                  mocks, 'irving.config.js'
-                ),
-                '@irvingjs/irving.config.server': path.join(
-                  mocks, 'irving.config.server.js'
+                  mocks,
+                  'irving.config.js'
                 ),
                 '@irvingjs/componentMap': path.join(
-                  mocks, 'componentMap.js'
+                  mocks,
+                  'componentMap.js'
                 ),
               },
             },

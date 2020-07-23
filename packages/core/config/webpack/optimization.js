@@ -3,8 +3,9 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 /**
  * Get the context specific output configuration.
- * @param {string} context - the configuration context
- * @returns {object} - a output configuration value
+ *
+ * @param {string} context The configuration context
+ * @returns {object} An optimization configuration value
  */
 module.exports = function getOptimization(context) {
   switch (context) {

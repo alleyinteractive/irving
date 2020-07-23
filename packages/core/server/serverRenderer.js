@@ -1,4 +1,5 @@
-/* global appView, errorView */
+// Global passed in via webpack define plugin
+/* global appView, errorView, irvingEnv */
 import 'source-map-support/register';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -10,25 +11,25 @@ import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
-import getEnv from 'config/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackAssetTags from 'utils/getWebpackAssetTags';
 import addTrailingSlash from 'utils/addTrailingSlash';
-import getLogService from 'services/logService';
-import getService from 'services/monitorService';
+import getLogService from '@irvingjs/services/logService';
+import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
 import getTemplateVars from './getTemplateVars';
 
-const monitor = getService();
+const monitor = getMonitorService();
 const logError = getLogService('irving:render:error');
 const logRequest = getLogService('irving:render:request');
 
 /**
  * Handle rendering the app as a string that can then be returned as a response
  * from the server.
- * @param {object} req - express request object
- * @param {object} res - express response object to be rendered.
+ *
+ * @param {object} req Express request object
+ * @param {object} res Express response object to be rendered.
  **/
 const render = async (req, res, clientStats) => {
   const sagaMiddleware = createSagaMiddleware();
@@ -94,7 +95,7 @@ const render = async (req, res, clientStats) => {
   const templateVars = {
     helmet,
     preRenderedState: stateEncoded,
-    env: JSON.stringify(getEnv()),
+    env: JSON.stringify(irvingEnv),
     ...customTemplateVars,
   };
 
@@ -111,9 +112,10 @@ const render = async (req, res, clientStats) => {
 
 /**
  * Create a webpack hot server compatible middleware.
- * @param {object} options - the webpack bundle information for server and
+ *
+ * @param {object} options The webpack bundle information for server and
  *                           client configs
- * @returns {function} - an express route middleware function responsible for
+ * @returns {function} An express route middleware function responsible for
  *                       rendering the html response
  */
 export default function serverRenderer(options) {

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-dynamic-require, global-require */
 const fs = require('fs');
 const path = require('path');
 const {
@@ -5,16 +6,15 @@ const {
   buildContext,
   appIrvingRoot,
   irvingRoot,
-} = require('../config/paths');
+} = require('../config/paths.js');
 
-/* eslint-disable import/no-dynamic-require, global-require */
 /**
  * Resolve the path to a module required in the build, fall back to irving core.
  *
  * @param {string} userPath Path to user-defined module.
  * @param {string} corePath Path to Irving core module, if different from user path.
  */
-module.exports.maybeResolveBuildModule = (userPath, corePath) => {
+const maybeResolveBuildModule = (userPath, corePath) => {
   const defaultPath = corePath || userPath;
 
   // Resolve file relative to build context if it exists.
@@ -45,17 +45,38 @@ const maybeResolveUserModule = (userPath, corePath) => {
   return path.resolve(appIrvingRoot, defaultPath);
 };
 
-module.exports.maybeResolveUserModule = maybeResolveUserModule;
-
 /**
- * Same as above, but require the module instead.
+ * Resolve the path to a file from specified base path.
  *
- * @param {string} userPath Path to user-defined module, relative to user app root.
- * @param {string} corePath Path to Irving core module, relative to Irving core root, if different from user path.
+ * @param {string} requirePath Path to file we're looking for.
+ * @returns {?string} Path to file, index.js file, or null if file cannot be found.
  */
-module.exports.maybeRequireUserModule = (userPath, corePath) => (
-  require(
-    maybeResolveUserModule(userPath, corePath)
-  )
-);
-/* eslint-enable */
+const maybeResolve = (requirePath) => {
+  const parts = path.parse(requirePath);
+  const initialPath = ! parts.ext ? `${requirePath}.js` : requirePath;
+  const indexPath = path.join(requirePath, 'index.js');
+
+  // If file exists in build context, assume the same file exists in the appRoot.
+  // This will support app finding appropriate file if build happens in a different place than app execution.
+  if (fs.existsSync(initialPath)) {
+    return initialPath;
+  }
+
+  // Don't look for an index.js file if we already have an extension.
+  if (parts.ext) {
+    return null;
+  }
+
+  // Look for an index.js file also.
+  if (fs.existsSync(indexPath)) {
+    return indexPath;
+  }
+
+  return null;
+};
+
+module.exports = {
+  maybeResolve,
+  maybeResolveUserModule,
+  maybeResolveBuildModule,
+};

@@ -1,46 +1,52 @@
-/* eslint-disable global-require, no-console, import/order */
+/* eslint-disable global-require, no-console, import/first, import/order */
+// Start monitor service as early as possible.
+const getMonitorService = require(
+  '../services/monitorService/getServiceFromFilesystem'
+);
+const monitorService = getMonitorService();
+monitorService.start();
 
-// Set up environmental variables as early as possible.
 const getEnv = require('../config/env');
 const {
   API_ROOT_URL,
   API_ORIGIN,
 } = getEnv();
 
-// Start monitor service as early as possible.
-const getService = require('../services/monitorService');
-getService().start();
-
 // Shim some browser-only global variables.
 require('../utils/shimWindow');
 
 const express = require('express');
-const {
-  createProxyMiddleware,
-} = require('http-proxy-middleware');
+const bodyParser = require('body-parser');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
-const getConfigField = require('../utils/getConfigField');
-const {
-  getConfigArray,
-} = require('../utils/getConfigValue');
-
-const getLogService = require('../services/logService');
+const proxyPassthrough = require('../config/proxyPassthrough');
+const getValueFromFiles = require('../config/irving/getValueFromFiles');
+const purgeCache = require('./purgeCache');
+const getCacheKeys = require('./getCacheKeys');
 const customizeRedirect = require('./customizeRedirect');
-const log = getLogService('irving:server');
+
+// Start log service.
+const logService = require('../services/logService/getServiceFromFilesystem');
+const log = logService('irving:server');
+
+// Create app.
 const app = express();
 
-// Cache-related endpoints.
-require('./cache')(app);
+// Clearing the Redis cache.
+app.post('/purge-cache', bodyParser.json(), purgeCache);
+app.get('/cache-keys', getCacheKeys);
 
 // Set view engine.
 app.set('view engine', 'ejs');
 
 // Run all customize server functions.
-const irvingServerMiddleware = getConfigField('customizeServer');
+const irvingServerMiddleware = getValueFromFiles(
+  'server/customizeServer.js',
+  [() => {}]
+);
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 // Set up a reusable proxy for responses that should be served directly.
-const proxyPassthrough = getConfigArray('proxyPassthrough');
 const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
@@ -57,9 +63,10 @@ proxyPassthrough.forEach((pattern) => {
 // Add universal cookies middleware.
 app.use(cookiesMiddleware());
 
-// Customize Redirect.
+// Naked Redirect.
 app.use(customizeRedirect());
 
+// Only load the appropriate middleware for the current env.
 if ('development' === process.env.NODE_ENV) {
   require('./development')(app);
 } else {
@@ -78,7 +85,11 @@ app.use((err, req, res, next) => {
 });
 
 // Run all export server functions.
-const serverExportMiddleware = getConfigField('exportServer');
+const serverExportMiddleware = getValueFromFiles(
+  'server/exportServer.js',
+  [() => {}]
+);
+
 module.exports = serverExportMiddleware.reduce(
   (acc, middleware) => {
     const exportApp = middleware(app);
