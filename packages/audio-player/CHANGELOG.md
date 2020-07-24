@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+
+### Bug Fixes
+
+* **merge:** merge master ([af08a2c](https://github.com/alleyinteractive/irving/packages/audio-player/commit/af08a2cbdcfdc981f26703a1f2e5bfb92a792ec8))
+* **services:** continue reorganizing services and fixing lingering issues ([5b5e367](https://github.com/alleyinteractive/irving/packages/audio-player/commit/5b5e367e9a963cca2b183d3916de55e951a752c4))
+
+
+
+
+
 ## [2.23.1](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
 
 **Note:** Version bump only for package @irvingjs/audio-player

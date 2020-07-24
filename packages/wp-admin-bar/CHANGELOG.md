@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+
+### Bug Fixes
+
+* **babel-preset:** keep working on transform  globals, move it into core ([a339c70](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/commit/a339c705f115968e671222af93b07385d44d32dd))
+* **shimdom:** rename shimWindow to shimDom, refactor to not be processed by babel ([41c4d3b](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/commit/41c4d3bffc97635e577ed288403dc617d003f2ee))
+
+
+
+# [3.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v3.0.0-alpha.8...v3.0.0-alpha.9) (2020-07-07)
+
+
+
+# [3.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v3.0.0-alpha.5...v3.0.0-alpha.6) (2020-07-07)
+
+
+
+# [3.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v3.0.0-alpha.4...v3.0.0-alpha.5) (2020-07-07)
+
+
+
+# [3.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v2.21.3...v3.0.0-alpha.4) (2020-07-07)
+
+
+
+# [3.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v3.0.0-alpha.2...v3.0.0-alpha.3) (2020-06-29)
+
+
+
+# [3.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v3.0.0-alpha.1...v3.0.0-alpha.2) (2020-06-29)
+
+
+
+# [3.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v3.0.0-alpha.0...v3.0.0-alpha.1) (2020-06-29)
+
+
+
+# [3.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v2.18.1...v3.0.0-alpha.0) (2020-06-29)
+
+
+
+
+
 ## [2.23.1](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
 
 **Note:** Version bump only for package @irvingjs/wp-admin-bar

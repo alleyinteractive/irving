@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+
+### Bug Fixes
+
+* **config:** fix default value for server creation configs ([b630869](https://github.com/alleyinteractive/irving/packages/vip-go/commit/b630869caf4b44d1629adc3bc25f4bf0248e15c3))
+* **core:** address CR feedback ([92b7847](https://github.com/alleyinteractive/irving/packages/vip-go/commit/92b78474c41744c00fb341938fb7c1d313c8fb2b))
+* **defaultservice:** call default service function ([4ca00fc](https://github.com/alleyinteractive/irving/packages/vip-go/commit/4ca00fc4c984b92bea4170b03809899229e52ff7))
+* **logservice:** fix default return, monitor require for vip-go log service ([1328f9d](https://github.com/alleyinteractive/irving/packages/vip-go/commit/1328f9ddd683c9e05738cfcb1bb0b42c09e2f402))
+* **merge:** merge master ([af08a2c](https://github.com/alleyinteractive/irving/packages/vip-go/commit/af08a2cbdcfdc981f26703a1f2e5bfb92a792ec8))
+* **services:** continue reorganizing services and fixing lingering issues ([5b5e367](https://github.com/alleyinteractive/irving/packages/vip-go/commit/5b5e367e9a963cca2b183d3916de55e951a752c4))
+
+
+### Features
+
+* **config:** set up aliases for services to ensure we use the correct service both client/server ([746e7e7](https://github.com/alleyinteractive/irving/packages/vip-go/commit/746e7e7eb5fafe44b88eaa21479524dedb0ae616))
+* **services:** begin setting up new structure for services and configuring them ([d5ba531](https://github.com/alleyinteractive/irving/packages/vip-go/commit/d5ba5316fd93aa581b8fb4517ff38f21bec9cd91))
+
+
+
+
+
 ## [2.23.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
 
 **Note:** Version bump only for package @irvingjs/vip-go

@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+
+### Bug Fixes
+
+* **shimdom:** address CR feedback ([eee6d9e](https://github.com/alleyinteractive/irving/packages/styled-components/commit/eee6d9e5c525f54dd040548b18b77941997ab2f9))
+* **styled-components:** fix incorrect import paths for withThemes ([06dd30b](https://github.com/alleyinteractive/irving/packages/styled-components/commit/06dd30b394be99058c19f137b526025749827ef3))
+
+
+
+# [3.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.14...v3.0.0-alpha.15) (2020-07-10)
+
+
+### Bug Fixes
+
+* **image:** remove width from image for now ([60ec393](https://github.com/alleyinteractive/irving/packages/styled-components/commit/60ec3935f46b2bfd88f234ca7642dd2d1df59683))
+
+
+
+# [3.0.0-alpha.14](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.13...v3.0.0-alpha.14) (2020-07-10)
+
+
+
+# [3.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.12...v3.0.0-alpha.13) (2020-07-10)
+
+
+
+# [3.0.0-alpha.12](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.11...v3.0.0-alpha.12) (2020-07-10)
+
+
+
+# [3.0.0-alpha.11](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.10...v3.0.0-alpha.11) (2020-07-10)
+
+
+
+# [3.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.9...v3.0.0-alpha.10) (2020-07-10)
+
+
+
+# [3.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.8...v3.0.0-alpha.9) (2020-07-07)
+
+
+
+# [3.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.5...v3.0.0-alpha.6) (2020-07-07)
+
+
+
+# [3.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.4...v3.0.0-alpha.5) (2020-07-07)
+
+
+### Bug Fixes
+
+* **styles:** fix various stylelint errors now that stylelint is working again ([73344ef](https://github.com/alleyinteractive/irving/packages/styled-components/commit/73344ef4b2b7e0d4ed1ad4dac012705ec3655515))
+
+
+
+# [3.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.21.3...v3.0.0-alpha.4) (2020-07-07)
+
+
+
+# [3.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.2...v3.0.0-alpha.3) (2020-06-29)
+
+
+
+# [3.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.1...v3.0.0-alpha.2) (2020-06-29)
+
+
+
+# [3.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.0...v3.0.0-alpha.1) (2020-06-29)
+
+
+
+# [3.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.18.1...v3.0.0-alpha.0) (2020-06-29)
+
+
+### Bug Fixes
+
+* **services:** continue reorganizing services and fixing lingering issues ([5b5e367](https://github.com/alleyinteractive/irving/packages/styled-components/commit/5b5e367e9a963cca2b183d3916de55e951a752c4))
+
+
+
+
+
 ## [2.23.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
 
 **Note:** Version bump only for package @irvingjs/styled-components
