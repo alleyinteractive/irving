@@ -14,8 +14,9 @@ const trailingSlashDenylist = getValueFromConfig(
 
 /**
  * Add a trailling slash to a URL if required (and the appropriate config value is set).
- * @param {string} url - URL to which trailing slash should be added.
- * @returns {string} - URL with trailing slash.
+ *
+ * @param {string} url URL to which trailing slash should be added.
+ * @returns {string} URL with trailing slash.
  */
 export default function addTrailingSlash(
   url,

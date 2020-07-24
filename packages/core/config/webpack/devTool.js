@@ -1,7 +1,8 @@
 /**
  * Get the context specific devtool configuration.
- * @param {string} context
- * @returns {bool|string} - a devtool configuration value
+ *
+ * @param {string} context The configuration context
+ * @returns {bool|string} A devtool configuration value
  */
 module.exports = function getDevTool(context) {
   switch (context) {

@@ -7,8 +7,8 @@ const resolvePackageConfigs = require('./resolvePackageConfigs');
  *
  * @param {string} filepath Path to config file we're looking for.
  * @param {object} opts Options for finding config files.
- * @param {string} opts.base - Base filepath to look for config files in.
- * @param {array}  opts.ignorePackages - Array of packages to ignore when looking for files.
+ * @param {string} opts.base Base filepath to look for config files in.
+ * @param {array}  opts.ignorePackages Array of packages to ignore when looking for files.
  */
 const requireConfigModules = (filepath, opts) => {
   // Get package configs.

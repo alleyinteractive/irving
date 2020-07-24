@@ -17,7 +17,7 @@ const getService = () => {
       logger: logger('irving:newrelic'),
     });
 
-    // VIP Go's package can return nothing if newrelic is not instsalled or configured improperly.
+    // VIP Go's package can return nothing if newrelic is not installed or configured improperly.
     if (! client) {
       return defaultService;
     }

@@ -60,6 +60,9 @@ const baseConfig = {
     'selector-combinator-space-before': 'always',
     'selector-descendant-combinator-no-non-space': true,
     'selector-list-comma-newline-after': 'always',
+    'selector-max-specificity': ['0,3,1', {
+      ignoreSelectors: [':global', ':local'],
+    }],
     'selector-no-vendor-prefix': true,
     'selector-pseudo-class-case': 'lower',
     'selector-pseudo-class-parentheses-space-inside': 'never',

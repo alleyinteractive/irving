@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 /**
  * Hook for creating a script tag for an external script and inserting it into the DOM.
  *
- * @param {string} src - script source.
- * @param {string} id - ID for checking if script already exists in the DOM.
- * @param {object} opts - Options for loading this script.
- * @param {bool}   opts.attr - Load this script with provided attributes.
- * @param {bool}   opts.footer - Load this script at the end of the body tag.
- * @param {bool}   opts.dispose - Remove this script from the DOM when the component loading it is unmounted.
- * @returns {bool} - Has the script finished loading?
+ * @param {string} src Script source.
+ * @param {string} id ID for checking if script already exists in the DOM.
+ * @param {object} opts Options for loading this script.
+ * @param {bool}   opts.attr Load this script with provided attributes.
+ * @param {bool}   opts.footer Load this script at the end of the body tag.
+ * @param {bool}   opts.dispose Remove this script from the DOM when the component loading it is unmounted.
+ * @returns {bool} Has the script finished loading?
  */
 const useLoadScript = (
   src,

@@ -7,6 +7,7 @@ const resolvePackageConfigs = require('./resolvePackageConfigs');
  * Note: This will not return an array of all config files found, only the first one found.
  *
  * @param {string} configPath Path to config file we're looking for.
+ * @returns {?string} The most recent filepath discovered (user's path overtakes all others).
  */
 const resolveConfigFilepath = (configPath) => {
   // Get config paths.
