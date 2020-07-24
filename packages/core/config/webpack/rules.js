@@ -108,25 +108,6 @@ module.exports = function getRules(context) {
       use: ['@svgr/webpack'],
     },
     {
-      // resource: {
-      //   test: /\.jsx?$/,
-      //   or: [
-      //     include,
-      //     (filepath) => (
-      //       // These specific node modules, which contain arrow functions that must be
-      //       // transpiled.
-      //       filepath.includes('node_modules') &&
-      //         (
-      //           filepath.includes('query-string') ||
-      //           filepath.includes('split-on-first') ||
-      //           filepath.includes('strict-uri-encode') ||
-      //           filepath.includes('abort-controller') ||
-      //           filepath.includes('event-target-shim')
-      //         )
-      //     ),
-      //   ],
-      //   not: [/shimDom/],
-      // },
       test: /\.jsx?$/,
       include,
       use: [
