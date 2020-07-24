@@ -1,11 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import SpinnerSVG from 'assets/icons/spinner.svg';
-
-import withThemes from 'components/hoc/withThemes';
-import createWithUserThemes from 'components/hoc/createWithUserThemes';
-import styles from './spinner.css';
 
 const Spinner = (props) => {
   const {
@@ -13,6 +7,7 @@ const Spinner = (props) => {
     size,
     theme,
   } = props;
+  const { SpinnerIcon } = theme;
 
   // Using inline styles for centering prevents jumpiness as the component is
   // loaded, and allows passing color and size props to  inline styles.
@@ -27,10 +22,7 @@ const Spinner = (props) => {
   };
 
   return (
-    <SpinnerSVG
-      style={inlineStyle}
-      className={classNames(theme.spinner, 'spinner')}
-    />
+    <SpinnerIcon style={inlineStyle} />
   );
 };
 
@@ -45,7 +37,4 @@ Spinner.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-const wrapWithThemes = withThemes('Spinner', { default: styles });
-export const themeSpinner = createWithUserThemes(Spinner, styles);
-
-export default wrapWithThemes(Spinner);
+export default Spinner;

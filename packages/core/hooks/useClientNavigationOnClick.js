@@ -7,12 +7,16 @@ const parseUrl = memoize(getRelativeUrl);
 
 const useClientNavigationOnClick = (url) => {
   const relativeUrl = parseUrl(url);
-
-  return (event) => {
+  const onClick = (event) => {
     if (relativeUrl) {
       event.preventDefault();
       history.push(relativeUrl);
     }
+  };
+
+  return {
+    onClick,
+    destination: relativeUrl || url,
   };
 };
 

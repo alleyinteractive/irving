@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import parseUrl from '@irvingjs/core/utils/getRelativeUrl';
-import history from '@irvingjs/core/utils/history';
+import useClientNavigationOnClick from
+  '@irvingjs/core/hooks/useClientNavigationOnClick';
 import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
@@ -23,16 +23,10 @@ const Link = (props) => {
     target,
     theme,
   } = props;
-
-  // If our destination is a relative url, manage navigation using push state.
-  const relativeUrl = parseUrl(href);
-  const defaultOnClick = (event) => {
-    if (relativeUrl) {
-      event.preventDefault();
-      history.push(relativeUrl);
-    }
-  };
-
+  const {
+    onClick: defaultOnClick,
+    destination,
+  } = useClientNavigationOnClick(href);
   const {
     LinkWrapper,
   } = theme;
@@ -40,7 +34,7 @@ const Link = (props) => {
   return (
     <LinkWrapper
       className={className}
-      href={relativeUrl || href}
+      href={destination}
       onClick={onClick || defaultOnClick}
       rel={rel}
       style={style}

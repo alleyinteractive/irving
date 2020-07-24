@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import getDisplayName from '@irvingjs/core/utils/getDisplayName';
+// import getDisplayName from '@irvingjs/core/utils/getDisplayName';
 import assign from 'lodash/fp/assign';
 import get from 'lodash/get';
 import { ThemeContext } from 'styled-components';
@@ -65,7 +65,7 @@ const withThemes = (themeMap) => (WrappedComponent) => {
     style: {},
   };
 
-  ThemedComponent.displayName = getDisplayName('withThemes', WrappedComponent);
+  // ThemedComponent.displayName = getDisplayName('withThemes', WrappedComponent);
 
   return ThemedComponent;
 };
