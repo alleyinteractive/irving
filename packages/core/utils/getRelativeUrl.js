@@ -1,17 +1,17 @@
+// Global passed in via webpack define plugin
+/* global proxyPassthrough */
 import URL from 'url-parse';
 import globToRegExp from 'glob-to-regexp';
-import { getConfigArray } from 'utils/getConfigValue';
 import addTrailingSlash from './addTrailingSlash';
 
 // Create RegExp version of proxy globs.
-const proxyPassthrough = getConfigArray('proxyPassthrough');
 const proxyRegExp = proxyPassthrough.map(globToRegExp);
 
 /**
  * Replace www.
  *
- * @param {string} urlString - Original URL string (or part of URL).
- * @returns {string|boolean} - URL with replacement made.
+ * @param {string} urlString Original URL string (or part of URL).
+ * @returns {string|boolean} URL with replacement made.
  */
 const replacewww = (urlString) => (
   urlString.replace('www.', '')
@@ -20,7 +20,7 @@ const replacewww = (urlString) => (
 /**
  * Normalize internal urls to be relative. Reject external urls.
  * @param {string} url
- * @returns {string|boolean} - relative url, or false if not an internal url
+ * @returns {string|boolean} Relative url, or false if not an internal url
  */
 export default function getRelativeUrl(url) {
   let result = false;

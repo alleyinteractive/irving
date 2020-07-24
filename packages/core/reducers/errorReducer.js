@@ -3,9 +3,10 @@ import { error as defaultState } from 'reducers/defaultState';
 
 /**
  * Handle Redux actions operating on the error state slice.
- * @param {Error|null} errorState - error state slice
- * @param {{type payload}} action - Redux action
- * @returns {Error|null} - The updated error state
+ *
+ * @param {Error|null} errorState Error state slice
+ * @param {{type payload}} action Redux action
+ * @returns {Error|null} The updated error state
  */
 export default function errorReducer(errorState = defaultState, action) {
   const { type, payload } = action;

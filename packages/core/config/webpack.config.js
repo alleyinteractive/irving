@@ -1,7 +1,8 @@
 const nodeExternals = require('webpack-node-externals');
 const getConfigService = require('./webpack');
 const { buildContext } = require('./paths');
-const getConfigField = require('../utils/getConfigField');
+// Use unmemoized version for webpack.
+const { getValueFromFiles } = require('./irving/getValueFromFiles');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
@@ -61,17 +62,37 @@ module.exports = (env, argv) => {
       entry: server.getEntry(),
       output: server.getOutput(),
       module: {
+        noParse: [/nodeRequire/],
         rules: server.getRules(),
       },
       plugins: server.getPlugins(),
       optimization: server.getOptimization(),
     },
   ];
-  const configGetters = getConfigField('webpackConfig');
-  // Call all config getters, passing in configs in succession.
-  const processedConfigs = configGetters.reduce((acc, getter) => (
-    getter(acc, mode)
-  ), multiConfig);
 
-  return processedConfigs;
+  // Process configs separately if env-specific files are provided.
+  const clientConfig = getValueFromFiles(
+    'config/webpack.config.client.js',
+    multiConfig[0],
+    { base: buildContext }
+  );
+  const serverConfig = getValueFromFiles(
+    'config/webpack.config.server.js',
+    multiConfig[1],
+    { base: buildContext }
+  );
+
+  // Process each config using the same webpack.config.js
+  const finalConfigs = [
+    clientConfig,
+    serverConfig,
+  ].map((config) => (
+    getValueFromFiles(
+      'config/webpack.config.js',
+      config,
+      { base: buildContext }
+    )
+  ));
+
+  return finalConfigs;
 };

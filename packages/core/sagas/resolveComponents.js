@@ -18,7 +18,7 @@ import shouldAuthorize, {
 import history from 'utils/history';
 import isNode from 'utils/isNode';
 import getRelativeUrl from 'utils/getRelativeUrl';
-import getLogService from 'services/logService';
+import getLogService from '@irvingjs/services/logService';
 import resolveComponentsAuthorized from './resolveComponentsAuthorized';
 
 const debug = getLogService('irving:sagas:location');
