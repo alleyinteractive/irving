@@ -1,7 +1,7 @@
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
-const fs = require('fs');
-const { clientBuild, rootUrl } = require('../config/paths');
+import fs from 'fs';
+import { clientBuild, rootUrl } from '../config/paths';
 let runtimeSrc;
 
 /**

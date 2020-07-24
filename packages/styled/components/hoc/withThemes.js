@@ -18,7 +18,6 @@ const withThemes = (themeMap) => (WrappedComponent) => {
     const themeContext = useContext(ThemeContext);
     const newStyle = Object.keys(style)
       .reduce((acc, property) => {
-
         /**
          * For every value passed in the style prop, check if the value is
          * actually a path to our ThemeContext.
@@ -55,7 +54,7 @@ const withThemes = (themeMap) => (WrappedComponent) => {
     /**
      * CSS style.
      */
-    style: PropTypes.oneOf([
+    style: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object,
     ]),

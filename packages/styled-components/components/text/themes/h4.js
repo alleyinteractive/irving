@@ -5,6 +5,6 @@ import styled from 'styled-components';
 export const TextWrapper = styled.div`
   font-size: 1.25rem;
   line-height: 1.5rem;
-  margin-bottom: .7rem;
+  margin-bottom: 0.7rem;
 `;
 // eslint-enable.

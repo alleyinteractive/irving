@@ -23,7 +23,12 @@ const startServer = getValueFromFiles(
 );
 
 // Start the server.
-startServer(app);
+const started = startServer(app);
+
+// Fall back to core.
+if (! started) {
+  coreStartServer(app);
+}
 
 // Open app for convenience and to get the initial build started.
 if ('development' === process.env.NODE_ENV) {

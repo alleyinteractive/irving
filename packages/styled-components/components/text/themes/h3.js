@@ -4,6 +4,6 @@ import styled from 'styled-components';
 // eslint-disable import/prefer-default-export.
 export const TextWrapper = styled.div`
   font-size: 1.55rem;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
 `;
 // eslint-enable.

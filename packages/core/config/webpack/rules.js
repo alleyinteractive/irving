@@ -1,7 +1,6 @@
 const path = require('path');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const {
-  transform,
   buildContext,
   irvingRoot,
 } = require('../paths');
@@ -17,7 +16,9 @@ const include = (filepath) => {
           filepath.includes(buildContext) ||
           // Monorepo root directory (if it exists, which it won't outside a development context).
           filepath.includes(path.join(__dirname, '../../../../'))
-        ) && ! filepath.includes('node_modules')
+        ) &&
+        ! filepath.includes('node_modules') &&
+        ! filepath.includes('shimDom')
       ) ||
       // Anything imported within irving packages should be included in build,
       // even if located within node_modules (but not nested node modules).
@@ -107,29 +108,15 @@ module.exports = function getRules(context) {
       use: ['@svgr/webpack'],
     },
     {
-      resource: {
-        test: /\.jsx?$/,
-        or: [
-          include,
-          (filepath) => (
-            // These specific node modules, which contain arrow functions that must be
-            // transpiled.
-            filepath.includes('node_modules') &&
-              (
-                filepath.includes('query-string') ||
-                filepath.includes('split-on-first') ||
-                filepath.includes('strict-uri-encode') ||
-                filepath.includes('abort-controller') ||
-                filepath.includes('event-target-shim')
-              )
-          ),
-        ],
-      },
+      test: /\.jsx?$/,
+      include,
       use: [
         {
           loader: 'babel-loader',
           options: {
-            extends: path.join(irvingRoot, 'babel.config.js'),
+            extends: isServer ?
+              path.join(irvingRoot, 'babel.config.node.js') :
+              path.join(irvingRoot, 'babel.config.web.js'),
           },
         },
       ],

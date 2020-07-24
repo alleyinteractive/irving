@@ -12,9 +12,6 @@ const {
   API_ORIGIN,
 } = getEnv();
 
-// Shim some browser-only global variables.
-require('../utils/shimWindow');
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const { createProxyMiddleware } = require('http-proxy-middleware');
