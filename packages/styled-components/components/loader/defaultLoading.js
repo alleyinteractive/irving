@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from 'components/helpers/spinner';
-import classNames from 'classnames';
-import styles from './defaultLoading.css';
+import Spinner from './spinner';
 
 const DefaultLoading = (props) => {
   const {
@@ -11,21 +9,24 @@ const DefaultLoading = (props) => {
     fullScreenBgColor,
     children,
     spinnerProps,
+    theme,
   } = props;
+  const { LoadingWrapper } = theme;
 
   return (
-    <div
-      className={classNames(
-        styles.wrapper,
-        className,
-        {
-          [styles.fullScreen]: fullScreen,
-        }
-      )}
+    <LoadingWrapper
+      data-testid="loading"
+      className={className}
+      fullScreen={fullScreen}
       style={{ backgroundColor: fullScreenBgColor }}
     >
-      {children || <Spinner {...spinnerProps} />}
-    </div>
+      {children || (
+        <Spinner
+          {...spinnerProps}
+          theme={theme}
+        />
+      )}
+    </LoadingWrapper>
   );
 };
 
@@ -67,6 +68,10 @@ DefaultLoading.propTypes = {
    * default: {},
    */
   spinnerProps: PropTypes.object,
+  /**
+   * Theme
+   */
+  theme: PropTypes.object.isRequired,
 };
 
 export default DefaultLoading;

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
-import withLoader from '@irvingjs/core/components/hoc/withLoader';
-import withThemes from '@irvingjs/styled/components/withThemes';
+import Loader from 'components/loader';
+import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 const BodyWrapper = (props) => {
@@ -11,14 +11,14 @@ const BodyWrapper = (props) => {
   const { Main } = theme;
 
   return (
-    <>
+    <Loader>
       <Helmet>
         <body className={classNames(bodyClasses)} />
       </Helmet>
       <Main role="main" id="content">
         {children}
       </Main>
-    </>
+    </Loader>
   );
 };
 
@@ -51,6 +51,6 @@ const themeMap = {
 
 export { BodyWrapper as PureComponent };
 
-export const StyledComponent = withThemes(themeMap)(withLoader(BodyWrapper));
+export const StyledComponent = withThemes(themeMap)(BodyWrapper);
 
 export default StyledComponent;
