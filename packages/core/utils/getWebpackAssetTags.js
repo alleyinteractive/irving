@@ -7,8 +7,8 @@ let runtimeSrc;
 /**
  * Get the emitted webpack assets as html tags to be rendered by the server.
  *
- * @param {object} clientStats - emitted webpack client bundle info
- * @returns {tags[]} - an array of html tags
+ * @param {object} clientStats Emitted webpack client bundle info
+ * @returns {tags[]} An array of html tags
  */
 const getWebpackAssetTags = (clientStats) => {
   const {

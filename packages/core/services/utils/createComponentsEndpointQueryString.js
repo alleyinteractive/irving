@@ -7,11 +7,10 @@ import getExtraQueryParams from './getExtraQueryParams';
 /**
  * Creates the query string for both the components
  * API endpoint and to use as a cache key.
- * @param {string} path      - path of the request page
- * @param {string} search    - search string
- * @param {string} cookie    - cookie header string
- * @param {string} [context] - "page" (page specific components) or
- *                           "site" (all components)
+ * @param {string} path Path of the request page
+ * @param {string} search Search string
+ * @param {string} cookie Cookie header string
+ * @param {string} [context] "Page" (page specific components) or "site" (all components)
  */
 function createComponentsEndpointQueryString(
   path,

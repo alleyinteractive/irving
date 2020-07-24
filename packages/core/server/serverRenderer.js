@@ -27,8 +27,9 @@ const logRequest = getLogService('irving:render:request');
 /**
  * Handle rendering the app as a string that can then be returned as a response
  * from the server.
- * @param {object} req - express request object
- * @param {object} res - express response object to be rendered.
+ *
+ * @param {object} req Express request object
+ * @param {object} res Express response object to be rendered.
  **/
 const render = async (req, res, clientStats) => {
   const sagaMiddleware = createSagaMiddleware();
@@ -111,9 +112,10 @@ const render = async (req, res, clientStats) => {
 
 /**
  * Create a webpack hot server compatible middleware.
- * @param {object} options - the webpack bundle information for server and
+ *
+ * @param {object} options The webpack bundle information for server and
  *                           client configs
- * @returns {function} - an express route middleware function responsible for
+ * @returns {function} An express route middleware function responsible for
  *                       rendering the html response
  */
 export default function serverRenderer(options) {

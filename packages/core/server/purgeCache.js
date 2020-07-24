@@ -100,8 +100,8 @@ const executeStream = async (pipeline, res, key = '') => {
 /**
  * Bust the entire cache or cache for a specific set of URLs from Redis.
  *
- * @param {object} req  Request object.
- * @param {object} res  Response object.
+ * @param {object} req Request object.
+ * @param {object} res Response object.
  * @returns {*}
  */
 const purgeCache = async (req, res) => {

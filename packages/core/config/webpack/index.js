@@ -8,9 +8,10 @@ const getOptimization = require('./optimization');
 
 /**
  * Get a configuration service based on the context parameters.
- * @param {string} mode - production or development
- * @param {string} opEnv - server or client
- * @returns {object} - configuration service
+ *
+ * @param {string} mode Production or development
+ * @param {string} opEnv Server or client
+ * @returns {object} Configuration service
  */
 module.exports = function getConfigService(mode, opEnv) {
   const context = `${mode}_${opEnv}`;

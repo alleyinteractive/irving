@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@irvingjs/styled": "^2.23.1",
-    "@use-hooks/image-size": "^1.0.5",
     "@wordpress/i18n": "^3.10.0",
     "query-string": "^6.13.1",
     "react": "^16.13.1",

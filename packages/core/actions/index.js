@@ -9,9 +9,9 @@ import {
 
 /**
  * Create a Flux Standard Action
- * @param  {string} type - identifies the nature of the action
- * @param  {*} payload - the information of the action
- * @returns {{type, payload}} - Redux action
+ * @param  {string} type Identifies the nature of the action
+ * @param  {*} payload The information of the action
+ * @returns {{type, payload}} Redux action
  */
 export function createAction(type, payload = null) {
   return { type, payload };
@@ -19,9 +19,9 @@ export function createAction(type, payload = null) {
 
 /**
  * Create a Redux action that represents a browser state change.
- * @param {string} action - the browser action (push, pop, replace, etc..)
- * @param {object} location - the new location object
- * @returns {{type, payload}} - Redux action
+ * @param {string} action The browser action (push, pop, replace, etc..)
+ * @param {object} location The new location object
+ * @returns {{type, payload}} Redux action
  */
 export function actionLocationChange(action, location) {
   return createAction(LOCATION_CHANGE, { action, ...location });
@@ -38,12 +38,12 @@ export function actionRequestComponentsAuthorized() {
 /**
  * Create a Redux action that represents the app receiving API components.
  * @param {object}   data
- * @param {object[]} data.defaults - default components
- * @param {object[]} data.page - page specific components
- * @param {object[]} data.providers - provider components
- * @param {boolean}  data.status - response was a 404
- * @param {string}   data.redirectTo - the new url path the app should resolve
- * @returns {{type, payload}} - Redux action
+ * @param {object[]} data.defaults Default components
+ * @param {object[]} data.page Page specific components
+ * @param {object[]} data.providers Provider components
+ * @param {boolean}  data.status Response was a 404
+ * @param {string}   data.redirectTo The new url path the app should resolve
+ * @returns {{type, payload}} Redux action
  */
 export function actionReceiveComponents(data) {
   return createAction(RECEIVE_COMPONENTS, data);
@@ -51,7 +51,7 @@ export function actionReceiveComponents(data) {
 
 /**
  * Create a Redux action the represents the app receiving an unrecoverable error.
- * @returns {{type, payload}} - Redux action
+ * @returns {{type, payload}} Redux action
  */
 export function actionReceiveError(err) {
   return createAction(RECEIVE_ERROR, err);
@@ -67,7 +67,7 @@ export function actionFinishLoading() {
 
 /**
  * Create a Redux action that represents a change in global UI visibility
- * @returns {{type, payload}} - Redux action
+ * @returns {{type, payload}} Redux action
  */
 export function actionUpdateVisibility(name, isVisible = null) {
   return createAction(UPDATE_VISIBILITY, { name, isVisible });
