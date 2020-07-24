@@ -1,13 +1,10 @@
 import DefaultAppContent from 'components/app/defaultAppContent';
 import DefaultErrorMessage from 'components/defaultErrorMessage';
 import NotConfigured from 'components/notConfigured';
-import Body from 'components/body';
-import withLoader from 'components/hoc/withLoader';
 import userComponentMap from '@irvingjs/componentMap';
 
 const defaultComponents = {
   app: DefaultAppContent,
-  body: withLoader(Body),
   'error-message': DefaultErrorMessage,
 };
 

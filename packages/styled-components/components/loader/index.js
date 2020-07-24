@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getDisplayName from 'utils/getDisplayName';
-import DefaultLoading from 'components/helpers/defaultLoading';
+import DefaultLoading from 'components/defaultLoading';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import styles from './styles.css';
 
