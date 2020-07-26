@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.3](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2020-07-26)
+
+
+### Bug Fixes
+
+* **icons:** remove core icon svgs, move spinner into styled-components ([f0bd7d4](https://github.com/alleyinteractive/irving/commit/f0bd7d49ce317941c7d22ec7069fcb9a936cb2a5))
+
+
+
+
+
 # [3.0.0-beta.2](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2020-07-26)
 
 
