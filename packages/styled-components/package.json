@@ -5,6 +5,7 @@
   "files": [
     "components/**/*",
     "config/**/*",
+    "assets/**/*",
     "irving.config.server.js",
     "irving.config.js",
     "!*.test.js"
