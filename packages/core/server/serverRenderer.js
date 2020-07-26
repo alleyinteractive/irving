@@ -3,7 +3,6 @@
 import 'source-map-support/register';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
@@ -88,12 +87,9 @@ const render = async (req, res, clientStats) => {
     irvingHead: getWebpackAssetTags(clientStats).join(''),
   });
 
-  // Clear head data to avoid memory leak.
-  const helmet = Helmet.renderStatic();
   // https://redux.js.org/recipes/server-rendering#security-considerations
   const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
   const templateVars = {
-    helmet,
     preRenderedState: stateEncoded,
     env: JSON.stringify(irvingEnv),
     ...customTemplateVars,
