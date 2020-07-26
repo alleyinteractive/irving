@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "3.0.0-beta.3",
+  "version": "3.0.0-beta.5",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -42,7 +42,7 @@
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@hot-loader/react-dom": "^16.13.0",
-    "@irvingjs/babel-preset-irving": "^3.0.0-beta.2",
+    "@irvingjs/babel-preset-irving": "^3.0.0-beta.5",
     "abort-controller": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",

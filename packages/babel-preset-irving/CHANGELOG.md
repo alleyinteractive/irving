@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.5](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2020-07-26)
+
+
+### Bug Fixes
+
+* **babel:** install babel runtime ([f7ca697](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/f7ca697a07e9783a67f53d2fb01741ba8e1b1cad))
+
+
+
+
+
 # [3.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2020-07-26)
 
 
