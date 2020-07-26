@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.2](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2020-07-26)
+
+
+### Bug Fixes
+
+* **babel preset:** add missing babel-plugin-transform-globals dependency to babel preset ([9d682cb](https://github.com/alleyinteractive/irving/commit/9d682cb8c39bd3f5d562137762ba8f221b55c51e))
+
+
+
+
+
 # [3.0.0-beta.1](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2020-07-26)
 
 
