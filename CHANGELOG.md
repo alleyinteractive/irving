@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.4](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2020-07-26)
+
+
+### Bug Fixes
+
+* **styled-components:** publish assets to styled components package ([8f3fd8a](https://github.com/alleyinteractive/irving/commit/8f3fd8a3d4c440505caec715985a6b40ea5a89a7))
+
+
+
+
+
 # [3.0.0-beta.3](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2020-07-26)
 
 
