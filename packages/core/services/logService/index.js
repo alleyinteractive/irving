@@ -18,10 +18,10 @@ const monitor = getMonitorService();
  * Create a debug logger that will conditionally handle logged errors based on
  * the running environment type.
  *
- * @param {String} namespace  The namespace of the error. This is typically the
+ * @param {String} namespace The namespace of the error. This is typically the
  *                            module, but the value can be more or less granular
  *                            if desired.
- * @return {function}         A logging function.
+ * @return {function}        A logging function.
  */
 const getService = (namespace) => {
   const env = process.env.NODE_ENV;

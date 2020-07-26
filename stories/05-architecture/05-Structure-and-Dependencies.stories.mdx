@@ -1,0 +1,71 @@
+<Meta title="Architecture|Structure and Dependencies" />
+
+# Structure
+Irving and all of its packages are managed using [Lerna](https://github.com/lerna/lerna). All packages have their own directory located in the [packages directory](https://github.com/alleyinteractive/irving/tree/master/packages). This documentation page will detail only the code structure of the Core irving package and the root Irving project directory.. The anatomy of an extension package can be found in the docs for [creating your own package](Creating-a-Package).
+
+### Root Files
+These are mostly config files.
+* `.editorconfig` - [Editor config](https://editorconfig.org).
+* `.gitignore` - Files for Git to ignore.
+* `.travis.yml` - [Travis CI](http://travis-ci.com) configuration.
+* `.eslintignore` - Files for ESLint to ignore.
+* `.eslintrc.js` - Global eslint configuration for all Irving packages. [ESLint config](https://eslint.org/docs/user-guide/configuring).
+* `jest.config.base.js` - Base jest configuration that all packages extend. This allows us to DRY out our jest setup while still maintaining a configuration file at the root of each package.
+* `lerna.json` - Lerna configuration for the Irving repo.
+
+### Core files
+* .eslintignore - Files for ESLint to ignore.
+* .eslintrc.js - Eslint config for Irving core and projects using it.
+* README.md - Intro doc.
+* babel.config.js - [Babel config](https://babeljs.io).
+* jest.config.js - [Jest config](https://jestjs.io).
+* nodemon.js - [Nodemon setup](https://nodemon.io).
+* package-lock.json - [NPM Package Lock](https://docs.npmjs.com/files/package-lock.json).
+* package.json - [NPM packages](https://www.npmjs.com).
+
+### Core directories
+Each folder has a readme with more specific information.
+* [Actions](https://github.com/alleyinteractive/irving/tree/master/packages/core/actions) - Redux actions.
+* [Assets](https://github.com/alleyinteractive/irving/tree/master/packages/core/assets) - Static assets such as svgs, fonts, and style mixins.
+* [Client](https://github.com/alleyinteractive/irving/tree/master/packages/core/client) - Root directory for client-side webpack bundle. Responsible for app hydration and client-side rendering.
+* [Components](https://github.com/alleyinteractive/irving/tree/master/packages/core/components) - Core components.
+* [Config](https://github.com/alleyinteractive/irving/tree/master/packages/core/config) - Configuration files.
+* [Hooks](https://github.com/alleyinteractive/irving/tree/master/packages/core/hooks) - Various React Hooks that can be helpful to development.
+* [Reducers](https://github.com/alleyinteractive/irving/tree/master/packages/core/reducers) - Redux Reducers.
+* [Sagas](https://github.com/alleyinteractive/irving/tree/master/packages/core/sagas) - React Sagas.
+* [Selectors](https://github.com/alleyinteractive/irving/tree/master/packages/core/selectors) - Reselect selectors.
+* [Services](https://github.com/alleyinteractive/irving/tree/master/packages/core/services) - Services.
+* [Styleguide](https://github.com/alleyinteractive/irving/tree/master/packages/core/styleguide) - See [Styleguide](Styleguide).
+* [Utils](https://github.com/alleyinteractive/irving/tree/master/packages/core/utils) - Misc utility functions.
+
+# Redux.js
+We use [Redux.js](https://github.com/reduxjs/redux) to contain the application's state and leverage its API for introducing changes and selecting values in a consistent manner. The primary state fields include the current route data and the data components for each visited URL path. Various global stateful UI elements, such as loading indicators and modals, are also represented within the Redux.js state.
+
+# Reducer Types
+## State Reducers
+A reducer function that takes the entire state object as an argument and returns the transformed state based on the dispatched action. This type of reducer is used when you want to change multiple fields of the state object within one function. State reducers are composed together in a chain. Each reducer is passed the result of the previous reducer.
+
+[Example state reducer.](https://github.com/alleyinteractive/irving/blob/master/packages/core/reducers/componentsReducer.js)
+
+## Slice Reducer
+A reducer function that operates on only one root field of the state object. Slice reducers are typically used for simpler action handling logic. All slice reducers are composed together with another reducer function called combineReducers which is exported by Redux.js. The combineReducers function is then composed with the rest of the state reducers.
+Example link
+
+# React Redux and Connected Roots
+The API response from a components request is represented as a tree. Each root of the tree is connected to the Redux store with [React-Redux.js](https://github.com/reduxjs/react-redux). The interface of the components API response dictates that 0 or more root components may change when a LOCATION_CHANGE action is dispatched when a user navigates to a new page. To meet the requirements of completely dynamic pages, without re-rendering the entire component tree on each new page view, component roots are connected to Redux.js independent from each other. This allows only the root components that change, and their corresponding children, to re-render.
+
+[Example slice reducer.](https://github.com/alleyinteractive/irving/blob/master/packages/core/reducers/componentsReducer.js)
+
+# Selectors
+Selectors are functions that compute values from the Redux.js state. We use the [Reselect.js](https://github.com/reduxjs/reselect) library to create performant selectors. The main feature of reselect is that it allows memoization of selector functions. What this means is that a complex selector function will execute the first time it is called, and then its computed value will be cached in memory. The cached value will continue to be returned until the selector's argument changes. For selectors that take the entire state as an argument, the selector will be recomputed when the Redux.js state changes. Selectors can be composed together. In that case when selectors that are passed as arguments to a composed selector change, then the composed selector will be recomputed.
+
+Sometimes you may need a selector to take an additional argument, very often from the props of a component. This is possible by passing the props as the last argument of the selector. However, if you do this then the selector will be unable to optimally memoize it's result, because any change in that last argument will clear the cache of the selector. To get around this you should turn your selector function into a factory function, that is return a selector function from a function call. This allows you to create independently operating reusable selector functions.
+
+[Example factory function selector.](https://github.com/alleyinteractive/irving/blob/production/selectors/createGetRootComponent.js)
+
+# Why Redux-Saga.js?
+Sagas provide a comprehensive way to manage asynchronous operations and side effects. The primary reason sagas were chosen over using only promises, is because sagas enable the ability to pause, resume, or cancel operations. With a promise there is no stopping the operation when it begins. This type of control becomes necessary for an app like Irving, which is driven by the state of the URL. When a user navigates to a new page, a saga will hook into that dispatched action and then execute the logic for resolving the page. If the user then navigates to another page, before the original request was completely resolved, the original saga will be canceled automatically. Thus redundant operations are eliminated.
+
+Other advantages of [Redux-Saga.js](https://github.com/redux-saga/redux-saga) include generator syntax, which allows you to code in a synchronous style, much like async-await, which facilitates things like error handling with a traditional try-catch. Another advantage is the API of effects that is exported by Redux-Saga.js. Effects describe what operations you want to happen, but they don't actually execute them. The Redux-Saga.js middleware handles that. This allows you to unit test the logic of sagas without having to deal with or mock the side effects that occur from those effects.
+
+# Dependencies

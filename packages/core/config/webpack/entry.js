@@ -8,8 +8,9 @@ const {
 
 /**
  * Get the context specific entry configuration.
- * @param {string} context - the configuration context
- * @returns {string|array|object} - a entry configuration value
+ *
+ * @param {string} context The configuration context
+ * @returns {string|array|object} A entry configuration value
  */
 module.exports = function getEntry(context) {
   const polyfills = [

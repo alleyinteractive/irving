@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { hot } from 'react-hot-loader/root';
 import { connect } from 'react-redux';
 import RootProviders from 'components/rootProviders';
@@ -9,7 +8,6 @@ import ErrorBoundary from 'components/errorBoundary';
 import getRoots from 'selectors/getRoots';
 import getProviders from 'selectors/getProviders';
 import getComponent from 'config/componentMap';
-import styles from './app.css';
 
 const ErrorMessage = getComponent('error-message');
 const AppContentComponent = getComponent('app');
@@ -33,15 +31,7 @@ const App = (props) => {
       {error ? (
         <ErrorMessage />
       ) : (
-        <div className={styles.wrapper}>
-          <a
-            href="#content"
-            className={classnames(styles.skipLink, styles.screenreaderOnly)}
-          >
-            Skip to Content
-          </a>
-          <AppContentComponent IrvingApp={CoreApp} />
-        </div>
+        <AppContentComponent IrvingApp={CoreApp} />
       )}
     </ErrorBoundary>
   );

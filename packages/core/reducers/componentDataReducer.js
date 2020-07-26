@@ -13,7 +13,7 @@ import {
 /**
  * Create a state slice reducer for components that need to asyncronously retrieve additional data.
  *
- * @param {string} name component state slice name
+ * @param {string} name Component state slice name
  * @return {function}
  */
 const componentDataReducer = (state = componentData, action) => {

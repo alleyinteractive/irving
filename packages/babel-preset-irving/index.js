@@ -11,7 +11,7 @@ module.exports = function babelPresetIrving(api) {
     case 'web':
       envConfig = {
         targets: {
-          browsers: 'last 3 versions, IE 11',
+          browsers: 'last 3 versions',
         },
         corejs: {
           version: 3,

@@ -33,8 +33,9 @@ const include = (filepath) => {
 
 /**
  * Get the context specific rules configuration.
- * @param {string} context - the configuration context
- * @returns {array} - a rules configuration value
+ *
+ * @param {string} context The configuration context
+ * @returns {array} A rules configuration value
  */
 module.exports = function getRules(context) {
   const isProd = context.includes('production');
@@ -107,25 +108,6 @@ module.exports = function getRules(context) {
       use: ['@svgr/webpack'],
     },
     {
-      // resource: {
-      //   test: /\.jsx?$/,
-      //   or: [
-      //     include,
-      //     (filepath) => (
-      //       // These specific node modules, which contain arrow functions that must be
-      //       // transpiled.
-      //       filepath.includes('node_modules') &&
-      //         (
-      //           filepath.includes('query-string') ||
-      //           filepath.includes('split-on-first') ||
-      //           filepath.includes('strict-uri-encode') ||
-      //           filepath.includes('abort-controller') ||
-      //           filepath.includes('event-target-shim')
-      //         )
-      //     ),
-      //   ],
-      //   not: [/shimDom/],
-      // },
       test: /\.jsx?$/,
       include,
       use: [

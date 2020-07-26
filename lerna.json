@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "3.0.0-alpha.15",
+  "version": "3.0.0-beta.0",
   "npmClient": "npm",
   "command": {
     "publish": {
@@ -18,8 +18,7 @@
     "version": {
       "allowBranch": [
         "master",
-        "develop",
-        "release/3.0.0"
+        "develop"
       ]
     }
   }

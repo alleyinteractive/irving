@@ -10,8 +10,8 @@ const requireConfigModules = require('./requireConfigModules');
  * @param {string} filepath Path to config file we're looking for.
  * @param {array|object} defaultValue Default value to merge found configs with.
  * @param {object} opts Options for finding config files.
- * @param {string} opts.base - Base filepath to look for config files in.
- * @param {array}  opts.ignorePackages - Array of packages to ignore when looking for files.
+ * @param {string} opts.base Base filepath to look for config files in.
+ * @param {array}  opts.ignorePackages Array of packages to ignore when looking for files.
  */
 const getValueFromFiles = (
   filepath,
@@ -26,7 +26,7 @@ const getValueFromFiles = (
   const isSingleFunction = 'function' === typeof defaultValue;
   const configs = requireConfigModules(filepath, normalizedOpts);
 
-  // Return any single-fuction config results as-is.
+  // Return any single-function config results as-is.
   if (isSingleFunction) {
     // Return the final config file found if we're looking for a singular file.
     // @todo figure out a better way to control which is used.

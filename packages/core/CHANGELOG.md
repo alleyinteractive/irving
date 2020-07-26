@@ -3,6 +3,226 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+
+### Bug Fixes
+
+* **babel:** remove test text ([1ea0d33](https://github.com/alleyinteractive/irving/packages/core/commit/1ea0d3356667489ae7210a89b8035ccba716ad5e))
+* **core:** address CR feedback ([92b7847](https://github.com/alleyinteractive/irving/packages/core/commit/92b78474c41744c00fb341938fb7c1d313c8fb2b))
+* **merge:** merge master ([af08a2c](https://github.com/alleyinteractive/irving/packages/core/commit/af08a2cbdcfdc981f26703a1f2e5bfb92a792ec8))
+* **shimdom:** fix export for shimDom, fix ref to breakpoints config in useBreakpoints ([c41c8a9](https://github.com/alleyinteractive/irving/packages/core/commit/c41c8a92b6a9abdb5db200e75429a4c1c2fd13b2))
+
+
+
+# [3.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.14...v3.0.0-alpha.15) (2020-07-10)
+
+
+### Bug Fixes
+
+* **shimdom:** switch to using require for shimDom ([856bb6a](https://github.com/alleyinteractive/irving/packages/core/commit/856bb6a19cebefb0a8a29f15443c6c0b984a1490))
+
+
+
+# [3.0.0-alpha.14](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.13...v3.0.0-alpha.14) (2020-07-10)
+
+
+
+# [3.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.12...v3.0.0-alpha.13) (2020-07-10)
+
+
+### Bug Fixes
+
+* **babel:** fix tests with newly-split configs ([5a14a2f](https://github.com/alleyinteractive/irving/packages/core/commit/5a14a2f8b2fc945e5d310fc0eed713c9a1c164df))
+
+
+
+# [3.0.0-alpha.12](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.11...v3.0.0-alpha.12) (2020-07-10)
+
+
+### Bug Fixes
+
+* **babel-loader:** fix some imports/exports, refactor babel-loader includes for testing ([939287c](https://github.com/alleyinteractive/irving/packages/core/commit/939287c8ac779e3518821de06b013d0bcd976a93))
+
+
+
+# [3.0.0-alpha.11](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.10...v3.0.0-alpha.11) (2020-07-10)
+
+
+### Bug Fixes
+
+* **shimdom:** rename shimWindow to shimDom, refactor to not be processed by babel ([41c4d3b](https://github.com/alleyinteractive/irving/packages/core/commit/41c4d3bffc97635e577ed288403dc617d003f2ee))
+
+
+
+# [3.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.9...v3.0.0-alpha.10) (2020-07-10)
+
+
+### Bug Fixes
+
+* **babel-preset:** keep working on transform  globals, move it into core ([a339c70](https://github.com/alleyinteractive/irving/packages/core/commit/a339c705f115968e671222af93b07385d44d32dd))
+
+
+
+# [3.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.8...v3.0.0-alpha.9) (2020-07-07)
+
+
+### Bug Fixes
+
+* **cacheclient:** fix reference for default cache client filename ([1529105](https://github.com/alleyinteractive/irving/packages/core/commit/1529105df2efa334a651219386dbec0c16073bdc))
+
+
+
+# [3.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.5...v3.0.0-alpha.6) (2020-07-07)
+
+
+
+# [3.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.4...v3.0.0-alpha.5) (2020-07-07)
+
+
+### Bug Fixes
+
+* **styles:** fix various stylelint errors now that stylelint is working again ([73344ef](https://github.com/alleyinteractive/irving/packages/core/commit/73344ef4b2b7e0d4ed1ad4dac012705ec3655515))
+
+
+
+# [3.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v2.21.3...v3.0.0-alpha.4) (2020-07-07)
+
+
+
+# [3.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.2...v3.0.0-alpha.3) (2020-06-29)
+
+
+### Bug Fixes
+
+* **config:** fix possibility for non-build config in getValueFromMergedConfig ([ab9e8b1](https://github.com/alleyinteractive/irving/packages/core/commit/ab9e8b1d41e04459d1fdfddeba55dd4f7a48967a))
+* **serverrenderer:** don't memoize template vars or we'll end up with a weird server mismatch ([dc826bc](https://github.com/alleyinteractive/irving/packages/core/commit/dc826bc696cfd0839461f585b8978bfb7eb5071b))
+
+
+
+# [3.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.1...v3.0.0-alpha.2) (2020-06-29)
+
+
+### Bug Fixes
+
+* **package:** was somehow missing svgr ([fcbaa07](https://github.com/alleyinteractive/irving/packages/core/commit/fcbaa0784695610cc799804c763b9355f6a0539e))
+
+
+
+# [3.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-alpha.0...v3.0.0-alpha.1) (2020-06-29)
+
+
+### Bug Fixes
+
+* **config:** fix issue with configs that should be arrays of functions ([8f853f6](https://github.com/alleyinteractive/irving/packages/core/commit/8f853f6442686c933311561c06838951f6daf82a))
+
+
+
+# [3.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.18.1...v3.0.0-alpha.0) (2020-06-29)
+
+
+### Bug Fixes
+
+* **aliases:** clean up service alias logic ([c9f8286](https://github.com/alleyinteractive/irving/packages/core/commit/c9f82866de660644b78cce7b8cd931dd8a7202bb))
+* **babel:** update babel config to target node where appropriate (and reduce bundle size) ([18edc99](https://github.com/alleyinteractive/irving/packages/core/commit/18edc99a9d3f03bdf87266aaa575f1f335f8f2f0))
+* **config:** fix default value for server creation configs ([b630869](https://github.com/alleyinteractive/irving/packages/core/commit/b630869caf4b44d1629adc3bc25f4bf0248e15c3))
+* **config:** update logic to return config wholesale if user provides function ([6641af6](https://github.com/alleyinteractive/irving/packages/core/commit/6641af6c1945e21490feb626ebab80cfb961f058))
+* **services:** a couple more services fixes related to defaultService values ([163e557](https://github.com/alleyinteractive/irving/packages/core/commit/163e557a3c8787c3350ef6bce95b68081552d29f))
+* **services:** continue reorganizing services and fixing lingering issues ([5b5e367](https://github.com/alleyinteractive/irving/packages/core/commit/5b5e367e9a963cca2b183d3916de55e951a752c4))
+
+
+### Features
+
+* **config:** begin refactoring non-built config fields to use filesystem ([77f648e](https://github.com/alleyinteractive/irving/packages/core/commit/77f648e36872f75ba62ccf1027e7820df14b8811))
+* **config:** set up aliases for services to ensure we use the correct service both client/server ([746e7e7](https://github.com/alleyinteractive/irving/packages/core/commit/746e7e7eb5fafe44b88eaa21479524dedb0ae616))
+* **packages:** work on allowing packages to exclude themselves when pulling fs configs ([0e8d5f5](https://github.com/alleyinteractive/irving/packages/core/commit/0e8d5f54e0c50b1a4bb51a28b06c4f3d84b42fa7))
+* **services:** begin setting up new structure for services and configuring them ([d5ba531](https://github.com/alleyinteractive/irving/packages/core/commit/d5ba5316fd93aa581b8fb4517ff38f21bec9cd91))
+* **webpack:** allow configuring just server or just client ([f4db4fe](https://github.com/alleyinteractive/irving/packages/core/commit/f4db4fefd66ed29972a11287560a783cdeda02b5))
+
+
+### BREAKING CHANGES
+
+* **config:** irving.config.server.js will be deprecated
+
+
+
+
+
+## [2.23.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.23.1-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.23.0...v2.23.1-beta.0) (2020-07-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.23.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.23.0-beta.0...v2.23.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [2.23.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.22.1...v2.23.0-beta.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.21.3](https://github.com/alleyinteractive/irving/packages/core/compare/v2.21.2...v2.21.3) (2020-07-07)
+
+
+### Bug Fixes
+
+* **storybook:** add componentMap to storybook to prevent errors ([9da288f](https://github.com/alleyinteractive/irving/packages/core/commit/9da288f0d5316a68b82964e30a8c981762c32f32))
+
+
+
+
+
+# [2.20.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.19.3-beta.0...v2.20.0) (2020-07-01)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.19.3-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.19.2...v2.19.3-beta.0) (2020-07-01)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.19.2](https://github.com/alleyinteractive/irving/packages/core/compare/v2.19.1...v2.19.2) (2020-06-30)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [2.19.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.19.0...v2.19.1) (2020-06-30)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
 ## [2.18.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.18.0...v2.18.1) (2020-06-26)
 
 

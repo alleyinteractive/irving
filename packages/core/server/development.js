@@ -16,7 +16,8 @@ const { PROXY_URL } = process.env;
 
 /**
  * Add the required middleware to support running the app in development mode.
- * @param {object} app - express application
+ *
+ * @param {object} app Express application
  */
 const developmentMiddleware = (app) => {
   // Allow customization of development server

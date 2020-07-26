@@ -19,7 +19,8 @@ const {
 
 /**
  * Add the required middleware to support running the app in production mode.
- * @param {object} app - express application
+ *
+ * @param {object} app Express application
  */
 const productionMiddleware = async (app) => {
   // Allow customization of production server

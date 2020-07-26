@@ -1,7 +1,11 @@
 const path = require('path');
 
 module.exports = {
-  setupFilesAfterEnv: ['jest-enzyme'],
+  setupFiles: [path.join(__dirname, './test/jest.setup.js')],
+  setupFilesAfterEnv: [
+    'jest-enzyme',
+    '@testing-library/jest-dom/extend-expect',
+  ],
   testEnvironment: 'enzyme',
   testEnvironmentOptions: {
     enzymeAdapter: 'react16',

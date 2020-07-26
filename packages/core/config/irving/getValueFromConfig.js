@@ -6,7 +6,7 @@ const userConfig = require('@irvingjs/irving.config').default || {};
 /**
  * Get a single value from the user config.
  *
- * @param {string} key key to search for in config.
+ * @param {string} key Key to search for in config.
  * @param {mixed} defaultValue Default value to merge found configs with.
  * @returns {mixed}
  */
@@ -44,7 +44,7 @@ const getConfigValues = (key) => {
 /**
  * Get merged value from user's irving.config.js file (including configured packages).
  *
- * @param {string} key key to search for in config.
+ * @param {string} key Key to search for in config.
  * @param {mixed} defaultValue Default value to merge found configs with.
  * @returns {mixed}
  */

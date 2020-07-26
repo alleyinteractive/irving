@@ -16,8 +16,8 @@ export function actionRequestComponentData(endpoint) {
 
 /**
  * Create a action to receive validation messages.
- * @param {string} endpoint external endpoint
- * @param {object} data external API response
+ * @param {string} endpoint External endpoint
+ * @param {object} data External API response
  * @returns {{type, payload}}
  */
 export function actionReceiveComponentData(endpoint, data) {

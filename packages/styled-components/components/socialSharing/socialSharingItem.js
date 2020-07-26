@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withThemes from '@irvingjs/styled/components/withThemes';
+import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import toReactElement from '@irvingjs/core/utils/toReactElement';
 import Link from '../link';
 import * as defaultStyles from './themes/default';

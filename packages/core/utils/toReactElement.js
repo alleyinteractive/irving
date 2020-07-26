@@ -4,8 +4,9 @@ import getReactComponent from 'config/componentMap';
 
 /**
  * Recursively map a tree of API components within component groups to React elements.
- * @param {object} componentGroups - componentGroups object
- * @return {object} - React Element
+ *
+ * @param {object} componentGroups ComponentGroups object
+ * @return {object} React Element
  */
 export function createComponentGroups(componentGroups) {
   return Object.keys(componentGroups)
