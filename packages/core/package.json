@@ -4,11 +4,9 @@
   "description": "Irving core application",
   "files": [
     "actions/**/*",
-    "assets/**/*",
     "bin/**/*",
     "cli/**/*",
     "client/**/*",
-    "component-candidates/**/*",
     "components/**/*",
     "components/**/*.md",
     "config/**/*",
@@ -24,7 +22,6 @@
     "babel.config.web.js",
     "babel.config.node.js",
     "irving.config.js",
-    "irving.config.server.js",
     "!*.test.js",
     "!__mocks__/**/*"
   ],
