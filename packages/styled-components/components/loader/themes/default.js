@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import SpinnerSVG from 'assets/icons/spinner.svg';
+import SpinnerSVG from '../../../assets/icons/spinner.svg';
 
 const spin = keyframes`
 
