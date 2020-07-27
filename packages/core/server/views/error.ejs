@@ -1,14 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" <%- head.htmlAttributes.toString() %>>
 <head>
+    <%- head.open.toString() %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Something has gone wrong</title>
+    <%- head.title.toString() %>
+    <%- head.meta.toString() %>
+    <%- head.link.toString() %>
+    <%- head.base.toString() %>
+    <%- head.style.toString() %>
 
     <%# additional head tags %>
-    <%- irvingHead %>
+    <%- head.close.toString() %>
 </head>
-<body>
-<%- appHtml %>
+<body <%- head.bodyAttributes.toString() %>>
+    <%- helmet.noscript.toString() %>
+    <%- appHtml %>
 </body>
 </html>

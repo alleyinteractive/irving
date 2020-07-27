@@ -3,6 +3,10 @@ function format(entry) {
     return JSON.stringify(entry);
   }
 
+  if ('function' === typeof entry) {
+    return entry.toString();
+  }
+
   return entry;
 }
 

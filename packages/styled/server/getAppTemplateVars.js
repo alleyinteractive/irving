@@ -4,7 +4,6 @@ import { ServerStyleSheet } from 'styled-components';
 export default function getAppTemplateVars(templateVars) {
   const sheet = new ServerStyleSheet();
   const {
-    irvingHead,
     Wrapper: AppWrapper,
   } = templateVars;
 
@@ -12,6 +11,8 @@ export default function getAppTemplateVars(templateVars) {
     Wrapper: () => sheet.collectStyles(
       <AppWrapper />
     ),
-    irvingHead: () => `${irvingHead}${sheet.getStyleTags()}`,
+    head: {
+      close: [() => sheet.getStyleTags()],
+    },
   };
 }

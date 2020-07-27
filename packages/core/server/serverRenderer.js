@@ -22,6 +22,18 @@ import getTemplateVars from './getTemplateVars';
 const monitor = getMonitorService();
 const logError = getLogService('irving:render:error');
 const logRequest = getLogService('irving:render:request');
+const defaultHead = {
+  htmlAttributes: [],
+  bodyAttributes: [],
+  open: [],
+  title: [],
+  meta: [],
+  link: [],
+  base: [],
+  style: [],
+  script: [],
+  close: [],
+};
 
 /**
  * Handle rendering the app as a string that can then be returned as a response
@@ -84,7 +96,10 @@ const render = async (req, res, clientStats) => {
   // Get some template vars and allow customization by user.
   const customTemplateVars = getTemplateVars('getAppTemplateVars', {
     Wrapper: AppWrapper,
-    irvingHead: getWebpackAssetTags(clientStats).join(''),
+    head: {
+      ...defaultHead,
+      close: [getWebpackAssetTags(clientStats)],
+    },
   });
 
   // https://redux.js.org/recipes/server-rendering#security-considerations
@@ -128,16 +143,18 @@ export default function serverRenderer(options) {
 
       // Render a error page.
       const ErrorMessageComponent = getComponent('error-message');
-      const ErrorMessageWrapper = () => (
+      const ErrorWrapper = () => (
         <ErrorMessageComponent />
       );
 
       // Get some template vars and allow customization by user.
-      const customTemplateVars = getTemplateVars('getErrorTemplateVars', {
-        Wrapper: ErrorMessageWrapper,
-        irvingHead: '',
+      const templateVars = getTemplateVars('getErrorTemplateVars', {
+        Wrapper: ErrorWrapper,
+        head: {
+          ...defaultHead,
+          title: '<title>Something has gone wrong</title>',
+        },
       });
-      const templateVars = customTemplateVars;
 
       res.status(500);
       res.render(errorView, templateVars, (templateErr, html) => {
