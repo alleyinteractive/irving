@@ -27,7 +27,6 @@ const ignore = [
   'utils/*',
   'hooks/*',
   'irving.config.js',
-  'irving.config.server.js',
   'componentMap.js',
   'react-loadable.json',
 ];

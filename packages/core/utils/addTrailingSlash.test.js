@@ -1,5 +1,4 @@
 import addTrailingSlash from './addTrailingSlash';
-jest.mock('../irving.config.server.js');
 
 describe('addTrailingSlash', () => {
   it('should add a trailling slash to URLs without one', () => {

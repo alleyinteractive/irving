@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.6](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
+
+
+### Bug Fixes
+
+* **package:** fix core packages ([12712b9](https://github.com/alleyinteractive/irving/commit/12712b96d40e37e447bf30c551091be8fc1cb550))
+
+
+
+
+
+# [3.0.0-beta.5](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2020-07-26)
+
+
+### Bug Fixes
+
+* **babel:** install babel runtime ([f7ca697](https://github.com/alleyinteractive/irving/commit/f7ca697a07e9783a67f53d2fb01741ba8e1b1cad))
+
+
+
+
+
+# [3.0.0-beta.4](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2020-07-26)
+
+
+### Bug Fixes
+
+* **styled-components:** publish assets to styled components package ([8f3fd8a](https://github.com/alleyinteractive/irving/commit/8f3fd8a3d4c440505caec715985a6b40ea5a89a7))
+
+
+
+
+
+# [3.0.0-beta.3](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2020-07-26)
+
+
+### Bug Fixes
+
+* **icons:** remove core icon svgs, move spinner into styled-components ([f0bd7d4](https://github.com/alleyinteractive/irving/commit/f0bd7d49ce317941c7d22ec7069fcb9a936cb2a5))
+
+
+
+
+
+# [3.0.0-beta.2](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2020-07-26)
+
+
+### Bug Fixes
+
+* **babel preset:** add missing babel-plugin-transform-globals dependency to babel preset ([9d682cb](https://github.com/alleyinteractive/irving/commit/9d682cb8c39bd3f5d562137762ba8f221b55c51e))
+
+
+
+
+
+# [3.0.0-beta.1](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2020-07-26)
+
+
+### Bug Fixes
+
+* **babel:** add new babel configs to published files ([0ed4c3b](https://github.com/alleyinteractive/irving/commit/0ed4c3b1fcf4ea4c48d814f5e1aaf3669e49b4ef))
+
+
+
+
+
 # [3.0.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
 
 
