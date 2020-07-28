@@ -97,6 +97,7 @@ export default function getTemplateVars(key, initialVars) {
         ...acc,
         ...stringifiedConfig,
       };
+    // Set values of defaultHead to strings to kick off the stringification process.
     }, mapValues(() => '', defaultHead));
 
   return {
