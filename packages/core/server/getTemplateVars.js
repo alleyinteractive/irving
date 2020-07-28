@@ -1,9 +1,8 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import {
-  getConfigValues,
-  getValueFromConfigNoMemo,
-} from 'config/irving/getValueFromConfig';
+import omit from 'lodash/fp/omit';
+import { mergeConfigValues } from 'config/irving/mergeConfigValues';
+import { getConfigValues } from 'config/irving/getValueFromConfig';
 
 export const defaultHead = {
   htmlAttributes: [],
@@ -64,29 +63,34 @@ const stringifyHeadConfig = (config, key) => {
  * @return {object}
  */
 export default function getTemplateVars(key, initialVars) {
-  // This seems to be necessary to prevent future mutation.
-  const initialHead = {...initialVars.head };
   const templateVars = getConfigValues(key);
-  const mergedTemplateVars = getValueFromConfigNoMemo(key, initialVars);
-  const { Wrapper } = mergedTemplateVars;
+  // Separate arrays for head configuration and other template variables,
+  // as they will be extracted and merged using different methods.
+  const varsConfigs = [];
+  const headConfigs = [];
+
+  templateVars.forEach((vars) => {
+    const varsObject = getValFromFunction(vars, initialVars);
+    varsConfigs.push(omit(['head'], varsObject));
+    headConfigs.push(getValFromFunction(varsObject.head));
+  });
+
+  // Merge template vars.
+  const mergedVars = mergeConfigValues(varsConfigs, initialVars);
+  const { Wrapper } = mergedVars;
 
   // This needs to happen first to ensure proper SSR rendering of stylesheets.
   const appHtml = renderToString(<Wrapper />);
 
-  // Merge each head value from discovered template var configs.
-  const normalizedHeadConfigs = templateVars
-    .map((vars) => {
-      // Get head object from function, if supplied, otherwise use as-is (and assume it's an object).
-      const varsObject = getValFromFunction(vars, initialVars);
-      return getValFromFunction(varsObject.head);
-    });
+  // This seems to be necessary to prevent future mutation.
+  const initialHead = { ...initialVars.head };
 
   // Stringify values for both default config (to ensure all head values are present)
   // and intial variables passed in via parameter (to ensure any core `head` properties are present)
   const stringifiedConfigs = [
     defaultHead,
     initialHead,
-  ].concat(normalizedHeadConfigs).map((config) => (
+  ].concat(headConfigs).map((config) => (
     // Reduce through each value in the head object and turn it into a string.
     Object.keys(config).reduce(stringifyHeadConfig, config)
   ), {});
@@ -96,7 +100,6 @@ export default function getTemplateVars(key, initialVars) {
   for (const headKey of Object.keys(defaultHead)) {
     mergedHead[headKey] = stringifiedConfigs
       .map((config) => {
-        // console.log(config[headKey]);
         return config[headKey] ? config[headKey] : ''
       })
       .join('');
@@ -104,7 +107,7 @@ export default function getTemplateVars(key, initialVars) {
   /* eslint-enable */
 
   return {
-    ...mergedTemplateVars,
+    ...mergedVars,
     head: mergedHead,
     appHtml,
   };
