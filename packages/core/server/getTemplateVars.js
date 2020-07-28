@@ -8,14 +8,14 @@ import {
 export const defaultHead = {
   htmlAttributes: [],
   bodyAttributes: [],
-  open: [],
+  start: [],
   title: [],
   meta: [],
   link: [],
   base: [],
   style: [],
   script: [],
-  close: [],
+  end: [],
 };
 
 /**

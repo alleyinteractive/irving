@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" <%- head.htmlAttributes.toString() %>>
 <head>
-    <%- head.open.toString() %>
+    <%- head.start.toString() %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%- head.title.toString() %>
@@ -11,7 +11,7 @@
     <%- head.style.toString() %>
 
     <%# additional head tags %>
-    <%- head.close.toString() %>
+    <%- head.end.toString() %>
 </head>
 <body <%- head.bodyAttributes.toString() %>>
     <%- helmet.noscript.toString() %>

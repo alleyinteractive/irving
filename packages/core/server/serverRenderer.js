@@ -86,7 +86,7 @@ const render = async (req, res, clientStats) => {
     Wrapper: AppWrapper,
     head: {
       ...defaultHead,
-      close: [getWebpackAssetTags(clientStats)],
+      end: [getWebpackAssetTags(clientStats)],
     },
   });
 

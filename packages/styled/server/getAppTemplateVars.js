@@ -12,7 +12,7 @@ export default function getAppTemplateVars(templateVars) {
       <AppWrapper />
     ),
     head: {
-      close: [() => sheet.getStyleTags()],
+      end: [() => sheet.getStyleTags()],
     },
   };
 }

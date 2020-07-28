@@ -30,7 +30,7 @@ describe('getTemplateVars', () => {
 
   it('should concat strings to arrays, then join array into a single string', () => {
     const vars = getTemplateVars('getAppTemplateVars', initialVars);
-    expect(vars.head.open).toBe(
+    expect(vars.head.start).toBe(
       '<script>const anotherTest = 200;</script><script>const test = 100;</script>'
     );
   });
@@ -44,6 +44,6 @@ describe('getTemplateVars', () => {
 
   it('should call `head` if it is configured as a function', () => {
     const vars = getTemplateVars('getAppTemplateVars', initialVars);
-    expect(vars.head.close).toContain('Nascetur sodales nostra');
+    expect(vars.head.end).toContain('Nascetur sodales nostra');
   });
 });

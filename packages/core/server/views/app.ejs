@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" <%- head.htmlAttributes.toString() %> >
 <head>
-    <%- head.open.toString() %>
+    <%- head.start.toString() %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%- head.title.toString() %>
@@ -23,7 +23,7 @@
     </script>
 
     <%# webpack runtime, main app bundle, initial chunks, and any other tags user adds %>
-    <%- head.close.toString() %>
+    <%- head.end.toString() %>
 </head>
 <body <%- head.bodyAttributes.toString() %>>
   <noscript>

@@ -13,7 +13,7 @@ export default {
       ]),
       getAppTemplateVars: {
         head: {
-          open: '<script>const anotherTest = 200;</script>',
+          start: '<script>const anotherTest = 200;</script>',
           link: ['<link rel="stylesheet" href="css/test.css" />'],
           meta: [() => '<meta name="keywords" content="this, is, a, test" />'],
         },
@@ -22,7 +22,7 @@ export default {
     {
       getAppTemplateVars: {
         head: () => ({
-          close: 'Nascetur sodales nostra',
+          end: 'Nascetur sodales nostra',
         }),
       },
     }
@@ -33,7 +33,7 @@ export default {
   getAppTemplateVars: {
     testVal: 'this is a fun field for the app',
     head: {
-      open: ['<script>const test = 100;</script>'],
+      start: ['<script>const test = 100;</script>'],
       link: ['<link rel="stylesheet" href="css/lorem.css" />'],
       meta: [() => '<meta name="description" content="lorem ipsum dolor sit amet" />'],
     },
