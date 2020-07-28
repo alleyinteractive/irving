@@ -7,7 +7,7 @@ describe('getTemplateVars', () => {
   beforeEach(() => {
     initialVars = {
       Wrapper: () => (<div>I am wrapper</div>),
-      head: defaultHead,
+      head: {},
     };
   });
 
