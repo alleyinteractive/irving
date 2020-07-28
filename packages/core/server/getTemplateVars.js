@@ -15,8 +15,19 @@ export const defaultHead = {
   base: [],
   style: [],
   script: [],
+  noscript: [],
   end: [],
 };
+
+/**
+ * Check if a value is a function and, if so, call that function to get underlying value.
+ *
+ * @param {(func|string|array} val Value to call.
+ * @returns {string|array};
+ */
+const getValFromFunction = (val) => (
+  'function' === typeof val ? val() : val
+);
 
 /**
  * Merge the value of a particular head field.
@@ -36,9 +47,7 @@ const convertHeadKeyToString = (val) => {
   // If val is an array or above function returns an array, map through it.
   if (Array.isArray(newVal)) {
     // Call any functions in this array (they should return strings)
-    newVal = newVal.map((curr) => (
-      'function' === typeof curr ? curr() : curr
-    )).join('');
+    newVal = newVal.map((curr) => getValFromFunction(curr)).join('');
   }
 
   return newVal;
@@ -61,11 +70,11 @@ export default function getTemplateVars(key, initialVars) {
 
   // Merge each head value from discovered template var configs.
   const normalizedHeadConfigs = templateVars
-    .map((vars) => (
+    .map((vars) => {
       // Get head object from function, if supplied, otherwise use as-is (and assume it's an object).
-      'function' === typeof vars.head ?
-        vars.head() : vars.head
-    ));
+      const varsObject = getValFromFunction(vars);
+      return getValFromFunction(varsObject.head);
+    });
 
   // Reduce through each head config object
   const mergedHead = normalizedHeadConfigs
@@ -74,11 +83,12 @@ export default function getTemplateVars(key, initialVars) {
       const stringifiedConfig = Object.keys(config)
         .reduce((headAcc, headKey) => {
           const stringVal = convertHeadKeyToString(config[headKey]);
+          const accKey = convertHeadKeyToString(acc[headKey]);
 
           // Concatenate stringified head value with same value in the accumulator, if it exists.
           return {
             ...headAcc,
-            [headKey]: acc[headKey] ?
+            [headKey]: accKey ?
               `${acc[headKey]}${stringVal}` :
               stringVal,
           };
@@ -89,7 +99,7 @@ export default function getTemplateVars(key, initialVars) {
         ...acc,
         ...stringifiedConfig,
       };
-    }, {});
+    }, defaultHead);
 
   return {
     ...mergedTemplateVars,

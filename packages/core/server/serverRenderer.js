@@ -17,7 +17,7 @@ import getLogService from '@irvingjs/services/logService';
 import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
-import getTemplateVars, { defaultHead } from './getTemplateVars';
+import getTemplateVars from './getTemplateVars';
 
 const monitor = getMonitorService();
 const logError = getLogService('irving:render:error');
@@ -85,7 +85,6 @@ const render = async (req, res, clientStats) => {
   const customTemplateVars = getTemplateVars('getAppTemplateVars', {
     Wrapper: AppWrapper,
     head: {
-      ...defaultHead,
       end: [getWebpackAssetTags(clientStats)],
     },
   });
@@ -139,7 +138,6 @@ export default function serverRenderer(options) {
       const templateVars = getTemplateVars('getErrorTemplateVars', {
         Wrapper: ErrorWrapper,
         head: {
-          ...defaultHead,
           title: '<title>Something has gone wrong</title>',
         },
       });
