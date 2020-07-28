@@ -1,5 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import mapValues from 'lodash/fp/mapValues';
 import {
   getConfigValues,
   getValueFromConfigNoMemo,
@@ -83,14 +84,11 @@ export default function getTemplateVars(key, initialVars) {
       const stringifiedConfig = Object.keys(config)
         .reduce((headAcc, headKey) => {
           const stringVal = convertHeadKeyToString(config[headKey]);
-          const accKey = convertHeadKeyToString(acc[headKey]);
 
           // Concatenate stringified head value with same value in the accumulator, if it exists.
           return {
             ...headAcc,
-            [headKey]: accKey ?
-              `${acc[headKey]}${stringVal}` :
-              stringVal,
+            [headKey]: `${acc[headKey]}${stringVal}`,
           };
         }, {});
 
@@ -99,7 +97,7 @@ export default function getTemplateVars(key, initialVars) {
         ...acc,
         ...stringifiedConfig,
       };
-    }, defaultHead);
+    }, mapValues(() => '', defaultHead));
 
   return {
     ...mergedTemplateVars,

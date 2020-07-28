@@ -1,5 +1,5 @@
 import React from 'react';
-import getTemplateVars, { defaultHead } from './getTemplateVars';
+import getTemplateVars from './getTemplateVars';
 
 describe('getTemplateVars', () => {
   let initialVars;

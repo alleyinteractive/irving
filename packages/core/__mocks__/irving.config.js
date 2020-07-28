@@ -16,6 +16,7 @@ export default {
           start: '<script>const anotherTest = 200;</script>',
           link: ['<link rel="stylesheet" href="css/test.css" />'],
           meta: [() => '<meta name="keywords" content="this, is, a, test" />'],
+          script: [],
         },
       },
     },
