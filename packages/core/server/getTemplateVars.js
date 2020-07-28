@@ -1,6 +1,5 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import mapValues from 'lodash/fp/mapValues';
 import {
   getConfigValues,
   getValueFromConfigNoMemo,
@@ -24,34 +23,37 @@ export const defaultHead = {
  * Check if a value is a function and, if so, call that function to get underlying value.
  *
  * @param {(func|string|array} val Value to call.
+ * @param {array} args Arguments to pass to the value function, if applicable.
  * @returns {string|array};
  */
-const getValFromFunction = (val) => (
-  'function' === typeof val ? val() : val
+const getValFromFunction = (val, ...args) => (
+  'function' === typeof val ? val(...args) : val
 );
 
 /**
- * Merge the value of a particular head field.
- * If provided an array of <script> tags, for example, these will be joined into a single string.
+ * Reducer function to convert the values of a `head` config object into strings.
  *
- * @param {(array|func|string} val Value to turn into a string.
- * @returns {string};
+ * For example, if one value in the object was an array of <script> tags,
+ * these tags would be concatenated into a single string in preparation for rendering in the app.ejs template.
+ *
+ * @param {string} config Current head configuration
+ * @param {object} key Key to convert into a string
+ * @return {object}
  */
-const convertHeadKeyToString = (val) => {
-  let newVal = val;
-
-  // Call function if provided.
-  if ('function' === typeof newVal) {
-    newVal = newVal();
-  }
+const stringifyHeadConfig = (config, key) => {
+  let value = getValFromFunction(config[key]);
 
   // If val is an array or above function returns an array, map through it.
-  if (Array.isArray(newVal)) {
+  if (Array.isArray(value)) {
     // Call any functions in this array (they should return strings)
-    newVal = newVal.map((curr) => getValFromFunction(curr)).join('');
+    value = value.map((curr) => getValFromFunction(curr)).join('');
   }
 
-  return newVal;
+  // Merge in newly stringified value.
+  return {
+    ...config,
+    [key]: value,
+  };
 };
 
 /**
@@ -62,6 +64,8 @@ const convertHeadKeyToString = (val) => {
  * @return {object}
  */
 export default function getTemplateVars(key, initialVars) {
+  // This seems to be necessary to prevent future mutation.
+  const initialHead = {...initialVars.head };
   const templateVars = getConfigValues(key);
   const mergedTemplateVars = getValueFromConfigNoMemo(key, initialVars);
   const { Wrapper } = mergedTemplateVars;
@@ -73,32 +77,31 @@ export default function getTemplateVars(key, initialVars) {
   const normalizedHeadConfigs = templateVars
     .map((vars) => {
       // Get head object from function, if supplied, otherwise use as-is (and assume it's an object).
-      const varsObject = getValFromFunction(vars);
+      const varsObject = getValFromFunction(vars, initialVars);
       return getValFromFunction(varsObject.head);
     });
 
-  // Reduce through each head config object
-  const mergedHead = normalizedHeadConfigs
-    .reduce((acc, config) => {
-      // Reduce through each value in the head object and turn it into a string.
-      const stringifiedConfig = Object.keys(config)
-        .reduce((headAcc, headKey) => {
-          const stringVal = convertHeadKeyToString(config[headKey]);
+  // Stringify values for both default config (to ensure all head values are present)
+  // and intial variables passed in via parameter (to ensure any core `head` properties are present)
+  const stringifiedConfigs = [
+    defaultHead,
+    initialHead,
+  ].concat(normalizedHeadConfigs).map((config) => (
+    // Reduce through each value in the head object and turn it into a string.
+    Object.keys(config).reduce(stringifyHeadConfig, config)
+  ), {});
 
-          // Concatenate stringified head value with same value in the accumulator, if it exists.
-          return {
-            ...headAcc,
-            [headKey]: `${acc[headKey]}${stringVal}`,
-          };
-        }, {});
-
-      // Merge accumulator and newly-stringified head object.
-      return {
-        ...acc,
-        ...stringifiedConfig,
-      };
-    // Set values of defaultHead to strings to kick off the stringification process.
-    }, mapValues(() => '', defaultHead));
+  const mergedHead = {};
+  /* eslint-disable */
+  for (const headKey of Object.keys(defaultHead)) {
+    mergedHead[headKey] = stringifiedConfigs
+      .map((config) => {
+        // console.log(config[headKey]);
+        return config[headKey] ? config[headKey] : ''
+      })
+      .join('');
+  }
+  /* eslint-enable */
 
   return {
     ...mergedTemplateVars,

@@ -41,6 +41,9 @@ export default {
   },
   getErrorTemplateVars: {
     testVal: 'this is a fun field for the error',
+    head: () => ({
+      script: '<script>this is another sccript</script>',
+    }),
   },
   trailingSlashDenylist: [
     '/do/not/trailing/slash/me',
