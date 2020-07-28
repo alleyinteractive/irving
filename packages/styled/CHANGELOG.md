@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.11](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** ensure we only run each templateVars config function once ([fde7d32](https://github.com/alleyinteractive/irving/packages/styled/commit/fde7d32081b7aa5de6d1a8afb43efb1c8d2cfc75))
+
+
+
+
+
 # [3.0.0-beta.10](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2020-07-28)
 
 
