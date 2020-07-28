@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.8](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2020-07-28)
+
+
+### Bug Fixes
+
+* **server templates:** fix noscript, add server dir to styled-components published files ([e6d0685](https://github.com/alleyinteractive/irving/packages/styled-components/commit/e6d0685a28e713abcc21912cad747781f61bba58))
+
+
+
+
+
 # [3.0.0-beta.7](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2020-07-28)
 
 
