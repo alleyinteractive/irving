@@ -19,6 +19,13 @@ export default {
         },
       },
     },
+    {
+      getAppTemplateVars: {
+        head: () => ({
+          close: 'Nascetur sodales nostra',
+        }),
+      },
+    }
   ],
   defaultState: {
     testState: true,

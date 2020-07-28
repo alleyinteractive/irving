@@ -52,4 +52,9 @@ describe('getTemplateVars', () => {
       '<meta name=\"keywords\" content=\"this, is, a, test\" /><meta name=\"description\" content=\"lorem ipsum dolor sit amet\" />'
     );
   });
+
+  it('should call `head` if it is configured as a function', () => {
+    const vars = getTemplateVars('getAppTemplateVars', initialVars);
+    expect(vars.head.close).toContain('Nascetur sodales nostra');
+  });
 });
