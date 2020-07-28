@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.7](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2020-07-28)
+
+
+### Bug Fixes
+
+* **tests:** remove a few more unnecessary babel/jest configs ([c59f845](https://github.com/alleyinteractive/irving/packages/integrations/commit/c59f8451a731b269b0f665482e3f07d2216659c6))
+
+
+
+
+
 # [3.0.0-beta.6](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
 
 **Note:** Version bump only for package @irvingjs/postcss

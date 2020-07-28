@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.7](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** move default head ([7c56438](https://github.com/alleyinteractive/irving/packages/core/commit/7c564385fdcc0aed91f182989b2955b541dc8dc0))
+* **gettemplatevars:** switch to start/end instead of open/close for head ([c14551d](https://github.com/alleyinteractive/irving/packages/core/commit/c14551d2c68e9912c15bf618a29d7f0f7592aa09))
+* **helmet:** begin replacement for helmet vars, new test for getAppTemplateVars ([079bd43](https://github.com/alleyinteractive/irving/packages/core/commit/079bd437c58e22ece15ccb299fa8b1fe6bd6ef33))
+
+
+
+
+
 # [3.0.0-beta.6](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
 
 
