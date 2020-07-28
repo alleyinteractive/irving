@@ -5,6 +5,19 @@ import {
   getValueFromConfigNoMemo,
 } from 'config/irving/getValueFromConfig';
 
+export const defaultHead = {
+  htmlAttributes: [],
+  bodyAttributes: [],
+  open: [],
+  title: [],
+  meta: [],
+  link: [],
+  base: [],
+  style: [],
+  script: [],
+  close: [],
+};
+
 /**
  * Merge the value of a particular head field.
  * If provided an array of <script> tags, for example, these will be joined into a single string.
@@ -23,13 +36,9 @@ const convertHeadKeyToString = (val) => {
   // If val is an array or above function returns an array, map through it.
   if (Array.isArray(newVal)) {
     // Call any functions in this array (they should return strings)
-    newVal = newVal.map((curr) => {
-      if ('function' === typeof curr) {
-        return curr();
-      }
-
-      return curr;
-    }).join('');
+    newVal = newVal.map((curr) => (
+      'function' === typeof curr ? curr() : curr
+    )).join('');
   }
 
   return newVal;
@@ -58,13 +67,15 @@ export default function getTemplateVars(key, initialVars) {
         vars.head() : vars.head
     ));
 
+  // Reduce through each head config object
   const mergedHead = normalizedHeadConfigs
     .reduce((acc, config) => {
+      // Reduce through each value in the head object and turn it into a string.
       const stringifiedConfig = Object.keys(config)
         .reduce((headAcc, headKey) => {
           const stringVal = convertHeadKeyToString(config[headKey]);
 
-          // Concatenate stringified value with same value in the accumulator, if it exists.
+          // Concatenate stringified head value with same value in the accumulator, if it exists.
           return {
             ...headAcc,
             [headKey]: acc[headKey] ?
@@ -73,6 +84,7 @@ export default function getTemplateVars(key, initialVars) {
           };
         }, {});
 
+      // Merge accumulator and newly-stringified head object.
       return {
         ...acc,
         ...stringifiedConfig,

@@ -17,23 +17,11 @@ import getLogService from '@irvingjs/services/logService';
 import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
-import getTemplateVars from './getTemplateVars';
+import getTemplateVars, { defaultHead } from './getTemplateVars';
 
 const monitor = getMonitorService();
 const logError = getLogService('irving:render:error');
 const logRequest = getLogService('irving:render:request');
-const defaultHead = {
-  htmlAttributes: [],
-  bodyAttributes: [],
-  open: [],
-  title: [],
-  meta: [],
-  link: [],
-  base: [],
-  style: [],
-  script: [],
-  close: [],
-};
 
 /**
  * Handle rendering the app as a string that can then be returned as a response

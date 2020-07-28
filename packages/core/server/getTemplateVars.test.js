@@ -1,5 +1,5 @@
 import React from 'react';
-import getTemplateVars from './getTemplateVars';
+import getTemplateVars, { defaultHead } from './getTemplateVars';
 
 describe('getTemplateVars', () => {
   let initialVars;
@@ -7,18 +7,7 @@ describe('getTemplateVars', () => {
   beforeEach(() => {
     initialVars = {
       Wrapper: () => (<div>I am wrapper</div>),
-      head: {
-        htmlAttributes: [],
-        bodyAttributes: [],
-        open: [],
-        title: [],
-        meta: [],
-        link: [],
-        base: [],
-        style: [],
-        script: [],
-        close: [],
-      },
+      head: defaultHead,
     };
   });
 
