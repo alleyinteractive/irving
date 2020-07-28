@@ -11,13 +11,32 @@ export default {
         takeLatest('TEST_ACTION', () => {}),
         takeLatest('TEST_ACTION_TWO', () => {}),
       ]),
+      getAppTemplateVars: {
+        head: {
+          start: '<script>const anotherTest = 200;</script>',
+          link: ['<link rel="stylesheet" href="css/test.css" />'],
+          meta: [() => '<meta name="keywords" content="this, is, a, test" />'],
+        },
+      },
     },
+    {
+      getAppTemplateVars: {
+        head: () => ({
+          end: 'Nascetur sodales nostra',
+        }),
+      },
+    }
   ],
   defaultState: {
     testState: true,
   },
   getAppTemplateVars: {
     testVal: 'this is a fun field for the app',
+    head: {
+      start: ['<script>const test = 100;</script>'],
+      link: ['<link rel="stylesheet" href="css/lorem.css" />'],
+      meta: [() => '<meta name="description" content="lorem ipsum dolor sit amet" />'],
+    },
   },
   getErrorTemplateVars: {
     testVal: 'this is a fun field for the error',

@@ -55,6 +55,7 @@ const getValueFromConfig = (key, defaultValue) => {
 
 module.exports = {
   getValueFromUserConfig,
+  getConfigValues,
   getValueFromConfigNoMemo: getValueFromConfig,
   getValueFromConfig: memoize(getValueFromConfig),
 };

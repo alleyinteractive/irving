@@ -72,7 +72,7 @@ const getWebpackAssetTags = (clientStats) => {
     });
   });
 
-  return tags;
+  return tags.join('');
 };
 
 export default getWebpackAssetTags;

@@ -1,20 +1,21 @@
 <!doctype html>
-<html lang="en" <%- helmet.htmlAttributes.toString() %> >
+<html lang="en" <%- head.htmlAttributes.toString() %> >
 <head>
+    <%- head.start.toString() %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%- helmet.title.toString() %>
-    <%- helmet.meta.toString() %>
-    <%- helmet.link.toString() %>
-    <%- helmet.base.toString() %>
-    <%- helmet.style.toString() %>
+    <%- head.title.toString() %>
+    <%- head.meta.toString() %>
+    <%- head.link.toString() %>
+    <%- head.base.toString() %>
+    <%- head.style.toString() %>
 
     <%# Runtime accessible environment variables %>
     <script>
       window.__ENV__ = <%- env %>;
     </script>
 
-    <%- helmet.script.toString() %>
+    <%- head.script.toString() %>
 
     <%# pre-rendered serialized Redux state %>
     <script defer id="preload">
@@ -22,13 +23,15 @@
     </script>
 
     <%# webpack runtime, main app bundle, initial chunks, and any other tags user adds %>
-    <%- irvingHead %>
+    <%- head.end.toString() %>
 </head>
-<body <%- helmet.bodyAttributes.toString() %>>
-<noscript>
-    You need to enable JavaScript to view this site.
-</noscript>
-<%- helmet.noscript.toString() %>
-<div id="root"><%- appHtml %></div>
+<body <%- head.bodyAttributes.toString() %>>
+  <noscript>
+      You need to enable JavaScript to view this site.
+  </noscript>
+  <%- helmet.noscript.toString() %>
+  <div id="root">
+    <%- appHtml %>
+  </div>
 </body>
 </html>
