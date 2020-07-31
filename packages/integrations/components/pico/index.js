@@ -15,9 +15,8 @@ const Pico = (props) => {
     return null;
   }
 
+  // Map this locally instead of from the endpoint.
   pageInfo.url = window.location.href;
-
-  // console.log('API Loaded pico with: ', context, pageInfo, publisherId);
 
   return (
     <>
