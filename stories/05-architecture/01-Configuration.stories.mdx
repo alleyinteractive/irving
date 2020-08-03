@@ -47,7 +47,7 @@ Each configuration will use one of the following types or patterns:
 * **function**: configuration expects a function, and any function you provide will either replace Irving core's version of the same function or be run in sequence, passing the return value from the previous function to each subsequent function. Configuration descriptions below will note which of these cases apply.
 
 Irving will expect you to use one of two methods for configuration depending on what you'd like to configure:
-* **filesystem**: used primarly for server-side configurations outside the webpack build. Place the configuration file a the specified **path** and Irving will find your configuration.
+* **filesystem**: used primarily for server-side configurations outside the webpack build. Place the configuration file at the specified **path** and Irving will find your configuration.
 * **config**: configure this field within an `irving.config.js` file at the root of your project. This file should export an object.
 
 ### name
