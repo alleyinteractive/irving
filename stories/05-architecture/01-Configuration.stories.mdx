@@ -117,14 +117,30 @@ const service = {
 ```
 
 ## Customize Irving's development server
-* **where to configure**: `server/customizeServer.js`
+* **where to configure**: `server/customizeDevServer.js`
 * **type**: function (run in sequence with all configured functions)
 * **purpose**: Customize Irving's express server for development only (when you run the `irving dev` task). Expects a function that will receive the express `app` for you to modify. Example:
+```javascript
+module.exports = function customizeDevServer(app) {
+  app.get('/route/only/exists/in/development', routeHandler);
+}
+```
 
 ## Customize Irving's production server
-* **where to configure**: `server/customizeServer.js`
+* **where to configure**: `server/customizeProdServer.js`
 * **type**: function (run in sequence with all configured functions)
 * **purpose**: Customize Irving's express server for production only (when you run the `irving start` task). Expects a function that will receive the express `app` for you to modify. Example:
+```javascript
+const enforce = require('express-sslify');
+const compression = require('compression')
+
+module.exports = (app) => {
+  app.use(compression());
+  // Enforce SSL.
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+};
+
+```
 
 ## Customize domain redirects
 * **where to configure**: `server/customizeRedirect.js`
