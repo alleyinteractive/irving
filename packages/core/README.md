@@ -43,11 +43,11 @@ automatically deleted, defaults to 5 minutes
 * `HTTPS_KEY_PATH` - Path to tls key relative to current home directory.
 * `HTTPS_CERT_PATH` - Path to tls cert relative to current home directory.
 * `FETCH_TIMEOUT` - Timeout after which primary call to `fetch` to retrieve component data will be aborted.
-* `IRVING_EXECUTION_CONTEXT` - Introduced automaticaly by the webpack build, this will be set to one of four possible values (or undefined outside of the build). This can be used to cut off execution pathways (and remove them from the build) in specific contexts. The values are:
+* `IRVING_EXECUTION_CONTEXT` - Introduced automatically by the webpack build, this will be set to one of four possible values (or `undefined` outside of the build). This can be used to cut off execution pathways (and remove them from the build) in specific contexts. The values are:
   * `development_server` - Development build, server-side only
   * `production_server` - Production build, server-side only
   * `development_client` - Development build, client-side only
-  * `development_client` - Production build, client-side only
+  * `production_client` - Production build, client-side only
 
 #### Extra Query Params
 Any environment variable that is prefixed with `API_QUERY_PARAM_`, for example

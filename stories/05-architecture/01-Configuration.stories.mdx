@@ -47,7 +47,7 @@ Each configuration will use one of the following types or patterns:
 * **function**: configuration expects a function, and any function you provide will either replace Irving core's version of the same function or be run in sequence, passing the return value from the previous function to each subsequent function. Configuration descriptions below will note which of these cases apply.
 
 Irving will expect you to use one of two methods for configuration depending on what you'd like to configure:
-* **filesystem**: used primarly for server-side configurations outside the webpack build. Place the configuration file a the specified **path** and Irving will find your configuration.
+* **filesystem**: used primarily for server-side configurations outside the webpack build. Place the configuration file at the specified **path** and Irving will find your configuration.
 * **config**: configure this field within an `irving.config.js` file at the root of your project. This file should export an object.
 
 ### name
@@ -174,7 +174,7 @@ export default {
 ## Client-side environmental variable allowlist
 * **where to configure**: `config/envAllowlist.js`
 * **type**: array
-* **purpose**: Customize the allowlist of environmental variables that are passed to Irving's client-side javascript bundle. These env vars will be accessible via `window.__ENV__` or, if you need to access to the ENV object isomorphically, use the universal env utility via `import getEnv from '@irvingjs/core/utils/universalEnv';`
+* **purpose**: Customize the allowlist of environmental variables that are passed to Irving's client-side javascript bundle. These env vars will be accessible via `window.__ENV__` or, if you need access to the ENV object isomorphically, use the universal env utility via `import getEnv from '@irvingjs/core/utils/universalEnv';`
 ```javascript
 const getEnvAllowlist = () => ([
   'MY_NEW_ENV_VAR',
@@ -194,7 +194,7 @@ export default getEnvAllowlist;
 * **purpose**: Customize template variables that are passed to Irving's server-rendered `app.ejs` file.
 * **default values**: This config field contains some important default values that you may need to know how to handle.
   * `Wrapper` - App wrapper component. You may wrap this component in any other components or higher-order components (like a context provider).
-  * `head` - An object or function returning an object containing a variety of keys that will be rendered to the server-side template. These keys are treated differently than normal Irving config objects and can be provided with one of three values: an array, a string, or a function returning and array or string. All will eventually be concatenated into a single string and rendered as-is within the server-side HTML, meaning you should provide valid HTML to all of these fields.
+  * `head` - An object or function returning an object containing a variety of keys that will be rendered to the server-side template. These keys are treated differently than normal Irving config objects and can be provided with one of three values: an array, a string, or a function returning an array or string. All will eventually be concatenated into a single string and rendered as-is within the server-side HTML, meaning you should provide valid HTML to all of these fields.
     - `start` - rendered immediately after the opening head tag.
     - `title` - rendered immediately after the meta charset and meta viewport tags. Intended for a `<title>` tag, but could be used for markup valid in the document `<head>`.
     - `meta` - rendered immediately after the title field. Intended for additional `<meta>` tags, but could be used for markup valid in the document `<head>`.
@@ -360,7 +360,7 @@ module.exports = (configs) => (
 ## Client-side Webpack Configuration
 * **where to configure**: `config/webpack.config.client.js`
 * **type**: object
-* **purpose**: Customize Irving's webpack configuration for only the server-side build.
+* **purpose**: Customize Irving's webpack configuration for only the client-side build.
 
 ## Redux sagas
 * **where to configure**: `irving.config.js` in the `sagas` key
