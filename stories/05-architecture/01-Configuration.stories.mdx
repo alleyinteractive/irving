@@ -178,7 +178,7 @@ export default getEnvAllowlist;
 * **purpose**: Customize template variables that are passed to Irving's server-rendered `app.ejs` file.
 * **default values**: This config field contains some important default values that you may need to know how to handle.
   * `Wrapper` - App wrapper component. You may wrap this component in any other components or higher-order components (like a context provider).
-  * `head` - An object or function returning an object containing a variety of keys that will be rendered to the server-side template. These keys are treated differently than normal Irving config objects and can be provided with one of three values: an array, a string, or a function returning and array or string. All will eventually be concatenated into a single string and rendered as-is within the server-side HTML, meaning you should provide valid HTML to all of these fields.
+  * `head` - An object or function returning an object containing a variety of keys that will be rendered to the server-side template. These keys are treated differently than normal Irving config objects and can be provided with one of three values: an array, a string, or a function returning an array or string. All will eventually be concatenated into a single string and rendered as-is within the server-side HTML, meaning you should provide valid HTML to all of these fields.
     - `start` - rendered immediately after the opening head tag.
     - `title` - rendered immediately after the meta charset and meta viewport tags. Intended for a `<title>` tag, but could be used for markup valid in the document `<head>`.
     - `meta` - rendered immediately after the title field. Intended for additional `<meta>` tags, but could be used for markup valid in the document `<head>`.
