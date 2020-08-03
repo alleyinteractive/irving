@@ -9,11 +9,7 @@ const IntegrationsManager = ({ integrations }) => {
   // set to true. This is done dynamically through the `useEffect` method
   // below.
   const [componentMap, setComponentMap] = useState([
-    {
-      key: 'googleAnalytics',
-      el: <GoogleAnalytics trackingId="" />,
-      active: false,
-    },
+    { key: 'googleAnalytics', el: <GoogleAnalytics />, active: false },
   ]);
 
   // This effect is run in order to populate the component map as props are
