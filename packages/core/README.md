@@ -47,7 +47,7 @@ automatically deleted, defaults to 5 minutes
   * `development_server` - Development build, server-side only
   * `production_server` - Production build, server-side only
   * `development_client` - Development build, client-side only
-  * `development_client` - Production build, client-side only
+  * `production_client` - Production build, client-side only
 
 #### Extra Query Params
 Any environment variable that is prefixed with `API_QUERY_PARAM_`, for example
