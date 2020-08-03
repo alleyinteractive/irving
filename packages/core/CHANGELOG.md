@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.12](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2020-08-03)
+
+
+### Bug Fixes
+
+* **usebreakpoint:** remove reference to config/breakpoints from useBreakpoint, rename it ([255720f](https://github.com/alleyinteractive/irving/packages/core/commit/255720f5f69f6b19046aef3da89df4e2e903d60c))
+
+
+
+
+
 # [3.0.0-beta.11](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2020-07-28)
 
 
