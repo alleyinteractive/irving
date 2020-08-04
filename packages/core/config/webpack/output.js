@@ -22,7 +22,7 @@ module.exports = function getOutput(context) {
         publicPath: `${rootUrl}/`,
         filename: 'static/js/[name].[chunkhash:8].bundle.js',
         chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
-        jsonpFunction: 'irvingJsonp',
+        jsonpFunction: 'irvingWebpackJsonp',
       };
 
     case 'development_client':
@@ -31,7 +31,7 @@ module.exports = function getOutput(context) {
         publicPath: `${rootUrl}/`,
         filename: '[name].bundle.js',
         chunkFilename: '[name].chunk.js',
-        jsonpFunction: 'irvingJsonp',
+        jsonpFunction: 'irvingWebpackJsonp',
       };
 
     default:
