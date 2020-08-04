@@ -3,7 +3,18 @@ import PropTypes from 'prop-types';
 // Integrations.
 import GoogleAnalytics from '../googleAnalytics';
 
+/**
+ * Integrations Manager.
+ *
+ * A component that consumes a `irving/integrations` configuration from the
+ * REST API, Irving config, or persisted Redux state slice and renders the
+ * corresponding integrations on the client.
+ *
+ * @param {Object} props - All props.
+ * @param {Object} props.integrations - Config object for active integrations.
+ */
 const IntegrationsManager = ({ integrations }) => {
+  const [hydratedState, setHydratedState] = useState(false);
   // Build an initial component map of available integration components.
   // The components will not be rendered until the `active` property has been
   // set to true. This is done dynamically through the `useEffect` method
@@ -12,10 +23,7 @@ const IntegrationsManager = ({ integrations }) => {
     { key: 'googleAnalytics', el: <GoogleAnalytics />, active: false },
   ]);
 
-  // This effect is run in order to populate the component map as props are
-  // updated and recieved. It will only be run on initial mount and if/when the
-  // whitelisted props change during the component lifecycle.
-  useEffect(() => {
+  const hydrateComponentsWithProps = () => {
     // Retrieve the keys available for render in the component map.
     const keyMap = Object.keys(integrations);
 
@@ -40,6 +48,23 @@ const IntegrationsManager = ({ integrations }) => {
         setComponentMap(components);
       }
     });
+
+    if (false === hydratedState) {
+      setHydratedState(true);
+    }
+  };
+
+  // This check is run on server-side renders to ensure that the component hydration
+  // is ran a single time. After hydration, `hydratedState` is set to `true` and will
+  // only be re-run if the `integrations` prop changes during the component lifecycle.
+  if (false === hydratedState) {
+    hydrateComponentsWithProps();
+  }
+
+  // This effect is run in order to update the component map as props are
+  // updated and recieved. (`useEffect` is only run on client-side renders)
+  useEffect(() => {
+    hydrateComponentsWithProps();
   }, [integrations]);
 
   return (
