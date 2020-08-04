@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [3.0.0-beta.12](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2020-08-03)
+
+
+### Bug Fixes
+
+* **configuration:** finish updates to configuration docs ([fd2a036](https://github.com/alleyinteractive/irving/commit/fd2a036f510d1900fe3806f10c37da8d18e2fafc))
+* **usebreakpoint:** remove reference to config/breakpoints from useBreakpoint, rename it ([255720f](https://github.com/alleyinteractive/irving/commit/255720f5f69f6b19046aef3da89df4e2e903d60c))
+
+
+
+
+
 # [3.0.0-beta.11](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2020-07-28)
 
 
