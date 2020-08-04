@@ -6,6 +6,6 @@ export const formState = {
   redirect: '',
 };
 
-export default () => ({
+export default {
   forms: {},
-});
+};
