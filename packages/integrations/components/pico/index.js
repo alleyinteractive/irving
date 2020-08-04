@@ -1,66 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
+import Helmet from 'react-helmet';
 
 const Pico = (props) => {
   const {
-    // context,
     pageInfo,
-    // publisherId,
+    publisherId,
   } = props;
 
-  // console.log(pageInfo, publisherId);
-
-  pageInfo.url = window.location.href;
-
-  const [picoUser, setPicoUser] = useState(
-    get(window, 'Pico.user', { email: 'Loading...' })
-  );
-
-  const listenForPicoLoaded = () => {
-    console.log('Pico has loaded the user:', window.Pico);
-    console.log('Fire a view for ', pageInfo);
-    setPicoUser(window.Pico.user);
+  // Ensure page info has the right format.
+  const picoPageInfo = {
+    article: pageInfo.article,
+    post_id: pageInfo.postId,
+    post_type: pageInfo.postType,
+    resource_ref: pageInfo.resourceRef,
+    taxonomies: {},
+    url: window.location.href,
   };
 
+  const [picoLoaded, setPicoLoaded] = useState(false);
+
+  // On component hydration, add an event listener to watch for the script's init event.
   useEffect(() => {
-    console.log('adding listeners');
-    window.document.addEventListener('pico.loaded', listenForPicoLoaded);
-    window.document.addEventListener('pico.loaded', () => console.log('WHAT'));
-    // window.pico('visit', {});
-    console.log(window.pico);
-  }, []);
+    window.document.addEventListener(
+      'pico-init',
+      () => {
+        setPicoLoaded(true);
+      }
+    );
+  });
 
-  console.log('Firing visit: ', pageInfo);
-
-  if (window.pico) {
-    window.pico('visit', pageInfo);
+  // Load the script for the first time.
+  if (! picoLoaded) {
+    return (
+      <Helmet>
+        <script>
+          {`(function(p,i,c,o){var n=new Event("pico-init");i[p]=i[p]||function(){(i[p].queue=i[p].queue||[]).push(arguments)},i.document.addEventListener("pico-init",function(e){var t=i.Pico.getInstance(e,{publisherId:o,picoInit:n},i);t.handleQueueItems(i[p].queue),i[p]=function(){return t.handleQueueItems([arguments])}},!1);var e=i.document.createElement("script"),t=i.document.getElementsByTagName("script")[0];e.async=1,e.defer=1,e.src=c,e.onload=function(e){return i.Pico.getInstance(e,{publisherId:o,picoInit:n},i)},t.parentNode.insertBefore(e,t)})("pico",window,"https://widget.pico.tools/wrapper.min.js", "${publisherId}");`}
+        </script>
+      </Helmet>
+    );
   }
 
-  useEffect(() => {
-    window.document.addEventListener('pico-init', () => {
-      console.log('HEY! Pico has been initalized');
-    });
+  // Trigger a visit upon init.
+  window.pico('visit', picoPageInfo);
 
-    window.addEventListener('pico.loaded', () => {
-      console.log('HEY! Pico has been loaded');
-    });
-  }, []);
-
-  return (
-    <>
-      <button
-        type="button"
-        className="PicoSignal PicoPlan"
-        data-pico-email
-        data-pico-first-name
-        data-pico-status
-        data-pico-tier
-      >
-        {picoUser.email}
-      </button>
-    </>
-  );
+  return null;
 };
 
 Pico.defaultProps = {
@@ -68,9 +52,8 @@ Pico.defaultProps = {
 };
 
 Pico.propTypes = {
-  // context: PropTypes.string.isRequired,
   pageInfo: PropTypes.object,
-  // publisherId: PropTypes.string.isRequired,
+  publisherId: PropTypes.string.isRequired,
 };
 
 export default Pico;
