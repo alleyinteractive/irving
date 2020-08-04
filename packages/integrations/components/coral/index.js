@@ -1,9 +1,16 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'propt-types';
 import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
 
-const CoralTalkEmbed = () => {
+const CoralEmbed = (props) => {
+  const { rootURL } = props;
+
+  if (! rootURL) {
+    return null;
+  }
+
   const loaded = useLoadScript(
-    'http://localhost:3000/assets/js/embed.js',
+    `${rootURL}/assets/js/embed.js`,
     'coral'
   );
 
@@ -12,7 +19,7 @@ const CoralTalkEmbed = () => {
       window.Coral.createStreamEmbed({
         id: 'coral_thread',
         autoRender: true,
-        rootURL: 'http://localhost:3000',
+        rootURL,
       });
     }
   }, [loaded]);
@@ -22,4 +29,8 @@ const CoralTalkEmbed = () => {
   );
 };
 
-export default CoralTalkEmbed;
+CoralEmbed.propTypes = {
+  rootURL: PropTypes.string.isRequired,
+};
+
+export default CoralEmbed;

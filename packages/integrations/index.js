@@ -3,6 +3,7 @@ import GoogleAnalytics from './components/googleAnalytics';
 import GoogleTagManager from './components/googleTagManager';
 import Parsely from './components/parsely';
 import YoastSchema from './components/yoastSchema';
+import CoralEmbed from './components/coral';
 
 export {
   Disqus,
@@ -10,4 +11,5 @@ export {
   GoogleTagManager,
   Parsely,
   YoastSchema,
+  CoralEmbed,
 };
