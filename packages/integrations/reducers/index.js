@@ -1,5 +1,5 @@
 import integrationsReducer from './integrationsReducer';
 
-export default () => ({
+export default {
   integrations: integrationsReducer,
-});
+};

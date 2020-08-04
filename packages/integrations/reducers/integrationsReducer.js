@@ -1,5 +1,6 @@
+import merge from 'lodash/fp/merge';
 import { HYDRATE_COMPONENTS } from '../actions/types';
-import { integrationsState as defaultState } from './defaultState';
+import defaultState from './defaultState';
 
 /**
  * Handle Redux actions operating on the integrations state slice.
@@ -8,15 +9,14 @@ import { integrationsState as defaultState } from './defaultState';
  * @param {{type payload}} action -  The Redux action.
  * @returns {object} The updated integrations state.
  */
-export default function integrationsReducer(state = defaultState, action) {
-  const { type, payload } = action;
+export default function integrationsReducer(
+  state = defaultState,
+  { type, payload }
+) {
   switch (type) {
     case HYDRATE_COMPONENTS:
-      return {
-        ...state,
-        componentMap: payload,
-        hydrated: true,
-      };
+      return merge(state, { ...payload, hydrated: true });
+
     default:
       return state;
   }
