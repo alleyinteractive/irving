@@ -1,39 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import get from 'lodash/get';
 
 const Pico = (props) => {
   const {
-    context,
+    // context,
     pageInfo,
-    publisherId,
+    // publisherId,
   } = props;
 
-  // It's possible for this to be an empty string if
-  // setting is unconfigured. Do not render if this is the case.
-  if (! publisherId) {
-    return null;
+  // console.log(pageInfo, publisherId);
+
+  pageInfo.url = window.location.href;
+
+  const [picoUser, setPicoUser] = useState(
+    get(window, 'Pico.user', { email: 'Loading...' })
+  );
+
+  const listenForPicoLoaded = () => {
+    console.log('Pico has loaded the user:', window.Pico);
+    console.log('Fire a view for ', pageInfo);
+    setPicoUser(window.Pico.user);
+  };
+
+  useEffect(() => {
+    console.log('adding listeners');
+    window.document.addEventListener('pico.loaded', listenForPicoLoaded);
+    window.document.addEventListener('pico.loaded', () => console.log('WHAT'));
+    // window.pico('visit', {});
+    console.log(window.pico);
+  }, []);
+
+  console.log('Firing visit: ', pageInfo);
+
+  if (window.pico) {
+    window.pico('visit', pageInfo);
   }
 
-  // Map this locally instead of from the endpoint.
-  pageInfo.url = window.location.href;
+  useEffect(() => {
+    window.document.addEventListener('pico-init', () => {
+      console.log('HEY! Pico has been initalized');
+    });
+
+    window.addEventListener('pico.loaded', () => {
+      console.log('HEY! Pico has been loaded');
+    });
+  }, []);
 
   return (
     <>
-      {undefined === window.pico && (
-        <Helmet>
-          {/* eslint-disable max-len */}
-          <script>
-            {`(function(p,i,c,o){var n=new Event("pico-init");i[p]=i[p]||function(){(i[p].queue=i[p].queue||[]).push(arguments)},i.document.addEventListener("pico-init",function(e){var t=i.Pico.getInstance(e,{publisherId:o,picoInit:n},i);t.handleQueueItems(i[p].queue),i[p]=function(){return t.handleQueueItems([arguments])}},!1);var e=i.document.createElement("script"),t=i.document.getElementsByTagName("script")[0];e.async=1,e.src=c,e.onload=function(e){return i.Pico.getInstance(e,{publisherId:o,picoInit:n},i)},t.parentNode.insertBefore(e,t)})("pico",window,"https://widget.pico.tools/wrapper.min.js", "${publisherId}");`}
-          </script>
-          {/* eslint-enable */}
-        </Helmet>
-      )}
-      {'page' === context && (
-        <script>
-          {`window.pico('visit', ${JSON.stringify(pageInfo)});`}
-        </script>
-      )}
       <button
         type="button"
         className="PicoSignal PicoPlan"
@@ -42,7 +57,7 @@ const Pico = (props) => {
         data-pico-status
         data-pico-tier
       >
-        Testing
+        {picoUser.email}
       </button>
     </>
   );
@@ -53,9 +68,9 @@ Pico.defaultProps = {
 };
 
 Pico.propTypes = {
-  context: PropTypes.string.isRequired,
+  // context: PropTypes.string.isRequired,
   pageInfo: PropTypes.object,
-  publisherId: PropTypes.string.isRequired,
+  // publisherId: PropTypes.string.isRequired,
 };
 
 export default Pico;
