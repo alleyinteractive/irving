@@ -19,7 +19,7 @@ _Publishing documentation should follow the same code review/pull request proces
 
 **Hosting**
 
-Storybook is currently hosted on [surge.sh](https://surge.sh/). If you need access to push documentation changes.
+Storybook is currently hosted on [surge.sh](https://surge.sh/). If you need access to push documentation changes, reach out to someone on the Irving team.
 
 * To [install surge](https://surge.sh/help/getting-started-with-surge) globally run,
   * `npm install --global surge`
