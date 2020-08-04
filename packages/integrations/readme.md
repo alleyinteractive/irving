@@ -8,7 +8,7 @@ A collection of Irving-friendly components for getting you started with common t
 * `<Parsely />` - Render the required JS for sending data to Parse.ly
 * `<YoastSchema />` - Render the required JS for Yoast.
 
-## `<IntegrationsManager />`
+### `<IntegrationsManager />`
 The integrations manager is a component that consumes a `irving/integrations` configuration retrieved from the REST API that dynamically, configures, stores props for, and renders corresponding integrations based on the keys set in the configuration object.
 
 ### Configuration
@@ -32,8 +32,8 @@ export default {
 ```
 Importing the configuration is required in order to connect the Integration Manager to the global Redux state tree and add the `integrations` branch to the store. The integrations currently available to manage through the integrations manager include:
 * `<Google Analytics />`
-* * Key: `googleAnalytics`
-* * Accepted Props: `trackingId`
+  * Key: `googleAnalytics`
+  * Accepted Props: `trackingId`
 
 Configurations can also be managed manually through your irving configuration file. In order to do so, all you have to do is specify the integration's key and properties to be passed into its configuration. Example:
 ```js javascript
