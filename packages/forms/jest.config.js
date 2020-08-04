@@ -4,5 +4,4 @@ module.exports = {
   ...baseConfig,
   name: '@irvingjs/forms',
   displayName: '@irvingjs/forms',
-  setupFiles: ['<rootDir>/config/jest.setup.js'],
 };
