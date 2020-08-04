@@ -58,12 +58,14 @@ const IntegrationsManager = ({ integrations }) => {
   // is ran a single time. After hydration, `hydratedState` is set to `true` and will
   // only be re-run if the `integrations` prop changes during the component lifecycle.
   if (false === hydratedState) {
+    console.log('hydrate');
     hydrateComponentsWithProps();
   }
 
   // This effect is run in order to update the component map as props are
   // updated and recieved. (`useEffect` is only run on client-side renders)
   useEffect(() => {
+    console.log('effect');
     hydrateComponentsWithProps();
   }, [integrations]);
 
