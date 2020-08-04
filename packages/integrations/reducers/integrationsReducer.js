@@ -15,7 +15,7 @@ export default function integrationsReducer(
 ) {
   switch (type) {
     case HYDRATE_COMPONENTS:
-      return merge(state, { ...payload, hydrated: true });
+      return merge(state, { componentMap: payload, hydrated: true });
 
     default:
       return state;

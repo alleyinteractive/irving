@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable */
+import React from 'react';
 import PropTypes from 'prop-types';
+// Redux.
+import { connect } from 'react-redux';
+import { actionHydrateComponents } from '../../actions';
 // Integrations.
-import GoogleAnalytics from '../googleAnalytics';
+import componentMap from './componentMap';
 
 /**
  * Integrations Manager.
@@ -13,17 +17,17 @@ import GoogleAnalytics from '../googleAnalytics';
  * @param {Object} props - All props.
  * @param {Object} props.integrations - Config object for active integrations.
  */
-const IntegrationsManager = ({ integrations }) => {
-  const [hydratedState, setHydratedState] = useState(false);
-  // Build an initial component map of available integration components.
-  // The components will not be rendered until the `active` property has been
-  // set to true. This is done dynamically through the `useEffect` method
-  // below.
-  const [componentMap, setComponentMap] = useState([
-    { key: 'googleAnalytics', el: <GoogleAnalytics />, active: false },
-  ]);
-
-  const hydrateComponentsWithProps = () => {
+const IntegrationsManager = ({
+  integrations,
+  isHydrated,
+  hydrateComponents,
+  hydratedComponents,
+}) => {
+  console.log(hydratedComponents);
+  // This check is run on server-side renders to ensure that the component hydration
+  // is ran a single time. After hydration, `hydratedState` is set to `true` and will
+  // only be re-run if the `integrations` prop changes during the component lifecycle.
+  if (false === isHydrated) {
     // Retrieve the keys available for render in the component map.
     const keyMap = Object.keys(integrations);
 
@@ -43,43 +47,26 @@ const IntegrationsManager = ({ integrations }) => {
         // Clone the component map.
         const components = [...componentMap];
         // Update the item at the current index with the transformed component.
-        components[index] = { key, el: componentWithProps, active: true };
+        components[index] = { key, el: componentWithProps };
         // Update the component map.
-        setComponentMap(components);
+        hydrateComponents(components);
       }
     });
-
-    if (false === hydratedState) {
-      setHydratedState(true);
-    }
-  };
-
-  // This check is run on server-side renders to ensure that the component hydration
-  // is ran a single time. After hydration, `hydratedState` is set to `true` and will
-  // only be re-run if the `integrations` prop changes during the component lifecycle.
-  if (false === hydratedState) {
-    console.log('hydrate');
-    hydrateComponentsWithProps();
   }
 
-  // This effect is run in order to update the component map as props are
-  // updated and recieved. (`useEffect` is only run on client-side renders)
-  useEffect(() => {
-    console.log('effect');
-    hydrateComponentsWithProps();
-  }, [integrations]);
-
-  return (
-    <>
-      {componentMap.map(
-        (component) => component.active && component.el
-      )}
-    </>
-  );
+  return null;
+  // return (
+  //   <>
+  //     {0 < hydratedComponents.length && hydratedComponents.map(
+  //       (component) => component.el
+  //     )}
+  //   </>
+  // );
 };
 
 IntegrationsManager.defaultProps = {
   integrations: {},
+  hydratedComponents: [],
 };
 
 IntegrationsManager.propTypes = {
@@ -88,6 +75,37 @@ IntegrationsManager.propTypes = {
       trackingId: PropTypes.string,
     }),
   }),
+  isHydrated: PropTypes.bool.isRequired,
+  hydrateComponents: PropTypes.func.isRequired,
+  hydratedComponents: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default IntegrationsManager;
+const mapStateToProps = (state, ownProps) => {
+  const {
+    integrations: {
+      componentMap: components,
+      hydrated,
+    },
+  } = state;
+
+  if (hydrated) {
+    return {
+      isHydrated: hydrated,
+      hydratedComponents: components,
+    };
+  }
+
+  return {
+    isHydrated: hydrated,
+    integrations: ownProps.integrations,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  hydrateComponents: (data) => dispatch(actionHydrateComponents(data)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(IntegrationsManager);
