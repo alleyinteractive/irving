@@ -1,3 +1,80 @@
 <Meta title="WordPress|Templating" />
 
 # Templating
+
+WP-Irving includes a templating system that can be used to configure Irving layouts which automatically get injected with WordPress data. Templates are formatted as JSON files that define the structure of components that should be returned in `default` and `page` properties of a REST API response from the `/irving/v1/components` endpoint.
+
+Ex: Template for defining the default page layout structure
+
+```{
+    "defaults": [
+        { "name": "template-parts/header" },
+        { "name": "irving/body-wrapper" },
+        { "name": "template-parts/footer" }
+    ]
+}
+```
+
+Ex: Template for a post page layout (i.e., single.json):
+
+```{
+    "page": [
+        {
+            "name": "irving/body-wrapper",
+            "children": [
+                {
+                    "name": "irving/post-title",
+                    "theme": "heading",
+                    "config": {
+                        "tag": "h1"
+                    }
+                },
+                { "name": "irving/post-featured-media" },
+                { "name": "irving/post-byline" },
+                { "name": "irving/post-timestamp" },
+                { "name": "irving/post-content" }        
+            ]
+        }
+    ]
+}
+```
+
+## Template hierarchy
+
+Irving automatically loads templates based on the site URL, using the **template hierarchy** familiar in traditional WordPress theme development. By default, WP-Irving will try to load template files from the current theme's `templates` directory. For example, a request for a post page would use a `/templates/single.json` file, if present. An archive page would load `/templates/archive.json`, etc.
+
+Additionally, WP-Irving includes support for a special `default.json` template for defining components that should only be loaded on full page renders and don't change when navigating between pages.
+
+The location from which WP-Irving loads templates can be filtered using the `wp_irving_template_path` hook,
+
+Ex: Loading templates from a custom path.
+
+```
+add_filter(
+	'wp_irving_template_path',
+	get_stylesheet_directory() . '/my/custom/template/path'
+);
+```
+
+## Template parts
+
+To make it easy to create repeatable template patterns, WP-Irving will automatically replace any objects in a template file named with a `template-parts/{name}` pattern with data in a `name.json` file in the theme's `template-parts` directory.
+
+The location from which template parts are loaded can be filtered using the `wp_irving_template_part_path` hook.
+
+Ex: Loading template parts from a custom path.
+
+```
+add_filter(
+	'wp_irving_template_part_path', 
+	get_stylesheet_directory() . '/my/custom/template-part/path'
+);
+```
+
+
+
+
+
+
+
+
