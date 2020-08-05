@@ -11,8 +11,6 @@ export default function* watchRequestSubmit(data) {
     payload: { formEndpoint, submission },
   } = data;
 
-  console.log(formEndpoint);
-
   try {
     const response = yield call(submitForm, formEndpoint, submission);
     if (
