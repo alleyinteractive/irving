@@ -1,21 +1,43 @@
 <Meta title="Intro|Quick Start" />
 
 # Quick Start
+The quick start guide will get you a working Irving install using data from the [Irving Example Theme](?path=/docs/wordpress-example-theme--page). Check out the full [tutorial](/?path=/docs/tutorial-introduction--page) for a more in-depth introduction to Irving.
+
+_**Note:** An Irving CLI is on the roadmap which will simplify these instructions._
 
 ## Requirements/Assumptions
-What do you need? What do we assume you know?
+For this quick start guide, we assume you have,
+* Node 12 and NPM 6 installed
+* Some basic command line knowledge
 
-## Using/Installing the CLI
-Quickly install the Irving CLI.
+## Clone the Create Irving App repo
+`git clone https://github.com/alleyinteractive/create-irving-app`
 
-## Create a new site
-How to scaffold a new site using the CLI. _Note: We should host an Irving API publically for the quick start guide, rather than requiring WP at this stage (thx amy)_
+The [Create Irving App](https://github.com/alleyinteractive/create-irving-app) repository has the skeleton for an Irving application.
 
-## Site Configuration
-Overview of required environment variables and the default irving.config.js setup. Links to architecture/configuration for more info.
+## Change directories into the site folder
+`cd create-irving-app`
 
-## Start development server
-How to start the server for local development.
+## Set environment variables using our example
+`cp .env.example .env`
+
+The required environment variables are,
+* `ROOT_URL` - URL of the express server. Defaults to `http://localhost:3001`.
+* `API_ROOT_URL` - URL of the components endpoint provider. We host this URL for demo/quick start purposes, `https://wordpress.irvingjs.com/wp-json/irving/v1`
+
+## Install Irving
+`npm install`
+
+## Run the Irving development server
+`npm run dev`
+
+Irving will open a new browser window at `http://localhost:3001` with your site.
 
 ## Create a production build
-How to create a production build for deployment.
+`npm run build`
+
+# Next Steps
+To continue your Irving journey, check out these next steps,
+* Learn more about templating, components, and theming in the [full tutorial](?path=/docs/tutorial-introduction--page).
+* Explore Irving's [configuration options](?path=/docs/architecture-configuration--page).
+* Understand how to [deploy Irving](?path=/docs/deployment-and-hosting-deployment-and-hosting--page).
