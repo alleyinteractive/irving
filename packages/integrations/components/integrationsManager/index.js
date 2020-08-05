@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// User Config.
+import userConfig from '@irvingjs/irving.config';
 // Redux.
 import { connect } from 'react-redux';
 import { actionHydrateComponents } from '../../actions';
@@ -45,7 +47,13 @@ const IntegrationsManager = ({
 
       if (- 1 < keyMap.indexOf(key)) {
         // Retrieve the key/value pairs set for the integration and convert them into props.
-        const props = integrations[key];
+        // If a user config override exists, use it instead.
+        let props;
+        if ('integrations' in userConfig && key in userConfig.integrations) {
+          props = userConfig.integrations[key];
+        } else {
+          props = integrations[key];
+        }
         // Update the item at the current index with the transformed component.
         components[index] = { key, props };
       }

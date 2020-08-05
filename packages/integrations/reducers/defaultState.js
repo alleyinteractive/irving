@@ -1,6 +1,6 @@
 export default {
   integrations: {
-    componentMap: {},
+    componentMap: [],
     hydrated: false,
   },
 };

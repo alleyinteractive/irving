@@ -7,9 +7,9 @@ A collection of Irving-friendly components for getting you started with common t
 * `<GoogleTagManager />` - Render the required JS snippet for your GTM account.
 * `<Parsely />` - Render the required JS for sending data to Parse.ly
 * `<YoastSchema />` - Render the required JS for Yoast.
-
+---
 ### `<IntegrationsManager />`
-The integrations manager is a component that consumes a `irving/integrations` configuration retrieved from the REST API that dynamically, configures, stores props for, and renders corresponding integrations based on the keys set in the configuration object.
+The integrations manager is a component that consumes a `irving/integrations` configuration retrieved from the REST API that dynamically configures, stores props for, and renders corresponding integrations based on the keys set in the configuration object.
 
 ### Configuration
 Configuring the integrations manager is a simple process. First, add the integrations manager component to the irving componentMap. Example:
