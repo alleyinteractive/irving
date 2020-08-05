@@ -1,0 +1,153 @@
+<Meta title="Deployment and Hosting|WordPress VIP" />
+
+# Deploying to WordPress VIP
+This guide walks you through deploying your Irving site to [WordPress VIP](https://wpvip.com/).
+
+WordPress VIP's enterprise WordPress solutions serve some of the largest sites on the internet, and is one of the most popular choices for enterprise scale WordPress sites.
+
+The VIP Platform has [first-class support for hosting Node.js (Node) applications](https://wpvip.com/documentation/vip-go/node-js-on-vip-go/). Please refer to these docs for the latest on requirements.
+
+**Some top-level highlights to keep in mind,**
+* The [VIP Go Irving package](?) implements VIP's NPM package, making setup quick and easy.
+* VIP Go deploys node applications from the application root directory, thus requiring a repository specifically for your Irving node codebase, or a CI/CD integration to "fake" it.
+* The Irving Example Theme has a [VIP Go branch](https://github.com/alleyinteractive/irving-example-theme/tree/vip-go) which should be used as a reference.
+
+
+### Table of Contents
+* [Requirements](#requirements)
+  * [Code structure](#code-structure)
+    * [Standalone repository](#option-1-standalone-repository)
+    * [Using the root directory](#option-2-using-the-root-directory)
+    * [Using a subdirectory](#option-3-using-a-subdirectory)
+  * [Adding the VIP Go package](#adding-the-vip-go-package)
+    * [Confirming with preflight checks](#confirming-with-preflight-checks)
+* [Building the application](#building-the-application)
+* Coordinating with VIP
+
+# Requirements
+This section will prepare your Irving application for deployment on VIP Go.
+
+## Code structure
+* Node applications on VIP Go are served from the application root directory.
+* VIP Go's WordPress repos are version controlled at the /wp-content/ directory.
+
+There are three options for where to put your Irving application.
+
+### Option 1 - Standalone repository
+The most straightforward option is to version control your Irving application separately from your WordPress install. You can ask VIP for a repo for this purpose.
+
+### Option 2 - Using the root directory
+If you have a single-site install, you can place the Irving application in the root of your repo.
+
+### Option 3 - Using a subdirectory
+Using a code deployment tool such as [Github Actions](https://github.com/features/actions) or [Deploybot](https://deploybot.com/), you can automate the management of a branch which will move your Irving application from a subdirectory into the root application level.
+
+For example, you may host the Irving application in `/themes/your-theme/client/irving/`, and upon merges to the `main` branch, rsync the directory to the top of your repo.
+
+* `/themes/your-theme/client/irving/componentMap.js` -> `/componentMap.js`
+* `/themes/your-theme/client/irving/irving.config.js` -> `/irving.config.js`
+* `/themes/your-theme/client/irving/package.json` -> `/package.json`
+
+This cleans up your deployment process by keeping the Irving node and WordPress code in one repo.
+
+## Adding the VIP Go package
+The [`@irvingjs/vip-go`](https://www.npmjs.com/package/@irvingjs/vip-go) package contains an implementation of WordPress VIP's [`@automattic/vip-go`](https://www.npmjs.com/package/@automattic/vip-go) NPM package.
+
+This allows VIP's caching, logging, and health-check services to override core Irving's equivalent functionality.
+
+### Installation
+
+```bash
+npm install @irvingjs/vip-go --save
+```
+
+### Include the package in your configuration file
+Update your `irving.config.js` to import and include the package.
+```javascript
+import vipGoConfig from '@irvingjs/vip-go';
+
+const config = {
+  packages: [
+    vipGoConfig,
+  ]
+}
+
+export default config;
+```
+
+### Confirming with preflight checks
+We suggest you use the `@automattic/vip-go-preflight-checks` package locally to confirm you've setup your codebase correctly. This package is included as a dependency when you install `@irvingjs/vip-go`.
+
+We suggest you add a `preflight` script to `package.json` to run this quickly,
+```json
+{
+    "scripts": {
+        "preflight": "npx @automattic/vip-go-preflight-checks",
+    }
+}
+```
+
+VIP has [additional documentation](https://wpvip.com/documentation/vip-go/node-js-on-vip-go/#requirements) on running preflight checks.
+
+# Building the application
+This section will guide you on setting up [automated build and a deploy process](https://wpvip.com/documentation/automated-build-and-deploy-on-vip-go/)
+
+## Build Scripts
+From the [VIP documentation](https://wpvip.com/documentation/vip-go/node-js-on-vip-go/#requirements),
+> On VIP Go, every time you push a new change to your application, we pull the latest code from the deployment branch and then run the commands below. Your application must respond with a non-error exit code.
+
+Inside your `package.json` update the following scripts,
+
+```json
+"webpack": "irving build",
+"build": "if [ -z $VIP_GO_APP_ID ]; then npm run webpack; else exit 0; fi",
+"start": "irving start"
+```
+
+[Irving Example Theme reference](https://github.com/alleyinteractive/irving-example-theme/blob/vip-go/client/irving/package.json#L6-L12).
+
+## .gitignore
+
+## Building with Travis CI
+The [Irving Example Theme has a vip-go branch](https://github.com/alleyinteractive/irving-example-theme/tree/vip-go/client/irving) to help as a reference for setting up your Travis build process.
+
+[Reference .travis.yml](https://github.com/alleyinteractive/irving-example-theme/blob/vip-go/client/irving/.travis.yml).
+
+### .travis.yml creation
+
+We only want Travis to build when specific branches are updated,
+
+https://github.com/alleyinteractive/irving-example-theme/blob/vip-go/client/irving/.travis.yml#L23-L29
+
+### Environment variables
+All environment variables will need to be set in Travis, and by the VIP team to ensure that they're exposed both client and server-side.
+
+Example,
+
+```bash
+if [ "$TRAVIS_BRANCH" == "develop" ]; then
+  export API_ROOT_URL=https://wordpress-staging.irvingjs.com/wp-json/irving/v1
+  export ROOT_URL=https://staging.irvingjs.com
+elif [ "$TRAVIS_BRANCH" == "master" ]; then
+  export API_ROOT_URL=https://wordpress.irvingjs.com/wp-json/irving/v1
+  export ROOT_URL=https://demo.irvingjs.com
+fi
+```
+
+### bin/after-script.sh
+
+
+## Coordinating with VIP
+Now that your Irving application is ready to go, you should reach out to VIP to get a new Node/Redis environment deploying. This is typically done through Zendesk, but the process may vary depending on your contract and service level agreement.
+
+### Confirm your build
+
+* Confirmation that the preflights check.
+
+### What to tell VIP
+* You want a new `Node/Redis` environment.
+* The URL of the Irving application (irving.your-site.com is a pattern we like).
+* The built branch to deploy node from (`master-built` or equivalent).
+* Confirmation that preflights check passes.
+* Confirmation that the build application runs.
+* Your `API_ROOT_URL` and `ROOT_URL` [environment variables](#environment-variables) for this environment.
