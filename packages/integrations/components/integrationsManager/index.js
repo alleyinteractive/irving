@@ -27,13 +27,13 @@ const IntegrationsManager = ({
   hydrateComponents,
   hydratedComponents,
 }) => {
+  // Declare a map of available integration components with a corresponding key.
   const componentMap = [
     { key: 'googleAnalytics', el: GoogleAnalytics },
   ];
-
   // This check is run on server-side renders to ensure that the component hydration
-  // is ran a single time. After hydration, `hydratedState` is set to `true` and will
-  // only be re-run if the `integrations` prop changes during the component lifecycle.
+  // is ran a single time. After hydration, `isHydrated` is set to `true` and will
+  // only be re-run if the component props change during the component's lifecycle.
   if (false === isHydrated) {
     // Retrieve the keys available for render in the component map.
     const keyMap = Object.keys(integrations);
