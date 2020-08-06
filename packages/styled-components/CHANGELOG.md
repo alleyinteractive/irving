@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.12](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.11](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.10](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.9](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.8](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2020-07-28)
+
+
+### Bug Fixes
+
+* **server templates:** fix noscript, add server dir to styled-components published files ([e6d0685](https://github.com/alleyinteractive/irving/packages/styled-components/commit/e6d0685a28e713abcc21912cad747781f61bba58))
+
+
+
+
+
+# [3.0.0-beta.7](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2020-07-28)
+
+
+### Bug Fixes
+
+* **tests:** remove a few more unnecessary babel/jest configs ([c59f845](https://github.com/alleyinteractive/irving/packages/styled-components/commit/c59f8451a731b269b0f665482e3f07d2216659c6))
+
+
+
+
+
 # [3.0.0-beta.6](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
 
 **Note:** Version bump only for package @irvingjs/styled-components

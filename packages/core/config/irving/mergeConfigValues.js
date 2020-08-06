@@ -2,6 +2,30 @@ const mergeWith = require('lodash/mergeWith');
 const isPlainObject = require('lodash/isPlainObject');
 
 /**
+ * Call all config functions and spread into an array.
+ *
+ * @param {array} configs Configs to merge.
+ * @param {array} initial Initial value.
+ * @returns {array}
+ */
+const mergeConfigArray = (configs, initial = []) => (
+  configs.reduce(
+    (acc, config) => {
+      if (! config) {
+        return acc;
+      }
+
+      if ('function' === typeof config) {
+        return config(acc);
+      }
+
+      return acc.concat(config);
+    },
+    initial
+  )
+);
+
+/**
  * Call all config functions and spread configs into an object.
  *
  * @param {array} configs Configs to merge.
@@ -26,30 +50,6 @@ const mergeConfigObject = (configs, initial = {}) => (
 
         return undefined;
       });
-    },
-    initial
-  )
-);
-
-/**
- * Call all config functions and spread into an array.
- *
- * @param {array} configs Configs to merge.
- * @param {array} initial Initial value.
- * @returns {array}
- */
-const mergeConfigArray = (configs, initial = []) => (
-  configs.reduce(
-    (acc, config) => {
-      if (! config) {
-        return acc;
-      }
-
-      if ('function' === typeof config) {
-        return config(acc);
-      }
-
-      return [...acc, ...config];
     },
     initial
   )

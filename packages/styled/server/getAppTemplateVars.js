@@ -2,16 +2,17 @@ import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
 export default function getAppTemplateVars(templateVars) {
+  const { Wrapper } = templateVars;
   const sheet = new ServerStyleSheet();
-  const {
-    irvingHead,
-    Wrapper: AppWrapper,
-  } = templateVars;
 
   return {
-    Wrapper: () => sheet.collectStyles(
-      <AppWrapper />
-    ),
-    irvingHead: [() => `${irvingHead}${sheet.getStyleTags()}`],
+    Wrapper: () => sheet.collectStyles(<Wrapper />),
+    head: {
+      end: () => {
+        const styles = sheet.getStyleTags();
+        sheet.seal();
+        return styles;
+      },
+    },
   };
 }

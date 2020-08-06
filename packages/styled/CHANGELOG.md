@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.12](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.11](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** ensure we only run each templateVars config function once ([fde7d32](https://github.com/alleyinteractive/irving/packages/styled/commit/fde7d32081b7aa5de6d1a8afb43efb1c8d2cfc75))
+
+
+
+
+
+# [3.0.0-beta.10](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** fix a SSR mismatch issue, begin simplifying logic ([b7828ca](https://github.com/alleyinteractive/irving/packages/styled/commit/b7828cacfabebb8c04428cbf74ba8aa5eb496333))
+
+
+
+
+
+# [3.0.0-beta.9](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.8](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.7](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** switch to start/end instead of open/close for head ([c14551d](https://github.com/alleyinteractive/irving/packages/styled/commit/c14551d2c68e9912c15bf618a29d7f0f7592aa09))
+* **helmet:** begin replacement for helmet vars, new test for getAppTemplateVars ([079bd43](https://github.com/alleyinteractive/irving/packages/styled/commit/079bd437c58e22ece15ccb299fa8b1fe6bd6ef33))
+* **tests:** remove a few more unnecessary babel/jest configs ([c59f845](https://github.com/alleyinteractive/irving/packages/styled/commit/c59f8451a731b269b0f665482e3f07d2216659c6))
+
+
+
+
+
 # [3.0.0-beta.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
 
 **Note:** Version bump only for package @irvingjs/styled

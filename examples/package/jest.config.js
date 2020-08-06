@@ -8,5 +8,4 @@ module.exports = {
   ...baseConfig,
   name: '@irvingjs/example-package',
   displayName: '@irvingjs/example-package',
-  setupFiles: ['<rootDir>/config/jest.setup.js'],
 };

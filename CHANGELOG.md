@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [3.0.0-beta.12](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2020-08-03)
+
+
+### Bug Fixes
+
+* **configuration:** finish updates to configuration docs ([fd2a036](https://github.com/alleyinteractive/irving/commit/fd2a036f510d1900fe3806f10c37da8d18e2fafc))
+* **usebreakpoint:** remove reference to config/breakpoints from useBreakpoint, rename it ([255720f](https://github.com/alleyinteractive/irving/commit/255720f5f69f6b19046aef3da89df4e2e903d60c))
+
+
+
+
+
+# [3.0.0-beta.11](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** ensure we only run each templateVars config function once ([fde7d32](https://github.com/alleyinteractive/irving/commit/fde7d32081b7aa5de6d1a8afb43efb1c8d2cfc75))
+
+
+
+
+
+# [3.0.0-beta.10](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** fix a SSR mismatch issue, begin simplifying logic ([b7828ca](https://github.com/alleyinteractive/irving/commit/b7828cacfabebb8c04428cbf74ba8aa5eb496333))
+
+
+
+
+
+# [3.0.0-beta.9](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2020-07-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [3.0.0-beta.8](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2020-07-28)
+
+
+### Bug Fixes
+
+* **server templates:** fix noscript, add server dir to styled-components published files ([e6d0685](https://github.com/alleyinteractive/irving/commit/e6d0685a28e713abcc21912cad747781f61bba58))
+
+
+
+
+
+# [3.0.0-beta.7](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** move default head ([7c56438](https://github.com/alleyinteractive/irving/commit/7c564385fdcc0aed91f182989b2955b541dc8dc0))
+* **gettemplatevars:** switch to start/end instead of open/close for head ([c14551d](https://github.com/alleyinteractive/irving/commit/c14551d2c68e9912c15bf618a29d7f0f7592aa09))
+* **helmet:** begin replacement for helmet vars, new test for getAppTemplateVars ([079bd43](https://github.com/alleyinteractive/irving/commit/079bd437c58e22ece15ccb299fa8b1fe6bd6ef33))
+* **tests:** remove a few more unnecessary babel/jest configs ([c59f845](https://github.com/alleyinteractive/irving/commit/c59f8451a731b269b0f665482e3f07d2216659c6))
+
+
+
+
+
 # [3.0.0-beta.6](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
 
 

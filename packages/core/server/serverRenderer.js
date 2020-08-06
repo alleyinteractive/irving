@@ -81,7 +81,9 @@ const render = async (req, res, clientStats) => {
   // Get some template vars and allow customization by user.
   const customTemplateVars = getTemplateVars('getAppTemplateVars', {
     Wrapper: AppWrapper,
-    irvingHead: [getWebpackAssetTags(clientStats)],
+    head: {
+      end: [getWebpackAssetTags(clientStats)],
+    },
   });
 
   // https://redux.js.org/recipes/server-rendering#security-considerations
@@ -132,7 +134,9 @@ export default function serverRenderer(options) {
       // Get some template vars and allow customization by user.
       const templateVars = getTemplateVars('getErrorTemplateVars', {
         Wrapper: ErrorWrapper,
-        irvingHead: [],
+        head: {
+          title: '<title>Something has gone wrong</title>',
+        },
       });
 
       res.status(500);
