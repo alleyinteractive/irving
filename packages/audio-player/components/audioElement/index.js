@@ -3,10 +3,9 @@ import {
   useEffect,
 } from 'react';
 import throttle from 'lodash/throttle';
-import pick from 'lodash/fp/pick';
 import PropTypes from 'prop-types';
 import { Howl } from 'howler/dist/howler.core.min';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   actionPlayAudio,
   actionStopAudio,
@@ -14,17 +13,15 @@ import {
 } from 'actions/playerActions';
 
 const AudioElement = (props) => {
+  const { onReady } = props;
   const {
-    onReady,
-    play,
+    src,
     playing,
     seek,
-    src,
-    stop,
-    receiveTime,
     volume,
-  } = props;
+  } = useSelector((state) => state.player);
   const [player, setPlayer] = useState(null);
+  const dispatch = useDispatch();
   const updateTime = throttle(() => {
     if (player) {
       const currentSeek = player.seek() || 0;
@@ -32,7 +29,9 @@ const AudioElement = (props) => {
       // If the sound is still playing, continue stepping.
       if (playing) {
         if ('number' === typeof currentSeek) {
-          receiveTime(currentSeek, player.duration());
+          dispatch(
+            actionReceiveAudioTime(currentSeek, player.duration())
+          );
         }
         requestAnimationFrame(updateTime);
       }
@@ -43,12 +42,15 @@ const AudioElement = (props) => {
 
     // Play on load
     if (! playing) {
-      window.setTimeout(play, 1000);
+      window.setTimeout(
+        () => dispatch(actionPlayAudio()),
+        1000
+      );
     }
   };
 
   const onEnd = () => {
-    stop();
+    dispatch(actionStopAudio());
   };
 
   // Watch for src changes and create new howl.
@@ -111,39 +113,10 @@ const AudioElement = (props) => {
 
 AudioElement.propTypes = {
   onReady: PropTypes.func,
-  src: PropTypes.string.isRequired,
-  receiveTime: PropTypes.func.isRequired,
-  play: PropTypes.func.isRequired,
-  playing: PropTypes.bool.isRequired,
-  seek: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.number,
-  ]).isRequired,
-  volume: PropTypes.number.isRequired,
 };
 
 AudioElement.defaultProps = {
   onReady: () => {},
 };
 
-const mapStateToProps = (state) => ({
-  ...pick([
-    'src',
-    'playing',
-    'seek',
-    'volume',
-  ], state.player),
-});
-
-const mapDispatchToProps = {
-  receiveTime: actionReceiveAudioTime,
-  play: actionPlayAudio,
-  stop: actionStopAudio,
-};
-
-const withRedux = connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
-
-export default withRedux(AudioElement);
+export default AudioElement;

@@ -12,7 +12,11 @@ import {
   SET_AUDIO_SEEK,
   RECEIVE_AUDIO_TIME,
 } from '../actions/types';
-import getDefaultState from './defaultState';
+import defaultState from './defaultState';
+
+const {
+  player: defaultPlayerState,
+} = defaultState;
 
 /**
  * State container reducer for audio player actions
@@ -22,7 +26,7 @@ import getDefaultState from './defaultState';
  * @returns {object}
  */
 export default function playerReducer(
-  state = getDefaultState(),
+  state = defaultPlayerState,
   { type, payload }
 ) {
   switch (type) {
@@ -30,7 +34,7 @@ export default function playerReducer(
       const {
         seek: defaultSeek,
         volume: defaultVolume,
-      } = getDefaultState();
+      } = defaultPlayerState;
 
       return compose(
         set('src', payload),
@@ -50,7 +54,7 @@ export default function playerReducer(
       )(state);
 
     case STOP_AUDIO:
-      return cloneDeep(getDefaultState());
+      return cloneDeep(defaultPlayerState);
 
     case PAUSE_AUDIO:
       return set('playing', false, state);
