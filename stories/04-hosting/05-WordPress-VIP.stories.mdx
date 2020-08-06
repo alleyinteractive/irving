@@ -11,20 +11,19 @@ The VIP Platform has [first-class support for hosting Node.js (Node) application
 * [Highlights](#highlights)
 * [Prerequisites](#prerequisites)
   * [Code structure](#code-structure)
-    * [Standalone repository](#option-1-standalone-repository)
-    * [Using the root directory](#option-2-using-the-root-directory)
-    * [Using a subdirectory](#option-3-using-a-subdirectory)
+    * [Standalone repository](#1-standalone-repository)
+    * [Using the root directory](#2-using-the-root-directory)
+    * [Using a subdirectory](#3-using-a-subdirectory)
   * [Adding the VIP Go package](#adding-the-vip-go-package)
     * [Install the package](#install-the-package)
     * [Confirming with preflight checks](#confirming-with-preflight-checks)
 * [Building the application](#building-the-application)
-  * [Update `package.json`]()
-  * [Adding a `.deployignore`]()
-  * [Set up Travis CI]()
-* [Coordinating environment creation with WordPress VIP]()
-  * [Confirm your build]()
-  * [What to tell VIP]()
-
+  * [Update `package.json`](#update-packagejson)
+  * [Adding a `.deployignore`](#adding-a-deployignore)
+  * [Set up Travis CI](#set-up-travis-ci)
+* [Coordinating environment creation with WordPress VIP](#coordinating-environment-creation-with-vip)
+  * [Confirm your build](#confirm-your-build)
+  * [Communicating with VIP](#communicating-with-vip)
 
 # Highlights
 **Summary**
@@ -266,7 +265,7 @@ npm start
 ```
 Your Irving application should be running locally.
 
-## What to tell VIP
+## Communicating with VIP
 Now that your Irving application is ready to go, you should reach out to VIP to get a new Node/Redis environment deploying. This is typically done through Zendesk, but the process may vary depending on your contract and service level agreement.
 
 You'll want to provide them with the following information (they may ask for additional information or clarification),
