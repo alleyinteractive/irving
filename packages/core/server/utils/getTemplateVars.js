@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { getConfigObject } from '../utils/getConfigValue';
+import { getConfigObject } from 'utils/getConfigValue';
 
 /**
  *
