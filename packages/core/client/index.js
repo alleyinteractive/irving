@@ -6,6 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
+import set from 'lodash/fp/set';
 import { actionLocationChange } from 'actions';
 import Cookies from 'universal-cookie';
 import App from 'components/app';
@@ -19,9 +20,16 @@ if (process.env.DEBUG) {
   debug.enable(process.env.DEBUG);
 }
 
+const cookies = new Cookies();
 const sagaMiddleware = createSagaMiddleware();
 const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware));
-const state = window.__PRELOADED_STATE__ || defaultState; // eslint-disable-line no-underscore-dangle
+const preloadedState = window.__PRELOADED_STATE__ || defaultState; // eslint-disable-line no-underscore-dangle
+// Re-hydrate cookies (yum).
+const state = set(
+  'route.cookies',
+  cookies.getAll({ doNotParse: true }),
+  preloadedState
+);
 const persistConfig = {
   key: 'root',
   storage: browserStorage,
@@ -31,7 +39,6 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, state, enhancer);
 const persistor = persistStore(store);
 const rootEl = document.getElementById('root');
-const cookies = new Cookies();
 
 sagaMiddleware.run(rootSaga);
 
