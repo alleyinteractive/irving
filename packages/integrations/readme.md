@@ -12,7 +12,19 @@ A collection of Irving-friendly components for getting you started with common t
 The integrations manager is a component that consumes a `irving/integrations` configuration retrieved from the REST API that dynamically configures, stores props for, and renders corresponding integrations based on the keys set in the configuration object.
 
 ### Configuration
-Configuring the integrations manager is a simple process. First, add the integrations manager component to the irving componentMap. Example:
+Configuring the integrations manager is a simple process. First, add the `irving/integrations` component as a default in your `templates/defaults.json` file. Example:
+```json
+{
+	"defaults": [
+		{
+			"name": "irving/integrations",
+			"children": []
+		},
+        // ... other defaults
+	]
+}
+```
+Second, add the integrations manager component to the irving componentMap. Example:
 ```js javascript
 import { IntegrationsManager } from '@irvingjs/integrations';
 
