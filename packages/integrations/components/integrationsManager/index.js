@@ -5,8 +5,8 @@ import userConfig from '@irvingjs/irving.config';
 // Redux.
 import { connect } from 'react-redux';
 import { actionHydrateComponents } from '../../actions';
-// Integration components.
-import GoogleAnalytics from '../googleAnalytics';
+// Component Map.
+import componentMap from './componentMap';
 
 /**
  * Integrations Manager.
@@ -27,10 +27,6 @@ const IntegrationsManager = ({
   hydrateComponents,
   hydratedComponents,
 }) => {
-  // Declare a map of available integration components with a corresponding key.
-  const componentMap = [
-    { key: 'googleAnalytics', el: GoogleAnalytics },
-  ];
   // This check is run on server-side renders to ensure that the component hydration
   // is ran a single time. After hydration, `isHydrated` is set to `true` and will
   // only be re-run if the component props change during the component's lifecycle.
@@ -45,7 +41,7 @@ const IntegrationsManager = ({
       // Get the component's key.
       const { key } = component;
 
-      if (- 1 < keyMap.indexOf(key)) {
+      if (keyMap.includes(key)) {
         // Retrieve the key/value pairs set for the integration and convert them into props.
         // If a user config override exists, use it instead.
         let props;
@@ -86,7 +82,7 @@ const IntegrationsManager = ({
     return null;
   };
 
-  if (0 < hydratedComponents.length) {
+  if (hydratedComponents.length) {
     return (
       <>
         {hydratedComponents.map(renderComponents)}
