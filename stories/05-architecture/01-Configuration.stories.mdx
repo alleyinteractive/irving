@@ -330,6 +330,23 @@ export default {
 };
 ```
 
+## Denylist for preloaded client-side state
+* **where to configure**: `irving.config.js` in the `preloadedStateDenylist` key
+* **type**: array
+* **purpose**: Prevent certain keys in global redux state from being rendered in the server-side HTML. We follow Redux' [server-rendering guide](https://redux.js.org/recipes/server-rendering) to pass the initial state constructed in the first server-side render to the client side via a global `window.__PRELOADED_STATE__` variable. If you have both potentially sensitive data in redux state and are employing an edge cache, this presents a situation where one user's data may be presented to another user. This key will allow you to prevent this from happening and, by default, this method will be employed for passing cookie data from server to client securely.
+
+This config field expects an array of objects, in which each object has two keys: `key` and `rehydrationFunction`. The key can be in any format acceptable by lodash's [get (or set) functions](https://lodash.com/docs/4.17.15#get). The `rehydrationFunction` will be run to rehydrate data on the client side, if necessary.
+```javascript
+export default {
+  preloadedStateDenylist: [
+    {
+      key: 'my.nested.key',
+      rehydrationFunction: () => getStateFromSomewhereElse(),
+    },
+  ],
+};
+```
+
 ## Webpack Configuration
 * **where to configure**: `config/webpack.config.js`
 * **type**: object

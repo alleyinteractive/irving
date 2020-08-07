@@ -1,13 +1,14 @@
 import unset from 'lodash/fp/unset';
-import getValueFromConfig from 'config/irving/getValueFromConfig';
+import { getValueFromConfig } from 'config/irving/getValueFromConfig';
+import preloadedStateDenylist from 'config/preloadedStateDenylist';
 
 const encodeState = (state) => {
-  const unsetPaths = getValueFromConfig(
+  const unsetConfigs = getValueFromConfig(
     'preloadedStateDenylist',
-    ['route.cookie']
+    preloadedStateDenylist
   );
-  const sanitizedState = unsetPaths.reduce(
-    (acc, path) => unset(path, acc),
+  const sanitizedState = unsetConfigs.reduce(
+    (acc, config) => unset(config.key, acc),
     state
   );
 
