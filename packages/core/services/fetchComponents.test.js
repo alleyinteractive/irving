@@ -2,7 +2,7 @@ import fetchMock from 'fetch-mock';
 import cachedFetchComponents, {
   fetchComponents,
 } from 'services/fetchComponents';
-import cacheService from './cacheService/getService';
+import cacheService from './cacheService';
 
 jest.mock('ioredis');
 

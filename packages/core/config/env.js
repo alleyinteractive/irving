@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { appRoot } = require('./paths');
-const { getConfigArray } = require('../utils/getConfigValue');
+const { getValueFromFiles } = require('./irving/getValueFromFiles');
 
 /**
  * Get the client available environment variables.
@@ -19,14 +19,18 @@ module.exports = function getEnv() {
 
   // Only include allowlisted variables for client environments to avoid leaking
   // sensitive information.
-  const allowlistArray = getConfigArray('envAllowlist', [
-    'NODE_ENV',
-    'API_ROOT_URL',
-    'DEBUG',
-    'ROOT_URL',
-    'COOKIE_MAP_LIST',
-    'FETCH_TIMEOUT',
-  ]);
+  const allowlistArray = getValueFromFiles(
+    'config/envAllowlist.js',
+    [
+      'NODE_ENV',
+      'API_ROOT_URL',
+      'DEBUG',
+      'ROOT_URL',
+      'COOKIE_MAP_LIST',
+      'FETCH_TIMEOUT',
+      'IRVING_EXECUTION_CONTEXT',
+    ]
+  );
   const allowlist = [
     new RegExp(allowlistArray.join('|')),
     new RegExp('^API_QUERY_PARAM'),

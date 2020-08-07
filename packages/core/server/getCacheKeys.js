@@ -1,4 +1,4 @@
-const cacheService = require('../services/cacheService/getService')();
+const cacheService = require('../services/cacheService')();
 
 const getCacheKeys = async (req, res) => {
   if (! cacheService.client) {

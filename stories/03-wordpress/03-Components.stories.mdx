@@ -1,0 +1,53 @@
+<Meta title="WordPress|WP Irving Components" />
+
+# Components in WP Irving
+
+
+## Core component types
+
+To aid in quickly creating layouts, the WP-Irving plugin includes a set of registered component types, which can used in template files, that automatically pull in data from WordPress so you don't have to write a lot of back-end code to get your templates up and running. The full list of available component types can be found here: https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components.
+
+## Register custom component types
+
+In addition to the core components, projects can create and register their own component types using the `WP_Irving\Components\register_components()` function.
+
+Ex:
+```php
+<?php
+/**
+ * Example component registration.
+ */
+
+WP_Irving\Components\register_component(
+	'namespace/example-component',
+	[
+		// Define default configuration schema for the component.
+		'config'            => [
+			'property' => [
+				'type'    => 'bool',
+				'default' => false,
+			],
+		],
+		'config_callback'   => function ( $config ) {
+
+			/*
+			 * Add custom logic that hydrates the component's 
+			 * configuration properties with WP data.
+			 */
+
+			return $config;
+		},
+		'children_callback' => function ( $children, $config ) {
+
+			/*
+			 * Add custom logic that modifies the component's
+			 * children array based on configuration properties.
+			 */
+
+			return $children;
+		},
+	]
+);
+```
+
+You can also register components using the `WP_Irving\Components\register_component_from_config()` function and pass a path to a JSON file defining the component's schema (see examples of registering from JSON schema in the core components library).

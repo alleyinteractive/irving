@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/aws-lambda
+
+
+
+
+
+# [3.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2020-07-26)
+
+
+### Bug Fixes
+
+* **icons:** remove core icon svgs, move spinner into styled-components ([f0bd7d4](https://github.com/alleyinteractive/irving/packages/aws-lambda/commit/f0bd7d49ce317941c7d22ec7069fcb9a936cb2a5))
+
+
+
+
+
 ## [2.19.2](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v2.19.1...v2.19.2) (2020-06-30)
 
 **Note:** Version bump only for package @irvingjs/aws-lambda

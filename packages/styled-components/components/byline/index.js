@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import withThemes from '@irvingjs/styled/components/withThemes';
+import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -63,29 +63,30 @@ const Byline = (props) => {
           <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
             {children.map((child, index) => {
+              const key = index;
               // First through second to last author.
               if (index < (children.length - 2)) {
                 return (
-                  <>
+                  <Fragment key={key}>
                     <AuthorWrapper>{child}</AuthorWrapper>
                     {multiDelimiter}
-                  </>
+                  </Fragment>
                 );
               }
 
               // Second to last author.
               if (index < (children.length - 1)) {
                 return (
-                  <>
+                  <Fragment key={key}>
                     <AuthorWrapper>{child}</AuthorWrapper>
                     {lastDelimiter}
-                  </>
+                  </Fragment>
                 );
               }
 
               // Last author.
               return (
-                <AuthorWrapper>{child}</AuthorWrapper>
+                <AuthorWrapper key={key}>{child}</AuthorWrapper>
               );
             })}
           </AuthorsWrapper>

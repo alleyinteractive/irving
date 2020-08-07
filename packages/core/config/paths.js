@@ -29,7 +29,7 @@ const appIrvingRoot = path.join(
  * working directory.
  *
  * @param {string} relativePath Path relative to irving core.
- * @returns {string} - absolute path
+ * @returns {string} Absolute path
  */
 const resolveIrvingDir = (relativePath) => (
   path.resolve(irvingRoot, relativePath)
@@ -40,7 +40,7 @@ const resolveIrvingDir = (relativePath) => (
  * working directory.
  *
  * @param {string} relativePath Path relative to the user app.
- * @returns {string} - absolute path
+ * @returns {string} Absolute path
  */
 const resolveAppDir = (relativePath) => path.resolve(appRoot, relativePath);
 
@@ -48,7 +48,7 @@ const resolveAppDir = (relativePath) => path.resolve(appRoot, relativePath);
  * Ensure build paths are consistent.
  *
  * @param {string} relativePath Path relative to the build context.
- * @returns {string} - absolute path
+ * @returns {string} Absolute path
  */
 const resolveBuildDir = (relativePath) => (
   path.resolve(buildContext, relativePath)
@@ -61,6 +61,7 @@ module.exports = {
   buildContext,
   clientBuild: resolveBuildDir('build/client'),
   clientRoot: resolveIrvingDir('client'),
+  config: resolveAppDir('irving.config.js'),
   globalStyles: resolveIrvingDir('assets/styles'),
   irvingRoot,
   mocks: resolveIrvingDir('__mocks__'),
@@ -69,7 +70,5 @@ module.exports = {
   proxyUrl: PROXY_URL,
   rootUrl: ROOT_URL || 'http://localhost:3001',
   serverBuild: resolveBuildDir('build/server'),
-  serverConfig: resolveBuildDir('irving.config.server.js'),
-  serverRoot: resolveIrvingDir('server/serverRenderer.js'),
-  userConfig: resolveAppDir('irving.config.js'),
+  serverRoot: resolveIrvingDir('server/serverRenderer'),
 };

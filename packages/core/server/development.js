@@ -4,7 +4,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const getConfig = require('../config/webpack.config.js');
-const getConfigField = require('../utils/getConfigField');
+const getValueFromFiles = require('../config/irving/getValueFromFiles');
 
 const config = getConfig({}, { mode: 'development' });
 const matchClient = ({ name }) => 'client' === name;
@@ -16,11 +16,15 @@ const { PROXY_URL } = process.env;
 
 /**
  * Add the required middleware to support running the app in development mode.
- * @param {object} app - express application
+ *
+ * @param {object} app Express application
  */
 const developmentMiddleware = (app) => {
   // Allow customization of development server
-  const irvingDevMiddleware = getConfigField('customizeDevServer');
+  const irvingDevMiddleware = getValueFromFiles(
+    'server/customizeDevServer.js',
+    [() => {}]
+  );
   irvingDevMiddleware.forEach((middleware) => middleware(app));
 
   // Serve webpack handled assets.

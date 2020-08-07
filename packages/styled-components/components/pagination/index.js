@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
-import withThemes from '@irvingjs/styled/components/withThemes';
+import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
 

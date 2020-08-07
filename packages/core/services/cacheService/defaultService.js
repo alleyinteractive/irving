@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = () => ({
   client: null,
   get: () => null,
   set: () => {},
@@ -7,4 +7,4 @@ module.exports = {
   remove: () => null,
   cached: () => {},
   close: () => {},
-};
+});

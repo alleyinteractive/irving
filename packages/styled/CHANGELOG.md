@@ -3,6 +3,257 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0...v3.0.1) (2020-08-06)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.12](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.11](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** ensure we only run each templateVars config function once ([fde7d32](https://github.com/alleyinteractive/irving/packages/styled/commit/fde7d32081b7aa5de6d1a8afb43efb1c8d2cfc75))
+
+
+
+
+
+# [3.0.0-beta.10](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** fix a SSR mismatch issue, begin simplifying logic ([b7828ca](https://github.com/alleyinteractive/irving/packages/styled/commit/b7828cacfabebb8c04428cbf74ba8aa5eb496333))
+
+
+
+
+
+# [3.0.0-beta.9](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.8](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.7](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2020-07-28)
+
+
+### Bug Fixes
+
+* **gettemplatevars:** switch to start/end instead of open/close for head ([c14551d](https://github.com/alleyinteractive/irving/packages/styled/commit/c14551d2c68e9912c15bf618a29d7f0f7592aa09))
+* **helmet:** begin replacement for helmet vars, new test for getAppTemplateVars ([079bd43](https://github.com/alleyinteractive/irving/packages/styled/commit/079bd437c58e22ece15ccb299fa8b1fe6bd6ef33))
+* **tests:** remove a few more unnecessary babel/jest configs ([c59f845](https://github.com/alleyinteractive/irving/packages/styled/commit/c59f8451a731b269b0f665482e3f07d2216659c6))
+
+
+
+
+
+# [3.0.0-beta.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.5](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+
+### Bug Fixes
+
+* **core:** address CR feedback ([92b7847](https://github.com/alleyinteractive/irving/packages/styled/commit/92b78474c41744c00fb341938fb7c1d313c8fb2b))
+* **merge:** merge master ([af08a2c](https://github.com/alleyinteractive/irving/packages/styled/commit/af08a2cbdcfdc981f26703a1f2e5bfb92a792ec8))
+* **styled:** remove cssGrid helpers ([a85665d](https://github.com/alleyinteractive/irving/packages/styled/commit/a85665dd66217eb612ec5f0de84d53db07b1a8d5))
+
+
+### Code Refactoring
+
+* **styled:** begin removing unnecessary components from styled package ([95f80a8](https://github.com/alleyinteractive/irving/packages/styled/commit/95f80a80e873e359245f933971fe76e00a87adbe))
+
+
+### BREAKING CHANGES
+
+* **styled:** Removes components
+
+
+
+# [3.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.14...v3.0.0-alpha.15) (2020-07-10)
+
+
+
+# [3.0.0-alpha.14](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.13...v3.0.0-alpha.14) (2020-07-10)
+
+
+
+# [3.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.12...v3.0.0-alpha.13) (2020-07-10)
+
+
+
+# [3.0.0-alpha.12](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.11...v3.0.0-alpha.12) (2020-07-10)
+
+
+
+# [3.0.0-alpha.11](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.10...v3.0.0-alpha.11) (2020-07-10)
+
+
+
+# [3.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.9...v3.0.0-alpha.10) (2020-07-10)
+
+
+### Bug Fixes
+
+* **withthemes:** fix propTypes for style prop in styled/withThemes ([62d2e44](https://github.com/alleyinteractive/irving/packages/styled/commit/62d2e4426e7ba150a16f3e218644e23f6c929896))
+
+
+
+# [3.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.8...v3.0.0-alpha.9) (2020-07-07)
+
+
+
+# [3.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.5...v3.0.0-alpha.6) (2020-07-07)
+
+
+
+# [3.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.4...v3.0.0-alpha.5) (2020-07-07)
+
+
+### Bug Fixes
+
+* **styles:** fix various stylelint errors now that stylelint is working again ([73344ef](https://github.com/alleyinteractive/irving/packages/styled/commit/73344ef4b2b7e0d4ed1ad4dac012705ec3655515))
+
+
+
+# [3.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.21.3...v3.0.0-alpha.4) (2020-07-07)
+
+
+
+# [3.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.2...v3.0.0-alpha.3) (2020-06-29)
+
+
+
+# [3.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.1...v3.0.0-alpha.2) (2020-06-29)
+
+
+
+# [3.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.0.0-alpha.0...v3.0.0-alpha.1) (2020-06-29)
+
+
+### Bug Fixes
+
+* **config:** fix issue with configs that should be arrays of functions ([8f853f6](https://github.com/alleyinteractive/irving/packages/styled/commit/8f853f6442686c933311561c06838951f6daf82a))
+
+
+
+# [3.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.18.1...v3.0.0-alpha.0) (2020-06-29)
+
+
+### Bug Fixes
+
+* **services:** continue reorganizing services and fixing lingering issues ([5b5e367](https://github.com/alleyinteractive/irving/packages/styled/commit/5b5e367e9a963cca2b183d3916de55e951a752c4))
+
+
+### Features
+
+* **packages:** work on allowing packages to exclude themselves when pulling fs configs ([0e8d5f5](https://github.com/alleyinteractive/irving/packages/styled/commit/0e8d5f54e0c50b1a4bb51a28b06c4f3d84b42fa7))
+
+
+
+
+
+## [2.23.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+## [2.23.1-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.23.0...v2.23.1-beta.0) (2020-07-19)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [2.23.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.23.0-beta.0...v2.23.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [2.23.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.22.1...v2.23.0-beta.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
 ## [2.21.3](https://github.com/alleyinteractive/irving/packages/styled/compare/v2.21.2...v2.21.3) (2020-07-07)
 
 **Note:** Version bump only for package @irvingjs/styled

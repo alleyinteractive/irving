@@ -7,9 +7,10 @@ import { route as defaultState } from 'reducers/defaultState';
 
 /**
  * Handle Redux actions operating on the route state slice.
- * @param {object} routeState - route state slice
- * @param {{type payload}} action - Redux action
- * @returns {object} - The updated route state
+ *
+ * @param {object} routeState Route state slice
+ * @param {{type payload}} action Redux action
+ * @returns {object} The updated route state
  */
 export default function routeReducer(routeState = defaultState, action) {
   const { type, payload } = action;

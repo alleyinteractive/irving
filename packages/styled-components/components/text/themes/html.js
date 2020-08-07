@@ -19,6 +19,7 @@ const htmlVars = {
 
 // eslint-disable import/prefer-default-export.
 export const TextWrapper = styled.div`
+
   address,
   area,
   article,
@@ -49,17 +50,19 @@ export const TextWrapper = styled.div`
   textarea,
   ul,
   video {
-    // Margins for most elements.
+    /* Margins for most elements. */
     margin-bottom: 1rem;
   }
 
-  input,select,button {
-    // Set body font family and some finicky elements.
+  input,
+  select,
+  button {
+    /* Set body font family and some finicky elements. */
     font-family: ${htmlVars['--nc-font-sans']};
   }
 
   ::selection {
-    // Set background color for selected text.
+    /* Set background color for selected text. */
     background: ${htmlVars['--nc-ac-1']};
     color: ${htmlVars['--nc-ac-tx']};
   }
@@ -71,25 +74,30 @@ export const TextWrapper = styled.div`
     line-height: 1.4;
   }
 
-  h1,h2,h3,h4,h5,h6 {
-    line-height: 1;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: ${htmlVars['--nc-tx-1']};
-    padding-top: .875rem;
+    line-height: 1;
+    padding-top: 0.875rem;
   }
 
   h1,
   h2,
   h3 {
-    color: ${htmlVars['--nc-tx-1']};
-    padding-bottom: 2px;
-    margin-bottom: 8px;
     border-bottom: 1px solid ${htmlVars['--nc-bg-2']};
+    color: ${htmlVars['--nc-tx-1']};
+    margin-bottom: 8px;
+    padding-bottom: 2px;
   }
 
   h4,
   h5,
   h6 {
-    margin-bottom: .3rem;
+    margin-bottom: 0.3rem;
   }
 
   h1 {
@@ -113,7 +121,7 @@ export const TextWrapper = styled.div`
   }
 
   h6 {
-    font-size: .875rem;
+    font-size: 0.875rem;
   }
 
   a {
@@ -131,18 +139,18 @@ export const TextWrapper = styled.div`
 
   b,
   strong {
-    font-weight: bold;
+    font-weight: 700;
   }
 
   abbr:hover {
-    // Set the '?' cursor while hovering an abbreviation.
+    /* Set the '?' cursor while hovering an abbreviation. */
     cursor: help;
   }
 
   blockquote {
-    padding: 1.5rem;
     background: ${htmlVars['--nc-bg-2']};
     border-left: 5px solid ${htmlVars['--nc-bg-3']};
+    padding: 1.5rem;
   }
 
   abbr {
@@ -150,8 +158,8 @@ export const TextWrapper = styled.div`
   }
 
   blockquote *:last-child {
-    padding-bottom: 0;
     margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   a button,
@@ -159,19 +167,18 @@ export const TextWrapper = styled.div`
   input[type="submit"],
   input[type="reset"],
   input[type="button"] {
-    font-size: 1rem;
+    background: ${htmlVars['--nc-lk-1']};
+    border-radius: 4px;
+    border: 0;
+    box-sizing: border-box;
+    color: ${htmlVars['--nc-lk-tx']};
+    cursor: pointer;
     display: inline-block;
+    font-size: 1rem;
     padding: 6px 12px;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    background: ${htmlVars['--nc-lk-1']};
-    color: ${htmlVars['--nc-lk-tx']};
-    border: 0;
-    border-radius: 4px;
-    box-sizing: border-box;
-    cursor: pointer;
-    color: ${htmlVars['--nc-lk-tx']};
   }
 
   a button[disabled],
@@ -180,10 +187,10 @@ export const TextWrapper = styled.div`
   input[type="reset"][disabled],
   input[type="button"][disabled] {
     cursor: default;
-    opacity: .5;
-
-    // Set the [X] cursor while hovering a disabled link.
+    /* Set the [X] cursor while hovering a disabled link. */
     cursor: not-allowed;
+    opacity: 0.5;
+
   }
 
   .button:focus,
@@ -203,7 +210,7 @@ export const TextWrapper = styled.div`
   pre,
   kbd,
   samp {
-    // Set the font family for monospaced elements.
+    /* Set the font family for monospaced elements. */
     font-family: ${htmlVars['--nc-font-mono']};
   }
 
@@ -211,113 +218,113 @@ export const TextWrapper = styled.div`
   samp,
   kbd,
   pre {
-    // The main preformatted style. This is changed slightly across different cases..
+    /* The main preformatted style. This is changed slightly across different cases.. */
     background: ${htmlVars['--nc-bg-2']};
-    border: 1px solid ${htmlVars['--nc-bg-3']};
     border-radius: 4px;
-    padding: 3px 6px;
+    border: 1px solid ${htmlVars['--nc-bg-3']};
     font-size: 0.9rem;
+    padding: 3px 6px;
   }
 
   kbd {
-    // Makes the kbd element look like a keyboard key.
+    /* Makes the kbd element look like a keyboard key. */
     border-bottom: 3px solid ${htmlVars['--nc-bg-3']};
   }
 
   pre {
-    padding: 1rem 1.4rem;
     max-width: 100%;
     overflow: auto;
+    padding: 1rem 1.4rem;
   }
 
   pre code {
-    // When <code> is in a <pre>, reset it's formatting to blend in.
+    /* When <code> is in a <pre>, reset it's formatting to blend in. */
     background: inherit;
-    font-size: inherit;
-    color: inherit;
     border: 0;
-    padding: 0;
+    color: inherit;
+    font-size: inherit;
     margin: 0;
+    padding: 0;
   }
 
   code pre {
-    // When <pre> is in a <code>, reset it's formatting to blend in.
-    display: inline;
+    /* When <pre> is in a <code>, reset it's formatting to blend in. */
     background: inherit;
-    font-size: inherit;
-    color: inherit;
     border: 0;
-    padding: 0;
+    color: inherit;
+    display: inline;
+    font-size: inherit;
     margin: 0;
+    padding: 0;
   }
 
   details {
-    // Make the <details> look more "clickable".
-    padding: .6rem 1rem;
+    /* Make the <details> look more "clickable". */
     background: ${htmlVars['--nc-bg-2']};
-    border: 1px solid ${htmlVars['--nc-bg-3']};
     border-radius: 4px;
+    border: 1px solid ${htmlVars['--nc-bg-3']};
+    padding: 0.6rem 1rem;
   }
 
   summary {
-    // Makes the <summary> look more like a "clickable" link with the pointer cursor.
+    /* Makes the <summary> look more like a "clickable" link with the pointer cursor. */
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 700;
   }
 
   details[open] {
-    // Adjust the <details> padding while open.
-    padding-bottom: .75rem;
+    /* Adjust the <details> padding while open. */
+    padding-bottom: 0.75rem;
   }
 
   details[open] summary {
-    // Adjust the <details> padding while open.
+    /* Adjust the <details> padding while open. */
     margin-bottom: 6px;
   }
 
-  details[open]>*:last-child {
-    // Resets the bottom margin of the last element in the <details> while <details> is opened. This prevents double margins/paddings..
+  details[open] > *:last-child {
+    /* Resets the bottom margin of the last element in the <details> while <details> is opened. This prevents double margins/paddings.. */
     margin-bottom: 0;
   }
 
   dt {
-    font-weight: bold;
+    font-weight: 700;
   }
 
   dd::before {
-    // Add an arrow to data table definitions.
+    /* Add an arrow to data table definitions. */
     content: '→ ';
   }
 
   hr {
-    // Reset the border of the <hr> separator, then set a better line.
-    border: 0;
+    /* Reset the border of the <hr> separator, then set a better line. */
     border-bottom: 1px solid ${htmlVars['--nc-bg-3']};
+    border: 0;
     margin: 1rem auto;
   }
 
   fieldset {
+    border-radius: 4px;
+    border: 1px solid ${htmlVars['--nc-bg-3']};
     margin-top: 1rem;
     padding: 2rem;
-    border: 1px solid ${htmlVars['--nc-bg-3']};
-    border-radius: 4px;
   }
 
   legend {
-    padding: auto .5rem;
+    padding: auto 0.5rem;
   }
 
   table {
-    // border-collapse sets the table's elements to share borders, rather than floating as separate "boxes"..
+    /* border-collapse sets the table's elements to share borders, rather than floating as separate "boxes".. */
     border-collapse: collapse;
-    width: 100%
+    width: 100%;
   }
 
   td,
   th {
     border: 1px solid ${htmlVars['--nc-bg-3']};
+    padding: 0.5rem;
     text-align: left;
-    padding: .5rem;
   }
 
   th {
@@ -325,23 +332,23 @@ export const TextWrapper = styled.div`
   }
 
   tr:nth-child(even) {
-    // Set every other cell slightly darker. Improves readability..
+    /* Set every other cell slightly darker. Improves readability.. */
     background: ${htmlVars['--nc-bg-2']};
   }
 
   table caption {
-    font-weight: bold;
-    margin-bottom: .5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
   }
 
   textarea {
-    // Don't let the <textarea> extend off the screen naturally or when dragged by the user.
+    /* Don't let the <textarea> extend off the screen naturally or when dragged by the user. */
     max-width: 100%;
   }
 
   ol,
   ul {
-    // Replace the browser default padding.
+    /* Replace the browser default padding. */
     padding-left: 2rem;
   }
 
@@ -354,7 +361,7 @@ export const TextWrapper = styled.div`
   }
 
   li {
-    margin-top: .4rem;
+    margin-top: 0.4rem;
   }
 
   ul ul,
@@ -365,22 +372,22 @@ export const TextWrapper = styled.div`
   }
 
   mark {
-    padding: 3px 6px;
     background: ${htmlVars['--nc-ac-1']};
     color: ${htmlVars['--nc-ac-tx']};
+    padding: 3px 6px;
   }
 
   textarea,
   select,
   input {
-    padding: 6px 12px;
-    margin-bottom: .5rem;
     background: ${htmlVars['--nc-bg-2']};
-    color: ${htmlVars['--nc-tx-2']};
-    border: 1px solid ${htmlVars['--nc-bg-3']};
     border-radius: 4px;
+    border: 1px solid ${htmlVars['--nc-bg-3']};
     box-shadow: none;
     box-sizing: border-box;
+    color: ${htmlVars['--nc-tx-2']};
+    margin-bottom: 0.5rem;
+    padding: 6px 12px;
   }
 
   img,

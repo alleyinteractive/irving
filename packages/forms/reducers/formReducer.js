@@ -1,4 +1,3 @@
-import flow from 'lodash/fp/flow';
 import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
 import merge from 'lodash/fp/merge';
@@ -17,13 +16,14 @@ import { formState as defaultState } from './defaultState';
  */
 const formReducer = (state = {}, action) => {
   const { type, payload } = action;
-  const formName = get('formName', payload);
+  const formEndpoint = get('formEndpoint', payload);
+  const formResponse = get('response', payload);
 
-  if (! formName) {
+  if (! formEndpoint) {
     return state;
   }
 
-  const formState = get(formName, state) || defaultState;
+  const formState = get(formEndpoint, state) || defaultState;
   let newFormState;
 
   switch (type) {
@@ -39,7 +39,7 @@ const formReducer = (state = {}, action) => {
       newFormState = {
         submitting: false,
         submitted: true,
-        redirect: get('response.redirect', payload),
+        redirect: get('redirect', formResponse),
       };
       break;
 
@@ -47,13 +47,14 @@ const formReducer = (state = {}, action) => {
       newFormState = {
         submitting: false,
         failed: true,
+        error: get('error', formResponse),
       };
       break;
 
     case RECEIVE_SUBMIT_INVALID:
       newFormState = {
         submitting: false,
-        validation: payload.messageMap,
+        validation: get('validation', formResponse),
       };
       break;
 
@@ -62,7 +63,7 @@ const formReducer = (state = {}, action) => {
   }
 
   return set(
-    formName,
+    formEndpoint,
     merge(formState, newFormState),
     state
   );

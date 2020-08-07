@@ -3,6 +3,157 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0...v3.0.1) (2020-08-06)
+
+
+### Bug Fixes
+
+* **config:** fix configurations for forms, audio-player packages ([985827d](https://github.com/alleyinteractive/irving/packages/audio-player/commit/985827d73683fe10509f524fb821bf2a8e74b2f6))
+
+
+
+
+
+# [3.0.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.12](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.11](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.10](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.9](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.8](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.7](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.6](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.5](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+
+### Bug Fixes
+
+* **merge:** merge master ([af08a2c](https://github.com/alleyinteractive/irving/packages/audio-player/commit/af08a2cbdcfdc981f26703a1f2e5bfb92a792ec8))
+* **services:** continue reorganizing services and fixing lingering issues ([5b5e367](https://github.com/alleyinteractive/irving/packages/audio-player/commit/5b5e367e9a963cca2b183d3916de55e951a752c4))
+
+
+
+
+
+## [2.23.1](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+## [2.23.1-beta.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v2.23.0...v2.23.1-beta.0) (2020-07-19)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [2.23.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v2.23.0-beta.0...v2.23.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [2.23.0-beta.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v2.22.1...v2.23.0-beta.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
 ## [2.21.3](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v2.21.2...v2.21.3) (2020-07-07)
 
 **Note:** Version bump only for package @irvingjs/audio-player

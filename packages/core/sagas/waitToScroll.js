@@ -37,7 +37,8 @@ export default function* waitToScroll() {
 /**
  * Asynchronously wait a reasonable amount of time for an element to become
  * available.
- * @param {string} selector
+ *
+ * @param {string} selector A DOM selector
  * @returns {Element|null}
  */
 function* waitForEl(selector) {

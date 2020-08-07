@@ -3,6 +3,248 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0...v3.0.1) (2020-08-06)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.12](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.11](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.10](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.9](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.8](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2020-07-28)
+
+
+### Bug Fixes
+
+* **server templates:** fix noscript, add server dir to styled-components published files ([e6d0685](https://github.com/alleyinteractive/irving/packages/styled-components/commit/e6d0685a28e713abcc21912cad747781f61bba58))
+
+
+
+
+
+# [3.0.0-beta.7](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2020-07-28)
+
+
+### Bug Fixes
+
+* **tests:** remove a few more unnecessary babel/jest configs ([c59f845](https://github.com/alleyinteractive/irving/packages/styled-components/commit/c59f8451a731b269b0f665482e3f07d2216659c6))
+
+
+
+
+
+# [3.0.0-beta.6](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.5](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2020-07-26)
+
+
+### Bug Fixes
+
+* **styled-components:** publish assets to styled components package ([8f3fd8a](https://github.com/alleyinteractive/irving/packages/styled-components/commit/8f3fd8a3d4c440505caec715985a6b40ea5a89a7))
+
+
+
+
+
+# [3.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2020-07-26)
+
+
+### Bug Fixes
+
+* **icons:** remove core icon svgs, move spinner into styled-components ([f0bd7d4](https://github.com/alleyinteractive/irving/packages/styled-components/commit/f0bd7d49ce317941c7d22ec7069fcb9a936cb2a5))
+
+
+
+
+
+# [3.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+
+### Bug Fixes
+
+* **shimdom:** address CR feedback ([eee6d9e](https://github.com/alleyinteractive/irving/packages/styled-components/commit/eee6d9e5c525f54dd040548b18b77941997ab2f9))
+* **styled-components:** fix incorrect import paths for withThemes ([06dd30b](https://github.com/alleyinteractive/irving/packages/styled-components/commit/06dd30b394be99058c19f137b526025749827ef3))
+
+
+
+# [3.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.14...v3.0.0-alpha.15) (2020-07-10)
+
+
+### Bug Fixes
+
+* **image:** remove width from image for now ([60ec393](https://github.com/alleyinteractive/irving/packages/styled-components/commit/60ec3935f46b2bfd88f234ca7642dd2d1df59683))
+
+
+
+# [3.0.0-alpha.14](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.13...v3.0.0-alpha.14) (2020-07-10)
+
+
+
+# [3.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.12...v3.0.0-alpha.13) (2020-07-10)
+
+
+
+# [3.0.0-alpha.12](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.11...v3.0.0-alpha.12) (2020-07-10)
+
+
+
+# [3.0.0-alpha.11](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.10...v3.0.0-alpha.11) (2020-07-10)
+
+
+
+# [3.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.9...v3.0.0-alpha.10) (2020-07-10)
+
+
+
+# [3.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.8...v3.0.0-alpha.9) (2020-07-07)
+
+
+
+# [3.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.5...v3.0.0-alpha.6) (2020-07-07)
+
+
+
+# [3.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.4...v3.0.0-alpha.5) (2020-07-07)
+
+
+### Bug Fixes
+
+* **styles:** fix various stylelint errors now that stylelint is working again ([73344ef](https://github.com/alleyinteractive/irving/packages/styled-components/commit/73344ef4b2b7e0d4ed1ad4dac012705ec3655515))
+
+
+
+# [3.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.21.3...v3.0.0-alpha.4) (2020-07-07)
+
+
+
+# [3.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.2...v3.0.0-alpha.3) (2020-06-29)
+
+
+
+# [3.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.1...v3.0.0-alpha.2) (2020-06-29)
+
+
+
+# [3.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.0.0-alpha.0...v3.0.0-alpha.1) (2020-06-29)
+
+
+
+# [3.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.18.1...v3.0.0-alpha.0) (2020-06-29)
+
+
+### Bug Fixes
+
+* **services:** continue reorganizing services and fixing lingering issues ([5b5e367](https://github.com/alleyinteractive/irving/packages/styled-components/commit/5b5e367e9a963cca2b183d3916de55e951a752c4))
+
+
+
+
+
+## [2.23.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+## [2.23.1-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.23.0...v2.23.1-beta.0) (2020-07-19)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [2.23.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.23.0-beta.0...v2.23.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [2.23.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.22.1...v2.23.0-beta.0) (2020-07-16)
+
+
+### Features
+
+* **byline component:** add className prop to Byline component ([34860fb](https://github.com/alleyinteractive/irving/packages/styled-components/commit/34860fb02fbc315251d4446b1f128c524f51fb36))
+
+
+
+
+
 ## [2.22.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v2.22.0...v2.22.1) (2020-07-15)
 
 **Note:** Version bump only for package @irvingjs/styled-components

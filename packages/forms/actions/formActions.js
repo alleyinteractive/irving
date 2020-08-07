@@ -9,38 +9,41 @@ import {
 
 /**
  * Create a request submit Redux action.
- * @param {string} formName
+ * @param {string} formEndpoint
  * @param {object} submission
  * @returns {{type, payload}}
  */
-export function actionRequestSubmit(formName, submission) {
+export function actionRequestSubmit(formEndpoint, submission) {
   const omitEmpty = omitBy((value) => ! value);
   return createAction(REQUEST_SUBMIT, {
-    formName,
+    formEndpoint,
     submission: omitEmpty(submission),
   });
 }
 
-export function actionReceiveSubmitted(formName, response) {
-  return createAction(RECEIVE_SUBMITTED, { formName, response });
+export function actionReceiveSubmitted(formEndpoint, response) {
+  return createAction(RECEIVE_SUBMITTED, { formEndpoint, response });
 }
 
 /**
  * Create a receive submit error Redux action.
- * @param {string} formName
+ * @param {string} formEndpoint
  * @param {Error} err
  * @returns {{type, payload}}
  */
-export function actionReceiveSubmitError(formName, err) {
-  return createAction(RECEIVE_SUBMIT_ERROR, { formName, message: err.message });
+export function actionReceiveSubmitError(formEndpoint, err) {
+  return createAction(
+    RECEIVE_SUBMIT_ERROR,
+    { formEndpoint, error: err.message }
+  );
 }
 
 /**
  * Create a action to receive validation messages.
- * @param {string} formName
- * @param {Object} messageMap
+ * @param {string} formEndpoint
+ * @param {Object} validation
  * @returns {{type, payload}}
  */
-export function actionReceiveSubmitInvalid(formName, messageMap) {
-  return createAction(RECEIVE_SUBMIT_INVALID, { formName, messageMap });
+export function actionReceiveSubmitInvalid(formEndpoint, validation) {
+  return createAction(RECEIVE_SUBMIT_INVALID, { formEndpoint, validation });
 }

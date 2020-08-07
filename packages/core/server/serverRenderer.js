@@ -1,8 +1,8 @@
-/* global appView, errorView */
+// Global passed in via webpack define plugin
+/* global appView, errorView, irvingEnv */
 import 'source-map-support/register';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
@@ -10,25 +10,25 @@ import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
-import getEnv from 'config/env';
 import resolveComponents from 'sagas/resolveComponents';
 import getWebpackAssetTags from 'utils/getWebpackAssetTags';
 import addTrailingSlash from 'utils/addTrailingSlash';
-import getLogService from 'services/logService';
-import getService from 'services/monitorService';
+import getLogService from '@irvingjs/services/logService';
+import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
 import getTemplateVars from './getTemplateVars';
 
-const monitor = getService();
+const monitor = getMonitorService();
 const logError = getLogService('irving:render:error');
 const logRequest = getLogService('irving:render:request');
 
 /**
  * Handle rendering the app as a string that can then be returned as a response
  * from the server.
- * @param {object} req - express request object
- * @param {object} res - express response object to be rendered.
+ *
+ * @param {object} req Express request object
+ * @param {object} res Express response object to be rendered.
  **/
 const render = async (req, res, clientStats) => {
   const sagaMiddleware = createSagaMiddleware();
@@ -84,17 +84,16 @@ const render = async (req, res, clientStats) => {
   // Get some template vars and allow customization by user.
   const customTemplateVars = getTemplateVars('getAppTemplateVars', {
     Wrapper: AppWrapper,
-    irvingHead: getWebpackAssetTags(clientStats).join(''),
+    head: {
+      end: [getWebpackAssetTags(clientStats)],
+    },
   });
 
-  // Clear head data to avoid memory leak.
-  const helmet = Helmet.renderStatic();
   // https://redux.js.org/recipes/server-rendering#security-considerations
   const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
   const templateVars = {
-    helmet,
     preRenderedState: stateEncoded,
-    env: JSON.stringify(getEnv()),
+    env: JSON.stringify(irvingEnv),
     ...customTemplateVars,
   };
 
@@ -111,9 +110,10 @@ const render = async (req, res, clientStats) => {
 
 /**
  * Create a webpack hot server compatible middleware.
- * @param {object} options - the webpack bundle information for server and
+ *
+ * @param {object} options The webpack bundle information for server and
  *                           client configs
- * @returns {function} - an express route middleware function responsible for
+ * @returns {function} An express route middleware function responsible for
  *                       rendering the html response
  */
 export default function serverRenderer(options) {
@@ -130,16 +130,17 @@ export default function serverRenderer(options) {
 
       // Render a error page.
       const ErrorMessageComponent = getComponent('error-message');
-      const ErrorMessageWrapper = () => (
+      const ErrorWrapper = () => (
         <ErrorMessageComponent />
       );
 
       // Get some template vars and allow customization by user.
-      const customTemplateVars = getTemplateVars('getErrorTemplateVars', {
-        Wrapper: ErrorMessageWrapper,
-        irvingHead: '',
+      const templateVars = getTemplateVars('getErrorTemplateVars', {
+        Wrapper: ErrorWrapper,
+        head: {
+          title: '<title>Something has gone wrong</title>',
+        },
       });
-      const templateVars = customTemplateVars;
 
       res.status(500);
       res.render(errorView, templateVars, (templateErr, html) => {

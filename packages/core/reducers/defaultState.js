@@ -1,4 +1,6 @@
-import { getConfigObject } from '../utils/getConfigValue';
+import {
+  getValueFromConfig,
+} from 'config/irving/getValueFromConfig';
 
 export const components = {
   defaults: [],
@@ -30,8 +32,6 @@ export const componentDataMeta = {
   data: [],
 };
 
-const customDefaultState = getConfigObject('defaultState');
-
 const defaultState = {
   components,
   componentData,
@@ -39,7 +39,6 @@ const defaultState = {
   loading,
   route,
   visible,
-  ...customDefaultState,
 };
 
-export default defaultState;
+export default getValueFromConfig('defaultState', defaultState);

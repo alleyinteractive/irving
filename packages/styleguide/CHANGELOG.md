@@ -3,6 +3,150 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0...v3.0.1) (2020-08-06)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.12](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2020-08-03)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.11](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.10](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.9](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.8](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.7](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2020-07-28)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.6](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.5](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2020-07-26)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+## [2.23.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+## [2.23.1-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.23.0...v2.23.1-beta.0) (2020-07-19)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [2.23.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.23.0-beta.0...v2.23.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [2.23.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.22.1...v2.23.0-beta.0) (2020-07-16)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
 ## [2.21.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v2.21.2...v2.21.3) (2020-07-07)
 
 **Note:** Version bump only for package @irvingjs/styleguide

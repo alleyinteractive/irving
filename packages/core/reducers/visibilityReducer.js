@@ -8,8 +8,8 @@ import { visible as defaultState } from './defaultState';
 /**
  * Handle Redux actions related to global UI element visibility.
  *
- * @param {object} visibleState - visible state slice
- * @param {{type payload}} action - Redux action
+ * @param {object} visibleState Visible state slice
+ * @param {{type payload}} action Redux action
  * @return {object}
  */
 export default function visibilityReducer(visibleState = defaultState, action) {

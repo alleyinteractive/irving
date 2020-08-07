@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import pick from 'lodash/fp/pick';
 import get from 'lodash/fp/get';
+import getEnv from 'utils/universalEnv';
 import defaultCookies from 'config/defaultCookies';
 
 /**
@@ -22,7 +23,7 @@ const getCookies = createSelector(
     get('route.cookie'),
   ],
   (routeCookies) => {
-    const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
+    const env = getEnv();
     const envAllowList = env.COOKIE_MAP_LIST ?
       env.COOKIE_MAP_LIST.split(',') :
       [];

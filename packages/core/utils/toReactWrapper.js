@@ -3,10 +3,11 @@ import getReactComponent from 'config/componentMap';
 
 /**
  * Recursively map a tree of API components to React elements.
- * @param {object} apiComponent - api component object
- * @param {bool|ReactElement|array} children - child components to override children in API
- * @param {string} keyPrefix
- * @return {object} - React Element
+ *
+ * @param {object} apiComponent Api component object
+ * @param {bool|ReactElement|array} children Child components to override children in API
+ * @param {string} keyPrefix Prefix for react component key
+ * @return {object} React Element
  */
 export default function toReactWrapper(
   wrappers,

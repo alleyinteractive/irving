@@ -4,16 +4,16 @@ import get from 'lodash/fp/get';
 import { actionRequestSubmit } from '../actions/formActions';
 import { formState as defaultState } from '../reducers/defaultState';
 
-const useConnectedForm = (formName, useFormOpts) => {
+const useConnectedForm = (formEndpoint, useFormOpts) => {
   const formState = useSelector(
-    (state) => (get(`forms.${formName}`, state) || defaultState)
+    (state) => (get(`forms.${formEndpoint}`, state) || defaultState)
   );
   const dispatch = useDispatch();
   const { redirect } = formState;
   const formApi = useForm(useFormOpts);
   const { getValues, handleSubmit } = formApi;
   const onSubmit = handleSubmit(() => {
-    dispatch(actionRequestSubmit(formName, getValues()));
+    dispatch(actionRequestSubmit(formEndpoint, getValues()));
   });
 
   // Redirect post-submission

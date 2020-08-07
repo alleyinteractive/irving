@@ -1,4 +1,4 @@
-const getDefaultState = () => ({
+export default {
   player: {
     currentTime: 0,
     duration: 0,
@@ -9,6 +9,4 @@ const getDefaultState = () => ({
     visible: false,
     volume: 0.5,
   },
-});
-
-export default getDefaultState;
+};

@@ -2,8 +2,9 @@ const { serverBuild, clientBuild, rootUrl } = require('../paths');
 
 /**
  * Get the context specific output configuration.
- * @param {string} context - the configuration context
- * @returns {object} - a output configuration value
+ *
+ * @param {string} context The configuration context
+ * @returns {object} An output configuration value
  */
 module.exports = function getOutput(context) {
   switch (context) {
@@ -21,6 +22,7 @@ module.exports = function getOutput(context) {
         publicPath: `${rootUrl}/`,
         filename: 'static/js/[name].[chunkhash:8].bundle.js',
         chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+        jsonpFunction: 'irvingWebpackJsonp',
       };
 
     case 'development_client':
@@ -29,6 +31,7 @@ module.exports = function getOutput(context) {
         publicPath: `${rootUrl}/`,
         filename: '[name].bundle.js',
         chunkFilename: '[name].chunk.js',
+        jsonpFunction: 'irvingWebpackJsonp',
       };
 
     default:

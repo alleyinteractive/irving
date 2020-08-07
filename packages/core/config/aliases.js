@@ -18,11 +18,6 @@ module.exports = {
   config: './config',
   // Aliases for irving config files. Use core defaults if they don't exist.
   '@irvingjs/irving.config': maybeResolveBuildModule('irving.config.js'),
-  '@irvingjs/irving.config.server': maybeResolveBuildModule(
-    'irving.config.server.js'
-  ),
-  '@irvingjs/componentMap': path.join(
-    buildContext,
-    'componentMap.js'
-  ),
+  // don't use maybeResolveBuildModule here because the this file is required, user must have it.
+  '@irvingjs/componentMap': path.join(buildContext, 'componentMap.js'),
 };
