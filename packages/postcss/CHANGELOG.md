@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.0.1...v3.1.0) (2020-08-09)
+
+
+### Features
+
+* **cli:** add CLI command for linking all installed packages, setting up dev links ([cf2fd6e](https://github.com/alleyinteractive/irving/packages/integrations/commit/cf2fd6e010b2d5edc53d699ee15d6884830af498))
+
+
+
+
+
 ## [3.0.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.0.0...v3.0.1) (2020-08-06)
 
 **Note:** Version bump only for package @irvingjs/postcss
