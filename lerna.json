@@ -18,7 +18,8 @@
     "version": {
       "allowBranch": [
         "master",
-        "develop"
+        "develop",
+        "release/*"
       ]
     }
   }
