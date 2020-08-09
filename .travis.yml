@@ -24,7 +24,7 @@ before_install:
 
 install:
     - npm ci
-    - npm run bootstrap
+    - npm run develop:bootstrap
 
 cache:
   directories:

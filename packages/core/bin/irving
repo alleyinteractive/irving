@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 /* eslint-disable global-require, max-len */
-
 // Initialize env vars as soon as possible for the CLI.
 require('../config/env')();
 
@@ -32,6 +31,9 @@ const commandMap = {
   dev: () => {
     process.env.NODE_ENV = 'development';
     require('../cli/dev');
+  },
+  'link-all': () => {
+    require('../cli/linkAll');
   },
 };
 const commands = Object.keys(commandMap);
