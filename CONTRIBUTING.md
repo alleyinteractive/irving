@@ -12,7 +12,9 @@ Specific branches will be used for specific purposes in this repo. Considering t
 ### If you are a community contributor:
 1. Fork the Irving repo.
 2. `git checkout master` - check out the NPM package release branch.
-3. `npm run develop:prepare` - run this at the root of the Irving repo to prepare the irving repo for development. This script will:
+3. `npm run develop:prepare` - run this at the root of the Irving repo to prepare the irving repo for development. **IMPORTANT NOTE** this script is memory intensive and may take time, but you should only ever need to run it once. Get up and make yourself some coffee or a cocktail and just let it run!
+
+This script will:
   * Run `npm install`.
   * Run `npm link` within all Irving packages to create global symlinks.
   * Clean up `node_modules` within each package
