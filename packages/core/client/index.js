@@ -11,6 +11,7 @@ import { actionLocationChange } from 'actions';
 import Cookies from 'universal-cookie';
 import App from 'components/app';
 import { getValueFromConfig } from 'config/irving/getValueFromConfig';
+import preloadedStateDenylist from 'config/preloadedStateDenylist';
 import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
 import rootSaga from 'sagas';
@@ -29,12 +30,12 @@ const preloadedState = window.__PRELOADED_STATE__ || defaultState; // eslint-dis
 // Rehydrate denylisted keys (like cookies, yum).
 const unsetConfigs = getValueFromConfig(
   'preloadedStateDenylist',
-  ['route.cookie']
+  preloadedStateDenylist
 );
 const rehydratedState = unsetConfigs.reduce(
   (acc, config) => set(
     config.key,
-    config.rehydrationFunction,
+    config.rehydrationFunction(),
     acc
   ),
   preloadedState

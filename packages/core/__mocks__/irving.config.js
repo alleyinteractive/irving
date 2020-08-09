@@ -55,4 +55,10 @@ export default {
   sagas: () => ([
     takeEvery('TEST_ACTION_THREE', () => {}),
   ]),
+  preloadedStateDenylist: [
+    {
+      key: 'test.nested.state',
+      rehydrationFunction: () => 'rehydrated',
+    },
+  ],
 };
