@@ -1,6 +1,10 @@
 <Meta title="Tutorial|How it Works" />
 
-# How it Works
+# Tutorial: How Irving Works
+This section is a high-level overview of Irving's principles and theory.
+
+### Table of Contents
+* Highlights
 * Concept of routing by path
 * Components
   * Components Structure
@@ -9,3 +13,9 @@
   * Component Mapping
 * Styling
   * Styled and Styled Components packages
+
+# Highlights
+
+# An Irving request
+
+# Routing
