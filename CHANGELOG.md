@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/alleyinteractive/irving/compare/v3.1.0...v3.1.1) (2020-08-09)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [3.1.0](https://github.com/alleyinteractive/irving/compare/v3.0.1...v3.1.0) (2020-08-09)
+
+
+### Features
+
+* **cli:** add CLI command for linking all installed packages, setting up dev links ([cf2fd6e](https://github.com/alleyinteractive/irving/commit/cf2fd6e010b2d5edc53d699ee15d6884830af498))
+
+
+
+
+
+## [3.0.1](https://github.com/alleyinteractive/irving/compare/v3.0.0...v3.0.1) (2020-08-06)
+
+
+### Bug Fixes
+
+* **config:** fix configurations for forms, audio-player packages ([985827d](https://github.com/alleyinteractive/irving/commit/985827d73683fe10509f524fb821bf2a8e74b2f6))
+* **storybook docs:** ensure the a11y package is installed ([0922dc8](https://github.com/alleyinteractive/irving/commit/0922dc8ba0f42887892bb06b376e5618a1205836))
+
+
+
+
+
 # [3.0.0](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
 
 **Note:** Version bump only for package irving
