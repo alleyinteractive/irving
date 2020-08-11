@@ -12,7 +12,7 @@ describe('encodeState', () => {
     expect(JSON.parse(state).test.nested).toEqual({});
   });
 
-  it('encode unsafe HTMl characters', () => {
+  it('encodes unsafe HTMl characters', () => {
     const state = encodeState({
       unsafe: '<script>alert("lorem ipsum");</script>',
     });
