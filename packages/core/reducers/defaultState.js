@@ -13,6 +13,7 @@ export const route = {
   redirectTo: false,
   redirectStatus: 0,
   action: '',
+  cookies: {},
 };
 
 export const visible = {
