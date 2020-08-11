@@ -11,18 +11,26 @@
 		"type": "git",
 		"url": "https://github.com/alleyinteractive/irving/packages/integrations"
 	},
+	"scripts": {
+		"test": "BABEL_ENV=test jest",
+		"test:watch": "BABEL_ENV=test jest --watch"
+	},
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
 		"prop-types": "^15.7.2",
 		"react": "^16.13.1",
-		"react-dom": "^16.13.1"
+		"react-dom": "^16.13.1",
+		"react-helmet": "^6.1.0"
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "^3.1.1",
 		"@irvingjs/core": "^3.1.1",
 		"babel-plugin-module-resolver": "^4.0.0",
-		"jest": "^25.5.3"
+		"enzyme": "^3.11.0",
+		"enzyme-adapter-react-16": "^1.15.2",
+		"jest": "^25.5.3",
+		"redux-mock-store": "^1.5.4"
 	},
 	"peerDependencies": {
 		"@irvingjs/core": ">=2.0.0"

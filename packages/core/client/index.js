@@ -6,9 +6,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore } from 'redux-persist';
 import browserStorage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
+import set from 'lodash/fp/set';
 import { actionLocationChange } from 'actions';
 import Cookies from 'universal-cookie';
 import App from 'components/app';
+import { getValueFromConfig } from 'config/irving/getValueFromConfig';
+import preloadedStateDenylist from 'config/preloadedStateDenylist';
 import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
 import rootSaga from 'sagas';
@@ -19,19 +22,35 @@ if (process.env.DEBUG) {
   debug.enable(process.env.DEBUG);
 }
 
+const cookies = new Cookies();
 const sagaMiddleware = createSagaMiddleware();
 const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware));
-const state = window.__PRELOADED_STATE__ || defaultState; // eslint-disable-line no-underscore-dangle
+const preloadedState = window.__PRELOADED_STATE__ || defaultState; // eslint-disable-line no-underscore-dangle
+
+// Rehydrate denylisted keys (like cookies, yum).
+const unsetConfigs = getValueFromConfig(
+  'preloadedStateDenylist',
+  preloadedStateDenylist
+);
+const rehydratedState = unsetConfigs.reduce(
+  (acc, config) => set(
+    config.key,
+    config.rehydrationFunction(),
+    acc
+  ),
+  preloadedState
+);
+
+// Persist state.
 const persistConfig = {
   key: 'root',
   storage: browserStorage,
   whitelist: [], // add state slices you do not want persisted here
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(persistedReducer, state, enhancer);
+const store = createStore(persistedReducer, rehydratedState, enhancer);
 const persistor = persistStore(store);
 const rootEl = document.getElementById('root');
-const cookies = new Cookies();
 
 sagaMiddleware.run(rootSaga);
 
