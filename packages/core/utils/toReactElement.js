@@ -72,6 +72,8 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     props = omit([
       'componentName',
       'componentGroups',
+      'themeName',
+      'themeOptions',
     ], props);
 
     // Support self closing tags.

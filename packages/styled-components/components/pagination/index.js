@@ -1,5 +1,5 @@
 /* eslint max-len: 0 */
-import React from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import withThemes from '@irvingjs/styled/components/hoc/withThemes';
@@ -163,7 +163,16 @@ const Pagination = (props) => {
 
   return (
     <PaginationWrapper style={style}>
-      {pages}
+      {pages.map((page) => {
+        console.log(page);
+        return cloneElement(
+          page,
+          {
+            key: page.props.href,
+            ...page.props,
+          }
+        );
+      })}
     </PaginationWrapper>
   );
 };
