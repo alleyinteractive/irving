@@ -38,5 +38,10 @@
 	"publishConfig": {
 		"access": "public"
 	},
+	"jest": {
+		"modulePaths": [
+			"<rootDir>"
+		]
+	},
 	"gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
 }

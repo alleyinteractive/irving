@@ -37,7 +37,7 @@ const IntegrationsManager = ({
     // Create an array for hydrated component keys and props.
     const components = [];
 
-    componentMap.forEach((component, index) => {
+    componentMap.forEach((component) => {
       // Get the component's key.
       const { key } = component;
 
@@ -51,7 +51,7 @@ const IntegrationsManager = ({
           props = integrations[key];
         }
         // Update the item at the current index with the transformed component.
-        components[index] = { key, props };
+        components.push({ key, props });
       }
     });
 
