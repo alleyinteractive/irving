@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'propt-types';
+import PropTypes from 'prop-types';
 import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
 
 const CoralEmbed = (props) => {
