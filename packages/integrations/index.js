@@ -4,6 +4,7 @@ import GoogleAnalytics from './components/googleAnalytics';
 import GoogleTagManager from './components/googleTagManager';
 import Parsely from './components/parsely';
 import YoastSchema from './components/yoastSchema';
+import CoralEmbed from './components/coral';
 // Config.
 import config from './irving.config';
 
@@ -14,6 +15,7 @@ export {
   GoogleTagManager,
   Parsely,
   YoastSchema,
+  CoralEmbed,
 };
 
 export default config;
