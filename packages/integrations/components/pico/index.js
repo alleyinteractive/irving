@@ -22,13 +22,13 @@ const Pico = (props) => {
 
   // On component hydration, add an event listener to watch for the script's init event.
   useEffect(() => {
-    window.document.addEventListener(
-      'pico-init',
-      () => {
-        setPicoLoaded(true);
-      }
-    );
-  });
+    const handler = () => {
+      setPicoLoaded(true);
+    };
+    window.document.addEventListener('pico-init', handler);
+
+    return () => window.document.removeEventListener('pico-init', handler);
+  }, []);
 
   // Load the script for the first time.
   if (! picoLoaded) {
