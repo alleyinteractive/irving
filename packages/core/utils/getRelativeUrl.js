@@ -33,10 +33,8 @@ export default function getRelativeUrl(url) {
     // Check if url is absolute, but internal.
     const urlObj = new URL(url);
     const {
-      pathname: urlPath,
-    } = urlObj;
-    const {
       protocol,
+      pathname: urlPath,
       host,
       hostname,
       query,
@@ -57,7 +55,8 @@ export default function getRelativeUrl(url) {
     if (
       (
         urlHost === windowHost ||
-        urlHostname === windowHostname
+        urlHostname === windowHostname ||
+        'localhost' === windowHostname
       ) &&
       (
         'http:' === protocol ||
