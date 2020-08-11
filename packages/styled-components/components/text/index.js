@@ -29,6 +29,7 @@ const Text = (props) => {
     tag,
     theme,
   } = props;
+
   const { TextWrapper } = theme;
 
   switch (true) {
