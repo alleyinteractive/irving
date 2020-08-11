@@ -1,7 +1,7 @@
-import getReducers from './reducers';
-import getDefaultState from './reducers/defaultState';
+import reducers from './reducers';
+import defaultState from './reducers/defaultState';
 
 export default {
-  reducers: getReducers,
-  defaultState: getDefaultState,
+  reducers,
+  defaultState,
 };

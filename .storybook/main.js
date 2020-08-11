@@ -27,7 +27,6 @@ module.exports = {
       /\bcore-js\b/,
       /\bwebpack\/buildin\b/
     ]);
-
     return config;
   },
 };

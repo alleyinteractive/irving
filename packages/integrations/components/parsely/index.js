@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const Parsely = (props) => {
@@ -11,14 +11,14 @@ const Parsely = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <div id="parsely-root" style={{ display: 'none' }}>
         <span id="parsely-cfg" data-parsely-site={site} />
       </div>
-      <Fragment>
+      <>
         <script src="https://d1z2jf7jlzjs58.cloudfront.net/p.js" async defer />
-      </Fragment>
-    </Fragment>
+      </>
+    </>
   );
 };
 
