@@ -15,7 +15,9 @@ const Parsely = (props) => {
       <div id="parsely-root" style={{ display: 'none' }}>
         <span id="parsely-cfg" data-parsely-site={site} />
       </div>
-      <script src="https://d1z2jf7jlzjs58.cloudfront.net/p.js" async defer />
+      <>
+        <script src="https://d1z2jf7jlzjs58.cloudfront.net/p.js" async defer />
+      </>
     </>
   );
 };
