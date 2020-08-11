@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import breakpoints from 'config/css/breakpoints';
+import breakpoints from 'config/breakpoints';
 
 /**
  * Hook for creating an instance of matchMedia for checking a particular breakpoint.

@@ -18,7 +18,8 @@ import getLogService from 'services/logService';
 import getService from 'services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
-import getTemplateVars from './getTemplateVars';
+import getTemplateVars from './utils/getTemplateVars';
+import encodeState from './utils/encodeState';
 
 const monitor = getService();
 const logError = getLogService('irving:render:error');
@@ -89,8 +90,7 @@ const render = async (req, res, clientStats) => {
 
   // Clear head data to avoid memory leak.
   const helmet = Helmet.renderStatic();
-  // https://redux.js.org/recipes/server-rendering#security-considerations
-  const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
+  const stateEncoded = encodeState(getState());
   const templateVars = {
     helmet,
     preRenderedState: stateEncoded,
