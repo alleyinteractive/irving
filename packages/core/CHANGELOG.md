@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.2-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v2.23.1...v2.23.2-beta.0) (2020-08-11)
+
+
+### Bug Fixes
+
+* **serverrenderer:** fix security issue in which all cookies are rendered in server HTML ([5354ea9](https://github.com/alleyinteractive/irving/packages/core/commit/5354ea9583eb9b2628fa4e3c57164d5c0cac9177))
+
+
+
+
+
 ## [2.23.1](https://github.com/alleyinteractive/irving/packages/core/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
 
 **Note:** Version bump only for package @irvingjs/core
