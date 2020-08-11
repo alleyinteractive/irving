@@ -9,11 +9,62 @@ Basic auth can be enabled by enabling two environment variables. They will autom
 * `BASIC_AUTH_USERNAME`
 * `BASIC_AUTH_PASSWORD`
 
+### Cookie Authentication
+Component API requests pass cookies which can be used for auth.
+
+
 ## Caching
-## Cookies
+### Overview
+Irving core has a service which caches Irving endpoint requests. Out of the box, this service uses Redis and only supports the initial server side render.
+
+By serving the initial load from a cache local to the node application, we can save ourselves a full request to the CMS. This allows first-time, server-rendered requests (usually the slowest of all Irving requests to process) to load much more quickly.
+
+The entire response for a given endpoint is stored in Redis, and uses keys in the format `components-endpoint:${endpoint}`. Example: `components-endpoint:path=/&context=site`
+
+### Setup
+To set up Redis you need to install the `ioredis` and add an environmental variable to your `.env` file. Below are all the environment variables for redis:
+
+- `REDIS_URL` or `REDIS_MASTER` (required) - environment variable pointing to your redis host and port in the format `host:port`. Your redis host can be a URL or IP and supports the `redis://` protocol.
+- `CACHE_EXPIRE` (optional) - determines how long each entry will persist, in milliseconds. Defaults to `300` (5 minutes).
+- `REDIS_PASSWORD` (optional) - Password required to connect to your redis service.
+After configuration, your .env file might look something like this:
+
+```
+REDIS_URL=192.168.50.8:6000
+REDIS_PASSWORD=mypassword
+CACHE_EXPIRE=600
+```
+## Caching on VIP Go
+When using the [VIP Go Irving package](https://github.com/alleyinteractive/irving/tree/master/packages/vip-go), the caching service will use [VIP's Redis Helper Library](https://github.com/Automattic/vip-go-node/tree/master/src/redis).
+
+### Setup
+Redis can be set up and configured in almost exactly the same way as you would for Irving core. Beyond setting up the npm package itself (the documentation for which is in the above link to the package directory), the only difference is you *must* use the `REDIS_MASTER` environment variable. `REDIS_URL` will not be available.
+
+In addition to the Redis cache, VIP Go's infrastructure has a [Varnish page cache](https://wpvip.com/documentation/vip-go/caching-on-vip-go/#page-cache). Both the Redis and Varnish cache will automatically clear based on [VIP's caching logic](https://wpvip.com/documentation/vip-go/controlling-vip-go-page-cache/). Similar to a non-headless WordPress site, you may need to customize when the cache busts to meet your specific needs.
+
+The integration for VIP Go's cache busting is one of [WP Irving's integrations](https://github.com/alleyinteractive/wp-irving/blob/master/inc/integrations/class-vip-go.php).
+
+In addition, WP Irving has its own [cache manager class](https://github.com/alleyinteractive/wp-irving/blob/master/inc/class-cache.php) for handling cache busting for Irving's redis implementation.
+
+### Redis Cache Busting
+Irving core supports two custom routes to help with the Redis cache. For WordPress builds, these will automatically be triggered as part of WP Irving.
+
+- `/purge-cache` - `POST` endpoint for purging the redis cache. This endpoint has two options:
+  - Fire a `POST` request to this endpoint without a request `body` and the entire Redis cache will be purged.
+  - Fire a `POST` request to this endpoint with a request `body` containing an array of paths. The post body should be in the format: `{ "paths": [ '/', '/test-path', '/third-path' ] }`
+- `/cache-keys` - `GET` endpoint that will return an array of all the cache keys you currently have in Redis.
+
+### Roadmap
+** If these are nice features we are contemplating building, I think they should go somewhere else. Could we make a section in Contributing to Irving for planned work?
+**
+
+- Ability to supply the Cache-Control headers from the endpoint.
+- Cache debugging module.
+
 ## Logging
-## Monitoring
-Transactions and errors can be logged to a monitoring service.
+**Is something missing here? Or can we eliminate the subhead below?**
+### Monitoring
+Transactions and errors can be logged to a monitoring service. **If New Relic is the only monitoring service Irving supports, could we just label this section Monitoring with New Relic?**
 
 ### New Relic
 Basic support for New Relic is included in Irving. Set the following environment variables to enable,
@@ -25,7 +76,65 @@ See [here](https://github.com/newrelic/node-newrelic#configuring-the-module) for
 
 
 ## Performance and Scaling
+One of the primary features of Irving is its ability to scale gracefully. In an ideal Irving project most (if not all) of the business logic is offloaded to the API layer. This keeps Irving performant and optimized for speed.
+
+Irving's pros and cons around performance and scaling are similar to those of other node applications. Standard best-practices for deploying a node application apply.
+
+Here are some resources to consider and become familiar with:
+
+- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices), Heroku Documentation
+- [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices), Built and maintained by the Steering Committee and Collaborators
+- [Node.js Best Practices](https://www.codementor.io/@mattgoldspink/nodejs-best-practices-du1086jja), by Matt Goldspink
+
+### Scaling
+Scaling with Irving is similar to horizontal scaling for any Node application. We recommend a load balancer with caching that would distribute traffic amongst any number of node processes.
+
+- A typical high traffic Irving application has RAM requirements of less than 512mb.
+- Typically you should run multiple node processes distributed behind a caching proxy (ex. Varnish).
+  - Smaller environments could consider [PM2](https://pm2.keymetrics.io/) for running multiple node processes.
+- Ensure that every node process shares a single caching instance (see above section on **caching**).
+
+### Gotchas
+Just as with any React-based application, there are a few issues to consider,
+
+- NPM is a double edged sword. Using NPM packages will help speed development and offer great functionality, but the size of the production bundle will increase as a result. As with other node applications like Irving, the bundle will need to download fully and can create a bottleneck (we recommend caching your bundle).
+  - [Optimizing your application bundle size with webpack](https://hackernoon.com/optimising-your-application-bundle-size-with-webpack-e85b00bab579)
+  - [Two Quick Ways To Reduce React App’s Size In Production](https://medium.com/@rajaraodv/two-quick-ways-to-reduce-react-apps-size-in-production-82226605771a)
+- The rendering performance of your user's browser is going to matter. If the user is on an older browser, performance may suffer.
+
 ## Proxying
+Irving comes with the [HTTP Proxy Middleware NPM package](https://www.npmjs.com/package/http-proxy-middleware) already included. Passthrough proxies can be easily configured using the `passthroughProxy` configuration key in your `irving.config.server.js`. **I read that irving.config.server.js was deprecated in Irving 3.0.0 -- revise as needed.**
+
+### Example Implementation
+Set up the `proxyPassthrough` key in your `irving.config.server.js`. The value should be a function returning an array of your proxies. Below is an example of how you might allow Wordpress to handle RSS feed requests, any request for an `.xml` file, and all Google AMP pages.
+```js
+module.exports = {
+  proxyPassthrough: () => ([
+    '/feed/',
+    '*.xml',
+    '*/amp/',
+  ]),
+};
+```
+
+### Include an `API_ORIGIN` environmental variable if necessary
+
+By default, Irving will use the configured `API_ROOT_URL` as the root of all passthrough proxies. However, if you need all proxies to use a different root, we've provided an `API_ORIGIN` environmental variable for that purpose. For example, you might have:
+
+```
+API_ROOT_URL=https://my-content.com/wp-json/irving/v1/
+API_ORIGIN=https://my-content.com/
+```
+This would point passthrough proxies to `https://my-content.com/`.
+
 ## Redirects
 ## Security
 ## SEO
+Since the markup of your site is 100% dictated by the components you decide to build and how you write your markup, Irving leaves SEO decisions and considerations to you.
+
+### Concerns about SEO on Single Page Applications
+There is a lot of information about SEO in the context of a SPA. There's debate around how large of an issue this still is, but those points are moot considering Irving's [Isomorphic Rendering](#) **(this should have a storybook link to discussion of same -- in the under the hood section?)**.
+
+### WordPress and WP Components
+See WP-Irving's full documentation on SEO using WordPress (where Irving provides options out of the box).
+
