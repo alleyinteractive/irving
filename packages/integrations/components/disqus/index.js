@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
 import validateDisqusConfig from './validate';
@@ -34,14 +34,14 @@ const DisqusEmbed = (props) => {
   });
 
   return (
-    <Fragment>
+    <>
       <div id="disqus_thread" />
       <noscript
         dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
           __html: 'Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>',
         }}
       />
-    </Fragment>
+    </>
   );
 };
 

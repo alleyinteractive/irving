@@ -1,9 +1,9 @@
-import getSagas from './sagas';
-import getReducers from './reducers';
-import getDefaultState from './reducers/defaultState';
+import sagas from './sagas';
+import reducers from './reducers';
+import defaultState from './reducers/defaultState';
 
 export default {
-  sagas: getSagas,
-  reducers: getReducers,
-  defaultState: getDefaultState,
+  sagas,
+  reducers,
+  defaultState,
 };

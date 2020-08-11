@@ -1,5 +1,5 @@
 import formReducer from './formReducer';
 
-export default () => ({
+export default {
   forms: formReducer,
-});
+};

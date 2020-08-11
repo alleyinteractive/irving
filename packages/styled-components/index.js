@@ -53,8 +53,8 @@ export const components = {
   'irving/logo': Logo,
   'irving/menu': Menu,
   'irving/pagination': Pagination,
-  'irving/searchForm': SearchForm,
-  'irving/socialSharing': SocialSharing,
+  'irving/search-form': SearchForm,
+  'irving/social-sharing': SocialSharing,
   'irving/text': Text,
 };
 

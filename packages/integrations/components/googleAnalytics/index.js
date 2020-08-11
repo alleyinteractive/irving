@@ -25,11 +25,15 @@ const GoogleAnalytics = (props) => {
   );
 };
 
+GoogleAnalytics.defaultProps = {
+  trackingId: undefined,
+};
+
 GoogleAnalytics.propTypes = {
   /**
    * Your GA tracking ID, found in your GA account dashboard.
    */
-  trackingId: PropTypes.string.isRequired,
+  trackingId: PropTypes.string,
 };
 
 export default GoogleAnalytics;
