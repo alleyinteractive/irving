@@ -33,6 +33,7 @@ const getConfigValues = (key) => {
   }
 
   return [...packages, userConfig].map((config) => {
+    console.log(config, key);
     if (config[key]) {
       return config[key];
     }

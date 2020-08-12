@@ -15,7 +15,7 @@ const Menu = (props) => {
     menuName,
     location,
     style,
-    theme = defaultStyles,
+    theme,
   } = props;
 
   const {
@@ -35,9 +35,17 @@ const Menu = (props) => {
         <div>{`No menu configured for \`${location}\`.`}</div>
       ) : (
         <Inner>
-          {children.map((child) => (
-            <MenuItem {...child.props} theme={theme} />
-          ))}
+          {children.map((child) => {
+            const { id } = child.props;
+
+            return (
+              <MenuItem
+                {...child.props}
+                key={id}
+                theme={theme}
+              />
+            );
+          })}
         </Inner>
       )}
     </Wrapper>

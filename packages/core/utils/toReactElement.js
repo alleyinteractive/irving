@@ -1,6 +1,7 @@
 import { isString, omit } from 'lodash/fp';
 import React from 'react';
 import getReactComponent from 'config/componentMap';
+import { getValueFromConfig } from 'config/irving/getValueFromConfig';
 
 /**
  * Recursively map a tree of API components within component groups to React elements.
@@ -66,12 +67,22 @@ export default function toReactElement(apiComponent, keyPrefix = '') {
     getReactComponent(alias) :
     getReactComponent(name);
 
-  const isNativeDOMElm = 'string' === typeof type;
-  if (isNativeDOMElm) {
+  const checkShouldOmitFunctions = getValueFromConfig(
+    'shouldOmitIrvingProps',
+    [(componentType) => 'string' === typeof componentType]
+  );
+  const shouldOmitIrvingProps = checkShouldOmitFunctions
+    .some((validationFunction) => (
+      validationFunction(type, props)
+    ));
+
+  if (shouldOmitIrvingProps) {
     // Strip invalid attributes for native dom elements.
     props = omit([
       'componentName',
       'componentGroups',
+      'themeName',
+      'themeOptions',
     ], props);
 
     // Support self closing tags.
