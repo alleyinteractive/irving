@@ -445,3 +445,17 @@ export default {
   * `componentGroups` - Additional grouping of child components.
   * `themeName` - Name of theme this component should use.
   * `themeOptions` - Theme options for the component.
+
+Example:
+```javascript
+const irvingConfig = {
+  shouldOmitIrvingProps: [
+    (type, props) => (
+      'string' === typeof type ||
+      props.componentName.includes('test')
+    ),
+  ]
+};
+```
+
+An example of when you might want to use this is if you are providing a third-party component directly in your component map, and that component passes its props to a native HTML element for which a `componentName` attribute would not be allowed.
