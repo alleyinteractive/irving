@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.1.1...v3.2.0-beta.0) (2020-08-12)
+
+
+### Bug Fixes
+
+* **coral:** fix misspelled import in coral embed component ([544594a](https://github.com/alleyinteractive/irving/packages/integrations/commit/544594ab3b173d6a08f12905c2b3c9decd5988e1))
+* **integrations:** add reducers, actions, config to published files ([372662a](https://github.com/alleyinteractive/irving/packages/integrations/commit/372662ae1d221d0b8e473acc936fdd268d4575a6))
+
+
+### Features
+
+* **integrations:** add coral talk embed component to integrations package ([23fc6a0](https://github.com/alleyinteractive/irving/packages/integrations/commit/23fc6a0921f160a2d3d666ac9efccecf205bf219))
+
+
+
+
+
 ## [3.1.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.1.0...v3.1.1) (2020-08-09)
 
 **Note:** Version bump only for package @irvingjs/integrations

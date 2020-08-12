@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.1.1...v3.2.0-beta.0) (2020-08-12)
+
+
+### Bug Fixes
+
+* **cookies:** add default state for cookies, re-hydrate in client ([2c489c3](https://github.com/alleyinteractive/irving/packages/core/commit/2c489c33a3b687cc7a94ac4125a8b07ebbde41ec))
+* **integrations:** add reducers, actions, config to published files ([372662a](https://github.com/alleyinteractive/irving/packages/core/commit/372662ae1d221d0b8e473acc936fdd268d4575a6))
+* **props:** begin fixing some props errors ([0710367](https://github.com/alleyinteractive/irving/packages/core/commit/0710367106fb9f9743a0334f24f61b2027590145))
+* **props:** more props fixes ([c5f8cf9](https://github.com/alleyinteractive/irving/packages/core/commit/c5f8cf9a2567c9c385de6d32651861717966154f))
+* **serverrenderer:** omit cookies from prerendered state ([b452ad8](https://github.com/alleyinteractive/irving/packages/core/commit/b452ad8ae20915c21c6879d2abb0137b87566dad))
+* **styledcomponents:** add keys to all instances of .map in styled components package ([c63f60c](https://github.com/alleyinteractive/irving/packages/core/commit/c63f60ce288a5b3d23b99b97f9777d0c9988d587))
+
+
+### Features
+
+* **shouldomitirvingprops:** add config field to omit irving-specific props for certain components ([164be0f](https://github.com/alleyinteractive/irving/packages/core/commit/164be0fd6348e1e79b1c494a6154210823fb7c57))
+
+
+
+
+
 ## [3.1.1](https://github.com/alleyinteractive/irving/packages/core/compare/v3.1.0...v3.1.1) (2020-08-09)
 
 **Note:** Version bump only for package @irvingjs/core
