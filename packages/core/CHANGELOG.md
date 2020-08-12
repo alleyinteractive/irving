@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v3.2.0-beta.0...v3.2.0-beta.1) (2020-08-12)
+
+
+### Bug Fixes
+
+* **log:** remove log ([59f6505](https://github.com/alleyinteractive/irving/packages/core/commit/59f6505c2fd858967b81413c4ae8b856b0ebf376))
+
+
+
+
+
 # [3.2.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.1.1...v3.2.0-beta.0) (2020-08-12)
 
 
