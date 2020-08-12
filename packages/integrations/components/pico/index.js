@@ -8,13 +8,17 @@ const Pico = (props) => {
     publisherId,
   } = props;
 
-  // Ensure page info has the right format.
+  /**
+   * Ensure page info has the right format.
+   *
+   * @see https://help.trypico.com/en/articles/3199263-installing-pico-on-your-website
+   */
   const picoPageInfo = {
     article: pageInfo.article,
     post_id: pageInfo.postId,
     post_type: pageInfo.postType,
     resource_ref: pageInfo.resourceRef,
-    taxonomies: {},
+    taxonomies: pageInfo.taxonomies,
     url: window.location.href,
   };
 
@@ -47,12 +51,14 @@ const Pico = (props) => {
   return null;
 };
 
-Pico.defaultProps = {
-  pageInfo: {},
-};
-
 Pico.propTypes = {
-  pageInfo: PropTypes.object,
+  pageInfo: PropTypes.shape({
+    article: PropTypes.bool.isRequired,
+    postId: PropTypes.string.isRequired,
+    postType: PropTypes.string.isRequired,
+    resourceRef: PropTypes.string,
+    taxonomies: PropTypes.object.isRequired,
+  }).isRequired,
   publisherId: PropTypes.string.isRequired,
 };
 
