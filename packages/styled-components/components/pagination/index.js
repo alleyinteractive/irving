@@ -153,26 +153,39 @@ const Pagination = (props) => {
    */
   if (displayPrevAndNext) {
     if (1 < currentPage) {
-      pages.unshift(<NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage - 1)}>Prev</NextAndPrevNavWrapper>);
+      pages.unshift(
+        <NextAndPrevNavWrapper
+          as={Link}
+          href={buildUrl(props, currentPage - 1)}
+        >
+          Prev
+        </NextAndPrevNavWrapper>
+      );
     }
 
     if (totalPages > currentPage) {
-      pages.push(<NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage + 1)}>Next</NextAndPrevNavWrapper>);
+      pages.push(
+        <NextAndPrevNavWrapper
+          as={Link}
+          href={buildUrl(props, currentPage + 1)}
+        >
+          Next
+        </NextAndPrevNavWrapper>
+      );
     }
   }
 
   return (
     <PaginationWrapper style={style}>
-      {pages.map((page) => {
-        console.log(page);
-        return cloneElement(
+      {pages.map((page, index) => (
+        cloneElement(
           page,
           {
-            key: page.props.href,
+            key: `${page.props.href}-${index}`,
             ...page.props,
           }
-        );
-      })}
+        )
+      ))}
     </PaginationWrapper>
   );
 };

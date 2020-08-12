@@ -55,8 +55,7 @@ export default function getRelativeUrl(url) {
     if (
       (
         urlHost === windowHost ||
-        urlHostname === windowHostname ||
-        'localhost' === windowHostname
+        urlHostname === windowHostname
       ) &&
       (
         'http:' === protocol ||
