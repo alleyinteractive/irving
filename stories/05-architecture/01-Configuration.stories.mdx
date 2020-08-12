@@ -154,23 +154,6 @@ module.exports = {
 ```
 The above config would set up the site to redirect from `http://interesting.site` into `https://cool.interesting.site`. It is important that the redirect is set up before activating this or you can run into issues.
 
-## Default Redux State
-* **where to configure**: `irving.config.js` in the `defaultState` key
-* **type**: object
-* **purpose**: Customize Irving's default redux state. Example:
-```javascript
-export default {
-  form: {
-    submitting: false,
-    submitted: false,
-    failed: false,
-    validation: {},
-    redirect: '',
-  },
-};
-
-```
-
 ## Client-side environmental variable allowlist
 * **where to configure**: `config/envAllowlist.js`
 * **type**: array
@@ -181,6 +164,149 @@ const getEnvAllowlist = () => ([
 ]);
 
 export default getEnvAllowlist;
+```
+
+## Logging Service
+* **where to configure**: `services/logService.js`
+* **type**: function (replaces core service)
+* **purpose**: Customize service used for logging messages and debugging code. Default service uses the [debug package](https://www.npmjs.com/package/debug).
+
+The log service must be able to receive a namespace as a parameter (for filtering debug messages down to specific features/functionality) and return an object containing the following keys/methods:
+```javascript
+const service = {
+  emerg: () => {},
+  alert: () => {},
+  crit: () => {},
+  error: () => {},
+  warning: () => {},
+  notice: () => {},
+  info: () => {},
+  debug: () => {},
+};
+```
+
+## Monitoring Service
+* **where to configure**: `services/monitorService.js`
+* **type**: function (replaces core service)
+* **purpose**: Customize service used for sending data to a monitoring tool. Default service uses the [newrelic](https://www.npmjs.com/package/newrelic) and can be configured using environmental variables.
+
+The monitor service must return an object containing the following keys/methods:
+```javascript
+const service = {
+  start: () => {},
+  logError: () => {},
+  logTransaction: () => {},
+}
+```
+
+## PostCSS configuration
+* **where to configure**: `config/postcss.config.js`
+* **type**: object
+* **purpose**: Customize the `postcss` configuration. Must have the `@irvingjs/postcss` package installed in order for this to function. Example:
+```javascript
+const colorFunction = require('postcss-color-function');
+
+module.exports = {
+  plugins: [
+    colorFunction(),
+  ]
+};
+```
+
+## Passthrough proxies
+* **where to configure**: `config/proxyPassthrough.js`
+* **type**: array
+* **purpose**: Customize the list of passthrough proxies. Values in the `proxyPassthrough` config array can be plain strings or strings containing glob patterns. See examples in [`http-proxy-middleware`](https://github.com/chimurai/http-proxy-middleware#example), the package underlying this functionality. Any URL that matches one of these proxy patterns will be handled by your CMS backend. This can be good for functionality like `robots.txt` or RSS feeds. Example:
+```javascript
+module.exports = [
+  '/robots.txt',
+  '*.xml',
+  '/wp-json/',
+  '*.rss',
+  '*/amp/',
+  '*/feed/',
+];
+```
+
+## Webpack Configuration
+* **where to configure**: `config/webpack.config.js`
+* **type**: object
+* **purpose**: Customize Irving's internal webpack config for both server- and client-side builds. Example:
+```javascript
+// in config/getWebpackConfig.js
+module.exports = (configs) => (
+  // Map through both server and client configs.
+  configs.map((config) => {
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: [
+          'css-loader',
+          'sass-loader',
+      ],
+    },);
+
+    return config;
+  })
+);
+```
+
+## Server-side Webpack Configuration
+* **where to configure**: `config/webpack.config.server.js`
+* **type**: object
+* **purpose**: Customize Irving's webpack configuration for only the server-side build.
+
+## Client-side Webpack Configuration
+* **where to configure**: `config/webpack.config.client.js`
+* **type**: object
+* **purpose**: Customize Irving's webpack configuration for only the client-side build.
+
+## Functionality for starting Irving's express server
+* **where to configure**: `config/startServer.js`
+* **type**: function (replaces core function)
+* **purpose**: Customize functionality for starting Irving's express server. Will receive the express `app` object as a parameter.
+  ## Notes**:
+    * If your `startServer` function returns a falsey value, Irving will fall back to its default logic for starting the express server.
+    * This may seem like a good place to modify or add functionality to the express app (like additional routing). However, it may not work as expected in this function. Use the `customizeServer` property to globally modify the express app or the environment-specific `customizeDevServer` and/or `customizeProdServer`.
+
+Example from `@irvingjs/vip-go` package:
+```javascript
+const { server } = require('@automattic/vip-go');
+
+module.exports = function startServer(app) {
+  let vipServer;
+
+  if ('development' !== NODE_ENV) {
+    vipServer = server(app, { PORT });
+    vipServer.listen();
+  }
+
+  return vipServer;
+};
+```
+
+## Stylelint configuration
+* **where to configure**: `config/stylelint.config.js`
+* **type**: object
+* **purpose**: Customize Irving's core configuration for stylelint `css` linting. This will only come into effect if either the `@irvingjs/postcss` or `@irvingjs/styled` package is installed.
+
+## Irving Packages
+* **where to configure**: `irving.config.js` in the `packages` key
+* **type**: array
+* **purpose**: Array of configuration presets pulled from irving packages. Package configurations can contain the same configuration keys listed here (with the exception of the `packages` key itself). Configurations external from `irving.config.js` (filesystem configurations) will be found automatically inside packages just like they are for your project.
+
+Example:
+```javascript
+// irving.config.js
+import styledComponentsConfig from '@irvingjs/styled';
+
+const irvingConfig = {
+  name: 'irving-test',
+  packages: [
+    styledComponentsConfig,
+  ],
+};
+
+export default irvingConfig;
 ```
 
 ## Force trailing slashes on URLs/links with the same hostname
@@ -236,88 +362,6 @@ export default function getAppTemplateVars(templateVars) {
 * **type**: object
 * **purpose**: Customize template variables that are passed to Irving's server-rendered `error.ejs` file. Contains all the same fields as `getAppTemplateVars`.
 
-## Logging Service
-* **where to configure**: `services/logService.js`
-* **type**: function (replaces core service)
-* **purpose**: Customize service used for logging messages and debugging code. Default service uses the [debug package](https://www.npmjs.com/package/debug).
-
-The log service must be able to receive a namespace as a parameter (for filtering debug messages down to specific features/functionality) and return an object containing the following keys/methods:
-```javascript
-const service = {
-  emerg: () => {},
-  alert: () => {},
-  crit: () => {},
-  error: () => {},
-  warning: () => {},
-  notice: () => {},
-  info: () => {},
-  debug: () => {},
-};
-```
-
-## Monitoring Service
-* **where to configure**: `services/monitorService.js`
-* **type**: function (replaces core service)
-* **purpose**: Customize service used for sending data to a monitoring tool. Default service uses the [newrelic](https://www.npmjs.com/package/newrelic) and can be configured using environmental variables.
-
-The monitor service must return an object containing the following keys/methods:
-```javascript
-const service = {
-  start: () => {},
-  logError: () => {},
-  logTransaction: () => {},
-}
-```
-
-## Irving Packages
-* **where to configure**: `irving.config.js` in the `packages` key
-* **type**: array
-* **purpose**: Array of configuration presets pulled from irving packages. Package configurations can contain the same configuration keys listed here (with the exception of the `packages` key itself). Configurations external from `irving.config.js` (filesystem configurations) will be found automatically inside packages just like they are for your project.
-
-Example:
-```javascript
-// irving.config.js
-import styledComponentsConfig from '@irvingjs/styled';
-
-const irvingConfig = {
-  name: 'irving-test',
-  packages: [
-    styledComponentsConfig,
-  ],
-};
-
-export default irvingConfig;
-```
-
-## PostCSS configuration
-* **where to configure**: `config/postcss.config.js`
-* **type**: object
-* **purpose**: Customize the `postcss` configuration. Must have the `@irvingjs/postcss` package installed in order for this to function. Example:
-```javascript
-const colorFunction = require('postcss-color-function');
-
-module.exports = {
-  plugins: [
-    colorFunction(),
-  ]
-};
-```
-
-## Passthrough proxies
-* **where to configure**: `config/proxyPassthrough.js`
-* **type**: array
-* **purpose**: Customize the list of passthrough proxies. Values in the `proxyPassthrough` config array can be plain strings or strings containing glob patterns. See examples in [`http-proxy-middleware`](https://github.com/chimurai/http-proxy-middleware#example), the package underlying this functionality. Any URL that matches one of these proxy patterns will be handled by your CMS backend. This can be good for functionality like `robots.txt` or RSS feeds. Example:
-```javascript
-module.exports = [
-  '/robots.txt',
-  '*.xml',
-  '/wp-json/',
-  '*.rss',
-  '*/amp/',
-  '*/feed/',
-];
-```
-
 ## Redux reducers
 * **where to configure**: `irving.config.js` in the `reducers` key
 * **type**: object
@@ -347,37 +391,22 @@ export default {
 };
 ```
 
-## Webpack Configuration
-* **where to configure**: `config/webpack.config.js`
+## Default Redux State
+* **where to configure**: `irving.config.js` in the `defaultState` key
 * **type**: object
-* **purpose**: Customize Irving's internal webpack config for both server- and client-side builds. Example:
+* **purpose**: Customize Irving's default redux state. Example:
 ```javascript
-// in config/getWebpackConfig.js
-module.exports = (configs) => (
-  // Map through both server and client configs.
-  configs.map((config) => {
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: [
-          'css-loader',
-          'sass-loader',
-      ],
-    },);
+export default {
+  form: {
+    submitting: false,
+    submitted: false,
+    failed: false,
+    validation: {},
+    redirect: '',
+  },
+};
 
-    return config;
-  })
-);
 ```
-
-## Server-side Webpack Configuration
-* **where to configure**: `config/webpack.config.server.js`
-* **type**: object
-* **purpose**: Customize Irving's webpack configuration for only the server-side build.
-
-## Client-side Webpack Configuration
-* **where to configure**: `config/webpack.config.client.js`
-* **type**: object
-* **purpose**: Customize Irving's webpack configuration for only the client-side build.
 
 ## Redux sagas
 * **where to configure**: `irving.config.js` in the `sagas` key
@@ -403,36 +432,16 @@ export default {
 };
 ```
 
-## Functionality for starting Irving's express server
-* **where to configure**: `config/startServer.js`
-* **type**: function (replaces core function)
-* **purpose**: Customize functionality for starting Irving's express server. Will receive the express `app` object as a parameter.
-  ## Notes**:
-    * If your `startServer` function returns a falsey value, Irving will fall back to its default logic for starting the express server.
-    * This may seem like a good place to modify or add functionality to the express app (like additional routing). However, it may not work as expected in this function. Use the `customizeServer` property to globally modify the express app or the environment-specific `customizeDevServer` and/or `customizeProdServer`.
-
-Example from `@irvingjs/vip-go` package:
-```javascript
-const { server } = require('@automattic/vip-go');
-
-module.exports = function startServer(app) {
-  let vipServer;
-
-  if ('development' !== NODE_ENV) {
-    vipServer = server(app, { PORT });
-    vipServer.listen();
-  }
-
-  return vipServer;
-};
-```
-
-## Styleling configuration
-* **where to configure**: `config/stylelint.config.js`
-* **type**: object
-* **purpose**: Customize Irving's core configuration for stylelint `css` linting. This will only come into effect if either the `@irvingjs/postcss` or `@irvingjs/styled` package is installed.
-
 ## Trailing slash denylist
 * **where to configure**: `irving.config.js` in the `trailingSlashDenylist` key
 * **type**: array
 * **purpose**: Provide an array of URLs or path strings (partial or complete) for which trailing slashes should not be automatically added. This config field only applies if `forceTrailingSlashes` is set to `true`.
+
+## Components for which Irving-specific props should be omitted
+* **where to configure**: `irving.config.js` in the `shouldOmitIrvingProps` key
+* **type**: array of functions
+* **purpose**: Uses an array of functions to determine if Irving-specific props should be omitted before Irving creates an instance of a particular component. Each check should be a function taking in both the component type (usually a React component function) and component props and returning a boolean (`true` if Irving props should be ommitted, `false` if not). Irving props are:
+  * `componentName` - Name of the component as appearing in `componentMap.js` key.
+  * `componentGroups` - Additional grouping of child components.
+  * `themeName` - Name of theme this component should use.
+  * `themeOptions` - Theme options for the component.
