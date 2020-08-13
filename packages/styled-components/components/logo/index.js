@@ -15,6 +15,7 @@ const Logo = (props) => {
   const {
     href,
     logoImageUrl,
+    children,
     siteName,
     style,
     theme,
@@ -26,6 +27,7 @@ const Logo = (props) => {
     LogoImage,
     SiteName,
   } = theme;
+  const hasChildren = children && children.length;
 
   return (
     <LogoWrapper style={style}>
@@ -33,19 +35,23 @@ const Logo = (props) => {
         as={Link}
         href={href}
       >
-        {logoImageUrl ? (
+        {(logoImageUrl && ! hasChildren) ? (
           <LogoImage>
             <img src={logoImageUrl} alt={siteName} />
           </LogoImage>
-        ) : (
-          <SiteName>{siteName}</SiteName>
-        )}
+        ) : children}
+        <SiteName
+          screenreaderOnly={logoImageUrl || hasChildren}
+        >
+          {siteName}
+        </SiteName>
       </LogoLink>
     </LogoWrapper>
   );
 };
 
 Logo.defaultProps = {
+  children: [],
   href: '/',
   logoImageUrl: '',
   siteName: '',
@@ -54,6 +60,10 @@ Logo.defaultProps = {
 };
 
 Logo.propTypes = {
+  /**
+   * Children of the component.
+   */
+  children: PropTypes.node,
   /**
    * URL the logo should link to.
    */
