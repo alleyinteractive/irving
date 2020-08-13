@@ -145,7 +145,10 @@ Image.propTypes = {
   /**
    * Caption.
    */
-  caption: PropTypes.string,
+  caption: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   /**
    * Children of the component.
    */
@@ -157,7 +160,10 @@ Image.propTypes = {
   /**
    * Caption.
    */
-  credit: PropTypes.string,
+  credit: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   /**
    * Fallback src if the main `src` is empty.
    */
@@ -187,7 +193,10 @@ Image.propTypes = {
   /**
    * Source URL of the image.
    */
-  src: PropTypes.string,
+  src: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   /**
    * CSS styles.
    */

@@ -1,9 +1,13 @@
 {
 	"name": "@irvingjs/integrations",
-	"version": "3.1.1",
+	"version": "3.2.0",
 	"description": "Third party integrations for Irving",
 	"files": [
+		"actions/**/*",
 		"components/**/*",
+		"config/**/*",
+		"reducers/**/*",
+		"irving.config.js",
 		"!*.test.js"
 	],
 	"main": "index.js",
@@ -25,7 +29,7 @@
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "^3.1.1",
-		"@irvingjs/core": "^3.1.1",
+		"@irvingjs/core": "^3.2.0",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.2",
@@ -37,6 +41,11 @@
 	},
 	"publishConfig": {
 		"access": "public"
+	},
+	"jest": {
+		"modulePaths": [
+			"<rootDir>"
+		]
 	},
 	"gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
 }

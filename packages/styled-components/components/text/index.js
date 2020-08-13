@@ -27,7 +27,7 @@ const Text = (props) => {
     oembed,
     style,
     tag,
-    theme = defaultStyles,
+    theme,
   } = props;
 
   const { TextWrapper } = theme;

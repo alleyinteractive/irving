@@ -1,5 +1,5 @@
 /* eslint max-len: 0 */
-import React from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import withThemes from '@irvingjs/styled/components/hoc/withThemes';
@@ -153,17 +153,39 @@ const Pagination = (props) => {
    */
   if (displayPrevAndNext) {
     if (1 < currentPage) {
-      pages.unshift(<NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage - 1)}>Prev</NextAndPrevNavWrapper>);
+      pages.unshift(
+        <NextAndPrevNavWrapper
+          as={Link}
+          href={buildUrl(props, currentPage - 1)}
+        >
+          Prev
+        </NextAndPrevNavWrapper>
+      );
     }
 
     if (totalPages > currentPage) {
-      pages.push(<NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage + 1)}>Next</NextAndPrevNavWrapper>);
+      pages.push(
+        <NextAndPrevNavWrapper
+          as={Link}
+          href={buildUrl(props, currentPage + 1)}
+        >
+          Next
+        </NextAndPrevNavWrapper>
+      );
     }
   }
 
   return (
     <PaginationWrapper style={style}>
-      {pages}
+      {pages.map((page, index) => (
+        cloneElement(
+          page,
+          {
+            key: `${page.props.href}-${index}`,
+            ...page.props,
+          }
+        )
+      ))}
     </PaginationWrapper>
   );
 };

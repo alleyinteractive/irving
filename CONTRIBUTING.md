@@ -11,14 +11,13 @@ Specific branches will be used for specific purposes in this repo. Considering t
 
 ### If you are a community contributor:
 1. Fork the Irving repo.
-2. `git checkout master` - check out the NPM package release branch.
-3. `npm run develop:prepare` - run this at the root of the Irving repo to prepare the irving repo for development. **IMPORTANT NOTE** this script is memory intensive and may take time, but you should only ever need to run it once. Get up and make yourself some coffee or a cocktail and just let it run!
-
-This script will:
+2. `git checkout master` - Check out the NPM package release branch.
+3. `npm run develop:prepare` - If you have run this script in the past, you can skip this step. Run this at the root of the Irving repo to prepare the irving repo for development. **IMPORTANT NOTE** this script is memory intensive and may take time, but you should only ever need to run it once. Get up and make yourself some coffee or a cocktail and just let it run! This script will:
   * Run `npm install`.
   * Run `npm link` within all Irving packages to create global symlinks.
   * Clean up `node_modules` within each package
   * Run `lerna bootstrap` to install and hoist dependencies for all packages, then link interdependent Irving packages together.
+  * **NOTE:** If you run into an error attempting to run this script, try running `develop:cleanup` first then attempt to run `develop:prepare` again.
 4. `npm install && npx irving link-all` - In the project where you'll be testing out your changes, run these commants to symlink all installed Irving packages.
 5. If for some reason you need to reset links, run `npm run develop:setup` in the Irving repo root and `npx irving link-all` in your project.
 6. `git checkout -b feature/issue-17/branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).

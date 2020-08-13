@@ -113,6 +113,7 @@ const SocialSharing = (props) => {
         <SocialSharingList>
           {platforms.map((platform) => (
             <SocialSharingItem
+              key={platform}
               platform={platform}
               theme={theme}
               title={platform}

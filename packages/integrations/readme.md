@@ -20,7 +20,6 @@ Configuring the integrations manager is a simple process. First, add the `irving
 			"name": "irving/integrations",
 			"children": []
         },
-        ...
 	]
 }
 ```
@@ -49,6 +48,9 @@ Importing the configuration is required in order to connect the Integration Mana
 * `<CoralEmbed />`
   * Key: `googleAnalytics`
   * Accepted Props: `rootURL`
+* `<Pico />`
+  * Key: `pico`
+  * Accepted Props: `pageInfo`, `publisherId`
 * `<YoastSchema />`
   * Key: `googleAnalytics`
   * Accepted Props: `content`

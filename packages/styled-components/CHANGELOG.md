@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.2.0-beta.1...v3.2.0) (2020-08-12)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.2.0-beta.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.2.0-beta.0...v3.2.0-beta.1) (2020-08-12)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [3.2.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.1.1...v3.2.0-beta.0) (2020-08-12)
+
+
+### Bug Fixes
+
+* **props:** begin fixing some props errors ([0710367](https://github.com/alleyinteractive/irving/packages/styled-components/commit/0710367106fb9f9743a0334f24f61b2027590145))
+* **props:** more props fixes ([c5f8cf9](https://github.com/alleyinteractive/irving/packages/styled-components/commit/c5f8cf9a2567c9c385de6d32651861717966154f))
+* **styledcomponents:** add keys to all instances of .map in styled components package ([c63f60c](https://github.com/alleyinteractive/irving/packages/styled-components/commit/c63f60ce288a5b3d23b99b97f9777d0c9988d587))
+* **text:** fix eslint error ([7f6b709](https://github.com/alleyinteractive/irving/packages/styled-components/commit/7f6b709f9a0d163f400eaeb47a0b8ac9870bd23e))
+
+
+### Features
+
+* **shouldomitirvingprops:** add config field to omit irving-specific props for certain components ([164be0f](https://github.com/alleyinteractive/irving/packages/styled-components/commit/164be0fd6348e1e79b1c494a6154210823fb7c57))
+
+
+
+
+
 ## [3.1.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.1.0...v3.1.1) (2020-08-09)
 
 **Note:** Version bump only for package @irvingjs/styled-components
