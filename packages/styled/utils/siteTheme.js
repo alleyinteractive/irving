@@ -1,7 +1,7 @@
-import get from 'lodash/fp/get';
+import get from 'lodash/get';
 
-const siteTheme = (valuePath) => (props) => (
-  get(`theme.${valuePath}`, props)
+const siteTheme = (valuePath, defaultValue = '') => (props) => (
+  get(props, `theme.${valuePath}`, defaultValue)
 );
 
 export default siteTheme;

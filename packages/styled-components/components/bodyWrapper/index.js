@@ -45,7 +45,7 @@ BodyWrapper.defaultProps = {
   theme: defaultStyles,
 };
 
-const themeMap = {
+export const themeMap = {
   default: defaultStyles,
 };
 
