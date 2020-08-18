@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
 
 const CoralEmbed = (props) => {
-  const { embedUrl } = props;
+  const { embedUrl, events } = props;
 
   if (! embedUrl) {
     return null;
@@ -20,6 +20,7 @@ const CoralEmbed = (props) => {
         id: 'coral_thread',
         autoRender: true,
         rootURL: embedUrl,
+        events,
       });
     }
   }, [loaded]);
@@ -29,8 +30,13 @@ const CoralEmbed = (props) => {
   );
 };
 
+CoralEmbed.defaultProps = {
+  events: () => {},
+};
+
 CoralEmbed.propTypes = {
   embedUrl: PropTypes.string.isRequired,
+  events: PropTypes.func,
 };
 
 export default CoralEmbed;
