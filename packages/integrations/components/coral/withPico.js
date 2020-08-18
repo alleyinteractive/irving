@@ -2,27 +2,46 @@ import React, { useEffect } from 'react';
 import CoralEmbed from './index';
 
 const withPico = (ChildComponent) => (props) => {
+  /* eslint-disable */
   useEffect(() => {
     const listener = () => {
       console.log('pico loaded');
-    };
-    window.document.addEventListener('pico-init', listener);
 
-    return () => window.document.removeEventListener('pico-init', listener);
+      const element = document.getElementById('PicoSignal-button');
+      // const event = null;
+      const observer = new MutationObserver((mutations) => {
+        console.log(mutations);
+      });
+      observer.observe(element, { attributes: true });
+    };
+    document.addEventListener('pico.loaded', listener);
+
+    return () => {
+      document.removeEventListener('pico.loaded', listener);
+    }
   }, []);
+  /* eslint-enable */
 
   const handlers = (events) => {
     events.on('loginPrompt', () => {
-      const {
-        location,
-      } = window;
+      const picoButton = document.getElementById('PicoSignal-button');
 
-      location.assign('?pn=manage_account');
+      if (picoButton) {
+        picoButton.click();
+      }
     });
   };
 
   return (
-    <ChildComponent {...props} events={handlers} />
+    <>
+      <ChildComponent {...props} events={handlers} />
+      <input
+        type="button"
+        id="PicoSignal-button"
+        className="PicoRule PicoSignal PicoManageAccount"
+        style={{ display: 'none' }}
+      />
+    </>
   );
 };
 
