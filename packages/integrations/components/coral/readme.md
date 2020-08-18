@@ -44,4 +44,4 @@ export default {
 ```
 The process for including Coral inside of your project's template JSON will remain unchanged when using the `withPico` wrapper.  
 
-_Note: In order for the Pico wrapper to render Coral, you'll have to have Pico running on your project. Information on how to do so can be found in the [Pico docs](https://help.trypico.com/en/articles/2905462-installing-the-wordpress-plugin)_
+_Note: In order for the Pico wrapper to render Coral, you'll have to have Pico running on your project. Information on how to do so can be found in the [Pico docs](https://help.trypico.com/en/articles/2905462-installing-the-wordpress-plugin)._
