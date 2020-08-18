@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CoralEmbed from './index';
 
-function withPico(ChildComponent) {
+const withPico = (ChildComponent) => (props) => {
+  useEffect(() => {
+    const listener = () => {
+      console.log('pico loaded');
+    };
+    window.document.addEventListener('pico-init', listener);
+
+    return () => window.document.removeEventListener('pico-init', listener);
+  }, []);
+
   const handlers = (events) => {
     events.on('loginPrompt', () => {
       const {
@@ -12,13 +21,9 @@ function withPico(ChildComponent) {
     });
   };
 
-  class WithHandlers extends React.Component {
-    render() {
-      return <ChildComponent {...this.props} events={handlers} />;
-    }
-  }
-
-  return WithHandlers;
-}
+  return (
+    <ChildComponent {...props} events={handlers} />
+  );
+};
 
 export default withPico(CoralEmbed);
