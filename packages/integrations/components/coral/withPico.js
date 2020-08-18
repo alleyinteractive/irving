@@ -13,7 +13,28 @@ const withPico = (ChildComponent) => (props) => {
     const picoButton = document.getElementById('PicoSignal-button');
     if (picoButton) {
       const observer = new MutationObserver((mutations) => {
-        console.log(mutations);
+        console.log('mutations => ', mutations);
+
+        mutations.forEach((mutation) => {
+          const {
+            type,
+            attributeName,
+          } = mutation;
+
+          if ('attributes' === type && 'data-pico-status' === attributeName) {
+            const attributes = {
+              registered: picoButton.getAttribute('data-pico-status'),
+              email: picoButton.getAttribute('data-pico-email'),
+            };
+            const isRegistered = 'registered' === attributes.registered;
+            const hasEmail = 0 < attributes.email.length;
+
+            if (isRegistered && hasEmail) {
+              // do something.
+              console.log('userEmail => ', attributes.email);
+            }
+          }
+        });
       });
       observer.observe(picoButton, { attributes: true });
     }
