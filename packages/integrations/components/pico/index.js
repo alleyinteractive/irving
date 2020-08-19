@@ -24,11 +24,33 @@ const Pico = (props) => {
 
   const [picoLoaded, setPicoLoaded] = useState(false);
 
-  // On component hydration, add an event listener to watch for the script's init event.
   useEffect(() => {
+    const widgetContainer = document.getElementById('pico-widget-container');
+    // If the widget container exists, set the picoLoaded value to true so
+    // that another widget instance is not added into the DOM.
+    if (widgetContainer) {
+      setPicoLoaded(true);
+
+      const documentBody = document.getElementsByTagName('body')[0];
+      // Append a container node for the Pico signals to target into the DOM if one doesn't already exist..
+      if (documentBody && ! document.getElementById('PicoSignal-container')) {
+        // Create the node.
+        const node = document.createElement('div');
+        // Set the attributes.
+        node.setAttribute('id', 'PicoSignal-container');
+        node.setAttribute('class', 'PicoSignal');
+        node.setAttribute('style', 'display: none');
+        // Append the node into the DOM.
+        documentBody.appendChild(node);
+        // Trigger a visit.
+        window.pico('visit', picoPageInfo);
+      }
+    }
+
     const handler = () => {
       setPicoLoaded(true);
     };
+    // On component hydration, add an event listener to watch for the script's init event.
     window.document.addEventListener('pico-init', handler);
 
     return () => window.document.removeEventListener('pico-init', handler);
@@ -44,9 +66,6 @@ const Pico = (props) => {
       </Helmet>
     );
   }
-
-  // Trigger a visit upon init.
-  window.pico('visit', picoPageInfo);
 
   return null;
 };

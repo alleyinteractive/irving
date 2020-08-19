@@ -5,17 +5,13 @@ const withPico = (ChildComponent) => (props) => {
   const [picoLoaded, setPicoLoaded] = useState(false);
 
   useEffect(() => {
-    const initHandler = () => {
-      setPicoLoaded(true);
-    };
-    // Listen for Pico to be initialized.
-    window.addEventListener('pico.init', initHandler);
-
     const observerHandler = () => {
-      const picoButton = document.getElementById('PicoSignal-button');
+      setPicoLoaded(true);
+
+      const signalNode = document.getElementById('PicoSignal-container');
       // Only mount the observer if the PicoSignal button exists in the DOM and
       // the Pico data attributes have been appended to the element.
-      if (picoButton && null !== picoButton.getAttribute('data-pico-email')) {
+      if (signalNode && null !== signalNode.getAttribute('data-pico-email')) {
         // Define the observer.
         const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
@@ -27,8 +23,8 @@ const withPico = (ChildComponent) => (props) => {
             if ('attributes' === type && 'data-pico-status' === attributeName) {
               // Create a reusable store for attribute values.
               const attributes = {
-                registered: picoButton.getAttribute('data-pico-status'),
-                email: picoButton.getAttribute('data-pico-email'),
+                registered: signalNode.getAttribute('data-pico-status'),
+                email: signalNode.getAttribute('data-pico-email'),
               };
 
               const isRegistered = 'registered' === attributes.registered;
@@ -41,21 +37,18 @@ const withPico = (ChildComponent) => (props) => {
             }
           });
         });
-        observer.observe(picoButton, { attributes: true });
+        observer.observe(signalNode, { attributes: true });
       }
     };
     // Wait for Pico to load in order to mount the observer.
     window.addEventListener('pico.loaded', observerHandler);
 
-    return () => {
-      window.removeEventListener('pico.init', initHandler);
-      window.removeEventListener('pico.loaded', observerHandler);
-    };
+    return () => window.removeEventListener('pico.loaded', observerHandler);
   }, []);
 
   const handlers = (events) => {
     events.on('loginPrompt', () => {
-      const picoButton = document.getElementById('PicoSignal-button');
+      const picoButton = document.getElementById('PicoRule-button');
 
       if (picoButton) {
         picoButton.click();
@@ -63,22 +56,18 @@ const withPico = (ChildComponent) => (props) => {
     });
   };
 
-  if (picoLoaded) {
-    return (
-      <>
-        <ChildComponent {...props} events={handlers} />
-        <input
-          type="button"
-          id="PicoSignal-button"
-          className="PicoRule PicoSignal PicoManageAccount"
-          // style={{ display: 'none' }}
-          value="Sign in with Pico"
-        />
-      </>
-    );
-  }
-
-  return null;
+  return (
+    <>
+      {picoLoaded && <ChildComponent {...props} events={handlers} />}
+      <input
+        type="button"
+        id="PicoRule-button"
+        className="PicoRule PicoManageAccount"
+        style={{ display: 'none' }}
+        value="Sign in with Pico"
+      />
+    </>
+  );
 };
 
 export default withPico(CoralEmbed);
