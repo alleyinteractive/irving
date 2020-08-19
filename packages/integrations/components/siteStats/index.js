@@ -23,7 +23,6 @@ const SiteStats = ({ data }) => {
     gif.width = 6;
     gif.height = 5;
     gif.id = 'wpstats';
-    console.log(gif);
     document.body.appendChild(gif);
 
     // Clean up gif and remove from DOM.
