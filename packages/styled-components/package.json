@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/styled-components",
-  "version": "3.2.0",
+  "version": "3.2.1-alpha.0",
   "description": "Integration for React components with attached styles for Irving",
   "files": [
     "components/**/*",
@@ -23,7 +23,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@irvingjs/styled": "^3.2.0",
+    "@irvingjs/styled": "^3.2.1-alpha.0",
     "@wordpress/i18n": "^3.10.0",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
