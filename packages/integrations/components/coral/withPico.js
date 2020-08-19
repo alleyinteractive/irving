@@ -5,24 +5,19 @@ const withPico = (ChildComponent) => (props) => {
   const [picoLoaded, setPicoLoaded] = useState(false);
 
   useEffect(() => {
-    // The observer variable needs to be defined outside of the init context
-    // so that it can be disconnected when the `withPico` component unmounts.
-    let observer;
-
-    const loadHandler = () => {
+    const initHandler = () => {
       setPicoLoaded(true);
     };
+    // Listen for Pico to be initialized.
+    window.addEventListener('pico.init', initHandler);
 
-    // Listen for pico to be initialized.
-    document.addEventListener('pico-init', loadHandler);
-
-    if (picoLoaded) {
+    const observerHandler = () => {
       const picoButton = document.getElementById('PicoSignal-button');
       // Only mount the observer if the PicoSignal button exists in the DOM and
       // the Pico data attributes have been appended to the element.
       if (picoButton && null !== picoButton.getAttribute('data-pico-email')) {
         // Define the observer.
-        observer = new MutationObserver((mutations) => {
+        const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
             const {
               type,
@@ -48,16 +43,15 @@ const withPico = (ChildComponent) => (props) => {
         });
         observer.observe(picoButton, { attributes: true });
       }
-    }
+    };
+    // Wait for Pico to load in order to mount the observer.
+    window.addEventListener('pico.loaded', observerHandler);
 
     return () => {
-      document.removeEventListener('pico-init', loadHandler);
-
-      if (observer) {
-        observer.disconnect();
-      }
+      window.removeEventListener('pico.init', initHandler);
+      window.removeEventListener('pico.loaded', observerHandler);
     };
-  }, [picoLoaded]);
+  }, []);
 
   const handlers = (events) => {
     events.on('loginPrompt', () => {
@@ -77,7 +71,8 @@ const withPico = (ChildComponent) => (props) => {
           type="button"
           id="PicoSignal-button"
           className="PicoRule PicoSignal PicoManageAccount"
-          style={{ display: 'none' }}
+          // style={{ display: 'none' }}
+          value="Sign in with Pico"
         />
       </>
     );

@@ -29,9 +29,9 @@ const Pico = (props) => {
     const handler = () => {
       setPicoLoaded(true);
     };
-    document.addEventListener('pico-init', handler);
+    window.document.addEventListener('pico-init', handler);
 
-    return () => document.removeEventListener('pico-init', handler);
+    return () => window.document.removeEventListener('pico-init', handler);
   }, []);
 
   // Load the script for the first time.
