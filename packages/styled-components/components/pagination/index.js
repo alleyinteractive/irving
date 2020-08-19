@@ -24,12 +24,13 @@ const buildUrl = (props, page) => {
 
   const paginationPart = paginationFormat.replace('%1$d', page);
   const currentQueryVars = queryString.parse(window.location.search);
+  const qs = currentQueryVars.length ? `?${queryString.stringify(currentQueryVars)}` : '';
 
   if (1 === page) {
-    return `${baseUrl}?${queryString.stringify(currentQueryVars)}`;
+    return `${baseUrl}${qs}`;
   }
 
-  return `${baseUrl}${paginationPart}?${queryString.stringify(currentQueryVars)}`;
+  return `${baseUrl}${paginationPart}${qs}`;
 };
 
 /**
