@@ -1,7 +1,7 @@
 // Integration components.
 import CoralEmbed from '../coral';
 import YoastSchema from '../yoastSchema';
-import SiteStats from '../siteStats';
+import JetpackSiteStats from '../jetpackSiteStats';
 import GoogleAnalytics from '../googleAnalytics';
 import Pico from '../pico';
 
@@ -9,7 +9,7 @@ import Pico from '../pico';
 export default [
   { key: 'coral', el: CoralEmbed },
   { key: 'yoastSchema', el: YoastSchema },
-  { key: 'siteStats', el: SiteStats },
+  { key: 'jetpackSiteStats', el: JetpackSiteStats },
   { key: 'googleAnalytics', el: GoogleAnalytics },
   { key: 'pico', el: Pico },
 ];

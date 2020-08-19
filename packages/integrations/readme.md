@@ -54,7 +54,7 @@ Importing the configuration is required in order to connect the Integration Mana
 * `<YoastSchema />`
   * Key: `googleAnalytics`
   * Accepted Props: `content`
-* `<SiteStats />`
+* `<JetpackSiteStats />`
   * Key: `siteStats`
   * Accepted Props: `data`
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 
-const SiteStats = ({ data }) => {
+const JetpackSiteStats = ({ data }) => {
   /**
    * Effect for inserting wpstats tracking gif into DOM.
    */
@@ -39,7 +39,7 @@ const SiteStats = ({ data }) => {
   return null;
 };
 
-SiteStats.propTypes = {
+JetpackSiteStats.propTypes = {
   data: PropTypes.shape({
     blog: PropTypes.number,
     tz: PropTypes.number,
@@ -50,4 +50,4 @@ SiteStats.propTypes = {
   }).isRequired,
 };
 
-export default SiteStats;
+export default JetpackSiteStats;
