@@ -25,6 +25,12 @@ const Pico = (props) => {
   const [picoLoaded, setPicoLoaded] = useState(false);
 
   useEffect(() => {
+    const initHandler = () => {
+      setPicoLoaded(true);
+    };
+    // On component hydration, add an event listener to watch for the script's init event.
+    window.document.addEventListener('pico-init', initHandler);
+
     const widgetContainer = document.getElementById('pico-widget-container');
     // If the widget container exists, set the picoLoaded value to true so
     // that another widget instance is not added into the DOM.
@@ -34,26 +40,32 @@ const Pico = (props) => {
       const documentBody = document.getElementsByTagName('body')[0];
       // Append a container node for the Pico signals to target into the DOM if one doesn't already exist..
       if (documentBody && ! document.getElementById('PicoSignal-container')) {
-        // Create the node.
-        const node = document.createElement('div');
+        // Create the signal node.
+        const signalNode = document.createElement('div');
         // Set the attributes.
-        node.setAttribute('id', 'PicoSignal-container');
-        node.setAttribute('class', 'PicoSignal');
-        node.setAttribute('style', 'display: none');
+        signalNode.setAttribute('id', 'PicoSignal-container');
+        signalNode.setAttribute('class', 'PicoSignal');
+        signalNode.setAttribute('style', 'display: none');
         // Append the node into the DOM.
-        documentBody.appendChild(node);
-        // Trigger a visit.
-        window.pico('visit', picoPageInfo);
+        documentBody.appendChild(signalNode);
+        // Create the rule node.
+        const ruleNode = document.createElement('input');
+        // Set the attributes.
+        ruleNode.setAttribute('type', 'button');
+        ruleNode.setAttribute('id', 'PicoRule-button');
+        ruleNode.setAttribute('class', 'PicoRule PicoManageAccount');
+        ruleNode.setAttribute('style', 'display: none');
+        // Append the node into the DOM.
+        documentBody.appendChild(ruleNode);
       }
     }
 
-    const handler = () => {
-      setPicoLoaded(true);
-    };
-    // On component hydration, add an event listener to watch for the script's init event.
-    window.document.addEventListener('pico-init', handler);
+    if (picoLoaded) {
+      // Trigger a visit.
+      window.pico('visit', picoPageInfo);
+    }
 
-    return () => window.document.removeEventListener('pico-init', handler);
+    return () => window.document.removeEventListener('pico-init', initHandler);
   }, []);
 
   // Load the script for the first time.

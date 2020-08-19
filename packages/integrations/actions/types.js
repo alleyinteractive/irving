@@ -1,2 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+// Integrations Manager.
 export const HYDRATE_COMPONENTS = 'integrations/HYDRATE_COMPONENTS';
+// Integrations.
+export const PICO_VISIT = 'integrations/PICO_VISIT';

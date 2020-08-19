@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable */
+import React, {
+  useState,
+  useEffect,
+} from 'react';
 import CoralEmbed from './index';
 
 const withPico = (ChildComponent) => (props) => {
@@ -56,18 +60,11 @@ const withPico = (ChildComponent) => (props) => {
     });
   };
 
-  return (
-    <>
-      {picoLoaded && <ChildComponent {...props} events={handlers} />}
-      <input
-        type="button"
-        id="PicoRule-button"
-        className="PicoRule PicoManageAccount"
-        style={{ display: 'none' }}
-        value="Sign in with Pico"
-      />
-    </>
-  );
+  if (picoLoaded) {
+    return <ChildComponent {...props} events={handlers} />;
+  }
+
+  return null;
 };
 
 export default withPico(CoralEmbed);
