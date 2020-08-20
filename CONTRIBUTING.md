@@ -9,8 +9,8 @@ Note: For merge commits, just use `chore` for the type of change, `merge` for th
 ## Git Workflow and Branches
 Specific branches will be used for specific purposes in this repo. Considering this, the lifecycle of a new feature, bugfix, etc. should largely follow the steps below.
 
-### If you are a community contributor:
-1. Fork the Irving repo.
+### Set up process
+1. Fork or clone the Irving repo.
 2. `git checkout master` - Check out the NPM package release branch.
 3. `npm run develop:prepare` - If you have run this script in the past, you can skip this step. Run this at the root of the Irving repo to prepare the irving repo for development. **IMPORTANT NOTE** this script is memory intensive and may take time, but you should only ever need to run it once. Get up and make yourself some coffee or a cocktail and just let it run! This script will:
   * Run `npm install`.
@@ -19,14 +19,16 @@ Specific branches will be used for specific purposes in this repo. Considering t
   * Run `lerna bootstrap` to install and hoist dependencies for all packages, then link interdependent Irving packages together.
   * **NOTE:** If you run into an error attempting to run this script, try running `develop:cleanup` first then attempt to run `develop:prepare` again.
 4. `npm install && npx irving link-all` - In the project where you'll be testing out your changes, run these commants to symlink all installed Irving packages.
-5. If for some reason you need to reset links, run `npm run develop:setup` in the Irving repo root and `npx irving link-all` in your project.
-6. `git checkout -b feature/issue-17/branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
-7. `npm run test` and/or `npm run test:watch` - If you've fixed a bug or added a new feature, please write tests! These commands can be used to run tests from within the package you are modifying or at the root of the repo if you want to run all tests for all packages.
-8. When ready, push your code and create a pull request into `master` branches.
-9. Your code will be reviewed by someone at Alley.
-10. Once your code passes review, someone at Alley will merge it into `master` and include it in the next publish to npm on the `@beta` or `@rc` tag.
-11. Keep an eye on the releases page. When you see your code has been released, _install and test it!_.
-12. Assuming neither you nor someone at Alley finds issues with your code, someone at Alley will approve and merge your PR to `master` and include it in the next `@latest` release.
+
+### If you are a community contributor:
+1. If for some reason you need to reset links, run `npm run develop:setup` in the Irving repo root and `npx irving link-all` in your project.
+2. `git checkout -b feature/issue-17/branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
+3. `npm run test` and/or `npm run test:watch` - If you've fixed a bug or added a new feature, please write tests! These commands can be used to run tests from within the package you are modifying or at the root of the repo if you want to run all tests for all packages.
+4. When ready, push your code and create a pull request into `master` branches.
+5. Your code will be reviewed by someone at Alley.
+6. Once your code passes review, someone at Alley will merge it into `master` and include it in the next publish to npm on the `@beta` or `@rc` tag.
+7. Keep an eye on the releases page. When you see your code has been released, _install and test it!_.
+8. Assuming neither you nor someone at Alley finds issues with your code, someone at Alley will approve and merge your PR to `master` and include it in the next `@latest` release.
 
 ### Publishing Irving
 If you are a part of the Alley organization and have publish capabilities for the npm packages, check out the [publishing docs](PUBLISHING.md).
