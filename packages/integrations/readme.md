@@ -19,8 +19,7 @@ Configuring the integrations manager is a simple process. First, add the `irving
 		{
 			"name": "irving/integrations",
 			"children": []
-		},
-        // ... other defaults
+        },
 	]
 }
 ```
@@ -43,9 +42,21 @@ export default {
 };
 ```
 Importing the configuration is required in order to connect the Integration Manager to the global Redux state tree and add the `integrations` branch to the store. The integrations currently available to manage through the integrations manager include:
-* `<Google Analytics />`
+* `<GoogleAnalytics />`
   * Key: `googleAnalytics`
   * Accepted Props: `trackingId`
+* `<CoralEmbed />`
+  * Key: `googleAnalytics`
+  * Accepted Props: `rootURL`
+* `<Pico />`
+  * Key: `pico`
+  * Accepted Props: `pageInfo`, `publisherId`
+* `<YoastSchema />`
+  * Key: `googleAnalytics`
+  * Accepted Props: `content`
+* `<JetpackSiteStats />`
+  * Key: `siteStats`
+  * Accepted Props: `data`
 
 Configurations can also be managed manually through your irving configuration file. In order to do so, all you have to do is specify the integration's key and properties to be passed into its configuration. Example:
 ```js javascript
