@@ -1,20 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CoralEmbed from './index';
+import { actionVerifyPicoUser } from '../../actions';
 
 const withPico = (ChildComponent) => (props) => {
+  const [
+    verificationRequestSent,
+    setVerificationRequestStatus,
+  ] = useState(false);
+
+  const dispatch = useDispatch();
+  const dispatchVerificationRequest = useCallback(
+    (user) => {
+      // Update the request status variable so that multiple verification
+      // requests are presented.
+      setVerificationRequestStatus(true);
+      // Dispatch the action.
+      return dispatch(actionVerifyPicoUser(user));
+    },
+    [dispatch]
+  );
+  const integrationsState = useSelector((state) => state.integrations);
+  const {
+    coralToken = undefined,
+  } = integrationsState;
+
   useEffect(() => {
     const observerHandler = () => {
       const signalNode = document.getElementById('PicoSignal-container');
       // Only mount the observer if the PicoSignal button exists in the DOM and
       // the Pico data attributes have been appended to the element.
-      if (signalNode && null !== signalNode.getAttribute('data-pico-email')) {
+      if (
+        signalNode &&
+        null !== signalNode.getAttribute('data-pico-email') &&
+        false === verificationRequestSent
+      ) {
         // Define the observer.
         const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
-            const {
-              type,
-              attributeName,
-            } = mutation;
+            const { type, attributeName } = mutation;
+
             // Execute the webhook on the `data-pico-status` attribute.
             if ('attributes' === type && 'data-pico-status' === attributeName) {
               // Create a reusable store for attribute values.
@@ -27,8 +52,7 @@ const withPico = (ChildComponent) => (props) => {
               const hasEmail = 0 < attributes.email.length;
 
               if (isRegistered && hasEmail) {
-                // do something.
-                console.log(attributes);
+                dispatchVerificationRequest(attributes);
               }
             }
           });
@@ -52,7 +76,7 @@ const withPico = (ChildComponent) => (props) => {
     });
   };
 
-  return <ChildComponent {...props} events={handlers} />;
+  return <ChildComponent {...props} events={handlers} ssoToken={coralToken} />;
 };
 
 export default withPico(CoralEmbed);

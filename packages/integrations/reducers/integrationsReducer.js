@@ -1,5 +1,5 @@
 import merge from 'lodash/fp/merge';
-import { HYDRATE_COMPONENTS } from '../actions/types';
+import { HYDRATE_COMPONENTS, RECEIVE_CORAL_SSO_TOKEN } from '../actions/types';
 import defaultState from './defaultState';
 
 /**
@@ -16,6 +16,9 @@ export default function integrationsReducer(
   switch (type) {
     case HYDRATE_COMPONENTS:
       return merge(state, { componentMap: payload, hydrated: true });
+
+    case RECEIVE_CORAL_SSO_TOKEN:
+      return merge(state, { coralToken: payload });
 
     default:
       return state;
