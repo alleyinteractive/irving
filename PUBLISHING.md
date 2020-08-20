@@ -5,6 +5,7 @@ These are notes and guidelines for publishing the Irving NPM packages. This will
 In order to publish you will need to:
 * Create GitHub authentication token (under Settings > Developer settings > Personal access tokens). Once you have your token token, create a `.env` file at the root of the cloned Irving repo and assign it to a `GH_TOKEN` environmental variable.
 * Log in to Alley's npm account via `npm adduser` to gain publish permissions. If you are unsure of how to do this, ask Owen.
+* Before working through any of the below workflows, use the [set up process](CONTRIBUTING.md#set-up-process) in the contributing documentation to prepare your local environment, if you haven't already.
 
 ## Available NPM scripts
 * `npm run prerelease:canary` - publish a prerelease to npm. This will use the npm `@canary` tag using the `-alpha` prerelease identifier. Publish to the `@canary` tag from the `master` branch after doing a CR/PR from your feature branch. Because this is the alpha tag, don't worry about publishing something broken.
@@ -14,7 +15,7 @@ In order to publish you will need to:
 
 ## Sample Workflow for developing features
 * `git checkout -b feature/issue-17/branch-title` - create a new feature branch based on `master`. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
-* Work on your branch locally using linked packages. If you haven't already, use the [set up process](CONTRIBUTING.md#set-up-process) in the contributing documentation to prepare your local environment.
+* Work on your branch locally using linked packages.
 * Once you’re satisfied with your code, open up a pull request to the `master` branch.
 * Get a peer code review on your pull request into `master` and, once approved, merge it into `master` when ready.
 * `git checkout master && git pull origin master` - checkout `master` and pull down your newly-merged code.
@@ -24,7 +25,7 @@ In order to publish you will need to:
 ## If you need to release a patch or hotfix
 * `git checkout release/[version]` - check out the release branch for which you need to make a patch.
 * `git checkout -b bug/bug-description` - check out a new branch for your patch or hotfix.
-* Work on your branch locally using linked packages. If you haven't already, use the [set up process](CONTRIBUTING.md#set-up-process) in the contributing documentation to prepare your local environment.
+* Work on your branch locally using linked packages.
 * Once you’re satisfied with your code, open up a pull request to the `release/[version]` branch.
 * Get a peer code review on your pull request into the `release/[version]` and, once approved, merge it into `release/[version]` when ready.
 * `npm run prerelease:beta` - create a new beta release from the `release/[version]` branch and test it locally.
