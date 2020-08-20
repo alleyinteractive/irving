@@ -1,4 +1,3 @@
-import sagas from './sagas';
 import getReducers from './reducers';
 import getDefaultState from './reducers/defaultState';
 
