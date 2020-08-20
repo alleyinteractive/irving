@@ -1,17 +1,9 @@
-/* eslint-disable */
-import React, {
-  useState,
-  useEffect,
-} from 'react';
+import React, { useEffect } from 'react';
 import CoralEmbed from './index';
 
 const withPico = (ChildComponent) => (props) => {
-  const [picoLoaded, setPicoLoaded] = useState(false);
-
   useEffect(() => {
     const observerHandler = () => {
-      setPicoLoaded(true);
-
       const signalNode = document.getElementById('PicoSignal-container');
       // Only mount the observer if the PicoSignal button exists in the DOM and
       // the Pico data attributes have been appended to the element.
@@ -60,11 +52,7 @@ const withPico = (ChildComponent) => (props) => {
     });
   };
 
-  if (picoLoaded) {
-    return <ChildComponent {...props} events={handlers} />;
-  }
-
-  return null;
+  return <ChildComponent {...props} events={handlers} />;
 };
 
 export default withPico(CoralEmbed);

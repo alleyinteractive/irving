@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import mountPicoNodes from './utils';
 
 const Pico = (props) => {
   const {
@@ -25,45 +26,28 @@ const Pico = (props) => {
   const [picoLoaded, setPicoLoaded] = useState(false);
 
   useEffect(() => {
-    const initHandler = () => {
-      setPicoLoaded(true);
-    };
-    // On component hydration, add an event listener to watch for the script's init event.
-    window.document.addEventListener('pico-init', initHandler);
-
     const widgetContainer = document.getElementById('pico-widget-container');
     // If the widget container exists, set the picoLoaded value to true so
     // that another widget instance is not added into the DOM.
     if (widgetContainer) {
       setPicoLoaded(true);
 
-      const documentBody = document.getElementsByTagName('body')[0];
-      // Append a container node for the Pico signals to target into the DOM if one doesn't already exist..
-      if (documentBody && ! document.getElementById('PicoSignal-container')) {
-        // Create the signal node.
-        const signalNode = document.createElement('div');
-        // Set the attributes.
-        signalNode.setAttribute('id', 'PicoSignal-container');
-        signalNode.setAttribute('class', 'PicoSignal');
-        signalNode.setAttribute('style', 'display: none');
-        // Append the node into the DOM.
-        documentBody.appendChild(signalNode);
-        // Create the rule node.
-        const ruleNode = document.createElement('input');
-        // Set the attributes.
-        ruleNode.setAttribute('type', 'button');
-        ruleNode.setAttribute('id', 'PicoRule-button');
-        ruleNode.setAttribute('class', 'PicoRule PicoManageAccount');
-        ruleNode.setAttribute('style', 'display: none');
-        // Append the node into the DOM.
-        documentBody.appendChild(ruleNode);
+      // Ensure the target nodes are only mounted once on the initial server load.
+      if (
+        ! document.getElementById('PicoSignal-container') &&
+        ! document.getElementById('PicoRule-button')
+      ) {
+        mountPicoNodes(picoPageInfo);
+      } else {
+        window.pico('visit', picoPageInfo);
       }
     }
 
-    if (picoLoaded) {
-      // Trigger a visit.
-      window.pico('visit', picoPageInfo);
-    }
+    const initHandler = () => {
+      setPicoLoaded(true);
+    };
+    // On component hydration, add an event listener to watch for the script's init event.
+    window.document.addEventListener('pico-init', initHandler);
 
     return () => window.document.removeEventListener('pico-init', initHandler);
   }, []);
