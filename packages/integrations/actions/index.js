@@ -2,7 +2,10 @@ import { createAction } from '@irvingjs/core/actions';
 import {
   HYDRATE_COMPONENTS,
   SEND_PICO_VERIFICATION_REQUEST,
+  RECEIVE_PICO_VERIFICATION_FAILURE,
   RECEIVE_CORAL_SSO_TOKEN,
+  RECEIVE_CORAL_LOGOUT_REQUEST,
+  RECEIVE_CORAL_LOGOUT,
 } from './types';
 
 /**
@@ -24,6 +27,14 @@ export function actionVerifyPicoUser(user) {
 }
 
 /**
+ * Create an action that is received when Pico cannot verify the user's validity.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceivePicoVerificationFailure() {
+  return createAction(RECEIVE_PICO_VERIFICATION_FAILURE);
+}
+
+/**
  * Create an action that updates the store when a Coral SSO token is recieved
  * from the API.
  * @param {Object} user - The user's details.
@@ -31,4 +42,22 @@ export function actionVerifyPicoUser(user) {
  */
 export function actionReceiveCoralToken(token) {
   return createAction(RECEIVE_CORAL_SSO_TOKEN, token);
+}
+
+/**
+ * Create an action that updates the store when a Coral user requests to be
+ * logged out via SSO through Pico.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveCoralLogoutRequest() {
+  return createAction(RECEIVE_CORAL_LOGOUT_REQUEST);
+}
+
+/**
+ * Create an action that updates the store when a Coral user is successfully
+ * logged out.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveCoralLogout() {
+  return createAction(RECEIVE_CORAL_LOGOUT);
 }
