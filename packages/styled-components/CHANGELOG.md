@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.2.1-alpha.0...v3.2.1) (2020-08-21)
+
+
+### Bug Fixes
+
+* ensure URLs without query strings do not have a question mark appended ([25e9ef6](https://github.com/alleyinteractive/irving/packages/styled-components/commit/25e9ef61e86cc2aa9e80f23d12f2db2735517ab2))
+
+
+
+
+
 # [3.2.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.2.0-beta.1...v3.2.0) (2020-08-12)
 
 **Note:** Version bump only for package @irvingjs/styled-components
