@@ -50,7 +50,7 @@ const Pico = (props) => {
     window.document.addEventListener('pico-init', initHandler);
 
     return () => window.document.removeEventListener('pico-init', initHandler);
-  }, []);
+  }, [picoLoaded]);
 
   // Load the script for the first time.
   if (! picoLoaded) {
