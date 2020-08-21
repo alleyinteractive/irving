@@ -42,7 +42,7 @@ const CoralEmbed = ({
 
       if (accessToken) {
         // Login the user if an access token exists.
-        embed.login(`{{ ${accessToken} }}`);
+        embed.login(accessToken);
       }
 
       if (! accessToken && shouldPurgeUser) {
