@@ -41,7 +41,7 @@ async function sendVerificationRequest(payload) {
     } = payload;
 
     const response = await fetch(
-      `${process.env.API_ROOT_URL}/data/verify_pico_user?user=${email}` // eslint-disable-line max-len
+      `${process.env.API_ROOT_URL}/data/validate_sso_user?user=${email}`
     ).then((res) => res.json());
 
     return response;
