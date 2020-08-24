@@ -9,7 +9,8 @@ const CommentCount = (props) => {
     noText,
   } = props;
 
-  if (! embedUrl) {
+  // We need an embedUrl and articleUrl to proceed.
+  if (! embedUrl || ! articleUrl) {
     return null;
   }
 
