@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/audio-player",
-  "version": "3.2.0",
+  "version": "3.2.2-alpha.1",
   "description": "Persistent audio player and related components for Irving",
   "files": [
     "actions/**/*",
@@ -28,8 +28,8 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^3.1.1",
-    "@irvingjs/core": "^3.2.0",
+    "@irvingjs/babel-preset-irving": "^3.2.2-alpha.1",
+    "@irvingjs/core": "^3.2.2-alpha.1",
     "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^25.5.3"
   },
