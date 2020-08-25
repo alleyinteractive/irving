@@ -9,6 +9,15 @@ jobs:
     name: Publish to NPM
     runs-on: ubuntu-latest
     steps:
+      - name: Cache node_modules
+        id: cache-modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: 12.x-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+      - name: Build
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: npm install
       - name: Alpha Prerelease
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
