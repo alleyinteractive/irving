@@ -7,6 +7,8 @@
 		"components/**/*",
 		"config/**/*",
 		"reducers/**/*",
+		"sagas/**/*",
+		"selectors/**/*",
 		"irving.config.js",
 		"!*.test.js"
 	],
