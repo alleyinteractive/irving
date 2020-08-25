@@ -14,9 +14,10 @@ jobs:
         run: |
           git config --global user.email "ops+alleyci@alleyinteractive.com"
           git config --global user.name "Alley CI"
-          git remote set-url origin https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/alleyinteractive/irving
+          git remote set-url origin https://$ACTOR:$TOKEN@github.com/alleyinteractive/irving
         env:
-          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+          ACTOR: ${{ secrets.ACTOR }}
+          TOKEN: ${{ secrets.ALLEY_CI_TOKEN }}
       - name: Cache node_modules
         id: cache-modules
         uses: actions/cache@v1
@@ -28,6 +29,6 @@ jobs:
         run: npm install
       - name: Alpha Prerelease
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.ALLEY_CI_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: npm run prerelease:canary:ci
