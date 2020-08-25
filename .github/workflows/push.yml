@@ -3,7 +3,7 @@ on:
     branches:
       - master
       - release/**
-name: Publish on merge
+name: Push
 jobs:
   publish:
     name: Publish to NPM
