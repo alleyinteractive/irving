@@ -23,4 +23,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        run: npm run prerelease:canary:ci
+        run: |
+          git config user.email "ops+alleyci@alleyinteractive.com"
+          git config user.name "Alley CI"
+          npm run prerelease:canary:ci
