@@ -21,6 +21,7 @@ const widths = {
 const Container = (props) => {
   const {
     children,
+    className,
     backgroundImageUrl,
     maxWidth,
     style,
@@ -51,13 +52,18 @@ const Container = (props) => {
   }
 
   return (
-    <ContainerWrapper as={tag} style={style}>
+    <ContainerWrapper
+      as={tag}
+      style={style}
+      className={className}
+    >
       {children}
     </ContainerWrapper>
   );
 };
 
 Container.defaultProps = {
+  className: '',
   children: {},
   backgroundImageUrl: '',
   maxWidth: 'lg',
@@ -67,6 +73,7 @@ Container.defaultProps = {
 };
 
 Container.propTypes = {
+  className: PropTypes.string,
   /**
    * Children of the component.
    */
