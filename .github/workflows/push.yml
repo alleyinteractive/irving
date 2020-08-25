@@ -1,0 +1,13 @@
+on:
+  push:
+    branches:
+      - master
+      - release/**
+name: Publish on merge
+jobs:
+  publish:
+    name: Publish to NPM
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    run: npm run prerelease:alpha
