@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Configure CI Git User
+        run: |
+          git config --global user.email "ops+alleyci@alleyinteractive.com"
+          git config --global user.name "Alley CI"
+          git remote set-url origin https://$GITHUB_ACTOR:$GITHUB_PAT@github.com/alleyinteractive/irving
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
       - name: Cache node_modules
         id: cache-modules
         uses: actions/cache@v1
@@ -23,7 +30,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        run: |
-          git config --global user.email "ops+alleyci@alleyinteractive.com"
-          git config --global user.name "Alley CI"
-          npm run prerelease:canary:ci
+        run: npm run prerelease:canary:ci
