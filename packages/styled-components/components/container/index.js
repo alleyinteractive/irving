@@ -73,6 +73,9 @@ Container.defaultProps = {
 };
 
 Container.propTypes = {
+  /**
+   * Wrapper classes.
+   */
   className: PropTypes.string,
   /**
    * Children of the component.
