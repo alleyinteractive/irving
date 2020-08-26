@@ -24,7 +24,6 @@ const SocialLinks = (props) => {
     SocialLinksWrapper,
   } = theme;
 
-  console.log(platforms);
   const items = Object.keys(platforms).map((platform) => ({
     platform,
     url: platforms[platform],
@@ -36,7 +35,7 @@ const SocialLinks = (props) => {
       children: [],
     }),
   }));
-  console.log(items);
+
   return (
     <SocialLinksWrapper style={style}>
       {items && 0 !== items.length && (
