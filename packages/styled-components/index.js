@@ -14,6 +14,7 @@ import * as Logo from 'components/logo';
 import * as Menu from 'components/menu';
 import * as Pagination from 'components/pagination';
 import * as SearchForm from 'components/searchForm';
+import * as SocialLinks from 'components/socialLinks';
 import * as SocialSharing from 'components/socialSharing';
 import * as Text from 'components/text';
 
@@ -54,6 +55,7 @@ export const components = {
   'irving/menu': Menu,
   'irving/pagination': Pagination,
   'irving/search-form': SearchForm,
+  'irving/social-links': SocialLinks,
   'irving/social-sharing': SocialSharing,
   'irving/text': Text,
 };
@@ -87,6 +89,7 @@ export const defaultMapping = {
   'irving/pagination': Pagination.StyledComponent,
   'irving/search-form': SearchForm.StyledComponent,
   'irving/site-theme': SiteThemeProvider,
+  'irving/social-links': SocialLinks.StyledComponent,
   'irving/social-sharing': SocialSharing.StyledComponent,
   'irving/text': Text.StyledComponent,
   'styled-css-grid/cell': StyledCSSGridCell,
