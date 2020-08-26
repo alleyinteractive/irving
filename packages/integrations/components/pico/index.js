@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import mountPicoNodes from './utils';
 
 const Pico = (props) => {
   const {
@@ -24,15 +25,32 @@ const Pico = (props) => {
 
   const [picoLoaded, setPicoLoaded] = useState(false);
 
-  // On component hydration, add an event listener to watch for the script's init event.
   useEffect(() => {
-    const handler = () => {
+    const widgetContainer = document.getElementById('pico-widget-container');
+    // If the widget container exists, set the picoLoaded value to true so
+    // that another widget instance is not added into the DOM.
+    if (widgetContainer) {
+      setPicoLoaded(true);
+
+      // Ensure the target nodes are only mounted once on the initial server load.
+      if (
+        ! document.getElementById('PicoSignal-container') &&
+        ! document.getElementById('PicoRule-button')
+      ) {
+        mountPicoNodes(picoPageInfo);
+      } else {
+        window.pico('visit', picoPageInfo);
+      }
+    }
+
+    const initHandler = () => {
       setPicoLoaded(true);
     };
-    window.document.addEventListener('pico-init', handler);
+    // On component hydration, add an event listener to watch for the script's init event.
+    window.document.addEventListener('pico-init', initHandler);
 
-    return () => window.document.removeEventListener('pico-init', handler);
-  }, []);
+    return () => window.document.removeEventListener('pico-init', initHandler);
+  }, [picoLoaded]);
 
   // Load the script for the first time.
   if (! picoLoaded) {
@@ -44,9 +62,6 @@ const Pico = (props) => {
       </Helmet>
     );
   }
-
-  // Trigger a visit upon init.
-  window.pico('visit', picoPageInfo);
 
   return null;
 };

@@ -1,12 +1,14 @@
 {
 	"name": "@irvingjs/integrations",
-	"version": "3.2.1",
+	"version": "3.2.2-alpha.1",
 	"description": "Third party integrations for Irving",
 	"files": [
 		"actions/**/*",
 		"components/**/*",
 		"config/**/*",
 		"reducers/**/*",
+		"sagas/**/*",
+		"selectors/**/*",
 		"irving.config.js",
 		"!*.test.js"
 	],

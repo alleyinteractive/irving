@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - master
+      - release/**
+name: Push
+jobs:
+  publish:
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install NPM Packages
+        run: npm ci
+      - name: Alpha Prerelease
+        run: |
+          git config --global user.email "ops+alleyci@alleyinteractive.com"
+          git config --global user.name "Alley CI"
+          npm run prerelease:canary:ci
+        env:
+          GH_TOKEN: ${{ secrets.ALLEY_CI_TOKEN }}
+          ACTOR: ${{ secrets.ACTOR }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

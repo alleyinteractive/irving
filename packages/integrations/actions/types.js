@@ -1,2 +1,9 @@
-/* eslint-disable import/prefer-default-export */
+// Integrations Manager.
 export const HYDRATE_COMPONENTS = 'integrations/HYDRATE_COMPONENTS';
+// Pico.
+export const SEND_PICO_VERIFICATION_REQUEST = 'SEND_PICO_VERIFICATION_REQUEST';
+export const RECEIVE_PICO_VERIFICATION_FAILURE = 'RECEIVE_PICO_VERIFICATION_FAILURE'; // eslint-disable-line max-len
+// Coral.
+export const RECEIVE_CORAL_SSO_TOKEN = 'RECEIVE_CORAL_SSO_TOKEN';
+export const RECEIVE_CORAL_LOGOUT_REQUEST = 'RECEIVE_CORAL_LOGOUT_REQUEST';
+export const RECEIVE_CORAL_LOGOUT = 'RECEIVE_CORAL_LOGOUT';
