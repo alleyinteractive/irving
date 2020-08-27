@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
-const defaultService = require(
-  '@irvingjs/core/services/cacheService/defaultService'
-)();
+const defaultClient = require(
+  '@irvingjs/core/services/cacheService/defaultClient'
+);
 
 /**
  * @typedef {object} CacheService
@@ -18,7 +18,7 @@ const getClient = () => {
   });
 
   if (! client) {
-    return defaultService;
+    return defaultClient;
   }
 
   return client;
