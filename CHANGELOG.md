@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0-beta.1](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* **cacheclient:** return default client, not service, from VIP go cacheClient ([07a2249](https://github.com/alleyinteractive/irving/commit/07a2249db017f9c998b11e0cccd73497681738d4))
+* **Coral:** Fix client rendering activation of comment counts ([3a48963](https://github.com/alleyinteractive/irving/commit/3a489633f1fea785ccfe32f75b1e11057636a97b))
+
+
+
+
+
 # [3.3.0-beta.0](https://github.com/alleyinteractive/irving/compare/v3.3.0-alpha.1...v3.3.0-beta.0) (2020-08-27)
 
 **Note:** Version bump only for package irving

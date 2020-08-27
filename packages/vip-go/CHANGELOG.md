@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* **cacheclient:** return default client, not service, from VIP go cacheClient ([07a2249](https://github.com/alleyinteractive/irving/packages/vip-go/commit/07a2249db017f9c998b11e0cccd73497681738d4))
+
+
+
+
+
 # [3.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.3.0-alpha.1...v3.3.0-beta.0) (2020-08-27)
 
 **Note:** Version bump only for package @irvingjs/vip-go
