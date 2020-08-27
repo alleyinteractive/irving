@@ -15,7 +15,7 @@
     "build": "BABEL_ENV=app lerna run build",
     "preinstall": "npx check-node-version --package",
     "reconcile": "git ls-tree -r --name-only master | grep -E \".*((package|package-lock|lerna)\\.json|CHANGELOG\\.md)$\" | xargs git checkout master --",
-    "prerelease:canary": "HUSKY_SKIP_HOOKS=1 lerna publish --conventional-prerelease --no-changelog --preid alpha --dist-tag canary",
+    "prerelease:canary": "HUSKY_SKIP_HOOKS=1 lerna publish --conventional-prerelease --preid alpha --dist-tag canary",
     "prerelease:canary:ci": "npm run prerelease:canary -- --yes",
     "prerelease:beta": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-prerelease --create-release github --preid beta --dist-tag beta",
     "prerelease:rc": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-prerelease --create-release github --preid rc --dist-tag rc",
