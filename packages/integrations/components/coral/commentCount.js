@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
 
@@ -14,16 +14,24 @@ const CommentCount = (props) => {
     return null;
   }
 
-  useLoadScript(
+  const loaded = useLoadScript(
     `${embedUrl}/assets/js/count.js`,
-    null,
+    'coral-comment-count',
     {
       attr: {
         className: 'coral-script',
         defer: true,
       },
+      dispose: false,
     }
   );
+
+  useEffect(() => {
+    if ('function' === typeof window.CoralCount.getCount) {
+      window.CoralCount.getCount();
+    }
+    console.log('Rendered');
+  }, [loaded]);
 
   return (
     <span
