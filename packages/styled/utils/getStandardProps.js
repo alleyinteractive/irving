@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import classNames from 'classnames';
 import get from 'lodash/get';
+import memoize from 'lodash/memoize';
 import { ThemeContext } from 'styled-components';
 
 /**
@@ -37,6 +38,12 @@ const replaceWithSiteTheme = (styleObject, siteTheme) => (
     }, styleObject)
 );
 
+const createComponentNameClass = memoize((componentName) => (
+  componentName
+    .replace(/(\/|\\)/, '__') // replace any back- or forward-slashes with double underscores.
+    .replace(/[^_a-zA-Z0-9-]/, '-') // replace any invalid character with a hyphen.
+));
+
 /**
  * Provide a component with a standardized set of props for that component to use.
  * @param {object} props    React comonent props.
@@ -50,12 +57,15 @@ const getStandardProps = (props, componentDefaults = {}) => {
     tag = '',
     componentName,
   } = props;
+  const componentNameClass = componentName ?
+    createComponentNameClass(componentName) : '';
   // Using the `styled-components` ThemeContext, attempt to use dynamic
   // values in CSS properties.
   const siteTheme = useContext(ThemeContext);
   const standardizedProps = {
     className: classNames(
       className,
+      componentNameClass,
       componentDefaults.className
     ),
     id: id || componentDefaults.id,

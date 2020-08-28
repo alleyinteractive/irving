@@ -107,7 +107,7 @@ const Image = (props) => {
 };
 
 Image.defaultProps = {
-  ...standardPropTypes,
+  ...standardDefaultProps,
   theme: defaultStyles,
   allowUpscaling: false,
   alt: '',
@@ -124,8 +124,7 @@ Image.defaultProps = {
 };
 
 Image.propTypes = {
-  ...standardDefaultProps,
-theme: defaultStyles,,
+  ...standardPropTypes,
   /**
    * Allow an image to be scaled to larger than its actual width.
    */

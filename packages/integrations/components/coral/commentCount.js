@@ -30,7 +30,6 @@ const CommentCount = (props) => {
     if ('function' === typeof window.CoralCount.getCount) {
       window.CoralCount.getCount();
     }
-    console.log('Rendered');
   }, [loaded]);
 
   return (

@@ -1,5 +1,5 @@
-import config from './irving.config.js';
-import createThemedComponentMap from './createThemedComponentMap';
+import config from './irving.config';
+import createThemedComponentMap from './componentMap';
 
 export { createThemedComponentMap };
 

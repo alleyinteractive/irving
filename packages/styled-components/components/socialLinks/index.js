@@ -26,7 +26,6 @@ const SocialLinks = (props) => {
     SocialLinksList,
     SocialLinksWrapper,
   } = theme;
-
   const items = Object.keys(platforms).map((platform) => ({
     platform,
     url: platforms[platform],
