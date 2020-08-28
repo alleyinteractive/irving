@@ -67,7 +67,7 @@ CoralEmbed.defaultProps = {
 CoralEmbed.propTypes = {
   embedUrl: PropTypes.string.isRequired,
   events: PropTypes.func,
-  accessToken: PropTypes.oneOfType([PropTypes.string, undefined]),
+  accessToken: PropTypes.string,
 };
 
 export default CoralEmbed;

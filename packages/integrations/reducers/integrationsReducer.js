@@ -4,6 +4,9 @@ import {
   RECEIVE_CORAL_SSO_TOKEN,
   RECEIVE_CORAL_LOGOUT_REQUEST,
   RECEIVE_CORAL_LOGOUT,
+  RECEIVE_CORAL_USERNAME_REQUEST,
+  SET_CORAL_USERNAME,
+  RECEIVE_CORAL_USERNAME_VALIDATION_ERROR,
 } from '../actions/types';
 import defaultState from './defaultState';
 
@@ -20,6 +23,24 @@ export default function integrationsReducer(
   switch (type) {
     case HYDRATE_COMPONENTS:
       return merge(state, { componentMap: payload, hydrated: true });
+
+    case RECEIVE_CORAL_USERNAME_REQUEST:
+      return {
+        ...state,
+        coral: { requireUsername: true },
+      };
+
+    case SET_CORAL_USERNAME:
+      return {
+        ...state,
+        coral: {},
+      };
+
+    case RECEIVE_CORAL_USERNAME_VALIDATION_ERROR:
+      return {
+        ...state,
+        coral: { validationError: payload },
+      };
 
     case RECEIVE_CORAL_SSO_TOKEN:
       return {

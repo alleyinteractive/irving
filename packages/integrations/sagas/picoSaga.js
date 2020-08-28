@@ -3,11 +3,13 @@ import { SEND_PICO_VERIFICATION_REQUEST } from '../actions/types';
 import {
   actionReceiveCoralToken,
   actionReceivePicoVerificationFailure,
+  actionReceiveCoralUsernameRequest,
+  actionReceiveCoralUsernameValidationFailure,
 } from '../actions';
 
 // The Pico saga.
 export default [
-  takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoUser),
+  takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
 ];
 
 /**
@@ -16,15 +18,28 @@ export default [
  * status of the response.
  * @param {{ email }} The user's email to be dispatched in a verification request.
  */
-function* verifyPicoUser({ payload }) {
-  const { status, jwt } = yield call(sendVerificationRequest, payload);
+function* verifyPicoCoralUser({ payload }) {
+  const {
+    status,
+    jwt,
+    require_username: requireUsername,
+    validation_error: validationError,
+  } = yield call(sendVerificationRequest, payload);
 
   if ('success' === status) {
-    yield put(actionReceiveCoralToken(jwt));
+    if (requireUsername) {
+      yield put(actionReceiveCoralUsernameRequest());
+    } else {
+      yield put(actionReceiveCoralToken(jwt));
+    }
   }
 
   if ('failed' === status) {
-    yield put(actionReceivePicoVerificationFailure());
+    if (validationError) {
+      yield put(actionReceiveCoralUsernameValidationFailure(validationError));
+    } else {
+      yield put(actionReceivePicoVerificationFailure());
+    }
   }
 }
 

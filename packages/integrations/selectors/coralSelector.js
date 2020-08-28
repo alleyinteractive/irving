@@ -23,3 +23,25 @@ export const purgeSelector = createSelector(
     return undefined;
   }
 );
+
+export const requireUsernameSelector = createSelector(
+  coralSelector,
+  (branch) => {
+    if (branch) {
+      return branch.requireUsername;
+    }
+
+    return undefined;
+  }
+);
+
+export const validationErrorSelector = createSelector(
+  coralSelector,
+  (branch) => {
+    if (branch) {
+      return branch.validationError;
+    }
+
+    return undefined;
+  }
+);
