@@ -1,5 +1,6 @@
 import SiteThemeProvider from '@irvingjs/styled/components/siteThemeProvider';
 import withThemes from '@irvingjs/styled/components/hoc/withThemes';
+import withStandardProps from '@irvingjs/styled/components/hoc/withStandardProps';
 import App from 'components/app';
 import Head from 'components/head';
 import * as BodyWrapper from 'components/bodyWrapper';

@@ -2,6 +2,11 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
+import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
 
@@ -51,11 +56,10 @@ const Pagination = (props) => {
     // eslint-disable-next-line no-unused-vars
     paginationFormat,
     range,
-    style,
-    theme = defaultStyles,
+    theme,
     totalPages,
   } = props;
-
+  const standardProps = getStandardProps(props);
   const {
     PaginationWrapper,
     NavWrapper,
@@ -176,7 +180,7 @@ const Pagination = (props) => {
   }
 
   return (
-    <PaginationWrapper style={style}>
+    <PaginationWrapper {...standardProps}>
       {pages.map((page, index) => (
         cloneElement(
           page,
@@ -191,18 +195,19 @@ const Pagination = (props) => {
 };
 
 Pagination.defaultProps = {
+  ...standardDefaultProps,
+  theme: defaultStyles,
   baseUrl: '/',
   currentPage: 1,
   displayFirstAndLast: true,
   displayPrevAndNext: true,
   paginationFormat: '/page/%1$d/',
   range: 5,
-  style: {},
-  theme: defaultStyles,
   totalPages: 1,
 };
 
 Pagination.propTypes = {
+  ...standardPropTypes,
   /**
    * Base url. Usually the url of the first page of results.
    */
@@ -227,17 +232,6 @@ Pagination.propTypes = {
    * How many pages to display around the current page.
    */
   range: PropTypes.number,
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
   /**
    * The total number of pages.
    */

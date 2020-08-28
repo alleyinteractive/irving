@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'components/link';
+import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -16,10 +21,9 @@ const Logo = (props) => {
     logoImageUrl,
     children,
     siteName,
-    style,
     theme,
   } = props;
-
+  const standardProps = getStandardProps(props);
   const {
     LogoWrapper,
     LogoLink,
@@ -29,7 +33,7 @@ const Logo = (props) => {
   const hasChildren = children && children.length;
 
   return (
-    <LogoWrapper style={style}>
+    <LogoWrapper {...standardProps}>
       <LogoLink
         as={Link}
         href={href}
@@ -50,19 +54,15 @@ const Logo = (props) => {
 };
 
 Logo.defaultProps = {
-  children: [],
+  ...standardDefaultProps,
+  theme: defaultStyles,
   href: '/',
   logoImageUrl: '',
   siteName: '',
-  style: {},
-  theme: defaultStyles,
 };
 
 Logo.propTypes = {
-  /**
-   * Children of the component.
-   */
-  children: PropTypes.node,
+  ...standardPropTypes,
   /**
    * URL the logo should link to.
    */
@@ -75,17 +75,6 @@ Logo.propTypes = {
    * Site name.
    */
   siteName: PropTypes.string,
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
 };
 
 const themeMap = {

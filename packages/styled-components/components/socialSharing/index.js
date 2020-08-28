@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { __, sprintf } from '@wordpress/i18n';
 import queryString from 'query-string';
+import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import SocialSharingItem from './socialSharingItem';
 import * as defaultStyles from './themes/default';
 
@@ -30,12 +35,11 @@ const SocialSharing = (props) => {
     description,
     imageUrl,
     platforms,
-    style,
     theme,
     title,
     url,
   } = props;
-
+  const standardProps = getStandardProps(props);
   const {
     SocialSharingList,
     SocialSharingWrapper,
@@ -107,7 +111,7 @@ const SocialSharing = (props) => {
   };
 
   return (
-    <SocialSharingWrapper style={style}>
+    <SocialSharingWrapper {...standardProps}>
       {platforms && 0 !== platforms.length && (
         <SocialSharingList>
           {platforms.map((platform) => (
@@ -126,16 +130,17 @@ const SocialSharing = (props) => {
 };
 
 SocialSharing.defaultProps = {
+  ...standardDefaultProps,
+  theme: defaultStyles,
   description: '',
   imageUrl: '',
   platforms: ['email', 'facebook', 'twitter'],
-  style: {},
-  theme: defaultStyles,
   title: '',
   url: '',
 };
 
 SocialSharing.propTypes = {
+  ...standardPropTypes,
   /**
    * Description of the shared content.
    */
@@ -148,17 +153,6 @@ SocialSharing.propTypes = {
    * An array of social sharing platforms.
    */
   platforms: PropTypes.arrayOf(PropTypes.oneOf(SupportedPlatforms)),
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
   /**
    * Title of the shared content.
    */

@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
 import EmbedContainer from 'react-oembed-container';
 import { richText } from '@irvingjs/core/config/html';
+import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 import * as htmlStyles from './themes/html';
 import * as responsiveEmbedStyles from './themes/responsiveEmbed';
@@ -20,15 +25,14 @@ import * as h6Styles from './themes/h6';
  */
 const Text = (props) => {
   const {
-    className,
     content,
     html,
     oembed,
-    style,
-    tag,
     theme,
   } = props;
-
+  const standardProps = getStandardProps(props, {
+    tag: 'div',
+  });
   const { TextWrapper } = theme;
 
   switch (true) {
@@ -39,10 +43,8 @@ const Text = (props) => {
       return (
         <EmbedContainer markup={content}>
           <TextWrapper
-            as={tag}
-            className={className}
+            {...standardProps}
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(content, richText) }} // eslint-disable-line react/no-danger, max-len
-            style={style}
           />
         </EmbedContainer>
       );
@@ -50,19 +52,15 @@ const Text = (props) => {
     case true === html:
       return (
         <TextWrapper
-          as={tag}
-          className={className}
+          {...standardProps}
           dangerouslySetInnerHTML={{ __html: sanitizeHtml(content, richText) }} // eslint-disable-line react/no-danger
-          style={style}
         />
       );
 
     default:
       return (
         <TextWrapper
-          as={tag}
-          className={className}
-          style={style}
+          {...standardProps}
         >
           {content}
         </TextWrapper>
@@ -71,20 +69,15 @@ const Text = (props) => {
 };
 
 Text.defaultProps = {
-  className: '',
+  ...standardDefaultProps,
+  theme: defaultStyles,
   content: '',
   html: false,
   oembed: false,
-  style: {},
-  tag: 'div',
-  theme: defaultStyles,
 };
 
 Text.propTypes = {
-  /**
-   * Class name.
-   */
-  className: PropTypes.string,
+  ...standardPropTypes,
   /**
    * Markup to render.
    */
@@ -97,21 +90,6 @@ Text.propTypes = {
    * Render oembeds.
    */
   oembed: PropTypes.bool,
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Wrapping element.
-   */
-  tag: PropTypes.string,
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
 };
 
 const themeMap = {

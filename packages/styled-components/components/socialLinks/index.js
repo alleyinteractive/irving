@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import toReactElement from '@irvingjs/core/utils/toReactElement';
+import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
 
@@ -12,10 +17,9 @@ import * as defaultStyles from './themes/default';
 const SocialLinks = (props) => {
   const {
     platforms,
-    style,
     theme,
   } = props;
-
+  const standardProps = getStandardProps(props);
   const {
     IconWrapper,
     SocialLinksItem,
@@ -36,7 +40,7 @@ const SocialLinks = (props) => {
   }));
 
   return (
-    <SocialLinksWrapper style={style}>
+    <SocialLinksWrapper {...standardProps}>
       {items && 0 !== items.length && (
         <SocialLinksList>
           {items.map(({ platform, url, icon }) => (
@@ -55,30 +59,17 @@ const SocialLinks = (props) => {
 };
 
 SocialLinks.defaultProps = {
-  platforms: [],
-  style: {},
+  ...standardDefaultProps,
   theme: defaultStyles,
+  platforms: [],
 };
 
 SocialLinks.propTypes = {
+  ...standardPropTypes,
   /**
    * An object containing social platforms as keys as links to specific pages as values.
    */
   platforms: PropTypes.object,
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
-  /**
-   * Title of the shared content.
-   */
 };
 
 const themeMap = {

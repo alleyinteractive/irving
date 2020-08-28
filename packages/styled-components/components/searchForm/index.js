@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { useForm } from 'react-hook-form';
 import history from '@irvingjs/core/utils/history';
+import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -13,12 +18,11 @@ import * as defaultStyles from './themes/default';
 const SearchForm = (props) => {
   const {
     baseUrl,
-    style,
     searchTerm,
     searchTermQueryArg,
-    theme = defaultStyles,
+    theme,
   } = props;
-
+  const standardProps = getStandardProps(props);
   const {
     SearchFormWrapper,
     SearchFormTerm,
@@ -43,7 +47,7 @@ const SearchForm = (props) => {
 
   return (
     <SearchFormWrapper
-      style={style}
+      {...standardProps}
       action={baseUrl}
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -59,14 +63,15 @@ const SearchForm = (props) => {
 };
 
 SearchForm.defaultProps = {
+  ...standardDefaultProps,
+  theme: defaultStyles,
   baseUrl: '/',
   searchTerm: '',
   searchTermQueryArg: 'search',
-  style: {},
-  theme: defaultStyles,
 };
 
 SearchForm.propTypes = {
+  ...standardPropTypes,
   /**
    * Base url for search.
    */
@@ -79,17 +84,6 @@ SearchForm.propTypes = {
    * The query var used for the search term.
    */
   searchTermQueryArg: PropTypes.string,
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
 };
 
 const themeMap = {

@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useClientNavigationOnClick from
   '@irvingjs/core/hooks/useClientNavigationOnClick';
+import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -14,11 +19,9 @@ import * as defaultStyles from './themes/default';
 const Link = (props) => {
   const {
     children,
-    className,
     href,
     onClick,
     rel,
-    style,
     target,
     theme,
   } = props;
@@ -29,15 +32,15 @@ const Link = (props) => {
   const {
     LinkWrapper,
   } = theme;
+  const standardProps = getStandardProps(props);
 
   return (
     <LinkWrapper
-      className={className}
       href={destination}
       onClick={onClick || defaultOnClick}
       rel={rel}
-      style={style}
       target={target}
+      {...standardProps}
     >
       {children}
     </LinkWrapper>
@@ -45,23 +48,15 @@ const Link = (props) => {
 };
 
 Link.defaultProps = {
-  className: '',
+  ...standardDefaultProps,
+  theme: defaultStyles,
   onClick: false,
   rel: '',
-  style: {},
   target: '',
-  theme: defaultStyles,
 };
 
 Link.propTypes = {
-  /**
-   * Child nodes
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Class name.
-   */
-  className: PropTypes.string,
+  ...standardPropTypes,
   /**
    * Destination for anchor tag (`href` attribute)
    */
@@ -79,20 +74,9 @@ Link.propTypes = {
    */
   rel: PropTypes.string,
   /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
    * Anchor target.
    */
   target: PropTypes.string,
-  /**
-   * Theme for the component.
-   */
-  theme: PropTypes.object,
 };
 
 const themeMap = {

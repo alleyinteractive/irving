@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
 const widths = {
@@ -20,14 +25,11 @@ const widths = {
 const Container = (props) => {
   const {
     children,
-    className,
     backgroundImageUrl,
     maxWidth,
-    style,
-    tag,
     theme,
+    style,
   } = props;
-
   const { ContainerWrapper } = theme;
 
   if (0 === children.length) {
@@ -50,11 +52,14 @@ const Container = (props) => {
     style.backgroundSize = 'cover';
   }
 
+  const standardProps = getStandardProps(props, {
+    style,
+  });
+
   return (
     <ContainerWrapper
-      as={tag}
+      {...standardProps}
       style={style}
-      className={className}
     >
       {children}
     </ContainerWrapper>
@@ -62,24 +67,14 @@ const Container = (props) => {
 };
 
 Container.defaultProps = {
-  className: '',
-  children: {},
+  ...standardDefaultProps,
+  theme: defaultStyles,
   backgroundImageUrl: '',
   maxWidth: 'lg',
-  style: {},
-  tag: 'div',
-  theme: defaultStyles,
 };
 
 Container.propTypes = {
-  /**
-   * Wrapper classes.
-   */
-  className: PropTypes.string,
-  /**
-   * Children of the component.
-   */
-  children: PropTypes.node,
+  ...standardPropTypes,
   /**
    * Image URL to use as a background.
    */
@@ -91,21 +86,6 @@ Container.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Tag used to render.
-   */
-  tag: PropTypes.string,
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
 };
 
 const themeMap = {

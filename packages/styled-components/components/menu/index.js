@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import MenuItem from './menuItem';
 import * as defaultStyles from './themes/default';
 import * as defaultVerticalStyles from './themes/defaultVertical';
@@ -13,10 +18,9 @@ const Menu = (props) => {
     displayName,
     menuName,
     location,
-    style,
     theme,
   } = props;
-
+  const standardProps = getStandardProps(props);
   const {
     Wrapper,
     NameWrapper,
@@ -24,7 +28,7 @@ const Menu = (props) => {
   } = theme;
 
   return (
-    <Wrapper data-location={location} style={style}>
+    <Wrapper data-location={location} {...standardProps}>
       {(displayName && menuName) && (
         <NameWrapper>
           {menuName}
@@ -52,19 +56,17 @@ const Menu = (props) => {
 };
 
 Menu.defaultProps = {
+  ...standardDefaultProps,
+  theme: defaultStyles,
   children: [],
   displayName: false,
   location: '',
   menuName: '',
   style: {},
-  theme: defaultStyles,
 };
 
 Menu.propTypes = {
-  /**
-   * Children of the component.
-   */
-  children: PropTypes.node,
+  ...standardPropTypes,
   /**
    * Flag to display the menu name.
    */
@@ -77,17 +79,6 @@ Menu.propTypes = {
    * Menu name.
    */
   menuName: PropTypes.string,
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
 };
 
 const themeMap = {
