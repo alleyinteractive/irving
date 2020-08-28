@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { useForm } from 'react-hook-form';
 import history from '@irvingjs/core/utils/history';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -93,12 +92,13 @@ SearchForm.propTypes = {
   theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { SearchForm as PureComponent };
+export {
+  SearchForm as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(SearchForm);
-
-export default StyledComponent;
+export default SearchForm;

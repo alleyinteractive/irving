@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -144,12 +143,13 @@ Byline.propTypes = {
   theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Byline as PureComponent };
+export {
+  Byline as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Byline);
-
-export default StyledComponent;
+export default Byline;

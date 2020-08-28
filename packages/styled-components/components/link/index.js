@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useClientNavigationOnClick from
   '@irvingjs/core/hooks/useClientNavigationOnClick';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -96,12 +95,13 @@ Link.propTypes = {
   theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Link as PureComponent };
+export {
+  Link as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Link);
-
-export default StyledComponent;
+export default Link;

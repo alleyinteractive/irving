@@ -1,9 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import {
-  PureComponent as SocialSharing,
-  SupportedPlatforms,
-} from '.';
+import SocialSharing, { SupportedPlatforms } from '.';
 
 export default {
   component: SocialSharing,

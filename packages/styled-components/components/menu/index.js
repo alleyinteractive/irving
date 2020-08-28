@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import MenuItem from './menuItem';
 import * as defaultStyles from './themes/default';
 import * as defaultVerticalStyles from './themes/defaultVertical';
@@ -91,13 +90,14 @@ Menu.propTypes = {
   theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
   defaultVertical: defaultVerticalStyles,
 };
 
-export { Menu as PureComponent };
+export {
+  Menu as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Menu);
-
-export default StyledComponent;
+export default Menu;

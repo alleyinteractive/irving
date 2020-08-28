@@ -2,7 +2,6 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
 
@@ -245,12 +244,13 @@ Pagination.propTypes = {
   totalPages: PropTypes.number,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Pagination as PureComponent };
+export {
+  Pagination as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Pagination);
-
-export default StyledComponent;
+export default Pagination;

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { __, sprintf } from '@wordpress/i18n';
 import queryString from 'query-string';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import SocialSharingItem from './socialSharingItem';
 import * as defaultStyles from './themes/default';
 
@@ -170,12 +169,13 @@ SocialSharing.propTypes = {
   url: PropTypes.string,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { SocialSharing as PureComponent };
+export {
+  SocialSharing as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(SocialSharing);
-
-export default StyledComponent;
+export default SocialSharing;

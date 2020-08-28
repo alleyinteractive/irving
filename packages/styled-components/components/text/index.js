@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
 import EmbedContainer from 'react-oembed-container';
 import { richText } from '@irvingjs/core/config/html';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 import * as htmlStyles from './themes/html';
 import * as responsiveEmbedStyles from './themes/responsiveEmbed';
@@ -115,7 +114,7 @@ Text.propTypes = {
   theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
   html: htmlStyles,
   responsiveEmbed: responsiveEmbedStyles,
@@ -129,8 +128,9 @@ export const themeMap = {
   h6: h6Styles,
 };
 
-export { Text as PureComponent };
+export {
+  Text as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Text);
-
-export default StyledComponent;
+export default Text;

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
 
@@ -89,12 +88,13 @@ Logo.propTypes = {
   theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Logo as PureComponent };
+export {
+  Logo as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Logo);
-
-export default StyledComponent;
+export default Logo;

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
 import { richText } from '@irvingjs/core/config/html';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -210,12 +209,13 @@ Image.propTypes = {
   theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Image as PureComponent };
+export {
+  Image as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Image);
-
-export default StyledComponent;
+export default Image;

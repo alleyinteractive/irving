@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -64,12 +63,13 @@ Fragment.propTypes = {
   theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Fragment as PureComponent };
+export {
+  Fragment as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Fragment);
-
-export default StyledComponent;
+export default Fragment;

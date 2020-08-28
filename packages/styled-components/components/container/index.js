@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 const widths = {
@@ -109,12 +108,13 @@ Container.propTypes = {
   theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Container as PureComponent };
+export {
+  Container as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Container);
-
-export default StyledComponent;
+export default Container;

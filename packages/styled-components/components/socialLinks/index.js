@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import toReactElement from '@irvingjs/core/utils/toReactElement';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
 
@@ -82,12 +81,13 @@ SocialLinks.propTypes = {
    */
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { SocialLinks as PureComponent };
+export {
+  SocialLinks as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(SocialLinks);
-
-export default StyledComponent;
+export default SocialLinks;

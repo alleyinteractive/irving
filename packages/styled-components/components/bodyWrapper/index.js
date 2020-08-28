@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
 import Loader from 'components/loader';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 const BodyWrapper = (props) => {
@@ -45,12 +44,13 @@ BodyWrapper.defaultProps = {
   theme: defaultStyles,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { BodyWrapper as PureComponent };
+export {
+  BodyWrapper as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(BodyWrapper);
-
-export default StyledComponent;
+export default BodyWrapper;

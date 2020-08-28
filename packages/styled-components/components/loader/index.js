@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useLoading from '@irvingjs/core/hooks/useLoading';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import DefaultLoading from './defaultLoading';
 import * as defaultStyles from './themes/default';
@@ -113,10 +112,13 @@ Loader.defaultProps = {
   LoadingComponent: DefaultLoading,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Loader as PureComponent };
+export {
+  Loader as Component,
+  themeMap,
+};
 
-export default withThemes(themeMap)(Loader);
+export default Loader;
