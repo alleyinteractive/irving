@@ -2,7 +2,6 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import {
   PureComponent as SocialSharing,
-  SupportedPlatforms,
 } from '.';
 
 export default {
@@ -16,7 +15,7 @@ const url = "https://irvingjs.org"
 const imageUrl = 'https://placehold.it/1200x630';
 
 export const BasicExample = () => <SocialSharing
-  platforms={SupportedPlatforms}
+  platforms={['email', 'facebook', 'linkedin', 'pinterest', 'reddit', 'twitter', 'whatsapp']}
   description={description}
   url={url}
   title={title}
