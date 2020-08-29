@@ -2,7 +2,7 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -59,7 +59,7 @@ const Pagination = (props) => {
     theme,
     totalPages,
   } = props;
-  const standardProps = getStandardProps(props);
+  const standardProps = useStandardProps(props);
   const {
     PaginationWrapper,
     NavWrapper,

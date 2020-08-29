@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { useForm } from 'react-hook-form';
 import history from '@irvingjs/core/utils/history';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -22,7 +22,7 @@ const SearchForm = (props) => {
     searchTermQueryArg,
     theme,
   } = props;
-  const standardProps = getStandardProps(props);
+  const standardProps = useStandardProps(props);
   const {
     SearchFormWrapper,
     SearchFormTerm,

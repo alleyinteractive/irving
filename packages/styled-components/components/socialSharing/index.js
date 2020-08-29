@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { __, sprintf } from '@wordpress/i18n';
 import queryString from 'query-string';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -39,7 +39,7 @@ const SocialSharing = (props) => {
     title,
     url,
   } = props;
-  const standardProps = getStandardProps(props);
+  const standardProps = useStandardProps(props);
   const {
     SocialSharingList,
     SocialSharingWrapper,

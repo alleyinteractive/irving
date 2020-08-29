@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -20,7 +20,7 @@ const Menu = (props) => {
     location,
     theme,
   } = props;
-  const standardProps = getStandardProps(props);
+  const standardProps = useStandardProps(props);
   const {
     Wrapper,
     NameWrapper,

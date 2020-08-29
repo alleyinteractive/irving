@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'components/link';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -23,7 +23,7 @@ const Logo = (props) => {
     siteName,
     theme,
   } = props;
-  const standardProps = getStandardProps(props);
+  const standardProps = useStandardProps(props);
   const {
     LogoWrapper,
     LogoLink,

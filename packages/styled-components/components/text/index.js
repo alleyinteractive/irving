@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
 import EmbedContainer from 'react-oembed-container';
 import { richText } from '@irvingjs/core/config/html';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -30,7 +30,7 @@ const Text = (props) => {
     oembed,
     theme,
   } = props;
-  const standardProps = getStandardProps(props, {
+  const standardProps = useStandardProps(props, {
     tag: 'div',
   });
   const { TextWrapper } = theme;

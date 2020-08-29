@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
 import Loader from 'components/loader';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -16,7 +16,7 @@ const BodyWrapper = (props) => {
     children,
     theme,
   } = props;
-  const standardProps = getStandardProps(props, {
+  const standardProps = useStandardProps(props, {
     id: 'content',
   });
   const { Main } = theme;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import toReactElement from '@irvingjs/core/utils/toReactElement';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -19,7 +19,7 @@ const SocialLinks = (props) => {
     platforms,
     theme,
   } = props;
-  const standardProps = getStandardProps(props);
+  const standardProps = useStandardProps(props);
   const {
     IconWrapper,
     SocialLinksItem,
@@ -68,7 +68,10 @@ SocialLinks.propTypes = {
   /**
    * An object containing social platforms as keys as links to specific pages as values.
    */
-  platforms: PropTypes.object,
+  platforms: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]),
 };
 
 const themeMap = {

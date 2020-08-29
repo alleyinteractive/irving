@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useLoading from '@irvingjs/core/hooks/useLoading';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -18,7 +18,7 @@ const Loader = (props) => {
     children,
     theme,
   } = props;
-  const standardProps = getStandardProps(props);
+  const standardProps = useStandardProps(props);
   const transitionStyle = {
     transitionProperty: transition.property,
     transitionTimingFunction: transition.ease,

@@ -1,5 +1,5 @@
 import React from 'react';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -16,7 +16,7 @@ const Fragment = (props) => {
     theme,
   } = props;
   const { Element } = theme;
-  const standardProps = getStandardProps(props);
+  const standardProps = useStandardProps(props);
   const { as } = standardProps;
   const useTag = (
     as ||

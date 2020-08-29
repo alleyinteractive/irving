@@ -11,7 +11,7 @@ import { ThemeContext } from 'styled-components';
  * @param {object} siteTheme Theme object passed in via React Context through Styled Components
  *   <ThemeProvider /> (https://styled-components.com/docs/advanced#theming).
  */
-const replaceWithSiteTheme = (styleObject, siteTheme) => (
+export const replaceWithSiteTheme = (styleObject, siteTheme) => (
   Object.keys(styleObject)
     .reduce((acc, property) => {
       /**
@@ -38,10 +38,10 @@ const replaceWithSiteTheme = (styleObject, siteTheme) => (
     }, styleObject)
 );
 
-const createComponentNameClass = memoize((componentName) => (
+export const createComponentNameClass = memoize((componentName) => (
   componentName
     .replace(/(\/|\\)/, '__') // replace any back- or forward-slashes with double underscores.
-    .replace(/[^_a-zA-Z0-9-]/, '-') // replace any invalid character with a hyphen.
+    .replace(/[^_a-zA-Z0-9-]/g, '-') // replace any invalid character with a hyphen.
 ));
 
 /**
@@ -49,7 +49,7 @@ const createComponentNameClass = memoize((componentName) => (
  * @param {object} props    React comonent props.
  * @param {object} componentDefaults Overrides for default prop values.
  */
-const getStandardProps = (props, componentDefaults = {}) => {
+const useStandardProps = (props, componentDefaults = {}) => {
   const {
     className = '',
     id = '',
@@ -87,4 +87,4 @@ const getStandardProps = (props, componentDefaults = {}) => {
 };
 
 /** @component */
-export default getStandardProps;
+export default useStandardProps;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useClientNavigationOnClick from
   '@irvingjs/core/hooks/useClientNavigationOnClick';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -32,7 +32,7 @@ const Link = (props) => {
   const {
     LinkWrapper,
   } = theme;
-  const standardProps = getStandardProps(props);
+  const standardProps = useStandardProps(props);
 
   return (
     <LinkWrapper

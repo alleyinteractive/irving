@@ -14,6 +14,8 @@ export const standardPropTypes = {
       ])
     ),
     PropTypes.object,
+    PropTypes.node,
+    PropTypes.element,
   ]).isRequired,
   /**
    * Additional classnames.

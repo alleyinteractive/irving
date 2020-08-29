@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -52,7 +52,7 @@ const Container = (props) => {
     style.backgroundSize = 'cover';
   }
 
-  const standardProps = getStandardProps(props, {
+  const standardProps = useStandardProps(props, {
     style,
   });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
-import getStandardProps from '@irvingjs/styled/utils/getStandardProps';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
   standardDefaultProps,
@@ -57,7 +57,7 @@ const Image = (props) => {
     ImageMeta,
     ImageWrapper,
   } = theme;
-  const standardProps = getStandardProps(props);
+  const standardProps = useStandardProps(props);
 
   /**
    * @todo possibly replace this with similar functionality. This hook breaks b/c it references window.
