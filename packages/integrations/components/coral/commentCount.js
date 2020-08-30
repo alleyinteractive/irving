@@ -27,7 +27,10 @@ const CommentCount = (props) => {
   );
 
   useEffect(() => {
-    if ('function' === typeof window.CoralCount.getCount) {
+    if (
+      window.CoralCount &&
+      'function' === typeof window.CoralCount.getCount
+    ) {
       window.CoralCount.getCount();
     }
     console.log('Rendered');

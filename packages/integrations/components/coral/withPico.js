@@ -46,10 +46,18 @@ const withPico = (ChildComponent) => (props) => {
             // Execute the webhook on the `data-pico-status` attribute.
             if ('attributes' === type && 'data-pico-status' === attributeName) {
               // Create a reusable store for attribute values.
-              const attributes = {
+              let attributes = {
                 registered: signalNode.getAttribute('data-pico-status'),
                 email: signalNode.getAttribute('data-pico-email'),
               };
+
+              // Add the Pico user's ID to the attributes array.
+              if (window.Pico && 'object' === typeof window.Pico.user) {
+                attributes = {
+                  ...attributes,
+                  id: window.Pico.user.id,
+                };
+              }
 
               // Once the `data-pico-status` and `data-pico-email` attributes are
               // populated, send a request to Pico to verify the user and retrieve

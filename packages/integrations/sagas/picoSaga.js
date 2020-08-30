@@ -53,10 +53,11 @@ async function sendVerificationRequest(payload) {
   try {
     const {
       email,
+      id,
     } = payload;
 
     const response = await fetch(
-      `${process.env.API_ROOT_URL}/data/validate_sso_user?user=${email}`
+      `${process.env.API_ROOT_URL}/data/validate_sso_user?user=${email}&id=${id}` // eslint-disable-line max-len
     ).then((res) => res.json());
 
     return response;
