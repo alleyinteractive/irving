@@ -1,3 +1,14 @@
+function createNode(container, type, attributes) {
+  // Create the node.
+  const node = document.createElement(type);
+  // Map over each attribute and attach it to the node.
+  attributes.forEach(({ name, value }) => {
+    node.setAttribute(name, value);
+  });
+  // Inject the node intor the DOM.
+  container.appendChild(node);
+}
+
 export default function mountPicoNodes(pageInfo) {
   let nodesMounted = false;
 
@@ -6,22 +17,31 @@ export default function mountPicoNodes(pageInfo) {
   // Append a container node for the Pico signals to target into the DOM if one doesn't already exist.
   if (documentBody && ! document.getElementById('PicoSignal-container')) {
     // Create the signal node.
-    const signalNode = document.createElement('div');
-    // Set the attributes.
-    signalNode.setAttribute('id', 'PicoSignal-container');
-    signalNode.setAttribute('class', 'PicoSignal');
-    signalNode.setAttribute('style', 'display: none');
-    // Append the node into the DOM.
-    documentBody.appendChild(signalNode);
+    const signalAttributes = [
+      { name: 'id', value: 'PicoSignal-container' },
+      { name: 'class', value: 'PicoSignal' },
+      { name: 'style', value: 'display: none' },
+    ];
+    createNode(documentBody, 'div', signalAttributes);
+
     // Create the rule node.
-    const ruleNode = document.createElement('input');
-    // Set the attributes.
-    ruleNode.setAttribute('type', 'button');
-    ruleNode.setAttribute('id', 'PicoRule-button');
-    ruleNode.setAttribute('class', 'PicoRule PicoManageAccount');
-    ruleNode.setAttribute('style', 'display: none');
-    // Append the node into the DOM.
-    documentBody.appendChild(ruleNode);
+    const ruleAttributes = [
+      { name: 'type', value: 'button' },
+      { name: 'id', value: 'PicoRule-button' },
+      { name: 'class', value: 'PicoRule PicoManageAccount' },
+      { name: 'style', value: 'display: none' },
+    ];
+    createNode(documentBody, 'input', ruleAttributes);
+
+    // Create the payment node.
+    const paymentAttributes = [
+      { name: 'type', value: 'button' },
+      { name: 'id', value: 'PicoPayment-button' },
+      { name: 'class', value: 'PicoRule PicoManagePayment' },
+      { name: 'style', value: 'display: none' },
+    ];
+    createNode(documentBody, 'input', paymentAttributes);
+
     // Update the `nodesMounted` variable so that the visit can be dispatched on a server load.
     nodesMounted = true;
   }
