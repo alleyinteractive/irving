@@ -51,14 +51,6 @@ const withPico = (ChildComponent) => (props) => {
                 email: signalNode.getAttribute('data-pico-email'),
               };
 
-              // Add the Pico user's ID to the attributes array.
-              if (window.Pico && 'object' === typeof window.Pico.user) {
-                attributes = {
-                  ...attributes,
-                  id: window.Pico.user.id,
-                };
-              }
-
               // Once the `data-pico-status` and `data-pico-email` attributes are
               // populated, send a request to Pico to verify the user and retrieve
               // a JWT for logging the user into Coral via SSO.
@@ -66,7 +58,18 @@ const withPico = (ChildComponent) => (props) => {
                 0 < attributes.email.length &&
                 'registered' === attributes.registered
               ) {
-                dispatchVerificationRequest(attributes);
+                // Set a delay in order for the global Pico object to update with
+                // the user's ID prior to dispatching the verification request.
+                setTimeout(() => {
+                  // Add the Pico user's ID to the attributes array.
+                  if (window.Pico && 'object' === typeof window.Pico.user) {
+                    attributes = {
+                      ...attributes,
+                      id: window.Pico.user.id,
+                    };
+                  }
+                  dispatchVerificationRequest(attributes);
+                }, 50);
               }
 
               // If the `data-pico-status` and `data-pico-email` attributes are
