@@ -36,16 +36,16 @@ const Image = (props) => {
     className,
     credit,
     fallbackSrc,
+    height,
     loading,
     objectFit,
-    // eslint-disable-next-line no-unused-vars
-    photonTransformations,
-    // eslint-disable-next-line no-unused-vars
-    pictureSources,
     showMeta,
+    sizes,
     src,
+    srcset,
     style,
     theme,
+    width,
   } = props;
 
   const {
@@ -71,6 +71,16 @@ const Image = (props) => {
     aspectRatio = aspectRatioMapping[aspectRatio];
   }
 
+  // Ensure we constrain the sizes attribute if none
+  // is passed whenever a srcset attribute is present.
+  const getSizes = () => {
+    if (srcset && ! sizes && width) {
+      return `(max-width: ${width}px) 100vw, ${width}px`;
+    }
+
+    return sizes;
+  };
+
   return (
     <FigureWrapper
       allowUpscaling={allowUpscaling}
@@ -81,9 +91,13 @@ const Image = (props) => {
         <ImageTag
           alt={alt}
           aspectRatio={aspectRatio}
+          height={height}
           loading={loading}
           objectFit={objectFit}
           src={src || fallbackSrc}
+          srcSet={srcset}
+          sizes={getSizes()}
+          width={width}
         />
       </ImageWrapper>
       {(caption || credit) && showMeta && (
@@ -114,14 +128,16 @@ Image.defaultProps = {
   className: '',
   credit: '',
   fallbackSrc: '',
+  height: false,
   loading: 'lazy',
   objectFit: 'cover',
-  photonTransformations: [],
-  pictureSources: [],
   showMeta: true,
+  sizes: '',
   src: '',
+  srcset: '',
   style: {},
   theme: defaultStyles,
+  width: false,
 };
 
 Image.propTypes = {
@@ -169,6 +185,13 @@ Image.propTypes = {
    */
   fallbackSrc: PropTypes.string,
   /**
+   * Height attribute of the image.
+   */
+  height: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
+  /**
    * Loading attribute.
    */
   loading: PropTypes.string,
@@ -177,19 +200,13 @@ Image.propTypes = {
    */
   objectFit: PropTypes.string,
   /**
-   * Use the Photon API to modify the source.
-   *
-   * @see https://developer.wordpress.com/docs/photon/api/
-   */
-  photonTransformations: PropTypes.array,
-  /**
-   * Picture sources.
-   */
-  pictureSources: PropTypes.array,
-  /**
    * Display meta.
    */
   showMeta: PropTypes.bool,
+  /**
+   * Sizes attribute
+   */
+  sizes: PropTypes.string,
   /**
    * Source URL of the image.
    */
@@ -197,6 +214,10 @@ Image.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ]),
+  /**
+   * Source set list of the image.
+   */
+  srcset: PropTypes.string,
   /**
    * CSS styles.
    */
@@ -208,6 +229,13 @@ Image.propTypes = {
    * Theme (styles) to apply to the component.
    */
   theme: PropTypes.object,
+  /**
+   * Width attribute of the image.
+   */
+  width: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
 };
 
 export const themeMap = {
