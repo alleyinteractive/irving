@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0-beta.3](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.2...v3.3.0-beta.3) (2020-08-31)
+
+
+### Bug Fixes
+
+* **sociallinks:** fix icon display issue, add class to icon wrapper, and tweak CSS for social links ([132f463](https://github.com/alleyinteractive/irving/commit/132f46320224618b087305f95fe9782a9f6f9382))
+
+
+### Features
+
+* **socialsharing:** allow for custom links in Social Sharing component and refactor to one file ([54f36b3](https://github.com/alleyinteractive/irving/commit/54f36b36f330876540789bbaf32725136765403d))
+
+
+
+
+
 
 
 **Note:** Version bump only for package irving
