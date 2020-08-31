@@ -75,7 +75,6 @@ export default function usePicoObserver(tiers) {
                 email: signalNode.getAttribute('data-pico-email'),
                 tier: signalNode.getAttribute('data-pico-tier'),
               };
-              console.log(attributes);
 
               // Once the `data-pico-status` and `data-pico-email` attributes are
               // populated, send a request to Pico to verify the user and retrieve
