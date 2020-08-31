@@ -36,8 +36,8 @@
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^3.3.0-alpha.1",
     "@irvingjs/core": "^3.3.0-alpha.1",
-		"@testing-library/jest-dom": "^5.11.4",
-		"@testing-library/react": "^10.4.9",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^10.4.9",
     "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^25.5.3"
   },

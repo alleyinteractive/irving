@@ -16,9 +16,7 @@ const BodyWrapper = (props) => {
     children,
     theme,
   } = props;
-  const standardProps = useStandardProps(props, {
-    id: 'content',
-  });
+  const standardProps = useStandardProps(props);
   const { Main } = theme;
 
   return (
