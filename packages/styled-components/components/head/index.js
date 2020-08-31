@@ -20,7 +20,8 @@ const Head = (props) => {
         }
 
         // Validate a non-empty array.
-        if (! Array.isArray(child.props.children) || ! child.props.children.length) {
+        if (! Array.isArray(child.props.children) ||
+          ! child.props.children.length) {
           return child;
         }
 
