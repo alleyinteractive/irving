@@ -53,9 +53,8 @@ export default function usePicoObserver(tiers) {
   useEffect(() => {
     const observerHandler = () => {
       const signalNode = document.getElementById('PicoSignal-container');
-      // Only mount the observer if the PicoSignal button exists in the DOM and
-      // the Pico data attributes have been appended to the element.
-      if (signalNode && signalNode.getAttribute('data-pico-email')) {
+      // Only mount the observer if the PicoSignal button exists in the DOM.
+      if (signalNode) {
         // Define the observer.
         const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
@@ -68,6 +67,7 @@ export default function usePicoObserver(tiers) {
                 email: signalNode.getAttribute('data-pico-email'),
                 tier: signalNode.getAttribute('data-pico-tier'),
               };
+              console.log(attributes);
 
               // Once the `data-pico-status` and `data-pico-email` attributes are
               // populated, send a request to Pico to verify the user and retrieve
@@ -79,8 +79,10 @@ export default function usePicoObserver(tiers) {
                 // Ensure the user's current tier matches the levels available
                 // for Coral SSO.
                 if (! tiers.includes(attributes.tier)) {
+                  console.log('not good enouth');
                   dispatchRequireUpgradeMessage();
                 } else {
+                  console.log('good enough');
                   // Dispatch an action that signifies the user has upgraded
                   // their subscription to a level sufficient to enable Coral SSO.
                   if (requireUpgrade) {
