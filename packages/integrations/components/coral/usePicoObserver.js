@@ -8,6 +8,14 @@ import {
 } from '../../actions';
 import { requireUpgradeSelector } from '../../selectors/coralSelector';
 
+/**
+ * A hook that mounts a MutationObserver on the global `PicoSignal-container`
+ * DOM node on the `pico.loaded` event. The observer dispatches actions used
+ * to verify that user with Pico and perform conditional rendering/SSO-token
+ * retrieval given the values of the Signal node's data attributes.
+ *
+ * @param {array} tiers Array of valid subscription tier IDs for Coral SSO.
+ */
 export default function usePicoObserver(tiers) {
   const [requestSent, setRequestStatus] = useState(false);
 
@@ -79,10 +87,8 @@ export default function usePicoObserver(tiers) {
                 // Ensure the user's current tier matches the levels available
                 // for Coral SSO.
                 if (! tiers.includes(attributes.tier)) {
-                  console.log('not good enouth');
                   dispatchRequireUpgradeMessage();
                 } else {
-                  console.log('good enough');
                   // Dispatch an action that signifies the user has upgraded
                   // their subscription to a level sufficient to enable Coral SSO.
                   if (requireUpgrade) {
