@@ -10,6 +10,7 @@ import {
   SET_CORAL_USERNAME,
   RECEIVE_CORAL_USERNAME_VALIDATION_ERROR,
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
+  RECEIVE_PICO_PLAN_UPGRADE,
 } from './types';
 
 /**
@@ -36,6 +37,14 @@ export function actionVerifyPicoUser(user) {
  */
 export function actionReceivePicoVerificationFailure() {
   return createAction(RECEIVE_PICO_VERIFICATION_FAILURE);
+}
+
+/**
+ * Create an action that is dispatched when a Pico user upgrades their subscription tier.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceivePicoPlanUpgrade() {
+  return createAction(RECEIVE_PICO_PLAN_UPGRADE);
 }
 
 /**

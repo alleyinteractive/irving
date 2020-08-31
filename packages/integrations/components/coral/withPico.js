@@ -5,8 +5,12 @@ import {
   actionVerifyPicoUser,
   actionReceiveCoralLogoutRequest,
   actionRequireUpgrade,
+  actionReceivePicoPlanUpgrade,
 } from '../../actions';
-import { tokenSelector } from '../../selectors/coralSelector';
+import {
+  tokenSelector,
+  requireUpgradeSelector,
+} from '../../selectors/coralSelector';
 
 const withPico = (ChildComponent) => (props) => {
   const [verificationRequestSent, setRequestStatus] = useState(false);
@@ -33,6 +37,14 @@ const withPico = (ChildComponent) => (props) => {
     () => dispatch(actionReceiveCoralLogoutRequest()),
     [dispatch]
   );
+  const dispatchReceivePlanUpgrade = useCallback(
+    () => dispatch(actionReceivePicoPlanUpgrade()),
+    [dispatch]
+  );
+  // Define an identifier to signify whether a user is already authenticated
+  // with Pico and is required to upgrade their subscription prior to being
+  // sent through the Coral SSO workflow.
+  const requireUpgrade = useSelector(requireUpgradeSelector) || undefined;
 
   useEffect(() => {
     const observerHandler = () => {
@@ -69,6 +81,11 @@ const withPico = (ChildComponent) => (props) => {
                 if ('pal' !== attributes.tier) {
                   dispatchRequireUpgradeMessage();
                 } else {
+                  // Dispatch an action that signifies the user has upgraded
+                  // their subscription to a level sufficient to enable Coral SSO.
+                  if (requireUpgrade) {
+                    dispatchReceivePlanUpgrade();
+                  }
                   // Set a delay in order for the global Pico object to update with
                   // the user's ID prior to dispatching the verification request.
                   setTimeout(() => {
@@ -102,14 +119,22 @@ const withPico = (ChildComponent) => (props) => {
     window.addEventListener('pico.loaded', observerHandler);
 
     return () => window.removeEventListener('pico.loaded', observerHandler);
-  }, []);
+  }, [requireUpgrade]);
 
   // Define Coral event handlers.
   const handlers = (events) => {
     events.on('loginPrompt', () => {
       const picoButton = document.getElementById('PicoRule-button');
 
-      if (picoButton) {
+      // If the user is already authenticated and is required to upgrade their
+      // subsription prior to commenting, display the PicoPlan modal.
+      if (requireUpgrade) {
+        const upgradeButton = document.getElementById('PicoPlan-button');
+
+        if (upgradeButton) {
+          upgradeButton.click();
+        }
+      } else if (picoButton) {
         picoButton.click();
       }
     });

@@ -8,6 +8,7 @@ import {
   SET_CORAL_USERNAME,
   RECEIVE_CORAL_USERNAME_VALIDATION_ERROR,
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
+  RECEIVE_PICO_PLAN_UPGRADE,
 } from '../actions/types';
 import defaultState from './defaultState';
 
@@ -25,18 +26,31 @@ export default function integrationsReducer(
     case HYDRATE_COMPONENTS:
       return merge(state, { componentMap: payload, hydrated: true });
 
-    // TODO: Build out case for when user hase successfully upgraded to clear
-    // this value from the store.
     case REQUIRE_UPGRADE_FOR_CORAL_SSO:
       return {
         ...state,
-        coral: { requireUpgrade: true },
+        coral: {
+          ...state.coral,
+          requireUpgrade: true,
+        },
+      };
+
+    case RECEIVE_PICO_PLAN_UPGRADE:
+      return {
+        ...state,
+        coral: {
+          ...state.coral,
+          requireUpgrade: false,
+        },
       };
 
     case RECEIVE_CORAL_USERNAME_REQUEST:
       return {
         ...state,
-        coral: { requireUsername: true },
+        coral: {
+          ...state.coral,
+          requireUsername: true
+        },
       };
 
     case SET_CORAL_USERNAME:
@@ -48,13 +62,19 @@ export default function integrationsReducer(
     case RECEIVE_CORAL_USERNAME_VALIDATION_ERROR:
       return {
         ...state,
-        coral: { validationError: payload },
+        coral: {
+          ...state.coral,
+          validationError: payload,
+        },
       };
 
     case RECEIVE_CORAL_SSO_TOKEN:
       return {
         ...state,
-        coral: { token: payload },
+        coral: {
+          ...state.coral,
+          token: payload,
+        },
       };
 
     case RECEIVE_CORAL_LOGOUT_REQUEST:
