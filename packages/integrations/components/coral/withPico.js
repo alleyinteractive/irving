@@ -51,11 +51,7 @@ const withPico = (ChildComponent) => (props) => {
       const signalNode = document.getElementById('PicoSignal-container');
       // Only mount the observer if the PicoSignal button exists in the DOM and
       // the Pico data attributes have been appended to the element.
-      if (
-        signalNode &&
-        null !== signalNode.getAttribute('data-pico-email') &&
-        false === verificationRequestSent
-      ) {
+      if (signalNode && null !== signalNode.getAttribute('data-pico-email')) {
         // Define the observer.
         const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
@@ -77,8 +73,10 @@ const withPico = (ChildComponent) => (props) => {
                 0 < attributes.email.length &&
                 'registered' === attributes.registered
               ) {
-                // TODO: Fix me. This is a temporary identifier for upgrade prompt.
-                if ('pal' !== attributes.tier) {
+                const { ssoTiers } = props;
+                // Ensure the user's current tier matches the levels available
+                // for Coral SSO.
+                if (! ssoTiers.includes(attributes.tier)) {
                   dispatchRequireUpgradeMessage();
                 } else {
                   // Dispatch an action that signifies the user has upgraded
@@ -86,18 +84,20 @@ const withPico = (ChildComponent) => (props) => {
                   if (requireUpgrade) {
                     dispatchReceivePlanUpgrade();
                   }
-                  // Set a delay in order for the global Pico object to update with
-                  // the user's ID prior to dispatching the verification request.
-                  setTimeout(() => {
-                    // Add the Pico user's ID to the attributes array.
-                    if (window.Pico && 'object' === typeof window.Pico.user) {
-                      attributes = {
-                        ...attributes,
-                        id: window.Pico.user.id,
-                      };
-                    }
-                    dispatchVerificationRequest(attributes);
-                  }, 50);
+                  if (! verificationRequestSent) {
+                    // Set a delay in order for the global Pico object to update with
+                    // the user's ID prior to dispatching the verification request.
+                    setTimeout(() => {
+                      // Add the Pico user's ID to the attributes array.
+                      if (window.Pico && 'object' === typeof window.Pico.user) {
+                        attributes = {
+                          ...attributes,
+                          id: window.Pico.user.id,
+                        };
+                      }
+                      dispatchVerificationRequest(attributes);
+                    }, 50);
+                  }
                 }
               }
 
@@ -129,12 +129,11 @@ const withPico = (ChildComponent) => (props) => {
       // If the user is already authenticated and is required to upgrade their
       // subsription prior to commenting, display the PicoPlan modal.
       if (requireUpgrade) {
+        console.log('require upgrade');
         const upgradeButton = document.getElementById('PicoPlan-button');
 
-        if (upgradeButton) {
-          upgradeButton.click();
-        }
-      } else if (picoButton) {
+        upgradeButton.click();
+      } else {
         picoButton.click();
       }
     });

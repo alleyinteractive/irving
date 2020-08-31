@@ -49,7 +49,7 @@ export default function integrationsReducer(
         ...state,
         coral: {
           ...state.coral,
-          requireUsername: true
+          requireUsername: true,
         },
       };
 
