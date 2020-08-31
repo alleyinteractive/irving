@@ -2,46 +2,34 @@ import { createSelector } from 'reselect';
 
 const coralSelector = (state) => state.integrations.coral;
 
+function maybeSelect(selector, key) {
+  if (selector) {
+    return selector[key];
+  }
+  return undefined;
+}
+
 export const tokenSelector = createSelector(
   coralSelector,
-  (branch) => {
-    if (branch) {
-      return branch.token;
-    }
-
-    return undefined;
-  }
+  (branch) => maybeSelect(branch, 'token')
 );
 
 export const purgeSelector = createSelector(
   coralSelector,
-  (branch) => {
-    if (branch) {
-      return branch.purgeUser;
-    }
-
-    return undefined;
-  }
+  (branch) => maybeSelect(branch, 'purgeUser')
 );
 
 export const requireUsernameSelector = createSelector(
   coralSelector,
-  (branch) => {
-    if (branch) {
-      return branch.requireUsername;
-    }
+  (branch) => maybeSelect(branch, 'requireUsername')
+);
 
-    return undefined;
-  }
+export const requireUpgradeSelector = createSelector(
+  coralSelector,
+  (branch) => maybeSelect(branch, 'requireUpgrade')
 );
 
 export const validationErrorSelector = createSelector(
   coralSelector,
-  (branch) => {
-    if (branch) {
-      return branch.validationError;
-    }
-
-    return undefined;
-  }
+  (branch) => maybeSelect(branch, 'validationError')
 );

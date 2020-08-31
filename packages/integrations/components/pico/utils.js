@@ -23,7 +23,6 @@ export default function mountPicoNodes(pageInfo) {
       { name: 'style', value: 'display: none' },
     ];
     createNode(documentBody, 'div', signalAttributes);
-
     // Create the rule node.
     const ruleAttributes = [
       { name: 'type', value: 'button' },
@@ -32,15 +31,6 @@ export default function mountPicoNodes(pageInfo) {
       { name: 'style', value: 'display: none' },
     ];
     createNode(documentBody, 'input', ruleAttributes);
-
-    // Create the payment node.
-    const paymentAttributes = [
-      { name: 'type', value: 'button' },
-      { name: 'id', value: 'PicoPayment-button' },
-      { name: 'class', value: 'PicoRule PicoManagePayment' },
-      { name: 'style', value: 'display: none' },
-    ];
-    createNode(documentBody, 'input', paymentAttributes);
 
     // Update the `nodesMounted` variable so that the visit can be dispatched on a server load.
     nodesMounted = true;
