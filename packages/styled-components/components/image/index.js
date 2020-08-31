@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import { richText } from '@irvingjs/core/config/html';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -33,7 +37,6 @@ const Image = (props) => {
     alt,
     caption,
     children,
-    className,
     credit,
     fallbackSrc,
     loading,
@@ -44,10 +47,8 @@ const Image = (props) => {
     pictureSources,
     showMeta,
     src,
-    style,
     theme,
   } = props;
-
   const {
     FigureWrapper,
     ImageTag,
@@ -56,6 +57,7 @@ const Image = (props) => {
     ImageMeta,
     ImageWrapper,
   } = theme;
+  const standardProps = useStandardProps(props);
 
   /**
    * @todo possibly replace this with similar functionality. This hook breaks b/c it references window.
@@ -74,8 +76,7 @@ const Image = (props) => {
   return (
     <FigureWrapper
       allowUpscaling={allowUpscaling}
-      classsName={className}
-      style={style}
+      {...standardProps}
     >
       <ImageWrapper aspectRatio={aspectRatio}>
         <ImageTag
@@ -106,12 +107,12 @@ const Image = (props) => {
 };
 
 Image.defaultProps = {
+  ...standardDefaultProps,
+  theme: defaultStyles,
   allowUpscaling: false,
   alt: '',
   aspectRatio: false,
   caption: '',
-  children: [],
-  className: '',
   credit: '',
   fallbackSrc: '',
   loading: 'lazy',
@@ -120,11 +121,10 @@ Image.defaultProps = {
   pictureSources: [],
   showMeta: true,
   src: '',
-  style: {},
-  theme: defaultStyles,
 };
 
 Image.propTypes = {
+  ...standardPropTypes,
   /**
    * Allow an image to be scaled to larger than its actual width.
    */
@@ -149,14 +149,6 @@ Image.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ]),
-  /**
-   * Children of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Class name for <ImageWrapper />.
-   */
-  className: PropTypes.string,
   /**
    * Caption.
    */
@@ -197,25 +189,15 @@ Image.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ]),
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Image as PureComponent };
+export {
+  Image as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Image);
-
-export default StyledComponent;
+export default Image;
