@@ -1,3 +1,11 @@
+/**
+ * A helper function that appends a DOM element with provided attributes into
+ * a passed container element.
+ *
+ * @param {HTMLElement} container The element for the node to be appended into.
+ * @param {string} type The type of node to be created.
+ * @param {array} attributes The node's attributes.
+ */
 function createNode(container, type, attributes) {
   // Create the node.
   const node = document.createElement(type);
@@ -9,6 +17,13 @@ function createNode(container, type, attributes) {
   container.appendChild(node);
 }
 
+/**
+ * A function that mounts reference nodes into the DOM at initialization. These
+ * nodes can be targeted by React components to trigger Pico actions if the component
+ * requesting an action is rendered after Pico's initialization.
+ *
+ * @param {object} pageInfo The curren page info.
+ */
 export default function mountPicoNodes(pageInfo) {
   let nodesMounted = false;
 
@@ -31,6 +46,14 @@ export default function mountPicoNodes(pageInfo) {
       { name: 'style', value: 'display: none' },
     ];
     createNode(documentBody, 'input', ruleAttributes);
+    // Create the plan node.
+    const planAttributes = [
+      { name: 'type', value: 'button' },
+      { name: 'id', value: 'PicoPlan-button' },
+      { name: 'class', value: 'PicoRule PicoPlan' },
+      { name: 'style', value: 'display: none' },
+    ];
+    createNode(documentBody, 'input', planAttributes);
 
     // Update the `nodesMounted` variable so that the visit can be dispatched on a server load.
     nodesMounted = true;

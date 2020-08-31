@@ -4,6 +4,7 @@ import CoralEmbed from './index';
 import {
   actionVerifyPicoUser,
   actionReceiveCoralLogoutRequest,
+  actionRequireUpgrade,
 } from '../../actions';
 import { tokenSelector } from '../../selectors/coralSelector';
 
@@ -11,6 +12,11 @@ const withPico = (ChildComponent) => (props) => {
   const [verificationRequestSent, setRequestStatus] = useState(false);
 
   const dispatch = useDispatch();
+  // Define a function to summon an upgrade prompt for Coral SSO.
+  const dispatchRequireUpgradeMessage = useCallback(
+    () => dispatch(actionRequireUpgrade()),
+    [dispatch]
+  );
   // Define a function to dispatch Pico user verification requests.
   const dispatchVerificationRequest = useCallback(
     (user) => {
@@ -49,6 +55,7 @@ const withPico = (ChildComponent) => (props) => {
               let attributes = {
                 registered: signalNode.getAttribute('data-pico-status'),
                 email: signalNode.getAttribute('data-pico-email'),
+                tier: signalNode.getAttribute('data-pico-tier'),
               };
 
               // Once the `data-pico-status` and `data-pico-email` attributes are
@@ -58,18 +65,23 @@ const withPico = (ChildComponent) => (props) => {
                 0 < attributes.email.length &&
                 'registered' === attributes.registered
               ) {
-                // Set a delay in order for the global Pico object to update with
-                // the user's ID prior to dispatching the verification request.
-                setTimeout(() => {
-                  // Add the Pico user's ID to the attributes array.
-                  if (window.Pico && 'object' === typeof window.Pico.user) {
-                    attributes = {
-                      ...attributes,
-                      id: window.Pico.user.id,
-                    };
-                  }
-                  dispatchVerificationRequest(attributes);
-                }, 50);
+                // TODO: Fix me. This is a temporary identifier for upgrade prompt.
+                if ('pal' !== attributes.tier) {
+                  dispatchRequireUpgradeMessage();
+                } else {
+                  // Set a delay in order for the global Pico object to update with
+                  // the user's ID prior to dispatching the verification request.
+                  setTimeout(() => {
+                    // Add the Pico user's ID to the attributes array.
+                    if (window.Pico && 'object' === typeof window.Pico.user) {
+                      attributes = {
+                        ...attributes,
+                        id: window.Pico.user.id,
+                      };
+                    }
+                    dispatchVerificationRequest(attributes);
+                  }, 50);
+                }
               }
 
               // If the `data-pico-status` and `data-pico-email` attributes are
