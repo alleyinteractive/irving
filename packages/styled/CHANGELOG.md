@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0-beta.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.3.0-beta.5...v3.3.0-beta.6) (2020-08-31)
+
+
+### Bug Fixes
+
+* **sc:** publish types ([af49ebb](https://github.com/alleyinteractive/irving/packages/styled/commit/af49ebbc7c4978ce789660bc130a7ee6199e2916))
+
+
+
+
+
 # [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
 
 
