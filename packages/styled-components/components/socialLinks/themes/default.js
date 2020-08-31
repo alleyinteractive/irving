@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export const SocialLinksWrapper = styled.div``;
-export const SocialLinksList = styled.ul``;
+
+export const SocialLinksList = styled.ul`
+  display: flex;
+`;
+
 export const SocialLinksItem = styled.li``;
 
 export const IconWrapper = styled.span`

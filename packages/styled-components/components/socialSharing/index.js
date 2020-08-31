@@ -7,23 +7,9 @@ import {
   standardPropTypes,
   standardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
-import SocialSharingItem from './socialSharingItem';
+import toReactElement from '@irvingjs/core/utils/toReactElement';
+import Link from '../link';
 import * as defaultStyles from './themes/default';
-
-/**
- * Supported platforms.
- *
- * @type {Array}
- */
-export const SupportedPlatforms = [
-  'email',
-  'facebook',
-  'linkedin',
-  'pinterest',
-  'reddit',
-  'twitter',
-  'whatsapp',
-];
 
 /**
  * Social sharing.
@@ -35,12 +21,15 @@ const SocialSharing = (props) => {
     description,
     imageUrl,
     platforms,
+    platformShareLinks,
     theme,
     title,
     url,
   } = props;
   const standardProps = useStandardProps(props);
   const {
+    IconWrapper,
+    SocialSharingItemWrapper,
     SocialSharingList,
     SocialSharingWrapper,
   } = theme;
@@ -110,21 +99,50 @@ const SocialSharing = (props) => {
     whatsapp: getWhatsAppUrl,
   };
 
+  const getShareUrl = (platform) => {
+    if (platformShareLinks[platform]) {
+      return platformShareLinks[platform];
+    }
+
+    if (socialUrlMap[platform]) {
+      return socialUrlMap[platform];
+    }
+
+    return '#';
+  };
+
+  if (0 === platforms.length) {
+    return null;
+  }
+
+  const items = platforms.map((platform) => ({
+    platform,
+    shareUrl: getShareUrl(platform),
+    icon: toReactElement({
+      name: `irving/${platform}-icon`,
+      config: {
+        title: sprintf( // Translators: %1$s - platform.
+          __('Share on %1$s', 'irving-styled-components'),
+          platform
+        ),
+      },
+      children: [],
+    }),
+  }));
+
   return (
     <SocialSharingWrapper {...standardProps}>
-      {platforms && 0 !== platforms.length && (
-        <SocialSharingList>
-          {platforms.map((platform) => (
-            <SocialSharingItem
-              key={platform}
-              platform={platform}
-              theme={theme}
-              title={platform}
-              url={socialUrlMap[platform]}
-            />
-          ))}
-        </SocialSharingList>
-      )}
+      <SocialSharingList>
+        {items.map(({ platform, shareUrl, icon }) => (
+          <SocialSharingItemWrapper key={platform} className={platform}>
+            <Link href={shareUrl}>
+              <IconWrapper className={platform}>
+                {icon}
+              </IconWrapper>
+            </Link>
+          </SocialSharingItemWrapper>
+        ))}
+      </SocialSharingList>
     </SocialSharingWrapper>
   );
 };
@@ -135,6 +153,8 @@ SocialSharing.defaultProps = {
   description: '',
   imageUrl: '',
   platforms: ['email', 'facebook', 'twitter'],
+  platformShareLinks: {},
+  style: {},
   title: '',
   url: '',
 };
@@ -152,7 +172,14 @@ SocialSharing.propTypes = {
   /**
    * An array of social sharing platforms.
    */
-  platforms: PropTypes.arrayOf(PropTypes.oneOf(SupportedPlatforms)),
+  platforms: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * An object containing social platforms as keys and share links as values.
+   */
+  platformShareLinks: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   /**
    * Title of the shared content.
    */
