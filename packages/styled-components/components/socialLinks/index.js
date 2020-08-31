@@ -43,8 +43,8 @@ const SocialLinks = (props) => {
           {items.map(({ platform, url, icon }) => (
             <SocialLinksItem key={platform}>
               <Link href={url}>
-                <IconWrapper>
-                  {icon.type.displayName ? icon : platform}
+                <IconWrapper className={platform}>
+                  {icon}
                 </IconWrapper>
               </Link>
             </SocialLinksItem>
@@ -63,7 +63,7 @@ SocialLinks.defaultProps = {
 
 SocialLinks.propTypes = {
   /**
-   * An object containing social platforms as keys as links to specific pages as values.
+   * An object containing social platforms as keys and links to specific pages as values.
    */
   platforms: PropTypes.object,
   /**
