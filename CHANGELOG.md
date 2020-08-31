@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0-beta.5](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.4...v3.3.0-beta.5) (2020-08-31)
+
+
+### Bug Fixes
+
+* **package:** publsih sc componentmap ([e519ffd](https://github.com/alleyinteractive/irving/commit/e519ffd20f7685fbd0613337cf42da2a4874fcb1))
+
+
+
+
+
 # [3.3.0-beta.4](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
 
 
