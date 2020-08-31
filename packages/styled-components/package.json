@@ -7,7 +7,7 @@
     "config/**/*",
     "assets/**/*",
     "server/**/*",
-    "irving.config.server.js",
+    "componentMap.js",
     "irving.config.js",
     "!*.test.js"
   ],
