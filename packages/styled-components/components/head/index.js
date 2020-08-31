@@ -25,10 +25,9 @@ const Head = (props) => {
           return child;
         }
 
-        // <Helmet> require the `children` prop for `style` and `script`
-        // elements to be a string. In this scenario, we reduce the array
-        // to a single string using `join`, and return the cloned element
-        // with the modified value.
+        // <Helmet> requires the `children` prop for `style` and `script`
+        // elements to be a string. As such, we reduce the array to a
+        // single string using join().
         return cloneElement(
           child,
           {
