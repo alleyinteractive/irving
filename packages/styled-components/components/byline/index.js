@@ -1,6 +1,10 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -10,15 +14,14 @@ import * as defaultStyles from './themes/default';
  */
 const Byline = (props) => {
   const {
-    className,
     children,
     lastDelimiter,
     multiDelimiter,
     preText,
     singleDelimiter,
-    style,
     theme,
   } = props;
+  const standardProps = useStandardProps(props);
 
   const {
     BylineWrapper,
@@ -35,7 +38,7 @@ const Byline = (props) => {
 
     case (1 === children.length):
       return (
-        <BylineWrapper style={style} className={className}>
+        <BylineWrapper {...standardProps}>
           <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
             <AuthorWrapper>{children}</AuthorWrapper>
@@ -45,7 +48,7 @@ const Byline = (props) => {
 
     case (2 === children.length):
       return (
-        <BylineWrapper style={style} className={className}>
+        <BylineWrapper {...standardProps}>
           <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
             <span>
@@ -59,7 +62,7 @@ const Byline = (props) => {
 
     case (3 <= children.length):
       return (
-        <BylineWrapper style={style} className={className}>
+        <BylineWrapper {...standardProps}>
           <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
             {children.map((child, index) => {
@@ -96,25 +99,16 @@ const Byline = (props) => {
 };
 
 Byline.defaultProps = {
-  children: [],
-  className: '',
+  ...standardDefaultProps,
+  theme: defaultStyles,
   lastDelimiter: ', and ',
   multiDelimiter: ', ',
   preText: 'By ',
   singleDelimiter: ' and ',
-  style: {},
-  theme: defaultStyles,
 };
 
 Byline.propTypes = {
-  /**
-   * Children of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Class name.
-   */
-  className: PropTypes.string,
+  ...standardPropTypes,
   /**
    * Last delimiter.
    */
@@ -131,25 +125,15 @@ Byline.propTypes = {
    * Single delimiter.
    */
   singleDelimiter: PropTypes.string,
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Byline as PureComponent };
+export {
+  Byline as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Byline);
-
-export default StyledComponent;
+export default Byline;

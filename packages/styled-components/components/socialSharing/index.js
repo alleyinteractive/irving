@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { __, sprintf } from '@wordpress/i18n';
 import queryString from 'query-string';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import toReactElement from '@irvingjs/core/utils/toReactElement';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
@@ -18,12 +22,11 @@ const SocialSharing = (props) => {
     imageUrl,
     platforms,
     platformShareLinks,
-    style,
     theme,
     title,
     url,
   } = props;
-
+  const standardProps = useStandardProps(props);
   const {
     IconWrapper,
     SocialSharingItemWrapper,
@@ -128,7 +131,7 @@ const SocialSharing = (props) => {
   }));
 
   return (
-    <SocialSharingWrapper style={style}>
+    <SocialSharingWrapper {...standardProps}>
       <SocialSharingList>
         {items.map(({ platform, shareUrl, icon }) => (
           <SocialSharingItemWrapper key={platform} className={platform}>
@@ -145,17 +148,19 @@ const SocialSharing = (props) => {
 };
 
 SocialSharing.defaultProps = {
+  ...standardDefaultProps,
+  theme: defaultStyles,
   description: '',
   imageUrl: '',
   platforms: ['email', 'facebook', 'twitter'],
   platformShareLinks: {},
   style: {},
-  theme: defaultStyles,
   title: '',
   url: '',
 };
 
 SocialSharing.propTypes = {
+  ...standardPropTypes,
   /**
    * Description of the shared content.
    */
@@ -176,17 +181,6 @@ SocialSharing.propTypes = {
     PropTypes.object,
   ]),
   /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
-  /**
    * Title of the shared content.
    */
   title: PropTypes.string,
@@ -196,12 +190,13 @@ SocialSharing.propTypes = {
   url: PropTypes.string,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { SocialSharing as PureComponent };
+export {
+  SocialSharing as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(SocialSharing);
-
-export default StyledComponent;
+export default SocialSharing;

@@ -51,8 +51,6 @@ Head.propTypes = {
   children: PropTypes.node,
 };
 
-export { Head as PureComponent };
-
-export const StyledComponent = Head;
+export { Head as Component };
 
 export default Head;
