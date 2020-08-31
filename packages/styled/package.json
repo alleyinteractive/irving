@@ -9,6 +9,7 @@
 		"variables/**/*",
 		"components/**/*",
 		"hooks/**/*",
+		"types/**/*",
 		"irving.config.server.js",
 		"irving.config.js",
 		"!*.test.js"
