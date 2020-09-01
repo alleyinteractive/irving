@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2020-09-01)
+
+
+### Bug Fixes
+
+* **image:** fix eslint errors introduced in merge of [#278](https://github.com/alleyinteractive/irving/issues/278) ([f878f28](https://github.com/alleyinteractive/irving/commit/f878f28f23faaec69ab96361dd78a13dccd80bdd))
+
+
+
+
+
 # [4.0.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2020-09-01)
 
 **Note:** Version bump only for package irving
