@@ -46,7 +46,6 @@ const Image = (props) => {
     sizes,
     src,
     srcset,
-    style,
     theme,
     width,
   } = props;
@@ -123,7 +122,6 @@ const Image = (props) => {
 
 Image.defaultProps = {
   ...standardDefaultProps,
-  theme: defaultStyles,
   allowUpscaling: false,
   alt: '',
   aspectRatio: false,
