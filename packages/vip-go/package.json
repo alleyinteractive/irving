@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/vip-go",
-	"version": "4.0.0-alpha.1",
+	"version": "4.0.0-alpha.2",
 	"description": "Integration for WordPress VIP's Node server helpers",
 	"files": [
 		"server/**/*",
@@ -23,8 +23,8 @@
 		"newrelic": "^5.13.1"
 	},
 	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^4.0.0-alpha.1",
-		"@irvingjs/core": "^4.0.0-alpha.1",
+		"@irvingjs/babel-preset-irving": "^4.0.0-alpha.2",
+		"@irvingjs/core": "^4.0.0-alpha.2",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"jest": "^25.5.3"
 	},
@@ -34,5 +34,5 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
+	"gitHead": "a855ce1255df9c35b5cd049e4c2d65b8665982dd"
 }
