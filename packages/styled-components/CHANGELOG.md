@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.4.0-alpha.0...v4.0.0-alpha.0) (2020-09-01)
+
+
+### Bug Fixes
+
+* **container:** fix container style attribute ([6869d39](https://github.com/alleyinteractive/irving/packages/styled-components/commit/6869d390526fef0350ecb1c7bd302c9a77fe798f))
+
+
+### Features
+
+* **image:** update component to handle responsive images ([f96bb98](https://github.com/alleyinteractive/irving/packages/styled-components/commit/f96bb98677a21d36008609fc67ccfbeca8ae265a))
+
+
+### BREAKING CHANGES
+
+* **image:** Removes unused support for photon transforms and picture element sources.
+
+
+
+
+
 # [3.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v3.3.0...v3.4.0-alpha.0) (2020-09-01)
 
 
