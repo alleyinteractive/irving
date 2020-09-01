@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { actionPicoLoaded, actionUpdatePicoPageInfo } from '../../actions';
+import { picoLoadedSelector } from '../../selectors/picoSelector';
 import mountPicoNodes from './utils';
 
 const Pico = (props) => {
@@ -23,37 +26,69 @@ const Pico = (props) => {
     url: window.location.href,
   };
 
-  const [picoLoaded, setPicoLoaded] = useState(false);
+  // Create a state value that is updated when the `pico-init` event is fired.
+  const [picoInitialized, setPicoInitialized] = useState(false);
+  // Create the dispatch function.
+  const dispatch = useDispatch();
+  // Create a state value that prevents multiple `UPDATE_PICO_PAGE_INFO` actions
+  // from being fired on a single `LOCATION_CHANGE`.
+  const [picoPageInfoUpdated, setPicoPageInfoUpdated] = useState(false);
+  // Create a function that dispatches the current page info for the saga to respond to.
+  const dispatchUpdatePicoPageInfo = useCallback(
+    (payload) => {
+      setPicoPageInfoUpdated(true);
+      return dispatch(actionUpdatePicoPageInfo(payload));
+    },
+    [dispatch]
+  );
+  // Create a function that updates the store when the `pico.loaded` event is fired.
+  const dispatchPicoLoaded = useCallback(
+    () => dispatch(actionPicoLoaded()),
+    [dispatch]
+  );
+  // Grab the `loaded` value from the `pico` branch of the state tree.
+  const picoLoaded = useSelector(picoLoadedSelector);
 
   useEffect(() => {
+    // See if the Pico widget container exists in the DOM.
     const widgetContainer = document.getElementById('pico-widget-container');
-    // If the widget container exists, set the picoLoaded value to true so
-    // that another widget instance is not added into the DOM.
+
     if (widgetContainer) {
-      setPicoLoaded(true);
+      // Prevent the widget script from being added more than once.
+      setPicoInitialized(true);
 
       // Ensure the target nodes are only mounted once on the initial server load.
       if (
         ! document.getElementById('PicoSignal-container') &&
-        ! document.getElementById('PicoRule-button')
+        ! document.getElementById('PicoRule-button') &&
+        ! picoLoaded
       ) {
-        mountPicoNodes(picoPageInfo);
-      } else {
+        mountPicoNodes();
+        // Trigger the visit.
         window.pico('visit', picoPageInfo);
+        // Update the `pico` branch of the state tree and set `loaded` to true.
+        dispatchPicoLoaded();
       }
     }
 
+    // Only update the store once Pico has loaded and if it has not already been
+    // updated in this component's lifecycle phase.
+    if (picoLoaded && ! picoPageInfoUpdated) {
+      dispatchUpdatePicoPageInfo(picoPageInfo);
+    }
+
     const initHandler = () => {
-      setPicoLoaded(true);
+      setPicoInitialized(true);
     };
+
     // On component hydration, add an event listener to watch for the script's init event.
     window.document.addEventListener('pico-init', initHandler);
 
     return () => window.document.removeEventListener('pico-init', initHandler);
-  }, [picoLoaded]);
+  }, [picoInitialized, picoLoaded, picoPageInfoUpdated]);
 
   // Load the script for the first time.
-  if (! picoLoaded) {
+  if (! picoInitialized) {
     return (
       <Helmet>
         <script>

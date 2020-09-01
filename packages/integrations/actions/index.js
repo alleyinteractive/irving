@@ -11,6 +11,8 @@ import {
   RECEIVE_CORAL_USERNAME_VALIDATION_ERROR,
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
   RECEIVE_PICO_PLAN_UPGRADE,
+  PICO_LOADED,
+  UPDATE_PICO_PAGE_INFO,
 } from './types';
 
 /**
@@ -20,6 +22,23 @@ import {
  */
 export function actionHydrateComponents(componentMap) {
   return createAction(HYDRATE_COMPONENTS, componentMap);
+}
+
+/**
+ * Create an action that updates the store when Pico has loaded.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionPicoLoaded() {
+  return createAction(PICO_LOADED);
+}
+
+/**
+ * Create an action that updates the store with the current Pico page info.
+ * @param {Object} pageInfo - The Pico page info.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionUpdatePicoPageInfo(pageInfo) {
+  return createAction(UPDATE_PICO_PAGE_INFO, pageInfo);
 }
 
 /**

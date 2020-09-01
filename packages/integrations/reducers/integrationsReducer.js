@@ -9,6 +9,8 @@ import {
   RECEIVE_CORAL_USERNAME_VALIDATION_ERROR,
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
   RECEIVE_PICO_PLAN_UPGRADE,
+  PICO_LOADED,
+  UPDATE_PICO_PAGE_INFO,
 } from '../actions/types';
 import defaultState from './defaultState';
 
@@ -25,6 +27,24 @@ export default function integrationsReducer(
   switch (type) {
     case HYDRATE_COMPONENTS:
       return merge(state, { componentMap: payload, hydrated: true });
+
+    case PICO_LOADED:
+      return {
+        ...state,
+        pico: {
+          ...state.pico,
+          loaded: true,
+        },
+      };
+
+    case UPDATE_PICO_PAGE_INFO:
+      return {
+        ...state,
+        pico: {
+          ...state.pico,
+          pageInfo: payload,
+        },
+      };
 
     case REQUIRE_UPGRADE_FOR_CORAL_SSO:
       return {

@@ -1,4 +1,14 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
+import {
+  takeLatest,
+  call,
+  put,
+  select,
+} from 'redux-saga/effects';
+import { LOCATION_CHANGE } from '@irvingjs/core/actions/types';
+import {
+  picoLoadedSelector,
+  picoPageInfoSelector,
+} from '../selectors/picoSelector';
 import { SEND_PICO_VERIFICATION_REQUEST } from '../actions/types';
 import {
   actionReceiveCoralToken,
@@ -9,8 +19,18 @@ import {
 
 // The Pico saga.
 export default [
+  takeLatest(LOCATION_CHANGE, dispatchPicoVisit),
   takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
 ];
+
+function* dispatchPicoVisit() {
+  const picoLoaded = yield select(picoLoadedSelector);
+  const picoPageInfo = yield select(picoPageInfoSelector);
+
+  if (picoLoaded && picoPageInfo) {
+    window.pico('visit', picoPageInfo);
+  }
+}
 
 /**
  * A generator that dispatches the verification request to the Pico data

@@ -1,13 +1,7 @@
 import { createSelector } from 'reselect';
+import { maybeSelect } from './utils';
 
 const coralSelector = (state) => state.integrations.coral;
-
-function maybeSelect(selector, key) {
-  if (selector) {
-    return selector[key];
-  }
-  return undefined;
-}
 
 export const tokenSelector = createSelector(
   coralSelector,

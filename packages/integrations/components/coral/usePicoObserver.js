@@ -19,7 +19,7 @@ import { requireUpgradeSelector } from '../../selectors/coralSelector';
 export default function usePicoObserver(tiers) {
   const [requestSent, setRequestStatus] = useState(false);
 
-  // Define dispatch function.
+  // Define the global dispatch function.
   const dispatch = useDispatch();
 
   // Define a function to summon an upgrade prompt for Coral SSO.
@@ -71,7 +71,7 @@ export default function usePicoObserver(tiers) {
             if ('attributes' === type && 'data-pico-status' === attributeName) {
               // Create a reusable store for attribute values.
               let attributes = {
-                registered: signalNode.getAttribute('data-pico-status'),
+                status: signalNode.getAttribute('data-pico-status'),
                 email: signalNode.getAttribute('data-pico-email'),
                 tier: signalNode.getAttribute('data-pico-tier'),
               };
@@ -81,7 +81,7 @@ export default function usePicoObserver(tiers) {
               // a JWT for logging the user into Coral via SSO.
               if (
                 0 < attributes.email.length &&
-                'registered' === attributes.registered
+                'paying' === attributes.status
               ) {
                 // Ensure the user's current tier matches the levels available
                 // for Coral SSO.
@@ -115,7 +115,10 @@ export default function usePicoObserver(tiers) {
               // cleared, force the user to be logged out from the Coral instance.
               if (
                 0 >= attributes.email.length &&
-                'registered' !== attributes.registered
+                (
+                  'registered' !== attributes.status ||
+                  'paying' !== attributes.status
+                )
               ) {
                 dispatchLogoutRequest();
               }
