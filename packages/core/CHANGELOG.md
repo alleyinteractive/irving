@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-rc.0...v3.3.0) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [3.3.0-rc.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.2...v3.3.0-rc.0) (2020-08-31)
+
+**Note:** Version bump only for package @irvingjs/core
+
 # [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
 
 
@@ -14,9 +26,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **withthemes:** refactor sc package to remove now-unnecessary createWithUserthemes hoc ([2b475ce](https://github.com/alleyinteractive/irving/packages/core/commit/2b475cedf2acca429b0b9e648fc19e2233af379f))
-
-
-
 
 
 # [3.3.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)

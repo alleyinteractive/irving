@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/alleyinteractive/irving/compare/v3.3.0-rc.0...v3.3.0) (2020-09-01)
+
+**Note:** Version bump only for package irving
+
+
+# [3.3.0-rc.0](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.2...v3.3.0-rc.0) (2020-08-31)
+
+**Note:** Version bump only for package irving
+
 # [3.3.0-beta.6](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.5...v3.3.0-beta.6) (2020-08-31)
 
 
@@ -55,17 +64,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **socialsharing:** allow for custom links in Social Sharing component and refactor to one file ([54f36b3](https://github.com/alleyinteractive/irving/commit/54f36b36f330876540789bbaf32725136765403d))
-
-
-
-
-
-
-
-**Note:** Version bump only for package irving
-
-
-
 
 
 # [3.3.0-beta.2](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.1...v3.3.0-beta.2) (2020-08-27)
