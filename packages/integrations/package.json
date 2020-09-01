@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/integrations",
-	"version": "3.3.0-rc.0",
+	"version": "3.3.0",
 	"description": "Third party integrations for Irving",
 	"files": [
 		"actions/**/*",
@@ -30,8 +30,8 @@
 		"react-helmet": "^6.1.0"
 	},
 	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^3.3.0-rc.0",
-		"@irvingjs/core": "^3.3.0-rc.0",
+		"@irvingjs/babel-preset-irving": "^3.3.0",
+		"@irvingjs/core": "^3.3.0",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.2",
