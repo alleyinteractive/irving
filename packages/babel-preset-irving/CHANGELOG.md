@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.3.0...v3.4.0-alpha.0) (2020-09-01)
+
+
+
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **package:** fix mismatched hoisted package versions ([f75ac82](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/f75ac82a2d34b276e1b00eb89f37dd8008830ecd))
+
+
+
+
+
 # [3.3.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.3.0-rc.0...v3.3.0) (2020-09-01)
 
 **Note:** Version bump only for package @irvingjs/babel-preset-irving
