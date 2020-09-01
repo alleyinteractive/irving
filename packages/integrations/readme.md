@@ -6,7 +6,6 @@ A collection of Irving-friendly components for getting you started with common t
 * `<GoogleAnalytics />` - Render the required JS snippet for your GA account.
 * `<GoogleTagManager />` - Render the required JS snippet for your GTM account.
 * `<Parsely />` - Render the required JS for sending data to Parse.ly
-* `<YoastSchema />` - Render the required JS for Yoast.
 ---
 ### `<IntegrationsManager />`
 The integrations manager is a component that consumes a `irving/integrations` configuration retrieved from the REST API that dynamically configures, stores props for, and renders corresponding integrations based on the keys set in the configuration object.
@@ -51,9 +50,6 @@ Importing the configuration is required in order to connect the Integration Mana
 * `<Pico />`
   * Key: `pico`
   * Accepted Props: `pageInfo`, `publisherId`
-* `<YoastSchema />`
-  * Key: `googleAnalytics`
-  * Accepted Props: `content`
 * `<JetpackSiteStats />`
   * Key: `siteStats`
   * Accepted Props: `data`

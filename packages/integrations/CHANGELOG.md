@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0...v3.4.0-alpha.0) (2020-09-01)
+
+
+
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.3.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-rc.0...v3.3.0) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.3.0-rc.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-beta.2...v3.3.0-rc.0) (2020-08-31)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.3.0-beta.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-beta.1...v3.3.0-beta.2) (2020-08-27)
+
+
+### Bug Fixes
+
+* **commentcount:** fix reference ([3c5e554](https://github.com/alleyinteractive/irving/packages/integrations/commit/3c5e5546730cfb0e2a5171931bbbb46ae5ed7c6f))
+
+
+
+
+
+# [3.3.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* **Coral:** Fix client rendering activation of comment counts ([3a48963](https://github.com/alleyinteractive/irving/packages/integrations/commit/3a489633f1fea785ccfe32f75b1e11057636a97b))
+
+
+
+
+
+# [3.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-alpha.1...v3.3.0-beta.0) (2020-08-27)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
 ## [3.2.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.2.1-alpha.0...v3.2.1) (2020-08-21)
 
 **Note:** Version bump only for package @irvingjs/integrations

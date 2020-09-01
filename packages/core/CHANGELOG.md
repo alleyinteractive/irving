@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0...v3.4.0-alpha.0) (2020-09-01)
+
+
+
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **package:** fix mismatched hoisted package versions ([f75ac82](https://github.com/alleyinteractive/irving/packages/core/commit/f75ac82a2d34b276e1b00eb89f37dd8008830ecd))
+
+
+### Features
+
+* **withthemes:** refactor sc package to remove now-unnecessary createWithUserthemes hoc ([2b475ce](https://github.com/alleyinteractive/irving/packages/core/commit/2b475cedf2acca429b0b9e648fc19e2233af379f))
+
+
+
+
+
+# [3.3.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-rc.0...v3.3.0) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [3.3.0-rc.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.2...v3.3.0-rc.0) (2020-08-31)
+
+**Note:** Version bump only for package @irvingjs/core
+
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **package:** fix mismatched hoisted package versions ([f75ac82](https://github.com/alleyinteractive/irving/packages/core/commit/f75ac82a2d34b276e1b00eb89f37dd8008830ecd))
+
+
+### Features
+
+* **withthemes:** refactor sc package to remove now-unnecessary createWithUserthemes hoc ([2b475ce](https://github.com/alleyinteractive/irving/packages/core/commit/2b475cedf2acca429b0b9e648fc19e2233af379f))
+
+
+# [3.3.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* **cacheclient:** return default client, not service, from VIP go cacheClient ([07a2249](https://github.com/alleyinteractive/irving/packages/core/commit/07a2249db017f9c998b11e0cccd73497681738d4))
+
+
+
+
+
+# [3.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-alpha.1...v3.3.0-beta.0) (2020-08-27)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
 # [3.2.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.2.0-beta.1...v3.2.0) (2020-08-12)
 
 **Note:** Version bump only for package @irvingjs/core
