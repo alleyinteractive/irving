@@ -47,6 +47,7 @@ export const ImageWrapper = styled.span
 
 export const ImageTag = styled.img`
   display: block;
+  height: auto;
   max-width: 100%;
   object-fit: ${(props) => props.objectFit};
   ${(props) => getAspectRatioStyles(props)};
