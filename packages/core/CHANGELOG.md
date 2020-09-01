@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **package:** fix mismatched hoisted package versions ([f75ac82](https://github.com/alleyinteractive/irving/packages/core/commit/f75ac82a2d34b276e1b00eb89f37dd8008830ecd))
+
+
+### Features
+
+* **withthemes:** refactor sc package to remove now-unnecessary createWithUserthemes hoc ([2b475ce](https://github.com/alleyinteractive/irving/packages/core/commit/2b475cedf2acca429b0b9e648fc19e2233af379f))
+
+
+
+
+
 # [3.3.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)
 
 

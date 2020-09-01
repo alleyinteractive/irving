@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0-beta.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.3.0-beta.5...v3.3.0-beta.6) (2020-08-31)
+
+
+### Bug Fixes
+
+* **sc:** publish types ([af49ebb](https://github.com/alleyinteractive/irving/packages/styled/commit/af49ebbc7c4978ce789660bc130a7ee6199e2916))
+
+
+
+
+
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **getstandardprops:** fix some issues with proptypes ([72c33e2](https://github.com/alleyinteractive/irving/packages/styled/commit/72c33e26f237ba331103749e90d44472d9cdec27))
+
+
+### Features
+
+* **styledcomponents:** add new standard prop types, default props, props values to sc package ([204d824](https://github.com/alleyinteractive/irving/packages/styled/commit/204d82478061810802be22b8a41b4084a138fbab))
+* **withthemes:** refactor sc package to remove now-unnecessary createWithUserthemes hoc ([2b475ce](https://github.com/alleyinteractive/irving/packages/styled/commit/2b475cedf2acca429b0b9e648fc19e2233af379f))
+
+
+
+
+
 # [3.3.0-beta.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)
 
 **Note:** Version bump only for package @irvingjs/styled
