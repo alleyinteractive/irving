@@ -57,10 +57,7 @@ const Container = (props) => {
   });
 
   return (
-    <ContainerWrapper
-      {...standardProps}
-      style={style}
-    >
+    <ContainerWrapper {...standardProps}>
       {children}
     </ContainerWrapper>
   );
