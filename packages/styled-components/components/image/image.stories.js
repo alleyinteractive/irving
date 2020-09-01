@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { PureComponent as Image } from '.';
+import Image from '.';
 import Container from '../container';
 
 export default {

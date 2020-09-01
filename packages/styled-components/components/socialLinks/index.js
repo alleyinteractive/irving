@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import toReactElement from '@irvingjs/core/utils/toReactElement';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
 
@@ -13,17 +17,15 @@ import * as defaultStyles from './themes/default';
 const SocialLinks = (props) => {
   const {
     platforms,
-    style,
     theme,
   } = props;
-
+  const standardProps = useStandardProps(props);
   const {
     IconWrapper,
     SocialLinksItem,
     SocialLinksList,
     SocialLinksWrapper,
   } = theme;
-
   const items = Object.keys(platforms).map((platform) => ({
     platform,
     url: platforms[platform],
@@ -37,14 +39,14 @@ const SocialLinks = (props) => {
   }));
 
   return (
-    <SocialLinksWrapper style={style}>
+    <SocialLinksWrapper {...standardProps}>
       {items && 0 !== items.length && (
         <SocialLinksList>
           {items.map(({ platform, url, icon }) => (
             <SocialLinksItem key={platform}>
               <Link href={url}>
-                <IconWrapper>
-                  {icon.type.displayName ? icon : platform}
+                <IconWrapper className={platform}>
+                  {icon}
                 </IconWrapper>
               </Link>
             </SocialLinksItem>
@@ -56,38 +58,29 @@ const SocialLinks = (props) => {
 };
 
 SocialLinks.defaultProps = {
-  platforms: [],
-  style: {},
+  ...standardDefaultProps,
   theme: defaultStyles,
+  platforms: [],
 };
 
 SocialLinks.propTypes = {
+  ...standardPropTypes,
   /**
-   * An object containing social platforms as keys as links to specific pages as values.
+   * An object containing social platforms as keys and links to specific pages as values.
    */
-  platforms: PropTypes.object,
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
+  platforms: PropTypes.oneOfType([
     PropTypes.object,
+    PropTypes.array,
   ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
-  /**
-   * Title of the shared content.
-   */
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { SocialLinks as PureComponent };
+export {
+  SocialLinks as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(SocialLinks);
-
-export default StyledComponent;
+export default SocialLinks;

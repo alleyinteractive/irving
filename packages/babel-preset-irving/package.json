@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/babel-preset-irving",
-  "version": "3.3.0-alpha.1",
+  "version": "4.0.0-alpha.2",
   "description": "Babel preset for working with irving",
   "main": "index.js",
   "repository": {
@@ -10,7 +10,7 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "^7.9.6",
+    "@babel/core": "^7.10.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
@@ -30,5 +30,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
+  "gitHead": "a855ce1255df9c35b5cd049e4c2d65b8665982dd"
 }

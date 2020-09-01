@@ -27,13 +27,11 @@ const CommentCount = (props) => {
   );
 
   useEffect(() => {
-    if (
-      window.CoralCount &&
-      'function' === typeof window.CoralCount.getCount
-    ) {
+    if (window.CoralCount && window.CoralCount.getCount) {
       window.CoralCount.getCount();
     }
-    console.log('Rendered');
+
+    return () => {};
   }, [loaded]);
 
   return (
