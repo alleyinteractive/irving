@@ -51,11 +51,9 @@ const Byline = (props) => {
         <BylineWrapper {...standardProps}>
           <AuthorsWrapper data-testid="authors-wrapper">
             {preText && <span>{preText}</span>}
-            <span>
-              <AuthorWrapper>{children[0]}</AuthorWrapper>
-              {singleDelimiter}
-              <AuthorWrapper>{children[1]}</AuthorWrapper>
-            </span>
+            <AuthorWrapper>{children[0]}</AuthorWrapper>
+            {singleDelimiter}
+            <AuthorWrapper>{children[1]}</AuthorWrapper>
           </AuthorsWrapper>
         </BylineWrapper>
       );
