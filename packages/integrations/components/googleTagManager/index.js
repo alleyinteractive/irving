@@ -33,18 +33,6 @@ const GoogleTagManager = (props) => {
     }
   }, []);
 
-  /**
-   * Effect for pushing new data to the GTM dataLayer.
-   */
-  useEffect(() => {
-    window.dataLayer.push({
-      event: 'irving.historyChange',
-      ...dataLayer,
-    });
-
-    return () => {};
-  }, [dataLayer]);
-
   return (
     <>
       <Helmet>
@@ -77,12 +65,16 @@ const GoogleTagManager = (props) => {
   );
 };
 
+GoogleTagManager.defaultProps = {
+  dataLayer: [],
+};
+
 GoogleTagManager.propTypes = {
   containerId: PropTypes.string.isRequired,
   dataLayer: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array, // Empty objects turn to arrays in PHP :(
-  ]).isRequired,
+  ]),
 };
 
 export default GoogleTagManager;
