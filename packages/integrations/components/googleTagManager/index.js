@@ -29,6 +29,7 @@ const GoogleTagManager = (props) => {
       window.dataLayer.push({
         'gtm.start': new Date().getTime(),
         event: 'gtm.js',
+        dataLayer,
       });
     }
   }, []);
@@ -42,8 +43,7 @@ const GoogleTagManager = (props) => {
           {`
             window.dataLayer = window.dataLayer || [];
             if (${isNode()}) {
-              var data = ${JSON.stringify(dataLayer)};
-              data.event = 'irving.initialRender';
+              var data = { event: 'irving.initialRender' };
               window.dataLayer.push(data);
             }
           `}
