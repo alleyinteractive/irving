@@ -57,7 +57,6 @@ export default function coralReducer(
 
     case RECEIVE_CORAL_SSO_TOKEN:
       return {
-        ...state,
         token: payload,
       };
 
