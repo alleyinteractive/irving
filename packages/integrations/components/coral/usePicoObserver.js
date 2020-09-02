@@ -1,11 +1,14 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import debounce from 'lodash/debounce';
+import {
+  actionReceiveCoralLogoutRequest,
+} from '../../actions/coralActions';
 import {
   actionVerifyPicoUser,
-  actionReceiveCoralLogoutRequest,
   actionRequireUpgrade,
   actionReceivePicoPlanUpgrade,
-} from '../../actions';
+} from '../../actions/picoActions';
 import { requireUpgradeSelector } from '../../selectors/coralSelector';
 
 /**
@@ -18,16 +21,13 @@ import { requireUpgradeSelector } from '../../selectors/coralSelector';
  */
 export default function usePicoObserver(tiers) {
   const [requestSent, setRequestStatus] = useState(false);
-
   // Define the global dispatch function.
   const dispatch = useDispatch();
-
   // Define a function to summon an upgrade prompt for Coral SSO.
   const dispatchRequireUpgradeMessage = useCallback(
     () => dispatch(actionRequireUpgrade()),
     [dispatch]
   );
-
   // Define a function to dispatch Pico user verification requests.
   const dispatchVerificationRequest = useCallback(
     (user) => {
@@ -39,19 +39,16 @@ export default function usePicoObserver(tiers) {
     },
     [dispatch]
   );
-
   // Define a function to dispatch logout requests via SSO.
   const dispatchLogoutRequest = useCallback(
     () => dispatch(actionReceiveCoralLogoutRequest()),
     [dispatch]
   );
-
   // Define a function to dispatch a plan upgrade requirement message.
   const dispatchReceivePlanUpgrade = useCallback(
     () => dispatch(actionReceivePicoPlanUpgrade()),
     [dispatch]
   );
-
   // Define an variable used to signify whether a user is already authenticated
   // with Pico and is required to upgrade their subscription prior to being
   // sent through the Coral SSO workflow.
@@ -59,7 +56,8 @@ export default function usePicoObserver(tiers) {
 
   // Mount the effect handler.
   useEffect(() => {
-    const observerHandler = () => {
+    // Debounce the mutation observer to prevent too many updates at once.
+    const observerHandler = debounce(() => {
       const signalNode = document.getElementById('PicoSignal-container');
       // Only mount the observer if the PicoSignal button exists in the DOM.
       if (signalNode) {
@@ -75,12 +73,14 @@ export default function usePicoObserver(tiers) {
                 email: signalNode.getAttribute('data-pico-email'),
                 tier: signalNode.getAttribute('data-pico-tier'),
               };
+              console.log(attributes);
 
               // Once the `data-pico-status` and `data-pico-email` attributes are
               // populated, send a request to Pico to verify the user and retrieve
               // a JWT for logging the user into Coral via SSO.
               if (
                 0 < attributes.email.length &&
+                0 < tiers.length &&
                 'paying' === attributes.status
               ) {
                 // Ensure the user's current tier matches the levels available
@@ -111,6 +111,14 @@ export default function usePicoObserver(tiers) {
                 }
               }
 
+              // If the user is not paying, display the `requireUpgrade` message upon login.
+              if (
+                0 < attributes.email.length &&
+                'registered' === attributes.status
+              ) {
+                dispatchRequireUpgradeMessage();
+              }
+
               // If the `data-pico-status` and `data-pico-email` attributes are
               // cleared, force the user to be logged out from the Coral instance.
               if (
@@ -127,7 +135,7 @@ export default function usePicoObserver(tiers) {
         });
         observer.observe(signalNode, { attributes: true });
       }
-    };
+    }, 250);
     // Wait for Pico to load in order to mount the observer.
     window.addEventListener('pico.loaded', observerHandler);
 

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
-import { actionReceiveCoralLogout } from '../../actions';
+import { actionReceiveCoralLogout } from '../../actions/coralActions';
 import { purgeSelector } from '../../selectors/coralSelector';
 
 const CoralEmbed = ({

@@ -10,12 +10,12 @@ import {
   picoPageInfoSelector,
 } from '../selectors/picoSelector';
 import { SEND_PICO_VERIFICATION_REQUEST } from '../actions/types';
+import { actionReceivePicoVerificationFailure } from '../actions/picoActions';
 import {
   actionReceiveCoralToken,
-  actionReceivePicoVerificationFailure,
   actionReceiveCoralUsernameRequest,
   actionReceiveCoralUsernameValidationFailure,
-} from '../actions';
+} from '../actions/coralActions';
 
 // The Pico saga.
 export default [

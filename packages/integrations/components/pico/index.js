@@ -2,7 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { actionPicoLoaded, actionUpdatePicoPageInfo } from '../../actions';
+import {
+  actionPicoLoaded,
+  actionUpdatePicoPageInfo,
+} from '../../actions/picoActions';
 import { picoLoadedSelector } from '../../selectors/picoSelector';
 import mountPicoNodes from './utils';
 

@@ -112,8 +112,10 @@ IntegrationsManager.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   const {
     integrations: {
-      componentMap: components,
-      hydrated,
+      manager: {
+        componentMap: components,
+        hydrated,
+      },
     },
   } = state;
 
