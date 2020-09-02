@@ -4,10 +4,20 @@ import {
   RECEIVE_CORAL_LOGOUT,
   RECEIVE_CORAL_SSO_TOKEN,
   RECEIVE_CORAL_USERNAME_REQUEST,
+  RECEIVE_CORAL_USERNAME_SET_HASH,
   RECEIVE_CORAL_USERNAME_VALIDATION_ERROR,
   SET_CORAL_USERNAME,
-  RECEIVE_CORAL_USERNAME_SET_HASH,
+  SUBMIT_CORAL_USERNAME,
+  DISMISS_CORAL_UPGRADE_MODAL,
 } from './types';
+
+/**
+ * Create an action that updates the store when the Coral SSO upgrade modal is dismissed.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionDismissCoralUpgradeModal() {
+  return createAction(DISMISS_CORAL_UPGRADE_MODAL);
+}
 
 /**
  * Create an action that dispatches an action requesting that the validated Pico user
@@ -26,6 +36,16 @@ export function actionReceiveCoralUsernameRequest() {
  */
 export function actionReceiveCoralUsernameSetHash(hash) {
   return createAction(RECEIVE_CORAL_USERNAME_SET_HASH, hash);
+}
+
+/**
+ * Create an action that dispatches a username request to the Coral saga.
+ *
+ * @param {string} payload - The submitted username.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionSubmitCoralUsername(payload) {
+  return createAction(SUBMIT_CORAL_USERNAME, payload);
 }
 
 /**

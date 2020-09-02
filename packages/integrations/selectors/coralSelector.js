@@ -18,9 +18,9 @@ export const requireUsernameSelector = createSelector(
   (branch) => maybeSelect(branch, 'requireUsername')
 );
 
-export const requireUpgradeSelector = createSelector(
+export const showUpgradeModalSelector = createSelector(
   coralSelector,
-  (branch) => maybeSelect(branch, 'requireUpgrade')
+  (branch) => maybeSelect(branch, 'showUpgradeModal')
 );
 
 export const validationErrorSelector = createSelector(

@@ -9,7 +9,7 @@ import {
   actionRequireUpgrade,
   actionReceivePicoPlanUpgrade,
 } from '../../actions/picoActions';
-import { requireUpgradeSelector } from '../../selectors/coralSelector';
+import { showUpgradeModalSelector } from '../../selectors/coralSelector';
 
 /**
  * A hook that mounts a MutationObserver on the global `PicoSignal-container`
@@ -52,17 +52,16 @@ export default function usePicoObserver(tiers) {
   // Define an variable used to signify whether a user is already authenticated
   // with Pico and is required to upgrade their subscription prior to being
   // sent through the Coral SSO workflow.
-  const requireUpgrade = useSelector(requireUpgradeSelector);
+  const showUpgradeModal = useSelector(showUpgradeModalSelector);
 
   // Mount the effect handler.
   useEffect(() => {
-    // Debounce the mutation observer to prevent too many updates at once.
-    const observerHandler = debounce(() => {
+    const observerHandler = () => {
       const signalNode = document.getElementById('PicoSignal-container');
       // Only mount the observer if the PicoSignal button exists in the DOM.
       if (signalNode) {
-        // Define the observer.
-        const observer = new MutationObserver((mutations) => {
+        // Define the observer and debounce to prevent too many updates firing at once.
+        const observer = new MutationObserver(debounce((mutations) => {
           mutations.forEach((mutation) => {
             const { type, attributeName } = mutation;
             // Execute the webhook on the `data-pico-status` attribute.
@@ -73,7 +72,6 @@ export default function usePicoObserver(tiers) {
                 email: signalNode.getAttribute('data-pico-email'),
                 tier: signalNode.getAttribute('data-pico-tier'),
               };
-              console.log(attributes);
 
               // Once the `data-pico-status` and `data-pico-email` attributes are
               // populated, send a request to Pico to verify the user and retrieve
@@ -81,16 +79,20 @@ export default function usePicoObserver(tiers) {
               if (
                 0 < attributes.email.length &&
                 0 < tiers.length &&
-                'paying' === attributes.status
+                (
+                  'registered' === attributes.status ||
+                  'paying' === attributes.status
+                )
               ) {
                 // Ensure the user's current tier matches the levels available
                 // for Coral SSO.
-                if (! tiers.includes(attributes.tier)) {
+                if (! tiers.includes(attributes.tier) && ! showUpgradeModal) {
                   dispatchRequireUpgradeMessage();
+                  observer.disconnect();
                 } else {
                   // Dispatch an action that signifies the user has upgraded
                   // their subscription to a level sufficient to enable Coral SSO.
-                  if (requireUpgrade) {
+                  if (showUpgradeModal) {
                     dispatchReceivePlanUpgrade();
                   }
 
@@ -111,14 +113,6 @@ export default function usePicoObserver(tiers) {
                 }
               }
 
-              // If the user is not paying, display the `requireUpgrade` message upon login.
-              if (
-                0 < attributes.email.length &&
-                'registered' === attributes.status
-              ) {
-                dispatchRequireUpgradeMessage();
-              }
-
               // If the `data-pico-status` and `data-pico-email` attributes are
               // cleared, force the user to be logged out from the Coral instance.
               if (
@@ -132,13 +126,13 @@ export default function usePicoObserver(tiers) {
               }
             }
           });
-        });
+        }), 500);
         observer.observe(signalNode, { attributes: true });
       }
-    }, 250);
+    };
     // Wait for Pico to load in order to mount the observer.
     window.addEventListener('pico.loaded', observerHandler);
 
     return () => window.removeEventListener('pico.loaded', observerHandler);
-  }, [requireUpgrade]);
+  }, [showUpgradeModal]);
 }

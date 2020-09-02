@@ -8,6 +8,7 @@ import {
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
   RECEIVE_PICO_PLAN_UPGRADE,
   RECEIVE_CORAL_USERNAME_SET_HASH,
+  DISMISS_CORAL_UPGRADE_MODAL,
 } from '../actions/types';
 import { coral as defaultState } from './defaultState';
 
@@ -22,16 +23,22 @@ export default function coralReducer(
   { type, payload }
 ) {
   switch (type) {
+    case DISMISS_CORAL_UPGRADE_MODAL:
+      return {
+        ...state,
+        showUpgradeModal: false,
+      };
+
     case REQUIRE_UPGRADE_FOR_CORAL_SSO:
       return {
         ...state,
-        requireUpgrade: true,
+        showUpgradeModal: true,
       };
 
     case RECEIVE_PICO_PLAN_UPGRADE:
       return {
         ...state,
-        requireUpgrade: false,
+        showUpgradeModal: false,
       };
 
     case RECEIVE_CORAL_USERNAME_REQUEST:
