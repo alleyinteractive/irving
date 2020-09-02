@@ -1,4 +1,4 @@
-import { call } from 'redux-saga/effects';
+import { call, select } from 'redux-saga/effects';
 
 const gtmService = {
   async sendPageView() {
@@ -10,6 +10,8 @@ const gtmService = {
   },
 };
 
-export default function* onLocationChange(state) {
+export default function* onLocationChange() {
+  const state = yield select();
+  console.log(state);
   yield call(gtmService.sendPageView);
 }
