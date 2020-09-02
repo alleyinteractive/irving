@@ -6,6 +6,7 @@ import {
   RECEIVE_CORAL_USERNAME_REQUEST,
   RECEIVE_CORAL_USERNAME_VALIDATION_ERROR,
   SET_CORAL_USERNAME,
+  RECEIVE_CORAL_USERNAME_SET_HASH,
 } from './types';
 
 /**
@@ -15,6 +16,16 @@ import {
  */
 export function actionReceiveCoralUsernameRequest() {
   return createAction(RECEIVE_CORAL_USERNAME_REQUEST);
+}
+
+/**
+ * Create an action that stores the current user's set hash to validate their username
+ * with the back-end setting endpoint.
+ * @param {string} hash - md5 hash.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveCoralUsernameSetHash(hash) {
+  return createAction(RECEIVE_CORAL_USERNAME_SET_HASH, hash);
 }
 
 /**

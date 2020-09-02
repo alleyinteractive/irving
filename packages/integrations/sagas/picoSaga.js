@@ -15,6 +15,7 @@ import {
   actionReceiveCoralToken,
   actionReceiveCoralUsernameRequest,
   actionReceiveCoralUsernameValidationFailure,
+  actionReceiveCoralUsernameSetHash,
 } from '../actions/coralActions';
 
 // The Pico saga.
@@ -44,11 +45,13 @@ function* verifyPicoCoralUser({ payload }) {
     jwt,
     require_username: requireUsername,
     validation_error: validationError,
+    username_set_hash: usernameSetHash,
   } = yield call(sendVerificationRequest, payload);
 
   if ('success' === status) {
     if (requireUsername) {
       yield put(actionReceiveCoralUsernameRequest());
+      yield put(actionReceiveCoralUsernameSetHash(usernameSetHash));
     } else {
       yield put(actionReceiveCoralToken(jwt));
     }

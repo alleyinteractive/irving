@@ -7,6 +7,7 @@ import {
   RECEIVE_CORAL_USERNAME_VALIDATION_ERROR,
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
   RECEIVE_PICO_PLAN_UPGRADE,
+  RECEIVE_CORAL_USERNAME_SET_HASH,
 } from '../actions/types';
 import { coral as defaultState } from './defaultState';
 
@@ -37,6 +38,12 @@ export default function coralReducer(
       return {
         ...state,
         requireUsername: true,
+      };
+
+    case RECEIVE_CORAL_USERNAME_SET_HASH:
+      return {
+        ...state,
+        usernameSetHash: payload,
       };
 
     case SET_CORAL_USERNAME:

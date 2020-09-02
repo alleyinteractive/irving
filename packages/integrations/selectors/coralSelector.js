@@ -27,3 +27,8 @@ export const validationErrorSelector = createSelector(
   coralSelector,
   (branch) => maybeSelect(branch, 'validationError')
 );
+
+export const usernameSetHashSelector = createSelector(
+  coralSelector,
+  (branch) => maybeSelect(branch, 'usernameSetHash')
+);
