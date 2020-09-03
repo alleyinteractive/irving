@@ -20,6 +20,7 @@ import {
 
 const PicoObserver = ({
   tiers,
+  accessToken,
   logoutRequestAction,
 }) => {
   // Declare state variables for effects to be run against.
@@ -29,49 +30,53 @@ const PicoObserver = ({
   const [isPaying, setIsPaying] = useState(false);
   const [canComment, setCanComment] = useState(false);
 
+  const manageLocalState = (target) => {
+    const emailAddress = target.getAttribute('data-pico-email');
+    const status = target.getAttribute('data-pico-status');
+    const tier = target.getAttribute('data-pico-tier');
+
+    const hasValidStatus = 'registered' === status || 'paying' === status;
+    const hasNotUpdated = ! isAnonymous || ! isRegistered || ! isPaying;
+
+    if ('excluded' !== status && hasValidStatus && hasNotUpdated) {
+      if (undefined === email) {
+        setEmail(emailAddress);
+      }
+
+      if (tiers.includes(tier)) {
+        setCanComment(true);
+      }
+
+      if ('registered' === status) {
+        setIsRegistered(true);
+      }
+
+      if ('paying' === status) {
+        setIsPaying(true);
+      }
+    }
+
+    if ((isRegistered || isPaying) && 'anonymous' === status) {
+      if (isRegistered) {
+        setIsRegistered(false);
+      }
+
+      if (isPaying) {
+        setIsPaying(false);
+      }
+
+      setEmail(undefined);
+
+      setIsAnonymous(true);
+    }
+  };
+
   const observerCallback = debounce((mutations) => {
     mutations.forEach((mutation) => {
       const { target, type, attributeName } = mutation;
 
       if ('attributes' === type && 'data-pico-status' === attributeName) {
-        const emailAddress = target.getAttribute('data-pico-email');
-        const status = target.getAttribute('data-pico-status');
-        const tier = target.getAttribute('data-pico-tier');
-
-        const hasValidStatus = 'registered' === status || 'paying' === status;
-        const hasNotUpdated = ! isAnonymous || ! isRegistered || ! isPaying;
-
-        if ('excluded' !== status && hasValidStatus && hasNotUpdated) {
-          if (undefined === email) {
-            setEmail(emailAddress);
-          }
-
-          if (tiers.includes(tier)) {
-            setCanComment(true);
-          }
-
-          if ('registered' === status) {
-            setIsRegistered(true);
-          }
-
-          if ('paying' === status) {
-            setIsPaying(true);
-          }
-        }
-
-        if ((isRegistered || isPaying) && 'anonymous' === status) {
-          if (isRegistered) {
-            setIsRegistered(false);
-          }
-
-          if (isPaying) {
-            setIsPaying(false);
-          }
-
-          setEmail(undefined);
-
-          setIsAnonymous(true);
-        }
+        manageLocalState(target);
       }
     });
   }, 250);
@@ -120,41 +125,42 @@ const PicoObserver = ({
       return;
     }
 
-    // If the user is registered but non-paying and the upgrade modal
-    // has not been show, update the store to trigger the modal.
-    if (
-      (
-        isRegistered ||
-        isPaying
-      ) &&
-      ! canComment &&
-      ! upgradeModalVisible &&
-      ! upgradeModalDismissed
-    ) {
-      console.log('hit one');
-      showUpgradeModal();
-    }
-
-    // If the user is paying and has commenting privileges, send a request to
-    // WordPress to verify the user with Pico and return their JWT.
-    if (isPaying && canComment) {
-      if (showUpgradeModal) {
-        receivePlanUpgrade();
+    if (! accessToken) {
+      // If the user is registered but non-paying and the upgrade modal
+      // has not been show, update the store to trigger the modal.
+      if (
+        (
+          isRegistered ||
+          isPaying
+        ) &&
+        ! canComment &&
+        ! upgradeModalVisible &&
+        ! upgradeModalDismissed
+      ) {
+        showUpgradeModal();
       }
 
-      setTimeout(() => {
-        if (window.Pico && 'object' === typeof window.Pico.user) {
-          const {
-            Pico: {
-              user: {
-                id,
-              },
-            },
-          } = window;
-
-          sendVerificationRequest({ email, id });
+      // If the user is paying and has commenting privileges, send a request to
+      // WordPress to verify the user with Pico and return their JWT.
+      if (isPaying && canComment) {
+        if (showUpgradeModal) {
+          receivePlanUpgrade();
         }
-      }, 50);
+
+        setTimeout(() => {
+          if (window.Pico && 'object' === typeof window.Pico.user) {
+            const {
+              Pico: {
+                user: {
+                  id,
+                },
+              },
+            } = window;
+
+            sendVerificationRequest({ email, id });
+          }
+        }, 50);
+      }
     }
   }, [
     email,
@@ -177,10 +183,12 @@ const PicoObserver = ({
 
 PicoObserver.defaultProps = {
   tiers: [],
+  accessToken: '',
 };
 
 PicoObserver.propTypes = {
   tiers: PropTypes.arrayOf(PropTypes.string),
+  accessToken: PropTypes.string,
   logoutRequestAction: PropTypes.func.isRequired,
 };
 

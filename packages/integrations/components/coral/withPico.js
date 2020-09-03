@@ -31,6 +31,7 @@ const withPico = (ChildComponent) => (props) => {
       />
       <PicoObserver
         tiers={['Pal', 'Accomplice']}
+        accessToken={coralToken}
         logoutRequestAction={actionReceiveCoralLogoutRequest}
       />
     </>
