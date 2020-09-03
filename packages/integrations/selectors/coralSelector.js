@@ -23,6 +23,11 @@ export const showUpgradeModalSelector = createSelector(
   (branch) => maybeSelect(branch, 'showUpgradeModal')
 );
 
+export const upgradeModalDismissedSelector = createSelector(
+  coralSelector,
+  (branch) => maybeSelect(branch, 'upgradeModalDismissed')
+);
+
 export const validationErrorSelector = createSelector(
   coralSelector,
   (branch) => maybeSelect(branch, 'validationError')

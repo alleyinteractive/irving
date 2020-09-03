@@ -42,7 +42,7 @@ const CoralEmbed = ({
   // https://reactjs.org/docs/hooks-rules.html
   const shouldPurgeUser = useSelector(purgeSelector);
   // Define an identifer for whether or not the user is currently logged into Coral.
-  const isAuthenticated = useSelector(loginStatusSelector);
+  const loggedIn = useSelector(loginStatusSelector);
 
   useEffect(() => {
     if (window.Coral) {
@@ -53,14 +53,14 @@ const CoralEmbed = ({
         events,
       });
 
-      if (accessToken && ! isAuthenticated) {
+      if (accessToken && ! loggedIn) {
         // Login the user if an access token exists.
         embed.login(accessToken);
         // Register the login in the state tree.
         dispatchLogin();
       }
 
-      if (! accessToken && shouldPurgeUser) {
+      if (! accessToken && shouldPurgeUser && loggedIn) {
         // Log-out the user.
         embed.logout();
         // Clear the Coral branch of the state tree and prep it for re-authentication.
@@ -70,7 +70,7 @@ const CoralEmbed = ({
   }, [
     loaded,
     accessToken,
-    isAuthenticated,
+    loggedIn,
     shouldPurgeUser,
   ]);
 

@@ -29,6 +29,7 @@ export default function coralReducer(
       return {
         ...state,
         showUpgradeModal: false,
+        upgradeModalDismissed: true,
       };
 
     case REQUIRE_UPGRADE_FOR_CORAL_SSO:

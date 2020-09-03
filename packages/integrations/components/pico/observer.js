@@ -15,6 +15,7 @@ import {
 } from '../../actions/picoActions';
 import {
   showUpgradeModalSelector,
+  upgradeModalDismissedSelector,
 } from '../../selectors/coralSelector';
 
 const PicoObserver = ({
@@ -98,6 +99,7 @@ const PicoObserver = ({
 
   // Grab the status of the upgrade modal's visibility from the Redux store.
   const upgradeModalVisible = useSelector(showUpgradeModalSelector);
+  const upgradeModalDismissed = useSelector(upgradeModalDismissedSelector);
 
   useEffect(() => {
     // If the user has been set to anonymous, dispatch the logout request.
@@ -109,7 +111,12 @@ const PicoObserver = ({
 
     // If the user is registered but non-paying and the upgrade modal
     // has not been show, update the store to trigger the modal.
-    if (isRegistered && ! canComment && ! upgradeModalVisible) {
+    if (
+      isRegistered &&
+      ! canComment &&
+      ! upgradeModalVisible &&
+      ! upgradeModalDismissed
+    ) {
       showUpgradeModal();
     }
 
@@ -137,7 +144,7 @@ const PicoObserver = ({
 
     // If the user is paying but does not have commenting privileges, show
     // the upgrade modal.
-    if (isPaying && ! canComment) {
+    if (isPaying && ! canComment && ! upgradeModalDismissed) {
       showUpgradeModal();
     }
   }, [
@@ -147,6 +154,7 @@ const PicoObserver = ({
     isRegistered,
     canComment,
     showUpgradeModal,
+    upgradeModalDismissed,
   ]);
 
   return (
