@@ -21,6 +21,7 @@ const Pico = (props) => {
   const {
     pageInfo,
     publisherId,
+    tiers,
   } = props;
 
   /**
@@ -114,11 +115,15 @@ const Pico = (props) => {
 
   return (
     <PicoObserver
-      tiers={['Pal', 'Accomplice']}
+      tiers={tiers}
       accessToken={coralToken}
       logoutRequestAction={actionReceiveCoralLogoutRequest}
     />
   );
+};
+
+Pico.defaultProps = {
+  tiers: [],
 };
 
 Pico.propTypes = {
@@ -130,6 +135,7 @@ Pico.propTypes = {
     taxonomies: PropTypes.object.isRequired,
   }).isRequired,
   publisherId: PropTypes.string.isRequired,
+  tiers: PropTypes.array,
 };
 
 export default Pico;

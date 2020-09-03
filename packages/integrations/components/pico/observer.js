@@ -39,23 +39,27 @@ const PicoObserver = ({
     const hasNotUpdated = ! isAnonymous || ! isRegistered || ! isPaying;
 
     if ('excluded' !== status && hasValidStatus && hasNotUpdated) {
+      // Update the `email` value with the user's email address.
       if (undefined === email) {
         setEmail(emailAddress);
       }
-
+      // If the user's tier is included in the whitelisted tiers for SSO,
+      // flag their ability to comment as true.
       if (tiers.includes(tier)) {
         setCanComment(true);
       }
-
+      // If the status is registered, set the isRegistered flag to true.
       if ('registered' === status) {
         setIsRegistered(true);
       }
-
+      // If the status is paying, set the isPaying flag to true.
       if ('paying' === status) {
         setIsPaying(true);
       }
     }
 
+    // If the user was previously recognized as registered or paying, but
+    // is then anonymized, update the state values accordingly.
     if ((isRegistered || isPaying) && 'anonymous' === status) {
       if (isRegistered) {
         setIsRegistered(false);
@@ -65,8 +69,9 @@ const PicoObserver = ({
         setIsPaying(false);
       }
 
+      // Clear the user's email address.
       setEmail(undefined);
-
+      // Set the user's status to anonymous.
       setIsAnonymous(true);
     }
   };

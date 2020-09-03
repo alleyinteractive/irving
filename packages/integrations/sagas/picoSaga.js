@@ -20,6 +20,13 @@ import {
   actionReceiveCoralUsernameSetHash,
 } from '../actions/coralActions';
 
+/**
+ * A custom generator pattern designed to only take the first occurence of
+ * an action.
+ * @param {string} pattern - The action to respond to. 
+ * @param {*} saga - The saga to execute. 
+ * @param  {...any} args 
+ */
 function* takeFirst(pattern, saga, ...args) {
   const task = yield fork(function* () {
     while (true) {
