@@ -84,12 +84,6 @@ export default function coralReducer(
         token: payload,
       };
 
-    case RECEIVE_CORAL_LOGIN:
-      return {
-        ...state,
-        loggedIn: true,
-      };
-
     case RECEIVE_CORAL_LOGOUT_REQUEST:
       return {
         ...state,
@@ -97,12 +91,6 @@ export default function coralReducer(
         purgeUser: true,
         requireUsername: false,
         usernameSetHash: null,
-      };
-
-    case RECEIVE_CORAL_LOGOUT:
-      return {
-        ...state,
-        loggedIn: false,
       };
 
     case SEND_PICO_VERIFICATION_REQUEST:
