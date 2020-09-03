@@ -28,7 +28,7 @@ const buildUrl = (props, page) => {
 
   const paginationPart = paginationFormat.replace('%1$d', page);
   const currentQueryVars = queryString.parse(window.location.search);
-  const qs = currentQueryVars.length ? `?${queryString.stringify(currentQueryVars)}` : '';
+  const qs = Object.keys(currentQueryVars).length ? `?${queryString.stringify(currentQueryVars)}` : '';
 
   if (1 === page) {
     return `${baseUrl}${qs}`;
