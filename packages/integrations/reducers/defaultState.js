@@ -5,7 +5,9 @@ export const manager = {
 
 export const pico = {};
 
-export const coral = {};
+export const coral = {
+  loggedIn: false,
+};
 
 export default {
   manager,

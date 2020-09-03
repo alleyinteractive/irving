@@ -1,14 +1,16 @@
 import {
-  RECEIVE_CORAL_SSO_TOKEN,
+  DISMISS_CORAL_UPGRADE_MODAL,
+  RECEIVE_CORAL_LOGIN,
   RECEIVE_CORAL_LOGOUT_REQUEST,
   RECEIVE_CORAL_LOGOUT,
+  RECEIVE_CORAL_SSO_TOKEN,
   RECEIVE_CORAL_USERNAME_REQUEST,
-  SET_CORAL_USERNAME,
-  RECEIVE_CORAL_USERNAME_VALIDATION_ERROR,
-  REQUIRE_UPGRADE_FOR_CORAL_SSO,
-  RECEIVE_PICO_PLAN_UPGRADE,
   RECEIVE_CORAL_USERNAME_SET_HASH,
-  DISMISS_CORAL_UPGRADE_MODAL,
+  RECEIVE_CORAL_USERNAME_VALIDATION_ERROR,
+  RECEIVE_PICO_PLAN_UPGRADE,
+  REQUIRE_UPGRADE_FOR_CORAL_SSO,
+  SEND_PICO_VERIFICATION_REQUEST,
+  SET_CORAL_USERNAME,
 } from '../actions/types';
 import { coral as defaultState } from './defaultState';
 
@@ -54,7 +56,12 @@ export default function coralReducer(
       };
 
     case SET_CORAL_USERNAME:
-      return {};
+      return {
+        ...state,
+        usernameSetHash: null,
+        validationError: null,
+        requireUsername: false,
+      };
 
     case RECEIVE_CORAL_USERNAME_VALIDATION_ERROR:
       return {
@@ -64,7 +71,14 @@ export default function coralReducer(
 
     case RECEIVE_CORAL_SSO_TOKEN:
       return {
+        ...state,
         token: payload,
+      };
+
+    case RECEIVE_CORAL_LOGIN:
+      return {
+        ...state,
+        loggedIn: true,
       };
 
     case RECEIVE_CORAL_LOGOUT_REQUEST:
@@ -75,7 +89,13 @@ export default function coralReducer(
       };
 
     case RECEIVE_CORAL_LOGOUT:
-      return {};
+      return defaultState;
+
+    case SEND_PICO_VERIFICATION_REQUEST:
+      return {
+        ...state,
+        verificationRequestSent: true,
+      };
 
     default:
       return state;

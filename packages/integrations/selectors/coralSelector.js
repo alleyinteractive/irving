@@ -32,3 +32,13 @@ export const usernameSetHashSelector = createSelector(
   coralSelector,
   (branch) => maybeSelect(branch, 'usernameSetHash')
 );
+
+export const loginStatusSelector = createSelector(
+  coralSelector,
+  (branch) => maybeSelect(branch, 'loggedIn')
+);
+
+export const verificationRequestSelector = createSelector(
+  coralSelector,
+  (branch) => maybeSelect(branch, 'verificationRequestSent')
+);

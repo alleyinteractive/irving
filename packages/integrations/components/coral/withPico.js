@@ -1,14 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import CoralEmbed from './index';
-import usePicoObserver from './usePicoObserver';
 import { tokenSelector } from '../../selectors/coralSelector';
+import {
+  actionReceiveCoralLogoutRequest,
+} from '../../actions/coralActions';
+import PicoObserver from '../pico/observer';
 
 const withPico = (ChildComponent) => (props) => {
-  // Mount a MutationObserver on the PicoSignal node and watch for
-  // changes with the `usePicoObserver` hook.
-  usePicoObserver(props.ssoTiers);
-
   // Define Coral event handlers.
   const handlers = (events) => {
     events.on('loginPrompt', () => {
@@ -24,11 +23,17 @@ const withPico = (ChildComponent) => (props) => {
   const coralToken = useSelector(tokenSelector);
 
   return (
-    <ChildComponent
-      {...props}
-      events={handlers}
-      accessToken={coralToken}
-    />
+    <>
+      <ChildComponent
+        {...props}
+        events={handlers}
+        accessToken={coralToken}
+      />
+      <PicoObserver
+        tiers={['Pal', 'Accomplice']}
+        logoutRequestAction={actionReceiveCoralLogoutRequest}
+      />
+    </>
   );
 };
 

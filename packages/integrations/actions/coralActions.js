@@ -1,5 +1,6 @@
 import { createAction } from '@irvingjs/core/actions';
 import {
+  RECEIVE_CORAL_LOGIN,
   RECEIVE_CORAL_LOGOUT_REQUEST,
   RECEIVE_CORAL_LOGOUT,
   RECEIVE_CORAL_SSO_TOKEN,
@@ -93,4 +94,13 @@ export function actionReceiveCoralLogoutRequest() {
  */
 export function actionReceiveCoralLogout() {
   return createAction(RECEIVE_CORAL_LOGOUT);
+}
+
+/**
+ * Create an action that updates the store when a Coral user is successfully
+ * logged out.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionReceiveCoralLogin() {
+  return createAction(RECEIVE_CORAL_LOGIN);
 }

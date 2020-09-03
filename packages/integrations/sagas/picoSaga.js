@@ -3,6 +3,8 @@ import {
   call,
   put,
   select,
+  take,
+  fork,
 } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from '@irvingjs/core/actions/types';
 import {
@@ -18,10 +20,22 @@ import {
   actionReceiveCoralUsernameSetHash,
 } from '../actions/coralActions';
 
+function* takeFirst(pattern, saga, ...args) {
+  const task = yield fork(function* () {
+    while (true) {
+      const action = yield take(pattern);
+
+      yield call(saga, ...args.concat(action));
+    }
+  });
+
+  return task;
+}
+
 // The Pico saga.
 export default [
   takeLatest(LOCATION_CHANGE, dispatchPicoVisit),
-  takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
+  takeFirst(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
 ];
 
 function* dispatchPicoVisit() {
