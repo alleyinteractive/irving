@@ -1,14 +1,37 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
+import {
+  takeLatest,
+  call,
+  put,
+  select,
+} from 'redux-saga/effects';
+import { LOCATION_CHANGE } from '@irvingjs/core/actions/types';
+import {
+  picoLoadedSelector,
+  picoPageInfoSelector,
+} from '../selectors/picoSelector';
 import { SEND_PICO_VERIFICATION_REQUEST } from '../actions/types';
+import { actionReceivePicoVerificationFailure } from '../actions/picoActions';
 import {
   actionReceiveCoralToken,
-  actionReceivePicoVerificationFailure,
-} from '../actions';
+  actionReceiveCoralUsernameRequest,
+  actionReceiveCoralUsernameValidationFailure,
+  actionReceiveCoralUsernameSetHash,
+} from '../actions/coralActions';
 
 // The Pico saga.
 export default [
-  takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoUser),
+  takeLatest(LOCATION_CHANGE, dispatchPicoVisit),
+  takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
 ];
+
+function* dispatchPicoVisit() {
+  const picoLoaded = yield select(picoLoadedSelector);
+  const picoPageInfo = yield select(picoPageInfoSelector);
+
+  if (picoLoaded && picoPageInfo) {
+    window.pico('visit', picoPageInfo);
+  }
+}
 
 /**
  * A generator that dispatches the verification request to the Pico data
@@ -16,15 +39,30 @@ export default [
  * status of the response.
  * @param {{ email }} The user's email to be dispatched in a verification request.
  */
-function* verifyPicoUser({ payload }) {
-  const { status, jwt } = yield call(sendVerificationRequest, payload);
+function* verifyPicoCoralUser({ payload }) {
+  const {
+    status,
+    jwt,
+    require_username: requireUsername,
+    validation_error: validationError,
+    username_set_hash: usernameSetHash,
+  } = yield call(sendVerificationRequest, payload);
 
   if ('success' === status) {
-    yield put(actionReceiveCoralToken(jwt));
+    if (requireUsername) {
+      yield put(actionReceiveCoralUsernameRequest());
+      yield put(actionReceiveCoralUsernameSetHash(usernameSetHash));
+    } else {
+      yield put(actionReceiveCoralToken(jwt));
+    }
   }
 
   if ('failed' === status) {
-    yield put(actionReceivePicoVerificationFailure());
+    if (validationError) {
+      yield put(actionReceiveCoralUsernameValidationFailure(validationError));
+    } else {
+      yield put(actionReceivePicoVerificationFailure());
+    }
   }
 }
 
@@ -38,10 +76,11 @@ async function sendVerificationRequest(payload) {
   try {
     const {
       email,
+      id,
     } = payload;
 
     const response = await fetch(
-      `${process.env.API_ROOT_URL}/data/validate_sso_user?user=${email}`
+      `${process.env.API_ROOT_URL}/data/validate_sso_user?user=${email}&id=${id}` // eslint-disable-line max-len
     ).then((res) => res.json());
 
     return response;

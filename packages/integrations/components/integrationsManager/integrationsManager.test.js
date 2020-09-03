@@ -15,13 +15,15 @@ describe('<IntegrationsManager />', () => {
   it('should render the appropriate integration once hydrated with a configuration', () => {
     store = mockStore({
       integrations: {
-        componentMap: [{
-          key: 'googleAnalytics',
-          props: {
-            trackingId: 'UA-000000-1',
-          },
-        }],
-        hydrated: true,
+        manager: {
+          componentMap: [{
+            key: 'googleAnalytics',
+            props: {
+              trackingId: 'UA-000000-1',
+            },
+          }],
+          hydrated: true,
+        },
       },
     });
 
@@ -42,8 +44,10 @@ describe('<IntegrationsManager />', () => {
   it('should not render any children if no configuration is present', () => {
     store = mockStore({
       integrations: {
-        componentMap: [],
-        hydrated: false,
+        manager: {
+          componentMap: [],
+          hydrated: false,
+        },
       },
     });
 

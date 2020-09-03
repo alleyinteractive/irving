@@ -1,25 +1,34 @@
 import { createSelector } from 'reselect';
+import { maybeSelect } from './utils';
 
 const coralSelector = (state) => state.integrations.coral;
 
 export const tokenSelector = createSelector(
   coralSelector,
-  (branch) => {
-    if (branch) {
-      return branch.token;
-    }
-
-    return undefined;
-  }
+  (branch) => maybeSelect(branch, 'token')
 );
 
 export const purgeSelector = createSelector(
   coralSelector,
-  (branch) => {
-    if (branch) {
-      return branch.purgeUser;
-    }
+  (branch) => maybeSelect(branch, 'purgeUser')
+);
 
-    return undefined;
-  }
+export const requireUsernameSelector = createSelector(
+  coralSelector,
+  (branch) => maybeSelect(branch, 'requireUsername')
+);
+
+export const showUpgradeModalSelector = createSelector(
+  coralSelector,
+  (branch) => maybeSelect(branch, 'showUpgradeModal')
+);
+
+export const validationErrorSelector = createSelector(
+  coralSelector,
+  (branch) => maybeSelect(branch, 'validationError')
+);
+
+export const usernameSetHashSelector = createSelector(
+  coralSelector,
+  (branch) => maybeSelect(branch, 'usernameSetHash')
 );
