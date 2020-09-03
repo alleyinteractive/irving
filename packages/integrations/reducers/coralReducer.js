@@ -11,6 +11,7 @@ import {
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
   SEND_PICO_VERIFICATION_REQUEST,
   SET_CORAL_USERNAME,
+  SUBMIT_CORAL_USERNAME,
 } from '../actions/types';
 import { coral as defaultState } from './defaultState';
 
@@ -56,12 +57,19 @@ export default function coralReducer(
         usernameSetHash: payload,
       };
 
+    case SUBMIT_CORAL_USERNAME:
+      return {
+        ...state,
+        validationError: null,
+      };
+
     case SET_CORAL_USERNAME:
       return {
         ...state,
         usernameSetHash: null,
         validationError: null,
         requireUsername: false,
+        usernameSet: true,
       };
 
     case RECEIVE_CORAL_USERNAME_VALIDATION_ERROR:
@@ -87,10 +95,15 @@ export default function coralReducer(
         ...state,
         token: null,
         purgeUser: true,
+        requireUsername: false,
+        usernameSetHash: null,
       };
 
     case RECEIVE_CORAL_LOGOUT:
-      return defaultState;
+      return {
+        ...state,
+        loggedIn: false,
+      };
 
     case SEND_PICO_VERIFICATION_REQUEST:
       return {

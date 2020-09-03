@@ -46,6 +46,10 @@ const PicoObserver = ({
             setEmail(emailAddress);
           }
 
+          if (tiers.includes(tier)) {
+            setCanComment(true);
+          }
+
           if ('registered' === status) {
             setIsRegistered(true);
           }
@@ -53,13 +57,19 @@ const PicoObserver = ({
           if ('paying' === status) {
             setIsPaying(true);
           }
-
-          if (tiers.includes(tier)) {
-            setCanComment(true);
-          }
         }
 
         if ((isRegistered || isPaying) && 'anonymous' === status) {
+          if (isRegistered) {
+            setIsRegistered(false);
+          }
+
+          if (isPaying) {
+            setIsPaying(false);
+          }
+
+          setEmail(undefined);
+
           setIsAnonymous(true);
         }
       }
@@ -105,6 +115,7 @@ const PicoObserver = ({
     // If the user has been set to anonymous, dispatch the logout request.
     if (canComment && isAnonymous) {
       requestLogout();
+      setCanComment(false);
       // Exit the effect early.
       return;
     }
@@ -112,11 +123,15 @@ const PicoObserver = ({
     // If the user is registered but non-paying and the upgrade modal
     // has not been show, update the store to trigger the modal.
     if (
-      isRegistered &&
+      (
+        isRegistered ||
+        isPaying
+      ) &&
       ! canComment &&
       ! upgradeModalVisible &&
       ! upgradeModalDismissed
     ) {
+      console.log('hit one');
       showUpgradeModal();
     }
 
@@ -140,12 +155,6 @@ const PicoObserver = ({
           sendVerificationRequest({ email, id });
         }
       }, 50);
-    }
-
-    // If the user is paying but does not have commenting privileges, show
-    // the upgrade modal.
-    if (isPaying && ! canComment && ! upgradeModalDismissed) {
-      showUpgradeModal();
     }
   }, [
     email,
