@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2020-09-02)
+
+
+### Bug Fixes
+
+* **byline:** remove errant span tag in component with 2 children ([8374db7](https://github.com/alleyinteractive/irving/packages/styled-components/commit/8374db7e48fbe2bfcf27761cf1ba72daefed974c))
+
+
+
+
+
 # [4.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2020-09-01)
 
 
