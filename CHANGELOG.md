@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2020-09-03)
+
+
+### Features
+
+* allowlist audio and video tags with their attributes ([178c194](https://github.com/alleyinteractive/irving/commit/178c194703dfe153b5d17be6368d19780b46f526))
+
+
+
+
+
 # [4.0.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.5...v4.0.0-alpha.6) (2020-09-03)
 
 **Note:** Version bump only for package irving
