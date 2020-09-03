@@ -6,7 +6,6 @@ import isNode from '@irvingjs/core/utils/isNode';
 const GoogleTagManager = (props) => {
   const {
     containerId,
-    dataLayer,
   } = props;
 
   if (! containerId) {
@@ -33,18 +32,6 @@ const GoogleTagManager = (props) => {
     }
   }, []);
 
-  /**
-   * Effect for pushing new data to the GTM dataLayer.
-   */
-  useEffect(() => {
-    window.dataLayer.push({
-      event: 'irving.historyChange',
-      ...dataLayer,
-    });
-
-    return () => {};
-  }, [dataLayer]);
-
   return (
     <>
       <Helmet>
@@ -54,8 +41,7 @@ const GoogleTagManager = (props) => {
           {`
             window.dataLayer = window.dataLayer || [];
             if (${isNode()}) {
-              var data = ${JSON.stringify(dataLayer)};
-              data.event = 'irving.initialRender';
+              var data = { event: 'irving.initialRender' };
               window.dataLayer.push(data);
             }
           `}
@@ -79,10 +65,6 @@ const GoogleTagManager = (props) => {
 
 GoogleTagManager.propTypes = {
   containerId: PropTypes.string.isRequired,
-  dataLayer: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array, // Empty objects turn to arrays in PHP :(
-  ]).isRequired,
 };
 
 export default GoogleTagManager;
