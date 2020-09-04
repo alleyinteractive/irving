@@ -7,7 +7,7 @@ import { tokenSelector } from '../../selectors/coralSelector';
 const withPico = (ChildComponent) => (props) => {
   // Mount a MutationObserver on the PicoSignal node and watch for
   // changes with the `usePicoObserver` hook.
-  usePicoObserver(props.ssoTiers);
+  usePicoObserver(props.ssoTiers); // eslint-disable-line react/destructuring-assignment, react/prop-types
 
   // Define Coral event handlers.
   const handlers = (events) => {
