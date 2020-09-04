@@ -84,7 +84,7 @@ const PicoObserver = ({
         manageLocalState(target);
       }
     });
-  }, 250);
+  }, 50);
 
   // Declare a ref for the `useMutationObserver` hook to watch.
   const signalRef = useRef();
@@ -131,8 +131,8 @@ const PicoObserver = ({
     }
 
     if (! accessToken) {
-      // If the user is registered but non-paying and the upgrade modal
-      // has not been show, update the store to trigger the modal.
+      // If the user is registered or paying at a level where they cannot comment
+      // and the upgrade modal has not been show, update the store to trigger the modal.
       if (
         (
           isRegistered ||
