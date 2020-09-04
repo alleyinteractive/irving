@@ -35,7 +35,6 @@ Root.propTypes = {
 const mapStateToProps = (state) => ({
   roots: getRoots(state),
   providers: getProviders(state),
-  error: !! state.error,
 });
 
 export default connect(mapStateToProps)(Root);
