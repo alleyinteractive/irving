@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.7...v4.0.0-alpha.9) (2020-09-04)
+
+
+### Bug Fixes
+
+* **purgecache:** remove duplicative res.end() which was being called too early ([8873320](https://github.com/alleyinteractive/irving/packages/core/commit/8873320a63226859563b258c0ba96dff73c4e26d))
+
+
+
+
+
 # [4.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2020-09-04)
 
 

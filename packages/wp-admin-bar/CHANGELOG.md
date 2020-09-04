@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-alpha.7...v4.0.0-alpha.9) (2020-09-04)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
 # [4.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2020-09-04)
 
 **Note:** Version bump only for package @irvingjs/wp-admin-bar
