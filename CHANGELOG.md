@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2020-09-04)
+
+
+### Features
+
+* **img:** Add tests for the styled image component ([da88646](https://github.com/alleyinteractive/irving/commit/da88646e70ca969d2327dc36771f28e079575c9d))
+
+
+
+
+
 # [4.0.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2020-09-03)
 
 
