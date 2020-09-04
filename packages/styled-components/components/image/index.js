@@ -83,6 +83,11 @@ const Image = (props) => {
     return sizes;
   };
 
+  // Bail early if we don't have a src to work with.
+  if (! (src || fallbackSrc)) {
+    return null;
+  }
+
   return (
     <FigureWrapper
       allowUpscaling={allowUpscaling}
