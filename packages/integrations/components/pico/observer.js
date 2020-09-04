@@ -43,7 +43,7 @@ const PicoObserver = ({
       if (undefined === email) {
         setEmail(emailAddress);
       }
-      // If the user's tier is included in the whitelisted tiers for SSO,
+      // If the user's tier is included in the allowed list of tiers for SSO,
       // flag their ability to comment as true.
       if (tiers.includes(tier)) {
         setCanComment(true);
