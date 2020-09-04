@@ -2,17 +2,26 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import PicoObserver from './observer';
+// Pico.
 import {
   actionPicoLoaded,
   actionUpdatePicoPageInfo,
 } from '../../actions/picoActions';
 import { picoLoadedSelector } from '../../selectors/picoSelector';
+// Coral.
+import {
+  actionReceiveCoralLogoutRequest,
+} from '../../actions/coralActions';
+import { tokenSelector } from '../../selectors/coralSelector';
+// Utility functions.
 import mountPicoNodes from './utils';
 
 const Pico = (props) => {
   const {
     pageInfo,
     publisherId,
+    tiers,
   } = props;
 
   /**
@@ -51,6 +60,9 @@ const Pico = (props) => {
   );
   // Grab the `loaded` value from the `pico` branch of the state tree.
   const picoLoaded = useSelector(picoLoadedSelector);
+
+  // Retrieve the Coral SSO token from the Redux store.
+  const coralToken = useSelector(tokenSelector);
 
   useEffect(() => {
     // See if the Pico widget container exists in the DOM.
@@ -101,7 +113,17 @@ const Pico = (props) => {
     );
   }
 
-  return null;
+  return (
+    <PicoObserver
+      tiers={tiers}
+      accessToken={coralToken}
+      logoutRequestAction={actionReceiveCoralLogoutRequest}
+    />
+  );
+};
+
+Pico.defaultProps = {
+  tiers: [],
 };
 
 Pico.propTypes = {
@@ -113,6 +135,7 @@ Pico.propTypes = {
     taxonomies: PropTypes.object.isRequired,
   }).isRequired,
   publisherId: PropTypes.string.isRequired,
+  tiers: PropTypes.array,
 };
 
 export default Pico;

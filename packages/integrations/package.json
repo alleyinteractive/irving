@@ -6,6 +6,7 @@
 		"actions/**/*",
 		"components/**/*",
 		"config/**/*",
+		"hooks/**/*",
 		"reducers/**/*",
 		"sagas/**/*",
 		"selectors/**/*",

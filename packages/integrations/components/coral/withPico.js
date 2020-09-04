@@ -1,14 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import CoralEmbed from './index';
-import usePicoObserver from './usePicoObserver';
 import { tokenSelector } from '../../selectors/coralSelector';
 
 const withPico = (ChildComponent) => (props) => {
-  // Mount a MutationObserver on the PicoSignal node and watch for
-  // changes with the `usePicoObserver` hook.
-  usePicoObserver(props.ssoTiers);
-
   // Define Coral event handlers.
   const handlers = (events) => {
     events.on('loginPrompt', () => {
