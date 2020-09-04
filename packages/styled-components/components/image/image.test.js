@@ -61,7 +61,7 @@ describe('<Image />', () => {
 
     const { container, queryByText } = render(<Image { ...testProps } />);
 
-    // Ensure caption and credit are rendered.
+    // Ensure caption and credit are not rendered.
     expect(queryByText(testProps.caption)).not.toBeInTheDocument();
     expect(queryByText(testProps.credit)).not.toBeInTheDocument();
   });
