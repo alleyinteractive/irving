@@ -18,10 +18,6 @@ const AdminBar = (props) => {
   const [hover, setHover] = useState(false);
   const [height, setHeight] = useState(0);
 
-  if (! iframeSrc) {
-    return null;
-  }
-
   useEffect(() => {
     const handleMessage = (event) => {
       if (event.origin !== iframeOrigin) {
@@ -39,6 +35,10 @@ const AdminBar = (props) => {
       window.removeEventListener('message', handleMessage);
     };
   });
+
+  if (! iframeSrc) {
+    return null;
+  }
 
   return (
     <>
