@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2020-09-06)
+
+
+### Bug Fixes
+
+* **adminbar:** fix React error regarding a change in the order of hooks ([2126fdf](https://github.com/alleyinteractive/irving/commit/2126fdf2c3ef2c8b456fb0fc8391c3fdee2ee6b0))
+
+
+
+
+
 # [4.0.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2020-09-04)
 
 
