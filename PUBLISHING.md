@@ -38,6 +38,7 @@ In order to publish you will need to:
 * `npm run prerelease:beta` - Create a beta from the release branch immediately for testing. Ask feature developers to install beta and test their feature (and do tests yourself as well).
 * `npm run prerelease:rc`- Close to release deadline, publish a new release to the `@rc` tag in npm from the release branch. Test again.
 * When ready, call attention to your upcoming release. This is an opportunity to have a conversation with others about code they might also want to release or objections they might have to releasing your code.
+* Between the `beta` release and stable release, if bugfixes or additional changes are necessary for the release, be sure to pull-request those changes into both `master` and the `release` branch to keep them in sync. As a general rule, `master` should never be merged into the release branch once it is created.
 * `npm run release` - Create a stable release from your release branch.
 * `git checkout master && git merge release/[version] && git push origin master` - update master with your release code.
 * Leave your release branch open in case we need to patch that version in the future.
