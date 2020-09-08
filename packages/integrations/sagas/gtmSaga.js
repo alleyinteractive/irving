@@ -9,9 +9,14 @@ import {
 
 // The GTM saga.
 export default [
-  takeLatest(REQUIRE_UPGRADE_FOR_CORAL_SSO, sendPicoEvent),
-  takeLatest(RECEIVE_PICO_VERIFICATION_FAILURE, sendPicoEvent),
-  takeLatest(RECEIVE_PICO_PLAN_UPGRADE, sendPicoEvent),
+  takeLatest(
+    [
+      REQUIRE_UPGRADE_FOR_CORAL_SSO,
+      RECEIVE_PICO_VERIFICATION_FAILURE,
+      RECEIVE_PICO_PLAN_UPGRADE,
+    ],
+    sendPicoEvent
+  ),
 ];
 
 function sendPicoEvent(payload) {
