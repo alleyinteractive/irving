@@ -13,6 +13,16 @@ const withPico = (ChildComponent) => (props) => {
         picoButton.click();
       }
     });
+
+    events.onAny((eventName, data) => {
+      window.dataLayer = window.dataLayer ?? [];
+      window.dataLayer.push({
+        event: `${eventName}Coral`,
+        coralEvent: {
+          ...data,
+        },
+      });
+    });
   };
 
   // Retrieve the Coral SSO token from the Redux store.
