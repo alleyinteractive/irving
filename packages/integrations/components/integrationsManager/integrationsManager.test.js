@@ -10,55 +10,34 @@ import GoogleAnalytics from '../googleAnalytics';
 const mockStore = configureStore([]);
 
 describe('<IntegrationsManager />', () => {
-  let store;
-
-  it('should render the appropriate integration once hydrated with a configuration', () => {
-    store = mockStore({
-      integrations: {
-        manager: {
-          componentMap: [{
-            key: 'googleAnalytics',
-            props: {
-              trackingId: 'UA-000000-1',
-            },
-          }],
-          hydrated: true,
-        },
-      },
-    });
+  it('should render integrations passed as props', () => {
+    const integrations = {
+      googleAnalytics: {
+        trackingId: 'UA-000000-1',
+      }
+    };
 
     const wrapper = mount(
-      <Provider store={store}>
-        <IntegrationsManager />
-      </Provider>
+      <IntegrationsManager integrations={integrations} />
     );
 
     const result = wrapper.find(GoogleAnalytics);
     const expected = <GoogleAnalytics trackingId="UA-000000-1" />;
+
     // Check to see whether or not the child node has rendered.
     expect(wrapper.contains(expected)).toEqual(true);
     // Ensure the node props match the expected result.
     expect(result.prop('trackingId')).toEqual(mount(expected).prop('trackingId'));
   });
 
-  it('should not render any children if no configuration is present', () => {
-    store = mockStore({
-      integrations: {
-        manager: {
-          componentMap: [],
-          hydrated: false,
-        },
-      },
-    });
+  it('should not render when no integrations are present', () => {
+    const integrations = {};
 
     const wrapper = mount(
-      <Provider store={store}>
-        <IntegrationsManager />
-      </Provider>
+      <IntegrationsManager integrations={integrations} />
     );
 
-    const result = wrapper.find(IntegrationsManager);
-    // The <IntegrationsManager /> node should not contain a specified integration.
-    expect(result.contains(GoogleAnalytics)).toEqual(false);
+    // Check to see whether or not the child node has rendered.
+    expect(wrapper.children().exists()).toEqual(false);
   });
 });
