@@ -141,7 +141,12 @@ const SocialSharing = (props) => {
   return (
     <SocialSharingWrapper {...standardProps}>
       <SocialSharingList>
-        {items.map(({ platform, shareUrl, icon }) => (
+        {items.map(({
+          icon,
+          platform,
+          shareUrl,
+          target,
+        }) => (
           <SocialSharingItemWrapper key={platform} className={platform}>
             <Link href={shareUrl} target={target}>
               <IconWrapper className={platform}>
