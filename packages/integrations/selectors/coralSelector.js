@@ -38,6 +38,11 @@ export const usernameSetHashSelector = createSelector(
   (branch) => maybeSelect(branch, 'usernameSetHash')
 );
 
+export const usernameSetSelector = createSelector(
+  coralSelector,
+  (branch) => maybeSelect(branch, 'usernameSet')
+);
+
 export const verificationRequestSelector = createSelector(
   coralSelector,
   (branch) => maybeSelect(branch, 'verificationRequestSent')

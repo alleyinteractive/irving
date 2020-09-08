@@ -10,6 +10,7 @@ import {
   SEND_PICO_VERIFICATION_REQUEST,
   SET_CORAL_USERNAME,
   SUBMIT_CORAL_USERNAME,
+  RECEIVE_CORAL_LOGIN,
 } from '../actions/types';
 import { coral as defaultState } from './defaultState';
 
@@ -66,7 +67,6 @@ export default function coralReducer(
         ...state,
         usernameSetHash: null,
         validationError: null,
-        requireUsername: false,
         usernameSet: true,
       };
 
@@ -80,6 +80,12 @@ export default function coralReducer(
       return {
         ...state,
         token: payload,
+      };
+
+    case RECEIVE_CORAL_LOGIN:
+      return {
+        ...state,
+        requireUsername: false,
       };
 
     case RECEIVE_CORAL_LOGOUT_REQUEST:
