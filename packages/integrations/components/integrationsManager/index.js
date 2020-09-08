@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // User Config.
 import userConfig from '@irvingjs/irving.config';
-// Redux.
-import { connect } from 'react-redux';
-import { actionHydrateComponents } from '../../actions';
 // Component Map.
 import componentMap from './componentMap';
 
@@ -12,52 +9,45 @@ import componentMap from './componentMap';
  * Integrations Manager.
  *
  * A component that consumes a `irving/integrations` configuration from the
- * REST API, Irving config, or persisted Redux state slice and renders the
- * corresponding integrations on the client.
+ * REST API and renders the corresponding integrations on the client.
  *
  * @param {Object}   props - All props.
  * @param {Object}   props.integrations - Config object for active integrations.
- * @param {boolean}  props.isHydrated - Has the component map already been hydrated?
- * @param {function} props.hydrateComponents - Redux action for updating the `componentMap` in the state tree.
- * @param {Object}   props.hydratedComponents - The existing component key/prop pairs.
  */
-const IntegrationsManager = ({
-  integrations,
-  isHydrated,
-  hydrateComponents,
-  hydratedComponents,
-}) => {
-  // This check is run on server-side renders to ensure that the component hydration
-  // is ran a single time. After hydration, `isHydrated` is set to `true` and will
-  // only be re-run if the component props change during the component's lifecycle.
-  if (false === isHydrated) {
-    // Retrieve the keys available for render in the component map.
-    const keyMap = Object.keys(integrations);
+const IntegrationsManager = ({ integrations }) => {
+  // Test for empty objects.
+  const isEmpty = (obj) => (
+    0 === Object.keys(obj).length && obj.constructor === Object
+  );
 
-    // Create an array for hydrated component keys and props.
-    const components = [];
-
-    componentMap.forEach((component) => {
-      // Get the component's key.
-      const { key } = component;
-
-      if (keyMap.includes(key)) {
-        // Retrieve the key/value pairs set for the integration and convert them into props.
-        // If a user config override exists, use it instead.
-        let props;
-        if ('integrations' in userConfig && key in userConfig.integrations) {
-          props = userConfig.integrations[key];
-        } else {
-          props = integrations[key];
-        }
-        // Update the item at the current index with the transformed component.
-        components.push({ key, props });
-      }
-    });
-
-    // Update the components in the store.
-    hydrateComponents(components);
+  // Bail early if no integrations exist.
+  if (isEmpty(integrations)) {
+    return null;
   }
+
+  // Retrieve the keys available for render in the component map.
+  const keyMap = Object.keys(integrations);
+
+  // Create an array for hydrated component keys and props.
+  const components = [];
+
+  componentMap.forEach((component) => {
+    // Get the component's key.
+    const { key } = component;
+
+    if (keyMap.includes(key)) {
+      // Retrieve the key/value pairs set for the integration and convert them into props.
+      // If a user config override exists, use it instead.
+      let props;
+      if ('integrations' in userConfig && key in userConfig.integrations) {
+        props = userConfig.integrations[key];
+      } else {
+        props = integrations[key];
+      }
+      // Update the item at the current index with the transformed component.
+      components.push({ key, props });
+    }
+  });
 
   /**
    * A function that takes a component key/props pair, matches the key with a
@@ -66,10 +56,10 @@ const IntegrationsManager = ({
    *
    * @param {Object} component - The component key and props.
    */
-  const renderComponents = (component) => {
+  const renderComponent = (component) => {
     // Create a map of available component keys.
-    const keyMap = componentMap.map((co) => co.key);
-    const index = keyMap.indexOf(component.key);
+    const mappedComponents = componentMap.map((co) => co.key);
+    const index = mappedComponents.indexOf(component.key);
 
     // If the current component key exists in the key map, clone that component
     // with the hydrated props for render.
@@ -82,10 +72,10 @@ const IntegrationsManager = ({
     return null;
   };
 
-  if (hydratedComponents.length) {
+  if (components.length) {
     return (
       <>
-        {hydratedComponents.map(renderComponents)}
+        {components.map(renderComponent)}
       </>
     );
   }
@@ -95,48 +85,10 @@ const IntegrationsManager = ({
 
 IntegrationsManager.defaultProps = {
   integrations: {},
-  hydratedComponents: [],
 };
 
 IntegrationsManager.propTypes = {
-  integrations: PropTypes.shape({
-    googleAnalytics: PropTypes.shape({
-      trackingId: PropTypes.string,
-    }),
-  }),
-  isHydrated: PropTypes.bool.isRequired,
-  hydrateComponents: PropTypes.func.isRequired,
-  hydratedComponents: PropTypes.arrayOf(PropTypes.object),
+  integrations: PropTypes.object,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const {
-    integrations: {
-      manager: {
-        componentMap: components,
-        hydrated,
-      },
-    },
-  } = state;
-
-  if (hydrated) {
-    return {
-      isHydrated: hydrated,
-      hydratedComponents: components,
-    };
-  }
-
-  return {
-    isHydrated: hydrated,
-    integrations: ownProps.integrations,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  hydrateComponents: (data) => dispatch(actionHydrateComponents(data)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(IntegrationsManager);
+export default IntegrationsManager;
