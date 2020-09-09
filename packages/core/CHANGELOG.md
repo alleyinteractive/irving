@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-rc.1](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-rc.0...v4.0.0-rc.1) (2020-09-09)
+
+
+### Bug Fixes
+
+* **relativeurl:** minor tweaks ([21b36a4](https://github.com/alleyinteractive/irving/packages/core/commit/21b36a4697c1ac95948ceaa72dfa2c777be7f49c))
+* **useclientnavigationonclick.js:** fix breaking SPA function on regular links ([19fe1ca](https://github.com/alleyinteractive/irving/packages/core/commit/19fe1ca3140d1a0a509a79343a401f448bffe9c6))
+
+
+
+
+
 # [4.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-beta.8...v4.0.0-rc.0) (2020-09-09)
 
 
