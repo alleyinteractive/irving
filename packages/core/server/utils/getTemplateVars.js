@@ -68,11 +68,14 @@ export default function getTemplateVars(key, initialVars) {
   // as they will be extracted and merged using different methods.
   const varsConfigs = [];
   const headConfigs = [];
+  // Normalize each provided config (from user, packages, etc.).
+  const varsObjects = templateVars.map((vars) => (
+    getValFromFunction(vars, initialVars)
+  ));
 
-  templateVars.forEach((vars) => {
-    const varsObject = getValFromFunction(vars, initialVars);
-    varsConfigs.push(omit(['head'], varsObject));
-    headConfigs.push(getValFromFunction(varsObject.head));
+  // Collect top-level vars (except head, which we'll handle after the app renders).
+  varsObjects.forEach((obj) => {
+    varsConfigs.push(omit(['head'], obj));
   });
 
   // Merge template vars.
@@ -81,6 +84,11 @@ export default function getTemplateVars(key, initialVars) {
 
   // This needs to happen first to ensure proper SSR rendering of stylesheets.
   const appHtml = renderToString(<Wrapper />);
+
+  // Collect head objects.
+  varsObjects.forEach((obj) => {
+    headConfigs.push(getValFromFunction(obj.head));
+  });
 
   // This seems to be necessary to prevent future mutation.
   const initialHead = { ...initialVars.head };
