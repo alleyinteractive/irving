@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.7](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.6...v4.0.0-beta.7) (2020-09-09)
+
+
+### Bug Fixes
+
+* **pico:** mount signup form node at root ([483c191](https://github.com/alleyinteractive/irving/commit/483c191fd5b9f2767e12fb8b441d4748c2a5acc1))
+
+
+
+
+
 # [4.0.0-beta.6](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.5...v4.0.0-beta.6) (2020-09-09)
 
 
