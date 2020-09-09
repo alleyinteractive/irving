@@ -6,6 +6,10 @@ export const LinkWrapper = styled.a`
   font-family: inherit;
   text-decoration: none;
 
+  > * {
+    pointer-events: none;
+  }
+
   &:hover {
     text-decoration: underline;
   }
