@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.8](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.7...v4.0.0-beta.8) (2020-09-09)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
 # [4.0.0-beta.7](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.6...v4.0.0-beta.7) (2020-09-09)
 
 
