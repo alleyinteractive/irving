@@ -9,7 +9,10 @@ const useClientNavigationOnClick = (url) => {
   const relativeUrl = parseUrl(url);
   const onClick = (event) => {
     const [ baseUrl ] = event.target.href.split('#');
-    if (baseUrl !== window.location.href) {
+    if (
+      baseUrl === window.location.href &&
+      -1 !== event.target.href.indexOf('#')
+    ) {
       return;
     }
 
