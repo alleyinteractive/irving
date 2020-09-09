@@ -8,11 +8,9 @@ const parseUrl = memoize(getRelativeUrl);
 const useClientNavigationOnClick = (url) => {
   const relativeUrl = parseUrl(url);
   const onClick = (event) => {
-    if ('undefined' !== typeof window) {
-      const [ baseUrl ] = event.target.href.split('#');
-      if (baseUrl !== window.location.href) {
-        return;
-      }
+    const [ baseUrl ] = event.target.href.split('#');
+    if (baseUrl !== window.location.href) {
+      return;
     }
 
     if (relativeUrl) {
