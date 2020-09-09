@@ -6,12 +6,14 @@ import {
   take,
   fork,
 } from 'redux-saga/effects';
-import { LOCATION_CHANGE } from '@irvingjs/core/actions/types';
 import {
   picoLoadedSelector,
   picoPageInfoSelector,
 } from '../selectors/picoSelector';
-import { SEND_PICO_VERIFICATION_REQUEST } from '../actions/types';
+import {
+  SEND_PICO_VERIFICATION_REQUEST,
+  UPDATE_PICO_PAGE_INFO,
+} from '../actions/types';
 import { actionReceivePicoVerificationFailure } from '../actions/picoActions';
 import {
   actionReceiveCoralToken,
@@ -40,7 +42,7 @@ function* takeFirst(pattern, saga, ...args) {
 
 // The Pico saga.
 export default [
-  takeLatest(LOCATION_CHANGE, dispatchPicoVisit),
+  takeLatest(UPDATE_PICO_PAGE_INFO, dispatchPicoVisit),
   takeFirst(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
 ];
 
