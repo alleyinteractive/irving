@@ -52,12 +52,13 @@ const SearchForm = (props) => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <SearchFormTerm
+        data-gtm-action="Search"
+        data-gtm-category="Navigation"
         name={searchTermQueryArg}
         placeholder="Search"
         ref={register}
         type="text"
       />
-      {/* @TODO Add GTM event.  */}
       <SearchFormSubmitButton type="submit">Search</SearchFormSubmitButton>
     </SearchFormWrapper>
   );
