@@ -79,8 +79,9 @@ const Pico = (props) => {
         ! picoLoaded
       ) {
         mountPicoNodes();
+        // Trigger the visit.
+        window.pico('visit', picoPageInfo);
         // Update the `pico` branch of the state tree and set `loaded` to true.
-        // This will also trigger a visit in the dispatchPicoVisit saga.
         dispatchPicoLoaded();
       }
     }
