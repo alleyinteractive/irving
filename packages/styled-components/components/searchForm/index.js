@@ -57,6 +57,7 @@ const SearchForm = (props) => {
         ref={register}
         type="text"
       />
+      {/* @TODO Add GTM event.  */}
       <SearchFormSubmitButton type="submit">Search</SearchFormSubmitButton>
     </SearchFormWrapper>
   );
