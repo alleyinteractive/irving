@@ -17,6 +17,35 @@ function createNode(container, type, attributes) {
   container.appendChild(node);
 }
 
+function mountSignupFormNodes(documentBody) {
+  // Create the signup form node.
+  const form = [
+    { name: 'id', value: 'PicoSignup-form' },
+    { name: 'class', value: 'PicoSignupForm' },
+    { name: 'style', value: 'display: none' },
+  ];
+  createNode(documentBody, 'form', form);
+  // Get the node.
+  const formNode = document.getElementById('PicoSignup-form');
+
+  if (formNode) {
+    // Create the email input.
+    const emailInput = [
+      { name: 'type', value: 'email' },
+      { name: 'name', value: 'email' },
+      { name: 'id', value: 'PicoSignup-form__input' },
+    ];
+    createNode(formNode, 'input', emailInput);
+    // Create the submit button.
+    const submitButton = [
+      { name: 'type', value: 'submit' },
+      { name: 'id', value: 'PicoSignup-form__submit-btn' },
+      { name: 'value', value: 'Submit' },
+    ];
+    createNode(formNode, 'input', submitButton);
+  }
+}
+
 /**
  * A function that mounts reference nodes into the DOM at initialization. These
  * nodes can be targeted by React components to trigger Pico actions if the component
@@ -52,5 +81,8 @@ export default function mountPicoNodes() {
       { name: 'style', value: 'display: none' },
     ];
     createNode(documentBody, 'input', planAttributes);
+
+    // Create the signup form node hierarchy.
+    mountSignupFormNodes(documentBody);
   }
 }
