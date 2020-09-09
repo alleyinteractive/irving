@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.3...v4.0.0-beta.4) (2020-09-09)
+
+
+### Features
+
+* **Pico:** Trigger initial visit when component loads ([9a06624](https://github.com/alleyinteractive/irving/packages/integrations/commit/9a06624d1ee678d9a5d96d870a245f63b3652c50))
+
+
+
+
+
 # [4.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.12...v4.0.0-beta.3) (2020-09-09)
 
 
