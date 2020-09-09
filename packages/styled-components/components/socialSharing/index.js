@@ -115,9 +115,17 @@ const SocialSharing = (props) => {
     return null;
   }
 
+  const getShareTarget = (platform) => {
+    if ('email' === platform) {
+      return '_self';
+    }
+    return '_blank';
+  };
+
   const items = platforms.map((platform) => ({
     platform,
     shareUrl: getShareUrl(platform),
+    target: getShareTarget(platform),
     icon: toReactElement({
       name: `irving/${platform}-icon`,
       config: {
@@ -133,9 +141,14 @@ const SocialSharing = (props) => {
   return (
     <SocialSharingWrapper {...standardProps}>
       <SocialSharingList>
-        {items.map(({ platform, shareUrl, icon }) => (
+        {items.map(({
+          icon,
+          platform,
+          shareUrl,
+          target,
+        }) => (
           <SocialSharingItemWrapper key={platform} className={platform}>
-            <Link href={shareUrl}>
+            <Link href={shareUrl} target={target}>
               <IconWrapper className={platform}>
                 {icon}
               </IconWrapper>

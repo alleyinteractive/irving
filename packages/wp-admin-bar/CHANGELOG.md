@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.11](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2020-09-06)
+
+
+### Bug Fixes
+
+* **adminbar:** fix React error regarding a change in the order of hooks ([2126fdf](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/commit/2126fdf2c3ef2c8b456fb0fc8391c3fdee2ee6b0))
+
+
+
+
+
+# [4.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2020-09-04)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
+# [4.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-alpha.7...v4.0.0-alpha.9) (2020-09-04)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
+# [4.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2020-09-04)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
+# [4.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2020-09-03)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
 # [4.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2020-09-01)
 
 **Note:** Version bump only for package @irvingjs/wp-admin-bar

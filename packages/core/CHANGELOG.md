@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2020-09-04)
+
+
+### Bug Fixes
+
+* **app:** separate connectedroot from app wrapper compopnent ([2926244](https://github.com/alleyinteractive/irving/packages/core/commit/2926244e405c209963dc2f0c62e4baa1e9729d3b))
+* **root:** remove unnecessary error prop ([eef3186](https://github.com/alleyinteractive/irving/packages/core/commit/eef318620c9dcc4c7c216c48ed4a3d1535359466))
+
+
+
+
+
+# [4.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.7...v4.0.0-alpha.9) (2020-09-04)
+
+
+### Bug Fixes
+
+* **purgecache:** remove duplicative res.end() which was being called too early ([8873320](https://github.com/alleyinteractive/irving/packages/core/commit/8873320a63226859563b258c0ba96dff73c4e26d))
+
+
+
+
+
+# [4.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2020-09-04)
+
+
+### Bug Fixes
+
+* **purgecache:** remove duplicative res.end() which was being called too early ([8873320](https://github.com/alleyinteractive/irving/packages/core/commit/8873320a63226859563b258c0ba96dff73c4e26d))
+
+
+
+
+
+# [4.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2020-09-03)
+
+
+### Features
+
+* allowlist audio and video tags with their attributes ([178c194](https://github.com/alleyinteractive/irving/packages/core/commit/178c194703dfe153b5d17be6368d19780b46f526))
+
+
+
+
+
 # [4.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2020-09-01)
 
 **Note:** Version bump only for package @irvingjs/core

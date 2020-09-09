@@ -2,8 +2,13 @@ import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import useLoadScript from '@irvingjs/core/hooks/useLoadScript';
-import { actionReceiveCoralLogout } from '../../actions/coralActions';
-import { purgeSelector } from '../../selectors/coralSelector';
+import {
+  actionReceiveCoralLogin,
+  actionReceiveCoralLogout,
+} from '../../actions/coralActions';
+import {
+  purgeSelector,
+} from '../../selectors/coralSelector';
 
 const CoralEmbed = ({
   accessToken,
@@ -25,6 +30,11 @@ const CoralEmbed = ({
     () => dispatch(actionReceiveCoralLogout()),
     [dispatch]
   );
+  // Define a function that will update the store when a user logs in.
+  const dispatchLogin = useCallback(
+    () => dispatch(actionReceiveCoralLogin()),
+    [dispatch]
+  );
 
   // Define whether or not the user is set to be purged. This must be defined
   // outside of the `useEffect` call in order to align with the rules of hooks.
@@ -43,6 +53,8 @@ const CoralEmbed = ({
       if (accessToken) {
         // Login the user if an access token exists.
         embed.login(accessToken);
+        // Register the login in the state tree.
+        dispatchLogin();
       }
 
       if (! accessToken && shouldPurgeUser) {
@@ -52,7 +64,11 @@ const CoralEmbed = ({
         dispatchLogout();
       }
     }
-  }, [loaded, accessToken]);
+  }, [
+    loaded,
+    accessToken,
+    shouldPurgeUser,
+  ]);
 
   return (
     <div id="coral_thread" />

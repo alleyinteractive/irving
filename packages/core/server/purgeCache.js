@@ -136,8 +136,6 @@ const purgeCache = async (req, res) => {
     res.write(completeMessage);
     return res.end();
   }
-
-  return res.end();
 };
 
 module.exports = purgeCache;

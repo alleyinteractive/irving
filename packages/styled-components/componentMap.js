@@ -104,7 +104,7 @@ export const defaultMapping = {
  * @return {object}
  */
 const createThemedComponentMap = (userThemesToInject) => {
-  // Loop through the `userThemesToInject`` object
+  // Loop through the `userThemesToInject` object
   const userMapping = Object.keys(userThemesToInject)
     .reduce((acc, componentName) => {
       const {

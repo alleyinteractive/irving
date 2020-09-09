@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.12](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.11...v4.0.0-alpha.12) (2020-09-09)
+
+
+### Bug Fixes
+
+* **integrationsmanager:** Remove Redux caching of integrations data ([7783540](https://github.com/alleyinteractive/irving/commit/7783540407118f8b8f194b4b783d88c7e780a42e))
+
+
+
+
+
+# [4.0.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2020-09-06)
+
+
+### Bug Fixes
+
+* **adminbar:** fix React error regarding a change in the order of hooks ([2126fdf](https://github.com/alleyinteractive/irving/commit/2126fdf2c3ef2c8b456fb0fc8391c3fdee2ee6b0))
+
+
+
+
+
+# [4.0.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2020-09-04)
+
+
+### Bug Fixes
+
+* **app:** separate connectedroot from app wrapper compopnent ([2926244](https://github.com/alleyinteractive/irving/commit/2926244e405c209963dc2f0c62e4baa1e9729d3b))
+* **root:** remove unnecessary error prop ([eef3186](https://github.com/alleyinteractive/irving/commit/eef318620c9dcc4c7c216c48ed4a3d1535359466))
+
+
+
+
+
+# [4.0.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.7...v4.0.0-alpha.9) (2020-09-04)
+
+
+### Bug Fixes
+
+* **purgecache:** remove duplicative res.end() which was being called too early ([8873320](https://github.com/alleyinteractive/irving/commit/8873320a63226859563b258c0ba96dff73c4e26d))
+
+
+### Features
+
+* **img:** Add tests for the styled image component ([da88646](https://github.com/alleyinteractive/irving/commit/da88646e70ca969d2327dc36771f28e079575c9d))
+
+
+
+
+
+# [4.0.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2020-09-04)
+
+
+### Bug Fixes
+
+* **purgecache:** remove duplicative res.end() which was being called too early ([8873320](https://github.com/alleyinteractive/irving/commit/8873320a63226859563b258c0ba96dff73c4e26d))
+
+
+### Features
+
+* **img:** Add tests for the styled image component ([da88646](https://github.com/alleyinteractive/irving/commit/da88646e70ca969d2327dc36771f28e079575c9d))
+
+
+
+
+
+# [4.0.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2020-09-03)
+
+
+### Features
+
+* allowlist audio and video tags with their attributes ([178c194](https://github.com/alleyinteractive/irving/commit/178c194703dfe153b5d17be6368d19780b46f526))
+
+
+
+
+
 # [4.0.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.5...v4.0.0-alpha.6) (2020-09-03)
 
 **Note:** Version bump only for package irving
