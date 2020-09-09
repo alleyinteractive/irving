@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-beta.8...v4.0.0-rc.0) (2020-09-09)
+
+
+### Bug Fixes
+
+* **head:** collect and render head vars after renterToString is called ([05d10e1](https://github.com/alleyinteractive/irving/packages/core/commit/05d10e18193a4c70965d7b9f567db10b1f510361))
+* **useclientnavigationonclick.js:** fix errant history push on same-page anchor clicks ([d272da0](https://github.com/alleyinteractive/irving/packages/core/commit/d272da0d3fb312e1478f9e46f95c692f06739a4f))
+* **useclientnavigationonclick.js:** remove unnecessary if statement ([a707e2e](https://github.com/alleyinteractive/irving/packages/core/commit/a707e2ecf66b0e9c8602e83b865bc492ec5d999f))
+
+
+
+
+
 # [4.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
 
 **Note:** Version bump only for package @irvingjs/core

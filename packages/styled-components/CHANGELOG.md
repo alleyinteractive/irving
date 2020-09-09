@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.0.0-beta.8...v4.0.0-rc.0) (2020-09-09)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
 # [4.0.0-beta.8](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.0.0-beta.7...v4.0.0-beta.8) (2020-09-09)
 
 **Note:** Version bump only for package @irvingjs/styled-components
