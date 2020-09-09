@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.12...v4.0.0-beta.3) (2020-09-09)
+
+
+### Bug Fixes
+
+* **pico:** fix pageview data not being updated properly ([fc60cbb](https://github.com/alleyinteractive/irving/packages/integrations/commit/fc60cbb784ac6cc27908b8f4254e3d32468f3577))
+
+
+
+# [4.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
+
+
+
+# [4.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.0...v4.0.0-beta.1) (2020-09-08)
+
+
+
+# [4.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.11...v4.0.0-beta.0) (2020-09-08)
+
+
+
+
+
 # [4.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
 
 **Note:** Version bump only for package @irvingjs/integrations
