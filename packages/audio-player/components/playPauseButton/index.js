@@ -1,19 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   actionLoadAudio,
   actionPauseAudio,
   actionPlayAudio,
 } from 'actions/playerActions';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
+import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import Spinner from 'assets/icons/spinner.svg';
 import PlayIcon from 'assets/icons/play.svg';
 import PauseIcon from 'assets/icons/pause.svg';
-import styles from './playPauseButton.css';
+import * as defaultStyles from './themes/default';
 
 const PlayPauseButton = (props) => {
-  const { src } = props;
+  const {
+    src,
+    theme,
+    PlayIconComponent,
+    PauseIconComponent,
+  } = props;
+  const standardProps = useStandardProps(props);
   const {
     loading,
     playing,
@@ -23,6 +34,13 @@ const PlayPauseButton = (props) => {
   const selected = playerSrc === src;
   const selectedAndPlaying = selected && playing;
   const selectedAndLoading = selected && loading;
+  const {
+    Wrapper,
+    Loading,
+    Paused,
+    Playing,
+    Text,
+  } = theme;
 
   // Play audio if loaded, else load and play.
   const playOrLoadAudio = () => {
@@ -34,47 +52,74 @@ const PlayPauseButton = (props) => {
   };
 
   return (
-    <button
+    <Wrapper
+      {...standardProps}
       type="button"
       onClick={
         selectedAndPlaying ?
           () => dispatch(actionPauseAudio()) :
           playOrLoadAudio
       }
-      className={styles.wrapper}
     >
       {selectedAndLoading ? (
-        <span className={classNames(styles.icon, styles.spinner)}>
+        <Loading>
           <Spinner />
-        </span>
+        </Loading>
       ) : (
         <>
           {selectedAndPlaying ? (
             <>
-              <span className={classNames(styles.icon, styles.pause)}>
-                <PauseIcon />
-              </span>
-              <span className={styles.text}>Pause audio</span>
+              <Paused>
+                <PauseIconComponent />
+              </Paused>
+              <Text>Pause audio</Text>
             </>
           ) : (
             <>
-              <span className={classNames(styles.icon, styles.play)}>
-                <PlayIcon />
-              </span>
-              <span className={styles.text}>Play audio</span>
+              <Playing>
+                <PlayIconComponent />
+              </Playing>
+              <Text>Play audio</Text>
             </>
           )}
         </>
       )}
-    </button>
+    </Wrapper>
   );
 };
 
+PlayPauseButton.defaultProps = {
+  ...standardDefaultProps,
+  theme: defaultStyles,
+  PlayIconComponent: PlayIcon,
+  PauseIconComponent: PauseIcon,
+};
+
 PlayPauseButton.propTypes = {
+  ...standardPropTypes,
   /**
    * Source attached to this play button. Used to check what icon to display (play or pause).
    */
   src: PropTypes.string.isRequired,
+  /**
+   * Component for displaying play icon.
+   */
+  PlayIconComponent: PropTypes.func,
+  /**
+   * Component for displaying pause icon.
+   */
+  PauseIconComponent: PropTypes.func,
 };
+
+const themeMap = {
+  default: defaultStyles,
+};
+
+export const themePlayPauseButton = (userThemeMap) => (
+  withThemes({
+    ...themeMap,
+    ...userThemeMap,
+  })(PlayPauseButton)
+);
 
 export default PlayPauseButton;
