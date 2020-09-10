@@ -16,7 +16,7 @@ describe('createGetProviderConfig', () => {
       },
     };
 
-    expect(getProviderConfig(mockState, { name: 'irving/another-provider' }))
+    expect(getProviderConfig(mockState, 'irving/another-provider'))
       .toEqual({});
   });
 
@@ -35,7 +35,7 @@ describe('createGetProviderConfig', () => {
       },
     };
 
-    expect(getProviderConfig(mockState, { name: 'irving/test-provider' }))
+    expect(getProviderConfig(mockState, 'irving/test-provider'))
       .toEqual({
         lorem: 'ipsum',
       });

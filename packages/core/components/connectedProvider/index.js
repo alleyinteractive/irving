@@ -43,7 +43,7 @@ const createMapStateToProps = () => {
   const getProviderConfig = createGetProviderConfig();
   return function mapStateToProps(state, props) {
     return {
-      config: getProviderConfig(state, props),
+      config: getProviderConfig(state, props.name),
     };
   };
 };
