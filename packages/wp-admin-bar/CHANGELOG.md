@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-rc.1...v4.0.0) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
+# [4.0.0-rc.1](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-rc.0...v4.0.0-rc.1) (2020-09-09)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
+# [4.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-beta.8...v4.0.0-rc.0) (2020-09-09)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
+# [4.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-alpha.12...v4.0.0-beta.3) (2020-09-09)
+
+
+
+# [4.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
+# [4.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
+
+**Note:** Version bump only for package @irvingjs/wp-admin-bar
+
+
+
+
+
 # [4.0.0-alpha.11](https://github.com/alleyinteractive/irving/packages/wp-admin-bar/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2020-09-06)
 
 

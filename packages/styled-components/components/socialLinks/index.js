@@ -44,7 +44,12 @@ const SocialLinks = (props) => {
         <SocialLinksList>
           {items.map(({ platform, url, icon }) => (
             <SocialLinksItem key={platform}>
-              <Link href={url}>
+              <Link
+                data-gtm-action="Follow"
+                data-gtm-category="Engagement"
+                data-gtm-label={platform}
+                href={url}
+              >
                 <IconWrapper className={platform}>
                   {icon}
                 </IconWrapper>

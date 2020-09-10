@@ -89,6 +89,11 @@ const Pagination = (props) => {
     totalPages :
     (currentPage + newRange);
 
+  const gtmBase = {
+    action: 'Pagination',
+    category: 'Navigation',
+  };
+
   /**
    * Render a handful of pagination buttons around the current page.
    */
@@ -97,7 +102,17 @@ const Pagination = (props) => {
     if (i === currentPage) {
       pages.push(<CurrentPageNavWrapper className="irving-pagination-current-page">{i}</CurrentPageNavWrapper>);
     } else {
-      pages.push(<NavWrapper as={Link} href={buildUrl(props, i)}>{i}</NavWrapper>);
+      pages.push(
+        <NavWrapper
+          as={Link}
+          href={buildUrl(props, i)}
+          data-gtm-action={gtmBase.action}
+          data-gtm-category={gtmBase.category}
+          data-gtm-label={`${i} page`}
+        >
+          {i}
+        </NavWrapper>
+      );
     }
   }
 
@@ -117,17 +132,57 @@ const Pagination = (props) => {
         break;
 
       case (2 === startRange):
-        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 1)}>1</NavWrapper>);
+        pages.unshift(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, 1)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="First Page"
+          >
+            1
+          </NavWrapper>
+        );
         break;
 
       case (3 === startRange):
-        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 2)}>2</NavWrapper>);
-        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 1)}>1</NavWrapper>);
+        pages.unshift(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, 2)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="Second Page"
+          >
+            2
+          </NavWrapper>
+        );
+        pages.unshift(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, 1)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="First Page"
+          >
+            1
+          </NavWrapper>
+        );
         break;
 
       case (4 <= startRange):
         pages.unshift(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
-        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 1)}>1</NavWrapper>);
+        pages.unshift(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, 1)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="First Page"
+          >
+            1
+          </NavWrapper>
+        );
         break;
     }
 
@@ -137,17 +192,57 @@ const Pagination = (props) => {
         break;
 
       case ((totalPages - 1) === endRange):
-        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages)}>{totalPages}</NavWrapper>);
+        pages.push(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, totalPages)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="Last Page"
+          >
+            {totalPages}
+          </NavWrapper>
+        );
         break;
 
       case ((totalPages - 2) === endRange):
-        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages - 1)}>{totalPages - 1}</NavWrapper>);
-        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages)}>{totalPages}</NavWrapper>);
+        pages.push(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, totalPages - 1)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="Second Last Page"
+          >
+            {totalPages - 1}
+          </NavWrapper>
+        );
+        pages.push(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, totalPages)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="Last Page"
+          >
+            {totalPages}
+          </NavWrapper>
+        );
         break;
 
       case ((totalPages - 3) >= endRange):
         pages.push(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
-        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages)}>{totalPages}</NavWrapper>);
+        pages.push(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, totalPages)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="Last Page"
+          >
+            {totalPages}
+          </NavWrapper>
+        );
         break;
     }
   }
