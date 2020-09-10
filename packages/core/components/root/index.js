@@ -41,7 +41,7 @@ Root.propTypes = {
   /**
    * Root provider configurations
    */
-  providers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  providers: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const mapStateToProps = (state) => ({

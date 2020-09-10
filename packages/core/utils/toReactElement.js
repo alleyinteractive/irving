@@ -40,8 +40,7 @@ export function createComponentGroups(componentGroups) {
  */
 export default function toReactElement(
   apiComponent,
-  keyPrefix = '',
-  recursive = true
+  keyPrefix = ''
 ) {
   const {
     name,
@@ -62,11 +61,10 @@ export default function toReactElement(
   };
 
   // Recursively convert children to react elements.
-  const childElements = recursive ?
-    children.map((child, index) => (
-      // Support text nodes.
-      isString(child) ? child : toReactElement(child, String(index))
-    )) : children;
+  const childElements = children.map((child, index) => (
+    // Support text nodes.
+    isString(child) ? child : toReactElement(child, String(index))
+  ));
 
   const type = 0 !== alias.length ?
     getReactComponent(alias) :

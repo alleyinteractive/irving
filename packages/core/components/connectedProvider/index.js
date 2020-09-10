@@ -1,8 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import createGetProviderConfig from 'selectors/createGetProviderConfig';
-import toReactProvider from 'utils/toReactProvider';
+import toProvider from 'utils/toProvider';
 
 const ConnectedProvider = (props) => {
   const {
@@ -11,19 +10,7 @@ const ConnectedProvider = (props) => {
     name,
   } = props;
 
-  return (
-    <>
-      {toReactProvider(
-        {
-          name,
-          config,
-          children,
-        },
-        'provider',
-        false // do not recurse children in the case of providers
-      )}
-    </>
-  );
+  return toProvider(name, config, children);
 };
 
 ConnectedProvider.propTypes = {

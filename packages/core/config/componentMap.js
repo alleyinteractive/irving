@@ -24,9 +24,10 @@ function createGetComponent() {
    * Resolve a defined React component by name.
    *
    * @param {string} name - component name
+   * @param {string} FallbackComponent - component to fall back to if not configured.
    * @returns {function} - React component
    */
-  return function getComponent(name) {
+  return function getComponent(name, FallbackComponent = NotConfigured) {
     // Custom component
     if (componentMap[name]) {
       return componentMap[name];
@@ -38,7 +39,7 @@ function createGetComponent() {
       return name;
     }
 
-    return NotConfigured;
+    return FallbackComponent;
   };
 }
 
