@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
-import Loader from 'components/loader';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
@@ -17,7 +16,10 @@ const BodyWrapper = (props) => {
     theme,
   } = props;
   const standardProps = useStandardProps(props);
-  const { Main } = theme;
+  const {
+    Main,
+    Loader,
+  } = theme;
 
   return (
     <Loader>
