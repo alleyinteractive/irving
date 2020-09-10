@@ -9,11 +9,13 @@ import {
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
+/* eslint-disable */
 const BodyWrapper = (props) => {
   const {
     bodyClasses,
     children,
     theme,
+    themeName,
   } = props;
   const standardProps = useStandardProps(props);
   const {

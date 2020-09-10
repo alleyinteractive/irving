@@ -106,7 +106,7 @@ Loader.defaultProps = {
     type: 'fade',
     property: 'all',
     ease: 'ease',
-    duration: '0.3s',
+    duration: '1s',
   },
   loadingProps: {},
   LoadingComponent: DefaultLoading,
