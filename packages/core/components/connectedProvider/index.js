@@ -29,8 +29,8 @@ ConnectedProvider.propTypes = {
 };
 
 /**
- * Each ConnectedRoot component will receive it's own copy of the state mapper,
- * which allows the createGetRootComponent factory to create a memoized copy
+ * Each ConnectedProvider component will receive it's own copy of the state mapper,
+ * which allows the createGetProviderConfig factory to create a memoized copy
  * of the getComponent selector with access to the component's props.
  *
  * In essence this allows each ConnectedRoot to be isolated, and only re-render
@@ -43,7 +43,7 @@ const createMapStateToProps = () => {
   const getProviderConfig = createGetProviderConfig();
   return function mapStateToProps(state, props) {
     return {
-      config: getProviderConfig(state, props.name),
+      config: getProviderConfig(state, props),
     };
   };
 };

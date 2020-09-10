@@ -10,14 +10,14 @@ import { createSelector } from 'reselect';
 const createGetProviderConfig = () => createSelector(
   [
     get('components.providers'),
-    (state, providerName = '') => providerName,
+    (state, props = {}) => props.name,
   ],
-  (providers, providerName) => {
-    if (! providerName || ! providers) {
+  (providers, name) => {
+    if (! name || ! providers) {
       return {};
     }
 
-    const currentProvider = providers[providerName];
+    const currentProvider = providers[name];
 
     if (currentProvider) {
       return currentProvider.current.config;
