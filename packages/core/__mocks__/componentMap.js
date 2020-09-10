@@ -24,4 +24,10 @@ module.exports = {
       </div>
     );
   },
+  'irving/test-provider': ({ children }) => (
+    <div data-testid="provider">
+      I am a provider
+      {children}
+    </div>
+  ),
 };
