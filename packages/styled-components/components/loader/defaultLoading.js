@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Spinner from './spinner';
+import LoadingIndicator from './loadingIndicator';
 
 const DefaultLoading = (props) => {
   const {
@@ -8,7 +8,7 @@ const DefaultLoading = (props) => {
     fullScreen,
     fullScreenBgColor,
     children,
-    spinnerProps,
+    indicatorProps,
     theme,
   } = props;
   const { LoadingWrapper } = theme;
@@ -21,8 +21,8 @@ const DefaultLoading = (props) => {
       style={{ backgroundColor: fullScreenBgColor }}
     >
       {children || (
-        <Spinner
-          {...spinnerProps}
+        <LoadingIndicator
+          {...indicatorProps}
           theme={theme}
         />
       )}
@@ -35,7 +35,7 @@ DefaultLoading.defaultProps = {
   fullScreen: false,
   fullScreenBgColor: '#FFF',
   children: false,
-  spinnerProps: {},
+  indicatorProps: {},
 };
 
 DefaultLoading.propTypes = {
@@ -67,7 +67,7 @@ DefaultLoading.propTypes = {
    * Custom props to pass to the <Spinner /> component.
    * default: {},
    */
-  spinnerProps: PropTypes.object,
+  indicatorProps: PropTypes.object,
   /**
    * Theme
    */

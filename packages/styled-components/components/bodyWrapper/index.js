@@ -14,8 +14,8 @@ const BodyWrapper = (props) => {
   const {
     bodyClasses,
     children,
+    loaderProps,
     theme,
-    themeName,
   } = props;
   const standardProps = useStandardProps(props);
   const {
@@ -24,7 +24,10 @@ const BodyWrapper = (props) => {
   } = theme;
 
   return (
-    <Loader>
+    <Loader
+      theme={theme}
+      {...loaderProps}
+    >
       <Helmet>
         <body className={classNames(bodyClasses)} />
       </Helmet>

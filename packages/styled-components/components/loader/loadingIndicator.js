@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Spinner = (props) => {
+const LoadingIndicator = (props) => {
   const {
     color,
     size,
     theme,
   } = props;
-  const { SpinnerIcon } = theme;
+  const { IndicatorIcon } = theme;
 
   // Using inline styles for centering prevents jumpiness as the component is
   // loaded, and allows passing color and size props to  inline styles.
@@ -22,19 +22,19 @@ const Spinner = (props) => {
   };
 
   return (
-    <SpinnerIcon style={inlineStyle} />
+    <IndicatorIcon style={inlineStyle} />
   );
 };
 
-Spinner.defaultProps = {
+LoadingIndicator.defaultProps = {
   color: '#777',
   size: '75px',
 };
 
-Spinner.propTypes = {
+LoadingIndicator.propTypes = {
   color: PropTypes.string,
   size: PropTypes.string,
   theme: PropTypes.object.isRequired,
 };
 
-export default Spinner;
+export default LoadingIndicator;
