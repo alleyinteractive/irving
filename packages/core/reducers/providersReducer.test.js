@@ -1,5 +1,5 @@
 import providersReducer from './providersReducer';
-import { RECEIVE_COMPONENTS } from 'actions/types';
+import { actionReceiveComponents } from 'actions';
 
 describe('providersReducer', () => {
   const mockState = {
@@ -31,12 +31,9 @@ describe('providersReducer', () => {
   };
 
   it('should set up state with a default key if no specific key is provided', () => {
-    const action = {
-      type: RECEIVE_COMPONENTS,
-      payload: {
-        providers: [providerData],
-      },
-    };
+    const action = actionReceiveComponents({
+      providers: [providerData],
+    });
 
     const result = providersReducer(mockState, action);
 
@@ -60,12 +57,9 @@ describe('providersReducer', () => {
   });
 
   it('should use a specific key if provided', () => {
-    const action = {
-      type: RECEIVE_COMPONENTS,
-      payload: {
-        providers: [providerDataWithKey],
-      },
-    };
+    const action = actionReceiveComponents({
+      providers: [providerDataWithKey],
+    });
 
     const result = providersReducer(mockState, action);
     const resultState = result.components
@@ -84,18 +78,12 @@ describe('providersReducer', () => {
         lorem: 'this is now updated',
       },
     };
-    const actionOne = {
-      type: RECEIVE_COMPONENTS,
-      payload: {
-        providers: [providerDataWithKey],
-      },
-    };
-    const actionTwo = {
-      type: RECEIVE_COMPONENTS,
-      payload: {
-        providers: [providerDataTwo],
-      },
-    };
+    const actionOne = actionReceiveComponents({
+      providers: [providerDataWithKey],
+    });
+    const actionTwo = actionReceiveComponents({
+      providers: [providerDataTwo],
+    });
 
     const firstResult = providersReducer(mockState, actionOne);
     const finalResult = providersReducer(firstResult, actionTwo);
@@ -126,18 +114,15 @@ describe('providersReducer', () => {
   });
 
   it('should use route key if providerKey is set to string`routeKey`', () => {
-    const action = {
-      type: RECEIVE_COMPONENTS,
-      payload: {
-        providers: [{
-          ...providerDataWithKey,
-          config: {
-            ...providerDataWithKey.config,
-            providerKey: 'route',
-          },
-        }],
-      },
-    };
+    const action = actionReceiveComponents({
+      providers: [{
+        ...providerDataWithKey,
+        config: {
+          ...providerDataWithKey.config,
+          providerKey: 'route',
+        },
+      }],
+    });
 
     const result = providersReducer(mockState, action);
     const resultState = result.components
