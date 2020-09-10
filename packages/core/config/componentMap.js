@@ -32,7 +32,7 @@ export default function getComponent(
   }
 
   return FallbackComponent;
-};
+}
 
 if (module.hot) {
   module.hot.accept();
