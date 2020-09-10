@@ -6,6 +6,11 @@ describe('providersReducer', () => {
     components: {
       providers: {},
     },
+    route: {
+      pathname: '/test-route',
+      cookie: {},
+      search: '?test-query=value',
+    },
   };
 
   const providerData = {
@@ -35,24 +40,20 @@ describe('providersReducer', () => {
 
     const result = providersReducer(mockState, action);
 
-    expect(result).toStrictEqual({
-      components: {
-        providers: {
-          'irving/test-provider': {
-            current: {
-              key: 'default',
-              config: {
-                lorem: 'ipsum',
-                dolor: 'sit',
-                amet: 'adipscing',
-              },
-            },
-            default: {
-              lorem: 'ipsum',
-              dolor: 'sit',
-              amet: 'adipscing',
-            },
+    expect(result.components.providers).toStrictEqual({
+      'irving/test-provider': {
+        current: {
+          key: 'default',
+          config: {
+            lorem: 'ipsum',
+            dolor: 'sit',
+            amet: 'adipscing',
           },
+        },
+        default: {
+          lorem: 'ipsum',
+          dolor: 'sit',
+          amet: 'adipscing',
         },
       },
     });
@@ -122,5 +123,26 @@ describe('providersReducer', () => {
       dolor: 'sit',
       amet: 'adipscing',
     });
+  });
+
+  it('should use route key if providerKey is set to string`routeKey`', () => {
+    const action = {
+      type: RECEIVE_COMPONENTS,
+      payload: {
+        providers: [{
+          ...providerDataWithKey,
+          config: {
+            ...providerDataWithKey.config,
+            providerKey: 'route',
+          },
+        }],
+      },
+    };
+
+    const result = providersReducer(mockState, action);
+    const resultState = result.components
+      .providers['irving/test-provider'];
+
+    expect(resultState.current.key).toBe('/test-route?test-query=value');
   });
 });

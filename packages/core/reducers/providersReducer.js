@@ -1,6 +1,7 @@
 import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
 import { RECEIVE_COMPONENTS } from 'actions/types';
+import getRouteKey from 'selectors/getRouteKey';
 
 const defaultProviderState = {
   current: {
@@ -58,14 +59,25 @@ export default function providersReducer(state, action) {
   const currentProviders = get('components.providers', state);
   const { providers } = payload;
   const newProviders = providers.reduce((acc, provider) => {
-    const { name } = provider;
+    const newProvider = provider;
+    const {
+      name,
+      config: { providerKey },
+    } = newProvider;
+
+    // If user specifies 'route' as they provider data key,
+    // key new data for every route change.
+    if ('route' === providerKey) {
+      newProvider.config.providerKey = getRouteKey(state);
+    }
+
     const currentState = acc[name];
 
     return {
       ...acc,
       [name]: providerReducer(
         currentState,
-        provider
+        newProvider
       ),
     };
   }, currentProviders);
