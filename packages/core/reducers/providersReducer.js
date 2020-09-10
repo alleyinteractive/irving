@@ -11,7 +11,14 @@ const defaultProviderState = {
 
 const defaultProviderKey = 'default';
 
-const providerReducer = (state = defaultProviderState, provider) => {
+/**
+ * Handle redux state changes for a single provider.
+ *
+ * @param {object} state Redux state for a single provider.
+ * @param {object} provider New provider payload.
+ * @returns {object} The updated Redux state
+ */
+export const providerReducer = (state = defaultProviderState, provider) => {
   const { config } = provider;
   const {
     providerKey = defaultProviderKey,
@@ -35,7 +42,7 @@ const providerReducer = (state = defaultProviderState, provider) => {
 };
 
 /**
- * Handle component related Redux actions.
+ * Handle provider-related Redux actions.
  *
  * @param {object} state Redux state
  * @param {{type payload}} action Redux action
