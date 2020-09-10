@@ -16,12 +16,11 @@ const withPico = (ChildComponent) => (props) => {
     [dispatch]
   );
 
-  const { ssoTiers: tiers } = props;
+  const { ssoTiers: tiers } = props; /* eslint-disable-line */
 
   // Define Coral event handlers.
   const handlers = (events) => {
     events.on('loginPrompt', () => {
-      console.log('bump');
       const signalNode = document.getElementById('PicoSignal-container');
 
       if (signalNode) {
@@ -93,16 +92,12 @@ const withPico = (ChildComponent) => (props) => {
     );
   }
 
-  if (false === canComment) {
-    return (
-      <ChildComponent
-        {...props}
-        events={handlers}
-      />
-    );
-  }
-
-  return null;
+  return (
+    <ChildComponent
+      {...props}
+      events={handlers}
+    />
+  );
 };
 
 export default withPico(CoralEmbed);
