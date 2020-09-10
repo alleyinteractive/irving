@@ -65,6 +65,7 @@ export default function mountPicoNodes() {
       { name: 'style', value: 'display: none' },
     ];
     createNode(documentBody, 'div', signalAttributes);
+
     // Create the rule node.
     const ruleAttributes = [
       { name: 'type', value: 'button' },
@@ -73,6 +74,7 @@ export default function mountPicoNodes() {
       { name: 'style', value: 'display: none' },
     ];
     createNode(documentBody, 'input', ruleAttributes);
+
     // Create the plan node.
     const planAttributes = [
       { name: 'type', value: 'button' },
@@ -81,6 +83,15 @@ export default function mountPicoNodes() {
       { name: 'style', value: 'display: none' },
     ];
     createNode(documentBody, 'input', planAttributes);
+
+    // Create the plan node.
+    const paymentManagementAttributes = [
+      { name: 'type', value: 'button' },
+      { name: 'id', value: 'PicoManagePayment-button' },
+      { name: 'class', value: 'PicoRule PicoManagePayment' },
+      { name: 'style', value: 'display: none' },
+    ];
+    createNode(documentBody, 'input', paymentManagementAttributes);
 
     // Create the signup form node hierarchy.
     mountSignupFormNodes(documentBody);
