@@ -1,7 +1,12 @@
 const React = require('react');
 
 module.exports = {
-  foo: () => (<div>foo</div>),
+  foo: ({ children }) => (
+    <div>
+      foo
+      <span>{children}</span>
+    </div>
+  ),
   baz: () => (<div>baz</div>),
   buzz: () => (<div>buzz</div>),
   bar: (props) => {
