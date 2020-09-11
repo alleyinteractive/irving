@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v4.1.0-alpha.2...v4.1.0-alpha.3) (2020-09-10)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.1.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v4.1.0-alpha.1...v4.1.0-alpha.2) (2020-09-10)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.1.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v4.1.0-alpha.0...v4.1.0-alpha.1) (2020-09-10)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.1.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v4.0.0...v4.1.0-alpha.0) (2020-09-10)
+
+
+### Features
+
+* **socialsharing:** update Social Sharing component to allow more flexability ([6b95acf](https://github.com/alleyinteractive/irving/commit/6b95acfa4002266d9260cad10dcc2ff8e2a826fe))
+
+
+
+
+
+# [4.0.0](https://github.com/alleyinteractive/irving/compare/v4.0.0-rc.1...v4.0.0) (2020-09-10)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.0.0-rc.1](https://github.com/alleyinteractive/irving/compare/v4.0.0-rc.0...v4.0.0-rc.1) (2020-09-09)
+
+
+### Bug Fixes
+
+* **relativeurl:** minor tweaks ([21b36a4](https://github.com/alleyinteractive/irving/commit/21b36a4697c1ac95948ceaa72dfa2c777be7f49c))
+* **useclientnavigationonclick.js:** fix breaking SPA function on regular links ([19fe1ca](https://github.com/alleyinteractive/irving/commit/19fe1ca3140d1a0a509a79343a401f448bffe9c6))
+
+
+
+
+
 # [4.0.0-rc.0](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.8...v4.0.0-rc.0) (2020-09-09)
 
 

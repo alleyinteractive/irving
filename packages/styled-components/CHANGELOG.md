@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.0.0...v4.1.0-alpha.0) (2020-09-10)
+
+
+### Features
+
+* **socialsharing:** update Social Sharing component to allow more flexability ([6b95acf](https://github.com/alleyinteractive/irving/packages/styled-components/commit/6b95acfa4002266d9260cad10dcc2ff8e2a826fe))
+
+
+
+
+
+# [4.0.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.0.0-rc.1...v4.0.0) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.0.0-rc.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.0.0-rc.0...v4.0.0-rc.1) (2020-09-09)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
 # [4.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.0.0-beta.8...v4.0.0-rc.0) (2020-09-09)
 
 **Note:** Version bump only for package @irvingjs/styled-components

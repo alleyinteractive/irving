@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/styled",
-	"version": "4.0.0-rc.0",
+	"version": "4.1.0-alpha.0",
 	"description": "Integration for React components with attached styles for Irving",
 	"files": [
 		"server/**/*",
@@ -39,8 +39,8 @@
 		"stylelint-processor-styled-components": "^1.10.0"
 	},
 	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^4.0.0-beta.2",
-		"@irvingjs/core": "^4.0.0-rc.0",
+		"@irvingjs/babel-preset-irving": "^4.1.0-alpha.0",
+		"@irvingjs/core": "^4.1.0-alpha.0",
 		"@testing-library/jest-dom": "^5.11.4",
 		"@testing-library/react": "^10.4.9",
 		"@testing-library/react-hooks": "^3.4.1",

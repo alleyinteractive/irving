@@ -21,7 +21,7 @@ const SocialSharing = (props) => {
     description,
     imageUrl,
     platforms,
-    platformShareLinks,
+    platformData,
     theme,
     title,
     url,
@@ -89,43 +89,47 @@ const SocialSharing = (props) => {
     })
   }`;
 
-  const socialUrlMap = {
-    email: getEmailUrl,
-    facebook: getFacebookUrl,
-    linkedin: getLinkedInUrl,
-    pinterest: getPinterestUrl,
-    reddit: getRedditUrl,
-    twitter: getTwitterUrl,
-    whatsapp: getWhatsAppUrl,
-  };
-
-  const getShareUrl = (platform) => {
-    if (platformShareLinks[platform]) {
-      return platformShareLinks[platform];
-    }
-
-    if (socialUrlMap[platform]) {
-      return socialUrlMap[platform];
-    }
-
-    return '#';
-  };
-
   if (0 === platforms.length) {
     return null;
   }
 
-  const getShareTarget = (platform) => {
-    if ('email' === platform) {
-      return '_self';
-    }
-    return '_blank';
+  const defaultPlatformData = {
+    email: {
+      shareUrl: getEmailUrl,
+      target: '_self',
+    },
+    facebook: {
+      shareUrl: getFacebookUrl,
+      target: '_blank',
+    },
+    linkedin: {
+      shareUrl: getLinkedInUrl,
+      target: '_blank',
+    },
+    pinterest: {
+      shareUrl: getPinterestUrl,
+      target: '_blank',
+    },
+    reddit: {
+      shareUrl: getRedditUrl,
+      target: '_blank',
+    },
+    twitter: {
+      shareUrl: getTwitterUrl,
+      target: '_blank',
+    },
+    whatsapp: {
+      shareUrl: getWhatsAppUrl,
+      target: '_blank',
+    },
   };
 
-  const items = platforms.map((platform) => ({
+  // Combine the default with any custom data.
+  const mergedData = { ...defaultPlatformData, ...platformData };
+
+  const allitems = Object.entries(mergedData).map(([platform, data]) => ({
+    ...data,
     platform,
-    shareUrl: getShareUrl(platform),
-    target: getShareTarget(platform),
     icon: toReactElement({
       name: `irving/${platform}-icon`,
       config: {
@@ -137,6 +141,9 @@ const SocialSharing = (props) => {
       children: [],
     }),
   }));
+
+  // Filter to just the enabled platforms.
+  const items = allitems.filter((el) => (platforms.includes(el.platform)));
 
   return (
     <SocialSharingWrapper {...standardProps}>
@@ -172,7 +179,6 @@ SocialSharing.defaultProps = {
   description: '',
   imageUrl: '',
   platforms: ['email', 'facebook', 'twitter'],
-  platformShareLinks: {},
   style: {},
   title: '',
   url: '',
@@ -193,9 +199,9 @@ SocialSharing.propTypes = {
    */
   platforms: PropTypes.arrayOf(PropTypes.string),
   /**
-   * An object containing social platforms as keys and share links as values.
+   * An object containing social platforms as keys and platform configs as values.
    */
-  platformShareLinks: PropTypes.oneOfType([
+  platformData: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]),

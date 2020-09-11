@@ -10,12 +10,10 @@ import debounce from 'lodash/debounce';
 import useMutationObserver from '../../hooks/useMutationObserver';
 import {
   actionVerifyPicoUser,
-  actionRequireUpgrade,
   actionReceivePicoPlanUpgrade,
 } from '../../actions/picoActions';
 import {
   showUpgradeModalSelector,
-  upgradeModalDismissedSelector,
 } from '../../selectors/coralSelector';
 
 const PicoObserver = ({
@@ -94,11 +92,6 @@ const PicoObserver = ({
   // Define the global dispatch function.
   const dispatch = useDispatch();
 
-  // Define a function to summon an upgrade prompt for Coral SSO.
-  const showUpgradeModal = useCallback(
-    () => dispatch(actionRequireUpgrade()),
-    [dispatch]
-  );
   // Define a function to dispatch Pico user verification requests.
   const sendVerificationRequest = useCallback(
     (user) => dispatch(actionVerifyPicoUser(user)),
@@ -118,8 +111,7 @@ const PicoObserver = ({
   );
 
   // Grab the status of the upgrade modal's visibility from the Redux store.
-  const upgradeModalVisible = useSelector(showUpgradeModalSelector);
-  const upgradeModalDismissed = useSelector(upgradeModalDismissedSelector);
+  const showUpgradeModal = useSelector(showUpgradeModalSelector);
 
   useEffect(() => {
     // If the user has been set to anonymous, dispatch the logout request.
@@ -131,20 +123,6 @@ const PicoObserver = ({
     }
 
     if (! accessToken) {
-      // If the user is registered or paying at a level where they cannot comment
-      // and the upgrade modal has not been show, update the store to trigger the modal.
-      if (
-        (
-          isRegistered ||
-          isPaying
-        ) &&
-        ! canComment &&
-        ! upgradeModalVisible &&
-        ! upgradeModalDismissed
-      ) {
-        showUpgradeModal();
-      }
-
       // If the user is paying and has commenting privileges, send a request to
       // WordPress to verify the user with Pico and return their JWT.
       if (isPaying && canComment) {
@@ -174,7 +152,6 @@ const PicoObserver = ({
     isRegistered,
     canComment,
     showUpgradeModal,
-    upgradeModalDismissed,
   ]);
 
   return (
