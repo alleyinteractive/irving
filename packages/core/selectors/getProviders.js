@@ -2,7 +2,7 @@ import get from 'lodash/fp/get';
 import { createSelector } from 'reselect';
 
 /**
- * Select the api root component names.
+ * Select component names for all root providers.
  *
  * @param {object} state Redux state
  * @return {function} Redux selector

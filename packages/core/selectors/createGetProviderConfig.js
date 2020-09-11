@@ -2,8 +2,7 @@ import get from 'lodash/fp/get';
 import { createSelector } from 'reselect';
 
 /**
- * Create a selector that will return the root provider component by the component's
- * name.
+ * Create a selector that will return the currently set config for a root provider.
  *
  * @returns {function} - Redux selector
  */
