@@ -1,1 +1,46 @@
 <Meta title="WordPress Components|Head" />
+
+# Head
+HTML <head\> management.
+
+Wrapper for [React Helmet](https://github.com/nfl/react-helmet). Accepts any component that's valid in a <head/> context.
+
+Renders as the `Head` styled component [(docs)](?path=/docs/styled-components-head--basic-eample).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/head).
+
+## Example
+```json
+{
+	"name": "irving/head",
+	"children": [
+		{
+			"name": "title",
+			"children": [
+				"My Cool Site"
+			]
+		},
+		{
+			"name": "link",
+			"config": {
+				"rel": "icon",
+				"href": "favicon.png",
+				"sizes": "32x32",
+			}
+		},
+		{
+			"name": "meta",
+			"config": {
+				"name": "description",
+				"content": "Site description for SEO.",
+			}
+		},
+		{
+			"name": "script",
+			"config": {
+				"src": "/bundle.js",
+			}
+		}
+	]
+}
+```

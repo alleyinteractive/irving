@@ -1,1 +1,35 @@
 <Meta title="WordPress Components|Term Provider" />
+
+# Term Provider
+Term context provider.
+
+Acts as a context provider for `term_id` to faciliate the use of other term components.
+
+Renders as the `Fragment` styled component [(docs)](?path=/docs/styled-components-fragment--basic-eample).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/term-provider).
+
+## Config
+```json
+"config": {
+  "term_id": {
+    "default": 0,
+    "type": "integer"
+  }
+}
+```
+
+## Example
+```json
+{
+	"name": "irving/term-provider",
+	"config": {
+		"term_id": 1
+	},
+	"children": [
+		{
+			"name": "irving/term-name"
+		}
+	]
+}
+```

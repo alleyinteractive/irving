@@ -1,1 +1,36 @@
 <Meta title="WordPress Components|Video" />
+
+# Video
+Render an HTML video embed responsively.
+
+This component takes advantage of the oembed functionality in `irving/text` to quickly render a video using just the url. Supports an aspect ratio.
+
+Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-text--plain-text-example).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/video).
+
+## Config
+See `irving/text` for all config properties.
+```json
+{
+	"aspect_ratio": {
+	  "default": "16:9",
+	  "type": "string"
+	},
+	"video_url": {
+	  "default": "",
+	  "type": "string"
+	}
+}
+```
+
+## Example
+```json
+{
+	"name": "irving/video",
+	"config": {
+		"aspect_ratio": "16:9",
+		"video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+	}
+}
+```
