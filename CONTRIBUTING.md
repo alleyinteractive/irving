@@ -18,7 +18,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
   * Clean up `node_modules` within each package
   * Run `lerna bootstrap` to install and hoist dependencies for all packages, then link interdependent Irving packages together.
   * **NOTE:** If you run into an error attempting to run this script, try running `develop:cleanup` first then attempt to run `develop:prepare` again.
-4. `npm install && npx irving link-all` - In the project where you'll be testing out your changes, run these commants to symlink all installed Irving packages.
+4. `npm install && npx irving link-all` - In the project where you'll be testing out your changes, run these commands to symlink all installed Irving packages.
 
 ### If you are a community contributor:
 1. If for some reason you need to reset links, run `npm run develop:setup` in the Irving repo root and `npx irving link-all` in your project.
