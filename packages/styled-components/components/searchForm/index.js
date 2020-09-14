@@ -27,6 +27,7 @@ const SearchForm = (props) => {
     SearchFormWrapper,
     SearchFormTerm,
     SearchFormSubmitButton,
+    SearchLabel,
   } = theme;
 
   const defaultValues = {};
@@ -51,6 +52,7 @@ const SearchForm = (props) => {
       action={baseUrl}
       onSubmit={handleSubmit(onSubmit)}
     >
+      <SearchLabel>Search input</SearchLabel>
       <SearchFormTerm
         name={searchTermQueryArg}
         placeholder="Search"
