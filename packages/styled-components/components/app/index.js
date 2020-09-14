@@ -11,6 +11,7 @@ import * as defaultStyles from './themes/default';
 const App = (props) => {
   const {
     IrvingApp,
+    theme,
   } = props;
 
   const {
@@ -21,10 +22,16 @@ const App = (props) => {
     <>
       <Helmet />
       <CssReset />
-      <SkipLink href="#content">{'Skip to contents', 'irving-styled-components'}</SkipLink>
+      <SkipLink href="#content">
+        {__('Skip to contents', 'irving-styled-components')}
+      </SkipLink>
       <IrvingApp />
     </>
   );
+};
+
+App.defaultProps = {
+  theme: defaultStyles,
 };
 
 App.propTypes = {
@@ -32,6 +39,7 @@ App.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]).isRequired,
+  theme: PropTypes.object,
 };
 
 const themeMap = {

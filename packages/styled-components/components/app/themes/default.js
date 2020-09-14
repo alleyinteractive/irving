@@ -5,17 +5,22 @@ import { screenreaderOnly } from '@irvingjs/styled/utils';
 export const SkipLink = styled.a`
   ${screenreaderOnly}
 
-  &:focus {
-    display: block;
-    left: 6px;
-    top: 7px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    line-height: normal;
-    padding: 15px 23px 14px;
-    z-index: 100000;
-    right: auto;
+  &:focus,
+  &:active {
+    align-items: center;
+    background-color: #FFF;
+    border: 2px solid #000;
+    clip: auto;
+    clip-path: none;
+    color: #000;
+    display: flex;
+    font-size: 18px;
+    height: 40px;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    z-index: 1000;
   }
 `;
 /* eslint-enable */
