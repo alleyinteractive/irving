@@ -52,8 +52,13 @@ const SearchForm = (props) => {
       action={baseUrl}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <SearchLabel>Search input</SearchLabel>
+      <SearchLabel
+        id="search-label"
+      >
+        Search input
+      </SearchLabel>
       <SearchFormTerm
+        aria-labelledby="search-label"
         name={searchTermQueryArg}
         placeholder="Search"
         ref={register}
