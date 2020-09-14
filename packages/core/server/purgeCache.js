@@ -105,7 +105,7 @@ const executeStream = async (pipeline, res, key = '') => {
  * @returns {*}
  */
 const purgeCache = async (req, res) => {
-  if (! cacheService.client) {
+  if (! cacheService.client || ! cacheService.client.pipeline) {
     return res.send('Redis client is not configured.');
   }
 
@@ -136,8 +136,6 @@ const purgeCache = async (req, res) => {
     res.write(completeMessage);
     return res.end();
   }
-
-  return res.end();
 };
 
 module.exports = purgeCache;

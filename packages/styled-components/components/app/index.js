@@ -21,7 +21,10 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  IrvingApp: PropTypes.func.isRequired,
+  IrvingApp: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+  ]).isRequired,
 };
 
 export default App;

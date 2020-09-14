@@ -1,0 +1,461 @@
+<Meta title="Architecture|Configuration" />
+
+# Configuration Options
+Irving is built to be extended.
+
+## Environment Variables
+* `ROOT_URL` **required** - The root url the app is served from. This value is required to prevent webpack assets from 404ing when the app isn't served from the root of a site.
+* `API_ROOT_URL` **required** - URL at which your components endpoint can be accessed.
+* `APP_ROOT` - Absolute path to the directory in which this app will be executed.
+This path will be included in the build and be used to resolve the location of your configuration files and express.js view templates. By default, this variable will be set to `process.cwd()`. This variable is only required if you are building your app in a separate location from where it will be run.
+* `BUILD_CONTEXT` - Absolute path used to indicate the context in which the build is occurring.
+This will be provided as-is to webpack's `context` configuration property. By default, this variable will be set to `process.cwd()`.
+* `API_ORIGIN` - Protocol and host at which your API is located. Usually the same as `API_ROOT_URL` but without a path. This is used only in a limited number of places (like passthrough proxies). This is not required if you are not using that functionality OR if your API origin and root URL are the same.
+* `PORT` - http port the server will serve from. Defaults to 3001.
+* `HOSTNAME` - FQDN of the server host
+* `NODE_TLS_REJECT_UNAUTHORIZED` - Only disable this when attempting to execute
+http requests to development APIs with self signed certificates. Never disable
+this in production.
+* `REDIS_URL` - url of redis instance using `redis://` protocol.
+* `CACHE_DURATION` - time in seconds redis entries will persist before being
+automatically deleted, defaults to 5 minutes
+* `BASIC_AUTH` - Put your entire site behind basic auth when running in production mode.
+* `BASIC_AUTH_USERNAME` - Basic auth username. This will be used for both sitewide basic auth and cache endpoints.
+* `BASIC_AUTH_PASSWORD` - Basic auth password. This will be used for both sitewide basic auth and cache endpoints.
+* `DEBUG` - https://github.com/visionmedia/debug#environment-variables
+* `NEW_RELIC_APP_NAME` - The name of this application, for reporting to New Relic's servers. This value can be also be a comma-delimited list of names.
+* `NEW_RELIC_LICENSE_KEY` - Your New Relic license key.
+* `PROXY_URL` - URL to proxy all server requests through.
+* `HTTPS_KEY_PATH` - Path to tls key relative to current home directory.
+* `HTTPS_CERT_PATH` - Path to tls cert relative to current home directory.
+* `FETCH_TIMEOUT` - Timeout after which primary call to `fetch` to retrieve component data will be aborted.
+
+### Extra Query Params
+* Any environment variable that is prefixed with `API_QUERY_PARAM_`, for example `API_QUERY_PARAM_MARKET=india`, will be mapped to a query param with the prefix stripped out and the parameter name transformed to lowercase. This will allow you to add extra query parameters to all components requests.
+* Any environmental variable that is prefixed with `CONFIG_` will be included in `process.env` on the server side or `__window__.ENV` on the client side. These variables should be used as feature flags and reserved for opting in or out of specific functionality that may differ between environments.
+
+### Package Query Params
+In addition, Irving npm packages may include their own environmental variables, required or otherwise. These varirables are documented in the individual package readmes.
+
+## Configuring Irving's core functionality
+Irving core allows for customization of its functionality through purpose-specific files and/or an optional `irving.config.js` configuration file.
+
+Each configuration will use one of the following types or patterns:
+* **object**: configuration expects either an object or a function returning an object. If you provide an object, this object will be deeply merged with Irving core's default configuration. If you provide a function, Irving core's default configuration will be passed to this function as its first parameter and expect you to return a modified version of that object. This configuration will be used as-is, so all mutations or merging operations are up to you to perform.
+* **array**: configuration expects either an array or a function returning an array. If you provide an array, this array will be concatenated to Irving core's default configuration. If you provide a function, Irving core's default configuration will be passed to this function as its first parameter and expect you to return a modified version of that array. This configuration will be used as-is, so all mutations or merging operations are up to you to perform.
+* **string**: configuration expects a string, and any string you provide will replace Irving core's value.
+* **function**: configuration expects a function, and any function you provide will either replace Irving core's version of the same function or be run in sequence, passing the return value from the previous function to each subsequent function. Configuration descriptions below will note which of these cases apply.
+
+Irving will expect you to use one of two methods for configuration depending on what you'd like to configure:
+* **filesystem**: used primarily for server-side configurations outside the webpack build. Place the configuration file at the specified **path** and Irving will find your configuration.
+* **config**: configure this field within an `irving.config.js` file at the root of your project. This file should export an object.
+
+### name
+Name of your app or plugin. This is primarily used for identification purposes, and is not required.
+
+Example `irving.config.js`
+```js
+const config = {
+  name: 'irving-app',
+};
+
+export default config;
+```
+
+### Babel Config
+* **where to configure**: `config/babel.config.js`
+* **type**: object
+* **purpose**: Modify Irving's core babel configuration object.
+```javascript
+module.exports = (config) => {
+  const { plugins } = config;
+
+  config.plugins = plugins.concat(
+    require.resolve('babel-plugin-styled-components')
+  );
+
+  return config;
+};
+
+```
+
+## Cache service
+* **where to configure**: `server/cacheService.js`
+* **type**: function (replaces core function)
+* **purpose**: Replace functionality for Irving core's caching service. Irving uses [Redis](Caching.md) via the [ioredix](https://github.com/luin/ioredis) package, but using this configuration field you may replace it with an entirely separate cache.
+
+## Cache client
+* **where to configure**: `server/cacheService.js`
+* **type**: function (replaces core function)
+* **purpose**: Customize creation of cache client. Currently we only support Redis for this config field. If you'd like to replace the client with something other than Redis you will need to use the `cacheService` config. This config field can only be modified once and expects a function returning your cache client (see cache service docs).
+
+If you are replacing the cache client but using the core cache service, the cache client should return an object containing a `get`, `set`, and `del` key/method to function properly.
+
+## Customize Irving's express app
+* **where to configure**: `server/customizeServer.js`
+* **type**: function (run in sequence with all configured functions)
+* **purpose**: Customize Irving's express server. Expects a function that will receive the express `app` for you to modify. Example:
+```javascript
+module.exports = function customizeServer(app) {
+  app.get('/my-fun-route', routeHandler);
+}
+```
+
+In order to properly integrate with Irving core, the cache service should return an object that looks like the following:
+
+```javascript
+const service = {
+  client: null, // cache client object
+  get: () => null, // get a cache key
+  set: () => {}, // set a cache value
+  del: () => null, // delete a key
+  insert: () => null, // probably an alias for set
+  remove: () => null, // probably an alias for del
+  cached: () => {}, // set a value in the cache. Should be able to handle a promise as its value that will return the actual value to store in the cache
+  close: () => {}, // close cache connection.
+}
+```
+
+## Customize Irving's development server
+* **where to configure**: `server/customizeDevServer.js`
+* **type**: function (run in sequence with all configured functions)
+* **purpose**: Customize Irving's express server for development only (when you run the `irving dev` task). Expects a function that will receive the express `app` for you to modify. Example:
+```javascript
+module.exports = function customizeDevServer(app) {
+  app.get('/route/only/exists/in/development', routeHandler);
+}
+```
+
+## Customize Irving's production server
+* **where to configure**: `server/customizeProdServer.js`
+* **type**: function (run in sequence with all configured functions)
+* **purpose**: Customize Irving's express server for production only (when you run the `irving start` task). Expects a function that will receive the express `app` for you to modify. Example:
+```javascript
+const enforce = require('express-sslify');
+const compression = require('compression')
+
+module.exports = (app) => {
+  app.use(compression());
+  // Enforce SSL.
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+};
+
+```
+
+## Customize domain redirects
+* **where to configure**: `server/customizeRedirect.js`
+* **type**: object
+* **purpose**: Add custom redirect using the [Express Naked Redirect](https://www.npmjs.com/package/express-naked-redirect) package. You can supply the same config keys that the package accepts and Irving will use it to set up the redirect. Example:
+```javascript
+module.exports = {
+    subDomain: 'cool',
+    protocol: 'https',
+}
+```
+The above config would set up the site to redirect from `http://interesting.site` into `https://cool.interesting.site`. It is important that the redirect is set up before activating this or you can run into issues.
+
+## Client-side environmental variable allowlist
+* **where to configure**: `config/envAllowlist.js`
+* **type**: array
+* **purpose**: Customize the allowlist of environmental variables that are passed to Irving's client-side javascript bundle. These env vars will be accessible via `window.__ENV__` or, if you need access to the ENV object isomorphically, use the universal env utility via `import getEnv from '@irvingjs/core/utils/universalEnv';`
+```javascript
+const getEnvAllowlist = () => ([
+  'MY_NEW_ENV_VAR',
+]);
+
+export default getEnvAllowlist;
+```
+
+## Logging Service
+* **where to configure**: `services/logService.js`
+* **type**: function (replaces core service)
+* **purpose**: Customize service used for logging messages and debugging code. Default service uses the [debug package](https://www.npmjs.com/package/debug).
+
+The log service must be able to receive a namespace as a parameter (for filtering debug messages down to specific features/functionality) and return an object containing the following keys/methods:
+```javascript
+const service = {
+  emerg: () => {},
+  alert: () => {},
+  crit: () => {},
+  error: () => {},
+  warning: () => {},
+  notice: () => {},
+  info: () => {},
+  debug: () => {},
+};
+```
+
+## Monitoring Service
+* **where to configure**: `services/monitorService.js`
+* **type**: function (replaces core service)
+* **purpose**: Customize service used for sending data to a monitoring tool. Default service uses the [newrelic](https://www.npmjs.com/package/newrelic) and can be configured using environmental variables.
+
+The monitor service must return an object containing the following keys/methods:
+```javascript
+const service = {
+  start: () => {},
+  logError: () => {},
+  logTransaction: () => {},
+}
+```
+
+## PostCSS configuration
+* **where to configure**: `config/postcss.config.js`
+* **type**: object
+* **purpose**: Customize the `postcss` configuration. Must have the `@irvingjs/postcss` package installed in order for this to function. Example:
+```javascript
+const colorFunction = require('postcss-color-function');
+
+module.exports = {
+  plugins: [
+    colorFunction(),
+  ]
+};
+```
+
+## Passthrough proxies
+* **where to configure**: `config/proxyPassthrough.js`
+* **type**: array
+* **purpose**: Customize the list of passthrough proxies. Values in the `proxyPassthrough` config array can be plain strings or strings containing glob patterns. See examples in [`http-proxy-middleware`](https://github.com/chimurai/http-proxy-middleware#example), the package underlying this functionality. Any URL that matches one of these proxy patterns will be handled by your CMS backend. This can be good for functionality like `robots.txt` or RSS feeds. Example:
+```javascript
+module.exports = [
+  '/robots.txt',
+  '*.xml',
+  '/wp-json/',
+  '*.rss',
+  '*/amp/',
+  '*/feed/',
+];
+```
+
+## Webpack Configuration
+* **where to configure**: `config/webpack.config.js`
+* **type**: object
+* **purpose**: Customize Irving's internal webpack config for both server- and client-side builds. Example:
+```javascript
+// in config/getWebpackConfig.js
+module.exports = (configs) => (
+  // Map through both server and client configs.
+  configs.map((config) => {
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: [
+          'css-loader',
+          'sass-loader',
+      ],
+    },);
+
+    return config;
+  })
+);
+```
+
+## Server-side Webpack Configuration
+* **where to configure**: `config/webpack.config.server.js`
+* **type**: object
+* **purpose**: Customize Irving's webpack configuration for only the server-side build.
+
+## Client-side Webpack Configuration
+* **where to configure**: `config/webpack.config.client.js`
+* **type**: object
+* **purpose**: Customize Irving's webpack configuration for only the client-side build.
+
+## Functionality for starting Irving's express server
+* **where to configure**: `config/startServer.js`
+* **type**: function (replaces core function)
+* **purpose**: Customize functionality for starting Irving's express server. Will receive the express `app` object as a parameter.
+  ## Notes**:
+    * If your `startServer` function returns a falsey value, Irving will fall back to its default logic for starting the express server.
+    * This may seem like a good place to modify or add functionality to the express app (like additional routing). However, it may not work as expected in this function. Use the `customizeServer` property to globally modify the express app or the environment-specific `customizeDevServer` and/or `customizeProdServer`.
+
+Example from `@irvingjs/vip-go` package:
+```javascript
+const { server } = require('@automattic/vip-go');
+
+module.exports = function startServer(app) {
+  let vipServer;
+
+  if ('development' !== NODE_ENV) {
+    vipServer = server(app, { PORT });
+    vipServer.listen();
+  }
+
+  return vipServer;
+};
+```
+
+## Stylelint configuration
+* **where to configure**: `config/stylelint.config.js`
+* **type**: object
+* **purpose**: Customize Irving's core configuration for stylelint `css` linting. This will only come into effect if either the `@irvingjs/postcss` or `@irvingjs/styled` package is installed.
+
+## Irving Packages
+* **where to configure**: `irving.config.js` in the `packages` key
+* **type**: array
+* **purpose**: Array of configuration presets pulled from irving packages. Package configurations can contain the same configuration keys listed here (with the exception of the `packages` key itself). Configurations external from `irving.config.js` (filesystem configurations) will be found automatically inside packages just like they are for your project.
+
+Example:
+```javascript
+// irving.config.js
+import styledComponentsConfig from '@irvingjs/styled';
+
+const irvingConfig = {
+  name: 'irving-test',
+  packages: [
+    styledComponentsConfig,
+  ],
+};
+
+export default irvingConfig;
+```
+
+## Force trailing slashes on URLs/links with the same hostname
+* **where to configure**: `irving.config.js` in the `forceTrailingSlashes` key
+* **type**: boolean
+* **purpose**: Determines whether or not to add a trailing slash to any internal (same host) URL that doesn't currently have one.
+
+## Server-side app template variables
+* **where to configure**: `irving.config.js` in the `getAppTemplateVars` key
+* **type**: object
+* **purpose**: Customize template variables that are passed to Irving's server-rendered `app.ejs` file.
+* **default values**: This config field contains some important default values that you may need to know how to handle.
+  * `Wrapper` - App wrapper component. You may wrap this component in any other components or higher-order components (like a context provider).
+  * `head` - An object or function returning an object containing a variety of keys that will be rendered to the server-side template. These keys are treated differently than normal Irving config objects and can be provided with one of three values: an array, a string, or a function returning an array or string. All will eventually be concatenated into a single string and rendered as-is within the server-side HTML, meaning you should provide valid HTML to all of these fields.
+    - `start` - rendered immediately after the opening head tag.
+    - `title` - rendered immediately after the meta charset and meta viewport tags. Intended for a `<title>` tag, but could be used for markup valid in the document `<head>`.
+    - `meta` - rendered immediately after the title field. Intended for additional `<meta>` tags, but could be used for markup valid in the document `<head>`.
+    - `link` - rendered immediately after meta field. Intended for `<link>` tags, but could be used for markup valid in the document `<head>`.
+    - `base` - rendered immediately after the link field. Intended for a `<base>` tag, but could be used for markup valid in the document `<head>`.
+    - `style` - rendered immediately after base field. Intended for `<style>` tags, but could be used for markup valid in the document `<head>`.
+    - `script` - rendered immediately after the `window.__ENV__` variable is declared. Intended for additional `<script>` tags.
+    - `end` - rendered just before the closing `</head>` tag.
+    - `htmlAttributes` - Additional attributes for the `<html>` tag.
+    - `bodyAttributes` - Additional attributes for the `<body>` tag.
+    - `noscript` - Rendered just after the opening `<body>` tag. Intended for `<noscript>` tags, but could be used for valid HTML.
+
+In addition, the `head` field will be merged unlike nested keys in other Irving config objects, meaning you do not need to ensure `head` configurations prior to your own are handled in any particular way.
+
+Example from the `@irvingjs/styled` package:
+```javascript
+import React from 'react';
+import { ServerStyleSheet } from 'styled-components';
+
+export default function getAppTemplateVars(templateVars) {
+  const sheet = new ServerStyleSheet();
+  const {
+    Wrapper: AppWrapper,
+  } = templateVars;
+
+  return {
+    Wrapper: () => sheet.collectStyles(
+      <AppWrapper />
+    ),
+    head: {
+        style: () => `${irvingHead}${sheet.getStyleTags()}`,
+    },
+  };
+}
+```
+
+## Server-side error screen template variables
+* **where to configure**: `irving.config.js` in the `getErrorTemplateVars` key
+* **type**: object
+* **purpose**: Customize template variables that are passed to Irving's server-rendered `error.ejs` file. Contains all the same fields as `getAppTemplateVars`.
+
+## Redux reducers
+* **where to configure**: `irving.config.js` in the `reducers` key
+* **type**: object
+* **purpose**: Customize or add to Irving's core reducers, used in combination with the `defaultState` config field. Config object should contain slice reducers—keys corresponding to a top-level state slice and values containing the reducer itself. Example:
+```javascript
+import myStateFieldReducer from './myStateFieldReducer';
+
+export default {
+  myStateField: myStateFieldReducer,
+};
+```
+
+## Denylist for preloaded client-side state
+* **where to configure**: `irving.config.js` in the `preloadedStateDenylist` key
+* **type**: array
+* **purpose**: Prevent certain keys in global redux state from being rendered in the server-side HTML. We follow Redux' [server-rendering guide](https://redux.js.org/recipes/server-rendering) to pass the initial state constructed in the first server-side render to the client side via a global `window.__PRELOADED_STATE__` variable. If you have both potentially sensitive data in redux state and are employing an edge cache, this presents a situation where one user's data may be presented to another user. This key will allow you to prevent this from happening and, by default, this method will be employed for passing cookie data from server to client securely.
+
+This config field expects an array of objects, in which each object has two keys: `key` and `rehydrationFunction`. The key can be in any format acceptable by lodash's [get (or set) functions](https://lodash.com/docs/4.17.15#get). The `rehydrationFunction` will rehydrate data on the client side, if necessary.
+```javascript
+export default {
+  preloadedStateDenylist: [
+    {
+      key: 'my.nested.key',
+      rehydrationFunction: () => getStateFromSomewhereElse(),
+    },
+  ],
+};
+```
+
+## Default Redux State
+* **where to configure**: `irving.config.js` in the `defaultState` key
+* **type**: object
+* **purpose**: Customize Irving's default redux state. Example:
+```javascript
+export default {
+  form: {
+    submitting: false,
+    submitted: false,
+    failed: false,
+    validation: {},
+    redirect: '',
+  },
+};
+
+```
+
+## Redux sagas
+* **where to configure**: `irving.config.js` in the `sagas` key
+* **type**: array
+* **purpose**: Customize Irving's core sagas. Expects a function that receives Irving's core sagas and returns an updated array of sagas. Example:
+```javascript
+// in /sagas/index.js
+import { takeLatest } from 'redux-saga/effects';
+import { MY_ACTION } from 'actions/types';
+import watchMyAction from './formSaga';
+
+export default function getSagas() {
+  return [
+    takeLatest(MY_ACTION, watchMyAction),
+  ];
+}
+
+// in irving.config.js
+import getSagas from 'sagas';
+
+export default {
+  sagas: getSagas,
+};
+```
+
+## Trailing slash denylist
+* **where to configure**: `irving.config.js` in the `trailingSlashDenylist` key
+* **type**: array
+* **purpose**: Provide an array of URLs or path strings (partial or complete) for which trailing slashes should not be automatically added. This config field only applies if `forceTrailingSlashes` is set to `true`.
+
+## Components for which Irving-specific props should be omitted
+* **where to configure**: `irving.config.js` in the `shouldOmitIrvingProps` key
+* **type**: array of functions
+* **purpose**: Uses an array of functions to determine if Irving-specific props should be omitted before Irving creates an instance of a particular component. Each check should be a function taking in both the component type (usually a React component function) and component props and returning a boolean (`true` if Irving props should be ommitted, `false` if not). Irving props are:
+  * `componentName` - Name of the component as appearing in `componentMap.js` key.
+  * `componentGroups` - Additional grouping of child components.
+  * `themeName` - Name of theme this component should use.
+  * `themeOptions` - Theme options for the component.
+
+Example:
+```javascript
+const irvingConfig = {
+  shouldOmitIrvingProps: [
+    (type, props) => (
+      'string' === typeof type ||
+      props.componentName.includes('test')
+    ),
+  ]
+};
+```
+
+An example of when you might want to use this is if you are providing a third-party component directly in your component map, and that component passes its props to a native HTML element for which a `componentName` attribute would not be allowed.

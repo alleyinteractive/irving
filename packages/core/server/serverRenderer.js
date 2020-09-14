@@ -16,7 +16,8 @@ import getLogService from '@irvingjs/services/logService';
 import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
-import getTemplateVars from './getTemplateVars';
+import getTemplateVars from './utils/getTemplateVars';
+import encodeState from './utils/encodeState';
 
 const monitor = getMonitorService();
 const logError = getLogService('irving:render:error');
@@ -86,8 +87,7 @@ const render = async (req, res, clientStats) => {
     },
   });
 
-  // https://redux.js.org/recipes/server-rendering#security-considerations
-  const stateEncoded = JSON.stringify(getState()).replace(/</g, '\\u003c');
+  const stateEncoded = encodeState(getState());
   const templateVars = {
     preRenderedState: stateEncoded,
     env: JSON.stringify(irvingEnv),

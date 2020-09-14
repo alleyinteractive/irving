@@ -3,6 +3,311 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-alpha.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-alpha.2...v4.1.0-alpha.3) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.1.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-alpha.1...v4.1.0-alpha.2) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.1.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-alpha.0...v4.1.0-alpha.1) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0...v4.1.0-alpha.0) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-rc.1...v4.0.0) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0-rc.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-rc.0...v4.0.0-rc.1) (2020-09-09)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.8...v4.0.0-rc.0) (2020-09-09)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0-beta.6](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.5...v4.0.0-beta.6) (2020-09-09)
+
+
+### Bug Fixes
+
+* **pico:** mount signup form node at root ([2dc4003](https://github.com/alleyinteractive/irving/packages/integrations/commit/2dc400332c9e3212e2fdaa25a4793a16abc05e8c))
+
+
+
+
+
+# [4.0.0-beta.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.3...v4.0.0-beta.4) (2020-09-09)
+
+
+### Features
+
+* **Pico:** Trigger initial visit when component loads ([9a06624](https://github.com/alleyinteractive/irving/packages/integrations/commit/9a06624d1ee678d9a5d96d870a245f63b3652c50))
+
+
+
+
+
+# [4.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.12...v4.0.0-beta.3) (2020-09-09)
+
+
+### Bug Fixes
+
+* **pico:** fix pageview data not being updated properly ([fc60cbb](https://github.com/alleyinteractive/irving/packages/integrations/commit/fc60cbb784ac6cc27908b8f4254e3d32468f3577))
+
+
+
+# [4.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
+
+
+
+# [4.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.0...v4.0.0-beta.1) (2020-09-08)
+
+
+
+# [4.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.11...v4.0.0-beta.0) (2020-09-08)
+
+
+
+
+
+# [4.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-beta.0...v4.0.0-beta.1) (2020-09-08)
+# [4.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.11...v4.0.0-beta.0) (2020-09-08)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [4.0.0-alpha.12](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.11...v4.0.0-alpha.12) (2020-09-09)
+
+
+### Bug Fixes
+
+* **integrationsmanager:** Remove Redux caching of integrations data ([7783540](https://github.com/alleyinteractive/irving/packages/integrations/commit/7783540407118f8b8f194b4b783d88c7e780a42e))
+
+
+
+# [4.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2020-09-04)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.7...v4.0.0-alpha.9) (2020-09-04)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2020-09-04)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2020-09-03)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2020-09-03)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.0.0-alpha.0...v4.0.0-alpha.1) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0...v3.4.0-alpha.0) (2020-09-01)
+
+
+
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.3.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-rc.0...v3.3.0) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.3.0-rc.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-beta.2...v3.3.0-rc.0) (2020-08-31)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.3.0-beta.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-beta.1...v3.3.0-beta.2) (2020-08-27)
+
+
+### Bug Fixes
+
+* **commentcount:** fix reference ([3c5e554](https://github.com/alleyinteractive/irving/packages/integrations/commit/3c5e5546730cfb0e2a5171931bbbb46ae5ed7c6f))
+
+
+
+
+
+# [3.3.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* **Coral:** Fix client rendering activation of comment counts ([3a48963](https://github.com/alleyinteractive/irving/packages/integrations/commit/3a489633f1fea785ccfe32f75b1e11057636a97b))
+
+
+
+
+
+# [3.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.3.0-alpha.1...v3.3.0-beta.0) (2020-08-27)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+## [3.2.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.2.1-alpha.0...v3.2.1) (2020-08-21)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.2.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.2.0-beta.1...v3.2.0) (2020-08-12)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.2.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.2.0-beta.0...v3.2.0-beta.1) (2020-08-12)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.2.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.1.1...v3.2.0-beta.0) (2020-08-12)
+
+
+### Bug Fixes
+
+* **coral:** fix misspelled import in coral embed component ([544594a](https://github.com/alleyinteractive/irving/packages/integrations/commit/544594ab3b173d6a08f12905c2b3c9decd5988e1))
+* **integrations:** add reducers, actions, config to published files ([372662a](https://github.com/alleyinteractive/irving/packages/integrations/commit/372662ae1d221d0b8e473acc936fdd268d4575a6))
+
+
+### Features
+
+* **integrations:** add coral talk embed component to integrations package ([23fc6a0](https://github.com/alleyinteractive/irving/packages/integrations/commit/23fc6a0921f160a2d3d666ac9efccecf205bf219))
+
+
+
+
+
+## [3.1.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.1.0...v3.1.1) (2020-08-09)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [3.1.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.0.1...v3.1.0) (2020-08-09)
+
+
+### Features
+
+* **cli:** add CLI command for linking all installed packages, setting up dev links ([cf2fd6e](https://github.com/alleyinteractive/irving/packages/integrations/commit/cf2fd6e010b2d5edc53d699ee15d6884830af498))
+
+
+
+
+
+## [3.0.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.0.0...v3.0.1) (2020-08-06)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
 # [3.0.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
 
 **Note:** Version bump only for package @irvingjs/integrations

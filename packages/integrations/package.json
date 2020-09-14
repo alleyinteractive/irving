@@ -1,9 +1,16 @@
 {
 	"name": "@irvingjs/integrations",
-	"version": "3.0.0",
+	"version": "4.1.0-alpha.3",
 	"description": "Third party integrations for Irving",
 	"files": [
+		"actions/**/*",
 		"components/**/*",
+		"config/**/*",
+		"hooks/**/*",
+		"reducers/**/*",
+		"sagas/**/*",
+		"selectors/**/*",
+		"irving.config.js",
 		"!*.test.js"
 	],
 	"main": "index.js",
@@ -11,18 +18,26 @@
 		"type": "git",
 		"url": "https://github.com/alleyinteractive/irving/packages/integrations"
 	},
+	"scripts": {
+		"test": "BABEL_ENV=test jest",
+		"test:watch": "BABEL_ENV=test jest --watch"
+	},
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
 		"prop-types": "^15.7.2",
 		"react": "^16.13.1",
-		"react-dom": "^16.13.1"
+		"react-dom": "^16.13.1",
+		"react-helmet": "^6.1.0"
 	},
 	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^3.0.0",
-		"@irvingjs/core": "^3.0.0",
+		"@irvingjs/babel-preset-irving": "^4.1.0-alpha.0",
+		"@irvingjs/core": "^4.1.0-alpha.0",
 		"babel-plugin-module-resolver": "^4.0.0",
-		"jest": "^25.5.3"
+		"enzyme": "^3.11.0",
+		"enzyme-adapter-react-16": "^1.15.2",
+		"jest": "^25.5.3",
+		"redux-mock-store": "^1.5.4"
 	},
 	"peerDependencies": {
 		"@irvingjs/core": ">=2.0.0"
@@ -30,5 +45,10 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
+	"jest": {
+		"modulePaths": [
+			"<rootDir>"
+		]
+	},
+	"gitHead": "a855ce1255df9c35b5cd049e4c2d65b8665982dd"
 }

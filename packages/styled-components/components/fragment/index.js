@@ -1,6 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -12,22 +15,15 @@ const Fragment = (props) => {
     style,
     theme,
   } = props;
-
-  let {
-    tag,
-  } = props;
-
   const { Element } = theme;
-
-  // If we have something in `style` and element is empty, require a tag.
-  if (null === tag && Object.keys(style).length && ! style.length) {
-    tag = 'span';
-  }
+  const standardProps = useStandardProps(props);
+  const { as } = standardProps;
+  const useTag = (as || (Object.keys(style).length && ! style.length));
 
   return (
     <>
-      {tag ? (
-        <Element as={tag} style={style}>{children}</Element>
+      {useTag ? (
+        <Element {...standardProps}>{children}</Element>
       ) : (
         children
       )}
@@ -36,40 +32,21 @@ const Fragment = (props) => {
 };
 
 Fragment.defaultProps = {
-  children: {},
-  style: {},
-  tag: null,
+  ...standardDefaultProps,
   theme: defaultStyles,
 };
 
 Fragment.propTypes = {
-  /**
-   * Children of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Tag used to render.
-   */
-  tag: PropTypes.string,
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
+  ...standardPropTypes,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Fragment as PureComponent };
+export {
+  Fragment as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Fragment);
-
-export default StyledComponent;
+export default Fragment;

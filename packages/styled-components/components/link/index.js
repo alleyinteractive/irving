@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useClientNavigationOnClick from
   '@irvingjs/core/hooks/useClientNavigationOnClick';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -15,11 +19,13 @@ import * as defaultStyles from './themes/default';
 const Link = (props) => {
   const {
     children,
-    className,
+    gtmAction,
+    gtmCategory,
+    gtmLabel,
+    gtmValue,
     href,
     onClick,
     rel,
-    style,
     target,
     theme,
   } = props;
@@ -30,15 +36,19 @@ const Link = (props) => {
   const {
     LinkWrapper,
   } = theme;
+  const standardProps = useStandardProps(props);
 
   return (
     <LinkWrapper
-      className={className}
+      data-gtm-action={gtmAction}
+      data-gtm-category={gtmCategory}
+      data-gtm-label={gtmLabel}
+      data-gtm-value={gtmValue}
       href={destination}
       onClick={onClick || defaultOnClick}
       rel={rel}
-      style={style}
       target={target}
+      {...standardProps}
     >
       {children}
     </LinkWrapper>
@@ -46,23 +56,19 @@ const Link = (props) => {
 };
 
 Link.defaultProps = {
-  className: '',
+  ...standardDefaultProps,
+  theme: defaultStyles,
   onClick: false,
   rel: '',
-  style: {},
   target: '',
-  theme: defaultStyles,
+  gtmCategory: '',
+  gtmAction: '',
+  gtmLabel: '',
+  gtmValue: null,
 };
 
 Link.propTypes = {
-  /**
-   * Child nodes
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Class name.
-   */
-  className: PropTypes.string,
+  ...standardPropTypes,
   /**
    * Destination for anchor tag (`href` attribute)
    */
@@ -80,28 +86,34 @@ Link.propTypes = {
    */
   rel: PropTypes.string,
   /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
    * Anchor target.
    */
   target: PropTypes.string,
   /**
-   * Theme for the component.
+   * GTM category.
    */
-  theme: PropTypes.object,
+  gtmCategory: PropTypes.string,
+  /**
+   * GTM action.
+   */
+  gtmAction: PropTypes.string,
+  /**
+   * GTM label.
+   */
+  gtmLabel: PropTypes.string,
+  /**
+   * GTM value.
+   */
+  gtmValue: PropTypes.number,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Link as PureComponent };
+export {
+  Link as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Link);
-
-export default StyledComponent;
+export default Link;

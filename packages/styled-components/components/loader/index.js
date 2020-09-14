@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useLoading from '@irvingjs/core/hooks/useLoading';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import DefaultLoading from './defaultLoading';
 import * as defaultStyles from './themes/default';
 
@@ -14,6 +18,7 @@ const Loader = (props) => {
     children,
     theme,
   } = props;
+  const standardProps = useStandardProps(props);
   const transitionStyle = {
     transitionProperty: transition.property,
     transitionTimingFunction: transition.ease,
@@ -44,6 +49,7 @@ const Loader = (props) => {
             >
               {loading ? (
                 <LoadingComponent
+                  {...standardProps}
                   {...loadingProps}
                   theme={theme}
                 />
@@ -57,6 +63,7 @@ const Loader = (props) => {
         <Wrapper data-testid="wrapper">
           {loading ? (
             <LoadingComponent
+              {...standardProps}
               {...loadingProps}
               theme={theme}
             />
@@ -70,6 +77,7 @@ const Loader = (props) => {
 };
 
 Loader.propTypes = {
+  ...standardPropTypes,
   /**
    * Transition characteristics.
    */
@@ -88,20 +96,11 @@ Loader.propTypes = {
    * Loading indicator component.
    */
   LoadingComponent: PropTypes.func,
-  /**
-   * React children.
-   */
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node).isRequired,
-    PropTypes.object,
-  ]).isRequired,
-  /**
-   * Theme object
-   */
-  theme: PropTypes.object.isRequired,
 };
 
 Loader.defaultProps = {
+  ...standardDefaultProps,
+  theme: defaultStyles,
   transition: {
     enabled: true,
     type: 'fade',
@@ -113,10 +112,13 @@ Loader.defaultProps = {
   LoadingComponent: DefaultLoading,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Loader as PureComponent };
+export {
+  Loader as Component,
+  themeMap,
+};
 
-export default withThemes(themeMap)(Loader);
+export default Loader;

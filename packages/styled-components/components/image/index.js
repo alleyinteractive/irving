@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import { richText } from '@irvingjs/core/config/html';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -33,21 +37,18 @@ const Image = (props) => {
     alt,
     caption,
     children,
-    className,
     credit,
     fallbackSrc,
+    height,
     loading,
     objectFit,
-    // eslint-disable-next-line no-unused-vars
-    photonTransformations,
-    // eslint-disable-next-line no-unused-vars
-    pictureSources,
     showMeta,
+    sizes,
     src,
-    style,
+    srcset,
     theme,
+    width,
   } = props;
-
   const {
     FigureWrapper,
     ImageTag,
@@ -56,6 +57,7 @@ const Image = (props) => {
     ImageMeta,
     ImageWrapper,
   } = theme;
+  const standardProps = useStandardProps(props);
 
   /**
    * @todo possibly replace this with similar functionality. This hook breaks b/c it references window.
@@ -71,19 +73,37 @@ const Image = (props) => {
     aspectRatio = aspectRatioMapping[aspectRatio];
   }
 
+  // Ensure we constrain the sizes attribute if none
+  // is passed whenever a srcset attribute is present.
+  const getSizes = () => {
+    if (srcset && ! sizes && width) {
+      return `(max-width: ${width}px) 100vw, ${width}px`;
+    }
+
+    return sizes;
+  };
+
+  // Bail early if we don't have a src to work with.
+  if (! (src || fallbackSrc)) {
+    return null;
+  }
+
   return (
     <FigureWrapper
       allowUpscaling={allowUpscaling}
-      classsName={className}
-      style={style}
+      {...standardProps}
     >
       <ImageWrapper aspectRatio={aspectRatio}>
         <ImageTag
           alt={alt}
           aspectRatio={aspectRatio}
+          height={height}
           loading={loading}
           objectFit={objectFit}
           src={src || fallbackSrc}
+          srcSet={srcset}
+          sizes={getSizes()}
+          width={width}
         />
       </ImageWrapper>
       {(caption || credit) && showMeta && (
@@ -106,25 +126,27 @@ const Image = (props) => {
 };
 
 Image.defaultProps = {
+  ...standardDefaultProps,
   allowUpscaling: false,
   alt: '',
   aspectRatio: false,
   caption: '',
-  children: [],
-  className: '',
   credit: '',
   fallbackSrc: '',
+  height: false,
   loading: 'lazy',
   objectFit: 'cover',
-  photonTransformations: [],
-  pictureSources: [],
   showMeta: true,
+  sizes: '',
   src: '',
+  srcset: '',
   style: {},
   theme: defaultStyles,
+  width: false,
 };
 
 Image.propTypes = {
+  ...standardPropTypes,
   /**
    * Allow an image to be scaled to larger than its actual width.
    */
@@ -145,23 +167,28 @@ Image.propTypes = {
   /**
    * Caption.
    */
-  caption: PropTypes.string,
-  /**
-   * Children of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Class name for <ImageWrapper />.
-   */
-  className: PropTypes.string,
+  caption: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   /**
    * Caption.
    */
-  credit: PropTypes.string,
+  credit: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   /**
    * Fallback src if the main `src` is empty.
    */
   fallbackSrc: PropTypes.string,
+  /**
+   * Height attribute of the image.
+   */
+  height: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
   /**
    * Loading attribute.
    */
@@ -171,23 +198,24 @@ Image.propTypes = {
    */
   objectFit: PropTypes.string,
   /**
-   * Use the Photon API to modify the source.
-   *
-   * @see https://developer.wordpress.com/docs/photon/api/
-   */
-  photonTransformations: PropTypes.array,
-  /**
-   * Picture sources.
-   */
-  pictureSources: PropTypes.array,
-  /**
    * Display meta.
    */
   showMeta: PropTypes.bool,
   /**
+   * Sizes attribute
+   */
+  sizes: PropTypes.string,
+  /**
    * Source URL of the image.
    */
-  src: PropTypes.string,
+  src: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
+  /**
+   * Source set list of the image.
+   */
+  srcset: PropTypes.string,
   /**
    * CSS styles.
    */
@@ -199,14 +227,22 @@ Image.propTypes = {
    * Theme (styles) to apply to the component.
    */
   theme: PropTypes.object,
+  /**
+   * Width attribute of the image.
+   */
+  width: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Image as PureComponent };
+export {
+  Image as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Image);
-
-export default StyledComponent;
+export default Image;

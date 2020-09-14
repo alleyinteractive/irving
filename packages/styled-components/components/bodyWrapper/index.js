@@ -3,11 +3,20 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
 import Loader from 'components/loader';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
 const BodyWrapper = (props) => {
-  const { bodyClasses, children, theme } = props;
+  const {
+    bodyClasses,
+    children,
+    theme,
+  } = props;
+  const standardProps = useStandardProps(props);
   const { Main } = theme;
 
   return (
@@ -15,7 +24,10 @@ const BodyWrapper = (props) => {
       <Helmet>
         <body className={classNames(bodyClasses)} />
       </Helmet>
-      <Main role="main" id="content">
+      <Main
+        {...standardProps}
+        role="main"
+      >
         {children}
       </Main>
     </Loader>
@@ -23,10 +35,7 @@ const BodyWrapper = (props) => {
 };
 
 BodyWrapper.propTypes = {
-  /**
-   * Children of the body component.
-   */
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  ...standardPropTypes,
   /**
    * Additional classes to apply to the <body> tag using react-helmet.
    */
@@ -34,13 +43,10 @@ BodyWrapper.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.string,
   ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
 };
 
 BodyWrapper.defaultProps = {
+  ...standardDefaultProps,
   bodyClasses: [],
   theme: defaultStyles,
 };
@@ -49,8 +55,9 @@ const themeMap = {
   default: defaultStyles,
 };
 
-export { BodyWrapper as PureComponent };
+export {
+  BodyWrapper as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(BodyWrapper);
-
-export default StyledComponent;
+export default BodyWrapper;

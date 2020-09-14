@@ -3,6 +3,247 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0...v4.1.0-alpha.0) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [4.0.0](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-rc.1...v4.0.0) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [4.0.0-rc.1](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-rc.0...v4.0.0-rc.1) (2020-09-09)
+
+
+### Bug Fixes
+
+* **relativeurl:** minor tweaks ([21b36a4](https://github.com/alleyinteractive/irving/packages/core/commit/21b36a4697c1ac95948ceaa72dfa2c777be7f49c))
+* **useclientnavigationonclick.js:** fix breaking SPA function on regular links ([19fe1ca](https://github.com/alleyinteractive/irving/packages/core/commit/19fe1ca3140d1a0a509a79343a401f448bffe9c6))
+
+
+
+
+
+# [4.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-beta.8...v4.0.0-rc.0) (2020-09-09)
+
+
+### Bug Fixes
+
+* **head:** collect and render head vars after renterToString is called ([05d10e1](https://github.com/alleyinteractive/irving/packages/core/commit/05d10e18193a4c70965d7b9f567db10b1f510361))
+* **useclientnavigationonclick.js:** fix errant history push on same-page anchor clicks ([d272da0](https://github.com/alleyinteractive/irving/packages/core/commit/d272da0d3fb312e1478f9e46f95c692f06739a4f))
+* **useclientnavigationonclick.js:** remove unnecessary if statement ([a707e2e](https://github.com/alleyinteractive/irving/packages/core/commit/a707e2ecf66b0e9c8602e83b865bc492ec5d999f))
+
+
+
+
+
+# [4.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [4.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2020-09-04)
+
+
+### Bug Fixes
+
+* **app:** separate connectedroot from app wrapper compopnent ([2926244](https://github.com/alleyinteractive/irving/packages/core/commit/2926244e405c209963dc2f0c62e4baa1e9729d3b))
+* **root:** remove unnecessary error prop ([eef3186](https://github.com/alleyinteractive/irving/packages/core/commit/eef318620c9dcc4c7c216c48ed4a3d1535359466))
+
+
+
+
+
+# [4.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.7...v4.0.0-alpha.9) (2020-09-04)
+
+
+### Bug Fixes
+
+* **purgecache:** remove duplicative res.end() which was being called too early ([8873320](https://github.com/alleyinteractive/irving/packages/core/commit/8873320a63226859563b258c0ba96dff73c4e26d))
+
+
+
+
+
+# [4.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2020-09-04)
+
+
+### Bug Fixes
+
+* **purgecache:** remove duplicative res.end() which was being called too early ([8873320](https://github.com/alleyinteractive/irving/packages/core/commit/8873320a63226859563b258c0ba96dff73c4e26d))
+
+
+
+
+
+# [4.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2020-09-03)
+
+
+### Features
+
+* allowlist audio and video tags with their attributes ([178c194](https://github.com/alleyinteractive/irving/packages/core/commit/178c194703dfe153b5d17be6368d19780b46f526))
+
+
+
+
+
+# [4.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [4.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v4.0.0-alpha.0...v4.0.0-alpha.1) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [3.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0...v3.4.0-alpha.0) (2020-09-01)
+
+
+
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **package:** fix mismatched hoisted package versions ([f75ac82](https://github.com/alleyinteractive/irving/packages/core/commit/f75ac82a2d34b276e1b00eb89f37dd8008830ecd))
+
+
+### Features
+
+* **withthemes:** refactor sc package to remove now-unnecessary createWithUserthemes hoc ([2b475ce](https://github.com/alleyinteractive/irving/packages/core/commit/2b475cedf2acca429b0b9e648fc19e2233af379f))
+
+
+
+
+
+# [3.3.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-rc.0...v3.3.0) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [3.3.0-rc.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.2...v3.3.0-rc.0) (2020-08-31)
+
+**Note:** Version bump only for package @irvingjs/core
+
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **package:** fix mismatched hoisted package versions ([f75ac82](https://github.com/alleyinteractive/irving/packages/core/commit/f75ac82a2d34b276e1b00eb89f37dd8008830ecd))
+
+
+### Features
+
+* **withthemes:** refactor sc package to remove now-unnecessary createWithUserthemes hoc ([2b475ce](https://github.com/alleyinteractive/irving/packages/core/commit/2b475cedf2acca429b0b9e648fc19e2233af379f))
+
+
+# [3.3.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* **cacheclient:** return default client, not service, from VIP go cacheClient ([07a2249](https://github.com/alleyinteractive/irving/packages/core/commit/07a2249db017f9c998b11e0cccd73497681738d4))
+
+
+
+
+
+# [3.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.3.0-alpha.1...v3.3.0-beta.0) (2020-08-27)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [3.2.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.2.0-beta.1...v3.2.0) (2020-08-12)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [3.2.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v3.2.0-beta.0...v3.2.0-beta.1) (2020-08-12)
+
+
+### Bug Fixes
+
+* **log:** remove log ([59f6505](https://github.com/alleyinteractive/irving/packages/core/commit/59f6505c2fd858967b81413c4ae8b856b0ebf376))
+
+
+
+
+
+# [3.2.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.1.1...v3.2.0-beta.0) (2020-08-12)
+
+
+### Bug Fixes
+
+* **cookies:** add default state for cookies, re-hydrate in client ([2c489c3](https://github.com/alleyinteractive/irving/packages/core/commit/2c489c33a3b687cc7a94ac4125a8b07ebbde41ec))
+* **integrations:** add reducers, actions, config to published files ([372662a](https://github.com/alleyinteractive/irving/packages/core/commit/372662ae1d221d0b8e473acc936fdd268d4575a6))
+* **props:** begin fixing some props errors ([0710367](https://github.com/alleyinteractive/irving/packages/core/commit/0710367106fb9f9743a0334f24f61b2027590145))
+* **props:** more props fixes ([c5f8cf9](https://github.com/alleyinteractive/irving/packages/core/commit/c5f8cf9a2567c9c385de6d32651861717966154f))
+* **serverrenderer:** omit cookies from prerendered state ([b452ad8](https://github.com/alleyinteractive/irving/packages/core/commit/b452ad8ae20915c21c6879d2abb0137b87566dad))
+* **styledcomponents:** add keys to all instances of .map in styled components package ([c63f60c](https://github.com/alleyinteractive/irving/packages/core/commit/c63f60ce288a5b3d23b99b97f9777d0c9988d587))
+
+
+### Features
+
+* **shouldomitirvingprops:** add config field to omit irving-specific props for certain components ([164be0f](https://github.com/alleyinteractive/irving/packages/core/commit/164be0fd6348e1e79b1c494a6154210823fb7c57))
+
+
+
+
+
+## [3.1.1](https://github.com/alleyinteractive/irving/packages/core/compare/v3.1.0...v3.1.1) (2020-08-09)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [3.1.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.1...v3.1.0) (2020-08-09)
+
+
+### Features
+
+* **cli:** add CLI command for linking all installed packages, setting up dev links ([cf2fd6e](https://github.com/alleyinteractive/irving/packages/core/commit/cf2fd6e010b2d5edc53d699ee15d6884830af498))
+
+
+
+
+
+## [3.0.1](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0...v3.0.1) (2020-08-06)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
 # [3.0.0](https://github.com/alleyinteractive/irving/packages/core/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
 
 **Note:** Version bump only for package @irvingjs/core

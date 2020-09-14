@@ -3,6 +3,548 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v4.1.0-alpha.2...v4.1.0-alpha.3) (2020-09-10)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.1.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v4.1.0-alpha.1...v4.1.0-alpha.2) (2020-09-10)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.1.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v4.1.0-alpha.0...v4.1.0-alpha.1) (2020-09-10)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.1.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v4.0.0...v4.1.0-alpha.0) (2020-09-10)
+
+
+### Features
+
+* **socialsharing:** update Social Sharing component to allow more flexability ([6b95acf](https://github.com/alleyinteractive/irving/commit/6b95acfa4002266d9260cad10dcc2ff8e2a826fe))
+
+
+
+
+
+# [4.0.0](https://github.com/alleyinteractive/irving/compare/v4.0.0-rc.1...v4.0.0) (2020-09-10)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.0.0-rc.1](https://github.com/alleyinteractive/irving/compare/v4.0.0-rc.0...v4.0.0-rc.1) (2020-09-09)
+
+
+### Bug Fixes
+
+* **relativeurl:** minor tweaks ([21b36a4](https://github.com/alleyinteractive/irving/commit/21b36a4697c1ac95948ceaa72dfa2c777be7f49c))
+* **useclientnavigationonclick.js:** fix breaking SPA function on regular links ([19fe1ca](https://github.com/alleyinteractive/irving/commit/19fe1ca3140d1a0a509a79343a401f448bffe9c6))
+
+
+
+
+
+# [4.0.0-rc.0](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.8...v4.0.0-rc.0) (2020-09-09)
+
+
+### Bug Fixes
+
+* **head:** collect and render head vars after renterToString is called ([05d10e1](https://github.com/alleyinteractive/irving/commit/05d10e18193a4c70965d7b9f567db10b1f510361))
+* **useclientnavigationonclick.js:** fix errant history push on same-page anchor clicks ([d272da0](https://github.com/alleyinteractive/irving/commit/d272da0d3fb312e1478f9e46f95c692f06739a4f))
+* **useclientnavigationonclick.js:** remove unnecessary if statement ([a707e2e](https://github.com/alleyinteractive/irving/commit/a707e2ecf66b0e9c8602e83b865bc492ec5d999f))
+
+
+
+
+
+# [4.0.0-beta.8](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.7...v4.0.0-beta.8) (2020-09-09)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.0.0-beta.7](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.6...v4.0.0-beta.7) (2020-09-09)
+
+
+### Bug Fixes
+
+* **pico:** mount signup form node at root ([483c191](https://github.com/alleyinteractive/irving/commit/483c191fd5b9f2767e12fb8b441d4748c2a5acc1))
+
+
+
+
+
+# [4.0.0-beta.6](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.5...v4.0.0-beta.6) (2020-09-09)
+
+
+### Bug Fixes
+
+* **pico:** mount signup form node at root ([2dc4003](https://github.com/alleyinteractive/irving/commit/2dc400332c9e3212e2fdaa25a4793a16abc05e8c))
+
+
+
+
+
+# [4.0.0-beta.5](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.4...v4.0.0-beta.5) (2020-09-09)
+
+
+### Bug Fixes
+
+* **app:** fix proptypes for IrvingApp prop ([e385754](https://github.com/alleyinteractive/irving/commit/e38575421407b7922489164988667d8021d04f52))
+
+
+
+
+
+# [4.0.0-beta.4](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.3...v4.0.0-beta.4) (2020-09-09)
+
+
+### Features
+
+* **Pico:** Trigger initial visit when component loads ([9a06624](https://github.com/alleyinteractive/irving/commit/9a06624d1ee678d9a5d96d870a245f63b3652c50))
+
+
+
+
+
+# [4.0.0-beta.3](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.12...v4.0.0-beta.3) (2020-09-09)
+
+
+### Bug Fixes
+
+* **pico:** fix pageview data not being updated properly ([fc60cbb](https://github.com/alleyinteractive/irving/commit/fc60cbb784ac6cc27908b8f4254e3d32468f3577))
+
+
+
+# [4.0.0-beta.2](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
+
+
+
+# [4.0.0-beta.1](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.0...v4.0.0-beta.1) (2020-09-08)
+
+
+
+# [4.0.0-beta.0](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.11...v4.0.0-beta.0) (2020-09-08)
+
+
+
+
+
+# [4.0.0-beta.2](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.0.0-beta.1](https://github.com/alleyinteractive/irving/compare/v4.0.0-beta.0...v4.0.0-beta.1) (2020-09-08)
+# [4.0.0-beta.0](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.11...v4.0.0-beta.0) (2020-09-08)
+
+**Note:** Version bump only for package irving
+# [4.0.0-alpha.12](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.11...v4.0.0-alpha.12) (2020-09-09)
+
+
+### Bug Fixes
+
+* **integrationsmanager:** Remove Redux caching of integrations data ([7783540](https://github.com/alleyinteractive/irving/commit/7783540407118f8b8f194b4b783d88c7e780a42e))
+
+
+
+
+# [4.0.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2020-09-06)
+
+
+### Bug Fixes
+
+* **adminbar:** fix React error regarding a change in the order of hooks ([2126fdf](https://github.com/alleyinteractive/irving/commit/2126fdf2c3ef2c8b456fb0fc8391c3fdee2ee6b0))
+
+
+
+
+
+# [4.0.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2020-09-04)
+
+
+### Bug Fixes
+
+* **app:** separate connectedroot from app wrapper compopnent ([2926244](https://github.com/alleyinteractive/irving/commit/2926244e405c209963dc2f0c62e4baa1e9729d3b))
+* **root:** remove unnecessary error prop ([eef3186](https://github.com/alleyinteractive/irving/commit/eef318620c9dcc4c7c216c48ed4a3d1535359466))
+
+
+
+
+
+# [4.0.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.7...v4.0.0-alpha.9) (2020-09-04)
+
+
+### Bug Fixes
+
+* **purgecache:** remove duplicative res.end() which was being called too early ([8873320](https://github.com/alleyinteractive/irving/commit/8873320a63226859563b258c0ba96dff73c4e26d))
+
+
+### Features
+
+* **img:** Add tests for the styled image component ([da88646](https://github.com/alleyinteractive/irving/commit/da88646e70ca969d2327dc36771f28e079575c9d))
+
+
+
+
+
+# [4.0.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2020-09-04)
+
+
+### Bug Fixes
+
+* **purgecache:** remove duplicative res.end() which was being called too early ([8873320](https://github.com/alleyinteractive/irving/commit/8873320a63226859563b258c0ba96dff73c4e26d))
+
+
+### Features
+
+* **img:** Add tests for the styled image component ([da88646](https://github.com/alleyinteractive/irving/commit/da88646e70ca969d2327dc36771f28e079575c9d))
+
+
+
+
+
+# [4.0.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2020-09-03)
+
+
+### Features
+
+* allowlist audio and video tags with their attributes ([178c194](https://github.com/alleyinteractive/irving/commit/178c194703dfe153b5d17be6368d19780b46f526))
+
+
+
+
+
+# [4.0.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.5...v4.0.0-alpha.6) (2020-09-03)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.0.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2020-09-03)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.0.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2020-09-02)
+
+
+### Bug Fixes
+
+* **byline:** remove errant span tag in component with 2 children ([8374db7](https://github.com/alleyinteractive/irving/commit/8374db7e48fbe2bfcf27761cf1ba72daefed974c))
+
+
+
+
+
+# [4.0.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2020-09-01)
+
+
+### Bug Fixes
+
+* **image:** fix eslint errors introduced in merge of [#278](https://github.com/alleyinteractive/irving/issues/278) ([f878f28](https://github.com/alleyinteractive/irving/commit/f878f28f23faaec69ab96361dd78a13dccd80bdd))
+
+
+
+
+
+# [4.0.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2020-09-01)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.0.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v4.0.0-alpha.0...v4.0.0-alpha.1) (2020-09-01)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.0.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v3.4.0-alpha.0...v4.0.0-alpha.0) (2020-09-01)
+
+
+### Bug Fixes
+
+* **container:** fix container style attribute ([6869d39](https://github.com/alleyinteractive/irving/commit/6869d390526fef0350ecb1c7bd302c9a77fe798f))
+
+
+### Features
+
+* **image:** update component to handle responsive images ([f96bb98](https://github.com/alleyinteractive/irving/commit/f96bb98677a21d36008609fc67ccfbeca8ae265a))
+
+
+### BREAKING CHANGES
+
+* **image:** Removes unused support for photon transforms and picture element sources.
+
+
+
+
+
+# [3.4.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v3.3.0...v3.4.0-alpha.0) (2020-09-01)
+
+
+
+# [3.3.0-beta.6](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.5...v3.3.0-beta.6) (2020-08-31)
+
+
+### Bug Fixes
+
+* **sc:** publish types ([af49ebb](https://github.com/alleyinteractive/irving/commit/af49ebbc7c4978ce789660bc130a7ee6199e2916))
+
+
+
+# [3.3.0-beta.5](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.4...v3.3.0-beta.5) (2020-08-31)
+
+
+### Bug Fixes
+
+* **package:** publsih sc componentmap ([e519ffd](https://github.com/alleyinteractive/irving/commit/e519ffd20f7685fbd0613337cf42da2a4874fcb1))
+
+
+
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **styledcomponents:** address CR feedback ([ec1694a](https://github.com/alleyinteractive/irving/commit/ec1694a89cc3e5d84134e757b64e58fd7bab227b))
+
+
+### Features
+
+* **<head> and <helmet> management:** ensures that style and script tags work well ([5558442](https://github.com/alleyinteractive/irving/commit/5558442f867750a6598dc2b7bb82f191907b10aa))
+
+
+
+# [3.3.0-beta.3](https://github.com/alleyinteractive/irving/compare/v3.3.0-rc.0...v3.3.0-beta.3) (2020-08-31)
+
+
+### Bug Fixes
+
+* **getstandardprops:** fix some issues with proptypes ([72c33e2](https://github.com/alleyinteractive/irving/commit/72c33e26f237ba331103749e90d44472d9cdec27))
+* **package:** fix mismatched hoisted package versions ([f75ac82](https://github.com/alleyinteractive/irving/commit/f75ac82a2d34b276e1b00eb89f37dd8008830ecd))
+* **sociallinks:** fix icon display issue, add class to icon wrapper, and tweak CSS for social links ([132f463](https://github.com/alleyinteractive/irving/commit/132f46320224618b087305f95fe9782a9f6f9382))
+
+
+### Features
+
+* **socialsharing:** allow for custom links in Social Sharing component and refactor to one file ([54f36b3](https://github.com/alleyinteractive/irving/commit/54f36b36f330876540789bbaf32725136765403d))
+* **styledcomponents:** add new standard prop types, default props, props values to sc package ([204d824](https://github.com/alleyinteractive/irving/commit/204d82478061810802be22b8a41b4084a138fbab))
+* **withthemes:** refactor sc package to remove now-unnecessary createWithUserthemes hoc ([2b475ce](https://github.com/alleyinteractive/irving/commit/2b475cedf2acca429b0b9e648fc19e2233af379f))
+
+
+
+
+
+# [3.3.0](https://github.com/alleyinteractive/irving/compare/v3.3.0-rc.0...v3.3.0) (2020-09-01)
+
+**Note:** Version bump only for package irving
+
+
+# [3.3.0-rc.0](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.2...v3.3.0-rc.0) (2020-08-31)
+
+**Note:** Version bump only for package irving
+
+# [3.3.0-beta.6](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.5...v3.3.0-beta.6) (2020-08-31)
+
+
+### Bug Fixes
+
+* **sc:** publish types ([af49ebb](https://github.com/alleyinteractive/irving/commit/af49ebbc7c4978ce789660bc130a7ee6199e2916))
+
+
+
+
+
+# [3.3.0-beta.5](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.4...v3.3.0-beta.5) (2020-08-31)
+
+
+### Bug Fixes
+
+* **package:** publsih sc componentmap ([e519ffd](https://github.com/alleyinteractive/irving/commit/e519ffd20f7685fbd0613337cf42da2a4874fcb1))
+
+
+
+
+
+# [3.3.0-beta.4](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.3...v3.3.0-beta.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **getstandardprops:** fix some issues with proptypes ([72c33e2](https://github.com/alleyinteractive/irving/commit/72c33e26f237ba331103749e90d44472d9cdec27))
+* **package:** fix mismatched hoisted package versions ([f75ac82](https://github.com/alleyinteractive/irving/commit/f75ac82a2d34b276e1b00eb89f37dd8008830ecd))
+* **styledcomponents:** address CR feedback ([ec1694a](https://github.com/alleyinteractive/irving/commit/ec1694a89cc3e5d84134e757b64e58fd7bab227b))
+
+
+### Features
+
+* **styledcomponents:** add new standard prop types, default props, props values to sc package ([204d824](https://github.com/alleyinteractive/irving/commit/204d82478061810802be22b8a41b4084a138fbab))
+* **withthemes:** refactor sc package to remove now-unnecessary createWithUserthemes hoc ([2b475ce](https://github.com/alleyinteractive/irving/commit/2b475cedf2acca429b0b9e648fc19e2233af379f))
+
+
+
+
+
+# [3.3.0-beta.3](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.2...v3.3.0-beta.3) (2020-08-31)
+
+
+### Bug Fixes
+
+* **sociallinks:** fix icon display issue, add class to icon wrapper, and tweak CSS for social links ([132f463](https://github.com/alleyinteractive/irving/commit/132f46320224618b087305f95fe9782a9f6f9382))
+
+
+### Features
+
+* **socialsharing:** allow for custom links in Social Sharing component and refactor to one file ([54f36b3](https://github.com/alleyinteractive/irving/commit/54f36b36f330876540789bbaf32725136765403d))
+
+
+# [3.3.0-beta.2](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.1...v3.3.0-beta.2) (2020-08-27)
+
+
+### Bug Fixes
+
+* **commentcount:** fix reference ([3c5e554](https://github.com/alleyinteractive/irving/commit/3c5e5546730cfb0e2a5171931bbbb46ae5ed7c6f))
+
+
+
+
+
+# [3.3.0-beta.1](https://github.com/alleyinteractive/irving/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* **cacheclient:** return default client, not service, from VIP go cacheClient ([07a2249](https://github.com/alleyinteractive/irving/commit/07a2249db017f9c998b11e0cccd73497681738d4))
+* **Coral:** Fix client rendering activation of comment counts ([3a48963](https://github.com/alleyinteractive/irving/commit/3a489633f1fea785ccfe32f75b1e11057636a97b))
+
+
+
+
+
+# [3.3.0-beta.0](https://github.com/alleyinteractive/irving/compare/v3.3.0-alpha.1...v3.3.0-beta.0) (2020-08-27)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [3.2.1](https://github.com/alleyinteractive/irving/compare/v3.2.1-alpha.0...v3.2.1) (2020-08-21)
+
+
+### Bug Fixes
+
+* ensure URLs without query strings do not have a question mark appended ([25e9ef6](https://github.com/alleyinteractive/irving/commit/25e9ef61e86cc2aa9e80f23d12f2db2735517ab2))
+
+
+
+
+
+# [3.2.0](https://github.com/alleyinteractive/irving/compare/v3.2.0-beta.1...v3.2.0) (2020-08-12)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [3.2.0-beta.1](https://github.com/alleyinteractive/irving/compare/v3.2.0-beta.0...v3.2.0-beta.1) (2020-08-12)
+
+
+### Bug Fixes
+
+* **log:** remove log ([59f6505](https://github.com/alleyinteractive/irving/commit/59f6505c2fd858967b81413c4ae8b856b0ebf376))
+
+
+
+
+
+# [3.2.0-beta.0](https://github.com/alleyinteractive/irving/compare/v3.1.1...v3.2.0-beta.0) (2020-08-12)
+
+
+### Bug Fixes
+
+* **cookies:** add default state for cookies, re-hydrate in client ([2c489c3](https://github.com/alleyinteractive/irving/commit/2c489c33a3b687cc7a94ac4125a8b07ebbde41ec))
+* **coral:** fix misspelled import in coral embed component ([544594a](https://github.com/alleyinteractive/irving/commit/544594ab3b173d6a08f12905c2b3c9decd5988e1))
+* **integrations:** add reducers, actions, config to published files ([372662a](https://github.com/alleyinteractive/irving/commit/372662ae1d221d0b8e473acc936fdd268d4575a6))
+* **link:** remove test for cookies from link component ([a292057](https://github.com/alleyinteractive/irving/commit/a29205715c080c15c063ddfa4e59bdbd7f8b264b))
+* **props:** begin fixing some props errors ([0710367](https://github.com/alleyinteractive/irving/commit/0710367106fb9f9743a0334f24f61b2027590145))
+* **props:** more props fixes ([c5f8cf9](https://github.com/alleyinteractive/irving/commit/c5f8cf9a2567c9c385de6d32651861717966154f))
+* **serverrenderer:** omit cookies from prerendered state ([b452ad8](https://github.com/alleyinteractive/irving/commit/b452ad8ae20915c21c6879d2abb0137b87566dad))
+* **styledcomponents:** add keys to all instances of .map in styled components package ([c63f60c](https://github.com/alleyinteractive/irving/commit/c63f60ce288a5b3d23b99b97f9777d0c9988d587))
+* **text:** fix eslint error ([7f6b709](https://github.com/alleyinteractive/irving/commit/7f6b709f9a0d163f400eaeb47a0b8ac9870bd23e))
+
+
+### Features
+
+* **integrations:** add coral talk embed component to integrations package ([23fc6a0](https://github.com/alleyinteractive/irving/commit/23fc6a0921f160a2d3d666ac9efccecf205bf219))
+* **shouldomitirvingprops:** add config field to omit irving-specific props for certain components ([164be0f](https://github.com/alleyinteractive/irving/commit/164be0fd6348e1e79b1c494a6154210823fb7c57))
+
+
+
+
+
+## [3.1.1](https://github.com/alleyinteractive/irving/compare/v3.1.0...v3.1.1) (2020-08-09)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [3.1.0](https://github.com/alleyinteractive/irving/compare/v3.0.1...v3.1.0) (2020-08-09)
+
+
+### Features
+
+* **cli:** add CLI command for linking all installed packages, setting up dev links ([cf2fd6e](https://github.com/alleyinteractive/irving/commit/cf2fd6e010b2d5edc53d699ee15d6884830af498))
+
+
+
+
+
+## [3.0.1](https://github.com/alleyinteractive/irving/compare/v3.0.0...v3.0.1) (2020-08-06)
+
+
+### Bug Fixes
+
+* **config:** fix configurations for forms, audio-player packages ([985827d](https://github.com/alleyinteractive/irving/commit/985827d73683fe10509f524fb821bf2a8e74b2f6))
+* **storybook docs:** ensure the a11y package is installed ([0922dc8](https://github.com/alleyinteractive/irving/commit/0922dc8ba0f42887892bb06b376e5618a1205836))
+
+
+
+
+
 # [3.0.0](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
 
 **Note:** Version bump only for package irving

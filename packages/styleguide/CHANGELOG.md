@@ -3,6 +3,185 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0...v4.1.0-alpha.0) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [4.0.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0-rc.1...v4.0.0) (2020-09-10)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [4.0.0-rc.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0-rc.0...v4.0.0-rc.1) (2020-09-09)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [4.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0-beta.8...v4.0.0-rc.0) (2020-09-09)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [4.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2020-09-08)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [4.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2020-09-04)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [4.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0-alpha.7...v4.0.0-alpha.9) (2020-09-04)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [4.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2020-09-04)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [4.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2020-09-03)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [4.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [4.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.0.0-alpha.0...v4.0.0-alpha.1) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.3.0...v3.4.0-alpha.0) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.3.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.3.0-rc.0...v3.3.0) (2020-09-01)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.3.0-rc.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.3.0-beta.2...v3.3.0-rc.0) (2020-08-31)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.3.0-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.3.0-beta.0...v3.3.0-beta.1) (2020-08-27)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.3.0-alpha.1...v3.3.0-beta.0) (2020-08-27)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.2.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.2.0-beta.1...v3.2.0) (2020-08-12)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.2.0-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.2.0-beta.0...v3.2.0-beta.1) (2020-08-12)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.2.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.1.1...v3.2.0-beta.0) (2020-08-12)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+## [3.1.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.1.0...v3.1.1) (2020-08-09)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [3.1.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.1...v3.1.0) (2020-08-09)
+
+
+### Features
+
+* **cli:** add CLI command for linking all installed packages, setting up dev links ([cf2fd6e](https://github.com/alleyinteractive/irving/packages/vip-go/commit/cf2fd6e010b2d5edc53d699ee15d6884830af498))
+
+
+
+
+
+## [3.0.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0...v3.0.1) (2020-08-06)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
 # [3.0.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
 
 **Note:** Version bump only for package @irvingjs/styleguide

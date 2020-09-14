@@ -1,8 +1,12 @@
 /* eslint max-len: 0 */
-import React from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
 
@@ -24,12 +28,13 @@ const buildUrl = (props, page) => {
 
   const paginationPart = paginationFormat.replace('%1$d', page);
   const currentQueryVars = queryString.parse(window.location.search);
+  const qs = Object.keys(currentQueryVars).length ? `?${queryString.stringify(currentQueryVars)}` : '';
 
   if (1 === page) {
-    return `${baseUrl}?${queryString.stringify(currentQueryVars)}`;
+    return `${baseUrl}${qs}`;
   }
 
-  return `${baseUrl}${paginationPart}?${queryString.stringify(currentQueryVars)}`;
+  return `${baseUrl}${paginationPart}${qs}`;
 };
 
 /**
@@ -51,11 +56,10 @@ const Pagination = (props) => {
     // eslint-disable-next-line no-unused-vars
     paginationFormat,
     range,
-    style,
-    theme = defaultStyles,
+    theme,
     totalPages,
   } = props;
-
+  const standardProps = useStandardProps(props);
   const {
     PaginationWrapper,
     NavWrapper,
@@ -85,6 +89,11 @@ const Pagination = (props) => {
     totalPages :
     (currentPage + newRange);
 
+  const gtmBase = {
+    action: 'Pagination',
+    category: 'Navigation',
+  };
+
   /**
    * Render a handful of pagination buttons around the current page.
    */
@@ -93,7 +102,17 @@ const Pagination = (props) => {
     if (i === currentPage) {
       pages.push(<CurrentPageNavWrapper className="irving-pagination-current-page">{i}</CurrentPageNavWrapper>);
     } else {
-      pages.push(<NavWrapper as={Link} href={buildUrl(props, i)}>{i}</NavWrapper>);
+      pages.push(
+        <NavWrapper
+          as={Link}
+          href={buildUrl(props, i)}
+          data-gtm-action={gtmBase.action}
+          data-gtm-category={gtmBase.category}
+          data-gtm-label={`${i} page`}
+        >
+          {i}
+        </NavWrapper>
+      );
     }
   }
 
@@ -113,17 +132,57 @@ const Pagination = (props) => {
         break;
 
       case (2 === startRange):
-        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 1)}>1</NavWrapper>);
+        pages.unshift(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, 1)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="First Page"
+          >
+            1
+          </NavWrapper>
+        );
         break;
 
       case (3 === startRange):
-        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 2)}>2</NavWrapper>);
-        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 1)}>1</NavWrapper>);
+        pages.unshift(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, 2)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="Second Page"
+          >
+            2
+          </NavWrapper>
+        );
+        pages.unshift(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, 1)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="First Page"
+          >
+            1
+          </NavWrapper>
+        );
         break;
 
       case (4 <= startRange):
         pages.unshift(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
-        pages.unshift(<NavWrapper as={Link} href={buildUrl(props, 1)}>1</NavWrapper>);
+        pages.unshift(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, 1)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="First Page"
+          >
+            1
+          </NavWrapper>
+        );
         break;
     }
 
@@ -133,17 +192,57 @@ const Pagination = (props) => {
         break;
 
       case ((totalPages - 1) === endRange):
-        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages)}>{totalPages}</NavWrapper>);
+        pages.push(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, totalPages)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="Last Page"
+          >
+            {totalPages}
+          </NavWrapper>
+        );
         break;
 
       case ((totalPages - 2) === endRange):
-        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages - 1)}>{totalPages - 1}</NavWrapper>);
-        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages)}>{totalPages}</NavWrapper>);
+        pages.push(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, totalPages - 1)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="Second Last Page"
+          >
+            {totalPages - 1}
+          </NavWrapper>
+        );
+        pages.push(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, totalPages)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="Last Page"
+          >
+            {totalPages}
+          </NavWrapper>
+        );
         break;
 
       case ((totalPages - 3) >= endRange):
         pages.push(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
-        pages.push(<NavWrapper as={Link} href={buildUrl(props, totalPages)}>{totalPages}</NavWrapper>);
+        pages.push(
+          <NavWrapper
+            as={Link}
+            href={buildUrl(props, totalPages)}
+            data-gtm-action={gtmBase.action}
+            data-gtm-category={gtmBase.category}
+            data-gtm-label="Last Page"
+          >
+            {totalPages}
+          </NavWrapper>
+        );
         break;
     }
   }
@@ -153,34 +252,57 @@ const Pagination = (props) => {
    */
   if (displayPrevAndNext) {
     if (1 < currentPage) {
-      pages.unshift(<NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage - 1)}>Prev</NextAndPrevNavWrapper>);
+      pages.unshift(
+        <NextAndPrevNavWrapper
+          as={Link}
+          href={buildUrl(props, currentPage - 1)}
+        >
+          Prev
+        </NextAndPrevNavWrapper>
+      );
     }
 
     if (totalPages > currentPage) {
-      pages.push(<NextAndPrevNavWrapper as={Link} href={buildUrl(props, currentPage + 1)}>Next</NextAndPrevNavWrapper>);
+      pages.push(
+        <NextAndPrevNavWrapper
+          as={Link}
+          href={buildUrl(props, currentPage + 1)}
+        >
+          Next
+        </NextAndPrevNavWrapper>
+      );
     }
   }
 
   return (
-    <PaginationWrapper style={style}>
-      {pages}
+    <PaginationWrapper {...standardProps}>
+      {pages.map((page, index) => (
+        cloneElement(
+          page,
+          {
+            key: `${page.props.href}-${index}`,
+            ...page.props,
+          }
+        )
+      ))}
     </PaginationWrapper>
   );
 };
 
 Pagination.defaultProps = {
+  ...standardDefaultProps,
+  theme: defaultStyles,
   baseUrl: '/',
   currentPage: 1,
   displayFirstAndLast: true,
   displayPrevAndNext: true,
   paginationFormat: '/page/%1$d/',
   range: 5,
-  style: {},
-  theme: defaultStyles,
   totalPages: 1,
 };
 
 Pagination.propTypes = {
+  ...standardPropTypes,
   /**
    * Base url. Usually the url of the first page of results.
    */
@@ -206,28 +328,18 @@ Pagination.propTypes = {
    */
   range: PropTypes.number,
   /**
-   * CSS styles.
-   */
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
-  /**
    * The total number of pages.
    */
   totalPages: PropTypes.number,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { Pagination as PureComponent };
+export {
+  Pagination as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(Pagination);
-
-export default StyledComponent;
+export default Pagination;

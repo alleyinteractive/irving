@@ -2,24 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { __, sprintf } from '@wordpress/i18n';
 import queryString from 'query-string';
-import withThemes from '@irvingjs/styled/components/hoc/withThemes';
-import SocialSharingItem from './socialSharingItem';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import {
+  standardPropTypes,
+  standardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
+import toReactElement from '@irvingjs/core/utils/toReactElement';
+import Link from '../link';
 import * as defaultStyles from './themes/default';
-
-/**
- * Supported platforms.
- *
- * @type {Array}
- */
-export const SupportedPlatforms = [
-  'email',
-  'facebook',
-  'linkedin',
-  'pinterest',
-  'reddit',
-  'twitter',
-  'whatsapp',
-];
 
 /**
  * Social sharing.
@@ -31,13 +21,15 @@ const SocialSharing = (props) => {
     description,
     imageUrl,
     platforms,
-    style,
+    platformData,
     theme,
     title,
     url,
   } = props;
-
+  const standardProps = useStandardProps(props);
   const {
+    IconWrapper,
+    SocialSharingItemWrapper,
     SocialSharingList,
     SocialSharingWrapper,
   } = theme;
@@ -97,45 +89,103 @@ const SocialSharing = (props) => {
     })
   }`;
 
-  const socialUrlMap = {
-    email: getEmailUrl,
-    facebook: getFacebookUrl,
-    linkedin: getLinkedInUrl,
-    pinterest: getPinterestUrl,
-    reddit: getRedditUrl,
-    twitter: getTwitterUrl,
-    whatsapp: getWhatsAppUrl,
+  if (0 === platforms.length) {
+    return null;
+  }
+
+  const defaultPlatformData = {
+    email: {
+      shareUrl: getEmailUrl,
+      target: '_self',
+    },
+    facebook: {
+      shareUrl: getFacebookUrl,
+      target: '_blank',
+    },
+    linkedin: {
+      shareUrl: getLinkedInUrl,
+      target: '_blank',
+    },
+    pinterest: {
+      shareUrl: getPinterestUrl,
+      target: '_blank',
+    },
+    reddit: {
+      shareUrl: getRedditUrl,
+      target: '_blank',
+    },
+    twitter: {
+      shareUrl: getTwitterUrl,
+      target: '_blank',
+    },
+    whatsapp: {
+      shareUrl: getWhatsAppUrl,
+      target: '_blank',
+    },
   };
 
+  // Combine the default with any custom data.
+  const mergedData = { ...defaultPlatformData, ...platformData };
+
+  const allitems = Object.entries(mergedData).map(([platform, data]) => ({
+    ...data,
+    platform,
+    icon: toReactElement({
+      name: `irving/${platform}-icon`,
+      config: {
+        title: sprintf( // Translators: %1$s - platform.
+          __('Share on %1$s', 'irving-styled-components'),
+          platform
+        ),
+      },
+      children: [],
+    }),
+  }));
+
+  // Filter to just the enabled platforms.
+  const items = allitems.filter((el) => (platforms.includes(el.platform)));
+
   return (
-    <SocialSharingWrapper style={style}>
-      {platforms && 0 !== platforms.length && (
-        <SocialSharingList>
-          {platforms.map((platform) => (
-            <SocialSharingItem
-              platform={platform}
-              theme={theme}
-              title={platform}
-              url={socialUrlMap[platform]}
-            />
-          ))}
-        </SocialSharingList>
-      )}
+    <SocialSharingWrapper {...standardProps}>
+      <SocialSharingList>
+        {items.map(({
+          icon,
+          platform,
+          shareUrl,
+          target,
+        }) => (
+          <SocialSharingItemWrapper key={platform} className={platform}>
+            <Link
+              data-gtm-event="Engagement"
+              data-gtm-category="Share"
+              data-gtm-label={platform}
+              href={shareUrl}
+              target={target}
+            >
+              <IconWrapper className={platform}>
+                {icon}
+              </IconWrapper>
+            </Link>
+          </SocialSharingItemWrapper>
+        ))}
+      </SocialSharingList>
     </SocialSharingWrapper>
   );
 };
 
 SocialSharing.defaultProps = {
+  ...standardDefaultProps,
+  theme: defaultStyles,
   description: '',
   imageUrl: '',
   platforms: ['email', 'facebook', 'twitter'],
   style: {},
-  theme: defaultStyles,
   title: '',
   url: '',
 };
 
 SocialSharing.propTypes = {
+  ...standardPropTypes,
   /**
    * Description of the shared content.
    */
@@ -147,18 +197,14 @@ SocialSharing.propTypes = {
   /**
    * An array of social sharing platforms.
    */
-  platforms: PropTypes.arrayOf(PropTypes.oneOf(SupportedPlatforms)),
+  platforms: PropTypes.arrayOf(PropTypes.string),
   /**
-   * CSS styles.
+   * An object containing social platforms as keys and platform configs as values.
    */
-  style: PropTypes.oneOfType([
+  platformData: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]),
-  /**
-   * Theme (styles) to apply to the component.
-   */
-  theme: PropTypes.object,
   /**
    * Title of the shared content.
    */
@@ -169,12 +215,13 @@ SocialSharing.propTypes = {
   url: PropTypes.string,
 };
 
-export const themeMap = {
+const themeMap = {
   default: defaultStyles,
 };
 
-export { SocialSharing as PureComponent };
+export {
+  SocialSharing as Component,
+  themeMap,
+};
 
-export const StyledComponent = withThemes(themeMap)(SocialSharing);
-
-export default StyledComponent;
+export default SocialSharing;
