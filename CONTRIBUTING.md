@@ -10,6 +10,7 @@ Note: For merge commits, just use `chore` for the type of change, `merge` for th
 Specific branches will be used for specific purposes in this repo. Considering this, the lifecycle of a new feature, bugfix, etc. should largely follow the steps below.
 
 ### Set up process
+**NOTE:** You must be on at least Irving `3.1.0` for this setup process to work properly.
 1. Fork or clone the Irving repo.
 2. `git checkout master` - Check out the NPM package release branch.
 3. `npm run develop:prepare` - If you have run this script in the past, you can skip this step. Run this at the root of the Irving repo to prepare the irving repo for development. **IMPORTANT NOTE** this script is memory intensive and may take time, but you should only ever need to run it once. Get up and make yourself some coffee or a cocktail and just let it run! This script will:
