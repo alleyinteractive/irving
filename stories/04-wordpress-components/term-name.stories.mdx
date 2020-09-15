@@ -1,1 +1,48 @@
 <Meta title="WordPress Components|Term Name" />
+
+# Term Name
+
+Get the term name.
+
+This component returns an `irving/text` component with `content` set to the `name` property of the WP Term object. Term ID can be set by context or `term_id`.
+
+Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-text--plain-text-example).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/term-name).
+
+## Examples
+
+Setting `term_id` directly.
+```json
+{
+  "name": "irving/term-name",
+  "config": {
+    "term_id": 1
+  }
+}
+```
+
+Setting `term_id` via provider.
+```json
+{
+  "name": "irving/term-provider",
+  "config": {
+    "term_id": 1
+  },
+  "children": [
+    {
+      "name": "irving/term-name"
+    }
+  ]
+}
+```
+
+Both will render as,
+```json
+{
+  "name": "irving/text",
+  "config": {
+    "content": "Uncategorized"
+  }
+}
+```
