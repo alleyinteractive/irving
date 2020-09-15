@@ -2,6 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import CssReset from '@irvingjs/styled/components/reset';
+import { __ } from '@wordpress/i18n';
+import * as defaultStyles from './themes/default';
 
 /**
  * Top-level app component.
@@ -9,15 +11,27 @@ import CssReset from '@irvingjs/styled/components/reset';
 const App = (props) => {
   const {
     IrvingApp,
+    theme,
   } = props;
+
+  const {
+    SkipLink,
+  } = theme;
 
   return (
     <>
       <Helmet />
       <CssReset />
+      <SkipLink href="#content">
+        {__('Skip to contents', 'irving-styled-components')}
+      </SkipLink>
       <IrvingApp />
     </>
   );
+};
+
+App.defaultProps = {
+  theme: defaultStyles,
 };
 
 App.propTypes = {
@@ -25,6 +39,16 @@ App.propTypes = {
     PropTypes.object,
     PropTypes.func,
   ]).isRequired,
+  theme: PropTypes.object,
+};
+
+const themeMap = {
+  default: defaultStyles,
+};
+
+export {
+  App as Component,
+  themeMap,
 };
 
 export default App;

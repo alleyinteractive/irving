@@ -7,6 +7,10 @@ export const SearchFormWrapper = styled.form`
   width: 100%;
 `;
 
+export const SearchLabel = styled.label`
+  width: 100%
+`;
+
 export const SearchFormTerm = styled.input`
   border-radius: 0;
   border-right: none;
