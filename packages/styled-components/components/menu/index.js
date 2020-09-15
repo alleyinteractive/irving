@@ -28,7 +28,11 @@ const Menu = (props) => {
   } = theme;
 
   return (
-    <Wrapper data-location={location} {...standardProps}>
+    <Wrapper
+      data-location={location}
+      aria-label={location}
+      {...standardProps}
+    >
       {(displayName && menuName) && (
         <NameWrapper>
           {menuName}
