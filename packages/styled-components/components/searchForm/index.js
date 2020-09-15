@@ -52,18 +52,15 @@ const SearchForm = (props) => {
       action={baseUrl}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <SearchLabel
-        id="search-label"
-      >
-        Search input
+      <SearchLabel>
+        <SearchFormTerm
+          aria-label="search"
+          name={searchTermQueryArg}
+          placeholder="Search"
+          ref={register}
+          type="text"
+        />
       </SearchLabel>
-      <SearchFormTerm
-        aria-labelledby="search-label"
-        name={searchTermQueryArg}
-        placeholder="Search"
-        ref={register}
-        type="text"
-      />
       {/* @TODO Add GTM event.  */}
       <SearchFormSubmitButton type="submit">Search</SearchFormSubmitButton>
     </SearchFormWrapper>

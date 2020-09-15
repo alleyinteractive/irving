@@ -1,6 +1,5 @@
 /* eslint max-len: 0 */
 import styled from 'styled-components';
-import { screenreaderOnly } from '@irvingjs/styled/utils';
 
 // eslint-disable import/prefer-default-export.
 export const SearchFormWrapper = styled.form`
@@ -9,7 +8,7 @@ export const SearchFormWrapper = styled.form`
 `;
 
 export const SearchLabel = styled.label`
-  ${screenreaderOnly}
+  width: 100%
 `;
 
 export const SearchFormTerm = styled.input`
