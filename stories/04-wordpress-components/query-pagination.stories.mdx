@@ -7,7 +7,56 @@ Renders as the `Pagination` styled component [(docs)](?path=/docs/styled-compone
 
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/query-pagination).
 
-## Example
+## Overview
+Coming soon.
+
+### Notes
+Coming soon.
+
+## Config
+```json
+{
+  "base_url": {
+    "type": "string"
+  },
+  "current_page": {
+    "default": 1,
+    "type": "int"
+  },
+  "display_first_and_last": {
+    "default": true,
+    "type": "bool"
+  },
+  "display_prev_and_next": {
+    "default": true,
+    "type": "bool"
+  },
+  "pagination_format": {
+    "default": "page/%1$d/",
+    "type": "string"
+  },
+  "range": {
+    "default": 5,
+    "type": "number"
+  },
+  "style": {
+    "default": [],
+    "type": "object"
+  },
+  "total_pages": {
+    "default": 1,
+    "type": "int"
+  },
+  "wp_query": {
+    "hidden": true,
+    "type": "object"
+  }
+}
+```
+
+## Examples
+
+### Basic example
 ```json
 {
   "name": "irving/query-pagination"
