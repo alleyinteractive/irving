@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v4.1.0-alpha.4...v4.1.0-alpha.5) (2020-09-15)
+
+
+### Bug Fixes
+
+* **creategetproviderconfig:** allow passing in provider name directly ([a95297b](https://github.com/alleyinteractive/irving/packages/core/commit/a95297bf9731768b0ce8e986d5f72a89e7b86b41))
+* **providers:** switch to using a separate create helper for providers ([6a2ac37](https://github.com/alleyinteractive/irving/packages/core/commit/6a2ac3756de740e3d9f6406d2bd9cbc14852864f))
+
+
+### Features
+
+* **creategetfromproviderconfig:** add selector and tests for getting a config key from provider ([e1d786a](https://github.com/alleyinteractive/irving/packages/core/commit/e1d786a749ff343e81b2a4e43d068828dde02413))
+* **providerreducer:** allow users to key by route if a specific key is provided ([a1d96cd](https://github.com/alleyinteractive/irving/packages/core/commit/a1d96cd1dabedb7f85298130ca09be6c80c58b9f))
+
+
+
+
+
 # [4.1.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v4.1.0-alpha.3...v4.1.0-alpha.4) (2020-09-15)
 
 **Note:** Version bump only for package @irvingjs/core
