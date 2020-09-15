@@ -38,7 +38,10 @@ export function createComponentGroups(componentGroups) {
  * @param {string} keyPrefix
  * @return {object} - React Element
  */
-export default function toReactElement(apiComponent, keyPrefix = '') {
+export default function toReactElement(
+  apiComponent,
+  keyPrefix = ''
+) {
   const {
     name,
     _alias: alias = '',
