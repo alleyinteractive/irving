@@ -10,16 +10,33 @@ Renders the `Fragment` styled component [(docs)](?path=/docs/styled-components-f
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/fragment).
 
 ## Example
+No wrapping element.
 ```json
 {
-	"name": "irving/fragment",
-	"children": [
-		{
-			"name": "irving/text",
-			"config": {
-				"content": "Example Fragment"
-			}
-		}
-	]
+  "name": "irving/fragment",
+  "children": [
+    {
+      "name": "irving/text",
+      "config": {
+        "content": "Example Fragment"
+      }
+    }
+  ]
+}
+```
+
+With a `div` wrapper element.
+```json
+{
+  "name": "irving/fragment",
+  "children": [
+    {
+      "name": "irving/text",
+      "config": {
+        "content": "Example Fragment",
+        "tag": "div"
+      }
+    }
+  ]
 }
 ```

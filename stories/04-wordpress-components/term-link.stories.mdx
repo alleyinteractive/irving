@@ -14,34 +14,34 @@ Renders as the `Link` styled component [(docs)](?path=/docs/styled-components-li
 Setting `term_id` directly.
 ```json
 {
-	"name": "irving/term-link",
-	"config": {
-		"term_id": 1
-	}
+  "name": "irving/term-link",
+  "config": {
+    "term_id": 1
+  }
 }
 ```
 
 Setting `term_id` via provider.
 ```json
 {
-	"name": "irving/term-provider",
-	"config": {
-		"term_id": 1
-	},
-	"children": [
-		{
-			"name": "irving/term-link"
-		}
-	]
+  "name": "irving/term-provider",
+  "config": {
+    "term_id": 1
+  },
+  "children": [
+    {
+      "name": "irving/term-link"
+    }
+  ]
 }
 ```
 
 Both will render as,
 ```json
 {
-	"name": "irving/text",
-	"config": {
-		"href": "https://example.com/category/uncategorized"
-	}
+  "name": "irving/text",
+  "config": {
+    "href": "https://example.com/category/uncategorized"
+  }
 }
 ```

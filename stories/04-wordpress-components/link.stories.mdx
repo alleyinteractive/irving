@@ -3,7 +3,7 @@
 # Link
 Custom anchor element implementation
 
-Base anchor/link component ensuring that all relative urls maintain SPA functionality.
+Base anchor/link component which ensures all links use the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) to navigate relative paths, bypassing a server side render.
 
 Renders as the `Link` styled component [(docs)](?path=/docs/styled-components-link--plain-text-example).
 
@@ -12,7 +12,7 @@ Renders as the `Link` styled component [(docs)](?path=/docs/styled-components-li
 ## Example
 ```json
 {
-	"name": "irving/link",
+  "name": "irving/link",
   "config": {
     "href": "/about-us/"
   }

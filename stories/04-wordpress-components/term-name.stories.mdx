@@ -15,34 +15,34 @@ Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-te
 Setting `term_id` directly.
 ```json
 {
-	"name": "irving/term-name",
-	"config": {
-		"term_id": 1
-	}
+  "name": "irving/term-name",
+  "config": {
+    "term_id": 1
+  }
 }
 ```
 
 Setting `term_id` via provider.
 ```json
 {
-	"name": "irving/term-provider",
-	"config": {
-		"term_id": 1
-	},
-	"children": [
-		{
-			"name": "irving/term-name"
-		}
-	]
+  "name": "irving/term-provider",
+  "config": {
+    "term_id": 1
+  },
+  "children": [
+    {
+      "name": "irving/term-name"
+    }
+  ]
 }
 ```
 
 Both will render as,
 ```json
 {
-	"name": "irving/text",
-	"config": {
-		"content": "Uncategorized"
-	}
+  "name": "irving/text",
+  "config": {
+    "content": "Uncategorized"
+  }
 }
 ```
