@@ -3,13 +3,45 @@
 # Text
 Output text.
 
-Output the value of `content`, with options to control the tag, render as HTML, and render oembeds.
-
 Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-text--plain-text-example).
 
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/text).
 
-## Example
+## Overview
+Output the value of `content`, with options to control the tag, render as HTML, and render oembeds.
+
+### Notes
+Coming soon.
+
+## Config
+```json
+{
+  "content": {
+    "default": "",
+    "type": "string"
+  },
+  "html": {
+    "default": false,
+    "type": "bool"
+  },
+  "oembed": {
+    "default": false,
+    "type": "bool"
+  },
+  "style": {
+    "default": [],
+    "type": "array"
+  },
+  "tag": {
+    "default": "span",
+    "type": "string"
+  }
+}
+```
+
+## Examples
+
+### Basic example
 ```json
 {
   "name": "irving/text",

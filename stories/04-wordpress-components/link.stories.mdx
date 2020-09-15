@@ -3,18 +3,49 @@
 # Link
 Custom anchor element implementation
 
-Base anchor/link component which ensures all links use the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) to navigate relative paths, bypassing a server side render.
-
 Renders as the `Link` styled component [(docs)](?path=/docs/styled-components-link--plain-text-example).
 
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/link).
 
-## Example
+## Overview
+Base anchor/link component which ensures all links use the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) to navigate relative paths, bypassing a server side render.
+
+## Config
+```json
+{
+  "href": {
+    "default": "",
+    "type": "string"
+  },
+  "fragment": {
+    "default": "",
+    "type": "string"
+  },
+  "rel": {
+    "default": "",
+    "type": "string"
+  },
+  "style": {
+    "default": [],
+    "type": "array"
+  },
+  "target": {
+    "default": "",
+    "type": "string"
+  }
+}
+```
+
+## Examples
+
+### Basic example
 ```json
 {
   "name": "irving/link",
   "config": {
-    "href": "/about-us/"
+    "href": "/about-us/",
+    "rel": "nofollow noreferrer",
+    "target": "_blank"
   }
 }
 ```
