@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import toReactElement from './toReactElement';
 
 describe('toReactElement', () => {
@@ -30,24 +30,29 @@ describe('toReactElement', () => {
   };
 
   it( 'converts an api component to a React element', () => {
-    const fooElement = toReactElement(apiComponent);
-    const wrapper = shallow(<div>{fooElement}</div>);
-
-    expect(wrapper.find({ componentName: 'foo' })).toHaveLength(1);
-    expect(wrapper.find({ color: 'red' })).toHaveLength(1);
+    render(
+      <div data-testid="foo">
+        {toReactElement(apiComponent)}
+      </div>
+    );
+    const element = screen.getByTestId('foo');
+    expect(element.textContent).toBe('foo');
   });
 
-  it( 'converts api component\'s children to React elements', () => {
+  it('converts api component\'s children to React elements', () => {
     const componentWithChildren = {
       ...apiComponent,
-      children: [apiComponent2, apiComponent3]
+      children: [apiComponent2, apiComponent3],
     };
 
-    const element = toReactElement(componentWithChildren);
-    const wrapper = shallow(<div>{element}</div>);
+    render(
+      <div data-testid="bar">
+        {toReactElement(componentWithChildren)}
+      </div>
+    );
 
-    expect(wrapper.find({ componentName: 'baz' })).toHaveLength(1);
-    expect(wrapper.find({ componentName: 'buzz' })).toHaveLength(1);
+    const element = screen.getByTestId('bar');
+    expect(element.textContent).toBe('foobazbuzz');
   });
 
   it( 'converts api component\'s component groups to React elements', () => {
@@ -61,26 +66,25 @@ describe('toReactElement', () => {
       },
     };
 
-    const element = toReactElement(componentWithGroups);
-    const wrapper = shallow(<div>{element}</div>);
+    render(
+      <div data-testid="baz">
+        {toReactElement(componentWithGroups)}
+      </div>
+    );
 
-    expect(
-      wrapper.find({ componentName: 'bar' })
-        .dive()
-        .find({ componentName: 'baz' })
-    ).toHaveLength(1);
-    expect(
-      wrapper.find({ componentName: 'bar' })
-        .dive()
-        .find({ componentName: 'buzz' })
-    ).toHaveLength(1);
+    const element = screen.getByTestId('baz');
+
+    expect(element.textContent).toBe('bazbuzz');
   });
 
   it( 'converts an api component\'s alias to a React element', () => {
-    const fooElement = toReactElement(apiComponent4);
-    const wrapper = shallow(<div>{fooElement}</div>);
+    render(
+      <div data-testid="buzz">
+        {toReactElement(apiComponent4)}
+      </div>
+    );
 
-    expect(wrapper.find({ componentName: 'bizz' })).toHaveLength(1);
-    expect(wrapper.text()).toBe('<foo />');
+    const element = screen.getByTestId('buzz');
+    expect(element.textContent).toBe('foo');
   });
 });
