@@ -15,11 +15,15 @@ Specific branches will be used for specific purposes in this repo. Considering t
 2. `git checkout master` - Check out the NPM package release branch.
 3. `npm run develop:prepare` - If you have run this script in the past, you can skip this step. Run this at the root of the Irving repo to prepare the irving repo for development. **IMPORTANT NOTE** this script is memory intensive and may take time, but you should only ever need to run it once. Get up and make yourself some coffee or a cocktail and just let it run! This script will:
   * Run `npm install`.
-  * Run `npm link` within all Irving packages to create global symlinks.
+  * Run `npm link` within all Irving packages to create global symlinks. (see [docs on npm link](https://docs.npmjs.com/cli/link))
   * Clean up `node_modules` within each package
   * Run `lerna bootstrap` to install and hoist dependencies for all packages, then link interdependent Irving packages together.
   * **NOTE:** If you run into an error attempting to run this script, try running `develop:cleanup` first then attempt to run `develop:prepare` again.
 4. `npm install && npx irving link-all` - In the project where you'll be testing out your changes, run these commands to symlink all installed Irving packages.
+5. A couple troubleshooting tips:
+* If you run into errors with linked packages, especially errors related to missing imports, run `npm run develop:setup` in the irving repo root and your problems should be solved. 
+* If you'd like to unlink all irving packages, run `npm install` in the root of your project.
+* If you'd like to re-link all irving packages, run `npx irving link-all` in the root of your project.
 
 ### If you are a community contributor:
 1. If for some reason you need to reset links, run `npm run develop:setup` in the Irving repo root and `npx irving link-all` in your project.
