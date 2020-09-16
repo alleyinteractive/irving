@@ -36,7 +36,6 @@ Some requirements for themes to work with Irving's `styled-components` package:
 * If you use a series of named exports in your theme file you must import this via `import * as myTheme from ...`, where `myTheme` will become your theme object.
 * Names of styled components in your theme file _must_ be identical to the names of styled components in the component's default theme in order to be properly applied.
 * Your `themes/index.js` file _must_ export an object. At the top level of this object, keys should be component names and values should be an object of custom themes to provide to the Irving styled component. Example:
-* Your theme files _does not_ have to export a corresponding component for _every_ styled component defined in the default theme, but if it doesn't the default version of that component will be used to prevent errors.
 ```js
 import * as myCustomThemeObject from './container/myCustomThemeObject';
 
@@ -47,6 +46,7 @@ export default {
 }
 
 ```
+* Your theme files _does not_ have to export a corresponding component for _every_ styled component defined in the default theme, but if it doesn't the default version of that component will be used to prevent errors.
 
 The styled-components's `default.js` is the best place to start when writing your own theme so copy it from the `node_modules/@irvingjs/styled-components/components/<component-to-theme>/themes` folder. From there, add or subtract any styles you like. You can overwrite the default behavior by naming your custom theme `default.js` or keep the default behavior and add as many theme variants as you need.
 
