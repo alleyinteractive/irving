@@ -1,0 +1,77 @@
+<Meta title="WordPress Components|Post Byline" />
+
+# Post Byline
+Display a list of content authors.
+
+Renders as the `Fragment` styled component [(docs)](?path=/docs/styled-components-fragment--basic-eample).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-byline).
+
+## Overview
+Component that outputs the post's author and author link. This component uses the `irving/post_id` context provider.
+
+### Notes
+* This will be deprecated in a future version in favor of a data provider and list component.
+* By default, `irving/byline` uses the post's author. Support for other author/byline plugins is on the roadmap.
+  * The children of `irving/byline` can be filtered to modify the children to accomplish this until an official solution exists.
+
+## Config
+```json
+{
+  "single_delimiter": {
+    "default": " and ",
+    "type": "string"
+  },
+  "multi_delimiter": {
+    "default": ", ",
+    "type": "string"
+  },
+  "last_delimiter": {
+    "default": ", and ",
+    "type": "string"
+  },
+  "post_id": {
+    "type": "integer"
+  },
+  "pre_text": {
+    "default": "By ",
+    "type": "string"
+  }
+}
+```
+
+## Examples
+See the [byline styled component documentation](?path=/docs/styled-components-byline--basic-example) for more examples.
+
+Template:
+```json
+{
+  "name": "irving/post-byline",
+  "config": {
+  	"pre_text": ""
+  }
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-byline",
+  "children": [
+  	{
+  		"name": "irving/link",
+  		"config": {
+  			"href": "/author/washington-irving/"
+  		},
+  		"children": [
+  			{
+  				"name": "irving/text",
+  				"config": {
+  					"content": "Washington Irving"
+  				}
+  			}
+  		]
+  	}
+  ]
+}
+```

@@ -5,6 +5,7 @@ import {
   getValueFromConfig,
 } from 'config/irving/getValueFromConfig';
 import componentsReducer from './componentsReducer';
+import providersReducer from './providersReducer';
 import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
 import loadingReducer from './loadingReducer';
@@ -27,7 +28,8 @@ const rootSliceReducer = combineReducers(reducers);
 const rootReducer = reduceReducers(
   defaultState,
   rootSliceReducer,
-  componentsReducer
+  componentsReducer,
+  providersReducer
 );
 
 export default rootReducer;

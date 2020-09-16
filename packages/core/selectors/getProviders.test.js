@@ -5,51 +5,19 @@ describe('getProviders', () => {
     expect(getProviders()).toEqual([]);
   });
 
-  it('should get provider\'s object', () => {
+  it('should get provider\'s names', () => {
     const mockState = {
-      route: {
-        pathname: '/foo',
-      },
       components: {
         providers: {
-          '/foo': [
-            {
-              name: 'provider-test',
-            },
-          ],
+          'irving/test-provider': {},
+          'irving/another-provider': {},
         },
       },
     };
-    expect(getProviders(mockState)).toEqual([
-      { name: 'provider-test' },
-    ]);
-  });
 
-  it('should get provider\'s objects', () => {
-    const mockState = {
-      route: {
-        pathname: '/foo',
-      },
-      components: {
-        providers: {
-          '/foo': [
-            {
-              name: 'provider-test',
-            },
-            {
-              name: 'another-provider',
-            },
-          ],
-        },
-      },
-    };
     expect(getProviders(mockState)).toEqual([
-      {
-        name: 'provider-test',
-      },
-      {
-        name: 'another-provider',
-      },
+      'irving/test-provider',
+      'irving/another-provider',
     ]);
   });
 });

@@ -26,7 +26,7 @@ const BodyWrapper = (props) => {
       </Helmet>
       <Main
         {...standardProps}
-        role="main"
+        id="content"
       >
         {children}
       </Main>

@@ -1,0 +1,90 @@
+<Meta title="WordPress Components|Term Name" />
+
+# Term Name
+Get the term name.
+
+Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-text--plain-text-example).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/term-name).
+
+## Overview
+This component returns an `irving/text` component with `content` set to the `name` property of the WP Term object. Term ID can be set by context or `term_id`.
+
+### Notes
+Coming soon.
+
+## Config
+```json
+{
+  "content": {
+    "default": "",
+    "type": "string"
+  },
+  "html": {
+    "default": false,
+    "type": "bool"
+  },
+  "oembed": {
+    "default": false,
+    "type": "bool"
+  },
+  "style": {
+    "default": [],
+    "type": "array"
+  },
+  "tag": {
+    "default": "span",
+    "type": "string"
+  }
+}
+```
+
+## Examples
+
+### Setting `term_id` directly.
+Template:
+```json
+{
+  "name": "irving/term-name",
+  "config": {
+    "term_id": 1
+  }
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/text",
+  "config": {
+    "content": "Uncategorized"
+  }
+}
+```
+
+
+### Setting `term_id` via provider.
+Template:
+```json
+{
+  "name": "irving/term-provider",
+  "config": {
+    "term_id": 1
+  },
+  "children": [
+    {
+      "name": "irving/term-name"
+    }
+  ]
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/text",
+  "config": {
+    "content": "Uncategorized"
+  }
+}
+```

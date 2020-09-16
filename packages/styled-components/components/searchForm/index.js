@@ -27,6 +27,7 @@ const SearchForm = (props) => {
     SearchFormWrapper,
     SearchFormTerm,
     SearchFormSubmitButton,
+    SearchLabel,
   } = theme;
 
   const defaultValues = {};
@@ -51,12 +52,15 @@ const SearchForm = (props) => {
       action={baseUrl}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <SearchFormTerm
-        name={searchTermQueryArg}
-        placeholder="Search"
-        ref={register}
-        type="text"
-      />
+      <SearchLabel>
+        <SearchFormTerm
+          aria-label="search"
+          name={searchTermQueryArg}
+          placeholder="Search"
+          ref={register}
+          type="text"
+        />
+      </SearchLabel>
       {/* @TODO Add GTM event.  */}
       <SearchFormSubmitButton type="submit">Search</SearchFormSubmitButton>
     </SearchFormWrapper>

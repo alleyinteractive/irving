@@ -18,20 +18,15 @@ const SiteThemeProvider = (props) => {
   );
 };
 
-SiteThemeProvider.defaultProps = {
-  children: [],
-  theme: {},
-};
-
 SiteThemeProvider.propTypes = {
   /**
    * Children of the component.
    */
-  children: PropTypes.array,
+  children: PropTypes.array.isRequired,
   /**
-   * Site theme.
+   * Children of the component.
    */
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };
 
 export default SiteThemeProvider;

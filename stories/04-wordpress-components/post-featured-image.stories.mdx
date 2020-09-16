@@ -1,0 +1,102 @@
+<Meta title="WordPress Components|Post Featured Image" />
+
+# Post Featured Image
+Get the post featured image.
+
+Renders as the `Image` styled component [(docs)](?path=/docs/styled-components-image--basic-example).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-featured-image).
+
+## Overview
+Coming soon.
+
+### Notes
+Coming soon.
+
+## Config
+```json
+{
+  "allow_upscaling": {
+    "default": false,
+    "description": "Allow an image to be scaled to larger than its actual width.",
+    "type": "bool"
+  },
+  "alt": {
+    "description": "Value of the alt attribute.",
+    "type": "string"
+  },
+  "aspect_ratio": {
+    "description": "Optional. Aspect ratio for the image to conform to. Can be a float (\"0.6667\"), a ratio (\"16 / 9\"), or a predfined ratio (\"square\").",
+    "type": "string"
+  },
+  "caption": {
+    "description": "Optional. Caption for the image.",
+    "default": "",
+    "type": "string"
+  },
+  "class_name": {
+    "description": "Optional. Classname.",
+    "type": "string"
+  },
+  "fallback_src": {
+    "description": "Optional. URL for the image source if \"src\" is not set.",
+    "type": "string"
+  },
+  "use_theme_fallback": {
+    "default": false,
+    "description": "Optional. Use the customizer fallback image when no featured image is set.",
+    "type": "bool"
+  },
+  "loading": {
+    "default": "lazy",
+    "description": "Lazy loading setting. Either \"eager\" or \"lazy\".",
+    "type": "string"
+  },
+  "object_fit": {
+    "default": "cover",
+    "description": "Object fit property.",
+    "type": "string"
+  },
+  "show_meta": {
+    "default": true,
+    "description": "Display meta.",
+    "type": "bool"
+  },
+  "size": {
+    "default": "full",
+    "description": "A WordPress image size to use. Default 'full'.",
+    "type": "string",
+    "hidden": true
+  },
+  "sizes": {
+    "description": "An image sizes attribute string.",
+    "type": "string"
+  },
+  "src": {
+    "description": "Optional. URL for the image source.",
+    "type": "string"
+  },
+  "srcset": {
+    "description": "A source list string for delivering responsive images.",
+    "type": "string"
+  },
+  "style": {
+    "default": [],
+    "type": "array"
+  },
+  "query_args": {
+    "description": "A set of query args to add to the URL string of the src.",
+    "default": [],
+    "type": "array"
+  }
+}
+```
+
+## Examples
+
+### Basic example
+```json
+{
+  "name": "irving/post-featured-image"
+}
+```

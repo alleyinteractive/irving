@@ -1,0 +1,69 @@
+<Meta title="WordPress Components|Archive Title" />
+
+# Archive Title
+Get the archive title.
+
+Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-text--plain-text-example).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/archive-title).
+
+## Overview
+Used on archive templates (`archive.json`, `author.json`, etc.) to build an `irving/text` component by setting the `content` config value.
+
+### Notes
+* This component wraps `get_the_archive_title()` [(docs)](https://developer.wordpress.org/reference/functions/get_the_archive_title/).
+* You can filter with `get_the_archive_title` [(docs)](https://developer.wordpress.org/reference/hooks/get_the_archive_title/).
+* The prefix can be removed (ex. `Category: News` -> `News`) using the `get_the_archive_title_prefix` filter [(docs)](https://developer.wordpress.org/reference/hooks/get_the_archive_title_prefix/).
+
+## Config
+```json
+{
+  "content": {
+    "default": "",
+    "type": "string"
+  },
+  "html": {
+    "default": false,
+    "type": "bool"
+  },
+  "oembed": {
+    "default": false,
+    "type": "bool"
+  },
+  "style": {
+    "default": [],
+    "type": "array"
+  },
+  "tag": {
+    "default": "span",
+    "type": "string"
+  }
+}
+```
+
+## Examples
+
+### Display the archive title as an h1 element.
+Template:
+```json
+{
+  "name": "irving/archive-title",
+  "theme": "h1",
+  "config": {
+    "tag": "h1"
+  }
+}
+```
+
+Endpoint output:
+```json
+{
+    "name": "irving/archive-title",
+    "alias": "irving/text",
+    "theme": "h1",
+    "config": {
+        "content": "Category: News",
+        "tag": "h1"
+    }
+}
+```

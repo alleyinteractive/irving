@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-alpha.5...v4.1.0-beta.0) (2020-09-16)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [4.1.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-alpha.4...v4.1.0-alpha.5) (2020-09-15)
+
+
+### Bug Fixes
+
+* **providers:** switch to using a separate create helper for providers ([6a2ac37](https://github.com/alleyinteractive/irving/packages/styled/commit/6a2ac3756de740e3d9f6406d2bd9cbc14852864f))
+
+
+
+
+
+# [4.1.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-alpha.3...v4.1.0-alpha.4) (2020-09-15)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
 # [4.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.0.0...v4.1.0-alpha.0) (2020-09-10)
 
 **Note:** Version bump only for package @irvingjs/styled

@@ -48,8 +48,6 @@ it('should merge received components', () => {
     page: {
       '/foo': page,
     },
-    providers: {
-      '/foo': providers,
-    },
+    providers: {},
   });
 });

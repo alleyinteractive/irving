@@ -1,0 +1,90 @@
+<Meta title="WordPress Components|Head" />
+
+# Head
+HTML <head\> management.
+
+Renders as the `Head` styled component [(docs)](?path=/docs/styled-components-head--basic-eample).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/head).
+
+## Overview
+Wrapper for [React Helmet](https://github.com/nfl/react-helmet).
+
+> Supports all valid head tags: title, base, meta, link, script, noscript, and style tags.
+
+## Config
+```json
+{
+  "context": {
+    "default": "page",
+    "description": "Context of the WP Irving component endpoint.",
+    "type": "string"
+  }
+}
+```
+
+## Examples
+
+### Adding a `<title>` tag
+__Note:__ To render a title tag, include the string as the only value in `children`,
+```json
+{
+  "name": "irving/head",
+  "children": [
+    {
+      "name": "title",
+      "children": [
+        "My Cool Site"
+      ]
+    }
+  ]
+}
+```
+
+### Adding a `<link>` tag
+```json
+{
+  "name": "irving/head",
+  "children": [
+    {
+      "name": "link",
+      "config": {
+        "rel": "icon",
+        "href": "favicon.png",
+        "sizes": "32x32"
+      }
+    }
+  ]
+}
+```
+
+### Adding a `<meta>` tag
+```json
+{
+  "name": "irving/head",
+  "children": [
+    {
+      "name": "meta",
+      "config": {
+        "name": "description",
+        "content": "Site description for SEO."
+      }
+    }
+  ]
+}
+```
+
+### Adding a `<script>` tag
+```json
+{
+  "name": "irving/head",
+  "children": [
+    {
+      "name": "script",
+      "config": {
+        "src": "/bundle.js"
+      }
+    }
+  ]
+}
+```
