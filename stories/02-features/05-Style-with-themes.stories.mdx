@@ -1,73 +1,94 @@
 <Meta title="Features|Style with Themes" />
 
 # Styling with Themes
+Themes are one of a variety of ways that styling can be applied in Irving. Themes can be used in conjunction with the `@irvingjs/styled-components` package or with Irving's core styling setup as an elegant and efficient way to include your styles. It's also possible to style using a `className` or a `style` prop.
 
-Themes are one of a variety of ways that styling can be applied in Irving. Themes are used in conjunction with [styled components](https://styled-components.com/) as an elegant and efficient way to include your styles. It's also possible to style using classNames and in-line styling (links tk for those sections).
+## So, what's a theme?
+A theme in the Irving sense can be one of two things, depending on whether or not you're using the `styled-components` package:
+* Using `styled-components`, themes are a method of replacing one or more styled-components in an Irving component's JSX with your own.
+* Using Irving core alone, themes are a method of replacing or more classnames in a component's stylesheet with your own.
 
-### So, what's a theme?
+Irving's theming functionality may not work quite the way you expect from other themeing methods you have used in the past, and should not be confused with the [theme functionality built in to Styled Components](https://styled-components.com/docs/advanced#theming). Styled Components' built-in theming can be used as well, but is entirely separate from Irving's themes.
 
-The term "theme" is already in use in WordPress to refer to the overall shape and functioning of your site. Irving extends this concept of "theme" to each component meaning "a variant of styling." For a very simple example, if your application includes a red button and a blue button, you could apply a "red" theme to one and a "blue" theme to another.
-
-## Theming Styled Components
-
-An assortment of minimally styled components is included in Irving's [`styled-components` package](?path=/docs/features-available-packages--page#styled-components). Styles are easily overwritten by providing Irving with your own custom themes. 
-
-
+### Theming Irving Styled Components
+An assortment of minimally-styled components is included in Irving's [`styled-components` package](?path=/docs/features-available-packages--page#styled-components). Styles are easily overwritten by providing Irving with your own custom themes.
 
 Each styled-component's configuration includes a theme property that maps to the default style included in the component package. For example, the default.js theme for the container component is:
 
 ```js
 import styled from 'styled-components';
 
-/* eslint-disable import/prefer-default-export */
 export const ContainerWrapper = styled.div`
   margin: auto;
   width: 100%;
 `;
-/* eslint-enable */
 
 ```
-To find all the styled components available and their default themes, look in: `client/irving/node_modules/@irvinjs/styled-components/components` -- each component includes a `themes` folder containing a `default.js` file, which renders the basic "out of the box" styling.
+To find all the styled components available and their default themes, look in: `client/irving/node_modules/@irvinjs/styled-components/components` — each component includes a `themes` folder containing a `default.js` file, which renders the basic "out of the box" styling.
 
-The conditions needed to apply custom themes are:
-* a `themes` folder must be created in the irving directory (`<projectName>/wp-content/themes/<projectTheme>/client/irving`) with an `index.js` file within. It's a good practice to organize your themes by component name, so to style a container, for example, create a `container` folder within the `themes` folder.
-* a JavaScript file with your custom styling must be imported to the `themes/index.js` file.
-* the styled-component in your template must point to your custom-theme.
+Some guidelines and standards we recommend for setting up themes:
+* Use a `themes` directory in the root of your project (`<projectName>/wp-content/themes/<projectTheme>/client/irving`) with an `index.js` file within. It's a good practice to organize your themes by component name, so to style a container, for example, create a `container` directory within the `themes` directory.
+* Import all of your themes into to the `themes/index.js` file.
+* Ensure a `themeName` prop is passed either directly or via API to the component you'd like to theme. That `themeName` prop should correspond to the key to which you've assigned your custom theme in the object exported from your `themes/index.js` file.
+
+Some requirements for themes to work with Irving's `styled-components` package:
+* Theme files containing your styled components definitions _must_ either export an object. This can either be a series of named exports or an actual JavaScript object.
+* If you use a series of named exports in your theme file you must import this via `import * as myTheme from ...`, where `myTheme` will become your theme object.
+* Names of styled components in your theme file _must_ be identical to the names of styled components in the component's default theme in order to be properly applied.
+* Your `themes/index.js` file _must_ export an object. At the top level of this object, keys should be component names and values should be an object of custom themes to provide to the Irving styled component. Example:
+```js
+import * as myCustomThemeObject from './container/myCustomThemeObject';
+
+export default {
+  'irving/container': {
+    themeName: myCustomThemeObject,
+  }
+}
+
+```
 
 The styled-components's `default.js` is the best place to start when writing your own theme so copy it from the `node_modules/@irvingjs/styled-components/components/<component-to-theme>/themes` folder. From there, add or subtract any styles you like. You can overwrite the default behavior by naming your custom theme `default.js` or keep the default behavior and add as many theme variants as you need.
 
-For example, you might want a flex container around a section, that is 90% wide with a yellow background. In order to point your app to your custom theme, you would apply the "theme" prop to your component:
+For example, you might want a flex container around a section, that is 90% wide with a yellow background. In order to point your app to your custom theme, your API json might look like:
 
 ```json
 {
-  "name" : "irving/container",
-  "theme" : "yellow-section"
+  "name": "irving/container",
+  "config": {
+    "theme_name": "yellow-section",
+  },
 }
 ```
-Then create a folder for container themes and a file with your styling for this container theme called: `yellowSection.js`. Note that JavaScript requires camelCase names (yellowSection) which Irving will convert to hyphenated names in json (yellow-section).
+
+Or, if using WordPress and `wp-irving`, your template JSON might contain the following component definition:
+```json
+{
+  "name": "irving/container",
+  "theme": "yellow-section",
+}
+```
+
+Next, create a folder for container themes and a file with your styling for this container theme called: `yellowSection.js`. Note that if you are using `wp-irving`, any themes containing hyphens (`-`) or underscores (`_`) in your json templates will be converted to camelCase (e.g. a theme of `yellow-section` becomes `yellowSection`) before producing endpoint data.
 
 ```js
 import styled from 'styled-components';
 
-/* eslint-disable import/prefer-default-export */
 export const ContainerWrapper = styled.section`
   background: yellow;
   display: flex;
   width: 90%;
 `;
-/* eslint-enable */
+```
 
+We recommend a folder structure like this:
 ```
-Your folder structure should look like this:
-```
-client\
-  irving\
+  my-irving-project\
     themes\
       container\
         yellowSection.js
-    index.js
-    
-```    
+      index.js
+
+```
 
 Next step: import your custom theme to the themes' folder `index.js` file:
 
@@ -85,9 +106,9 @@ That's it! A lovely feature of Irving is that as you noodle with your styling, t
 
 ## Theming a WordPress component
 
-Extending the styled-component theming plan, themes can also be applied to components in [WP Irving](https://github.com/alleyinteractive/wp-irving), the WordPress plug in to Irving. Components like post-list, site-menu, social sharing, etc., can be themed by determining the styled-component **alias** for that component and theming that component. 
+Extending the styled-component theming plan, themes can also be applied to components in [WP Irving](https://github.com/alleyinteractive/wp-irving), the WordPress plug in to Irving. Components like post-list, site-menu, social sharing, etc., can be themed by determining the styled-component **alias** for that component and theming that component.
 
-For example, a post-title is text, hence `irving/post-title` aliases to `irving/text` and can be themed using a text theme, either one that already exists, like "h1" or one you make like "special-post-title". If it's not obvious what the alias might be, use the WordPress editor to check the component's API and you'll see something like this:
+For example `irving/post-title` is an alias for the `irving/text` component and can be themed via that component. You may apply a theme that already exists, like `h1`, or one you make a custom theme like `special-post-title`. If it's not obvious what the alias might be, use the WordPress editor to check the component's API and you'll see something like this:
 
 ```json
 {
@@ -97,7 +118,7 @@ For example, a post-title is text, hence `irving/post-title` aliases to `irving/
 }
 ```
 
-or 
+or
 
 ```json
 {
@@ -106,4 +127,4 @@ or
 ...
 },
 ```
-which will help you to find the right styled component to theme. 
+which will help you to find the right styled component to theme.
