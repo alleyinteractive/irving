@@ -41,7 +41,7 @@ const Link = (props) => {
 
   return (
     <LinkWrapper
-      aria-hidden={ariaHidden}
+      aria-hidden={'true' === ariaHidden ? ariaHidden : null}
       data-gtm-action={gtmAction}
       data-gtm-category={gtmCategory}
       data-gtm-label={gtmLabel}
@@ -72,6 +72,7 @@ Link.defaultProps = {
 
 Link.propTypes = {
   ...standardPropTypes,
+  ariaHidden: PropTypes.oneOf([null, 'true']),
   /**
    * Destination for anchor tag (`href` attribute)
    */
