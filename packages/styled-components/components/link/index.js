@@ -18,6 +18,7 @@ import * as defaultStyles from './themes/default';
  */
 const Link = (props) => {
   const {
+    ariaHidden,
     children,
     gtmAction,
     gtmCategory,
@@ -40,6 +41,7 @@ const Link = (props) => {
 
   return (
     <LinkWrapper
+      aria-hidden={ariaHidden}
       data-gtm-action={gtmAction}
       data-gtm-category={gtmCategory}
       data-gtm-label={gtmLabel}
@@ -57,6 +59,7 @@ const Link = (props) => {
 
 Link.defaultProps = {
   ...standardDefaultProps,
+  ariaHidden: null,
   theme: defaultStyles,
   onClick: false,
   rel: '',
