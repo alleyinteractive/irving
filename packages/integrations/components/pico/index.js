@@ -129,6 +129,7 @@ const Pico = (props) => {
 
 Pico.defaultProps = {
   tiers: [],
+  widgetUrl: "https://widget.pico.tools",
 };
 
 Pico.propTypes = {
@@ -141,7 +142,7 @@ Pico.propTypes = {
   }).isRequired,
   publisherId: PropTypes.string.isRequired,
   tiers: PropTypes.array,
-  widgetUrl: PropTypes.string.isRequired,
+  widgetUrl: PropTypes.string,
 };
 
 export default Pico;
