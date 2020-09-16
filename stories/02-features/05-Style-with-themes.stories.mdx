@@ -6,11 +6,11 @@ Themes are one of a variety of ways that styling can be applied in Irving. Theme
 ## So, what's a theme?
 A theme in the Irving sense can be one of two things, depending on whether or not you're using the `styled-components` package:
 * Using `styled-components`, themes are a method of replacing one or more styled-components in an Irving component's JSX with your own.
-* Using Irving core alone, themes are a method of replacing or more classnames in a component's stylesheet with your own.
+* Using Irving core alone, themes are a method of replacing one or more classnames in a component's stylesheet with your own.
 
 Irving's theming functionality may not work quite the way you expect from other themeing methods you have used in the past, and should not be confused with the [theme functionality built in to Styled Components](https://styled-components.com/docs/advanced#theming). Styled Components' built-in theming can be used as well, but is entirely separate from Irving's themes.
 
-### Theming Irving Styled Components
+### Theming components in the `styled-components` package
 An assortment of minimally-styled components is included in Irving's [`styled-components` package](?path=/docs/features-available-packages--page#styled-components). Styles are easily overwritten by providing Irving with your own custom themes.
 
 Each styled-component's configuration includes a theme property that maps to the default style included in the component package. For example, the default.js theme for the container component is:
@@ -104,6 +104,40 @@ export default {
 
 ```
 That's it! A lovely feature of Irving is that as you noodle with your styling, the app hot reloads the styling without the need to refresh your browser. Very handy. However, templates and template parts are not hot-reloaded, so save and refresh after you have applied a theme to your component.
+
+### Theming your own styled component
+If you have a custom component that makes use of Styles Components in your Irving project you can still leverage Irving's theming functionality via the [`withThemes`](https://github.com/alleyinteractive/irving/blob/master/packages/styled/components/hoc/withThemes.js) higher-order component (HOC) within the `@irvingjs/styled` package. Unlike the `withThemes` HOC in Irving core, the `styled` version is somewhat simpler. A component using this HOC might look like the following:
+
+```js
+import React from 'react';
+import withThemes from '@irvingjs/styled/components/hoc/withThemes';
+import * as defaultStyles from './themes/default';
+import * as customThemeStyles from './themes/customTheme';
+
+const MyComponent = (props) => {
+  const { theme } = props;
+  const { Wrapper, Content } = theme;
+
+  return (
+    <Wrapper>
+      <Content>
+        This is my component content
+      </Content>
+    </Wrapper>
+  );
+};
+
+const themeMap = {
+  default: defaultStyles,
+  custom: customThemeStyles,
+};
+
+export default withThemes(themeMap)(Container);
+```
+
+As illustrated above, the `withThemes` HOC requires only a theme mapping object in which keys are a theme name and values are objects containing theme components. This HOC will provide a `theme` prop to the component to which the HOC is applied. This prop is an object on which both keys and values are the same (the name of each component function).
+
+As you may have noted already, the `withThemes` prop for styled components doesn't actually _require_ or integrate directly with styled components at all—it merely expects each value of the theme object to be a React component. This means that, for most intents and purposes, you will probably just supply an object of styled components in your theme. However, you can get creative if you want to (and at your own risk) by supplying any React component at all and, as long as the component is named the same as one of the theme values used in the themed component itself, it will be applied as-is. Be sure to render `children` as necessary, otherwise you may end up with chunks of your component that don't render (unless this is what you want!).
 
 ### Theming components using Irving Core's CSS
 Themes can be applied in a similar way using Irving's styling functionality built in to Irving Core. This is accomplished by leveraging Core's built-in [CSS Modules functionality via `css-loader`](https://webpack.js.org/loaders/css-loader/#modules), which exports an object of `className` values from a CSS file which we can then manipulate to create a theme. Core itself does not contain any themable components—instead it offers you the means to theme your own components via a [`withThemes`](https://github.com/alleyinteractive/irving/blob/master/packages/core/components/hoc/withThemes.js) higher-order component (HOC). An example of what that might look like is:
