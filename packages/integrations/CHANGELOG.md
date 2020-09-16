@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-beta.0...v4.1.0-beta.1) (2020-09-16)
+
+
+### Bug Fixes
+
+* **Pico:** make widgetUrl an optional property in the Pico integration ([133a475](https://github.com/alleyinteractive/irving/packages/integrations/commit/133a475ccdab7fc5720ea290d080aa8d140921b5))
+
+
+### Features
+
+* **pico:** add support for Pico staging environments ([00e3286](https://github.com/alleyinteractive/irving/packages/integrations/commit/00e3286a4b53e7f8b746be46d9bc4769dd6f806b))
+
+
+
+
+
 # [4.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-alpha.5...v4.1.0-beta.0) (2020-09-16)
 
 **Note:** Version bump only for package @irvingjs/integrations
