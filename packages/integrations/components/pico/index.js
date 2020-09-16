@@ -129,7 +129,7 @@ const Pico = (props) => {
 
 Pico.defaultProps = {
   tiers: [],
-  widgetUrl: "https://widget.pico.tools",
+  widgetUrl: 'https://widget.pico.tools',
 };
 
 Pico.propTypes = {
