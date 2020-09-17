@@ -3,7 +3,7 @@
 # Theming components with CSS
 Themes can be applied using CSS styling functionality built in to Irving Core. This is accomplished by leveraging Core's built-in [CSS Modules functionality via `css-loader`](https://webpack.js.org/loaders/css-loader/#modules), which exports an object of `className` values from a CSS file which we can then manipulate to create a theme. Core itself does not contain any themable components—instead it offers you the means to theme your own components via a [`withThemes`](https://github.com/alleyinteractive/irving/blob/master/packages/core/components/hoc/withThemes.js) higher-order component (HOC). An example of what that might look like is:
 
-```js
+```jsx
 import React from 'react';
 import withThemes from '@irvingjs/core/components/hoc/withThemes';
 import defaultTheme from './themes/default.css';

@@ -6,7 +6,7 @@ An assortment of minimally-styled components is included in Irving's [`styled-co
 ## Theming components in the `styled-components` package
 Each styled-component's configuration includes a theme property that maps to the default style included in the component package. For example, the default.js theme for the container component is:f
 
-```js
+```jsx
 import styled from 'styled-components';
 
 export const ContainerWrapper = styled.div`
@@ -62,7 +62,7 @@ Or, if using WordPress and `wp-irving`, your template JSON might contain the fol
 
 Next, create a folder for container themes and a file with your styling for this container theme called: `yellowSection.js`. Note that if you are using `wp-irving`, any themes containing hyphens (`-`) or underscores (`_`) in your json templates will be converted to camelCase (e.g. a theme of `yellow-section` becomes `yellowSection`) before producing endpoint data.
 
-```js
+```jsx
 import styled from 'styled-components';
 
 export const ContainerWrapper = styled.section`
@@ -99,7 +99,7 @@ That's it! A lovely feature of Irving is that as you noodle with your styling, t
 ### Theming your own styled component
 If you have a custom component that makes use of Styles Components in your Irving project you can still leverage Irving's theming functionality via the [`withThemes`](https://github.com/alleyinteractive/irving/blob/master/packages/styled/components/hoc/withThemes.js) higher-order component (HOC) within the `@irvingjs/styled` package. Unlike the `withThemes` HOC in Irving core, the `styled` version is somewhat simpler. A component using this HOC might look like the following:
 
-```js
+```jsx
 import React from 'react';
 import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import * as defaultStyles from './themes/default';

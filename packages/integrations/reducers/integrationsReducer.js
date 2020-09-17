@@ -16,6 +16,16 @@ export default function integrationsReducer(
     case HYDRATE_COMPONENTS:
       return merge(state, { componentMap: payload, hydrated: true });
 
+    case LOCATION_CHANGE:
+      payload.map((component, idx) => {
+        if (component.config.shouldRerender) {
+          set(
+            `state.componentMap[${idx}]`,
+            { ...component }
+          );
+        }
+      });
+
     default:
       return state;
   }
