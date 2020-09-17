@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-beta.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-beta.2...v4.1.0-beta.3) (2020-09-17)
+
+
+### Bug Fixes
+
+* **pico:** fix eslint error: single quotes ([d079243](https://github.com/alleyinteractive/irving/packages/integrations/commit/d079243f7f592ef507cf360058501e73fda882f6))
+
+
+
+
+
 # [4.1.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-beta.0...v4.1.0-beta.1) (2020-09-16)
 
 
