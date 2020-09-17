@@ -38,7 +38,7 @@ This HOC will provide the following functionality to the component on which it i
 * A `theme` prop containing the classNames of the current theme (either `composed` or not, depending on if the flag is set). Note that unlike with regular CSS Modules you'll be accessing className values via the `theme` prop instead of an imported `styles` object.
 * Allow the `theme` prop to be derived in one of three ways:
   * Pulled out of the component's predefined theme mapping using a `themeName` prop to access the appropriate key in the mapping object.
-  * Pulled out of React Context using the `indentifier` supplied to the HOC to access the necessary `themeName`, which will be in turn used to access the `theme` via the theme mapping object.
+  * Pulled out of React Context using the `identifier` supplied to the HOC to access the necessary `themeName`, which will be in turn used to access the `theme` via the theme mapping object.
   * Supplied directly to the component via a `theme` prop.
 
 Also illustrated above you can see the `className` values on the theme itself are accessed like an object, just as you would with css modules. Note that if a theme does not supply a `className` to override every class used in the component, the `className` value from the default theme will be used. The markup in the above example should look something like this (note that `composes` is set to true in this example):

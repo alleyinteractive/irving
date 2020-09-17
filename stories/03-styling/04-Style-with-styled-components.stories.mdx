@@ -7,3 +7,31 @@ Irving's most broadly-supported method of styling is [Styled Components](https:/
 * Easy to optimize and remove unnecessary styles, as all styles are attached to a component.
 * All the benefits of CSS-in-JS, including dynamic styles that respond to changes in props.
 * Automatic vendor prefixing.
+
+Check out [Styled Components' documentation](https://styled-components.com/docs) for more details on how to use them.
+
+## Setting up Styled Components in your project
+Preparing your project to use styled components is a two step process:
+1. `npm install @irvingjs/styled` - install the Irving `styled` package as a dependency for your project.
+2. Import the package configuration and add it to your project's config. To do this, first create an `irving.config.js` in your project's root directory. In this file, add the following:
+```js
+import styledConfig from '@irvingjs/styled';
+
+export default {
+    packages: [
+        styledConfig,
+    ],
+};
+```
+
+## Using Irving's library of styled components
+Set up for usage of the `@irvingjs/styled-components` package is identical to the setup for `@irvingjs/styled`. After installing the package, add the folowing to your `irving.config.js` file:
+```js
+import styledComponentsConfig from '@irvingjs/styled-components';
+
+export default {
+    packages: [
+        styledComponentsConfig,
+    ],
+};
+```
