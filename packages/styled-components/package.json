@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/styled-components",
-  "version": "4.1.0-beta.0",
+  "version": "4.1.0-beta.2",
   "description": "Integration for React components with attached styles for Irving",
   "files": [
     "components/**/*",
