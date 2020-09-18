@@ -21,8 +21,6 @@ Note: For merge commits, just use `chore` for the type of change, `merge` for th
 
 ### Publishing
 
-**Important:** Before publishing a release, you will need to authenticate your machine to use the `alleyops` npm account by running `npm adduser` and following the prompts. Credentials for the account can be found in the Alley Leads 1Password vault.
-
 * `npm run prerelease:canary` - publish a prerelease to npm. This will use the npm `@canary` tag using the `-alpha` prerelease identifier. Publish to the `@canary` tag from the `master` branch after doing a CR/PR from your feature branch. Because this is the alpha tag, don't worry about publishing something broken.
 * `npm run prerelease:beta` - publish a prerelease to both git and npm. This will use the npm `@beta` tag using the `-beta` prerelease identifier. Publishes to the `@beta` tag don't need to be 100% stable, but should indicate all the major feature development for a release is finished and you're ready to start adding some polish. Beta releases should be made from a `release/*` branch.
 * `npm run prerelease:rc` - publish a release candidate to both git and npm. This will use the npm `@rc` tag using the `-rc` prerelease identifier. Publishes to the `@rc` tag should be considered stable. This is the last check before publishing a new, stable release. Ideally, multiple folks at Alley should install and try out this code before a stable release. Release candidates should be made from a `release/*` branch.
@@ -76,6 +74,11 @@ Specific branches will be used for specific purposes in this repo. Considering t
 * `git checkout master && git merge bug/bug-description && git push origin master` - update master with your patch code, or ask the designated release organizer to do so for you.
 
 ### If you're the current release organizer
+**Important:** Before publishing a release, you will need to:
+* Authenticate your machine to use the `alleyops` npm account by running `npm adduser` and following the prompts. Credentials for the account can be found in the Alley Leads 1Password vault.
+* Have a valid `GH_TOKEN` in your Irving `.env` file. In Github, create your token under [account > Settings > Developer Settings > Personal Access Tokens](https://github.com/settings/tokens). Then create a `.env` file at the root of the cloned Irving repo and assign it to a `GH_TOKEN` environmental variable.
+
+**Steps:**
 * Take stock of all features that will be going into this release. Verify with feature developers that those features are ready to move to beta. The schedule for when this happens may vary—coordinate with the team.
 * When ready, break off a new branch for the release using the format `release/[version]`. Example: `release/3.2.0`
 * `npm run prerelease:beta` - Create a beta from the release branch immediately for testing. Ask feature developers to install beta and test their feature (and do tests yourself as well).
