@@ -1,0 +1,67 @@
+<Meta title="Features|Using Site Theme Variables" />
+
+# Using Site Theme Variables
+
+For styles applied widely throughout your application, some global variables are handy to access, such as fonts, breakpoints and a color palette. These can be stored as objects in JSON files and applied using the irving utility `siteTheme`.
+
+A `styles` folder can be created in the `irving` directory to hold the JSON files. To identify frequently used colors, for example, create a `colors.json` file:
+
+```json
+{
+	"brand": "#1325C7",
+	"text": "#333333",
+	"grey": "#808080",
+	"black": "#000000",
+	"white": "#FFFFFF"
+}
+```
+
+or a `fonts.json` file:
+
+```json
+{
+	"body": {
+		"variant1": "Baskerville, \"Times New Roman\", Times, serif",
+		"variant2": "Garamond, \"Hoefler Text\", \"Times New Roman\", Times, serif",
+		"variant3": "Geneva, \"Lucida Sans\", \"Lucida Grande\", \"Lucida Sans Unicode\", Verdana, sans-serif",
+		"variant4": "GillSans, Calibri, Trebuchet, sans-serif"
+	},
+	"heading": {
+		"variant1": "Georgia, Times, ‘Times New Roman’, serif",
+		"variant2": "Palatino, ‘Palatino Linotype’, ‘Hoefler Text’, Times, ‘Times New Roman’, serif",
+		"variant3": "Tahoma, Verdana, Geneva",
+		"variant4": "Trebuchet, Tahoma, Arial, sans-serif"
+	}
+}
+```
+
+To apply a global variable in a theme, import the `siteTheme` function into your styled component theme file and referencing the path to the desired variable -- in this example, `fonts.body.variant1`.
+
+```
+import styled from 'styled-components';
+import { siteTheme } from '@irvingjs/styled/utils';
+
+/* eslint-disable import/prefer-default-export */
+export const ContainerWrapper = styled.div`
+  font-family: ${siteTheme('fonts.body.variant1')};
+  width: 100%;
+`;
+/* eslint-enable */
+
+```
+In a similar fashion, you can apply variables directly in a JSON template, by adding the variable to the component's style config:
+
+```json
+{
+  "name": "irving/text",
+  "theme": "h1",
+  "config": {
+    "tag": "h1",
+    "content": "My header in the brand color.",
+    "style": {
+      "color": "colors.brand"
+    }
+  }
+}
+```
+
