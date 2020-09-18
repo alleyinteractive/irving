@@ -13,9 +13,7 @@ fi
 
 echo "Publishing to NPM ..."
 
-git config --global user.email "ops+alleyci@alleyinteractive.com"
-git config --global user.name "Alley CI"
-
+git remote set-url origin https://alley-ci:$GH_TOKEN@github.com/alleyinteractive/irving.git
 git checkout master
 npm ci
 npm run prerelease:canary:ci

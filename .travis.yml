@@ -32,3 +32,9 @@ cache:
 
 script:
   - npm run test
+
+deploy:
+  - provider: script
+    script: bash bin/deploy.sh
+    on:
+      branch: master
