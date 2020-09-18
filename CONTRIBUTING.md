@@ -19,7 +19,7 @@ Note: For merge commits, just use `chore` for the type of change, `merge` for th
     2. `develop:link`
     3. `develop:setup`
 
-### 2. Publishing
+### Publishing
 
 **Important:** Before publishing a release, you will need to authenticate your machine to use the `alleyops` npm account by running `npm adduser` and following the prompts. Credentials for the account can be found in the Alley Leads 1Password vault.
 
