@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.5](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.4...v4.2.0-alpha.5) (2020-09-18)
+
+
+### Bug Fixes
+
+* **integrationsreducer:** remove accidentally merged test changes to integrationsReducer ([87bab50](https://github.com/alleyinteractive/irving/packages/integrations/commit/87bab5099e1c1637feac0db4173780228503153a))
+
+
+
+
+
 # [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
 
 **Note:** Version bump only for package @irvingjs/integrations
