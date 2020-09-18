@@ -86,8 +86,11 @@ const Pico = (props) => {
     const widgetContainer = document.getElementById('pico-widget-container');
 
     if (widgetContainer) {
+      // Prevent the widget script from being added more than once.
+      setPicoInitialized(true);
+
       // Ensure the target nodes are only mounted once on the initial server load.
-      if (! isPicoMounted()) {
+      if (! isPicoMounted() && ! picoLoaded) {
         mountPicoNodes();
         // Dispatch initial Pico page visit.
         dispatchUpdatePicoPageInfo(picoPageInfo);
@@ -95,7 +98,7 @@ const Pico = (props) => {
         dispatchPicoLoaded();
       }
     }
-  }, []);
+  }, [picoLoaded]);
 
   // Load the script for the first time.
   if (! picoInitialized) {
