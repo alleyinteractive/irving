@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.8...v4.2.0-alpha.9) (2020-09-18)
+
+
+### Bug Fixes
+
+* **pico:** Reinsert initialization process ([a737f1f](https://github.com/alleyinteractive/irving/packages/integrations/commit/a737f1fccef8b8418631475333e8657fa39c522f))
+
+
+
+
+
 # [4.2.0-alpha.8](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.7...v4.2.0-alpha.8) (2020-09-18)
 
 
