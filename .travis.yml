@@ -35,8 +35,6 @@ script:
 
 deploy:
   - provider: script
-    script:
-      - npm ci
-      - npm run prerelease:canary:ci
+    script: npm ci && npm run prerelease:canary:ci
     on:
       branch: master
