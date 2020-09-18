@@ -21,7 +21,7 @@ Note: For merge commits, just use `chore` for the type of change, `merge` for th
 
 ### Publishing
 
-* `npm run prerelease:canary` - publish a prerelease to npm. This will use the npm `@canary` tag using the `-alpha` prerelease identifier. Publish to the `@canary` tag from the `master` branch after doing a CR/PR from your feature branch. Because this is the alpha tag, don't worry about publishing something broken.
+* `npm run prerelease:canary` - publish a prerelease to npm. This will use the npm `@canary` tag using the `-alpha` prerelease identifier. Publish to the `@canary` tag from the `master` branch after doing a CR/PR from your feature branch. Because this is the alpha tag, don't worry about publishing something broken. **NOTE**: Travis will automatically publish `alpha` versions from the `master` branch, so you will rarely (if ever) need to run this command yourself.
 * `npm run prerelease:beta` - publish a prerelease to both git and npm. This will use the npm `@beta` tag using the `-beta` prerelease identifier. Publishes to the `@beta` tag don't need to be 100% stable, but should indicate all the major feature development for a release is finished and you're ready to start adding some polish. Beta releases should be made from a `release/*` branch.
 * `npm run prerelease:rc` - publish a release candidate to both git and npm. This will use the npm `@rc` tag using the `-rc` prerelease identifier. Publishes to the `@rc` tag should be considered stable. This is the last check before publishing a new, stable release. Ideally, multiple folks at Alley should install and try out this code before a stable release. Release candidates should be made from a `release/*` branch.
 * `npm run release` - publish a stable release to the npm `@latest` tag. Stable releases should be made from a `release/*` branch.
@@ -54,7 +54,8 @@ Specific branches will be used for specific purposes in this repo. Considering t
 6. Once your code passes review, a maintainer will merge your PR into `master` (or you can do so yourself if you are a maintainer).
 7. If you are a maintainer, you may now:
   * `git checkout master && git pull origin master` to checkout `master` and pull down your newly-merged code.
-  * `npm run prerelease:canary` - draft an alpha release, then install and verify it in your project, being sure to unlink any linked packages.
+  * Travis will automatically create an `alpha` release for your changes.
+  * Install and verify the new `alpha` release in your project via `npm install @irvingjs/package-name@canary`.
   * When you're satisfied, notify the designated release organizer that your feature is ready to move along to `beta`.
 8. If you are not a maintainter:
   * Keep an eye on the releases page. When you see your code has been released, _install and test it!_.
