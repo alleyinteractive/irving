@@ -3,6 +3,8 @@
 # Styling with PostCSS
 Irving allows you to style components with PostCSS by way of a package. PostCSS is a CSS parser and preprocessor written in JavaScript with a rich ecosystem of plugins. This doc will help you get started using PostCSS.
 
+Note that PostCSS will be added on _top_ of the default CSS + Modules setup in Irving core, meaning you should follow the same procedure for [styling with CSS](?path=/docs/styling-style-with-css--page), but will have the added benefit of any PostCSS plugins you choose to apply.
+
 ## Setting up PostCSS in your project
 Preparing your project to use PostCSS is a two step process:
 1. `npm install @irvingjs/postcss` - install the Irving `postcss` package as a dependency for your project.
@@ -18,7 +20,7 @@ export default {
 ```
 
 ## Configuring PostCSS and adding plugins
-Out of the box Irving is configured to use [Stylelint](https://stylelint.io/) and [Autoprefixer](https://github.com/postcss/autoprefixer), but you can modify this default setup. Further information on Irving configuration can be found in the [configuration docs](?path=/docs/architecture-configuration--page#postcss-configuration). Below are a couple examples of how you might want to configure PostCSS:
+Out of the box Irving is configured to use [Stylelint](https://stylelint.io/) and [Autoprefixer](https://github.com/postcss/autoprefixer), but you can modify this default setup. Further information on Irving configuration can be found in the [configuration docs](?path=/docs/architecture-configuration--page#postcss-configuration). PostCSS is applied via the Webpack `postcss-loader`, the documentatin for which can be founr [here](https://webpack.js.org/loaders/postcss-loader/#postcssoptions), including a link to options for configuriong PostCSS. Below are a couple examples of how you might want to configure PostCSS:
 
 ### Adding to the Irving's default configuration
 If you'd like to simply add config fields or plugins to the default Irving configuration, you can do so by creating a `config/postcss.config.js` file in your project and exporting a PostCSS config object. This object will be merged into the default config. Be sure to use `module.exports` in this file as it will only be run in a node environment. Example:
