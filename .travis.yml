@@ -3,7 +3,7 @@ dist: trusty
 language: node_js
 
 node_js:
-  - 10
+  - 12
 
 env:
   global:
@@ -23,12 +23,18 @@ before_install:
   - npm i -g npm@$(jq -r '.engines.npm' package.json | egrep -oe "[0-9]+" | head -n1)
 
 install:
-    - npm ci
-    - npm run develop:bootstrap
+  - npm ci
+  - npm run develop:bootstrap
 
 cache:
   directories:
     - node_modules
 
 script:
-    - npm run test
+  - npm run test
+
+deploy:
+  - provider: script
+    script: bash bin/deploy.sh
+    on:
+      branch: master

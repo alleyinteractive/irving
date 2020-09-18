@@ -1,0 +1,47 @@
+<Meta title="Styling|Style with CSS" />
+
+# Styling with CSS
+CSS with CSS modules via [`css-loader`](https://webpack.js.org/loaders/css-loader/#modules) is Irving's core method of styling, meaning it can be used without installing any additional packages or dependencies beyond `@irvingjs/core`.
+
+## What is CSS Modules?
+CSS modules is a [specification](https://github.com/css-modules/css-modules) in which class names are scoped locally to a specific component. In the case of the `css-loader` implementation that Irving makes use of, CSS Modules allows you to import CSS files into a React component and access a locally-scoped version of each class defined in your CSS file. CSS imports are transformed by webpack into an object in which keys are untransformed class names and values are transformed, locally-scoped class names.
+
+An example of what it might look like to apply styles via CSS modules:
+```css
+/* my-styles.css */
+
+.wrapper {
+    background-color: blue;
+}
+
+.content {
+    font-size: 24px;
+    font-weight: 700;
+}
+```
+
+```jsx
+import React from 'react';
+import styles from './my-styles.css';
+
+const MyComponent = () => (
+    <div className={styles.wrapper}>
+        <span className={styles.content}>
+            Component content
+        </span>
+    </div>
+);
+
+export default MyComponent;
+```
+
+As illustrated above, `styles` is imported as an object, and locally-scoped className values are accessed by the untransformed className. To further illustrate, the `styles` object in this case might look like this:
+
+```js
+{
+    wrapper: 'my-styles__wrapper__h1uy3',
+    content: 'my-styles__content__nc73j',
+}
+```
+
+CSS modules also offers some basic extensions to run-of-the-mill CSS such as [composing](https://webpack.js.org/loaders/css-loader/#composing), [importing](https://webpack.js.org/loaders/css-loader/#importing) and [values](https://webpack.js.org/loaders/css-loader/#values). All of these features are documented both on webpack.js.org and on the `css-modules` github repo readme.
