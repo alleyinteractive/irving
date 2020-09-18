@@ -14,27 +14,27 @@ branches:
     - master
     - beta
 
-notifications:
-  email: false
+# notifications:
+#   email: false
 
-# Ensure node and npm major version matches from package.json
-before_install:
-  - nvm install "$(jq -r '.engines.node' package.json | egrep -oe "[0-9]+" | head -n1)"
-  - npm i -g npm@$(jq -r '.engines.npm' package.json | egrep -oe "[0-9]+" | head -n1)
+# # Ensure node and npm major version matches from package.json
+# before_install:
+#   - nvm install "$(jq -r '.engines.node' package.json | egrep -oe "[0-9]+" | head -n1)"
+#   - npm i -g npm@$(jq -r '.engines.npm' package.json | egrep -oe "[0-9]+" | head -n1)
 
-install:
-  - npm ci
-  - npm run develop:bootstrap
+# install:
+#   - npm ci
+#   - npm run develop:bootstrap
 
-cache:
-  directories:
-    - node_modules
+# cache:
+#   directories:
+#     - node_modules
 
-script:
-  - npm run test
+# script:
+#   - npm run test
 
 deploy:
   - provider: script
-    script: npm run prerelease:canary:ci
+    script: npm ci && npm run prerelease:canary:ci
     on:
       branch: master
