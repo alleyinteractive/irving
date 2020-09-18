@@ -16,5 +16,6 @@ echo "Publishing to NPM ..."
 git config --global user.email "ops+alleyci@alleyinteractive.com"
 git config --global user.name "Alley CI"
 
+git checkout master
 npm ci
-npm run prerelease:canary
+npm run prerelease:canary:ci
