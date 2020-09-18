@@ -1,1 +1,52 @@
 <Meta title="Styling|Style with PostCSS" />
+
+# Styling with PostCSS
+Irving allows you to style components with PostCSS by way of a package. PostCSS is a CSS parser and preprocessor written in JavaScript with a rich ecosystem of plugins. This doc will help you get started using PostCSS.
+
+## Setting up PostCSS in your project
+Preparing your project to use PostCSS is a two step process:
+1. `npm install @irvingjs/postcss` - install the Irving `postcss` package as a dependency for your project.
+2. Import the package configuration and add it to your project's config. To do this, first create an `irving.config.js` in your project's root directory. In this file, add the following:
+```js
+import postcssConfig from '@irvingjs/postcss';
+
+export default {
+    packages: [
+        postcssConfig,
+    ],
+};
+```
+
+## Configuring PostCSS and adding plugins
+Out of the box Irving is configured to use [Stylelint](https://stylelint.io/) and [Autoprefixer](https://github.com/postcss/autoprefixer), but you can modify this default setup. Further information on Irving configuration can be found in the [configuration docs](?path=/docs/architecture-configuration--page#postcss-configuration). Below are a couple examples of how you might want to configure PostCSS:
+
+### Adding to the Irving's default configuration
+If you'd like to simply add config fields or plugins to the default Irving configuration, you can do so by creating a `config/postcss.config.js` file in your project and exporting a PostCSS config object. This object will be merged into the default config. Be sure to use `module.exports` in this file as it will only be run in a node environment. Example:
+
+```js
+const myPlugin = require('my-plugin');
+
+module.exports = {
+    // This plugin will be concatenated to the default array of plugins.
+    plugins: [
+        myPlugin()
+    ],
+};
+```
+
+### Modifying the default configuration
+To modify the default configuration, create a PostCSS config file as described above, but this time export a function. This function will receive the default configuration as a parameter and expect a valid PostCSS configuration in return. Example:
+
+```js
+const myPlugin = require('my-plugin');
+
+module.exports = (defaultConfig) => {
+    // Your plugins array will replace the default plugins array entirely.
+    return {
+        ...defaultConfig,
+        plugins: [
+            myPlugin(),
+        ],
+    };
+};
+```
