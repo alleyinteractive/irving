@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.7...v4.2.0-alpha.8) (2020-09-18)
+
+
+### Bug Fixes
+
+* **Pico:** ensure Pico loads on first page render ([86130c3](https://github.com/alleyinteractive/irving/commit/86130c3560b97a45169f0d77e5878e3e7e68f507))
+
+
+### Features
+
+* **starts docs for site-theme variables:** should be refined and moved to correct section ([16529a7](https://github.com/alleyinteractive/irving/commit/16529a73520dcf9d0b776dba56598a9d3ced7f4d))
+
+
+
+
+
 # [4.2.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.6...v4.2.0-alpha.7) (2020-09-18)
 
 **Note:** Version bump only for package irving
