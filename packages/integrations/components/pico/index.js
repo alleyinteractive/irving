@@ -43,15 +43,9 @@ const Pico = (props) => {
   const [picoInitialized, setPicoInitialized] = useState(false);
   // Create the dispatch function.
   const dispatch = useDispatch();
-  // Create a state value that prevents multiple `UPDATE_PICO_PAGE_INFO` actions
-  // from being fired on a single `LOCATION_CHANGE`.
-  const [picoPageInfoUpdated, setPicoPageInfoUpdated] = useState(false);
   // Create a function that dispatches the current page info for the saga to respond to.
   const dispatchUpdatePicoPageInfo = useCallback(
-    (payload) => {
-      setPicoPageInfoUpdated(true);
-      return dispatch(actionUpdatePicoPageInfo(payload));
-    },
+    (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
     [dispatch]
   );
   // Create a function that updates the store when the `pico.loaded` event is fired.
@@ -64,6 +58,25 @@ const Pico = (props) => {
 
   // Retrieve the Coral SSO token from the Redux store.
   const coralToken = useSelector(tokenSelector);
+
+  useEffect(() => {
+    const initHandler = () => {
+      setPicoInitialized(true);
+    };
+
+    // On component hydration, add an event listener to watch for the script's init event.
+    window.document.addEventListener('pico-init', initHandler);
+
+    return () => window.document.removeEventListener('pico-init', initHandler);
+  }, []);
+
+  useEffect(() => {
+    // Only update the store once Pico has loaded and if it has not already been
+    // updated in this component's lifecycle phase.
+    if (picoLoaded) {
+      dispatchUpdatePicoPageInfo(picoPageInfo);
+    }
+  }, [picoLoaded, picoPageInfo.url]);
 
   useEffect(() => {
     // See if the Pico widget container exists in the DOM.
@@ -80,28 +93,11 @@ const Pico = (props) => {
         ! picoLoaded
       ) {
         mountPicoNodes();
-        // Trigger the visit.
-        window.pico('visit', picoPageInfo);
         // Update the `pico` branch of the state tree and set `loaded` to true.
         dispatchPicoLoaded();
       }
     }
-
-    // Only update the store once Pico has loaded and if it has not already been
-    // updated in this component's lifecycle phase.
-    if (picoLoaded && ! picoPageInfoUpdated) {
-      dispatchUpdatePicoPageInfo(picoPageInfo);
-    }
-
-    const initHandler = () => {
-      setPicoInitialized(true);
-    };
-
-    // On component hydration, add an event listener to watch for the script's init event.
-    window.document.addEventListener('pico-init', initHandler);
-
-    return () => window.document.removeEventListener('pico-init', initHandler);
-  }, [picoInitialized, picoLoaded, picoPageInfoUpdated]);
+  }, [picoLoaded]);
 
   // Load the script for the first time.
   if (! picoInitialized) {
@@ -129,7 +125,7 @@ const Pico = (props) => {
 
 Pico.defaultProps = {
   tiers: [],
-  widgetUrl: "https://widget.pico.tools",
+  widgetUrl: 'https://widget.pico.tools',
 };
 
 Pico.propTypes = {
