@@ -7,7 +7,9 @@ This project uses [Commitizen](https://github.com/commitizen/cz-cli) and [Conven
 Note: For merge commits, just use `chore` for the type of change, `merge` for the scope, and `merge commit` for the message. Likely, however, it will not matter what you put into Commitizen as you'll just get a normal merge commit message such as `Merge branch 'my-branch' into master`.
 
 ## Helpful NPM scripts for publishing and devleopment
-1. Development:
+
+### Development
+
   * `develop:bootstrap` - Run [`lerna bootstrap`](https://github.com/lerna/lerna/tree/master/commands/bootstrap). If you encounter any issues with local development using linked packages, this should be your first stop in attempting to resolve your issues.
   * `develop:cleanup` - Clean out the `node_modules` directories of each Irving package. Useful for starting from a clean slate with dependencies.
   * `develop:link` - Run `npm link` within each package directory, in parallel. **BEWARE!** This is a memory-intensive operation.
@@ -16,7 +18,11 @@ Note: For merge commits, just use `chore` for the type of change, `merge` for th
     1. `npm install` in the root of the Irving repo
     2. `develop:link`
     3. `develop:setup`
-2. Publishing:
+
+### Publishing
+
+**Important:** Before publishing a release, you will need to authenticate your machine to use the `alleyops` npm account by running `npm adduser` and following the prompts. Credentials for the account can be found in the Alley Leads 1Password vault.
+
 * `npm run prerelease:canary` - publish a prerelease to npm. This will use the npm `@canary` tag using the `-alpha` prerelease identifier. Publish to the `@canary` tag from the `master` branch after doing a CR/PR from your feature branch. Because this is the alpha tag, don't worry about publishing something broken.
 * `npm run prerelease:beta` - publish a prerelease to both git and npm. This will use the npm `@beta` tag using the `-beta` prerelease identifier. Publishes to the `@beta` tag don't need to be 100% stable, but should indicate all the major feature development for a release is finished and you're ready to start adding some polish. Beta releases should be made from a `release/*` branch.
 * `npm run prerelease:rc` - publish a release candidate to both git and npm. This will use the npm `@rc` tag using the `-rc` prerelease identifier. Publishes to the `@rc` tag should be considered stable. This is the last check before publishing a new, stable release. Ideally, multiple folks at Alley should install and try out this code before a stable release. Release candidates should be made from a `release/*` branch.
