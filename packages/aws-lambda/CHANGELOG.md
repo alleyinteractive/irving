@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-rc.0](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v4.1.0-beta.4...v4.1.0-rc.0) (2020-09-18)
+
+**Note:** Version bump only for package @irvingjs/aws-lambda
+
+
+
+
+
 # [4.1.0-beta.4](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v4.1.0-beta.3...v4.1.0-beta.4) (2020-09-17)
 
 **Note:** Version bump only for package @irvingjs/aws-lambda
