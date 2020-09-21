@@ -15,7 +15,10 @@ import {
 } from '../../actions/coralActions';
 import { tokenSelector } from '../../selectors/coralSelector';
 // Utility functions.
-import mountPicoNodes from './utils';
+import {
+  isPicoMounted,
+  mountPicoNodes,
+} from './utils';
 
 const Pico = (props) => {
   const {
@@ -87,14 +90,12 @@ const Pico = (props) => {
       setPicoInitialized(true);
 
       // Ensure the target nodes are only mounted once on the initial server load.
-      if (
-        ! document.getElementById('PicoSignal-container') &&
-        ! document.getElementById('PicoRule-button') &&
-        ! picoLoaded
-      ) {
+      if (! isPicoMounted() && ! picoLoaded) {
         mountPicoNodes();
         // Update the `pico` branch of the state tree and set `loaded` to true.
         dispatchPicoLoaded();
+        // Dispatch initial Pico page visit.
+        dispatchUpdatePicoPageInfo(picoPageInfo);
       }
     }
   }, [picoLoaded]);

@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.10](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.9...v4.2.0-alpha.10) (2020-09-21)
+
+
+### Bug Fixes
+
+* **pico:** fix timing bug with firing the initial Pico action ([8a0463c](https://github.com/alleyinteractive/irving/packages/integrations/commit/8a0463ca66b81b772d5626abec9cc4a11dab4440))
+
+
+
+
+
+# [4.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.8...v4.2.0-alpha.9) (2020-09-18)
+
+
+### Bug Fixes
+
+* **pico:** Reinsert initialization process ([a737f1f](https://github.com/alleyinteractive/irving/packages/integrations/commit/a737f1fccef8b8418631475333e8657fa39c522f))
+
+
+
+
+
+# [4.2.0-alpha.8](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.7...v4.2.0-alpha.8) (2020-09-18)
+
+
+### Bug Fixes
+
+* **Pico:** ensure Pico loads on first page render ([86130c3](https://github.com/alleyinteractive/irving/packages/integrations/commit/86130c3560b97a45169f0d77e5878e3e7e68f507))
+
+
+
+
+
 # [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
 
 **Note:** Version bump only for package @irvingjs/integrations
