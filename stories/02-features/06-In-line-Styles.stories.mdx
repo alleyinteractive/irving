@@ -1,0 +1,24 @@
+<Meta title="Features|Inline styling WordPress Templates" />
+
+# Inline styling WordPress templates
+
+To help developers quickly prototype styles while writing templates, a style prop is available to use in the component config. The style properties assigned will appear as inline styles. Whether you move styles to a theme once design is settled is up to you and your team's code organization norms.
+
+To implement some style properties, simply list them as a `style` object in the `config` prop. For example:
+
+```json
+{
+  "name": "irving/text",
+  "config": {
+    "tag": "h4",
+    "style": {
+      "margin-bottom": "1rem",
+      "color": "grey"
+    },
+    "content": "some text"
+  }
+}
+```
+renders "some text" with color and margin.
+
+Although most components can be rendered using themes, inline styling is currently the only way to style `styled-css-grid/grid` and `styled-css-grid/cell` as these components rely on a dependent package. Read more about configuring these components [here](/docs/wordpress-components-styled-css-grid-grid--page) and [here](/docs/wordpress-components-styled-css-grid-cell--page).
