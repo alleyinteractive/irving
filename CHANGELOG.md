@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.9...v4.2.0-alpha.10) (2020-09-21)
+
+
+### Bug Fixes
+
+* **pico:** fix timing bug with firing the initial Pico action ([8a0463c](https://github.com/alleyinteractive/irving/commit/8a0463ca66b81b772d5626abec9cc4a11dab4440))
+
+
+### Features
+
+* **add documentation:** document use of inline style prop ([337cc29](https://github.com/alleyinteractive/irving/commit/337cc29b7b183c123d085465d195bda270f86515))
+
+
+
+
+
 # [4.2.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.8...v4.2.0-alpha.9) (2020-09-18)
 
 

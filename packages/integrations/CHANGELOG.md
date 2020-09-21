@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.10](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.9...v4.2.0-alpha.10) (2020-09-21)
+
+
+### Bug Fixes
+
+* **pico:** fix timing bug with firing the initial Pico action ([8a0463c](https://github.com/alleyinteractive/irving/packages/integrations/commit/8a0463ca66b81b772d5626abec9cc4a11dab4440))
+
+
+
+
+
 # [4.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.8...v4.2.0-alpha.9) (2020-09-18)
 
 
