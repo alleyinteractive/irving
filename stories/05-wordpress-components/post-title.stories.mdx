@@ -8,10 +8,10 @@ Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-te
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-title).
 
 ## Overview
-Coming soon.
+Used to display the post title in any post context. It uses the `irving/text` component by setting the `content` config value.
 
 ### Notes
-Coming soon.
+* This component wraps `get_the_title()` [(docs)](https://developer.wordpress.org/reference/functions/get_the_title/).
 
 ## Config
 ```json
@@ -42,8 +42,23 @@ Coming soon.
 ## Examples
 
 ### Basic example
+Template:
 ```json
 {
   "name": "irving/post-title"
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-title",
+  "_alias": "irving/text",
+  "config": {
+    "content": "About Us",
+    "html": false,
+    "oembed": false,
+    "tag": "span"
+  }
 }
 ```

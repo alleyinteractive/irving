@@ -8,10 +8,12 @@ Renders as the `SocialLinks` styled component (docs needed).
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/social-links).
 
 ## Overview
-Coming soon.
+This component displays icons for social media platforms.
 
 ### Notes
-Coming soon.
+Use the `wp_irving_social_links_platforms` filter to modify the `platforms` config.
+
+The icon for each platform will be automatically mapped from `irving/${platform}-icon`. You must ensure this component exists in your component map for each platform key.
 
 ## Config
 ```json
@@ -28,6 +30,12 @@ Coming soon.
 ### Basic example
 ```json
 {
-  "name": "irving/social-links"
+  "name": "irving/social-links",
+  "config": {
+  	"platforms": {
+  	  "facebook": "https://www.facebook.com/your-profile",
+  	  "twitter": "https://twitter.com/your-profile"
+  	}
+  }
 }
 ```

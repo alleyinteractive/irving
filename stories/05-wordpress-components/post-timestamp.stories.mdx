@@ -8,10 +8,16 @@ Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-te
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-timestamp).
 
 ## Overview
-Coming soon.
+This component allows you to display a post's published and/or modified date.
 
 ### Notes
-Coming soon.
+The config value `content_format` is a wrapper around `sprintf()` [(docs)](https://www.php.net/manual/en/function.sprintf.php) with two available parameters,
+* `%1$s` - Published timestamp via `get_the_date()` [(docs)](https://developer.wordpress.org/reference/functions/get_the_date/).
+* `%2$s` - Modified timestamp via `get_the_modified_date` [(docs)](https://developer.wordpress.org/reference/functions/get_the_modified_date/).
+
+The default date format is an empty string, which will cause WordPress to default to the `date_format` [(docs)](https://wordpress.org/support/article/formatting-date-and-time/) via your site settings.
+
+The date format for either of these timestamps can be customized using `post_date_format` and `modified_date_format`, accepting any valid PHP date format [(docs)](https://www.php.net/manual/en/datetime.formats.date.php).
 
 ## Config
 ```json
@@ -53,8 +59,66 @@ Coming soon.
 ## Examples
 
 ### Basic example
+Template:
 ```json
 {
   "name": "irving/post-timestamp"
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-timestamp",
+  "_alias": "irving/text",
+  "config": {
+    "content": "February 21, 2017"
+  }
+}
+```
+
+### Customized `content_format` to include modified date
+Template:
+```json
+{
+  "name": "irving/post-timestamp",
+  "config": {
+    "content_format": "Published on %1$s, modified on %2$s"
+  }
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-timestamp",
+  "_alias": "irving/text",
+  "config": {
+    "content": "Published on February 21, 2017, modified on December 17, 2018",
+    "content_format": "Published on %1$s, modified on %2$s"
+  }
+}
+```
+
+### Modify the date format
+Template:
+```json
+{
+  "name": "irving/post-timestamp",
+  "config": {
+    "post_date_format": "m/d/Y"
+  }
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-timestamp",
+  "_alias": "irving/text",
+  "config": {
+    "content": "02/21/17",
+    "post_date_format": "m/d/Y"
+  }
 }
 ```

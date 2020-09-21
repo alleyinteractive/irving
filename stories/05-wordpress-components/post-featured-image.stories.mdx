@@ -8,10 +8,10 @@ Renders as the `Image` styled component [(docs)](?path=/docs/styled-components-i
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-featured-image).
 
 ## Overview
-Coming soon.
+Used to display the [post thumbnail](https://codex.wordpress.org/Post_Thumbnails) in any post context. It uses the `irving/image` component to achieve this.
 
 ### Notes
-Coming soon.
+* We rely on WordPress' core image logic to determine the alt, caption, src, and srcset values.
 
 ## Config
 ```json
@@ -94,9 +94,25 @@ Coming soon.
 
 ## Examples
 
-### Basic example
+### Basic Example
+Template:
 ```json
 {
-  "name": "irving/post-featured-image"
+  "name": "irving/post-featured-image",
+  "config": {
+    "object_fit": "cover"
+  }
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-featured-image",
+  "_alias": "irving/image",
+  "config": {
+    "alt": "A kitten",
+    "src": "https://placekitten.com/408/287"
+  }
 }
 ```
