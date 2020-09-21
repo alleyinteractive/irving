@@ -92,10 +92,10 @@ const Pico = (props) => {
       // Ensure the target nodes are only mounted once on the initial server load.
       if (! isPicoMounted() && ! picoLoaded) {
         mountPicoNodes();
-        // Dispatch initial Pico page visit.
-        dispatchUpdatePicoPageInfo(picoPageInfo);
         // Update the `pico` branch of the state tree and set `loaded` to true.
         dispatchPicoLoaded();
+        // Dispatch initial Pico page visit.
+        dispatchUpdatePicoPageInfo(picoPageInfo);
       }
     }
   }, [picoLoaded]);
