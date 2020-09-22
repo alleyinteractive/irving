@@ -8,10 +8,7 @@ Renders as the `Menu` styled component [(docs)](?path=/docs/styled-components-me
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/site-menu).
 
 ## Overview
-Coming soon.
-
-### Notes
-Coming soon.
+This component uses the `location` config value with `get_nav_menu_locations()` [(docs)](https://developer.wordpress.org/reference/functions/get_nav_menu_locations/) and `wp_get_nav_menu_object` [(docs)](https://developer.wordpress.org/reference/functions/wp_get_nav_menu_object/) to recursively build the menu with children `menu-item`.
 
 ## Config
 ```json
@@ -39,6 +36,9 @@ Coming soon.
 ### Basic example
 ```json
 {
-  "name": "irving/site-menu"
+  "name": "irving/site-menu",
+  "config": {
+    "location": "header-primary"
+  }
 }
 ```

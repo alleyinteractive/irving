@@ -8,10 +8,14 @@ Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-te
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/query-search-results-found).
 
 ## Overview
-Coming soon.
+This component allows you to display some meta information about a WP_Query used for search.
 
 ### Notes
-Coming soon.
+The config value `content_format` is a wrapper around `sprintf()` [(docs)](https://www.php.net/manual/en/function.sprintf.php) with two available parameters,
+* `%1$s` - Number of results.
+* `%2$s` - Search string.
+* `%3$s` - Current page.
+* `%4$s` - Number of pages found.
 
 ## Config
 ```json
@@ -34,8 +38,45 @@ Coming soon.
 ## Examples
 
 ### Basic example
+
+Template:
 ```json
 {
   "name": "irving/query-search-results-found"
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/query-search-results-found",
+  "_alias": "irving/text",
+  "config": {
+    "content": "18 results found for \"Test\""
+  }
+}
+```
+
+### Customized Message
+
+Template:
+```json
+{
+  "name": "irving/query-search-results-found",
+  "config": {
+    "content_format": "%1$s results found for \"%2$s\". Currently on page %3$s of %4$s."
+  }
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/query-search-results-found",
+  "_alias": "irving/text",
+  "config": {
+    "content": "18 results found for \"Test\". Currently on page 1 of 2.",
+    "content_format": "%1$s results found for \"%2$s\". Currently on page %3$s of %4$s."
+  }
 }
 ```

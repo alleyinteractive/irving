@@ -44,8 +44,23 @@ Used on single templates (`single.json`, `page.json`, etc.) to build an `irving/
 ## Examples
 
 ### Basic example
+Template:
 ```json
 {
   "name": "irving/post-content"
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-content",
+  "_alias": "irving/text",
+  "config": {
+    "content": "<p>Lorem ipsum dolor sit amet.</p>",
+    "html": true,
+    "oembed": true,
+    "tag": "div"
+  }
 }
 ```

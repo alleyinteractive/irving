@@ -8,10 +8,10 @@ Renders as the `Link` styled component [(docs)](?path=/docs/styled-components-li
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-permalink).
 
 ## Overview
-Coming soon.
+Used to display the post permalink in any post context. It uses the `irving/link` component by setting the `href` config value.
 
 ### Notes
-Coming soon.
+* This component wraps `get_the_permalink()` [(docs)](https://developer.wordpress.org/reference/functions/get_the_permalink/).
 
 ## Config
 ```json
@@ -42,8 +42,25 @@ Coming soon.
 ## Examples
 
 ### Basic example
+Template:
 ```json
 {
-  "name": "irving/post-permalink"
+  "name": "irving/post-permalink",
+  "children": [
+    {
+      "name": "irving/post-title"
+    }
+  ]
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-permalink",
+  "_alias": "irving/link",
+  "config": {
+    "href": "https://example.com/about-us/"
+  }
 }
 ```

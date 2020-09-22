@@ -8,10 +8,10 @@ Renders as the `Fragment` styled component [(docs)](?path=/docs/styled-component
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/term-provider).
 
 ## Overview
-Acts as a context provider for `term_id` to faciliate the use of other term components.
+Acts as a context provider for `term_id` to facilitate the use of other term components.
 
 ### Notes
-Coming soon.
+* `irving/term_id` is one of the default context providers, and will be set using the global `$wp_query->get_queried_object()` when the queried object is a `WP_Term`. This replaces the need for an `irving/term-provider` on some templates (ex. `category.json`, `tag.json`).
 
 ## Config
 ```json

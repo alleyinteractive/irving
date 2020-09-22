@@ -8,10 +8,12 @@ Renders as the `Fragment` styled component [(docs)](?path=/docs/styled-component
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-meta).
 
 ## Overview
-Coming soon.
+This component is a wrapper for `get_post_meta()` [(docs)](https://developer.wordpress.org/reference/functions/get_post_meta/).
+
+The `value` config will be set with the value of `get_post_meta()`, and can be passed down to children components using the context provider. Templates support `use_context` to facilitate this.
 
 ### Notes
-Coming soon.
+* `irving/post-meta` sets `single` to true by default, counter to `get_post_meta`, where `$single = false`. This deviation from WordPresss core is to align with how get_post_meta is normally used, vs. maintaining backwards compatibility.
 
 ## Config
 ```json
@@ -29,9 +31,127 @@ Coming soon.
 
 ## Examples
 
-### Basic example
+### Use a term id saved to post meta
 ```json
 {
-  "name": "irving/post-meta"
+  "name": "irving/post-meta",
+  "config": {
+    "key": "primary_category_id"
+  },
+  "children": [
+    {
+      "name": "irving/term-name",
+      "use_context": {
+        "irving/post_meta": "term_id"
+      }
+    }
+  ]
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-meta",
+  "config": {
+    "key": "primary_category_id",
+    "value": 12
+  },
+  "children": [
+    {
+      "name": "irving/term-name",
+      "config": {
+        "content": "News",
+        "term_id": 12
+      },
+      "use_context": {
+        "irving/post_meta": "term_id"
+      }
+    }
+  ]
+}
+```
+
+### Display and link photo credit
+For this example, we're in the context of a `post` that has two meta values,
+* `"image_credit_url": "https://example-credit.com"`
+* `"image_credit": "Photographer Name"`
+
+We can use `irving/post-meta` to get each value and then consume the values with `use_context`. This allows us to easily display an `irving/link` with the right url, and a child `irving/text` displaying the photographer's name.
+
+Because our second `irving/post-meta` is in the tree of children from the first, the context provider for `irving/pots-meta` is overridden.
+
+```json
+{
+  "name": "irving/post-meta",
+  "config": {
+    "key": "image_credit_url"
+  },
+  "children": [
+    {
+      "name": "irving/link",
+      "use_context": {
+        "irving/post-meta": "href"
+      },
+      "children": [
+        {
+          "name": "irving/post-meta",
+          "config": {
+            "key": "image_credit"
+          },
+          "children": [
+            {
+              "name": "irivng/text",
+              "use_context": {
+                "irving/post-meta": "content"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-meta",
+  "config": {
+    "key": "image_credit_url",
+    "value": "https://example-credit.com"
+  },
+  "children": [
+    {
+      "name": "irving/link",
+      "config": {
+        "href": "https://example-credit.com"
+      },
+      "use_context": {
+        "irving/post-meta": "href"
+      },
+      "children": [
+        {
+          "name": "irving/post-meta",
+          "config": {
+            "key": "image_credit",
+            "value": "Photographer Name"
+          },
+          "children": [
+            {
+              "name": "irivng/text",
+              "config": {
+                "content": "Photographer Name"
+              },
+              "use_context": {
+                "irving/post-meta": "content"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```

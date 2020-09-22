@@ -8,10 +8,7 @@ Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-te
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/site-info).
 
 ## Overview
-Coming soon.
-
-### Notes
-Coming soon.
+Wrapper for `get_bloginfo()` [(docs)](https://developer.wordpress.org/reference/functions/get_bloginfo/).
 
 ## Config
 ```json
@@ -41,9 +38,25 @@ Coming soon.
 
 ## Examples
 
-### Basic example
+### Get site name
+Template:
 ```json
 {
-  "name": "irving/site-info"
+  "name": "irving/site-info",
+  "config": {
+    "show": "name"
+  }
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/site-info",
+  "_alias": "irving/text",
+  "config": {
+    "content": "My cool WordPress site",
+    "show": "name"
+  }
 }
 ```

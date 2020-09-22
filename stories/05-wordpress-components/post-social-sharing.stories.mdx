@@ -8,10 +8,12 @@ Renders as the `SocialSharing` styled component [(docs)](?path=/docs/styled-comp
 [View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-social-sharing).
 
 ## Overview
-Coming soon.
+This components allows visitors to easily share a post to various platforms.
+
+The values of `description`, `image_url`, `title`, and `url` will automatically be populated using the `irving/post_id` context. These values will be passsed to each platform as supported by their sharing API.
 
 ### Notes
-Coming soon.
+* The supported platforms are Email, Facebook, LinkedIn, Pinterest, Reddit, Twitter, and WhatsApp.
 
 ## Config
 ```json
@@ -36,7 +38,7 @@ Coming soon.
     ],
     "type": "array"
   },
-  "platform_share_links": {
+  "platform_data": {
     "default": [],
     "type": "array"
   },
@@ -58,8 +60,16 @@ Coming soon.
 ## Examples
 
 ### Basic example
+Display share buttons for Reddit, Twitter, and Facebook.
 ```json
 {
-  "name": "irving/post-social-sharing"
+  "name": "irving/post-social-sharing",
+  "config": {
+    "platforms": [
+      "reddit",
+      "twitter",
+      "facebook"
+    ]
+  }
 }
 ```
