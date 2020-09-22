@@ -98,7 +98,7 @@ const Pico = (props) => {
         dispatchUpdatePicoPageInfo(picoPageInfo);
       }
     }
-  }, [picoLoaded]);
+  }, [picoLoaded, picoPageInfo.url]);
 
   // Load the script for the first time.
   if (! picoInitialized) {
