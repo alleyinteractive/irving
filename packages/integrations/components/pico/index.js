@@ -94,8 +94,6 @@ const Pico = (props) => {
         mountPicoNodes();
         // Update the `pico` branch of the state tree and set `loaded` to true.
         dispatchPicoLoaded();
-        // Dispatch initial Pico page visit.
-        dispatchUpdatePicoPageInfo(picoPageInfo);
       }
     }
   }, [picoLoaded, picoPageInfo.url]);
