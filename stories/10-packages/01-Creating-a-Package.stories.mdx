@@ -1,0 +1,110 @@
+<Meta title="Packages|Creating a Package" />
+
+# Extending Irving
+In addition to setting up a project using Irving Core, you can also extend Irving's core functionality via a new package.
+
+_Note: The information below is older documentation. Checkout the [Example Package](https://github.com/alleyinteractive/irving/tree/master/examples/package) to help speed up this process. Eventually you will be able to scaffold new packages with the CLI._
+
+__Tldr; Caution: Here be Dragons. Proceed at your own risk.__
+
+## Create your package files
+_Note/Todo: All of this scaffolding should be contained in a CLI command._
+
+In essence, Irving extension packages are set up very similarly to an Irving project. They include various files required for the package functionality itself and can extend Irving's core functionality using an `irving.config.js` and/or `irving.config.server.js`. Note that packages should _not_ include a `componentMap.js` file. It should be left up to users to import and include package components in their project `componentMap.js` however they see fit and using whatever API name they choose. Below is a rundown of the required setup files.
+
+### File requirements
+* **`package.json`**: Should contain information about this package in addition to dependencies and dev dependencies. Below is an example of what this file might look like.
+```json
+{
+	"name": "@irvingjs/postcss",
+	"version": "2.2.2",
+	"description": "PostCSS configuration functionality for Irving",
+	"files": [
+		"config/**/*",
+		"irving.config.server.js",
+		"!*.test.js"
+	],
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/alleyinteractive/irving/packages/integrations"
+	},
+	"author": "Alley (Alley.co)",
+	"license": "MIT",
+	"dependencies": {
+		"autoprefixer": "^9.6.5",
+		"postcss-loader": "^3.0.0",
+		"stylelint": "^11.1.1",
+		"stylelint-order": "^3.1.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.5.5",
+		"@irvingjs/babel-preset-irving": "^2.0.0",
+		"@irvingjs/core": "^2.2.2",
+		"babel-jest": "^24.9.0",
+		"enzyme": "^3.10.0",
+		"enzyme-adapter-react-16": "^1.15.1",
+		"jest": "^24.9.0",
+		"jest-environment-enzyme": "^7.1.1",
+		"jest-enzyme": "^7.1.1"
+	},
+	"peerDependencies": {
+		"@irvingjs/core": ">=2.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"gitHead": "85578c1d60d5e9edba93f26800ac1ce7a012e53f"
+}
+```
+** Note the `files` and its contents. This is a crucial field to configure as it will determine what files are published to NPM. Any files that are not required by the end user (like files for tests) should not be published.
+** `devDependencies` will most likely be very similar, if not exactly the same, between all Irving extension packages. `devDependencies` should include all packages necessary for writing tests and setting up babel, in addition to `@irvingjs/core` which is necessary for developing all Irving extension packages.
+** `@irvingjs/core` is listed as a `peerDependency`. Lerna gets a bit confused if you set it as a `dependency`, and this is generally how packages relying on a core library are set up elsewhere (see a package like [`react-redux`](https://github.com/reduxjs/react-redux/blob/master/package.json) for example).
+** The `publishConfig` field is necessary for [publishing with lerna](https://github.com/lerna/lerna/tree/master/commands/publish#per-package-configuration)
+** `gitHead` is set automatically by lerna, avoid modifying this field by hand.
+* **`jest.config.js`**: Configuration for Jest tests. This can usually just extend the [base jest configuration](https://github.com/alleyinteractive/irving/blob/master/jest.config.base.js) and modify only the necessary fields. Example:
+```javascript
+const baseConfig = require('../../jest.config.base.js');
+
+module.exports = {
+  ...baseConfig,
+  name: '@irvingjs/postcss',
+  displayName: '@irvingjs/postcss',
+  setupFiles: ['<rootDir>/config/jest.setup.js'],
+};
+```
+* **`babel.config.js`**: Babel configuration. This can simply contain the Irving babel preset and any necessary aliases. Note that this configuration is used exclusively for Jest tests. Example:
+```javascript
+const path = require('path');
+
+module.exports = {
+  plugins: [
+    [
+      'module-resolver',
+      {
+        root: [path.resolve(__dirname)],
+        alias: {
+          config: './config',
+          components: './components',
+        },
+      },
+    ],
+  ],
+  presets: [
+    '@irvingjs/irving',
+  ],
+};
+```
+* **`irving.config.js`** and/or **`irving.config.server.js`**: Configuration for extending Irving core. Any configuration fields here, with the exception of a few (see [configuration docs](Configuration)) will be combined with configuration added by the user or other packages.
+* **`index.js`**: The main file of this package. This should most likely contain an export for each of your configuration files, as those are the files necessary for a user to incorporate your package into their project. However, if you have both config files you do not want imports from one config file to contaminate those of the other. Here is an example of how to prevent that from happening while still allowing the user to simply `import config from '@irvingjs/your-package'`:
+```javascript
+if (! process.env.BROWSER) {
+  module.exports = require('./irving.config.server.js');
+} else {
+  module.exports = require('./irving.config.js');
+}
+```
+
+Once you've set all these files up, users can either:
+1. Import your package config(s) and include them in the `packages` field of their project config(s).
+2. Import components from your package directly and include them in their component map.

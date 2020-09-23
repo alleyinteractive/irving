@@ -1,0 +1,107 @@
+<Meta title="Packages|Forms" />
+
+# Forms
+_Note: The information below is older documentation and still needs to be cleaned up and rewritten for Storybook._
+
+__Tldr; Caution: Here be Dragons. Proceed at your own risk.__
+
+Irving's Form API is intended for processing and validation of front-end form submissions. Form functionality is added via the [`@irvingjs/forms`](https://www.npmjs.com/package/@irvingjs/forms) npm package. Some common use-cases for this API might be a contact or newsletter sign-up form.
+
+## Creating a new endpoint
+Out of the box, Irving only offers one option for for the format of a form submission endpoint: a path nested under `/form` at your configured `API_ROOT_URL`. Example: `https://content.irving.com/wp-json/irving/v1/form/my-contact-form`.
+
+## API Response
+The `withFormHandler` component expects responses for form submissions to be returned in a specific format. The fields for the API response are detailed here:
+- **`redirect`**: URL to which user should be redirected after a successful form submission.
+- **`validation`**: Object containing keys for each form field. Each key can contain text relaying a message (error, tooltip, etc.) about that particular form field.
+
+## Loading the data
+This endpoint (and the entire form submission and response flow) is handled by the `withFormHandler` higher-order React component. More information on usage of that component can be found in the [Forms section](https://github.com/alleyinteractive/irving/wiki/Forms).
+
+--------------------
+
+Irving's [form package](https://www.npmjs.com/package/@irvingjs/forms) comes with a collection of helper components for creating and handling forms. These helpers apply both for forms that are handled entirely within the front-end app and forms that need to be submitted to and handled by your CMS. Below is a list of these helpers and how they're used.
+
+## `withFormHandler` higher-order component
+This is the primary helper you'll need to manage any form within Irving. This component provides several pieces of useful functionality:
+- Form state management and handling of various input types using [`react-use-form-state`](https://github.com/wsmd/react-use-form-state)
+- Submission of forms to your CMS backend, including:
+  - Management of the form data in global `redux` state.
+  - Management of current form state (submitting, submitted, failed, validation) within global `redux` state.
+  - Providing both of the above fields to your form component.
+
+In order to use this component, you'll have to provide it with several pieces of information:
+- Default form state. This is an object that should contain a default value for each field in your form.
+- A name for your form. This can be any arbitrary string and will be used to:
+  - Create the fully-qualified API endpoint to submit your form to
+  - Set a key in global `redux` state in which your form data and state will be stored.
+An example of what this might look like is:
+```javascript
+withFormHandler({
+  name: '',
+  email: '',
+  message: '',
+}, 'contact-form')(MyComponent);
+```
+
+If you choose not to supply the second parameter, `withFormHandler` will assume this is a form that needs to be managed on the front-end only and will handle form state within the HoC exclusively (not within `redux`).
+
+## `FormInput`
+This is a catch-all component used for any input field in your form. This component has many options, the details of which can be found in the [form input docs](https://github.com/alleyinteractive/irving/blob/production/components/form/input.md)
+
+The required props for this component are:
+- **`name`**: `name` attribute of the form input. This should correspond to one of the fields in the default form state you provided to `withFormHandler`.
+- **`propsCreator`**: function for creating the appropriate props for your input type. The `withFormHandler` component will supply your form with an `inputTypes` prop, which is an object containing all of the prop creator functions for each input type. This is functionality provided by `react-use-form-state`, the options for which can be found [here](https://github.com/wsmd/react-use-form-state#input-types).
+- **`children`**: text or react components that will be inserted into a `<label>` for this input. This is required for accessibility purposes, but can be visually hidden.
+
+Example:
+```javascript
+const Form = (props) => {
+    const {
+        inputTypes: {
+            text,
+        },
+    } = props;
+
+    return (
+        <form>
+            <FormInput
+                name="testText"
+                placeholder="Put your input here!"
+                propsCreator={text}
+            >
+                This is a sample text input component
+            </FormInput>
+       </form>
+    );
+}
+
+withFormHandler({
+    testText: '',
+})(Form);
+```
+
+## `FormFieldset`
+Component for creating a `<fieldset>` element within your form containing an optional `<h3>` tag for a heading.
+
+## `Label`
+Component for rendering an input label. This component will automatically be rendered by the `FormInput` component and contain the value of `children` for that component. However, you may also use this component on its own if necessary.
+
+## `FormState`
+Helper component for managing and displaying messages depending on the current state of the form. The three possible states for this component (usually passed down through your form component from `withFormHandler`) are `submitting`, `submitted`, and `failed`. Each of these states will trigger the display of a different message, which can be configured using the `successText` and `errorText` props. In addition, this component will disable all form fields if one of the above states evaluates to `true`, preventing the user from interacting with the form once it has been submitted.
+
+
+# WordPress
+The forms API exists to handle form data. You can register a new form endpoint via the `wp_irving_form_endpoints` filter. You must provide a slug and callback method. Here's an example:
+```php
+add_filter(
+  'wp_irving_form_endpoints',
+  function( $endpoints ) {
+    $endpoints[] = [
+      'slug'     => 'contact_form',
+      'callback' => 'get_contact_form_response',
+    ];
+    return $endpoints;
+  }
+);
+```
