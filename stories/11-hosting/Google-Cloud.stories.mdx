@@ -1,0 +1,60 @@
+<Meta title="Deployment and Hosting|Google Cloud Functions" />
+
+# Deploying with Google Cloud Functions
+Cloud Functions is a serverless execution environment for building and connecting cloud services. With Cloud Functions, you write simple, single-purpose functions that are attached to events emitted from your cloud infrastructure and services. Your function is triggered when someone visits your Irving site.
+
+You can use Irving with Cloud Functions following the steps below:
+
+* [Pre-Installation](Deploying-on-Google-Cloud-Functions#installation)
+* [Setup the code base](Deploying-on-Google-Cloud-Functions#project-setup)
+
+> Be aware that there are other ways to deploy to Cloud Functions and are other forms of running serverless on Google Cloud (Cloud Run being an example). If you interested in other means of deploying to GC, see their [Deploying Cloud Functions](https://cloud.google.com/functions/docs/deploying) documentation.
+
+## Installation
+
+1. The first step is to install the Google Cloud SDK on your local computer. More details from Google here: [Deploying from Your Local Machine](https://cloud.google.com/functions/docs/deploying/filesystem).
+2. You should have the `gcloud` command available and properly authenticated locally.
+
+## Project Setup
+1. In the root of your Irving project, create an `index.js` file (this file should have the same name as the one in the `package.json` main key) with the following content:
+
+```javascript
+// index.js
+
+module.exports.irving = require('@irvingjs/core/server');
+```
+> The `irving` name exported will be the `--entry-point` used for Cloud Functions to run your Irving site. That means you can have a `functionName` called `site-xyx` and an entry point of `irving`.
+
+2. (Important) We also recommend adding a `.env.yml` file with your environment variables:
+
+```yml
+API_ROOT_URL: https://irving-site.irving.com/wp-json/irving/v1
+ROOT_URL: https://YOUR_REGION-PROJECT-NUMBER.cloudfunctions.net/FUNCTION_NAME # or your root URL. Ex.: https://irvingjs.org
+```
+
+> This is the recommended way to avoid adding params to the `gcloud` command.
+> Here is an example of the `ROOT_URL` used with Cloud Functions (for testing purposes maybe): https://us-east1-test-24587.cloudfunctions.net/test-function
+
+5. If you need to run a custom build step, you can add the `gcp-build` script command. [Here are more details](https://cloud.google.com/appengine/docs/standard/nodejs/running-custom-build-step) of what it does from Google.
+
+6. Here is what your `package.json` might look like:
+
+```json
+{
+  "name": "irving-app",
+  "version": "1.0.0",
+  "description": "Your Awesome Irving application.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "irving dev",
+    "build": "irving build",
+    "start": "irving start",
+    "gcp-build": "irving build",
+    "deploy": "gcloud functions deploy YOUR_FUNCTION_NAME --entry-point=irving --region=YOUR_REGION --env-vars-file=.env.yaml --runtime=nodejs10 --trigger-http"
+  },
+}
+```
+
+> The final step is to update the deploy command with the correct information.
+
+6. Finally, run `npm run deploy` and after a few minutes, you will see your Irving application on the `ROOT_URL` provided.
