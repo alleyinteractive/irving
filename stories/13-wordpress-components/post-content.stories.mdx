@@ -1,0 +1,66 @@
+<Meta title="WordPress Components|Post Content" />
+
+# Post Content
+Get the post content.
+
+Renders as the `Text` styled component [(docs)](?path=/docs/styled-components-text--plain-text-example).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-content).
+
+## Overview
+Used on single templates (`single.json`, `page.json`, etc.) to build an `irving/text` component by setting the `content` config value.
+
+### Notes
+* This component wraps `get_the_content()` [(docs)](https://developer.wordpress.org/reference/functions/get_the_content/).
+* `html` and `oembed` will be enabled by default, overriding the defaults set in `irving/text`.
+* This component will have improved Gutenberg support in the future.
+
+## Config
+```json
+{
+  "content": {
+    "default": "",
+    "type": "string"
+  },
+  "html": {
+    "default": true,
+    "type": "bool"
+  },
+  "oembed": {
+    "default": true,
+    "type": "bool"
+  },
+  "style": {
+    "default": [],
+    "type": "array"
+  },
+  "tag": {
+    "default": "div",
+    "type": "string"
+  }
+}
+```
+
+## Examples
+
+### Basic example
+Template:
+```json
+{
+  "name": "irving/post-content"
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/post-content",
+  "_alias": "irving/text",
+  "config": {
+    "content": "<p>Lorem ipsum dolor sit amet.</p>",
+    "html": true,
+    "oembed": true,
+    "tag": "div"
+  }
+}
+```

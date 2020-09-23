@@ -1,0 +1,86 @@
+<Meta title="WordPress Components|Term Link" />
+
+# Term Link
+Get the term link.
+
+Renders as the `Link` styled component [(docs)](?path=/docs/styled-components-link--plain-text-example).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/term-link).
+
+## Overview
+This component returns an `irving/link` component with `href` set to the `link` property of the WP Term object. Term ID can be set by context or `term_id`.
+
+### Notes
+Coming soon.
+
+## Config
+```json
+{
+  "href": {
+    "default": "",
+    "type": "string"
+  },
+  "rel": {
+    "default": "",
+    "type": "string"
+  },
+  "style": {
+    "default": [],
+    "type": "array"
+  },
+  "target": {
+    "default": "",
+    "type": "string"
+  }
+}
+```
+
+## Examples
+
+### Setting `term_id` directly.
+Template:
+```json
+{
+  "name": "irving/term-link",
+  "config": {
+    "term_id": 1
+  }
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/text",
+  "config": {
+    "href": "https://example.com/category/uncategorized"
+  }
+}
+```
+
+
+### Setting `term_id` via provider.
+Template:
+```json
+{
+  "name": "irving/term-provider",
+  "config": {
+    "term_id": 1
+  },
+  "children": [
+    {
+      "name": "irving/term-link"
+    }
+  ]
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/text",
+  "config": {
+    "href": "https://example.com/category/uncategorized"
+  }
+}
+```

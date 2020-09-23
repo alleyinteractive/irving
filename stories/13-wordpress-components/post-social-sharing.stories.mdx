@@ -1,0 +1,75 @@
+<Meta title="WordPress Components|Post Social Sharing" />
+
+# Post Social Sharing
+Displays a list of platforms to share content on.
+
+Renders as the `SocialSharing` styled component [(docs)](?path=/docs/styled-components-socialsharing--basic-example).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-social-sharing).
+
+## Overview
+This components allows visitors to easily share a post to various platforms.
+
+The values of `description`, `image_url`, `title`, and `url` will automaatically be populated base on the `irving/post_id` context. These values will be passsed to each platform as supported by their sharing API.
+
+### Notes
+* The supported platforms are Email, Facebook, LinkedIn, Pinterest, Reddit, Twitter, and WhatsApp.
+
+## Config
+```json
+{
+  "description": {
+    "default": "",
+    "type": "string"
+  },
+  "image_url": {
+    "default": "",
+    "type": "string"
+  },
+  "platforms": {
+    "default": [
+      "email",
+      "facebook",
+      "linkedin",
+      "pinterest",
+      "reddit",
+      "twitter",
+      "whatsapp"
+    ],
+    "type": "array"
+  },
+  "platform_data": {
+    "default": [],
+    "type": "array"
+  },
+  "post_id": {
+    "default": 0,
+    "type": "int"
+  },
+  "title": {
+    "default": "",
+    "type": "string"
+  },
+  "url": {
+    "default": "",
+    "type": "string"
+  }
+}
+```
+
+## Examples
+
+### Basic example
+Display share buttons for Reddit, Twitter, and Facebook.
+```json
+{
+  "name": "irving/post-social-sharing",
+  "config": {
+    "platforms": [
+      "reddit",
+      "twitter",
+      "facebook"
+    ]
+  }
+}
+```

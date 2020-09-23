@@ -1,0 +1,115 @@
+<Meta title="WordPress Components|Image" />
+
+# Image
+Output an image.
+
+Renders as the `Image` styled component [(docs)](?path=/docs/styled-components-image--basic-example).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/image).
+
+## Overview
+A comprehensive abstraction for images. In addition to properties supported by `<img/>`, we add support for meta (caption & credit) and fallback images.
+
+## Config
+```json
+{
+  "allow_upscaling": {
+    "default": false,
+    "description": "Allow an image to be scaled to larger than its actual width.",
+    "type": "bool"
+  },
+  "alt": {
+    "description": "Value of the alt attribute.",
+    "type": "string"
+  },
+  "aspect_ratio": {
+    "description": "Optional. Aspect ratio for the image to conform to. Can be a float (\"0.6667\"), a ratio (\"16 / 9\"), or a predfined ratio (\"square\").",
+    "type": "string"
+  },
+  "caption": {
+    "description": "Optional. Caption for the image.",
+    "default": "",
+    "type": "string"
+  },
+  "class_name": {
+    "description": "Optional. Classname.",
+    "type": "string"
+  },
+  "fallback_src": {
+    "description": "Optional. URL for the image source if \"src\" is not set.",
+    "type": "string"
+  },
+  "id": {
+    "description": "Optional. An attachment ID for an image. Will be overridden if \"src\" is set.",
+    "type": "int",
+    "hidden": true
+  },
+  "loading": {
+    "default": "lazy",
+    "description": "Lazy loading setting. Either \"eager\" or \"lazy\".",
+    "type": "string"
+  },
+  "object_fit": {
+    "default": "cover",
+    "description": "Object fit property.",
+    "type": "string"
+  },
+  "show_meta": {
+    "default": true,
+    "description": "Display meta.",
+    "type": "bool"
+  },
+  "sizes": {
+    "description": "An image sizes attribute string.",
+    "type": "string"
+  },
+  "size": {
+    "default": "full",
+    "description": "A WordPress image size to use. Default 'full'.",
+    "type": "string",
+    "hidden": true
+  },
+  "src": {
+    "description": "Optional. URL for the image source.",
+    "type": "string"
+  },
+  "srcset": {
+    "description":"A source list string for delivering responsive images.",
+    "type": "string"
+  },
+  "style": {
+    "default": [],
+    "type": "array"
+  },
+  "query_args": {
+    "description": "A set of query args to add to the URL string of the src.",
+    "default": [],
+    "type": "array"
+  }
+}
+  ```
+
+## Examples
+See the [image styled component documentation](?path=/docs/styled-components-image--basic-example) for more examples.
+
+### Basic example
+```json
+{
+  "name": "irving/image",
+  "config": {
+    "alt": "A kitten",
+    "src": "https://placekitten.com/408/287"
+  }
+}
+```
+
+### Getting an image by WordPress attachment ID
+__Note:__ Use the context provider to set this property more effectively.
+```json
+{
+  "name": "irving/image",
+  "config": {
+    "id": 1
+  }
+}
+```
