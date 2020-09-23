@@ -1,0 +1,28 @@
+<Meta title="Concepts|Request Lifecycle" />
+
+# Request Lifecycle
+The purpose of this doc is to detail the lifecycle of a request within Irving. User requests will be processed differently depending on whether the user is coming from an external or internal URL. We'll use a site called `example.com` as an example.
+
+# Request Flow
+[Diagram of the Irving request lifecycle](https://drive.google.com/open?id=1nRoICa0niPGIsP-YmyeCB_GhnHF3d3YM)
+
+## Request 1 (external URL, rendered server-side)
+* User enters `example.com` into their URL bar
+* User request hits the Irving node server
+* [express.js](https://expressjs.com/) handles the request. Note: _all_ requests are handled the same way by express, actual path-based routing is offloaded to your CMS. For more info see the [server docs](?path=/docs/concepts-express--page)
+* Express passes off the request into Irving's `serverRenderer` function.
+* `serverRenderer` triggers a [`history.push`](https://www.npmjs.com/package/history) call, which in turn dispatches a `LOCATION_CHANGE` action.
+* `redux-saga` picks up the `LOCATION_CHANGE` action and handles a request to your CMS containing the requested path (`/`).
+* Response data from your CMS is merged into redux state and passed into the app to be rendered.
+* `serverRenderer` uses the initial redux state to render a `.ejs` template for either an error (if an error occurs at the node/express level) or the app. This render includes a variable on `window` containing the initial state of the app.
+* User gets the rendered HTML for `example.com`
+
+## Request 2 (internal URL, rendered client-side)
+* User clicks on a link leading to `/posts/lorem-ipsum` within `example.com`
+* Irving triggers a [`history.push`](https://www.npmjs.com/package/history), which in turn dispatches a `LOCATION_CHANGE` action.
+* `redux-saga` picks up the `LOCATION_CHANGE` action and handles a request to your CMS containing the requested path (`/posts/lorem-ipsum`)
+* Response data from your CMS is merged into redux state.
+* App is re-rendered using new data.
+* Users sees the rendered HTML for `/posts/lorem-ipsum`
+
+As you can see, the pathway for initial requests is significantly longer than that of subsequent requests. This is one of the primary performance advantages for Irving over a more traditionally-rendered app.
