@@ -12,7 +12,7 @@ env:
 branches:
   only:
     - master
-    - beta
+    - /^release\/.*$/
 
 notifications:
   email: false
@@ -23,12 +23,12 @@ before_install:
   - npm i -g npm@$(jq -r '.engines.npm' package.json | egrep -oe "[0-9]+" | head -n1)
 
 install:
-    - npm ci
-    - npm run develop:bootstrap
+  - npm ci
+  - npm run develop:bootstrap
 
 cache:
   directories:
     - node_modules
 
 script:
-    - npm run test
+  - npm run test

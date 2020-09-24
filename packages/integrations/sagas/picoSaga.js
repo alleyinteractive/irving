@@ -50,10 +50,7 @@ function* dispatchPicoVisit() {
   const picoLoaded = yield select(picoLoadedSelector);
   const picoPageInfo = yield select(picoPageInfoSelector);
 
-  if (
-    (picoLoaded && picoPageInfo) &&
-    'function' === typeof window.Pico.handleNavigationEvent
-  ) {
+  if (picoLoaded && picoPageInfo) {
     window.pico('visit', picoPageInfo);
   }
 }

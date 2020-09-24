@@ -15,7 +15,10 @@ import {
 } from '../../actions/coralActions';
 import { tokenSelector } from '../../selectors/coralSelector';
 // Utility functions.
-import mountPicoNodes from './utils';
+import {
+  isPicoMounted,
+  mountPicoNodes,
+} from './utils';
 
 const Pico = (props) => {
   const {
@@ -43,15 +46,9 @@ const Pico = (props) => {
   const [picoInitialized, setPicoInitialized] = useState(false);
   // Create the dispatch function.
   const dispatch = useDispatch();
-  // Create a state value that prevents multiple `UPDATE_PICO_PAGE_INFO` actions
-  // from being fired on a single `LOCATION_CHANGE`.
-  const [picoPageInfoUpdated, setPicoPageInfoUpdated] = useState(false);
   // Create a function that dispatches the current page info for the saga to respond to.
   const dispatchUpdatePicoPageInfo = useCallback(
-    (payload) => {
-      setPicoPageInfoUpdated(true);
-      return dispatch(actionUpdatePicoPageInfo(payload));
-    },
+    (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
     [dispatch]
   );
   // Create a function that updates the store when the `pico.loaded` event is fired.
@@ -66,33 +63,6 @@ const Pico = (props) => {
   const coralToken = useSelector(tokenSelector);
 
   useEffect(() => {
-    // See if the Pico widget container exists in the DOM.
-    const widgetContainer = document.getElementById('pico-widget-container');
-
-    if (widgetContainer) {
-      // Prevent the widget script from being added more than once.
-      setPicoInitialized(true);
-
-      // Ensure the target nodes are only mounted once on the initial server load.
-      if (
-        ! document.getElementById('PicoSignal-container') &&
-        ! document.getElementById('PicoRule-button') &&
-        ! picoLoaded
-      ) {
-        mountPicoNodes();
-        // Trigger the visit.
-        window.pico('visit', picoPageInfo);
-        // Update the `pico` branch of the state tree and set `loaded` to true.
-        dispatchPicoLoaded();
-      }
-    }
-
-    // Only update the store once Pico has loaded and if it has not already been
-    // updated in this component's lifecycle phase.
-    if (picoLoaded && ! picoPageInfoUpdated) {
-      dispatchUpdatePicoPageInfo(picoPageInfo);
-    }
-
     const initHandler = () => {
       setPicoInitialized(true);
     };
@@ -101,7 +71,32 @@ const Pico = (props) => {
     window.document.addEventListener('pico-init', initHandler);
 
     return () => window.document.removeEventListener('pico-init', initHandler);
-  }, [picoInitialized, picoLoaded, picoPageInfoUpdated]);
+  }, []);
+
+  useEffect(() => {
+    // Only update the store once Pico has loaded and if it has not already been
+    // updated in this component's lifecycle phase.
+    if (picoLoaded) {
+      dispatchUpdatePicoPageInfo(picoPageInfo);
+    }
+  }, [picoLoaded, picoPageInfo.url]);
+
+  useEffect(() => {
+    // See if the Pico widget container exists in the DOM.
+    const widgetContainer = document.getElementById('pico-widget-container');
+
+    if (widgetContainer) {
+      // Prevent the widget script from being added more than once.
+      setPicoInitialized(true);
+
+      // Ensure the target nodes are only mounted once on the initial server load.
+      if (! isPicoMounted() && ! picoLoaded) {
+        mountPicoNodes();
+        // Update the `pico` branch of the state tree and set `loaded` to true.
+        dispatchPicoLoaded();
+      }
+    }
+  }, [picoLoaded, picoPageInfo.url]);
 
   // Load the script for the first time.
   if (! picoInitialized) {
