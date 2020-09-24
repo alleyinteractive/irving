@@ -1,0 +1,18 @@
+<Meta title="Features|Authentication" />
+
+# Authentication
+
+## Basic Authentication
+Basic auth can be enabled by enabling two environment variables. They will automatically apply the Authorization header for requests to the app. This will prompt the user to enter the valid credentials to access the site.
+
+* `BASIC_AUTH_USERNAME`
+* `BASIC_AUTH_PASSWORD`
+
+## WordPress Authentication
+Coming soon.
+
+### Challenges with Authentication
+Authentication in WordPress uses cookies out of the box. While Irving Core does pass your cookies through the Components API, the WordPress REST API also requires a nonce to fully authenticate (this is ignoring the issue of cross-domain cookies).
+
+### Using the JWT plugin
+Coming soon.

@@ -1,0 +1,45 @@
+<Meta title="Features|Debugging" />
+
+# Debugging
+_Note: The information below is older documentation and needs to be rewritten and updated._
+
+__Tldr; Caution: Here be Dragons. Proceed at your own risk.__
+
+Debugging an app like Irving can sometimes seem complicated or opaque. This page is here to tell you it's probably simpler than you think. Below are some common problems you might encounter and how you might go about debugging them.
+
+## Setting up debugging
+Irving utilizes the [`debug` package](https://www.npmjs.com/package/debug) to allow us to log info on both the server and client side. This package categorizes its logs via namespaces that will be printed alongside your message in the console, giving you more context about where the log originated.
+
+In addition, these namespaces can be used to filter your debug logs. By default, debug will not display any logs. This means you'll need to add an environmental variable containing all the namespaces you wish to debug.
+
+We recommend including all debug logs initially, and modifying the list as bugs arise:
+`DEBUG=irving:*`
+
+If you want to drill down to specific namespaces, it might look something like this:
+`DEBUG=irving:server:*,irving:components:*`
+
+As you can see, namespaces can increase in specificity through the use of colons. More info on this can be found in the [package docs](https://www.npmjs.com/package/debug#usage).
+
+## Tips for Debugging
+
+### Common Issues
+**Something Has Gone Wrong**
+  - This can be one of the more confusing and difficult-to-diagnose errors in Irving. It indicates a fatal error has occurred on the server side of the app, so the first place you should look is in your terminal to see what debug messages or errors have been logged there.
+  - If nothing jumps out at you, there's a high likelihood you encountered an error somewhere in your CMS or backend application. Check the relevant API endpoint for the failed request (should appear in your terminal) and check for errors.
+
+
+While it might sound obvious, you should have your API endpoint open in your browser at all times during development. There are links from the post edit interface, as well as in the post row actions and term row actions, for easy access. More often than not, a `Something has gone wrong` message on the front end is actually a problem with your data.
+
+### Look for PHP errors
+If you have `WP_DEBUG` enabled and this is the source of your issue, the error should be staring you in the face when you view the endpoint. Otherwise, check your `debug.log`.
+
+### Are name, config, and children passing the right shape for all components?
+`name` is a string, `config` is a JSON object, `children` is an array, and `componentGroups` is an object. Verify this for all components.
+
+### Is a component "missing"?
+Something that is easy to trip on in the early stages of a project is the setting of defaults. To the `wp_irving_components_route` filter, you need to return a `$data` array that contains both a `defaults` key and a `page` key. The `defaults` should contain any components that are always on your page (think head, header, body, footer typically). If it's in your `page` but not your `defaults`, it's not going to display on the front end.
+
+Another possible reason your component looks good in your endpoint but is missing from the frontend is if it has not been mapped to a React component in (`config/componentMap.js`)[https://github.com/alleyinteractive/irving/blob/production/config/componentMap.js]. Try mapping it to the `Placeholder` component at first.
+
+### Pause in your routing
+Using a debug tool such as Xdebug, set a breakpoint in the `wp_irving_components_route` filter. Is the `$wp_query` what you'd expect? If not, take a step back and perhaps set a breakpoint in `pre_get_posts` to better understand what is happening. If your query looks good, then take it a step further and break in your components.
