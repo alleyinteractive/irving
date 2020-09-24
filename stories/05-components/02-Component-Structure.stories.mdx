@@ -1,0 +1,30 @@
+<Meta title="Components|Components Structure" />
+
+# Component Structure
+The purpose of this page is to document the Irving component structure.
+
+Example,
+```json
+{
+	"name": "irving/body-wrapper",
+	"_alias": "irving/container",
+	"config": {
+		"max_width": "large"
+	},
+	"children": []
+}
+```
+
+### `name` - String
+A unique slug for your component. Follows a `{namespace}/{name}` format in dash case.
+
+### `_alias` - String (experimental)
+Allows you to alias your rendering to a different component.
+
+For example, you may have default wrappers named `irving/header-wrapper`, `irving/body-wrapper`, `irving/footer-wrapper`. Rather than creating a new componentMap entry for each one, you can render using `irving/fragment` by setting the alias property.
+
+### `config` - Object
+The config property is passed along to the React component as `props`.
+
+### `children` - Array
+An array of other components or strings that render as React components or text nodes. This gets merged into the `props` object upon rendering, and is accessible as `props.children`.
