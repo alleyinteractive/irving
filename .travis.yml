@@ -12,8 +12,7 @@ env:
 branches:
   only:
     - master
-    - beta
-    - release
+    - /^release\/.*$/
 
 notifications:
   email: false
