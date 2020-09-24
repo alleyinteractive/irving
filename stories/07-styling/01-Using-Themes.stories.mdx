@@ -1,0 +1,16 @@
+<Meta title="Styling|Using Themes" />
+
+# Styling with Themes
+Themes are an extension to styling in Irving that allow for more complex, reusable, encapsulated groupings of styles for a particular component. Themes can be used in conjunction with the `@irvingjs/styled` package or with Irving's core styling setup as an elegant and efficient way to include your styles.
+
+## So, what's a theme?
+A theme in the Irving sense can be one of two things, depending on whether or not you're using the `@irvingjs/styled` package:
+* Using `@irvingjs/styled`, themes are a method of replacing one or more styled components in an Irving component's JSX with your own.
+* Using `@irvingjs/core` alone, themes are a method of replacing one or more classnames in a component's stylesheet with your own.
+
+Irving's theming functionality may not work quite the way you expect from other themeing methods you have used in the past, and should not be confused with the [`theme` functionality built in to Styled Components](https://styled-components.com/docs/advanced#theming). Styled Components' built-in theming can be used as well, but is entirely separate from Irving's themes.
+
+## How do I start using themes?
+You can get started with themes in several ways, each of which are outlined in subsequent pages of the styling section of Irving's documentation:
+* [Theming with CSS and CSS Modules](?path=/docs/styling-css-modules-and-postcss--page) - Get started adding themes to your custom components using Irving Core's built-in higher-order component, `withThemes`.
+* [Theming with Styled Components](?path=/docs/styling-styled-components--page) - Learn how to add themes to existing components in the `@irvingjs/styled-components` library or add themes to your own custom components via the `withThemes` higher-order component in the `@irvingjs/styled` package.

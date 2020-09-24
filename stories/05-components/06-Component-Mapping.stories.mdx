@@ -1,0 +1,65 @@
+<Meta title="Components|Component Mapping" />
+
+# Component Mapping
+
+Irving maps components in the API to React components on the frontend via a component map (`componentMap.js`). Irving core includes a prebuilt component map to get you started. Components will not render unless they appear in the component map.
+
+To map an API component to a React component, identify the name of each component and add them as a key-value pair to the component map.
+
+## Identifying the name of an API component
+
+Each API component has a name key that takes a string as a value. In the example below the name of our API component is "byline." Usually API names are lower case single words or use hyphens in the case of multi-word names ('menu-item').
+
+```json
+{
+  "name": "byline",
+  "config": {
+   "link": "https://localhost:3001/author/alley/",
+   "name": "alley"
+  },
+  "children": [],
+}
+```
+
+## Identifying the name of a React component
+
+The name of the React component in the example below is "Byline." React component names are usually capitalized single words; when then names contain more than one word, they are often camel-cased ('MenuItem').
+
+```jsx
+export const Byline = (props) => {
+  const {
+    link,
+    name,
+  } = props;
+
+  return (
+    <div className={styles.wrapper}>
+      <Link to={link} className={styles.link}>
+        <span className={styles.name}>{name}</span>
+      </Link>
+    </div>
+  );
+};
+```
+## Mapping The Components
+
+To map, the component, open your `componentMap.js`file, located in the `config` directory.
+
+Next, add your API component and React component to the `componentMap` object below the import statement. You may also re-map Irving core components to a new key or import core components that are no included in the map to begin with. Irving core includes a handy `@component` alias for importing components (illustrated below).
+
+```js
+import Byline from 'components/byline';
+import Link from '@components/link';
+
+/**
+  * Defines which React component to render for each received API component.
+  */
+const componentMap = {
+  'my-link': Link,
+  byline: Byline,
+};
+
+export default componentMap;
+```
+
+A React component can map to more than one API component. Each API component can map to only one React component.

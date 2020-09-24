@@ -1,0 +1,123 @@
+<Meta title="Packages|Data Loading" />
+
+# Data API
+_Note: The information below is older documentation. This package doesn't actually exist, but it is on the roadmap. The functionality is available through Irving Core, and will be refactored into a standalone package._
+
+__Tldr; Caution: Here be Dragons. Proceed at your own risk.__
+
+Irving comes with an API for fetching and managing data external to the core Irving `components` endpoint. This is used by the [Async Data Loader](#async-data-loading), and is particularly useful for loading large amounts of data without sacrificing performance on initial page loads. Due to the async nature of this, the data API will only work client-side when JavaScript is enabled.
+
+## Creating a new endpoint
+When initializing the `withData` higher-order component, you'll be required to provide information about the endpoint from which the data will be retrieved. This can take one of three different formats:
+* An endpoint specific to your current feature or component under a `/data` path at your `API_ROOT_URL` environmental variable. To use this format, you'd supply a string (containing no `/` characters) as the first parameter to `withData` Example:
+```javascript
+// Retrieves data from endpoint at https://irving.dev/wp-json/v1/data/my-component/
+withData('my-component')(MyComponent);
+```
+* An arbitrary path of your choice beginning with your `API_ROOT_URL`. To use this format, supply a path as the first parameter to `withData`. Example:
+```javascript
+// Retrieves data from endpoint at https://irving.dev/wp-json/v1/my-endpoint/other-things
+withData('/my-endpoint/other-things')(MyComponent);
+```
+* Any endpoint at all, external or otherwise. To use this format, pass in a fully-qualified URL as the first parameter of `withData`. Example:
+```javascript
+// Retrieves data from endpoint at https://jsonplaceholder.typicode.com/todos/1
+withData('https://jsonplaceholder.typicode.com/todos/1')(MyComponent)
+```
+
+## API Response
+If you are writing functionality for handling requests from the `withData` component yourself you'll need to know what sort of response the `withData` HoC is expecting. The requirements are very simple: there must be a `data` field, and that field should be an array. That array can contain whatever you choose!
+
+## Loading the data
+More about ingesting and using data loaded via the endpoint you provide to the `withData` can be found in the section on [Async Data Loading](https://github.com/alleyinteractive/irving/wiki/Async-Data-Loading)
+
+# Async Data Loading
+
+Asynchronous, client-side data loading is a feature that ships with Irving core. This is a feature separate from requests made to the core Irving components endpoint, which is also asynchronous. It's intended for use with external endpoints or endpoints that may take a long time to load and/or respond.
+
+## Basic usage
+To use Irving's async, client-side data loading functionality requires setup of a higher-order react component called `withData`. Example:
+```javascript
+const MyComponent = (props) => {
+  const { data } = props;
+
+  return (
+    <div>{JSON.stringify(data)}</div>
+  );
+};
+
+withData('https://jsonplaceholder.typicode.com/todos/1')(MyComponent)
+```
+
+## Supplying your endpoint
+There are several options for supplying and formatting the endpoint from which you want to receive data (the first parameter of the `withData` HoC). More about how this works can be found in the [Data API section](https://github.com/alleyinteractive/irving/wiki/Data-API).
+
+## Managing data
+Any data returned from your endpoint will be provided to your component via the `withData` hoc as a prop called `data`. This prop can be of any type supported by JSON.
+
+Keep in mind the `data` prop will be empty when your component is initially rendered. Be sure to test your component and handle cases in which `data` is empty. In order to properly do this, you may want to set up `useEffect` and `useState` hooks to handle any changes in the contents of the `data` prop. Example:
+
+```javascript
+const MyComponent = (props) => {
+  const { data } = props;
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    setItems(data);
+  }, [data]);
+
+  return (
+    <div>
+      {items.map((item) => (
+        <Item data={item} />
+      ))}
+    </div>
+  );
+};
+
+export default withData('myComponent')(MyComponent));
+```
+In addition, the `withData` HoC will supply your component with a `refresh` prop. This prop is a function that, if called, will trigger another fetch for your endpoint data. This is useful if you need to refresh your data periodically or when a user triggers a particular action. Example:
+```javascript
+const MyComponent = (props) => {
+  const { data, refresh } = props;
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    setItems(data);
+  }, [data]);
+
+  return (
+    <div>
+      <button onClick={() => refresh()}>Click me!</button>
+      {items.map((item) => (
+        <Item data={item} />
+      ))}
+    </div>
+  );
+};
+
+export default withData('myComponent')(MyComponent));
+```
+
+## Other options
+The `withData` HoC offers several other options for more advanced configuration.
+- **`loading`**: React component for displaying a loading state while your data is being fetched.
+- **`error`**: React component for displaying an error state if there was a problem fetching your data.
+- **`refreshOnMount`**: New data will always be fetched if the component data is empty in global state. However, if a user has already visited the page containing this component (or the data is cached in some other way) the data will intentionally _not_ be reloaded when the user navigates back. Setting this option to `true` will force the data to reload when the user revisits.
+
+
+# WordPress
+The data API exists to provide additional data to Irving asynchronously. You can register a new data endpoint via the `wp_irving_data_endpoints` filter. You must provide a slug and callback method. Here's an example:
+```php
+add_filter(
+  'wp_irving_data_endpoints',
+  function( $endpoints ) {
+    $endpoints[] = [
+      'slug'     => 'books-data',
+      'callback' => 'get_books_data',
+    ];
+    return $endpoints;
+  }
+);
+```

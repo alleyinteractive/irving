@@ -1,0 +1,13 @@
+<Meta title="Features|Security" />
+
+# Security
+
+## Ensuring a secure connection
+In production HTTPS will typically be handled by the load balancer of the hosting environment.
+
+### Local Development
+If you would like HTTPS for local development set the following environment variables.
+* `HTTPS_KEY_PATH` - Path to your HTTPS key.
+* `HTTPS_CERT_PATH` - Path to your HTTPS cert.
+
+For more details on generating a cert, see [Express' documentation](https://timonweb.com/posts/running-expressjs-server-over-https/).

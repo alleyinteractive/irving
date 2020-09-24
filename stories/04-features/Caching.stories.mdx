@@ -1,0 +1,76 @@
+<Meta title="Features|Caching" />
+
+# Caching
+_Note: The information below is older documentation and needs to be rewritten and updated._
+
+__Tldr; Caution: Here be Dragons. Proceed at your own risk.__
+
+Irving core has a service which caches Irving endpoint requests. Out of the box, this service uses Redis and only supports the initial server side render.
+
+By serving the initial load from a cache local to the node application, we can save ourselves a full request to the CMS. This allows first-time, server-rendered requests (usually the slowest of all Irving requests to process) to load much more quickly.
+
+The entire response for a given endpoint is stored in Redis, and uses keys in the format `components-endpoint:${endpoint}`. Example: `components-endpoint:path=/&context=site`
+
+### Setup
+To set up Redis you need to install the `ioredis` and add an environmental variable to your `.env` file. Below are all the environmental variables for redis:
+
+* `REDIS_URL` or `REDIS_MASTER` (required) - environmental variable pointing to your redis host and port in the format `host:port`. Your redis host can be a URL or IP and supports the `redis://` protocol.
+* `CACHE_EXPIRE` (optional) - determines how long each entry will persist, in milliseconds. Defaults to `300` (5 minutes).
+* `REDIS_PASSWORD` (optional) - Password required to connect to your redis service.
+
+After configuration, your .env file might look something like this:
+
+```
+REDIS_URL=192.168.50.8:6000
+REDIS_PASSWORD=mypassword
+CACHE_EXPIRE=600
+```
+
+# Setup
+Redis can be set up and configured in almost exactly the same way as you would for Irving core. Beyond setting up the npm package itself (the documentation for which is in the above link to the package directory), the only difference is you _must_ use the `REDIS_MASTER` env var. `REDIS_URL` will not be available.
+
+In addition to the Redis cache, VIP Go's infrastructure has a [Varnish page cache](https://wpvip.com/documentation/vip-go/caching-on-vip-go/#page-cache). Both the Redis and Varnish cache will automatically clear based on [VIP's caching logic](https://wpvip.com/documentation/vip-go/controlling-vip-go-page-cache/). Similar to a non-headless WordPress site, you may need to customize when the cache busts to meet your specific needs.
+
+The integration for VIP Go's cache busting is one of [WP Irving's integrations](https://github.com/alleyinteractive/wp-irving/blob/master/inc/integrations/class-vip-go.php).
+
+In addition, WP Irving has its own [cache manager class](https://github.com/alleyinteractive/wp-irving/blob/master/inc/class-cache.php) for handling cache busting for Irving's redis implementation.
+
+### Redis Cache Busting
+Irving core supports two custom routes to help with the Redis cache. For WordPress builds, these will automatically be triggered as part of WP Irving.
+
+* `/purge-cache` - `POST` endpoint for purging the redis cache. This endpoint has two options:
+  * Fire a `POST` request to this endpoint without a request `body` and the entire Redis cache will be purged.
+  * Fire a `POST` request to this endpoint with a request `body` containing an array of paths. The post body should be in the format: `{ "paths": [ '/', '/test-path', '/third-path' ] }`
+* `/cache-keys` - `GET` endpoint that will return an array of all the cache keys you currently have in Redis.
+
+### Roadmap
+* Ability to supply the Cache-Control headers from the endpoint.
+* Cache debugging module.
+
+
+# WP Irving
+
+## Caching
+WP Irving has built-in functionality for managing both the [node Redis cache](https://github.com/alleyinteractive/irving/wiki/Caching) running on Irving and WP Irving's component data endpoints. This functionality is fairly robust out of the box, but can also be modified or extended in a number of ways. Code for all of this functionality can be found in WP Irving's [cache manager class](https://github.com/alleyinteractive/wp-irving/blob/master/inc/class-cache.php).
+
+### Core features
+Out of the box, WP Irving will handle several caching use-cases for you:
+* When a WordPress post is created, updated, or deleted several caches will be purged:
+  * Endpoint and Redis cache for the post itself
+  * Endpoint and Redis cache for term archives of the post's associated terms
+  * Endpoint and Redis cache for user archive of the post's associated author.
+* When a term is created, updated, or deleted, the endpoint and Redis caches will be purged for its archive.
+* When a user is created, updated, or deleted, the endpoint and Redis caches will be purged for that user's archive.
+
+### Integrations
+WP Irving contains integrations for WordPress VIP Go's [cache manager plugin](https://github.com/Automattic/vip-go-mu-plugins-built/tree/master/vip-cache-manager) and Pantheon's [Advanced Page Cache plugin](https://github.com/pantheon-systems/pantheon-advanced-page-cache). These integrations will activate automatically if the above plugins are active on your site.
+
+### Extensibility
+In addition to the core features of the WP Irving cache class there are several ways in which you can extend caching functionality.
+
+There are three hooks you can use to modify or extend which paths are purged for posts, terms, or users:
+* `wp_irving_cache_post_purge_urls` - Filter that is passed an array of the URLs to be purged when a post is create, updated, or deleted.
+* `wp_irving_cache_term_purge_urls` - Filter that is passed an array of the URLs to be purged when a term is create, updated, or deleted.
+* `wp_irving_cache_user_purge_urls` - Filter that is passed an array of the URLs to be purged when a user is create, updated, or deleted.
+
+In addition, the three methods that apply the above filters can be used directly if you need to create your own caching integration. These functions are `get_post_purge_urls`, `get_term_purge_urls`, and `get_user_purge_urls` respectively. An example of how you might use these functions can be found in the [Pantheon integration class.](https://github.com/alleyinteractive/wp-irving/blob/master/inc/integrations/class-pantheon.php)

@@ -1,0 +1,167 @@
+<Meta title="Styling|Styled Components" />
+
+# Styling with Styled Components
+Irving's most broadly-supported method of styling is [Styled Components](https://styled-components.com/), a popular CSS-in-JS library. The core benefits of Styled Components are:
+* Critical CSS with no extra effort.
+* Locally-scoped classNames (similar to what you get with CSS Modules).
+* Easy to optimize and remove unnecessary styles, as all styles are attached to a component.
+* All the benefits of CSS-in-JS, including dynamic styles that respond to changes in props.
+* Automatic vendor prefixing.
+
+Check out [Styled Components' documentation](https://styled-components.com/docs) for more details on how to use them.
+
+## Setting up Styled Components in your project
+Preparing your project to use styled components is a two step process:
+1. `npm install @irvingjs/styled` - install the Irving `styled` package as a dependency for your project.
+2. Import the package configuration and add it to your project's config. To do this, first create an `irving.config.js` in your project's root directory. In this file, add the following:
+```js
+import styledConfig from '@irvingjs/styled';
+
+export default {
+    packages: [
+        styledConfig,
+    ],
+};
+```
+
+## Using Irving's library of styled components
+Set up for usage of the `@irvingjs/styled-components` package is identical to the setup for `@irvingjs/styled`. After installing the package, add the folowing to your `irving.config.js` file:
+```js
+import styledComponentsConfig from '@irvingjs/styled-components';
+
+export default {
+    packages: [
+        styledComponentsConfig,
+    ],
+};
+```
+
+# Theming with Styled Components
+An assortment of minimally-styled components is included in Irving's [`styled-components` package](?path=/docs/features-available-packages--page#styled-components). Styles are easily overwritten by providing Irving with your own custom themes.
+
+## Theming components in the `styled-components` package
+Each styled-component's configuration includes a theme property that maps to the default style included in the component package. For example, the default.js theme for the container component is:f
+
+```jsx
+import styled from 'styled-components';
+
+export const ContainerWrapper = styled.div`
+  margin: auto;
+  width: 100%;
+`;
+
+```
+To find all the styled components available and their default themes, look in: `client/irving/node_modules/@irvinjs/styled-components/components` — each component includes a `themes` folder containing a `default.js` file, which renders the basic "out of the box" styling.
+
+Some guidelines and standards we recommend for setting up themes:
+* Use a `themes` directory in the root of your project (`<projectName>/wp-content/themes/<projectTheme>/client/irving`) with an `index.js` file within. It's a good practice to organize your themes by component name, so to style a container, for example, create a `container` directory within the `themes` directory.
+* Import all of your themes into to the `themes/index.js` file.
+* Ensure a `themeName` prop is passed either directly or via API to the component you'd like to theme. That `themeName` prop should correspond to the key to which you've assigned your custom theme in the object exported from your `themes/index.js` file.
+
+Some requirements for themes to work with Irving's `styled-components` package:
+* Theme files containing your styled components definitions _must_ either export an object. This can either be a series of named exports or an actual JavaScript object.
+* If you use a series of named exports in your theme file you must import this via `import * as myTheme from ...`, where `myTheme` will become your theme object.
+* Names of styled components in your theme file _must_ be identical to the names of styled components in the component's default theme in order to be properly applied.
+* Your `themes/index.js` file _must_ export an object. At the top level of this object, keys should be component names and values should be an object of custom themes to provide to the Irving styled component. Example:
+```js
+import * as myCustomThemeObject from './container/myCustomThemeObject';
+
+export default {
+  'irving/container': {
+    themeName: myCustomThemeObject,
+  }
+}
+
+```
+* Your theme files _does not_ have to export a corresponding component for _every_ styled component defined in the default theme, but if it doesn't the default version of that component will be used to prevent errors.
+
+The styled-components's `default.js` is the best place to start when writing your own theme so copy it from the `node_modules/@irvingjs/styled-components/components/<component-to-theme>/themes` folder. From there, add or subtract any styles you like. You can overwrite the default behavior by naming your custom theme `default.js` or keep the default behavior and add as many theme variants as you need.
+
+For example, you might want a flex container around a section, that is 90% wide with a yellow background. In order to point your app to your custom theme, your API json might look like:
+
+```json
+{
+  "name": "irving/container",
+  "config": {
+    "theme_name": "yellow-section",
+  },
+}
+```
+
+Or, if using WordPress and `wp-irving`, your template JSON might contain the following component definition:
+```json
+{
+  "name": "irving/container",
+  "theme": "yellow-section",
+}
+```
+
+Next, create a folder for container themes and a file with your styling for this container theme called: `yellowSection.js`. Note that if you are using `wp-irving`, any themes containing hyphens (`-`) or underscores (`_`) in your json templates will be converted to camelCase (e.g. a theme of `yellow-section` becomes `yellowSection`) before producing endpoint data.
+
+```jsx
+import styled from 'styled-components';
+
+export const ContainerWrapper = styled.section`
+  background: yellow;
+  display: flex;
+  width: 90%;
+`;
+```
+
+We recommend a folder structure like this:
+```
+  my-irving-project\
+    themes\
+      container\
+        yellowSection.js
+      index.js
+
+```
+
+Next step: import your custom theme to the themes' folder `index.js` file:
+
+```js
+import * as yellowSection from './container/yellowSection';
+
+export default {
+  'irving/container': {
+    yellowSection,
+  }
+}
+
+```
+That's it! A lovely feature of Irving is that as you noodle with your styling, the app hot reloads the styling without the need to refresh your browser. Very handy. However, templates and template parts are not hot-reloaded, so save and refresh after you have applied a theme to your component.
+
+### Theming your own styled component
+If you have a custom component that makes use of Styles Components in your Irving project you can still leverage Irving's theming functionality via the [`withThemes`](https://github.com/alleyinteractive/irving/blob/master/packages/styled/components/hoc/withThemes.js) higher-order component (HOC) within the `@irvingjs/styled` package. Unlike the `withThemes` HOC in Irving core, the `styled` version is somewhat simpler. A component using this HOC might look like the following:
+
+```jsx
+import React from 'react';
+import withThemes from '@irvingjs/styled/components/hoc/withThemes';
+import * as defaultStyles from './themes/default';
+import * as customThemeStyles from './themes/customTheme';
+
+const MyComponent = (props) => {
+  const { theme } = props;
+  const { Wrapper, Content } = theme;
+
+  return (
+    <Wrapper>
+      <Content>
+        This is my component content
+      </Content>
+    </Wrapper>
+  );
+};
+
+const themeMap = {
+  default: defaultStyles,
+  custom: customThemeStyles,
+};
+
+export default withThemes(themeMap)(Container);
+```
+
+As illustrated above, the `withThemes` HOC requires only a theme mapping object in which keys are a theme name and values are objects containing theme components. This HOC will provide a `theme` prop to the component to which the HOC is applied. This prop is an object on which both keys and values are the same (the name of each component function).
+
+As you may have noted already, the `withThemes` prop for styled components doesn't actually _require_ or integrate directly with styled components at all—it merely expects each value of the theme object to be a React component. This means that, for most intents and purposes, you will probably just supply an object of styled components in your theme. However, you can get creative if you want to (and at your own risk) by supplying any React component at all and, as long as the component is named the same as one of the theme values used in the themed component itself, it will be applied as-is. Be sure to render `children` as necessary, otherwise you may end up with chunks of your component that don't render (unless this is what you want!).

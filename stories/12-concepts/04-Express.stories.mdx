@@ -1,0 +1,16 @@
+<Meta title="Concepts|Express" />
+
+# Express
+Irving's express server is set up somewhat differently than you might expect from a normal express app. While a normal express app might route different requests to different handles, Irving uses a single handler for all requests. The reason for this is Irving is intended to work primarily as a drop-in replacement for a CMS's default render layer. As such, Irving relies on your CMS's built-in routing to handle requests appropriately instead of doing so on its own.
+
+In practice, this means the only distinctions you need to be aware of in express request handling are those between `development` and `production` environments.
+
+## Development
+* Uses [`webpack-dev-middleware`](https://github.com/webpack/webpack-dev-middleware) to directly serve webpack assets.
+* [`webpack-hot-middleware`](https://github.com/webpack-contrib/webpack-hot-middleware) is used to hot reload client-side assets.
+* In addition, [`webpack-hot-server-middleware`](https://github.com/60frames/webpack-hot-server-middleware) is used to handle server-executed hot reloading.
+
+## Production
+* Uses the server-side webpack bundle to handle all user requests.
+* Adds optional basic auth using the [`basic-auth`](https://www.npmjs.com/package/basic-auth) package
+* Aggressively caches the client side bundle using `express.static`
