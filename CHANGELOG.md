@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [4.2.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.10...v4.2.0-alpha.11) (2020-09-22)
+# [4.1.0](https://github.com/alleyinteractive/irving/compare/v4.1.0-rc.0...v4.1.0) (2020-09-24)
 
 **Note:** Version bump only for package irving
 
@@ -90,6 +91,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.2...v4.2.0-alpha.3) (2020-09-18)
+# [4.1.0-rc.0](https://github.com/alleyinteractive/irving/compare/v4.1.0-beta.4...v4.1.0-rc.0) (2020-09-18)
 
 **Note:** Version bump only for package irving
 
@@ -109,6 +111,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+# [4.1.0-beta.4](https://github.com/alleyinteractive/irving/compare/v4.1.0-beta.3...v4.1.0-beta.4) (2020-09-17)
 
 **Note:** Version bump only for package irving
 
@@ -117,6 +120,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v4.1.0-beta.2...v4.2.0-alpha.0) (2020-09-17)
+# [4.1.0-beta.3](https://github.com/alleyinteractive/irving/compare/v4.1.0-beta.2...v4.1.0-beta.3) (2020-09-17)
 
 
 ### Bug Fixes
