@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2-alpha.0](https://github.com/alleyinteractive/irving/compare/v4.1.1...v4.1.2-alpha.0) (2020-09-25)
+
+
+### Bug Fixes
+
+* **pico:** poll for widget existence in effect ([5b5ffdc](https://github.com/alleyinteractive/irving/commit/5b5ffdc51b1e11a0b4da460e48bc86a0530be7e9))
+
+
+
+
+
 ## [4.1.1](https://github.com/alleyinteractive/irving/compare/v4.1.0...v4.1.1) (2020-09-25)
 
 **Note:** Version bump only for package irving
