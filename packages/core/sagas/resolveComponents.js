@@ -54,7 +54,6 @@ export default function* resolveComponents() {
       cookie,
       context
     );
-    // console.log(result.providers[0].config.theme);
 
     // Don't receive components on client side if redirecting,
     // otherwise will result in a confusing flash of empty page content.
