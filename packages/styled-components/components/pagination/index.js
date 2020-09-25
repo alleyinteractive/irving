@@ -5,7 +5,7 @@ import queryString from 'query-string';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
@@ -290,7 +290,7 @@ const Pagination = (props) => {
 };
 
 Pagination.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   baseUrl: '/',
   currentPage: 1,

@@ -5,7 +5,7 @@ import queryString from 'query-string';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import toReactElement from '@irvingjs/core/utils/toReactElement';
 import Link from '../link';
@@ -174,7 +174,7 @@ const SocialSharing = (props) => {
 };
 
 SocialSharing.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   description: '',
   imageUrl: '',

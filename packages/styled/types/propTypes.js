@@ -45,10 +45,10 @@ export const standardPropTypes = {
   theme: PropTypes.object,
 };
 
-export const standardDefaultProps = {
+export const getStandardDefaultProps = () => ({
   children: [],
   id: '',
   className: '',
   style: {},
   tag: '',
-};
+});
