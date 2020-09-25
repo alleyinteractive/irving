@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.13](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.12...v4.2.0-alpha.13) (2020-09-25)
+
+
+### Bug Fixes
+
+* **pico:** poll for widget existence in effect ([40629b3](https://github.com/alleyinteractive/irving/packages/integrations/commit/40629b3c4e1b9a52f9cf4d5cfbde661ad4f3a420))
+
+
+
+
+
 # [4.2.0-alpha.12](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0...v4.2.0-alpha.12) (2020-09-24)
 
 
