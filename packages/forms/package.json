@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/forms",
-  "version": "4.2.0-alpha.12",
+  "version": "4.2.0-alpha.14",
   "description": "Form components and submission functionality for Irving",
   "files": [
     "actions/**/*",
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^4.2.0-alpha.12",
-    "@irvingjs/core": "^4.2.0-alpha.12",
+    "@irvingjs/core": "^4.2.0-alpha.14",
     "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^25.5.3"
   },
