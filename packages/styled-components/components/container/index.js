@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
@@ -64,7 +64,7 @@ const Container = (props) => {
 };
 
 Container.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   backgroundImageUrl: '',
   maxWidth: 'lg',

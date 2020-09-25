@@ -4,7 +4,7 @@ import sanitizeHtml from 'sanitize-html';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import { richText } from '@irvingjs/core/config/html';
 import * as defaultStyles from './themes/default';
@@ -126,7 +126,7 @@ const Image = (props) => {
 };
 
 Image.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   allowUpscaling: false,
   alt: '',
   aspectRatio: false,
