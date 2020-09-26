@@ -22,7 +22,10 @@ function createComponentsEndpointQueryString(
     path,
     context,
     ...getExtraQueryParams(),
-    ...queryString.parse(search),
+    ...omit(
+      ['customize_changeset_uuid'],
+      queryString.parse(search)
+    ),
     ...omit(defaultCookies, cookie),
   },
   {
