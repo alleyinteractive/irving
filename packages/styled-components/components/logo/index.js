@@ -4,7 +4,7 @@ import Link from 'components/link';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
@@ -54,7 +54,7 @@ const Logo = (props) => {
 };
 
 Logo.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   href: '/',
   logoImageUrl: '',

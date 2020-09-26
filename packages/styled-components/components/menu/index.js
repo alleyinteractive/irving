@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import MenuItem from './menuItem';
 import * as defaultStyles from './themes/default';
@@ -60,7 +60,7 @@ const Menu = (props) => {
 };
 
 Menu.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   children: [],
   displayName: false,
