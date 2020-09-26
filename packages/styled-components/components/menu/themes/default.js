@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-/* eslint-disable import/prefer-default-export */
 export const Wrapper = styled.div`
   align-items: center;
   display: flex;
@@ -39,4 +38,3 @@ export const ItemWrapper = styled.li`
 export const Dropdown = styled.ol`
   display: none;
 `;
-/* eslint-enable */
