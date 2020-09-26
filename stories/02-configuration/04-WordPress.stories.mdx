@@ -46,3 +46,11 @@ function wp_irving_site_theme_json_directory_path( $path ) {
 }
 add_filter( 'wp_irving_site_theme_json_directory_path', __NAMESPACE__ . '\wp_irving_site_theme_json_directory_path' );
 ```
+
+
+### Enable/Disable Site Theme
+Use `wp_irving_enable_site_theme` to enable/disable the Site Theme functionality.
+
+```php
+add_filter( 'wp_irving_enable_site_theme', '__return_false' );
+```
