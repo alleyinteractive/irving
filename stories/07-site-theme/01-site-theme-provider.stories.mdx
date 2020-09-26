@@ -13,10 +13,8 @@ The easiest way to manage the Site Theme is by adding a `styles` folder to your 
 `/your-theme/styles/colors.json`
 ```json
 {
-  "brand": {
-  	"primary": "#735fea",
-  	"secondary": "#e680a7"
-  },
+  "primary": "#735fea",
+  "secondary": "#e680a7",
   "text": "#333333",
   "grey": "#808080",
   "black": "#000000",
@@ -34,6 +32,10 @@ The easiest way to manage the Site Theme is by adding a `styles` folder to your 
   "heading": {
     "variant1": "Georgia, Times, ‘Times New Roman’, serif",
     "variant2": "Palatino, ‘Palatino Linotype’, ‘Hoefler Text’, Times, ‘Times New Roman’, serif"
+  },
+  "sizes": {
+    "sm": 17,
+    "lg": 22
   }
 }
 ```
@@ -42,7 +44,7 @@ Irving will also recursively traverse the site theme until it finds the final va
 `/your-theme/styles/header.json`
 ```json
 {
-	"background_color": "colors.brand.primary"
+  "background_color": "colors.primary"
 }
 ```
 
@@ -58,10 +60,8 @@ Which would render in the `providers` key in your endpoint [(example)](https://w
       "config": {
         "theme": {
           "colors": {
-            "brand": {
-              "primary": "#735fea",
-              "secondary": "e680a7"
-            },
+            "primary": "#735fea",
+            "secondary": "e680a7",
             "text": "#333333",
             "grey": "#808080",
             "black": "#000000",
@@ -75,10 +75,14 @@ Which would render in the `providers` key in your endpoint [(example)](https://w
             "heading": {
               "variant1": "Georgia, Times, ‘Times New Roman’, serif",
               "variant2": "Palatino, ‘Palatino Linotype’, ‘Hoefler Text’, Times, ‘Times New Roman’, serif"
+            },
+            "sizes": {
+              "sm": 17,
+              "lg": 22
             }
           },
           "header": {
-          	"background_color": "colors.brand.primary"
+            "background_color": "colors.primary"
           }
         },
         "themeName": "default",
@@ -103,22 +107,23 @@ Every Styled Component will include a reference to `props.themes` as outlined in
 We provide a `siteTheme()` utility in [`@irvingjs/styled`](?path=/docs/packages-styled--page) to make this easy. You can import the utility and traverse the site theme using dot syntax.
 
 #### Basic Usage
-`${siteTheme('colors.brand.primary')}` returns `#735fea`
+`${siteTheme('colors.primary')}` returns `#735fea`
 
 Or using the nested value,
-`${siteTheme('colors.brand.primary')}` returns `#735fea`
+`${siteTheme('colors.primary')}` returns `#735fea`
 
 [Utility on Github](https://github.com/alleyinteractive/irving/blob/master/packages/styled/utils/siteTheme.js)
 
 #### Example `/container/themes/default.js`
 ```
 import styled from 'styled-components';
-import { siteTheme } from '@irvingjs/styled/utils';
+import { rem, siteTheme } from '@irvingjs/styled/utils';
 
 /* eslint-disable import/prefer-default-export */
 export const ContainerWrapper = styled.div`
-  border: 1px solid ${siteTheme('colors.brand.secondary')};
+  border: 1px solid ${siteTheme('colors.secondary')};
   background-color: ${siteTheme('header.background_color')};
+  font-size: ${(props) => rem(siteTheme('fonts.sizes.sm')(props))};
 `;
 /* eslint-enable */
 
@@ -133,7 +138,7 @@ Example:
   "name": "irving/container",
   "config": {
     "style": {
-      "background-color": "header.background_color"
+      "background-color": "header.backgroundColor"
     }
   }
 }
