@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
@@ -97,7 +97,7 @@ const Byline = (props) => {
 };
 
 Byline.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   lastDelimiter: ', and ',
   multiDelimiter: ', ',

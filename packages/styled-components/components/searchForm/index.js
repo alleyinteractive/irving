@@ -6,7 +6,7 @@ import history from '@irvingjs/core/utils/history';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
@@ -68,7 +68,7 @@ const SearchForm = (props) => {
 };
 
 SearchForm.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   baseUrl: '/',
   searchTerm: '',

@@ -8,6 +8,15 @@ export const components = {
   page: {},
 };
 
+export const defaultProviderState = {
+  current: {
+    key: '',
+    config: {},
+  },
+};
+
+export const defaultProviderKey = 'default';
+
 export const route = {
   status: null,
   redirectTo: false,

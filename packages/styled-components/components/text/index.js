@@ -6,7 +6,7 @@ import { richText } from '@irvingjs/core/config/html';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 import * as htmlStyles from './themes/html';
@@ -69,7 +69,7 @@ const Text = (props) => {
 };
 
 Text.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   content: '',
   html: false,

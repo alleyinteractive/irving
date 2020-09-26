@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.14](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.13...v4.2.0-alpha.14) (2020-09-25)
+
+
+### Bug Fixes
+
+* **proptypes:** fix issue with mutated reference in standard default props ([0bd6de9](https://github.com/alleyinteractive/irving/packages/styled/commit/0bd6de9509df6b723adb85ad632b362b812ac940))
+
+
+
+
+
 # [4.2.0-alpha.12](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0...v4.2.0-alpha.12) (2020-09-24)
 
 

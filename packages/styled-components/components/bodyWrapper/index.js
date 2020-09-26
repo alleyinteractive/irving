@@ -6,7 +6,7 @@ import Loader from 'components/loader';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
@@ -46,7 +46,7 @@ BodyWrapper.propTypes = {
 };
 
 BodyWrapper.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   bodyClasses: [],
   theme: defaultStyles,
 };
