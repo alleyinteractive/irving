@@ -19,17 +19,28 @@ All responses follow this format,
 }
 ```
 
-* `defaults`: An array of components that informs Irving what components are "global" and should persist across all requests. This is good for setting up headers, footers, scripts, and other components that should exist on every page. Defaults can be passed at any point, but Irving will automatically add `context=site` to the initial request, which can be used as a flag to return the default components.
-* `page`: An array of components for a specific route. Irving looks for top-level conflicts between the `defaults` and `page` arrays and overrides the defaults with the page component.
-* `providers`: An array of components that should be used as providers. See the [RootProvider](https://github.com/alleyinteractive/irving/tree/production/components/rootProviders) component for full documentation.
-* `redirectTo`: The url you want to redirect to.
-* `redirectStatus`: HTTP status code for your redirect.
+### `defaults`
+An array of components that informs Irving what components are "global" and should persist across all requests. This is good for setting up headers, footers, scripts, and other components that should exist on every page. Defaults can be passed at any point, but Irving will automatically add `context=site` to the initial request, which can be used as a flag to return the default components.
+
+### `page`
+An array of components for a specific route. Irving looks for top-level conflicts between the `defaults` and `page` arrays and overrides the defaults with the page component.
+
+### `providers`
+An array of components that should be used as providers. See the [RootProvider](https://github.com/alleyinteractive/irving/tree/production/components/rootProviders) component for full documentation.
+
+Read more about the [Site Theme](?path=/docs/site-theme-site-theme-provider--page) provider.
+
+### `redirectTo`
+The url you want to redirect to.
+
+### `redirectStatus`
+HTTP status code for your redirect.
 
 ## Query params
 Irving will pass a `path` param and a `context` param. `path` is equal to the path of the current page. `context` will be either `page` or `site` - `site` on initial load and `page` for all additional requests. Any extra params are also passed.
 
-## Filtering the output
+### Filtering the output
 You should modify the data returned to the endpoint by using the `wp_irving_components_route` filter.
 
-## Filtering the status code
+### Filtering the status code
 You can modify the status code returned using the `wp_irving_components_route_status` filter.

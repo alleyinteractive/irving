@@ -1,0 +1,42 @@
+<Meta title="Configuration|WordPress" />
+
+# WordPress Configurations
+This section outlines the different ways you can configure WP Irving.
+
+Coming soon.
+
+## Available Hooks
+This section is a work in progress.
+
+### JWT Token Cookie Domain
+To get [authentication](?path=/docs/features-authentication--page) fully working, you must enable the JWT Auth plugin and set a cookie domain that will work across both your WordPress and Irving applications. We recommend aa cross-domain cookie to.
+```php
+/**
+ * Modify the JWT token cookie domain for WP Irving.
+ *
+ * @param string $domain Domain.
+ * @return string
+ */
+function wp_irving_jwt_token_cookie_domain( $domain ) {
+	return strstr( home_url(), 'alley.test' ) ? '.alley.test' : '.irvingjs.com';
+}
+add_filter( 'wp_irving_jwt_token_cookie_domain', __NAMESPACE__ . '\wp_irving_jwt_token_cookie_domain' );
+
+```
+
+### Site theme JSON path
+`wp_irving_site_theme_json_directory_path`
+
+Examaple
+```php
+/**
+ * Filter the path for the site theme JSON directory.
+ *
+ * @param string $path Path to site theme JSON directory.
+ * @return string
+ */
+function wp_irving_site_theme_json_directory_path( $path ) {
+	return get_stylesheet_directory() . '/site-theme/';
+}
+add_filter( 'wp_irving_site_theme_json_directory_path', __NAMESPACE__ . '\wp_irving_site_theme_json_directory_path' );
+```
