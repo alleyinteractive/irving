@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.15](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.14...v4.2.0-alpha.15) (2020-09-28)
+
+
+### Bug Fixes
+
+* **container component:** fix an issue where max-width was being output with an empty value ([3128d3a](https://github.com/alleyinteractive/irving/commit/3128d3a4ad2eea3077369c6edfa1159ab9405c6e))
+
+
+### Features
+
+* **site theme:** support nested site theme properties ([821334a](https://github.com/alleyinteractive/irving/commit/821334ad21c8c43bb3e636f1990894bfee40d287))
+
+
+
+
+
 # [4.2.0-alpha.14](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.13...v4.2.0-alpha.14) (2020-09-25)
 
 
