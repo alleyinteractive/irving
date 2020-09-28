@@ -1,0 +1,22 @@
+<Meta title="Features|Authentication" />
+
+# Authentication
+
+## Basic Authentication
+Basic auth can be enabled using environment variables. They will automatically apply the Authorization header for requests to the app. This will prompt the user to enter the valid credentials to access the site.
+
+* `BASIC_AUTH` - Put your entire site behind basic auth when running in production mode.
+* `BASIC_AUTH_USERNAME` - Basic auth username. This will be used for both sitewide basic auth and cache endpoints.
+* `BASIC_AUTH_PASSWORD` - Basic auth password. This will be used for both sitewide basic auth and cache endpoints.
+
+## WordPress
+Because Irving uses the WordPress REST API, the primary method to authorize requests would require a cross-domain cookie, and a valid nonce.
+
+The WordPress REST API team has [outlined a thorough description of this problem and a proposal for supporting Application Passwords](https://make.wordpress.org/core/2020/09/23/proposal-rest-api-authentication-application-passwords/). We intend to offer support for whatever authentication method is supported in core.
+
+### Using the JWT plugin
+Until core has a better solution, we offer authentication via the [WP-API/jwt-auth plugin](https://github.com/WP-API/jwt-auth/).
+
+#### Setup
+* Install and enable the plugin [(repo)](https://github.com/WP-API/jwt-auth/).
+* Ensure your cross-domain is setup correctly using the `wp_irving_jwt_token_cookie_domain` hook [(docs)](?path=/docs/configuration-wordpress--page#jwt-token-cookie-domain).
