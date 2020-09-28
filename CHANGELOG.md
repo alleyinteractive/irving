@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.16](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.15...v4.2.0-alpha.16) (2020-09-28)
+
+
+### Bug Fixes
+
+* **usepollfornode:** rename polled node, move it ([03e8adb](https://github.com/alleyinteractive/irving/commit/03e8adb2fe2c307b01668cb0145ebe7930f5a568))
+
+
+
+
+
 # [4.2.0-alpha.15](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.14...v4.2.0-alpha.15) (2020-09-28)
 
 
