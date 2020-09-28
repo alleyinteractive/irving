@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import usePollForNode from './usePollForNode';
 import PicoObserver from './observer';
 // Pico.
 import {
@@ -81,39 +82,22 @@ const Pico = (props) => {
     }
   }, [picoLoaded, picoPageInfo.url]);
 
-  // Set a poll counter that can be used as an effect dependency for inside of the
-  // `pollForWidget` interval. Adding this as an dependency to the effect will cause
-  // the effect to be rerun and the existence of `widgetContainer` to be re-checked
-  // each time the poll is incremented. When the container is detected the polling
-  // interval is cleared and the state is updated accordingly to dispatch future behavior.
-  const [pollNumber, setPollNumber] = useState(0);
-
+  const widgetContainer = usePollForNode('#pico-widget-container');
   useEffect(() => {
-    // See if the Pico widget container exists in the DOM.
-    const widgetContainer = document.getElementById('pico-widget-container');
+    if (widgetContainer) {
+      setPicoInitialized(true);
 
-    const pollForWidget = setInterval(() => {
-      // Increment the poll count to re-run the effect.
-      setPollNumber(pollNumber + 1);
-
-      if (widgetContainer) {
-        // Prevent future polling events.
-        clearInterval(pollForWidget);
-        // Prevent the widget script from being added more than once.
-        setPicoInitialized(true);
-
-        // Ensure the target nodes are only mounted once on the initial server load.
-        if (! isPicoMounted() && ! picoLoaded) {
-          mountPicoNodes();
-          // Update the `pico` branch of the state tree and set `loaded` to true.
-          dispatchPicoLoaded();
-        }
+      // Ensure the target nodes are only mounted once on the initial server load.
+      if (! isPicoMounted() && ! picoLoaded) {
+        mountPicoNodes();
+        // Update the `pico` branch of the state tree and set `loaded` to true.
+        dispatchPicoLoaded();
       }
-    }, 250);
-  }, [picoLoaded, picoPageInfo.url, pollNumber]);
+    }
+  }, [picoLoaded, picoPageInfo.url, widgetContainer]);
 
   // Load the script for the first time.
-  if (! picoInitialized && 0 === pollNumber) {
+  if (! picoInitialized && ! widgetContainer) {
     return (
       <Helmet>
         <script>
