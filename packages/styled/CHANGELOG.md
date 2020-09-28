@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.14...v4.2.0-alpha.15) (2020-09-28)
+
+
+### Features
+
+* **site theme:** support nested site theme properties ([821334a](https://github.com/alleyinteractive/irving/packages/styled/commit/821334ad21c8c43bb3e636f1990894bfee40d287))
+
+
+
+
+
 # [4.2.0-alpha.14](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.13...v4.2.0-alpha.14) (2020-09-25)
 
 
