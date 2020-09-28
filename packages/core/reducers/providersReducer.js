@@ -3,7 +3,6 @@ import set from 'lodash/fp/set';
 import { RECEIVE_COMPONENTS } from 'actions/types';
 import getRouteKey from 'selectors/getRouteKey';
 
-
 /**
  * Handle redux state changes for a single provider.
  *
