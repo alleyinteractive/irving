@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import getLogService from '@irvingjs/services/logService';
 import usePollForNode from './usePollForNode';
 import PicoObserver from './observer';
 // Pico.
@@ -43,6 +44,8 @@ const Pico = (props) => {
     url: window.location.href,
   };
 
+  const log = getLogService('irving:pico');
+
   // Create a state value that is updated when the `pico-init` event is fired.
   const [picoInitialized, setPicoInitialized] = useState(false);
   // Create the dispatch function.
@@ -65,30 +68,48 @@ const Pico = (props) => {
 
   useEffect(() => {
     const initHandler = () => {
+      log.info('Effect: Running init handler.');
       setPicoInitialized(true);
     };
 
-    // On component hydration, add an event listener to watch for the script's init event.
-    window.document.addEventListener('pico-init', initHandler);
+    const loadHandler = () => {
+      log.info('Effect: Running load handler.');
+    };
 
-    return () => window.document.removeEventListener('pico-init', initHandler);
+    log.info('Effect: Event listeners added.');
+    // On component hydration, add an event listener to watch for the script's init event.
+    window.addEventListener('pico.init', initHandler);
+    window.addEventListener('pico.loaded', loadHandler);
+
+    return () => {
+      window.removeEventListener('pico.init', initHandler);
+      window.removeEventListener('pico.loaded', loadHandler);
+    };
   }, []);
 
   useEffect(() => {
+    log.info('Effect: Attempting to dispatch info:', picoLoaded);
     // Only update the store once Pico has loaded and if it has not already been
     // updated in this component's lifecycle phase.
     if (picoLoaded) {
+      log.info('Effect: Dispatching info:');
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
   }, [picoLoaded, picoPageInfo.url]);
 
   const widgetContainer = usePollForNode('#pico-widget-container');
+
   useEffect(() => {
+    log.info(
+      'Effect: Attempting to mount nodes:',
+      [widgetContainer, isPicoMounted(), picoLoaded]
+    );
     if (widgetContainer) {
       setPicoInitialized(true);
 
       // Ensure the target nodes are only mounted once on the initial server load.
       if (! isPicoMounted() && ! picoLoaded) {
+        log.info('Effect: Mounting nodes.');
         mountPicoNodes();
         // Update the `pico` branch of the state tree and set `loaded` to true.
         dispatchPicoLoaded();
@@ -98,6 +119,7 @@ const Pico = (props) => {
 
   // Load the script for the first time.
   if (! picoInitialized && ! widgetContainer) {
+    log.info('Effect: Adding Widget script');
     return (
       <Helmet>
         <script>
@@ -111,6 +133,7 @@ const Pico = (props) => {
     );
   }
 
+  log.info('Effect: Returning observer component.');
   return (
     <PicoObserver
       tiers={tiers}
