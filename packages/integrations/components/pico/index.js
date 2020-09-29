@@ -44,7 +44,9 @@ const Pico = (props) => {
   };
 
   // Create a state value that is updated when the `pico-init` event is fired.
-  const [picoInitialized, setPicoInitialized] = useState(false);
+  const [picoInitialized, setPicoInitialized] = useState(
+    (window.Pico && window.Pico.instance)
+  );
   // Create the dispatch function.
   const dispatch = useDispatch();
   // Create a function that dispatches the current page info for the saga to respond to.
@@ -62,17 +64,6 @@ const Pico = (props) => {
 
   // Retrieve the Coral SSO token from the Redux store.
   const coralToken = useSelector(tokenSelector);
-
-  useEffect(() => {
-    const initHandler = () => {
-      setPicoInitialized(true);
-    };
-
-    // On component hydration, add an event listener to watch for the script's init event.
-    window.document.addEventListener('pico-init', initHandler);
-
-    return () => window.document.removeEventListener('pico-init', initHandler);
-  }, []);
 
   useEffect(() => {
     // Only update the store once Pico has loaded and if it has not already been
@@ -94,7 +85,7 @@ const Pico = (props) => {
         dispatchPicoLoaded();
       }
     }
-  }, [picoLoaded, picoPageInfo.url, widgetContainer]);
+  }, [widgetContainer]);
 
   // Load the script for the first time.
   if (! picoInitialized && ! widgetContainer) {
