@@ -11,13 +11,16 @@ import get from 'lodash/get';
  * @param {object} tree   The original tree structure.
  * @return {object} Resolved object
  */
-export const recursivelyBuildObjectTree = (branch, tree) => {
+export const recursivelyBuildObjectTree = (branch, tree = {}) => {
   const modifiedBranch = branch;
+  const fullTree = (0 === Object.keys(tree).length) ?
+    branch :
+    tree;
 
   // Loop through each key in this branch.
   Object.keys(branch).forEach((key) => {
     if ('object' === typeof branch[key]) {
-      modifiedBranch[key] = recursivelyBuildObjectTree(branch[key], tree);
+      modifiedBranch[key] = recursivelyBuildObjectTree(branch[key], fullTree);
     } else if ('string' === typeof branch[key] && branch[key].includes('.')) {
       let returnValue = branch[key];
       let defaultValue = returnValue;
@@ -28,7 +31,7 @@ export const recursivelyBuildObjectTree = (branch, tree) => {
         defaultValue = returnValue;
 
         returnValue = get(
-          tree,
+          fullTree,
           returnValue,
           defaultValue
         );
