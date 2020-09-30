@@ -81,7 +81,7 @@ const Pico = (props) => {
   // been set to true and only if `picoLoaded` has not been set to true yet.
   useEffect(() => {
     if (picoScriptAdded && ! picoLoaded) {
-      log.info('Pico: initial visit event triggered.');
+      log.info('Pico: Dispatching initial page visit.');
       // Dispatch the initial visit to trigger the `pico.loaded` event.
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
