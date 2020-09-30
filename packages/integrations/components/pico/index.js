@@ -61,7 +61,14 @@ const Pico = (props) => {
   const dispatchUpdatePicoPageInfo = useCallback(
     (payload) => {
       // Trigger the page visit with Pico.
-      window.pico('visit', payload);
+      const pollForFn = setInterval(() => {
+        if ('function' === typeof window.pico) {
+          // Prevent future polling events.
+          clearInterval(pollForFn);
+          // Trigger the visit.
+          window.pico('visit', payload);
+        }
+      }, 250);
 
       return dispatch(actionUpdatePicoPageInfo(payload));
     },
