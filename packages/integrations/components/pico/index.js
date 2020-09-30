@@ -89,12 +89,12 @@ const Pico = (props) => {
   // Mount an effect that triggers the initial visit once `picoScriptAdded` has
   // been set to true and only if `picoLoaded` has not been set to true yet.
   useEffect(() => {
-    if (picoScriptAdded && ! picoLoaded) {
+    if (picoScriptAdded) {
       log.info('Pico: Dispatching initial page visit.');
       // Dispatch the initial visit to trigger the `pico.loaded` event.
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
-  }, [picoScriptAdded]);
+  }, [picoScriptAdded, picoPageInfo.url]);
 
   // Mount an effect that adds an event listener for the `pico.loaded` event to
   // dispatch the update to the Redux store. Only run the dispatch if `picoLoaded`
@@ -134,18 +134,6 @@ const Pico = (props) => {
       mountPicoNodes();
     }
   }, [picoLoaded, widgetContainer]);
-
-  // Mount an effect that dispatched the updated pico page info once the component
-  // has rendered and only if `picoScriptAdded` and `picoLoaded` are both true. This
-  // effect should be triggered on every client-side render as the `hasRendered`
-  // state value will be set to false initially on each render and will be set to
-  // true by the effect above, causing this effect to be triggered.
-  useEffect(() => {
-    if (picoScriptAdded && picoLoaded) {
-      log.info('Pico: Dispatching page info.');
-      dispatchUpdatePicoPageInfo(picoPageInfo);
-    }
-  }, [picoPageInfo.url]);
 
   if (picoScriptAdded) {
     // Inject the Pico Signal into the DOM.
