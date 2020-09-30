@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import getLogService from '@irvingjs/services/logService';
-// import isNode from '@irvingjs/core/utils/isNode';
 import usePollForNode from './usePollForNode';
 import useWidgetScript from './useWidgetScript';
 import PicoObserver from './observer';
@@ -84,7 +83,7 @@ const Pico = (props) => {
     if (picoScriptAdded && ! picoLoaded) {
       log.info('Pico: initial visit event triggered.');
       // Dispatch the initial visit to trigger the `pico.loaded` event.
-      window.pico('visit', picoPageInfo);
+      dispatchUpdatePicoPageInfo(picoPageInfo);
     }
   }, [picoScriptAdded]);
 
@@ -137,7 +136,7 @@ const Pico = (props) => {
   // true by the effect above, causing this effect to be triggered.
   useEffect(() => {
     if (hasRendered && picoScriptAdded && picoLoaded) {
-      log.info('Pico: Dispatch page info.');
+      log.info('Pico: Dispatching page info.');
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
   }, [hasRendered]);

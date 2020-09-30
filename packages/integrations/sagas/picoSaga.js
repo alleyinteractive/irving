@@ -7,7 +7,6 @@ import {
   fork,
 } from 'redux-saga/effects';
 import {
-  picoLoadedSelector,
   picoPageInfoSelector,
 } from '../selectors/picoSelector';
 import {
@@ -47,10 +46,9 @@ export default [
 ];
 
 function* dispatchPicoVisit() {
-  const picoLoaded = yield select(picoLoadedSelector);
   const picoPageInfo = yield select(picoPageInfoSelector);
 
-  if (picoLoaded && picoPageInfo) {
+  if (picoPageInfo) {
     window.pico('visit', picoPageInfo);
   }
 }
