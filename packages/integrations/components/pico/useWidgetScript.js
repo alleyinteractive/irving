@@ -22,6 +22,7 @@ export default function useWidgetScript(widgetUrl, publisherId) {
     const documentBody = document.getElementsByTagName('body')[0];
 
     if (! picoScriptAdded) {
+      log.info('Pico: Adding Widget script.');
       // Create the script.
       const script = document.createElement('script');
       // Set the attributes and content.
@@ -30,7 +31,6 @@ export default function useWidgetScript(widgetUrl, publisherId) {
       // Append the script into the root of the body.
       documentBody.appendChild(script);
       // Update the store when the script has been added into the DOM.
-      log.info('Pico: Adding Widget script.');
       dispatchPicoScriptAdded();
     }
   }, [picoScriptAdded]);

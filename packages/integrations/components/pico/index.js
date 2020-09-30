@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import getLogService from '@irvingjs/services/logService';
@@ -51,9 +51,6 @@ const Pico = (props) => {
     taxonomies: pageInfo.taxonomies,
     url: window.location.href,
   };
-
-  // Create a state variable that tracks component render state.
-  const [hasRendered, setHasRendered] = useState(false);
 
   // Create the dispatch function.
   const dispatch = useDispatch();
@@ -126,9 +123,6 @@ const Pico = (props) => {
   // widget container node in order to determine when to mount the Pico nodes
   // into the DOM.
   useEffect(() => {
-    // Set the component render state.
-    setHasRendered(true);
-
     log.info(
       'Pico: Attempting to mount nodes:',
       [widgetContainer, isPicoMounted(), picoLoaded]
@@ -147,11 +141,11 @@ const Pico = (props) => {
   // state value will be set to false initially on each render and will be set to
   // true by the effect above, causing this effect to be triggered.
   useEffect(() => {
-    if (hasRendered && picoScriptAdded && picoLoaded) {
+    if (picoScriptAdded && picoLoaded) {
       log.info('Pico: Dispatching page info.');
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
-  }, [hasRendered, picoPageInfo.url]);
+  }, [picoPageInfo.url]);
 
   if (picoScriptAdded) {
     // Inject the Pico Signal into the DOM.
