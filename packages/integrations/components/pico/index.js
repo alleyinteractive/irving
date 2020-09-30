@@ -56,7 +56,12 @@ const Pico = (props) => {
   const dispatch = useDispatch();
   // Create a function that dispatches the current page info for the saga to respond to.
   const dispatchUpdatePicoPageInfo = useCallback(
-    (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
+    (payload) => {
+      // Trigger the page visit with Pico.
+      window.pico('visit', payload);
+
+      return dispatch(actionUpdatePicoPageInfo(payload));
+    },
     [dispatch]
   );
   // Create a function that updates the store when the `pico.loaded` event is fired.
