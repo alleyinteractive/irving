@@ -6,17 +6,14 @@ import Helmet from 'react-helmet';
 import getLogService from '@irvingjs/services/logService';
 // import isNode from '@irvingjs/core/utils/isNode';
 import usePollForNode from './usePollForNode';
+import useWidgetScript from './useWidgetScript';
 import PicoObserver from './observer';
 // Pico.
 import {
   actionPicoLoaded,
-  actionPicoScriptAdded,
   actionUpdatePicoPageInfo,
 } from '../../actions/picoActions';
-import {
-  picoLoadedSelector,
-  picoScriptAddedSelector,
-} from '../../selectors/picoSelector';
+import { picoLoadedSelector } from '../../selectors/picoSelector';
 // Coral.
 import {
   actionReceiveCoralLogoutRequest,
@@ -61,11 +58,6 @@ const Pico = (props) => {
     (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
     [dispatch]
   );
-  // Create a function that updates the store whenever the script is added.
-  const dispatchPicoScriptAdded = useCallback(
-    () => dispatch(actionPicoScriptAdded()),
-    [dispatch]
-  );
   // Create a function that updates the store when the `pico.loaded` event is fired.
   const dispatchPicoLoaded = useCallback(
     () => dispatch(actionPicoLoaded()),
@@ -75,11 +67,11 @@ const Pico = (props) => {
   // Grab the `loaded` value from the `pico` branch of the state tree.
   const picoLoaded = useSelector(picoLoadedSelector);
 
-  // Grab the `scriptAdded` value from the `pico` branch of the state tree.
-  const picoScriptAdded = useSelector(picoScriptAddedSelector);
-
   // Retrieve the Coral SSO token from the Redux store.
   const coralToken = useSelector(tokenSelector);
+
+  // Inject the widget script into the DOM.
+  useWidgetScript(widgetUrl, publisherId);
 
   useEffect(() => {
     const initHandler = () => {
@@ -91,7 +83,7 @@ const Pico = (props) => {
       log.info('Pico: Running load handler.');
       dispatchPicoLoaded();
       log.info('Pico: Dispatching info');
-      // dispatchUpdatePicoPageInfo(picoPageInfo);
+      dispatchUpdatePicoPageInfo(picoPageInfo);
     };
 
     log.info('Pico: Event listeners added.');
@@ -119,23 +111,6 @@ const Pico = (props) => {
       mountPicoNodes();
     }
   }, [picoLoaded, widgetContainer]);
-
-  if (! picoScriptAdded) {
-    log.info('Pico: Adding Widget script.');
-    dispatchPicoScriptAdded();
-
-    return (
-      <Helmet>
-        <script>
-          {
-            /* eslint-disable max-len */
-            `(function(p,i,c,o){var n=new Event("pico-init");i[p]=i[p]||function(){(i[p].queue=i[p].queue||[]).push(arguments)},i.document.addEventListener("pico-init",function(e){var t=i.Pico.getInstance(e,{publisherId:o,picoInit:n},i);t.handleQueueItems(i[p].queue),i[p]=function(){return t.handleQueueItems([arguments])}},!1);var e=i.document.createElement("script"),t=i.document.getElementsByTagName("script")[0];e.async=1,e.defer=1,e.src=c,e.onload=function(e){return i.Pico.getInstance(e,{publisherId:o,picoInit:n},i)},t.parentNode.insertBefore(e,t)})("pico",window,"${widgetUrl}/wrapper.min.js", "${publisherId}");`
-            /* eslint-enable */
-          }
-        </script>
-      </Helmet>
-    );
-  }
 
   // Inject the Pico Signal into the DOM.
   log.info('Pico: Returning observer component.');
