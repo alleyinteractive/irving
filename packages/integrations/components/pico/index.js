@@ -86,6 +86,25 @@ const Pico = (props) => {
   // Retrieve the Coral SSO token from the Redux store.
   const coralToken = useSelector(tokenSelector);
 
+  // Add listeners for pico events.
+  useEffect(() => {
+    // Dispatch an action to update the integrations.pico.loaded state in Redux.
+    const loadHandler = () => {
+      if (! picoLoaded) {
+        log.info('Pico: Running load handler.');
+        dispatchPicoLoaded();
+      }
+    };
+
+    log.info('Pico: Event listeners added.');
+    // The pico.loaded event fires after the Pico object is fully initialized.
+    window.addEventListener('pico.loaded', loadHandler);
+
+    return () => {
+      window.removeEventListener('pico.loaded', loadHandler);
+    };
+  }, []);
+
   // Mount an effect that triggers the initial visit once `picoScriptAdded` has
   // been set to true and only if `picoLoaded` has not been set to true yet.
   useEffect(() => {
@@ -95,26 +114,6 @@ const Pico = (props) => {
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
   }, [picoScriptAdded, picoPageInfo.url]);
-
-  // Mount an effect that adds an event listener for the `pico.loaded` event to
-  // dispatch the update to the Redux store. Only run the dispatch if `picoLoaded`
-  // is false.
-  useEffect(() => {
-    const loadHandler = () => {
-      if (! picoLoaded) {
-        log.info('Pico: Running load handler.');
-        dispatchPicoLoaded();
-      }
-    };
-
-    log.info('Pico: Event listeners added.');
-    // On component hydration, add an event listener to watch for the script's init event.
-    window.addEventListener('pico.loaded', loadHandler);
-
-    return () => {
-      window.removeEventListener('pico.loaded', loadHandler);
-    };
-  }, []);
 
   // Poll for the existence of the Pico widget container.
   const widgetContainer = usePollForNode('#pico-widget-container');
