@@ -1,8 +1,7 @@
 /* eslint-disable */
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import getLogService from '@irvingjs/services/logService';
 // import isNode from '@irvingjs/core/utils/isNode';
 import usePollForNode from './usePollForNode';
@@ -13,7 +12,10 @@ import {
   actionPicoLoaded,
   actionUpdatePicoPageInfo,
 } from '../../actions/picoActions';
-import { picoLoadedSelector } from '../../selectors/picoSelector';
+import {
+  picoLoadedSelector,
+  picoScriptAddedSelector,
+} from '../../selectors/picoSelector';
 // Coral.
 import {
   actionReceiveCoralLogoutRequest,
@@ -49,8 +51,6 @@ const Pico = (props) => {
     url: window.location.href,
   };
 
-  // Create a state value that is updated when the `pico-init` event is fired.
-  const [picoInitialized, setPicoInitialized] = useState(false);
   // Create the dispatch function.
   const dispatch = useDispatch();
   // Create a function that dispatches the current page info for the saga to respond to.
@@ -67,6 +67,9 @@ const Pico = (props) => {
   // Grab the `loaded` value from the `pico` branch of the state tree.
   const picoLoaded = useSelector(picoLoadedSelector);
 
+  // Grab the `scriptAdded` value from the `pico` branch of the state tree.
+  const picoScriptAdded = useSelector(picoScriptAddedSelector);
+
   // Retrieve the Coral SSO token from the Redux store.
   const coralToken = useSelector(tokenSelector);
 
@@ -74,28 +77,27 @@ const Pico = (props) => {
   useWidgetScript(widgetUrl, publisherId);
 
   useEffect(() => {
-    const initHandler = () => {
-      log.info('Pico: Running init handler.');
-      setPicoInitialized(true);
-    };
+    if (picoScriptAdded && ! picoLoaded) {
+      log.info('Pico: initial visit event triggered.');
+      // Dispatch the initial visit to trigger the `pico.loaded` event.
+      window.pico('visit', picoPageInfo);
+    }
 
     const loadHandler = () => {
       log.info('Pico: Running load handler.');
       dispatchPicoLoaded();
       log.info('Pico: Dispatching info');
-      dispatchUpdatePicoPageInfo(picoPageInfo);
+      // dispatchUpdatePicoPageInfo(picoPageInfo);
     };
 
     log.info('Pico: Event listeners added.');
     // On component hydration, add an event listener to watch for the script's init event.
-    window.addEventListener('pico.init', initHandler);
     window.addEventListener('pico.loaded', loadHandler);
 
     return () => {
-      window.removeEventListener('pico.init', initHandler);
       window.removeEventListener('pico.loaded', loadHandler);
     };
-  }, [picoInitialized]);
+  }, [picoScriptAdded]);
 
   const widgetContainer = usePollForNode('#pico-widget-container');
 
