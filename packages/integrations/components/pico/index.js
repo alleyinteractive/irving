@@ -35,6 +35,9 @@ const Pico = (props) => {
     widgetUrl,
   } = props;
 
+  // Inject the widget script into the DOM.
+  useWidgetScript(widgetUrl, publisherId);
+
   /**
    * Ensure page info has the right format.
    *
@@ -78,9 +81,6 @@ const Pico = (props) => {
 
   // Retrieve the Coral SSO token from the Redux store.
   const coralToken = useSelector(tokenSelector);
-
-  // Inject the widget script into the DOM.
-  useWidgetScript(widgetUrl, publisherId);
 
   // Mount an effect that triggers the initial visit once `picoScriptAdded` has
   // been set to true and only if `picoLoaded` has not been set to true yet.
