@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.18](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.17...v4.2.0-alpha.18) (2020-09-30)
+
+
+### Features
+
+* **site theme recursion:** allow the site theme to call itself and build a full tree ([334c54c](https://github.com/alleyinteractive/irving/commit/334c54c26bb0b3207f9af715036992a79942f743))
+
+
+
+
+
+# [4.2.0-alpha.17](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.16...v4.2.0-alpha.17) (2020-09-30)
+
+
+### Bug Fixes
+
+* **gtm:** fix XSS issue in GTM ([3731639](https://github.com/alleyinteractive/irving/commit/3731639aefbe8e766b09b3d00fe030148e5dbc02))
+
+
+
+
+
 # [4.2.0-alpha.16](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.15...v4.2.0-alpha.16) (2020-09-28)
 
 

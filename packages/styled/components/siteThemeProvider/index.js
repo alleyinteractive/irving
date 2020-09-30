@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
+import { recursivelyBuildObjectTree } from '../../utils/siteTheme';
 
 /**
  * Component for using the `styled-components` package's ThemeProvider.
@@ -12,7 +13,7 @@ const SiteThemeProvider = (props) => {
   } = props;
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={recursivelyBuildObjectTree(theme, theme)}>
       {children}
     </ThemeProvider>
   );

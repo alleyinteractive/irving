@@ -30,24 +30,15 @@ export const replaceWithSiteTheme = (styleObject, siteTheme) => (
        *   No Match:
        *     {color: #000} => {color: #000;}
        */
-      let returnValue = styleObject[property];
-      let defaultValue = returnValue;
-
-      // Recursively look for the returned value in the theme provider until
-      // the default is returned.
-      do {
-        defaultValue = returnValue;
-
-        returnValue = get(
-          siteTheme,
-          returnValue,
-          defaultValue
-        );
-      } while (returnValue !== defaultValue);
+      const themeStyle = get(
+        siteTheme,
+        styleObject[property],
+        styleObject[property]
+      );
 
       return {
         ...acc,
-        [property]: returnValue,
+        [property]: themeStyle,
       };
     }, styleObject)
 );
