@@ -151,7 +151,7 @@ const Pico = (props) => {
       log.info('Pico: Dispatching page info.');
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
-  }, [hasRendered]);
+  }, [hasRendered, picoPageInfo.url]);
 
   if (picoScriptAdded) {
     // Inject the Pico Signal into the DOM.
