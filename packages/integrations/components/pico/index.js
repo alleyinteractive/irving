@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, { useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import getLogService from '@irvingjs/services/logService';
@@ -51,6 +50,9 @@ const Pico = (props) => {
     url: window.location.href,
   };
 
+  // Create a state variable that tracks component render state.
+  const [hasRendered, setHasRendered] = useState(false);
+
   // Create the dispatch function.
   const dispatch = useDispatch();
   // Create a function that dispatches the current page info for the saga to respond to.
@@ -76,18 +78,25 @@ const Pico = (props) => {
   // Inject the widget script into the DOM.
   useWidgetScript(widgetUrl, publisherId);
 
+  // Mount an effect that triggers the initial visit once `picoScriptAdded` has
+  // been set to true and only if `picoLoaded` has not been set to true yet.
   useEffect(() => {
     if (picoScriptAdded && ! picoLoaded) {
       log.info('Pico: initial visit event triggered.');
       // Dispatch the initial visit to trigger the `pico.loaded` event.
       window.pico('visit', picoPageInfo);
     }
+  }, [picoScriptAdded]);
 
+  // Mount an effect that adds an event listener for the `pico.loaded` event to
+  // dispatch the update to the Redux store. Only run the dispatch if `picoLoaded`
+  // is false.
+  useEffect(() => {
     const loadHandler = () => {
-      log.info('Pico: Running load handler.');
-      dispatchPicoLoaded();
-      log.info('Pico: Dispatching info');
-      // dispatchUpdatePicoPageInfo(picoPageInfo);
+      if (! picoLoaded) {
+        log.info('Pico: Running load handler.');
+        dispatchPicoLoaded();
+      }
     };
 
     log.info('Pico: Event listeners added.');
@@ -97,32 +106,55 @@ const Pico = (props) => {
     return () => {
       window.removeEventListener('pico.loaded', loadHandler);
     };
-  }, [picoScriptAdded]);
+  }, []);
 
+  // Poll for the existence of the Pico widget container.
   const widgetContainer = usePollForNode('#pico-widget-container');
 
+  // Mount an effect that watches for the status of `picoLoaded` and the polled
+  // widget container node in order to determine when to mount the Pico nodes
+  // into the DOM.
   useEffect(() => {
+    // Set the component render state.
+    setHasRendered(true);
+
     log.info(
       'Pico: Attempting to mount nodes:',
       [widgetContainer, isPicoMounted(), picoLoaded]
     );
 
     // Ensure the target nodes are only mounted once on the initial server load.
-    if (isPicoMounted() && ! isPicoMounted()) {
+    if (widgetContainer && ! isPicoMounted()) {
       log.info('Pico: Mounting nodes.');
       mountPicoNodes();
     }
   }, [picoLoaded, widgetContainer]);
 
-  // Inject the Pico Signal into the DOM.
-  log.info('Pico: Returning observer component.');
-  return (
-    <PicoObserver
-      tiers={tiers}
-      accessToken={coralToken}
-      logoutRequestAction={actionReceiveCoralLogoutRequest}
-    />
-  );
+  // Mount an effect that dispatched the updated pico page info once the component
+  // has rendered and only if `picoScriptAdded` and `picoLoaded` are both true. This
+  // effect should be triggered on every client-side render as the `hasRendered`
+  // state value will be set to false initially on each render and will be set to
+  // true by the effect above, causing this effect to be triggered.
+  useEffect(() => {
+    if (hasRendered && picoScriptAdded && picoLoaded) {
+      log.info('Pico: Dispatch page info.');
+      dispatchUpdatePicoPageInfo(picoPageInfo);
+    }
+  }, [hasRendered]);
+
+  if (picoScriptAdded) {
+    // Inject the Pico Signal into the DOM.
+    log.info('Pico: Returning observer component.');
+    return (
+      <PicoObserver
+        tiers={tiers}
+        accessToken={coralToken}
+        logoutRequestAction={actionReceiveCoralLogoutRequest}
+      />
+    );
+  }
+
+  return null;
 };
 
 Pico.defaultProps = {

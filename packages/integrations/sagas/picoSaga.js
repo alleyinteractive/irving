@@ -1,5 +1,5 @@
 import {
-  takeLatest,
+  takeEvery,
   call,
   put,
   select,
@@ -42,7 +42,7 @@ function* takeFirst(pattern, saga, ...args) {
 
 // The Pico saga.
 export default [
-  takeLatest(UPDATE_PICO_PAGE_INFO, dispatchPicoVisit),
+  takeEvery(UPDATE_PICO_PAGE_INFO, dispatchPicoVisit),
   takeFirst(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
 ];
 
