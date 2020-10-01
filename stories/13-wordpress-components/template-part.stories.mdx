@@ -1,0 +1,57 @@
+<Meta title="WordPress Components|Template Part" />
+
+# Template Part
+Load a template part.
+
+Renders as the `Fragment` styled component [(docs)](?path=/docs/styled-components-fragment--basic-eample).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/template-part).
+
+## Overview
+Load and hydrate the template part set in the `slug` config property.
+
+## Config
+```json
+{
+  "slug": {
+    "default": "",
+    "description": "The slug used to locate the template part.",
+    "type": "string"
+  }
+}
+```
+
+## Examples
+
+### Basic example
+```json
+{
+  "name": "irving/template-part",
+  "config": {
+  	"slug": "header-default"
+  }
+}
+```
+
+### Use with the `irving/provide-site-theme` component in `defaults.json`
+```json
+{
+  "name": "irving/header-wrapper",
+  "children": [
+    {
+      "name": "irving/provide-site-theme",
+      "config": {
+        "selector": "header.template_part"
+      },
+      "children": [
+        {
+          "name": "irving/template-part",
+          "use_context": {
+            "irving/site-theme": "slug"
+          }
+        }
+      ]
+    }
+  ]
+}
+```

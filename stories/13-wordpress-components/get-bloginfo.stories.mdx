@@ -1,0 +1,63 @@
+<Meta title="WordPress Components|Get Bloginfo" />
+
+# Get Bloginfo
+Displays information about the current site.
+
+Renders as the `Fragment` styled component [(docs)](?path=/docs/styled-components-fragment--basic-eample).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/site-info).
+
+## Overview
+Wrapper for `get_bloginfo()` [(docs)](https://developer.wordpress.org/reference/functions/get_bloginfo/).
+
+## Config
+```json
+{
+  "key": {
+    "default": "",
+    "description": "The $show argument for bloginfo(). See WordPress docs for all options.",
+    "type": "string"
+  },
+  "value": {}
+}
+```
+
+## Examples
+
+### Get site name
+Template:
+```json
+{
+  "name": "irving/get-bloginfo",
+  "config": {
+    "show": "name"
+  },
+  "children": [
+    {
+      "name": "irving/text",
+      "use_context": {
+        "irving/bloginfo": "content"
+      }
+    }
+  ]
+}
+```
+
+Endpoint output:
+```json
+{
+  "name": "irving/get-bloginfo",
+  "_alias": "irving/fragment",
+  "config": {
+    "show": "name"
+  },
+  "children": [
+    {
+      "name": "irving/text",
+      "config": {
+        "content": "My cool WordPress blog!"
+      }
+    }
+  ]
+}
+```

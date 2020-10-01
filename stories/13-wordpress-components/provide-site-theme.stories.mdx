@@ -1,0 +1,63 @@
+<Meta title="WordPress Components|Provide Site Theme" />
+
+# Provide Site Theme
+Provide context from the Site Theme.
+
+Renders as the `Fragment` styled component [(docs)](?path=/docs/styled-components-fragment--basic-eample).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/provide-site-theme).
+
+## Overview
+Wrapper for the `get_site_theme()` function, passing `selector` and `default` directly into the function call, setting the result in the `irving/site-theme` provider.
+
+## Config
+```json
+{
+  "default": {
+    "default": null,
+    "description": "The default argument for get_site_theme()."
+  },
+  "selector": {
+    "default": "",
+    "description": "The selector argument for get_site_theme().",
+    "type": "string"
+  },
+  "value": {}
+}
+```
+
+## Examples
+
+### Basic example
+```json
+{
+  "name": "irving/provide-site-theme",
+  "config": {
+  	"selector": "colors.primary"
+  }
+}
+```
+
+### Use with the `irving/template-part` component
+This allows you to load the template part with the slug set in the Site Theme.
+```json
+{
+  "name": "irving/header-wrapper",
+  "children": [
+    {
+      "name": "irving/provide-site-theme",
+      "config": {
+        "selector": "header.template_part"
+      },
+      "children": [
+        {
+          "name": "irving/template-part",
+          "use_context": {
+            "irving/site-theme": "slug"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
