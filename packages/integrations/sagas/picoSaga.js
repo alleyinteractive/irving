@@ -1,18 +1,11 @@
 import {
-  takeLatest,
   call,
   put,
-  select,
   take,
   fork,
 } from 'redux-saga/effects';
 import {
-  picoLoadedSelector,
-  picoPageInfoSelector,
-} from '../selectors/picoSelector';
-import {
   SEND_PICO_VERIFICATION_REQUEST,
-  UPDATE_PICO_PAGE_INFO,
 } from '../actions/types';
 import { actionReceivePicoVerificationFailure } from '../actions/picoActions';
 import {
@@ -42,18 +35,8 @@ function* takeFirst(pattern, saga, ...args) {
 
 // The Pico saga.
 export default [
-  takeLatest(UPDATE_PICO_PAGE_INFO, dispatchPicoVisit),
   takeFirst(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
 ];
-
-function* dispatchPicoVisit() {
-  const picoLoaded = yield select(picoLoadedSelector);
-  const picoPageInfo = yield select(picoPageInfoSelector);
-
-  if (picoLoaded && picoPageInfo) {
-    window.pico('visit', picoPageInfo);
-  }
-}
 
 /**
  * A generator that dispatches the verification request to the Pico data
