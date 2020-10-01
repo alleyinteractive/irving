@@ -9,7 +9,7 @@ import {
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import Spinner from 'assets/icons/spinner.svg';
@@ -89,7 +89,7 @@ const PlayPauseButton = (props) => {
 };
 
 PlayPauseButton.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   PlayIconComponent: PlayIcon,
   PauseIconComponent: PauseIcon,

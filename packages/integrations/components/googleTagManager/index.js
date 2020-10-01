@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from '@irvingjs/core/utils/isNode';
+import serialize from 'serialize-javascript';
 
 const GoogleTagManager = (props) => {
   const {
@@ -54,7 +55,7 @@ const GoogleTagManager = (props) => {
           {`
             window.dataLayer = window.dataLayer || [];
             if (${isNode()}) {
-              var data = ${JSON.stringify(dataLayer)};
+              var data = ${serialize(dataLayer, { json: true })};
               data.event = 'irving.initialRender';
               window.dataLayer.push(data);
             }

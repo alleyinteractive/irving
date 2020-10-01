@@ -3,7 +3,136 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.19](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.18...v4.2.0-alpha.19) (2020-09-30)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.2.0-alpha.17](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.16...v4.2.0-alpha.17) (2020-09-30)
+
+
+### Bug Fixes
+
+* **gtm:** fix XSS issue in GTM ([3731639](https://github.com/alleyinteractive/irving/packages/integrations/commit/3731639aefbe8e766b09b3d00fe030148e5dbc02))
+
+
+
+
+
+# [4.2.0-alpha.16](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.15...v4.2.0-alpha.16) (2020-09-28)
+
+
+### Bug Fixes
+
+* **usepollfornode:** rename polled node, move it ([03e8adb](https://github.com/alleyinteractive/irving/packages/integrations/commit/03e8adb2fe2c307b01668cb0145ebe7930f5a568))
+
+
+
+
+
+# [4.2.0-alpha.15](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.14...v4.2.0-alpha.15) (2020-09-28)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.2.0-alpha.14](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.13...v4.2.0-alpha.14) (2020-09-25)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [4.2.0-alpha.13](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.12...v4.2.0-alpha.13) (2020-09-25)
+
+
+### Bug Fixes
+
+* **pico:** poll for widget existence in effect ([40629b3](https://github.com/alleyinteractive/irving/packages/integrations/commit/40629b3c4e1b9a52f9cf4d5cfbde661ad4f3a420))
+
+
+
+
+
+# [4.2.0-alpha.12](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0...v4.2.0-alpha.12) (2020-09-24)
+
+
+
 # [4.2.0-alpha.11](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.10...v4.2.0-alpha.11) (2020-09-22)
+
+
+
+# [4.2.0-alpha.10](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.9...v4.2.0-alpha.10) (2020-09-21)
+
+
+### Bug Fixes
+
+* **pico:** fix timing bug with firing the initial Pico action ([8a0463c](https://github.com/alleyinteractive/irving/packages/integrations/commit/8a0463ca66b81b772d5626abec9cc4a11dab4440))
+
+
+
+# [4.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.8...v4.2.0-alpha.9) (2020-09-18)
+
+
+### Bug Fixes
+
+* **pico:** Reinsert initialization process ([a737f1f](https://github.com/alleyinteractive/irving/packages/integrations/commit/a737f1fccef8b8418631475333e8657fa39c522f))
+
+
+
+# [4.2.0-alpha.8](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.7...v4.2.0-alpha.8) (2020-09-18)
+
+
+### Bug Fixes
+
+* **Pico:** ensure Pico loads on first page render ([86130c3](https://github.com/alleyinteractive/irving/packages/integrations/commit/86130c3560b97a45169f0d77e5878e3e7e68f507))
+
+
+
+# [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+
+
+
+# [4.2.0-alpha.5](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.4...v4.2.0-alpha.5) (2020-09-18)
+
+
+### Bug Fixes
+
+* **integrationsreducer:** remove accidentally merged test changes to integrationsReducer ([87bab50](https://github.com/alleyinteractive/irving/packages/integrations/commit/87bab5099e1c1637feac0db4173780228503153a))
+
+
+
+# [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
+
+
+
+# [4.2.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.1...v4.2.0-alpha.2) (2020-09-18)
+
+
+
+# [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+
+
+
+# [4.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-beta.4...v4.2.0-alpha.0) (2020-09-17)
+
+
+### Bug Fixes
+
+* **pico:** Trigger Pico actions on pre-fetched pages ([b590767](https://github.com/alleyinteractive/irving/packages/integrations/commit/b59076722bcf935e1b262ce93426127a534af1b3))
+
+
+
+
+
+# [4.2.0-alpha.11](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.10...v4.2.0-alpha.11) (2020-09-22)
+# [4.1.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-rc.0...v4.1.0) (2020-09-24)
 
 **Note:** Version bump only for package @irvingjs/integrations
 
@@ -45,6 +174,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+# [4.1.0-rc.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-beta.4...v4.1.0-rc.0) (2020-09-18)
 
 **Note:** Version bump only for package @irvingjs/integrations
 
@@ -91,6 +221,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+# [4.1.0-beta.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-beta.3...v4.1.0-beta.4) (2020-09-17)
 
 **Note:** Version bump only for package @irvingjs/integrations
 
@@ -99,6 +230,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-beta.2...v4.2.0-alpha.0) (2020-09-17)
+# [4.1.0-beta.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v4.1.0-beta.2...v4.1.0-beta.3) (2020-09-17)
 
 
 ### Bug Fixes

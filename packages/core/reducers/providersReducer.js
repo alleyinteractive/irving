@@ -3,28 +3,24 @@ import set from 'lodash/fp/set';
 import { RECEIVE_COMPONENTS } from 'actions/types';
 import getRouteKey from 'selectors/getRouteKey';
 
-const defaultProviderState = {
-  current: {
-    key: '',
-    config: {},
-  },
-};
-
-const defaultProviderKey = 'default';
-
 /**
  * Handle redux state changes for a single provider.
  *
- * @param {object} state Redux state for a single provider.
+ * @param {object} providerState Redux state for a single provider.
  * @param {object} provider New provider payload.
  * @returns {object} The updated Redux state
  */
-export const providerReducer = (state = defaultProviderState, provider) => {
+export const providerReducer = (providerState, provider) => {
   const { config } = provider;
   const {
-    providerKey = defaultProviderKey,
+    providerKey = 'default',
   } = config;
-  const newState = state;
+  const newState = providerState || {
+    current: {
+      key: '',
+      config: {},
+    },
+  };
 
   // Set a new key if hasn't been set before.
   if (! newState[providerKey]) {

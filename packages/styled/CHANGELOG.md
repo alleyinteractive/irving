@@ -3,7 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.18](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.17...v4.2.0-alpha.18) (2020-09-30)
+
+
+### Features
+
+* **site theme recursion:** allow the site theme to call itself and build a full tree ([334c54c](https://github.com/alleyinteractive/irving/packages/styled/commit/334c54c26bb0b3207f9af715036992a79942f743))
+
+
+
+
+
+# [4.2.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.14...v4.2.0-alpha.15) (2020-09-28)
+
+
+### Features
+
+* **site theme:** support nested site theme properties ([821334a](https://github.com/alleyinteractive/irving/packages/styled/commit/821334ad21c8c43bb3e636f1990894bfee40d287))
+
+
+
+
+
+# [4.2.0-alpha.14](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.13...v4.2.0-alpha.14) (2020-09-25)
+
+
+### Bug Fixes
+
+* **proptypes:** fix issue with mutated reference in standard default props ([0bd6de9](https://github.com/alleyinteractive/irving/packages/styled/commit/0bd6de9509df6b723adb85ad632b362b812ac940))
+
+
+
+
+
+# [4.2.0-alpha.12](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0...v4.2.0-alpha.12) (2020-09-24)
+
+
+
 # [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+
+
+
+# [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
+
+
+
+# [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+# [4.1.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-rc.0...v4.1.0) (2020-09-24)
 
 **Note:** Version bump only for package @irvingjs/styled
 
@@ -12,6 +66,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
+# [4.1.0-rc.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-beta.4...v4.1.0-rc.0) (2020-09-18)
 
 **Note:** Version bump only for package @irvingjs/styled
 
@@ -28,6 +83,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+# [4.1.0-beta.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-beta.3...v4.1.0-beta.4) (2020-09-17)
 
 **Note:** Version bump only for package @irvingjs/styled
 

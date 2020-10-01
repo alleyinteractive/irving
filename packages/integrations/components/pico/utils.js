@@ -13,7 +13,7 @@ function createNode(container, type, attributes) {
   attributes.forEach(({ name, value }) => {
     node.setAttribute(name, value);
   });
-  // Inject the node intor the DOM.
+  // Inject the node into the DOM.
   container.appendChild(node);
 }
 
