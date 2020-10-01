@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2-beta.0](https://github.com/alleyinteractive/irving/compare/v4.1.2-alpha.0...v4.1.2-beta.0) (2020-10-01)
+
+
+### Bug Fixes
+
+* **GTM:** Fix XSS issue in GTM ([89584bc](https://github.com/alleyinteractive/irving/commit/89584bce1c51760890646453db19ab48e43a6c46))
+* **pico:** improve reliability of Pico paywall triggering ([f506560](https://github.com/alleyinteractive/irving/commit/f506560d1fb5758247dcfe53053b2b2cf06af855)), closes [#365](https://github.com/alleyinteractive/irving/issues/365)
+
+
+
+
+
 ## [4.1.2-alpha.0](https://github.com/alleyinteractive/irving/compare/v4.1.1...v4.1.2-alpha.0) (2020-09-25)
 
 
