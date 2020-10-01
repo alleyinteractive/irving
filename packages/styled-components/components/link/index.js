@@ -50,6 +50,7 @@ const Link = (props) => {
       onClick={onClick || defaultOnClick}
       rel={rel}
       target={target}
+      {...props}
       {...standardProps}
     >
       {children}
