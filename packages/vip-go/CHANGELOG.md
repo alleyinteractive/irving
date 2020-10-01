@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.20](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.19...v4.2.0-alpha.20) (2020-10-01)
+
+
+### Bug Fixes
+
+* add aria-label to pagination navigation next and prev wrapper ([512606b](https://github.com/alleyinteractive/irving/packages/vip-go/commit/512606bf1bb0260d6e61d9c79832afcfce9fdbc5))
+
+
+
+
+
 # [4.2.0-alpha.15](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.14...v4.2.0-alpha.15) (2020-09-28)
 
 **Note:** Version bump only for package @irvingjs/vip-go
