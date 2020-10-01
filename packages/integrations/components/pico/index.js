@@ -1,14 +1,19 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import getLogService from '@irvingjs/services/logService';
+import usePollForNode from './usePollForNode';
+import useWidgetScript from './useWidgetScript';
 import PicoObserver from './observer';
 // Pico.
 import {
   actionPicoLoaded,
   actionUpdatePicoPageInfo,
 } from '../../actions/picoActions';
-import { picoLoadedSelector } from '../../selectors/picoSelector';
+import {
+  picoLoadedSelector,
+  picoScriptAddedSelector,
+} from '../../selectors/picoSelector';
 // Coral.
 import {
   actionReceiveCoralLogoutRequest,
@@ -20,6 +25,8 @@ import {
   mountPicoNodes,
 } from './utils';
 
+const log = getLogService('irving:pico');
+
 const Pico = (props) => {
   const {
     pageInfo,
@@ -27,6 +34,9 @@ const Pico = (props) => {
     tiers,
     widgetUrl,
   } = props;
+
+  // Inject the widget script into the DOM.
+  useWidgetScript(widgetUrl, publisherId);
 
   /**
    * Ensure page info has the right format.
@@ -42,13 +52,23 @@ const Pico = (props) => {
     url: window.location.href,
   };
 
-  // Create a state value that is updated when the `pico-init` event is fired.
-  const [picoInitialized, setPicoInitialized] = useState(false);
   // Create the dispatch function.
   const dispatch = useDispatch();
   // Create a function that dispatches the current page info for the saga to respond to.
   const dispatchUpdatePicoPageInfo = useCallback(
-    (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
+    (payload) => {
+      // Trigger the page visit with Pico.
+      const pollForFn = setInterval(() => {
+        if ('function' === typeof window.pico) {
+          // Prevent future polling events.
+          clearInterval(pollForFn);
+          // Trigger the visit.
+          window.pico('visit', payload);
+        }
+      }, 250);
+
+      return dispatch(actionUpdatePicoPageInfo(payload));
+    },
     [dispatch]
   );
   // Create a function that updates the store when the `pico.loaded` event is fired.
@@ -56,84 +76,77 @@ const Pico = (props) => {
     () => dispatch(actionPicoLoaded()),
     [dispatch]
   );
+
   // Grab the `loaded` value from the `pico` branch of the state tree.
   const picoLoaded = useSelector(picoLoadedSelector);
+
+  // Grab the `scriptAdded` value from the `pico` branch of the state tree.
+  const picoScriptAdded = useSelector(picoScriptAddedSelector);
 
   // Retrieve the Coral SSO token from the Redux store.
   const coralToken = useSelector(tokenSelector);
 
+  // Add listeners for pico events.
   useEffect(() => {
-    const initHandler = () => {
-      setPicoInitialized(true);
+    // Dispatch an action to update the integrations.pico.loaded state in Redux.
+    const loadHandler = () => {
+      if (! picoLoaded) {
+        log.info('Pico: Running load handler.');
+        dispatchPicoLoaded();
+      }
     };
 
-    // On component hydration, add an event listener to watch for the script's init event.
-    window.document.addEventListener('pico-init', initHandler);
+    log.info('Pico: Event listeners added.');
+    // The pico.loaded event fires after the Pico object is fully initialized.
+    window.addEventListener('pico.loaded', loadHandler);
 
-    return () => window.document.removeEventListener('pico-init', initHandler);
+    return () => {
+      window.removeEventListener('pico.loaded', loadHandler);
+    };
   }, []);
 
+  // Mount an effect that triggers the initial visit once `picoScriptAdded` has
+  // been set to true and only if `picoLoaded` has not been set to true yet.
   useEffect(() => {
-    // Only update the store once Pico has loaded and if it has not already been
-    // updated in this component's lifecycle phase.
-    if (picoLoaded) {
+    if (picoScriptAdded) {
+      log.info('Pico: Dispatching initial page visit.');
+      // Dispatch the initial visit to trigger the `pico.loaded` event.
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
-  }, [picoLoaded, picoPageInfo.url]);
+  }, [picoScriptAdded, picoPageInfo.url]);
 
-  // Set a poll counter that can be used as an effect dependency for inside of the
-  // `pollForWidget` interval. Adding this as an dependency to the effect will cause
-  // the effect to be rerun and the existence of `widgetContainer` to be re-checked
-  // each time the poll is incremented. When the container is detected the polling
-  // interval is cleared and the state is updated accordingly to dispatch future behavior.
-  const [pollNumber, setPollNumber] = useState(0);
+  // Poll for the existence of the Pico widget container.
+  const widgetContainer = usePollForNode('#pico-widget-container');
 
+  // Mount an effect that watches for the status of `picoLoaded` and the polled
+  // widget container node in order to determine when to mount the Pico nodes
+  // into the DOM.
   useEffect(() => {
-    // See if the Pico widget container exists in the DOM.
-    const widgetContainer = document.getElementById('pico-widget-container');
+    log.info(
+      'Pico: Attempting to mount nodes:',
+      [widgetContainer, isPicoMounted(), picoLoaded]
+    );
 
-    const pollForWidget = setInterval(() => {
-      // Increment the poll count to re-run the effect.
-      setPollNumber(pollNumber + 1);
+    // Ensure the target nodes are only mounted once on the initial server load.
+    if (widgetContainer && ! isPicoMounted()) {
+      log.info('Pico: Mounting nodes.');
+      mountPicoNodes();
+    }
+  }, [picoLoaded, widgetContainer]);
 
-      if (widgetContainer) {
-        // Prevent future polling events.
-        clearInterval(pollForWidget);
-        // Prevent the widget script from being added more than once.
-        setPicoInitialized(true);
-
-        // Ensure the target nodes are only mounted once on the initial server load.
-        if (! isPicoMounted() && ! picoLoaded) {
-          mountPicoNodes();
-          // Update the `pico` branch of the state tree and set `loaded` to true.
-          dispatchPicoLoaded();
-        }
-      }
-    }, 250);
-  }, [picoLoaded, picoPageInfo.url, pollNumber]);
-
-  // Load the script for the first time.
-  if (! picoInitialized && 0 === pollNumber) {
+  if (picoScriptAdded) {
+    // Inject the Pico Signal into the DOM.
+    log.info('Pico: Returning observer component.');
     return (
-      <Helmet>
-        <script>
-          {
-            /* eslint-disable max-len */
-            `(function(p,i,c,o){var n=new Event("pico-init");i[p]=i[p]||function(){(i[p].queue=i[p].queue||[]).push(arguments)},i.document.addEventListener("pico-init",function(e){var t=i.Pico.getInstance(e,{publisherId:o,picoInit:n},i);t.handleQueueItems(i[p].queue),i[p]=function(){return t.handleQueueItems([arguments])}},!1);var e=i.document.createElement("script"),t=i.document.getElementsByTagName("script")[0];e.async=1,e.defer=1,e.src=c,e.onload=function(e){return i.Pico.getInstance(e,{publisherId:o,picoInit:n},i)},t.parentNode.insertBefore(e,t)})("pico",window,"${widgetUrl}/wrapper.min.js", "${publisherId}");`
-            /* eslint-enable */
-          }
-        </script>
-      </Helmet>
+      <PicoObserver
+        tiers={tiers}
+        accessToken={coralToken}
+        logoutRequestAction={actionReceiveCoralLogoutRequest}
+      />
     );
   }
 
-  return (
-    <PicoObserver
-      tiers={tiers}
-      accessToken={coralToken}
-      logoutRequestAction={actionReceiveCoralLogoutRequest}
-    />
-  );
+  return null;
 };
 
 Pico.defaultProps = {
