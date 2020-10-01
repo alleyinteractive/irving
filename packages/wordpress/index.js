@@ -1,4 +1,5 @@
 import AdminBar from './components/adminBar';
+import BlockStyles from './components/blockStyles';
 import config from './irving.config';
 
 const componentMap = {
@@ -8,6 +9,7 @@ const componentMap = {
 // Provide component as a named export.
 export {
   AdminBar,
+  BlockStyles,
   componentMap,
 };
 
