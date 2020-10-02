@@ -4,6 +4,8 @@
   "description": "An example package for creating your own.",
   "files": [
     "components/**/*",
+    "dist/**",
+    "irving.config.js",
     "!*.test.js"
   ],
   "main": "index.js",
@@ -15,6 +17,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.config.js --mode production",
+    "prepare": "npm run build",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch"
   },

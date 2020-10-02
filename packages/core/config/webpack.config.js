@@ -83,7 +83,7 @@ module.exports = (env, argv) => {
   );
 
   // Process each config using the same webpack.config.js
-  const finalConfigs = [
+  const processedMultiConfig = [
     clientConfig,
     serverConfig,
   ].map((config) => (
@@ -93,6 +93,15 @@ module.exports = (env, argv) => {
       { base: buildContext }
     )
   ));
+
+  // Process the entire multiconfig.
+  const finalConfigs = getValueFromFiles(
+    'config/webpack.config.multi.js',
+    processedMultiConfig,
+    { base: buildContext }
+  );
+
+  console.log(finalConfigs);
 
   return finalConfigs;
 };

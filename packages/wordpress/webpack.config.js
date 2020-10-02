@@ -1,26 +1,29 @@
 const path = require('path');
+const { clientBuild, rootUrl } = require('@irvingjs/core/config/paths');
 
 /**
  * Webpack config for producing block editor JS file for enqueueing in WP admin.
  */
 module.exports = {
   entry: {
-    editor: path.join(__dirname, './blockEditor.js'),
+    blockEditor: path.join(__dirname, './blockEditor.js'),
   },
   mode: 'production',
   devtool: 'source-map',
 
   // Define module outputs
   output: {
-    path: path.join(__dirname, 'dist'),
-    // publicPath: themePath,
+    path: clientBuild,
+    publicPath: `${rootUrl}/`,
     filename: '[name].js',
     chunkFilename: '[name].js',
+    jsonpFunction: 'irvingEditorJsonp',
   },
 
   externals: {
     jquery: 'jQuery',
     react: 'React',
+    'react-dom': 'ReactDOM',
   },
 
   // Loaders
