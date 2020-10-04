@@ -5,6 +5,7 @@ const { clientBuild, rootUrl } = require('@irvingjs/core/config/paths');
  * Webpack config for producing block editor JS file for enqueueing in WP admin.
  */
 module.exports = {
+  name: 'editor',
   entry: {
     blockEditor: path.join(__dirname, './blockEditor.js'),
   },

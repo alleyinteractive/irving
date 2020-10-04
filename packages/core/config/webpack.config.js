@@ -101,7 +101,5 @@ module.exports = (env, argv) => {
     { base: buildContext }
   );
 
-  console.log(finalConfigs);
-
   return finalConfigs;
 };

@@ -4,6 +4,7 @@ import config from './irving.config';
 
 const componentMap = {
   'irving/wp-admin-bar': AdminBar,
+  'irving/block-styles': BlockStyles,
 };
 
 // Provide component as a named export.
