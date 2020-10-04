@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import rem from './rem';
 
 /**
  * Recursively build an object tree.
@@ -49,3 +50,16 @@ const siteTheme = (valuePath, defaultValue = '') => (props) => (
 );
 
 export default siteTheme;
+
+export const breakpoint = (width, minMax = 'min') => (props) => {
+  const value = siteTheme(`breakpoints.${width}`)(props);
+
+  switch (minMax) {
+    default:
+    case 'min':
+      return `${minMax}-width: ${rem(value)}`;
+
+    case 'max':
+      return `${minMax}-width: ${rem(value - 1)}`;
+  }
+};

@@ -4,7 +4,7 @@ import em from './em';
 import inputReset from './inputReset';
 import rem from './rem';
 import screenreaderOnly from './screenreaderOnly';
-import siteTheme from './siteTheme';
+import siteTheme, { breakpoint } from './siteTheme';
 
 export {
   buttonReset,
@@ -14,4 +14,5 @@ export {
   rem,
   screenreaderOnly,
   siteTheme,
+  breakpoint,
 };
