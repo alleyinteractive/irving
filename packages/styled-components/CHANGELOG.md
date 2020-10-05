@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.21...v5.0.0-alpha.0) (2020-10-05)
+
+
+### Code Refactoring
+
+* **body class support:** moves the responsibility of setting body classes ([1021928](https://github.com/alleyinteractive/irving/packages/styled-components/commit/1021928e81fa92c0dc9bb1e4c31ef7973fe6e282))
+
+
+### BREAKING CHANGES
+
+* **body class support:** The bodyClasses config will no longer work on the body-wrapper component
+
+
+
+
+
 # [4.2.0-alpha.21](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.20...v4.2.0-alpha.21) (2020-10-04)
 
 **Note:** Version bump only for package @irvingjs/styled-components
