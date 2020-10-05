@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v5.0.0-alpha.0...v5.0.0-alpha.1) (2020-10-05)
+
+
+### Features
+
+* **byline:** ensure all delimiter text is wrapped with spans with classes ([5ca48b8](https://github.com/alleyinteractive/irving/commit/5ca48b832f991925c70cdb537bfd4941e2d93be4))
+
+
+
+
+
 # [5.0.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.21...v5.0.0-alpha.0) (2020-10-05)
 
 
