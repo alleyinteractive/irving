@@ -19,8 +19,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^2.19.2",
-    "@irvingjs/core": "^2.21.3",
+		"@irvingjs/babel-preset-irving": "^4.2.0",
+		"@irvingjs/core": "^4.2.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^25.5.3"
   },

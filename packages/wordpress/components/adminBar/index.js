@@ -20,12 +20,17 @@ const AdminBar = (props) => {
 
   useEffect(() => {
     const handleMessage = (event) => {
-      if (event.origin !== iframeOrigin) {
+      if (
+        event.origin !== iframeOrigin &&
+        ! iframeOrigin.includes(event.origin)
+      ) {
         return;
       }
+
       if ('undefined' !== typeof event.data.hovered) {
         setHover(event.data.hovered);
       }
+
       if ('undefined' !== typeof event.data.height) {
         setHeight(event.data.height);
       }

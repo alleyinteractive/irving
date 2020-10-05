@@ -30,8 +30,8 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^2.19.2",
-    "@irvingjs/core": "^2.21.3",
+		"@irvingjs/babel-preset-irving": "^4.2.0-alpha.6",
+		"@irvingjs/core": "^4.2.0-alpha.6",
     "babel-loader": "^8.1.0",
     "jest": "^25.5.3",
     "webpack": "^4.44.2",
