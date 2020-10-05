@@ -4,8 +4,11 @@
   "description": "An example package for creating your own.",
   "files": [
     "components/**/*",
-    "dist/**",
+    "config/**/*",
+    "blockEditor.js",
+    "babel.config.js",
     "irving.config.js",
+    "webpack.config.js",
     "!*.test.js"
   ],
   "main": "index.js",
@@ -17,7 +20,6 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.config.js --mode production",
-    "prepare": "npm run build",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch"
   },
