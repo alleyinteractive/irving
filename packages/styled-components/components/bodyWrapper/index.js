@@ -1,7 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import classNames from 'classnames';
 import Loader from 'components/loader';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
@@ -12,7 +9,6 @@ import * as defaultStyles from './themes/default';
 
 const BodyWrapper = (props) => {
   const {
-    bodyClasses,
     children,
     theme,
   } = props;
@@ -21,9 +17,6 @@ const BodyWrapper = (props) => {
 
   return (
     <Loader>
-      <Helmet>
-        <body className={classNames(bodyClasses)} />
-      </Helmet>
       <Main
         {...standardProps}
         id="content"
@@ -36,18 +29,10 @@ const BodyWrapper = (props) => {
 
 BodyWrapper.propTypes = {
   ...standardPropTypes,
-  /**
-   * Additional classes to apply to the <body> tag using react-helmet.
-   */
-  bodyClasses: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.string,
-  ]),
 };
 
 BodyWrapper.defaultProps = {
   ...getStandardDefaultProps(),
-  bodyClasses: [],
   theme: defaultStyles,
 };
 
