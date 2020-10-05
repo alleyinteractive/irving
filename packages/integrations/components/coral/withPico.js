@@ -16,7 +16,7 @@ const withPico = (ChildComponent) => (props) => {
     [dispatch]
   );
 
-  const { ssoTiers: tiers } = props; /* eslint-disable-line */
+  const { ssoTiers: tiers } = props;
 
   // Define Coral event handlers.
   const handlers = (events) => {
@@ -57,6 +57,7 @@ const withPico = (ChildComponent) => (props) => {
 
   const picoLoaded = useSelector(picoLoadedSelector);
   const requestSent = useSelector(verificationRequestSelector);
+  const coralToken = useSelector(tokenSelector);
   const [canComment, setCanComment] = useState(null);
 
   useEffect(() => {
@@ -77,10 +78,7 @@ const withPico = (ChildComponent) => (props) => {
         setCanComment(false);
       }
     }
-  }, [picoLoaded, requestSent]);
-
-  // Retrieve the Coral SSO token from the Redux store.
-  const coralToken = useSelector(tokenSelector);
+  }, [picoLoaded, requestSent, coralToken]);
 
   if (coralToken && canComment && requestSent) {
     return (
