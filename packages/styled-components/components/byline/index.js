@@ -40,7 +40,7 @@ const Byline = (props) => {
       return (
         <BylineWrapper {...standardProps}>
           <AuthorsWrapper data-testid="authors-wrapper">
-            {preText && <span>{preText}</span>}
+            {preText && <span className="byline__pretext">{preText}</span>}
             <AuthorWrapper>{children}</AuthorWrapper>
           </AuthorsWrapper>
         </BylineWrapper>
@@ -50,9 +50,9 @@ const Byline = (props) => {
       return (
         <BylineWrapper {...standardProps}>
           <AuthorsWrapper data-testid="authors-wrapper">
-            {preText && <span>{preText}</span>}
+            {preText && <span className="byline__pretext">{preText}</span>}
             <AuthorWrapper>{children[0]}</AuthorWrapper>
-            {singleDelimiter}
+            <span className="byline__single-delimiter">{singleDelimiter}</span>
             <AuthorWrapper>{children[1]}</AuthorWrapper>
           </AuthorsWrapper>
         </BylineWrapper>
@@ -62,7 +62,7 @@ const Byline = (props) => {
       return (
         <BylineWrapper {...standardProps}>
           <AuthorsWrapper data-testid="authors-wrapper">
-            {preText && <span>{preText}</span>}
+            {preText && <span className="byline__pretext">{preText}</span>}
             {children.map((child, index) => {
               const key = index;
               // First through second to last author.
@@ -70,7 +70,9 @@ const Byline = (props) => {
                 return (
                   <Fragment key={key}>
                     <AuthorWrapper>{child}</AuthorWrapper>
-                    {multiDelimiter}
+                    <span className="byline__multi-delimiter">
+                      {multiDelimiter}
+                    </span>
                   </Fragment>
                 );
               }
@@ -80,7 +82,9 @@ const Byline = (props) => {
                 return (
                   <Fragment key={key}>
                     <AuthorWrapper>{child}</AuthorWrapper>
-                    {lastDelimiter}
+                    <span className="byline__last-delimiter">
+                      {lastDelimiter}
+                    </span>
                   </Fragment>
                 );
               }
