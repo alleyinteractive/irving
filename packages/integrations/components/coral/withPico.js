@@ -12,8 +12,6 @@ const withPico = (ChildComponent) => (props) => {
   const { ssoTiers } = props;
   // Define a global dispatch function.
   const dispatch = useDispatch();
-  // Define a function to summon an upgrade prompt for Coral SSO.
-  const showUpgradeModal = dispatch(actionRequireUpgrade());
   // Grab the value of the Pico signal from the Redux store.
   const { status, tier } = useSelector(picoSignalSelector) || {};
   // Grab the value of the Coral token from the Redux store.
@@ -27,10 +25,10 @@ const withPico = (ChildComponent) => (props) => {
     events.on('loginPrompt', () => {
       // If the user is registered but not paying show the upgrade modal on click.
       if ('registered' === status) {
-        showUpgradeModal();
+        dispatch(actionRequireUpgrade());
       } else if ('paying' === status && ! ssoTiers.includes(tier)) {
         // If the user is paying but cannot comment, prompt them to upgrade their subscription.
-        showUpgradeModal();
+        dispatch(actionRequireUpgrade());
       } else {
         // Summon the base Pico modal.
         const ruleNode = document.getElementById('PicoRule-button');
