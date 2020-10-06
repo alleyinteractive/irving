@@ -29,4 +29,34 @@ This component displays the familiar WP Admin Bar for logged-in users. This is a
 As mentioned above, this component will automatically be added to your components endpoint for logged-in users. The only additional step you need to take to get the Admin Bar to display is adding the `@irvingjs/wordpress` component map to your own project's component map, as illustrated in the _Installation_ section above.
 
 ### Block Styles
+This package also comes with a solution for styling Gutenberg blocks and sharing those styles between both wp-admin and your Irving front-end. Below are details on how you can configure and extend this functionality.
 
+#### Setup
+In order to get the block styles functionality set up, you will need to:
+* Add the `@irvingjs/wordpress` component map to your own component map (see the _Installation_ section above)
+* Add the `irving/block-styles` component to your template(s) of choice. This component renders global styles and nothing else, so it can appear anywhere in a template.
+* This package will generate a `blockEditor.js` file during your usual Irving build, which will automatically be enqueued in wp-admin. If you are actively developing block styles, be sure to run `npm run dev` locally while you do so otherwise block styles will not build and the `blockEditor.js` file will 404 in wp-admin.
+
+#### Configuring block styles
+There are two primary ways of configuring block styles:
+* Set up a `styles/blocks.json` in your WordPress theme to provide new CSS property values to the default block styles in this package. Site theme values are roughly organized by block, as are styled components for each block. Search in the `components/blockStyles/blocks` directory of this package to find what site theme properties are configurable for specific blocks. Example for changing the color of links:
+```json
+// styles/blocks.json
+{
+  "link": {
+    "color": "red"
+  }
+}
+```
+* Your second option is to create your own styled component(s) to completely override the default styles in this package. Block styles can be configured in this way by creating a `blockStyles.config.js` in the root directory of your irving project. This file should export an config object, for which there are currently two available fields:
+  * `blockMap` (Object) - Add your own styled components to style a specific block. Keys in this object are a block name, values are the styled component used to style that block. Example:
+  ```javascript
+  import ParagraphStyles from 'components/blocks/paragraph';
+
+  export default {
+    blockMap: {
+      'core/paragraph': ParagraphStyles,
+    },
+  };
+  ```
+  * `mergeBlockStyles` (Boolean) - **Experimental** - Load both default styles and custom styles declared in the above `blockMap` field. The usual CSS cascade might not work the way you expect here. In certain circumstances defaults may be loaded before your custom styles, and in other circumstances vice-versa.
