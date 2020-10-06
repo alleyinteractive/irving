@@ -23,7 +23,7 @@ export const HeadingBlock = createGlobalStyle`
     ${heading}
   }
 
-  .article_content {
+  .irving__post-content {
 
     h1,
     h2,
@@ -36,32 +36,32 @@ export const HeadingBlock = createGlobalStyle`
   }
 
   h1[data-type="core/heading"],
-  .article_content h1 {
+  .irving__post-content h1 {
     font-size: ${siteTheme('blocks.heading.sizes.h1', '2.25rem')};
   }
 
   h2[data-type="core/heading"],
-  .article_content h2 {
+  .irving__post-content h2 {
     font-size: ${siteTheme('blocks.heading.sizes.h2', '2rem')};
   }
 
   h3[data-type="core/heading"],
-  .article_content h3 {
+  .irving__post-content h3 {
     font-size: ${siteTheme('blocks.heading.sizes.h3', '1.75rem')};
   }
 
   h4[data-type="core/heading"],
-  .article_content h4 {
+  .irving__post-content h4 {
     font-size: ${siteTheme('blocks.heading.sizes.h4', '1.5rem')};
   }
 
   h5[data-type="core/heading"],
-  .article_content h5 {
+  .irving__post-content h5 {
     font-size: ${siteTheme('blocks.heading.sizes.h5', '1.25rem')};
   }
 
   h6[data-type="core/heading"],
-  .article_content h6 {
+  .irving__post-content h6 {
     font-size: ${siteTheme('blocks.heading.sizes.h6', '1rem')};
   }
 `;

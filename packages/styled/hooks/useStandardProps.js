@@ -55,6 +55,7 @@ const useStandardProps = (props, componentDefaults = {}) => {
     id = '',
     style = {},
     tag = '',
+    themeName,
     componentName,
   } = props;
   const componentNameClass = componentName ?
@@ -66,7 +67,8 @@ const useStandardProps = (props, componentDefaults = {}) => {
     className: classNames(
       className,
       componentNameClass,
-      componentDefaults.className
+      componentDefaults.className,
+      { [`${componentNameClass}--${themeName}`]: themeName }
     ),
     id: id || componentDefaults.id,
     style: replaceWithSiteTheme(

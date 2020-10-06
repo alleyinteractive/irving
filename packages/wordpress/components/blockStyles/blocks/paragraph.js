@@ -4,7 +4,7 @@ import { bodyText, link } from './utils';
 
 export const ParagraphBlock = createGlobalStyle`
   [data-type="core/paragraph"],
-  .defector__article-content p {
+  .irving__post-content p {
     ${bodyText};
 
     a {

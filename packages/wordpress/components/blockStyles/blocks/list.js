@@ -3,8 +3,8 @@ import { link, list, listItem } from './utils';
 
 export const ListBlock = createGlobalStyle`
   [data-type="core/list"],
-  .article_content ul,
-  .article_content ol {
+  .irving__post-content ul,
+  .irving__post-content ol {
     ${list}
 
     li {
@@ -17,7 +17,7 @@ export const ListBlock = createGlobalStyle`
   }
 
   ol[data-type="core/list"],
-  .article_content ol {
+  .irving__post-content ol {
     list-style: decimal;
   }
 `;
