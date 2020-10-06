@@ -66,6 +66,7 @@ export default function coralReducer(
     case SET_CORAL_USERNAME:
       return {
         ...state,
+        requireUsername: false,
         usernameSetHash: null,
         validationError: null,
         usernameSet: true,
