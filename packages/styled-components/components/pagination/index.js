@@ -9,6 +9,7 @@ import {
 } from '@irvingjs/styled/types/propTypes';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
+import {getGTMDefaultProps, gtmPropTypes} from "@irvingjs/styled/types/gtmPropTypes";
 
 /**
  * Using the same props from a Pagination component, build the url for a given
@@ -23,6 +24,8 @@ import * as defaultStyles from './themes/default';
 const buildUrl = (props, page) => {
   const {
     baseUrl,
+    gtmAction,
+    gtmCategory,
     paginationFormat,
   } = props;
 
@@ -89,11 +92,6 @@ const Pagination = (props) => {
     totalPages :
     (currentPage + newRange);
 
-  const gtmBase = {
-    action: 'Pagination',
-    category: 'Navigation',
-  };
-
   /**
    * Render a handful of pagination buttons around the current page.
    */
@@ -106,8 +104,8 @@ const Pagination = (props) => {
         <NavWrapper
           as={Link}
           href={buildUrl(props, i)}
-          data-gtm-action={gtmBase.action}
-          data-gtm-category={gtmBase.category}
+          data-gtm-action={gtmAction}
+          data-gtm-category={gtmCategory}
           data-gtm-label={`${i} page`}
         >
           {i}
@@ -136,8 +134,8 @@ const Pagination = (props) => {
           <NavWrapper
             as={Link}
             href={buildUrl(props, 1)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
+            data-gtm-action={gtmAction}
+            data-gtm-category={gtmCategory}
             data-gtm-label="First Page"
           >
             1
@@ -150,8 +148,8 @@ const Pagination = (props) => {
           <NavWrapper
             as={Link}
             href={buildUrl(props, 2)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
+            data-gtm-action={gtmAction}
+            data-gtm-category={gtmCategory}
             data-gtm-label="Second Page"
           >
             2
@@ -161,8 +159,8 @@ const Pagination = (props) => {
           <NavWrapper
             as={Link}
             href={buildUrl(props, 1)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
+            data-gtm-action={gtmAction}
+            data-gtm-category={gtmCategory}
             data-gtm-label="First Page"
           >
             1
@@ -176,8 +174,8 @@ const Pagination = (props) => {
           <NavWrapper
             as={Link}
             href={buildUrl(props, 1)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
+            data-gtm-action={gtmAction}
+            data-gtm-category={gtmCategory}
             data-gtm-label="First Page"
           >
             1
@@ -196,8 +194,8 @@ const Pagination = (props) => {
           <NavWrapper
             as={Link}
             href={buildUrl(props, totalPages)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
+            data-gtm-action={gtmAction}
+            data-gtm-category={gtmCategory}
             data-gtm-label="Last Page"
           >
             {totalPages}
@@ -210,8 +208,8 @@ const Pagination = (props) => {
           <NavWrapper
             as={Link}
             href={buildUrl(props, totalPages - 1)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
+            data-gtm-action={gtmAction}
+            data-gtm-category={gtmCategory}
             data-gtm-label="Second Last Page"
           >
             {totalPages - 1}
@@ -221,8 +219,8 @@ const Pagination = (props) => {
           <NavWrapper
             as={Link}
             href={buildUrl(props, totalPages)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
+            data-gtm-action={gtmAction}
+            data-gtm-category={gtmCategory}
             data-gtm-label="Last Page"
           >
             {totalPages}
@@ -236,8 +234,8 @@ const Pagination = (props) => {
           <NavWrapper
             as={Link}
             href={buildUrl(props, totalPages)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
+            data-gtm-action={gtmAction}
+            data-gtm-category={gtmCategory}
             data-gtm-label="Last Page"
           >
             {totalPages}
@@ -290,6 +288,7 @@ const Pagination = (props) => {
 };
 
 Pagination.defaultProps = {
+  ...getGTMDefaultProps(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   baseUrl: '/',
@@ -302,6 +301,7 @@ Pagination.defaultProps = {
 };
 
 Pagination.propTypes = {
+  ...gtmPropTypes,
   ...standardPropTypes,
   /**
    * Base url. Usually the url of the first page of results.
