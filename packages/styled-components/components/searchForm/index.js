@@ -8,6 +8,10 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import {
+  gtmPropTypes,
+  getGTMDefaultProps,
+} from '@irvingjs/styled/types/gtmPropTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -18,6 +22,8 @@ import * as defaultStyles from './themes/default';
 const SearchForm = (props) => {
   const {
     baseUrl,
+    gtmAction,
+    gtmCategory,
     searchTerm,
     searchTermQueryArg,
     theme,
@@ -55,8 +61,8 @@ const SearchForm = (props) => {
       <SearchLabel>
         <SearchFormTerm
           aria-label="search"
-          data-gtm-action="Search"
-          data-gtm-category="Navigation"
+          data-gtm-action={gtmAction}
+          data-gtm-category={gtmCategory}
           name={searchTermQueryArg}
           placeholder="Search"
           ref={register}
@@ -69,6 +75,7 @@ const SearchForm = (props) => {
 };
 
 SearchForm.defaultProps = {
+  ...getGTMDefaultProps(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   baseUrl: '/',
@@ -77,6 +84,7 @@ SearchForm.defaultProps = {
 };
 
 SearchForm.propTypes = {
+  ...gtmPropTypes,
   ...standardPropTypes,
   /**
    * Base url for search.

@@ -7,6 +7,10 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import {
+  gtmPropTypes,
+  getGTMDefaultProps,
+} from '@irvingjs/styled/types/gtmPropTypes';
 import toReactElement from '@irvingjs/core/utils/toReactElement';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
@@ -19,6 +23,8 @@ import * as defaultStyles from './themes/default';
 const SocialSharing = (props) => {
   const {
     description,
+    gtmAction,
+    gtmCategory,
     imageUrl,
     platforms,
     platformData,
@@ -156,8 +162,8 @@ const SocialSharing = (props) => {
         }) => (
           <SocialSharingItemWrapper key={platform} className={platform}>
             <Link
-              data-gtm-category="Engagement"
-              data-gtm-action="Share"
+              data-gtm-category={gtmCategory}
+              data-gtm-action={gtmAction}
               data-gtm-label={platform}
               href={shareUrl}
               target={target}
@@ -174,6 +180,7 @@ const SocialSharing = (props) => {
 };
 
 SocialSharing.defaultProps = {
+  ...getGTMDefaultProps(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   description: '',
@@ -185,6 +192,7 @@ SocialSharing.defaultProps = {
 };
 
 SocialSharing.propTypes = {
+  ...gtmPropTypes,
   ...standardPropTypes,
   /**
    * Description of the shared content.
