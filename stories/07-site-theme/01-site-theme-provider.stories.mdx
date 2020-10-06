@@ -1,0 +1,151 @@
+<Meta title="Site Theme|Site Theme Provider" />
+
+# Introduction
+
+## Overview
+The Site Theme offers a simple and standardized way to pass style definitions (colors, fonts, breakpoints, etc.) directly into your [templates](#templating) and [styled components](#styled-components).
+
+WordPress exposes these values using a [provider](?path=/docs/components-components-endpoint--page#providers) in the components endpoint.
+
+## Setup
+The easiest way to manage the Site Theme is by adding a `styles` folder to your WordPress theme with `.json` files [(example)](https://github.com/alleyinteractive/irving-example-theme/tree/master/styles).
+
+`/your-theme/styles/colors.json`
+```json
+{
+  "primary": "#735fea",
+  "secondary": "#e680a7",
+  "text": "#333333",
+  "grey": "#808080",
+  "black": "#000000",
+  "white": "#FFFFFF"
+}
+```
+
+`/your-theme/styles/fonts.json`
+```json
+{
+  "body": {
+    "variant1": "Baskerville, \"Times New Roman\", Times, serif",
+    "variant2": "Garamond, \"Hoefler Text\", \"Times New Roman\", Times, serif"
+  },
+  "heading": {
+    "variant1": "Georgia, Times, ‘Times New Roman’, serif",
+    "variant2": "Palatino, ‘Palatino Linotype’, ‘Hoefler Text’, Times, ‘Times New Roman’, serif"
+  },
+  "sizes": {
+    "sm": 17,
+    "lg": 22
+  }
+}
+```
+
+Irving will also recursively traverse the site theme until it finds the final value.
+`/your-theme/styles/header.json`
+```json
+{
+  "background_color": "colors.primary"
+}
+```
+
+Which would render in the `providers` key in your endpoint [(example)](https://wordpress.irvingjs.com/wp-json/irving/v1/components),
+```json
+{
+  "defaults": [],
+  "page": [],
+  "providers": [
+    {
+      "name": "irving/site-theme",
+      "_alias": "",
+      "config": {
+        "theme": {
+          "colors": {
+            "primary": "#735fea",
+            "secondary": "e680a7",
+            "text": "#333333",
+            "grey": "#808080",
+            "black": "#000000",
+            "white": "#FFFFFF"
+          },
+          "fonts": {
+            "body": {
+              "variant1": "Baskerville, \"Times New Roman\", Times, serif",
+              "variant2": "Garamond, \"Hoefler Text\", \"Times New Roman\", Times, serif"
+            },
+            "heading": {
+              "variant1": "Georgia, Times, ‘Times New Roman’, serif",
+              "variant2": "Palatino, ‘Palatino Linotype’, ‘Hoefler Text’, Times, ‘Times New Roman’, serif"
+            },
+            "sizes": {
+              "sm": 17,
+              "lg": 22
+            }
+          },
+          "header": {
+            "background_color": "colors.primary"
+          }
+        },
+        "themeName": "default",
+        "themeOptions": [
+          "default"
+        ]
+      },
+      "children": []
+    }
+  ],
+  "redirectTo": "",
+  "redirectStatus": 0
+}
+```
+
+## Using Site Theme
+Once your values are exposed to the site theme, you can ingest them in two ways,
+
+### Styled Components
+Every Styled Component will include a reference to `props.themes` as outlined in their [Advanced Usage docs](https://styled-components.com/docs/advanced).
+
+We provide a `siteTheme()` utility in [`@irvingjs/styled`](?path=/docs/packages-styled--page) to make this easy. You can import the utility and traverse the site theme using dot syntax.
+
+#### Basic Usage
+`${siteTheme('colors.primary')}` returns `#735fea`
+
+Or using the nested value,
+`${siteTheme('colors.primary')}` returns `#735fea`
+
+[Utility on Github](https://github.com/alleyinteractive/irving/blob/master/packages/styled/utils/siteTheme.js)
+
+#### Example `/container/themes/default.js`
+```
+import styled from 'styled-components';
+import { rem, siteTheme } from '@irvingjs/styled/utils';
+
+/* eslint-disable import/prefer-default-export */
+export const ContainerWrapper = styled.div`
+  border: 1px solid ${siteTheme('colors.secondary')};
+  background-color: ${siteTheme('header.background_color')};
+  font-size: ${(props) => rem(siteTheme('fonts.sizes.sm')(props))};
+`;
+/* eslint-enable */
+
+```
+
+### Templating
+You can also reference site theme values in your template JSON.
+
+Example:
+```json
+{
+  "name": "irving/container",
+  "config": {
+    "style": {
+      "background-color": "header.backgroundColor"
+    }
+  }
+}
+```
+
+Will render the `irving/container` with
+
+```css
+background-color: #735fea;
+```

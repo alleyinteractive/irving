@@ -3,7 +3,223 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v5.0.0-alpha.0...v5.0.0-alpha.1) (2020-10-05)
+
+
+### Features
+
+* **byline:** ensure all delimiter text is wrapped with spans with classes ([5ca48b8](https://github.com/alleyinteractive/irving/commit/5ca48b832f991925c70cdb537bfd4941e2d93be4))
+
+
+
+
+
+# [5.0.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.21...v5.0.0-alpha.0) (2020-10-05)
+
+
+### Code Refactoring
+
+* **body class support:** moves the responsibility of setting body classes ([1021928](https://github.com/alleyinteractive/irving/commit/1021928e81fa92c0dc9bb1e4c31ef7973fe6e282))
+
+
+### BREAKING CHANGES
+
+* **body class support:** The bodyClasses config will no longer work on the body-wrapper component
+
+
+
+
+
+# [4.2.0-alpha.21](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.20...v4.2.0-alpha.21) (2020-10-04)
+
+
+### Features
+
+* **html sanitization filter:** add new tags to the richText tag allowlist ([855e32e](https://github.com/alleyinteractive/irving/commit/855e32e684d17674db5436078c33af5bc5e0fdc2))
+
+
+
+
+
+# [4.2.0-alpha.20](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.19...v4.2.0-alpha.20) (2020-10-01)
+
+
+### Bug Fixes
+
+* add aria-label to pagination navigation next and prev wrapper ([512606b](https://github.com/alleyinteractive/irving/commit/512606bf1bb0260d6e61d9c79832afcfce9fdbc5))
+
+
+
+
+
+# [4.2.0-alpha.19](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.18...v4.2.0-alpha.19) (2020-09-30)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [4.2.0-alpha.18](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.17...v4.2.0-alpha.18) (2020-09-30)
+
+
+### Features
+
+* **site theme recursion:** allow the site theme to call itself and build a full tree ([334c54c](https://github.com/alleyinteractive/irving/commit/334c54c26bb0b3207f9af715036992a79942f743))
+
+
+
+
+
+# [4.2.0-alpha.17](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.16...v4.2.0-alpha.17) (2020-09-30)
+
+
+### Bug Fixes
+
+* **gtm:** fix XSS issue in GTM ([3731639](https://github.com/alleyinteractive/irving/commit/3731639aefbe8e766b09b3d00fe030148e5dbc02))
+
+
+
+
+
+# [4.2.0-alpha.16](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.15...v4.2.0-alpha.16) (2020-09-28)
+
+
+### Bug Fixes
+
+* **usepollfornode:** rename polled node, move it ([03e8adb](https://github.com/alleyinteractive/irving/commit/03e8adb2fe2c307b01668cb0145ebe7930f5a568))
+
+
+
+
+
+# [4.2.0-alpha.15](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.14...v4.2.0-alpha.15) (2020-09-28)
+
+
+### Bug Fixes
+
+* **container component:** fix an issue where max-width was being output with an empty value ([3128d3a](https://github.com/alleyinteractive/irving/commit/3128d3a4ad2eea3077369c6edfa1159ab9405c6e))
+
+
+### Features
+
+* **site theme:** support nested site theme properties ([821334a](https://github.com/alleyinteractive/irving/commit/821334ad21c8c43bb3e636f1990894bfee40d287))
+
+
+
+
+
+# [4.2.0-alpha.14](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.13...v4.2.0-alpha.14) (2020-09-25)
+
+
+### Bug Fixes
+
+* **proptypes:** fix issue with mutated reference in standard default props ([0bd6de9](https://github.com/alleyinteractive/irving/commit/0bd6de9509df6b723adb85ad632b362b812ac940))
+* **resolvecomponents:** remove console log ([003949b](https://github.com/alleyinteractive/irving/commit/003949bbc2f3c7bcb6a5d8879a8aaa3deb556f04))
+* **sitetheme:** fix accidentally persisted/mutated default provider config ([bda394a](https://github.com/alleyinteractive/irving/commit/bda394af249e2816e87cfd0c2012c2e63ef377e0))
+
+
+
+
+
+# [4.2.0-alpha.13](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.12...v4.2.0-alpha.13) (2020-09-25)
+
+
+### Bug Fixes
+
+* **pico:** poll for widget existence in effect ([40629b3](https://github.com/alleyinteractive/irving/commit/40629b3c4e1b9a52f9cf4d5cfbde661ad4f3a420))
+
+
+
+
+
+# [4.2.0-alpha.12](https://github.com/alleyinteractive/irving/compare/v4.1.0...v4.2.0-alpha.12) (2020-09-24)
+
+
+
 # [4.2.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.10...v4.2.0-alpha.11) (2020-09-22)
+
+
+
+# [4.2.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.9...v4.2.0-alpha.10) (2020-09-21)
+
+
+### Bug Fixes
+
+* **pico:** fix timing bug with firing the initial Pico action ([8a0463c](https://github.com/alleyinteractive/irving/commit/8a0463ca66b81b772d5626abec9cc4a11dab4440))
+
+
+
+# [4.2.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.8...v4.2.0-alpha.9) (2020-09-18)
+
+
+### Bug Fixes
+
+* **pico:** Reinsert initialization process ([a737f1f](https://github.com/alleyinteractive/irving/commit/a737f1fccef8b8418631475333e8657fa39c522f))
+
+
+
+# [4.2.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.7...v4.2.0-alpha.8) (2020-09-18)
+
+
+### Bug Fixes
+
+* **Pico:** ensure Pico loads on first page render ([86130c3](https://github.com/alleyinteractive/irving/commit/86130c3560b97a45169f0d77e5878e3e7e68f507))
+
+
+### Features
+
+* **add documentation:** document use of inline style prop ([337cc29](https://github.com/alleyinteractive/irving/commit/337cc29b7b183c123d085465d195bda270f86515))
+
+
+
+# [4.2.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v4.1.0-rc.0...v4.2.0-alpha.7) (2020-09-18)
+
+
+
+# [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+
+
+
+# [4.2.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.4...v4.2.0-alpha.5) (2020-09-18)
+
+
+### Bug Fixes
+
+* **integrationsreducer:** remove accidentally merged test changes to integrationsReducer ([87bab50](https://github.com/alleyinteractive/irving/commit/87bab5099e1c1637feac0db4173780228503153a))
+
+
+
+# [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
+
+
+### Features
+
+* **starts docs for site-theme variables:** should be refined and moved to correct section ([16529a7](https://github.com/alleyinteractive/irving/commit/16529a73520dcf9d0b776dba56598a9d3ced7f4d))
+
+
+
+# [4.2.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.1...v4.2.0-alpha.2) (2020-09-18)
+
+
+
+# [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+
+
+
+# [4.2.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v4.1.0-beta.4...v4.2.0-alpha.0) (2020-09-17)
+
+
+### Bug Fixes
+
+* **pico:** Trigger Pico actions on pre-fetched pages ([b590767](https://github.com/alleyinteractive/irving/commit/b59076722bcf935e1b262ce93426127a534af1b3))
+
+
+
+
+
+# [4.2.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.10...v4.2.0-alpha.11) (2020-09-22)
+# [4.1.0](https://github.com/alleyinteractive/irving/compare/v4.1.0-rc.0...v4.1.0) (2020-09-24)
 
 **Note:** Version bump only for package irving
 
@@ -90,6 +306,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.2...v4.2.0-alpha.3) (2020-09-18)
+# [4.1.0-rc.0](https://github.com/alleyinteractive/irving/compare/v4.1.0-beta.4...v4.1.0-rc.0) (2020-09-18)
 
 **Note:** Version bump only for package irving
 
@@ -109,6 +326,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+# [4.1.0-beta.4](https://github.com/alleyinteractive/irving/compare/v4.1.0-beta.3...v4.1.0-beta.4) (2020-09-17)
 
 **Note:** Version bump only for package irving
 
@@ -117,6 +335,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v4.1.0-beta.2...v4.2.0-alpha.0) (2020-09-17)
+# [4.1.0-beta.3](https://github.com/alleyinteractive/irving/compare/v4.1.0-beta.2...v4.1.0-beta.3) (2020-09-17)
 
 
 ### Bug Fixes

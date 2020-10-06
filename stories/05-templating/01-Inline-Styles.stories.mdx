@@ -1,0 +1,62 @@
+<Meta title="Templating|Inline Styling" />
+
+# Inline styling WordPress templates
+To help developers quickly prototype styles while writing templates, a style prop is available to use in the component config. The style properties assigned will appear as inline styles. Whether you move styles to a theme once design is settled is up to you and your team's code organization norms.
+
+Every styled component has support for the `style` config property. How these values are applied will vary component-by-component, but assume it's applied to the outermost element.
+
+_Note:  `styled-css-grid/grid` [(docs)](?path=/docs/wordpress-components-styled-css-grid-grid--page) and `styled-css-grid/cell` [(docs)](?path=/docs/wordpress-components-styled-css-grid-cell--page) do not currently support the `style` config property._
+
+__Example:__
+```json
+{
+  "name": "irving/text",
+  "config": {
+    "tag": "h4",
+    "style": {
+      "margin-bottom": "1rem",
+      "color": "grey"
+    },
+    "content": "Hello World"
+  }
+}
+```
+
+This will render `"Hello World"` with the following styles,
+```css
+margin-bottom: 1rem;
+color: grey;
+```
+
+## Site Theme
+We also support using [Site Theme](?path=/docs/site-theme-site-theme-provider--page#templating) values directly in your `style` config.
+
+Template:
+```json
+{
+  "name": "irving/container",
+  "config": {
+    "style": {
+      "background-color": "header.backgroundColor"
+    }
+  }
+}
+```
+
+Site Theme:
+```json
+{
+	"colors": {
+		"primary": "#735fea"
+	},
+	"header": {
+		"background_color": "colors.primary"
+	}
+}
+```
+
+Will render the `irving/container` with
+
+```css
+background-color: #735fea;
+```

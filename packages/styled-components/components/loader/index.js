@@ -5,7 +5,7 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import DefaultLoading from './defaultLoading';
 import * as defaultStyles from './themes/default';
@@ -99,7 +99,7 @@ Loader.propTypes = {
 };
 
 Loader.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   transition: {
     enabled: true,

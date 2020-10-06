@@ -22,6 +22,11 @@ export const replaceWithSiteTheme = (styleObject, siteTheme) => (
        *   Match:
        *    {color: theme.colors.black} => {color: #000;}
        *
+       *   Recursive Match:
+       *    {color: theme.fonts.color} =>
+       *      {color: theme.colors.black} =>
+       *        {color: #000}
+       *
        *   No Match:
        *     {color: #000} => {color: #000;}
        */

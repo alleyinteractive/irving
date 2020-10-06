@@ -3,7 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.21](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.20...v4.2.0-alpha.21) (2020-10-04)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [4.2.0-alpha.20](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.19...v4.2.0-alpha.20) (2020-10-01)
+
+
+### Bug Fixes
+
+* add aria-label to pagination navigation next and prev wrapper ([512606b](https://github.com/alleyinteractive/irving/packages/vip-go/commit/512606bf1bb0260d6e61d9c79832afcfce9fdbc5))
+
+
+
+
+
+# [4.2.0-alpha.15](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.14...v4.2.0-alpha.15) (2020-09-28)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [4.2.0-alpha.14](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.13...v4.2.0-alpha.14) (2020-09-25)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [4.2.0-alpha.12](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.1.0...v4.2.0-alpha.12) (2020-09-24)
+
+
+
 # [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+
+
+
+# [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
+
+
+
+# [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+# [4.1.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.1.0-rc.0...v4.1.0) (2020-09-24)
 
 **Note:** Version bump only for package @irvingjs/vip-go
 
@@ -12,6 +68,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
+# [4.1.0-rc.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.1.0-beta.4...v4.1.0-rc.0) (2020-09-18)
 
 **Note:** Version bump only for package @irvingjs/vip-go
 
@@ -28,6 +85,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+# [4.1.0-beta.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v4.1.0-beta.3...v4.1.0-beta.4) (2020-09-17)
 
 **Note:** Version bump only for package @irvingjs/vip-go
 

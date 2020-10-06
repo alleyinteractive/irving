@@ -3,7 +3,8 @@ export const richText = {
     'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol',
     'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'cite', 'hr', 'br',
     'div', 'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td', 'pre', 'img',
-    'figure', 'figcaption', 'iframe', 'audio', 'video', 'time',
+    'figure', 'figcaption', 'iframe', 'audio', 'video', 'time', 'article',
+    'section', 'aside', 'footer', 'header', 'nav',
   ],
   allowedAttributes: {
     '*': ['class', 'id', 'data-*', 'style'],

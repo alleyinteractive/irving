@@ -1,0 +1,48 @@
+<Meta title="Configuration|WordPress" />
+
+# WordPress Configurations
+This section outlines the different ways you can configure WP Irving.
+
+Coming soon.
+
+## Available Hooks
+This section is a work in progress.
+
+### JWT Token Cookie Domain
+Use `wp_irving_jwt_token_cookie_domain` to modify the cookie domain used by the [JWT Token integration](?path=/docs/features-authentication--page).
+
+Both WordPress and your Irving application should have a shared root domain.
+
+For example, `wordpress.irvingjs.com` and `irvingjs.com` would work by setting your cookie domain to `.irvingjs.com` ([leading period required](https://stackoverflow.com/questions/9618217/what-does-the-dot-prefix-in-the-cookie-domain-mean)).
+
+__Example:__
+```php
+/**
+ * Modify the JWT token cookie domain for WP Irving.
+ *
+ * @param string $domain Domain.
+ * @return string
+ */
+function wp_irving_jwt_token_cookie_domain( $domain ) {
+	return strstr( home_url(), 'alley.test' ) ? '.alley.test' : '.irvingjs.com';
+}
+add_filter( 'wp_irving_jwt_token_cookie_domain', __NAMESPACE__ . '\wp_irving_jwt_token_cookie_domain' );
+
+```
+
+### Site theme JSON path
+Use `wp_irving_site_theme_json_directory_path` to modify the local path to your [Site Theme](?path=/docs/site-theme-site-theme-provider--page) JSON files.
+
+__Example:__
+```php
+/**
+ * Filter the path for the site theme JSON directory.
+ *
+ * @param string $path Path to site theme JSON directory.
+ * @return string
+ */
+function wp_irving_site_theme_json_directory_path( $path ) {
+	return get_stylesheet_directory() . '/site-theme/';
+}
+add_filter( 'wp_irving_site_theme_json_directory_path', __NAMESPACE__ . '\wp_irving_site_theme_json_directory_path' );
+```
