@@ -1,13 +1,7 @@
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-} from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import debounce from 'lodash/debounce';
-import getLogService from '@irvingjs/services/logService';
-import useMutationObserver from '../../hooks/useMutationObserver';
+import usePollForNode from './usePollForNode';
 import {
   actionVerifyPicoUser,
   actionReceivePicoPlanUpgrade,
@@ -19,8 +13,6 @@ import {
   tokenSelector,
   showUpgradeModalSelector,
 } from '../../selectors/coralSelector';
-
-const log = getLogService('irving:pico');
 
 const PicoObserver = ({ tiers }) => {
   // Define a global dispatch function.
@@ -48,7 +40,7 @@ const PicoObserver = ({ tiers }) => {
 
   // Define the callback referenced in the `useMutationObserver` hook that listens
   // for changes to the target DOM element.
-  const observerCallback = debounce((mutations) => {
+  const observerCallback = (mutations) => {
     mutations.forEach((mutation) => {
       const { target, type, attributeName } = mutation;
 
@@ -60,13 +52,7 @@ const PicoObserver = ({ tiers }) => {
         updateSignal({ email, status, tier });
       }
     });
-  }, 50);
-
-  // Declare a ref for the `useMutationObserver` hook to watch.
-  const signalRef = useRef();
-
-  // Mount the MutationObserver.
-  useMutationObserver(signalRef, observerCallback);
+  };
 
   // Grab the value of the Pico signal from the Redux store.
   const { status, tier, email } = useSelector(picoSignalSelector) || {};
@@ -78,6 +64,22 @@ const PicoObserver = ({ tiers }) => {
   const showUpgradeModal = useSelector(showUpgradeModalSelector);
   // Grab the value of the Coral JWT token from the Redux store.
   const coralToken = useSelector(tokenSelector);
+
+  // Poll for the existence of the Pico signal container.
+  const signal = usePollForNode('#PicoSignal-container');
+
+  useEffect(() => {
+    if (signal) {
+      const observer = new MutationObserver(observerCallback);
+
+      observer.observe(signal, { attributes: true });
+      return () => {
+        observer.disconnect();
+      };
+    }
+
+    return () => {};
+  }, [signal]);
 
   useEffect(() => {
     if (coralToken && isAnonymous) {
@@ -109,10 +111,8 @@ const PicoObserver = ({ tiers }) => {
     }
   }, [coralToken, isPaying, isValidSSOTier, showUpgradeModal]);
 
-  log.info('Rendering observer:', signalRef.current);
-
   return (
-    <div ref={signalRef} className="PicoSignal" style={{ display: 'none' }} />
+    <div id="pico-observer" style={{ display: 'none' }} />
   );
 };
 

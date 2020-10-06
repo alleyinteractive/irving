@@ -14,15 +14,18 @@ const defaultConfig = {
  * @param {object} options - The observer's options.
  */
 export default function useMutationObserver(
-  ref,
+  id,
   callback,
   options = defaultConfig
 ) {
   useEffect(() => {
-    if (ref.current) {
+    const node = document.getElementById(id);
+
+    if (node) {
+      console.log(node);
       const observer = new MutationObserver(callback);
 
-      observer.observe(ref.current, options);
+      observer.observe(node, options);
       return () => {
         observer.disconnect();
       };
