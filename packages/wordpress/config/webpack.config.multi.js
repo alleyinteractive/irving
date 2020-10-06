@@ -2,8 +2,20 @@ const path = require('path');
 const {
   clientBuild,
   rootUrl,
+  buildContext,
 } = require('@irvingjs/core/config/paths');
-const aliases = require('./aliases');
+const aliases = require('@irvingjs/core/config/aliases');
+const projectAliases = Object.keys(aliases)
+  .reduce((acc, alias) => {
+    const aliasPath = aliases[alias];
+
+    return {
+      ...acc,
+      [alias]: aliasPath.startsWith('./') ?
+        path.join(buildContext, aliasPath) :
+        aliasPath,
+    };
+  }, {});
 
 module.exports = (multiConfig) => (
   [
@@ -35,7 +47,7 @@ module.exports = (multiConfig) => (
       },
 
       resolve: {
-        alias: aliases,
+        alias: projectAliases,
       },
 
       // Loaders
