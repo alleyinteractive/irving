@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import blockMap from './blocks';
+import getBlockMap from './blocks';
+
+const blockMap = getBlockMap();
 
 /* eslint-disable react/no-array-index-key */
 export const BlockStyles = (props) => {

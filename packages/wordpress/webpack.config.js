@@ -1,5 +1,9 @@
 const path = require('path');
-const { clientBuild, rootUrl } = require('@irvingjs/core/config/paths');
+const {
+  clientBuild,
+  rootUrl,
+} = require('@irvingjs/core/config/paths');
+const aliases = require('@irvingjs/core/config/aliases');
 
 /**
  * Webpack config for producing block editor JS file for enqueueing in WP admin.
@@ -25,6 +29,10 @@ module.exports = {
     jquery: 'jQuery',
     react: 'React',
     'react-dom': 'ReactDOM',
+  },
+
+  resolve: {
+    alias: aliases,
   },
 
   // Loaders
