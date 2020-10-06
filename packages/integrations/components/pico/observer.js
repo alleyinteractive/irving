@@ -6,6 +6,7 @@ import React, {
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash/debounce';
+import getLogService from '@irvingjs/services/logService';
 import useMutationObserver from '../../hooks/useMutationObserver';
 import {
   actionVerifyPicoUser,
@@ -19,28 +20,26 @@ import {
   showUpgradeModalSelector,
 } from '../../selectors/coralSelector';
 
+const log = getLogService('irving:pico');
+
 const PicoObserver = ({ tiers }) => {
   // Define a global dispatch function.
   const dispatch = useDispatch();
-
   // Define a function to dispatch user verification requests to the Pico API.
   const sendVerificationRequest = useCallback(
     (user) => dispatch(actionVerifyPicoUser(user)),
     [dispatch]
   );
-
   // Define a function that will set the visibility state of the plan upgrade modal.
   const receivePlanUpgrade = useCallback(
     () => dispatch(actionReceivePicoPlanUpgrade()),
     [dispatch]
   );
-
   // Define a function to dispatch logout requests.
   const requestLogout = useCallback(
     () => dispatch(actionReceiveCoralLogoutRequest()),
     [dispatch]
   );
-
   // Define a function that updates the signal object in the Redux store.
   const updateSignal = useCallback(
     (signalObject) => dispatch(actionUpdatePicoSignal(signalObject)),
@@ -109,6 +108,8 @@ const PicoObserver = ({ tiers }) => {
       receivePlanUpgrade();
     }
   }, [coralToken, isPaying, isValidSSOTier, showUpgradeModal]);
+
+  log.info('Rendering observer:', signalRef.current);
 
   return (
     <div ref={signalRef} className="PicoSignal" style={{ display: 'none' }} />

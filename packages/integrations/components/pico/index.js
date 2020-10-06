@@ -101,7 +101,7 @@ const Pico = (props) => {
   // been set to true and only if `picoLoaded` has not been set to true yet.
   useEffect(() => {
     if (picoScriptAdded) {
-      log.info('Pico: Dispatching initial page visit.');
+      log.info('Pico: Dispatching page visit.');
       // Dispatch the initial visit to trigger the `pico.loaded` event.
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
@@ -129,6 +129,7 @@ const Pico = (props) => {
   if (picoScriptAdded) {
     // Inject the Pico Signal into the DOM.
     log.info('Pico: Returning observer component.');
+
     return (
       <PicoObserver tiers={tiers} />
     );

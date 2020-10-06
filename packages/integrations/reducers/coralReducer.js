@@ -104,6 +104,7 @@ export default function coralReducer(
         ...state,
         verificationRequestSent: false,
         purgeUser: false,
+        token: null,
       };
 
     case SEND_PICO_VERIFICATION_REQUEST:
