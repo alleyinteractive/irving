@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.21](https://github.com/alleyinteractive/irving/packages/core/compare/v4.2.0-alpha.20...v4.2.0-alpha.21) (2020-10-04)
+
+
+### Features
+
+* **html sanitization filter:** add new tags to the richText tag allowlist ([855e32e](https://github.com/alleyinteractive/irving/packages/core/commit/855e32e684d17674db5436078c33af5bc5e0fdc2))
+
+
+
+
+
 # [4.2.0-alpha.20](https://github.com/alleyinteractive/irving/packages/core/compare/v4.2.0-alpha.19...v4.2.0-alpha.20) (2020-10-01)
 
 
