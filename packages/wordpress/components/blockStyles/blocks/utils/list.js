@@ -1,8 +1,9 @@
 import { css } from 'styled-components';
+import { siteTheme } from '@irvingjs/styled/utils';
 
 const list = css`
-  list-style-type: disc;
-  margin-left: 1.25rem;
+  list-style: ${siteTheme('blocks.list.style', 'disc')};
+  margin-left: ${siteTheme('blocks.list.margin', '1.25rem')};
 `;
 
 export default list;

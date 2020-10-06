@@ -1,10 +1,13 @@
 import { css } from 'styled-components';
+import { siteTheme } from '@irvingjs/styled/utils';
 
 const caption = css`
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.75rem;
-  color: #333333;
-  letter-spacing: normal;
+  color: ${siteTheme('blocks.caption.color', '#333333')};
+  font-family: ${siteTheme(
+    'blocks.caption.fontFamily',
+    'Arial, Helvetica, sans-serif'
+  )};
+  font-size: ${siteTheme('blocks.caption.fontSize', '0.75rem')};
 `;
 
 export default caption;

@@ -1,26 +1,43 @@
 import { createGlobalStyle } from 'styled-components';
+import { siteTheme } from '@irvingjs/styled/utils';
 import { bodyText, link, caption } from './utils';
 
+/* eslint-disable indent */
 export const TableBlock = createGlobalStyle`
   .wp-block-table {
     ${bodyText};
 
     thead {
-      border-bottom: 4px solid #000000;
+      border-bottom: ${siteTheme(
+        'blocks.table.headBorderBottom',
+        '4px solid black'
+      )};
     }
 
     td,
     th {
-      border-right: 1px solid #333333;
-      padding: 0.25rem 0.5rem;
+      border-right: ${siteTheme(
+        'blocks.table.border',
+        '1px solid black'
+      )};
+      padding: ${siteTheme(
+        'blocks.table.cellPadding',
+        '0.25rem 0 0.25rem'
+      )};
     }
 
     th {
-      font-weight: 700;
+      font-weight: ${siteTheme(
+        'blocks.table.thFontWeight',
+        '700'
+      )};
     }
 
     tr {
-      border: 1px solid #333333;
+      border: ${siteTheme(
+        'blocks.table.border',
+        '1px solid black'
+      )};
     }
 
     a {
@@ -29,7 +46,7 @@ export const TableBlock = createGlobalStyle`
 
     figcaption {
       ${caption};
-      margin-top: 0.5rem;
     }
   }
 `;
+/* eslint-enable */

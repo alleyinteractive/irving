@@ -1,14 +1,14 @@
 import { css } from 'styled-components';
+import { siteTheme } from '@irvingjs/styled/utils';
 
 /* eslint-disable max-len */
 const link = css`
-  color: inherit;
+  color: ${siteTheme('blocks.link.color', 'inherit')};
   font-weight: inherit;
-  position: relative;
-  text-decoration: underline;
+  text-decoration: ${siteTheme('blocks.link.decoration', 'underline')};
 
   &:hover {
-    opacity: 0.5;
+    color: ${siteTheme('blocks.link.hoverColor', 'inherit')};
   }
 `;
 
