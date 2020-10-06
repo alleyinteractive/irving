@@ -1,9 +1,12 @@
 const path = require('path');
+const {
+  getValueFromFiles,
+} = require('./irving/getValueFromFiles');
 const { maybeResolveBuildModule } = require('../utils/userModule');
 const { buildContext } = require('./paths');
 
 // App aliases, exported in case we need them elsewhere.
-module.exports = {
+const aliases = {
   '@components': '@irvingjs/core/components',
   actions: './actions',
   assets: './assets',
@@ -21,3 +24,9 @@ module.exports = {
   // don't use maybeResolveBuildModule here because the this file is required, user must have it.
   '@irvingjs/componentMap': path.join(buildContext, 'componentMap.js'),
 };
+
+module.exports = getValueFromFiles(
+  'config/aliases',
+  aliases,
+  { base: buildContext }
+);

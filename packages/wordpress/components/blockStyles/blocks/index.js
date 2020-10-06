@@ -1,7 +1,5 @@
-import {
-  getValueFromUserConfig,
-} from '@irvingjs/core/config/irving/getValueFromConfig';
 import React from 'react';
+import blockStylesConfig from '@irvingjs/blockStyles.config';
 import { AudioBlock } from './audio';
 import { ButtonBlock } from './button';
 import { EmbedBlock } from './embed';
@@ -18,15 +16,10 @@ import { SeparatorBlock } from './separator';
 import { TableBlock } from './table';
 import { VideoBlock } from './video';
 
-const userBlockStyles = getValueFromUserConfig(
-  'blockStyles',
-  {}
-);
-
-const mergeBlockStyles = getValueFromUserConfig(
-  'mergeBlockStyles',
-  true
-);
+const {
+  blockMap,
+  mergeBlockStyles,
+} = blockStylesConfig;
 
 const defaultBlockStyles = {
   'core/audio': AudioBlock,
@@ -51,7 +44,7 @@ const getBlockMap = () => {
   if (mergeBlockStyles) {
     return Object.keys(defaultBlockStyles)
       .reduce((acc, blockName) => {
-        const UserStyles = userBlockStyles[blockName];
+        const UserStyles = blockMap[blockName];
         const DefaultStyles = defaultBlockStyles[blockName];
         const StyleComponent = UserStyles ? () => (
           <>
@@ -70,7 +63,7 @@ const getBlockMap = () => {
   // Replace default styles with user styles if mergeBlockStyles is false.
   return {
     ...defaultBlockStyles,
-    ...userBlockStyles,
+    ...blockMap,
   };
 };
 
