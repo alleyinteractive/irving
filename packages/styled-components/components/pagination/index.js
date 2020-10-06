@@ -7,9 +7,12 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import {
+  getGTMDefaultProps,
+  gtmPropTypes,
+} from '@irvingjs/styled/types/gtmPropTypes';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
-import {getGTMDefaultProps, gtmPropTypes} from "@irvingjs/styled/types/gtmPropTypes";
 
 /**
  * Using the same props from a Pagination component, build the url for a given
@@ -24,8 +27,6 @@ import {getGTMDefaultProps, gtmPropTypes} from "@irvingjs/styled/types/gtmPropTy
 const buildUrl = (props, page) => {
   const {
     baseUrl,
-    gtmAction,
-    gtmCategory,
     paginationFormat,
   } = props;
 
@@ -56,6 +57,8 @@ const Pagination = (props) => {
     currentPage,
     displayFirstAndLast,
     displayPrevAndNext,
+    gtmAction,
+    gtmCategory,
     // eslint-disable-next-line no-unused-vars
     paginationFormat,
     range,
