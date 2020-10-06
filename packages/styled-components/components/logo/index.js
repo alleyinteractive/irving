@@ -36,6 +36,9 @@ const Logo = (props) => {
     <LogoWrapper {...standardProps}>
       <LogoLink
         as={Link}
+        gtmAction="Homepage"
+        gtmCategory="Navigation"
+        gtmLabel="Logo"
         href={href}
       >
         {(logoImageUrl && ! hasChildren) ? (

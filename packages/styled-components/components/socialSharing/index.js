@@ -156,8 +156,8 @@ const SocialSharing = (props) => {
         }) => (
           <SocialSharingItemWrapper key={platform} className={platform}>
             <Link
-              data-gtm-event="Engagement"
-              data-gtm-category="Share"
+              data-gtm-category="Engagement"
+              data-gtm-action="Share"
               data-gtm-label={platform}
               href={shareUrl}
               target={target}

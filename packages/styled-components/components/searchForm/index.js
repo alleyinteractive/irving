@@ -55,13 +55,14 @@ const SearchForm = (props) => {
       <SearchLabel>
         <SearchFormTerm
           aria-label="search"
+          data-gtm-action="Search"
+          data-gtm-category="Navigation"
           name={searchTermQueryArg}
           placeholder="Search"
           ref={register}
           type="text"
         />
       </SearchLabel>
-      {/* @TODO Add GTM event.  */}
       <SearchFormSubmitButton type="submit">Search</SearchFormSubmitButton>
     </SearchFormWrapper>
   );
