@@ -50,7 +50,7 @@ const SearchForm = (props) => {
     // eslint-disable-next-line max-len
     history.push(`${baseUrl}?${queryString.stringify(currentQueryVars)}`);
   };
-
+  console.log(analytics);
   return (
     <SearchFormWrapper
       {...standardProps}
@@ -67,7 +67,6 @@ const SearchForm = (props) => {
         />
       </SearchLabel>
       <SearchFormSubmitButton
-        {...analytics.search}
         type="submit"
       >
         Search
