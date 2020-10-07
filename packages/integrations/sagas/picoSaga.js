@@ -1,8 +1,7 @@
 import {
   call,
   put,
-  take,
-  fork,
+  takeLatest,
 } from 'redux-saga/effects';
 import {
   SEND_PICO_VERIFICATION_REQUEST,
@@ -15,27 +14,9 @@ import {
   actionReceiveCoralUsernameSetHash,
 } from '../actions/coralActions';
 
-/**
- * A custom generator pattern designed to only take the first instance of an action.
- * @param {string} pattern - The action to respond to.
- * @param {*} saga - The saga to execute.
- * @param  {...any} args - Arguments.
- */
-function* takeFirst(pattern, saga, ...args) {
-  const task = yield fork(function* () {
-    while (true) {
-      const action = yield take(pattern);
-
-      yield call(saga, ...args.concat(action));
-    }
-  });
-
-  return task;
-}
-
 // The Pico saga.
 export default [
-  takeFirst(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
+  takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
 ];
 
 /**

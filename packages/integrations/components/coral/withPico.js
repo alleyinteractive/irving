@@ -1,38 +1,37 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import CoralEmbed from './index';
 import { actionRequireUpgrade } from '../../actions/picoActions';
 import {
   tokenSelector,
-  verificationRequestSelector,
+  requireUsernameSelector,
 } from '../../selectors/coralSelector';
-import { picoLoadedSelector } from '../../selectors/picoSelector';
+import { picoSignalSelector } from '../../selectors/picoSelector';
 
-const withPico = (ChildComponent) => (props) => {
-  const dispatch = useDispatch();
-  // Define a function to summon an upgrade prompt for Coral SSO.
-  const showUpgradeModal = useCallback(
-    () => dispatch(actionRequireUpgrade()),
-    [dispatch]
-  );
+const withPico = (ChildComponent) => {
+  const wrapped = (props) => {
+    const { ssoTiers } = props;
 
-  const { ssoTiers: tiers } = props; /* eslint-disable-line */
+    // Define a global dispatch function.
+    const dispatch = useDispatch();
+    // Grab the value of the Pico signal from the Redux store.
+    const { status, tier } = useSelector(picoSignalSelector) || {};
+    // Grab the value of the Coral token from the Redux store.
+    const coralToken = useSelector(tokenSelector);
+    // Grab the true/false value of whether or not a username needs to be set
+    // in order to enable commenting privileges from the Redux store.
+    const requireUsername = useSelector(requireUsernameSelector);
 
-  // Define Coral event handlers.
-  const handlers = (events) => {
-    events.on('loginPrompt', () => {
-      const signalNode = document.getElementById('PicoSignal-container');
-
-      if (signalNode) {
-        const status = signalNode.getAttribute('data-pico-status');
-        const tier = signalNode.getAttribute('data-pico-tier');
-
+    // Define Coral event handlers.
+    const handlers = (events) => {
+      events.on('loginPrompt', () => {
         // If the user is registered but not paying show the upgrade modal on click.
         if ('registered' === status) {
-          showUpgradeModal();
-        } else if ('paying' === status && ! tiers.includes(tier)) {
+          dispatch(actionRequireUpgrade());
+        } else if ('paying' === status && ! ssoTiers.includes(tier)) {
           // If the user is paying but cannot comment, prompt them to upgrade their subscription.
-          showUpgradeModal();
+          dispatch(actionRequireUpgrade());
         } else {
           // Summon the base Pico modal.
           const ruleNode = document.getElementById('PicoRule-button');
@@ -41,63 +40,39 @@ const withPico = (ChildComponent) => (props) => {
             ruleNode.click();
           }
         }
-      }
-    });
-
-    events.onAny((eventName, data) => {
-      window.dataLayer = window.dataLayer ?? [];
-      window.dataLayer.push({
-        event: `${eventName}Coral`,
-        coralEvent: {
-          ...data,
-        },
       });
-    });
+
+      events.onAny((eventName, data) => {
+        window.dataLayer = window.dataLayer ?? [];
+        window.dataLayer.push({
+          event: `${eventName}Coral`,
+          coralEvent: {
+            ...data,
+          },
+        });
+      });
+    };
+
+    if (coralToken && ssoTiers.includes(tier) && ! requireUsername) {
+      return (
+        <ChildComponent {...props} events={handlers} accessToken={coralToken} />
+      );
+    }
+
+    return (
+      <ChildComponent {...props} events={handlers} />
+    );
   };
 
-  const picoLoaded = useSelector(picoLoadedSelector);
-  const requestSent = useSelector(verificationRequestSelector);
-  const [canComment, setCanComment] = useState(null);
+  wrapped.defaultProps = {
+    ssoTiers: [],
+  };
 
-  useEffect(() => {
-    const signalNode = document.getElementById('PicoSignal-container');
+  wrapped.propTypes = {
+    ssoTiers: PropTypes.arrayOf(PropTypes.string),
+  };
 
-    if (signalNode) {
-      const tier = signalNode.getAttribute('data-pico-tier');
-
-      if (! tier && null !== tier) {
-        setCanComment(false);
-      }
-
-      if (tiers.includes(tier)) {
-        setCanComment(true);
-      }
-
-      if (! tiers.includes(tier) && null !== tier) {
-        setCanComment(false);
-      }
-    }
-  }, [picoLoaded, requestSent]);
-
-  // Retrieve the Coral SSO token from the Redux store.
-  const coralToken = useSelector(tokenSelector);
-
-  if (coralToken && canComment && requestSent) {
-    return (
-      <ChildComponent
-        {...props}
-        events={handlers}
-        accessToken={coralToken}
-      />
-    );
-  }
-
-  return (
-    <ChildComponent
-      {...props}
-      events={handlers}
-    />
-  );
+  return wrapped;
 };
 
 export default withPico(CoralEmbed);
