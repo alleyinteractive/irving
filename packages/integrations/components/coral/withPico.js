@@ -9,7 +9,8 @@ import {
 import { picoSignalSelector } from '../../selectors/picoSelector';
 
 const withPico = (ChildComponent) => (props) => {
-  const { ssoTiers } = props;
+  const { ssoTiers } = props; // eslint-disable-line
+
   // Define a global dispatch function.
   const dispatch = useDispatch();
   // Grab the value of the Pico signal from the Redux store.
