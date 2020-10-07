@@ -18,6 +18,10 @@ export const analyticsPropTypes = {
        * Event Label
        */
       label: PropTypes.string,
+      /**
+       * Event Value
+       */
+      value: PropTypes.number,
     })
   ),
 };
