@@ -11,6 +11,7 @@ import {
   analyticsPropTypes,
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
+import { propsToDataAttributes } from '@irvingjs/styled/utils';
 import toReactElement from '@irvingjs/core/utils/toReactElement';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
@@ -161,7 +162,7 @@ const SocialSharing = (props) => {
         }) => (
           <SocialSharingItemWrapper key={platform} className={platform}>
             <Link
-              {...analytics.share}
+              {...propsToDataAttributes(analytics.share)}
               data-label={platform}
               href={shareUrl}
               target={target}

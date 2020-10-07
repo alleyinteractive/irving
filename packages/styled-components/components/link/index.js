@@ -7,6 +7,11 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import { propsToDataAttributes } from '@irvingjs/styled/utils';
+import {
+  analyticsPropTypes,
+  getAnalyticsDefaultProps,
+} from '@irvingjs/styled/types/analyticsPropTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -18,12 +23,9 @@ import * as defaultStyles from './themes/default';
  */
 const Link = (props) => {
   const {
+    analytics,
     ariaHidden,
     children,
-    gtmAction,
-    gtmCategory,
-    gtmLabel,
-    gtmValue,
     href,
     onClick,
     rel,
@@ -41,11 +43,8 @@ const Link = (props) => {
 
   return (
     <LinkWrapper
+      {...propsToDataAttributes(analytics.click)}
       aria-hidden={'true' === ariaHidden ? ariaHidden : null}
-      data-gtm-action={gtmAction}
-      data-gtm-category={gtmCategory}
-      data-gtm-label={gtmLabel}
-      data-gtm-value={gtmValue}
       href={destination}
       onClick={onClick || defaultOnClick}
       rel={rel}
@@ -59,6 +58,7 @@ const Link = (props) => {
 };
 
 Link.defaultProps = {
+  ...getAnalyticsDefaultProps(),
   ...getStandardDefaultProps(),
   ariaHidden: null,
   theme: defaultStyles,
@@ -72,6 +72,7 @@ Link.defaultProps = {
 };
 
 Link.propTypes = {
+  ...analyticsPropTypes,
   ...standardPropTypes,
   ariaHidden: PropTypes.oneOf([null, 'true']),
   /**
@@ -94,22 +95,6 @@ Link.propTypes = {
    * Anchor target.
    */
   target: PropTypes.string,
-  /**
-   * GTM category.
-   */
-  gtmCategory: PropTypes.string,
-  /**
-   * GTM action.
-   */
-  gtmAction: PropTypes.string,
-  /**
-   * GTM label.
-   */
-  gtmLabel: PropTypes.string,
-  /**
-   * GTM value.
-   */
-  gtmValue: PropTypes.number,
 };
 
 const themeMap = {

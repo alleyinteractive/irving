@@ -12,6 +12,7 @@ import {
   analyticsPropTypes,
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
+import { propsToDataAttributes } from '@irvingjs/styled/utils';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -52,6 +53,7 @@ const SearchForm = (props) => {
   };
   return (
     <SearchFormWrapper
+      {...propsToDataAttributes(analytics.search)}
       {...standardProps}
       action={baseUrl}
       onSubmit={handleSubmit(onSubmit)}
@@ -66,7 +68,6 @@ const SearchForm = (props) => {
         />
       </SearchLabel>
       <SearchFormSubmitButton
-        {...analytics.search}
         type="submit"
       >
         Search
