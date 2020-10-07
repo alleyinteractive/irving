@@ -1,6 +1,7 @@
 import {
   DISMISS_CORAL_UPGRADE_MODAL,
   RECEIVE_CORAL_LOGOUT_REQUEST,
+  RECEIVE_CORAL_LOGOUT,
   RECEIVE_CORAL_SSO_TOKEN,
   RECEIVE_CORAL_USERNAME_REQUEST,
   RECEIVE_CORAL_USERNAME_SET_HASH,
@@ -65,6 +66,7 @@ export default function coralReducer(
     case SET_CORAL_USERNAME:
       return {
         ...state,
+        requireUsername: false,
         usernameSetHash: null,
         validationError: null,
         usernameSet: true,
@@ -95,6 +97,14 @@ export default function coralReducer(
         purgeUser: true,
         requireUsername: false,
         usernameSetHash: null,
+      };
+
+    case RECEIVE_CORAL_LOGOUT:
+      return {
+        ...state,
+        verificationRequestSent: false,
+        purgeUser: false,
+        token: null,
       };
 
     case SEND_PICO_VERIFICATION_REQUEST:
