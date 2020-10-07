@@ -10,7 +10,7 @@ import {
 } from '@irvingjs/styled/types/propTypes';
 import {
   analyticsPropTypes,
-  getAnalyticsPropTypes,
+  getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
 import * as defaultStyles from './themes/default';
 
@@ -50,7 +50,6 @@ const SearchForm = (props) => {
     // eslint-disable-next-line max-len
     history.push(`${baseUrl}?${queryString.stringify(currentQueryVars)}`);
   };
-  console.log(analytics);
   return (
     <SearchFormWrapper
       {...standardProps}
@@ -67,6 +66,7 @@ const SearchForm = (props) => {
         />
       </SearchLabel>
       <SearchFormSubmitButton
+        {...analytics.search}
         type="submit"
       >
         Search
@@ -76,7 +76,7 @@ const SearchForm = (props) => {
 };
 
 SearchForm.defaultProps = {
-  ...getAnalyticsPropTypes(),
+  ...getAnalyticsDefaultProps(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   baseUrl: '/',
