@@ -9,9 +9,9 @@ import {
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import {
-  gtmPropTypes,
-  getGTMDefaultProps,
-} from '@irvingjs/styled/types/gtmPropTypes';
+  analyticsPropTypes,
+  getAnalyticsPropTypes,
+} from '@irvingjs/styled/types/analyticsPropTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -21,9 +21,8 @@ import * as defaultStyles from './themes/default';
  */
 const SearchForm = (props) => {
   const {
+    analytics,
     baseUrl,
-    gtmAction,
-    gtmCategory,
     searchTerm,
     searchTermQueryArg,
     theme,
@@ -61,21 +60,24 @@ const SearchForm = (props) => {
       <SearchLabel>
         <SearchFormTerm
           aria-label="search"
-          data-gtm-action={gtmAction}
-          data-gtm-category={gtmCategory}
           name={searchTermQueryArg}
           placeholder="Search"
           ref={register}
           type="text"
         />
       </SearchLabel>
-      <SearchFormSubmitButton type="submit">Search</SearchFormSubmitButton>
+      <SearchFormSubmitButton
+        {...analytics.search}
+        type="submit"
+      >
+        Search
+      </SearchFormSubmitButton>
     </SearchFormWrapper>
   );
 };
 
 SearchForm.defaultProps = {
-  ...getGTMDefaultProps(),
+  ...getAnalyticsPropTypes(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   baseUrl: '/',
@@ -84,7 +86,7 @@ SearchForm.defaultProps = {
 };
 
 SearchForm.propTypes = {
-  ...gtmPropTypes,
+  ...analyticsPropTypes,
   ...standardPropTypes,
   /**
    * Base url for search.

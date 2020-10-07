@@ -7,9 +7,9 @@ import {
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import {
-  gtmPropTypes,
-  getGTMDefaultProps,
-} from '@irvingjs/styled/types/gtmPropTypes';
+  analyticsPropTypes,
+  getAnalyticsDefaultProps,
+} from '@irvingjs/styled/types/analyticsPropTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -21,9 +21,7 @@ import * as defaultStyles from './themes/default';
  */
 const Logo = (props) => {
   const {
-    gtmAction,
-    gtmCategory,
-    gtmLabel,
+    analytics,
     href,
     logoImageUrl,
     children,
@@ -42,10 +40,8 @@ const Logo = (props) => {
   return (
     <LogoWrapper {...standardProps}>
       <LogoLink
+        {...analytics.click}
         as={Link}
-        gtmAction={gtmAction}
-        gtmCategory={gtmCategory}
-        gtmLabel={gtmLabel}
         href={href}
       >
         {(logoImageUrl && ! hasChildren) ? (
@@ -64,7 +60,7 @@ const Logo = (props) => {
 };
 
 Logo.defaultProps = {
-  ...getGTMDefaultProps(),
+  ...getAnalyticsDefaultProps(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   href: '/',
@@ -73,7 +69,7 @@ Logo.defaultProps = {
 };
 
 Logo.propTypes = {
-  ...gtmPropTypes,
+  ...analyticsPropTypes,
   ...standardPropTypes,
   /**
    * URL the logo should link to.
