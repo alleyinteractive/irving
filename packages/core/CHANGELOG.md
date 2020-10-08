@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v5.0.0-alpha.3...v5.0.0-alpha.4) (2020-10-08)
+
+
+### Bug Fixes
+
+* **adminbar:** fix check for event origin, fix auth components request debug ([c3e3c3d](https://github.com/alleyinteractive/irving/packages/core/commit/c3e3c3ddccdd1de097f840e7857d1797a626165f))
+* **blockstyles:** switch to using alias for blockStyles config, better bundle size ([6a70d2d](https://github.com/alleyinteractive/irving/packages/core/commit/6a70d2d7908696f4dbc5a8758df12cdb8e613a87))
+* **webpack:** add config name for editor, add BlockStyles to component map ([48293b4](https://github.com/alleyinteractive/irving/packages/core/commit/48293b4df93bba564378b2a77b1929dbca566866))
+
+
+### Features
+
+* **multiconfig:** add new webpack.config.multi.js config option, configure it with editor build ([d38c08e](https://github.com/alleyinteractive/irving/packages/core/commit/d38c08eee9169946a5279d2a9ded9be765d657c8))
+
+
+
+
+
 # [4.2.0-alpha.21](https://github.com/alleyinteractive/irving/packages/core/compare/v4.2.0-alpha.20...v4.2.0-alpha.21) (2020-10-04)
 
 
