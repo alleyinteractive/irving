@@ -5,6 +5,7 @@ const {
   buildContext,
 } = require('@irvingjs/core/config/paths');
 const aliases = require('@irvingjs/core/config/aliases');
+const wordpressAliases = require('./aliases');
 const projectAliases = Object.keys(aliases)
   .reduce((acc, alias) => {
     const aliasPath = aliases[alias];
@@ -47,7 +48,10 @@ module.exports = (multiConfig) => (
       },
 
       resolve: {
-        alias: projectAliases,
+        alias: {
+          ...projectAliases,
+          ...wordpressAliases,
+        },
       },
 
       // Loaders

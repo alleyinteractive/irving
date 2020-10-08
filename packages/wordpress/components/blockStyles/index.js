@@ -3,9 +3,9 @@ import getBlockMap from './blocks';
 
 const blockMap = getBlockMap();
 
-const BlockStyles = createGlobalStyle`
+const BlockStylesheet = createGlobalStyle`
   ${Object.values(blockMap)
     .map((blockStyles) => blockStyles)}
 `;
 
-export default BlockStyles;
+export default BlockStylesheet;
