@@ -67,11 +67,7 @@ const SearchForm = (props) => {
           type="text"
         />
       </SearchLabel>
-      <SearchFormSubmitButton
-        type="submit"
-      >
-        Search
-      </SearchFormSubmitButton>
+      <SearchFormSubmitButton type="submit">Search</SearchFormSubmitButton>
     </SearchFormWrapper>
   );
 };
