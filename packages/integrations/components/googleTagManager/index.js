@@ -29,7 +29,7 @@ const GoogleTagManager = (props) => {
    */
   useEffect(() => {
     if (0 === started.length) {
-      window.dataLayer.push({
+      tracking.trackEvent({
         'gtm.start': new Date().getTime(),
         event: 'gtm.js',
       });

@@ -1,5 +1,5 @@
 import React from 'react';
-import track from 'react-tracking';
+import track, { TrackingPropType } from 'react-tracking';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import CssReset from '@irvingjs/styled/components/reset';
@@ -41,6 +41,10 @@ App.propTypes = {
     PropTypes.func,
   ]).isRequired,
   theme: PropTypes.object,
+  /**
+   * React tracking.
+   */
+  tracking: TrackingPropType, // eslint-disable-line react/require-default-props, react/no-unused-prop-types
 };
 
 const themeMap = {
@@ -53,6 +57,6 @@ export {
 };
 
 export default track({
-  app: 'Irving',
-  event: 'irving.appMounted',
+  event: 'irving.componentLoaded',
+  eventContext: 'irving.styledComponents',
 }, { dispatchOnMount: true })(App);
