@@ -11,12 +11,12 @@ const bodyText = css`
 
   strong,
   b {
-    font-weight: 700;
+    font-size: ${siteTheme('blocks.bodyText.strong.fontWeight', '700')};
   }
 
   em,
   i {
-    font-style: italic;
+    font-size: ${siteTheme('blocks.bodyText.em.fontStyle', 'italic')};
   }
 `;
 

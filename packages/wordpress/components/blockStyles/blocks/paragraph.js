@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { siteTheme } from '@irvingjs/styled/utils';
 import { bodyText, link } from './utils';
 
 export const ParagraphBlock = createGlobalStyle`
@@ -12,8 +11,8 @@ export const ParagraphBlock = createGlobalStyle`
     }
 
     &.has-drop-cap:first-letter {
-      font-size: ${siteTheme('blocks.paragraph.dropCapSize', '5rem')};
-      font-weight: ${siteTheme('blocks.paragraph.dropCapWeight', '700')};
+      font-size: 5rem;
+      font-weight: 700;
     }
   }
 `;
