@@ -7,7 +7,7 @@ const {
 const coreAliases = require('@irvingjs/core/config/aliases');
 const aliases = Object.keys(coreAliases)
   .reduce((acc, alias) => {
-    const aliasPath = aliases[alias];
+    const aliasPath = coreAliases[alias];
 
     return {
       ...acc,
@@ -58,12 +58,17 @@ module.exports = (multiConfig) => (
             include: (filepath) => (
               (
                 (
-                  filepath.includes(buildContext) &&
+                  (
+                    filepath.includes(buildContext) ||
+                    filepath.includes(path.join(__dirname, '../'))
+                  ) &&
                   ! filepath.includes('node_modules')
                 ) ||
                 // Anything imported within irving packages should be included in build,
                 // even if located within node_modules (but not nested node modules).
-                filepath.match(/node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/)
+                filepath.match(
+                  /node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/
+                )
               ) &&
               // Exclude minified JS.
               ! filepath.match(/\.min\.js$/)
