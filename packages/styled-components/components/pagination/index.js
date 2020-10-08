@@ -140,7 +140,7 @@ const Pagination = (props) => {
             analytics={({
               click: {
                 ...analytics.click,
-                label: "First Page",
+                label: 'First Page',
               },
             })}
             as={Link}
@@ -157,7 +157,7 @@ const Pagination = (props) => {
             analytics={({
               click: {
                 ...analytics.click,
-                label: "Second Page",
+                label: 'Second Page',
               },
             })}
             as={Link}
@@ -171,7 +171,7 @@ const Pagination = (props) => {
             analytics={({
               click: {
                 ...analytics.click,
-                label: "First Page",
+                label: 'First Page',
               },
             })}
             as={Link}
@@ -189,7 +189,7 @@ const Pagination = (props) => {
             analytics={({
               click: {
                 ...analytics.click,
-                label: "First Page",
+                label: 'First Page',
               },
             })}
             as={Link}
@@ -212,7 +212,7 @@ const Pagination = (props) => {
             analytics={({
               click: {
                 ...analytics.click,
-                label: "Last Page",
+                label: 'Last Page',
               },
             })}
             as={Link}
@@ -229,7 +229,7 @@ const Pagination = (props) => {
             analytics={({
               click: {
                 ...analytics.click,
-                label: "Second Last Page",
+                label: 'Second Last Page',
               },
             })}
             as={Link}
@@ -243,7 +243,7 @@ const Pagination = (props) => {
             analytics={({
               click: {
                 ...analytics.click,
-                label: "Last Page",
+                label: 'Last Page',
               },
             })}
             as={Link}
@@ -261,7 +261,7 @@ const Pagination = (props) => {
             analytics={({
               click: {
                 ...analytics.click,
-                label: "Last Page",
+                label: 'Last Page',
               },
             })}
             as={Link}
