@@ -4,9 +4,8 @@ const {
   rootUrl,
   buildContext,
 } = require('@irvingjs/core/config/paths');
-const aliases = require('@irvingjs/core/config/aliases');
-const wordpressAliases = require('./aliases');
-const projectAliases = Object.keys(aliases)
+const coreAliases = require('@irvingjs/core/config/aliases');
+const aliases = Object.keys(coreAliases)
   .reduce((acc, alias) => {
     const aliasPath = aliases[alias];
 
@@ -48,10 +47,7 @@ module.exports = (multiConfig) => (
       },
 
       resolve: {
-        alias: {
-          ...projectAliases,
-          ...wordpressAliases,
-        },
+        alias: aliases,
       },
 
       // Loaders
@@ -59,10 +55,19 @@ module.exports = (multiConfig) => (
         rules: [
           {
             test: /\.js$/,
-            exclude: [
-              /node_modules/,
-              /\.min\.js$/,
-            ],
+            include: (filepath) => (
+              (
+                (
+                  filepath.includes(buildContext) &&
+                  ! filepath.includes('node_modules')
+                ) ||
+                // Anything imported within irving packages should be included in build,
+                // even if located within node_modules (but not nested node modules).
+                filepath.match(/node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/)
+              ) &&
+              // Exclude minified JS.
+              ! filepath.match(/\.min\.js$/)
+            ),
             use: {
               loader: 'babel-loader',
               options: {
