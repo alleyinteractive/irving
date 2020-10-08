@@ -11,7 +11,6 @@ import {
   getAnalyticsDefaultProps,
   analyticsPropTypes,
 } from '@irvingjs/styled/types/analyticsPropTypes';
-import { propsToDataAttributes } from '@irvingjs/styled/utils';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
 
@@ -106,10 +105,14 @@ const Pagination = (props) => {
     } else {
       pages.push(
         <NavWrapper
-          {...propsToDataAttributes(analytics.click)}
+          analytics={({
+            click: {
+              ...analytics.click,
+              label: `${i} page`,
+            },
+          })}
           as={Link}
           href={buildUrl(props, i)}
-          data-label={`${i} page`}
         >
           {i}
         </NavWrapper>
@@ -135,10 +138,14 @@ const Pagination = (props) => {
       case (2 === startRange):
         pages.unshift(
           <NavWrapper
-            {...propsToDataAttributes(analytics.click)}
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: "First Page",
+              },
+            })}
             as={Link}
             href={buildUrl(props, 1)}
-            data-label="First Page"
           >
             1
           </NavWrapper>
@@ -148,20 +155,28 @@ const Pagination = (props) => {
       case (3 === startRange):
         pages.unshift(
           <NavWrapper
-            {...propsToDataAttributes(analytics.click)}
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: "Second Page",
+              },
+            })}
             as={Link}
             href={buildUrl(props, 2)}
-            data-label="Second Page"
           >
             2
           </NavWrapper>
         );
         pages.unshift(
           <NavWrapper
-            {...propsToDataAttributes(analytics.click)}
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: "First Page",
+              },
+            })}
             as={Link}
             href={buildUrl(props, 1)}
-            data-label="First Page"
           >
             1
           </NavWrapper>
@@ -172,10 +187,14 @@ const Pagination = (props) => {
         pages.unshift(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
         pages.unshift(
           <NavWrapper
-            {...propsToDataAttributes(analytics.click)}
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: "First Page",
+              },
+            })}
             as={Link}
             href={buildUrl(props, 1)}
-            data-label="First Page"
           >
             1
           </NavWrapper>
@@ -191,10 +210,14 @@ const Pagination = (props) => {
       case ((totalPages - 1) === endRange):
         pages.push(
           <NavWrapper
-            {...propsToDataAttributes(analytics.click)}
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: "Last Page",
+              },
+            })}
             as={Link}
             href={buildUrl(props, totalPages)}
-            data-label="Last Page"
           >
             {totalPages}
           </NavWrapper>
@@ -204,20 +227,28 @@ const Pagination = (props) => {
       case ((totalPages - 2) === endRange):
         pages.push(
           <NavWrapper
-            {...propsToDataAttributes(analytics.click)}
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: "Second Last Page",
+              },
+            })}
             as={Link}
             href={buildUrl(props, totalPages - 1)}
-            data-label="Second Last Page"
           >
             {totalPages - 1}
           </NavWrapper>
         );
         pages.push(
           <NavWrapper
-            {...propsToDataAttributes(analytics.click)}
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: "Last Page",
+              },
+            })}
             as={Link}
             href={buildUrl(props, totalPages)}
-            data-label="Last Page"
           >
             {totalPages}
           </NavWrapper>
@@ -228,10 +259,14 @@ const Pagination = (props) => {
         pages.push(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
         pages.push(
           <NavWrapper
-            {...propsToDataAttributes(analytics.click)}
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: "Last Page",
+              },
+            })}
             as={Link}
             href={buildUrl(props, totalPages)}
-            data-label="Last Page"
           >
             {totalPages}
           </NavWrapper>
