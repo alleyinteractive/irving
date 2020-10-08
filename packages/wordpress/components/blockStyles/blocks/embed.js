@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { bodyText, caption, link } from './utils';
 
-export const embedBlock = (overrides = '') => css`
+export const embedBlock = css`
   [data-type^="core-embed"],
   .wp-block-embed {
 
@@ -16,7 +16,5 @@ export const embedBlock = (overrides = '') => css`
     blockquote {
       ${bodyText};
     }
-
-    ${overrides}
   }
 `;

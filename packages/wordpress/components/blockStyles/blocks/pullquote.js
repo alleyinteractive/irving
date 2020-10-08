@@ -17,10 +17,6 @@ export const pullquoteBlock = css`
       margin-right: 1.5rem;
     }
 
-    &:not(.is-style-solid-color) {
-      background-color: #EEEEEE;
-    }
-
     p {
       color: #000000;
       font-family: Arial, Helvetica, sans-serif

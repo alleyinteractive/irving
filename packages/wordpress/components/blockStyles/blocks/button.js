@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 /* eslint-disable indent */
-export const buttonBlock = (overrides = '') => css`
+export const buttonBlock = css`
   .wp-block-button__link {
     border: 1px solid blue;
     border-radius: 0;
@@ -11,10 +11,8 @@ export const buttonBlock = (overrides = '') => css`
     font-weight: 700;
 
     &:hover {
-      background-color: blue;
+      background: transparent;
       color: white;
     }
-
-    ${overrides}
   }
 `;
