@@ -5,7 +5,6 @@ export const paragraphBlock = css`
   [data-type="core/paragraph"],
   .irving__post-content p {
     ${bodyText};
-    color: red;
 
     a {
       ${link};
