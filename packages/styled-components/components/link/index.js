@@ -44,6 +44,8 @@ const Link = (props) => {
 
   return (
     <LinkWrapper
+      {...props}
+      {...standardProps}
       aria-hidden={'true' === ariaHidden ? ariaHidden : null}
       href={destination}
       onClick={(event) => {
@@ -55,8 +57,6 @@ const Link = (props) => {
       }}
       rel={rel}
       target={target}
-      {...props}
-      {...standardProps}
     >
       {children}
     </LinkWrapper>
