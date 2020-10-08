@@ -2,7 +2,6 @@ import getAppTemplateVars from './server/getAppTemplateVars';
 
 // Export config
 export default {
-  name: 'styled',
+  name: 'loadable',
   getAppTemplateVars,
-  styleguideConfig: './config/styleguide.config.js',
 };
