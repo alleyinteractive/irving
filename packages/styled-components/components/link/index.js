@@ -41,6 +41,8 @@ const Link = (props) => {
 
   return (
     <LinkWrapper
+      {...props}
+      {...standardProps}
       aria-hidden={'true' === ariaHidden ? ariaHidden : null}
       data-gtm-action={gtmAction}
       data-gtm-category={gtmCategory}
@@ -50,8 +52,6 @@ const Link = (props) => {
       onClick={onClick || defaultOnClick}
       rel={rel}
       target={target}
-      {...props}
-      {...standardProps}
     >
       {children}
     </LinkWrapper>
