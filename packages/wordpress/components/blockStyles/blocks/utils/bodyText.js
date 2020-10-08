@@ -8,6 +8,10 @@ const bodyText = css`
     'Arial, Helvetica, sans-serif'
   )};
   font-size: ${siteTheme('blocks.bodyText.fontSize', '1rem')};
+  font-style: ${siteTheme('blocks.bodyText.fontStyle', 'normal')};
+  font-weight: ${siteTheme('blocks.bodyText.fontWeight', 400)};
+  letter-spacing: ${siteTheme('blocks.bodyText.letterSpacing', 'normal')};
+  line-height: ${siteTheme('blocks.bodyText.lineHeight', 1)};
 
   strong,
   b {

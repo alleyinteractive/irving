@@ -4,7 +4,13 @@ import { siteTheme } from '@irvingjs/styled/utils';
 /* eslint-disable max-len, indent */
 const link = css`
   color: ${siteTheme('blocks.link.color', 'inherit')};
-  font-weight: ${siteTheme('blocks.link.fontWeight', 'underline')};
+  border: ${siteTheme('blocks.link.border', 'inherit')};
+  font-family: ${siteTheme(
+    'blocks.link.fontFamily',
+    'Arial, Helvetica, sans-serif'
+  )};
+  font-style: ${siteTheme('blocks.link.fontStyle', 'normal')};
+  font-weight: ${siteTheme('blocks.link.fontWeight', 400)};
   text-decoration: ${siteTheme('blocks.link.textDecoration', 'underline')};
 
   &:hover {

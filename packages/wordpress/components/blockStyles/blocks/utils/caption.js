@@ -8,6 +8,10 @@ const caption = css`
     'Arial, Helvetica, sans-serif'
   )};
   font-size: ${siteTheme('blocks.caption.fontSize', '0.75rem')};
+  font-style: ${siteTheme('blocks.caption.fontStyle', 'normal')};
+  font-weight: ${siteTheme('blocks.caption.fontWeight', 400)};
+  letter-spacing: ${siteTheme('blocks.caption.letterSpacing', 'normal')};
+  line-height: ${siteTheme('blocks.caption.lineHeight', 1)};
 `;
 
 export default caption;
