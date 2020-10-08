@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v5.0.0-alpha.5...v5.0.0-alpha.6) (2020-10-08)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
 # [5.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v5.0.0-alpha.4...v5.0.0-alpha.5) (2020-10-08)
 
 **Note:** Version bump only for package @irvingjs/vip-go
