@@ -52,7 +52,6 @@ const buildUrl = (props, page) => {
  */
 const Pagination = (props) => {
   const {
-    // eslint-disable-next-line no-unused-vars
     analytics,
     // eslint-disable-next-line no-unused-vars
     baseUrl,
