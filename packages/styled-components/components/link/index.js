@@ -50,7 +50,7 @@ const Link = (props) => {
       href={destination}
       onClick={(event) => {
         tracking.trackEvent({
-          componentAction: 'click',
+          event: 'irving.linkClick',
           eventData: analytics.click,
         });
         return onClick ? onClick(event) : defaultOnClick(event);
@@ -109,5 +109,5 @@ export {
 };
 
 export default track({
-  component: 'link',
+  eventComponent: 'link',
 })(Link);

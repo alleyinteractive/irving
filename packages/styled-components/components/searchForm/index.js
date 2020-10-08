@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { useForm } from 'react-hook-form';
@@ -12,7 +13,6 @@ import {
   analyticsPropTypes,
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
-import { propsToDataAttributes } from '@irvingjs/styled/utils';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -42,9 +42,20 @@ const SearchForm = (props) => {
   const { register, handleSubmit } = useForm({
     defaultValues,
   });
-
+  const tracking = useTracking();
+  const trackSearch = (query) => {
+    tracking.trackEvent({
+      event: 'irving.searchSubmit',
+      eventComponent: 'search',
+      eventData: {
+        ...analytics.search,
+        label: query,
+      },
+    });
+  };
   const onSubmit = (data, e) => {
     e.preventDefault();
+    trackSearch(data[searchTermQueryArg]);
     const currentQueryVars = queryString.parse(window.location.search);
     currentQueryVars[searchTermQueryArg] = data[searchTermQueryArg];
 
@@ -53,7 +64,6 @@ const SearchForm = (props) => {
   };
   return (
     <SearchFormWrapper
-      {...propsToDataAttributes(analytics.search)}
       {...standardProps}
       action={baseUrl}
       onSubmit={handleSubmit(onSubmit)}
