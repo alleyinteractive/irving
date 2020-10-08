@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.0-alpha.4...v5.0.0-alpha.5) (2020-10-08)
+
+
+### Bug Fixes
+
+* **aliases:** fix wordpress package aliases ([0c262aa](https://github.com/alleyinteractive/irving/packages/example-package/commit/0c262aa923a61326947a79ea894a8e588c36eb57))
+
+
+
+
+
 # [5.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.0-alpha.3...v5.0.0-alpha.4) (2020-10-08)
 
 
