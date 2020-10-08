@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.0-alpha.6...v5.0.0-alpha.7) (2020-10-08)
+
+
+### Bug Fixes
+
+* **config:** another webpack config fix for editor styles ([453d76b](https://github.com/alleyinteractive/irving/packages/example-package/commit/453d76b724692c94b86928c4f5240ebde094718c))
+
+
+
+
+
 # [5.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.0-alpha.5...v5.0.0-alpha.6) (2020-10-08)
 
 
