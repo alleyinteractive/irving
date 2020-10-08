@@ -30,6 +30,9 @@ Note: For merge commits, just use `chore` for the type of change, `merge` for th
 Specific branches will be used for specific purposes in this repo. Considering this, the lifecycle of a new feature, bugfix, etc. should largely follow the steps below.
 
 ### Set up process
+**Important:**
+* Before publishing any release manually, you will need to authenticate your machine to use the `alleyops` npm account by running `npm adduser` and following the prompts. Credentials for the account can be found in the Alley Leads 1Password vault.
+* If you are publishing a `beta`, `rc`, or stable release, you will also need to have a valid `GH_TOKEN` in your Irving `.env` file. In Github, create your token under [account > Settings > Developer Settings > Personal Access Tokens](https://github.com/settings/tokens). Then create a `.env` file at the root of the cloned Irving repo and assign it to a `GH_TOKEN` environmental variable.
 **NOTE:** The project in which you are testing your Irving changes must be on at least Irving `3.1.0` for this setup process to work properly.
 1. Fork or clone the Irving repo.
 2. `git checkout master` - Check out the NPM package release branch.
@@ -75,11 +78,6 @@ Specific branches will be used for specific purposes in this repo. Considering t
 * `git checkout master && git merge bug/bug-description && git push origin master` - update master with your patch code, or ask the designated release organizer to do so for you.
 
 ### If you're the current release organizer
-**Important:** Before publishing a release, you will need to:
-* Authenticate your machine to use the `alleyops` npm account by running `npm adduser` and following the prompts. Credentials for the account can be found in the Alley Leads 1Password vault.
-* Have a valid `GH_TOKEN` in your Irving `.env` file. In Github, create your token under [account > Settings > Developer Settings > Personal Access Tokens](https://github.com/settings/tokens). Then create a `.env` file at the root of the cloned Irving repo and assign it to a `GH_TOKEN` environmental variable.
-
-**Steps:**
 * Take stock of all features that will be going into this release. Verify with feature developers that those features are ready to move to beta. The schedule for when this happens may vary—coordinate with the team.
 * When ready, break off a new branch for the release using the format `release/[version]`. Example: `release/3.2.0`
 * `npm run prerelease:beta` - Create a beta from the release branch immediately for testing. Ask feature developers to install beta and test their feature (and do tests yourself as well).
