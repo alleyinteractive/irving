@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import track, { TrackingPropType } from 'react-tracking';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from '@irvingjs/core/utils/isNode';
@@ -8,6 +9,7 @@ const GoogleTagManager = (props) => {
   const {
     containerId,
     dataLayer,
+    tracking,
   } = props;
 
   if (! containerId) {
@@ -38,11 +40,10 @@ const GoogleTagManager = (props) => {
    * Effect for pushing new data to the GTM dataLayer.
    */
   useEffect(() => {
-    window.dataLayer.push({
+    tracking.trackEvent({
       event: 'irving.historyChange',
       ...dataLayer,
     });
-
     return () => {};
   }, [dataLayer]);
 
@@ -88,6 +89,12 @@ GoogleTagManager.propTypes = {
     PropTypes.object,
     PropTypes.array, // Empty objects turn to arrays in PHP :(
   ]),
+  /**
+   * React tracking.
+   */
+  tracking: TrackingPropType, // eslint-disable-line react/require-default-props
 };
 
-export default GoogleTagManager;
+export default track({
+  eventComponent: 'gtm',
+})(GoogleTagManager);

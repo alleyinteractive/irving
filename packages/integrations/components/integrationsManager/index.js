@@ -1,4 +1,5 @@
 import React from 'react';
+import track, { TrackingPropType } from 'react-tracking';
 import PropTypes from 'prop-types';
 // User Config.
 import userConfig from '@irvingjs/irving.config';
@@ -89,6 +90,13 @@ IntegrationsManager.defaultProps = {
 
 IntegrationsManager.propTypes = {
   integrations: PropTypes.object,
+  /**
+   * React tracking.
+   */
+  tracking: TrackingPropType, // eslint-disable-line react/require-default-props, react/no-unused-prop-types
 };
 
-export default IntegrationsManager;
+export default track({
+  event: 'irving.componentLoaded',
+  eventContext: 'irving.integrationsManager',
+}, { dispatchOnMount: true })(IntegrationsManager);
