@@ -1,0 +1,27 @@
+<Meta title="Deployment and Hosting|Heroku" />
+
+# Deploying with Heroku
+Heroku makes deploying your Irving application easy.
+
+## Create a new application
+Once you've created an account and logged into Heroku, from the dropdown, "Create a new app" and give your new application a name.
+<img src="https://raw.githubusercontent.com/alleyinteractive/irving/production/documentation/screenshots/heroku-deploy/heroku-create-app.png" alt="Screenshot of Heroku's interace to create your Irving application." />
+
+## Connect Repo
+From the "Deploy" tab, connect your repo using your favorite platform.
+<img src="https://raw.githubusercontent.com/alleyinteractive/irving/production/documentation/screenshots/heroku-deploy/heroku-connect-repo.png" alt="Screenshot of Heroku's interace to connect your repository." />
+
+## Set Environment Variables
+Under "Settings" you'll see the "Config Vars". Reveal the config vars, and enter your `API_ROOT_URL` and `ROOT_URL`.
+<img src="https://raw.githubusercontent.com/alleyinteractive/irving/production/documentation/screenshots/heroku-deploy/heroku-add-vars.png" alt="Screenshot of Heroku's interace to add environment variables." />
+You may also need the `APP_ROOT` variable, which should be `/app`.
+
+### Other settings
+There may be other environment variables or domains you want mapped in Heroku. Refer to the official [Heroku docs](https://devcenter.heroku.com/articles/getting-started-with-nodejs) for more info.
+
+## Initial Deploy
+Once you've setup your app, you can do the initial deploy (and optionally auto deploy).
+<img src="https://raw.githubusercontent.com/alleyinteractive/irving/production/documentation/screenshots/heroku-deploy/heroku-deploy.png" alt="Screenshot of Heroku's interace to deploy your application." />
+
+You'll see the build output in the console. Assuming your build doesn't have any errors, you'll see a success message!
+<img src="https://raw.githubusercontent.com/alleyinteractive/irving/production/documentation/screenshots/heroku-deploy/heroku-success.png" alt="Screenshot of Heroku indicating a deployment success." />

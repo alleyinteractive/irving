@@ -5,7 +5,7 @@ import useClientNavigationOnClick from
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
@@ -18,6 +18,7 @@ import * as defaultStyles from './themes/default';
  */
 const Link = (props) => {
   const {
+    ariaHidden,
     children,
     gtmAction,
     gtmCategory,
@@ -40,6 +41,9 @@ const Link = (props) => {
 
   return (
     <LinkWrapper
+      {...props}
+      {...standardProps}
+      aria-hidden={'true' === ariaHidden ? ariaHidden : null}
       data-gtm-action={gtmAction}
       data-gtm-category={gtmCategory}
       data-gtm-label={gtmLabel}
@@ -48,7 +52,6 @@ const Link = (props) => {
       onClick={onClick || defaultOnClick}
       rel={rel}
       target={target}
-      {...standardProps}
     >
       {children}
     </LinkWrapper>
@@ -56,7 +59,8 @@ const Link = (props) => {
 };
 
 Link.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
+  ariaHidden: null,
   theme: defaultStyles,
   onClick: false,
   rel: '',
@@ -69,6 +73,7 @@ Link.defaultProps = {
 
 Link.propTypes = {
   ...standardPropTypes,
+  ariaHidden: PropTypes.oneOf([null, 'true']),
   /**
    * Destination for anchor tag (`href` attribute)
    */

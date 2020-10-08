@@ -4,7 +4,7 @@ import toReactElement from '@irvingjs/core/utils/toReactElement';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
@@ -63,7 +63,7 @@ const SocialLinks = (props) => {
 };
 
 SocialLinks.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   platforms: [],
 };

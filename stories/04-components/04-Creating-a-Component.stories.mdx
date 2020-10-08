@@ -1,0 +1,244 @@
+<Meta title="Components|Creating a Component" />
+
+# Creating a Component
+
+## Before you get started
+Ideally, the API component is complete before the React component in Irving is built. That is, you should be able to hit the relevant endpoint and see the API component.
+
+Building the React component in Irving prior to the API component means you will not be able to see the React component in the DOM because the React component cannot be mapped without an API component.
+
+## Create and register component in WordPress
+Projects can create and register their own component types using the `WP_Irving\Components\register_components()` function.
+
+Ex:
+```php
+<?php
+/**
+ * Example component registration.
+ */
+
+WP_Irving\Components\register_component(
+	'namespace/example-component',
+	[
+		// Define default configuration schema for the component.
+		'config'            => [
+			'property' => [
+				'type'    => 'bool',
+				'default' => false,
+			],
+		],
+		'config_callback'   => function ( $config ) {
+
+			/*
+			 * Add custom logic that hydrates the component's
+			 * configuration properties with WP data.
+			 */
+
+			return $config;
+		},
+		'children_callback' => function ( $children, $config ) {
+
+			/*
+			 * Add custom logic that modifies the component's
+			 * children array based on configuration properties.
+			 */
+
+			return $children;
+		},
+	]
+);
+```
+
+You can also register components using the `WP_Irving\Components\register_component_from_config()` function and pass a path to a JSON file defining the component's schema (see examples of registering from JSON schema in the core components library).
+
+## Create and map component in the Irving application
+### In your Irving directory, create a new folder inside of the components directory and give it the same name as your API component.
+
+Example: byline. Components with more than one word should be camel-cased: menuItem.
+
+_Tip: Nesting component directories can help keep things tidy._
+
+### Inside of your component folder, create a new file.
+
+Name that file `index.js.` This is where your React component will live.
+
+You may also need a file for the component's styles. If you are using Styled Components, create a `styled.js` file. If you are using CSS Modules, create a `byline.css` file. Either file should be in the same directory as `index.js`. Learn more about styling components [here](https://github.com/alleyinteractive/irving/wiki/Styling-Components).
+
+### Create the import section of `index.js`.
+
+This example assumes that the React component is stateless and that the component has no children.
+
+At the very least, we’ll need to import React and PropTypes. [Prop Types](https://www.npmjs.com/package/prop-types) is an npm package that documents the intended types of properties passed to components. It will check props passed to your components against those definitions and give you a console warning if the two don’t match.
+
+This component also uses one of Irving’s built-in helper components, Link.
+
+We’ll also need to import styles.  In this case, we’re using Styled Components, but you can use other styling systems, such as CSS modules.
+
+```js
+import React from 'react';
+import PropTypes from 'prop-types';
+import Link from 'components/helpers/link';
+import {
+  BylineName,
+  Wrapper,
+} from './styles';
+```
+
+### Create the component with its props.
+
+The component is a stateless React component and it accepts the keys of the config object as its props.
+
+Look at your component in the endpoint and identify the config object.  The keys of the config object -- here they are link and name -- will be the props of your React component.
+
+```json
+{
+  "name": "byline",
+  "config": {
+   "link": "https://localhost:3001/author/alley/",
+   "name": "alley"
+  },
+  "children": [],
+  "componentGroups": {
+    "default": []
+  }
+}
+```
+
+Byline Example with Styled Components:
+
+```jsx
+const Byline = (props) => {
+ const {
+   name,
+   link,
+ } = props;
+
+ return (
+   <Wrapper>
+     <Link to={link}>
+       <BylineName>{name}</BylineName>
+    </Link>
+   </Wrapper>
+ );
+};
+```
+
+Byline Example with CSS modules:
+
+```jsx
+export const Byline = (props) => {
+  const {
+    link,
+    name,
+  } = props;
+
+  return (
+    <div className={styles.wrapper}>
+      <Link to={link} className={styles.link}>
+        <span className={styles.name}>{name}</span>
+      </Link>
+    </div>
+  );
+};
+```
+
+### Create the propType object.
+
+Look again at the config in your endpoint and identify the type of each prop.  Each key in the config object is a key in the propType object. Learn more about the options for setting prop types [here](https://www.npmjs.com/package/prop-types#usage).
+
+```js
+Byline.propTypes = {
+  /**
+   * Name used in the byline.
+   *
+   */
+  name: PropTypes.string.isRequired,
+  /**
+   * URL for the author archive.
+   *
+   */
+  link: PropTypes.string.isRequired,
+};
+```
+
+### Create the export statement.
+
+```js
+    export default Byline;
+```
+
+### Entire Example of Byline Component.
+
+```jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+import Link from 'components/helpers/link';
+import {
+  BylineName,
+  Wrapper,
+} from './styles';
+
+const Byline = (props) => {
+  const {
+    name,
+    link,
+  } = props;
+
+  return (
+    <Wrapper>
+      <Link to={link}>
+        <BylineName>{name}</BylineName>
+      </Link>
+    </Wrapper>
+  );
+};
+
+Byline.propTypes = {
+  /**
+   * Name used in the byline.
+   *
+   */
+  name: PropTypes.string.isRequired,
+  /**
+   * URL for the author archive.
+   *
+   */
+  link: PropTypes.string.isRequired,
+};
+
+export default Byline;
+```
+
+Great job! You're almost done! 😄
+
+### Import your React component in the Component Map.
+
+These steps are essential and cannot be skipped. Your component will not appear in the DOM if you do not incorporate it into the Component Map.
+
+You should have already created an empty `componentMap.js` by now after reading the [setup guide](Setting-up-a-New-Project-Locally). You'll need to add your new Byline component to the `componentMap` object.
+
+### Map your React component to the component in the endpoint.
+
+The component map is a simple javascript object that defines which React component should render for each received API component. The keys in this object correspond do the `name` field of each components in the endpoint.
+
+In our example, `byline` is the name of our API component. So in our component Map, `byline` is the key.
+The value is the name of our React component that we imported. In our example, that is `Byline`.
+
+```js
+  import Byline from 'components/byline';
+
+  /**
+    * Defines which React component to render for each received API component.
+    */
+  const componentMap = {
+    byline: Byline,
+  };
+
+  export default componentMap;
+```
+
+A React component can map to more than one API component. Each API component can map to only one React component.
+
+To see the component in the DOM, run `npm run dev` in your console. Any stylelint or eslint errors in your React component should display in your terminal.
+
+### Congratulations on creating your first component! 🎉

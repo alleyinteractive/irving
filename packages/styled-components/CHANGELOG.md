@@ -3,6 +3,205 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.0.0-alpha.2...v5.0.0-alpha.3) (2020-10-08)
+
+
+### Bug Fixes
+
+* **link:** fix issue with props spreading in link component ([b09bc71](https://github.com/alleyinteractive/irving/packages/styled-components/commit/b09bc71afe1fbfa6dd8ea0c13117b31c33aa6852))
+
+
+
+
+
+# [5.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.0.0-alpha.0...v5.0.0-alpha.1) (2020-10-05)
+
+
+### Features
+
+* **byline:** ensure all delimiter text is wrapped with spans with classes ([5ca48b8](https://github.com/alleyinteractive/irving/packages/styled-components/commit/5ca48b832f991925c70cdb537bfd4941e2d93be4))
+
+
+
+
+
+# [5.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.21...v5.0.0-alpha.0) (2020-10-05)
+
+
+### Code Refactoring
+
+* **body class support:** moves the responsibility of setting body classes ([1021928](https://github.com/alleyinteractive/irving/packages/styled-components/commit/1021928e81fa92c0dc9bb1e4c31ef7973fe6e282))
+
+
+### BREAKING CHANGES
+
+* **body class support:** The bodyClasses config will no longer work on the body-wrapper component
+
+
+
+
+
+# [4.2.0-alpha.21](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.20...v4.2.0-alpha.21) (2020-10-04)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.2.0-alpha.20](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.19...v4.2.0-alpha.20) (2020-10-01)
+
+
+### Bug Fixes
+
+* add aria-label to pagination navigation next and prev wrapper ([512606b](https://github.com/alleyinteractive/irving/packages/styled-components/commit/512606bf1bb0260d6e61d9c79832afcfce9fdbc5))
+
+
+
+
+
+# [4.2.0-alpha.18](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.17...v4.2.0-alpha.18) (2020-09-30)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.2.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.14...v4.2.0-alpha.15) (2020-09-28)
+
+
+### Bug Fixes
+
+* **container component:** fix an issue where max-width was being output with an empty value ([3128d3a](https://github.com/alleyinteractive/irving/packages/styled-components/commit/3128d3a4ad2eea3077369c6edfa1159ab9405c6e))
+
+
+
+
+
+# [4.2.0-alpha.14](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.13...v4.2.0-alpha.14) (2020-09-25)
+
+
+### Bug Fixes
+
+* **proptypes:** fix issue with mutated reference in standard default props ([0bd6de9](https://github.com/alleyinteractive/irving/packages/styled-components/commit/0bd6de9509df6b723adb85ad632b362b812ac940))
+
+
+
+
+
+# [4.2.0-alpha.12](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.1.0...v4.2.0-alpha.12) (2020-09-24)
+
+
+
+# [4.2.0-alpha.7](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.1.0-rc.0...v4.2.0-alpha.7) (2020-09-18)
+
+
+
+# [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+
+
+
+# [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
+
+
+
+# [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.2.0-alpha.7](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.6...v4.2.0-alpha.7) (2020-09-18)
+# [4.1.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.1.0-rc.0...v4.1.0) (2020-09-24)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+# [4.1.0-rc.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.1.0-beta.4...v4.1.0-rc.0) (2020-09-18)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.2.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.2...v4.2.0-alpha.3) (2020-09-18)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+# [4.1.0-beta.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.1.0-beta.3...v4.1.0-beta.4) (2020-09-17)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.1.0-beta.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.1.0-beta.1...v4.1.0-beta.2) (2020-09-17)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.1.0-alpha.5...v4.1.0-beta.0) (2020-09-16)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [4.1.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.1.0-alpha.4...v4.1.0-alpha.5) (2020-09-15)
+
+
+### Bug Fixes
+
+* **bodywrapper:** remove redundant landark from body wrapper ([f5c9465](https://github.com/alleyinteractive/irving/packages/styled-components/commit/f5c9465c5db99f63044167a97f890be3bd932a00))
+* **search form:** tidy up label for search form ([1c0d115](https://github.com/alleyinteractive/irving/packages/styled-components/commit/1c0d1151683d9ae3d9c009783f165e3a7929fbdb))
+
+
+### Features
+
+* **app:** add skip link to App component ([fcc8b89](https://github.com/alleyinteractive/irving/packages/styled-components/commit/fcc8b8952c604c8d164c020fc2096dd420519340))
+* **app component:** tidy up skip link ([9d348a5](https://github.com/alleyinteractive/irving/packages/styled-components/commit/9d348a5b425e6ba4c1168bb3cb3b3b8452a340a1))
+* **menu:** add aria-label to menu ([e229ba0](https://github.com/alleyinteractive/irving/packages/styled-components/commit/e229ba03bc36baaf22c006f63cea43163a60c8e1))
+* **search form:** wrap search label around search form term ([c8f5e67](https://github.com/alleyinteractive/irving/packages/styled-components/commit/c8f5e67a672c3548da5878f10772d4133ac553ff))
+* **searchform:** add label to SearchForm ([9f21aaf](https://github.com/alleyinteractive/irving/packages/styled-components/commit/9f21aaf9305530b5dd8855f68a79c32749cf00f6))
+
+
+
+
+
+# [4.1.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.1.0-alpha.3...v4.1.0-alpha.4) (2020-09-15)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
 # [4.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.0.0...v4.1.0-alpha.0) (2020-09-10)
 
 

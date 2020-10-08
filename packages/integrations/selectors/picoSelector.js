@@ -12,3 +12,13 @@ export const picoPageInfoSelector = createSelector(
   picoSelector,
   (branch) => maybeSelect(branch, 'pageInfo')
 );
+
+export const picoScriptAddedSelector = createSelector(
+  picoSelector,
+  (branch) => maybeSelect(branch, 'scriptAdded')
+);
+
+export const picoSignalSelector = createSelector(
+  picoSelector,
+  (branch) => maybeSelect(branch, 'signal')
+);

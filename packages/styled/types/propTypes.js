@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /* eslint-disable react/require-default-props */
 export const standardPropTypes = {
   /**
-   * Children of the body component.
+   * React children.
    */
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(
@@ -45,10 +45,10 @@ export const standardPropTypes = {
   theme: PropTypes.object,
 };
 
-export const standardDefaultProps = {
+export const getStandardDefaultProps = () => ({
   children: [],
   id: '',
   className: '',
   style: {},
   tag: '',
-};
+});

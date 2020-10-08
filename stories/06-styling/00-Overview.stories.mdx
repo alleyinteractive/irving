@@ -1,0 +1,23 @@
+<Meta title="Styling|Overview" />
+
+# Writing Styles in Irving
+This section outlines the different approaches in applying frontend styles to your site.
+
+Irving offers several methods of writing styles for your project depending on your preferences and needs.
+
+## Intro to Themes
+Themes are an extension to styling in Irving that allow for more complex, reusable, encapsulated groupings of styles for a particular component. Themes can be used in conjunction with the `@irvingjs/styled` package or with Irving's core styling setup as an elegant and efficient way to include your styles.
+
+[Keep Reading](?path=/docs/styling-using-themes--page)
+
+## CSS Modules and PostCSS
+This is the mode of writing styles that Irving offers out of the box. This is plain ol' vanilla CSS stylesheets with added [CSS Modules functionality via `css-loader`](https://webpack.js.org/loaders/css-loader/#modules).
+
+Irving supports PostCSS via the [`@irvingjs/postcss`](https://www.npmjs.com/package/@irvingjs/postcss) package, allowing you to leverage the wealth of plugins in the PostCSS ecosystem to further optimize your stylesheets.
+
+[Keep Reading](?path=/docs/styling-css-modules-and-postcss--page)
+
+## Styled Components
+Irving supports styling with [`styled-components`](https://styled-components.com/) by way of the [`@irvingjs/styled`](https://www.npmjs.com/package/@irvingjs/styled) package and extended with a component library via [`@irvingjs/styled-components`](https://www.npmjs.com/package/@irvingjs/styled-components) to help you get your site up and running quickly.
+
+[Keep Reading](?path=/docs/styling-styled-components--page)

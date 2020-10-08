@@ -1,0 +1,152 @@
+<Meta title="Styling|CSS Modules and PostCSS" />
+
+# Styling with CSS (Modules)
+CSS with CSS modules via [`css-loader`](https://webpack.js.org/loaders/css-loader/#modules) is Irving's core method of styling, meaning it can be used without installing any additional packages or dependencies beyond `@irvingjs/core`.
+
+## What are CSS Modules?
+CSS modules is a [specification](https://github.com/css-modules/css-modules) in which class names are scoped locally to a specific component. In the case of the `css-loader` implementation that Irving makes use of, CSS Modules allows you to import CSS files into a React component and access a locally-scoped version of each class defined in your CSS file. CSS imports are transformed by webpack into an object in which keys are untransformed class names and values are transformed, locally-scoped class names.
+
+An example of what it might look like to apply styles via CSS modules:
+```css
+/* my-styles.css */
+
+.wrapper {
+    background-color: blue;
+}
+
+.content {
+    font-size: 24px;
+    font-weight: 700;
+}
+```
+
+```jsx
+import React from 'react';
+import styles from './my-styles.css';
+
+const MyComponent = () => (
+    <div className={styles.wrapper}>
+        <span className={styles.content}>
+            Component content
+        </span>
+    </div>
+);
+
+export default MyComponent;
+```
+
+As illustrated above, `styles` is imported as an object, and locally-scoped className values are accessed by the untransformed className. To further illustrate, the `styles` object in this case might look like this:
+
+```js
+{
+    wrapper: 'my-styles__wrapper__h1uy3',
+    content: 'my-styles__content__nc73j',
+}
+```
+
+CSS modules also offers some basic extensions to run-of-the-mill CSS such as [composing](https://webpack.js.org/loaders/css-loader/#composing), [importing](https://webpack.js.org/loaders/css-loader/#importing) and [values](https://webpack.js.org/loaders/css-loader/#values). All of these features are documented both on webpack.js.org and on the `css-modules` github repo readme.
+
+
+# Theming components with CSS
+Themes can be applied using CSS styling functionality built in to Irving Core. This is accomplished by leveraging Core's built-in [CSS Modules functionality via `css-loader`](https://webpack.js.org/loaders/css-loader/#modules), which exports an object of `className` values from a CSS file which we can then manipulate to create a theme. Core itself does not contain any themable components—instead it offers you the means to theme your own components via a [`withThemes`](https://github.com/alleyinteractive/irving/blob/master/packages/core/components/hoc/withThemes.js) higher-order component (HOC). An example of what that might look like is:
+
+```jsx
+import React from 'react';
+import withThemes from '@irvingjs/core/components/hoc/withThemes';
+import defaultTheme from './themes/default.css';
+import customTheme from './themes/customTheme.css';
+
+const MyComponent = (props) => {
+  const { theme } = props;
+
+  return (
+    <div className={theme.wrapper}>
+      <span className={theme.content}>This is the component content</span>
+    </div>
+  )
+}
+
+export default withThemes(
+  'component-identifier',
+  {
+    default: defaultTheme,
+    custom: customTheme,
+  },
+  true // composes
+)(MyComponent);
+```
+
+As illustrated above, the `withThemes` HOC requires:
+* A unique identifier. This is used for pulling a component's themes out of a context provider.
+* An object map of the component's available themes.
+* An optional `composes` boolean flag. If this is turned on, theme classes will be _added_ to default classes instead of replacing them, effectively using the default theme as a basis for all other themes.
+
+This HOC will provide the following functionality to the component on which it is applied:
+* A `theme` prop containing the classNames of the current theme (either `composed` or not, depending on if the flag is set). Note that unlike with regular CSS Modules you'll be accessing className values via the `theme` prop instead of an imported `styles` object.
+* Allow the `theme` prop to be derived in one of three ways:
+  * Pulled out of the component's predefined theme mapping using a `themeName` prop to access the appropriate key in the mapping object.
+  * Pulled out of React Context using the `identifier` supplied to the HOC to access the necessary `themeName`, which will be in turn used to access the `theme` via the theme mapping object.
+  * Supplied directly to the component via a `theme` prop.
+
+Also illustrated above you can see the `className` values on the theme itself are accessed like an object, just as you would with css modules. Note that if a theme does not supply a `className` to override every class used in the component, the `className` value from the default theme will be used. The markup in the above example should look something like this (note that `composes` is set to true in this example):
+
+```html
+<div class="default__wrapper__1n274 customTheme__wrapper__n38f7">
+  <span class="default__content__v7892 customTheme__content__dkvus">This is the component content</span>
+</div>
+```
+
+That's it! As you can see, theming with Irving Core is relatively similar to theming with `styled-components`. Happy styling!
+
+# Styling with PostCSS
+Irving allows you to style components with PostCSS by way of a package. PostCSS is a CSS parser and preprocessor written in JavaScript with a rich ecosystem of plugins. This doc will help you get started using PostCSS.
+
+Note that PostCSS will be added on _top_ of the default CSS + Modules setup in Irving core, meaning you should follow the same procedure for styling with CSS, but will have the added benefit of any PostCSS plugins you choose to apply.
+
+## Setting up PostCSS in your project
+Preparing your project to use PostCSS is a two step process:
+1. `npm install @irvingjs/postcss` - install the Irving `postcss` package as a dependency for your project.
+2. Import the package configuration and add it to your project's config. To do this, first create an `irving.config.js` in your project's root directory. In this file, add the following:
+```js
+import postcssConfig from '@irvingjs/postcss';
+
+export default {
+    packages: [
+        postcssConfig,
+    ],
+};
+```
+
+## Configuring PostCSS and adding plugins
+Out of the box Irving is configured to use [Stylelint](https://stylelint.io/) and [Autoprefixer](https://github.com/postcss/autoprefixer), but you can modify this default setup. Further information on Irving configuration can be found in the [configuration docs](http://localhost:6006/?path=/docs/configuration-irving-config-js--page#postcss-configuration). PostCSS is applied via the Webpack `postcss-loader`, the documentatin for which can be founr [here](https://webpack.js.org/loaders/postcss-loader/#postcssoptions), including a link to options for configuriong PostCSS. Below are a couple examples of how you might want to configure PostCSS:
+
+### Adding to the Irving's default configuration
+If you'd like to simply add config fields or plugins to the default Irving configuration, you can do so by creating a `config/postcss.config.js` file in your project and exporting a PostCSS config object. This object will be merged into the default config. Be sure to use `module.exports` in this file as it will only be run in a node environment. Example:
+
+```js
+const myPlugin = require('my-plugin');
+
+module.exports = {
+    // This plugin will be concatenated to the default array of plugins.
+    plugins: [
+        myPlugin()
+    ],
+};
+```
+
+### Modifying the default configuration
+To modify the default configuration, create a PostCSS config file as described above, but this time export a function. This function will receive the default configuration as a parameter and expect a valid PostCSS configuration in return. Example:
+
+```js
+const myPlugin = require('my-plugin');
+
+module.exports = (defaultConfig) => {
+    // Your plugins array will replace the default plugins array entirely.
+    return {
+        ...defaultConfig,
+        plugins: [
+            myPlugin(),
+        ],
+    };
+};
+```

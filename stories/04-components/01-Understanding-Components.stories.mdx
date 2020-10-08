@@ -1,0 +1,33 @@
+<Meta title="Components|Understanding Components" />
+
+# What is a Component?
+In an effort to simplify the entire application, we extend the concept of a React Component to the API and data layer. By mapping out our data in the API in the form a component tree, the Irving application can remain simple and unaware of context/information it doesn't need.
+
+By using a robust API with a simple routing strategy, Irving allows quick and easy development of headless websites. The concept behind Irving is to offload as much work as possible to the CMS/API layer.
+
+## Study the API component in an endpoint.
+* Does the component exist in the expected endpoint?
+* Does it contain the expected name, config, children, and componentGroups?
+* Are the values of the name, config, children, and componentGroups as expected? Are the values the correct types?
+
+Having a clean, well-organized API component in the endpoint smooths the way for creating your component in Irving.
+
+Any errors in your API component in the endpoint may block your progress, so resolve those before proceeding.
+
+Keep a browser tab with your endpoint open as you create your component in Irving.
+
+In this example, we're going to build a Byline component. Its API component has this shape
+
+```json
+{
+  "name": "byline",
+  "config": {
+   "link": "https://localhost:3001/author/alley/",
+   "name": "alley"
+  },
+  "children": [],
+  "componentGroups": {
+    "default:": []
+  }
+}
+```

@@ -1,0 +1,43 @@
+<Meta title="WordPress Components|Post Featured Media" />
+
+# Post Featured Media
+Display the post featured media.
+
+Renders as the `Fragment` styled component [(docs)](?path=/docs/styled-components-fragment--basic-eample).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/post-featured-media).
+
+## Overview
+This component is a wrapper that returns an `irving/post-featured-image` component. Support for other media components is on the roadmap (video, curated image, audio player, etc.)
+
+## Config
+```json
+{
+  "aspect_ratio": {
+    "default": "",
+    "type": "string"
+  },
+  "object_fit": {
+    "default": "cover",
+    "description": "Object fit property.",
+    "type": "string"
+  },
+  "post_id": {
+    "default": 0,
+    "type": "integer"
+  },
+  "style": {
+    "default": [],
+    "type": "array"
+  }
+}
+```
+
+## Examples
+
+### Basic example
+```json
+{
+  "name": "irving/post-featured-media"
+}
+```

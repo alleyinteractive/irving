@@ -6,7 +6,7 @@ import history from '@irvingjs/core/utils/history';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
@@ -27,6 +27,7 @@ const SearchForm = (props) => {
     SearchFormWrapper,
     SearchFormTerm,
     SearchFormSubmitButton,
+    SearchLabel,
   } = theme;
 
   const defaultValues = {};
@@ -51,12 +52,15 @@ const SearchForm = (props) => {
       action={baseUrl}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <SearchFormTerm
-        name={searchTermQueryArg}
-        placeholder="Search"
-        ref={register}
-        type="text"
-      />
+      <SearchLabel>
+        <SearchFormTerm
+          aria-label="search"
+          name={searchTermQueryArg}
+          placeholder="Search"
+          ref={register}
+          type="text"
+        />
+      </SearchLabel>
       {/* @TODO Add GTM event.  */}
       <SearchFormSubmitButton type="submit">Search</SearchFormSubmitButton>
     </SearchFormWrapper>
@@ -64,7 +68,7 @@ const SearchForm = (props) => {
 };
 
 SearchForm.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   baseUrl: '/',
   searchTerm: '',

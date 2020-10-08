@@ -1,177 +1,127 @@
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import debounce from 'lodash/debounce';
-import useMutationObserver from '../../hooks/useMutationObserver';
+import usePollForNode from './usePollForNode';
 import {
   actionVerifyPicoUser,
   actionReceivePicoPlanUpgrade,
+  actionUpdatePicoSignal,
 } from '../../actions/picoActions';
+import { picoSignalSelector } from '../../selectors/picoSelector';
+import { actionReceiveCoralLogoutRequest } from '../../actions/coralActions';
 import {
+  tokenSelector,
   showUpgradeModalSelector,
 } from '../../selectors/coralSelector';
 
-const PicoObserver = ({
-  tiers,
-  accessToken,
-  logoutRequestAction,
-}) => {
-  // Declare state variables for effects to be run against.
-  const [email, setEmail] = useState(undefined);
-  const [isAnonymous, setIsAnonymous] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [isPaying, setIsPaying] = useState(false);
-  const [canComment, setCanComment] = useState(false);
-
-  const manageLocalState = (target) => {
-    const emailAddress = target.getAttribute('data-pico-email');
-    const status = target.getAttribute('data-pico-status');
-    const tier = target.getAttribute('data-pico-tier');
-
-    const hasValidStatus = 'registered' === status || 'paying' === status;
-    const hasNotUpdated = ! isAnonymous || ! isRegistered || ! isPaying;
-
-    if ('excluded' !== status && hasValidStatus && hasNotUpdated) {
-      // Update the `email` value with the user's email address.
-      if (undefined === email) {
-        setEmail(emailAddress);
-      }
-      // If the user's tier is included in the allowed list of tiers for SSO,
-      // flag their ability to comment as true.
-      if (tiers.includes(tier)) {
-        setCanComment(true);
-      }
-      // If the status is registered, set the isRegistered flag to true.
-      if ('registered' === status) {
-        setIsRegistered(true);
-      }
-      // If the status is paying, set the isPaying flag to true.
-      if ('paying' === status) {
-        setIsPaying(true);
-      }
-    }
-
-    // If the user was previously recognized as registered or paying, but
-    // is then anonymized, update the state values accordingly.
-    if ((isRegistered || isPaying) && 'anonymous' === status) {
-      if (isRegistered) {
-        setIsRegistered(false);
-      }
-
-      if (isPaying) {
-        setIsPaying(false);
-      }
-
-      // Clear the user's email address.
-      setEmail(undefined);
-      // Set the user's status to anonymous.
-      setIsAnonymous(true);
-    }
-  };
-
-  const observerCallback = debounce((mutations) => {
-    mutations.forEach((mutation) => {
-      const { target, type, attributeName } = mutation;
-
-      if ('attributes' === type && 'data-pico-status' === attributeName) {
-        manageLocalState(target);
-      }
-    });
-  }, 50);
-
-  // Declare a ref for the `useMutationObserver` hook to watch.
-  const signalRef = useRef();
-  // Mount the MutationObserver.
-  useMutationObserver(signalRef, observerCallback);
-
-  // Define the global dispatch function.
+const PicoObserver = ({ tiers }) => {
+  // Define a global dispatch function.
   const dispatch = useDispatch();
-
-  // Define a function to dispatch Pico user verification requests.
+  // Define a function to dispatch user verification requests to the Pico API.
   const sendVerificationRequest = useCallback(
     (user) => dispatch(actionVerifyPicoUser(user)),
     [dispatch]
   );
-  // Define a function to dispatch a plan upgrade requirement message.
+  // Define a function that will set the visibility state of the plan upgrade modal.
   const receivePlanUpgrade = useCallback(
     () => dispatch(actionReceivePicoPlanUpgrade()),
     [dispatch]
   );
-  // Define a function to dispatch logout requests. This function is explicitly
-  // passed through props because the observer may want to cause side-effects
-  // in the application outside of the context of Pico.
+  // Define a function to dispatch logout requests.
   const requestLogout = useCallback(
-    () => dispatch(logoutRequestAction()),
+    () => dispatch(actionReceiveCoralLogoutRequest()),
+    [dispatch]
+  );
+  // Define a function that updates the signal object in the Redux store.
+  const updateSignal = useCallback(
+    (signalObject) => dispatch(actionUpdatePicoSignal(signalObject)),
     [dispatch]
   );
 
-  // Grab the status of the upgrade modal's visibility from the Redux store.
+  // Define the callback referenced in the `useMutationObserver` hook that listens
+  // for changes to the target DOM element.
+  const observerCallback = (mutations) => {
+    mutations.forEach((mutation) => {
+      const { target, type, attributeName } = mutation;
+
+      if ('attributes' === type && 'data-pico-status' === attributeName) {
+        const email = target.getAttribute('data-pico-email');
+        const status = target.getAttribute('data-pico-status');
+        const tier = target.getAttribute('data-pico-tier');
+
+        updateSignal({ email, status, tier });
+      }
+    });
+  };
+
+  // Grab the value of the Pico signal from the Redux store.
+  const { status, tier, email } = useSelector(picoSignalSelector) || {};
+  // Define effect constants based on values present in the signal object.
+  const isAnonymous = 'anonymous' === status;
+  const isPaying = 'paying' === status;
+  const isValidSSOTier = tiers.includes(tier);
+  // Grab the status of the Coral upgrade modal visibility state from the Redux store.
   const showUpgradeModal = useSelector(showUpgradeModalSelector);
+  // Grab the value of the Coral JWT token from the Redux store.
+  const coralToken = useSelector(tokenSelector);
+
+  // Poll for the existence of the Pico signal container.
+  const signal = usePollForNode('#PicoSignal-container');
 
   useEffect(() => {
-    // If the user has been set to anonymous, dispatch the logout request.
-    if (canComment && isAnonymous) {
+    if (signal) {
+      const observer = new MutationObserver(observerCallback);
+
+      observer.observe(signal, { attributes: true });
+      return () => {
+        observer.disconnect();
+      };
+    }
+
+    return () => {};
+  }, [signal]);
+
+  useEffect(() => {
+    if (coralToken && isAnonymous) {
       requestLogout();
-      setCanComment(false);
-      // Exit the effect early.
-      return;
     }
+  }, [coralToken, isAnonymous]);
 
-    if (! accessToken) {
-      // If the user is paying and has commenting privileges, send a request to
-      // WordPress to verify the user with Pico and return their JWT.
-      if (isPaying && canComment) {
-        if (showUpgradeModal) {
-          receivePlanUpgrade();
-        }
-
-        setTimeout(() => {
-          if (window.Pico && 'object' === typeof window.Pico.user) {
-            const {
-              Pico: {
-                user: {
-                  id,
-                },
+  useEffect(() => {
+    if (! coralToken && isValidSSOTier) {
+      setTimeout(() => {
+        if (window.Pico && 'object' === typeof window.Pico.user) {
+          const {
+            Pico: {
+              user: {
+                id,
               },
-            } = window;
+            },
+          } = window;
 
-            sendVerificationRequest({ email, id });
-          }
-        }, 50);
-      }
+          sendVerificationRequest({ email, id });
+        }
+      }, 50);
     }
-  }, [
-    email,
-    isAnonymous,
-    isPaying,
-    isRegistered,
-    canComment,
-    showUpgradeModal,
-  ]);
+  }, [coralToken, isValidSSOTier]);
+
+  useEffect(() => {
+    if (! coralToken && isPaying && isValidSSOTier && showUpgradeModal) {
+      receivePlanUpgrade();
+    }
+  }, [coralToken, isPaying, isValidSSOTier, showUpgradeModal]);
 
   return (
-    <div
-      ref={signalRef}
-      className="PicoSignal"
-      style={{ display: 'none' }}
-    />
+    <div id="pico-observer" style={{ display: 'none' }} />
   );
 };
 
 PicoObserver.defaultProps = {
   tiers: [],
-  accessToken: '',
 };
 
 PicoObserver.propTypes = {
   tiers: PropTypes.arrayOf(PropTypes.string),
-  accessToken: PropTypes.string,
-  logoutRequestAction: PropTypes.func.isRequired,
 };
 
 export default PicoObserver;

@@ -13,7 +13,7 @@ function createNode(container, type, attributes) {
   attributes.forEach(({ name, value }) => {
     node.setAttribute(name, value);
   });
-  // Inject the node intor the DOM.
+  // Inject the node into the DOM.
   container.appendChild(node);
 }
 
@@ -47,13 +47,25 @@ function mountSignupFormNodes(documentBody) {
 }
 
 /**
+ * Helper function to see if Pico has already been mounted.
+ *
+ * @return {bool} Whether the Pico nodes are mounted in the DOM.
+ */
+export function isPicoMounted() {
+  return (
+    document.getElementById('PicoSignal-container') &&
+    document.getElementById('PicoRule-button')
+  );
+}
+
+/**
  * A function that mounts reference nodes into the DOM at initialization. These
  * nodes can be targeted by React components to trigger Pico actions if the component
  * requesting an action is rendered after Pico's initialization.
  *
  * @param {object} pageInfo The curren page info.
  */
-export default function mountPicoNodes() {
+export function mountPicoNodes() {
   // Get the `body` DOM node.
   const documentBody = document.getElementsByTagName('body')[0];
 

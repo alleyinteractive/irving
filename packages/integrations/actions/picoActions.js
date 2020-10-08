@@ -1,11 +1,13 @@
 import { createAction } from '@irvingjs/core/actions';
 import {
   PICO_LOADED,
+  PICO_SCRIPT_ADDED,
   RECEIVE_PICO_PLAN_UPGRADE,
   RECEIVE_PICO_VERIFICATION_FAILURE,
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
   SEND_PICO_VERIFICATION_REQUEST,
   UPDATE_PICO_PAGE_INFO,
+  UPDATE_PICO_SIGNAL,
 } from './types';
 
 /**
@@ -17,12 +19,29 @@ export function actionPicoLoaded() {
 }
 
 /**
+ * Create an action that updates the store when the Pico script is added.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionPicoScriptAdded() {
+  return createAction(PICO_SCRIPT_ADDED);
+}
+
+/**
  * Create an action that updates the store with the current Pico page info.
  * @param {Object} pageInfo - The Pico page info.
  * @returns {{type, payload}} The Redux action.
  */
 export function actionUpdatePicoPageInfo(pageInfo) {
   return createAction(UPDATE_PICO_PAGE_INFO, pageInfo);
+}
+
+/**
+ * Create an action that updates the store with the Pico signal's data.
+ * @param {object} signal - Pico signal object.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionUpdatePicoSignal(signal) {
+  return createAction(UPDATE_PICO_SIGNAL, signal);
 }
 
 /**

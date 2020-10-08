@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
-  standardDefaultProps,
+  getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
@@ -37,9 +37,13 @@ const Container = (props) => {
   }
 
   // Setup a max-width style.
-  if ('string' === typeof maxWidth && undefined !== widths[maxWidth]) {
+  if (
+    'string' === typeof maxWidth &&
+    undefined !== widths[maxWidth] &&
+    0 !== maxWidth.length
+  ) {
     style.maxWidth = `${widths[maxWidth]}px`; // Use one of our predefined sizes.
-  } else if ('string' === typeof maxWidth) {
+  } else if ('string' === typeof maxWidth && 0 !== maxWidth.length) {
     style.maxWidth = maxWidth; // Use the string value 1:1.
   } else if ('number' === typeof maxWidth) {
     style.maxWidth = `${maxWidth}px`; // Use the interger value as pixels.
@@ -64,7 +68,7 @@ const Container = (props) => {
 };
 
 Container.defaultProps = {
-  ...standardDefaultProps,
+  ...getStandardDefaultProps(),
   theme: defaultStyles,
   backgroundImageUrl: '',
   maxWidth: 'lg',

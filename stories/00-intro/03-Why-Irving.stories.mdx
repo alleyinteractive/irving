@@ -1,0 +1,22 @@
+<Meta title="Intro|Why Irving?" />
+
+# Why Irving?
+## Easy to get up and running
+* Irving offloads as much as possible to the CMS and focuses on being a frontend rendering engine.
+* Irving doesn't care about your routing—it passes a path back to your CMS and the CMS handles routing however it sees fit. This avoids having to maintain duplicate routing logic (on the frontend for requests and in the backend for generating permalinks).
+* Irving is responsible for rendering components and not much else; its simplicity makes it performant and easy-to-maintain.
+
+## Easy to query and manage app data
+* You build and query your data in the way you and your CMS see fit.
+* Irving expects a structured but simple API interface. The API only needs to provide three fields (name, config, and children).
+
+## Easy to extend
+* Irving has a relatively simple development experience. If you know Express, Webpack, and React you are fast on your way to working with Irving.
+* Adding your own components is a snap—just create your component and add it to Irving's [Component Mapping](?path=/docs/components-components-endpoint--page).
+* With a [library of standardized components](?path=/docs/components-components-library--page) following atomic design principals, you can write code quicker following Irving's structured approaches. You can mix-and-match core components with your own, or opt to have total control and ignore them entirely.
+
+## WordPress Integration
+Irving is designed to work with any resource that can provide data in a JSON format, but our primary use case is WordPress, and our [WordPress integration](?path=/docs/intro-wordpress--page) is currently the most robust and well-tested. We have a library of helpful [WordPress components](?path=/docs/wordpress-components-table-of-contents--page) that easily hook into Irving's React equivalents, allowing you to focus on building out the WordPress functionality you need and let Irving worry about efficient rendering.
+
+## Performance
+As an isomorphically-rendered app, Irving is not only [SEO-friendly](?path=/docs/features-seo--page) but highly performant. Users will get a snappy, app-like experience navigating around a site built with Irving. In addition, Irving will allow you to create highly complex yet performant and engaging UI features, such as a [persistent audio player](?path=/docs/packages-audio-player--page).

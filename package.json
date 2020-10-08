@@ -31,7 +31,9 @@
     "storybook": "WEBPACK_BUILD=true start-storybook -p 6006",
     "storybook:build": "build-storybook",
     "storybook:deploy": "surge storybook-static --domain storybook.irvingjs.com",
-    "storybook:release": "npm run storybook:build && npm run storybook:deploy"
+    "storybook:release": "npm run storybook:build && npm run storybook:deploy",
+    "storybook-qa:deploy": "surge storybook-static --domain storybook-qa.irvingjs.com",
+    "storybook-qa:release": "npm run storybook:build && npm run storybook-qa:deploy"
   },
   "dependencies": {
     "react": "^16.13.1",
@@ -48,12 +50,12 @@
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^10.4.9",
+    "@testing-library/react": "^11.0.2",
     "@testing-library/react-hooks": "^3.4.1",
     "babel-jest": "^25.5.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
-    "commitizen": "^4.0.5",
+    "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.1.0",
     "dotenv-cli": "^3.1.0",
     "enzyme": "^3.11.0",
@@ -63,7 +65,7 @@
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "lerna": "^3.20.2",
-    "surge": "^0.21.3"
+    "surge": "^0.21.6"
   },
   "engines": {
     "node": "12",

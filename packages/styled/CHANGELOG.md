@@ -3,6 +3,140 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-alpha.21](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.20...v4.2.0-alpha.21) (2020-10-04)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [4.2.0-alpha.20](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.19...v4.2.0-alpha.20) (2020-10-01)
+
+
+### Bug Fixes
+
+* add aria-label to pagination navigation next and prev wrapper ([512606b](https://github.com/alleyinteractive/irving/packages/styled/commit/512606bf1bb0260d6e61d9c79832afcfce9fdbc5))
+
+
+
+
+
+# [4.2.0-alpha.18](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.17...v4.2.0-alpha.18) (2020-09-30)
+
+
+### Features
+
+* **site theme recursion:** allow the site theme to call itself and build a full tree ([334c54c](https://github.com/alleyinteractive/irving/packages/styled/commit/334c54c26bb0b3207f9af715036992a79942f743))
+
+
+
+
+
+# [4.2.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.14...v4.2.0-alpha.15) (2020-09-28)
+
+
+### Features
+
+* **site theme:** support nested site theme properties ([821334a](https://github.com/alleyinteractive/irving/packages/styled/commit/821334ad21c8c43bb3e636f1990894bfee40d287))
+
+
+
+
+
+# [4.2.0-alpha.14](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.13...v4.2.0-alpha.14) (2020-09-25)
+
+
+### Bug Fixes
+
+* **proptypes:** fix issue with mutated reference in standard default props ([0bd6de9](https://github.com/alleyinteractive/irving/packages/styled/commit/0bd6de9509df6b723adb85ad632b362b812ac940))
+
+
+
+
+
+# [4.2.0-alpha.12](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0...v4.2.0-alpha.12) (2020-09-24)
+
+
+
+# [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+
+
+
+# [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
+
+
+
+# [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [4.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.5...v4.2.0-alpha.6) (2020-09-18)
+# [4.1.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-rc.0...v4.1.0) (2020-09-24)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [4.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.2...v4.2.0-alpha.4) (2020-09-18)
+# [4.1.0-rc.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-beta.4...v4.1.0-rc.0) (2020-09-18)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [4.2.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.2...v4.2.0-alpha.3) (2020-09-18)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [4.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.2.0-alpha.0...v4.2.0-alpha.1) (2020-09-17)
+# [4.1.0-beta.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-beta.3...v4.1.0-beta.4) (2020-09-17)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [4.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-alpha.5...v4.1.0-beta.0) (2020-09-16)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [4.1.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-alpha.4...v4.1.0-alpha.5) (2020-09-15)
+
+
+### Bug Fixes
+
+* **providers:** switch to using a separate create helper for providers ([6a2ac37](https://github.com/alleyinteractive/irving/packages/styled/commit/6a2ac3756de740e3d9f6406d2bd9cbc14852864f))
+
+
+
+
+
+# [4.1.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.1.0-alpha.3...v4.1.0-alpha.4) (2020-09-15)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
 # [4.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v4.0.0...v4.1.0-alpha.0) (2020-09-10)
 
 **Note:** Version bump only for package @irvingjs/styled

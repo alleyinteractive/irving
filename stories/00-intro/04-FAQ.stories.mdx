@@ -1,0 +1,24 @@
+<Meta title="Intro|Frequently Asked Questions" />
+
+# Frequently Asked Questions
+
+## What is decoupled/headless?
+To be written. This should eventually link to an Alley blog post.
+
+## Why use node and express instead of a React SPA rendered in WordPress (or some other CMS)?
+
+There are a lot of configuration options in this space, each with its own advantages and disadvantages. Our primary goals were (native) [isomorphic/server side rendering](?path=/docs/concepts-server-side-rendering--page), performance, and being able to work with any data source. We considered many setups and ultimately found this configuration to strike the right balance of meeting our goals with minimal drawbacks.
+
+## Why not Next.js or Gatsby?
+
+Depending on your needs, Next.js and Gatsby are amazing solutions, as are other libraries. Each solution is best aimed to resolve some specific problem or set of problems. When we built Irving, we didn't find them to be the right tools for our project goals, and would complicate supporting some of the dynamic features a CMS offers (like previews).
+
+## Why aren't you using GraphQL?
+
+We love GraphQL, it’s an awesome tool for the right job. Irving doesn’t require the intricate querying interface that GraphQL provides, so we opted to keep it as simple as possible and reduce the number of moving parts in the application.
+
+## Aren't you sacrificing one of the best parts of WordPress &mdash; its enormous library of plugins &mdash; by using an app like Irving?
+
+Yes and no. Many plugins that automatically add frontend markup may be left behind with Irving. We'll continue to work to support what plugins we can out-of-the-box. Supporting others that aren't on our radar may require some development work on your end.
+
+[See all supported WordPress plugins](?path=/docs/integrations-supported-wordpress-plugins--page).

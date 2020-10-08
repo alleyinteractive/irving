@@ -1,0 +1,49 @@
+<Meta title="WordPress Components|Query Search Form" />
+
+# Query Search Form
+Form with an input field for search.
+
+Renders as the `SearchForm` styled component (docs needed).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/query-search-form).
+
+## Overview
+Simple form and input element used to interact with site search.
+
+### Notes
+* `irving/wp_query` is one of the default context providers, and will be set using the global `$wp_query` on every template. The `irving/post-list` component will override this global default when used.
+
+## Config
+```json
+{
+  "base_url": {
+    "default": "/",
+    "type": "string"
+  },
+  "search_term": {
+    "default": "",
+    "type": "string"
+  },
+  "search_term_query_arg": {
+    "default": "s",
+    "type": "string"
+  },
+  "style": {
+    "default": [],
+    "type": "array"
+  },
+  "wp_query": {
+    "hidden": true,
+    "type": "object"
+  }
+}
+```
+
+## Examples
+
+### Basic example
+```json
+{
+  "name": "irving/query-search-form"
+}
+```

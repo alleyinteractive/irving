@@ -1,0 +1,72 @@
+<Meta title="WordPress Components|Fragment" />
+
+# Fragment
+Render children in a React fragment or any other HTML tag.
+
+Renders the `Fragment` styled component [(docs)](?path=/docs/styled-components-fragment--basic-eample).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/fragment).
+
+## Overview
+Use a React fragment to render children. Optionally render as an html element to include inline styles or a theme.
+
+### Notes
+* The `fragment` and `container` components will be merged in a future release as their functionality has become largely identical.
+
+## Config
+```json
+{
+  "tag": {
+    "type": "string",
+    "required": false
+  }
+}
+```
+
+## Examples
+See the [fragment styled component documentation](?path=/docs/styled-components-fragment--basic-example) for more examples.
+
+### Basic Example
+```json
+{
+  "name": "irving/fragment",
+  "children": [
+    {
+      "name": "irving/text",
+      "config": {
+        "content": "First child component"
+      }
+    },
+    {
+      "name": "irving/text",
+      "config": {
+        "content": "Second child component"
+      }
+    }
+  ]
+}
+```
+
+### With a `div` wrapper element.
+```json
+{
+  "name": "irving/fragment",
+  "config": {
+    "tag": "div"
+  },
+  "children": [
+    {
+      "name": "irving/text",
+      "config": {
+        "content": "First child component"
+      }
+    },
+    {
+      "name": "irving/text",
+      "config": {
+        "content": "Second child component"
+      }
+    }
+  ]
+}
+```

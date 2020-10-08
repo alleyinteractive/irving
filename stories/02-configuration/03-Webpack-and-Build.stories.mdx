@@ -1,0 +1,36 @@
+<Meta title="Configuration|Webpack and Build Configuration" />
+
+# Webpack and Build Configuration
+This section outlines the different ways you can configure the Webpack and Build process.
+
+## Webpack Configuration
+* **where to configure**: `config/webpack.config.js`
+* **type**: object
+* **purpose**: Customize Irving's internal webpack config for both server- and client-side builds. Example:
+```javascript
+// in config/getWebpackConfig.js
+module.exports = (configs) => (
+  // Map through both server and client configs.
+  configs.map((config) => {
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: [
+          'css-loader',
+          'sass-loader',
+      ],
+    },);
+
+    return config;
+  })
+);
+```
+
+## Server-side Webpack Configuration
+* **where to configure**: `config/webpack.config.server.js`
+* **type**: object
+* **purpose**: Customize Irving's webpack configuration for only the server-side build.
+
+## Client-side Webpack Configuration
+* **where to configure**: `config/webpack.config.client.js`
+* **type**: object
+* **purpose**: Customize Irving's webpack configuration for only the client-side build.

@@ -1,0 +1,37 @@
+<Meta title="Configuration|Environment Variables" />
+
+# Environment Variables
+This section outlines the various environment variables supported by Irving.
+
+* `ROOT_URL` **required** - The root url the app is served from. This value is required to prevent webpack assets from 404ing when the app isn't served from the root of a site.
+* `API_ROOT_URL` **required** - URL at which your components endpoint can be accessed.
+* `APP_ROOT` - Absolute path to the directory in which this app will be executed.
+This path will be included in the build and be used to resolve the location of your configuration files and express.js view templates. By default, this variable will be set to `process.cwd()`. This variable is only required if you are building your app in a separate location from where it will be run.
+* `BUILD_CONTEXT` - Absolute path used to indicate the context in which the build is occurring.
+This will be provided as-is to webpack's `context` configuration property. By default, this variable will be set to `process.cwd()`.
+* `API_ORIGIN` - Protocol and host at which your API is located. Usually the same as `API_ROOT_URL` but without a path. This is used only in a limited number of places (like passthrough proxies). This is not required if you are not using that functionality OR if your API origin and root URL are the same.
+* `PORT` - http port the server will serve from. Defaults to 3001.
+* `HOSTNAME` - FQDN of the server host
+* `NODE_TLS_REJECT_UNAUTHORIZED` - Only disable this when attempting to execute
+http requests to development APIs with self signed certificates. Never disable
+this in production.
+* `REDIS_URL` - url of redis instance using `redis://` protocol.
+* `CACHE_DURATION` - time in seconds redis entries will persist before being
+automatically deleted, defaults to 5 minutes
+* `BASIC_AUTH` - Put your entire site behind basic auth when running in production mode.
+* `BASIC_AUTH_USERNAME` - Basic auth username. This will be used for both sitewide basic auth and cache endpoints.
+* `BASIC_AUTH_PASSWORD` - Basic auth password. This will be used for both sitewide basic auth and cache endpoints.
+* `DEBUG` - https://github.com/visionmedia/debug#environment-variables
+* `NEW_RELIC_APP_NAME` - The name of this application, for reporting to New Relic's servers. This value can be also be a comma-delimited list of names.
+* `NEW_RELIC_LICENSE_KEY` - Your New Relic license key.
+* `PROXY_URL` - URL to proxy all server requests through.
+* `HTTPS_KEY_PATH` - Path to tls key relative to current home directory.
+* `HTTPS_CERT_PATH` - Path to tls cert relative to current home directory.
+* `FETCH_TIMEOUT` - Timeout after which primary call to `fetch` to retrieve component data will be aborted.
+
+### Extra Query Params
+* Any environment variable that is prefixed with `API_QUERY_PARAM_`, for example `API_QUERY_PARAM_MARKET=india`, will be mapped to a query param with the prefix stripped out and the parameter name transformed to lowercase. This will allow you to add extra query parameters to all components requests.
+* Any environmental variable that is prefixed with `CONFIG_` will be included in `process.env` on the server side or `__window__.ENV` on the client side. These variables should be used as feature flags and reserved for opting in or out of specific functionality that may differ between environments.
+
+### Package Query Params
+In addition, Irving npm packages may include their own environmental variables, required or otherwise. These varirables are documented in the individual package readmes.

@@ -1,0 +1,17 @@
+<Meta title="Concepts|Server Side Rendering" />
+
+# Server Side (Isomorphic) Rendering
+Isomorphically-rendered apps run roughly the same code on both the servers side (node) and the client side (your web browser). This means they can render any given page in either environment (or both).
+
+Isomorphic rendering affords Irving many advantages over an app rendered only on the client or server side.
+
+## Benefits
+### Search Engine Optimization
+You only have to worry about the standard SEO concerns. Google (and other search engines') crawler bots are capable of parsing JavaScript, but they're not perfect. Isomorphic rendering means that any page can be rendered by the server and returned as static HTML, just like using your CMS' built-in templating and rendering engine. This means you can focus on making your pages SEO-friendly with no added complications.
+
+[Read more about Search Engine Optimization](?path=/docs/features-seo--page).
+
+### Performance
+Pages throughout the site load very efficiently. Irving's server will bootstrap the app with an initial payload of markup and app state. After this bootstrapping process, only the changes between one page and another will need to be handled—and Irving can do so without a page refresh. What this means for your users is a fast, app-like experience navigating through your site.
+
+[Read more about Performance](?path=/docs/features-performance-and-scaling--page).

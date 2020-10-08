@@ -1,0 +1,46 @@
+<Meta title="Components|Components Endpoint" />
+
+# Components Endpoint
+When a user hits an endpoint in Irving, the application fires a request to the CMS' API. The response is parsed by Irving and displayed to the user as rendered React components.
+
+The components API is how your CMS describes what Irving should render for any given route. Irving will make a request to your API with a ?path query param. The value of this query param is the path currently being loaded. Navigating to /about-us/ will create a request of /components?path=/about-us/. The CMS should parse this request and return a JSON response.
+
+You can also use context to describe the context of the API load. In Core Irving context=site will be passed for the initial load to indicate that defaults should also be included in the payload.
+
+## Response
+All responses follow this format,
+```json
+{
+  "defaults": [],
+  "page": [],
+  "providers": [],
+  "redirectTo": "",
+  "redirectStatus": 0
+}
+```
+
+### `defaults`
+An array of components that informs Irving what components are "global" and should persist across all requests. This is good for setting up headers, footers, scripts, and other components that should exist on every page. Defaults can be passed at any point, but Irving will automatically add `context=site` to the initial request, which can be used as a flag to return the default components.
+
+### `page`
+An array of components for a specific route. Irving looks for top-level conflicts between the `defaults` and `page` arrays and overrides the defaults with the page component.
+
+### `providers`
+An array of components that should be used as providers. See the [RootProvider](https://github.com/alleyinteractive/irving/tree/production/components/rootProviders) component for full documentation.
+
+Read more about the [Site Theme](?path=/docs/site-theme-site-theme-provider--page) provider.
+
+### `redirectTo`
+The url you want to redirect to.
+
+### `redirectStatus`
+HTTP status code for your redirect.
+
+## Query params
+Irving will pass a `path` param and a `context` param. `path` is equal to the path of the current page. `context` will be either `page` or `site` - `site` on initial load and `page` for all additional requests. Any extra params are also passed.
+
+### Filtering the output
+You should modify the data returned to the endpoint by using the `wp_irving_components_route` filter.
+
+### Filtering the status code
+You can modify the status code returned using the `wp_irving_components_route_status` filter.

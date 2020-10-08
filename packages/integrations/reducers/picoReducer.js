@@ -1,6 +1,8 @@
 import {
   PICO_LOADED,
+  PICO_SCRIPT_ADDED,
   UPDATE_PICO_PAGE_INFO,
+  UPDATE_PICO_SIGNAL,
 } from '../actions/types';
 import { pico as defaultState } from './defaultState';
 
@@ -21,10 +23,22 @@ export default function picoReducer(
         loaded: true,
       };
 
+    case PICO_SCRIPT_ADDED:
+      return {
+        ...state,
+        scriptAdded: true,
+      };
+
     case UPDATE_PICO_PAGE_INFO:
       return {
         ...state,
         pageInfo: payload,
+      };
+
+    case UPDATE_PICO_SIGNAL:
+      return {
+        ...state,
+        signal: payload,
       };
 
     default:

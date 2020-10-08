@@ -1,18 +1,10 @@
 import {
-  takeLatest,
   call,
   put,
-  select,
-  take,
-  fork,
+  takeLatest,
 } from 'redux-saga/effects';
 import {
-  picoLoadedSelector,
-  picoPageInfoSelector,
-} from '../selectors/picoSelector';
-import {
   SEND_PICO_VERIFICATION_REQUEST,
-  UPDATE_PICO_PAGE_INFO,
 } from '../actions/types';
 import { actionReceivePicoVerificationFailure } from '../actions/picoActions';
 import {
@@ -22,41 +14,10 @@ import {
   actionReceiveCoralUsernameSetHash,
 } from '../actions/coralActions';
 
-/**
- * A custom generator pattern designed to only take the first instance of an action.
- * @param {string} pattern - The action to respond to.
- * @param {*} saga - The saga to execute.
- * @param  {...any} args - Arguments.
- */
-function* takeFirst(pattern, saga, ...args) {
-  const task = yield fork(function* () {
-    while (true) {
-      const action = yield take(pattern);
-
-      yield call(saga, ...args.concat(action));
-    }
-  });
-
-  return task;
-}
-
 // The Pico saga.
 export default [
-  takeLatest(UPDATE_PICO_PAGE_INFO, dispatchPicoVisit),
-  takeFirst(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
+  takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
 ];
-
-function* dispatchPicoVisit() {
-  const picoLoaded = yield select(picoLoadedSelector);
-  const picoPageInfo = yield select(picoPageInfoSelector);
-
-  if (
-    (picoLoaded && picoPageInfo) &&
-    'function' === typeof window.Pico.handleNavigationEvent
-  ) {
-    window.pico('visit', picoPageInfo);
-  }
-}
 
 /**
  * A generator that dispatches the verification request to the Pico data

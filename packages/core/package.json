@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "4.1.0-alpha.0",
+  "version": "4.2.0-alpha.21",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -42,7 +42,7 @@
   "dependencies": {
     "@babel/core": "^7.10.4",
     "@hot-loader/react-dom": "^16.13.0",
-    "@irvingjs/babel-preset-irving": "^4.1.0-alpha.0",
+    "@irvingjs/babel-preset-irving": "^4.2.0-alpha.20",
     "@svgr/webpack": "^5.4.0",
     "abort-controller": "^3.0.0",
     "babel-eslint": "^10.1.0",
@@ -126,6 +126,8 @@
   "gitHead": "a855ce1255df9c35b5cd049e4c2d65b8665982dd",
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^2.7.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.2",
     "babel-jest": "^25.5.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
