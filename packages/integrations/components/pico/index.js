@@ -14,11 +14,6 @@ import {
   picoLoadedSelector,
   picoScriptAddedSelector,
 } from '../../selectors/picoSelector';
-// Coral.
-import {
-  actionReceiveCoralLogoutRequest,
-} from '../../actions/coralActions';
-import { tokenSelector } from '../../selectors/coralSelector';
 // Utility functions.
 import {
   isPicoMounted,
@@ -83,9 +78,6 @@ const Pico = (props) => {
   // Grab the `scriptAdded` value from the `pico` branch of the state tree.
   const picoScriptAdded = useSelector(picoScriptAddedSelector);
 
-  // Retrieve the Coral SSO token from the Redux store.
-  const coralToken = useSelector(tokenSelector);
-
   // Add listeners for pico events.
   useEffect(() => {
     // Dispatch an action to update the integrations.pico.loaded state in Redux.
@@ -109,7 +101,7 @@ const Pico = (props) => {
   // been set to true and only if `picoLoaded` has not been set to true yet.
   useEffect(() => {
     if (picoScriptAdded) {
-      log.info('Pico: Dispatching initial page visit.');
+      log.info('Pico: Dispatching page visit.');
       // Dispatch the initial visit to trigger the `pico.loaded` event.
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
@@ -137,12 +129,9 @@ const Pico = (props) => {
   if (picoScriptAdded) {
     // Inject the Pico Signal into the DOM.
     log.info('Pico: Returning observer component.');
+
     return (
-      <PicoObserver
-        tiers={tiers}
-        accessToken={coralToken}
-        logoutRequestAction={actionReceiveCoralLogoutRequest}
-      />
+      <PicoObserver tiers={tiers} />
     );
   }
 

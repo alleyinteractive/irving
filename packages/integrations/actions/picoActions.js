@@ -7,6 +7,7 @@ import {
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
   SEND_PICO_VERIFICATION_REQUEST,
   UPDATE_PICO_PAGE_INFO,
+  UPDATE_PICO_SIGNAL,
 } from './types';
 
 /**
@@ -32,6 +33,15 @@ export function actionPicoScriptAdded() {
  */
 export function actionUpdatePicoPageInfo(pageInfo) {
   return createAction(UPDATE_PICO_PAGE_INFO, pageInfo);
+}
+
+/**
+ * Create an action that updates the store with the Pico signal's data.
+ * @param {object} signal - Pico signal object.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionUpdatePicoSignal(signal) {
+  return createAction(UPDATE_PICO_SIGNAL, signal);
 }
 
 /**
