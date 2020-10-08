@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 import { link, list, listItem } from './utils';
 
-export const LatestPostsBlock = createGlobalStyle`
+export const latestPostsBlock = css`
   [data-type="core/latest-posts"] ul,
   .wp-block-latest-posts,
   .wp-block-latest-posts.wp-block-latest-posts__list {

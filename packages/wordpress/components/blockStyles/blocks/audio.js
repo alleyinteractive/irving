@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 import { link, caption } from './utils';
 
-export const AudioBlock = createGlobalStyle`
+export const audioBlock = css`
   .wp-block-audio {
 
     figcaption {

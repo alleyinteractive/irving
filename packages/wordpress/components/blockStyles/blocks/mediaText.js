@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 
-export const MediaTextBlock = createGlobalStyle`
+export const mediaTextBlock = css`
   .wp-block-media-text {
 
     img {

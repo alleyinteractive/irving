@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 
 /* eslint-disable indent */
-export const ButtonBlock = createGlobalStyle`
+export const buttonBlock = (overrides = '') => css`
   .wp-block-button__link {
     border: 1px solid blue;
     border-radius: 0;
@@ -14,5 +14,7 @@ export const ButtonBlock = createGlobalStyle`
       background-color: blue;
       color: white;
     }
+
+    ${overrides}
   }
 `;

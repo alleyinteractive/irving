@@ -1,8 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 
-export const SeparatorBlock = createGlobalStyle`
+export const separatorBlock = css`
   .wp-block-separator {
-    margin-left: 0;
-    width: 95%;
+    width: 100%;
   }
 `;

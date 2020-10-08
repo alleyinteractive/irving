@@ -1,20 +1,20 @@
-import React from 'react';
+import { css } from 'styled-components';
 import blockStylesConfig from '@irvingjs/blockStyles.config';
-import { AudioBlock } from './audio';
-import { ButtonBlock } from './button';
-import { EmbedBlock } from './embed';
-import { GalleryBlock } from './gallery';
-import { HeadingBlock } from './heading';
-import { ImageBlock } from './image';
-import { LatestPostsBlock } from './latestPosts';
-import { ListBlock } from './list';
-import { MediaTextBlock } from './mediaText';
-import { ParagraphBlock } from './paragraph';
-import { PullquoteBlock } from './pullquote';
-import { QuoteBlock } from './quote';
-import { SeparatorBlock } from './separator';
-import { TableBlock } from './table';
-import { VideoBlock } from './video';
+import { audioBlock } from './audio';
+import { buttonBlock } from './button';
+import { embedBlock } from './embed';
+import { galleryBlock } from './gallery';
+import { headingBlock } from './heading';
+import { imageBlock } from './image';
+import { latestPostsBlock } from './latestPosts';
+import { listBlock } from './list';
+import { mediaTextBlock } from './mediaText';
+import { paragraphBlock } from './paragraph';
+import { pullquoteBlock } from './pullquote';
+import { quoteBlock } from './quote';
+import { separatorBlock } from './separator';
+import { tableBlock } from './table';
+import { videoBlock } from './video';
 
 const {
   blockMap,
@@ -22,48 +22,53 @@ const {
 } = blockStylesConfig;
 
 const defaultBlockStyles = {
-  'core/audio': AudioBlock,
-  'core/button': ButtonBlock,
-  'core-embed': EmbedBlock,
-  'core/gallery': GalleryBlock,
-  'core/heading': HeadingBlock,
-  'core/image': ImageBlock,
-  'core/latest-posts': LatestPostsBlock,
-  'core/list': ListBlock,
-  'core/media-text': MediaTextBlock,
-  'core/paragraph': ParagraphBlock,
-  'core/pullquote': PullquoteBlock,
-  'core/quote': QuoteBlock,
-  'core/separator': SeparatorBlock,
-  'core/table': TableBlock,
-  'core/video': VideoBlock,
+  'core/audio': audioBlock,
+  'core/button': buttonBlock,
+  'core-embed': embedBlock,
+  'core/gallery': galleryBlock,
+  'core/heading': headingBlock,
+  'core/image': imageBlock,
+  'core/latest-posts': latestPostsBlock,
+  'core/list': listBlock,
+  'core/media-text': mediaTextBlock,
+  'core/paragraph': paragraphBlock,
+  'core/pullquote': pullquoteBlock,
+  'core/quote': quoteBlock,
+  'core/separator': separatorBlock,
+  'core/table': tableBlock,
+  'core/video': videoBlock,
 };
 
 const getBlockMap = () => {
-  // Combine user styles with default styles if mergeBlockStyles config is true.
-  if (mergeBlockStyles) {
-    return Object.keys(defaultBlockStyles)
-      .reduce((acc, blockName) => {
-        const UserStyles = blockMap[blockName];
-        const DefaultStyles = defaultBlockStyles[blockName];
-        const StyleComponent = UserStyles ? () => (
-          <>
-            <DefaultStyles />
-            <UserStyles />
-          </>
-        ) : DefaultStyles;
+  const coreBlocksMap = Object.keys(defaultBlockStyles)
+    .reduce((acc, blockName) => {
+      const userStyles = blockMap[blockName];
+      const defaultStyles = defaultBlockStyles[blockName];
+      let coreStyles;
 
-        return {
-          ...acc,
-          [blockName]: StyleComponent,
-        };
-      }, {});
-  }
+      if (userStyles) {
+        if (mergeBlockStyles) {
+          coreStyles = css`
+            ${defaultStyles};
+            ${userStyles};
+          `;
+        } else {
+          coreStyles = css`${userStyles}`;
+        }
+      } else {
+        coreStyles = css`${defaultStyles}`;
+      }
 
-  // Replace default styles with user styles if mergeBlockStyles is false.
+      return {
+        ...acc,
+        [blockName]: coreStyles,
+      };
+    }, {});
+
+  // Merge in combined core block styles, leaving any custom block styles in the user's map.
   return {
-    ...defaultBlockStyles,
     ...blockMap,
+    ...coreBlocksMap,
   };
 };
 

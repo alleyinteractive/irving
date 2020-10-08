@@ -1,8 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 import { bodyText, link, caption } from './utils';
 
 /* eslint-disable indent */
-export const TableBlock = createGlobalStyle`
+export const tableBlock = css`
   .wp-block-table {
     ${bodyText};
 

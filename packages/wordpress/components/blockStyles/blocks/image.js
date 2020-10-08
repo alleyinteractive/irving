@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 import { bodyText, caption, link } from './utils';
 
-export const ImageBlock = createGlobalStyle`
+export const imageBlock = css`
   .wp-block-image {
     ${bodyText};
 

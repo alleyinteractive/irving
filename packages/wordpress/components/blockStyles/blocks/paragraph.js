@@ -1,10 +1,11 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 import { bodyText, link } from './utils';
 
-export const ParagraphBlock = createGlobalStyle`
+export const paragraphBlock = css`
   [data-type="core/paragraph"],
   .irving__post-content p {
     ${bodyText};
+    color: red;
 
     a {
       ${link};

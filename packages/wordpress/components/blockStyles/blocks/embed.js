@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 import { bodyText, caption, link } from './utils';
 
-export const EmbedBlock = createGlobalStyle`
+export const embedBlock = (overrides = '') => css`
   [data-type^="core-embed"],
   .wp-block-embed {
 
@@ -16,5 +16,7 @@ export const EmbedBlock = createGlobalStyle`
     blockquote {
       ${bodyText};
     }
+
+    ${overrides}
   }
 `;

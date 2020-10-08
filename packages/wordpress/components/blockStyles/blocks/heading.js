@@ -1,5 +1,4 @@
-import { css, createGlobalStyle } from 'styled-components';
-import { siteTheme } from '@irvingjs/styled/utils';
+import { css } from 'styled-components';
 import { link } from './utils';
 
 /* eslint-disable indent */
@@ -15,7 +14,7 @@ const heading = css`
   }
 `;
 
-export const HeadingBlock = createGlobalStyle`
+export const headingBlock = css`
   [data-type="core/heading"] {
     ${heading}
   }

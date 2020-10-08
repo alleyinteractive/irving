@@ -1,9 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
-import { siteTheme } from '@irvingjs/styled/utils';
+import { css } from 'styled-components';
 import { link } from './utils';
 
 /* eslint-disable indent */
-export const QuoteBlock = createGlobalStyle`
+export const quoteBlock = css`
   .wp-block-quote {
     border-left: 1px solid black;
     display: flex;

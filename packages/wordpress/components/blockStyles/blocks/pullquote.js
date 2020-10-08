@@ -1,8 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from 'styled-components';
 import { link } from './utils';
 
 /* eslint-disable indent */
-export const PullquoteBlock = createGlobalStyle`
+export const pullquoteBlock = css`
   .wp-block-pullquote {
     display: flex;
     padding: 1rem 1.5rem;
