@@ -49,13 +49,13 @@ There are two primary ways of configuring block styles:
 }
 ```
 * Your second option is to create your own styled component(s) to completely override the default styles in this package. Block styles can be configured in this way by creating a `blockStyles.config.js` in the root directory of your irving project. This file should export an config object, for which there are currently two available fields:
-  * `blockMap` (Object) - Add your own styled components to style a specific block. Keys in this object are a block name, values are the styled component used to style that block. Example:
+  * `blockMap` (Object) - Add your own styled components to style a specific block. Keys in this object are a block name, values are strings, string templates, or instances of the styled components [`css` helper](https://styled-components.com/docs/api#css). Example:
   ```javascript
-  import ParagraphStyles from 'components/blocks/paragraph';
+  import paragraphStyles from 'components/blocks/paragraph';
 
   export default {
     blockMap: {
-      'core/paragraph': ParagraphStyles,
+      'core/paragraph': paragraphStyles,
     },
   };
   ```
