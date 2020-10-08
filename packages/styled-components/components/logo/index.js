@@ -10,7 +10,6 @@ import {
   analyticsPropTypes,
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
-import { propsToDataAttributes } from '@irvingjs/styled/utils';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -41,7 +40,7 @@ const Logo = (props) => {
   return (
     <LogoWrapper {...standardProps}>
       <LogoLink
-        {...propsToDataAttributes(analytics.click)}
+        analytics={analytics}
         as={Link}
         href={href}
       >

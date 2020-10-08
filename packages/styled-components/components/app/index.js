@@ -1,4 +1,5 @@
 import React from 'react';
+import track from 'react-tracking';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import CssReset from '@irvingjs/styled/components/reset';
@@ -51,4 +52,7 @@ export {
   themeMap,
 };
 
-export default App;
+export default track({
+  app: 'Irving',
+  event: 'irving.appMounted',
+}, { dispatchOnMount: true })(App);

@@ -10,7 +10,6 @@ import {
   analyticsPropTypes,
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
-import { propsToDataAttributes } from '@irvingjs/styled/utils';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
 
@@ -51,8 +50,12 @@ const SocialLinks = (props) => {
           {items.map(({ platform, url, icon }) => (
             <SocialLinksItem key={platform}>
               <Link
-                {...propsToDataAttributes(analytics.click)}
-                data-label={platform}
+                analytics={({
+                  click: {
+                    ...analytics.click,
+                    label: platform,
+                  },
+                })}
                 href={url}
               >
                 <IconWrapper className={platform}>

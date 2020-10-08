@@ -1,4 +1,5 @@
 import React from 'react';
+import track, { TrackingPropType } from 'react-tracking';
 import PropTypes from 'prop-types';
 import useClientNavigationOnClick from
   '@irvingjs/core/hooks/useClientNavigationOnClick';
@@ -7,7 +8,6 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
-import { propsToDataAttributes } from '@irvingjs/styled/utils';
 import {
   analyticsPropTypes,
   getAnalyticsDefaultProps,
@@ -31,6 +31,7 @@ const Link = (props) => {
     rel,
     target,
     theme,
+    tracking,
   } = props;
   const {
     onClick: defaultOnClick,
@@ -43,10 +44,15 @@ const Link = (props) => {
 
   return (
     <LinkWrapper
-      {...propsToDataAttributes(analytics.click)}
       aria-hidden={'true' === ariaHidden ? ariaHidden : null}
       href={destination}
-      onClick={onClick || defaultOnClick}
+      onClick={(event) => {
+        tracking.trackEvent({
+          componentAction: 'click',
+          eventData: analytics.click,
+        });
+        return onClick ? onClick(event) : defaultOnClick(event);
+      }}
       rel={rel}
       target={target}
       {...props}
@@ -62,13 +68,8 @@ Link.defaultProps = {
   ...getStandardDefaultProps(),
   ariaHidden: null,
   theme: defaultStyles,
-  onClick: false,
   rel: '',
   target: '',
-  gtmCategory: '',
-  gtmAction: '',
-  gtmLabel: '',
-  gtmValue: null,
 };
 
 Link.propTypes = {
@@ -83,10 +84,7 @@ Link.propTypes = {
    * OnClick function. NOTE: if provided, this will override
    * history push handling, so use with care.
    */
-  onClick: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.bool,
-  ]),
+  onClick: PropTypes.func,
   /**
    * Rel attribute.
    */
@@ -95,6 +93,10 @@ Link.propTypes = {
    * Anchor target.
    */
   target: PropTypes.string,
+  /**
+   * React tracking.
+   */
+  tracking: TrackingPropType,
 };
 
 const themeMap = {
@@ -106,4 +108,6 @@ export {
   themeMap,
 };
 
-export default Link;
+export default track({
+  component: 'link',
+})(Link);
