@@ -27,7 +27,7 @@ export default function* resolveComponentsAuthorized() {
     const result = yield call(fetchComponents, path, search, cookie, context);
     yield put(actionReceiveComponents(result));
   } catch (err) {
-    yield call(debug, err);
+    yield call(debug.error, err);
     yield put(actionReceiveError(err));
   }
 }

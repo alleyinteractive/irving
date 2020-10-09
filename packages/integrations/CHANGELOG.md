@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.0.0-alpha.6...v5.0.0-alpha.7) (2020-10-08)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.0.0-alpha.5...v5.0.0-alpha.6) (2020-10-08)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.0.0-alpha.4...v5.0.0-alpha.5) (2020-10-08)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.0.0-alpha.3...v5.0.0-alpha.4) (2020-10-08)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
 # [5.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.0.0-alpha.2...v5.0.0-alpha.3) (2020-10-08)
 
 **Note:** Version bump only for package @irvingjs/integrations

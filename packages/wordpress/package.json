@@ -1,0 +1,47 @@
+{
+  "name": "@irvingjs/wordpress",
+  "version": "5.0.0-alpha.7",
+  "description": "An example package for creating your own.",
+  "files": [
+    "components/**/*",
+    "config/**/*",
+    "blockEditor.js",
+    "babel.config.js",
+    "irving.config.js",
+    "webpack.config.js",
+    "!*.test.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/example-package"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config webpack.config.js --mode production",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "@irvingjs/styled": "^4.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@irvingjs/babel-preset-irving": "^4.2.0-alpha.6",
+    "@irvingjs/core": "^5.0.0-alpha.7",
+    "babel-loader": "^8.1.0",
+    "jest": "^25.5.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">=2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
+}
