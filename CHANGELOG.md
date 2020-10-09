@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.0.0...v5.0.1-alpha.0) (2020-10-09)
+
+
+### Bug Fixes
+
+* **link:** fix issue with spreading props into link wrapper component ([fdd4464](https://github.com/alleyinteractive/irving/commit/fdd446475fac9e1bd1afc88e3211273bd983fa04))
+
+
+
+
+
 # [5.0.0](https://github.com/alleyinteractive/irving/compare/v5.0.0-beta.0...v5.0.0) (2020-10-09)
 
 **Note:** Version bump only for package irving
