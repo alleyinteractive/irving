@@ -18,7 +18,6 @@ import * as defaultStyles from './themes/default';
  */
 const Link = (props) => {
   const {
-    ariaHidden,
     children,
     gtmAction,
     gtmCategory,
@@ -38,12 +37,21 @@ const Link = (props) => {
     LinkWrapper,
   } = theme;
   const standardProps = useStandardProps(props);
+  const ariaProps = Object.keys(props).reduce((acc, propName) => {
+    if (! propName.includes('aria')) {
+      return acc;
+    }
+
+    return {
+      ...acc,
+      [propName]: props[propName],
+    };
+  });
 
   return (
     <LinkWrapper
-      {...props}
       {...standardProps}
-      aria-hidden={'true' === ariaHidden ? ariaHidden : null}
+      {...ariaProps}
       data-gtm-action={gtmAction}
       data-gtm-category={gtmCategory}
       data-gtm-label={gtmLabel}
