@@ -19,6 +19,8 @@ import * as defaultStyles from './themes/default';
  * Social sharing.
  *
  * Displays a list of platforms to share content on.
+ *
+ * @analytics {share} Fires when share button is clicked. Label is platform.
  */
 const SocialSharing = (props) => {
   const {

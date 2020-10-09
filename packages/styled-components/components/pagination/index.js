@@ -20,6 +20,8 @@ import * as defaultStyles from './themes/default';
  *
  * @todo Refactor so only necessary props are passed.
  *
+ * @analytics {click} Fires when link is clicked. Label is page.
+ *
  * @param {object}  props Pagination component props.
  * @param {integer} page  Page for the url.
  * @return {string}

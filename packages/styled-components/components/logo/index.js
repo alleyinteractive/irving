@@ -18,6 +18,8 @@ import * as defaultStyles from './themes/default';
  * Display the site name or logo.
  *
  * @todo Update with a proper image component.
+ *
+ * @analytics {click} Fires when link is clicked.
  */
 const Logo = (props) => {
   const {

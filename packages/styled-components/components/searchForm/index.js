@@ -21,6 +21,8 @@ const trackingService = getTrackingService();
  * Search input.
  *
  * Form with an input field for search.
+ *
+ * @analytics {search} Fires when search form is submitted. Label is query.
  */
 const SearchForm = (props) => {
   const {

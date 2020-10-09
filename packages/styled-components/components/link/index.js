@@ -22,6 +22,8 @@ const trackingService = getTrackingService();
  * Custom anchor.
  *
  * @todo Setup a default focus value for improved accessibility.
+ *
+ * @analytics {click} Fires when link is clicked.
  */
 const Link = (props) => {
   const {
