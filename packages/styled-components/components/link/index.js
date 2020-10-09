@@ -35,30 +35,31 @@ const Link = (props) => {
     rel,
     target,
     theme,
-    tracking,
   } = props;
   const {
     onClick: defaultOnClick,
     destination,
   } = useClientNavigationOnClick(href);
+  const tracking = trackingService.useTracking();
   const {
     LinkWrapper,
   } = theme;
   const standardProps = useStandardProps(props);
-
+  const handleClick = (event) => {
+    event.preventDefault();
+    tracking.trackEvent({
+      event: 'irving.linkClick',
+      eventData: analytics.click,
+    });
+    return onClick ? onClick(event) : defaultOnClick(event);
+  };
   return (
     <LinkWrapper
       {...props}
       {...standardProps}
       aria-hidden={'true' === ariaHidden ? ariaHidden : null}
       href={destination}
-      onClick={(event) => {
-        tracking.trackEvent({
-          event: 'irving.linkClick',
-          eventData: analytics.click,
-        });
-        return onClick ? onClick(event) : defaultOnClick(event);
-      }}
+      onClick={handleClick}
       rel={rel}
       target={target}
     >
@@ -97,10 +98,6 @@ Link.propTypes = {
    * Anchor target.
    */
   target: PropTypes.string,
-  /**
-   * React tracking.
-   */
-  tracking: trackingService.TrackingPropType,
 };
 
 const themeMap = {
@@ -112,6 +109,4 @@ export {
   themeMap,
 };
 
-export default trackingService.track({
-  eventComponent: 'link',
-})(Link);
+export default Link;
