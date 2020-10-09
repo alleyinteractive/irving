@@ -98,5 +98,7 @@ GoogleTagManager.propTypes = {
 };
 
 export default trackingService.track({
+  event: 'irving.componentLoaded',
   eventComponent: 'gtm',
-})(GoogleTagManager);
+  eventContext: 'irving.integrationsManager',
+}, { dispatchOnMount: true }))(GoogleTagManager);
