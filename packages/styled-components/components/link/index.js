@@ -48,6 +48,7 @@ const Link = (props) => {
   const handleClick = (event) => {
     event.preventDefault();
     tracking.trackEvent({
+      component: 'link',
       event: 'irving.linkClick',
       eventData: analytics.click,
     });
