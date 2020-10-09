@@ -97,13 +97,13 @@ const Image = (props) => {
         <ImageTag
           alt={alt}
           aspectRatio={aspectRatio}
-          height={height}
+          height={height ? height : undefined}
           loading={loading}
           objectFit={objectFit}
           src={src || fallbackSrc}
           srcSet={srcset}
           sizes={getSizes()}
-          width={width}
+          width={width ? width : undefined}
         />
       </ImageWrapper>
       {(caption || credit) && showMeta && (
