@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import ErrorBoundary from 'components/errorBoundary';
 import Root from 'components/root';
 import getComponent from 'config/componentMap';
+import trackingService from 'services/trackingService';
 
 const ErrorMessage = getComponent('error-message');
 const AppContentComponent = getComponent('app');
@@ -28,6 +29,10 @@ App.propTypes = {
    * Was there an error loading the page/components?
    */
   error: PropTypes.bool.isRequired,
+  /**
+   * React tracking.
+   */
+  tracking: trackingService.TrackingPropType, // eslint-disable-line react/require-default-props, react/no-unused-prop-types
 };
 
 const appMapStateToProps = (state) => ({
@@ -48,4 +53,8 @@ if (
 }
 
 /** @component */
-export default hotApp;
+export default trackingService.track({
+  app: 'irving',
+  event: 'irving.appLoaded',
+  eventContext: 'irving.app',
+}, { dispatchOnMount: true })(hotApp);

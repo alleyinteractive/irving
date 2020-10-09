@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTracking } from 'react-tracking';
+import getTrackingService from '@irvingjs/services/trackingService';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { useForm } from 'react-hook-form';
@@ -14,6 +14,8 @@ import {
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
 import * as defaultStyles from './themes/default';
+
+const trackingService = getTrackingService();
 
 /**
  * Search input.
@@ -42,7 +44,7 @@ const SearchForm = (props) => {
   const { register, handleSubmit } = useForm({
     defaultValues,
   });
-  const tracking = useTracking();
+  const tracking = trackingService.useTracking();
   const trackSearch = (query) => {
     tracking.trackEvent({
       event: 'irving.searchSubmit',

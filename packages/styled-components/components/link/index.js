@@ -1,8 +1,8 @@
 import React from 'react';
-import track, { TrackingPropType } from 'react-tracking';
 import PropTypes from 'prop-types';
 import useClientNavigationOnClick from
   '@irvingjs/core/hooks/useClientNavigationOnClick';
+import getTrackingService from '@irvingjs/services/trackingService';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
@@ -13,6 +13,8 @@ import {
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
 import * as defaultStyles from './themes/default';
+
+const trackingService = getTrackingService();
 
 /**
  * Link.
@@ -96,7 +98,7 @@ Link.propTypes = {
   /**
    * React tracking.
    */
-  tracking: TrackingPropType,
+  tracking: trackingService.TrackingPropType,
 };
 
 const themeMap = {
@@ -108,6 +110,6 @@ export {
   themeMap,
 };
 
-export default track({
+export default trackingService.track({
   eventComponent: 'link',
 })(Link);

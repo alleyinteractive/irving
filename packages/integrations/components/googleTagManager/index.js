@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import track, { TrackingPropType } from 'react-tracking';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from '@irvingjs/core/utils/isNode';
+import getTrackingService from '@irvingjs/services/trackingService';
 import serialize from 'serialize-javascript';
+
+const trackingService = getTrackingService();
 
 const GoogleTagManager = (props) => {
   const {
@@ -92,9 +94,9 @@ GoogleTagManager.propTypes = {
   /**
    * React tracking.
    */
-  tracking: TrackingPropType, // eslint-disable-line react/require-default-props
+  tracking: trackingService.TrackingPropType, // eslint-disable-line react/require-default-props
 };
 
-export default track({
+export default trackingService.track({
   eventComponent: 'gtm',
 })(GoogleTagManager);
