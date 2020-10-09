@@ -1,10 +1,12 @@
 import React from 'react';
-import track, { TrackingPropType } from 'react-tracking';
 import PropTypes from 'prop-types';
 // User Config.
 import userConfig from '@irvingjs/irving.config';
 // Component Map.
 import componentMap from './componentMap';
+import getTrackingService from '@irvingjs/services/trackingService';
+
+const trackingService = getTrackingService();
 
 /**
  * Integrations Manager.
@@ -93,10 +95,10 @@ IntegrationsManager.propTypes = {
   /**
    * React tracking.
    */
-  tracking: TrackingPropType, // eslint-disable-line react/require-default-props, react/no-unused-prop-types
+  tracking: trackingService.TrackingPropType, // eslint-disable-line react/require-default-props, react/no-unused-prop-types
 };
 
-export default track({
+export default trackingService.track({
   event: 'irving.componentLoaded',
   eventContext: 'irving.integrationsManager',
 }, { dispatchOnMount: true })(IntegrationsManager);
