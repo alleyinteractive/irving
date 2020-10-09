@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/wordpress",
-  "version": "5.0.0-alpha.7",
+  "version": "5.0.0-alpha.8",
   "description": "An example package for creating your own.",
   "files": [
     "components/**/*",
@@ -30,8 +30,8 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^4.2.0-alpha.6",
-    "@irvingjs/core": "^5.0.0-alpha.7",
+    "@irvingjs/babel-preset-irving": "^5.0.0-alpha.8",
+    "@irvingjs/core": "^5.0.0-alpha.8",
     "babel-loader": "^8.1.0",
     "jest": "^25.5.3",
     "webpack": "^4.44.2",
