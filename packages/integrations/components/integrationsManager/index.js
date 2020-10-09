@@ -5,7 +5,6 @@ import userConfig from '@irvingjs/irving.config';
 // Component Map.
 import componentMap from './componentMap';
 
-
 /**
  * Integrations Manager.
  *

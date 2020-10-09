@@ -101,4 +101,4 @@ export default trackingService.track({
   event: 'irving.componentLoaded',
   eventComponent: 'gtm',
   eventContext: 'irving.integrationsManager',
-}, { dispatchOnMount: true }))(GoogleTagManager);
+}, { dispatchOnMount: true })(GoogleTagManager);
