@@ -27,8 +27,7 @@ const ignore = [
   'utils/*',
   'hooks/*',
   'irving.config.js',
-  'componentMap.js',
-  'react-loadable.json',
+  'componentMap.js'
 ];
 const script = path.join(__dirname, './start.js');
 

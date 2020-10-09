@@ -29,6 +29,7 @@ const logRequest = getLogService('irving:render:request');
  *
  * @param {object} req Express request object
  * @param {object} res Express response object to be rendered.
+ * @param {object} clientStats Webpack client-side build statistics object.
  **/
 const render = async (req, res, clientStats) => {
   const sagaMiddleware = createSagaMiddleware();
@@ -80,12 +81,16 @@ const render = async (req, res, clientStats) => {
   );
 
   // Get some template vars and allow customization by user.
-  const customTemplateVars = getTemplateVars('getAppTemplateVars', {
-    Wrapper: AppWrapper,
-    head: {
-      end: [getWebpackAssetTags(clientStats)],
+  const customTemplateVars = getTemplateVars(
+    'getAppTemplateVars',
+    {
+      Wrapper: AppWrapper,
+      head: {
+        end: [getWebpackAssetTags(clientStats)],
+      },
     },
-  });
+    clientStats
+  );
 
   const stateEncoded = encodeState(getState());
   const templateVars = {

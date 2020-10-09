@@ -26,7 +26,7 @@ export default {
           end: 'Nascetur sodales nostra',
         }),
       },
-    }
+    },
   ],
   defaultState: {
     testState: true,
@@ -55,6 +55,7 @@ export default {
   sagas: () => ([
     takeEvery('TEST_ACTION_THREE', () => {}),
   ]),
+  testFun: jest.fn((initial, additionalArg1) => ({})),
   preloadedStateDenylist: [
     {
       key: 'test.nested.state',

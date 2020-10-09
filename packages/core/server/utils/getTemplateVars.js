@@ -59,10 +59,11 @@ const stringifyHeadConfig = (config, key) => {
  * Retrieve configured variables for a given express template (app or error)
  *
  * @param {string} key Key for configured functions for getting template vars.
- * @param {object} initialVars Variables passed in from serverRenderer
+ * @param {object} initialVars Variables passed in from serverRenderer.
+ * @param {object} clientStats Webpack client-side build stats object.
  * @return {object}
  */
-export default function getTemplateVars(key, initialVars) {
+export default function getTemplateVars(key, initialVars, clientStats) {
   const templateVars = getConfigValues(key);
   // Separate arrays for head configuration and other template variables,
   // as they will be extracted and merged using different methods.
@@ -70,7 +71,7 @@ export default function getTemplateVars(key, initialVars) {
   const headConfigs = [];
   // Normalize each provided config (from user, packages, etc.).
   const varsObjects = templateVars.map((vars) => (
-    getValFromFunction(vars, initialVars)
+    getValFromFunction(vars, initialVars, clientStats)
   ));
 
   // Collect top-level vars (except head, which we'll handle after the app renders).
