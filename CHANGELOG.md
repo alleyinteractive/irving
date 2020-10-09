@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/alleyinteractive/irving/compare/v5.0.0...v5.0.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* **link:** cherry pick link fix from commit fdd4464 into 5.0 ([23fcab2](https://github.com/alleyinteractive/irving/commit/23fcab28e3a34d26d1c6fcada8b0a045814afa96))
+
+
+
+
+
 # [5.0.0](https://github.com/alleyinteractive/irving/compare/v5.0.0-beta.0...v5.0.0) (2020-10-09)
 
 **Note:** Version bump only for package irving
