@@ -1,5 +1,5 @@
 module.exports = {
   plugins: [
-    'react-loadable/babel',
+    require.resolve('react-loadable/babel'),
   ],
 };
