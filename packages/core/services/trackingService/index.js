@@ -23,4 +23,4 @@ const getService = () => {
   return service;
 };
 
-module.exports = getService;
+export default getService;

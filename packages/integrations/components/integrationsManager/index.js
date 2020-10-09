@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // User Config.
 import userConfig from '@irvingjs/irving.config';
+// Tracking Service.
+import getTrackingService from '../../../core/services/trackingService';
 // Component Map.
 import componentMap from './componentMap';
-import getTrackingService from '@irvingjs/services/trackingService';
 
 const trackingService = getTrackingService();
 

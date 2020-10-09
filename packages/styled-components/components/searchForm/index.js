@@ -1,5 +1,4 @@
 import React from 'react';
-import getTrackingService from '@irvingjs/services/trackingService';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { useForm } from 'react-hook-form';
@@ -14,6 +13,7 @@ import {
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
 import * as defaultStyles from './themes/default';
+import getTrackingService from '../../../core/services/trackingService';
 
 const trackingService = getTrackingService();
 

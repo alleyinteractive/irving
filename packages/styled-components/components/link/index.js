@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useClientNavigationOnClick from
   '@irvingjs/core/hooks/useClientNavigationOnClick';
-import getTrackingService from '@irvingjs/services/trackingService';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
@@ -13,6 +12,7 @@ import {
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
 import * as defaultStyles from './themes/default';
+import getTrackingService from '../../../core/services/trackingService';
 
 const trackingService = getTrackingService();
 

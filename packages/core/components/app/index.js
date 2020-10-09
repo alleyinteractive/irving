@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import ErrorBoundary from 'components/errorBoundary';
 import Root from 'components/root';
 import getComponent from 'config/componentMap';
-import trackingService from 'services/trackingService';
+import getTrackingService from 'services/trackingService';
 
 const ErrorMessage = getComponent('error-message');
 const AppContentComponent = getComponent('app');
+const trackingService = getTrackingService();
 
 const App = (props) => {
   const { error } = props;
