@@ -87,6 +87,7 @@
     "react-hot-loader": "^4.12.21",
     "react-oembed-container": "^1.0.0",
     "react-redux": "^7.2.0",
+    "react-tracking": "^8.0.0",
     "react-transition-group": "^4.4.1",
     "react-universal-component": "^4.0.1",
     "reduce-reducers": "^1.0.4",
