@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [5.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.0.0-alpha.6...v5.0.0-alpha.7) (2020-10-08)
+# [4.2.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-beta.1...v4.2.0) (2020-10-09)
 
 **Note:** Version bump only for package @irvingjs/styled-components
 
@@ -36,6 +37,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [5.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.0.0-alpha.2...v5.0.0-alpha.3) (2020-10-08)
+# [4.2.0-beta.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-beta.0...v4.2.0-beta.1) (2020-10-08)
 
 
 ### Bug Fixes
@@ -68,6 +70,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### BREAKING CHANGES
 
 * **body class support:** The bodyClasses config will no longer work on the body-wrapper component
+* **link:** fix issue with props spreading in link component ([1343019](https://github.com/alleyinteractive/irving/packages/styled-components/commit/13430194ae04bde504cc7675ed292b0aa44ed0f2))
+
+
+
+
+
+# [4.2.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v4.2.0-alpha.21...v4.2.0-beta.0) (2020-10-04)
+
+**Note:** Version bump only for package @irvingjs/styled-components
 
 
 

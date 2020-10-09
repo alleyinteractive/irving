@@ -34,7 +34,7 @@
     "styled-css-grid": "^1.2.1"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^4.2.0-alpha.20",
+    "@irvingjs/babel-preset-irving": "^4.2.0",
     "@irvingjs/core": "^5.0.0-alpha.7",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.2",
