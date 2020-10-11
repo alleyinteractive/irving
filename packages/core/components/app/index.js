@@ -6,6 +6,7 @@ import ErrorBoundary from 'components/errorBoundary';
 import Root from 'components/root';
 import getComponent from 'config/componentMap';
 import getTrackingService from 'services/trackingService';
+import { getValueFromConfig } from 'config/irving/getValueFromConfig';
 
 const ErrorMessage = getComponent('error-message');
 const AppContentComponent = getComponent('app');
@@ -62,6 +63,6 @@ export default trackingService.withTracking(
   },
   {
     dispatchOnMount: true,
-    // ...getValueFromConfig('trackingOptions', {}),
+    ...getValueFromConfig('trackingOptions', {}),
   }
 )(hotApp);
