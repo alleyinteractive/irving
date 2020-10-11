@@ -44,7 +44,10 @@ export async function fetchComponents(
   // Default timeout is 10s, but can be configured with env var.
   const controller = new AbortController();
   const timeout = setTimeout(
-    () => controller.abort(),
+    () => {
+      log.error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.'); // eslint-disable-line max-len
+      controller.abort();
+    },
     env.FETCH_TIMEOUT || 10000
   );
 
