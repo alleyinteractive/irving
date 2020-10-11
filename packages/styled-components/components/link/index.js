@@ -28,7 +28,6 @@ const trackingService = getTrackingService();
 const Link = (props) => {
   const {
     analytics,
-    ariaHidden,
     children,
     href,
     onClick,
