@@ -31,9 +31,9 @@ App.propTypes = {
    */
   error: PropTypes.bool.isRequired,
   /**
-   * React tracking.
+   * Tracking prop types.
    */
-  tracking: trackingService.TrackingPropType, // eslint-disable-line react/require-default-props, react/no-unused-prop-types
+  ...trackingService.trackingPropTypes,
 };
 
 const appMapStateToProps = (state) => ({
@@ -54,8 +54,14 @@ if (
 }
 
 /** @component */
-export default trackingService.track({
-  app: 'irving',
-  event: 'irving.appLoaded',
-  eventContext: 'irving.app',
-}, { dispatchOnMount: true })(hotApp);
+export default trackingService.withTracking(
+  {
+    app: 'irving',
+    event: 'irving.appLoaded',
+    eventContext: 'irving.app',
+  },
+  {
+    dispatchOnMount: true,
+    // ...getValueFromConfig('trackingOptions', {}),
+  }
+)(hotApp);

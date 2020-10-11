@@ -92,12 +92,12 @@ GoogleTagManager.propTypes = {
     PropTypes.array, // Empty objects turn to arrays in PHP :(
   ]),
   /**
-   * React tracking.
+   * Tracking prop types.
    */
-  tracking: trackingService.TrackingPropType, // eslint-disable-line react/require-default-props
+  ...trackingService.trackingPropTypes,
 };
 
-export default trackingService.track({
+export default trackingService.withTracking({
   event: 'irving.componentLoaded',
   eventComponent: 'gtm',
   eventContext: 'irving.integrationsManager',

@@ -89,9 +89,9 @@ Here is a simplified and annotated version of the link component showing
        */
       href: PropTypes.string.isRequired,
       /**
-       * React tracking.
+       * Tracking prop types.
        */
-      tracking: trackingService.TrackingPropType,
+      ...trackingService.trackingPropTypes,
     };
 
     const themeMap = {
@@ -109,7 +109,7 @@ Here is a simplified and annotated version of the link component showing
      * event when the component first mounts. Otherwise, the `eventComponent` attribute
      * here will bubble up with any other parent attributes when the `trackEvent()` call is made.
      */
-    export default trackingService.track({
+    export default trackingService.withTracking({
       eventComponent: 'link',
     })(Link);
 ```

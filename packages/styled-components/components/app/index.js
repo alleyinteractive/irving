@@ -43,10 +43,7 @@ App.propTypes = {
     PropTypes.func,
   ]).isRequired,
   theme: PropTypes.object,
-  /**
-   * React tracking.
-   */
-  tracking: trackingService.TrackingPropType, // eslint-disable-line react/require-default-props, react/no-unused-prop-types
+  ...trackingService.trackingPropTypes,
 };
 
 const themeMap = {
@@ -58,7 +55,7 @@ export {
   themeMap,
 };
 
-export default trackingService.track({
+export default trackingService.withTracking({
   event: 'irving.componentLoaded',
   eventContext: 'irving.styledComponents',
 }, { dispatchOnMount: true })(App);
