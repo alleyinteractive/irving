@@ -1,26 +1,18 @@
-import track, { TrackingPropType, useTracking } from 'react-tracking';
-
+const getTrackingService = require('./getServiceFromFilesystem');
 let service;
 
 /**
- * Get the reusable react-tracking service. This prevents us from having
- * multiple instances throughout the app.
+ * Create a tracker that will handle the events baked into Irving components.
  *
- * @returns {object} singleton service object
+ * @return {function} A tracking function.
  */
 const getService = () => {
   // Memoize service, so it can reused.
   if (service) {
     return service;
   }
-
-  service = {
-    track,
-    TrackingPropType,
-    useTracking,
-  };
-
+  service = getTrackingService();
   return service;
 };
 
-export default getService;
+module.exports = getService;
