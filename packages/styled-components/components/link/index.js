@@ -45,6 +45,7 @@ const Link = (props) => {
     LinkWrapper,
   } = theme;
   const standardProps = useStandardProps(props);
+
   const handleClick = (event) => {
     event.preventDefault();
     tracking.trackEvent({
@@ -54,11 +55,22 @@ const Link = (props) => {
     });
     return onClick ? onClick(event) : defaultOnClick(event);
   };
+
+  const ariaProps = Object.keys(props).reduce((acc, propName) => {
+    if (! propName.includes('aria')) {
+      return acc;
+    }
+
+    return {
+      ...acc,
+      [propName]: props[propName],
+    };
+  });
+
   return (
     <LinkWrapper
-      {...props}
       {...standardProps}
-      aria-hidden={'true' === ariaHidden ? ariaHidden : null}
+      {...ariaProps}
       href={destination}
       onClick={handleClick}
       rel={rel}
