@@ -24,6 +24,10 @@ module.exports = (configs) => (
   })
 );
 ```
+## Webpack multi-config
+* **where to configure**: `config/webpack.config.multi.js`
+* **type**: array
+* **purpose**: This config can modify the entiry multi-config array Irving uses internally. This config is particularly useful if you need to add another, entirely separate webpack config/build to the Irving `build` or `dev` processes.
 
 ## Server-side Webpack Configuration
 * **where to configure**: `config/webpack.config.server.js`

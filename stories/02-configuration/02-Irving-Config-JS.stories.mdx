@@ -28,6 +28,18 @@ const config = {
 export default config;
 ```
 
+### Aliases
+* **where to configure**: `config/aliases.js`
+* **type**: object
+* **purpose**: Modify or add to Irving's core aliases, supplied to `babel-plugin-module-resolver`.
+```javascript
+const path = require('path');
+
+module.exports = {
+  'my-alias': path.join(__dirname, 'path/to/some/modules'),
+}
+```
+
 ### Babel Config
 * **where to configure**: `config/babel.config.js`
 * **type**: object
