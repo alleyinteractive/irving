@@ -11,8 +11,8 @@ import {
   analyticsPropTypes,
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
+import getTrackingService from '@irvingjs/services/trackingService';
 import * as defaultStyles from './themes/default';
-import getTrackingService from '../../../core/services/trackingService';
 
 const trackingService = getTrackingService();
 

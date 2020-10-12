@@ -2,9 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import CssReset from '@irvingjs/styled/components/reset';
+import getTrackingService from '@irvingjs/services/trackingService';
 import { __ } from '@wordpress/i18n';
 import * as defaultStyles from './themes/default';
-import getTrackingService from '../../../core/services/trackingService';
 
 const trackingService = getTrackingService();
 
