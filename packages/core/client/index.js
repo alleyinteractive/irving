@@ -79,10 +79,31 @@ const render = () => {
 // Wait for the Redux state to be re-hydrated before rendering the app.
 // We don't use the redux-persist/PersistGate component, because it doesn't play
 // nice with server side rendering.
-const unsubscribe = persistor.subscribe(() => {
-  const isReady = persistor.getState().bootstrapped;
-  if (isReady) {
-    render();
-    unsubscribe();
-  }
-});
+const waitForPersistor = (renderFunction) => {
+  const unsubscribe = persistor.subscribe(() => {
+    const isReady = persistor.getState().bootstrapped;
+    if (isReady) {
+      renderFunction();
+      unsubscribe();
+    }
+  });
+};
+
+// Collect functions defining conditions to wait for before rendering the client-side application
+const waitForClientRender = getValueFromConfig(
+  'waitForClientRender',
+  [render, waitForPersistor]
+);
+// Bind each waitForRender function with the previous function in the array, creating a cascade.
+const renderCascade = waitForClientRender.reduce(
+  (cascadeFunc, waitFunc, index) => {
+    if (1 <= index) {
+      return waitFunc.bind(null, cascadeFunc);
+    }
+
+    return cascadeFunc;
+  },
+  render
+);
+// Launch the cascade, ending with the `render` function defined above to render the actuall app HTML.
+renderCascade();

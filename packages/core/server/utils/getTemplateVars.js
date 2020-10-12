@@ -1,7 +1,8 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import omit from 'lodash/fp/omit';
-import { mergeConfigValues } from 'config/irving/mergeConfigValues';
+import mergeWith from 'lodash/mergeWith';
+// import { mergeConfigValues } from 'config/irving/mergeConfigValues';
 import { getConfigValues } from 'config/irving/getValueFromConfig';
 
 export const defaultHead = {
@@ -65,44 +66,80 @@ const stringifyHeadConfig = (config, key) => {
  */
 export default function getTemplateVars(key, initialVars, clientStats) {
   const templateVars = getConfigValues(key);
+
   // Separate arrays for head configuration and other template variables,
   // as they will be extracted and merged using different methods.
-  const varsConfigs = [];
+  // const varsConfigs = [];
   const headConfigs = [];
-  // Normalize each provided config (from user, packages, etc.).
-  const varsObjects = templateVars.map((vars) => (
-    getValFromFunction(vars, initialVars, clientStats)
-  ));
 
-  // Collect top-level vars (except head, which we'll handle after the app renders).
-  varsObjects.forEach((obj) => {
-    varsConfigs.push(omit(['head'], obj));
-  });
+  /**
+   * Normalize each provided config (from user, packages, etc.).
+   *
+   * IMPORTANT: each config function must only be called once, otherwise we will make a new instance of variables inside
+   * config function, causing problems with certain packages (like styled components, lodable).
+   */
+  const mergedVars = templateVars.reduce(
+    (acc, varsConfig) => {
+      const varsObject = getValFromFunction(varsConfig, acc, clientStats);
+      // Separate arrays for head configuration and other template variables,
+      // as they will be extracted and merged using different methods.
+      if (varsObject.head) {
+        headConfigs.push(varsObject.head);
+      }
+
+      return mergeWith(
+        acc,
+        omit(['head'], varsObject),
+        (objValue, srcValue) => {
+          if (Array.isArray(objValue)) {
+            return objValue.concat(srcValue);
+          }
+
+          return undefined;
+        }
+      );
+    },
+    initialVars
+  );
+
+  /**
+   * Normalize each provided config (from user, packages, etc.).
+   *
+   * IMPORTANT: each config function must only be called once, otherwise we will make a new instance of variables inside
+   * config function, causing problems with certain packages (like styled components, lodable).
+   */
+  // const varsObjects = templateVars.map((vars) => (
+  //   getValFromFunction(vars, initialVars, clientStats)
+  // ));
+
+  // // Collect top-level vars (except head, which we'll handle after the app renders).
+  // varsObjects.forEach((obj) => {
+  //   varsConfigs.push(omit(['head'], obj));
+  // });
 
   // Merge template vars.
-  const mergedVars = mergeConfigValues(varsConfigs, initialVars);
+  // const mergedVars = mergeConfigValues(varsConfigs, initialVars);
   const { Wrapper } = mergedVars;
 
   // This needs to happen first to ensure proper SSR rendering of stylesheets.
   const appHtml = renderToString(<Wrapper />);
 
   // Collect head objects.
-  varsObjects.forEach((obj) => {
-    headConfigs.push(getValFromFunction(obj.head));
-  });
-
-  // This seems to be necessary to prevent future mutation.
-  const initialHead = { ...initialVars.head };
+  // varsObjects.forEach((obj) => {
+  //   headConfigs.push(getValFromFunction(obj.head));
+  // });
 
   // Stringify values for both default config (to ensure all head values are present)
   // and intial variables passed in via parameter (to ensure any core `head` properties are present)
   const stringifiedConfigs = [
     defaultHead,
-    initialHead,
-  ].concat(headConfigs).map((config) => (
+    // Spread to prevent mutation
+    { ...initialVars.head },
+  ].concat(headConfigs).map((config) => {
+    const headObject = getValFromFunction(config);
     // Reduce through each value in the head object and turn it into a string.
-    Object.keys(config).reduce(stringifyHeadConfig, config)
-  ), {});
+    return Object.keys(headObject).reduce(stringifyHeadConfig, config);
+  }, {});
 
   const mergedHead = {};
   /* eslint-disable */

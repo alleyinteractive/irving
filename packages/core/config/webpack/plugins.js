@@ -3,7 +3,7 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const getEnv = require('../env');
-const { rootUrl } = require('../paths');
+const { rootUrl, buildContext } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
 const { maybeResolveUserModule } = require('../../utils/userModule');
 
