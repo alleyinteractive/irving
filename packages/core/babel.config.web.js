@@ -31,10 +31,13 @@ const config = {
       'react-remove-properties',
       {
         properties: [
-          'data-testid'
-        ]
+          'data-testid',
+        ],
       },
     ],
+    ['react-refresh/babel', {
+      skipEnvCheck: true,
+    }],
   ],
   presets: [
     '@irvingjs/irving',

@@ -65,6 +65,7 @@ history.listen((location, action) => {
 });
 
 const render = () => {
+  console.log('$$$$$$$$$$ CORE CLIENT RENDERED!!!');
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
@@ -74,36 +75,48 @@ const render = () => {
     </Provider>,
     rootEl
   );
+
+  return Promise.resolve(true);
 };
 
 // Wait for the Redux state to be re-hydrated before rendering the app.
 // We don't use the redux-persist/PersistGate component, because it doesn't play
 // nice with server side rendering.
-const waitForPersistor = (renderFunction) => {
-  const unsubscribe = persistor.subscribe(() => {
-    const isReady = persistor.getState().bootstrapped;
-    if (isReady) {
-      renderFunction();
-      unsubscribe();
-    }
-  });
-};
+const waitForPersistor = () => (
+  new Promise((resolve) => {
+    const unsubscribe = persistor.subscribe(() => {
+      const isReady = persistor.getState().bootstrapped;
+      if (isReady) {
+        console.log('$$$$$$$$$$ PERSISTOR CLIENT RENDERED!!!');
+        resolve();
+        unsubscribe();
+      }
+    });
+  })
+);
 
 // Collect functions defining conditions to wait for before rendering the client-side application
 const waitForClientRender = getValueFromConfig(
   'waitForClientRender',
   [render, waitForPersistor]
 );
+/* eslint-disable */
 // Bind each waitForRender function with the previous function in the array, creating a cascade.
-const renderCascade = waitForClientRender.reduce(
-  (cascadeFunc, waitFunc, index) => {
-    if (1 <= index) {
-      return waitFunc.bind(null, cascadeFunc);
-    }
-
-    return cascadeFunc;
-  },
-  render
-);
+// const renderCascade = waitForClientRender.reduce(
+//   (cascadeFunc, waitFunc) => {
+//     // console.log(cascadeFunc, waitFunc.toString());
+//     return waitFunc.bind(null, cascadeFunc);
+//   },
+//   null
+// );
+// console.log(renderCascade);
 // Launch the cascade, ending with the `render` function defined above to render the actuall app HTML.
+// renderCascade();
+const renderCascade = async () => {
+  const index = 0;
+  for (const waitFunc of waitForClientRender.reverse()) {
+    console.log(waitFunc);
+    await waitFunc();
+  }
+};
 renderCascade();

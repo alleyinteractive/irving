@@ -35,7 +35,6 @@ module.exports = function babelPresetIrving(api) {
     sourceType: 'unambiguous',
     plugins: [
       require('babel-plugin-lodash'),
-      require('react-hot-loader/babel'),
       require('@babel/plugin-proposal-object-rest-spread'),
       require('@babel/plugin-proposal-class-properties'),
       require('@babel/plugin-syntax-dynamic-import'),

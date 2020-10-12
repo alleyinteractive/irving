@@ -2,8 +2,11 @@ const webpack = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
+const ReactRefreshWebpackPlugin = require(
+  '@pmmmwh/react-refresh-webpack-plugin'
+);
 const getEnv = require('../env');
-const { rootUrl, buildContext } = require('../paths');
+const { rootUrl } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
 const { maybeResolveUserModule } = require('../../utils/userModule');
 
@@ -90,8 +93,12 @@ module.exports = function getPlugins(context) {
     case 'development_client':
       return [
         ...commonPlugins,
-        new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new ReactRefreshWebpackPlugin({
+          overlay: {
+            sockIntegration: 'whm',
+          },
+        }),
         new MiniCSSExtractPlugin({
           filename: '[name].css',
           chunkFilename: '[id].css',
