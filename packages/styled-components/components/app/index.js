@@ -10,6 +10,11 @@ const trackingService = getTrackingService();
 
 /**
  * Top-level app component.
+
+ * @tracking Fires when component is mounted.
+ * - event        irving.componentLoaded
+ * - eventContext irving.styledComponents
+ *
  */
 const App = (props) => {
   const {

@@ -45,7 +45,9 @@ Here is a simplified and annotated version of the link component showing
      * This is what our "analytics" jsdocs look like. Since a component may have more than
      * one interaction we list all the expected analytics bundles here.
      *
-     * @analytics {click} Fires when link is clicked.
+     * @tracking Fires when link is clicked.
+     * - event     irving.linkClick
+     * - eventData {analytics.click}
      */
     const Link = (props) => {
       const {

@@ -18,7 +18,8 @@ import * as defaultStyles from './themes/default';
  *
  * Displays a list to social media platform pages.
  *
- * @analytics {click} Fires when link is clicked. Label is platform.
+ * @tracking Fires when link is clicked.
+ * - eventData {analytics.click} Label is platform.
  */
 const SocialLinks = (props) => {
   const {

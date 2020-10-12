@@ -8,7 +8,20 @@ import getTrackingService from '../../../core/services/trackingService';
 const trackingService = getTrackingService();
 
 /**
+ * Google Tag Manager integration.
+ *
  * @todo Move data handling to new dedicated component or make this a generic 'tagManager' component.
+ *
+ * Event context is defined here because otherwise we can cause integrations to load when it's not needed.
+ *
+ * @tracking Fires when component is mounted.
+ * - event          irving.componentLoaded
+ * - eventComponent gtm
+ * - eventContext   irving.integrationsManager
+ *
+ * @tracking Fires when component is updated.
+ * - event irving.historyChange (plus gtm.start on first one)
+ *
  */
 const GoogleTagManager = (props) => {
   const {

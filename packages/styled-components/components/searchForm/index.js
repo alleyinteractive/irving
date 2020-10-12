@@ -22,7 +22,11 @@ const trackingService = getTrackingService();
  *
  * Form with an input field for search.
  *
- * @analytics {search} Fires when search form is submitted. Label is query.
+ * @tracking Fires when search form is submitted. Label is query.
+ * - event          irving.searchSubmit
+ * - eventComponent search
+ * - eventData      {analytics.search}
+ *
  */
 const SearchForm = (props) => {
   const {

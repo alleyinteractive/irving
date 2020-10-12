@@ -19,7 +19,8 @@ import * as defaultStyles from './themes/default';
  *
  * @todo Update with a proper image component.
  *
- * @analytics {click} Fires when link is clicked.
+ * @tracking Fires when link is clicked.
+ * - eventData {analytics.click}
  */
 const Logo = (props) => {
   const {

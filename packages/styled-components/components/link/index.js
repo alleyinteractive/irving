@@ -23,7 +23,11 @@ const trackingService = getTrackingService();
  *
  * @todo Setup a default focus value for improved accessibility.
  *
- * @analytics {click} Fires when link is clicked.
+ * @tracking Fires when link is clicked.
+ * - event          irving.linkClick
+ * - eventComponent link
+ * - eventData      {analytics.click}
+ *
  */
 const Link = (props) => {
   const {
