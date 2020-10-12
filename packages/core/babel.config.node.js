@@ -42,8 +42,8 @@ const config = {
       'react-remove-properties',
       {
         properties: [
-          'data-testid'
-        ]
+          'data-testid',
+        ],
       },
     ],
   ],

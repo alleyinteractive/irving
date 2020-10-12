@@ -32,6 +32,9 @@ const developmentMiddleware = (app) => {
     publicPath: clientConfig.output.publicPath,
     serverSideRender: true,
     logLevel: 'warn', // Info output is overwhelming with bundle information.
+    writeToDisk: (filepath) => (
+      /loadable-stats/.test(filepath)
+    ),
   }));
   // Support hot module reloading.
   app.use(webpackHotMiddleware(clientCompiler));

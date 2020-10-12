@@ -89,21 +89,23 @@ const waitForPersistor = (renderFunction) => {
   });
 };
 
-// Collect functions defining conditions to wait for before rendering the client-side application
-const waitForClientRender = getValueFromConfig(
-  'waitForClientRender',
-  [render, waitForPersistor]
-);
-// Bind each waitForRender function with the previous function in the array, creating a cascade.
-const renderCascade = waitForClientRender.reduce(
-  (cascadeFunc, waitFunc, index) => {
-    if (1 <= index) {
-      return waitFunc.bind(null, cascadeFunc);
-    }
+waitForPersistor(render);
 
-    return cascadeFunc;
-  },
-  render
-);
-// Launch the cascade, ending with the `render` function defined above to render the actuall app HTML.
-renderCascade();
+// Collect functions defining conditions to wait for before rendering the client-side application
+// const waitForClientRender = getValueFromConfig(
+//   'waitForClientRender',
+//   [render, waitForPersistor]
+// );
+// // Bind each waitForRender function with the previous function in the array, creating a cascade.
+// const renderCascade = waitForClientRender.reduce(
+//   (cascadeFunc, waitFunc, index) => {
+//     if (1 <= index) {
+//       return waitFunc.bind(null, cascadeFunc);
+//     }
+
+//     return cascadeFunc;
+//   },
+//   render
+// );
+// // Launch the cascade, ending with the `render` function defined above to render the actuall app HTML.
+// renderCascade();
