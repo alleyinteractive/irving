@@ -7,6 +7,9 @@ import getTrackingService from '../../../core/services/trackingService';
 
 const trackingService = getTrackingService();
 
+/**
+ * @todo Move data handling to new dedicated component or make this a generic 'tagManager' component.
+ */
 const GoogleTagManager = (props) => {
   const {
     containerId,

@@ -1,4 +1,5 @@
 const getTrackingService = require('./getServiceFromFilesystem');
+const getReactTrackingService = require('./reactTrackingService');
 let service;
 
 /**
@@ -9,6 +10,11 @@ let service;
 const getService = () => {
   // Memoize service, so it can reused.
   if (service) {
+    return service;
+  }
+  const testing = true;
+  if (testing) {
+    service = getReactTrackingService();
     return service;
   }
   service = getTrackingService();
