@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.0.1-alpha.0...v5.1.0-alpha.0) (2020-10-12)
+
+
+### Features
+
+* **logging:** add error log for component endpoint aborts ([e0ef5d3](https://github.com/alleyinteractive/irving/commit/e0ef5d3c07488f4f23f84196d9351db5bae4823e))
+
+
+
+
+
 ## [5.0.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.0.0...v5.0.1-alpha.0) (2020-10-09)
 
 
