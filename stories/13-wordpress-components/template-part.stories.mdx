@@ -1,0 +1,64 @@
+<Meta title="WordPress Components|Template Part" />
+
+# Template Part
+Load a template part.
+
+Renders the `Fragment` styled component [(docs)](?path=/docs/styled-components-fragment--basic-eample).
+
+[View Source](https://github.com/alleyinteractive/wp-irving/tree/master/inc/components/components/template-part).
+
+## Overview
+This component is a wrapper for `get_template_part()` [(docs)](https://developer.wordpress.org/reference/functions/get_template_part/). This component allows for dynamically loading template parts.
+
+During the configuration callback, this component will add `${slug}.json` and `${slug}-${name}.json` to the `templates` array. The children callback will iterate through `templates`, setting the component `children` with the children of the first successful hydration.
+
+The config [callback hooks](/?path=/docs/configuration-wordpress--page) can be used to modify the value of `templates`, further extending functionality.
+
+### Notes
+* This component may eventually replace the `template-parts/header` syntax and logic that exists in WP Irving. Either syntax is acceptable for use.
+
+## Config
+```json
+{
+  "name": {
+    "default": "",
+    "description": "The name of the specialized template.",
+    "type": "string"
+  },
+  "slug": {
+    "default": "",
+    "description": "The slug name for the generic template.",
+    "type": "string"
+  },
+  "templates": {
+    "default": [],
+    "description": "List of possible template file names used to lookup a template part.",
+    "hidden": true,
+    "type": "array"
+  }
+}
+```
+
+## Examples
+
+### Using Slug and Name
+Load `template-parts/header.json`,
+```json
+{
+  "name": "irving/template-part",
+  "config": {
+    "slug": "header"
+  }
+}
+```
+
+Load `template-parts/header-center.json`,
+```json
+{
+  "name": "irving/template-part",
+  "config": {
+    "name": "center",
+    "slug": "header"
+  }
+}
+```
