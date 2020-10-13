@@ -25,7 +25,7 @@ module.exports = function startServer(app) {
     const cert = fs.readFileSync(
       path.join(
         os.homedir(),
-        HTTPS_CERT_PATH,
+        HTTPS_CERT_PATH
       ),
       'utf8'
     );

@@ -27,11 +27,12 @@ module.exports = function getOptimization(context) {
           name: 'common',
           chunks: 'all',
         },
-        runtimeChunk: true,
+        runtimeChunk: 'single',
       };
 
     case 'development_client':
       return {
+        namedModules: true,
         splitChunks: {
           name: 'common',
           chunks: 'all',

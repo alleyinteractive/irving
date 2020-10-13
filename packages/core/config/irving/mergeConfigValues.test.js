@@ -74,4 +74,23 @@ describe('mergeConfigValues', () => {
       })
     }
   );
+
+  it(
+    'should pass additional args along to config functions',
+    () => {
+      const initial = {};
+      const configVal1 = { foo: 'bar' };
+      const configFunc1 = jest.fn((config) => ({...config, ...configVal1 }));
+      const configFunc2 = jest.fn((config) => ({...config, bing: 'bong' }));
+      const configs = [configFunc1, configFunc2];
+      const additionalArg1 = 'lorem';
+      const additionalArg2 = 'ipsum';
+      mergeConfigValues(configs, initial, [additionalArg1, additionalArg2]);
+
+      expect(configFunc1)
+        .toHaveBeenCalledWith(initial, additionalArg1, additionalArg2);
+      expect(configFunc2)
+        .toHaveBeenCalledWith(configVal1, additionalArg1, additionalArg2);
+    }
+  );
 });

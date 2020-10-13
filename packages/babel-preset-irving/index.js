@@ -35,14 +35,12 @@ module.exports = function babelPresetIrving(api) {
     sourceType: 'unambiguous',
     plugins: [
       require('babel-plugin-lodash'),
-      require('react-hot-loader/babel'),
       require('@babel/plugin-proposal-object-rest-spread'),
       require('@babel/plugin-proposal-class-properties'),
       require('@babel/plugin-syntax-dynamic-import'),
       [require('@babel/plugin-transform-runtime'), {
         corejs: 3,
       }],
-      require('babel-plugin-universal-import'),
     ],
     presets: [
       [

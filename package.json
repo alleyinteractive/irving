@@ -12,7 +12,7 @@
   "author": "Alley (Alley.co)",
   "main": "main.js",
   "scripts": {
-    "build": "BABEL_ENV=app lerna run build",
+    "build": "lerna run build",
     "preinstall": "npx check-node-version --package",
     "reconcile": "git ls-tree -r --name-only master | grep -E \".*((package|package-lock|lerna)\\.json|CHANGELOG\\.md)$\" | xargs git checkout master --",
     "prerelease:canary": "HUSKY_SKIP_HOOKS=1 lerna publish --conventional-prerelease --preid alpha --dist-tag canary",

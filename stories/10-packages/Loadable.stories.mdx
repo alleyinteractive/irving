@@ -1,0 +1,34 @@
+<Meta title="Packages|Loadable" />
+
+# Loadable
+This package adds functionality to Irving core for using the [`@loadable/component`](https://loadable-components.com/) package. This will allow you to move components and libraries of your choice into separate javascript bundles, diminishing the size for your main bundle(s) and improving your site's performance.
+
+## Installation
+1. `npm install @irvingjs/loadable`
+2. Add the `@irvingjs/loadable` config to your project's `irving.config.js`:
+
+```javascript
+// Import it from the package.
+import loadableConfig from '@irvingjs/loadble';
+
+// Add it to your irving config.
+export default {
+  packages: [
+      loadableConfig,
+  ],
+};
+```
+
+## Using this package
+Once configured, you can use any feature of the `@loadable/component` package. See the [API Docs](https://loadable-components.com/docs/api-loadable-component/) for more information. The most basic way to use it, however, is to modify your component map to use loadable components instead of statically-imported ones. Example:
+
+```javascript
+// componentMap.js
+import loadable from '@loadable/component';
+
+const componentMap = {
+    'my-project/test': loadable(() => import('./components/test')),
+};
+
+export default componentMap;
+```

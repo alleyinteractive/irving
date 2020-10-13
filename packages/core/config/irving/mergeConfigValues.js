@@ -6,9 +6,10 @@ const isPlainObject = require('lodash/isPlainObject');
  *
  * @param {array} configs Configs to merge.
  * @param {array} initial Initial value.
+ * @param {?(array)} args Additional arguments to supply to config functions.
  * @returns {array}
  */
-const mergeConfigArray = (configs, initial = []) => (
+const mergeConfigArray = (configs, initial = [], args = []) => (
   configs.reduce(
     (acc, config) => {
       if (! config) {
@@ -16,7 +17,7 @@ const mergeConfigArray = (configs, initial = []) => (
       }
 
       if ('function' === typeof config) {
-        return config(acc);
+        return config(acc, ...args);
       }
 
       return acc.concat(config);
@@ -30,9 +31,10 @@ const mergeConfigArray = (configs, initial = []) => (
  *
  * @param {array} configs Configs to merge.
  * @param {object} initial Initial value.
+ * @param {?(array)} args Additional arguments to supply to config functions.
  * @returns {object}
  */
-const mergeConfigObject = (configs, initial = {}) => (
+const mergeConfigObject = (configs, initial = {}, args = []) => (
   configs.reduce(
     (acc, config) => {
       if (! config) {
@@ -40,7 +42,7 @@ const mergeConfigObject = (configs, initial = {}) => (
       }
 
       if ('function' === typeof config) {
-        return config(acc);
+        return config(acc, ...args);
       }
 
       return mergeWith(acc, config, (objValue, srcValue) => {
@@ -62,18 +64,18 @@ const mergeConfigObject = (configs, initial = {}) => (
  * @param {?(array|object|string|bool)} initial Initial value.
  * @returns {?(array|object|string|bool}
  */
-const mergeConfigValues = (configs, initial = null) => {
+const mergeConfigValues = (configs, initial = null, args = []) => {
   if (Array.isArray(initial)) {
     // This should result in an array of functions, to be called inline.
     if (initial.length && 'function' === typeof initial[0]) {
       return configs.reduce((acc, config) => acc.concat(config), initial);
     }
 
-    return mergeConfigArray(configs, initial);
+    return mergeConfigArray(configs, initial, args);
   }
 
   if (isPlainObject(initial)) {
-    return mergeConfigObject(configs, initial);
+    return mergeConfigObject(configs, initial, args);
   }
 
   return initial;

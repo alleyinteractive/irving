@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
-import { clearChunks } from 'react-universal-component/server';
 import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
@@ -30,6 +29,7 @@ const logRequest = getLogService('irving:render:request');
  *
  * @param {object} req Express request object
  * @param {object} res Express response object to be rendered.
+ * @param {object} clientStats Webpack client-side build statistics object.
  **/
 const render = async (req, res, clientStats) => {
   const sagaMiddleware = createSagaMiddleware();
@@ -74,8 +74,6 @@ const render = async (req, res, clientStats) => {
     return;
   }
 
-  clearChunks();
-
   const AppWrapper = () => (
     <Provider store={store}>
       <App />
@@ -83,12 +81,16 @@ const render = async (req, res, clientStats) => {
   );
 
   // Get some template vars and allow customization by user.
-  const customTemplateVars = getTemplateVars('getAppTemplateVars', {
-    Wrapper: AppWrapper,
-    head: {
-      end: [getWebpackAssetTags(clientStats)],
+  const customTemplateVars = getTemplateVars(
+    'getAppTemplateVars',
+    {
+      Wrapper: AppWrapper,
+      head: {
+        end: [getWebpackAssetTags(clientStats)],
+      },
     },
-  });
+    clientStats
+  );
 
   const stateEncoded = encodeState(getState());
   const templateVars = {
