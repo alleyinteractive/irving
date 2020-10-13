@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/loaodable",
-  "version": "2.21.3",
+  "version": "5.1.0-alpha.1",
   "description": "Integration with React Loadable",
   "files": [
     "components/**/*",

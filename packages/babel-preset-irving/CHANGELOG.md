@@ -3,6 +3,118 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.1](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.1.0-alpha.0...v5.1.0-alpha.1) (2020-10-13)
+
+
+### Features
+
+* **loadable:** set up fast refresh ([f4bd34a](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/f4bd34ad59ba0e8407603ee9dbd7742466d7b1d5))
+
+
+
+# [3.0.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.0.0-beta.12...v3.0.0) (2020-08-03)
+
+
+
+# [3.0.0-beta.12](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2020-08-03)
+
+
+
+# [3.0.0-beta.5](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2020-07-26)
+
+
+### Bug Fixes
+
+* **babel:** install babel runtime ([f7ca697](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/f7ca697a07e9783a67f53d2fb01741ba8e1b1cad))
+
+
+
+# [3.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2020-07-26)
+
+
+### Bug Fixes
+
+* **babel preset:** add missing babel-plugin-transform-globals dependency to babel preset ([9d682cb](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/9d682cb8c39bd3f5d562137762ba8f221b55c51e))
+
+
+
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+
+### Bug Fixes
+
+* **loadable:** remove universal component packages from core, babel preset ([e2f09e8](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/e2f09e8ea77ed2e3d5499c927b2f9b1593e4ff5f))
+
+
+
+# [3.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.0.0-alpha.14...v3.0.0-alpha.15) (2020-07-10)
+
+
+### Bug Fixes
+
+* **shimdom:** switch to using require for shimDom ([856bb6a](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/856bb6a19cebefb0a8a29f15443c6c0b984a1490))
+
+
+
+# [3.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.0.0-alpha.12...v3.0.0-alpha.13) (2020-07-10)
+
+
+### Bug Fixes
+
+* **babel:** fix tests with newly-split configs ([5a14a2f](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/5a14a2f8b2fc945e5d310fc0eed713c9a1c164df))
+
+
+
+# [3.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.0.0-alpha.9...v3.0.0-alpha.10) (2020-07-10)
+
+
+### Bug Fixes
+
+* **babel-preset:** keep working on transform  globals, move it into core ([a339c70](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/a339c705f115968e671222af93b07385d44d32dd))
+
+
+
+# [3.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v3.0.0-alpha.5...v3.0.0-alpha.6) (2020-07-07)
+
+
+
+# [3.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v2.21.3...v3.0.0-alpha.4) (2020-07-07)
+
+
+
+## [2.19.2](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v2.19.1...v2.19.2) (2020-06-30)
+
+
+
+## [2.19.1](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v2.19.0...v2.19.1) (2020-06-30)
+
+
+### Bug Fixes
+
+* **babel:** update babel config to target node where appropriate (and reduce bundle size) ([18edc99](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/18edc99a9d3f03bdf87266aaa575f1f335f8f2f0))
+* **package:** add HUSKY_SKIP_HOOKS to canary release script as well ([11f67c3](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/11f67c308e70ebfd54b375b3de054ed512fe7dfd))
+
+
+### Features
+
+* **packages:** work on allowing packages to exclude themselves when pulling fs configs ([0e8d5f5](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/0e8d5f54e0c50b1a4bb51a28b06c4f3d84b42fa7))
+
+
+
+# [2.14.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v2.14.0-beta.1...v2.14.0) (2020-06-15)
+
+
+
+# [2.14.0-beta.1](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v2.14.0-beta.0...v2.14.0-beta.1) (2020-06-15)
+
+
+
+## [2.12.1](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v2.11.1...v2.12.1) (2020-06-10)
+
+
+
+
+
 # [5.0.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.0.0-beta.0...v5.0.0) (2020-10-09)
 
 **Note:** Version bump only for package @irvingjs/babel-preset-irving
