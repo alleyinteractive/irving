@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.2...v5.1.0-alpha.3) (2020-10-13)
+
+
+### Bug Fixes
+
+* **loadable:** add publish files to lodable ([213596a](https://github.com/alleyinteractive/irving/commit/213596a965284f7af5ad86473fc485a3d02886e9))
+
+
+
+
+
 # [5.1.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.1...v5.1.0-alpha.2) (2020-10-13)
 
 
