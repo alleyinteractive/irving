@@ -2,7 +2,6 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import omit from 'lodash/fp/omit';
 import mergeWith from 'lodash/mergeWith';
-// import { mergeConfigValues } from 'config/irving/mergeConfigValues';
 import { getConfigValues } from 'config/irving/getValueFromConfig';
 
 export const defaultHead = {
@@ -102,32 +101,11 @@ export default function getTemplateVars(key, initialVars, clientStats) {
     initialVars
   );
 
-  /**
-   * Normalize each provided config (from user, packages, etc.).
-   *
-   * IMPORTANT: each config function must only be called once, otherwise we will make a new instance of variables inside
-   * config function, causing problems with certain packages (like styled components, lodable).
-   */
-  // const varsObjects = templateVars.map((vars) => (
-  //   getValFromFunction(vars, initialVars, clientStats)
-  // ));
-
-  // // Collect top-level vars (except head, which we'll handle after the app renders).
-  // varsObjects.forEach((obj) => {
-  //   varsConfigs.push(omit(['head'], obj));
-  // });
-
   // Merge template vars.
-  // const mergedVars = mergeConfigValues(varsConfigs, initialVars);
   const { Wrapper } = mergedVars;
 
   // This needs to happen first to ensure proper SSR rendering of stylesheets.
   const appHtml = renderToString(<Wrapper />);
-
-  // Collect head objects.
-  // varsObjects.forEach((obj) => {
-  //   headConfigs.push(getValFromFunction(obj.head));
-  // });
 
   // Stringify values for both default config (to ensure all head values are present)
   // and intial variables passed in via parameter (to ensure any core `head` properties are present)

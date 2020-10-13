@@ -74,8 +74,6 @@ const render = () => {
     </Provider>,
     rootEl
   );
-
-  return Promise.resolve(true);
 };
 
 // Wait for the Redux state to be re-hydrated before rendering the app.
