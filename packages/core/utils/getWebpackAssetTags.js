@@ -24,6 +24,12 @@ const getWebpackAssetTags = (clientStats) => {
     tags.push(`<script defer>${runtimeSrc}</script>`);
   }
 
+  // tags.push(`<script defer src="${rootUrl}/${chunks.common}"></script>`);
+  // tags.push(`<script defer src="${rootUrl}/${chunks.main}"></script>`);
+
+  // delete chunks.main;
+  // delete chunks.common;
+
   // Include any other webpack assets that haven't been included yet.
   Object.keys(chunks).forEach((chunkName) => {
     // Runtime main is rendered inline above.

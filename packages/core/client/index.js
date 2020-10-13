@@ -50,7 +50,6 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, rehydratedState, enhancer);
 const persistor = persistStore(store);
-const rootEl = document.getElementById('root');
 
 sagaMiddleware.run(rootSaga);
 
@@ -65,7 +64,7 @@ history.listen((location, action) => {
 });
 
 const render = () => {
-  console.log('$$$$$$$$$$ CORE CLIENT RENDERED!!!');
+  const rootEl = document.getElementById('root');
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
@@ -86,8 +85,8 @@ const waitForPersistor = () => (
   new Promise((resolve) => {
     const unsubscribe = persistor.subscribe(() => {
       const isReady = persistor.getState().bootstrapped;
+
       if (isReady) {
-        console.log('$$$$$$$$$$ PERSISTOR CLIENT RENDERED!!!');
         resolve();
         unsubscribe();
       }
@@ -100,23 +99,12 @@ const waitForClientRender = getValueFromConfig(
   'waitForClientRender',
   [render, waitForPersistor]
 );
+
 /* eslint-disable */
-// Bind each waitForRender function with the previous function in the array, creating a cascade.
-// const renderCascade = waitForClientRender.reduce(
-//   (cascadeFunc, waitFunc) => {
-//     // console.log(cascadeFunc, waitFunc.toString());
-//     return waitFunc.bind(null, cascadeFunc);
-//   },
-//   null
-// );
-// console.log(renderCascade);
-// Launch the cascade, ending with the `render` function defined above to render the actuall app HTML.
-// renderCascade();
 const renderCascade = async () => {
-  const index = 0;
   for (const waitFunc of waitForClientRender.reverse()) {
-    console.log(waitFunc);
     await waitFunc();
   }
 };
+
 renderCascade();
