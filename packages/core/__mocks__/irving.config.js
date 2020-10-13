@@ -1,3 +1,4 @@
+import React from 'react';
 import { takeLatest, takeEvery } from 'redux-saga/effects';
 
 export default {
@@ -11,13 +12,22 @@ export default {
         takeLatest('TEST_ACTION', () => {}),
         takeLatest('TEST_ACTION_TWO', () => {}),
       ]),
-      getAppTemplateVars: {
-        head: {
-          start: '<script>const anotherTest = 200;</script>',
-          link: ['<link rel="stylesheet" href="css/test.css" />'],
-          meta: [() => '<meta name="keywords" content="this, is, a, test" />'],
-          script: [],
-        },
+      getAppTemplateVars: (templateVars) => {
+        const { Wrapper } = templateVars;
+
+        return {
+          Wrapper: () => (
+            <div data-testid="wrapper-two">
+              <Wrapper />
+            </div>
+          ),
+          head: {
+            start: '<script>const anotherTest = 200;</script>',
+            link: ['<link rel="stylesheet" href="css/test.css" />'],
+            meta: [() => '<meta name="keywords" content="this, is, a, test" />'],
+            script: [],
+          },
+        };
       },
     },
     {
@@ -31,18 +41,27 @@ export default {
   defaultState: {
     testState: true,
   },
-  getAppTemplateVars: {
-    testVal: 'this is a fun field for the app',
-    head: {
-      start: ['<script>const test = 100;</script>'],
-      link: ['<link rel="stylesheet" href="css/lorem.css" />'],
-      meta: [() => '<meta name="description" content="lorem ipsum dolor sit amet" />'],
-    },
+  getAppTemplateVars: (templateVars) => {
+    const { Wrapper } = templateVars;
+
+    return {
+      testVal: 'this is a fun field for the app',
+      Wrapper: () => (
+        <div data-testid="wrapper-one">
+          <Wrapper />
+        </div>
+      ),
+      head: {
+        start: ['<script>const test = 100;</script>'],
+        link: ['<link rel="stylesheet" href="css/lorem.css" />'],
+        meta: [() => '<meta name="description" content="lorem ipsum dolor sit amet" />'],
+      },
+    };
   },
   getErrorTemplateVars: {
     testVal: 'this is a fun field for the error',
     head: () => ({
-      script: '<script>this is another sccript</script>',
+      script: '<script>this is another script</script>',
     }),
   },
   trailingSlashDenylist: [

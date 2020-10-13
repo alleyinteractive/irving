@@ -116,7 +116,7 @@ export default function getTemplateVars(key, initialVars, clientStats) {
   ].concat(headConfigs).map((config) => {
     const headObject = getValFromFunction(config);
     // Reduce through each value in the head object and turn it into a string.
-    return Object.keys(headObject).reduce(stringifyHeadConfig, config);
+    return Object.keys(headObject).reduce(stringifyHeadConfig, headObject);
   }, {});
 
   const mergedHead = {};

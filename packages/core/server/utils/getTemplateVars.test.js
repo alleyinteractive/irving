@@ -6,7 +6,7 @@ describe('getTemplateVars', () => {
 
   beforeEach(() => {
     initialVars = {
-      Wrapper: () => (<div>I am wrapper</div>),
+      Wrapper: () => (<div>I am the app content</div>),
       head: {
         script: '<script>this is my title</script>',
       },
@@ -15,12 +15,12 @@ describe('getTemplateVars', () => {
 
   it('should render Wrapper to a string and add result to appHtml key', () => {
     const vars = getTemplateVars('getAppTemplateVars', initialVars);
-    expect(vars.appHtml).toBe('<div data-reactroot=\"\">I am wrapper</div>');
+    expect(vars.appHtml).toContain('I am the app content');
   });
 
   it('should keep initial values in the template vars object', () => {
     const vars = getTemplateVars('getErrorTemplateVars', initialVars);
-    expect(vars.appHtml).toBe('<div data-reactroot=\"\">I am wrapper</div>');
+    expect(vars.appHtml).toContain('I am the app content');
   });
 
   it('should get variables from irving.config.js', () => {
@@ -52,5 +52,11 @@ describe('getTemplateVars', () => {
   it('should call `head` if it is configured as a function', () => {
     const vars = getTemplateVars('getAppTemplateVars', initialVars);
     expect(vars.head.end).toContain('Nascetur sodales nostra');
+  });
+
+  it('nest wrapper components within one another to combine them', () => {
+    const vars = getTemplateVars('getAppTemplateVars', initialVars);
+    expect(vars.appHtml).toContain('data-testid="wrapper-two"');
+    expect(vars.appHtml).toContain('data-testid="wrapper-one"');
   });
 });
