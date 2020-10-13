@@ -68,7 +68,6 @@ export default function getTemplateVars(key, initialVars, clientStats) {
 
   // Separate arrays for head configuration and other template variables,
   // as they will be extracted and merged using different methods.
-  // const varsConfigs = [];
   const headConfigs = [];
 
   /**
