@@ -22,7 +22,9 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@loadable/babel-plugin": "^5.13.2",
     "@loadable/component": "^5.13.2",
+    "@loadable/server": "^5.13.2",
     "@loadable/webpack-plugin": "^5.13.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
