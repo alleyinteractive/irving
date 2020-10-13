@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.4...v5.1.0-alpha.5) (2020-10-13)
+
+
+### Bug Fixes
+
+* **loadable:** add ssrtags config ([7c5dde0](https://github.com/alleyinteractive/irving/commit/7c5dde0d439d6449a0dec4f2001a65fb8096378f))
+
+
+
+
+
 # [5.1.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.3...v5.1.0-alpha.4) (2020-10-13)
 
 
