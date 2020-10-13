@@ -1,5 +1,6 @@
 import fs from 'fs';
-import { clientBuild, rootUrl } from '../config/paths';
+import { getValueFromConfig } from 'config/irving/getValueFromConfig';
+import { clientBuild, rootUrl } from 'config/paths';
 let runtimeSrc;
 
 /**
@@ -24,12 +25,6 @@ const getWebpackAssetTags = (clientStats) => {
     tags.push(`<script defer>${runtimeSrc}</script>`);
   }
 
-  // tags.push(`<script defer src="${rootUrl}/${chunks.common}"></script>`);
-  // tags.push(`<script defer src="${rootUrl}/${chunks.main}"></script>`);
-
-  // delete chunks.main;
-  // delete chunks.common;
-
   // Include any other webpack assets that haven't been included yet.
   Object.keys(chunks).forEach((chunkName) => {
     // Runtime main is rendered inline above.
@@ -41,11 +36,11 @@ const getWebpackAssetTags = (clientStats) => {
       chunks[chunkName] : [chunks[chunkName]];
 
     assets.forEach((assetPath) => {
-      // if (assetPath.match(/\.js$/)) {
-      //   tags.push(
-      //     `<script defer src="${rootUrl}/${assetPath}"></script>`
-      //   );
-      // }
+      if (assetPath.match(/\.js$/)) {
+        tags.push(
+          `<script defer src="${rootUrl}/${assetPath}"></script>`
+        );
+      }
 
       if (assetPath.match(/\.css$/)) {
         tags.push(
@@ -55,7 +50,7 @@ const getWebpackAssetTags = (clientStats) => {
     });
   });
 
-  return tags.join('');
+  return getValueFromConfig('ssrTags', tags).join('');
 };
 
 export default getWebpackAssetTags;

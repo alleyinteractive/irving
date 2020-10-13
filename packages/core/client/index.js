@@ -97,14 +97,8 @@ const waitForPersistor = () => (
 // Collect functions defining conditions to wait for before rendering the client-side application
 const waitForClientRender = getValueFromConfig(
   'waitForClientRender',
-  [render, waitForPersistor]
+  [waitForPersistor]
 );
 
-/* eslint-disable */
-const renderCascade = async () => {
-  for (const waitFunc of waitForClientRender.reverse()) {
-    await waitFunc();
-  }
-};
-
-renderCascade();
+Promise.all(waitForClientRender.map((waitFunc) => waitFunc()))
+  .then(() => render());

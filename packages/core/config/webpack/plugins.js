@@ -73,6 +73,7 @@ module.exports = function getPlugins(context) {
           stats: {
             all: false,
             assets: true,
+            hash: true,
             outputPath: true,
             publicPath: true,
           },

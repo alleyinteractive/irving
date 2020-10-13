@@ -47,7 +47,6 @@ module.exports = (env, argv) => {
       // Don't polyfill NodeJS APIs, as we require a LTS NodeJS environment.
       node: false,
       externals: [
-        '@loadable/component',
         nodeExternals({
           whitelist: [
             // Allow references to vendor css, so we can include them in our bundle.
@@ -91,8 +90,6 @@ module.exports = (env, argv) => {
       { base: buildContext }
     )
   ));
-
-  console.log(processedMultiConfig);
 
   // Process the entire multiconfig.
   const finalConfigs = getValueFromFiles(
