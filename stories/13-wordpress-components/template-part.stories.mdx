@@ -14,17 +14,20 @@ During the configuration callback, this component will add `${slug}.json` and `$
 
 The config [callback hooks](/?path=/docs/configuration-wordpress--page) can be used to modify the value of `templates`, further extending functionality.
 
+### Notes
+* This component may eventually replace the `template-parts/header` syntax and logic that exists in WP Irving. Either syntax is acceptable for use.
+
 ## Config
 ```json
 {
   "name": {
     "default": "",
-    "description": "The name used to locate the template part.",
+    "description": "The name of the specialized template.",
     "type": "string"
   },
   "slug": {
     "default": "",
-    "description": "The slug used to locate the template part.",
+    "description": "The slug name for the generic template.",
     "type": "string"
   },
   "templates": {
