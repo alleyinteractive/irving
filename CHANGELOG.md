@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.1...v5.1.0-alpha.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **loadable:** fix loadable package name ([4ebbd4e](https://github.com/alleyinteractive/irving/commit/4ebbd4e4d4ab90e7d1ee016bc8e6fffb4f09a615))
+
+
+
+
+
 # [5.1.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.0...v5.1.0-alpha.1) (2020-10-13)
 
 
