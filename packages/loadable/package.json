@@ -4,6 +4,10 @@
   "description": "Integration with React Loadable",
   "files": [
     "components/**/*",
+    "irving.config.js",
+    "client/*",
+    "server/*",
+    "config/*",
     "!*.test.js"
   ],
   "main": "index.js",
