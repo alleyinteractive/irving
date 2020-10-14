@@ -3,11 +3,18 @@
 # Redirects
 This section details how redirects work in Irving core.
 
-## Domain and HTTPS redirects
-More soon.
+## Application Redirects
+Irving Core includes the [Express Naked Redirect](https://www.npmjs.com/package/express-naked-redirect) package, which can be configured in `server/customizeRedirect.js`.
 
-## Components API
-More soon.
+[Full Documentation](?path=/docs/configuration-irving-config-js--page#customize-domain-redirects)
+
+## Route-Specific Redirects
+Due to the complexity of implementing [redirections in HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections) that work correctly for both client and server-side renders (as well [ proxies](?path=/docs/features-proxies--page) and other application settings) the [Components Endpoint](?path=/docs/components-components-endpoint--page) supports the top-level keys, `redirectTo` and `redirectStatus`.
+
+When these keys have valid values, Irving Core will redirect accordingly.
+
+`redirectTo` - The URL you wish to redirect to.
+`redirectStatus` - The 3xx [HTTP status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections) to use.
 
 ### WordPress Plugin Support
-Both [Safe Redirect Manager](?path=/docs/integrations-supported-wordpresss-plugins--page#safe-redirect-manager) and [WPCOM Legacy Redirector](?path=/docs/integrations-supported-wordpress-plugins--page#wpcom-legacy-redirector) are supported out of the box with WP Irving.
+Both [Safe Redirect Manager](?path=/docs/integrations-supported-wordpress-plugins--page#safe-redirect-manager) and [WPCOM Legacy Redirector](?path=/docs/integrations-supported-wordpress-plugins--page#wpcom-legacy-redirector) are supported out of the box with WP Irving.
