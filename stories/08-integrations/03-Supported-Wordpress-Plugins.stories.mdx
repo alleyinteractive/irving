@@ -21,17 +21,6 @@ Hide WordPress posts from archives, which includes the index page, search result
 * Flush permalinks.
 * Proxy all `*/amp/` requests [(docs)](?path=/docs/features-proxies--page).
 
-#### Meta tag
-You will also need to make the AMP version of posts discoverable by [adding a `<link>` tag](https://amp.dev/documentation/guides-and-tutorials/optimize-and-measure/discovery) in the `<head>`. If you are using WP Components, the `Head` component has an `add_link()` method you can use, e.g.
-
-```php
-$head = new \WP_Components\Head();
-$head->add_link( 'amphtml', get_permalink( $head->get_post_id() ) . 'amp/' );
-```
-
-_Note: Adding the meta tag will be automated in IRV-732_
-
-
 ## Jetpack
 When enabled, WP Irving will enqueue the scripts required for [Jetpack Site Stats](https://jetpack.com/features/traffic/site-stats/).
 
