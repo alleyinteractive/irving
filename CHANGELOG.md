@@ -3,8 +3,8 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [5.1.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.5...v5.1.0-alpha.6) (2020-10-13)
 
+# [5.1.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.5...v5.1.0-alpha.6) (2020-10-13)
 
 ### Bug Fixes
 
@@ -97,6 +97,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **link:** fix issue with spreading props into link wrapper component ([fdd4464](https://github.com/alleyinteractive/irving/commit/fdd446475fac9e1bd1afc88e3211273bd983fa04))
+
+
+
+
+
+## [5.0.1](https://github.com/alleyinteractive/irving/compare/v5.0.0...v5.0.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* **link:** cherry pick link fix from commit fdd4464 into 5.0 ([23fcab2](https://github.com/alleyinteractive/irving/commit/23fcab28e3a34d26d1c6fcada8b0a045814afa96))
 
 
 
