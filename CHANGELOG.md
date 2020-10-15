@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.7...v5.1.0-alpha.8) (2020-10-15)
+
+
+### Bug Fixes
+
+* **coral:** enforce rendering on status change ([27c118a](https://github.com/alleyinteractive/irving/commit/27c118ae8fb8c4f368cdfe4f762b9a9f8898e4ed))
+
+
+
+
+
 # [5.1.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.6...v5.1.0-alpha.7) (2020-10-15)
 
 
