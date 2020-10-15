@@ -1,4 +1,6 @@
+const trackingService = require('./services/trackingService');
+
 module.exports = {
-  name: 'tracking',
+  trackingService,
   trackingOptions: {},
 };

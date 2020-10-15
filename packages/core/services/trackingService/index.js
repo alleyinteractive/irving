@@ -1,5 +1,6 @@
-const getTrackingService = require('./getServiceFromFilesystem');
-const getReactTrackingService = require('./reactTrackingService');
+const { getValueFromConfig } = require('config/irving/getValueFromConfig'); // eslint-disable-line  max-len
+const defaultService = require('./defaultService');
+
 let service;
 
 /**
@@ -12,12 +13,10 @@ const getService = () => {
   if (service) {
     return service;
   }
-  const testing = true;
-  if (testing) {
-    service = getReactTrackingService();
-    return service;
-  }
-  service = getTrackingService();
+  service = getValueFromConfig(
+    'trackingService',
+    defaultService()
+  );
   return service;
 };
 

@@ -3,9 +3,7 @@
 	"version": "0.0.0",
 	"description": "Integration for React Tracking",
 	"files": [
-		"server/**/*",
 		"services/**/*",
-		"irving.config.server.js",
 		"irving.config.js",
 		"!*.test.js"
 	],
@@ -17,7 +15,9 @@
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
-		"@irvingjs/core": "^5.0.0",
 		"react-tracking": "^8.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

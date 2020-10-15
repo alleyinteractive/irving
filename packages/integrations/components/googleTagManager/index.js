@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from '@irvingjs/core/utils/isNode';
-import getTrackingService from '@irvingjs/services/trackingService';
+import getTrackingService from '@irvingjs/core/services/trackingService';
 import serialize from 'serialize-javascript';
 
 const trackingService = getTrackingService();
