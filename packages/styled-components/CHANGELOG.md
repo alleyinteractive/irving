@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.7](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.1.0-alpha.6...v5.1.0-alpha.7) (2020-10-15)
+
+
+
+## [5.0.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.0.0...v5.0.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* **link:** cherry pick link fix from commit fdd4464 into 5.0 ([23fcab2](https://github.com/alleyinteractive/irving/packages/styled-components/commit/23fcab28e3a34d26d1c6fcada8b0a045814afa96))
+
+
+
+
+
 ## [5.0.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.0.0...v5.0.1) (2020-10-09)
 
 # [5.1.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.1.0-alpha.0...v5.1.0-alpha.1) (2020-10-13)
