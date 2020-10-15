@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SiteThemeProvider from
-  '@irvingjs/styled/components/siteThemeProvider';
+import SiteThemeProvider from '@irvingjs/styled/components/siteThemeProvider';
 import BlockStyles from './components/blockStyles';
 
 const BlockStylesRoot = () => (
