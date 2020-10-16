@@ -60,7 +60,7 @@ module.exports = (multiConfig) => (
                 (
                   (
                     filepath.includes(buildContext) ||
-                    filepath.includes(path.join(__dirname, '../'))
+                    filepath.includes(path.join(__dirname, '../../'))
                   ) &&
                   ! filepath.includes('node_modules')
                 ) ||
