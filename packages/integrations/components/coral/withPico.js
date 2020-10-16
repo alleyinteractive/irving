@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import getLogService from '@irvingjs/services/logService';
 import CoralEmbed from './index';
 import { actionRequireUpgrade } from '../../actions/picoActions';
 import {
@@ -9,12 +10,12 @@ import {
 } from '../../selectors/coralSelector';
 import { picoSignalSelector } from '../../selectors/picoSelector';
 
+const log = getLogService('irving:integrations:coral:withPico');
+
 const withPico = (ChildComponent) => {
   const wrapped = (props) => {
     const { ssoTiers } = props;
 
-    // Define a global dispatch function.
-    const dispatch = useDispatch();
     // Grab the value of the Pico signal from the Redux store.
     const { status, tier } = useSelector(picoSignalSelector) || {};
     // Grab the value of the Coral token from the Redux store.
@@ -22,6 +23,24 @@ const withPico = (ChildComponent) => {
     // Grab the true/false value of whether or not a username needs to be set
     // in order to enable commenting privileges from the Redux store.
     const requireUsername = useSelector(requireUsernameSelector);
+    // Instantiate a local state value to track the user's ability to log into
+    // the Coral embed.
+    const [canComment, setCanComment] = useState(false);
+
+    useEffect(() => {
+      log.info('withPico: Running effect');
+
+      if (coralToken && ! requireUsername) {
+        log.info('withPico: Setting canComment: true');
+        setCanComment(true);
+      } else {
+        log.info('withPico: Setting canComment: false');
+        setCanComment(false);
+      }
+    }, [coralToken, requireUsername, status, tier]);
+
+    // Define a global dispatch function.
+    const dispatch = useDispatch();
 
     // Define Coral event handlers.
     const handlers = (events) => {
@@ -53,12 +72,14 @@ const withPico = (ChildComponent) => {
       });
     };
 
-    if (coralToken && ssoTiers.includes(tier) && ! requireUsername) {
+    if (ssoTiers.includes(tier) && canComment) {
+      log.info('withPico: Returning authenticated embed');
       return (
         <ChildComponent {...props} events={handlers} accessToken={coralToken} />
       );
     }
 
+    log.info('withPico: Returning default embed');
     return (
       <ChildComponent {...props} events={handlers} />
     );

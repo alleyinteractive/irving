@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.7...v5.1.0-alpha.8) (2020-10-15)
+
+
+### Bug Fixes
+
+* **coral:** enforce rendering on status change ([27c118a](https://github.com/alleyinteractive/irving/commit/27c118ae8fb8c4f368cdfe4f762b9a9f8898e4ed))
+
+
+
+
+
+# [5.1.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.6...v5.1.0-alpha.7) (2020-10-15)
+
+
+### Bug Fixes
+
+* **changelog:** fix issue with changelog ([582cd3e](https://github.com/alleyinteractive/irving/commit/582cd3ed8886a44fd216aa016edb4df5d1bceb02))
+
+
+
+## [5.0.1](https://github.com/alleyinteractive/irving/compare/v5.0.0...v5.0.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* **link:** cherry pick link fix from commit fdd4464 into 5.0 ([23fcab2](https://github.com/alleyinteractive/irving/commit/23fcab28e3a34d26d1c6fcada8b0a045814afa96))
+
+
+
+
+
 
 # [5.1.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.5...v5.1.0-alpha.6) (2020-10-13)
 

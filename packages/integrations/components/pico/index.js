@@ -20,7 +20,7 @@ import {
   mountPicoNodes,
 } from './utils';
 
-const log = getLogService('irving:pico');
+const log = getLogService('irving:integrations:pico');
 
 const Pico = (props) => {
   const {
