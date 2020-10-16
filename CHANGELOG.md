@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.3-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.0.2...v5.0.3-alpha.0) (2020-10-16)
+
+
+### Bug Fixes
+
+* **editor:** cherry-pick for sitetheme fixes ([d56ceb3](https://github.com/alleyinteractive/irving/commit/d56ceb31bece469ff4658aaa24ad79d6b4c883a0))
+* **editor:** cherry-pick part 2 ([5760b6f](https://github.com/alleyinteractive/irving/commit/5760b6f69e958dcc63b20d53691c6ca915d63764))
+
+
+
+
+
 ## [5.0.2](https://github.com/alleyinteractive/irving/compare/v5.0.1...v5.0.2) (2020-10-16)
 
 **Note:** Version bump only for package irving
