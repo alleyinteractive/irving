@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.9](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.1.0-alpha.8...v5.1.0-alpha.9) (2020-10-16)
+
+
+### Bug Fixes
+
+* **blockeditor:** tweak sitetheme logic for block styles to make it work ([2c2c2a4](https://github.com/alleyinteractive/irving/packages/example-package/commit/2c2c2a4ee1624f8433f0cfdf24032ed568ef5150))
+* **editorstyles:** a fix for developing with editorstyles ([6bde115](https://github.com/alleyinteractive/irving/packages/example-package/commit/6bde115882d65fbe5b949ac0aed0dba22eba3201))
+
+
+
+
+
 # [5.1.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.1.0-alpha.0...v5.1.0-alpha.1) (2020-10-13)
 
 **Note:** Version bump only for package @irvingjs/wordpress
