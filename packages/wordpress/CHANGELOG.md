@@ -7,6 +7,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @irvingjs/wordpress
 
+## [5.0.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.3-alpha.0...v5.0.3) (2020-10-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
 
 
 
@@ -14,6 +18,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [5.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.1-alpha.0...v5.1.0-alpha.0) (2020-10-12)
 
 **Note:** Version bump only for package @irvingjs/wordpress
+## [5.0.3-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.2...v5.0.3-alpha.0) (2020-10-16)
+
+
+### Bug Fixes
+
+* **editor:** cherry-pick for sitetheme fixes ([d56ceb3](https://github.com/alleyinteractive/irving/packages/example-package/commit/d56ceb31bece469ff4658aaa24ad79d6b4c883a0))
+* **editor:** cherry-pick part 2 ([5760b6f](https://github.com/alleyinteractive/irving/packages/example-package/commit/5760b6f69e958dcc63b20d53691c6ca915d63764))
 
 
 
