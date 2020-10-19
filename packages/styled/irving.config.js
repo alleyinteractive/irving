@@ -4,5 +4,4 @@ import getAppTemplateVars from './server/getAppTemplateVars';
 export default {
   name: 'styled',
   getAppTemplateVars,
-  styleguideConfig: './config/styleguide.config.js',
 };

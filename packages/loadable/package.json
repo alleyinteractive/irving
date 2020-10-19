@@ -1,0 +1,47 @@
+{
+  "name": "@irvingjs/loadable",
+  "version": "5.1.0-alpha.6",
+  "description": "Integration with React Loadable",
+  "files": [
+    "components/**/*",
+    "irving.config.js",
+    "client/*",
+    "server/*",
+    "config/*",
+    "!*.test.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/loaodable"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "@loadable/babel-plugin": "^5.13.2",
+    "@loadable/component": "^5.13.2",
+    "@loadable/server": "^5.13.2",
+    "@loadable/webpack-plugin": "^5.13.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@irvingjs/babel-preset-irving": "^2.19.2",
+    "@irvingjs/core": "^2.21.3",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "enzyme": "^3.11.0",
+    "jest": "^25.5.3"
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">=2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "7a7b016f4b4e7f758cdce8159f2e35775962f406"
+}

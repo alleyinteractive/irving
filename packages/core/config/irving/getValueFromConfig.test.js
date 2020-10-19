@@ -1,6 +1,7 @@
 import {
   getValueFromConfigNoMemo as getValueFromConfig,
 } from './getValueFromConfig';
+import config from '@irvingjs/irving.config';
 
 describe('getValueFromConfig', () => {
   const reducers = getValueFromConfig('reducers', {});
@@ -38,6 +39,19 @@ describe('getValueFromConfig', () => {
         '/another-test',
         '/do/not/trailing/slash/me',
       ]);
+    }
+  );
+
+  it(
+    'should pass additional args along to config functions',
+    () => {
+      const initial = {};
+      const additionalArg1 = 'lorem';
+      const additionalArg2 = 'ipsum';
+      getValueFromConfig('testFun', initial, [additionalArg1, additionalArg2]);
+
+      expect(config.testFun)
+        .toHaveBeenCalledWith(initial, additionalArg1, additionalArg2);
     }
   );
 });

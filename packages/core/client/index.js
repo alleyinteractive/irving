@@ -50,7 +50,6 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, rehydratedState, enhancer);
 const persistor = persistStore(store);
-const rootEl = document.getElementById('root');
 
 sagaMiddleware.run(rootSaga);
 
@@ -65,6 +64,7 @@ history.listen((location, action) => {
 });
 
 const render = () => {
+  const rootEl = document.getElementById('root');
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
@@ -79,10 +79,24 @@ const render = () => {
 // Wait for the Redux state to be re-hydrated before rendering the app.
 // We don't use the redux-persist/PersistGate component, because it doesn't play
 // nice with server side rendering.
-const unsubscribe = persistor.subscribe(() => {
-  const isReady = persistor.getState().bootstrapped;
-  if (isReady) {
-    render();
-    unsubscribe();
-  }
-});
+const waitForPersistor = () => (
+  new Promise((resolve) => {
+    const unsubscribe = persistor.subscribe(() => {
+      const isReady = persistor.getState().bootstrapped;
+
+      if (isReady) {
+        resolve();
+        unsubscribe();
+      }
+    });
+  })
+);
+
+// Collect functions defining conditions to wait for before rendering the client-side application
+const waitForClientRender = getValueFromConfig(
+  'waitForClientRender',
+  [waitForPersistor]
+);
+
+Promise.all(waitForClientRender.map((waitFunc) => waitFunc()))
+  .then(() => render());

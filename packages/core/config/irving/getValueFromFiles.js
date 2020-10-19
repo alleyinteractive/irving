@@ -12,11 +12,13 @@ const requireConfigModules = require('./requireConfigModules');
  * @param {object} opts Options for finding config files.
  * @param {string} opts.base Base filepath to look for config files in.
  * @param {array}  opts.ignorePackages Array of packages to ignore when looking for files.
+ * @param {array} args Additional arguments to supply to config functions.
  */
 const getValueFromFiles = (
   filepath,
   defaultValue,
-  opts = {}
+  opts = {},
+  args = []
 ) => {
   const normalizedOpts = {
     base: appRoot,
@@ -39,7 +41,7 @@ const getValueFromFiles = (
   }
 
   // Merge arrays if config default is an array, otherwise merge objects.
-  return mergeConfigValues(configs, defaultValue);
+  return mergeConfigValues(configs, defaultValue, args);
 };
 
 const getValueFromFilesMemo = memoize(getValueFromFiles);

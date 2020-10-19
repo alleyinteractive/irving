@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.1.0-alpha.0...v5.1.0-alpha.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* **irving.config.js:** remove some unnecessary fields from config ([8281962](https://github.com/alleyinteractive/irving/packages/styled/commit/82819620694e6c126f31f1926aeb12822cd35406))
+
+
+
+
+
 # [5.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.0.1-alpha.0...v5.1.0-alpha.0) (2020-10-12)
 
 **Note:** Version bump only for package @irvingjs/styled

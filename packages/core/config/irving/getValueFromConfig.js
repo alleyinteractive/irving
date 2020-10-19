@@ -46,11 +46,12 @@ const getConfigValues = (key) => {
  *
  * @param {string} key Key to search for in config.
  * @param {mixed} defaultValue Default value to merge found configs with.
+ * @param {?(array)} args Additional arguments to supply to config functions.
  * @returns {mixed}
  */
-const getValueFromConfig = (key, defaultValue) => {
+const getValueFromConfig = (key, defaultValue, args = []) => {
   const configValues = getConfigValues(key);
-  return mergeConfigValues(configValues, defaultValue);
+  return mergeConfigValues(configValues, defaultValue, args);
 };
 
 module.exports = {

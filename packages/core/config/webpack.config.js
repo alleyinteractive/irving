@@ -51,9 +51,6 @@ module.exports = (env, argv) => {
           whitelist: [
             // Allow references to vendor css, so we can include them in our bundle.
             /\.css$/,
-            /babel-plugin-universal-import/,
-            /react-universal-component/,
-            /webpack-flush-chunks/,
             // Include other irving packages in node_modules.
             /@irvingjs/,
           ],

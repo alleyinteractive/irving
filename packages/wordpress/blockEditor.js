@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'styled-components';
+import SiteThemeProvider from '@irvingjs/styled/components/siteThemeProvider';
 import BlockStyles from './components/blockStyles';
 
-const irving = window.irving || {
-  siteTheme: {},
-};
-
 const BlockStylesRoot = () => (
-  <ThemeProvider theme={irving.siteTheme}>
+  <SiteThemeProvider theme={window.irvingSiteTheme || {}}>
     <BlockStyles />
-  </ThemeProvider>
+  </SiteThemeProvider>
 );
 
 const root = document.createElement('div');

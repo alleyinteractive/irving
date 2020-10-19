@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "5.1.0-alpha.0",
+  "version": "5.1.0-alpha.1",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -42,7 +42,8 @@
   "dependencies": {
     "@babel/core": "^7.10.4",
     "@hot-loader/react-dom": "^16.13.0",
-    "@irvingjs/babel-preset-irving": "^5.0.0",
+    "@irvingjs/babel-preset-irving": "^5.1.0-alpha.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.2",
     "@svgr/webpack": "^5.4.0",
     "abort-controller": "^3.0.0",
     "babel-eslint": "^10.1.0",
@@ -89,6 +90,7 @@
     "react-oembed-container": "^1.0.0",
     "react-redux": "^7.2.0",
     "react-tracking": "^8.0.0",
+    "react-refresh": "^0.8.3",
     "react-transition-group": "^4.4.1",
     "react-universal-component": "^4.0.1",
     "reduce-reducers": "^1.0.4",

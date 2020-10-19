@@ -14,9 +14,6 @@ require('../config/env')();
   }
 });
 
-// Set appropriate babel env.
-process.env.BABEL_ENV = 'app';
-
 // Build a map of available commands.
 const defaultCommand = 'dev';
 const commandMap = {

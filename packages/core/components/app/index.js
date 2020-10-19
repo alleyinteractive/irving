@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { hot } from 'react-hot-loader/root';
 import { connect } from 'react-redux';
 import ErrorBoundary from 'components/errorBoundary';
 import Root from 'components/root';
@@ -41,21 +40,7 @@ const appMapStateToProps = (state) => ({
   error: !! state.error,
 });
 
-const ConnectedApp = connect(appMapStateToProps)(App);
-
-let hotApp; // eslint-disable-line import/no-mutable-exports
-
-if (
-  'production_client' === process.env.IRVING_EXECUTION_CONTEXT ||
-  'development_client' === process.env.IRVING_EXECUTION_CONTEXT
-) {
-  hotApp = hot(ConnectedApp);
-} else {
-  hotApp = ConnectedApp;
-}
-
-/** @component */
-export default trackingService.withTracking(
+export default connect(appMapStateToProps)(trackingService.withTracking(
   {
     app: 'irving',
     event: 'irving.appLoaded',
@@ -65,4 +50,4 @@ export default trackingService.withTracking(
     dispatchOnMount: true,
     ...getValueFromConfig('trackingOptions', {}),
   }
-)(hotApp);
+)(App));
