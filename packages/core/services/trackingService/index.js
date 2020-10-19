@@ -1,5 +1,5 @@
-const { getValueFromConfig } = require('config/irving/getValueFromConfig'); // eslint-disable-line  max-len
-const defaultService = require('./defaultService');
+import { getValueFromConfig } from 'config/irving/getValueFromConfig';
+import defaultService from './defaultService';
 
 let service;
 
@@ -20,4 +20,4 @@ const getService = () => {
   return service;
 };
 
-module.exports = getService;
+export default getService;

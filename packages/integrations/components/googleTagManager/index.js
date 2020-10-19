@@ -2,32 +2,19 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from '@irvingjs/core/utils/isNode';
-import getTrackingService from '@irvingjs/core/services/trackingService';
 import serialize from 'serialize-javascript';
-
-const trackingService = getTrackingService();
 
 /**
  * Google Tag Manager integration.
  *
- * @todo Move data handling to new dedicated component or make this a generic 'tagManager' component.
- *
- * Event context is defined here because otherwise we can cause integrations to load when it's not needed.
- *
- * @tracking Fires when component is mounted.
- * - event          irving.componentLoaded
- * - eventComponent gtm
- * - eventContext   irving.integrationsManager
- *
- * @tracking Fires when component is updated.
- * - event irving.historyChange (plus gtm.start on first one)
+ * @todo Move data handling to new dedicated component.
+ * @todo Make this a generic tag manager component.
  *
  */
 const GoogleTagManager = (props) => {
   const {
     containerId,
     dataLayer,
-    tracking,
   } = props;
 
   if (! containerId) {
@@ -47,7 +34,7 @@ const GoogleTagManager = (props) => {
    */
   useEffect(() => {
     if (0 === started.length) {
-      tracking.trackEvent({
+      window.dataLayer.push({
         'gtm.start': new Date().getTime(),
         event: 'gtm.js',
       });
@@ -58,7 +45,7 @@ const GoogleTagManager = (props) => {
    * Effect for pushing new data to the GTM dataLayer.
    */
   useEffect(() => {
-    tracking.trackEvent({
+    window.dataLayer.push({
       event: 'irving.historyChange',
       ...dataLayer,
     });
@@ -107,14 +94,6 @@ GoogleTagManager.propTypes = {
     PropTypes.object,
     PropTypes.array, // Empty objects turn to arrays in PHP :(
   ]),
-  /**
-   * Tracking prop types.
-   */
-  ...trackingService.trackingPropTypes,
 };
 
-export default trackingService.withTracking({
-  event: 'irving.componentLoaded',
-  eventComponent: 'gtm',
-  eventContext: 'irving.integrationsManager',
-}, { dispatchOnMount: true })(GoogleTagManager);
+export default GoogleTagManager;
