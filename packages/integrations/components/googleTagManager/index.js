@@ -49,6 +49,7 @@ const GoogleTagManager = (props) => {
       event: 'irving.historyChange',
       ...dataLayer,
     });
+
     return () => {};
   }, [dataLayer]);
 
