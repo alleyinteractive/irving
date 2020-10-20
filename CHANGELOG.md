@@ -3,6 +3,185 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v5.0.3...v5.1.0-alpha.10) (2020-10-20)
+
+
+
+# [5.1.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v5.0.3-alpha.0...v5.1.0-alpha.9) (2020-10-16)
+
+
+
+# [5.1.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.7...v5.1.0-alpha.8) (2020-10-15)
+
+
+### Bug Fixes
+
+* **blockeditor:** tweak sitetheme logic for block styles to make it work ([2c2c2a4](https://github.com/alleyinteractive/irving/commit/2c2c2a4ee1624f8433f0cfdf24032ed568ef5150))
+* **coral:** enforce rendering on status change ([27c118a](https://github.com/alleyinteractive/irving/commit/27c118ae8fb8c4f368cdfe4f762b9a9f8898e4ed))
+* **editorstyles:** a fix for developing with editorstyles ([6bde115](https://github.com/alleyinteractive/irving/commit/6bde115882d65fbe5b949ac0aed0dba22eba3201))
+
+
+
+# [5.1.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.6...v5.1.0-alpha.7) (2020-10-15)
+
+
+### Bug Fixes
+
+* **changelog:** fix issue with changelog ([582cd3e](https://github.com/alleyinteractive/irving/commit/582cd3ed8886a44fd216aa016edb4df5d1bceb02))
+
+
+
+# [5.1.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.5...v5.1.0-alpha.6) (2020-10-13)
+
+
+### Bug Fixes
+
+* **loadable:** fix broken import ([9becd95](https://github.com/alleyinteractive/irving/commit/9becd9504ee970d5cf3daf6f8cf85071a62e9c37))
+
+
+
+# [5.1.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.4...v5.1.0-alpha.5) (2020-10-13)
+
+
+### Bug Fixes
+
+* **loadable:** add ssrtags config ([7c5dde0](https://github.com/alleyinteractive/irving/commit/7c5dde0d439d6449a0dec4f2001a65fb8096378f))
+
+
+
+# [5.1.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.3...v5.1.0-alpha.4) (2020-10-13)
+
+
+### Bug Fixes
+
+* **loadable:** add some missing packages ([7fd949f](https://github.com/alleyinteractive/irving/commit/7fd949fb7176cddfac1b2a2e9d1d93df75d24f2a))
+
+
+
+# [5.1.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.2...v5.1.0-alpha.3) (2020-10-13)
+
+
+### Bug Fixes
+
+* **loadable:** add publish files to lodable ([213596a](https://github.com/alleyinteractive/irving/commit/213596a965284f7af5ad86473fc485a3d02886e9))
+
+
+
+# [5.1.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.1...v5.1.0-alpha.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **loadable:** fix loadable package name ([4ebbd4e](https://github.com/alleyinteractive/irving/commit/4ebbd4e4d4ab90e7d1ee016bc8e6fffb4f09a615))
+
+
+
+# [5.1.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.0...v5.1.0-alpha.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* **loadable:** only use fast refresh babel plugin in develpoment ([fb907b5](https://github.com/alleyinteractive/irving/commit/fb907b5c421f4c736375e79a467c113bffebd2a9))
+* **loadable:** switch to using stats for loadable across the board ([a947f89](https://github.com/alleyinteractive/irving/commit/a947f89da89eef4573f675b5cdbab893b26dc3e9))
+
+
+### Features
+
+* **loadable:** incorporate webpack plugin for [@loadable](https://github.com/loadable) ([5582172](https://github.com/alleyinteractive/irving/commit/5582172a02ba257e1cefd6e75f1ea74a89427eef))
+* **loadable:** set up fast refresh ([f4bd34a](https://github.com/alleyinteractive/irving/commit/f4bd34ad59ba0e8407603ee9dbd7742466d7b1d5))
+
+
+
+# [5.1.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.0.1-alpha.0...v5.1.0-alpha.0) (2020-10-12)
+
+
+### Bug Fixes
+
+* **getapptemplatevars:** fix some syntax ([e6e14f2](https://github.com/alleyinteractive/irving/commit/e6e14f232deced092e19f36e498c293f1f7af9ed))
+
+
+### Features
+
+* **loadable:** migrate to using more up-to-date @loadable/component package ([c2ab2b7](https://github.com/alleyinteractive/irving/commit/c2ab2b77bc625616eddcef8039752a03467bbf06))
+* **logging:** add error log for component endpoint aborts ([e0ef5d3](https://github.com/alleyinteractive/irving/commit/e0ef5d3c07488f4f23f84196d9351db5bae4823e))
+
+
+
+## [5.0.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.0.1...v5.0.1-alpha.0) (2020-10-09)
+
+
+### Bug Fixes
+
+* **config:** fix configurations for forms, audio-player packages ([985827d](https://github.com/alleyinteractive/irving/commit/985827d73683fe10509f524fb821bf2a8e74b2f6))
+* **irving.config.js:** remove some unnecessary fields from config ([8281962](https://github.com/alleyinteractive/irving/commit/82819620694e6c126f31f1926aeb12822cd35406))
+* **link:** fix issue with spreading props into link wrapper component ([fdd4464](https://github.com/alleyinteractive/irving/commit/fdd446475fac9e1bd1afc88e3211273bd983fa04))
+* **storybook docs:** ensure the a11y package is installed ([0922dc8](https://github.com/alleyinteractive/irving/commit/0922dc8ba0f42887892bb06b376e5618a1205836))
+
+
+### Features
+
+* **getapptemplatevars:** pass along clientStats to loadable, extract without loadable plugin ([03539f3](https://github.com/alleyinteractive/irving/commit/03539f38ed6a8a572c8fda56cfd2d181c5ad7422))
+* **withloadable:** add withLoadable hoc ([9fb2869](https://github.com/alleyinteractive/irving/commit/9fb286904dd573fd8dd25605797bf48201fa5306))
+
+
+
+# [3.0.0](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.6...v3.0.0) (2020-08-03)
+
+
+
+# [3.0.0-beta.6](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
+
+
+### Bug Fixes
+
+* **package:** fix core packages ([12712b9](https://github.com/alleyinteractive/irving/commit/12712b96d40e37e447bf30c551091be8fc1cb550))
+
+
+
+# [3.0.0-beta.5](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2020-07-26)
+
+
+### Bug Fixes
+
+* **babel:** install babel runtime ([f7ca697](https://github.com/alleyinteractive/irving/commit/f7ca697a07e9783a67f53d2fb01741ba8e1b1cad))
+
+
+
+# [3.0.0-beta.4](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.0...v3.0.0-beta.4) (2020-07-26)
+
+
+### Bug Fixes
+
+* **styled-components:** publish assets to styled components package ([8f3fd8a](https://github.com/alleyinteractive/irving/commit/8f3fd8a3d4c440505caec715985a6b40ea5a89a7))
+
+
+
+# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
+
+
+
+## [2.23.1](https://github.com/alleyinteractive/irving/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
+
+
+
+## [2.23.1-beta.4](https://github.com/alleyinteractive/irving/compare/e8e734e1b06b8b0759f37da8701630606e34b568...v2.23.1-beta.4) (2020-07-21)
+
+
+### Bug Fixes
+
+* **loadable:** continue attempting to get loadable stats working properly ([6db6cf0](https://github.com/alleyinteractive/irving/commit/6db6cf047cf0b1af57a0fbb6e8aeee2fa2cfb887))
+* **loadable:** continued attempts to get this working, appHtml is broken though ([e1cce00](https://github.com/alleyinteractive/irving/commit/e1cce0012cefceb0d0c50e5fc3197233d7780d74))
+* **loadable:** remove universal component packages from core, babel preset ([e2f09e8](https://github.com/alleyinteractive/irving/commit/e2f09e8ea77ed2e3d5499c927b2f9b1593e4ff5f))
+
+
+### Features
+
+* **loadable:** remove universal component from core ([e8e734e](https://github.com/alleyinteractive/irving/commit/e8e734e1b06b8b0759f37da8701630606e34b568))
+
+
+
+
+
 # [5.1.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.8...v5.1.0-alpha.9) (2020-10-16)
 
 
