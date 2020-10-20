@@ -7,7 +7,7 @@ It is available at [storybook.irvingjs.com](http://storybook.irvingjs.com).
 
 **Workflow**
 
-Upon releasing a package, you should also deploy the Storybook. Do not release Storybook until you have already merged into `master`.
+Upon releasing a package, you should also deploy the Storybook. Do not release Storybook until you have already merged into `main`.
 
 _Publishing documentation should follow the same code review/pull request process as writing feature code._
 
