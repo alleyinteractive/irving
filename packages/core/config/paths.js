@@ -68,7 +68,7 @@ module.exports = {
   nodeModules: resolveIrvingDir('node_modules'),
   postCssConfig: resolveIrvingDir('config/postcss.config.js'),
   proxyUrl: PROXY_URL,
-  rootUrl: ROOT_URL || 'http://localhost:3001',
+  rootUrl: ROOT_URL || '',
   serverBuild: resolveBuildDir('build/server'),
   serverRoot: resolveIrvingDir('server/serverRenderer'),
 };

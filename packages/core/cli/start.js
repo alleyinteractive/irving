@@ -33,7 +33,8 @@ if (! started) {
 // Open app for convenience and to get the initial build started.
 if ('development' === process.env.NODE_ENV) {
   const openBrowser = require('react-dev-utils/openBrowser');
-  openBrowser(rootUrl);
+  const defaultRoot = `https://localhost:${process.env.PORT || '3001'}`;
+  openBrowser(rootUrl || defaultRoot);
 }
 
 // Handle uncaught promise exceptions.
