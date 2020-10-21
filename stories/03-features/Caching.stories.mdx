@@ -31,9 +31,9 @@ Redis can be set up and configured in almost exactly the same way as you would f
 
 In addition to the Redis cache, VIP Go's infrastructure has a [Varnish page cache](https://wpvip.com/documentation/vip-go/caching-on-vip-go/#page-cache). Both the Redis and Varnish cache will automatically clear based on [VIP's caching logic](https://wpvip.com/documentation/vip-go/controlling-vip-go-page-cache/). Similar to a non-headless WordPress site, you may need to customize when the cache busts to meet your specific needs.
 
-The integration for VIP Go's cache busting is one of [WP Irving's integrations](https://github.com/alleyinteractive/wp-irving/blob/master/inc/integrations/class-vip-go.php).
+The integration for VIP Go's cache busting is one of [WP Irving's integrations](https://github.com/alleyinteractive/wp-irving/blob/main/inc/integrations/class-vip-go.php).
 
-In addition, WP Irving has its own [cache manager class](https://github.com/alleyinteractive/wp-irving/blob/master/inc/class-cache.php) for handling cache busting for Irving's redis implementation.
+In addition, WP Irving has its own [cache manager class](https://github.com/alleyinteractive/wp-irving/blob/main/inc/class-cache.php) for handling cache busting for Irving's redis implementation.
 
 ### Redis Cache Busting
 Irving core supports two custom routes to help with the Redis cache. For WordPress builds, these will automatically be triggered as part of WP Irving.
@@ -51,7 +51,7 @@ Irving core supports two custom routes to help with the Redis cache. For WordPre
 # WP Irving
 
 ## Caching
-WP Irving has built-in functionality for managing both the [node Redis cache](https://github.com/alleyinteractive/irving/wiki/Caching) running on Irving and WP Irving's component data endpoints. This functionality is fairly robust out of the box, but can also be modified or extended in a number of ways. Code for all of this functionality can be found in WP Irving's [cache manager class](https://github.com/alleyinteractive/wp-irving/blob/master/inc/class-cache.php).
+WP Irving has built-in functionality for managing both the [node Redis cache](https://github.com/alleyinteractive/irving/wiki/Caching) running on Irving and WP Irving's component data endpoints. This functionality is fairly robust out of the box, but can also be modified or extended in a number of ways. Code for all of this functionality can be found in WP Irving's [cache manager class](https://github.com/alleyinteractive/wp-irving/blob/main/inc/class-cache.php).
 
 ### Core features
 Out of the box, WP Irving will handle several caching use-cases for you:
@@ -73,4 +73,4 @@ There are three hooks you can use to modify or extend which paths are purged for
 * `wp_irving_cache_term_purge_urls` - Filter that is passed an array of the URLs to be purged when a term is create, updated, or deleted.
 * `wp_irving_cache_user_purge_urls` - Filter that is passed an array of the URLs to be purged when a user is create, updated, or deleted.
 
-In addition, the three methods that apply the above filters can be used directly if you need to create your own caching integration. These functions are `get_post_purge_urls`, `get_term_purge_urls`, and `get_user_purge_urls` respectively. An example of how you might use these functions can be found in the [Pantheon integration class.](https://github.com/alleyinteractive/wp-irving/blob/master/inc/integrations/class-pantheon.php)
+In addition, the three methods that apply the above filters can be used directly if you need to create your own caching integration. These functions are `get_post_purge_urls`, `get_term_purge_urls`, and `get_user_purge_urls` respectively. An example of how you might use these functions can be found in the [Pantheon integration class.](https://github.com/alleyinteractive/wp-irving/blob/main/inc/integrations/class-pantheon.php)
