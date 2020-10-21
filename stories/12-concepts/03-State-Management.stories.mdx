@@ -7,7 +7,7 @@ We use [Redux.js](https://github.com/reduxjs/redux) to contain the application's
 ### State Reducers
 A reducer function that takes the entire state object as an argument and returns the transformed state based on the dispatched action. This type of reducer is used when you want to change multiple fields of the state object within one function. State reducers are composed together in a chain. Each reducer is passed the result of the previous reducer.
 
-[Example `componentsReducer.js` reducer](https://github.com/alleyinteractive/irving/blob/master/packages/core/reducers/componentsReducer.js).
+[Example `componentsReducer.js` reducer](https://github.com/alleyinteractive/irving/blob/main/packages/core/reducers/componentsReducer.js).
 
 ### Slice Reducer
 A reducer function that operates on only one root field of the state object. Slice reducers are typically used for simpler action handling logic. All slice reducers are composed together with another reducer function called combineReducers which is exported by Redux.js. The combineReducers function is then composed with the rest of the state reducers.
@@ -16,7 +16,7 @@ Example link
 ## React Redux and Connected Roots
 The API response from a components request is represented as a tree. Each root of the tree is connected to the Redux store with [React-Redux.js](https://github.com/reduxjs/react-redux). The interface of the components API response dictates that 0 or more root components may change when a LOCATION_CHANGE action is dispatched when a user navigates to a new page. To meet the requirements of completely dynamic pages, without re-rendering the entire component tree on each new page view, component roots are connected to Redux.js independent from each other. This allows only the root components that change, and their corresponding children, to re-render.
 
-[Example slice reducer.](https://github.com/alleyinteractive/irving/blob/master/packages/core/reducers/componentsReducer.js)
+[Example slice reducer.](https://github.com/alleyinteractive/irving/blob/main/packages/core/reducers/componentsReducer.js)
 
 ## Selectors
 Selectors are functions that compute values from the Redux.js state. We use the [Reselect.js](https://github.com/reduxjs/reselect) library to create performant selectors. The main feature of reselect is that it allows memoization of selector functions. What this means is that a complex selector function will execute the first time it is called, and then its computed value will be cached in memory. The cached value will continue to be returned until the selector's argument changes. For selectors that take the entire state as an argument, the selector will be recomputed when the Redux.js state changes. Selectors can be composed together. In that case when selectors that are passed as arguments to a composed selector change, then the composed selector will be recomputed.

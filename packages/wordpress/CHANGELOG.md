@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.10](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.3...v5.1.0-alpha.10) (2020-10-20)
+
+
+
+# [5.1.0-alpha.9](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.3-alpha.0...v5.1.0-alpha.9) (2020-10-16)
+
+
+### Bug Fixes
+
+* **blockeditor:** tweak sitetheme logic for block styles to make it work ([2c2c2a4](https://github.com/alleyinteractive/irving/packages/example-package/commit/2c2c2a4ee1624f8433f0cfdf24032ed568ef5150))
+* **editorstyles:** a fix for developing with editorstyles ([6bde115](https://github.com/alleyinteractive/irving/packages/example-package/commit/6bde115882d65fbe5b949ac0aed0dba22eba3201))
+
+
+
+# [5.1.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.1.0-alpha.0...v5.1.0-alpha.1) (2020-10-13)
+
+
+
+# [5.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.1-alpha.0...v5.1.0-alpha.0) (2020-10-12)
+
+
+
+
+
 # [5.1.0-alpha.9](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.1.0-alpha.8...v5.1.0-alpha.9) (2020-10-16)
 
 
@@ -19,6 +43,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @irvingjs/wordpress
 
+## [5.0.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.3-alpha.0...v5.0.3) (2020-10-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
 
 
 
@@ -26,6 +54,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [5.1.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.1-alpha.0...v5.1.0-alpha.0) (2020-10-12)
 
 **Note:** Version bump only for package @irvingjs/wordpress
+## [5.0.3-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.0.2...v5.0.3-alpha.0) (2020-10-16)
+
+
+### Bug Fixes
+
+* **editor:** cherry-pick for sitetheme fixes ([d56ceb3](https://github.com/alleyinteractive/irving/packages/example-package/commit/d56ceb31bece469ff4658aaa24ad79d6b4c883a0))
+* **editor:** cherry-pick part 2 ([5760b6f](https://github.com/alleyinteractive/irving/packages/example-package/commit/5760b6f69e958dcc63b20d53691c6ca915d63764))
 
 
 
