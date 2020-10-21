@@ -127,43 +127,29 @@ const SocialSharing = (props) => {
   // Combine the default with any custom data.
   const mergedData = { ...defaultPlatformData, ...platformData };
 
-  const allitems = Object.entries(mergedData).map(([platform, data]) => ({
-    ...data,
-    platform,
-    icon: toReactElement({
-      name: `irving/${platform}-icon`,
-      config: {
-        title: sprintf( // Translators: %1$s - platform.
-          __('Share on %1$s', 'irving-styled-components'),
-          platform
-        ),
-      },
-      children: [],
-    }),
-  }));
-
-  // Filter to just the enabled platforms.
-  const items = allitems.filter((el) => (platforms.includes(el.platform)));
-
   return (
     <SocialSharingWrapper {...standardProps}>
       <SocialSharingList>
-        {items.map(({
-          icon,
-          platform,
-          shareUrl,
-          target,
-        }) => (
+        {platforms.map((platform) => (
           <SocialSharingItemWrapper key={platform} className={platform}>
             <Link
               data-gtm-event="Engagement"
               data-gtm-category="Share"
               data-gtm-label={platform}
-              href={shareUrl}
-              target={target}
+              href={mergedData[platform].shareUrl}
+              target={mergedData[platform].target}
             >
               <IconWrapper className={platform}>
-                {icon}
+                {toReactElement({
+                  name: `irving/${platform}-icon`,
+                  config: {
+                    title: sprintf( // Translators: %1$s - platform.
+                      __('Share on %1$s', 'irving-styled-components'),
+                      platform
+                    ),
+                  },
+                  children: [],
+                })}
               </IconWrapper>
             </Link>
           </SocialSharingItemWrapper>
