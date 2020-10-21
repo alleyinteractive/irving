@@ -16,6 +16,8 @@ const customizeRedirect = () => (
      * - no config was added
      * - current request is not for the configured ROOT_URL
      * - in a dev environment
+     *
+     * @todo determine if this first condition is even necessary anymore, or just an edge case we don't need to account for
      */
     if (
       ! ROOT_URL.includes(req.headers.host) ||

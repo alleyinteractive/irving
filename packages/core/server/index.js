@@ -43,6 +43,29 @@ const irvingServerMiddleware = getValueFromFiles(
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
+app.use((req, res, next) => {
+  let apiRootUrl;
+
+  switch (req.hostname) {
+    case 'irving.alley.test':
+      apiRootUrl = 'https://irving-dev.alley.test/wp-json/irving/v1';
+      break;
+
+    case 'testing.irving.alley.test':
+      apiRootUrl = 'https://lede.alley.test/defector/wp-json/irving/v1';
+      break;
+
+    default:
+      apiRootUrl = 'https://irving-dev.alley.test/wp-json/irving/v1';
+      break;
+  }
+
+  process.env.API_ROOT_URL = apiRootUrl;
+  console.log(apiRootUrl, process.env.API_ROOT_URL);
+
+  next();
+});
+
 // Set up a reusable proxy for responses that should be served directly.
 const passthrough = createProxyMiddleware({
   changeOrigin: true,
