@@ -36,7 +36,6 @@ module.exports = function startServer(app) {
   }
 
   server.listen(PORT);
-  console.log('butt');
   console.log(`Server listening on port ${PORT}!`);
 
   return server;
