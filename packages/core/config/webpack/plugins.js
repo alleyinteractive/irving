@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const omit = require('lodash/omit');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
@@ -17,7 +18,10 @@ const { maybeResolveUserModule } = require('../../utils/userModule');
  * @returns {array} A plugins configuration value
  */
 module.exports = function getPlugins(context) {
-  const env = getEnv();
+  const env = omit([
+    'ROOT_URL',
+    'API_ROOT_URL',
+  ], getEnv());
 
   // Define paths to app and error templates at compile time because express needs paths, not the template module itself.
   // This allows user to more deeply customize app and error templates.

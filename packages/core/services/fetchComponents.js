@@ -32,13 +32,14 @@ export async function fetchComponents(
   cookie = {},
   context = CONTEXT_PAGE
 ) {
+  // console.log(env.API_ROOT_URL);
   const query = createComponentsEndpointQueryString(
     path,
     search,
     cookie,
     context
   );
-  const apiUrl = `${process.env.API_ROOT_URL}/components?${query}`;
+  const apiUrl = `${env.API_ROOT_URL}/components?${query}`;
 
   // Create abort controller and set timeout to abort fetch call.
   // Default timeout is 10s, but can be configured with env var.
@@ -134,7 +135,7 @@ async function cachedFetchComponents(
   const info = {
     cached: false,
     __caching__: false,
-    endpoint: `${process.env.API_ROOT_URL}/components?${componentsQuery}`,
+    endpoint: `${env.API_ROOT_URL}/components?${componentsQuery}`,
     cacheKey: key,
     updated: null,
   };

@@ -43,6 +43,37 @@ const irvingServerMiddleware = getValueFromFiles(
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
+const { multisiteConfig } = require('../config/paths');
+
+const multisiteContext = getValueFromFiles(
+  multisiteConfig,
+  [() => {}]
+);
+
+app.use((req, res, next) => {
+  let apiRootUrl;
+  
+  console.log(multisiteContext);
+
+  switch (req.hostname) {
+    case 'irving.alley.test':
+      apiRootUrl = 'https://irving-dev.alley.test/wp-json/irving/v1';
+      break;
+
+    case 'site2.irving.alley.test':
+      apiRootUrl = 'https://site2.irving-dev.alley.test/wp-json/irving/v1';
+      break;
+
+    default:
+      apiRootUrl = 'https://irving-dev.alley.test/wp-json/irving/v1';
+      break;
+  }
+
+  process.env.API_ROOT_URL = apiRootUrl;
+
+  next();
+});
+
 // Set up a reusable proxy for responses that should be served directly.
 const passthrough = createProxyMiddleware({
   changeOrigin: true,
