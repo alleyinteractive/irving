@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.4-beta.0](https://github.com/alleyinteractive/irving/compare/v5.0.3...v5.0.4-beta.0) (2020-10-22)
+
+
+### Bug Fixes
+
+* **social sharing:** cherry-pick fix for social sharing icons order ([0c03607](https://github.com/alleyinteractive/irving/commit/0c03607dbded397c54487c2a00027b23a60dc674))
+
+
+
+
+
 ## [5.0.3](https://github.com/alleyinteractive/irving/compare/v5.0.3-alpha.0...v5.0.3) (2020-10-16)
 
 **Note:** Version bump only for package irving
