@@ -51,8 +51,6 @@ const multisiteContext = getValueFromFiles(
 );
 
 app.use((req, res, next) => {
-  let apiRootUrl;
-
   const domains = multisiteContext.map((i) => i.domain);
   const hasHost = domains.includes(req.hostname);
 
@@ -60,13 +58,8 @@ app.use((req, res, next) => {
     const index = domains.indexOf(req.hostname);
     const hostConfig = multisiteContext[index];
 
-    apiRootUrl = hostConfig.vars.API_ROOT_URL;
-  } else {
-    apiRootUrl = 'https://irving-dev.alley.test/wp-json/irving/v1';
+    process.env.API_ROOT_URL = hostConfig.vars.API_ROOT_URL;
   }
-
-  process.env.API_ROOT_URL = apiRootUrl;
-  console.log(process.env.API_ROOT_URL, apiRootUrl);
 
   next();
 });
