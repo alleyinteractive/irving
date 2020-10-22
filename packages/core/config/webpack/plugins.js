@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const omit = require('lodash/omit');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
@@ -10,6 +9,7 @@ const getEnv = require('../env');
 const { rootUrl } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
 const { maybeResolveUserModule } = require('../../utils/userModule');
+const multisiteConfig = require('../irving/requireMultisiteConfig');
 
 /**
  * Get the context specific plugins configuration.
@@ -18,10 +18,14 @@ const { maybeResolveUserModule } = require('../../utils/userModule');
  * @returns {array} A plugins configuration value
  */
 module.exports = function getPlugins(context) {
-  const env = omit([
-    'ROOT_URL',
-    'API_ROOT_URL',
-  ], getEnv());
+  let env = getEnv();
+
+  if (multisiteConfig) {
+    env = {
+      ...env,
+      MULTISITE_CONTEXT: multisiteConfig,
+    };
+  }
 
   // Define paths to app and error templates at compile time because express needs paths, not the template module itself.
   // This allows user to more deeply customize app and error templates.
