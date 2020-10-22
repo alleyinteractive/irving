@@ -67,15 +67,22 @@ Specific branches will be used for specific purposes in this repo. Considering t
   * In both of the above cases, try to address any issues in a timely manner (before the scheduled `beta` release of the upcoming version).
   * Otherwise, let the release organizer know your code is ready to go to `beta`, ideally in the GitHub issue your PR is associated with.
 
-### If you need to release a patch or hotfix
-* `git checkout release/[version]` - check out the release branch for which you need to make a patch.
-* `git checkout -b bug/bug-description` - check out a new branch for your patch or hotfix.
+### If you need to release a patch or hotfix on a specific release branch
+Notes:
+* All hotfixes should be `patch` releases in semver terms
+* You do not need to wait for a releas organizer to release hotfixes, but you may ask them to do so if that's easier.
+
+Steps:
+* `git checkout main` - check out the main branch.
+* `git checkout -b bug/bug-branch-name` - check out a new branch for your patch or hotfix.
 * Work on your branch locally using linked packages.
-* Once you’re satisfied with your code, open up a pull request to the `release/[version]` branch.
-* Get a peer code review on your pull request into the `release/[version]` and, once approved, merge it into `release/[version]` when ready.
-* `npm run prerelease:beta` - create a new beta release from the `release/[version]` branch and test it locally.
-* `npm run release` - when ready, release your patch on the `release/[version]` branch.
-* `git checkout master && git merge bug/bug-description && git push origin master` - update master with your patch code, or ask the designated release organizer to do so for you.
+* Once you’re satisfied with your code, open up a pull request to the `main` branch, get a peer code review, and merge into `main`.
+* verify your bugfix works on the resulting `alpha` prerelease.
+* `git checkout release/[version]` - checkout the release branch for which this hotfix needs to be released (this can be done on multiple different release branches separately).
+* `git cherry-pick [commit hash]` - cherry-pick the commits from your bugfix branch into the release branch, in the order they were committed.
+* `npm run prerelease:beta` - release a beta version and test
+* `npm run release` - release a `patch` version from this release branch.
+* Merge release branch back into `main`. **IMPORTANT**: Only peform a merge back into `main` from one release branch, if you are releasing this hotfix to multiple release branches.
 
 ### If you're the current release organizer
 * Take stock of all features that will be going into this release. Verify with feature developers that those features are ready to move to beta. The schedule for when this happens may vary—coordinate with the team.
