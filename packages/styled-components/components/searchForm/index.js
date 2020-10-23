@@ -70,6 +70,7 @@ const SearchForm = (props) => {
     // eslint-disable-next-line max-len
     history.push(`${baseUrl}?${queryString.stringify(currentQueryVars)}`);
   };
+
   return (
     <SearchFormWrapper
       {...standardProps}
