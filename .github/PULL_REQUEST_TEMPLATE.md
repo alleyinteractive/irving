@@ -2,7 +2,7 @@
   Thanks for submitting a pull request!
   We appreciate you spending the time to work on these changes. Please provide enough information so that others can review your pull request. The two fields below are mandatory.
 
-  Before submitting a pull request, please be sure to review the guide for [contributing to this repo](https://github.com/alleyinteractive/irving/blob/master/CONTRIBUTING.md) and be sure you are following all guidelines.
+  Before submitting a pull request, please be sure to review the guide for [contributing to this repo](https://github.com/alleyinteractive/irving/blob/main/CONTRIBUTING.md) and be sure you are following all guidelines.
 -->
 
 ## Issue(s): Relates to or closes...
