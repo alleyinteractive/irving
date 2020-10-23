@@ -46,18 +46,23 @@ irvingServerMiddleware.forEach((middleware) => middleware(app));
 const multisiteConfig = require('../config/irving/requireMultisiteConfig');
 
 app.use((req, res, next) => {
+  // Only proceed if a multisite configuration exists.
   if (multisiteConfig) {
+    // Retrieve the index of the current current host in the config.
     const hostIndex = multisiteConfig
       .map((i) => i.domain)
       .indexOf(req.hostname);
 
-    if (- 1 < hostIndex) {
+    const matchedRoot =
+      multisiteConfig[hostIndex].vars.ROOT_URL === process.env.ROOT_URL;
+
+    // Only overwrite the process variable if the host exists and the host's
+    // ROOT_URL var does not match the currently set process ROOT_URL value.
+    if (- 1 < hostIndex && ! matchedRoot) {
       process.env.ROOT_URL = multisiteConfig[hostIndex].vars.ROOT_URL;
       process.env.API_ROOT_URL = multisiteConfig[hostIndex].vars.API_ROOT_URL;
     }
   }
-
-  console.log(process.env.ROOT_URL, process.env.API_ROOT_URL);
 
   next();
 });
