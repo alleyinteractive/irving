@@ -43,23 +43,21 @@ const irvingServerMiddleware = getValueFromFiles(
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
-const { multisiteConfig } = require('../config/paths');
-
-const multisiteContext = getValueFromFiles(
-  multisiteConfig,
-  [() => {}]
-);
+const multisiteConfig = require('../config/irving/requireMultisiteConfig');
 
 app.use((req, res, next) => {
-  const domains = multisiteContext.map((i) => i.domain);
-  const hasHost = domains.includes(req.hostname);
+  if (multisiteConfig) {
+    const hostIndex = multisiteConfig
+      .map((i) => i.domain)
+      .indexOf(req.hostname);
 
-  if (hasHost) {
-    const index = domains.indexOf(req.hostname);
-    const hostConfig = multisiteContext[index];
-
-    process.env.API_ROOT_URL = hostConfig.vars.API_ROOT_URL;
+    if (- 1 < hostIndex) {
+      process.env.ROOT_URL = multisiteConfig[hostIndex].vars.ROOT_URL;
+      process.env.API_ROOT_URL = multisiteConfig[hostIndex].vars.API_ROOT_URL;
+    }
   }
+
+  console.log(process.env.ROOT_URL, process.env.API_ROOT_URL);
 
   next();
 });

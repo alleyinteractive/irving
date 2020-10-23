@@ -11,5 +11,9 @@ module.exports = (() => {
     }
   );
 
+  if (0 === config.length) {
+    return null;
+  }
+
   return uniq(config, 'domain').flat();
 })();

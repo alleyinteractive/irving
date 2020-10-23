@@ -9,7 +9,6 @@ const getEnv = require('../env');
 const { rootUrl } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
 const { maybeResolveUserModule } = require('../../utils/userModule');
-const multisiteConfig = require('../irving/requireMultisiteConfig');
 
 /**
  * Get the context specific plugins configuration.
@@ -18,14 +17,7 @@ const multisiteConfig = require('../irving/requireMultisiteConfig');
  * @returns {array} A plugins configuration value
  */
 module.exports = function getPlugins(context) {
-  let env = getEnv();
-
-  if (multisiteConfig) {
-    env = {
-      ...env,
-      MULTISITE_CONTEXT: multisiteConfig,
-    };
-  }
+  const env = getEnv();
 
   // Define paths to app and error templates at compile time because express needs paths, not the template module itself.
   // This allows user to more deeply customize app and error templates.

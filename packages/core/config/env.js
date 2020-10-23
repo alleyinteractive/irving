@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { appRoot } = require('./paths');
 const { getValueFromFiles } = require('./irving/getValueFromFiles');
+const multisiteConfig = require('./irving/requireMultisiteConfig');
 
 /**
  * Get the client available environment variables.
@@ -17,6 +18,14 @@ module.exports = function getEnv() {
     require('dotenv').config(); // eslint-disable-line global-require
   }
 
+  // Instantiate an object representative of the current `process.env` while
+  // conditionally adding a multisite context property based on the existence
+  // of a configuration.
+  const env = {
+    ...process.env,
+    ...(multisiteConfig && { IRVING_MULTISITE_CONTEXT: multisiteConfig }),
+  };
+
   // Only include allowlisted variables for client environments to avoid leaking
   // sensitive information.
   const allowlistArray = getValueFromFiles(
@@ -29,6 +38,7 @@ module.exports = function getEnv() {
       'COOKIE_MAP_LIST',
       'FETCH_TIMEOUT',
       'IRVING_EXECUTION_CONTEXT',
+      'IRVING_MULTISITE_CONTEXT',
     ]
   );
   const allowlist = [
@@ -36,10 +46,10 @@ module.exports = function getEnv() {
     new RegExp('^API_QUERY_PARAM'),
   ];
   return Object
-    .keys(process.env)
+    .keys(env)
     .filter((key) => allowlist.some((regex) => regex.test(key)))
     .reduce((acc, key) => ({
       ...acc,
-      [key]: process.env[key],
+      [key]: env[key],
     }), {});
 };
