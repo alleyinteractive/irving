@@ -1,7 +1,12 @@
 const React = require('react');
-const hoistNonReactStatic = require('hoist-non-react-statics');
 const noOp = require('./noOp');
 
+/**
+ * Add tracking prop to component. Statics not hoisted at present.
+ *
+ * @param trackingOptions
+ * @returns {function} With tracking HOC.
+ */
 function withTracking(...trackingOptions) {
   return (DecoratedComponent) => {
     const decoratedComponentName =
@@ -15,7 +20,6 @@ function withTracking(...trackingOptions) {
       );
     }
     WithTracking.displayName = `WithTracking(${decoratedComponentName})`;
-    hoistNonReactStatic(WithTracking, DecoratedComponent);
     return WithTracking;
   };
 }
