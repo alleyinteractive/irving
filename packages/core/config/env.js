@@ -18,14 +18,6 @@ module.exports = function getEnv() {
     require('dotenv').config(); // eslint-disable-line global-require
   }
 
-  // Instantiate an object representative of the current `process.env` while
-  // conditionally adding a multisite context property based on the existence
-  // of a configuration.
-  const env = {
-    ...process.env,
-    ...(multisiteConfig && { IRVING_MULTISITE_CONTEXT: multisiteConfig }),
-  };
-
   // Only include allowlisted variables for client environments to avoid leaking
   // sensitive information.
   const allowlistArray = getValueFromFiles(
@@ -46,10 +38,10 @@ module.exports = function getEnv() {
     new RegExp('^API_QUERY_PARAM'),
   ];
   return Object
-    .keys(env)
+    .keys(process.env)
     .filter((key) => allowlist.some((regex) => regex.test(key)))
     .reduce((acc, key) => ({
       ...acc,
-      [key]: env[key],
+      [key]: process.env[key],
     }), {});
 };

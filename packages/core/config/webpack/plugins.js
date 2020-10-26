@@ -9,6 +9,8 @@ const getEnv = require('../env');
 const { rootUrl } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
 const { maybeResolveUserModule } = require('../../utils/userModule');
+const maybeAddMultisiteContext =
+  require('../../utils/maybeAddMultisiteContext');
 
 /**
  * Get the context specific plugins configuration.
@@ -27,7 +29,9 @@ module.exports = function getPlugins(context) {
       errorView: JSON.stringify(
         maybeResolveUserModule('server/views/error.ejs')
       ),
-      irvingEnv: JSON.stringify(env),
+      irvingEnv: JSON.stringify(
+        maybeAddMultisiteContext(env, 'irving.alley.test')
+      ),
       proxyPassthrough: JSON.stringify(proxyPassthrough),
     }),
     new webpack.EnvironmentPlugin({
