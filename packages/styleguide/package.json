@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/styleguide",
-	"version": "5.1.0-alpha.12",
+	"version": "5.1.0-alpha.14",
 	"description": "React Styleguidist for Irving",
 	"files": [
 		"config/**/*",
