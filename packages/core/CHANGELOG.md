@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.12](https://github.com/alleyinteractive/irving/packages/core/compare/v5.1.0-alpha.11...v5.1.0-alpha.12) (2020-10-26)
+
+
+### Bug Fixes
+
+* **html:** add button to list of allowed tags ([128a333](https://github.com/alleyinteractive/irving/packages/core/commit/128a3339522462f825af97b8808079295af04f30))
+
+
+
+
+
 # [5.1.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.1.0-alpha.0...v5.1.0-alpha.1) (2020-10-13)
 
 
