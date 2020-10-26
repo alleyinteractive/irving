@@ -29,13 +29,13 @@ Irving core supports two custom routes to help with the Redis cache. For WordPre
   * Fire a `POST` request to this endpoint with a request `body` containing an array of paths for which you'd like the cache to clear. The post body should be in the format: `{ "paths": [ '/', '/test-path', '/third-path' ] }`
 * `/cache-keys` - `GET` endpoint that will return an array of all the cache keys you currently have in Redis.
 
-Note that these endpoints are only accessible if one of the two conditions below are met, otherwise the endpoints will respond with `403 Forbidden`.
+Note that these endpoints are only accessible if one of the two conditions below are met, otherwise the endpoints will respond with `401 Unauthorized`.
 * When request origin matches your `API_ORIGIN`, if configured, or the request origin is included in your configured `API_ROOT_URL` (matched using [`String.includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes)).
 * When you've configured a `BASIC_AUTH_USERNAME` and `BASIC_AUTH_PASSWORD`. This username/password combination will be used to protect the above cache-related endpoints behind basic auth.
 
 ### Roadmap
 * Ability to supply the Cache-Control headers from the endpoint.
-* Cache debugging module.
+* Cache debugging module, including more fine-grained manual cache clearing functionality.
 
 # WP Irving
 WP Irving has built-in functionality for managing both the [node Redis cache](https://github.com/alleyinteractive/irving/wiki/Caching) running on Irving and WP Irving's component data endpoints. This functionality is fairly robust out of the box, but can also be modified or extended in a number of ways. Code for all of this functionality can be found in WP Irving's [cache manager class](https://github.com/alleyinteractive/wp-irving/blob/master/inc/class-cache.php).
