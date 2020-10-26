@@ -6,6 +6,10 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import {
+  analyticsPropTypes,
+  getAnalyticsDefaultProps,
+} from '@irvingjs/styled/types/analyticsPropTypes';
 import * as defaultStyles from './themes/default';
 
 /**
@@ -14,9 +18,13 @@ import * as defaultStyles from './themes/default';
  * Display the site name or logo.
  *
  * @todo Update with a proper image component.
+ *
+ * @tracking Fires when link is clicked.
+ * - eventData {analytics.click}
  */
 const Logo = (props) => {
   const {
+    analytics,
     href,
     logoImageUrl,
     children,
@@ -35,6 +43,7 @@ const Logo = (props) => {
   return (
     <LogoWrapper {...standardProps}>
       <LogoLink
+        analytics={analytics}
         as={Link}
         href={href}
       >
@@ -54,6 +63,7 @@ const Logo = (props) => {
 };
 
 Logo.defaultProps = {
+  ...getAnalyticsDefaultProps(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   href: '/',
@@ -62,6 +72,7 @@ Logo.defaultProps = {
 };
 
 Logo.propTypes = {
+  ...analyticsPropTypes,
   ...standardPropTypes,
   /**
    * URL the logo should link to.

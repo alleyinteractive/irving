@@ -12,7 +12,7 @@
 	"main": "index.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/alleyinteractive/irving/packages/vip-go"
+		"url": "https://github.com/alleyinteractive/irving/packages/styleguide"
 	},
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
