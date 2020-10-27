@@ -34,7 +34,6 @@ const app = express();
 
 app.use((req, res, next) => {
   maybeReplaceRootVars(process.env, multisiteContext, req.hostname);
-
   next();
 });
 
