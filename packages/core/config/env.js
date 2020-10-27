@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const { appRoot } = require('./paths');
 const { getValueFromFiles } = require('./irving/getValueFromFiles');
-const multisiteConfig = require('./irving/requireMultisiteConfig');
 
 /**
  * Get the client available environment variables.
@@ -30,7 +29,6 @@ module.exports = function getEnv() {
       'COOKIE_MAP_LIST',
       'FETCH_TIMEOUT',
       'IRVING_EXECUTION_CONTEXT',
-      'IRVING_MULTISITE_CONTEXT',
     ]
   );
   const allowlist = [
