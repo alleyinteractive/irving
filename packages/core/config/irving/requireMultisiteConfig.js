@@ -3,6 +3,7 @@ const { appRoot, multisiteConfig } = require('../paths');
 const requireConfigModules = require('./requireConfigModules');
 
 module.exports = (() => {
+  // Retrieve the multisite configuration.
   const config = requireConfigModules(
     multisiteConfig,
     {
@@ -10,10 +11,10 @@ module.exports = (() => {
       ignorePackages: [],
     }
   );
-
+  // If no configuration exists, return null.
   if (0 === config.length) {
     return null;
   }
-
+  // If a configuration exists, ensure it is only returned once in a flat array.
   return uniq(config, 'domain').flat();
 })();

@@ -23,7 +23,7 @@ const getCacheKeys = require('./getCacheKeys');
 const customizeRedirect = require('./customizeRedirect');
 
 const multisiteContext = require('../config/irving/requireMultisiteConfig');
-const maybeAddMultisiteContext = require('../utils/maybeAddMultisiteContext');
+const maybeReplaceRootVars = require('../utils/maybeReplaceRootVars');
 
 // Start log service.
 const logService = require('../services/logService/getServiceFromFilesystem');
@@ -33,7 +33,7 @@ const log = logService('irving:server');
 const app = express();
 
 app.use((req, res, next) => {
-  maybeAddMultisiteContext(process.env, multisiteContext, req.hostname);
+  maybeReplaceRootVars(process.env, multisiteContext, req.hostname);
 
   next();
 });

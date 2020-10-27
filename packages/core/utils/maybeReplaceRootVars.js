@@ -6,7 +6,7 @@
  * @param {string} hostname - The hostname to search for.
  * @returns {object} The (possibly) modified environment configuration.
  */
-function maybeAddMultisiteContext(env, context, hostname) {
+function maybeReplaceRootVars(env, context, hostname) {
   const modifiedEnv = env;
 
   if (context) {
@@ -27,4 +27,4 @@ function maybeAddMultisiteContext(env, context, hostname) {
   return modifiedEnv;
 }
 
-module.exports = maybeAddMultisiteContext;
+module.exports = maybeReplaceRootVars;
