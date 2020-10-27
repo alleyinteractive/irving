@@ -6,6 +6,10 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import {
+  analyticsPropTypes,
+  getAnalyticsDefaultProps,
+} from '@irvingjs/styled/types/analyticsPropTypes';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
 
@@ -13,9 +17,13 @@ import * as defaultStyles from './themes/default';
  * Site-wide social links.
  *
  * Displays a list to social media platform pages.
+ *
+ * @tracking Fires when link is clicked.
+ * - eventData {analytics.click} Label is platform.
  */
 const SocialLinks = (props) => {
   const {
+    analytics,
     platforms,
     theme,
   } = props;
@@ -45,9 +53,12 @@ const SocialLinks = (props) => {
           {items.map(({ platform, url, icon }) => (
             <SocialLinksItem key={platform}>
               <Link
-                data-gtm-action="Follow"
-                data-gtm-category="Engagement"
-                data-gtm-label={platform}
+                analytics={({
+                  click: {
+                    ...analytics.click,
+                    label: platform,
+                  },
+                })}
                 href={url}
               >
                 <IconWrapper className={platform}>
@@ -63,12 +74,14 @@ const SocialLinks = (props) => {
 };
 
 SocialLinks.defaultProps = {
+  ...getAnalyticsDefaultProps(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   platforms: [],
 };
 
 SocialLinks.propTypes = {
+  ...analyticsPropTypes,
   ...standardPropTypes,
   /**
    * An object containing social platforms as keys and links to specific pages as values.

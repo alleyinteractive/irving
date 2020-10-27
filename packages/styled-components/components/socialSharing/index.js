@@ -7,6 +7,10 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import {
+  analyticsPropTypes,
+  getAnalyticsDefaultProps,
+} from '@irvingjs/styled/types/analyticsPropTypes';
 import toReactElement from '@irvingjs/core/utils/toReactElement';
 import Link from '../link';
 import * as defaultStyles from './themes/default';
@@ -15,9 +19,13 @@ import * as defaultStyles from './themes/default';
  * Social sharing.
  *
  * Displays a list of platforms to share content on.
+ *
+ * @tracking Fires when share button is clicked.
+ * - eventData {analytics.click} Label is platform.
  */
 const SocialSharing = (props) => {
   const {
+    analytics,
     description,
     imageUrl,
     platforms,
@@ -133,9 +141,12 @@ const SocialSharing = (props) => {
         {platforms.map((platform) => (
           <SocialSharingItemWrapper key={platform} className={platform}>
             <Link
-              data-gtm-event="Engagement"
-              data-gtm-category="Share"
-              data-gtm-label={platform}
+              analytics={({
+                click: {
+                  ...analytics.share,
+                  label: platform,
+                },
+              })}
               href={mergedData[platform].shareUrl}
               target={mergedData[platform].target}
             >
@@ -160,6 +171,7 @@ const SocialSharing = (props) => {
 };
 
 SocialSharing.defaultProps = {
+  ...getAnalyticsDefaultProps(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   description: '',
@@ -171,6 +183,7 @@ SocialSharing.defaultProps = {
 };
 
 SocialSharing.propTypes = {
+  ...analyticsPropTypes,
   ...standardPropTypes,
   /**
    * Description of the shared content.

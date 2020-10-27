@@ -1,0 +1,23 @@
+{
+	"name": "@irvingjs/tracking",
+	"version": "5.1.0-alpha.13",
+	"description": "Integration for React Tracking",
+	"files": [
+		"services/**/*",
+		"irving.config.js",
+		"!*.test.js"
+	],
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/alleyinteractive/irving/packages/tracking"
+	},
+	"author": "Alley (Alley.co)",
+	"license": "MIT",
+	"dependencies": {
+		"react-tracking": "^8.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

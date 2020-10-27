@@ -8,15 +8,29 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import {
+  analyticsPropTypes,
+  getAnalyticsDefaultProps,
+} from '@irvingjs/styled/types/analyticsPropTypes';
+import getTrackingService from '@irvingjs/core/services/trackingService';
 import * as defaultStyles from './themes/default';
+
+const trackingService = getTrackingService();
 
 /**
  * Search input.
  *
  * Form with an input field for search.
+ *
+ * @tracking Fires when search form is submitted. Label is query.
+ * - event          irving.searchSubmit
+ * - eventComponent search
+ * - eventData      {analytics.search}
+ *
  */
 const SearchForm = (props) => {
   const {
+    analytics,
     baseUrl,
     searchTerm,
     searchTermQueryArg,
@@ -36,9 +50,20 @@ const SearchForm = (props) => {
   const { register, handleSubmit } = useForm({
     defaultValues,
   });
-
+  const tracking = trackingService.useTracking();
+  const trackSearch = (query) => {
+    tracking.trackEvent({
+      event: 'irving.searchSubmit',
+      eventComponent: 'search',
+      eventData: {
+        ...analytics.search,
+        label: query,
+      },
+    });
+  };
   const onSubmit = (data, e) => {
     e.preventDefault();
+    trackSearch(data[searchTermQueryArg]);
     const currentQueryVars = queryString.parse(window.location.search);
     currentQueryVars[searchTermQueryArg] = data[searchTermQueryArg];
 
@@ -61,13 +86,13 @@ const SearchForm = (props) => {
           type="text"
         />
       </SearchLabel>
-      {/* @TODO Add GTM event.  */}
       <SearchFormSubmitButton type="submit">Search</SearchFormSubmitButton>
     </SearchFormWrapper>
   );
 };
 
 SearchForm.defaultProps = {
+  ...getAnalyticsDefaultProps(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   baseUrl: '/',
@@ -76,6 +101,7 @@ SearchForm.defaultProps = {
 };
 
 SearchForm.propTypes = {
+  ...analyticsPropTypes,
   ...standardPropTypes,
   /**
    * Base url for search.

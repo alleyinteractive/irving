@@ -4,6 +4,13 @@ import { Helmet } from 'react-helmet';
 import isNode from '@irvingjs/core/utils/isNode';
 import serialize from 'serialize-javascript';
 
+/**
+ * Google Tag Manager integration.
+ *
+ * @todo Move data handling to new dedicated component.
+ * @todo Make this a generic tag manager component.
+ *
+ */
 const GoogleTagManager = (props) => {
   const {
     containerId,

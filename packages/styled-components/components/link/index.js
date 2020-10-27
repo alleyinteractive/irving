@@ -7,7 +7,14 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import {
+  analyticsPropTypes,
+  getAnalyticsDefaultProps,
+} from '@irvingjs/styled/types/analyticsPropTypes';
+import getTrackingService from '@irvingjs/core/services/trackingService';
 import * as defaultStyles from './themes/default';
+
+const trackingService = getTrackingService();
 
 /**
  * Link.
@@ -15,14 +22,17 @@ import * as defaultStyles from './themes/default';
  * Custom anchor.
  *
  * @todo Setup a default focus value for improved accessibility.
+ *
+ * @tracking Fires when link is clicked.
+ * - event          irving.linkClick
+ * - eventComponent link
+ * - eventData      {analytics.click}
+ *
  */
 const Link = (props) => {
   const {
+    analytics,
     children,
-    gtmAction,
-    gtmCategory,
-    gtmLabel,
-    gtmValue,
     href,
     onClick,
     rel,
@@ -33,10 +43,22 @@ const Link = (props) => {
     onClick: defaultOnClick,
     destination,
   } = useClientNavigationOnClick(href);
+  const tracking = trackingService.useTracking();
   const {
     LinkWrapper,
   } = theme;
   const standardProps = useStandardProps(props);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    tracking.trackEvent({
+      component: 'link',
+      event: 'irving.linkClick',
+      eventData: analytics.click,
+    });
+    return onClick ? onClick(event) : defaultOnClick(event);
+  };
+
   const ariaProps = Object.keys(props).reduce((acc, propName) => {
     if (! propName.includes('aria')) {
       return acc;
@@ -52,12 +74,8 @@ const Link = (props) => {
     <LinkWrapper
       {...standardProps}
       {...ariaProps}
-      data-gtm-action={gtmAction}
-      data-gtm-category={gtmCategory}
-      data-gtm-label={gtmLabel}
-      data-gtm-value={gtmValue}
       href={destination}
-      onClick={onClick || defaultOnClick}
+      onClick={handleClick}
       rel={rel}
       target={target}
     >
@@ -67,19 +85,16 @@ const Link = (props) => {
 };
 
 Link.defaultProps = {
+  ...getAnalyticsDefaultProps(),
   ...getStandardDefaultProps(),
   ariaHidden: null,
   theme: defaultStyles,
-  onClick: false,
   rel: '',
   target: '',
-  gtmCategory: '',
-  gtmAction: '',
-  gtmLabel: '',
-  gtmValue: null,
 };
 
 Link.propTypes = {
+  ...analyticsPropTypes,
   ...standardPropTypes,
   ariaHidden: PropTypes.oneOf([null, 'true']),
   /**
@@ -90,10 +105,7 @@ Link.propTypes = {
    * OnClick function. NOTE: if provided, this will override
    * history push handling, so use with care.
    */
-  onClick: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.bool,
-  ]),
+  onClick: PropTypes.func,
   /**
    * Rel attribute.
    */
@@ -102,22 +114,6 @@ Link.propTypes = {
    * Anchor target.
    */
   target: PropTypes.string,
-  /**
-   * GTM category.
-   */
-  gtmCategory: PropTypes.string,
-  /**
-   * GTM action.
-   */
-  gtmAction: PropTypes.string,
-  /**
-   * GTM label.
-   */
-  gtmLabel: PropTypes.string,
-  /**
-   * GTM value.
-   */
-  gtmValue: PropTypes.number,
 };
 
 const themeMap = {
