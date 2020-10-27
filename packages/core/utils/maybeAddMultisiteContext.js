@@ -11,11 +11,6 @@ function maybeAddMultisiteContext(env, hostname) {
   const modifiedEnv = env;
 
   if (context) {
-    if (! env.CURRENT_HOST || env.CURRENT_HOST !== hostname) {
-      // Add the current host into the modified env configuration.
-      modifiedEnv.CURRENT_HOST = hostname;
-    }
-
     const hostIndex =
       context.map((i) => i.domain).indexOf(hostname);
     const matchedRoot =
