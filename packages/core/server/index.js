@@ -21,6 +21,7 @@ const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const purgeCache = require('./purgeCache');
 const getCacheKeys = require('./getCacheKeys');
 const customizeRedirect = require('./customizeRedirect');
+const maybeAddMultisiteContext = require('../utils/maybeAddMultisiteContext');
 
 // Start log service.
 const logService = require('../services/logService/getServiceFromFilesystem');
@@ -28,6 +29,12 @@ const log = logService('irving:server');
 
 // Create app.
 const app = express();
+
+app.use((req, res, next) => {
+  maybeAddMultisiteContext(process.env, req.hostname);
+
+  next();
+});
 
 // Clearing the Redis cache.
 app.post('/purge-cache', bodyParser.json(), purgeCache);
@@ -42,14 +49,6 @@ const irvingServerMiddleware = getValueFromFiles(
   [() => {}]
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
-
-const maybeAddMultisiteContext = require('../utils/maybeAddMultisiteContext');
-
-app.use((req, res, next) => {
-  maybeAddMultisiteContext(process.env, req.hostname);
-
-  next();
-});
 
 // Set up a reusable proxy for responses that should be served directly.
 const passthrough = createProxyMiddleware({

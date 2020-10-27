@@ -40,7 +40,6 @@ export async function fetchComponents(
   );
 
   const apiUrl = `${env.API_ROOT_URL}/components?${query}`;
-  console.log(apiUrl);
 
   // Create abort controller and set timeout to abort fetch call.
   // Default timeout is 10s, but can be configured with env var.
