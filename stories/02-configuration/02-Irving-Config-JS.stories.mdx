@@ -60,14 +60,14 @@ module.exports = (config) => {
 ## Cache service
 * **where to configure**: `server/cacheService.js`
 * **type**: function (replaces core function)
-* **purpose**: Replace functionality for Irving core's caching service. Irving uses [Redis](Caching.md) via the [ioredix](https://github.com/luin/ioredis) package, but using this configuration field you may replace it with an entirely separate cache.
+* **purpose**: Replace functionality for Irving core's caching service. Irving uses [Redis](Caching.md) via the [ioredis](https://github.com/luin/ioredis) package, but using this configuration field you may replace it with an entirely separate cache.
+
+If you are replacing the cache service, in order to function properly your replacement service should return an object containing a `get`, `set`, `del`, `update`, `insert`, `remove`, `cached`, and `close` method and a `client` key containing the underlying cache client. Out of the box, `update` and `insert` are aliases for `set`, and `remove` is an alias for `del`.
 
 ## Cache client
-* **where to configure**: `server/cacheService.js`
+* **where to configure**: `server/cacheClient.js`
 * **type**: function (replaces core function)
 * **purpose**: Customize creation of cache client. Currently we only support Redis for this config field. If you'd like to replace the client with something other than Redis you will need to use the `cacheService` config. This config field can only be modified once and expects a function returning your cache client (see cache service docs).
-
-If you are replacing the cache client but using the core cache service, the cache client should return an object containing a `get`, `set`, and `del` key/method to function properly.
 
 ## Customize Irving's express app
 * **where to configure**: `server/customizeServer.js`
