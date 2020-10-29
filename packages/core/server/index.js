@@ -20,12 +20,20 @@ const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const cacheMiddleware = require('./cache');
 const customizeRedirect = require('./customizeRedirect');
 
+const multisiteContext = require('../config/irving/requireMultisiteConfig');
+const maybeReplaceRootVars = require('../utils/maybeReplaceRootVars');
+
 // Start log service.
 const logService = require('../services/logService/getServiceFromFilesystem');
 const log = logService('irving:server');
 
 // Create app.
 const app = express();
+
+app.use((req, res, next) => {
+  maybeReplaceRootVars(process.env, multisiteContext, req.hostname);
+  next();
+});
 
 // Clearing the Redis cache.
 cacheMiddleware(app);
