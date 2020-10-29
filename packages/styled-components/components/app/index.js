@@ -2,11 +2,19 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import CssReset from '@irvingjs/styled/components/reset';
+import getTrackingService from '@irvingjs/core/services/trackingService';
 import { __ } from '@wordpress/i18n';
 import * as defaultStyles from './themes/default';
 
+const trackingService = getTrackingService();
+
 /**
  * Top-level app component.
+
+ * @tracking Fires when component is mounted.
+ * - event        irving.componentLoaded
+ * - eventContext irving.styledComponents
+ *
  */
 const App = (props) => {
   const {
@@ -40,6 +48,7 @@ App.propTypes = {
     PropTypes.func,
   ]).isRequired,
   theme: PropTypes.object,
+  ...trackingService.trackingPropTypes,
 };
 
 const themeMap = {
@@ -51,4 +60,7 @@ export {
   themeMap,
 };
 
-export default App;
+export default trackingService.withTracking({
+  event: 'irving.componentLoaded',
+  eventContext: 'irving.styledComponents',
+}, { dispatchOnMount: true })(App);

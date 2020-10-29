@@ -13,14 +13,15 @@ const {
 } = getEnv();
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const proxyPassthrough = require('../config/proxyPassthrough');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
-const purgeCache = require('./purgeCache');
-const getCacheKeys = require('./getCacheKeys');
+const cacheMiddleware = require('./cache');
 const customizeRedirect = require('./customizeRedirect');
+
+const multisiteContext = require('../config/irving/requireMultisiteConfig');
+const maybeReplaceRootVars = require('../utils/maybeReplaceRootVars');
 
 // Start log service.
 const logService = require('../services/logService/getServiceFromFilesystem');
@@ -29,9 +30,13 @@ const log = logService('irving:server');
 // Create app.
 const app = express();
 
+app.use((req, res, next) => {
+  maybeReplaceRootVars(process.env, multisiteContext, req.hostname);
+  next();
+});
+
 // Clearing the Redis cache.
-app.post('/purge-cache', bodyParser.json(), purgeCache);
-app.get('/cache-keys', getCacheKeys);
+cacheMiddleware(app);
 
 // Set view engine.
 app.set('view engine', 'ejs');

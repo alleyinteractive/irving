@@ -2,15 +2,21 @@ const fs = require('fs');
 const path = require('path');
 const { appRoot } = require('./paths');
 const { getValueFromFiles } = require('./irving/getValueFromFiles');
+const multisiteContext = require('./irving/requireMultisiteConfig');
 
 /**
  * Get the client available environment variables.
  * @returns {object} - a client safe env object
  */
 module.exports = function getEnv() {
+  const env = {
+    ...process.env,
+    ...(multisiteContext && { IRVING_MULTISITE_CONTEXT: multisiteContext }),
+  };
+
   // Production will use environment variables set by the system. We also don't
   // want to execute unnecessary file system calls for optimal performance reasons.
-  const isProd = 'production' === process.env.NODE_ENV;
+  const isProd = 'production' === env.NODE_ENV;
   // Avoid missing .env file warning.
   if (! isProd && fs.existsSync(path.join(appRoot, '.env'))) {
     // Support environment variables set by .env file for development.
@@ -29,6 +35,7 @@ module.exports = function getEnv() {
       'COOKIE_MAP_LIST',
       'FETCH_TIMEOUT',
       'IRVING_EXECUTION_CONTEXT',
+      'IRVING_MULTISITE_CONTEXT',
     ]
   );
   const allowlist = [
@@ -36,10 +43,10 @@ module.exports = function getEnv() {
     new RegExp('^API_QUERY_PARAM'),
   ];
   return Object
-    .keys(process.env)
+    .keys(env)
     .filter((key) => allowlist.some((regex) => regex.test(key)))
     .reduce((acc, key) => ({
       ...acc,
-      [key]: process.env[key],
+      [key]: env[key],
     }), {});
 };

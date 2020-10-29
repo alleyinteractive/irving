@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-alpha.15](https://github.com/alleyinteractive/irving/packages/core/compare/v5.1.0-alpha.14...v5.1.0-alpha.15) (2020-10-29)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.1.0-alpha.14](https://github.com/alleyinteractive/irving/packages/core/compare/v5.1.0-alpha.13...v5.1.0-alpha.14) (2020-10-28)
+
+
+### Bug Fixes
+
+* **cache:** put cache endpoints behind basic auth check again ([0c35e6e](https://github.com/alleyinteractive/irving/packages/core/commit/0c35e6e95b7fe8a0ef4cfa876f81cde4d5a52381))
+
+
+
+
+
+# [5.1.0-alpha.13](https://github.com/alleyinteractive/irving/packages/core/compare/v5.1.0-alpha.12...v5.1.0-alpha.13) (2020-10-26)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.1.0-alpha.12](https://github.com/alleyinteractive/irving/packages/core/compare/v5.1.0-alpha.11...v5.1.0-alpha.12) (2020-10-26)
+
+
+### Bug Fixes
+
+* **html:** add button to list of allowed tags ([128a333](https://github.com/alleyinteractive/irving/packages/core/commit/128a3339522462f825af97b8808079295af04f30))
+
+
+
+
+
 # [5.1.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.1.0-alpha.0...v5.1.0-alpha.1) (2020-10-13)
 
 

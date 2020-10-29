@@ -4,7 +4,7 @@ export const richText = {
     'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'cite', 'hr', 'br',
     'div', 'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td', 'pre', 'img',
     'figure', 'figcaption', 'iframe', 'audio', 'video', 'time', 'article',
-    'section', 'aside', 'footer', 'header', 'nav',
+    'section', 'aside', 'footer', 'header', 'nav', 'button',
   ],
   allowedAttributes: {
     '*': ['class', 'id', 'data-*', 'style'],

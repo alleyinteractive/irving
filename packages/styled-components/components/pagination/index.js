@@ -7,6 +7,10 @@ import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import {
+  getAnalyticsDefaultProps,
+  analyticsPropTypes,
+} from '@irvingjs/styled/types/analyticsPropTypes';
 import Link from 'components/link';
 import * as defaultStyles from './themes/default';
 
@@ -15,6 +19,9 @@ import * as defaultStyles from './themes/default';
  * page.
  *
  * @todo Refactor so only necessary props are passed.
+ *
+ * @tracking Fires when link is clicked.
+ * - eventData {analytics.click} Label is page.
  *
  * @param {object}  props Pagination component props.
  * @param {integer} page  Page for the url.
@@ -48,6 +55,7 @@ const buildUrl = (props, page) => {
  */
 const Pagination = (props) => {
   const {
+    analytics,
     // eslint-disable-next-line no-unused-vars
     baseUrl,
     currentPage,
@@ -89,11 +97,6 @@ const Pagination = (props) => {
     totalPages :
     (currentPage + newRange);
 
-  const gtmBase = {
-    action: 'Pagination',
-    category: 'Navigation',
-  };
-
   /**
    * Render a handful of pagination buttons around the current page.
    */
@@ -104,11 +107,14 @@ const Pagination = (props) => {
     } else {
       pages.push(
         <NavWrapper
+          analytics={({
+            click: {
+              ...analytics.click,
+              label: `${i} page`,
+            },
+          })}
           as={Link}
           href={buildUrl(props, i)}
-          data-gtm-action={gtmBase.action}
-          data-gtm-category={gtmBase.category}
-          data-gtm-label={`${i} page`}
         >
           {i}
         </NavWrapper>
@@ -134,11 +140,14 @@ const Pagination = (props) => {
       case (2 === startRange):
         pages.unshift(
           <NavWrapper
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: 'First Page',
+              },
+            })}
             as={Link}
             href={buildUrl(props, 1)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
-            data-gtm-label="First Page"
           >
             1
           </NavWrapper>
@@ -148,22 +157,28 @@ const Pagination = (props) => {
       case (3 === startRange):
         pages.unshift(
           <NavWrapper
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: 'Second Page',
+              },
+            })}
             as={Link}
             href={buildUrl(props, 2)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
-            data-gtm-label="Second Page"
           >
             2
           </NavWrapper>
         );
         pages.unshift(
           <NavWrapper
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: 'First Page',
+              },
+            })}
             as={Link}
             href={buildUrl(props, 1)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
-            data-gtm-label="First Page"
           >
             1
           </NavWrapper>
@@ -174,11 +189,14 @@ const Pagination = (props) => {
         pages.unshift(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
         pages.unshift(
           <NavWrapper
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: 'First Page',
+              },
+            })}
             as={Link}
             href={buildUrl(props, 1)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
-            data-gtm-label="First Page"
           >
             1
           </NavWrapper>
@@ -194,11 +212,14 @@ const Pagination = (props) => {
       case ((totalPages - 1) === endRange):
         pages.push(
           <NavWrapper
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: 'Last Page',
+              },
+            })}
             as={Link}
             href={buildUrl(props, totalPages)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
-            data-gtm-label="Last Page"
           >
             {totalPages}
           </NavWrapper>
@@ -208,22 +229,28 @@ const Pagination = (props) => {
       case ((totalPages - 2) === endRange):
         pages.push(
           <NavWrapper
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: 'Second Last Page',
+              },
+            })}
             as={Link}
             href={buildUrl(props, totalPages - 1)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
-            data-gtm-label="Second Last Page"
           >
             {totalPages - 1}
           </NavWrapper>
         );
         pages.push(
           <NavWrapper
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: 'Last Page',
+              },
+            })}
             as={Link}
             href={buildUrl(props, totalPages)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
-            data-gtm-label="Last Page"
           >
             {totalPages}
           </NavWrapper>
@@ -234,11 +261,14 @@ const Pagination = (props) => {
         pages.push(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
         pages.push(
           <NavWrapper
+            analytics={({
+              click: {
+                ...analytics.click,
+                label: 'Last Page',
+              },
+            })}
             as={Link}
             href={buildUrl(props, totalPages)}
-            data-gtm-action={gtmBase.action}
-            data-gtm-category={gtmBase.category}
-            data-gtm-label="Last Page"
           >
             {totalPages}
           </NavWrapper>
@@ -290,6 +320,7 @@ const Pagination = (props) => {
 };
 
 Pagination.defaultProps = {
+  ...getAnalyticsDefaultProps(),
   ...getStandardDefaultProps(),
   theme: defaultStyles,
   baseUrl: '/',
@@ -302,6 +333,7 @@ Pagination.defaultProps = {
 };
 
 Pagination.propTypes = {
+  ...analyticsPropTypes,
   ...standardPropTypes,
   /**
    * Base url. Usually the url of the first page of results.

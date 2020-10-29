@@ -1,0 +1,163 @@
+<Meta title="Components|Component Tracking" />
+
+# Component Tracking
+Irving incorporates [react-tracking](https://github.com/nytimes/react-tracking) to provide an easy and powerful tracking layer throughout the wrapper.
+
+This [Medium post](https://medium.com/m/global-identity?redirectUrl=https%3A%2F%2Fopen.nytimes.com%2Fintroducing-react-tracking-declarative-tracking-for-react-apps-2c76706bb79a) provides a more in-depth discussion of the benefits to react-tracking, but in summary they are:
+
+- Deeply merged tracking objects starting from component where event is triggered up until the top-level and dispatch call
+- Dispatch can be overridden to go to a service other than GTM
+- Easy to write specific analytics business logic based on props
+- Validation can be incorporated as a safeguard at the application level.
+
+## Example component
+Here is a simplified and annotated version of the link component showing
+
+```jsx
+    /**
+     * Bring in the analytics prop type, which is a top-level `analytics` key containing
+     * an object with keys that are each an object containing any combination of:
+     * - Action
+     * - Category
+     * - Label
+     * - Value
+     *
+     * The default value of `analytics` prop in `getAnalyticsDefaultProps` is an empty object.
+     */
+    import {
+      analyticsPropTypes,
+      getAnalyticsDefaultProps,
+    } from '@irvingjs/styled/types/analyticsPropTypes';
+
+    /**
+     * We bring in the tracking service so that there is only one instance of `react-tracking`.
+     */
+    import getTrackingService from '../../../core/services/trackingService';
+
+    /**
+     * Get the tracking service object. This contains the react-tracking functions we'll use.
+     */
+    const trackingService = getTrackingService();
+
+    /**
+     * Link.
+     *
+     * This is what our "analytics" jsdocs look like. Since a component may have more than
+     * one interaction we list all the expected analytics bundles here.
+     *
+     * @tracking Fires when link is clicked.
+     * - event     irving.linkClick
+     * - eventData {analytics.click}
+     */
+    const Link = (props) => {
+      const {
+        analytics, // Bringing in the analytics prop.
+        children,
+        href
+        theme,
+        tracking, // Bringing in the tracking prop.
+      } = props;
+      const {
+        LinkWrapper,
+      } = theme;
+      const standardProps = useStandardProps(props);
+
+      return (
+        <LinkWrapper
+          {...props}
+          {...standardProps}
+          onClick={() => tracking.trackEvent({
+            event: 'irving.linkClick',
+            eventData: analytics.click,
+          })}
+          href={destination}
+        >
+          {children}
+        </LinkWrapper>
+      );
+    };
+
+    Link.defaultProps = {
+      ...getAnalyticsDefaultProps(),
+      ...getStandardDefaultProps(),
+      theme: defaultStyles,
+    };
+
+    Link.propTypes = {
+      ...analyticsPropTypes,
+      ...standardPropTypes,
+      /**
+       * Destination for anchor tag (`href` attribute)
+       */
+      href: PropTypes.string.isRequired,
+      /**
+       * Tracking prop types.
+       */
+      ...trackingService.trackingPropTypes,
+    };
+
+    const themeMap = {
+      default: defaultStyles,
+    };
+
+    export {
+      Link as Component,
+      themeMap,
+    };
+
+    /**
+     * To setup react-tracking a component, we wrap it with a tracking function.
+     * See also optional `dispatchOnMount` argument which can be used to fire an
+     * event when the component first mounts. Otherwise, the `eventComponent` attribute
+     * here will bubble up with any other parent attributes when the `trackEvent()` call is made.
+     */
+    export default trackingService.withTracking({
+      eventComponent: 'link',
+    })(Link);
+```
+
+## Analytics prop
+The analytics prop works as do other Irving props. They can be set in component JSON or PHP, or filtered.
+
+Here is an example in the social links component which shows showing analytics props can also be composed and passed to children.
+
+```jsx
+    <Link
+      analytics={({
+        click: {
+          ...analytics.click,
+          label: platform,
+        },
+      })}
+      href={url}
+    >
+      <IconWrapper className={platform}>
+        {icon}
+      </IconWrapper>
+    </Link>
+```
+
+The default values for the social links component are defined in wp-irving/inc/components/components/social-links/component.json:
+
+```json
+{
+  "name": "irving/social-links",
+  "description": "Display a series of social media icons with links.",
+  "config": {
+    "platforms": {
+      "type": "array",
+      "default": []
+    },
+    "analytics": {
+      "default": {
+        "click": {
+          "action": "Follow",
+          "category": "Engagement"
+        }
+      },
+      "description": "Analytics Data",
+      "type": "array"
+    }
+  }
+}
+```
