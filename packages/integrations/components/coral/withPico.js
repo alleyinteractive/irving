@@ -8,7 +8,10 @@ import {
   tokenSelector,
   requireUsernameSelector,
 } from '../../selectors/coralSelector';
-import { picoSignalSelector } from '../../selectors/picoSelector';
+import {
+  picoLoadedSelector,
+  picoSignalSelector,
+} from '../../selectors/picoSelector';
 
 const log = getLogService('irving:integrations:coral:withPico');
 
@@ -16,6 +19,8 @@ const withPico = (ChildComponent) => {
   const wrapped = (props) => {
     const { ssoTiers } = props;
 
+    // Grab the status of whether or not Pico has loaded.
+    const picoLoaded = useSelector(picoLoadedSelector);
     // Grab the value of the Pico signal from the Redux store.
     const { status, tier } = useSelector(picoSignalSelector) || {};
     // Grab the value of the Coral token from the Redux store.
@@ -72,17 +77,22 @@ const withPico = (ChildComponent) => {
       });
     };
 
-    if (ssoTiers.includes(tier) && canComment) {
+    if (picoLoaded && ssoTiers.includes(tier) && canComment) {
       log.info('withPico: Returning authenticated embed');
       return (
         <ChildComponent {...props} events={handlers} accessToken={coralToken} />
       );
     }
 
-    log.info('withPico: Returning default embed');
-    return (
-      <ChildComponent {...props} events={handlers} />
-    );
+    if (picoLoaded && ! canComment) {
+      log.info('withPico: Returning default embed');
+      return (
+        <ChildComponent {...props} events={handlers} />
+      );
+    }
+
+    log.info('withPico: Waiting for Pico to load');
+    return null;
   };
 
   wrapped.defaultProps = {
