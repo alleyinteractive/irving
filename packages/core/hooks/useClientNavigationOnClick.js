@@ -18,6 +18,11 @@ const useClientNavigationOnClick = (url) => {
       return;
     }
 
+    if (event.ctrlkey || event.metaKey) {
+      window.open(href, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
     if (relativeUrl) {
       event.preventDefault();
       history.push(relativeUrl);
