@@ -10,6 +10,8 @@ import {
   purgeSelector,
 } from '../../selectors/coralSelector';
 
+let embed = false;
+
 const CoralEmbed = ({
   accessToken,
   embedUrl,
@@ -43,7 +45,7 @@ const CoralEmbed = ({
 
   useEffect(() => {
     if (window.Coral) {
-      const embed = window.Coral.createStreamEmbed({
+      embed = window.Coral.createStreamEmbed({
         id: 'coral_thread',
         autoRender: true,
         rootURL: embedUrl,
@@ -64,6 +66,7 @@ const CoralEmbed = ({
         dispatchLogout();
       }
     }
+    return () => (embed ? embed.remove() : null);
   }, [
     loaded,
     accessToken,
