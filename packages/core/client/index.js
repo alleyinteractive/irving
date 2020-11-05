@@ -20,7 +20,7 @@ import getEnv from 'utils/universalEnv';
 import debug from 'debug';
 
 const env = getEnv();
-console.log(env);
+
 if (env.DEBUG) {
   debug.enable(env.DEBUG);
 }

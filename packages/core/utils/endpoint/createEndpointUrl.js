@@ -1,9 +1,9 @@
-import omit from 'lodash/fp/omit';
-import queryString from 'query-string';
-import { CONTEXT_PAGE } from 'config/constants';
-import getEnv from 'utils/universalEnv';
-import defaultCookies from 'config/defaultCookies';
-import getExtraQueryParams from './getExtraQueryParams';
+const omit = require('lodash/fp/omit');
+const queryString = require('query-string');
+const { CONTEXT_PAGE } = require('../../config/constants');
+const defaultCookies = require('../../config/defaultCookies');
+const getEnv = require('../universalEnv');
+const getExtraQueryParams = require('./getExtraQueryParams');
 
 const env = getEnv();
 
@@ -45,4 +45,4 @@ function createEndpointUrl(
   return `${env.API_ROOT_URL}/components?${query}`;
 }
 
-export default createEndpointUrl;
+module.exports = createEndpointUrl;

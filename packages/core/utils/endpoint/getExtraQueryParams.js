@@ -1,4 +1,4 @@
-import getEnv from 'utils/universalEnv';
+const getEnv = require('../universalEnv');
 
 // To access environment variables at run time in a client context we must
 // access them through a global provided by the server render.
@@ -20,4 +20,4 @@ const getExtraQueryParams = () => Object
     };
   }, {});
 
-export default getExtraQueryParams;
+module.exports = getExtraQueryParams;

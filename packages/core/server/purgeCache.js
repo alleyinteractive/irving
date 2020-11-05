@@ -1,9 +1,7 @@
 const get = require('lodash/fp/get');
 const logService = require('../services/logService/getServiceFromFilesystem');
 // This needs to be an es module, hence `.default`
-const createEndpointUrl = require(
-  '../utils/endpoint/createEndpointUrl'
-).default;
+const createEndpointUrl = require('../utils/endpoint/createEndpointUrl');
 const { CONTEXT_SITE } = require('../config/constants');
 const cacheService = require(
   '../services/cacheService/getServiceFromFilesystem'
