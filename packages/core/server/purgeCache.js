@@ -1,6 +1,10 @@
 const get = require('lodash/fp/get');
-const queryString = require('query-string');
 const logService = require('../services/logService/getServiceFromFilesystem');
+// This needs to be an es module, hence `.default`
+const createEndpointUrl = require(
+  '../utils/endpoint/createEndpointUrl'
+).default;
+const { CONTEXT_SITE } = require('../config/constants');
 const cacheService = require(
   '../services/cacheService/getServiceFromFilesystem'
 )();
@@ -41,25 +45,11 @@ const createKeyFromPath = (path) => {
 
   // Return exact match if path is "/".
   if ('/' === normalizedPath) {
-    const endpoint = queryString.stringify(
-      {
-        path: normalizedPath,
-        context: 'site',
-      },
-      {
-        encode: false,
-        sort: false,
-      }
-    );
-
+    const endpoint = createEndpointUrl(normalizedPath, '', {}, CONTEXT_SITE);
     return `components-endpoint:${endpoint}`;
   }
 
-  const endpoint = queryString.stringify(
-    { path: normalizedPath },
-    { encode: false }
-  );
-
+  const endpoint = createEndpointUrl(normalizedPath, '', {}, '');
   return `components-endpoint:${endpoint}*`;
 };
 

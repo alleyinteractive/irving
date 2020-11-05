@@ -27,6 +27,7 @@ const app = express();
 
 // Set up multisite env.
 app.use((req, res, next) => {
+  console.log(req.url);
   getMultisiteEnv(req.hostname);
   next();
 });

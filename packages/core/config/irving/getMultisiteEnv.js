@@ -12,8 +12,9 @@ if (process.env.IRVING_EXECUTION_CONTEXT) {
 }
 
 // If a configuration exists, ensure no site config appears twice.
-const config = 0 === multisiteConfig.length ? null :
-  uniq(multisiteConfig, 'domain').flat();
+const config = multisiteConfig.length ?
+  uniq(multisiteConfig, 'domain').flat() :
+  null;
 /* eslint-enable */
 
 /**
@@ -29,17 +30,20 @@ module.exports = (hostname) => {
     const hostIndex = config.findIndex(
       (site) => site.domain === hostname
     );
+    const siteConfig = config[hostIndex].vars;
     const matchedRoot = (
       - 1 < hostIndex &&
-      config[hostIndex].vars.ROOT_URL === process.env.ROOT_URL
+      siteConfig.ROOT_URL === process.env.ROOT_URL
     );
 
     // Only overwrite the process variable if the host exists and the host's
     // `ROOT_URL` var does not match the currently set env `ROOT_URL` value.
     if (! matchedRoot) {
-      // Replace vars with those at the current host index.
-      modifiedEnv.ROOT_URL = config[hostIndex].vars.ROOT_URL;
-      modifiedEnv.API_ROOT_URL = config[hostIndex].vars.API_ROOT_URL;
+      Object.keys(siteConfig).forEach(
+        (key) => {
+          modifiedEnv[key] = siteConfig[key];
+        }
+      );
     }
   }
 

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { getValueFromConfig } from 'config/irving/getValueFromConfig';
-import { clientBuild, rootUrl } from 'config/paths';
+import { clientBuild } from 'config/paths';
 let runtimeSrc;
 
 /**
@@ -36,17 +36,19 @@ const getWebpackAssetTags = (clientStats) => {
       chunks[chunkName] : [chunks[chunkName]];
 
     assets.forEach((assetPath) => {
+      /* eslint-disable max-len */
       if (assetPath.match(/\.js$/)) {
         tags.push(
-          `<script defer src="${rootUrl}/${assetPath}"></script>`
+          `<script defer src="${process.env.ROOT_URL}/${assetPath}"></script>`
         );
       }
 
       if (assetPath.match(/\.css$/)) {
         tags.push(
-          `<link rel="stylesheet" href="${rootUrl}/${assetPath}"></link>`
+          `<link rel="stylesheet" href="${process.env.ROOT_URL}/${assetPath}"></link>`
         );
       }
+      /* eslint-enable */
     });
   });
 

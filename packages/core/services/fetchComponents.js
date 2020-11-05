@@ -8,8 +8,7 @@ import shouldAuthorize from 'utils/shouldAuthorize';
 import getEnv from 'utils/universalEnv';
 import getLogService from '@irvingjs/services/logService';
 import getCacheService from '@irvingjs/services/cacheService';
-import createComponentsEndpointQueryString
-  from './utils/createComponentsEndpointQueryString';
+import createEndpointURL from 'utils/endpoint/createEndpointURL';
 
 const log = getLogService('irving:components');
 
@@ -28,18 +27,16 @@ const env = getEnv();
  */
 export async function fetchComponents(
   path,
-  search,
+  search = '',
   cookie = {},
   context = CONTEXT_PAGE
 ) {
-  const query = createComponentsEndpointQueryString(
+  const apiUrl = createEndpointURL(
     path,
     search,
     cookie,
     context
   );
-
-  const apiUrl = `${env.API_ROOT_URL}/components?${query}`;
 
   // Create abort controller and set timeout to abort fetch call.
   // Default timeout is 10s, but can be configured with env var.
@@ -125,18 +122,17 @@ async function cachedFetchComponents(
   context = CONTEXT_PAGE
 ) {
   const cache = getCacheService();
-  const componentsQuery = createComponentsEndpointQueryString(
+  const apiUrl = createEndpointURL(
     path,
     search,
     cookie,
     context
   );
-  const endpoint = `${env.API_ROOT_URL}/components?${componentsQuery}`;
-  const key = `components-endpoint:${endpoint}`;
+  const key = `components-endpoint:${apiUrl}`;
   const info = {
     cached: false,
     __caching__: false,
-    endpoint,
+    endpoint: apiUrl,
     cacheKey: key,
     updated: null,
   };
