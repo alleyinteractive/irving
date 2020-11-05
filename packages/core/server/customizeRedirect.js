@@ -2,7 +2,6 @@ const expressNakedRedirect = require('express-naked-redirect');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const {
   NODE_ENV,
-  ROOT_URL,
 } = process.env;
 const config = getValueFromFiles(
   'server/customizeRedirect.js',
@@ -18,7 +17,6 @@ const customizeRedirect = () => (
      * - in a dev environment
      */
     if (
-      ! ROOT_URL.includes(req.headers.host) ||
       0 === Object.keys(config).length ||
       'development' === NODE_ENV
     ) {

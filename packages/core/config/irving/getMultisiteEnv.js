@@ -1,4 +1,3 @@
-const memoize = require('lodash/memoize');
 const uniq = require('lodash/uniq');
 let multisiteConfig;
 
@@ -11,6 +10,10 @@ if (process.env.IRVING_EXECUTION_CONTEXT) {
     maybeResolveBuildModule('multisite.config.js')
   );
 }
+
+// If a configuration exists, ensure no site config appears twice.
+const config = 0 === multisiteConfig.length ? null :
+  uniq(multisiteConfig, 'domain').flat();
 /* eslint-enable */
 
 /**
@@ -19,12 +22,8 @@ if (process.env.IRVING_EXECUTION_CONTEXT) {
  * @param {string} hostname - The hostname to search for.
  * @returns {object} The (possibly) modified environment configuration.
  */
-module.exports = memoize((hostname) => {
+module.exports = (hostname) => {
   const modifiedEnv = process.env;
-
-  // If a configuration exists, ensure no site config appears twice.
-  const config = 0 === multisiteConfig.length ? null :
-    uniq(multisiteConfig, 'domain').flat();
 
   if (config) {
     const hostIndex = config.findIndex(
@@ -45,4 +44,4 @@ module.exports = memoize((hostname) => {
   }
 
   return modifiedEnv;
-});
+};
