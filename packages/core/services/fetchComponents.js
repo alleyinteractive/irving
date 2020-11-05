@@ -131,11 +131,12 @@ async function cachedFetchComponents(
     cookie,
     context
   );
-  const key = `components-endpoint:${componentsQuery}`;
+  const endpoint = `${env.API_ROOT_URL}/components?${componentsQuery}`;
+  const key = `components-endpoint:${endpoint}`;
   const info = {
     cached: false,
     __caching__: false,
-    endpoint: `${env.API_ROOT_URL}/components?${componentsQuery}`,
+    endpoint,
     cacheKey: key,
     updated: null,
   };

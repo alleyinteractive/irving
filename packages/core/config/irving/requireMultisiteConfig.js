@@ -1,20 +1,13 @@
-const uniq = require('lodash/uniq');
-const { appRoot, multisiteConfig } = require('../paths');
-const requireConfigModules = require('./requireConfigModules');
+import uniq from 'lodash/uniq';
+import multisiteConfig from '@irvingjs/multisite.config';
 
-module.exports = (() => {
-  // Retrieve the multisite configuration.
-  const config = requireConfigModules(
-    multisiteConfig,
-    {
-      base: appRoot,
-      ignorePackages: [],
-    }
-  );
+const config = (() => {
   // If no configuration exists, return null.
-  if (0 === config.length) {
+  if (0 === multisiteConfig.length) {
     return null;
   }
   // If a configuration exists, ensure it is only returned once in a flat array.
-  return uniq(config, 'domain').flat();
+  return uniq(multisiteConfig, 'domain').flat();
 })();
+
+export default config;

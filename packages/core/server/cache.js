@@ -4,31 +4,33 @@ const purgeCache = require('./purgeCache');
 const getCacheKeys = require('./getCacheKeys');
 const createCheckAuth = require('./auth');
 
-const {
-  API_ROOT_URL,
-  API_ORIGIN,
-} = process.env;
+const getCorsMiddleware = () => {
+  const {
+    API_ROOT_URL,
+    API_ORIGIN,
+  } = process.env;
 
-const corsMiddleware = cors({
-  origin: (origin, callback) => {
-    if (
-      origin &&
-      (API_ROOT_URL.includes(origin) || API_ORIGIN === origin)
-    ) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  optionsSuccessStatus: 200, // IE11 will choke on 204.
-});
+  return cors({
+    origin: (origin, callback) => {
+      if (
+        origin &&
+        (API_ROOT_URL.includes(origin) || API_ORIGIN === origin)
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    optionsSuccessStatus: 200, // IE11 will choke on 204.
+  });
+}
 
 const cacheMiddleware = (app) => {
   // Clearing the Redis cache.
   app.post(
     '/purge-cache',
     bodyParser.json(),
-    createCheckAuth('cache', corsMiddleware),
+    createCheckAuth('cache', getCorsMiddleware()),
     purgeCache
   );
 

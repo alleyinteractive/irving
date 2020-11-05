@@ -1,5 +1,5 @@
 // Global passed in via webpack define plugin
-/* global appView, errorView, irvingEnv */
+/* global appView, errorView */
 import 'source-map-support/register';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -16,6 +16,7 @@ import getLogService from '@irvingjs/services/logService';
 import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
+import getClientEnv from 'config/irving/getClientEnv';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
 
@@ -32,6 +33,10 @@ const logRequest = getLogService('irving:render:request');
  * @param {object} clientStats Webpack client-side build statistics object.
  **/
 const render = async (req, res, clientStats) => {
+  // Set up multisite env as early as possible
+  const env = getClientEnv();
+
+  // Initialize store and middleware.
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     rootReducer,
@@ -95,7 +100,7 @@ const render = async (req, res, clientStats) => {
   const stateEncoded = encodeState(getState());
   const templateVars = {
     preRenderedState: stateEncoded,
-    env: JSON.stringify(irvingEnv),
+    env: JSON.stringify(env),
     ...customTemplateVars,
   };
 

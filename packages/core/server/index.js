@@ -6,22 +6,17 @@ const getMonitorService = require(
 const monitorService = getMonitorService();
 monitorService.start();
 
-const getEnv = require('../config/env');
-const {
-  API_ROOT_URL,
-  API_ORIGIN,
-} = getEnv();
+// setup env
+require('../config/env')();
 
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const proxyPassthrough = require('../config/proxyPassthrough');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
+const getMultisiteEnv = require('../config/irving/getMultisiteEnv');
 const cacheMiddleware = require('./cache');
 const customizeRedirect = require('./customizeRedirect');
-
-const multisiteContext = require('../config/irving/requireMultisiteConfig');
-const maybeReplaceRootVars = require('../utils/maybeReplaceRootVars');
 
 // Start log service.
 const logService = require('../services/logService/getServiceFromFilesystem');
@@ -30,8 +25,9 @@ const log = logService('irving:server');
 // Create app.
 const app = express();
 
+// Set up multisite env.
 app.use((req, res, next) => {
-  maybeReplaceRootVars(process.env, multisiteContext, req.hostname);
+  getMultisiteEnv(req.hostname);
   next();
 });
 
@@ -49,6 +45,10 @@ const irvingServerMiddleware = getValueFromFiles(
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
 // Set up a reusable proxy for responses that should be served directly.
+const {
+  API_ROOT_URL,
+  API_ORIGIN,
+} = process.env;
 const passthrough = createProxyMiddleware({
   changeOrigin: true,
   followRedirects: true,
