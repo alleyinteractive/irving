@@ -3,14 +3,16 @@ import cachedFetchComponents, {
   fetchComponents,
 } from 'services/fetchComponents';
 import cacheService from './cacheService';
+import createEndpointUrl from '../utils/endpoint/createEndpointUrl';
 
 jest.mock('ioredis');
 
+process.env.API_ROOT_URL = 'https://foo.com/api';
 const cache = cacheService();
-const cacheKey = 'components-endpoint:path=/cache&context=page&bar=baz';
+const endpoint = createEndpointUrl('/cache', '&bar=baz', {}, 'page');
+const cacheKey = `components-endpoint:${endpoint}`;
 
 beforeEach(() => {
-  process.env.API_ROOT_URL = 'https://foo.com/api';
   cache.del(cacheKey);
   fetchMock.restore();
 });
