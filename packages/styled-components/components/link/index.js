@@ -50,7 +50,6 @@ const Link = (props) => {
   const standardProps = useStandardProps(props);
 
   const handleClick = (event) => {
-    event.preventDefault();
     tracking.trackEvent({
       component: 'link',
       event: 'irving.linkClick',
