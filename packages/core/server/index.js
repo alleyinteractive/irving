@@ -14,7 +14,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
 const proxyPassthrough = require('../config/proxyPassthrough');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
-const getMultisiteEnv = require('../config/irving/getMultisiteEnv');
+const getEnv = require('../config/irving/getEnv');
 const cacheMiddleware = require('./cache');
 const customizeRedirect = require('./customizeRedirect');
 
@@ -27,7 +27,7 @@ const app = express();
 
 // Set up multisite env.
 app.use((req, res, next) => {
-  getMultisiteEnv(req.hostname);
+  getEnv(req.hostname);
   next();
 });
 

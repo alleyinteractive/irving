@@ -10,12 +10,11 @@ if (process.env.IRVING_EXECUTION_CONTEXT) {
     maybeResolveBuildModule('multisite.config.js')
   );
 }
-
+/* eslint-enable */
 // If a configuration exists, ensure no site config appears twice.
 const config = multisiteConfig.length ?
   uniq(multisiteConfig, 'domain').flat() :
   null;
-/* eslint-enable */
 
 /**
  * A utility function that replaces the `ROOT_URL` and `API_ROOT_URL` values
@@ -23,29 +22,20 @@ const config = multisiteConfig.length ?
  * @param {string} hostname - The hostname to search for.
  * @returns {object} The (possibly) modified environment configuration.
  */
-module.exports = (hostname) => {
-  const modifiedEnv = process.env;
+module.exports = (hostname = window.location.hostname) => {
+  console.log('hostname', hostname, config);
+  const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
 
-  if (config) {
-    const hostIndex = config.findIndex(
-      (site) => site.domain === hostname
-    );
-    const siteConfig = config[hostIndex].vars;
-    const matchedRoot = (
-      - 1 < hostIndex &&
-      siteConfig.ROOT_URL === process.env.ROOT_URL
-    );
-
-    // Only overwrite the process variable if the host exists and the host's
-    // `ROOT_URL` var does not match the currently set env `ROOT_URL` value.
-    if (! matchedRoot) {
-      Object.keys(siteConfig).forEach(
-        (key) => {
-          modifiedEnv[key] = siteConfig[key];
-        }
-      );
-    }
+  if (! hostname || ! config) {
+    return env;
   }
 
-  return modifiedEnv;
+  const hostIndex = config.findIndex(
+    (site) => site.domain === hostname
+  );
+  console.log('index', hostIndex);
+  return {
+    ...env,
+    ...config[hostIndex].vars,
+  };
 };

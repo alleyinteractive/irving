@@ -3,14 +3,20 @@ const cors = require('cors');
 const purgeCache = require('./purgeCache');
 const getCacheKeys = require('./getCacheKeys');
 const createCheckAuth = require('./auth');
+const getEnv = require('../config/irving/getEnv');
 
-const corsMiddleware = cors({
+const corsMiddleware = (req, ...rest) => cors({
   origin: (origin, callback) => {
+    const {
+      API_ROOT_URL,
+      API_ORIGIN,
+    } = getEnv(req.hostname);
+
     if (
       origin &&
       (
-        process.env.API_ROOT_URL.includes(origin) ||
-        process.env.API_ORIGIN === origin
+        API_ROOT_URL.includes(origin) ||
+        API_ORIGIN === origin
       )
     ) {
       callback(null, true);
@@ -19,7 +25,7 @@ const corsMiddleware = cors({
     }
   },
   optionsSuccessStatus: 200, // IE11 will choke on 204.
-});
+})(req, ...rest);
 
 const cacheMiddleware = (app) => {
   // Clearing the Redis cache.

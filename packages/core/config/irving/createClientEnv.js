@@ -1,6 +1,9 @@
-import { getValueFromConfig } from 'config/irving/getValueFromConfig';
+const { getValueFromConfig } = require('./getValueFromConfig');
+const getEnv = require('./getEnv');
 
 const getClientEnv = () => {
+  const env = getEnv();
+
   // Only include allowlisted variables for client environments to avoid leaking
   // sensitive information.
   const allowlistArray = getValueFromConfig(
@@ -21,11 +24,11 @@ const getClientEnv = () => {
   ];
 
   return Object
-    .keys(process.env)
+    .keys(env)
     .filter((key) => allowlist.some((regex) => regex.test(key)))
     .reduce((acc, key) => ({
       ...acc,
-      [key]: process.env[key],
+      [key]: env[key],
     }), {});
 };
 

@@ -16,7 +16,7 @@ import getLogService from '@irvingjs/services/logService';
 import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
-import getClientEnv from 'config/irving/getClientEnv';
+import createClientEnv from 'config/irving/createClientEnv';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
 
@@ -34,7 +34,7 @@ const logRequest = getLogService('irving:render:request');
  **/
 const render = async (req, res, clientStats) => {
   // Set up multisite env as early as possible
-  const env = getClientEnv();
+  const env = createClientEnv();
 
   // Initialize store and middleware.
   const sagaMiddleware = createSagaMiddleware();
