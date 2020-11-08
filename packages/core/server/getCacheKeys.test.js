@@ -21,15 +21,15 @@ describe('getCacheKeys', () => {
       await waitForExpect(() => {
         expect(res.json).toHaveBeenCalledWith(
           [
-            'components-endpoint:https://binbong.com/components?path=/&context=site',
-            'components-endpoint:https://binbong.com/components?path=/test-page&context=site',
-            'components-endpoint:https://binbong.com/components?path=/test-page&context=site&extra-parameter=2',
-            'components-endpoint:https://binbong.com/components?path=/test-page&context=site&extra-parameter=3',
-            'components-endpoint:https://binbong.com/components?path=/test-article&context=site',
-            'components-endpoint:https://binbong.com/components?path=/test-article/&context=site',
-            'components-endpoint:https://binbong.com/components?path=/test-term&context=site',
-            'components-endpoint:https://binbong.com/components?path=/test-term&context=site&another-param',
-            'components-endpoint:https://binbong.com/components?path=/test-test-test',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/&context=site',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-page&context=site',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-page&context=site&extra-parameter=2',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-page&context=site&extra-parameter=3',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-article&context=site',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-article/&context=site',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-term&context=site',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-term&context=site&another-param',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-test-test',
           ]
         );
       });

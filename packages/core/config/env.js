@@ -5,7 +5,7 @@ const { appRoot } = require('./paths');
  * Get the client available environment variables.
  * @returns {object} - a client safe env object
  */
-module.exports = function getEnv() {
+module.exports = function configureEnv() {
   const { env } = process;
 
   // Production will use environment variables set by the system. We also don't

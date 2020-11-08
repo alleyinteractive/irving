@@ -4,6 +4,7 @@ import purgeCache from './purgeCache';
 jest.mock('ioredis');
 
 const mockRequest = (keys) => ({
+  hostname: 'multisite-one.irving.test',
   body: {
     paths: keys,
   },
@@ -23,8 +24,6 @@ const mockResponse = () => {
 };
 
 describe('purgeCache', () => {
-  process.env.API_ROOT_URL = 'https://binbong.com';
-
   it(
     'should display "No cache to bust" if no matching keys are found',
     async () => {
@@ -35,7 +34,7 @@ describe('purgeCache', () => {
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe(`Purged 0 entries for key components-endpoint:https://binbong.com/components?path=/no-key-for-this*
+          .toBe(`Purged 0 entries for key components-endpoint:https://irving-multisite.test/api/components?path=/no-key-for-this*
 Cache purge successful!`);
       });
     }
@@ -51,7 +50,7 @@ Cache purge successful!`);
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe(`Purged 1 entries for key components-endpoint:https://binbong.com/components?path=/&context=site
+          .toBe(`Purged 1 entries for key components-endpoint:https://irving-multisite.test/api/components?path=/&context=site
 Cache purge successful!`);
       });
     }
@@ -67,7 +66,7 @@ Cache purge successful!`);
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe(`Purged 3 entries for key components-endpoint:https://binbong.com/components?path=/test-page*
+          .toBe(`Purged 3 entries for key components-endpoint:https://irving-multisite.test/api/components?path=/test-page*
 Cache purge successful!`);
       });
     }
@@ -83,8 +82,8 @@ Cache purge successful!`);
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe(`Purged 2 entries for key components-endpoint:https://binbong.com/components?path=/test-article*
-Purged 2 entries for key components-endpoint:https://binbong.com/components?path=/test-term*
+          .toBe(`Purged 2 entries for key components-endpoint:https://irving-multisite.test/api/components?path=/test-article*
+Purged 2 entries for key components-endpoint:https://irving-multisite.test/api/components?path=/test-term*
 Cache purge successful!`);
       });
     }

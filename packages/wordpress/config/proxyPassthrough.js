@@ -6,5 +6,5 @@ module.exports = [
   '*.rss',
   '*/amp/',
   '*/feed/',
-  '/favicon.ico',
+  // '/favicon.ico',
 ];

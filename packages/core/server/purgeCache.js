@@ -12,10 +12,11 @@ const log = logService('irving:cache:purge');
 /**
  * Turn a fully-qualified URL into a key for cache purging.
  *
- * @param {string} path URL to transform
+ * @param {string} hostname Current hostname.
+ * @param {string} path URL to transform.
  * @returns {string} Path to be used as a redis key.
  */
-const createKeyFromPath = (path) => {
+const createKeyFromPath = (hostname, path) => {
   if (! path) {
     return false;
   }
@@ -43,11 +44,23 @@ const createKeyFromPath = (path) => {
 
   // Return exact match if path is "/".
   if ('/' === normalizedPath) {
-    const endpoint = createEndpointUrl(normalizedPath, '', {}, CONTEXT_SITE);
+    const endpoint = createEndpointUrl(
+      hostname,
+      normalizedPath,
+      '',
+      {},
+      CONTEXT_SITE
+    );
     return `components-endpoint:${endpoint}`;
   }
 
-  const endpoint = createEndpointUrl(normalizedPath, '', {}, '');
+  const endpoint = createEndpointUrl(
+    hostname,
+    normalizedPath,
+    '',
+    {},
+    ''
+  );
   return `components-endpoint:${endpoint}*`;
 };
 
@@ -106,7 +119,7 @@ const purgeCache = async (req, res) => {
   if (paths.length) {
     Promise.all(
       paths.map(async (path) => (
-        executeStream(pipeline, res, createKeyFromPath(path))
+        executeStream(pipeline, res, createKeyFromPath(req.hostname, path))
       ))
     ).then(() => {
       pipeline.exec();

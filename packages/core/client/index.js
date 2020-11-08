@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -9,7 +9,7 @@ import createSagaMiddleware from 'redux-saga';
 import set from 'lodash/fp/set';
 import { actionLocationChange } from 'actions';
 import Cookies from 'universal-cookie';
-import App from 'components/app';
+// import App from 'components/app';
 import { getValueFromConfig } from 'config/irving/getValueFromConfig';
 import preloadedStateDenylist from 'config/preloadedStateDenylist';
 import rootReducer from 'reducers';
@@ -67,16 +67,16 @@ history.listen((location, action) => {
 });
 
 const render = () => {
-  const rootEl = document.getElementById('root');
-  // It is imperative that the server React component tree matches the client
-  // component tree, so that the client can re-hydrate the app from the server
-  // rendered markup, otherwise the app will be completely re-rendered.
-  ReactDOM.hydrate(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    rootEl
-  );
+  // const rootEl = document.getElementById('root');
+  // // It is imperative that the server React component tree matches the client
+  // // component tree, so that the client can re-hydrate the app from the server
+  // // rendered markup, otherwise the app will be completely re-rendered.
+  // ReactDOM.hydrate(
+  //   <Provider store={store}>
+  //     <App />
+  //   </Provider>,
+  //   rootEl
+  // );
 };
 
 // Wait for the Redux state to be re-hydrated before rendering the app.

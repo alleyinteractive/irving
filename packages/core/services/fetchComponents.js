@@ -8,17 +8,14 @@ import shouldAuthorize from 'utils/shouldAuthorize';
 import getEnv from 'config/irving/getEnv';
 import getLogService from '@irvingjs/services/logService';
 import getCacheService from '@irvingjs/services/cacheService';
-import createEndpointURL from 'utils/endpoint/createEndpointURL';
+import createEndpointUrl from 'utils/endpoint/createEndpointUrl';
 
 const log = getLogService('irving:components');
-
-// To access environment variables at run time in a client context we must
-// access them through a global provided by the server render.
-const env = getEnv();
 
 /**
  * Fetch components for the page from the API.
  *
+ * @param {string} hostname Hostname for current site
  * @param {string} path Path of the request page
  * @param {string} search Search string
  * @param {object} cookie Cookie header string
@@ -26,12 +23,15 @@ const env = getEnv();
  * @returns {Promise<{object}>}
  */
 export async function fetchComponents(
+  hostname,
   path,
   search = '',
   cookie = {},
   context = CONTEXT_PAGE
 ) {
-  const apiUrl = createEndpointURL(
+  const { FETCH_TIMEOUT } = getEnv(hostname);
+  const apiUrl = createEndpointUrl(
+    hostname,
     path,
     search,
     cookie,
@@ -46,7 +46,7 @@ export async function fetchComponents(
       log.error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.'); // eslint-disable-line max-len
       controller.abort();
     },
-    env.FETCH_TIMEOUT || 10000
+    FETCH_TIMEOUT || 10000
   );
 
   // Set up fetch options.
@@ -109,6 +109,7 @@ export async function fetchComponents(
 /**
  * Cache fetchComponents responses. Return cached response if available.
  *
+ * @param {string} hostname Hostname for current site
  * @param {string} path Path of the request page
  * @param {string} search Search string
  * @param {object} cookie Cookie header string
@@ -116,13 +117,15 @@ export async function fetchComponents(
  * @returns {Promise<{object}>} - fetchComponents return value
  */
 async function cachedFetchComponents(
+  hostname,
   path,
   search,
   cookie = {},
   context = CONTEXT_PAGE
 ) {
   const cache = getCacheService();
-  const apiUrl = createEndpointURL(
+  const apiUrl = createEndpointUrl(
+    hostname,
     path,
     search,
     cookie,
@@ -142,12 +145,12 @@ async function cachedFetchComponents(
 
   if (bypassCache || ! cache.client) {
     log.info('%o', info);
-    return fetchComponents(path, search, cookie, context);
+    return fetchComponents(hostname, path, search, cookie, context);
   }
 
   const cachedResult = await cache.cached(
     key,
-    await fetchComponents(path, search, cookie, context),
+    await fetchComponents(hostname, path, search, cookie, context),
     {
       payload: true,
     }

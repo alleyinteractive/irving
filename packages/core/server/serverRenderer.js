@@ -34,7 +34,7 @@ const logRequest = getLogService('irving:render:request');
  **/
 const render = async (req, res, clientStats) => {
   // Set up multisite env as early as possible
-  const env = createClientEnv();
+  const env = createClientEnv(req.hostname);
 
   // Initialize store and middleware.
   const sagaMiddleware = createSagaMiddleware();
@@ -55,6 +55,7 @@ const render = async (req, res, clientStats) => {
 
   // Sync express request with route state.
   dispatch(actionLocationChange('PUSH', {
+    hostname: req.hostname,
     pathname: req.path,
     search: `?${search}`,
     cookie: req.universalCookies.getAll({ doNotParse: true }),
@@ -91,7 +92,7 @@ const render = async (req, res, clientStats) => {
     {
       Wrapper: AppWrapper,
       head: {
-        end: [getWebpackAssetTags(clientStats)],
+        end: [getWebpackAssetTags(clientStats, req.hostname)],
       },
     },
     clientStats

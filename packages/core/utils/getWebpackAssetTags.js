@@ -9,13 +9,14 @@ let runtimeSrc;
  * Get the emitted webpack assets as html tags to be rendered by the server.
  *
  * @param {object} clientStats Emitted webpack client bundle info
+ * @param {string} hostname Hostname for current site
  * @returns {tags[]} An array of html tags
  */
-const getWebpackAssetTags = (clientStats) => {
+const getWebpackAssetTags = (clientStats, hostname) => {
   const { assetsByChunkName: chunks } = clientStats;
   const tags = [];
   const runtimeJsPath = chunks['runtime~main'];
-  const { ROOT_URL } = getEnv();
+  const { ROOT_URL } = getEnv(hostname);
 
   // Abstracted webpack runtime asset.
   if (runtimeJsPath) {

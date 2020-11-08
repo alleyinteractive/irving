@@ -1,26 +1,28 @@
 const omit = require('lodash/fp/omit');
 const queryString = require('query-string');
+const getEnv = require('../../config/irving/getEnv');
 const { CONTEXT_PAGE } = require('../../config/constants');
 const defaultCookies = require('../../config/defaultCookies');
-const getEnv = require('../universalEnv');
 const getExtraQueryParams = require('./getExtraQueryParams');
-
-const env = getEnv();
 
 /**
  * Creates the query string for both the components
  * API endpoint and to use as a cache key.
+ *
+ * @param {string} hostname Current hostname.
  * @param {string} path Path of the request page
  * @param {string} search Search string
  * @param {string} cookie Cookie header string
  * @param {string} [context] "Page" (page specific components) or "site" (all components)
  */
 function createEndpointUrl(
+  hostname,
   path,
-  search,
+  search = '',
   cookie = {},
   context = CONTEXT_PAGE
 ) {
+  const env = getEnv(hostname);
   const queryObject = { path };
 
   // Only include context param if it's provided, and make sure it appears after path.
@@ -32,7 +34,7 @@ function createEndpointUrl(
     // Add remaining params inline.
     {
       ...queryObject,
-      ...getExtraQueryParams(),
+      ...getExtraQueryParams(env),
       ...queryString.parse(search),
       ...omit(defaultCookies, cookie),
     },
