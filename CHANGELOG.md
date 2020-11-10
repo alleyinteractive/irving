@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/alleyinteractive/irving/compare/v5.1.0...v5.1.1) (2020-11-10)
+
+
+### Bug Fixes
+
+* remove window event bubble ([2fd9b24](https://github.com/alleyinteractive/irving/commit/2fd9b2426f33fff3090bc953f7241dbdf9e6fc94))
+
+
+
+
+
 # [5.1.0](https://github.com/alleyinteractive/irving/compare/v5.1.0-rc.0...v5.1.0) (2020-11-04)
 
 **Note:** Version bump only for package irving
