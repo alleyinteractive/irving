@@ -1,6 +1,5 @@
 // Global passed in via webpack define plugin
 /* global appView, errorView */
-import 'source-map-support/register';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';

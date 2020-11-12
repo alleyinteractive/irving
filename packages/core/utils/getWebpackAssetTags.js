@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { getValueFromConfig } from 'config/irving/getValueFromConfig';
+import { getValueFromConfigNoMemo } from 'config/irving/getValueFromConfig';
 import { clientBuild } from 'config/paths';
 import getEnv from 'config/irving/getEnv';
 
@@ -56,7 +56,7 @@ const getWebpackAssetTags = (clientStats, hostname) => {
     });
   });
 
-  return getValueFromConfig('ssrTags', tags).join('');
+  return getValueFromConfigNoMemo('ssrTags', tags).join('');
 };
 
 export default getWebpackAssetTags;
