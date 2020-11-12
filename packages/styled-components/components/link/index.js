@@ -49,6 +49,7 @@ const Link = (props) => {
   } = theme;
   const standardProps = useStandardProps(props);
 
+  /* eslint-disable consistent-return */
   const handleClick = (event) => {
     event.preventDefault();
     tracking.trackEvent({
@@ -56,8 +57,20 @@ const Link = (props) => {
       event: 'irving.linkClick',
       eventData: analytics.click,
     });
+
+    // Allow the user to open the link in a new tab
+    if (
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.metaKey ||
+      (event.button && 1 === event.button)
+    ) {
+      return;
+    }
+
     return onClick ? onClick(event) : defaultOnClick(event);
   };
+  /* eslint-enable */
 
   const ariaProps = Object.keys(props).reduce((acc, propName) => {
     if (! propName.includes('aria')) {
