@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.2.0-alpha.4...v5.2.0-alpha.5) (2020-11-12)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [5.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.2.0-alpha.3...v5.2.0-alpha.4) (2020-11-10)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [5.2.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.2.0-alpha.1...v5.2.0-alpha.3) (2020-11-09)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [5.2.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.2.0-alpha.1...v5.2.0-alpha.2) (2020-11-09)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [5.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.2.0-alpha.0...v5.2.0-alpha.1) (2020-11-06)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
 # [5.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.1.1-alpha.0...v5.2.0-alpha.0) (2020-11-04)
 
 **Note:** Version bump only for package @irvingjs/styled-components

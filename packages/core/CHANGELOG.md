@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v5.2.0-alpha.3...v5.2.0-alpha.4) (2020-11-10)
+
+
+### Bug Fixes
+
+* remove window event bubble ([e656bdd](https://github.com/alleyinteractive/irving/packages/core/commit/e656bdd8acf13a954adb54d28b8883734a3835b3))
+
+
+
+
+
+# [5.2.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v5.2.0-alpha.1...v5.2.0-alpha.3) (2020-11-09)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.2.0-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v5.2.0-alpha.1...v5.2.0-alpha.2) (2020-11-09)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
 # [5.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.1.1-alpha.0...v5.2.0-alpha.0) (2020-11-04)
 
 **Note:** Version bump only for package @irvingjs/core
