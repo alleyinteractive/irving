@@ -21,6 +21,8 @@ const aliases = {
   config: './config',
   // Aliases for irving config files. Use core defaults if they don't exist.
   '@irvingjs/irving.config': maybeResolveBuildModule('irving.config.js'),
+  // Multisite config alias.
+  '@irvingjs/multisite.config': maybeResolveBuildModule('multisite.config.js'),
   // don't use maybeResolveBuildModule here because the this file is required, user must have it.
   '@irvingjs/componentMap': path.join(buildContext, 'componentMap.js'),
 };

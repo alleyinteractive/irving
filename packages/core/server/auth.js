@@ -1,9 +1,5 @@
 const auth = require('basic-auth');
-
-const {
-  BASIC_AUTH_USERNAME: username,
-  BASIC_AUTH_PASSWORD: password,
-} = process.env;
+const getEnv = require('../config/irving/getEnv');
 
 /**
  * A middleware that will force Basic Auth if related environment variables are set.
@@ -15,6 +11,10 @@ const {
  */
 const createCheckAuth = (realm, passthrough = true) => (req, res, next) => {
   const hasFallback = 'function' === typeof passthrough;
+  const {
+    BASIC_AUTH_USERNAME: username,
+    BASIC_AUTH_PASSWORD: password,
+  } = getEnv(req.hostname);
 
   if (! username || ! password) {
     if (! passthrough) {

@@ -13,8 +13,7 @@ const createLogger = getValueFromFiles(
 const log = createLogger('irving:server');
 
 // Set up environmental variables as early as possible.
-const getEnv = require('../config/env');
-getEnv();
+require('../config/env')();
 
 // Allow customization of how server is created.
 const startServer = getValueFromFiles(

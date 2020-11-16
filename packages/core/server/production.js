@@ -4,6 +4,7 @@ const {
   clientBuild,
   serverBuild,
 } = require('../config/paths');
+const getEnv = require('../config/irving/getEnv');
 const path = require('path');
 const express = require('express');
 const createCheckAuth = require('./auth');
@@ -31,9 +32,15 @@ const productionMiddleware = async (app) => {
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 
   // Add basic auth handling if user configures it.
-  if (process.env.BASIC_AUTH) {
-    app.use(createCheckAuth('irving'));
-  }
+  app.use((req, res, next) => {
+    const { BASIC_AUTH } = getEnv(req.hostname);
+
+    if (BASIC_AUTH) {
+      createCheckAuth('irving')(req, res, next);
+    } else {
+      next();
+    }
+  });
 
   app.use(express.static(path.resolve('./build/client'), {
     maxAge: 86400000,

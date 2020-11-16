@@ -5,7 +5,6 @@ const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const ReactRefreshWebpackPlugin = require(
   '@pmmmwh/react-refresh-webpack-plugin'
 );
-const getEnv = require('../env');
 const { rootUrl } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
 const { maybeResolveUserModule } = require('../../utils/userModule');
@@ -17,8 +16,6 @@ const { maybeResolveUserModule } = require('../../utils/userModule');
  * @returns {array} A plugins configuration value
  */
 module.exports = function getPlugins(context) {
-  const env = getEnv();
-
   // Define paths to app and error templates at compile time because express needs paths, not the template module itself.
   // This allows user to more deeply customize app and error templates.
   const commonPlugins = [
@@ -27,11 +24,9 @@ module.exports = function getPlugins(context) {
       errorView: JSON.stringify(
         maybeResolveUserModule('server/views/error.ejs')
       ),
-      irvingEnv: JSON.stringify(env),
       proxyPassthrough: JSON.stringify(proxyPassthrough),
     }),
     new webpack.EnvironmentPlugin({
-      ...env,
       IRVING_EXECUTION_CONTEXT: context,
     }),
   ];

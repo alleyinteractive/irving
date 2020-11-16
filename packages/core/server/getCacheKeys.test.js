@@ -21,15 +21,15 @@ describe('getCacheKeys', () => {
       await waitForExpect(() => {
         expect(res.json).toHaveBeenCalledWith(
           [
-            'components-endpoint:path=/&context=site',
-            'components-endpoint:path=/test-page&context=site',
-            'components-endpoint:path=/test-page&context=site&extra-parameter=2',
-            'components-endpoint:path=/test-page&context=site&extra-parameter=3',
-            'components-endpoint:path=/test-article&context=site',
-            'components-endpoint:path=/test-article/&context=site',
-            'components-endpoint:path=/test-term&context=site',
-            'components-endpoint:path=/test-term&context=site&another-param',
-            'components-endpoint:path=/test-test-test',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/&context=site',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-page&context=site',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-page&context=site&extra-parameter=2',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-page&context=site&extra-parameter=3',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-article&context=site',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-article/&context=site',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-term&context=site',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-term&context=site&another-param',
+            'components-endpoint:https://irving-multisite.test/api/components?path=/test-test-test',
           ]
         );
       });

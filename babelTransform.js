@@ -16,6 +16,10 @@ const babelOptions = {
             mocks,
             'irving.config.js'
           ),
+          '@irvingjs/multisite.config': path.join(
+            mocks,
+            'multisite.config.js'
+          ),
           '@irvingjs/componentMap': path.join(
             mocks,
             'componentMap.js'

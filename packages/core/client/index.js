@@ -16,10 +16,13 @@ import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
 import rootSaga from 'sagas';
 import history from 'utils/history';
+import getEnv from 'config/irving/getEnv';
 import debug from 'debug';
 
-if (process.env.DEBUG) {
-  debug.enable(process.env.DEBUG);
+const env = getEnv();
+
+if (env.DEBUG) {
+  debug.enable(env.DEBUG);
 }
 
 const cookies = new Cookies();
