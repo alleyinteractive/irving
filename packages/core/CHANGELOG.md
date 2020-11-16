@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v5.2.0-alpha.5...v5.2.0-alpha.6) (2020-11-16)
+
+
+### Bug Fixes
+
+* **html.js:** add link tags to allow list ([b27d8b4](https://github.com/alleyinteractive/irving/packages/core/commit/b27d8b41eb8e15132535f7ee68bc6538c6d7dc81))
+
+
+
+
+
 # [5.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v5.2.0-alpha.3...v5.2.0-alpha.4) (2020-11-10)
 
 
