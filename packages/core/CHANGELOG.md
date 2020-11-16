@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v5.2.0-alpha.6...v5.2.0-alpha.7) (2020-11-16)
+
+
+### Bug Fixes
+
+* **cache:** fix cache purge function to accommodate new key structure ([9f0d319](https://github.com/alleyinteractive/irving/packages/core/commit/9f0d319c6ac18d08a8fb0f91b5b0acae9404e899))
+* **multisite:** add multisite to passthrough, fix tests ([cbd8784](https://github.com/alleyinteractive/irving/packages/core/commit/cbd878485663769156b0aa7540c8331a5eda330a))
+* **multisite:** begin merging together various env functionality ([7ecbdaa](https://github.com/alleyinteractive/irving/packages/core/commit/7ecbdaa1d77c87d018089f926d8c243ecf326433))
+* **multisite:** consolidate logic for overriding env with multisite config ([069f90a](https://github.com/alleyinteractive/irving/packages/core/commit/069f90a2b8dafc3c5732678a595d27c21873dd5f))
+* **multisite:** don't memoize config getting process ([6b2a8d6](https://github.com/alleyinteractive/irving/packages/core/commit/6b2a8d6b4702a7e2e7c7f3173d660d7a0c52bf6e))
+* **multisite:** remove console logs, uncomment client code ([d9d3a3f](https://github.com/alleyinteractive/irving/packages/core/commit/d9d3a3fa0aff9fc10eed1b67104c528dbf5ab2bf))
+* **purgecache:** fix tests for purgeCache logic ([3efebed](https://github.com/alleyinteractive/irving/packages/core/commit/3efebedcd6e62f67cf105117dd4c4c292a411a56))
+* **tests:** fix other tests that rely on caching ([8ab7381](https://github.com/alleyinteractive/irving/packages/core/commit/8ab7381c26d02c8b03318886baaa13db6174b7e6))
+
+
+
+
+
 # [5.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v5.2.0-alpha.5...v5.2.0-alpha.6) (2020-11-16)
 
 
