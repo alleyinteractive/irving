@@ -14,7 +14,7 @@ const cookiesMiddleware = require('universal-cookie-express');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const cacheMiddleware = require('./cache');
 const proxyMiddleware = require('./proxy');
-const customizeRedirect = require('./customizeRedirect');
+const { customizeRedirect } = require('./customizeRedirect');
 
 // Start log service.
 const logService = require('../services/logService/getServiceFromFilesystem');
@@ -43,7 +43,7 @@ proxyMiddleware(app);
 app.use(cookiesMiddleware());
 
 // Naked Redirect.
-app.use(customizeRedirect());
+app.use(customizeRedirect);
 
 // Only load the appropriate middleware for the current env.
 if ('development' === process.env.NODE_ENV) {
