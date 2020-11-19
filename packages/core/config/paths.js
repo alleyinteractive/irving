@@ -62,7 +62,6 @@ module.exports = {
   clientBuild: resolveBuildDir('build/client'),
   clientRoot: resolveIrvingDir('client'),
   config: resolveAppDir('irving.config.js'),
-  multisiteConfig: resolveAppDir('multisite.config.js'),
   globalStyles: resolveIrvingDir('assets/styles'),
   irvingRoot,
   mocks: resolveIrvingDir('__mocks__'),

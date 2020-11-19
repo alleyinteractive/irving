@@ -3,14 +3,16 @@ import cachedFetchComponents, {
   fetchComponents,
 } from 'services/fetchComponents';
 import cacheService from './cacheService';
+import createEndpointUrl from '../utils/endpoint/createEndpointUrl';
 
 jest.mock('ioredis');
 
+const hostname = 'multisite-one.irving.test';
 const cache = cacheService();
-const cacheKey = 'components-endpoint:path=/cache&context=page&bar=baz';
+const endpoint = createEndpointUrl(hostname, '/cache', '&bar=baz', {}, 'page');
+const cacheKey = `components-endpoint:${endpoint}`;
 
 beforeEach(() => {
-  process.env.API_ROOT_URL = 'https://foo.com/api';
   cache.del(cacheKey);
   fetchMock.restore();
 });
@@ -23,7 +25,7 @@ describe('fetchComponents', () => {
 
       // Throws an error if the request doesn't match.
       fetchMock.get(
-        'https://foo.com/api/components', {}, {
+        'https://irving-multisite.test/api/components', {}, {
           query: {
             path: '/foo',
             context: 'page',
@@ -32,7 +34,7 @@ describe('fetchComponents', () => {
         }
       );
 
-      expect(await fetchComponents('/foo')).toBeDefined();
+      expect(await fetchComponents(hostname, '/foo')).toBeDefined();
       done();
     }
   );
@@ -41,7 +43,7 @@ describe('fetchComponents', () => {
     'should pass query params from the request to the api',
     async (done) => {
       // Throws an error if the request doesn't match.
-      fetchMock.get('https://foo.com/api/components', {}, {
+      fetchMock.get('https://irving-multisite.test/api/components', {}, {
         query: {
           path: '/foo',
           context: 'page',
@@ -49,18 +51,20 @@ describe('fetchComponents', () => {
         },
       });
 
-      expect(await fetchComponents('/foo', '?bar=baz')).toBeDefined();
+      expect(await fetchComponents(hostname, '/foo', '?bar=baz')).toBeDefined();
       done();
     }
   );
 });
 
 describe('cachedFetchComponents', () => {
+  const hostname = 'multisite-one.irving.test';
+
   it(
     'should get fetch response from cached',
     async (done) => {
       // Throws an error if the request doesn't match.
-      fetchMock.get('https://foo.com/api/components', {}, {
+      fetchMock.get('https://irving-multisite.test/api/components', {}, {
         query: {
           path: '/cache',
           context: 'page',
@@ -68,7 +72,11 @@ describe('cachedFetchComponents', () => {
         },
       });
 
-      const result = await cachedFetchComponents('/cache', '?bar=baz');
+      const result = await cachedFetchComponents(
+        hostname,
+        '/cache',
+        '?bar=baz'
+      );
       expect(result).toBeDefined();
 
       // Getting directly from cache.
@@ -76,11 +84,19 @@ describe('cachedFetchComponents', () => {
       expect(result).toEqual(getCached);
 
       // Second Request.
-      const firstCachedResponse = await cachedFetchComponents('/cache', '?bar=baz');
+      const firstCachedResponse = await cachedFetchComponents(
+        hostname,
+        '/cache',
+        '?bar=baz'
+      );
       expect(result).toEqual(firstCachedResponse);
 
       // Third Request.
-      const secondCachedResponse = await cachedFetchComponents('/cache', '?bar=baz');
+      const secondCachedResponse = await cachedFetchComponents(
+        hostname,
+        '/cache',
+        '?bar=baz'
+      );
       expect(result).toEqual(secondCachedResponse);
       done();
     }
@@ -90,7 +106,7 @@ describe('cachedFetchComponents', () => {
     'should bypasse the cache',
     async (done) => {
       // Throws an error if the request doesn't match.
-      fetchMock.get('https://foo.com/api/components', {}, {
+      fetchMock.get('https://irving-multisite.test/api/components', {}, {
         query: {
           path: '/cache',
           context: 'page',
@@ -98,9 +114,12 @@ describe('cachedFetchComponents', () => {
         },
       });
 
-      const result = await cachedFetchComponents('/cache', '?bar=baz', {
-        bypassCache: true
-      });
+      const result = await cachedFetchComponents(
+        hostname,
+        '/cache',
+        '?bar=baz',
+        { bypassCache: true }
+      );
 
       expect(result).toBeDefined();
       expect(result.data).toBeUndefined();
@@ -112,7 +131,7 @@ describe('cachedFetchComponents', () => {
     'should return true meaning the cache stampede works',
     async (done) => {
       // Throws an error if the request doesn't match.
-      fetchMock.get('https://foo.com/api/components', {}, {
+      fetchMock.get('https://irving-multisite.test/api/components', {}, {
         query: {
           path: '/cache',
           context: 'page',
@@ -125,8 +144,12 @@ describe('cachedFetchComponents', () => {
           async () => (
             new Promise(
               (resolve) => setTimeout(
-                async () => resolve(await cachedFetchComponents('/cache', '?bar=baz')),
-                  100
+                async () => resolve(await cachedFetchComponents(
+                  hostname,
+                  '/cache',
+                  '?bar=baz'
+                )),
+                100
               )
             )
           )

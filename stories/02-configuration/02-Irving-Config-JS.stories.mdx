@@ -135,7 +135,7 @@ The above config would set up the site to redirect from `http://interesting.site
 ## Client-side environmental variable allowlist
 * **where to configure**: `config/envAllowlist.js`
 * **type**: array
-* **purpose**: Customize the allowlist of environmental variables that are passed to Irving's client-side javascript bundle. These env vars will be accessible via `window.__ENV__` or, if you need access to the ENV object isomorphically, use the universal env utility via `import getEnv from '@irvingjs/core/utils/universalEnv';`
+* **purpose**: Customize the allowlist of environmental variables that are passed to Irving's client-side javascript bundle. These env vars will be accessible via `window.__ENV__` or, if you need access to the ENV object isomorphically, use the universal env utility via `import getEnv from '@irvingjs/core/config/irving/getEnv';`
 ```javascript
 const getEnvAllowlist = () => ([
   'MY_NEW_ENV_VAR',

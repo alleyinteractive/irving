@@ -25,6 +25,7 @@ const debug = getLogService('irving:sagas:location');
 
 export default function* resolveComponents() {
   const {
+    hostname,
     path,
     search,
     cookie,
@@ -49,6 +50,7 @@ export default function* resolveComponents() {
   try {
     const result = yield call(
       fetchService,
+      hostname,
       path,
       search,
       cookie,

@@ -4,7 +4,7 @@ export const richText = {
     'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'cite', 'hr', 'br',
     'div', 'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td', 'pre', 'img',
     'figure', 'figcaption', 'iframe', 'audio', 'video', 'time', 'article',
-    'section', 'aside', 'footer', 'header', 'nav', 'button',
+    'section', 'aside', 'footer', 'header', 'nav', 'button', 'link',
   ],
   allowedAttributes: {
     '*': ['class', 'id', 'data-*', 'style'],
@@ -17,6 +17,7 @@ export const richText = {
       'controlslist', 'crossorigin', 'currentTime', 'disablePictureInPicture',
       'disableRemotePlayback', 'duration', 'height', 'intrinsicsize', 'loop',
       'muted', 'playsinline', 'poster', 'preload', 'src', 'width'],
+    link: ['rel', 'href', 'type'],
   },
   selfClosing: [
     'img', 'br', 'hr', 'area', 'base', 'basefont', 'input', 'link', 'meta',

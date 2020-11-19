@@ -16,6 +16,7 @@ const debug = getLogService('irving:sagas:authorization');
 
 export default function* resolveComponentsAuthorized() {
   const {
+    hostname,
     path,
     search,
     cookie,
@@ -24,7 +25,14 @@ export default function* resolveComponentsAuthorized() {
   yield put(actionRequestComponentsAuthorized());
 
   try {
-    const result = yield call(fetchComponents, path, search, cookie, context);
+    const result = yield call(
+      fetchComponents,
+      hostname,
+      path,
+      search,
+      cookie,
+      context
+    );
     yield put(actionReceiveComponents(result));
   } catch (err) {
     yield call(debug.error, err);

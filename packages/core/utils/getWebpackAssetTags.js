@@ -1,18 +1,22 @@
 import fs from 'fs';
-import { getValueFromConfig } from 'config/irving/getValueFromConfig';
-import { clientBuild, rootUrl } from 'config/paths';
+import { getValueFromConfigNoMemo } from 'config/irving/getValueFromConfig';
+import { clientBuild } from 'config/paths';
+import getEnv from 'config/irving/getEnv';
+
 let runtimeSrc;
 
 /**
  * Get the emitted webpack assets as html tags to be rendered by the server.
  *
  * @param {object} clientStats Emitted webpack client bundle info
+ * @param {string} hostname Hostname for current site
  * @returns {tags[]} An array of html tags
  */
-const getWebpackAssetTags = (clientStats) => {
+const getWebpackAssetTags = (clientStats, hostname) => {
   const { assetsByChunkName: chunks } = clientStats;
   const tags = [];
   const runtimeJsPath = chunks['runtime~main'];
+  const { ROOT_URL } = getEnv(hostname);
 
   // Abstracted webpack runtime asset.
   if (runtimeJsPath) {
@@ -36,21 +40,23 @@ const getWebpackAssetTags = (clientStats) => {
       chunks[chunkName] : [chunks[chunkName]];
 
     assets.forEach((assetPath) => {
+      /* eslint-disable max-len */
       if (assetPath.match(/\.js$/)) {
         tags.push(
-          `<script defer src="${rootUrl}/${assetPath}"></script>`
+          `<script defer src="${ROOT_URL}/${assetPath}"></script>`
         );
       }
 
       if (assetPath.match(/\.css$/)) {
         tags.push(
-          `<link rel="stylesheet" href="${rootUrl}/${assetPath}"></link>`
+          `<link rel="stylesheet" href="${ROOT_URL}/${assetPath}"></link>`
         );
       }
+      /* eslint-enable */
     });
   });
 
-  return getValueFromConfig('ssrTags', tags).join('');
+  return getValueFromConfigNoMemo('ssrTags', tags).join('');
 };
 
 export default getWebpackAssetTags;

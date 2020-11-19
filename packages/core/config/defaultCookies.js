@@ -1,6 +1,4 @@
-const defaultCookies = [
+module.exports = [
   'authorizationBearerToken',
   'bypassCache',
 ];
-
-export default defaultCookies;

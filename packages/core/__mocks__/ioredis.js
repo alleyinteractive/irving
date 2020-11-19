@@ -5,15 +5,15 @@ const IoredisMock = require('ioredis-mock');
  * Test redis database.
  */
 const mockRedisDatabase = {
-  'components-endpoint:path=/&context=site': 'data',
-  'components-endpoint:path=/test-page&context=site': 'data',
-  'components-endpoint:path=/test-page&context=site&extra-parameter=2': 'data',
-  'components-endpoint:path=/test-page&context=site&extra-parameter=3': 'data',
-  'components-endpoint:path=/test-article&context=site': 'data',
-  'components-endpoint:path=/test-article/&context=site': 'data',
-  'components-endpoint:path=/test-term&context=site': 'data',
-  'components-endpoint:path=/test-term&context=site&another-param': 'data',
-  'components-endpoint:path=/test-test-test': 'data',
+  'components-endpoint:https://irving-multisite.test/api/components?path=/&context=site': 'data',
+  'components-endpoint:https://irving-multisite.test/api/components?path=/test-page&context=site': 'data',
+  'components-endpoint:https://irving-multisite.test/api/components?path=/test-page&context=site&extra-parameter=2': 'data',
+  'components-endpoint:https://irving-multisite.test/api/components?path=/test-page&context=site&extra-parameter=3': 'data',
+  'components-endpoint:https://irving-multisite.test/api/components?path=/test-article&context=site': 'data',
+  'components-endpoint:https://irving-multisite.test/api/components?path=/test-article/&context=site': 'data',
+  'components-endpoint:https://irving-multisite.test/api/components?path=/test-term&context=site': 'data',
+  'components-endpoint:https://irving-multisite.test/api/components?path=/test-term&context=site&another-param': 'data',
+  'components-endpoint:https://irving-multisite.test/api/components?path=/test-test-test': 'data',
 };
 /* eslint-enable max-len */
 

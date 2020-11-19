@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0-alpha.8](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-alpha.7...v5.2.0-alpha.8) (2020-11-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.2.0-alpha.7](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-alpha.6...v5.2.0-alpha.7) (2020-11-16)
+
+
+### Bug Fixes
+
+* **multisite:** add multisite to passthrough, fix tests ([cbd8784](https://github.com/alleyinteractive/irving/packages/example-package/commit/cbd878485663769156b0aa7540c8331a5eda330a))
+* **multisite:** begin merging together various env functionality ([7ecbdaa](https://github.com/alleyinteractive/irving/packages/example-package/commit/7ecbdaa1d77c87d018089f926d8c243ecf326433))
+* **wordpress:** uncomment favicon in wp package proxies ([5274feb](https://github.com/alleyinteractive/irving/packages/example-package/commit/5274feb09b13a9f124b2b5f9e05f86a3f923dfdd))
+
+
+
+
+
+# [5.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-alpha.5...v5.2.0-alpha.6) (2020-11-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.2.0-alpha.4](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-alpha.3...v5.2.0-alpha.4) (2020-11-10)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.2.0-alpha.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-alpha.1...v5.2.0-alpha.3) (2020-11-09)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.2.0-alpha.2](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-alpha.1...v5.2.0-alpha.2) (2020-11-09)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
 # [5.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.1.1-alpha.0...v5.2.0-alpha.0) (2020-11-04)
 
 **Note:** Version bump only for package @irvingjs/wordpress

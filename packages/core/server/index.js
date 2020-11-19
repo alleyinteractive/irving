@@ -6,22 +6,15 @@ const getMonitorService = require(
 const monitorService = getMonitorService();
 monitorService.start();
 
-const getEnv = require('../config/env');
-const {
-  API_ROOT_URL,
-  API_ORIGIN,
-} = getEnv();
+// setup env
+require('../config/env')();
 
 const express = require('express');
-const { createProxyMiddleware } = require('http-proxy-middleware');
 const cookiesMiddleware = require('universal-cookie-express');
-const proxyPassthrough = require('../config/proxyPassthrough');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const cacheMiddleware = require('./cache');
+const proxyMiddleware = require('./proxy');
 const customizeRedirect = require('./customizeRedirect');
-
-const multisiteContext = require('../config/irving/requireMultisiteConfig');
-const maybeReplaceRootVars = require('../utils/maybeReplaceRootVars');
 
 // Start log service.
 const logService = require('../services/logService/getServiceFromFilesystem');
@@ -29,11 +22,6 @@ const log = logService('irving:server');
 
 // Create app.
 const app = express();
-
-app.use((req, res, next) => {
-  maybeReplaceRootVars(process.env, multisiteContext, req.hostname);
-  next();
-});
 
 // Clearing the Redis cache.
 cacheMiddleware(app);
@@ -48,19 +36,8 @@ const irvingServerMiddleware = getValueFromFiles(
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
-// Set up a reusable proxy for responses that should be served directly.
-const passthrough = createProxyMiddleware({
-  changeOrigin: true,
-  followRedirects: true,
-  secure: 'development' !== process.env.NODE_ENV,
-  target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
-  xfwd: true,
-});
-
-// Create proxies for each configured proxy pattern.
-proxyPassthrough.forEach((pattern) => {
-  app.use(pattern, passthrough);
-});
+// Create proxy middlewares.
+proxyMiddleware(app);
 
 // Add universal cookies middleware.
 app.use(cookiesMiddleware());

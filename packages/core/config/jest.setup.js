@@ -7,7 +7,6 @@ global.console = require('../__mocks__/console');
 // Put in a value for this for testing.
 process.env.IRVING_EXECUTION_CONTEXT = 'development_server';
 
-global.irvingEnv = process.env;
 global.proxyPassthrough = [
   '/test/**/*',
 ];

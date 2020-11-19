@@ -1,56 +1,62 @@
-// const getValueFromFiles = require('../config/irving/getValueFromFiles');
-const {
-  NODE_ENV,
-  ROOT_URL,
-} = process.env;
-
-// TODO: configure irving.config.js to serve this configuration object that
-// sets the root host to redirect to and the protocol to enforce.
-//
-// const { redirectHost: config } = getValueFromFiles(
-//   'irving.config.js',
-//   {}
-// );
-//
-// If the host does not exist, the function should exit per the customizeRedirect
-// function below.
-const config = {
-  host: 'irving.alley.test',
-  protocol: 'https',
-};
-
-const customizeRedirect = () => (
-  (req, res, next) => {
-    const hostMatch = ROOT_URL.includes(req.headers.host);
-    const hasConfig = 0 !== Object.keys(config).length;
-    const isDev = 'development' === NODE_ENV;
-
-    /**
-     * Move on if:
-     * - current request is not for the configured ROOT_URL
-     * - no config was added
-     * - in a dev environment
-     */
-    if (! hostMatch || ! hasConfig || isDev) {
-      return next();
-    }
-
-    const requestProtocol = req.headers['x-forwarded-proto'] || req.protocol;
-
-    const {
-      host,
-      protocol,
-    } = config;
-
-    if (
-      protocol !== requestProtocol ||
-      host !== req.get('Host')
-    ) {
-      return res.redirect([`${protocol}://${host}`, req.url].join(''));
-    }
-
-    return res.redirect([`${requestProtocol}://${host}`, req.url].join(''));
-  }
+const getValueFromFiles = require('../config/irving/getValueFromFiles');
+const { NODE_ENV } = process.env;
+const config = getValueFromFiles(
+  'config/redirect.js',
+  {}
 );
+
+const customizeRedirect = (req, res, next) => {
+  const hasConfig = !! Object.keys(config).length;
+  const isDev = 'development' === NODE_ENV;
+
+  /**
+   * Move on if:
+   * - no config was added
+   * - in a dev environment
+   */
+  if (! hasConfig || isDev) {
+    return next();
+  }
+
+  const {
+    host,
+    protocol,
+    https,
+    subDomain,
+    reverse,
+  } = config;
+  const requestHost = req.hostname;
+  const requestProtocol = req.get('x-forwarded-proto') || req.protocol;
+  // Fall back to request host if none configured.
+  let targetHost = (host || requestHost);
+  // Fall back to request protocol if none configured.
+  const targetProtocol = protocol || requestProtocol;
+
+  // check host.
+  let redirectHost = host !== requestHost;
+
+  // check protocol.
+  const redirectProtocol = protocol !== requestProtocol ||
+    (https && 'https' !== requestProtocol);
+
+  // redirect naked to subdomain (default www).
+  if (! reverse && subDomain && ! requestHost.includes(subDomain)) {
+    targetHost = `${subDomain}.${targetHost}`;
+    redirectHost = true;
+  }
+
+  // redirect subdomain to naked.
+  if (reverse && subDomain && requestHost.includes(subDomain)) {
+    targetHost.replace(`${subDomain}.`, '');
+    redirectHost = true;
+  }
+
+  // perform redirect.
+  if (redirectHost || redirectProtocol) {
+    return res.redirect([`${targetProtocol}://${targetHost}`, req.url].join(''));
+  }
+
+  next();
+};
 
 module.exports = customizeRedirect;

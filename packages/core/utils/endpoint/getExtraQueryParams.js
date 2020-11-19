@@ -1,15 +1,10 @@
-import getEnv from 'utils/universalEnv';
-
-// To access environment variables at run time in a client context we must
-// access them through a global provided by the server render.
-const env = getEnv();
-
 /**
  * Get any query parameters that should be included with every components request.
  *
+ * @param {object} env Current enviornmental variables.
  * @returns {object}
  */
-const getExtraQueryParams = () => Object
+const getExtraQueryParams = (env) => Object
   .keys(env)
   .filter((key) => 0 === key.indexOf('API_QUERY_PARAM_'))
   .reduce((acc, key) => {
@@ -20,4 +15,4 @@ const getExtraQueryParams = () => Object
     };
   }, {});
 
-export default getExtraQueryParams;
+module.exports = getExtraQueryParams;
