@@ -14,7 +14,7 @@ When Irving is transpiled, only the `.env` file variables are available in the `
 The `multisite.config.js` file should be created alongside the main `irving.config.js` file, in the project root directory. This file exports an array of objects with the following shape:
 
 ```javascript
-[
+const config = [
   {
     domain: 'test-site.example.com',
     vars: {
@@ -29,7 +29,10 @@ The `multisite.config.js` file should be created alongside the main `irving.conf
       ROOT_URL: 'https://another-site.example.com',
     },
   },
-]
+];
+
+module.exports = config;
+```
 
 The `domain` key is used to match the value of the incoming hostname. If the hostname matches any in the array, the keys and values in the `vars` object will supersede any equivalent keys in the `.env` file. While at a minimum the `API_ROOT_URL` and `ROOT_URL` variables must be set to enable multisite behavior, it is possible to override any other environment variable, or add extra variables.
 
