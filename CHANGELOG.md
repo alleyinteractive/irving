@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0-beta.1](https://github.com/alleyinteractive/irving/compare/v5.2.0-beta.0...v5.2.0-beta.1) (2020-11-20)
+
+
+### Bug Fixes
+
+* **multisite:** add multisite config default to published files in core ([3db445f](https://github.com/alleyinteractive/irving/commit/3db445faa4c464ad30c9d53eee1bf9edd0b9fb48))
+
+
+
+
+
 # [5.2.0-beta.0](https://github.com/alleyinteractive/irving/compare/v5.2.0-alpha.8...v5.2.0-beta.0) (2020-11-18)
 
 **Note:** Version bump only for package irving
