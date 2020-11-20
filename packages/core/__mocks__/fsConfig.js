@@ -18,13 +18,6 @@ module.exports = () => {
         '@irvingjs/test-package-three': '0.0.0',
       },
     }),
-    [path.join(process.cwd(), 'config/redirects.js')]: `module.exorts = {
-      host: 'irving.alley.test',
-      protocol: 'https',
-      https: true,
-      subDomain: 'www',
-      reverse: true,
-    };`,
     [path.join(testPackage, 'test.js')]: JSON.stringify({ field: 'test' }),
     [path.join(testPackage, 'services/cacheService.js')]: 'cacheService',
     [path.join(testPackageTwo, 'services/logService.js')]: 'logService',
