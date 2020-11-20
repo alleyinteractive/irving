@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import get from 'lodash/fp/get';
 import PropTypes from 'prop-types';
-import getEnv from '@irvingjs/core/utils/universalEnv';
+import getEnv from '@irvingjs/core/config/irving/getEnv';
 import styles from './adminBar.css';
-
-const env = getEnv();
-const {
-  API_ORIGIN,
-  API_ROOT_URL,
-} = env;
 
 const AdminBar = (props) => {
   const {
     iframeSrc,
   } = props;
+  const hostname = useSelector((state) => get('route.hostname', state));
+  const { API_ORIGIN, API_ROOT_URL } = getEnv(hostname);
   const iframeOrigin = API_ORIGIN ||
     API_ROOT_URL.replace('/wp-json/irving/v1', '');
   const [hover, setHover] = useState(false);

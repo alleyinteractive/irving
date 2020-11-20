@@ -1,6 +1,5 @@
 // Global passed in via webpack define plugin
-/* global appView, errorView, irvingEnv */
-import 'source-map-support/register';
+/* global appView, errorView */
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -16,6 +15,7 @@ import getLogService from '@irvingjs/services/logService';
 import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
+import createClientEnv from 'config/irving/createClientEnv';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
 
@@ -32,6 +32,10 @@ const logRequest = getLogService('irving:render:request');
  * @param {object} clientStats Webpack client-side build statistics object.
  **/
 const render = async (req, res, clientStats) => {
+  // Set up multisite env as early as possible
+  const env = createClientEnv(req.hostname);
+
+  // Initialize store and middleware.
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     rootReducer,
@@ -50,6 +54,7 @@ const render = async (req, res, clientStats) => {
 
   // Sync express request with route state.
   dispatch(actionLocationChange('PUSH', {
+    hostname: req.hostname,
     pathname: req.path,
     search: `?${search}`,
     cookie: req.universalCookies.getAll({ doNotParse: true }),
@@ -86,7 +91,7 @@ const render = async (req, res, clientStats) => {
     {
       Wrapper: AppWrapper,
       head: {
-        end: [getWebpackAssetTags(clientStats)],
+        end: [getWebpackAssetTags(clientStats, req.hostname)],
       },
     },
     clientStats
@@ -95,7 +100,7 @@ const render = async (req, res, clientStats) => {
   const stateEncoded = encodeState(getState());
   const templateVars = {
     preRenderedState: stateEncoded,
-    env: JSON.stringify(irvingEnv),
+    env: JSON.stringify(env),
     ...customTemplateVars,
   };
 

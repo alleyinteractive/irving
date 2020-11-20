@@ -2,7 +2,7 @@ import AbortController from 'abort-controller';
 import omit from 'lodash/fp/omit';
 import getLogService from '@irvingjs/services/logService';
 import getCacheService from '@irvingjs/services/cacheService';
-import getEnv from 'utils/universalEnv';
+import getEnv from 'config/irving/getEnv';
 
 const log = getLogService('irving:components:data');
 

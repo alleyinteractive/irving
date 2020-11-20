@@ -4,6 +4,7 @@ import purgeCache from './purgeCache';
 jest.mock('ioredis');
 
 const mockRequest = (keys) => ({
+  hostname: 'multisite-one.irving.test',
   body: {
     paths: keys,
   },
@@ -33,7 +34,7 @@ describe('purgeCache', () => {
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe(`Purged 0 entries for key components-endpoint:path=/no-key-for-this*
+          .toBe(`Purged 0 entries for key components-endpoint:https://irving-multisite.test/api/components?path=/no-key-for-this*
 Cache purge successful!`);
       });
     }
@@ -49,7 +50,7 @@ Cache purge successful!`);
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe(`Purged 1 entries for key components-endpoint:path=/&context=site
+          .toBe(`Purged 1 entries for key components-endpoint:https://irving-multisite.test/api/components?path=/&context=site
 Cache purge successful!`);
       });
     }
@@ -65,7 +66,7 @@ Cache purge successful!`);
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe(`Purged 3 entries for key components-endpoint:path=/test-page*
+          .toBe(`Purged 3 entries for key components-endpoint:https://irving-multisite.test/api/components?path=/test-page*
 Cache purge successful!`);
       });
     }
@@ -81,8 +82,8 @@ Cache purge successful!`);
 
       await waitForExpect(() => {
         expect(res.body)
-          .toBe(`Purged 2 entries for key components-endpoint:path=/test-article*
-Purged 2 entries for key components-endpoint:path=/test-term*
+          .toBe(`Purged 2 entries for key components-endpoint:https://irving-multisite.test/api/components?path=/test-article*
+Purged 2 entries for key components-endpoint:https://irving-multisite.test/api/components?path=/test-term*
 Cache purge successful!`);
       });
     }

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import pick from 'lodash/fp/pick';
 import get from 'lodash/fp/get';
-import getEnv from 'utils/universalEnv';
+import getEnv from 'config/irving/getEnv';
 import defaultCookies from 'config/defaultCookies';
 
 /**
@@ -20,10 +20,11 @@ import defaultCookies from 'config/defaultCookies';
  */
 const getCookies = createSelector(
   [
+    get('route.hostname'),
     get('route.cookie'),
   ],
-  (routeCookies) => {
-    const env = getEnv();
+  (hostname, routeCookies) => {
+    const env = getEnv(hostname);
     const envAllowList = env.COOKIE_MAP_LIST ?
       env.COOKIE_MAP_LIST.split(',') :
       [];
