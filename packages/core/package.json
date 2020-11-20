@@ -22,6 +22,7 @@
     "babel.config.web.js",
     "babel.config.node.js",
     "irving.config.js",
+    "multisite.config.js",
     "!*.test.js",
     "!__mocks__/**/*"
   ],
