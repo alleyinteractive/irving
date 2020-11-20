@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v5.2.0-alpha.8...v5.2.0-alpha.9) (2020-11-19)
+
+
+### Bug Fixes
+
+* **changelog:** fix changelog in core, main ([bfe04d2](https://github.com/alleyinteractive/irving/packages/core/commit/bfe04d26e54a9c5af99e742211ceed0596f51b30))
+
+
+
+
+
 # [5.2.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v5.2.0-alpha.7...v5.2.0-alpha.8) (2020-11-16)
 
 **Note:** Version bump only for package @irvingjs/core
