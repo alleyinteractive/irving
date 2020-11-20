@@ -1,15 +1,13 @@
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const { NODE_ENV } = process.env;
 const config = getValueFromFiles(
-  'config/redirect.js',
+  'server/customizeRedirect.js',
   {
     https: true,
     subDomain: 'www',
     reverse: true,
   }
 );
-
-console.log(config);
 
 /**
  * Generate a URL to which express should redirect.
@@ -26,40 +24,63 @@ const getRedirect = (req, redirectConfig) => {
     subDomain,
     reverse,
   } = redirectConfig;
-  const requestHost = req.hostname;
-  const requestProtocol = req.get('x-forwarded-proto') || req.protocol;
-  // Fall back to request host if none configured.
-  let targetHost = requestHost;
-  // Fall back to request protocol if none configured.
-  let targetProtocol = requestProtocol;
 
   // check protocol.
-  let redirectProtocol = false;
-  if ((protocol && protocol !== requestProtocol)) {
+  const requestProtocol = req.get('x-forwarded-proto') || req.protocol;
+  let redirectProtocol;
+  let targetProtocol;
+  switch (true) {
     // redirect to custom protocol.
-    targetProtocol = protocol;
-    redirectProtocol = true;
-  } else if (https && 'https' !== requestProtocol) {
+    case (protocol && protocol !== requestProtocol):
+      targetProtocol = protocol;
+      redirectProtocol = true;
+      break;
+
     // Redirect http to https.
-    targetProtocol = 'https';
-    redirectProtocol = true;
+    case (https && 'https' !== requestProtocol):
+      targetProtocol = 'https';
+      redirectProtocol = true;
+      break;
+
+    // Keep request protocol, no redirect necessary.
+    default:
+      targetProtocol = requestProtocol;
+      redirectProtocol = false;
+      break;
   }
 
   // check host.
-  let redirectHost = false;
-  if (host && host !== requestHost) {
-    targetHost = host;
-    redirectHost = true;
-  } else if (! reverse && subDomain && ! requestHost.includes(subDomain)) {
+  const requestHost = req.hostname;
+  let redirectHost;
+  let targetHost;
+  switch (true) {
+    // If custom host is set and not the same as the request host, use that as the redirect.
+    case (host && host !== requestHost):
+      targetHost = host;
+      redirectHost = true;
+      break;
+
     // redirect naked to subdomain (default www).
-    targetHost = `${subDomain}.${targetHost}`;
-    redirectHost = true;
-  } else if (reverse && subDomain && requestHost.includes(subDomain)) {
+    case (! reverse && subDomain && ! requestHost.includes(subDomain)):
+      targetHost = `${subDomain}.${requestHost}`;
+      redirectHost = true;
+      break;
+
     // redirect subdomain to naked.
-    targetHost = targetHost.replace(`${subDomain}.`, '');
-    redirectHost = true;
+    case (reverse && subDomain && requestHost.includes(subDomain)):
+      targetHost = requestHost.replace(`${subDomain}.`, '');
+      redirectHost = true;
+      break;
+
+    // Use original request host, no redirect necessary.
+    default:
+      targetHost = requestHost;
+      redirectHost = false;
+      break;
   }
 
+  // If either host or protocol are marked as needing a redirect,
+  // perform the redirect.
   if (redirectHost || redirectProtocol) {
     return `${targetProtocol}://${targetHost}`;
   }
@@ -84,13 +105,11 @@ const customizeRedirect = (req, res, next) => {
    * - no config was added
    * - in a dev environment
    */
-  // if (! hasConfig || isDev) {
-  //   return next();
-  // }
+  if (! hasConfig || isDev) {
+    return next();
+  }
 
   const redirect = getRedirect(req, config);
-
-  console.log(redirect);
 
   // perform redirect.
   if (redirect) {
