@@ -60,13 +60,13 @@ const getRedirect = (req, redirectConfig) => {
       redirectHost = true;
       break;
 
-    // redirect naked to subdomain (default www).
+    // redirect naked to subdomain (test.com -> www.test.com).
     case (! reverse && subDomain && ! requestHost.includes(subDomain)):
       targetHost = `${subDomain}.${requestHost}`;
       redirectHost = true;
       break;
 
-    // redirect subdomain to naked.
+    // redirect subdomain to naked (www.test.com -> test.com).
     case (reverse && subDomain && requestHost.includes(subDomain)):
       targetHost = requestHost.replace(`${subDomain}.`, '');
       redirectHost = true;
