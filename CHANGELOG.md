@@ -190,13 +190,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
 # [5.1.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v5.0.3...v5.1.0-alpha.10) (2020-10-20)
 
+**Note:** Version bump only for package irving
 
 
-# [5.1.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v5.0.3-alpha.0...v5.1.0-alpha.9) (2020-10-16)
+# [5.1.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.8...v5.1.0-alpha.9) (2020-10-16)
+
+**Note:** Version bump only for package irving
 
 
 
@@ -305,59 +306,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **irving.config.js:** remove some unnecessary fields from config ([8281962](https://github.com/alleyinteractive/irving/commit/82819620694e6c126f31f1926aeb12822cd35406))
 * **link:** fix issue with spreading props into link wrapper component ([fdd4464](https://github.com/alleyinteractive/irving/commit/fdd446475fac9e1bd1afc88e3211273bd983fa04))
 * **storybook docs:** ensure the a11y package is installed ([0922dc8](https://github.com/alleyinteractive/irving/commit/0922dc8ba0f42887892bb06b376e5618a1205836))
-
-
-### Features
-
-* **getapptemplatevars:** pass along clientStats to loadable, extract without loadable plugin ([03539f3](https://github.com/alleyinteractive/irving/commit/03539f38ed6a8a572c8fda56cfd2d181c5ad7422))
-* **withloadable:** add withLoadable hoc ([9fb2869](https://github.com/alleyinteractive/irving/commit/9fb286904dd573fd8dd25605797bf48201fa5306))
-
-
-
-# [3.0.0](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.6...v3.0.0) (2020-08-03)
-
-
-
-# [3.0.0-beta.6](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2020-07-26)
-
-
-### Bug Fixes
-
-* **package:** fix core packages ([12712b9](https://github.com/alleyinteractive/irving/commit/12712b96d40e37e447bf30c551091be8fc1cb550))
-
-
-
-# [3.0.0-beta.5](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2020-07-26)
-
-
-### Bug Fixes
-
-* **babel:** install babel runtime ([f7ca697](https://github.com/alleyinteractive/irving/commit/f7ca697a07e9783a67f53d2fb01741ba8e1b1cad))
-
-
-
-# [3.0.0-beta.4](https://github.com/alleyinteractive/irving/compare/v3.0.0-beta.0...v3.0.0-beta.4) (2020-07-26)
-
-
-### Bug Fixes
-
-* **styled-components:** publish assets to styled components package ([8f3fd8a](https://github.com/alleyinteractive/irving/commit/8f3fd8a3d4c440505caec715985a6b40ea5a89a7))
-
-
-
-# [3.0.0-beta.0](https://github.com/alleyinteractive/irving/compare/v2.23.1...v3.0.0-beta.0) (2020-07-24)
-
-
-
-## [2.23.1](https://github.com/alleyinteractive/irving/compare/v2.23.1-beta.4...v2.23.1) (2020-07-21)
-
-
-
-## [2.23.1-beta.4](https://github.com/alleyinteractive/irving/compare/e8e734e1b06b8b0759f37da8701630606e34b568...v2.23.1-beta.4) (2020-07-21)
-
-
-### Bug Fixes
-
 * **loadable:** continue attempting to get loadable stats working properly ([6db6cf0](https://github.com/alleyinteractive/irving/commit/6db6cf047cf0b1af57a0fbb6e8aeee2fa2cfb887))
 * **loadable:** continued attempts to get this working, appHtml is broken though ([e1cce00](https://github.com/alleyinteractive/irving/commit/e1cce0012cefceb0d0c50e5fc3197233d7780d74))
 * **loadable:** remove universal component packages from core, babel preset ([e2f09e8](https://github.com/alleyinteractive/irving/commit/e2f09e8ea77ed2e3d5499c927b2f9b1593e4ff5f))
@@ -365,27 +313,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
+* **getapptemplatevars:** pass along clientStats to loadable, extract without loadable plugin ([03539f3](https://github.com/alleyinteractive/irving/commit/03539f38ed6a8a572c8fda56cfd2d181c5ad7422))
+* **withloadable:** add withLoadable hoc ([9fb2869](https://github.com/alleyinteractive/irving/commit/9fb286904dd573fd8dd25605797bf48201fa5306))
 * **loadable:** remove universal component from core ([e8e734e](https://github.com/alleyinteractive/irving/commit/e8e734e1b06b8b0759f37da8701630606e34b568))
-
-
-
-
-
-# [5.1.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.8...v5.1.0-alpha.9) (2020-10-16)
-
-
-### Bug Fixes
-
-* **blockeditor:** tweak sitetheme logic for block styles to make it work ([2c2c2a4](https://github.com/alleyinteractive/irving/commit/2c2c2a4ee1624f8433f0cfdf24032ed568ef5150))
-* **editorstyles:** a fix for developing with editorstyles ([6bde115](https://github.com/alleyinteractive/irving/commit/6bde115882d65fbe5b949ac0aed0dba22eba3201))
-
-
-
-
-
-# [5.1.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v5.1.0-alpha.7...v5.1.0-alpha.8) (2020-10-15)
-
-**Note:** Version bump only for package irving
 
 ## [5.0.3](https://github.com/alleyinteractive/irving/compare/v5.0.3-alpha.0...v5.0.3) (2020-10-16)
 
