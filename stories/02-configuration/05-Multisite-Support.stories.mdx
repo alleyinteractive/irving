@@ -1,0 +1,39 @@
+<Meta title="Configuration|Multisite Support" />
+
+# Multisite Support
+This section outlines how to configure Irving to support multiple different sites using a single instance.
+
+## Overview
+A single instance of Irving is capable (since version 5.2.0) of serving multiple different URLs. Irving will query a different backend API root URL conditionally based on the incoming hostname in the HTTP request. Each backend host should be configured to be compatible with the same component map.
+
+The `ROOT_URL` and `API_ROOT_URL` environment variables defined in the `.env` file are the default values for the frontend and backend API root URLs. Optionally, these can be overridden by creating a config file named `multisite.config.js` in the Irving project root. If present, it is possible to override the `ROOT_URL` and `API_ROOT_URL` values at run time for matching hostnames.
+
+When Irving is transpiled, only the `.env` file variables are available in the `process.env` object. Multisite support uses a wrapper object around the base environment variables. The overridden variables are only available through this method, which also requires the `window.location.href` global to be set.
+
+## Configuration File
+The `multisite.config.js` file should be created alongside the main `irving.config.js` file, in the project root directory. This file exports an array of objects with the following shape:
+
+```javascript
+const config = [
+  {
+    domain: 'test-site.example.com',
+    vars: {
+      API_ROOT_URL: 'https://test-site-api.example.com/wp-json/irving/v1',
+      ROOT_URL: 'https://test-site.example.com',
+    },
+  },
+  {
+    domain: 'another-site.example.com',
+    vars: {
+      API_ROOT_URL: 'https://another-site-api.example.com/wp-json/irving/v1',
+      ROOT_URL: 'https://another-site.example.com',
+    },
+  },
+];
+
+module.exports = config;
+```
+
+The `domain` key is used to match the value of the incoming hostname. If the hostname matches any in the array, the keys and values in the `vars` object will supersede any equivalent keys in the `.env` file. While at a minimum the `API_ROOT_URL` and `ROOT_URL` variables must be set to enable multisite behavior, it is possible to override any other environment variable, or add extra variables.
+
+If the none of the `domain` keys match the current hostname, the defaults in the `.env` file will apply.
