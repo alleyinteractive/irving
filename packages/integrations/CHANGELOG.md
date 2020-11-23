@@ -9,12 +9,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **pico:** push event to data layer upon setting Coral username ([94bd8f5](https://github.com/alleyinteractive/irving/packages/integrations/commit/94bd8f5d01a9f94ee2cfe9793ee3ab0e8253f0e5))
+# [5.2.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.2.0-beta.1...v5.2.0) (2020-11-23)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.2.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.2.0-beta.0...v5.2.0-beta.1) (2020-11-20)
+
+**Note:** Version bump only for package @irvingjs/integrations
 
 
 
 
 
 # [5.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.2.0-alpha.8...v5.2.0-alpha.9) (2020-11-19)
+
+**Note:** Version bump only for package @irvingjs/integrations
+# [5.2.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.2.0-alpha.8...v5.2.0-beta.0) (2020-11-18)
 
 **Note:** Version bump only for package @irvingjs/integrations
 
