@@ -3,12 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [5.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-alpha.8...v5.2.0-alpha.9) (2020-11-19)
+# [5.3.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0...v5.3.0-alpha.0) (2020-11-23)
+
+
+
+# [5.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-beta.0...v5.2.0-alpha.9) (2020-11-19)
 
 **Note:** Version bump only for package @irvingjs/wordpress
 
 
 
+
+
+# [5.2.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-beta.1...v5.2.0) (2020-11-23)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.2.0-beta.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-beta.0...v5.2.0-beta.1) (2020-11-20)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.2.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-alpha.8...v5.2.0-beta.0) (2020-11-18)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+# [5.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-alpha.8...v5.2.0-alpha.9) (2020-11-19)
+
+**Note:** Version bump only for package @irvingjs/wordpress
 
 
 # [5.2.0-alpha.8](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.2.0-alpha.7...v5.2.0-alpha.8) (2020-11-16)

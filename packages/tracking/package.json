@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/tracking",
-	"version": "5.2.0-alpha.8",
+	"version": "5.3.0-alpha.0",
 	"description": "Integration for React Tracking",
 	"files": [
 		"services/**/*",
