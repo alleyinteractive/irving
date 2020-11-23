@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.2.0...v5.3.0-alpha.0) (2020-11-23)
+
+
+
+# [5.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.2.0-beta.0...v5.2.0-alpha.9) (2020-11-19)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
 
 # [5.2.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.2.0-beta.1...v5.2.0) (2020-11-23)
 
