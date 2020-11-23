@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.0...v5.3.0-alpha.1) (2020-11-23)
+
+
+### Bug Fixes
+
+* **redirects:** switch to using a switch statement for both host and protocol ([f89a9e3](https://github.com/alleyinteractive/irving/packages/core/commit/f89a9e304dff6d57f239c1d9aec10b50b233777f))
+* **test:** remove unnecessary mock ([1ba0ffa](https://github.com/alleyinteractive/irving/packages/core/commit/1ba0ffa7d5da2e787e90f3b895d98fc947b05882))
+
+
+### Features
+
+* **redirects:** replicate some features of express-naked-redirect to prevent breaking changes ([777c8de](https://github.com/alleyinteractive/irving/packages/core/commit/777c8de1632a74e6334226da81e86da1cb2b31aa))
+
+
+
+
+
 # [5.3.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.2.0...v5.3.0-alpha.0) (2020-11-23)
 
 
