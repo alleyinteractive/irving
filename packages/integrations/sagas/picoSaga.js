@@ -5,6 +5,7 @@ import {
 } from 'redux-saga/effects';
 import {
   SEND_PICO_VERIFICATION_REQUEST,
+  SET_CORAL_USERNAME,
 } from '../actions/types';
 import { actionReceivePicoVerificationFailure } from '../actions/picoActions';
 import {
@@ -17,6 +18,7 @@ import {
 // The Pico saga.
 export default [
   takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
+  takeLatest(SET_CORAL_USERNAME, trackSetCoralUsername),
 ];
 
 /**
@@ -79,4 +81,15 @@ async function sendVerificationRequest(payload) {
   }
 
   return false;
+}
+
+/**
+ * Send an event to the data layer upon successfully setting Coral username.
+ */
+function trackSetCoralUsername() {
+// To be refactored into analytics component at later date. See LEDE-451.
+  window.dataLayer = window.dataLayer ?? [];
+  window.dataLayer.push({
+    event: 'irving.setCoralUsername',
+  });
 }
