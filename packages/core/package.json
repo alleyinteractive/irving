@@ -71,7 +71,6 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^4.0.0",
     "express": "^4.17.1",
-    "express-naked-redirect": "^0.1.7",
     "file-loader": "^6.0.0",
     "glob-to-regexp": "^0.4.1",
     "history": "^4.10.1",
