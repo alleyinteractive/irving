@@ -12,7 +12,7 @@ const Parsely = (props) => {
 
   return (
     <>
-      <script id="parsely-cfg" src={`//cdn.parsely.com/keys/{site}/p.js`} />
+      <script id="parsely-cfg" src={`//cdn.parsely.com/keys/${site}/p.js`} />
     </>
   );
 };
