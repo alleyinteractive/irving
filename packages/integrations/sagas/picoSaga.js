@@ -3,6 +3,7 @@ import {
   put,
   takeLatest,
 } from 'redux-saga/effects';
+import getEnv from '@irvingjs/core/config/irving/getEnv';
 import {
   SEND_PICO_VERIFICATION_REQUEST,
 } from '../actions/types';
@@ -64,9 +65,10 @@ async function sendVerificationRequest(payload) {
       email,
       id,
     } = payload;
+    const { API_ROOT_URL } = getEnv();
 
     const response = await fetch(
-      `${process.env.API_ROOT_URL}/data/validate_sso_user?user=${encodeURIComponent(email)}&id=${id}` // eslint-disable-line max-len
+      `${API_ROOT_URL}/data/validate_sso_user?user=${encodeURIComponent(email)}&id=${id}` // eslint-disable-line max-len
     ).then((res) => res.json());
 
     return response;
