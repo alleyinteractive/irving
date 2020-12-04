@@ -3,16 +3,35 @@
 # Adding a `Post` Template
 In this section, we'll scaffold a WordPress `post` template in `single.json`.
 
+This template will render any single post type instance (except `page`) in WordPress. We'll use this template to construct a layout for a blog post.
+
 ## Table of Contents
 * []()
 
 ## Create `templates/single.json`
-`single.json` will any single post type instance (except `page`) in WordPress. We'll use this template to construct a layout for a blog post.
+If you haven't already, create `/wp-content/your-theme/templates/single.json` using the [Irving Starter Theme as your base](https://github.com/alleyinteractive/irving-starter-theme/blob/main/templates/single.json).
 
-### Breaking it down
-
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/text",
+          "config": {
+            "content": "Welcome to single.json"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
 
 ### Adding `irving/post-title`
+We'll start by removing the static `irving/text` and replacing it with `irving/post-title`.
+
 ```json
 {
   "page": [
@@ -21,6 +40,56 @@ In this section, we'll scaffold a WordPress `post` template in `single.json`.
       "children": [
         {
           "name": "irving/post-title"
+        }
+      ]
+    }
+  ]
+}
+```
+
+The `irving/post-title` ([docs](?path=/docs/wordpress-components-post-title--page)) is an alias for `irving/text`, but has a callback which sets `content` to the value of `get_the_title()`.
+
+We'll also set the tag and theme to `h1`.
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/post-title",
+          "theme": "h1",
+          "config": {
+            "tag": "h1"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Centering the content
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "lg"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "theme": "h2",
+              "config": {
+                "tag": "h2"
+              }
+            }
+          ]
         }
       ]
     }
