@@ -15,7 +15,7 @@ branches:
 jobs:
   include: 
     - 
-      if: branch = main AND type != pull_request
+      if: type = pull_request
       script: npm run test
     - 
       if: branch = main AND type != pull_request
