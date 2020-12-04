@@ -26,9 +26,9 @@ install:
 
 script:
   - if [ $TRAVIS_PULL_REQUEST == "true" ]; then
-      bash bin/test.sh
+      npm run test
     else
-      bash bin/deploy.sh
+      bin/deploy.sh
     fi
 
 cache:
