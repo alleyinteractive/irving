@@ -12,13 +12,17 @@ branches:
     - main
     - /^release\/.*$/
     
+stages:
+  - name: test
+    if: type = pull_request
+  - name: deploy
+    if: branch = main AND type != pull_request
+    
 jobs:
   include: 
     - stage: test
-      if: type = pull_request
       script: npm run test
     - stage: deploy
-      if: branch = main AND type != pull_request
       script: bash bin/deploy.sh
       
 notifications:
