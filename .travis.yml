@@ -24,12 +24,7 @@ install:
   - npm ci
   - npm run develop:bootstrap
 
-script:
-  - if [[ $TRAVIS_PULL_REQUEST == "true" ]]; then
-      npm run test
-    else
-      bin/deploy.sh
-    fi
+script: bash bin/build.sh
 
 cache:
   directories:
