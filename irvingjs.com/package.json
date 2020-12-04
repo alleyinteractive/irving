@@ -1,7 +1,7 @@
 {
-  "name": "lede-landing-starter",
+  "name": "irving-landing",
   "version": "1.0.0",
-  "description": "A starting point for creating the landing page for a future Lede site",
+  "description": "A landing page for Irving JS",
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",
     "autoprefixer": "^10.0.1",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alleyinteractive/lede-landing-starter"
+    "url": "https://github.com/alleyinteractive/irving"
   },
   "engines": {
     "node": "12",

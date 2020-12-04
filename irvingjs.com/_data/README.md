@@ -70,12 +70,6 @@ Address, phone number and email are all requried for the legal pages.
 
 > Used on legal pages in the point of contact.
 
-**`contact.email`**
-
-> The main contact email, used on legal pages.
->
-> Use the `{% mailto %}` shortcode to output a mailto link using this email address. See [`the lede-plugin`](_eleventy/lede-plugin/shortcodes/mailto.js) for more usage notes.
-
 **`contact.twitterUsername`** `undefined`
 
 > Used in the `twitter:site` meta tag, but also available site-side as-needed.

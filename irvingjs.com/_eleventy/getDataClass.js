@@ -1,5 +1,5 @@
-const path = require('path')
-const paths = require('./lede-plugin/paths')
+const path = require('path');
+const paths = require('./irving-plugin/paths');
 const processStyles = require('./processStyles');
 
 /**

@@ -1,6 +1,7 @@
 # dependencies
 /node_modules
 /packages/**/node_modules
+/irvingjs.com/node_modules
 .npmrc
 
 # distribution files

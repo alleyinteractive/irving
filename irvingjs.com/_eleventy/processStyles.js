@@ -3,7 +3,7 @@ const postcss = require('postcss')
 const cssnano = require('cssnano')
 const units = require('postcss-units')
 const autoprefixer = require('autoprefixer')
-const paths = require('./lede-plugin/paths');
+const paths = require('./irving-plugin/paths');
 
 /**
  * Process Sass styles.

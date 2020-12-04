@@ -17,7 +17,7 @@ Styles are processed by the [`processStyles`](../_eleventy/processStyles.js) hel
 
 ## Pages Styles
 
-Page styles are processed and inlined to the document head using the [`{% inlineCSS %}` shortcode](../_eleventy/lede-plugin/shortcodes/inlineCSS.js).
+Page styles are processed and inlined to the document head using the [`{% inlineCSS %}` shortcode](../_eleventy/irving-plugin/shortcodes/inlineCSS.js).
 
 ## @use
 
