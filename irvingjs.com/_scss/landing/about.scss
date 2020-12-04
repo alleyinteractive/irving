@@ -1,0 +1,29 @@
+@use 'core/color';
+@use 'core/type';
+@use 'core/layout';
+@use 'core/a11y';
+@use 'core/breakpoints' as *;
+
+.about {
+  background-color: color.$primary;
+  color: color.$white;
+  padding: rem(100) 0;
+}
+
+.about__container {
+  @include layout.auto-margins;
+  font-size: rem(20);
+  line-height: 1.5;
+  max-width: rem(684);
+  width: calc(100% - rem(40));
+}
+
+.about__intro {
+  @media (media(min, lg)) {
+    padding: 0 rem(40);
+  }
+
+  strong {
+    font-style: italic;
+  }
+}

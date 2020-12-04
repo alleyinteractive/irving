@@ -1,0 +1,10 @@
+@import 'global/reset';
+@import 'global/base';
+@import 'landing/fonts';
+@import 'landing/landing-base';
+
+// Begin optional partials.
+@import 'landing/header';
+@import 'landing/about';
+@import 'landing/contact';
+@import 'global/footer';

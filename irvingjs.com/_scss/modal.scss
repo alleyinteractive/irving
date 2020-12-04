@@ -1,0 +1,112 @@
+@use 'core/utils';
+@use 'core/layout';
+@use 'core/breakpoints' as *;
+@use 'core/color';
+
+.modal {
+  position: relative;
+  z-index: 10;
+}
+
+.modal__overlay {
+  background: rgba(0, 0, 0, 0.25);
+  bottom: 0;
+  display: block;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.modal__container {
+  background-color: color.$black;
+  color: color.$black;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  max-height: 100vh;
+  min-height: rem(300);
+  padding: rem(20);
+  position: relative;
+  width: 100%;
+  will-change: transform;
+
+  @media (media(min, md)) {
+    height: 50vh;
+    min-height: rem(500);
+  }
+}
+
+.modal__close {
+  --close-button-fill-color: #{color.$black};
+  height: rem(18);
+  position: absolute;
+  right: rem(10);
+  top: rem(10);
+  width: rem(18);
+}
+
+.modal__header,
+.modal__content {
+  max-width: rem(1024);
+  position: relative;
+  width: 100%;
+  z-index: 4;
+}
+
+.modal__header {
+  @include layout.auto-margins;
+  margin-bottom: rem(32);
+  position: relative;
+}
+
+.modal__title {
+  color: color.$black;
+  font-size: rem(28);
+  font-style: italic;
+  font-weight: 700;
+  line-height: (37/28);
+  text-align: center;
+
+  span {
+    color: color.$white;
+  }
+}
+
+.modal__content {
+  @include layout.auto-margins;
+  color: color.$black;
+  line-height: 1.5;
+}
+
+.modal__return {
+  color: color.$black;
+  font-size: rem(14);
+}
+
+@keyframes mmslideIn {
+  from { transform: translateY(-15%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes mmslideOut {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10%); }
+}
+
+.micromodal-slide {
+  display: none;
+
+  &.is-open {
+    display: block;
+  }
+
+  &[aria-hidden="false"] .modal__container {
+    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+  }
+
+  & [aria-hidden="true"] .modal__container {
+    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+  }
+}

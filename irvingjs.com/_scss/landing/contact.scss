@@ -1,0 +1,28 @@
+@use 'core/color';
+@use 'core/layout';
+@use 'core/breakpoints' as *;
+
+.contact {
+  align-items: center;
+  color: color.$black;
+  display: flex;
+  flex-direction: column;
+  margin: rem(100) auto;
+  width: rem(640);
+}
+
+.contact__heading {
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.contact__note {
+  font-size: 1rem;
+
+  a {
+    color: color.$primary;
+    display: block;
+    word-break: break-all; // Wrapping is better than overflow, but we'll still try to prevent it below.
+  }
+}

@@ -1,0 +1,37 @@
+@use 'core/breakpoints' as *;
+@use 'core/color';
+@use 'core/layout';
+
+.footer {
+  align-items: center;
+  background-color: color.$gray;
+  color: color.$black;
+  display: flex;
+  font-size: rem(14);
+  padding: rem(36) 0;
+}
+
+.footer__container {
+  @include layout.auto-margins;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: rem(1024);
+}
+
+.footer__logo {
+  height: rem(40);
+  width: rem(40);
+  margin-bottom: 1rem;
+}
+
+.footer__copyright {
+  font-size: rem(11);
+  line-height: (17/11);
+  margin-left: auto;
+  text-align: center;
+
+  a {
+    font-weight: 700;
+  }
+}

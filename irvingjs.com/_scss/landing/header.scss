@@ -1,0 +1,45 @@
+@use 'core/layout';
+@use 'core/breakpoints' as *;
+@use 'core/color';
+
+.header {
+  color: color.$primary;
+  font-style: italic;
+  position: relative;
+  text-align: center;
+  z-index: 0;
+}
+
+.header__container {
+  @include layout.auto-margins;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: rem(150) 0;
+  text-align: center;
+}
+
+.header__logo {
+  display: block;
+  margin-bottom: rem(26);
+}
+
+.header__heading {
+  font-size: rem(24);
+  font-weight: 700;
+  line-height: (37/24);
+  margin-bottom: rem(36);
+  text-transform: uppercase;
+
+  span {
+    color: color.$gray;
+  }
+}
+
+.header__intro {
+  font-size: rem(24);
+  font-weight: 700;
+  line-height: (36/24);
+  max-width: rem(510);
+}
