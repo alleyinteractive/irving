@@ -15,7 +15,7 @@ branches:
 jobs:
   include: 
     - stage: test
-      if: pull_request = true
+      if: type = pull_request
       script: npm run test
     - stage: deploy
       if: branch = main AND pull_request = false
