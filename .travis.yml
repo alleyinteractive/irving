@@ -1,5 +1,3 @@
-sudo: false
-dist: trusty
 language: node_js
 
 node_js:
@@ -13,10 +11,19 @@ branches:
   only:
     - main
     - /^release\/.*$/
-
+    
+jobs:
+  include: 
+    - stage: test
+      if: type = pull_request
+      script: npm run test
+    - stage: deploy
+      if: branch = main AND type != pull_request
+      script: bash bin/deploy.sh
+      
 notifications:
   email: false
-
+  
 # Ensure node and npm major version matches from package.json
 before_install:
   - nvm install "$(jq -r '.engines.node' package.json | egrep -oe "[0-9]+" | head -n1)"
@@ -28,13 +35,4 @@ install:
 
 cache:
   directories:
-    - node_modules
-
-script:
-  - npm run test
-
-deploy:
-  - provider: script
-    script: bash bin/deploy.sh
-    on:
-      branch: main
+    - $HOME/.npm
