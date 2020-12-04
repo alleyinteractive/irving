@@ -1,6 +1,48 @@
 <Meta title="Components|Component Mapping" />
 
 # Component Mapping
+In your Irving application, the `componentMap.js` file is glue between the Components Endpoint and frontend application. This file decides which React components are rendered for any given component name.
+
+## Example
+Let's say you want to create a new `my-project/button` component and map it to `irving/button`. You'll need to register and call that component in your template json.
+If you want to render an `my-project/button` component,
+
+In your Components Endpoint,
+```json
+{
+  "name": "my-project/button",
+  "config": {
+    "content": "Hello World"
+  }
+}
+```
+
+You'd need to create the React com
+
+```html
+<span>Hello World</span>
+```
+
+Example:
+```js
+import createThemedComponentMap from '@irvingjs/styled-components/componentMap';
+import {
+  AdminBar,
+  componentMap as wordpressComponentMap,
+} from '@irvingjs/wordpress';
+
+import Logo from 'components/logo';
+import Button from 'components/bogo';
+
+export default {
+  ...wordpressComponentMap,
+  ...createThemedComponentMap({}),
+  'my-project/logo': Logo,
+  'my-project/button': Button,
+};
+```
+
+When the Component Endpoint is parsed by Irving, the JSON structure
 
 Irving maps components in the API to React components on the frontend via a component map (`componentMap.js`). Irving core includes a prebuilt component map to get you started. Components will not render unless they appear in the component map.
 
@@ -43,6 +85,7 @@ export const Byline = (props) => {
 ```
 ## Mapping The Components
 
+The root of your Irving application will contain `componentMap.js`
 To map, the component, open your `componentMap.js`file, located in the `config` directory.
 
 Next, add your API component and React component to the `componentMap` object below the import statement. You may also re-map Irving core components to a new key or import core components that are no included in the map to begin with. Irving core includes a handy `@component` alias for importing components (illustrated below).
