@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.2...v5.3.0-alpha.3) (2020-12-04)
+
+
+### Bug Fixes
+
+* **multisite:** convert remaining references to process.env.API_ROOT_URL ([9967e12](https://github.com/alleyinteractive/irving/packages/integrations/commit/9967e12b5e1020201dc51ac936e667394c92c139))
+
+
+
+
+
 # [5.3.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.1...v5.3.0-alpha.2) (2020-11-30)
 
 **Note:** Version bump only for package @irvingjs/integrations
