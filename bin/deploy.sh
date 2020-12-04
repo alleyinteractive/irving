@@ -10,4 +10,4 @@ echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
 git checkout main
 npm ci
 npm run prerelease:canary:ci
-# Oh well, do this later: npm run storybook:release
+npm run storybook:release
