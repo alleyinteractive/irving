@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.1-beta.0](https://github.com/alleyinteractive/irving/packages/forms/compare/v5.2.0...v5.2.1-beta.0) (2020-12-04)
+
+
+### Bug Fixes
+
+* **multisite:** convert remaining references to process.env.API_ROOT_URL ([9b07f3c](https://github.com/alleyinteractive/irving/packages/forms/commit/9b07f3ca5f8b7e86798803ad5834c048787d4be9))
+
+
+
+
+
 # [5.2.0](https://github.com/alleyinteractive/irving/packages/forms/compare/v5.2.0-beta.1...v5.2.0) (2020-11-23)
 
 **Note:** Version bump only for package @irvingjs/forms
