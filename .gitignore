@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+/irvingjs.com/node_modules
 /packages/**/node_modules
 /irvingjs.com/node_modules
 .npmrc
