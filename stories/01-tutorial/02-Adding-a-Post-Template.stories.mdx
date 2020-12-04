@@ -1,0 +1,38 @@
+<Meta title="Tutorial|Adding a Post Template" />
+
+# Adding a `Post` Template
+In this section, we'll scaffold a WordPress `post` template in `single.json`.
+
+## Table of Contents
+* []()
+
+## Create `templates/single.json`
+`single.json` will any single post type instance (except `page`) in WordPress. We'll use this template to construct a layout for a blog post.
+
+### Breaking it down
+
+
+### Adding `irving/post-title`
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/post-title"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Adding `irving/post-featured-image`
+### Adding `irving/post-byline`
+### Adding `irving/post-content`
+### Adding some related posts
+
+
+**Up Next**
+[We'll create some new themes to style our template](?path=/docs/tutorial-styling-a-component--page).
