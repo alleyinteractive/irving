@@ -38,6 +38,9 @@ module.exports = (multiConfig) => (
         filename: '[name].js',
         chunkFilename: '[name].js',
         jsonpFunction: 'irvingEditorJsonp',
+        // Expose entry exports, including this bundle's instance of styled-components.
+        library: 'irvingEditor',
+        libraryTarget: 'window',
       },
 
       externals: {
@@ -48,13 +51,14 @@ module.exports = (multiConfig) => (
 
       resolve: {
         alias: aliases,
+        extensions: ['.js', '.json', '.jsx'],
       },
 
       // Loaders
       module: {
         rules: [
           {
-            test: /\.js$/,
+            test: /\.jsx?$/,
             include: (filepath) => (
               (
                 (
