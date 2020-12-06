@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.3...v5.3.0-alpha.4) (2020-12-05)
+
+
+### Bug Fixes
+
+* **deploy:** remove unnecessary conditionals from deploy script ([2b50ee9](https://github.com/alleyinteractive/irving/commit/2b50ee97575416bd3df20c62273d7c46e5adef77))
+
+
+
+
+
 # [5.3.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.2...v5.3.0-alpha.3) (2020-12-04)
 
 
