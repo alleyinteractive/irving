@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.4...v5.3.0-alpha.5) (2020-12-06)
+
+
+### Bug Fixes
+
+* **storybook:** move react-oembed-container dependency to styled components ppackage ([6caf82c](https://github.com/alleyinteractive/irving/packages/core/commit/6caf82c4af59f04e767063566f9d935a4b1e73be))
+
+
+
+
+
 # [5.3.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.0...v5.3.0-alpha.1) (2020-11-23)
 
 
