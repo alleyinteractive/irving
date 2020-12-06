@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.5...v5.3.0-alpha.6) (2020-12-06)
+
+
+### Bug Fixes
+
+* **travis:** remove travis cache for now to test ([92aeb99](https://github.com/alleyinteractive/irving/commit/92aeb99ad5e952cd17d3c8479c836e14de336001))
+
+
+
+
+
 # [5.3.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.4...v5.3.0-alpha.5) (2020-12-06)
 
 
