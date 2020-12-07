@@ -92,8 +92,6 @@
 					<span class="screen-reader-only">{{ config.strings.shortName }}</span>
 					<img src="images/irving-logo.png" />
 				</h1>
-
-				<p class="header__intro">A bunch of react components thrown in a bag and shaken around a bit</p>
 			</div>
 		</header>
 	{% else %}
@@ -109,13 +107,13 @@
 	>
 		{{ content }}
 	</main>
-
+<!--
 	<footer class="footer" role="contentinfo">
 		<div class="footer__container">
 			<img class="footer__logo" src="images/irving-icon.png" />
-			<p>Copyright {{ page.date | date: '%Y' }} {{ config.strings.legalName }}</p>
+			<p>Copyright {{ page.date | date: '%Y' }}. Made by <a href="https://alley.co">Alley</a></p>
 		</div>
-	</footer>
+	</footer> -->
 
 	<!-- build: {{ "now" | date: "%Y-%m-%d %H:%M" }} -->
 </body>
