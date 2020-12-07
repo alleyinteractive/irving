@@ -25,3 +25,7 @@ install:
   - npm run develop:bootstrap
 
 script: bash bin/build.sh
+
+cache:
+  directories:
+    - $HOME/.npm

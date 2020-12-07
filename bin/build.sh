@@ -13,5 +13,5 @@ else
     git checkout main
     npm ci
     npm run prerelease:canary:ci
-    npm run storybook:release
+    # npm run storybook:release
 fi
