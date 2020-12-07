@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.7](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.6...v5.3.0-alpha.7) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+# [5.3.0-alpha.6](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.5...v5.3.0-alpha.6) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
+# [5.3.0-alpha.5](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.4...v5.3.0-alpha.5) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
 # [5.3.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.0...v5.3.0-alpha.1) (2020-11-23)
 
 **Note:** Version bump only for package @irvingjs/postcss
