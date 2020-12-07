@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.6...v5.3.0-alpha.7) (2020-12-06)
+
+
+### Bug Fixes
+
+* **storybook:** one more attempt to fix styled components storybook ([9362bea](https://github.com/alleyinteractive/irving/commit/9362bea50ae96a1b44f7dc679f80747b3f84ff98))
+
+
+
+
+
 # [5.3.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.5...v5.3.0-alpha.6) (2020-12-06)
 
 
