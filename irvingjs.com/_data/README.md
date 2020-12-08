@@ -24,19 +24,19 @@ The following strings track the client name for different uses. There may often 
 
 > The client's legal entity, used for legal pages (cookies, TOS, Privacy)
 >
-> E.g., `Defector Media, LLC`
+> E.g., `Alley Interactive, LLC`
 
 **`strings.parentCompany`**
 
 > The client's parent company, if any. Should be the same as `shortName` if there's no natural option.
 >
-> E.g., `Defector Media`
+> E.g., `Alley`
 
 **`strings.shortName`**
 
 > The client's common name.
 >
-> E.g., `Defector`
+> E.g., `Alley`
 
 ## Meta values
 
