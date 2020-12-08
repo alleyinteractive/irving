@@ -2,7 +2,7 @@ const config = require('../../_data/config');
 const inlineCSS = require('./shortcodes/inlineCSS');
 
 /**
- * Plugin for Lede landing pages.
+ * Plugin for IrvingJS.com.
  */
 module.exports = function(eleventyConfig, opts = {}) {
   const ledeConfig = config();
