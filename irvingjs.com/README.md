@@ -1,6 +1,6 @@
 # Irving landing page
 
-A static site generator setup to facilitate creating Lede landing pages.
+An [Eleventy|https://www.11ty.dev/] site for irvingjs.com.
 
 ## Usage
 
