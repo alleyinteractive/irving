@@ -82,17 +82,9 @@ Configure landing page fonts.
 
 > The Google Fonts stylesheet URL.
 
-**`fonts.typekitId`** `undefined`
-
-> The TypeKit `kitId`
-
 ## 3rd-party options
 
 Enabled 3rd-party integrations.
-
-**`thirdParty.picoId`** `undefined`
-
-> The Pico ID
 
 **`thirdParty.gtmId`** `undefined`
 
