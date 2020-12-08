@@ -5,7 +5,7 @@ const inlineCSS = require('./shortcodes/inlineCSS');
  * Plugin for IrvingJS.com.
  */
 module.exports = function(eleventyConfig, opts = {}) {
-  const ledeConfig = config();
+  const irvingConfig = config();
 
   // Shortcodes.
   eleventyConfig.addShortcode('inlineCSS', inlineCSS);
