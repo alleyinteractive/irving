@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.8...v5.3.0-alpha.9) (2020-12-10)
+
+
+### Bug Fixes
+
+* **html.js:** adds sub and sup to allowed html tags ([b7f4f44](https://github.com/alleyinteractive/irving/commit/b7f4f449f9c9f37a1c7fc9c6f56fd10caa816a06))
+* **irvingjs.com:** remove a couple lingering references, add back .eleventy.js and .eleventyignore ([605e47a](https://github.com/alleyinteractive/irving/commit/605e47a0d8161edf8f11f75028b6f057e3ca663e))
+* **logo:** swap out png logo for svg ([153e19c](https://github.com/alleyinteractive/irving/commit/153e19c75377404df9e62fa064a8e6bc18ebffb1))
+
+
+
+
+
 # [5.3.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.7...v5.3.0-alpha.8) (2020-12-07)
 
 **Note:** Version bump only for package irving
