@@ -13,10 +13,20 @@ img {
   max-width: 100%;
 }
 
+/* Containers */
 .container {
-  @include layout.auto-margins;
-  max-width: rem(1240);
-  width: calc(100% - rem(40));
+  padding: rem(40) 0;
+
+  // Apply max-width to all direct children so these stay full-bleed.
+  & > * {
+    @include layout.auto-margins;
+    max-width: rem(1240);
+    width: calc(100% - rem(40));
+  }
+}
+
+.container--dark {
+  background-color: color.$primary-light;
 }
 
 .modal {

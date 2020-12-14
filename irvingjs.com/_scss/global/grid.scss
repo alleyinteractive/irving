@@ -9,3 +9,9 @@
     flex-basis: auto;
     margin: 0 1rem;
 }
+
+.grid__item--centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
