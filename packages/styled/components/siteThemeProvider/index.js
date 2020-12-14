@@ -13,7 +13,7 @@ const SiteThemeProvider = (props) => {
   } = props;
 
   return (
-    <ThemeProvider theme={recursivelyBuildObjectTree(theme)}>
+    <ThemeProvider theme={recursivelyBuildObjectTree(theme, theme)}>
       {children}
     </ThemeProvider>
   );
