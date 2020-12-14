@@ -1,0 +1,11 @@
+.grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.grid__item {
+    flex-basis: auto;
+    margin: 0 1rem;
+}
