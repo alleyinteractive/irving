@@ -1,0 +1,6 @@
+@use 'core/color';
+
+a {
+    color: color.$primary;
+    text-decoration: underline;
+}

@@ -3,25 +3,12 @@
 @use 'core/color';
 
 .header {
-  color: color.$primary;
-  font-style: italic;
-  position: relative;
-  text-align: center;
-  z-index: 0;
-}
-
-.header__container {
-  @include layout.auto-margins;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: rem(150) 0;
-  text-align: center;
+  color: color.$text;
+  padding-top: 2rem;
 }
 
 .header__logo {
-  display: block;
+  display: inline-block;
   height: rem(99);
   width: rem(248);
 }
@@ -29,8 +16,7 @@
 .header__heading {
   font-size: rem(24);
   font-weight: 700;
-  line-height: (37/24);
-  margin-bottom: rem(36);
+  margin-bottom: rem(20);
   text-transform: uppercase;
 
   span {
@@ -40,7 +26,43 @@
 
 .header__intro {
   font-size: rem(24);
-  font-weight: 700;
-  line-height: (36/24);
-  max-width: rem(510);
+  line-height: 1.4;
+  max-width: rem(590);
+  margin-bottom: 4rem;
+}
+
+.header__intro__tagline {
+  font-size: rem(36);
+  font-weight: 600;
+  max-width: rem(590);
+
+  em {
+    color: color.$primary;
+    font-style: normal;
+  }
+}
+
+.header__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: -4rem;
+
+  .button {
+    display: inline-block;
+    background-color: color.$black;
+    color: color.$white;
+    margin: 0 rem(10);
+    padding: rem(15) rem(15) rem(18);
+    font-size: rem(22);
+    font-weight: 600;
+    line-height: (26/22);
+    min-width: rem(188);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
 }
