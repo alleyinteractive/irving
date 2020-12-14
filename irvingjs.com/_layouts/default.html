@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, width=device-width, minimum-scale=1.0, user-scalable=1" />
+
+	<title>{% if title %}{{ title }} - {% endif %}{{ config.meta.title }}</title>
+	<meta name="description" content="{{ config.meta.description }}">
+	<meta name="author" content="Alley">
+	<link rel="canonical" href="{{ config.url | append: permalink }}" />
+	<meta name="copyright" content="(c) {{ page.date | date: '%Y' }} {{ config.strings.legalName }}" />
+
+	<!-- iOS -->
+	<meta name="apple-mobile-web-app-title" content="{{ config.meta.title }}" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<!-- Android -->
+	<meta name="theme-color" content="{{ config.meta.themeColor }}" />
+
+	 <!-- Main Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="favicon-128.png" sizes="128x128" />
+	<link rel="icon" type="image/png" href="favicon-192.png" sizes="192x192" />
+	<link rel="icon" type="image/png" href="favicon-196.png" sizes="196x196" />
+	<link rel="apple-touch-icon" type="image/png" href="favicon-152.png" sizes="152x152" />
+	<link rel="apple-touch-icon" type="image/png" href="favicon-167.png" sizes="167x167" />
+	<link rel="apple-touch-icon" type="image/png" href="favicon-180.png" sizes="180x180" />
+	<meta name="msapplication-TileColor" content="{{ config.meta.themeColor }}" />
+	<meta name="msapplication-TileImage" content="favicon-270.png" />
+
+	{% if '/' == permalink %}
+		<link rel="stylesheet" href="css/styles.css?v={{ config.meta.version }}">
+
+		{% if config.fonts.google %}
+		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+		{% endif %}
+
+		{% if config.fonts.typekitId %}
+		<link rel="preconnect" href="https://use.typekit.net" crossorigin />
+		{% endif %}
+
+		<meta itemprop="name" content="{{ config.meta.title }}">
+		<meta itemprop="description" content="{{ config.meta.description }}">
+		<meta itemprop="image" content="{{ '/card.png' | prepend: config.url }}" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="{{ config.meta.title }}" />
+		<meta property="og:title" content="{{ config.meta.title }}" />
+		<meta property="og:description" content="{{ config.meta.description }}" />
+		<meta property="og:image" content="{{ '/card.png' | prepend: config.url }}" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+
+		<meta name="twitter:title" content="{{ config.meta.title }}" />
+		<meta name="twitter:description" content="{{ config.meta.description }}" />
+		<meta name="twitter:image" content="{{ '/card.png' | prepend: config.url }}" />
+		<meta name="twitter:card" content="summary_large_image" />
+		{% if config.contact.twitterUsername %}<meta name="twitter:site" content="{{ config.contact.twitterUsername }}" />{% endif %}
+
+		{% if config.fonts.google %}
+		<link href="{{ config.fonts.google }}" rel="stylesheet">
+		{% endif %}
+
+		{% if config.thirdParty.gtmId %}
+		<script async src="https://www.googletagmanager.com/gtag/js?id={{ config.thirdParty.gtmId }}"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', '{{ config.thirdParty.gtmId }}');
+		</script>
+		{% endif %}
+	{% else %}
+		{% inlineCSS '_scss/page.scss' %}
+	{% endif %}
+</head>
+
+<body>
+	{% if '/' == permalink %}
+		<!-- landing page only -->
+		<header
+			class="header"
+			role="banner"
+		>
+			{% include skip-links.html %}
+
+			<div class="container header__container">
+				<h1 class="header__heading">
+					<span class="screen-reader-only">{{ config.strings.shortName }}</span>
+					<span class="header__logo">{{ '/images/irving-logo.svg' | svgContents }}</span>
+				</h1>
+			</div>
+		</header>
+	{% else %}
+		<!-- legal pages -->
+		<header role="banner">
+			{% include skip-links.html %}
+		</header>
+	{% endif %}
+
+	<main
+		role="main"
+		id="main"
+	>
+		{{ content }}
+	</main>
+<!--
+	<footer class="footer" role="contentinfo">
+		<div class="footer__container">
+			<img class="footer__logo" src="images/irving-icon.png" />
+			<p>Copyright {{ page.date | date: '%Y' }}. Made by <a href="https://alley.co">Alley</a></p>
+		</div>
+	</footer> -->
+
+	<!-- build: {{ "now" | date: "%Y-%m-%d %H:%M" }} -->
+</body>
+</html>

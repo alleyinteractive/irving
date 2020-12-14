@@ -70,7 +70,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 ### If you need to release a patch or hotfix on a specific release branch
 Notes:
 * All hotfixes should be `patch` releases in semver terms
-* You do not need to wait for a releas organizer to release hotfixes, but you may ask them to do so if that's easier.
+* You do not need to wait for a release organizer to release hotfixes, but you may ask them to do so if that's easier.
 
 Steps:
 * `git checkout main` - check out the main branch.

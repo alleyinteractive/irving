@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.9...v5.3.0-alpha.10) (2020-12-14)
+
+
+### Bug Fixes
+
+* **development.js:** update headers for local development ([5b60961](https://github.com/alleyinteractive/irving/packages/core/commit/5b609619c941993e3454aa6b2d0d9003ed36f616))
+
+
+
+
+
+# [5.3.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.8...v5.3.0-alpha.9) (2020-12-10)
+
+
+### Bug Fixes
+
+* **html.js:** adds sub and sup to allowed html tags ([b7f4f44](https://github.com/alleyinteractive/irving/packages/core/commit/b7f4f449f9c9f37a1c7fc9c6f56fd10caa816a06))
+
+
+
+
+
+# [5.3.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.7...v5.3.0-alpha.8) (2020-12-07)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.6...v5.3.0-alpha.7) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.5...v5.3.0-alpha.6) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.4...v5.3.0-alpha.5) (2020-12-06)
+
+
+### Bug Fixes
+
+* **storybook:** move react-oembed-container dependency to styled components ppackage ([6caf82c](https://github.com/alleyinteractive/irving/packages/core/commit/6caf82c4af59f04e767063566f9d935a4b1e73be))
+
+
+
+
+
 # [5.3.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.0...v5.3.0-alpha.1) (2020-11-23)
 
 

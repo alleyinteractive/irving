@@ -1,0 +1,24 @@
+@use 'core/color';
+@use 'core/layout';
+@use 'core/breakpoints' as *;
+@use 'core/type';
+
+body {
+  @include type.primary;
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.container {
+  @include layout.auto-margins;
+  max-width: rem(1240);
+  width: calc(100% - rem(40));
+}
+
+.modal {
+  display: none;
+}

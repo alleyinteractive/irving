@@ -1,0 +1,80 @@
+/**
+ * Strip CSS units from a value.
+ *
+ * @param  {number} $value A CSS length value.
+ * @return {number}        A unitless value.
+ */
+@function _strip-units($value) {
+  @if (type-of($value) == 'number' and not unitless($value)) {
+    @return $value / ($value * 0 + 1);
+  }
+
+  @return $value;
+}
+
+/**
+ * Note: This is only present because postcss-units doesn't work within at-rules.
+ *
+ * Convert a px value to rem.
+ *
+ * @param  {number} $length The value to convert.
+ * @return {number}         The input value in rems.
+ */
+@function rems($length) {
+  @return (_strip-units($length) / 16) * 1rem;
+}
+
+/**
+ * A Map of breakpoint values.
+ */
+$bp-values: (
+  full: 1280,
+  xl: 1070,
+  lg: 1024,
+  md: 800,
+  sm: 600,
+);
+
+/**
+ * Generate map of breakpoint values.
+ */
+@function _create-breakpoints() {
+  $merged: ();
+
+  @each $name, $value in $bp-values {
+    $merged: map_merge($merged, (
+      'min-#{$name}': 'min-width: #{rems($value)}',
+      'max-#{$name}': 'max-width: #{rems($value - 1)}',
+    ));
+  }
+
+  @return $merged;
+}
+
+// Create the media-queries map.
+$media-queries: _create-breakpoints();
+
+/**
+ * Retrive prepared media query, or create one from a value.
+ *
+ * Ex. @media media(min, lg) {}
+ * Ex. @media media(max, 1100) {}
+ *
+ * @param {string|number}   $minMax The width prefix of the media query.
+ * @param {string|number}   $length Key to acess in the $media-queries map, or a number.
+ * @return {string|boolean}         The media query string or false if the key doesn't exist.
+ */
+@function media($minMax, $length) {
+  @if ('number' == type-of($length)) {
+    @return '#{$minMax}-width: #{rems($length)}';
+  }
+
+  $map-key: #{$minMax}-#{$length};
+
+  @if (not map-has-key($media-queries, $map-key)) {
+    @error "$media-queries[#{$minMax}-#{$map-key}] doesn't exist.";
+    @return false;
+  }
+
+  @return map-get($media-queries, $map-key);
+}

@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.10...v5.3.0-alpha.11) (2020-12-14)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.3.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.9...v5.3.0-alpha.10) (2020-12-14)
+
+
+### Bug Fixes
+
+* **development.js:** update headers for local development ([5b60961](https://github.com/alleyinteractive/irving/commit/5b609619c941993e3454aa6b2d0d9003ed36f616))
+
+
+
+
+
+# [5.3.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.8...v5.3.0-alpha.9) (2020-12-10)
+
+
+### Bug Fixes
+
+* **html.js:** adds sub and sup to allowed html tags ([b7f4f44](https://github.com/alleyinteractive/irving/commit/b7f4f449f9c9f37a1c7fc9c6f56fd10caa816a06))
+* **irvingjs.com:** remove a couple lingering references, add back .eleventy.js and .eleventyignore ([605e47a](https://github.com/alleyinteractive/irving/commit/605e47a0d8161edf8f11f75028b6f057e3ca663e))
+* **logo:** swap out png logo for svg ([153e19c](https://github.com/alleyinteractive/irving/commit/153e19c75377404df9e62fa064a8e6bc18ebffb1))
+
+
+
+
+
+# [5.3.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.7...v5.3.0-alpha.8) (2020-12-07)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.3.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.6...v5.3.0-alpha.7) (2020-12-06)
+
+
+### Bug Fixes
+
+* **storybook:** one more attempt to fix styled components storybook ([9362bea](https://github.com/alleyinteractive/irving/commit/9362bea50ae96a1b44f7dc679f80747b3f84ff98))
+
+
+
+
+
+# [5.3.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.5...v5.3.0-alpha.6) (2020-12-06)
+
+
+### Bug Fixes
+
+* **travis:** remove travis cache for now to test ([92aeb99](https://github.com/alleyinteractive/irving/commit/92aeb99ad5e952cd17d3c8479c836e14de336001))
+
+
+
+
+
+# [5.3.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.4...v5.3.0-alpha.5) (2020-12-06)
+
+
+### Bug Fixes
+
+* **storybook:** move react-oembed-container dependency to styled components ppackage ([6caf82c](https://github.com/alleyinteractive/irving/commit/6caf82c4af59f04e767063566f9d935a4b1e73be))
+
+
+
+
+
+# [5.3.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.3...v5.3.0-alpha.4) (2020-12-05)
+
+
+### Bug Fixes
+
+* **deploy:** remove unnecessary conditionals from deploy script ([2b50ee9](https://github.com/alleyinteractive/irving/commit/2b50ee97575416bd3df20c62273d7c46e5adef77))
+
+
+
+
+
+# [5.3.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.2...v5.3.0-alpha.3) (2020-12-04)
+
+
+### Bug Fixes
+
+* **multisite:** convert remaining references to process.env.API_ROOT_URL ([9967e12](https://github.com/alleyinteractive/irving/commit/9967e12b5e1020201dc51ac936e667394c92c139))
+
+
+
+
+
 # [5.3.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.1...v5.3.0-alpha.2) (2020-11-30)
 
 **Note:** Version bump only for package irving
