@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.9...v5.3.0-alpha.10) (2020-12-14)
+
+
+### Bug Fixes
+
+* **development.js:** update headers for local development ([5b60961](https://github.com/alleyinteractive/irving/packages/core/commit/5b609619c941993e3454aa6b2d0d9003ed36f616))
+
+
+
+
+
 # [5.3.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.8...v5.3.0-alpha.9) (2020-12-10)
 
 
