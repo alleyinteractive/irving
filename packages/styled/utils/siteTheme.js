@@ -5,6 +5,8 @@ import get from 'lodash/get';
  *
  * @param {stromg} valuePath dot-separated path to the value you want.
  * @param {stromg} defaultValue default in case the value you want isn't found or is undefined.
+ * @param {stromg} ternaryValue turns `siteTheme` into a wrapper for a ternary operator, checking `vauePath`
+ *                              as a boolean, using `defaultValue` if true and `ternaryValue` if false.
  * @return {mixed} siteTheme value.
  */
 const siteTheme = (valuePath, defaultValue = '', ternaryValue = '') => (
