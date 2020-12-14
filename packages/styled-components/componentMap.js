@@ -104,16 +104,18 @@ export const defaultMapping = {
  * @return {object}
  */
 const createThemedComponentMap = (userThemesToInject) => {
-  // Loop through the `userThemesToInject` object
-  const userMapping = Object.keys(userThemesToInject)
+  const componentMapWithThemes = Object.keys(components)
     .reduce((acc, componentName) => {
       const {
         themeMap,
         Component,
       } = components[componentName];
+
+      const userThemes = userThemesToInject[componentName] || {};
+
       const mergedThemeMap = {
         ...themeMap,
-        ...userThemesToInject[componentName],
+        ...userThemes,
       };
 
       return {
@@ -124,7 +126,7 @@ const createThemedComponentMap = (userThemesToInject) => {
 
   return {
     ...defaultMapping,
-    ...userMapping,
+    ...componentMapWithThemes,
   };
 };
 
