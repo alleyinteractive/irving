@@ -87,12 +87,21 @@
 		>
 			{% include skip-links.html %}
 
-			<div class="container header__container">
+			<section class="container header__container">
 				<h1 class="header__heading">
-					<span class="screen-reader-only">{{ config.strings.shortName }}</span>
+					<span class="screen-reader-only">IrvingJS</span>
 					<span class="header__logo">{{ '/images/irving-logo.svg' | svgContents }}</span>
 				</h1>
-			</div>
+				<p class="tagline">A <em>headless</em> framework</p>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae officia fugit aliquid aperiam facilis necessitatibus et, architecto minus sint quod!</p>
+				<div class="grid">
+					<ul class="cta">
+						<li><a href="#">Demo</a></li>
+						<li><a href="#">Documentation</a></li>
+						<li><a href="#">Source</a></li>
+					</ul>
+				</div>
+			</section>
 		</header>
 	{% else %}
 		<!-- legal pages -->
@@ -107,14 +116,12 @@
 	>
 		{{ content }}
 	</main>
-<!--
+
 	<footer class="footer" role="contentinfo">
 		<div class="footer__container">
-			<img class="footer__logo" src="images/irving-icon.png" />
 			<p>Copyright {{ page.date | date: '%Y' }}. Made by <a href="https://alley.co">Alley</a></p>
 		</div>
-	</footer> -->
-
-	<!-- build: {{ "now" | date: "%Y-%m-%d %H:%M" }} -->
+	</footer>
+	<!-- last build: {{ "now" | date: "%Y-%m-%d %H:%M" }} -->
 </body>
 </html>
