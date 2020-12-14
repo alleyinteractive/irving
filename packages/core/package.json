@@ -56,7 +56,6 @@
     "check-node-version": "^4.0.3",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^2.0.2",
-    "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "css-loader": "^3.5.3",
     "debug": "^4.1.1",
@@ -138,6 +137,7 @@
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "mock-fs": "^4.12.0",
-    "wait-for-expect": "^3.0.2"
+    "wait-for-expect": "^3.0.2",
+    "webpack-bundle-analyzer": "^4.2.0"
   }
 }

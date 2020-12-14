@@ -5,6 +5,7 @@ const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const ReactRefreshWebpackPlugin = require(
   '@pmmmwh/react-refresh-webpack-plugin'
 );
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { rootUrl } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
 const { maybeResolveUserModule } = require('../../utils/userModule');
@@ -73,6 +74,7 @@ module.exports = function getPlugins(context) {
             publicPath: true,
           },
         }),
+        new BundleAnalyzerPlugin(),
         // Support friendly stack traces for error reporting, but protect
         // source code from being exposed.
         new webpack.SourceMapDevToolPlugin({
