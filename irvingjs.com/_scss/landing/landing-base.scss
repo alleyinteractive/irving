@@ -29,6 +29,41 @@ img {
   background-color: color.$primary-light;
 }
 
+.feature {
+  background: url(../../images/shapes/feature-triangle.svg);
+  background-repeat: no-repeat;
+  border: 2px solid black;
+  display: flex;
+  direction: column;
+  padding: 37px;
+}
+
+.feature__body {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 10px; 
+}
+
+.feature__button {
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+}
+
+.feature__heading {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.feature__icon {
+  display: block;
+  height: rem(50);
+  width: rem(50);
+}
+
 .modal {
   display: none;
 }

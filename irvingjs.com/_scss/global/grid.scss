@@ -5,6 +5,17 @@
     align-items: center;
 }
 
+.grid--3up {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.grid__heading {
+    font-size: rem(64);
+    font-weight: 700;
+}
+
 .grid__item {
     flex-basis: auto;
     margin: 0 1rem;
@@ -15,3 +26,4 @@
     flex-direction: column;
     align-items: center;
 }
+
