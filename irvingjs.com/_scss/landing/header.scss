@@ -25,16 +25,27 @@
 }
 
 .header__intro {
-  font-size: rem(24);
-  line-height: 1.4;
-  max-width: rem(590);
-  margin-bottom: 6rem;
+  font-size: rem(18);
+  margin-bottom: 2rem;
+
+  @media (media(min,sm)) {
+    font-size: rem(24);
+    line-height: 1.4;
+    max-width: rem(590);
+    margin-bottom: 6rem;
+  }
+  
 }
 
 .header__intro__tagline {
-  font-size: rem(36);
+  font-size: rem(24);
   font-weight: 600;
-  max-width: rem(590);
+  line-height: 2;
+
+  @media (media(min, sm)) {
+    font-size: rem(36);
+    max-width: rem(590);
+  }
 
   em {
     color: color.$primary;

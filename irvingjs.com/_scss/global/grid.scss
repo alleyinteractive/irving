@@ -30,9 +30,14 @@
 }
 
 .grid__heading {
-    font-size: rem(64);
-    font-weight: 700;
-    margin-bottom: 0;
+	font-size: rem(40);
+	font-weight: 700;
+
+	@media (media(min, sm)){
+			font-size: rem(64);
+			margin-bottom: 0;
+	}
+    
 }
 
 .grid__item {

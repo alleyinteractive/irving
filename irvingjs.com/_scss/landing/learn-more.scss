@@ -1,6 +1,6 @@
 @use 'core/color';
 
-.section__logo {
+.learn-more__logo {
   display: inline-block;
   height: rem(38);
   width: rem(91);
@@ -10,15 +10,20 @@
   }
 }
 
-.section__tag {
+.learn-more__tag {
   font-size: rem(24);
-  line-height: rem(38);
   font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  
+  @media (media(min, sm)) {
+    line-height: rem(38);
+  }
   > a {
     color: color.$primary-medium;
   }
 }
 
-.section__subline {
+.learn-more__subline {
   font-size: rem(18);
 }
