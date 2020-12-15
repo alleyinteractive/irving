@@ -25,6 +25,7 @@
 }
 
 .header__intro {
+<<<<<<< HEAD
   font-size: rem(18);
   margin-bottom: 2rem;
 
@@ -35,6 +36,16 @@
     margin-bottom: 6rem;
   }
   
+=======
+  font-size: rem(24);
+  line-height: 1.4;
+  max-width: rem(590);
+  margin-bottom: rem(64);
+
+  @media (media(min, sm)) {
+    margin-bottom: rem(96);    
+  }
+>>>>>>> 64c649dd4ed5eb26d044623b7092bdb0e91ae997
 }
 
 .header__intro__tagline {
@@ -59,11 +70,15 @@
   justify-content: center;
   margin-bottom: -4rem;
 
+  @media (media(max, sm)) {
+    flex-wrap: wrap;
+}
+
   .button {
     display: inline-block;
     background-color: color.$black;
     color: color.$white;
-    margin: 0 rem(10);
+    margin: rem(10);
     padding: rem(15) rem(15) rem(18);
     font-size: rem(22);
     font-weight: 600;
