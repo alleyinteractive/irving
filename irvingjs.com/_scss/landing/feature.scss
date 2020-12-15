@@ -1,13 +1,34 @@
+@use 'core/color';
+@use 'core/breakpoints' as *;
+
 .feature {
-    background-image: url(../../images/shapes/feature-triangle.svg);
-    background-size: calc(100% - 2rem);
-    background-position: 1rem 1rem;
-    background-repeat: no-repeat;
+    position: relative;
     border: 2px solid black;
     display: flex;
     direction: column;
     padding: rem(36) rem(36) rem(48);
     justify-content: flex-start;
+
+    // Background image.
+    &::before {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        height: 35%;
+        background-image: linear-gradient(165deg, color.$primary-light 50%, transparent 50%);
+        background-size: 100%;
+        background-repeat: no-repeat;
+
+        @media
+            (media(min, 410px)) and
+            (media(max, sm))
+        {
+            height: 50%
+        }
+    }
 }
 
 .feature__body {
@@ -15,6 +36,7 @@
     font-size: 16px;
     font-weight: 400;
     padding: 10px;
+    max-width: rem(325);
 }
 
 .feature__button {
