@@ -6,7 +6,8 @@
     border: 2px solid black;
     display: flex;
     direction: column;
-    padding: 37px;
+    padding: rem(36) rem(36) rem(48);
+    justify-content: flex-start;
 }
 
 .feature__body {
@@ -27,10 +28,12 @@
 .feature__heading {
     font-size: 24px;
     font-weight: 600;
+    margin-bottom: 1rem;
 }
 
 .feature__icon {
     display: block;
     height: rem(50);
     width: rem(50);
+    margin: 2.5rem auto 2rem;
 }
