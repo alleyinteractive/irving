@@ -1,19 +1,42 @@
+@use 'core/breakpoints' as *;
+
 .grid {
-    display: flex;
     flex-direction: row;
     justify-content: space-around;
+
+    @media (media(min, md)) {
+        display: flex;
+    }
+}
+
+.grid--logo-list {
+    // display: flex;
+
+    .grid__item {
+        width: 50%;
+    }
 }
 
 .grid__heading {
     font-size: rem(64);
     font-weight: 700;
-    margin: 0 1rem;
+    margin-bottom: 0;
 }
 
 .grid__item {
     flex-basis: 1;
-    margin: 0 rem(9);
+    margin: 0 rem(9) 1rem;
     flex-grow: 0;
     flex-shrink: 1;
     width: 100%;
+
+    @media (media(min, md)) {
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
 }

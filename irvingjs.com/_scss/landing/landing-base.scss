@@ -21,7 +21,7 @@ img {
   padding: rem(40) 0;
 
   // Apply max-width to all direct children so these stay full-bleed.
-  & > * {
+  > * {
     @include layout.auto-margins;
     max-width: rem(1240);
     width: calc(100% - rem(40));
@@ -31,10 +31,6 @@ img {
 .container--dark {
   background-color: color.$primary-light;
   margin-bottom: 6rem;
-}
-
-.container--feature {
-  margin: 10% 6.5em;
 }
 
 /*
