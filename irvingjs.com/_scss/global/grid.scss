@@ -4,16 +4,28 @@
     flex-direction: row;
     justify-content: space-around;
 
-    @media (media(min, md)) {
+    @media (media(min, sm)) {
         display: flex;
     }
 }
 
 .grid--logo-list {
-    // display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (media(min, lg)) {
+        flex-wrap: nowrap;
+    }
 
     .grid__item {
-        width: 50%;
+        width: 40%;
+        padding: rem(10);
+
+        @media (media(min, md)) {
+            width: 30%;
+        }
+
     }
 }
 
