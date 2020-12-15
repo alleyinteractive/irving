@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.12](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.11...v5.3.0-alpha.12) (2020-12-15)
+
+
+### Bug Fixes
+
+* **sitethemeprovider:** add back in extra `theme`, don't need to remove it really ([4f10c20](https://github.com/alleyinteractive/irving/commit/4f10c202d0cc0e4f2938c179e26f2f2e1de4e650))
+* **utils:** add back in em and rem files to prevent breaking anything ([71ba20b](https://github.com/alleyinteractive/irving/commit/71ba20bf80cb386c687d465c44c167b1eb1c13f2))
+
+
+### Features
+
+* **sitetheme:** changes to make styled utils less verbose, including em rem and siteTheme ([e75702f](https://github.com/alleyinteractive/irving/commit/e75702fe5fb4378ccd9eb75c4810b9426e8ef9a0))
+
+
+
+
+
 # [5.3.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.10...v5.3.0-alpha.11) (2020-12-14)
 
 **Note:** Version bump only for package irving
