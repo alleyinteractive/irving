@@ -2,13 +2,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
-}
-
-.grid--3up {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 .grid__heading {
@@ -18,14 +11,9 @@
 }
 
 .grid__item {
-    flex-basis: auto;
-    margin: 0 1rem;
-    width: 33%;
+    flex-basis: 1;
+    margin: 0 rem(9);
+    flex-grow: 0;
+    flex-shrink: 1;
+    width: 100%;
 }
-
-.grid__item--centered {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
