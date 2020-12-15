@@ -14,6 +14,9 @@
   font-size: rem(24);
   line-height: rem(38);
   font-weight: 600;
+  > a {
+    color: color.$primary-medium;
+  }
 }
 
 .section__subline {

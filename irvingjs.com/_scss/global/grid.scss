@@ -14,11 +14,13 @@
 .grid__heading {
     font-size: rem(64);
     font-weight: 700;
+    margin: 0 1rem;
 }
 
 .grid__item {
     flex-basis: auto;
     margin: 0 1rem;
+    width: 33%;
 }
 
 .grid__item--centered {

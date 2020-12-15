@@ -30,6 +30,11 @@ img {
 
 .container--dark {
   background-color: color.$primary-light;
+  margin-bottom: 6rem;
+}
+
+.container--feature {
+  margin: 10% 6.5em;
 }
 
 .feature {
