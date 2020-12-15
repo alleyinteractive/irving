@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.13](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.12...v5.3.0-alpha.13) (2020-12-15)
+
+
+### Bug Fixes
+
+* **stylelint:** bugfix for stylelint webpack config in styled package ([67b1016](https://github.com/alleyinteractive/irving/packages/styled/commit/67b1016246a2b23d0d23d80b0f6b22a6e6d2adf2))
+
+
+
+
+
 # [5.3.0-alpha.12](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.11...v5.3.0-alpha.12) (2020-12-15)
 
 
