@@ -1,0 +1,21 @@
+@use 'core/color';
+
+.section__logo {
+  display: inline-block;
+  height: rem(38);
+  width: rem(91);
+
+  & path {
+    fill: color.$black;
+  }
+}
+
+.section__tag {
+  font-size: rem(24);
+  line-height: rem(38);
+  font-weight: 600;
+}
+
+.section__subline {
+  font-size: rem(18);
+}

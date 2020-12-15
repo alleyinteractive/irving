@@ -1,6 +1,13 @@
 @use 'core/color';
 
 a {
-    color: color.$primary;
+    color: color.$primary-dark;
     text-decoration: underline;
+
+    &:focus,
+    &:hover {
+        text-decoration: none;
+    }
 }
+
+
