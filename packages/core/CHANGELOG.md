@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.9...v5.3.0-alpha.10) (2020-12-14)
+
+
+### Bug Fixes
+
+* **development.js:** update headers for local development ([5b60961](https://github.com/alleyinteractive/irving/packages/core/commit/5b609619c941993e3454aa6b2d0d9003ed36f616))
+
+
+
+
+
+# [5.3.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.8...v5.3.0-alpha.9) (2020-12-10)
+
+
+### Bug Fixes
+
+* **html.js:** adds sub and sup to allowed html tags ([b7f4f44](https://github.com/alleyinteractive/irving/packages/core/commit/b7f4f449f9c9f37a1c7fc9c6f56fd10caa816a06))
+
+
+
+
+
 # [5.3.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.7...v5.3.0-alpha.8) (2020-12-07)
 
 **Note:** Version bump only for package @irvingjs/core
