@@ -11,9 +11,12 @@ img {
   display: block;
   height: auto;
   max-width: 100%;
+  margin: 0 auto;
 }
 
-/* Containers */
+/*
+ * Containers
+ */
 .container {
   padding: rem(40) 0;
 
@@ -66,4 +69,14 @@ img {
 
 .modal {
   display: none;
+}
+
+/*
+ * Utilities
+ */
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
 }
