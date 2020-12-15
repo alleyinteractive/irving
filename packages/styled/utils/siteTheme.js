@@ -3,9 +3,9 @@ import get from 'lodash/get';
 /**
  * Get a value from the siteTheme object.
  *
- * @param {stromg} valuePath dot-separated path to the value you want.
- * @param {stromg} defaultValue default in case the value you want isn't found or is undefined.
- * @param {stromg} ternaryValue turns `siteTheme` into a wrapper for a ternary operator, checking `vauePath`
+ * @param {string} valuePath dot-separated path to the value you want.
+ * @param {string} defaultValue default in case the value you want isn't found or is undefined.
+ * @param {string} ternaryValue turns `siteTheme` into a wrapper for a ternary operator, checking `valuePath`
  *                              as a boolean, using `defaultValue` if true and `ternaryValue` if false.
  * @return {mixed} siteTheme value.
  */
