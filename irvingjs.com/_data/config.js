@@ -8,7 +8,7 @@ module.exports = function() {
   const isDev = ('development' === environment);
 
   // Set the production site's domain.
-  const clientDomain = 'irving.com';
+  const clientDomain = 'irvingjs.com';
 
   // Transform values based on the current environment.
   const domain = isDev ? 'localhost:8080' : clientDomain;
