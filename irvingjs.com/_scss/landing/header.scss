@@ -81,29 +81,4 @@
     flex-wrap: nowrap;
     margin-bottom: rem(-50); // Overlap next container.
   }
-
-  .button {
-    display: inline-block;
-    background-color: color.$black;
-    color: color.$white;
-    margin: 0 rem(8) rem(16);
-    padding: rem(12) rem(12) rem(16);
-    font-size: rem(18);
-    font-weight: 600;
-    line-height: (26/22);
-    min-width: rem(188);
-    text-decoration: none;
-
-    @media (media(min, sm)) {
-      font-size: rem(22);
-      margin: 0 rem(10) rem(20);
-      padding: rem(15) rem(15) rem(18);
-    }
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-  }
-
 }
