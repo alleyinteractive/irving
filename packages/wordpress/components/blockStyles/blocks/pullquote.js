@@ -19,7 +19,7 @@ export const pullquoteBlock = css`
 
     p {
       color: #000000;
-      font-family: Arial, Helvetica, sans-serif
+      font-family: Arial, Helvetica, sans-serif;
       font-size: 1rem;
       font-weight: 400;
     }

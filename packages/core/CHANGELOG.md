@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.19](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.18...v5.3.0-alpha.19) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.17](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.16...v5.3.0-alpha.17) (2020-12-16)
+
+
+### Bug Fixes
+
+* **getenv:** remove unnecessary var ([84e4303](https://github.com/alleyinteractive/irving/packages/core/commit/84e4303af7bf57051ef76eb02e4ac9c1c2bbe328))
+
+
+
+
+
+# [5.3.0-alpha.16](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.15...v5.3.0-alpha.16) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.15](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.14...v5.3.0-alpha.15) (2020-12-16)
+
+
+### Bug Fixes
+
+* **env:** remove env logging ([10e023a](https://github.com/alleyinteractive/irving/packages/core/commit/10e023a9f83da83022b99f45e879cd745b0593bf))
+
+
+
+
+
+# [5.3.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.9...v5.3.0-alpha.10) (2020-12-14)
+
+
+### Bug Fixes
+
+* **development.js:** update headers for local development ([5b60961](https://github.com/alleyinteractive/irving/packages/core/commit/5b609619c941993e3454aa6b2d0d9003ed36f616))
+
+
+
+
+
 # [5.3.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.8...v5.3.0-alpha.9) (2020-12-10)
 
 
