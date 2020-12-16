@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/integrations",
-	"version": "5.3.0-alpha.10",
+	"version": "5.3.0-alpha.15",
 	"description": "Third party integrations for Irving",
 	"files": [
 		"actions/**/*",
@@ -32,7 +32,7 @@
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "^5.3.0-alpha.0",
-		"@irvingjs/core": "^5.3.0-alpha.10",
+		"@irvingjs/core": "^5.3.0-alpha.15",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.2",
