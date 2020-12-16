@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.18](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.17...v5.3.0-alpha.18) (2020-12-16)
+
+
+### Bug Fixes
+
+* **sc:** remove styled components as an explicit dependency for the styled components package ([bc8945b](https://github.com/alleyinteractive/irving/packages/styled-components/commit/bc8945bb077994e81f26e6302ed6ba4f178e19f4))
+
+
+
+
+
 # [5.3.0-alpha.17](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.16...v5.3.0-alpha.17) (2020-12-16)
 
 **Note:** Version bump only for package @irvingjs/styled-components
