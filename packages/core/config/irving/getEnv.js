@@ -16,7 +16,7 @@ if (process.env.IRVING_EXECUTION_CONTEXT) {
 const config = multisiteConfig.length ?
   uniq(multisiteConfig, 'domain').flat() :
   [];
-cd
+
 /**
  * A utility function that replaces the `ROOT_URL` and `API_ROOT_URL` values
  * in the process.env object.
