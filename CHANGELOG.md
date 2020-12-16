@@ -3,6 +3,80 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.20](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.19...v5.3.0-alpha.20) (2020-12-16)
+
+
+### Bug Fixes
+
+* **pxtorelative:** fix rem/em functions to continue working within css template tag ([3f8f37e](https://github.com/alleyinteractive/irving/commit/3f8f37e998259b9ec88ded72a034d423055834b3))
+
+
+
+
+
+# [5.3.0-alpha.19](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.18...v5.3.0-alpha.19) (2020-12-16)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.3.0-alpha.18](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.17...v5.3.0-alpha.18) (2020-12-16)
+
+
+### Bug Fixes
+
+* **sc:** remove styled components as an explicit dependency for the styled components package ([bc8945b](https://github.com/alleyinteractive/irving/commit/bc8945bb077994e81f26e6302ed6ba4f178e19f4))
+
+
+
+
+
+# [5.3.0-alpha.17](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.16...v5.3.0-alpha.17) (2020-12-16)
+
+
+### Bug Fixes
+
+* **getenv:** remove unnecessary var ([84e4303](https://github.com/alleyinteractive/irving/commit/84e4303af7bf57051ef76eb02e4ac9c1c2bbe328))
+
+
+
+
+
+# [5.3.0-alpha.16](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.15...v5.3.0-alpha.16) (2020-12-16)
+
+
+### Bug Fixes
+
+* **package:** update package-locks for audio-player, wordpress ([f8f7b54](https://github.com/alleyinteractive/irving/commit/f8f7b54baea3389e1a0a33ce9a449c35980708e6))
+
+
+
+
+
+# [5.3.0-alpha.15](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.14...v5.3.0-alpha.15) (2020-12-16)
+
+
+### Bug Fixes
+
+* **env:** remove env logging ([10e023a](https://github.com/alleyinteractive/irving/commit/10e023a9f83da83022b99f45e879cd745b0593bf))
+
+
+
+
+
+# [5.3.0-alpha.14](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.13...v5.3.0-alpha.14) (2020-12-16)
+
+
+### Bug Fixes
+
+* **sitetheme:** add fallback for sitetheme value matches ([23d4bd0](https://github.com/alleyinteractive/irving/commit/23d4bd0760e42f0da2af480ecc701e121e4095c9))
+
+
+
+
+
 # [5.3.0-alpha.13](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.12...v5.3.0-alpha.13) (2020-12-15)
 
 
