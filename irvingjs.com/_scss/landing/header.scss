@@ -18,10 +18,15 @@
 .header__logo {
   display: inline-block;
   height: auto;
-  width: rem(200);
+  width: rem(240);
 
   @media (media(min, sm)) {
-    width: rem(248);
+    width: rem(320);
+    margin-bottom: rem(20);
+  }
+
+  @media (media(min, md)) {
+    width: rem(450);
     margin-bottom: rem(20);
   }
 }

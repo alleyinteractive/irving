@@ -1,6 +1,11 @@
 /*
  * Containers
  */
+
+@use 'core/color';
+@use 'core/layout';
+@use 'core/breakpoints' as *;
+
  .container {
     padding: rem(30) 0;
 
