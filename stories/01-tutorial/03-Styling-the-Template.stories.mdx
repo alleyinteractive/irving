@@ -1,0 +1,407 @@
+<Meta title="Tutorial|Styling the Template" />
+
+# Styling the template
+In this section, we'll style the `post` template.
+
+We'll use a variety of methods to approach styling, depending on the context and task to perform.
+
+## Table of Contents
+* [Setup the Theme Map](?path=/docs/tutorial-styling-the-template--page)
+* [Add some custom fonts](?path=/docs/tutorial-styling-the-template--page)
+* [Style the title](?path=/docs/tutorial-styling-the-template--page)
+* [Style the byline and timestamp](?path=/docs/tutorial-styling-the-template--page)
+* [Style the content](?path=/docs/tutorial-styling-the-template--page)
+* [Style the social sharing](?path=/docs/tutorial-styling-the-template--page)
+
+**Finished Product**
+<img src="/assets/img/tutorial/03/full.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+## Setup the Theme Map
+
+### Create `themes.js` in the root of your
+If it doesn't already exist, create a `themeMap.js` in the root Irving application,
+
+`themeMap.js`
+```js
+export default {};
+````
+
+and update `componentMap.js` to include this file. You'll pass the value of `themeMap` into `createThemedComponentMap()`, which will take a mapping of components to theme names, to styled components, and merge it.
+
+
+### Update `componentMap.js`
+```js
+import createThemedComponentMap from '@irvingjs/styled-components/componentMap';
+import { componentMap as WordPressComponentMap } from '@irvingjs/wordpress';
+import { IntegrationsManager } from '@irvingjs/integrations';
+import themeMap from 'themeMap';
+
+// Import custom components.
+import Podcast from 'components/podcast';
+
+export default {
+  ...WordPressComponentMap,
+  ...createThemedComponentMap(themeMap),
+  'irving/integrations': IntegrationsManager,
+};
+
+```
+
+## Add some custom fonts
+Now that our theme
+
+Open Sans and Gentium Book Basic.
+```html
+<link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Basic:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+```
+
+```js
+import styledConfig from '@irvingjs/styled';
+import styledComponentsConfig from '@irvingjs/styled-components/irving.config';
+import integrationsConfig from '@irvingjs/integrations';
+
+const config = {
+  name: 'tutorial',
+  packages: [
+    styledConfig,
+    styledComponentsConfig,
+    integrationsConfig,
+  ],
+  getAppTemplateVars: {
+    head: {
+      link: () => '<link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Basic:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,600;1,600&display=swap" rel="stylesheet">', /* eslint-disable-line max-len */
+    },
+  },
+};
+
+export default config;
+````
+
+## Style the title
+We'll start by styling the title.
+
+Every component we've used comes from `@irvingjs/styled-components`, and has support for the `style` prop/config ([docs](https://reactjs.org/docs/faq-styling.html)).
+
+This is really handy for quick styling and prototyping, but isn't ideal for production work since the styles are effectivley inline, and don't benefit from things like minfiying, cdn caching, etc.
+
+`single.json`
+```json
+{
+  "name": "irving/post-title",
+  "config": {
+    "style": {
+      "font-family": "'Open Sans', sans-serif",
+      "font-size": "3.2rem",
+      "letter-spacing": "-0.015em",
+      "line-height": "1.2",
+      "margin-bottom": "1rem"
+    },
+    "theme": "h1",
+    "tag": "h1"
+  }
+},
+```
+
+### Create a new text theme
+So instead, we're going to create a new theme.
+
+We'll start by creating `/components/text/themes/singleTitle.js` ([Source Code](https://github.com/alleyinteractive/create-irving-app/blob/irving-tutorial/components/text/themes/singleTitle.js)).
+
+You'll notice that we're mimicing the folder structure in @irvingjs/styled-components. Since themes apply to components, it helps to keep them organized in this way, even if it results in a few extra directories. As you'll learn in the next section, custom components follow this pattern as well.
+
+When creating your own theme, you'll want to start by copying one of the themes provided in @irvingjs/styled-components.
+
+In this instance, we'll start by copying `components/text/themes/defaut.js` ([docs](https://github.com/alleyinteractive/irving/blob/main/packages/styled-components/components/text/themes/default.js)) to `singleTitle.js`.
+
+We do this because we need the theme to export Styled Components with the same names. If we look at `irving/text`, we'll see that `<TextWrapper>` is a div that wraps the actual content being displayed. Because this div is a styled component,
+
+As we can see in the component, this Styled Component wraps the text rendered.
+
+[docs](https://github.com/alleyinteractive/irving/blob/main/packages/styled-components/components/text/index.js)
+
+```
+return (
+  <TextWrapper
+    {...standardProps}
+  >
+    {content}
+  </TextWrapper>
+);
+```
+
+Themes are just a predefined set of styled components used by the component itself.
+
+We plan to offer a CLI command to automate this process.
+
+`components/text/themes/singleTitle.js`
+```js
+import styled from 'styled-components';
+
+/* eslint-disable import/prefer-default-export */
+export const TextWrapper = styled.div``;
+/* eslint-enable */
+````
+
+We can apply the same styes as from our `styles` config/prop.
+```js
+import styled from 'styled-components';
+
+/* eslint-disable import/prefer-default-export */
+export const TextWrapper = styled.div`
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3.2rem;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+`;
+/* eslint-enable */
+````
+
+### Update the theme map
+Now that we've created the theme, we need to include it in the Theme Map.
+
+The top level keys are the names of the @irvingjs/styled-components component, and each child object key and value is a theme name and object of styled componetns
+```js
+// Text.
+import * as singleTitle from 'components/text/themes/singleTitle';
+
+export default {
+  'irving/text': {
+    singleTitle,
+  },
+};
+
+```
+
+If we removed the import, we could still achieve the same thing,
+```js
+import styled from 'styled-components';
+
+export default {
+  'irving/text': {
+    singleTitle: {
+      TextWrapper: styled.div`
+        font-family: 'Open Sans', sans-serif;
+        font-size: 3.2rem;
+        letter-spacing: -0.015em;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      `,
+    },
+  },
+};
+
+```
+
+But as you'll quickly see, keeping each theme organized into its own file and imported into the Theme Map is much easier to maintain.
+
+### Update `single.json`
+Inside of `single.json`, locate your `irving/post-title` component and change the `theme` from `h1` to `single_title`, which is the name of our custom theme we just created.
+```json
+{
+  "name": "irving/post-title",
+  "config": {
+    "theme": "single_title",
+    "tag": "h1"
+  }
+},
+```
+
+<img src="/assets/img/tutorial/03/title.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+## Style the byline and timestamp
+
+### Update `single.json`
+
+```json
+{
+  "name": "irving/container",
+  "config": {
+    "theme": "single_meta_container"
+  },
+  "children": [
+    {
+      "name": "irving/post-byline",
+      "config": {
+        "theme": "single_byline"
+      }
+    },
+    {
+      "name": "irving/post-timestamp"
+    }
+  ]
+}
+```
+
+### Create the `single_meta_container` theme for `irving/container`
+
+`/components/container/themes/singleMetaContainer.js`
+```js
+import styled from 'styled-components';
+
+/* eslint-disable import/prefer-default-export */
+export const ContainerWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-family: 'Gentium Book Basic', serif;
+  justify-items:: flex-start;
+  margin: auto;
+  width: 100%;
+`;
+/* eslint-enable */
+```
+
+### Create the `single_byline` theme for `irving/byline`
+
+`/components/byline/themes/singleByline.js`
+```js
+import styled from 'styled-components';
+
+/* eslint-disable import/prefer-default-export */
+export const BylineWrapper = styled.div`
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  padding-right: 1rem;
+  white-space: pre;
+  width: auto;
+`;
+
+export const AuthorsWrapper = styled.span`
+  align-items: center;
+  display: flex;
+`;
+
+export const AuthorWrapper = styled.span`
+  a {
+    font-weight: 700;
+  }
+`;
+/* eslint-enable */
+````
+
+### Update the Theme Map
+```js
+// Byline.
+import * as singleByline from 'components/byline/themes/singleByline';
+
+// Container.
+import * as singleMetaContainer from
+  'components/container/themes/singleMetaContainer';
+
+// Text.
+import * as singleTitle from 'components/text/themes/singleTitle';
+
+export default {
+  'irving/byline': {
+    singleByline,
+  },
+  'irving/container': {
+    singleMetaContainer,
+  },
+  'irving/text': {
+    singleTitle,
+  },
+};
+```
+
+<img src="/assets/img/tutorial/03/byline-and-timestamp.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+## Style the content
+For this theme, we're doing to do it a bit differently. For the title, we created a `<TextWrapper />` that was just a plain, unstyled div.
+
+In this situation, we want to build up the existing `html` theme by extending a new, project-specific version of it, and then replacing the default.
+
+Just make sure that `theme` is already `html` for `irving/post-content` in `single.json`.
+
+### Create a new, local, `html` theme for `irving/text`
+For this theme, we're doing to do it a bit differently. For the title, we created a `<TextWrapper />` that was just a plain, unstyled div.
+
+In this situation, we want to build up the existing `html` theme.
+
+We can import it from our component, and then using the `styled()` syntax from `styled-components`, we can apply a new font to all the paragraphs.
+```js
+/* eslint max-len: 0 */
+import styled from 'styled-components';
+import { TextWrapper as HTMLWrapper } from '@irvingjs/styled-components/components/text/themes/html';
+
+export const TextWrapper = styled(HTMLWrapper)`
+
+  p {
+    font-family: 'Gentium Book Basic', serif;
+  }
+`;
+```
+
+### Update the Theme Map
+This is a simple one, import the `html` theme, and add it to the map like the previous themes. Since our copy is named `html` as well, it will override the defaults, thus applying our paragraph styles.
+
+`/themeMap.js`
+```js
+// Byline.
+import * as singleByline from 'components/byline/themes/singleByline';
+
+// Container.
+import * as singleMetaContainer from
+  'components/container/themes/singleMetaContainer';
+
+// Text.
+import * as singleTitle from 'components/text/themes/singleTitle';
+import * as html from 'components/text/themes/html';
+
+export default {
+  'irving/byline': {
+    singleByline,
+  },
+  'irving/container': {
+    singleMetaContainer,
+  },
+  'irving/text': {
+    html,
+    singleTitle,
+  },
+};
+
+```
+
+<img src="/assets/img/tutorial/03/content.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+## Style the social sharing
+
+### Update `singe.json`
+
+For this last compoennt, I'm going to cheat by doing some small typography tweaks directly in the JSON. For production projects, you'd want to move this all into themes.
+```json
+{
+  "name": "irving/text",
+  "config": {
+    "content": "Share this post:",
+    "theme": "h3",
+    "tag": "h5",
+    "style": {
+      "font-family": "'Open Sans', sans-serif",
+      "font-size": "1rem",
+      "letter-spacing": "-0.015em",
+      "line-height": "1.2",
+      "margin-bottom": "rem"
+    }
+  }
+},
+{
+  "name": "irving/social-sharing",
+  "config": {
+    "style": {
+      "margin-bottom": "2rem"
+    }
+  }
+},
+```
+
+<img src="/assets/img/tutorial/03/social-sharing.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+--------------------------------------------------------------------------------
+
+**Up Next**
+[We'll create a custom component](?path=/docs/tutorial-creataing-a-new-component--page).

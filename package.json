@@ -28,7 +28,7 @@
     "test": "BABEL_ENV=test lerna run test --parallel",
     "test:watch": "BABEL_ENV=test lerna run test:watch --parallel",
     "storybook": "WEBPACK_BUILD=true start-storybook -s ./stories/public -p 6006",
-    "storybook:build": "build-storybook",
+    "storybook:build": "build-storybook -s ./stories/public",
     "storybook:deploy": "surge storybook-static --domain storybook.irvingjs.com",
     "storybook:release": "npm run storybook:build && npm run storybook:deploy",
     "storybook-qa:deploy": "surge storybook-static --domain storybook-qa.irvingjs.com",

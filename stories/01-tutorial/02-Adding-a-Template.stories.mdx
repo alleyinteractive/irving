@@ -1,0 +1,369 @@
+<Meta title="Tutorial|Adding a Template" />
+
+# Adding a Template
+In this section, we'll scaffold a WordPress `post` template in `single.json`.
+
+This template will render any single post type instance (except `page`) in WordPress. We'll use this template to construct a layout for a blog post.
+
+We're going to do this by adding a,
+* Title
+* Byline
+* Published Date
+* Featured Image
+* Gutenberg Content
+* Social Sharing Module
+
+<img src="/assets/img/tutorial/02/full.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+## Create `templates/single.json`
+If you haven't already, create `/wp-content/your-theme/templates/single.json` using the [Irving Starter Theme as your base](https://github.com/alleyinteractive/irving-starter-theme/blob/main/templates/single.json).
+
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/text",
+          "config": {
+            "content": "Welcome to single.json"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/single.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+### Adding `irving/post-title`
+We'll start by removing the static `irving/text` and replacing it with `irving/post-title`.
+
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/post-title"
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/post-title.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+The `irving/post-title` ([docs](?path=/docs/wordpress-components-post-title--page)) is an alias for `irving/text`, but has a callback which sets `content` to the value of `get_the_title()`.
+
+We'll also set the tag and theme to `h1`.
+
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/post-title",
+          "config": {
+            "tag": "h1",
+            "theme": "h1"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/first-theme.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+### Center the content with `irving/container`
+We'll use `irving/container` [(docs)](?path=/docs/wordpress-components-container--page) and the `max_width` config property to wrap `irving/post-title` in a centered div, with a max width of the large "`lg`" breakapoint.
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "tag": "h1",
+                "theme": "h1"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/container.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+### Adding `irving/post-byline` and `irving/post-timestamp`
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "tag": "h1",
+                "theme": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/byline-and-timestamp.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+### Adding `irving/post-featured-image`
+Now we want to enable post thumbnails on our theme, and display the featured image.
+
+```php
+add_action(
+  'after_setup_theme',
+  function() {
+    add_theme_support( 'post-thumbnails' );
+  }
+  }
+);
+```
+
+Now we add the `irving/post-featured-image` component.
+
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "tag": "h1",
+                "theme": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            }
+          ]
+        },
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "lg",
+            "style": {
+              "margin-top": "1rem"
+            }
+          },
+          "children": [
+            {
+              "name": "irving/post-featured-image",
+              "config": {
+                "aspect_ratio": "16:9",
+                "object_fit": "cover"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/post-image.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+### Adding `irving/post-content`
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "tag": "h1",
+                "theme": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            }
+          ]
+        },
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "lg",
+            "style": {
+              "margin-top": "1rem"
+            }
+          },
+          "children": [
+            {
+              "name": "irving/post-featured-image",
+              "config": {
+                "aspect_ratio": "16:9",
+                "object_fit": "cover"
+              }
+            }
+          ]
+        },
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md",
+          },
+          "children": [
+            {
+              "name": "irving/post-content",
+              "config": {
+                "theme": "html"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/post-content.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+### Adding social sharing module
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "tag": "h1",
+                "theme": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            }
+          ]
+        },
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "lg",
+            "style": {
+              "margin-top": "1rem"
+            }
+          },
+          "children": [
+            {
+              "name": "irving/post-featured-image",
+              "config": {
+                "aspect_ratio": "16:9",
+                "object_fit": "cover"
+              }
+            }
+          ]
+        },
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-content",
+              "config": {
+                "theme": "html"
+              }
+            },
+            {
+              "name": "irving/text",
+              "config": {
+                "content": "Share this post:",
+                "tag": "h5",
+                "theme": "h3"
+              }
+            },
+            {
+              "name": "irving/social-sharing"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/social-sharing.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+
+**Up Next**
+[We'll create a Latest Posts module](?path=/docs/tutorial-adding-a-latest-posts-module--page).
