@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.21](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.20...v5.3.0-alpha.21) (2020-12-16)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
 # [5.3.0-alpha.20](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.19...v5.3.0-alpha.20) (2020-12-16)
 
 
