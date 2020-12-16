@@ -4,19 +4,31 @@
 
 .header {
   color: color.$text;
-  padding-top: 2rem;
+
+  .container {
+    padding-top: rem(80);
+    padding-bottom: 0;
+
+    @media (media(min, sm)) {
+      padding-top: rem(170);
+    }
+  }
 }
 
 .header__logo {
   display: inline-block;
-  height: rem(99);
-  width: rem(248);
+  height: auto;
+  width: rem(200);
+
+  @media (media(min, sm)) {
+    width: rem(248);
+    margin-bottom: rem(20);
+  }
 }
 
 .header__heading {
   font-size: rem(24);
   font-weight: 700;
-  margin-bottom: rem(20);
   text-transform: uppercase;
 
   span {
@@ -34,7 +46,7 @@
     max-width: rem(590);
     margin-bottom: rem(96);
   }
-  
+
 }
 
 .header__intro__tagline {
@@ -56,28 +68,37 @@
 .header__buttons {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: -4rem;
+  margin-bottom: rem(-40); // Overlap next container.
 
-  @media (media(max, sm)) {
-    flex-wrap: wrap;
-}
+  @media (media(min, sm)) {
+    flex-wrap: nowrap;
+    margin-bottom: rem(-50); // Overlap next container.
+  }
 
   .button {
     display: inline-block;
     background-color: color.$black;
     color: color.$white;
-    margin: rem(10);
-    padding: rem(15) rem(15) rem(18);
-    font-size: rem(22);
+    margin: 0 rem(8) rem(16);
+    padding: rem(12) rem(12) rem(16);
+    font-size: rem(18);
     font-weight: 600;
     line-height: (26/22);
     min-width: rem(188);
     text-decoration: none;
+
+    @media (media(min, sm)) {
+      font-size: rem(22);
+      margin: 0 rem(10) rem(20);
+      padding: rem(15) rem(15) rem(18);
+    }
 
     &:hover,
     &:focus {
       text-decoration: underline;
     }
   }
+
 }
