@@ -44,7 +44,7 @@ export const createRelativeConverter = (unit, base = 16) => {
     }
 
     return convertValues(pxVal);
-  }
+  };
 };
 
 // Default function using 16px base.
