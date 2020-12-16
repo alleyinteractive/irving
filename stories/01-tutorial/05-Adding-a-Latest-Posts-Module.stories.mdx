@@ -1,0 +1,126 @@
+<Meta title="Tutorial|Adding a Latest Posts Module" />
+
+# Adding a "Latest Posts" module
+In this section, we'll continue working on our post template by adding a Latest Posts module.
+
+## Table of Contents
+* []()
+
+### Include a related posts template part
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "theme": "h2",
+              "config": {
+                "tag": "h2"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            },
+            {
+              "name": "irving/post-featured-image",
+              "config": {
+                "object_fit": "cover"
+              }
+            },
+            {
+              "name": "irving/post-content"
+            }
+          ]
+        },
+        {
+          "name": "irving/template-part",
+          "config": {
+            "slug": "post-grid"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+Create `template-parts/post-grid.json`
+```json
+{
+  "name": "irving/post-list",
+  "config": {
+    "query_args": {
+      "posts_per_page": 4
+    },
+    "templates": {
+      "before": [
+        {
+          "name": "irving/text",
+          "config": {
+            "content": "Latest Posts",
+            "tag": "h2",
+            "theme": "h2",
+            "style": {
+              "margin": "2rem 0"
+            }
+          }
+        }
+      ],
+      "item": [
+        {
+          "name": "irving/container",
+          "config": {
+            "style": {
+              "max-width": "25%"
+            }
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "theme": "h3"
+              }
+            },
+            {
+              "name": "irving/post-excerpt"
+            }
+          ]
+        }
+      ],
+      "no_results": [
+        {
+          "name": "irving/text",
+          "config": {
+            "content": "No results found."
+          }
+        }
+      ],
+      "wrapper": [
+        {
+          "name": "irving/container",
+          "config": {
+            "style": {
+              "display": "flex"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+
+**Up Next**
+[We'll create some new themes to style our template](?path=/docs/tutorial-styling-a-component--page).

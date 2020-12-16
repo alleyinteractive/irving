@@ -5,9 +5,6 @@ In this section, we'll scaffold a WordPress `post` template in `single.json`.
 
 This template will render any single post type instance (except `page`) in WordPress. We'll use this template to construct a layout for a blog post.
 
-## Table of Contents
-* []()
-
 ## Create `templates/single.json`
 If you haven't already, create `/wp-content/your-theme/templates/single.json` using the [Irving Starter Theme as your base](https://github.com/alleyinteractive/irving-starter-theme/blob/main/templates/single.json).
 
@@ -50,6 +47,7 @@ We'll start by removing the static `irving/text` and replacing it with `irving/p
 The `irving/post-title` ([docs](?path=/docs/wordpress-components-post-title--page)) is an alias for `irving/text`, but has a callback which sets `content` to the value of `get_the_title()`.
 
 We'll also set the tag and theme to `h1`.
+
 ```json
 {
   "page": [
@@ -69,7 +67,8 @@ We'll also set the tag and theme to `h1`.
 }
 ```
 
-### Centering the content
+### Center the content with `irving/container`
+We'll use `irving/container` [(docs)](?path=/docs/wordpress-components-container--page) and the `max_width` config property to wrap `irving/post-title` in a centered div, with a max width of the large "`lg`" breakapoint.
 ```json
 {
   "page": [
@@ -84,9 +83,9 @@ We'll also set the tag and theme to `h1`.
           "children": [
             {
               "name": "irving/post-title",
-              "theme": "h2",
+              "theme": "h1",
               "config": {
-                "tag": "h2"
+                "tag": "h1"
               }
             }
           ]
@@ -97,11 +96,119 @@ We'll also set the tag and theme to `h1`.
 }
 ```
 
-### Adding `irving/post-featured-image`
-### Adding `irving/post-byline`
-### Adding `irving/post-content`
-### Adding some related posts
+### Adding `irving/post-byline` and `irving/post-timestamp`
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "theme": "h1",
+              "config": {
+                "tag": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
+### Adding `irving/post-featured-image`
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "lg"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "theme": "h1",
+              "config": {
+                "tag": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            },
+            {
+              "name": "irving/post-featured-image",
+              "config": {
+                "object_fit": "cover"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Adding `irving/post-content`
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "theme": "h1",
+              "config": {
+                "tag": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-featured-image",
+              "config": {
+                "object_fit": "cover"
+              }
+            },
+            {
+              "name": "irving/post-content"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
 **Up Next**
-[We'll create some new themes to style our template](?path=/docs/tutorial-styling-a-component--page).
+[We'll create a Latest Posts module](?path=/docs/tutorial-adding-a-latest-posts-module--page).

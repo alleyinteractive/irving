@@ -10,12 +10,16 @@ In this section, we'll prepare a WordPress installation to begin working on your
 * [Setup your theme](?path=/docs/tutorial-setting-up-wordpress--page#setup-your-theme)
 
 ## Prerequisites
-To get started, you'll a local copy of WordPress.
+To get started, you'll need a local copy of WordPress.
 
-For the rest of this tutorial, we'll assume a [new install](https://wordpress.org/support/article/how-to-install-wordpress/).
+The WordPress documentation on [how to install WordPress](https://wordpress.org/support/article/how-to-install-wordpress/) are a good resource to get started.
 
 ## Install and activate the WP Irving plugin
-Begin by downloading, installing, and activating the [WP Irving](https://github.com/alleyinteractive/wp-irving) plugin. You should immediately see a new "Irving Development" dropdown in your [admin bar](http://localhost:6006/?path=/docs/packages-wordpress--page#admin-bar).
+Next, we want to download, install, and activate the [WP Irving](https://github.com/alleyinteractive/wp-irving) plugin on your local installation.
+
+You should immediately see a new "Irving Development" dropdown in your [admin bar](http://localhost:6006/?path=/docs/packages-wordpress--page#admin-bar).
+
+<img src="/assets/img/tutorial/01/admin-bar.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
 
 You can confirm the endpoint is setup correctly by visiting `yourdomain.com/wp-json/irving/v1` and confirming a valid response,
 ```json
@@ -49,30 +53,28 @@ If you get a `rest_no_route` error, double check your plugin is activated and [p
 }
 ```
 
-## Update Settings
-Now that WP Iriving is installed and you have a working WordPress install, we need to tell both the frontend and backend where the other is.
+## Update `API_ROOT_URL` in `.env`
+Now that we've confirmed WP Irving is setup and ready, replace `API_ROOT_URL` in your `.env`,
 
-### Update the `.env`
-Inside your Irving application, open the `.env` file and change
+```bash
+API_ROOT_URL=https://your-local-wp-site.com/wp-json/irving/v1
+```
 
-`API_ROOT_URL=https://wordpress.irvingjs.com/wp-json/irving/v1`
+_You'll need to restart Irving if it's already running._
 
-to
+## Update Site Address in WordPress
+Inside of WordPress, you'll need to [update the Site Address](https://wordpress.org/support/article/changing-the-site-url/) to the Irving application.
 
-`API_ROOT_URL=https://your-local-wp-site.com/wp-json/irving/v1`
+Default value is `http://localhost:3001`
 
-You'll need to restart Irving if it's already running.
+<img src="/assets/img/tutorial/01/site-address.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
 
-### Update the Site Address
-Inside of WordPress, you'll need to [update the Site Address](https://wordpress.org/support/article/changing-the-site-url/) to the Irving application, which by default is `http://localhost:3001`.
-
-## Confirm
+## Confirm your Changes
 Run `npm run dev` and you should see a "welcome" message.
 
-## Irving Starter Theme
+<img src="/assets/img/tutorial/01/welcome.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
 
-
-
+## Scaffold Template JSON
 One of the ways WP Irving helps streamline development is by offering a basic templating system, mimicking the [WordPress Template Hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/).
 
 By default, the [Components Endpoint](?path=/docs/components-components-endpoint--page) will be constructed for any given request using `.json` files in `/wp-content/your-theme/templates/` and `/wp-content/your-theme/template-parts/`.
