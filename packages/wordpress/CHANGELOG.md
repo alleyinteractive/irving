@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.14](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.13...v5.3.0-alpha.14) (2020-12-16)
+
+
+### Bug Fixes
+
+* **sitetheme:** add fallback for sitetheme value matches ([23d4bd0](https://github.com/alleyinteractive/irving/packages/example-package/commit/23d4bd0760e42f0da2af480ecc701e121e4095c9))
+
+
+
+
+
 # [5.3.0-alpha.13](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.12...v5.3.0-alpha.13) (2020-12-15)
 
 **Note:** Version bump only for package @irvingjs/wordpress
