@@ -4,8 +4,8 @@ module.exports = (config) => {
   config.module.rules = config.module.rules
     .map((rule) => {
       if (
-        rule.resource &&
-        rule.resource.test.toString().includes('jsx') &&
+        rule.test &&
+        rule.test.toString().includes('jsx') &&
         ! rule.enforce
       ) {
         rule.use.push({
