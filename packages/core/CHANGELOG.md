@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.17](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.16...v5.3.0-alpha.17) (2020-12-16)
+
+
+### Bug Fixes
+
+* **getenv:** remove unnecessary var ([84e4303](https://github.com/alleyinteractive/irving/packages/core/commit/84e4303af7bf57051ef76eb02e4ac9c1c2bbe328))
+
+
+
+
+
 # [5.3.0-alpha.16](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.15...v5.3.0-alpha.16) (2020-12-16)
 
 **Note:** Version bump only for package @irvingjs/core
