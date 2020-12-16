@@ -66,7 +66,7 @@ export const recursivelyBuildObjectTree = (branch, tree = {}) => {
         branch[key].includes('[')
       )
     ) {
-      const returnPaths = branch[key].match(topLevelKeys);
+      const returnPaths = branch[key].match(topLevelKeys) || [];
 
       // Recursively look for the returned value in the theme provider until
       // the default is returned.
