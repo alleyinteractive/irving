@@ -1,0 +1,26 @@
+/*
+ * Containers
+ */
+ .container {
+    padding: rem(30) 0;
+
+    @media (media(min, md)) {
+      padding: rem(60) 0;
+    }
+
+    // Apply max-width to all direct children so these stay full-bleed.
+    > * {
+      @include layout.auto-margins;
+      max-width: rem(1240);
+      width: calc(100% - rem(40));
+    }
+  }
+
+  .container--dark {
+    background-color: color.$primary-light;
+    margin-bottom: rem(30);
+
+    @media (media(min, md)) {
+      margin-bottom: rem(60) 0;
+    }
+  }
