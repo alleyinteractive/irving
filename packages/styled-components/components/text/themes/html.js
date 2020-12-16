@@ -391,6 +391,7 @@ export const TextWrapper = styled.div`
 
   img,
   figure {
+    height: auto;
     max-width: 100%;
   }
 `;
