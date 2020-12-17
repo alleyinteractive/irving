@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
+
+
+### Bug Fixes
+
+* **stylelint:** cherry-pick stylelint fixes ([fbc4550](https://github.com/alleyinteractive/irving/packages/example-package/commit/fbc4550ade6a94410929683b8b745611403b16e3))
+
+
+
+
+
 # [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
 
 **Note:** Version bump only for package @irvingjs/wordpress
