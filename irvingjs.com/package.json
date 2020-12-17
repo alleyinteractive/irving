@@ -23,7 +23,8 @@
     "start": "ELEVENTY_ENV=development npx @11ty/eleventy --serve",
     "build": "ELEVENTY_ENV=production npx @11ty/eleventy",
     "test": "npm run build && npx browser-sync start --server 'dist'",
-    "deploy": "npm run build && surge ./dist --domain irvingjs.com"
+    "deploy:production": "npm run build && surge ./dist --domain irvingjs.com",
+    "deploy:staging": "npm run build && surge ./dist --domain staging.irvingjs.com"
   },
   "browserslist": [
     "last 3 versions"

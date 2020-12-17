@@ -31,7 +31,7 @@ module.exports = function() {
       title: 'Irving',
       description: 'Irving Landing Page',
       // OS app icon color.
-      themeColor: '#77A5A4',
+      themeColor: '#00b1ff',
       // Asset version.
       version: '1.0.0',
     },

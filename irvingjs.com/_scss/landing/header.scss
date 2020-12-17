@@ -3,34 +3,37 @@
 @use 'core/color';
 
 .header {
-  color: color.$primary;
-  font-style: italic;
-  position: relative;
-  text-align: center;
-  z-index: 0;
-}
+  color: color.$text;
 
-.header__container {
-  @include layout.auto-margins;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: rem(150) 0;
-  text-align: center;
+  .container {
+    padding-top: rem(80);
+    padding-bottom: 0;
+
+    @media (media(min, sm)) {
+      padding-top: rem(170);
+    }
+  }
 }
 
 .header__logo {
-  display: block;
-  height: rem(99);
-  width: rem(248);
+  display: inline-block;
+  height: auto;
+  width: rem(240);
+
+  @media (media(min, sm)) {
+    width: rem(320);
+    margin-bottom: rem(20);
+  }
+
+  @media (media(min, md)) {
+    width: rem(450);
+    margin-bottom: rem(20);
+  }
 }
 
 .header__heading {
   font-size: rem(24);
   font-weight: 700;
-  line-height: (37/24);
-  margin-bottom: rem(36);
   text-transform: uppercase;
 
   span {
@@ -39,8 +42,43 @@
 }
 
 .header__intro {
+  font-size: rem(18);
+  margin-bottom: 2rem;
+
+  @media (media(min,sm)) {
+    font-size: rem(24);
+    line-height: 1.4;
+    max-width: rem(590);
+    margin-bottom: rem(96);
+  }
+
+}
+
+.header__intro__tagline {
   font-size: rem(24);
-  font-weight: 700;
-  line-height: (36/24);
-  max-width: rem(510);
+  font-weight: 600;
+  line-height: 2;
+
+  @media (media(min, sm)) {
+    font-size: rem(36);
+    max-width: rem(590);
+  }
+
+  em {
+    color: color.$primary;
+    font-style: normal;
+  }
+}
+
+.header__buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: rem(-40); // Overlap next container.
+
+  @media (media(min, sm)) {
+    flex-wrap: nowrap;
+    margin-bottom: rem(-50); // Overlap next container.
+  }
 }

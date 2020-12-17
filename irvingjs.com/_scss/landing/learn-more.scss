@@ -1,0 +1,38 @@
+@use 'core/color';
+@use 'core/breakpoints' as *;
+
+.learn-more {
+  padding-bottom: rem(100);
+
+  @media (media(min, md)) {
+    padding-bottom: rem(160);
+  }
+}
+
+.learn-more__logo {
+  display: inline-block;
+  height: rem(38);
+  width: rem(91);
+
+  & path {
+    fill: color.$black;
+  }
+}
+
+.learn-more__tag {
+  font-size: rem(24);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+
+  @media (media(min, sm)) {
+    line-height: rem(38);
+  }
+  > a {
+    color: color.$primary-medium;
+  }
+}
+
+.learn-more__subline {
+  font-size: rem(18);
+}

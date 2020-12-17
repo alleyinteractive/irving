@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.20](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.19...v5.3.0-alpha.20) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.19](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.18...v5.3.0-alpha.19) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.17](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.16...v5.3.0-alpha.17) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.16](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.15...v5.3.0-alpha.16) (2020-12-16)
+
+
+### Bug Fixes
+
+* **package:** update package-locks for audio-player, wordpress ([f8f7b54](https://github.com/alleyinteractive/irving/packages/example-package/commit/f8f7b54baea3389e1a0a33ce9a449c35980708e6))
+
+
+
+
+
+# [5.3.0-alpha.15](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.14...v5.3.0-alpha.15) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.14](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.13...v5.3.0-alpha.14) (2020-12-16)
+
+
+### Bug Fixes
+
+* **sitetheme:** add fallback for sitetheme value matches ([23d4bd0](https://github.com/alleyinteractive/irving/packages/example-package/commit/23d4bd0760e42f0da2af480ecc701e121e4095c9))
+
+
+
+
+
+# [5.3.0-alpha.13](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.12...v5.3.0-alpha.13) (2020-12-15)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.12](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.11...v5.3.0-alpha.12) (2020-12-15)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
 # [5.3.0-alpha.10](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.9...v5.3.0-alpha.10) (2020-12-14)
 
 **Note:** Version bump only for package @irvingjs/wordpress

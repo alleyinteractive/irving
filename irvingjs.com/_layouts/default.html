@@ -30,6 +30,8 @@
 	<meta name="msapplication-TileColor" content="{{ config.meta.themeColor }}" />
 	<meta name="msapplication-TileImage" content="favicon-270.png" />
 
+	<link rel="stylesheet" href="https://use.typekit.net/aqc8gaa.css">
+
 	{% if '/' == permalink %}
 		<link rel="stylesheet" href="css/styles.css?v={{ config.meta.version }}">
 
@@ -87,12 +89,23 @@
 		>
 			{% include skip-links.html %}
 
-			<div class="container header__container">
+			<section class="container centered">
 				<h1 class="header__heading">
-					<span class="screen-reader-only">{{ config.strings.shortName }}</span>
+					<span class="screen-reader-only">IrvingJS</span>
 					<span class="header__logo">{{ '/images/irving-logo.svg' | svgContents }}</span>
 				</h1>
-			</div>
+				<div class="header__intro">
+					<p class="header__intro__tagline">A <em>headless</em> framework</p>
+					<p>Irving is an integrated, React-based framework for building single-page applications. Irving gives you all the power of isomorphic JavaScript while allowing full control over component layouts with a content management system like WordPress.
+</p>
+				</div>
+
+				<ul class="header__buttons">
+					<li><a class="button" href="https://demo.irvingjs.com">Demo</a></li>
+					<li><a class="button" href="https://storybook.irvingjs.com">Documentation</a></li>
+					<li><a class="button" href="https://github.com/alleyinteractive/irving">Source</a></li>
+				</ul>
+			</section>
 		</header>
 	{% else %}
 		<!-- legal pages -->
@@ -107,14 +120,12 @@
 	>
 		{{ content }}
 	</main>
-<!--
+
 	<footer class="footer" role="contentinfo">
 		<div class="footer__container">
-			<img class="footer__logo" src="images/irving-icon.png" />
-			<p>Copyright {{ page.date | date: '%Y' }}. Made by <a href="https://alley.co">Alley</a></p>
+			<p>Copyright &copy; {{ page.date | date: '%Y' }}. Made by <a href="https://alley.co">Alley</a></p>
 		</div>
-	</footer> -->
-
-	<!-- build: {{ "now" | date: "%Y-%m-%d %H:%M" }} -->
+	</footer>
+	<!-- last build: {{ "now" | date: "%Y-%m-%d %H:%M" }} -->
 </body>
 </html>
