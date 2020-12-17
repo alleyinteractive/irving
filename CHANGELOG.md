@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.22...v5.3.0-alpha.23) (2020-12-17)
+
+
+### Bug Fixes
+
+* **audio, button, embed, and gallery components:** fix styelint issues in wordpress package ([06f4f92](https://github.com/alleyinteractive/irving/commit/06f4f929c2cf37225fb19b36f74fe9e997584bbe))
+* **loader and search form:** fix style lint errors in styled components package ([45ad432](https://github.com/alleyinteractive/irving/commit/45ad4327115bde18d38d63ecd4b4ee9bcc5b6169))
+
+
+
+
+
 # [5.3.0-alpha.22](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.21...v5.3.0-alpha.22) (2020-12-17)
 
 

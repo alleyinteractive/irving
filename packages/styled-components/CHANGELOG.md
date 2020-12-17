@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.22...v5.3.0-alpha.23) (2020-12-17)
+
+
+### Bug Fixes
+
+* **loader and search form:** fix style lint errors in styled components package ([45ad432](https://github.com/alleyinteractive/irving/packages/styled-components/commit/45ad4327115bde18d38d63ecd4b4ee9bcc5b6169))
+
+
+
+
+
 # [5.3.0-alpha.22](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.21...v5.3.0-alpha.22) (2020-12-17)
 
 **Note:** Version bump only for package @irvingjs/styled-components
