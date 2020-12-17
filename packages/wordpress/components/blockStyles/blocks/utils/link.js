@@ -3,8 +3,8 @@ import { siteTheme } from '@irvingjs/styled/utils';
 
 /* eslint-disable max-len, indent */
 const link = css`
-  color: ${siteTheme('blocks.link.color', 'inherit')};
   border: ${siteTheme('blocks.link.border', 'inherit')};
+  color: ${siteTheme('blocks.link.color', 'inherit')};
   font-family: ${siteTheme(
     'blocks.link.fontFamily',
     'Arial, Helvetica, sans-serif'

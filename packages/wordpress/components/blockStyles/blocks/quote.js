@@ -3,6 +3,7 @@ import { link } from './utils';
 
 /* eslint-disable indent */
 export const quoteBlock = css`
+
   .wp-block-quote {
     border-left: 1px solid black;
     display: flex;
@@ -18,15 +19,15 @@ export const quoteBlock = css`
 
     p {
       color: #000000;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Arial", "Helvetica", sans-serif;
       font-size: 1rem;
       font-weight: 400;
     }
 
     cite {
-      display: inline-block;
       color: #000000;
-      font-family: Times, Georgia, serif;
+      display: inline-block;
+      font-family: "Times", "Georgia", serif;
       font-size: 0.75rem;
       font-weight: 400;
       margin-top: 2rem;
