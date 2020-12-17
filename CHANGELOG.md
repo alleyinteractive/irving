@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.22](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.21...v5.3.0-alpha.22) (2020-12-17)
+
+
+### Features
+
+* add background image, button and icon ([e01899a](https://github.com/alleyinteractive/irving/commit/e01899a1c936bbda7b8ed9227e463099a43e4e8a))
+
+
+
+
+
 # [5.3.0-alpha.21](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.20...v5.3.0-alpha.21) (2020-12-16)
 
 **Note:** Version bump only for package irving
