@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
+
+
+### Bug Fixes
+
+* **pxtorelative:** another semicolon ([91cbb33](https://github.com/alleyinteractive/irving/packages/styled/commit/91cbb33f246f870d7eed96ebe1d364ba2d47e399))
+
+
+
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
 # [5.3.0-alpha.20](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.19...v5.3.0-alpha.20) (2020-12-16)
 
 
