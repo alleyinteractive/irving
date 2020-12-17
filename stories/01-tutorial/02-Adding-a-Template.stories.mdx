@@ -1,22 +1,22 @@
 <Meta title="Tutorial|Adding a Template" />
 
 # Adding a Template
-In this section, we'll scaffold a WordPress `post` template in `single.json`.
+In this section, we're going to scaffold out a basic post template.
 
-This template will render any single post type instance (except `page`) in WordPress. We'll use this template to construct a layout for a blog post.
+By the end of this section, you'll understand how templating in Irving works, and how you can use the `@irvingjs/styled-components` library to quickly assemble them.
 
-We're going to do this by adding a,
-* Title
-* Byline
-* Published Date
-* Featured Image
-* Gutenberg Content
-* Social Sharing Module
-
-<img src="/assets/img/tutorial/02/full.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+## Table of Contents
+* [Create `templates/single.json`](?path=/docs/tutorial-adding-a-template--page#create-templatessinglejson)
+* [Adding `irving/post-title`](?path=/docs/tutorial-adding-a-template--page#adding-irvingpost-title)
+* [Center the content with `irving/container`](?path=/docs/tutorial-adding-a-template--page#center-the-content-with-irvingcontainer)
+* [Adding `irving/post-byline` and `irving/post-timestamp`](?path=/docs/tutorial-adding-a-template--page#adding-irvingpost-byline-and-irvingpost-timestamp)
+* [Adding `irving/post-featured-image`](?path=/docs/tutorial-adding-a-template--page#adding-irvingpost-featured-image)
+* [Adding `irving/post-content`](?path=/docs/tutorial-adding-a-template--page#adding-irvingpost-content)
+* [Adding social sharing module](?path=/docs/tutorial-adding-a-template--page#adding-social-sharing-module)
+* [Up Next](?path=/docs/tutorial-adding-a-template--page#up-next)
 
 ## Create `templates/single.json`
-If you haven't already, create `/wp-content/your-theme/templates/single.json` using the [Irving Starter Theme as your base](https://github.com/alleyinteractive/irving-starter-theme/blob/main/templates/single.json).
+If you're using the [Irving Starter Theme](https://github.com/alleyinteractive/irving-starter-theme/blob/main/templates/single.json), `/templates/single.json` should already exist in your theme.
 
 ```json
 {
@@ -36,10 +36,12 @@ If you haven't already, create `/wp-content/your-theme/templates/single.json` us
 }
 ```
 
-<img src="/assets/img/tutorial/02/single.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/02/single.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
-### Adding `irving/post-title`
-We'll start by removing the static `irving/text` and replacing it with `irving/post-title`.
+## Adding `irving/post-title`
+We'll start by removing `irving/text`, replacing it with `irving/post-title`.
+
+The `irving/post-title` ([docs](?path=/docs/wordpress-components-post-title--page)) is a component included in WP Irving. It uses `get_the_title()` in the context of whatever post is set in the context provider. It is also [aliased](?path=/docs/components-components-structure--page#_alias---string-experimental) to `irving/text`, meaning it inherits all the same configuration attributes, and renders using the text component in `@irvingjs/styled-components`/.
 
 ```json
 {
@@ -56,11 +58,16 @@ We'll start by removing the static `irving/text` and replacing it with `irving/p
 }
 ```
 
-<img src="/assets/img/tutorial/02/post-title.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/02/post-title.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
-The `irving/post-title` ([docs](?path=/docs/wordpress-components-post-title--page)) is an alias for `irving/text`, but has a callback which sets `content` to the value of `get_the_title()`.
+## Set some config values on `irving/post-title`
+The `config` object is how we pass data to `props` in React. The documentation for `irving/post-title` outlines all [the configuration options](?path=/docs/wordpress-components-post-title--page#config).
 
-We'll also set the tag and theme to `h1`.
+We'll go ahead and set `"tag": "h1"` so that the text renders inside of an `h1` tag.
+
+You'll also see `"theme": "h1"` below. This instructs the component to render using the `h1` theme ([docs](https://github.com/alleyinteractive/irving/blob/main/packages/styled-components/components/text/themes/h1.js)) on the `irving/text` component ([docs](?path=/docs/styled-components-text--plain-text-example)).
+
+We'll also set the tag and theme to `h1`. This will set the relevant config values on the [Text component](?path=/docs/styled-components-text--plain-text-example).
 
 ```json
 {
@@ -81,9 +88,9 @@ We'll also set the tag and theme to `h1`.
 }
 ```
 
-<img src="/assets/img/tutorial/02/first-theme.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/02/first-theme.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
-### Center the content with `irving/container`
+## Center the content with `irving/container`
 We'll use `irving/container` [(docs)](?path=/docs/wordpress-components-container--page) and the `max_width` config property to wrap `irving/post-title` in a centered div, with a max width of the large "`lg`" breakapoint.
 ```json
 {
@@ -112,9 +119,21 @@ We'll use `irving/container` [(docs)](?path=/docs/wordpress-components-container
 }
 ```
 
-<img src="/assets/img/tutorial/02/container.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/02/container.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
-### Adding `irving/post-byline` and `irving/post-timestamp`
+## Adding `irving/post-byline` and `irving/post-timestamp`
+Now that our content is nice and centered, we'll follow the title with an `irving/post-byline` and an `irving/post-timestamp` component.
+
+```json
+{
+  "name": "irving/post-byline"
+},
+{
+  "name": "irving/post-timestamp"
+}
+```
+
+`single.json`
 ```json
 {
   "page": [
@@ -148,10 +167,12 @@ We'll use `irving/container` [(docs)](?path=/docs/wordpress-components-container
 }
 ```
 
-<img src="/assets/img/tutorial/02/byline-and-timestamp.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/02/byline-and-timestamp.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
-### Adding `irving/post-featured-image`
-Now we want to enable post thumbnails on our theme, and display the featured image.
+## Adding `irving/post-featured-image`
+Before adding a featured image (post thumbnail), we need to enable them in our theme.
+
+Add this code to `/your-theme/functions.php`,
 
 ```php
 add_action(
@@ -163,8 +184,31 @@ add_action(
 );
 ```
 
-Now we add the `irving/post-featured-image` component.
+Now we can add `irving/post-featured-image` ([docs](?path=/docs/wordpress-components-post-featured-image--page)) to our template.
 
+However, unliked the `irving/post-byline` and `irving/post-timestamp` components, we're going to add a new `irving/container` with a `lg` breakpoint, allowing our featured image to strech wider.
+
+We've also gone ahead and added `"aspect_ratio": "16:9"` and `"object_fit": "cover"` to ensure the image always fills a `16:9` area.
+
+```json
+{
+  "name": "irving/container",
+  "config": {
+    "max_width": "lg"
+  },
+  "children": [
+    {
+      "name": "irving/post-featured-image",
+      "config": {
+        "aspect_ratio": "16:9",
+        "object_fit": "cover"
+      }
+    }
+  ]
+}
+```
+
+`single.json`
 ```json
 {
   "page": [
@@ -195,10 +239,7 @@ Now we add the `irving/post-featured-image` component.
         {
           "name": "irving/container",
           "config": {
-            "max_width": "lg",
-            "style": {
-              "margin-top": "1rem"
-            }
+            "max_width": "lg"
           },
           "children": [
             {
@@ -216,9 +257,29 @@ Now we add the `irving/post-featured-image` component.
 }
 ```
 
-<img src="/assets/img/tutorial/02/post-image.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/02/post-image.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
-### Adding `irving/post-content`
+## Adding `irving/post-content`
+Moving down the template, we'll wrap `irving/post-content` in another new `irving/container`, back to our original `md` width, aligning with the `irving/title`, `irving/byline`, and `irving/timestamp` above.
+
+```json
+{
+  "name": "irving/container",
+  "config": {
+    "max_width": "md",
+  },
+  "children": [
+    {
+      "name": "irving/post-content",
+      "config": {
+        "theme": "html"
+      }
+    }
+  ]
+}
+```
+
+`single.json`
 ```json
 {
   "page": [
@@ -284,9 +345,26 @@ Now we add the `irving/post-featured-image` component.
 }
 ```
 
-<img src="/assets/img/tutorial/02/post-content.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/02/post-content.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
-### Adding social sharing module
+## Adding social sharing module
+And we'll wrap up the template with a simple `irving/text` label and `irving/post-social-sharing` ([docs](?path=/docs/wordpress-components-post-social-sharing--page)).
+
+```json
+{
+  "name": "irving/text",
+  "config": {
+    "content": "Share this post:",
+    "tag": "h5",
+    "theme": "h3"
+  }
+},
+{
+  "name": "irving/post-social-sharing"
+}
+```
+
+`single.json`
 ```json
 {
   "page": [
@@ -353,7 +431,7 @@ Now we add the `irving/post-featured-image` component.
               }
             },
             {
-              "name": "irving/social-sharing"
+              "name": "irving/post-social-sharing"
             }
           ]
         }
@@ -363,7 +441,9 @@ Now we add the `irving/post-featured-image` component.
 }
 ```
 
-<img src="/assets/img/tutorial/02/social-sharing.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/02/social-sharing.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
-**Up Next**
-[We'll create a Latest Posts module](?path=/docs/tutorial-adding-a-latest-posts-module--page).
+## Up Next
+We'll explore the different methods of styling components.
+
+[Next Up: Styling the Template](?path=/docs/tutorial-styling-the-template--page)

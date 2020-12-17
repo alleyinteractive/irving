@@ -3,23 +3,22 @@
 # Setting up WordPress
 In this section, we'll prepare a WordPress installation to begin working on your Irving application.
 
+To get started, you'll need a local copy of WordPress. The WordPress documentation on [how to install WordPress](https://wordpress.org/support/article/how-to-install-wordpress/) is a good resource to get started.
+
 ## Table of Contents
-* [Prerequisites](?path=/docs/tutorial-setting-up-wordpress--page#prerequisites)
 * [Install and activate the WP Irving plugin](?path=/docs/tutorial-setting-up-wordpress--page#install-and-activate-the-wp-irving-plugin)
-* [Update Settings]()
-* [Setup your theme](?path=/docs/tutorial-setting-up-wordpress--page#setup-your-theme)
-
-## Prerequisites
-To get started, you'll need a local copy of WordPress.
-
-The WordPress documentation on [how to install WordPress](https://wordpress.org/support/article/how-to-install-wordpress/) are a good resource to get started.
+* [Update `API_ROOT_URL` in `.env`](?path=/docs/tutorial-setting-up-wordpress--page#update-api_root_url-in-env)
+* [Update Site Address in WordPress](?path=/docs/tutorial-setting-up-wordpress--page#update-site-address-in-wordpress)
+* [Confirm your Changes](?path=/docs/tutorial-setting-up-wordpress--page#confirm-your-changes)
+* [Scaffold Template JSON](?path=/docs/tutorial-setting-up-wordpress--page#scaffold-template-json)
+* [Up Next](?path=/docs/tutorial-setting-up-wordpress--page#up-next)
 
 ## Install and activate the WP Irving plugin
 Next, we want to download, install, and activate the [WP Irving](https://github.com/alleyinteractive/wp-irving) plugin on your local installation.
 
 You should immediately see a new "Irving Development" dropdown in your [admin bar](http://localhost:6006/?path=/docs/packages-wordpress--page#admin-bar).
 
-<img src="/assets/img/tutorial/01/admin-bar.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/01/admin-bar.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
 You can confirm the endpoint is setup correctly by visiting `yourdomain.com/wp-json/irving/v1` and confirming a valid response,
 ```json
@@ -67,12 +66,12 @@ Inside of WordPress, you'll need to [update the Site Address](https://wordpress.
 
 Default value is `http://localhost:3001`
 
-<img src="/assets/img/tutorial/01/site-address.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/01/site-address.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
 ## Confirm your Changes
 Run `npm run dev` and you should see a "welcome" message.
 
-<img src="/assets/img/tutorial/01/welcome.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/01/welcome.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
 ## Scaffold Template JSON
 One of the ways WP Irving helps streamline development is by offering a basic templating system, mimicking the [WordPress Template Hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/).
@@ -105,5 +104,7 @@ wp-content
             footer.json
 ```
 
-### Up Next
-[We'll scaffold a `single.json` template for rendering WordPress posts](?path=/docs/tutorial-adding-a-post-template--page).
+## Up Next
+We'll create a `/templates/single.json` file in our WordPress theme to lay out the template used by posts.
+
+[Next Up: Adding a Template](?path=/docs/tutorial-adding-a-template--page)

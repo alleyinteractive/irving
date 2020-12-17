@@ -1,0 +1,252 @@
+<Meta title="Tutorial|Creating a New Component" />
+
+# Creating a New Component
+In this section, we'll scaffold a new component on the frontend and backend for our `single.json` template.
+
+## Table of Contents
+* Add the component to your template
+* Create a new React component and theme
+* Add the component the component map
+* register the component in WordPress
+* Update to move data from backend to frontend
+
+## Add the component to your template
+At the end of `single.json` inside the same container as the `post-content` and `social sharing` components.
+```json
+{
+  "name": "tutorial/podcast"
+}
+```
+
+## Create a new React component and component theme
+Create the React component in `components/podcast/index.js`
+```js
+/* eslint-disable */
+import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  standardPropTypes,
+  getStandardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import * as defaultStyles from './themes/default';
+
+const Podcast = (props) => {
+  const {
+    theme,
+    title,
+  } = props;
+  const standardProps = useStandardProps(props, {
+    tag: 'div',
+  });
+  const {
+    CTAButton,
+    Description,
+    Image,
+    InnerContent,
+    Title,
+    Wrapper,
+  } = theme;
+
+  return (
+    <Wrapper {...standardProps}>
+      <Image src="https://placekitten.com/300/300" />
+      <InnerContent>
+        <Description>
+          <Title>{title}</Title>
+          <p>Reviewing the best cats available.</p>
+          <p>Published every Tuesday</p>
+        </Description>
+        <CTAButton href="google.com">Sign Up</CTAButton>
+      </InnerContent>
+    </Wrapper>
+  );
+};
+
+Podcast.defaultProps = {
+  ...getStandardDefaultProps(),
+  theme: defaultStyles,
+  title: '',
+};
+
+Podcast.propTypes = {
+  ...standardPropTypes,
+  title: PropTypes.string,
+};
+
+const themeMap = {
+  default: defaultStyles,
+};
+
+export {
+  Podcast as Component,
+  themeMap,
+};
+
+export default Podcast;
+```
+
+Create the default theme at `components/podcast/themes/default.js`
+```js
+/* eslint max-len: 0 */
+import styled from 'styled-components';
+
+export const Wrapper = styled.div`
+  background: #EEE;
+  border-radius: 3px;
+  display: flex;
+  padding: 1rem;
+
+  @media (max-width: 700px) {
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+`;
+
+export const Title = styled.h3`
+  font-family: 'Open Sans', sans-serif;
+  font-size: 2rem;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+`;
+
+export const Image = styled.img`
+  height: auto;
+  width: 100%;
+  margin: auto;
+  max-width: 300px;
+`;
+
+export const InnerContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+
+  @media (min-width: 701px) {
+    margin-left: 2rem;
+  }
+
+  @media (max-width: 700px) {
+    margin-top: 1rem;
+  }
+`;
+
+export const CTAButton = styled.a`
+  background: #4E9CAF;
+  border-radius: 5px;
+  color: white;
+  display: block;
+  font-weight: bold;
+  line-height: 25px;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+`;
+
+export const Description = styled.div`
+  margin-bottom: 1rem;
+
+  p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+`;
+```
+
+## Add the component to the Component Map
+```js
+import createThemedComponentMap from '@irvingjs/styled-components/componentMap';
+import { componentMap as WordPressComponentMap } from '@irvingjs/wordpress';
+import { IntegrationsManager } from '@irvingjs/integrations';
+import themeMap from 'themeMap';
+
+// Import custom components.
+import Podcast from 'components/podcast';
+
+export default {
+  ...WordPressComponentMap,
+  ...createThemedComponentMap(themeMap),
+  'irving/integrations': IntegrationsManager,
+  'tutorial/podcast': Podcast,
+};
+```
+
+### Register the component in WP Irving
+We could stop here if we wanted to. The podcast component is rendering, and you can write any JS you want to get it working.
+
+And if we wanted to pass some config values around, we can set those directly in the template JSON.
+
+```json
+{
+	"name": "tutorial/podcast",
+	"config": {
+		"position": "footer"
+	}
+}
+```
+
+WP Irving
+
+`/your-theme/components/podcast/component.php`
+```php
+<?php
+/**
+ * Newsletter.
+ *
+ * @package Your_Theme
+ */
+
+namespace Your_Theme;
+
+use WP_Irving\Components;
+
+/**
+ * Register the component and callback.
+ */
+Components\register_component_from_config(
+	__DIR__ . '/component',
+	[
+		'config_callback' => function ( array $config ): array {
+			// Modify some config values.
+			return $config;
+		},
+		'children_callback' => function ( array $children, array $config ): array {
+			// Modify children components
+			return $children;
+		},
+	]
+);
+```
+
+
+`/your-theme/components/newsletter/component.json`
+```json
+{
+  "name": "tutorial/newsletter",
+  "description": "Display a newsletter",
+  "config": {
+    "content": {
+      "default": "",
+      "type": "string"
+    },
+    "html": {
+      "default": false,
+      "type": "bool"
+    }
+  }
+}
+
+```
+
+## That's It!
+Now that you've completed the tutorial, you're reach to conquer Irving!
+
+Some areas to continue your learning,
+1. **[Configuration](?path=/docs/concepts-overview--page)**: Configure your Irving application.
+1. **[Concepts and Architecture](?path=/docs/concepts-overview--page)**: Explore the Irving philosophy and learn more about the architecture.
+1. **[Explore the Example Theme](?path=/docs/intro-wordpress--page#example-theme)**: See Irving in action and explore our open-sourced example theme.
+

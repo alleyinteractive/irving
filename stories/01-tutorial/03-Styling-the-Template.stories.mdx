@@ -6,30 +6,41 @@ In this section, we'll style the `post` template.
 We'll use a variety of methods to approach styling, depending on the context and task to perform.
 
 ## Table of Contents
-* [Setup the Theme Map](?path=/docs/tutorial-styling-the-template--page)
-* [Add some custom fonts](?path=/docs/tutorial-styling-the-template--page)
-* [Style the title](?path=/docs/tutorial-styling-the-template--page)
+* [Setup the Theme Map](?path=/docs/tutorial-styling-the-template--page#setup-the-theme-map)
+* [Add some custom fonts](?path=/docs/tutorial-styling-the-template--page#add-some-custom-fonts)
+* [Style the title](?path=/docs/tutorial-styling-the-template--page#style-the-title)
 * [Style the byline and timestamp](?path=/docs/tutorial-styling-the-template--page)
 * [Style the content](?path=/docs/tutorial-styling-the-template--page)
 * [Style the social sharing](?path=/docs/tutorial-styling-the-template--page)
 
-**Finished Product**
-<img src="/assets/img/tutorial/03/full.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
-
 ## Setup the Theme Map
+We'll get started by setting up the Theme Map.
 
-### Create `themes.js` in the root of your
-If it doesn't already exist, create a `themeMap.js` in the root Irving application,
+When using Styled Components with Irving, you can create new themes, and register them using the Theme Map.
 
-`themeMap.js`
+The Theme Map is an object containing a mapping of component names, to theme names, to the Styled Components making up the theme.
+
+For example,
+```js
+const themeMap = {
+  'tutorial/component-name': {
+    customThemeName: {
+      ComponentStyledComponent = styled.div``,
+    },
+  },
+};
+```
+
+If you're using the Create Irving App, `themeMap.js` should already exist in your Irving application. If not, create it.
+
+For now, we'll just start with an empty object.
 ```js
 export default {};
 ````
 
-and update `componentMap.js` to include this file. You'll pass the value of `themeMap` into `createThemedComponentMap()`, which will take a mapping of components to theme names, to styled components, and merge it.
-
-
 ### Update `componentMap.js`
+Next, we'll
+and update `componentMap.js` to include this file. You'll pass the value of `themeMap` into `createThemedComponentMap()`, which will take a mapping of components to theme names, to styled components, and merge it.
 ```js
 import createThemedComponentMap from '@irvingjs/styled-components/componentMap';
 import { componentMap as WordPressComponentMap } from '@irvingjs/wordpress';
@@ -48,13 +59,11 @@ export default {
 ```
 
 ## Add some custom fonts
-Now that our theme
+Before we begin styling, we'll load two Google Fonts via `<link />` tags in the `<head />`.
 
-Open Sans and Gentium Book Basic.
-```html
-<link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Basic:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-```
+There are a few ways you could do this, but the easiest method is to use `getAppTemplateVars` in `irving.config.js`. This will introduce the `<link />`s directly into the markup.
 
+`irving.config.js`
 ```js
 import styledConfig from '@irvingjs/styled';
 import styledComponentsConfig from '@irvingjs/styled-components/irving.config';
@@ -207,7 +216,7 @@ Inside of `single.json`, locate your `irving/post-title` component and change th
 },
 ```
 
-<img src="/assets/img/tutorial/03/title.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/03/title.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
 ## Style the byline and timestamp
 
@@ -307,7 +316,7 @@ export default {
 };
 ```
 
-<img src="/assets/img/tutorial/03/byline-and-timestamp.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/03/byline-and-timestamp.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
 ## Style the content
 For this theme, we're doing to do it a bit differently. For the title, we created a `<TextWrapper />` that was just a plain, unstyled div.
@@ -366,7 +375,7 @@ export default {
 
 ```
 
-<img src="/assets/img/tutorial/03/content.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/03/content.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
 ## Style the social sharing
 
@@ -399,9 +408,9 @@ For this last compoennt, I'm going to cheat by doing some small typography tweak
 },
 ```
 
-<img src="/assets/img/tutorial/03/social-sharing.png" style={{maxWidth: "600px", margin: "auto", width: "100%"}} />
+<img src="/assets/img/tutorial/03/social-sharing.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
---------------------------------------------------------------------------------
+### Up Next
+We'll create a custom Podcast Module component in both React and WordPress and add it to our `single.json` template.
 
-**Up Next**
-[We'll create a custom component](?path=/docs/tutorial-creataing-a-new-component--page).
+[Next Up: Creating a New Component](?path=/docs/tutorial-creating-a-new-component--page)
