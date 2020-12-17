@@ -16,8 +16,17 @@ export default function getAppTemplateVars(templateVars) {
     return {
       Wrapper: () => extractor.collectChunks(<Wrapper />),
       head: {
-        end: () => extractor.getScriptTags(),
-        link: () => extractor.getLinkTags(),
+        script: () => extractor.getScriptTags(),
+        link: () => (
+          /**
+           *  @todo find a better way to get rid of the auto-preloading that
+           *  loadable components seems to enforce
+           */
+          extractor.getLinkTags().replace(
+            /rel="preload"/gi,
+            'rel="prefetch"'
+          )
+        ),
         style: () => extractor.getStyleTags(),
       },
     };
