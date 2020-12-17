@@ -23,8 +23,8 @@ export default function getAppTemplateVars(templateVars) {
            *  loadable components seems to enforce
            */
           extractor.getLinkTags().replace(
-            /rel="preload"/gi,
-            'rel="prefetch"'
+            /(data-chunk="[^"]+"\srel=)("preload")(\sas="[^"]+")/gi,
+            '$1"prefetch"'
           )
         ),
         style: () => extractor.getStyleTags(),
