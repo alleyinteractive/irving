@@ -4,8 +4,8 @@
 
 .footer {
   align-items: center;
-  background-color: color.$gray;
-  color: color.$black;
+  background-color: color.$black;
+  color: color.$white;
   display: flex;
   font-size: rem(14);
   padding: rem(36) 0;
@@ -17,12 +17,11 @@
   display: flex;
   flex-direction: column;
   max-width: rem(1024);
-}
 
-.footer__logo {
-  height: rem(40);
-  width: rem(40);
-  margin-bottom: 1rem;
+  a {
+    color: color.$white;
+    font-weight: 700;
+  }
 }
 
 .footer__copyright {
@@ -30,8 +29,4 @@
   line-height: (17/11);
   margin-left: auto;
   text-align: center;
-
-  a {
-    font-weight: 700;
-  }
 }

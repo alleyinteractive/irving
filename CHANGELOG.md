@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.21](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.20...v5.3.0-alpha.21) (2020-12-16)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.3.0-alpha.20](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.19...v5.3.0-alpha.20) (2020-12-16)
+
+
+### Bug Fixes
+
+* **pxtorelative:** fix rem/em functions to continue working within css template tag ([3f8f37e](https://github.com/alleyinteractive/irving/commit/3f8f37e998259b9ec88ded72a034d423055834b3))
+
+
+
+
+
 # [5.3.0-alpha.19](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.18...v5.3.0-alpha.19) (2020-12-16)
 
 **Note:** Version bump only for package irving

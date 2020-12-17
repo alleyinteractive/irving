@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0-alpha.20](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.19...v5.3.0-alpha.20) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
 # [5.3.0-alpha.19](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.18...v5.3.0-alpha.19) (2020-12-16)
 
 **Note:** Version bump only for package @irvingjs/wordpress
