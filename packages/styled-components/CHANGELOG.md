@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+
+
+# [5.3.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.22...v5.3.0) (2020-12-17)
+
+
+### Bug Fixes
+
+* **stylelint:** cherry-pick stylelint fixes ([93501f8](https://github.com/alleyinteractive/irving/packages/styled-components/commit/93501f843d51f0979ecccc7809545ff683738a51))
+
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+
+
+
+
 # [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.22...v5.3.0-alpha.23) (2020-12-17)
 
 * **loader and search form:** fix style lint errors in styled components package ([45ad432](https://github.com/alleyinteractive/irving/packages/styled-components/commit/45ad4327115bde18d38d63ecd4b4ee9bcc5b6169))
