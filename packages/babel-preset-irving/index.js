@@ -38,9 +38,6 @@ module.exports = function babelPresetIrving(api) {
       require('@babel/plugin-proposal-object-rest-spread'),
       require('@babel/plugin-proposal-class-properties'),
       require('@babel/plugin-syntax-dynamic-import'),
-      [require('@babel/plugin-transform-runtime'), {
-        corejs: 3,
-      }],
     ],
     presets: [
       [

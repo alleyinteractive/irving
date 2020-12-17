@@ -8,6 +8,23 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
  * @returns {object} An optimization configuration value
  */
 module.exports = function getOptimization(context) {
+  const splitChunks = {
+    cacheGroups: {
+      common: {
+        name: 'common',
+        chunks: (chunk) => (
+          ! chunk.name.includes('node_modules/core-js')
+        ),
+        minChunks: 2,
+      },
+      polyfills: {
+        name: 'polyfills',
+        test: /node_modules\/core-js/,
+        chunks: 'all',
+      },
+    },
+  };
+
   switch (context) {
     case 'production_server':
     case 'development_server':
@@ -23,20 +40,14 @@ module.exports = function getOptimization(context) {
           new TerserJSPlugin({}),
           new OptimizeCSSAssetsPlugin({}),
         ],
-        splitChunks: {
-          name: 'common',
-          chunks: 'all',
-        },
+        splitChunks,
         runtimeChunk: 'single',
       };
 
     case 'development_client':
       return {
         namedModules: true,
-        splitChunks: {
-          name: 'common',
-          chunks: 'all',
-        },
+        splitChunks,
       };
 
     default:
