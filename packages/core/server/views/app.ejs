@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%- head.title.toString() %>
     <%- head.meta.toString() %>
-    <%- head.link.toString() %>
     <%- head.base.toString() %>
-    <%- head.style.toString() %>
 
     <%# Runtime accessible environment variables %>
     <script>
       window.__ENV__ = <%- env %>;
     </script>
 
+    <%- head.link.toString() %>
     <%- head.script.toString() %>
+    <%- head.style.toString() %>
 
     <%# pre-rendered serialized Redux state %>
     <script defer id="preload">

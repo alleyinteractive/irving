@@ -12,22 +12,31 @@ export default function getAppTemplateVars(templateVars) {
     const { Wrapper } = templateVars;
     const { ChunkExtractor } = require('@loadable/server');
     const extractor = new ChunkExtractor({ statsFile });
+    const filterCoreTags = require('./filterCoreTags');
+    const filterAndMerge = (tags) => (
+      filterCoreTags(tags.split('\n')).join('\n')
+    );
 
     return {
       Wrapper: () => extractor.collectChunks(<Wrapper />),
       head: {
-        script: () => extractor.getScriptTags(),
-        link: () => (
+        end: () => (
+          filterAndMerge(extractor.getScriptTags())
+        ),
+        link: () => {
+          const links = filterAndMerge(extractor.getLinkTags());
           /**
            *  @todo find a better way to get rid of the auto-preloading that
            *  loadable components seems to enforce
            */
-          extractor.getLinkTags().replace(
+          return links.replace(
             /(data-chunk="[^"]+"\srel=)("preload")(\sas="[^"]+")/gi,
             '$1"prefetch"'
-          )
+          );
+        },
+        style: () => (
+          filterAndMerge(extractor.getStyleTags())
         ),
-        style: () => extractor.getStyleTags(),
       },
     };
   }

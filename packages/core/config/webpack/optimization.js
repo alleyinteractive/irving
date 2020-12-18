@@ -12,9 +12,7 @@ module.exports = function getOptimization(context) {
     cacheGroups: {
       common: {
         name: 'common',
-        chunks: (chunk) => (
-          ! chunk.name.includes('node_modules/core-js')
-        ),
+        chunks: 'all',
         minChunks: 2,
       },
       polyfills: {

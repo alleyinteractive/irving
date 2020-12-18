@@ -9,13 +9,13 @@ import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
 import resolveComponents from 'sagas/resolveComponents';
-import getWebpackAssetTags from 'utils/getWebpackAssetTags';
 import addTrailingSlash from 'utils/addTrailingSlash';
 import getLogService from '@irvingjs/services/logService';
 import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
 import createClientEnv from 'config/irving/createClientEnv';
+import getWebpackAssetTags from './getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
 
@@ -91,7 +91,7 @@ const render = async (req, res, clientStats) => {
     {
       Wrapper: AppWrapper,
       head: {
-        end: [getWebpackAssetTags(clientStats, req.hostname)],
+        script: [getWebpackAssetTags(clientStats, req.hostname)],
       },
     },
     clientStats

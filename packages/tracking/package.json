@@ -21,8 +21,8 @@
 		"react-tracking": "^8.0.0"
 	},
 	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^4.2.0",
-		"@irvingjs/core": "^4.2.0",
+		"@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
+    	"@irvingjs/core": "^5.4.0-alpha.1",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"jest": "^25.5.3"
 	},
