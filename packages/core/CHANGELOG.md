@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0...v5.3.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **loadable:** use prefetch instead of preload for async chunks ([7acd187](https://github.com/alleyinteractive/irving/packages/core/commit/7acd187ca716892ef7d5a321e614fd7ffe29eeb4))
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/packages/core/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
+
+
+
+
+
 # [5.3.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
 
 **Note:** Version bump only for package @irvingjs/core

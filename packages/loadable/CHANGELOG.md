@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v5.3.0...v5.3.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **loadable:** only switch preload -> prefetch for link tags with dat… … ([5232d54](https://github.com/alleyinteractive/irving/packages/loaodable/commit/5232d542f4f1efab7360a062466fc526bc15433a))
+* **loadable:** use prefetch instead of preload for async chunks ([7acd187](https://github.com/alleyinteractive/irving/packages/loaodable/commit/7acd187ca716892ef7d5a321e614fd7ffe29eeb4))
+
+
+
+
+
 # [5.3.0](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
 
 **Note:** Version bump only for package @irvingjs/loadable

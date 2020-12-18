@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0...v5.3.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/packages/styled-components/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
+
+
+
+
+
 # [5.3.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
 
 
