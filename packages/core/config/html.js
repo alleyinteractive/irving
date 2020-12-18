@@ -5,9 +5,9 @@ export const richText = {
    'col', 'colgroup', 'del', 'dd', 'dfn', 'details', 'div', 'dl', 'dt', 'em',
    'fieldset', 'figure', 'figcaption', 'font', 'footer', 'h1', 'h2', 'h3',
    'h4', 'h5', 'h6', 'header', 'hgroup', 'hr', 'i', 'frame', 'img', 'ins',
-   'kbd', 'label', 'legend', 'li', 'link', 'map', 'mark', 'menu', 'nav', 'p', 'pre',
-   'q', 's', 'samp', 'span', 'section', 'small', 'strike', 'strong', 'sub',
-   'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th',
+   'kbd', 'label', 'legend', 'li', 'link', 'map', 'mark', 'menu', 'nav', 'p',
+   'pre', 'q', 's', 'samp', 'span', 'section', 'small', 'strike', 'strong',
+   'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th',
    'thead', 'title', 'tr', 'track', 'tt', 'u', 'ul', 'ol', 'var', 'video'
   ],
   allowedAttributes: {
