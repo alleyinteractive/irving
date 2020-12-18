@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.2...v5.4.0-alpha.3) (2020-12-18)
+
+
+### Performance Improvements
+
+* **core:** upgrade sanitize-html to 2.3.0 ([54ac0c1](https://github.com/alleyinteractive/irving/packages/core/commit/54ac0c181e15cf1d10ea01009ada6f5d85c67344))
+
+
+
+
+
 # [5.4.0-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.1...v5.4.0-alpha.2) (2020-12-18)
 
 
