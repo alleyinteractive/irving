@@ -3,11 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/styled/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+
+
+
 # [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
 
-
-
-# [5.3.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.22...v5.3.0) (2020-12-17)
+**Note:** Version bump only for package @irvingjs/styled
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0...v5.3.1) (2020-12-18)
 
 
 ### Bug Fixes
@@ -17,6 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/packages/styled/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
 
 
 

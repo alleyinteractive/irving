@@ -1,7 +1,9 @@
 import { css } from 'styled-components';
 import { link, list, listItem } from './utils';
 
+/* stylelint-disable selector-max-specificity */
 export const latestPostsBlock = css`
+
   [data-type="core/latest-posts"] ul,
   .wp-block-latest-posts,
   .wp-block-latest-posts.wp-block-latest-posts__list {
@@ -23,3 +25,4 @@ export const latestPostsBlock = css`
     }
   }
 `;
+/* stylelint-enable */
