@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.2](https://github.com/alleyinteractive/irving/packages/tracking/compare/v5.3.1...v5.4.0-alpha.2) (2020-12-18)
+
+
+### Bug Fixes
+
+* **tracking:** add devDeps to tracking ([10519fa](https://github.com/alleyinteractive/irving/packages/tracking/commit/10519fab279bbe26a0805657ca70d8ef9d84534a))
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/tracking/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+
+
+
+
 # [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/tracking/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
 
 

@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v5.3.1...v5.4.0-alpha.2) (2020-12-18)
+
+
+### Bug Fixes
+
+* **tracking:** add devDeps to tracking ([10519fa](https://github.com/alleyinteractive/irving/commit/10519fab279bbe26a0805657ca70d8ef9d84534a))
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **loadable:** only switch preload -> prefetch for link tags with data-chunk attribute ([894c0fc](https://github.com/alleyinteractive/irving/commit/894c0fce346bf4204ac3f0201ba54a68681b20c9))
+* **loadable:** use prefetch instead of preload for async chunks ([bf9e34e](https://github.com/alleyinteractive/irving/commit/bf9e34e561ff1c7797e95e4631ff0005de9745c6))
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+
+
+# [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/compare/v5.3.0...v5.3.0-alpha.23) (2020-12-17)
+
+
+
+# [5.3.0-alpha.22](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.21...v5.3.0-alpha.22) (2020-12-17)
+
+
+### Bug Fixes
+
+* **audio, button, embed, and gallery components:** fix styelint issues in wordpress package ([06f4f92](https://github.com/alleyinteractive/irving/commit/06f4f929c2cf37225fb19b36f74fe9e997584bbe))
+* **loader and search form:** fix style lint errors in styled components package ([45ad432](https://github.com/alleyinteractive/irving/commit/45ad4327115bde18d38d63ecd4b4ee9bcc5b6169))
+
+
+
+# [5.3.0-alpha.21](https://github.com/alleyinteractive/irving/compare/v5.3.0-beta.0...v5.3.0-alpha.21) (2020-12-16)
+
+
+### Features
+
+* add background image, button and icon ([e01899a](https://github.com/alleyinteractive/irving/commit/e01899a1c936bbda7b8ed9227e463099a43e4e8a))
+
+
+
+
+
 # [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
 
 
