@@ -13,7 +13,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
 
 
-
+## [5.3.1](https://github.com/alleyinteractive/irving/compare/v5.3.0...v5.3.1) (2020-12-18)
+* **loadable:** only switch preload -> prefetch for link tags with dat… … ([5232d54](https://github.com/alleyinteractive/irving/commit/5232d542f4f1efab7360a062466fc526bc15433a))
+* **loadable:** use prefetch instead of preload for async chunks ([7acd187](https://github.com/alleyinteractive/irving/commit/7acd187ca716892ef7d5a321e614fd7ffe29eeb4))
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
 
 
 # [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
@@ -33,14 +36,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [5.3.0-beta.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
 
-
-
-
+**Note:** Version bump only for package irving
 
 # [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.22...v5.3.0-alpha.23) (2020-12-17)
 
 * **audio, button, embed, and gallery components:** fix styelint issues in wordpress package ([06f4f92](https://github.com/alleyinteractive/irving/commit/06f4f929c2cf37225fb19b36f74fe9e997584bbe))
 * **loader and search form:** fix style lint errors in styled components package ([45ad432](https://github.com/alleyinteractive/irving/commit/45ad4327115bde18d38d63ecd4b4ee9bcc5b6169))
+
 # [5.3.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
 
 
