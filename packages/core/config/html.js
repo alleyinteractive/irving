@@ -44,7 +44,7 @@ export const richText = {
     hr: ['align', 'noshade', 'size', 'width'],
     iframe: ['*'],
     img: ['alt', 'align', 'border', 'height', 'hspace', 'loading', 'longdesc',
-      'vspace', 'src', 'srcset', 'sizes' 'usemap', 'width'],
+      'vspace', 'src', 'srcset', 'sizes', 'usemap', 'width'],
     ins: ['datetime', 'cite'],
     label: ['for'],
     legend: ['align'],
@@ -87,7 +87,7 @@ export const richText = {
 };
 
 export const plainText = {
-  allowedTags: ['a', 'abbr', 'acronym' 'b', 'blockquote', 'cite', 'code',
+  allowedTags: ['a', 'abbr', 'acronym', 'b', 'blockquote', 'cite', 'code',
   'del', 'em', 'i', 'q', 's', 'span', 'strike', 'strong'],
   allowedAttributes: {
     a: ['href', 'name', 'target'],
