@@ -3,31 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/alleyinteractive/irving/compare/v5.3.0...v5.3.1) (2020-12-18)
+* **loadable:** only switch preload -> prefetch for link tags with dat… … ([5232d54](https://github.com/alleyinteractive/irving/commit/5232d542f4f1efab7360a062466fc526bc15433a))
+* **loadable:** use prefetch instead of preload for async chunks ([7acd187](https://github.com/alleyinteractive/irving/commit/7acd187ca716892ef7d5a321e614fd7ffe29eeb4))
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
+
 # [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
 
-
-
-# [5.3.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.22...v5.3.0) (2020-12-17)
-
-
-### Bug Fixes
-
-* **pxtorelative:** another semicolon ([91cbb33](https://github.com/alleyinteractive/irving/commit/91cbb33f246f870d7eed96ebe1d364ba2d47e399))
-* **stylelint:** cherry-pick stylelint fixes ([93501f8](https://github.com/alleyinteractive/irving/commit/93501f843d51f0979ecccc7809545ff683738a51))
-* **stylelint:** cherry-pick stylelint fixes ([fbc4550](https://github.com/alleyinteractive/irving/commit/fbc4550ade6a94410929683b8b745611403b16e3))
-
-
-
-# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
-
-
-
-
+**Note:** Version bump only for package irving
 
 # [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.22...v5.3.0-alpha.23) (2020-12-17)
 
 * **audio, button, embed, and gallery components:** fix styelint issues in wordpress package ([06f4f92](https://github.com/alleyinteractive/irving/commit/06f4f929c2cf37225fb19b36f74fe9e997584bbe))
 * **loader and search form:** fix style lint errors in styled components package ([45ad432](https://github.com/alleyinteractive/irving/commit/45ad4327115bde18d38d63ecd4b4ee9bcc5b6169))
+
 # [5.3.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
 
 

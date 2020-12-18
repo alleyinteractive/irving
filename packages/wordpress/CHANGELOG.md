@@ -5,9 +5,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
 
-
-
-# [5.3.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.22...v5.3.0) (2020-12-17)
+**Note:** Version bump only for package @irvingjs/wordpress
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0...v5.3.1) (2020-12-18)
 
 
 ### Bug Fixes
@@ -15,16 +14,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **stylelint:** cherry-pick stylelint fixes ([fbc4550](https://github.com/alleyinteractive/irving/packages/example-package/commit/fbc4550ade6a94410929683b8b745611403b16e3))
 
 
-
-# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
-
-
-
-
-
 # [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.22...v5.3.0-alpha.23) (2020-12-17)
 
 * **audio, button, embed, and gallery components:** fix styelint issues in wordpress package ([06f4f92](https://github.com/alleyinteractive/irving/packages/example-package/commit/06f4f929c2cf37225fb19b36f74fe9e997584bbe))
+
 # [5.3.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
 
 
@@ -38,7 +31,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
 
-**Note:** Version bump only for package @irvingjs/wordpress
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/packages/example-package/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
 
 
 
