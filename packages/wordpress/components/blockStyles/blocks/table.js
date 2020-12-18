@@ -3,6 +3,7 @@ import { bodyText, link, caption } from './utils';
 
 /* eslint-disable indent */
 export const tableBlock = css`
+
   .wp-block-table {
     ${bodyText};
 
