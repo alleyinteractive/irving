@@ -7,7 +7,7 @@ We'll use a variety of methods to approach styling, depending on the context and
 
 ## Table of Contents
 * [Setup the Theme Map](?path=/docs/tutorial-styling-the-template--page#setup-the-theme-map)
-* [Add some custom fonts](?path=/docs/tutorial-styling-the-template--page#add-some-custom-fonts)
+* [Add custom fonts](?path=/docs/tutorial-styling-the-template--page#add-custom-fonts)
 * [Style the title](?path=/docs/tutorial-styling-the-template--page#style-the-title)
 * [Style the byline and timestamp](?path=/docs/tutorial-styling-the-template--page)
 * [Style the content](?path=/docs/tutorial-styling-the-template--page)
@@ -58,7 +58,7 @@ export default {
 
 ```
 
-## Add some custom fonts
+## Add custom fonts
 Before we begin styling, we'll load two Google Fonts via `<link />` tags in the `<head />`.
 
 There are a few ways you could do this, but the easiest method is to use `getAppTemplateVars` in `irving.config.js`. This will introduce the `<link />`s directly into the markup.
@@ -87,6 +87,9 @@ export default config;
 ````
 
 ## Style the title
+
+@TODO EDIT ME
+
 We'll start by styling the title.
 
 Every component we've used comes from `@irvingjs/styled-components`, and has support for the `style` prop/config ([docs](https://reactjs.org/docs/faq-styling.html)).
@@ -115,6 +118,15 @@ This is really handy for quick styling and prototyping, but isn't ideal for prod
 So instead, we're going to create a new theme.
 
 We'll start by creating `/components/text/themes/singleTitle.js` ([Source Code](https://github.com/alleyinteractive/create-irving-app/blob/irving-tutorial/components/text/themes/singleTitle.js)).
+
+This file will be a custom theme, `single_title`, applicable to any `irving/text` component.
+```js
+import styled from 'styled-components';
+
+/* eslint-disable import/prefer-default-export */
+export const TextWrapper = styled.div``;
+/* eslint-enable */
+````
 
 You'll notice that we're mimicing the folder structure in @irvingjs/styled-components. Since themes apply to components, it helps to keep them organized in this way, even if it results in a few extra directories. As you'll learn in the next section, custom components follow this pattern as well.
 

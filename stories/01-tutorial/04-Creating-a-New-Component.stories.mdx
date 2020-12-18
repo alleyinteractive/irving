@@ -3,6 +3,8 @@
 # Creating a New Component
 In this section, we'll scaffold a new component on the frontend and backend for our `single.json` template.
 
+We're going to create a module for the bottom of `single.json` for a Podcast call to action module.
+
 ## Table of Contents
 * Add the component to your template
 * Create a new React component and theme
@@ -11,10 +13,43 @@ In this section, we'll scaffold a new component on the frontend and backend for 
 * Update to move data from backend to frontend
 
 ## Add the component to your template
+We'll start super simple, by adding `tutorial/podcast` to our template.
+
 At the end of `single.json` inside the same container as the `post-content` and `social sharing` components.
 ```json
 {
-  "name": "tutorial/podcast"
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        ...,
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md",
+            "style": {
+              "margin-top": "1rem",
+              "padding": "0 1rem"
+            }
+          },
+          "children": [
+            ...,
+            {
+              "name": "irving/social-sharing",
+              "config": {
+                "style": {
+                  "margin-bottom": "2rem"
+                }
+              }
+            },
+            {
+              "name": "tutorial/podcast"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
