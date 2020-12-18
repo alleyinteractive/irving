@@ -11,7 +11,7 @@ export const richText = {
    'thead', 'title', 'tr', 'track', 'tt', 'u', 'ul', 'ol', 'var', 'video'
   ],
   allowedAttributes: {
-    '*': ['class', 'id', 'data-*', 'style'],
+    '*': ['class', 'id', 'data-*', 'aria-*', 'role', 'style'],
     link: ['rel', 'href', 'type'],
     a: ['href', 'rel', 'rev', 'name', 'target', 'download'],
     area: ['alt', 'coords', 'href', 'nohref', 'shape', 'target'],
