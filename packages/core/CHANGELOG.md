@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.3...v5.4.0-alpha.4) (2020-12-18)
+
+
+### Bug Fixes
+
+* **core:** update package-lock.json following sanitize-html update ([3fc836f](https://github.com/alleyinteractive/irving/packages/core/commit/3fc836ff72e6b8de00abe64794adbf86006f029d)), closes [#433](https://github.com/alleyinteractive/irving/packages/core/issues/433)
+
+
+
+
+
 # [5.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.2...v5.4.0-alpha.3) (2020-12-18)
 
 
