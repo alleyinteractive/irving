@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.5...v5.4.0-alpha.6) (2020-12-22)
+
+
+### Features
+
+* **groupchildren utility:** adds a groupChildren uility to core ([71fa81f](https://github.com/alleyinteractive/irving/commit/71fa81f26f4c6db7c250da42002024dc2735c80c))
+
+
+
+
+
 # [5.4.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.4...v5.4.0-alpha.5) (2020-12-22)
 
 
