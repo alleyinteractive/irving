@@ -3,7 +3,132 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.4.0-alpha.5...v5.4.0-alpha.6) (2020-12-22)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [5.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.4.0-alpha.4...v5.4.0-alpha.5) (2020-12-22)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [5.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.4.0-alpha.3...v5.4.0-alpha.4) (2020-12-18)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [5.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.4.0-alpha.2...v5.4.0-alpha.3) (2020-12-18)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [5.4.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.1...v5.4.0-alpha.2) (2020-12-18)
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/styled-components/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+
+
+# [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0...v5.3.0-alpha.23) (2020-12-17)
+
+
+
+# [5.3.0-alpha.22](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.21...v5.3.0-alpha.22) (2020-12-17)
+
+
+### Bug Fixes
+
+* **loader and search form:** fix style lint errors in styled components package ([45ad432](https://github.com/alleyinteractive/irving/packages/styled-components/commit/45ad4327115bde18d38d63ecd4b4ee9bcc5b6169))
+
+
+
+# [5.3.0-alpha.21](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-beta.0...v5.3.0-alpha.21) (2020-12-16)
+
+
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/styled-components/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0...v5.3.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **stylelint:** cherry-pick stylelint fixes ([93501f8](https://github.com/alleyinteractive/irving/packages/styled-components/commit/93501f843d51f0979ecccc7809545ff683738a51))
+
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/packages/styled-components/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
+
+
+
+
+# [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.22...v5.3.0-alpha.23) (2020-12-17)
+
+* **loader and search form:** fix style lint errors in styled components package ([45ad432](https://github.com/alleyinteractive/irving/packages/styled-components/commit/45ad4327115bde18d38d63ecd4b4ee9bcc5b6169))
+
+# [5.3.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
+
+
+### Bug Fixes
+
+* **stylelint:** cherry-pick stylelint fixes ([93501f8](https://github.com/alleyinteractive/irving/packages/styled-components/commit/93501f843d51f0979ecccc7809545ff683738a51))
+
+
+
+
+
+# [5.3.0-alpha.22](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.21...v5.3.0-alpha.22) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
 # [5.3.0-alpha.21](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.20...v5.3.0-alpha.21) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
 
 **Note:** Version bump only for package @irvingjs/styled-components
 

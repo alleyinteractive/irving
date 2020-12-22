@@ -1,7 +1,11 @@
+const path = require('path');
 const {
   getValueFromFiles,
 } = require('@irvingjs/core/config/irving/getValueFromFiles');
-const { buildContext } = require('@irvingjs/core/config/paths');
+const {
+  buildContext,
+  localRoot,
+} = require('@irvingjs/core/config/paths');
 const propertyOrder = require('./stylelintPropertyOrder');
 
 const baseConfig = {
@@ -13,6 +17,10 @@ const baseConfig = {
   ],
   extends: [
     'stylelint-config-styled-components',
+  ],
+  ignoreFiles: [
+    path.join(localRoot, '**/*.js'),
+    path.join(buildContext, 'node_modules/**/*.js'),
   ],
   rules: {
     'at-rule-empty-line-before': ['always', {

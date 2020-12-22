@@ -3,6 +3,113 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.5...v5.4.0-alpha.6) (2020-12-22)
+
+
+### Features
+
+* **groupchildren utility:** adds a groupChildren uility to core ([71fa81f](https://github.com/alleyinteractive/irving/packages/core/commit/71fa81f26f4c6db7c250da42002024dc2735c80c))
+
+
+
+
+
+# [5.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.4...v5.4.0-alpha.5) (2020-12-22)
+
+
+### Bug Fixes
+
+* fixes commas ([1909f10](https://github.com/alleyinteractive/irving/packages/core/commit/1909f10ed56df804aa0ae30e552023d4bc82ccbe))
+* **html sanitization:** update allowed tags and attributes to more closely mimic WordPress ([05f6f8f](https://github.com/alleyinteractive/irving/packages/core/commit/05f6f8f48295e1c062e8167fe2156db8ad30ef8c))
+
+
+
+
+
+# [5.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.3...v5.4.0-alpha.4) (2020-12-18)
+
+
+### Bug Fixes
+
+* **core:** update package-lock.json following sanitize-html update ([3fc836f](https://github.com/alleyinteractive/irving/packages/core/commit/3fc836ff72e6b8de00abe64794adbf86006f029d)), closes [#433](https://github.com/alleyinteractive/irving/packages/core/issues/433)
+
+
+
+
+
+# [5.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.2...v5.4.0-alpha.3) (2020-12-18)
+
+
+### Performance Improvements
+
+* **core:** upgrade sanitize-html to 2.3.0 ([54ac0c1](https://github.com/alleyinteractive/irving/packages/core/commit/54ac0c181e15cf1d10ea01009ada6f5d85c67344))
+
+
+
+
+
+# [5.4.0-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.1...v5.4.0-alpha.2) (2020-12-18)
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **loadable:** use prefetch instead of preload for async chunks ([bf9e34e](https://github.com/alleyinteractive/irving/packages/core/commit/bf9e34e561ff1c7797e95e4631ff0005de9745c6))
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/core/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **loadable:** use prefetch instead of preload for async chunks ([bf9e34e](https://github.com/alleyinteractive/irving/packages/core/commit/bf9e34e561ff1c7797e95e4631ff0005de9745c6))
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/core/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/core
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0...v5.3.1) (2020-12-18)
+### Bug Fixes
+
+* **loadable:** use prefetch instead of preload for async chunks ([7acd187](https://github.com/alleyinteractive/irving/packages/core/commit/7acd187ca716892ef7d5a321e614fd7ffe29eeb4))
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/packages/core/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+# [5.3.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
 # [5.3.0-alpha.19](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.18...v5.3.0-alpha.19) (2020-12-16)
 
 **Note:** Version bump only for package @irvingjs/core

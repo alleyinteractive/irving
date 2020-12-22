@@ -8,7 +8,7 @@ export const SearchFormWrapper = styled.form`
 `;
 
 export const SearchLabel = styled.label`
-  width: 100%
+  width: 100%;
 `;
 
 export const SearchFormTerm = styled.input`

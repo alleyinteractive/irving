@@ -3,6 +3,7 @@ import { link } from './utils';
 
 /* eslint-disable indent */
 export const pullquoteBlock = css`
+
   .wp-block-pullquote {
     display: flex;
     padding: 1rem 1.5rem;
@@ -11,7 +12,7 @@ export const pullquoteBlock = css`
     &::before {
       color: #AAAAAA;
       content: '“';
-      font-family: 'Times New Roman', Times, serif;
+      font-family: "Times New Roman", "Times", serif;
       font-size: 4rem;
       font-weight: 700;
       margin-right: 1.5rem;
@@ -19,15 +20,15 @@ export const pullquoteBlock = css`
 
     p {
       color: #000000;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Arial", "Helvetica", sans-serif;
       font-size: 1rem;
       font-weight: 400;
     }
 
     cite {
-      display: inline-block;
       color: #000000;
-      font-family: Times, Georgia, serif;
+      display: inline-block;
+      font-family: "Times", "Georgia", serif;
       font-size: 0.75rem;
       font-weight: 400;
       margin-top: 2rem;

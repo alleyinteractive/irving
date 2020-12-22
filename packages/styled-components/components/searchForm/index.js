@@ -83,7 +83,7 @@ const SearchForm = (props) => {
           name={searchTermQueryArg}
           placeholder="Search"
           ref={register}
-          type="text"
+          type="search"
         />
       </SearchLabel>
       <SearchFormSubmitButton type="submit">Search</SearchFormSubmitButton>
