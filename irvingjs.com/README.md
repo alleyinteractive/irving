@@ -1,6 +1,6 @@
 # Irving landing page
 
-An [Eleventy|https://www.11ty.dev/] site for irvingjs.com.
+An [Eleventy](https://www.11ty.dev/) site for irvingjs.com.
 
 ## Usage
 

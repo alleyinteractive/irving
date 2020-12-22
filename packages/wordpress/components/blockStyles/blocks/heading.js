@@ -4,7 +4,7 @@ import { link } from './utils';
 /* eslint-disable indent */
 const heading = css`
   color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Arial", "Helvetica", sans-serif;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.3;
@@ -15,6 +15,7 @@ const heading = css`
 `;
 
 export const headingBlock = css`
+
   [data-type="core/heading"] {
     ${heading}
   }

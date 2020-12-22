@@ -40,7 +40,7 @@ export const createRelativeConverter = (unit, base = 16) => {
         ));
 
         return convertValues(normalizedValues);
-      }
+      };
     }
 
     return convertValues(pxVal);
