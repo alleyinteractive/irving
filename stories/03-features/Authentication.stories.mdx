@@ -2,17 +2,34 @@
 
 # Authentication
 
-## Basic Authentication
+## Application Authentication
+This requires authorization to load the Irving Irving application. This is good for staging/development sites.
+
+### Basic Authentication
 When enabled, this will apply the `Authorization` header for requests to the app. This will prompt the user to enter the valid credentials to access the site.
 
 Basic auth can be enabled using [environment variables](?path=/docs/configuration-environment-variables--page#basic-auth).
 
-## WordPress Application Passwords
+## WordPress Adapter Authentication
+This allows your users to authenticate against the adapter.
+
+In a WordPress context, this enables the [admin bar](), [previews](), and the use of functions like `is_user_logged_in()` ([docs](https://developer.wordpress.org/reference/functions/is_user_logged_in/)).
+
+### How it works
+In order to ensure authenticated requests aren't cached, every initial server-side render will be un-authenticated.
+
+Once the Irving application is hydrated, it will check for an auth cookie set by WP Irving. If present, Irving will re-run the components endpoint `fetch`, this time including the auth bearer token in the cookie.
+
+This authenticates the user to WordPress.
+
+### Techniques
+
+#### Application Passwords
 With the release of WordPress 5.6 coming soon, we'll be adding native support for Application Passwords.
 
-## WordPress `WP-API/jwt-auth` plugin
+#### WordPress `WP-API/jwt-auth` plugin
 Until then, we offer authentication via the [WP-API/jwt-auth plugin](https://github.com/WP-API/jwt-auth/).
 
-#### Setup
+##### Setup
 * Install and enable the plugin [(repo)](https://github.com/WP-API/jwt-auth/).
 * Ensure your cross-domain is setup correctly using the `wp_irving_jwt_token_cookie_domain` hook [(docs)](?path=/docs/configuration-wordpress--page#jwt-token-cookie-domain).
