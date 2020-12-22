@@ -142,7 +142,7 @@ it('should return an object of children mapped to an object by the value of the 
         },
       },
     ],
-    rest: [
+    ungrouped: [
       {
         props: {
           componentName: 'lorem',
