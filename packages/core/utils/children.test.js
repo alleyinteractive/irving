@@ -3,6 +3,7 @@ import {
   findChildByName,
   filterChildren,
   filterChildrenByName,
+  groupChildren,
 } from './children';
 
 const testElement = {
@@ -79,4 +80,75 @@ it('should filter an array of react elements by api component name', () => {
       },
     },
   ]);
+});
+
+const testGroupChildrenElement = {
+  props: {},
+  children: [
+    {
+      props: {
+        componentName: 'foo',
+        testProp: 'bar',
+        group: 'first'
+      },
+    },
+    {
+      props: {
+        componentName: 'lorem',
+        testProp: 'baz',
+        group: 'first'
+      },
+    },
+    {
+      props: {
+        componentName: 'lorem',
+        testProp: 'bar',
+        group: 'second'
+      },
+    },
+    {
+      props: {
+        componentName: 'lorem',
+        testProp: 'hello world'
+      },
+    },
+  ],
+};
+
+it('should return an object of children mapped to an object by the value of the group key', () => {
+  expect(groupChildren(testGroupChildrenElement.children)).toEqual({
+    first: [
+      {
+        props: {
+          componentName: 'foo',
+          testProp: 'bar',
+          group: 'first'
+        },
+      },
+      {
+        props: {
+          componentName: 'lorem',
+          testProp: 'baz',
+          group: 'first'
+        },
+      },
+    ],
+    second: [
+      {
+        props: {
+          componentName: 'lorem',
+          testProp: 'bar',
+          group: 'second'
+        },
+      },
+    ],
+    rest: [
+      {
+        props: {
+          componentName: 'lorem',
+          testProp: 'hello world'
+        },
+      },
+    ],
+  });
 });
