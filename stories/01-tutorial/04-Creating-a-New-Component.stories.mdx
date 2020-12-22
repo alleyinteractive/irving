@@ -1,21 +1,35 @@
 <Meta title="Tutorial|Creating a New Component" />
 
 # Creating a New Component
-In this section, we'll scaffold a new component on the frontend and backend for our `single.json` template.
+In this section, we're going to create a new `tutorial/donation-call-to-action` component to use in our `single.json` template.
 
-We're going to create a module for the bottom of `single.json` for a Podcast call to action module.
+This component will include some basic styles, and will recieve its data directly from WordPress.
+
+<img src="/assets/img/tutorial/04/finished.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
 ## Table of Contents
-* Add the component to your template
-* Create a new React component and theme
-* Add the component the component map
-* register the component in WordPress
-* Update to move data from backend to frontend
+* [Add the component to your template](?path=/docs/tutorial-creating-a-new-component--page#add-the-component-to-your-template)
+* [Scaffold the React component](?path=/docs/tutorial-creating-a-new-component--page#scaffold-the-react-component)
+* [Create a default theme](?path=/docs/tutorial-creating-a-new-component--page#create-a-default-theme)
+* [Update the Component Map](?path=/docs/tutorial-creating-a-new-component--page#update-the-component-map)
+* [Style the Component](?path=/docs/tutorial-creating-a-new-component--page#style-the-component)
+* [Register the component in WordPress](?path=/docs/tutorial-creating-a-new-component--page#register-the-component-in-wordpress)
+* [And update `single.json` to set your new values](?path=/docs/tutorial-creating-a-new-component--page#and-update-singlejson-to-set-your-new-values)
+* [Update the React component to use the props](?path=/docs/tutorial-creating-a-new-component--page#update-the-react-component-to-use-the-props)
 
 ## Add the component to your template
-We'll start super simple, by adding `tutorial/podcast` to our template.
+Just like in the previous sections, we'll update our `single.json` template with a call to `tutorial/donation-call-to-action`.
 
-At the end of `single.json` inside the same container as the `post-content` and `social sharing` components.
+_Note: We use a namespace of `tutorial` rather than `irving` to indicate it's a unique component to our project (or in this case, tutorial)._
+
+Add the following JSON to your `single.json`, right after `irving/social-sharing`.
+```json
+{
+  "name": "tutorial/donation-call-to-action"
+}
+```
+
+Your full `single.json` should look similar to this (without the ellipses),
 ```json
 {
   "page": [
@@ -43,7 +57,7 @@ At the end of `single.json` inside the same container as the `post-content` and 
               }
             },
             {
-              "name": "tutorial/podcast"
+              "name": "tutorial/donation-call-to-action"
             }
           ]
         }
@@ -53,10 +67,95 @@ At the end of `single.json` inside the same container as the `post-content` and 
 }
 ```
 
-## Create a new React component and component theme
-Create the React component in `components/podcast/index.js`
+## Scaffold the React component
+Next, we're going to create a basic React component for rendering the call to action.
+
+You'll see a bit of additional boilerplate for the theme functionality. This includes importing each theme, constructing a theme map, and exporting bundled with the component itself.
+
+We'll do this by creating `/components/donationCallToAction/index.js`,
 ```js
-/* eslint-disable */
+import React from 'react';
+import PropTypes from 'prop-types';
+import * as defaultStyles from './themes/default';
+
+const DonationCallToAction = (props) => {
+  const {
+    theme: {
+      Wrapper,
+    },
+  } = props;
+
+  return (
+    <Wrapper>
+      <p>This is your custom irving/donation-call-to-action component.</p>
+    </Wrapper>
+  );
+};
+
+DonationCallToAction.defaultProps = {
+  theme: defaultStyles,
+};
+
+DonationCallToAction.propTypes = {
+  theme: PropTypes.shape({
+    Wrapper: PropTypes.elementType.isRequired,
+  }),
+};
+
+const themeMap = {
+  default: defaultStyles,
+};
+
+export {
+  DonationCallToAction as Component,
+  themeMap,
+};
+
+export default DonationCallToAction;
+```
+
+## Create a default theme
+We also need a default theme for our component. When `theme` is otherwise undefined, it will use `default.js`. We'll apply some basic spacing and a border so we can see how the component is being rendered.
+
+Create `/components/donation-call-to-action/themes/default.js`,
+```js
+import styled from 'styled-components';
+
+export const Wrapper = styled.div`
+  border: 1px solid black;
+  margin-bottom: 1rem;
+  padding: 1rem;
+`;
+```
+
+## Update the Component Map
+The last piece of this puzzle is to import your component and include it in the Component Map. This will map the component name `tutorial/donation-call-to-action` from `single.json` to the `DonationCallToAction` component we just created.
+
+```js
+import createThemedComponentMap from '@irvingjs/styled-components/componentMap';
+import { componentMap as WordPressComponentMap } from '@irvingjs/wordpress';
+import { IntegrationsManager } from '@irvingjs/integrations';
+import themeMap from 'themeMap';
+
+// Import custom components.
+import DonationCallToAction from 'components/donationCallToAction';
+
+export default {
+  ...WordPressComponentMap,
+  ...createThemedComponentMap(themeMap),
+  'irving/integrations': IntegrationsManager,
+  'tutorial/single-footer-byline': DonationCallToAction,
+};
+```
+
+<img src="/assets/img/tutorial/04/scaffold.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Style the Component
+Now that we have a basic component rendering, let's flesh out the component and theme.
+
+`/components/donate-call-to-action/index.js`
+```js
+/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -66,47 +165,37 @@ import {
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import * as defaultStyles from './themes/default';
 
-const Podcast = (props) => {
+const DonationCallToAction = (props) => {
   const {
-    theme,
-    title,
+    theme: {
+      CTAButton,
+      Icon,
+      Wrapper,
+    },
   } = props;
-  const standardProps = useStandardProps(props, {
-    tag: 'div',
-  });
-  const {
-    CTAButton,
-    Description,
-    Image,
-    InnerContent,
-    Title,
-    Wrapper,
-  } = theme;
+  const standardProps = useStandardProps(props);
 
   return (
-    <Wrapper {...standardProps}>
-      <Image src="https://placekitten.com/300/300" />
-      <InnerContent>
-        <Description>
-          <Title>{title}</Title>
-          <p>Reviewing the best cats available.</p>
-          <p>Published every Tuesday</p>
-        </Description>
-        <CTAButton href="google.com">Sign Up</CTAButton>
-      </InnerContent>
+    <Wrapper {...standardProps} maxWidth="sm">
+      <h3>We need your support!</h3>
+      <p>This tutorial was made possible by contributions to your PBS station from viewers like you. Thank you!</p>
+      <CTAButton href="/donate/">Learn More<Icon /></CTAButton>
     </Wrapper>
   );
 };
 
-Podcast.defaultProps = {
+DonationCallToAction.defaultProps = {
   ...getStandardDefaultProps(),
   theme: defaultStyles,
-  title: '',
 };
 
-Podcast.propTypes = {
+DonationCallToAction.propTypes = {
   ...standardPropTypes,
-  title: PropTypes.string,
+  theme: PropTypes.shape({
+    CTAButton: PropTypes.elementType.isRequired,
+    Icon: PropTypes.elementType.isRequired,
+    Wrapper: PropTypes.elementType.isRequired,
+  }),
 };
 
 const themeMap = {
@@ -114,123 +203,103 @@ const themeMap = {
 };
 
 export {
-  Podcast as Component,
+  DonationCallToAction as Component,
   themeMap,
 };
 
-export default Podcast;
+export default DonationCallToAction;
 ```
 
-Create the default theme at `components/podcast/themes/default.js`
+Update your default theme,
 ```js
 /* eslint max-len: 0 */
 import styled from 'styled-components';
+import Container from '@irvingjs/styled-components/components/container';
+import { FiArrowRight } from 'react-icons/Fi';
 
-export const Wrapper = styled.div`
-  background: #EEE;
-  border-radius: 3px;
-  display: flex;
-  padding: 1rem;
-
-  @media (max-width: 700px) {
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-  }
-`;
-
-export const Title = styled.h3`
-  font-family: 'Open Sans', sans-serif;
-  font-size: 2rem;
-  letter-spacing: -0.015em;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-`;
-
-export const Image = styled.img`
-  height: auto;
-  width: 100%;
-  margin: auto;
-  max-width: 300px;
-`;
-
-export const InnerContent = styled.div`
+export const Wrapper = styled(Container)`
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  justify-content: space-between;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  text-align: center;
 
-  @media (min-width: 701px) {
-    margin-left: 2rem;
+  h3 {
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
   }
 
-  @media (max-width: 700px) {
-    margin-top: 1rem;
+  p {
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    padding-bottom: 1rem;
   }
+`;
+
+export const Icon = styled(FiArrowRight)`
+  margin-left: 1rem;
 `;
 
 export const CTAButton = styled.a`
-  background: #4E9CAF;
+  align-items: center;
   border-radius: 5px;
-  color: white;
+  border: 1px solid black;
   display: block;
+  display: flex;
   font-weight: bold;
   line-height: 25px;
-  padding: 1rem;
+  padding: .5rem 1rem;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
 `;
-
-export const Description = styled.div`
-  margin-bottom: 1rem;
-
-  p {
-    font-size: 1.5rem;
-    line-height: 1.5;
-  }
-`;
 ```
 
-## Add the component to the Component Map
-```js
-import createThemedComponentMap from '@irvingjs/styled-components/componentMap';
-import { componentMap as WordPressComponentMap } from '@irvingjs/wordpress';
-import { IntegrationsManager } from '@irvingjs/integrations';
-import themeMap from 'themeMap';
+## Register the component in WordPress
+Next we'll register the component by creating a new JSON file describing the component.
 
-// Import custom components.
-import Podcast from 'components/podcast';
+This will be used for validation, defaults, context providers, etc.
 
-export default {
-  ...WordPressComponentMap,
-  ...createThemedComponentMap(themeMap),
-  'irving/integrations': IntegrationsManager,
-  'tutorial/podcast': Podcast,
-};
-```
+We'll start by registering some config properties to pass into the React component as `props`.
 
-### Register the component in WP Irving
-We could stop here if we wanted to. The podcast component is rendering, and you can write any JS you want to get it working.
-
-And if we wanted to pass some config values around, we can set those directly in the template JSON.
-
+`/your-theme/components/donation-call-to-action/component.json`
 ```json
 {
-	"name": "tutorial/podcast",
-	"config": {
-		"position": "footer"
-	}
+  "name": "tutorial/donation-call-to-action",
+  "config": {
+    "title": {
+      "default": "",
+      "type": "string"
+    },
+    "subtitle": {
+      "default": "",
+      "type": "string"
+    },
+    "ctaText": {
+      "default": "",
+      "type": "string"
+    },
+    "link": {
+      "default": "",
+      "type": "string"
+    }
+  }
 }
 ```
 
-WP Irving
+Now that we have described our component, we can register it in PHP, and add config and children callbacks.
 
-`/your-theme/components/podcast/component.php`
+`/your-theme/components/donation-call-to-action/component.php`
 ```php
 <?php
 /**
- * Newsletter.
+ * Donation Call To Action.
  *
  * @package Your_Theme
  */
@@ -240,42 +309,96 @@ namespace Your_Theme;
 use WP_Irving\Components;
 
 /**
- * Register the component and callback.
+ * Register the component.
  */
-Components\register_component_from_config(
-	__DIR__ . '/component',
-	[
-		'config_callback' => function ( array $config ): array {
-			// Modify some config values.
-			return $config;
-		},
-		'children_callback' => function ( array $children, array $config ): array {
-			// Modify children components
-			return $children;
-		},
-	]
-);
+Components\register_component_from_config( __DIR__ . '/component' );
 ```
 
-
-`/your-theme/components/newsletter/component.json`
+## And update `single.json` to set your new values
 ```json
 {
-  "name": "tutorial/newsletter",
-  "description": "Display a newsletter",
+  "name": "tutorial/donation-call-to-action",
   "config": {
-    "content": {
-      "default": "",
-      "type": "string"
-    },
-    "html": {
-      "default": false,
-      "type": "bool"
-    }
+    "title": "We need your support!",
+    "subtitle": "This tutorial was made possible by contributions to your PBS station from viewers like you. Thank you!",
+    "cta_text": "Learn More",
+    "link": "/donate/"
   }
 }
-
 ```
+
+## Update the React component to use the props
+Now that the component is passing our values from the backend, we can add those props to the React component.
+
+```js
+import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  standardPropTypes,
+  getStandardDefaultProps,
+} from '@irvingjs/styled/types/propTypes';
+import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import * as defaultStyles from './themes/default';
+
+const DonationCallToAction = (props) => {
+  const {
+    theme,
+    title,
+    subtitle,
+    ctaText,
+    link,
+  } = props;
+  const standardProps = useStandardProps(props);
+  const {
+    CTAButton,
+    Icon,
+    Wrapper,
+  } = theme;
+
+  return (
+    <Wrapper {...standardProps} maxWidth="sm">
+      <h3>{title}</h3>
+      <p>{subtitle}</p>
+      <CTAButton href={link}>{ctaText}<Icon /></CTAButton>
+    </Wrapper>
+  );
+};
+
+DonationCallToAction.defaultProps = {
+  ...getStandardDefaultProps(),
+  theme: defaultStyles,
+  title: '',
+  subtitle: '',
+  ctaText: '',
+  link: '',
+};
+
+DonationCallToAction.propTypes = {
+  ...standardPropTypes,
+  theme: PropTypes.shape({
+    CTAButton: PropTypes.elementType.isRequired,
+    Icon: PropTypes.elementType.isRequired,
+    Wrapper: PropTypes.elementType.isRequired,
+  }),
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  ctaText: PropTypes.string,
+  link: PropTypes.string,
+};
+
+const themeMap = {
+  default: defaultStyles,
+};
+
+export {
+  DonationCallToAction as Component,
+  themeMap,
+};
+
+export default DonationCallToAction;
+```
+
+<img src="/assets/img/tutorial/04/finished.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
 ## That's It!
 Now that you've completed the tutorial, you're reach to conquer Irving!
@@ -284,4 +407,3 @@ Some areas to continue your learning,
 1. **[Configuration](?path=/docs/concepts-overview--page)**: Configure your Irving application.
 1. **[Concepts and Architecture](?path=/docs/concepts-overview--page)**: Explore the Irving philosophy and learn more about the architecture.
 1. **[Explore the Example Theme](?path=/docs/intro-wordpress--page#example-theme)**: See Irving in action and explore our open-sourced example theme.
-
