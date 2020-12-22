@@ -64,6 +64,18 @@
 		{% if config.fonts.google %}
 		<link href="{{ config.fonts.google }}" rel="stylesheet">
 		{% endif %}
+	
+		{% if config.thirdParty.gaId %}
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id={{ config.thirdParty.gaId }}"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', '{{ config.thirdParty.gaId }}');
+		</script>
+		{% endif %}
 
 		{% if config.thirdParty.gtmId %}
 		<script async src="https://www.googletagmanager.com/gtag/js?id={{ config.thirdParty.gtmId }}"></script>
