@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.4...v5.4.0-alpha.5) (2020-12-22)
+
+
+### Bug Fixes
+
+* fixes commas ([1909f10](https://github.com/alleyinteractive/irving/packages/core/commit/1909f10ed56df804aa0ae30e552023d4bc82ccbe))
+* **html sanitization:** update allowed tags and attributes to more closely mimic WordPress ([05f6f8f](https://github.com/alleyinteractive/irving/packages/core/commit/05f6f8f48295e1c062e8167fe2156db8ad30ef8c))
+
+
+
+
+
 # [5.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.3...v5.4.0-alpha.4) (2020-12-18)
 
 
