@@ -58,7 +58,7 @@ export const filterChildrenByName = (componentName, children) => (
  */
 export const groupChildren = (children) => {
   const mapping = {
-    rest: [], // Array containing ungrouped children.
+    ungrouped: [], // Array containing ungrouped children.
   };
 
   // If the `group` prop exists, and the group has been allow-listed, push the
@@ -70,7 +70,7 @@ export const groupChildren = (children) => {
       const currentGroup = mapping[group] || [];
       mapping[group] = currentGroup.concat(child);
     } else {
-      mapping.rest = mapping.rest.concat(child);
+      mapping.ungrouped = mapping.ungrouped.concat(child);
     }
   });
 
