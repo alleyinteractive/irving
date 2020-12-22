@@ -1,7 +1,12 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Text from '.';
-import { facebook, twitter, youtube, instagram } from 'react-oembed-container/test/fixtures';
+import {
+  facebook,
+  twitter,
+  youtube,
+  instagram,
+} from 'react-oembed-container/test/fixtures';
 
 export default {
   component: Text,

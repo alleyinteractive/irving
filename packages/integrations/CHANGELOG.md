@@ -3,6 +3,173 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.0-alpha.3...v5.4.0-alpha.4) (2020-12-18)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.0-alpha.2...v5.4.0-alpha.3) (2020-12-18)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.4.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.1...v5.4.0-alpha.2) (2020-12-18)
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0...v5.3.1) (2020-12-18)
+
+**Note:** Version bump only for package @irvingjs/integrations
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [5.3.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.22...v5.3.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [5.3.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.19](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.18...v5.3.0-alpha.19) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.17](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.16...v5.3.0-alpha.17) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.16](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.15...v5.3.0-alpha.16) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.15](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.14...v5.3.0-alpha.15) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.10](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.9...v5.3.0-alpha.10) (2020-12-14)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.9](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.8...v5.3.0-alpha.9) (2020-12-10)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.8](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.7...v5.3.0-alpha.8) (2020-12-07)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.7](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.6...v5.3.0-alpha.7) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.6](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.5...v5.3.0-alpha.6) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.5](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.4...v5.3.0-alpha.5) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.3.0-alpha.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.2...v5.3.0-alpha.3) (2020-12-04)
+
+
+### Bug Fixes
+
+* **multisite:** convert remaining references to process.env.API_ROOT_URL ([9967e12](https://github.com/alleyinteractive/irving/packages/integrations/commit/9967e12b5e1020201dc51ac936e667394c92c139))
+
+
+
+
+
 # [5.3.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.3.0-alpha.1...v5.3.0-alpha.2) (2020-11-30)
 
 **Note:** Version bump only for package @irvingjs/integrations

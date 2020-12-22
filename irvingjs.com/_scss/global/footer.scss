@@ -1,0 +1,32 @@
+@use 'core/breakpoints' as *;
+@use 'core/color';
+@use 'core/layout';
+
+.footer {
+  align-items: center;
+  background-color: color.$black;
+  color: color.$white;
+  display: flex;
+  font-size: rem(14);
+  padding: rem(36) 0;
+}
+
+.footer__container {
+  @include layout.auto-margins;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: rem(1024);
+
+  a {
+    color: color.$white;
+    font-weight: 700;
+  }
+}
+
+.footer__copyright {
+  font-size: rem(11);
+  line-height: (17/11);
+  margin-left: auto;
+  text-align: center;
+}

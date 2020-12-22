@@ -1,0 +1,9 @@
+$font-primary: "basic-sans", Helvetica, Arial, sans-serif;
+
+/**
+ * The primary font family.
+ */
+@mixin primary {
+  font-family: $font-primary;
+  font-weight: 500;
+}

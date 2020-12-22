@@ -1,0 +1,59 @@
+@use 'core/breakpoints' as *;
+
+.grid {
+  flex-direction: row;
+  justify-content: space-around;
+
+  @media (media(min, sm)) {
+    display: flex;
+  }
+}
+
+.grid--logo-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (media(min, lg)) {
+    flex-wrap: nowrap;
+  }
+
+  .grid__item {
+    width: 40%;
+    padding: rem(10);
+
+    @media (media(min, md)) {
+      width: 30%;
+    }
+
+  }
+}
+
+.grid__heading {
+	font-size: rem(40);
+	font-weight: 700;
+
+	@media (media(min, sm)){
+			font-size: rem(64);
+			margin-bottom: 0;
+	}
+
+}
+
+.grid__item {
+  flex-basis: 1;
+  margin: 0 rem(9) 1rem;
+  flex-grow: 0;
+  flex-shrink: 1;
+  width: 100%;
+
+  @media (media(min, md)) {
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

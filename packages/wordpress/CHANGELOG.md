@@ -3,6 +3,221 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.0-alpha.3...v5.4.0-alpha.4) (2020-12-18)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.0-alpha.2...v5.4.0-alpha.3) (2020-12-18)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.4.0-alpha.2](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.1...v5.4.0-alpha.2) (2020-12-18)
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/example-package/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+
+
+# [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0...v5.3.0-alpha.23) (2020-12-17)
+
+
+### Bug Fixes
+
+* **audio, button, embed, and gallery components:** fix styelint issues in wordpress package ([06f4f92](https://github.com/alleyinteractive/irving/packages/example-package/commit/06f4f929c2cf37225fb19b36f74fe9e997584bbe))
+
+
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/example-package/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0...v5.3.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **stylelint:** cherry-pick stylelint fixes ([fbc4550](https://github.com/alleyinteractive/irving/packages/example-package/commit/fbc4550ade6a94410929683b8b745611403b16e3))
+
+
+# [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.22...v5.3.0-alpha.23) (2020-12-17)
+
+* **audio, button, embed, and gallery components:** fix styelint issues in wordpress package ([06f4f92](https://github.com/alleyinteractive/irving/packages/example-package/commit/06f4f929c2cf37225fb19b36f74fe9e997584bbe))
+
+# [5.3.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
+
+
+### Bug Fixes
+
+* **stylelint:** cherry-pick stylelint fixes ([fbc4550](https://github.com/alleyinteractive/irving/packages/example-package/commit/fbc4550ade6a94410929683b8b745611403b16e3))
+
+
+
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/packages/example-package/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
+
+
+
+
+
+# [5.3.0-alpha.20](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.19...v5.3.0-alpha.20) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.19](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.18...v5.3.0-alpha.19) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.17](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.16...v5.3.0-alpha.17) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.16](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.15...v5.3.0-alpha.16) (2020-12-16)
+
+
+### Bug Fixes
+
+* **package:** update package-locks for audio-player, wordpress ([f8f7b54](https://github.com/alleyinteractive/irving/packages/example-package/commit/f8f7b54baea3389e1a0a33ce9a449c35980708e6))
+
+
+
+
+
+# [5.3.0-alpha.15](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.14...v5.3.0-alpha.15) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.14](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.13...v5.3.0-alpha.14) (2020-12-16)
+
+
+### Bug Fixes
+
+* **sitetheme:** add fallback for sitetheme value matches ([23d4bd0](https://github.com/alleyinteractive/irving/packages/example-package/commit/23d4bd0760e42f0da2af480ecc701e121e4095c9))
+
+
+
+
+
+# [5.3.0-alpha.13](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.12...v5.3.0-alpha.13) (2020-12-15)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.12](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.11...v5.3.0-alpha.12) (2020-12-15)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.10](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.9...v5.3.0-alpha.10) (2020-12-14)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.9](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.8...v5.3.0-alpha.9) (2020-12-10)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.8](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.7...v5.3.0-alpha.8) (2020-12-07)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.7](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.6...v5.3.0-alpha.7) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.6](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.5...v5.3.0-alpha.6) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.5](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.4...v5.3.0-alpha.5) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.3.0-alpha.4](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.3...v5.3.0-alpha.4) (2020-12-05)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
 # [5.3.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.3.0-alpha.0...v5.3.0-alpha.1) (2020-11-23)
 
 **Note:** Version bump only for package @irvingjs/wordpress

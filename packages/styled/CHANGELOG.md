@@ -3,6 +3,228 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.4.0-alpha.3...v5.4.0-alpha.4) (2020-12-18)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.4.0-alpha.2...v5.4.0-alpha.3) (2020-12-18)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.4.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.1...v5.4.0-alpha.2) (2020-12-18)
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/styled/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/styled/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/styled
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0...v5.3.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **pxtorelative:** another semicolon ([91cbb33](https://github.com/alleyinteractive/irving/packages/styled/commit/91cbb33f246f870d7eed96ebe1d364ba2d47e399))
+
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/packages/styled/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
+
+
+
+
+
+# [5.3.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
+
+
+### Bug Fixes
+
+* **pxtorelative:** another semicolon ([91cbb33](https://github.com/alleyinteractive/irving/packages/styled/commit/91cbb33f246f870d7eed96ebe1d364ba2d47e399))
+
+
+
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.20](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.19...v5.3.0-alpha.20) (2020-12-16)
+
+
+### Bug Fixes
+
+* **pxtorelative:** fix rem/em functions to continue working within css template tag ([3f8f37e](https://github.com/alleyinteractive/irving/packages/styled/commit/3f8f37e998259b9ec88ded72a034d423055834b3))
+
+
+
+
+
+# [5.3.0-alpha.19](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.18...v5.3.0-alpha.19) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.17](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.16...v5.3.0-alpha.17) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.16](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.15...v5.3.0-alpha.16) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.14...v5.3.0-alpha.15) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.14](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.13...v5.3.0-alpha.14) (2020-12-16)
+
+
+### Bug Fixes
+
+* **sitetheme:** add fallback for sitetheme value matches ([23d4bd0](https://github.com/alleyinteractive/irving/packages/styled/commit/23d4bd0760e42f0da2af480ecc701e121e4095c9))
+
+
+
+
+
+# [5.3.0-alpha.13](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.12...v5.3.0-alpha.13) (2020-12-15)
+
+
+### Bug Fixes
+
+* **stylelint:** bugfix for stylelint webpack config in styled package ([67b1016](https://github.com/alleyinteractive/irving/packages/styled/commit/67b1016246a2b23d0d23d80b0f6b22a6e6d2adf2))
+
+
+
+
+
+# [5.3.0-alpha.12](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.11...v5.3.0-alpha.12) (2020-12-15)
+
+
+### Bug Fixes
+
+* **sitethemeprovider:** add back in extra `theme`, don't need to remove it really ([4f10c20](https://github.com/alleyinteractive/irving/packages/styled/commit/4f10c202d0cc0e4f2938c179e26f2f2e1de4e650))
+* **utils:** add back in em and rem files to prevent breaking anything ([71ba20b](https://github.com/alleyinteractive/irving/packages/styled/commit/71ba20bf80cb386c687d465c44c167b1eb1c13f2))
+
+
+### Features
+
+* **sitetheme:** changes to make styled utils less verbose, including em rem and siteTheme ([e75702f](https://github.com/alleyinteractive/irving/packages/styled/commit/e75702fe5fb4378ccd9eb75c4810b9426e8ef9a0))
+
+
+
+
+
+# [5.3.0-alpha.10](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.9...v5.3.0-alpha.10) (2020-12-14)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.9](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.8...v5.3.0-alpha.9) (2020-12-10)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.8](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.7...v5.3.0-alpha.8) (2020-12-07)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.7](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.6...v5.3.0-alpha.7) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.5...v5.3.0-alpha.6) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.4...v5.3.0-alpha.5) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
+# [5.3.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.3...v5.3.0-alpha.4) (2020-12-05)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
 # [5.3.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.3.0-alpha.0...v5.3.0-alpha.1) (2020-11-23)
 
 **Note:** Version bump only for package @irvingjs/styled

@@ -3,6 +3,185 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.3...v5.4.0-alpha.4) (2020-12-18)
+
+
+### Bug Fixes
+
+* **core:** update package-lock.json following sanitize-html update ([3fc836f](https://github.com/alleyinteractive/irving/packages/core/commit/3fc836ff72e6b8de00abe64794adbf86006f029d)), closes [#433](https://github.com/alleyinteractive/irving/packages/core/issues/433)
+
+
+
+
+
+# [5.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.2...v5.4.0-alpha.3) (2020-12-18)
+
+
+### Performance Improvements
+
+* **core:** upgrade sanitize-html to 2.3.0 ([54ac0c1](https://github.com/alleyinteractive/irving/packages/core/commit/54ac0c181e15cf1d10ea01009ada6f5d85c67344))
+
+
+
+
+
+# [5.4.0-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.1...v5.4.0-alpha.2) (2020-12-18)
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **loadable:** use prefetch instead of preload for async chunks ([bf9e34e](https://github.com/alleyinteractive/irving/packages/core/commit/bf9e34e561ff1c7797e95e4631ff0005de9745c6))
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/core/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+
+
+
+
+# [5.4.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.0...v5.4.0-alpha.1) (2020-12-18)
+
+
+### Bug Fixes
+
+* **loadable:** use prefetch instead of preload for async chunks ([bf9e34e](https://github.com/alleyinteractive/irving/packages/core/commit/bf9e34e561ff1c7797e95e4631ff0005de9745c6))
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([06e6643](https://github.com/alleyinteractive/irving/packages/core/commit/06e6643b09faedaea9918d9a348344f0f65317ff))
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/core
+## [5.3.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0...v5.3.1) (2020-12-18)
+### Bug Fixes
+
+* **loadable:** use prefetch instead of preload for async chunks ([7acd187](https://github.com/alleyinteractive/irving/packages/core/commit/7acd187ca716892ef7d5a321e614fd7ffe29eeb4))
+* **stylelint:** stylelint fixes, ignore core files with stylelint ([35094b0](https://github.com/alleyinteractive/irving/packages/core/commit/35094b0046ac8f405ba080d98d77993bca7a7e3d))
+
+
+# [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+# [5.3.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-beta.0...v5.3.0) (2020-12-17)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+# [5.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.20...v5.3.0-beta.0) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.19](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.18...v5.3.0-alpha.19) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.17](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.16...v5.3.0-alpha.17) (2020-12-16)
+
+
+### Bug Fixes
+
+* **getenv:** remove unnecessary var ([84e4303](https://github.com/alleyinteractive/irving/packages/core/commit/84e4303af7bf57051ef76eb02e4ac9c1c2bbe328))
+
+
+
+
+
+# [5.3.0-alpha.16](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.15...v5.3.0-alpha.16) (2020-12-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.15](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.14...v5.3.0-alpha.15) (2020-12-16)
+
+
+### Bug Fixes
+
+* **env:** remove env logging ([10e023a](https://github.com/alleyinteractive/irving/packages/core/commit/10e023a9f83da83022b99f45e879cd745b0593bf))
+
+
+
+
+
+# [5.3.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.9...v5.3.0-alpha.10) (2020-12-14)
+
+
+### Bug Fixes
+
+* **development.js:** update headers for local development ([5b60961](https://github.com/alleyinteractive/irving/packages/core/commit/5b609619c941993e3454aa6b2d0d9003ed36f616))
+
+
+
+
+
+# [5.3.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.8...v5.3.0-alpha.9) (2020-12-10)
+
+
+### Bug Fixes
+
+* **html.js:** adds sub and sup to allowed html tags ([b7f4f44](https://github.com/alleyinteractive/irving/packages/core/commit/b7f4f449f9c9f37a1c7fc9c6f56fd10caa816a06))
+
+
+
+
+
+# [5.3.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.7...v5.3.0-alpha.8) (2020-12-07)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.6...v5.3.0-alpha.7) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.5...v5.3.0-alpha.6) (2020-12-06)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.3.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.4...v5.3.0-alpha.5) (2020-12-06)
+
+
+### Bug Fixes
+
+* **storybook:** move react-oembed-container dependency to styled components ppackage ([6caf82c](https://github.com/alleyinteractive/irving/packages/core/commit/6caf82c4af59f04e767063566f9d935a4b1e73be))
+
+
+
+
+
 # [5.3.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.3.0-alpha.0...v5.3.0-alpha.1) (2020-11-23)
 
 

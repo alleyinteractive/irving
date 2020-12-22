@@ -13,6 +13,7 @@ const spin = keyframes`
 `;
 
 export const Transition = styled.div`
+
   .fade {
     opacity: 0;
   }

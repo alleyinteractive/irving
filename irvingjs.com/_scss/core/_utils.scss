@@ -1,0 +1,10 @@
+/**
+ * Corrects Sass processing of unicode characters, which by default results in a
+ * charset rule at the top of the stylesheet.
+ *
+ * @param  {string} $codepoint The unicode point without escaping (ex, '2715' to represent '\2715').
+ * @return {string}            A properly formatted unicode string.
+ */
+@function unicode($codepoint){
+  @return unquote("\"")+unquote(str-insert($codepoint, "\\", 1))+unquote("\"")
+}

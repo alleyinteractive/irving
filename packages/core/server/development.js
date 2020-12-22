@@ -29,6 +29,9 @@ const developmentMiddleware = (app) => {
 
   // Serve webpack handled assets.
   app.use(webpackDevMiddleware(multiCompiler, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
     publicPath: clientConfig.output.publicPath,
     serverSideRender: true,
     logLevel: 'warn', // Info output is overwhelming with bundle information.
