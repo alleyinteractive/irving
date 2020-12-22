@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 /* eslint-disable import/prefer-default-export */
 export const BylineWrapper = styled.div`
-  display: flex;
   flex-direction: column;
+  display: flex;
   white-space: pre;
   width: 100%;
 `;

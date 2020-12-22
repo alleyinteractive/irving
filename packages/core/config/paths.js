@@ -64,6 +64,7 @@ module.exports = {
   config: resolveAppDir('irving.config.js'),
   globalStyles: resolveIrvingDir('assets/styles'),
   irvingRoot,
+  localRoot: path.join(__dirname, '../../../'),
   mocks: resolveIrvingDir('__mocks__'),
   nodeModules: resolveIrvingDir('node_modules'),
   postCssConfig: resolveIrvingDir('config/postcss.config.js'),

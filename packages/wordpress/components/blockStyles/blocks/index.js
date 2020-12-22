@@ -53,10 +53,14 @@ const getBlockMap = () => {
             ${userStyles};
           `;
         } else {
-          coreStyles = css`${userStyles}`;
+          coreStyles = css`
+            ${userStyles}
+          `;
         }
       } else {
-        coreStyles = css`${defaultStyles}`;
+        coreStyles = css`
+          ${defaultStyles}
+        `;
       }
 
       return {
