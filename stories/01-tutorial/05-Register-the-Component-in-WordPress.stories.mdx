@@ -4,6 +4,10 @@
 In this section, we'll register the component in WordPress and hook it up to a data source.
 
 ## Table of Contents
+* [Create `component.json`](?path=/docs/tutorial-register-the-component-in-wordpress--page#create-componentjson)
+* [Create `component.php`](?path=/docs/tutorial-register-the-component-in-wordpress--page#create-componentphp)
+* [Update `single.json` to set your new values](?path=/docs/tutorial-register-the-component-in-wordpress--page#update-singlejson-to-set-your-new-values)
+* [Update the React component to use the props](?path=/docs/tutorial-register-the-component-in-wordpress--page#update-the-react-component-to-use-the-props)
 
 ## Create `component.json`
 Next we'll register the component by creating a new JSON file describing the component.
@@ -38,13 +42,16 @@ We'll start by registering some config properties to pass into the React compone
 ```
 
 ## Create `component.php`
-Now that we have described our component, we can register it in PHP, and add config and children callbacks.
+Now that we have described our component using JSON, we create a `component.php` in the same directory.
 
-`/your-theme/components/donation-call-to-action/component.php`
+We'll use `register_component_from_config()` to pull in the JSON and register the component with WP Irving. This function also allows you to write config and children callbacks ([docs](?path=/docs/components-creating-a-component--page)).
+
+
+`/your-theme/components/donation-call-to-action/component.php`,
 ```php
 <?php
 /**
- * Donation Call To Action.
+ * Donation Call To Action Component.
  *
  * @package Your_Theme
  */
@@ -59,7 +66,12 @@ use WP_Irving\Components;
 Components\register_component_from_config( __DIR__ . '/component' );
 ```
 
+_Note: WP Irving will automatically include `component.php` files inside your WordPress theme's `/components/` folder._
+
 ## Update `single.json` to set your new values
+Now that we've registered our component, the config properties we've defined in `component.json` will be available to use in our template.
+
+We'll add values for the `title`, `subtitle`, `cta_text`, and `link` keys on the  `tutorial/donation-call-to-action` component in `/templates/single.json`.
 ```json
 {
   "name": "tutorial/donation-call-to-action",
@@ -73,8 +85,11 @@ Components\register_component_from_config( __DIR__ . '/component' );
 ```
 
 ## Update the React component to use the props
-Now that the component is passing our values from the backend, we can add those props to the React component.
+Now that the component is passing our strings from the backend, we want to update the React component to use them.
 
+We can do that by adding each key to our prop types, and destructuring them from the component `props`.
+
+`~/code/irving-tutorial/components/donation-call-to-action/index.js`,
 ```js
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -146,9 +161,9 @@ export default DonationCallToAction;
 <img src="/assets/img/tutorial/04/finished.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
 
 ## That's It!
-Now that you've completed the tutorial, you're ready to conquer Irving!
+Congratulations! You've completed the tutorial!
 
-Some areas to continue your learning,
+If you're ready to keep exploring Irving, consider some advanced topics,
 1. **[Configuration](?path=/docs/concepts-overview--page)**: Configure your Irving application.
 1. **[Concepts and Architecture](?path=/docs/concepts-overview--page)**: Explore the Irving philosophy and learn more about the architecture.
 1. **[Explore the Example Theme](?path=/docs/intro-wordpress--page#example-theme)**: See Irving in action and explore our open-sourced example theme.
