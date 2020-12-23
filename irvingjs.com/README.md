@@ -34,4 +34,4 @@ IrvingJS.com is currently hosted on [surge.sh](https://surge.sh/). If you need p
 * To [install surge](https://surge.sh/help/getting-started-with-surge) globally run,
   * `npm install --global surge`
 * To [add new users](https://surge.sh/help/adding-collaborators) to Surge `cd` into the Irving repo (this repo!) and deploy with the `add` flag,
-  * `surge ./dist --domain irvingjs.com --add james@alley.co`
+  * `surge ./dist --domain irvingjs.com --add washington@irvingjs.com`
