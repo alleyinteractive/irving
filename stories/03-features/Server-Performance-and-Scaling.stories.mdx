@@ -1,6 +1,6 @@
-<Meta title="Features|Performance and Scaling" />
+<Meta title="Features|Server Performance and Scaling" />
 
-# Performance and Scaling
+# Server Performance and Scaling
 One of the primary features of Irving is its ability to scale gracefully. In an ideal Irving project most (if not all) of the business logic is offloaded to the API layer. This keeps Irving performant and optimized for speed.
 
 Irving's pros and cons around performance and scaling are going to be true for any node application. Standard best-practices for deploying a node application apply.
@@ -19,7 +19,7 @@ Scaling with Irving is similar to horizontal scaling for any Node application. W
 * Ensure that every node process shares a single caching instance (see [caching](Caching)).
 
 ### Gotchas
-Just as with any React-based application, there's a few issues to consider,
+Just as with any React-based application, there are a few issues to consider,
 * NPM is a double edged sword. Using NPM packages will help speed development and offer great functionality, but the size of the production bundle will increase as a result. As with other node applications like Irving, the bundle will need to download fully and can create a bottleneck (we recommend caching your bundle).
   - [Optimizing your application bundle size with webpack
 ](https://hackernoon.com/optimising-your-application-bundle-size-with-webpack-e85b00bab579)

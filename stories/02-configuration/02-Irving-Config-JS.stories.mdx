@@ -194,7 +194,7 @@ module.exports = {
 ## Passthrough proxies
 * **where to configure**: `config/proxyPassthrough.js`
 * **type**: array
-* **purpose**: Customize the list of passthrough proxies. Values in the `proxyPassthrough` config array can be plain strings or strings containing glob patterns. See examples in [`http-proxy-middleware`](https://github.com/chimurai/http-proxy-middleware#example), the package underlying this functionality. Any URL that matches one of these proxy patterns will be handled by your CMS backend. This can be good for functionality like `robots.txt` or RSS feeds. Example:
+* **purpose**: Customize the list of passthrough proxies. Values in the `proxyPassthrough` config array can be plain strings or strings containing glob patterns. See examples in `http-proxy-middleware` [(docs)](https://github.com/chimurai/http-proxy-middleware#example), the package underlying this functionality. Any URL that matches one of these proxy patterns will be handled by your CMS backend. This can be good for functionality like `robots.txt` or RSS feeds. Example:
 ```javascript
 module.exports = [
   '/robots.txt',
