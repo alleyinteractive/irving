@@ -54,6 +54,7 @@ module.exports = function() {
     thirdParty: {
       picoId: undefined,
       gtmId: '',
+      gaId: 'G-WHBDXXT9FC',
     },
   };
 };
