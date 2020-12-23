@@ -1,0 +1,131 @@
+<Meta title="Concepts|Request Life Cycle" />
+
+# Request Life Cycle
+The purpose of this section is to describe Irving's request life cycle and how a typical request works.
+
+The Irving life cycle is inherently different than other headless frameworks because routing and layouts are determined via the adapter (ex. WordPress) rather than inside of Node via React Router.
+
+#### What is an Adapter?
+
+Unlike other headless frameworks, Irving is designed to work with any endpoint that follows the components structure. Adapters are content management system or other data source that implements the components API (ex. WordPress & WP Irving). The adapter will implement routing and template construction.
+
+_Note: WordPress it the only official adapter at this time._
+
+## Table of Contents
+* [Simple request](?path=/docs/concepts-request-life-cycle--page)
+* [Detailed request](?path=/docs/concepts-request-life-cycle--page)
+  * [Initial request (SSR)](?path=/docs/concepts-request-life-cycle--page)
+  * [WordPress processes the request](?path=/docs/concepts-request-life-cycle--page)
+  * [WordPress parses and hydrates the components](?path=/docs/concepts-request-life-cycle--page)
+  * [Irving receives the request and renders the layout](?path=/docs/concepts-request-life-cycle--page)
+  * [Second request is triggered (CSR/SPA)](?path=/docs/concepts-request-life-cycle--page)
+* [Diagram](?path=/docs/concepts-request-life-cycle--page)
+  * [Node Life Cycle](?path=/docs/concepts-request-life-cycle--page)
+
+## Simple request
+**Irving Node Application:**
+1. Receives a request for `example.com/search/?s=dogs`.
+1. Express.js begins to process the request.
+1. The `serverRenderer` function runs middleware (basic auth, logging, monitoring, etc.).
+1. A `fetch` request is sent to WordPress, passing the path and query parameters, (ex. `/wp-json/irving/v1/components?context=site&path=/search/&s=dogs`).
+
+**WordPress and the WP Irving Plugin:**
+1. Receives the request from Irving and parses the query parameters (`context=site`, `path=/search/`, `s=dogs`).
+1. Parses the request into a `WP_Query` object (identical to how WordPress' routing works).
+1. The [Template Hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/) determines a [JSON template to load](?path=/docs/templating-summary--page), and hydrates the components.
+1. The response is returned to Irving as a tree of components.
+
+**Irving Node Application:**
+1. Receives the response.
+1. Side effects are executed (ex. redirects are followed).
+1. Irving renders the component tree, using the [component mapping](?path=/docs/components-component-mapping--page).
+
+_Note: This process is roughly the same both server-side and client-side. The major difference being that once a server-side response is returned, the client-side JavaScript application loads, and then hydrates the application. Irving will then behave like a SPA, slightly modifying where and how the request flows._
+
+## Detailed request
+
+### Initial request
+The initial user request to any route (ex. `/about-us/`) is handled by Express.
+
+The `serverRenderer` function ([source](https://github.com/alleyinteractive/irving/blob/main/packages/core/server/serverRenderer.js)) will run any middleware (auth, logging, reporting, etc.) before triggering a [`history.push`](https://www.npmjs.com/package/history) call, which in turn dispatches a `LOCATION_CHANGE` action.
+
+This action (via `redux-saga`) handles the `fetch` request to the Adapter, using the `API_ROOT_URL`.
+
+### WP Irving receives the request
+The request made to WP Irving will look like this,
+```
+example.com/wp-json/irving/v1/components?context=site&path=/about-us/
+```
+
+This endpoint is registered by WP Irving, and has a lot of responsibility. It will parse the request and run the same routing logic that a normal, non-decoupled, WordPress request would.
+
+### The request is parsed and used to hydrate a template
+This results in a `WP_Query` object, serving the same purpose as the [Main Query](https://developer.wordpress.org/reference/functions/is_main_query/) (all the [relevant globals](https://codex.wordpress.org/Global_Variables) will also be created).
+
+Using this `WP_Query`, WP Irving will attempt to load a [JSON template](?path=/docs/templating-summary--page) based on the same logic as the [Template Hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/).
+
+The components in the selected template will be hydrated, and returned to the Irving application.
+
+Example [Components Endpoint](?path=/docs/components-components-endpoint--page) response,
+```json
+{
+  "defaults": [
+    {
+      "name": "irving/body-wrapper",
+      "_alias": "",
+      "config": {
+        "themeName": "default",
+        "themeOptions": [
+          "default"
+        ]
+      },
+      "children": []
+    }
+  ],
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "_alias": "",
+      "config": {
+        "themeName": "default",
+        "themeOptions": [
+          "default"
+        ]
+      },
+      "children": [
+        {
+          "name": "irving/text",
+          "_alias": "",
+          "config": {
+            "content": "Hello World"
+          }
+        }
+      ]
+    }
+  ],
+  "providers": [],
+  "redirectTo": "",
+  "redirectStatus": 0
+}
+```
+
+### Irving receives the request and renders the layout
+Once the Components Endpoint response is received, the data is merged into the Redux state.
+
+If the `defaults` key contains components, Irving will render those first. This creates a skeleton of top-level components to serve as the site defaults.
+
+After checking and possibly rendering the `defaults`, Irving will look at the `page` components, swapping any top-level components with the `default` equivalent.
+
+Once this tree has been merged, Irving traverses the tree, rendering each JSON component definition as the appropriately [mapped](?path=/docs/components-component-mapping--page) React component.
+
+### Second request is triggered (CSR/SPA)
+After the initial server-side render and subsequent application hydration, Irving will behave as a Single Page Application.
+
+When using the `<Link />` component in `@irvingjs/styled-components`, Irving will make all same-domain (and non-proxied) paths via a client-side `fetch` and re-render.
+
+## Diagram
+
+#### Node Life Cycle
+This diagram highlights how a request flows in the Node/Express application.
+<a href="https://drive.google.com/open?id=1nRoICa0niPGIsP-YmyeCB_GhnHF3d3YM"><img src="/assets/img/life-cycle/node-life-cycle-request-flow.jpg" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+</a>

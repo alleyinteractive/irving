@@ -16,13 +16,15 @@ Upload your favicon to the Customizer, and Irving handles the rest.
 ## Feeds
 WordPress feeds are supported via [proxy](?path=/docs/features-proxies--page).
 
+[WordPress Documentation](https://wordpress.org/support/article/wordpress-feeds/)
+
 ## Previews
 To enable previews, you must install and enabled the [JWT Auth plugin](http://localhost:6006/?path=/docs/integrations-supported-wordpress-plugins--page#jwt-auth).
 
 Coming soon, unauthenticated previews.
 
 ## Sitemaps
-Sitemaps via Jetpack, MSM, or WordPress Core are supported via [proxy](?path=/docs/features-proxies--page).
+The [@irvingjs/wordpress](?path=/docs/features-proxies--page#wordpress) pacakage will automatically proxy any `.xml` files, including `sitemap.xml`. This is one of the few situations where nearly any plugin or solution you use should work. We've tested with [Jetpack](https://jetpack.com/support/sitemaps/), [MSM](https://github.com/Automattic/msm-sitemap), and [WordPress Core](https://make.wordpress.org/core/2020/07/22/new-xml-sitemaps-functionality-in-wordpress-5-5/).
 
 ## Widgets
-Coming soon.
+We do not currently support widgets.
