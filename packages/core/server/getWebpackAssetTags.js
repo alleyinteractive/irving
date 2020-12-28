@@ -9,7 +9,6 @@ export const coreChunks = [
   'runtime',
   'main',
   'common',
-  'polyfills',
 ];
 
 /**
@@ -35,20 +34,40 @@ const getWebpackAssetTags = (clientStats, hostname) => {
     )).map(normalizeChunkAssets);
   const outputChunkAssets = (assets) => (
     assets.forEach((assetPath) => {
-      if (! assetPath || assetPath.includes('runtime')) {
+      if (
+        ! assetPath ||
+        assetPath.includes('runtime')
+      ) {
         return;
       }
 
-      if (assetPath.match(/\.js$/)) {
-        tags.push(
-          `<script async${assetPath.includes('polyfills') ? ' nomodule' : ''} src="${ROOT_URL}/${assetPath}"></script>`
-        );
-      }
+      switch (true) {
+        case (assetPath.match(/\.main\.bundle\.js$/)):
+          tags.push(
+            `<script async module src="${ROOT_URL}/${assetPath}"></script>`
+          );
+          break;
 
-      if (assetPath.match(/\.css$/)) {
-        tags.push(
-          `<link rel="stylesheet" href="${ROOT_URL}/${assetPath}"></link>`
-        );
+        case (assetPath.match(/\.main\.es5\.bundle\.js$/)):
+          tags.push(
+            `<script async nomodule src="${ROOT_URL}/${assetPath}"></script>`
+          );
+          break;
+
+        case (assetPath.match(/\.js$/)):
+          tags.push(
+            `<script async src="${ROOT_URL}/${assetPath}"></script>`
+          );
+          break;
+
+        case (assetPath.match(/\.css$/)):
+          tags.push(
+            `<link rel="stylesheet" href="${ROOT_URL}/${assetPath}"></link>`
+          );
+          break;
+
+        default:
+          break;
       }
     })
   );

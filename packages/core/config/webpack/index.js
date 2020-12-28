@@ -11,18 +11,19 @@ const getOptimization = require('./optimization');
  *
  * @param {string} mode Production or development
  * @param {string} opEnv Server or client
+ * @param {string} target Webpack bundle target
  * @returns {object} Configuration service
  */
-module.exports = function getConfigService(mode, opEnv) {
+module.exports = function getConfigService(mode, opEnv, target = 'web') {
   const context = `${mode}_${opEnv}`;
 
   return {
-    getAlias: () => getAlias(context),
-    getEntry: () => getEntry(context),
-    getRules: () => getRules(context),
-    getOptimization: () => getOptimization(context),
-    getOutput: () => getOutput(context),
-    getPlugins: () => getPlugins(context),
-    getDevTool: () => getDevTool(context),
+    getAlias: () => getAlias(context, target),
+    getEntry: () => getEntry(context, target),
+    getRules: () => getRules(context, target),
+    getOptimization: () => getOptimization(context, target),
+    getOutput: () => getOutput(context, target),
+    getPlugins: () => getPlugins(context, target),
+    getDevTool: () => getDevTool(context, target),
   };
 };

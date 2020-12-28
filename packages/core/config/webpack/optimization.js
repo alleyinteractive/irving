@@ -15,11 +15,6 @@ module.exports = function getOptimization(context) {
         chunks: 'all',
         minChunks: 2,
       },
-      polyfills: {
-        name: 'polyfills',
-        test: /node_modules\/core-js/,
-        chunks: 'all',
-      },
     },
   };
 

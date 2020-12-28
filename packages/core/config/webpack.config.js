@@ -7,8 +7,9 @@ const { getValueFromFiles } = require('./irving/getValueFromFiles');
 module.exports = (env, argv) => {
   const { mode } = argv;
   const isProd = 'production' === mode;
-  const server = getConfigService(mode, 'server');
   const client = getConfigService(mode, 'client');
+  const clientLegacy = getConfigService(mode, 'client', 'es5');
+  const server = getConfigService(mode, 'server', 'node');
   const extensions = ['.js', '.json'];
   const multiConfig = [
     {
@@ -28,6 +29,25 @@ module.exports = (env, argv) => {
       },
       plugins: client.getPlugins(),
       optimization: client.getOptimization(),
+    },
+    {
+      context: buildContext,
+      name: 'client-es5',
+      mode,
+      target: 'es5',
+      resolve: {
+        extensions,
+        alias: clientLegacy.getAlias(),
+        symlinks: ! isProd,
+      },
+      devtool: clientLegacy.getDevTool(),
+      entry: clientLegacy.getEntry(),
+      output: clientLegacy.getOutput(),
+      module: {
+        rules: clientLegacy.getRules(),
+      },
+      plugins: clientLegacy.getPlugins(),
+      optimization: clientLegacy.getOptimization(),
     },
     {
       context: buildContext,

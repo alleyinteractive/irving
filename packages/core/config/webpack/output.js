@@ -6,7 +6,9 @@ const { serverBuild, clientBuild, rootUrl } = require('../paths');
  * @param {string} context The configuration context
  * @returns {object} An output configuration value
  */
-module.exports = function getOutput(context) {
+module.exports = function getOutput(context, target) {
+  const clientPrefix = '.es5' === target ? 'es5' : '';
+
   switch (context) {
     case 'production_server':
     case 'development_server':
@@ -20,8 +22,9 @@ module.exports = function getOutput(context) {
       return {
         path: clientBuild,
         publicPath: `${rootUrl}/`,
-        filename: 'static/js/[name].[chunkhash:8].bundle.js',
-        chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+        filename: `static/js/[name].[chunkhash:8]${clientPrefix}.bundle.js`,
+        chunkFilename:
+          `static/js/[name].[chunkhash:8]${clientPrefix}.chunk.js`,
         jsonpFunction: 'irvingWebpackJsonp',
       };
 
@@ -29,8 +32,8 @@ module.exports = function getOutput(context) {
       return {
         path: clientBuild,
         publicPath: `${rootUrl}/`,
-        filename: '[name].bundle.js',
-        chunkFilename: '[name].chunk.js',
+        filename: `[name]${clientPrefix}.bundle.js`,
+        chunkFilename: `[name]${clientPrefix}.chunk.js`,
         jsonpFunction: 'irvingWebpackJsonp',
       };
 
