@@ -33,16 +33,10 @@ webpack(
       throw new Error('build failed');
     }
 
-    // Log compile warnings.
-    if (stats.hasWarnings()) {
-      info.warnings.forEach((warning) => {
-        const warnParts = warning.match(messageRegExp);
-        console.warn( // eslint-disable-line no-console
-          chalk.black.bgYellow(warnParts[1]),
-          chalk.yellow(warnParts[2])
-        );
-      });
-    }
+    console.log(stats.toString({
+      colors: true,
+      warnings: false,
+    }));
 
     console.log('build complete'); // eslint-disable-line no-console
   }

@@ -30,8 +30,10 @@ module.exports = function getOptimization(context) {
     case 'production_client':
       return {
         minimizer: [
-          new TerserJSPlugin({}),
-          new OptimizeCSSAssetsPlugin({}),
+          new TerserJSPlugin({
+            parallel: true,
+          }),
+          new OptimizeCSSAssetsPlugin(),
         ],
         splitChunks,
         runtimeChunk: 'single',

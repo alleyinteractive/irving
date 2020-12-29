@@ -13,9 +13,10 @@ const { maybeResolveUserModule } = require('../../utils/userModule');
  * Get the context specific plugins configuration.
  *
  * @param {string} context The configuration context
+ * @param {string} target Webpack bundle target
  * @returns {array} A plugins configuration value
  */
-module.exports = function getPlugins(context) {
+module.exports = function getPlugins(context, target) {
   // Define paths to app and error templates at compile time because express needs paths, not the template module itself.
   // This allows user to more deeply customize app and error templates.
   const commonPlugins = [
@@ -72,6 +73,7 @@ module.exports = function getPlugins(context) {
             outputPath: true,
             publicPath: true,
           },
+          filename: 'es5' === target ? 'stats-es5.json' : 'stats.json',
         }),
         // Support friendly stack traces for error reporting, but protect
         // source code from being exposed.

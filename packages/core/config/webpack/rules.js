@@ -35,9 +35,10 @@ const include = (filepath) => {
  * Get the context specific rules configuration.
  *
  * @param {string} context The configuration context
+ * @param {string} target Webpack bundle target
  * @returns {array} A rules configuration value
  */
-module.exports = function getRules(context) {
+module.exports = function getRules(context, target) {
   const isProd = context.includes('production');
   const isServer = context.includes('server');
 
@@ -117,6 +118,9 @@ module.exports = function getRules(context) {
             extends: isServer ?
               path.join(irvingRoot, 'babel.config.node.js') :
               path.join(irvingRoot, 'babel.config.web.js'),
+            caller: {
+              es5: 'es5' === target,
+            },
           },
         },
       ],
@@ -133,12 +137,7 @@ module.exports = function getRules(context) {
       test: /\.css$/,
       include,
       use: [
-        {
-          loader: MiniCSSExtractPlugin.loader,
-          options: {
-            hmr: ! isProd,
-          },
-        },
+        MiniCSSExtractPlugin.loader,
         {
           loader: 'css-loader',
           options: {

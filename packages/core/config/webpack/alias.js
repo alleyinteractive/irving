@@ -14,6 +14,7 @@ module.exports = function getAlias(context) {
       return {};
 
     case 'development_client':
+    case 'production_client':
       // Use the app version of these packages to prevent duplicate react errors with npm link
       return {
         'react-dom': path.join(appRoot, './node_modules/react-dom'),
@@ -26,8 +27,8 @@ module.exports = function getAlias(context) {
         ),
       };
 
-    case 'production_client':
-      return {};
+    // case 'production_client':
+    //   return {};
 
     default:
       throw new Error(`Unknown configuration context ${context}`);

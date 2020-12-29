@@ -4,10 +4,11 @@ const { serverBuild, clientBuild, rootUrl } = require('../paths');
  * Get the context specific output configuration.
  *
  * @param {string} context The configuration context
+ * @param {string} target Webpack bundle target
  * @returns {object} An output configuration value
  */
 module.exports = function getOutput(context, target) {
-  const clientPrefix = '.es5' === target ? 'es5' : '';
+  const clientPrefix = 'es5' === target ? '.es5' : '';
 
   switch (context) {
     case 'production_server':

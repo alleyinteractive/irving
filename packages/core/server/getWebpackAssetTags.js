@@ -2,7 +2,9 @@ import fs from 'fs';
 import { getValueFromConfigNoMemo } from 'config/irving/getValueFromConfig';
 import { clientBuild } from 'config/paths';
 import getEnv from 'config/irving/getEnv';
+import getLogService from '@irvingjs/services/logService';
 
+const log = getLogService('irving:server:assets');
 let runtimeSrc;
 
 export const coreChunks = [
@@ -32,6 +34,10 @@ const getWebpackAssetTags = (clientStats, hostname) => {
     .filter((chunkName) => (
       ! coreChunks.includes(chunkName)
     )).map(normalizeChunkAssets);
+
+  log.info('%o', coreAssets);
+  log.info('%o', otherAssets);
+
   const outputChunkAssets = (assets) => (
     assets.forEach((assetPath) => {
       if (
@@ -42,25 +48,19 @@ const getWebpackAssetTags = (clientStats, hostname) => {
       }
 
       switch (true) {
-        case (assetPath.match(/\.main\.bundle\.js$/)):
-          tags.push(
-            `<script async module src="${ROOT_URL}/${assetPath}"></script>`
-          );
-          break;
-
-        case (assetPath.match(/\.main\.es5\.bundle\.js$/)):
+        case assetPath.match(/\.es5\.(bundle|chunk)\.js$/):
           tags.push(
             `<script async nomodule src="${ROOT_URL}/${assetPath}"></script>`
           );
           break;
 
-        case (assetPath.match(/\.js$/)):
+        case assetPath.match(/\.(bundle|chunk)\.js$/):
           tags.push(
-            `<script async src="${ROOT_URL}/${assetPath}"></script>`
+            `<script async type="module" src="${ROOT_URL}/${assetPath}"></script>`
           );
           break;
 
-        case (assetPath.match(/\.css$/)):
+        case assetPath.match(/\.css$/):
           tags.push(
             `<link rel="stylesheet" href="${ROOT_URL}/${assetPath}"></link>`
           );

@@ -21,7 +21,6 @@ module.exports = {
       'babel-module': {},
     },
   },
-  globals: {},
   rules: {
     'array-bracket-spacing': [2, 'never'],
     'arrow-parens': ['error', 'always'],
@@ -62,10 +61,6 @@ module.exports = {
     'import/no-extraneous-dependencies': [0],
     'import/no-unresolved': [0],
     'import/prefer-default-export': [0],
-    'jsx-a11y/anchor-is-valid': ['error', {
-      components: ['Link'],
-      specialLink: ['to'],
-    }],
     'react/prefer-stateless-function': 'off',
     'react/jsx-filename-extension': [0],
     'react/jsx-one-expression-per-line': [0],

@@ -1,6 +1,10 @@
-const getTarget = (caller) => (
-  (caller && 'babel-loader' === caller.name) ? caller.target : null
-);
+const getTarget = (caller) => {
+  if (caller && 'babel-loader' === caller.name) {
+    return caller.es5 ? 'es5' : caller.target;
+  }
+
+  return null;
+};
 
 module.exports = function babelPresetIrving(api) {
   const target = api.caller(getTarget);

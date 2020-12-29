@@ -34,7 +34,6 @@ module.exports = (env, argv) => {
       context: buildContext,
       name: 'client-es5',
       mode,
-      target: 'es5',
       resolve: {
         extensions,
         alias: clientLegacy.getAlias(),
@@ -93,15 +92,21 @@ module.exports = (env, argv) => {
     multiConfig[0],
     { base: buildContext }
   );
+  const es5Config = getValueFromFiles(
+    'config/webpack.config.es5.js',
+    multiConfig[1],
+    { base: buildContext }
+  );
   const serverConfig = getValueFromFiles(
     'config/webpack.config.server.js',
-    multiConfig[1],
+    multiConfig[2],
     { base: buildContext }
   );
 
   // Process each config using the same webpack.config.js
   const processedMultiConfig = [
     clientConfig,
+    es5Config,
     serverConfig,
   ].map((config) => (
     getValueFromFiles(
