@@ -1,65 +1,118 @@
 <Meta title="Components|Component Mapping" />
 
 # Component Mapping
+In your Irving application, the Component Map (located at `componentMap.js`) is the glue between the Components Endpoint and JSON component definitions returned by the [Components Endpoint](?path=/docs/components-components-endpoint--page).
 
-Irving maps components in the API to React components on the frontend via a component map (`componentMap.js`). Irving core includes a prebuilt component map to get you started. Components will not render unless they appear in the component map.
+## Table of Contents
+* [Overview](?path=/docs/components-component-mapping--page#overview)
+* [Create Irving App Example](?path=/docs/components-component-mapping--page#create-irving-app-example)
+* [Usage](?path=/docs/components-component-mapping--page#usage)
+* [Tips and Tricks](?path=/docs/components-component-mapping--page#tips-and-tricks)
+  * [Aliases](?path=/docs/components-component-mapping--page#aliases)
+  * [Components Library](?path=/docs/components-component-mapping--page#components-library)
+  * [Map multiple components](?path=/docs/components-component-mapping--page#map-multiple-components)
 
-To map an API component to a React component, identify the name of each component and add them as a key-value pair to the component map.
+## Overview
+At its core, the Component Map is an object mapping of component names to React components.
 
-## Identifying the name of an API component
+```js
+import Button from 'components/button';
 
-Each API component has a name key that takes a string as a value. In the example below the name of our API component is "byline." Usually API names are lower case single words or use hyphens in the case of multi-word names ('menu-item').
-
-```json
-{
-  "name": "byline",
-  "config": {
-   "link": "https://localhost:3001/author/alley/",
-   "name": "alley"
-  },
-  "children": [],
+export defaualt {
+  'tutorial/button': Button,
 }
 ```
 
-## Identifying the name of a React component
+So if your JSON templating has `tutorial/button`, it will render as the React component in `components/button`.
+```json
+{
+  "name": "tutorial/button"
+}
+```
 
-The name of the React component in the example below is "Byline." React component names are usually capitalized single words; when then names contain more than one word, they are often camel-cased ('MenuItem').
+## Create Irving App example
+The `create-irving-app` ([docs](https://github.com/alleyinteractive/create-irving-app/blob/master/componentMap.js)) includes an example `componentMap.js`.
+```js
+import createThemedComponentMap from '@irvingjs/styled-components/componentMap';
+import { componentMap as WordPressComponentMap } from '@irvingjs/wordpress';
+import { IntegrationsManager } from '@irvingjs/integrations';
+import themeMap from './themeMap';
 
-```jsx
-export const Byline = (props) => {
-  const {
-    link,
-    name,
-  } = props;
-
-  return (
-    <div className={styles.wrapper}>
-      <Link to={link} className={styles.link}>
-        <span className={styles.name}>{name}</span>
-      </Link>
-    </div>
-  );
+export default {
+  ...createThemedComponentMap(themeMap),
+  ...WordPressComponentMap,
+  'irving/integrations': IntegrationsManager,
 };
 ```
-## Mapping The Components
 
-To map, the component, open your `componentMap.js`file, located in the `config` directory.
+## Usage
+Whenever you [create a new component](?path=/docs/tutorial-creating-a-new-component--page) you'll need to add it to the Component Map.
 
-Next, add your API component and React component to the `componentMap` object below the import statement. You may also re-map Irving core components to a new key or import core components that are no included in the map to begin with. Irving core includes a handy `@component` alias for importing components (illustrated below).
+Let's say you want to render a new component, `tutorial/button`. You'd add something like this to one of your templates,
+```json
+{
+  "name": "tutorial/button",
+  "config": {
+    "content": "Hello World"
+  }
+}
+```
+
+But without mapping it, Irving displays a warning message, `Component "tutorial/button" is not configured.`
+
+<!-- @todo add a screenshot of the warning message -->
+
+To make things easy, we can actually map this directly to `irving/button`.
 
 ```js
-import Byline from 'components/byline';
-import Link from '@components/link';
+import createThemedComponentMap from '@irvingjs/styled-components/componentMap';
+import { componentMap as WordPressComponentMap } from '@irvingjs/wordpress';
+import { IntegrationsManager } from '@irvingjs/integrations';
+import themeMap from './themeMap';
 
-/**
-  * Defines which React component to render for each received API component.
-  */
-const componentMap = {
-  'my-link': Link,
-  byline: Byline,
+// Import button component from styled components.
+import Button from '@irvingjs/styled-components/components/button';
+
+export default {
+  ...createThemedComponentMap(themeMap),
+  ...WordPressComponentMap,
+  'irving/integrations': IntegrationsManager,
+  'tutorial/button': Button,
 };
-
-export default componentMap;
 ```
 
-A React component can map to more than one API component. Each API component can map to only one React component.
+## Tips and tricks
+
+### Aliases
+Aliases ([docs](?path=/docs/components-components-structure--page#_alias---string-experimental)) are used to map a JSON component to a React component, when a component already exists in the component map.
+
+For example, the `irving/post-title` ([docs](?path=/docs/wordpress-components-post-title--page)) component uses `_alias` to render as an `irving/text` component, which then maps to the `<Text />` component in `@irvingjs/styled-components` (since it's already in the component map).
+
+```json
+{
+  "name": "irving/post-title",
+  "_alias": "irving/text",
+  "config": {},
+  "children": []
+}
+```
+
+This is useful when you need to apply custom logic to a component, but the output is the same as something that already exists.
+
+### Components library
+The `@irvingjs/styled-components` package ([docs](?path=/docs/components-components-library--page)) is a library of lightly-styled React components.
+
+As in the examples above, we can import everything in the package by using `createThemedComponentMap(themeMap)`.
+
+### Map multiple components
+The Component Map is not a 1:1 relationship. For example, the `@irvingjs/styled-components` package maps `irving/footer-wrapper`, `irving/fragment`, and `irving/header-wrapper` to the `Fragment` ([docs](?path=/docs/styled-components-fragment--basic-eample)) component.
+
+This means you can use `irving/footer-wrapper` and `irving/header-wrapper` in the `defaults.json` template, while rendering them using the same React component.
+
+```js
+{
+  'irving/footer-wrapper': Fragment.Component,
+  'irving/fragment': Fragment.Component,
+  'irving/header-wrapper': Fragment.Component,
+}
+````

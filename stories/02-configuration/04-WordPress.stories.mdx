@@ -3,19 +3,94 @@
 # WordPress Configurations
 This section outlines the different ways you can configure WP Irving.
 
-Coming soon.
-
 ## Available Hooks
-This section is a work in progress.
+**Disclaimer: This section is a work in progress. Hooks will rarely be removed, but this list is not yet comprehensive.**
 
-### JWT Token Cookie Domain
-Use `wp_irving_jwt_token_cookie_domain` to modify the cookie domain used by the [JWT Token integration](?path=/docs/features-authentication--page).
+### `wp_irving_active_integrations`
+<hr />
+
+### `wp_irving_active_plugin_integrations`
+<hr />
+
+### `wp_irving_api_link_cap`
+<hr />
+
+### `wp_irving_cache_endpoint_permissions_check`
+<hr />
+
+### `wp_irving_cache_post_purge_urls`
+<hr />
+
+### `wp_irving_component_children`
+<hr />
+
+### `wp_irving_component_config_after_hydration`
+<hr />
+
+### `wp_irving_component_config_pre_hydration`
+<hr />
+
+### `wp_irving_component_registry_directories`
+<hr />
+
+### `wp_irving_components_path`
+<hr />
+
+### `wp_irving_components_query_string`
+<hr />
+
+### `wp_irving_components_redirect`
+<hr />
+
+### `wp_irving_components_route_permissions_check`
+<hr />
+
+### `wp_irving_components_route_status`
+<hr />
+
+### `wp_irving_components_route`
+<hr />
+
+### `wp_irving_components_wp_query`
+<hr />
+
+### `wp_irving_data_endpoints`
+<hr />
+
+### `wp_irving_editor_styles_version`
+<hr />
+
+### `wp_irving_enable_public_previews`
+<hr />
+
+### `wp_irving_enable_site_theme`
+<hr />
+
+### `wp_irving_fallback_attachment_id`
+<hr />
+
+### `wp_irving_form_endpoints`
+<hr />
+
+### `wp_irving_gtm_data`
+<hr />
+
+### `wp_irving_integrations_config`
+<hr />
+
+### `wp_irving_integrations_option`
+<hr />
+
+### `wp_irving_jwt_token_cookie_domain`
+Use this filter to modify the cookie domain used by the [JWT Token integration](?path=/docs/features-authentication--page).
 
 Both WordPress and your Irving application should have a shared root domain.
 
 For example, `wordpress.irvingjs.com` and `irvingjs.com` would work by setting your cookie domain to `.irvingjs.com` ([leading period required](https://stackoverflow.com/questions/9618217/what-does-the-dot-prefix-in-the-cookie-domain-mean)).
 
-__Example:__
+[Source](https://github.com/alleyinteractive/wp-irving/blob/main/inc/integrations/class-jwt-auth.php#L72)
+
+**Example:**
 ```php
 /**
  * Modify the JWT token cookie domain for WP Irving.
@@ -29,11 +104,44 @@ function wp_irving_jwt_token_cookie_domain( $domain ) {
 add_filter( 'wp_irving_jwt_token_cookie_domain', __NAMESPACE__ . '\wp_irving_jwt_token_cookie_domain' );
 
 ```
+<hr />
 
-### Site theme JSON path
-Use `wp_irving_site_theme_json_directory_path` to modify the local path to your [Site Theme](?path=/docs/site-theme-site-theme-provider--page) JSON files.
+### `wp_irving_page_type`
+<hr />
 
-__Example:__
+### `wp_irving_pico_options`
+<hr />
+
+### `wp_irving_pico_paywall_post_types`
+<hr />
+
+### `wp_irving_post_row_action_path_url`
+<hr />
+
+### `wp_irving_rest_namespace`
+<hr />
+
+### `wp_irving_rest_version`
+<hr />
+
+### `wp_irving_serialize_component_array`
+<hr />
+
+### `wp_irving_setup_admin_bar`
+<hr />
+
+### `wp_irving_setup_head`
+<hr />
+
+### `wp_irving_setup_site_theme`
+<hr />
+
+### `wp_irving_site_theme_json_directory_path`
+Use this filter to modify the local path to your [Site Theme](?path=/docs/site-theme-site-theme-provider--page) JSON files.
+
+[Source](https://github.com/alleyinteractive/wp-irving/blob/main/inc/templates/site-theme.php#L105-L108)
+
+**Example:**
 ```php
 /**
  * Filter the path for the site theme JSON directory.
@@ -46,3 +154,26 @@ function wp_irving_site_theme_json_directory_path( $path ) {
 }
 add_filter( 'wp_irving_site_theme_json_directory_path', __NAMESPACE__ . '\wp_irving_site_theme_json_directory_path' );
 ```
+<hr />
+
+### `wp_irving_social_links_platforms`
+<hr />
+
+### `wp_irving_template_include`
+<hr />
+
+### `wp_irving_template_part_path`
+<hr />
+
+### `wp_irving_template_path`
+<hr />
+
+### `wp_irving_term_row_action_path_url`
+<hr />
+
+### `wp_irving_verify_coral_user`
+<hr />
+
+### `wp_irving_wp_query_debug`
+<hr />
+
