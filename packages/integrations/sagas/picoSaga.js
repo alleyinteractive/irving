@@ -108,6 +108,6 @@ function trackUpdatePicoSignal(signal) {
   window.dataLayer = window.dataLayer ?? [];
   window.dataLayer.push({
     event: 'irving.updatePicoSignal',
-    picoSignal: signal.payload,
+    picoSignal: signal.payload ?? {},
   });
 }
