@@ -7,6 +7,7 @@ import getEnv from '@irvingjs/core/config/irving/getEnv';
 import {
   SEND_PICO_VERIFICATION_REQUEST,
   SET_CORAL_USERNAME,
+  UPDATE_PICO_SIGNAL,
 } from '../actions/types';
 import { actionReceivePicoVerificationFailure } from '../actions/picoActions';
 import {
@@ -20,6 +21,7 @@ import {
 export default [
   takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
   takeLatest(SET_CORAL_USERNAME, trackSetCoralUsername),
+  takeLatest(UPDATE_PICO_SIGNAL, trackUpdatePicoSignal),
 ];
 
 /**
@@ -93,5 +95,19 @@ function trackSetCoralUsername() {
   window.dataLayer = window.dataLayer ?? [];
   window.dataLayer.push({
     event: 'irving.setCoralUsername',
+  });
+}
+
+/**
+ * Send an event to the data layer upon the Pico signal being updated.
+ *
+ * @param object signal Pico signal object.
+ */
+function trackUpdatePicoSignal(signal) {
+// To be refactored into analytics component at later date. See LEDE-451.
+  window.dataLayer = window.dataLayer ?? [];
+  window.dataLayer.push({
+    event: 'irving.updatePicoSignal',
+    picoSignal: signal,
   });
 }
