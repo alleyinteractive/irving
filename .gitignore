@@ -6,6 +6,7 @@
 
 # distribution files
 /packages/**/dist
+/irvingjs.com/dist/*
 
 # styleguide
 /styleguide/index.html

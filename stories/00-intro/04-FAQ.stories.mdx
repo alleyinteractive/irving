@@ -5,7 +5,7 @@
 ## What is decoupled/headless?
 To be written. This should eventually link to an Alley blog post.
 
-## Why use node and express instead of a React SPA rendered in WordPress (or some other CMS)?
+## Why use Node and Express instead of a React SPA rendered in WordPress (or some other CMS)?
 
 There are a lot of configuration options in this space, each with its own advantages and disadvantages. Our primary goals were (native) [isomorphic/server side rendering](?path=/docs/concepts-server-side-rendering--page), performance, and being able to work with any data source. We considered many setups and ultimately found this configuration to strike the right balance of meeting our goals with minimal drawbacks.
 
@@ -19,6 +19,7 @@ We love GraphQL, it’s an awesome tool for the right job. Irving doesn’t requ
 
 ## Aren't you sacrificing one of the best parts of WordPress &mdash; its enormous library of plugins &mdash; by using an app like Irving?
 
-Yes and no. Many plugins that automatically add frontend markup may be left behind with Irving. We'll continue to work to support what plugins we can out-of-the-box. Supporting others that aren't on our radar may require some development work on your end.
+Because Irving replaces the WordPress templating layer, many plugins won't behave as expected. As decoupled WordPress continues to grow in popularity, we'll see plugin developers add support for decoupled implementations.
 
-[See all supported WordPress plugins](?path=/docs/integrations-supported-wordpress-plugins--page).
+One of WP Irving's core principals is to mimic as much native WordPress functionality as possible, including [support for popular WordPress plugins](?path=/docs/integrations-supported-wordpress-plugins--page).
+

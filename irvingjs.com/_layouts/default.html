@@ -64,6 +64,18 @@
 		{% if config.fonts.google %}
 		<link href="{{ config.fonts.google }}" rel="stylesheet">
 		{% endif %}
+	
+		{% if config.thirdParty.gaId %}
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id={{ config.thirdParty.gaId }}"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', '{{ config.thirdParty.gaId }}');
+		</script>
+		{% endif %}
 
 		{% if config.thirdParty.gtmId %}
 		<script async src="https://www.googletagmanager.com/gtag/js?id={{ config.thirdParty.gtmId }}"></script>
@@ -96,12 +108,11 @@
 				</h1>
 				<div class="header__intro">
 					<p class="header__intro__tagline">A <em>headless</em> framework</p>
-					<p>Irving is an integrated, React-based framework for building single-page applications. Irving gives you all the power of isomorphic JavaScript while allowing full control over component layouts with a content management system like WordPress.
+					<p>Irving is an integrated, React-based framework for building single-page applications. Irving gives you all the power of isomorphic JavaScript while allowing full control over component layouts with WordPress.
 </p>
 				</div>
 
 				<ul class="header__buttons">
-					<li><a class="button" href="https://demo.irvingjs.com">Demo</a></li>
 					<li><a class="button" href="https://storybook.irvingjs.com">Documentation</a></li>
 					<li><a class="button" href="https://github.com/alleyinteractive/irving">Source</a></li>
 				</ul>

@@ -29,7 +29,7 @@ module.exports = function() {
 
     meta: {
       title: 'Irving',
-      description: 'Irving Landing Page',
+      description: 'Learn more about Irving, a headless React-based framework for use with WordPress.',
       // OS app icon color.
       themeColor: '#00b1ff',
       // Asset version.
@@ -54,6 +54,7 @@ module.exports = function() {
     thirdParty: {
       picoId: undefined,
       gtmId: '',
+      gaId: 'G-WHBDXXT9FC',
     },
   };
 };

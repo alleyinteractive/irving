@@ -5,8 +5,14 @@ Irving comes with the [HTTP Proxy Middleware NPM package](https://www.npmjs.com/
 
 [Full documentation on implemeting proxies](?path=/docs/configuration-irving-config-js--page#passthrough-proxies).
 
-## Examples
-* AMP
-* RSS Feedss
-* robots.txt
-* ads.txt
+## WordPress
+The `@irvingjs/wordpress` package includes some [default proxies](https://github.com/alleyinteractive/irving/blob/main/packages/wordpress/config/proxyPassthrough.js).
+
+**Examples:**
+* `*.rss` - Ensure all RSS feeds are accessible via the Irving application.
+* `*.xml` - Ensure all xml feeds are accessible via the Irving application.
+* `*/amp/` - Ensure Accelerated Mobile Pages are accessible via the Irving application.
+* `*/feed/` - Ensure all pretty permalink feeds are accessible via the Irving application.
+* `/favicon.ico` -  Ensure the favicon is accessible via the Irving application.
+* `/robots.txt` - Use WordPress to manage robots.txt settings.
+* `/wp-json/` - Access the WordPress REST API as a relative path against your application.
