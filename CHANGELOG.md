@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.6...v5.4.0-alpha.7) (2020-12-30)
+
+
+### Bug Fixes
+
+* **syntax error:** add missing apostrophe ([d5d4920](https://github.com/alleyinteractive/irving/commit/d5d492091f2c287965cfc40646b395b5f9e3e6d9))
+
+
+### Features
+
+* add favicon ([dac5ab4](https://github.com/alleyinteractive/irving/commit/dac5ab422244c51bcce87f545d17d126f8bcf646))
+* remove demo button, add meta desc, update value prop p copy ([8b4d8da](https://github.com/alleyinteractive/irving/commit/8b4d8da72734776fb6fe6cc0f8eb8a6f9b3cd3d7))
+
+
+
+
+
 # [5.4.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.5...v5.4.0-alpha.6) (2020-12-22)
 
 
