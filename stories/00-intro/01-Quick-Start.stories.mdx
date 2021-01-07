@@ -1,9 +1,9 @@
 <Meta title="Intro|Quick Start" />
 
 # Quick Start
-The quick start guide will get you a working Irving install using data from the [Irving Example Theme](?path=/docs/intro-wordpress--page#example-theme). Check out the full [tutorial](/?path=/docs/tutorial-introduction--page) for a more in-depth introduction to Irving.
+The quick start guide will get you a working Irving install using data from the [Irving Example Theme](?path=/docs/intro-wordpress--page#example-theme).
 
-_**Note:** An Irving CLI is on the roadmap which will simplify these instructions._
+Check out the full [tutorial](/?path=/docs/tutorial-introduction--page) for a more in-depth introduction to Irving.
 
 ## Requirements/Assumptions
 For this quick start guide, we assume you have,
@@ -11,12 +11,12 @@ For this quick start guide, we assume you have,
 * Some basic command line knowledge
 
 ## Clone the `create-irving-app` repo
-To scaffold our new application, we'll clone the [create-irving-app](https://github.com/alleyinteractive/create-irving-app) repo into any directory,
+We'll use the `~/code/` directory, but you can clone the [create-irving-app](https://github.com/alleyinteractive/create-irving-app) repo to any directory.
 
-`git clone https://github.com/alleyinteractive/create-irving-app my-irving-site`
+`git clone https://github.com/alleyinteractive/create-irving-app ~/code/irving-tutorial`
 
 ## Change directories into the site folder
-`cd my-irving-site`
+`cd irving-tutorial`
 
 ## Set environment variables
 Copy the environment variables from the example to your local `.env`,
@@ -27,6 +27,8 @@ The required environment variables are,
 * `ROOT_URL` - URL of the express server. Defaults to `http://localhost:3001`.
 * `API_ROOT_URL` - URL of the components endpoint provider. We host this URL for demo/quick start purposes, `https://wordpress.irvingjs.com/wp-json/irving/v1`
 
+Read more: [Environment Variables](?path=/docs/configuration-environment-variables--page)
+
 ## Install Irving
 `npm install`
 
@@ -35,12 +37,10 @@ The required environment variables are,
 
 Irving will open a new browser window at `http://localhost:3001` with your site.
 
-## Create a production build
-`npm run build`
-
 # Next Steps
-To continue your Irving journey, check out these next steps,
-* Learn more about templating, components, and theming in the [full tutorial](?path=/docs/tutorial-introduction--page).
+Now that your Irving application is setup, checkout the next step in the [Tutorial](?path=/docs/tutorial-introduction--page), [Setting up WordPress](?path=/docs/tutorial-setting-up-wordpress--page).
+
+If you're interested in skipping ahead in your Irving journey, check out these topics:
 * Explore Irving's [configuration options](?path=/docs/configuration-overview--page).
 * Dive into all the [features](?path=/docs/features-overview--page).
 * Understand how to [deploy Irving](?path=/docs/deployment-and-hosting-deployment-and-hosting--page).

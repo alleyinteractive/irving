@@ -1,0 +1,108 @@
+<Meta title="Tutorial|Setting up WordPress" />
+
+# Setting up WordPress
+In this section, we'll configure your WordPress installation to work with the Irving application created in the [Quick Start Guide](?path=/docs/intro-quick-start--page).
+
+Before you get started, you'll also need a local copy of WordPress. The WordPress documentation on [how to install WordPress](https://wordpress.org/support/article/how-to-install-wordpress/) is a good resource to get started.
+
+## Table of Contents
+* [Install and activate the WP Irving plugin](?path=/docs/tutorial-setting-up-wordpress--page#install-and-activate-the-wp-irving-plugin)
+* [Update `API_ROOT_URL` in `.env`](?path=/docs/tutorial-setting-up-wordpress--page#update-api_root_url-in-env)
+* [Update Site Address in WordPress](?path=/docs/tutorial-setting-up-wordpress--page#update-site-address-in-wordpress)
+* [Confirm your Changes](?path=/docs/tutorial-setting-up-wordpress--page#confirm-your-changes)
+* [Scaffold Template JSON](?path=/docs/tutorial-setting-up-wordpress--page#scaffold-template-json)
+* [Up Next](?path=/docs/tutorial-setting-up-wordpress--page#up-next)
+
+## Install and activate the WP Irving plugin
+First, we want to download, install, and activate the [WP Irving](https://github.com/alleyinteractive/wp-irving) plugin on your local installation.
+
+You should immediately see a new "Irving Development" dropdown in your [admin bar](http://localhost:6006/?path=/docs/packages-wordpress--page#admin-bar).
+
+<img src="/assets/img/tutorial/01/admin-bar.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+You can confirm the endpoint is setup correctly by visiting `yourdomain.com/wp-json/irving/v1` and looking for `"namespace": "irving/v1"`.
+
+You should see a response similar to this,
+```json
+  {
+  "namespace": "irving/v1",
+  "routes": {
+    "/irving/v1": {
+      "namespace": "irving/v1",
+      "methods": [...],
+      "endpoints": [...],
+      "_links": {...}
+    },
+    "/irving/v1/components": {...},
+    "/irving/v1/registered-components": {...},
+    "/irving/v1/purge-cache": {...}
+  },
+  "_links": {...}
+  }
+```
+
+If you get a `rest_no_route` error, double check your plugin is activated and [pretty permalinks](https://wordpress.org/support/article/using-permalinks/) are enabled.
+
+```json
+{
+  "code": "rest_no_route",
+  "message": "No route was found matching the URL and request method",
+  "data": {
+    "status": 404
+  }
+}
+```
+
+## Update `API_ROOT_URL` in `.env`
+Now that we've confirmed WP Irving is setup and ready, replace `API_ROOT_URL` in your `.env`,
+
+```bash
+API_ROOT_URL=https://your-local-wp-site.com/wp-json/irving/v1
+```
+
+_You'll need to restart Irving if it's already running._
+
+## Update Site Address in WordPress
+Next, we want to update the [Site Address](https://wordpress.org/support/article/changing-the-site-url/) in WordPresss. This can be done by navigating to `Settings -> General` in WordPress admin.
+
+We'll use the value of `ROOT_URL` in  `~/code/irving-tutorial/.env`, which is `http://localhost:3001` by default.
+
+<img src="/assets/img/tutorial/01/site-address.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Confirm your Changes
+From `~/code/irving-tutorial/` (or your custom location), run `npm run dev` and you should see a "Welcome to Irving" message.
+
+<img src="/assets/img/tutorial/01/welcome.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Download and install the Irving Starter Theme
+Similar to `create-irving-app` in the Quick Start Guide, we also have an `irving-starter-theme` ([repo](https://github.com/alleyinteractive/irving-starter-theme)) to help kickstart your WordPress theme. It includes the basic structure of the `/templates/` and `/template-parts/` folders for an Irving-ready WordPress theme.
+
+WP Irving looks for `.json` files in `/your-theme/templates/` that match the [WordPress Template Hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/). This means when you navigate to a single post, `single.json` is loaded, hydrated, and sent in the response (see the Irving [Request Life Cycle](?path=/docs/concepts-request-life-cycle--page#the-request-is-parsed-and-used-to-hydrate-a-template)).
+
+Example WordPress theme structure for an Irving site:
+```
+wp-content
+│
+└───your-theme
+    │   functions.php
+    │   index.php
+    │   style.css
+    │
+    └───templates
+    │       archive.json
+    │       author.json
+    │       defaults.json
+    │       frontpage.json
+    │       index.json
+    │       page.json
+    │       single.json
+    │
+    └───template-parts
+            header.json
+            footer.json
+```
+
+## Up Next
+We'll add components to the `/templates/single.json` file to scaffold the post template.
+
+[Next Up: Adding a Template](?path=/docs/tutorial-adding-a-template--page)

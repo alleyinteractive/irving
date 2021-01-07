@@ -1,0 +1,466 @@
+<Meta title="Tutorial|Adding a Template" />
+
+# Adding a Template
+In this section, we're going to add components to the single template (`/templates/single.json`) a build a basic post template.
+
+By the end of this section, you'll understand how to use the components in the `@irvingjs/styled-components` package to quickly assemble templates.
+
+## Table of Contents
+* [Create `templates/single.json`](?path=/docs/tutorial-adding-a-template--page#create-templatessinglejson)
+* [Navigate to an example post](?path=/docs/tutorial-adding-a-template--page#navigate-to-an-example-post)
+* [Adding `irving/post-title`](?path=/docs/tutorial-adding-a-template--page#adding-irvingpost-title)
+* [Center the content with `irving/container`](?path=/docs/tutorial-adding-a-template--page#center-the-content-with-irvingcontainer)
+* [Adding `irving/post-byline` and `irving/post-timestamp`](?path=/docs/tutorial-adding-a-template--page#adding-irvingpost-byline-and-irvingpost-timestamp)
+* [Adding `irving/post-featured-image`](?path=/docs/tutorial-adding-a-template--page#adding-irvingpost-featured-image)
+* [Adding `irving/post-content`](?path=/docs/tutorial-adding-a-template--page#adding-irvingpost-content)
+* [Adding social sharing module](?path=/docs/tutorial-adding-a-template--page#adding-social-sharing-module)
+* [Up Next](?path=/docs/tutorial-adding-a-template--page#up-next)
+
+## Create `templates/single.json`
+If you're using the [Irving Starter Theme](https://github.com/alleyinteractive/irving-starter-theme/blob/main/templates/single.json), `/templates/single.json` should already exist in your WordPress theme. If not, create it.
+
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/text",
+          "config": {
+            "content": "Welcome to single.json"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Navigate to an example post
+If you're not running it already, run `npm run dev` from your Irving application.
+
+_If your browser doesn't open automatically, navigate to `http://localhost:3001` in your browser._
+
+You should see `"Welcome to index.json"`. This confirms that we're on the homepage, and rendering `/templates/index.json`.
+
+<img src="/assets/img/tutorial/02/index.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+Since we're going to be working in `/templates/single.json`, we should navigate to a post on the frontend.
+
+From your WordPress admin, navigate to the Posts screen and click `View` on any post (or create one if you don't have any data).
+
+<img src="/assets/img/tutorial/02/admin-post.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+You should see a familiar screen, this time welcoming you to `single.json`.
+
+<img src="/assets/img/tutorial/02/single.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Adding `irving/post-title`
+Open the `templates/single.json` file and remove `irving/text`, replacing it with `irving/post-title`.
+
+The `irving/post-title` ([docs](?path=/docs/wordpress-components-post-title--page)) is a component included in WP Irving. It uses `get_the_title()` in the context of whatever post is set in the context provider. It is also [aliased](?path=/docs/components-components-structure--page#_alias---string-experimental) to `irving/text`, meaning it inherits all the same configuration attributes, and renders using the text component in `@irvingjs/styled-components`.
+
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/post-title"
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/post-title.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Set some config values on `irving/post-title`
+The `config` object is how we pass data to `props` in React. The documentation for `irving/post-title` outlines all [the configuration options](?path=/docs/wordpress-components-post-title--page#config).
+
+We'll go ahead and set `"tag": "h1"` so that the text renders inside of an `h1` tag.
+
+You'll also see `"theme": "h1"` below. This instructs the component to render using the `h1` theme ([docs](https://github.com/alleyinteractive/irving/blob/main/packages/styled-components/components/text/themes/h1.js)) on the `irving/text` component ([docs](?path=/docs/styled-components-text--plain-text-example)).
+
+We'll also set the tag and theme to `h1`. This will set the relevant config values on the [Text component](?path=/docs/styled-components-text--plain-text-example).
+
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/post-title",
+          "config": {
+            "tag": "h1",
+            "theme": "h1"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/first-theme.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Center the content with `irving/container`
+We'll use `irving/container` [(docs)](?path=/docs/wordpress-components-container--page) and the `max_width` config property to wrap `irving/post-title` in a centered `<div>`, with a max width of the large `"lg"` breakpoint.
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "tag": "h1",
+                "theme": "h1"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/container.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Adding `irving/post-byline` and `irving/post-timestamp`
+Now that our content is nice and centered, we'll follow the title with an `irving/post-byline` and an `irving/post-timestamp` component.
+
+```json
+{
+  "name": "irving/post-byline"
+},
+{
+  "name": "irving/post-timestamp"
+}
+```
+
+`single.json`
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "tag": "h1",
+                "theme": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/byline-and-timestamp.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Adding `irving/post-featured-image`
+Before adding a featured image (post thumbnail), we need to enable them in our theme.
+
+Add this code to `/your-theme/functions.php`,
+
+```php
+add_action(
+  'after_setup_theme',
+  function() {
+    add_theme_support( 'post-thumbnails' );
+  }
+);
+```
+
+Now we can add `irving/post-featured-image` ([docs](?path=/docs/wordpress-components-post-featured-image--page)) to our template.
+
+However, unlike the `irving/post-byline` and `irving/post-timestamp` components, we're going to add a new `irving/container` with a `lg` breakpoint, allowing our featured image to strech wider.
+
+We've also gone ahead and added `"aspect_ratio": "16:9"` and `"object_fit": "cover"` to ensure the image always fills a `16:9` area.
+
+```json
+{
+  "name": "irving/container",
+  "config": {
+    "max_width": "lg"
+  },
+  "children": [
+    {
+      "name": "irving/post-featured-image",
+      "config": {
+        "aspect_ratio": "16:9",
+        "object_fit": "cover"
+      }
+    }
+  ]
+}
+```
+
+`single.json`
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "tag": "h1",
+                "theme": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            }
+          ]
+        },
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "lg"
+          },
+          "children": [
+            {
+              "name": "irving/post-featured-image",
+              "config": {
+                "aspect_ratio": "16:9",
+                "object_fit": "cover"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/post-image.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Adding `irving/post-content`
+Moving down the template, we'll wrap `irving/post-content` in another new `irving/container`, back to our original `md` width, aligning with the `irving/title`, `irving/byline`, and `irving/timestamp` above.
+
+```json
+{
+  "name": "irving/container",
+  "config": {
+    "max_width": "md",
+  },
+  "children": [
+    {
+      "name": "irving/post-content",
+      "config": {
+        "theme": "html"
+      }
+    }
+  ]
+}
+```
+
+`single.json`
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "tag": "h1",
+                "theme": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            }
+          ]
+        },
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "lg",
+            "style": {
+              "margin-top": "1rem"
+            }
+          },
+          "children": [
+            {
+              "name": "irving/post-featured-image",
+              "config": {
+                "aspect_ratio": "16:9",
+                "object_fit": "cover"
+              }
+            }
+          ]
+        },
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md",
+          },
+          "children": [
+            {
+              "name": "irving/post-content",
+              "config": {
+                "theme": "html"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/post-content.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Adding social sharing module
+And we'll wrap up the template with a simple `irving/text` label and `irving/post-social-sharing` ([docs](?path=/docs/wordpress-components-post-social-sharing--page)).
+
+```json
+{
+  "name": "irving/text",
+  "config": {
+    "content": "Share this post:",
+    "tag": "h5",
+    "theme": "h3"
+  }
+},
+{
+  "name": "irving/post-social-sharing"
+}
+```
+
+`single.json`
+```json
+{
+  "page": [
+    {
+      "name": "irving/body-wrapper",
+      "children": [
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-title",
+              "config": {
+                "tag": "h1",
+                "theme": "h1"
+              }
+            },
+            {
+              "name": "irving/post-byline"
+            },
+            {
+              "name": "irving/post-timestamp"
+            }
+          ]
+        },
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "lg",
+            "style": {
+              "margin-top": "1rem"
+            }
+          },
+          "children": [
+            {
+              "name": "irving/post-featured-image",
+              "config": {
+                "aspect_ratio": "16:9",
+                "object_fit": "cover"
+              }
+            }
+          ]
+        },
+        {
+          "name": "irving/container",
+          "config": {
+            "max_width": "md"
+          },
+          "children": [
+            {
+              "name": "irving/post-content",
+              "config": {
+                "theme": "html"
+              }
+            },
+            {
+              "name": "irving/text",
+              "config": {
+                "content": "Share this post:",
+                "tag": "h5",
+                "theme": "h3"
+              }
+            },
+            {
+              "name": "irving/post-social-sharing"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<img src="/assets/img/tutorial/02/social-sharing.png" style={{maxWidth: "600px", margin: "auto", width: "100%", display: "flex"}} />
+
+## Up Next
+We'll explore the different methods of styling components.
+
+[Next Up: Styling the Template](?path=/docs/tutorial-styling-the-template--page)
