@@ -15,7 +15,7 @@ import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
 import createClientEnv from 'config/irving/createClientEnv';
-import getWebpackAssetTags from './getWebpackAssetTags';
+import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
 
@@ -86,12 +86,17 @@ const render = async (req, res, clientStats) => {
   );
 
   // Get some template vars and allow customization by user.
+  const {
+    script,
+    style,
+  } = getWebpackAssetTags(clientStats, req.hostname);
   const customTemplateVars = getTemplateVars(
     'getAppTemplateVars',
     {
       Wrapper: AppWrapper,
       head: {
-        script: [getWebpackAssetTags(clientStats, req.hostname)],
+        style,
+        defer: script,
       },
     },
     clientStats

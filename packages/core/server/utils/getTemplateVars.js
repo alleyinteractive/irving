@@ -2,7 +2,10 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import omit from 'lodash/fp/omit';
 import mergeWith from 'lodash/mergeWith';
-import { getConfigValues } from 'config/irving/getValueFromConfig';
+import {
+  getConfigValues,
+  getValueFromConfigNoMemo,
+} from 'config/irving/getValueFromConfig';
 
 export const defaultHead = {
   htmlAttributes: [],
@@ -16,6 +19,7 @@ export const defaultHead = {
   script: [],
   noscript: [],
   end: [],
+  defer: [],
 };
 
 /**
@@ -30,22 +34,27 @@ const getValFromFunction = (val, ...args) => (
 );
 
 /**
- * Reducer function to convert the values of a `head` config object into strings.
+ * Reducer function to convert the values of a `head` config object into arrays of strings.
  *
  * For example, if one value in the object was an array of <script> tags,
  * these tags would be concatenated into a single string in preparation for rendering in the app.ejs template.
  *
- * @param {string} config Current head configuration
- * @param {object} key Key to convert into a string
+ * @param {object} config Current head configuration
+ * @param {string} key Key to convert into an array
  * @return {object}
  */
-const stringifyHeadConfig = (config, key) => {
+const normalizeHeadConfig = (config, key) => {
   let value = getValFromFunction(config[key]);
 
   // If val is an array or above function returns an array, map through it.
   if (Array.isArray(value)) {
     // Call any functions in this array (they should return strings)
-    value = value.map((curr) => getValFromFunction(curr)).join('');
+    value = value.map((curr) => getValFromFunction(curr));
+  } else {
+    // Call `toString` on non-array values.
+    // If it's a string, this will do nothing, and if it's from Helmet it'll convert it to a string.
+    // If it's an object of some other type well...it shouldn't be.
+    value = [value.toString()];
   }
 
   // Merge in newly stringified value.
@@ -71,7 +80,7 @@ export default function getTemplateVars(key, initialVars, clientStats) {
   const headConfigs = [];
 
   /**
-   * Normalize each provided config (from user, packages, etc.).
+   * Normalize each provided config, excluding `head` (from user, packages, etc.).
    *
    * IMPORTANT: each config function must only be called once, otherwise we will make a new instance of variables inside
    * config function, causing problems with certain packages (like styled components, lodable).
@@ -108,30 +117,52 @@ export default function getTemplateVars(key, initialVars, clientStats) {
 
   // Stringify values for both default config (to ensure all head values are present)
   // and intial variables passed in via parameter (to ensure any core `head` properties are present)
-  const stringifiedConfigs = [
-    defaultHead,
+  const mergedHead = [
     // Spread to prevent mutation
     { ...initialVars.head },
-  ].concat(headConfigs).map((config) => {
-    const headObject = getValFromFunction(config);
-    // Reduce through each value in the head object and turn it into a string.
-    return Object.keys(headObject).reduce(stringifyHeadConfig, headObject);
-  }, {});
+  ].concat(headConfigs).reduce((acc, config) => {
+    // Pass in accumulator up to this point to head config (if it's configured as a function).
+    // This allows users or packages to modify (filter, map, etc.) the existing values/tags.
+    const headObject = getValFromFunction(config, acc);
+    // Convert all values in headObject to an array of strings
+    const stringifiedHead = Object.keys(headObject)
+      .reduce(normalizeHeadConfig, headObject);
+    const mergedKeys = Object.keys(acc).reduce(
+      // Head values is the entire `head` object,
+      // headKey is `script`, `style`, `link`, etc.
+      (headValues, headKey) => {
+        const nextVal = stringifiedHead[headKey];
+        // Combine value from current config with value from accumulator.
+        const mergedVal = nextVal ?
+          acc[headKey].concat(nextVal) :
+          acc[headKey];
 
-  const mergedHead = {};
-  /* eslint-disable */
-  for (const headKey of Object.keys(defaultHead)) {
-    mergedHead[headKey] = stringifiedConfigs
-      .map((config) => {
-        return config[headKey] ? config[headKey] : ''
-      })
-      .join('');
-  }
-  /* eslint-enable */
+        return {
+          ...headValues,
+          [headKey]: mergedVal,
+        };
+      },
+      {}
+    );
+    return mergedKeys;
+    // Reduce through each value in the head object and turn it into a string.
+    // return Object.keys(headObject).reduce(stringifyHeadConfig, headObject);
+  }, defaultHead);
+
+  // Allow users/packages a final opportunity to filter/modify tags added from _all_ packages/users.
+  const filteredHead = getValueFromConfigNoMemo('ssrTags', mergedHead);
+
+  // Join arrays separately, after configs have had the chance to do their filtering of head values.
+  // Filtering arrays of strings is easier than modifying a big ol' string of tags.
+  const joinedHead = Object.keys(filteredHead)
+    .reduce((acc, headKey) => ({
+      ...acc,
+      [headKey]: mergedHead[headKey].join(''),
+    }));
 
   return {
     ...mergedVars,
-    head: mergedHead,
+    head: joinedHead,
     appHtml,
   };
 }

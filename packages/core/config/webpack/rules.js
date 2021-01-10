@@ -110,7 +110,26 @@ module.exports = function getRules(context, target) {
     },
     {
       test: /\.jsx?$/,
-      include,
+      include: (filepath) => {
+        if (
+          filepath.includes('node_modules') &&
+          'es5' === target &&
+          [
+            'abort-controller',
+            'debug',
+            'event-target-shim',
+            'query-string',
+            'split-on-first',
+            'strict-uri-encode',
+          ].some(
+            (packageName) => filepath.includes(packageName)
+          )
+        ) {
+          return true;
+        }
+
+        return include(filepath);
+      },
       use: [
         {
           loader: 'babel-loader',

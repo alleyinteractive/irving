@@ -1,35 +1,36 @@
 <!doctype html>
-<html lang="en" <%- head.htmlAttributes.toString() %> >
+<html lang="en" <%- head.htmlAttributes %> >
 <head>
-    <%- head.start.toString() %>
+    <%- head.start %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%- head.title.toString() %>
-    <%- head.meta.toString() %>
-    <%- head.base.toString() %>
+    <%- head.title %>
+    <%- head.meta %>
+    <%- head.base %>
 
     <%# Runtime accessible environment variables %>
     <script>
       window.__ENV__ = <%- env %>;
     </script>
 
-    <%- head.link.toString() %>
-    <%- head.script.toString() %>
-    <%- head.style.toString() %>
+    <%- head.link %>
+    <%- head.script %>
+    <%- head.style %>
 
     <%# pre-rendered serialized Redux state %>
     <script defer id="preload">
       window.__PRELOADED_STATE__ = <%- preRenderedState %>;
     </script>
 
-    <%# webpack runtime, main app bundle, initial chunks, and any other tags user adds %>
-    <%- head.end.toString() %>
+    <%- head.end %>
 </head>
-<body <%- head.bodyAttributes.toString() %>>
+<body <%- head.bodyAttributes %>>
   <noscript>
       You need to enable JavaScript to view this site.
   </noscript>
-  <%- head.noscript.toString() %>
+  <%- head.noscript %>
   <div id="root"><%- appHtml %></div>
+  <%# webpack runtime, main app bundle, initial chunks, and any other tags user adds %>
+  <%- head.defer %>
 </body>
 </html>

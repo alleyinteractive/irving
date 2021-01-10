@@ -1,4 +1,5 @@
 import React from 'react';
+import uniq from 'lodash/uniq';
 
 /* eslint-disable global-require, import/no-dynamic-require */
 export default function getAppTemplateVars(templateVars) {
@@ -12,32 +13,43 @@ export default function getAppTemplateVars(templateVars) {
     const { Wrapper } = templateVars;
     const { ChunkExtractor } = require('@loadable/server');
     const extractor = new ChunkExtractor({ statsFile });
-    const filterCoreTags = require('./filterCoreTags');
-    const filterAndMerge = (tags) => (
-      filterCoreTags(tags.split('\n')).join('\n')
-    );
 
     return {
       Wrapper: () => extractor.collectChunks(<Wrapper />),
-      head: {
+      head: (head) => ({
         end: () => (
-          filterAndMerge(extractor.getScriptTags())
+          extractor.getRequiredChunksScriptTag({})
         ),
-        link: () => {
-          const links = filterAndMerge(extractor.getLinkTags());
+        link: () => (
           /**
            *  @todo find a better way to get rid of the auto-preloading that
            *  loadable components seems to enforce
            */
-          return links.replace(
+          extractor.getLinkTags().replace(
             /(data-chunk="[^"]+"\srel=)("preload")(\sas="[^"]+")/gi,
             '$1"prefetch"'
-          );
-        },
-        style: () => (
-          filterAndMerge(extractor.getStyleTags())
+          )
         ),
-      },
+        /**
+         * Irving Core will indiscriminately load all assets produced by webpack,
+         * including chunks for components not used on the page. This function will
+         * filter out and load only the chunks required by the page.
+         */
+        defer: () => {
+          const mainChunkNames = extractor.getMainAssets('script')
+            .map((asset) => asset.chunk);
+          const requiredChunks = uniq(mainChunkNames).join('|');
+          const requiredChunksTest = new RegExp(
+            `data-chunk="(${requiredChunks})"`
+          );
+
+          head.defer = head.defer.filter((tag) => ( // eslint-disable-line no-param-reassign
+            requiredChunksTest.test(tag)
+          ));
+
+          return [];
+        },
+      }),
     };
   }
 

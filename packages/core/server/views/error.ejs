@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="en" <%- head.htmlAttributes.toString() %>>
+<html lang="en" <%- head.htmlAttributes %>>
 <head>
-    <%- head.start.toString() %>
+    <%- head.start %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%- head.title.toString() %>
-    <%- head.meta.toString() %>
-    <%- head.link.toString() %>
-    <%- head.base.toString() %>
-    <%- head.style.toString() %>
+    <%- head.title %>
+    <%- head.meta %>
+    <%- head.link %>
+    <%- head.base %>
+    <%- head.style %>
 
     <%# additional head tags %>
-    <%- head.end.toString() %>
+    <%- head.end %>
 </head>
-<body <%- head.bodyAttributes.toString() %>>
-    <%- head.noscript.toString() %>
+<body <%- head.bodyAttributes %>>
+    <%- head.noscript %>
     <%- appHtml %>
 </body>
 </html>

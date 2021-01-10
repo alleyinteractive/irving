@@ -14,6 +14,9 @@ const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const clientStats = nodeRequire(
   path.join(clientBuild, 'stats.json')
 );
+const es5Stats = nodeRequire(
+  path.join(clientBuild, 'stats-es5.json')
+);
 const {
   default: serverRenderer,
 } = require(path.join(serverBuild, 'main.bundle'));
@@ -46,7 +49,12 @@ const productionMiddleware = async (app) => {
     maxAge: 86400000,
   }));
 
-  const options = { clientStats };
+  const options = {
+    clientStats: [
+      clientStats,
+      es5Stats,
+    ],
+  };
   app.use(serverRenderer(options));
 };
 
