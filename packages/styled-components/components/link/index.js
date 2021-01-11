@@ -58,14 +58,14 @@ const Link = (props) => {
     });
 
     // Allow the user to open the link in a new tab
-    if (
-      event.ctrlKey ||
-      event.shiftKey ||
-      event.metaKey ||
-      (event.button && 1 === event.button)
-    ) {
-      return;
-    }
+    // if (
+    //   event.ctrlKey ||
+    //   event.shiftKey ||
+    //   event.metaKey ||
+    //   (event.button && 1 === event.button)
+    // ) {
+    //   return;
+    // }
 
     return onClick ? onClick(event) : defaultOnClick(event);
   };

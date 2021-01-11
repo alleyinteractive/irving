@@ -87,7 +87,8 @@ const render = async (req, res, clientStats) => {
 
   // Get some template vars and allow customization by user.
   const {
-    script,
+    defer,
+    // script,
     style,
   } = getWebpackAssetTags(clientStats, req.hostname);
   const customTemplateVars = getTemplateVars(
@@ -96,7 +97,8 @@ const render = async (req, res, clientStats) => {
       Wrapper: AppWrapper,
       head: {
         style,
-        defer: script,
+        // script,
+        defer,
       },
     },
     clientStats

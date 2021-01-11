@@ -1,10 +1,13 @@
+/* eslint-disable */
 import fs from 'fs';
 import { clientBuild } from 'config/paths';
 import getEnv from 'config/irving/getEnv';
 import getLogService from '@irvingjs/services/logService';
+import pick from 'lodash/pick';
 
 const log = getLogService('irving:server:assets');
 let runtimeSrc;
+let es5RuntimeSrc;
 
 /**
  * Get the emitted webpack assets as html tags to be rendered by the server.
@@ -16,15 +19,15 @@ let runtimeSrc;
 /* eslint-disable */
 const getWebpackAssetTags = (clientStats, hostname) => {
   const [
-    { assetsByChunkName: modernChunks },
+    { assetsByChunkName: moduleChunks },
     { assetsByChunkName: es5Chunks },
   ] = clientStats;
-  const script = [];
+  const defer = [];
   const style = [];
   const loaded = [];
   const { ROOT_URL } = getEnv(hostname);
 
-  log.info('%o', modernChunks);
+  log.info('%o', moduleChunks);
   log.info('%o', es5Chunks);
 
   const addChunkAssets = (chunks) => (
@@ -50,13 +53,13 @@ const getWebpackAssetTags = (clientStats, hostname) => {
 
         switch (true) {
           case /\.es5\.(bundle|chunk)\.js$/.test(assetPath):
-            script.push(
-              `<script async nomodule data-chunk="${dataChunkName}" src="${ROOT_URL}/${assetPath}"></script>`
+            defer.push(
+              `<script async data-chunk="${dataChunkName}" src="${ROOT_URL}/${assetPath}"></script>`
             );
             break;
 
           case /\.(bundle|chunk)\.js$/.test(assetPath):
-            script.push(
+            defer.push(
               `<script async type="module" data-chunk="${dataChunkName}" src="${ROOT_URL}/${assetPath}"></script>`
             );
             break;
@@ -74,32 +77,35 @@ const getWebpackAssetTags = (clientStats, hostname) => {
     })
   );
 
-  // Abstracted webpack runtime asset.
-  const runtimeJsPath = modernChunks.runtime;
-  if (
-    runtimeJsPath &&
-    ! 'development' == process.env.IRVING_EXECUTION_CONTEXT
-    ) {
-    // Memoize file operation for optimal performance.
-    if (! runtimeSrc) {
-      runtimeSrc = fs.readFileSync(
-        `${clientBuild}/${runtimeJsPath}`,
-        'utf8'
-      );
-    }
+  // Inline and memoize runtime for optimal performance.
+  if ('development_server' !== process.env.IRVING_EXECUTION_CONTEXT) {
+    // Modern runtime.
+    // const runtimeJsPath = moduleChunks.runtime;
+    // if (! runtimeSrc && runtimeJsPath) {
+    //   runtimeSrc = fs.readFileSync(`${clientBuild}/${runtimeJsPath}`, 'utf8');
+    // }
 
-    // Webpack runtime source should be inlined for optimal performance.
-    script.push(`<script data-path="${runtimeJsPath}" id="irving-webpack-runtime">${runtimeSrc}</script>`);
+    // defer.push(`<script data-chunk="main" data-path="${runtimeJsPath}" id="irving-webpack-runtime">${runtimeSrc}</script>`);
+
+    // Es5 runtime.
+    // const es5RuntimeJsPath = es5Chunks.runtime;
+    // if (! es5RuntimeSrc && es5RuntimeJsPath) {
+    //   runtimeSrc = fs.readFileSync(`${clientBuild}/${es5RuntimeJsPath}`, 'utf8');
+    // }
+
+    // script.push(`<script nomodule data-chunk="main" data-path="${runtimeJsPath}" id="irving-webpack-es5-runtime">${runtimeSrc}</script>`);
   }
 
   // Map over and render core assets first.
-  addChunkAssets(modernChunks);
+  // addChunkAssets(moduleChunks);
 
   // Render any additional assets.
-  addChunkAssets(es5Chunks);
+  addChunkAssets({
+    main: es5Chunks.main,
+  });
 
   return {
-    script,
+    defer,
     style,
   };
 };

@@ -10,17 +10,19 @@ const {
  * Get the context specific entry configuration.
  *
  * @param {string} context The configuration context
+ * @param {string} target Webpack bundle target
  * @returns {string|array|object} A entry configuration value
  */
-module.exports = function getEntry(context) {
+module.exports = function getEntry(context, target) {
   const polyfills = [
     'regenerator-runtime/runtime',
     'abort-controller/polyfill',
   ];
-  const clientPolyfills = [
+  const clientPolyfills = 'es5' === target ? [
     ...polyfills,
     'whatwg-fetch',
-  ];
+    path.join(irvingRoot, 'utils/eventSource'),
+  ] : [];
   const serverPolyfills = [
     ...polyfills,
     path.join(irvingRoot, 'utils/isomorphicFetch'),

@@ -14,7 +14,7 @@ const getOptimization = require('./optimization');
  * @param {string} target Webpack bundle target
  * @returns {object} Configuration service
  */
-module.exports = function getConfigService(mode, opEnv, target = 'web') {
+module.exports = function getConfigService(mode, opEnv, target) {
   const context = `${mode}_${opEnv}`;
 
   return {

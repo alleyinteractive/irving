@@ -8,16 +8,6 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
  * @returns {object} An optimization configuration value
  */
 module.exports = function getOptimization(context) {
-  const splitChunks = {
-    cacheGroups: {
-      common: {
-        name: 'common',
-        chunks: 'all',
-        minChunks: 2,
-      },
-    },
-  };
-
   switch (context) {
     case 'production_server':
     case 'development_server':
@@ -35,14 +25,12 @@ module.exports = function getOptimization(context) {
           }),
           new OptimizeCSSAssetsPlugin(),
         ],
-        splitChunks,
-        runtimeChunk: 'single',
+        // runtimeChunk: 'single',
       };
 
     case 'development_client':
       return {
         namedModules: true,
-        splitChunks,
       };
 
     default:

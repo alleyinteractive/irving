@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import uniq from 'lodash/uniq';
 
@@ -20,35 +21,38 @@ export default function getAppTemplateVars(templateVars) {
         end: () => (
           extractor.getRequiredChunksScriptTag({})
         ),
-        link: () => (
-          /**
-           *  @todo find a better way to get rid of the auto-preloading that
-           *  loadable components seems to enforce
-           */
-          extractor.getLinkTags().replace(
-            /(data-chunk="[^"]+"\srel=)("preload")(\sas="[^"]+")/gi,
-            '$1"prefetch"'
-          )
-        ),
+        // link: () => (
+        //   /**
+        //    *  @todo find a better way to get rid of the auto-preloading that
+        //    *  loadable components seems to enforce
+        //    */
+        //   extractor.getLinkTags().replace(
+        //     /(data-chunk="[^"]+"\srel=)("preload")(\sas="[^"]+")/gi,
+        //     '$1"prefetch"'
+        //   )
+        // ),
         /**
          * Irving Core will indiscriminately load all assets produced by webpack,
          * including chunks for components not used on the page. This function will
          * filter out and load only the chunks required by the page.
          */
-        defer: () => {
-          const mainChunkNames = extractor.getMainAssets('script')
-            .map((asset) => asset.chunk);
-          const requiredChunks = uniq(mainChunkNames).join('|');
-          const requiredChunksTest = new RegExp(
-            `data-chunk="(${requiredChunks})"`
-          );
+        // end: () => {
+        //   const mainChunkNames = extractor.getMainAssets('script')
+        //     .map((asset) => asset.chunk);
+        //   const requiredChunks = uniq(mainChunkNames).join('|');
+        //   const requiredChunksTest = new RegExp(
+        //     `data-chunk="[^"]*(${requiredChunks})[^"]*"`
+        //   );
 
-          head.defer = head.defer.filter((tag) => ( // eslint-disable-line no-param-reassign
-            requiredChunksTest.test(tag)
-          ));
+        //   head.defer = [
+        //     ...head.defer.filter((tag) => ( // eslint-disable-line no-param-reassign
+        //       requiredChunksTest.test(tag)
+        //     )),
+        //     ...extractor.getRequiredChunksScriptTag({}),
+        //   ];
 
-          return [];
-        },
+        //   return extractor.getScriptTags();
+        // },
       }),
     };
   }

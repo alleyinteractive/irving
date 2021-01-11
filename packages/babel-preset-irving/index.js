@@ -12,7 +12,7 @@ module.exports = function babelPresetIrving(api) {
 
   // Configure babel preset env based on webpack target.
   switch (target) {
-    case 'web':
+    case 'modules':
       envConfig = {
         targets: {
           esmodules: true,
@@ -30,7 +30,7 @@ module.exports = function babelPresetIrving(api) {
         corejs: {
           version: 3,
         },
-        useBuiltIns: 'usage',
+        useBuiltIns: 'entry',
       };
       break;
 
