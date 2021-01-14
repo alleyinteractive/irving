@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.8...v5.4.0-alpha.9) (2021-01-14)
+
+
+### Features
+
+* **analyzer:** add bundle analyzer behind a cli flag, also add commander to handle CLI ([7e27c21](https://github.com/alleyinteractive/irving/packages/core/commit/7e27c2111532704a3ebd9fedfd9da743f6b8271e))
+
+
+
+
+
 # [5.4.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.5...v5.4.0-alpha.6) (2020-12-22)
 
 
