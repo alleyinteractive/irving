@@ -105,3 +105,5 @@ module.exports = function getPlugins(context) {
       throw new Error(`Unknown configuration context ${context}`);
   }
 };
+
+module.exports.MiniCSSExtractPlugin = MiniCSSExtractPlugin;

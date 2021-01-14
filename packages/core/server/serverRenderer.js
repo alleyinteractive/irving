@@ -9,13 +9,14 @@ import rootReducer from 'reducers';
 import { actionLocationChange } from 'actions';
 import defaultState from 'reducers/defaultState';
 import resolveComponents from 'sagas/resolveComponents';
-import getWebpackAssetTags from 'utils/getWebpackAssetTags';
 import addTrailingSlash from 'utils/addTrailingSlash';
 import getLogService from '@irvingjs/services/logService';
 import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
 import createClientEnv from 'config/irving/createClientEnv';
+import getEnv from 'config/irving/getEnv';
+import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
 
@@ -86,6 +87,7 @@ const render = async (req, res, clientStats) => {
   );
 
   // Get some template vars and allow customization by user.
+  console.log(req.hostname, getEnv(req.hostname));
   const customTemplateVars = getTemplateVars(
     'getAppTemplateVars',
     {
@@ -94,7 +96,8 @@ const render = async (req, res, clientStats) => {
         end: [getWebpackAssetTags(clientStats, req.hostname)],
       },
     },
-    clientStats
+    clientStats,
+    getEnv(req.hostname)
   );
 
   const stateEncoded = encodeState(getState());
