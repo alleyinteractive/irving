@@ -9,20 +9,21 @@ const getOptimization = require('./optimization');
 /**
  * Get a configuration service based on the context parameters.
  *
- * @param {string} mode Production or development
+ * @param {object} argv CLI arguments.
  * @param {string} opEnv Server or client
  * @returns {object} Configuration service
  */
-module.exports = function getConfigService(mode, opEnv) {
+module.exports = function getConfigService(argv, opEnv) {
+  const { mode } = argv;
   const context = `${mode}_${opEnv}`;
 
   return {
-    getAlias: () => getAlias(context),
-    getEntry: () => getEntry(context),
-    getRules: () => getRules(context),
-    getOptimization: () => getOptimization(context),
-    getOutput: () => getOutput(context),
-    getPlugins: () => getPlugins(context),
-    getDevTool: () => getDevTool(context),
+    getAlias: () => getAlias(context, argv),
+    getEntry: () => getEntry(context, argv),
+    getRules: () => getRules(context, argv),
+    getOptimization: () => getOptimization(context, argv),
+    getOutput: () => getOutput(context, argv),
+    getPlugins: () => getPlugins(context, argv),
+    getDevTool: () => getDevTool(context, argv),
   };
 };

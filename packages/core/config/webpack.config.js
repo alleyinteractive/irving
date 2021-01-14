@@ -7,8 +7,8 @@ const { getValueFromFiles } = require('./irving/getValueFromFiles');
 module.exports = (env, argv) => {
   const { mode } = argv;
   const isProd = 'production' === mode;
-  const server = getConfigService(mode, 'server');
-  const client = getConfigService(mode, 'client');
+  const server = getConfigService(argv, 'server');
+  const client = getConfigService(argv, 'client');
   const extensions = ['.js', '.json'];
   const multiConfig = [
     {
