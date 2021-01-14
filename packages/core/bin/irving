@@ -2,6 +2,8 @@
 /* eslint-disable global-require, max-len */
 // Initialize env vars as soon as possible for the CLI.
 require('../config/env')();
+const { Command } = require('commander');
+const program = new Command();
 
 ['react', 'react-dom'].forEach((dependency) => {
   try {
@@ -14,41 +16,28 @@ require('../config/env')();
   }
 });
 
-// Build a map of available commands.
-const defaultCommand = 'dev';
-const commandMap = {
-  build: () => {
+program.command('build')
+  .description('run a production build for your Irving app')
+  .option('-a --analyze', 'analyze build results with BundleAnalyzer webpack plugin')
+  .action((cmdObj) => {
     process.env.NODE_ENV = 'production';
-    require('../cli/build');
-  },
-  start: () => {
-    process.env.NODE_ENV = 'production';
-    require('../cli/start');
-  },
-  dev: () => {
-    process.env.NODE_ENV = 'development';
-    require('../cli/dev');
-  },
-  'link-all': () => {
-    require('../cli/linkAll');
-  },
-};
-const commands = Object.keys(commandMap);
-
-if (process.argv && Array.isArray(process.argv)) {
-  const command = process.argv.find((arg) => {
-    if (commands.find((key) => arg === key)) {
-      return true;
-    }
-
-    return false;
+    require('../cli/build')(cmdObj);
   });
 
-  // Execute the selected command.
-  if (commandMap[command]) {
-    commandMap[command]();
-  } else {
-    commandMap[defaultCommand]();
-  }
-}
-/* eslint-enable */
+program.command('start')
+  .description('start your irving app from a production build')
+  .action(() => {
+    process.env.NODE_ENV = 'production';
+    require('../cli/start');
+  });
+
+program.command('dev')
+  .description('build your Irving app, watch for changes, and refresh with HMR')
+  .action(() => {
+    process.env.NODE_ENV = 'production';
+    require('../cli/dev');
+  });
+
+program.command('link-all', 'npm link all Irving packages installed in your');
+
+program.parse(process.argv);
