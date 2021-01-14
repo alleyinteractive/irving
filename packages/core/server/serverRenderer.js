@@ -87,7 +87,6 @@ const render = async (req, res, clientStats) => {
   );
 
   // Get some template vars and allow customization by user.
-  console.log(req.hostname, getEnv(req.hostname));
   const customTemplateVars = getTemplateVars(
     'getAppTemplateVars',
     {
