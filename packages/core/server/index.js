@@ -13,8 +13,8 @@ const express = require('express');
 const cookiesMiddleware = require('universal-cookie-express');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const cacheMiddleware = require('./cache');
-const proxyMiddleware = require('./proxy');
 const { customizeRedirect } = require('./customizeRedirect');
+const proxyMiddleware = require('./proxy');
 
 // Start log service.
 const logService = require('../services/logService/getServiceFromFilesystem');
