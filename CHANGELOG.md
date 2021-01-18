@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.10...v5.4.0-alpha.11) (2021-01-18)
+
+
+### Bug Fixes
+
+* **middleware order:** rearrange middleware so redirects occur before proxies ([f8182eb](https://github.com/alleyinteractive/irving/commit/f8182eb05b42e6ad2f61c002651ac2bc86ad4e29))
+
+
+
+
+
 # [5.4.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.9...v5.4.0-alpha.10) (2021-01-18)
 
 
