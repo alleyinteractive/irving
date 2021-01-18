@@ -133,12 +133,7 @@ module.exports = function getRules(context) {
       test: /\.css$/,
       include,
       use: [
-        {
-          loader: MiniCSSExtractPlugin.loader,
-          options: {
-            hmr: ! isProd,
-          },
-        },
+        MiniCSSExtractPlugin.loader,
         {
           loader: 'css-loader',
           options: {

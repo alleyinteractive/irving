@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "5.4.0-alpha.9",
+  "version": "5.4.0-alpha.10",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -76,7 +76,7 @@
     "history": "^4.10.1",
     "http-proxy-middleware": "^1.0.4",
     "lodash": "^4.17.15",
-    "mini-css-extract-plugin": "^0.9.0",
+    "mini-css-extract-plugin": "^1.3.4",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.3",
     "optimize-css-assets-webpack-plugin": "^5.0.3",

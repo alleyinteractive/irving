@@ -1,14 +1,14 @@
 export const richText = {
   allowedTags: [
-   'address', 'a', 'abbr', 'acronym', 'area', 'article', 'aside', 'audio', 'b',
-   'bdo', 'big', 'blockquote', 'br', 'button', 'caption', 'cite', 'code',
-   'col', 'colgroup', 'del', 'dd', 'dfn', 'details', 'div', 'dl', 'dt', 'em',
-   'fieldset', 'figure', 'figcaption', 'font', 'footer', 'h1', 'h2', 'h3',
-   'h4', 'h5', 'h6', 'header', 'hgroup', 'hr', 'i', 'frame', 'img', 'ins',
-   'kbd', 'label', 'legend', 'li', 'link', 'map', 'mark', 'menu', 'nav', 'p',
-   'pre', 'q', 's', 'samp', 'span', 'section', 'small', 'strike', 'strong',
-   'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th',
-   'thead', 'title', 'tr', 'track', 'tt', 'u', 'ul', 'ol', 'var', 'video'
+    'address', 'a', 'abbr', 'acronym', 'area', 'article', 'aside', 'audio', 'b',
+    'bdo', 'big', 'blockquote', 'br', 'button', 'caption', 'cite', 'code',
+    'col', 'colgroup', 'del', 'dd', 'dfn', 'details', 'div', 'dl', 'dt', 'em',
+    'fieldset', 'figure', 'figcaption', 'font', 'footer', 'h1', 'h2', 'h3',
+    'h4', 'h5', 'h6', 'header', 'hgroup', 'hr', 'i', 'frame', 'img', 'ins',
+    'kbd', 'label', 'legend', 'li', 'link', 'map', 'mark', 'menu', 'nav', 'p',
+    'pre', 'q', 's', 'samp', 'span', 'section', 'small', 'strike', 'strong',
+    'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th',
+    'thead', 'title', 'tr', 'track', 'tt', 'u', 'ul', 'ol', 'var', 'video',
   ],
   allowedAttributes: {
     '*': ['class', 'id', 'data-*', 'aria-*', 'role', 'style'],
@@ -63,7 +63,8 @@ export const richText = {
     tbody: ['align', 'char', 'charoff', 'valign'],
     td: ['abbr', 'align', 'axis', 'bgcolor', 'char', 'charoff', 'colspan',
       'dir', 'headers', 'height', 'nowrap', 'rowspan', 'scope', 'valign',
-        'width'],
+      'width',
+    ],
     textarea: ['cols', 'rows', 'disabled', 'name', 'readonly'],
     tfoot: ['align', 'char', 'charoff', 'valign'],
     th: ['abbr', 'align', 'axis', 'bgcolor', 'char', 'charoff', 'colspan',
@@ -87,8 +88,10 @@ export const richText = {
 };
 
 export const plainText = {
-  allowedTags: ['a', 'abbr', 'acronym', 'b', 'blockquote', 'cite', 'code',
-  'del', 'em', 'i', 'q', 's', 'span', 'strike', 'strong'],
+  allowedTags: [
+    'a', 'abbr', 'acronym', 'b', 'blockquote', 'cite', 'code',
+    'del', 'em', 'i', 'q', 's', 'span', 'strike', 'strong',
+  ],
   allowedAttributes: {
     a: ['href', 'name', 'target'],
     abbr: ['title'],

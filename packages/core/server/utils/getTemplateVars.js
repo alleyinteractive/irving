@@ -61,9 +61,10 @@ const stringifyHeadConfig = (config, key) => {
  * @param {string} key Key for configured functions for getting template vars.
  * @param {object} initialVars Variables passed in from serverRenderer.
  * @param {object} clientStats Webpack client-side build stats object.
+ * @param {object} env Current environmental variables, including site-specific overrides from multisite config.
  * @return {object}
  */
-export default function getTemplateVars(key, initialVars, clientStats) {
+export default function getTemplateVars(key, initialVars, clientStats, env) {
   const templateVars = getConfigValues(key);
 
   // Separate arrays for head configuration and other template variables,
@@ -78,7 +79,12 @@ export default function getTemplateVars(key, initialVars, clientStats) {
    */
   const mergedVars = templateVars.reduce(
     (acc, varsConfig) => {
-      const varsObject = getValFromFunction(varsConfig, acc, clientStats);
+      const varsObject = getValFromFunction(
+        varsConfig,
+        acc,
+        clientStats,
+        env
+      );
       // Separate arrays for head configuration and other template variables,
       // as they will be extracted and merged using different methods.
       if (varsObject.head) {
