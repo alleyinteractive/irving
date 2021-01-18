@@ -13,8 +13,8 @@ const express = require('express');
 const cookiesMiddleware = require('universal-cookie-express');
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
 const cacheMiddleware = require('./cache');
-const { customizeRedirect } = require('./customizeRedirect');
 const proxyMiddleware = require('./proxy');
+const { customizeRedirect } = require('./customizeRedirect');
 
 // Start log service.
 const logService = require('../services/logService/getServiceFromFilesystem');
@@ -36,14 +36,14 @@ const irvingServerMiddleware = getValueFromFiles(
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
-// Create proxy middlewares.
-proxyMiddleware(app);
+// Handle redirects.
+app.use(customizeRedirect);
 
 // Add universal cookies middleware.
 app.use(cookiesMiddleware());
 
-// Naked Redirect.
-app.use(customizeRedirect);
+// Create proxy middlewares.
+proxyMiddleware(app);
 
 // Only load the appropriate middleware for the current env.
 if ('development' === process.env.NODE_ENV) {
