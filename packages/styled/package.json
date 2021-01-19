@@ -1,58 +1,58 @@
 {
-	"name": "@irvingjs/styled",
-	"version": "5.4.0-alpha.6",
-	"description": "Integration for React components with attached styles for Irving",
-	"files": [
-		"server/**/*",
-		"config/**/*",
-		"utils/**/*",
-		"variables/**/*",
-		"components/**/*",
-		"hooks/**/*",
-		"types/**/*",
-		"irving.config.server.js",
-		"irving.config.js",
-		"!*.test.js"
-	],
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/alleyinteractive/irving/packages/styled"
-	},
-	"author": "Alley (Alley.co)",
-	"license": "MIT",
-	"scripts": {
-		"test": "jest",
-		"test:watch": "jest --watch"
-	},
-	"dependencies": {
-		"babel-plugin-styled-components": "^1.10.7",
-		"classnames": "^2.2.6",
-		"lodash": "^4.17.15",
-		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
-		"styled-components": "^5.2.1",
-		"stylelint": "^13.3.3",
-		"stylelint-config-styled-components": "^0.1.1",
-		"stylelint-custom-processor-loader": "^0.6.0",
-		"stylelint-order": "^4.0.0",
-		"stylelint-processor-styled-components": "^1.10.0"
-	},
-	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
-		"@irvingjs/core": "^5.4.0-alpha.6",
-		"@testing-library/jest-dom": "^5.11.4",
-		"@testing-library/react": "^11.0.2",
-		"@testing-library/react-hooks": "^3.4.1",
-		"babel-plugin-module-resolver": "^4.0.0",
-		"enzyme": "^3.11.0",
-		"jest": "^25.5.3"
-	},
-	"peerDependencies": {
-		"@irvingjs/core": ">=2.0.0"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"gitHead": "a855ce1255df9c35b5cd049e4c2d65b8665982dd"
+  "name": "@irvingjs/styled",
+  "version": "5.4.0-alpha.6",
+  "description": "Integration for React components with attached styles for Irving",
+  "files": [
+    "server/**/*",
+    "config/**/*",
+    "utils/**/*",
+    "variables/**/*",
+    "components/**/*",
+    "hooks/**/*",
+    "types/**/*",
+    "irving.config.server.js",
+    "irving.config.js",
+    "!*.test.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/styled"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.10.7",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.2.1",
+    "stylelint": "^13.3.3",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-custom-processor-loader": "^0.6.0",
+    "stylelint-order": "^4.0.0",
+    "stylelint-processor-styled-components": "^1.10.0"
+  },
+  "devDependencies": {
+    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
+    "@irvingjs/core": "^5.4.0-alpha.6",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.2",
+    "@testing-library/react-hooks": "^3.4.1",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "enzyme": "^3.11.0",
+    "jest": "^26.6.3"
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">=2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "a855ce1255df9c35b5cd049e4c2d65b8665982dd"
 }
