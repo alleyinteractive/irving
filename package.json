@@ -36,8 +36,7 @@
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "syncpack": "^5.6.10"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
@@ -65,7 +64,8 @@
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "lerna": "^3.20.2",
-    "surge": "^0.21.6"
+    "surge": "^0.21.6",
+    "syncpack": "^5.6.10"
   },
   "engines": {
     "node": "12",
