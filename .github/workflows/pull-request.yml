@@ -16,3 +16,4 @@ jobs:
       - run: npm ci
       - run: npm run develop:bootstrap
       - run: npm test
+      - run: npm audit --audit-level=high --production && npx lerna exec "npm audit --audit-level=high --production"
