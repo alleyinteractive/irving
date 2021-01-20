@@ -16,4 +16,5 @@ jobs:
       - run: npm ci
       - run: npm run develop:bootstrap
       - run: npm test
-      - run: npm audit --audit-level=high --production && npx lerna exec "npm audit --audit-level=high --production"
+      - run: npm audit --audit-level=high --color=always | pcregrep -M 'found[\s\S]*'
+      - run: npx lerna exec "npm audit --audit-level=high --color=always | pcregrep -M 'found[\s\S]*'"
