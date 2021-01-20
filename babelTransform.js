@@ -3,7 +3,7 @@ const getServiceAliases = require(
   './packages/core/config/irving/getServiceAliases'
 );
 const { irvingRoot, mocks } = require('./packages/core/config/paths');
-// Adding a test comment.
+// Adding a test comment. Another one.
 const babelOptions = {
   plugins: [
     [
