@@ -15,17 +15,20 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
+      - run: npm run develop:bootstrap
       - run: npm run storybook-qa:release
       - run: cd irvingjs.com && npm run ci
       - run: npm run deploy:staging
 
   publish-irvingjs-com:
     runs-on: ubuntu-latest
+    defaults:
+        run:
+          working-directory: ./irvingjs.com
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: cd irvingjs.com
       - run: npm ci
       - run: npm run deploy:staging
