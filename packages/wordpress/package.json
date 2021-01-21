@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/wordpress",
-  "version": "5.4.0-alpha.16",
+  "version": "5.4.0-alpha.17",
   "description": "An example package for creating your own.",
   "files": [
     "components/**/*",
@@ -24,14 +24,14 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@irvingjs/styled": "^5.4.0-alpha.16",
+    "@irvingjs/styled": "^5.4.0-alpha.17",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
-    "@irvingjs/core": "^5.4.0-alpha.16",
+    "@irvingjs/core": "^5.4.0-alpha.17",
     "babel-loader": "^8.1.0",
     "jest": "^25.5.3",
     "webpack": "^4.44.2",
