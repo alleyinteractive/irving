@@ -19,13 +19,13 @@
   },
   "dependencies": {},
   "devDependencies": {
-		"@irvingjs/babel-preset-irving": "^4.2.0",
-		"@irvingjs/core": "^4.2.0",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "jest": "^25.5.3"
+		"@irvingjs/babel-preset-irving": "~5.4.0",
+		"@irvingjs/core": "~5.4.0",
+    "babel-plugin-module-resolver": "~4.0.0",
+    "jest": "~25.5.3"
   },
   "peerDependencies": {
-    "@irvingjs/core": ">=2.0.0"
+    "@irvingjs/core": ">=5.0.0"
   },
   "publishConfig": {
     "access": "public"
