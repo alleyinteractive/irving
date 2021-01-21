@@ -2,7 +2,9 @@
 name: Publish Sites
 
 on:
-  pull_request
+  push:
+    branches:
+      - main
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -18,7 +20,7 @@ jobs:
       - run: npm run develop:bootstrap
       - run: npm run storybook-qa:release
 
-  publish-irvingjs-com:
+  publish-irvingjs-com-staging:
     runs-on: ubuntu-latest
     defaults:
         run:
