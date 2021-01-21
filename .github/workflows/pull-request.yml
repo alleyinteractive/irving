@@ -16,4 +16,4 @@ jobs:
       - run: npm ci
       - run: npm run develop:bootstrap
       - run: npm test
-      - run: npm audit:ci
+      - run: npm run audit:ci
