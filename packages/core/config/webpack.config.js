@@ -7,8 +7,8 @@ const { getValueFromFiles } = require('./irving/getValueFromFiles');
 module.exports = (env, argv) => {
   const { mode } = argv;
   const isProd = 'production' === mode;
-  const server = getConfigService(mode, 'server');
-  const client = getConfigService(mode, 'client');
+  const server = getConfigService(argv, 'server');
+  const client = getConfigService(argv, 'client');
   const extensions = ['.js', '.json'];
   const multiConfig = [
     {
@@ -71,12 +71,14 @@ module.exports = (env, argv) => {
   const clientConfig = getValueFromFiles(
     'config/webpack.config.client.js',
     multiConfig[0],
-    { base: buildContext }
+    { base: buildContext },
+    [argv]
   );
   const serverConfig = getValueFromFiles(
     'config/webpack.config.server.js',
     multiConfig[1],
-    { base: buildContext }
+    { base: buildContext },
+    [argv]
   );
 
   // Process each config using the same webpack.config.js
@@ -87,7 +89,8 @@ module.exports = (env, argv) => {
     getValueFromFiles(
       'config/webpack.config.js',
       config,
-      { base: buildContext }
+      { base: buildContext },
+      [argv]
     )
   ));
 
@@ -95,7 +98,8 @@ module.exports = (env, argv) => {
   const finalConfigs = getValueFromFiles(
     'config/webpack.config.multi.js',
     processedMultiConfig,
-    { base: buildContext }
+    { base: buildContext },
+    [argv]
   );
 
   return finalConfigs;

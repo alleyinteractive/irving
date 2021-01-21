@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.16](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.15...v5.4.0-alpha.16) (2021-01-21)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.4.0-alpha.15](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.14...v5.4.0-alpha.15) (2021-01-21)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.4.0-alpha.14](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.13...v5.4.0-alpha.14) (2021-01-21)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.4.0-alpha.13](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.12...v5.4.0-alpha.13) (2021-01-21)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.4.0-alpha.12](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.11...v5.4.0-alpha.12) (2021-01-21)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.4.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.10...v5.4.0-alpha.11) (2021-01-18)
+
+
+### Bug Fixes
+
+* **middleware order:** rearrange middleware so redirects occur before proxies ([f8182eb](https://github.com/alleyinteractive/irving/commit/f8182eb05b42e6ad2f61c002651ac2bc86ad4e29))
+
+
+
+
+
+# [5.4.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.9...v5.4.0-alpha.10) (2021-01-18)
+
+
+### Bug Fixes
+
+* **multisite:** remove console log ([58900b4](https://github.com/alleyinteractive/irving/commit/58900b40ccf8d03ef5dcec418a684b7e968ac7be))
+
+
+### Features
+
+* **multisite:** add capability for using site-specific env in template vars config ([ede8e21](https://github.com/alleyinteractive/irving/commit/ede8e215c524ab8ce5665859445f76cb399d4ae2))
+* **webpack:** pass webpack argv into webpack config functions ([d4d18c7](https://github.com/alleyinteractive/irving/commit/d4d18c7b261c12bba9eeee0e2ebf8c0f79cf8ebd))
+
+
+
+
+
+# [5.4.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.8...v5.4.0-alpha.9) (2021-01-14)
+
+
+### Features
+
+* **analyzer:** add bundle analyzer behind a cli flag, also add commander to handle CLI ([7e27c21](https://github.com/alleyinteractive/irving/commit/7e27c2111532704a3ebd9fedfd9da743f6b8271e))
+
+
+
+
+
 # [5.4.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.7...v5.4.0-alpha.8) (2021-01-07)
 
 **Note:** Version bump only for package irving

@@ -6,17 +6,47 @@ import getEnv from 'config/irving/getEnv';
 let runtimeSrc;
 
 /**
+ * Generate appropriate HTML tags for an array of chunk assets.
+ *
+ * @param {array} assets Array of webpack assets for a specific chunk
+ * @param {string} rootUrl Configured Root URL for this environment or site.
+ * @returns {tags[]} An array of html tags
+ */
+export const createAssetTags = (assets, rootUrl) => {
+  const normalizedAssets = Array.isArray(assets) ? assets : [assets];
+  const tags = [];
+
+  normalizedAssets.forEach((assetPath) => {
+    /* eslint-disable max-len */
+    if (assetPath.match(/\.js$/)) {
+      tags.push(
+        `<script defer src="${rootUrl}/${assetPath}"></script>`
+      );
+    }
+
+    if (assetPath.match(/\.css$/)) {
+      tags.push(
+        `<link rel="stylesheet" href="${rootUrl}/${assetPath}"></link>`
+      );
+    }
+    /* eslint-enable */
+  });
+
+  return tags;
+};
+
+/**
  * Get the emitted webpack assets as html tags to be rendered by the server.
  *
  * @param {object} clientStats Emitted webpack client bundle info
  * @param {string} hostname Hostname for current site
- * @returns {tags[]} An array of html tags
+ * @returns {tags} An string of html tags
  */
 const getWebpackAssetTags = (clientStats, hostname) => {
   const { assetsByChunkName: chunks } = clientStats;
-  const tags = [];
   const runtimeJsPath = chunks['runtime~main'];
   const { ROOT_URL } = getEnv(hostname);
+  let tags = [];
 
   // Abstracted webpack runtime asset.
   if (runtimeJsPath) {
@@ -30,31 +60,17 @@ const getWebpackAssetTags = (clientStats, hostname) => {
   }
 
   // Include any other webpack assets that haven't been included yet.
-  Object.keys(chunks).forEach((chunkName) => {
+  tags = Object.keys(chunks).reduce((acc, chunkName) => {
     // Runtime main is rendered inline above.
-    if ('runtime~main' === chunkName) {
-      return;
+    if (
+      'runtime~main' === chunkName ||
+      'runtime' === chunkName
+    ) {
+      return acc;
     }
 
-    const assets = Array.isArray(chunks[chunkName]) ?
-      chunks[chunkName] : [chunks[chunkName]];
-
-    assets.forEach((assetPath) => {
-      /* eslint-disable max-len */
-      if (assetPath.match(/\.js$/)) {
-        tags.push(
-          `<script defer src="${ROOT_URL}/${assetPath}"></script>`
-        );
-      }
-
-      if (assetPath.match(/\.css$/)) {
-        tags.push(
-          `<link rel="stylesheet" href="${ROOT_URL}/${assetPath}"></link>`
-        );
-      }
-      /* eslint-enable */
-    });
-  });
+    return acc.concat(createAssetTags(chunks[chunkName], ROOT_URL));
+  }, tags);
 
   return getValueFromConfigNoMemo('ssrTags', tags).join('');
 };

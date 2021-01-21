@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 /* eslint-disable global-require, max-len */
-// Initialize env vars as soon as possible for the CLI.
-require('../config/env')();
-
 ['react', 'react-dom'].forEach((dependency) => {
   try {
     // When 'npm link' is used it checks the clone location. Not the project.
@@ -14,41 +11,4 @@ require('../config/env')();
   }
 });
 
-// Build a map of available commands.
-const defaultCommand = 'dev';
-const commandMap = {
-  build: () => {
-    process.env.NODE_ENV = 'production';
-    require('../cli/build');
-  },
-  start: () => {
-    process.env.NODE_ENV = 'production';
-    require('../cli/start');
-  },
-  dev: () => {
-    process.env.NODE_ENV = 'development';
-    require('../cli/dev');
-  },
-  'link-all': () => {
-    require('../cli/linkAll');
-  },
-};
-const commands = Object.keys(commandMap);
-
-if (process.argv && Array.isArray(process.argv)) {
-  const command = process.argv.find((arg) => {
-    if (commands.find((key) => arg === key)) {
-      return true;
-    }
-
-    return false;
-  });
-
-  // Execute the selected command.
-  if (commandMap[command]) {
-    commandMap[command]();
-  } else {
-    commandMap[defaultCommand]();
-  }
-}
-/* eslint-enable */
+require('../cli');

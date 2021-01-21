@@ -1,17 +1,19 @@
-#!/bin/bash
-set -e
-
-if [[ $TRAVIS_PULL_REQUEST != "false" ]]; then
-    npm run test
+if [[ $BUDDY_EXECUTION_REVISION_MESSAGE == "chore(release): publish" ]]; then
+    exit 0
 else
     echo "Publishing to NPM ..."
 
-    # Set origin to use alle-ci user with a GH token
-    git remote set-url origin https://alley-ci:$GH_TOKEN@github.com/alleyinteractive/irving.git
-    # Add NPM token to npmrc
-    echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
-    git checkout main
-    npm ci
-    npm run prerelease:canary:ci
-    # npm run storybook:release
+	# Configure git and checkout main branch
+	git config user.email "ops+alleyci@alleyinteractive.com"
+	git config user.name "alley-ci"
+	git remote set-url origin https://alley-ci:$GH_TOKEN@github.com/alleyinteractive/irving.git
+	git checkout main
+
+	# Add NPM token to npmrc
+	echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+
+	# Perform publish
+	npm ci
+	npm run develop:bootstrap
+	npm run prerelease:canary:ci
 fi

@@ -5,6 +5,7 @@ const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const ReactRefreshWebpackPlugin = require(
   '@pmmmwh/react-refresh-webpack-plugin'
 );
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { rootUrl } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
 const { maybeResolveUserModule } = require('../../utils/userModule');
@@ -13,9 +14,12 @@ const { maybeResolveUserModule } = require('../../utils/userModule');
  * Get the context specific plugins configuration.
  *
  * @param {string} context The configuration context
+ * @param {object} argv CLI arguments.
  * @returns {array} A plugins configuration value
  */
-module.exports = function getPlugins(context) {
+module.exports = function getPlugins(context, argv) {
+  const { analyze } = argv;
+
   // Define paths to app and error templates at compile time because express needs paths, not the template module itself.
   // This allows user to more deeply customize app and error templates.
   const commonPlugins = [
@@ -84,7 +88,8 @@ module.exports = function getPlugins(context) {
           filename: '[name].[hash].css',
           chunkFilename: '[id].[hash].css',
         }),
-      ];
+        (analyze && new BundleAnalyzerPlugin()),
+      ].filter(Boolean);
 
     case 'development_client':
       return [
@@ -99,9 +104,12 @@ module.exports = function getPlugins(context) {
           filename: '[name].css',
           chunkFilename: '[id].css',
         }),
+
       ];
 
     default:
       throw new Error(`Unknown configuration context ${context}`);
   }
 };
+
+module.exports.MiniCSSExtractPlugin = MiniCSSExtractPlugin;
