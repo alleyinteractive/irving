@@ -23,16 +23,16 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@irvingjs/styled": "^5.4.0-alpha.16",
-    "@wordpress/i18n": "^3.10.0",
-    "query-string": "^6.13.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-helmet": "^6.1.0",
-    "react-hook-form": "^6.0.6",
-    "react-icons": "^3.10.0",
-    "react-oembed-container": "^1.0.0",
-    "styled-css-grid": "^1.2.1"
+    "@irvingjs/styled": "~5.4.0-alpha.16",
+    "@wordpress/i18n": "~3.10.0",
+    "query-string": "~6.13.1",
+    "react": "~16.13.1",
+    "react-dom": "~16.13.1",
+    "react-helmet": "~6.1.0",
+    "react-hook-form": "~6.0.6",
+    "react-icons": "~3.10.0",
+    "react-oembed-container": "~1.0.0",
+    "styled-css-grid": "~1.2.1"
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "~5.4.0-alpha.16",

@@ -15,10 +15,10 @@
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
-		"prop-types": "^15.7.2",
-		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
-		"react-tracking": "^8.0.0"
+		"prop-types": "~15.7.2",
+		"react": "~16.13.1",
+		"react-dom": "~16.13.1",
+		"react-tracking": "~8.0.0"
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "~5.4.0-alpha.16",
