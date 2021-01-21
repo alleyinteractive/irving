@@ -17,7 +17,7 @@
 	"author": "Alley (Alley.co)",
 	"license": "MIT",
 	"dependencies": {
-		"react-styleguidist": "^9.2.0"
+		"react-styleguidist": "^11.1.5"
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
