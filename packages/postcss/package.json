@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/postcss",
-	"version": "5.4.0-alpha.12",
+	"version": "5.4.0-alpha.13",
 	"description": "PostCSS configuration functionality for Irving",
 	"files": [
 		"config/**/*",
@@ -22,7 +22,7 @@
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
-		"@irvingjs/core": "^5.4.0-alpha.12",
+		"@irvingjs/core": "^5.4.0-alpha.13",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"jest": "^25.5.3"
 	},
