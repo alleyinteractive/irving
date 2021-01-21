@@ -1,2 +1,2 @@
-// Default irving config, used if user doesn't create one.
+// Default irving config, used when user doesn't create one.
 module.exports = {};
