@@ -15,7 +15,6 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: npm run develop:bootstrap
       - run: npm run storybook-qa:release
       - run: cd irvingjs.com && npm run ci
       - run: npm run deploy:staging
@@ -28,5 +27,5 @@ jobs:
         with:
           node-version: 12
       - run: cd irvingjs.com
-      - run: npm run ci
+      - run: npm ci
       - run: npm run deploy:staging
