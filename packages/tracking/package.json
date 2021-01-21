@@ -1,35 +1,35 @@
 {
-	"name": "@irvingjs/tracking",
-	"version": "5.4.0-alpha.2",
-	"description": "Integration for React Tracking",
-	"files": [
-		"services/**/*",
-		"irving.config.js",
-		"!*.test.js"
-	],
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/alleyinteractive/irving/packages/tracking"
-	},
-	"author": "Alley (Alley.co)",
-	"license": "MIT",
-	"dependencies": {
-		"prop-types": "~15.7.2",
-		"react": "~16.13.1",
-		"react-dom": "~16.13.1",
-		"react-tracking": "~8.0.0"
-	},
-	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "~5.4.0-alpha.16",
-		"@irvingjs/core": "~5.4.0-alpha.16",
-		"babel-plugin-module-resolver": "~4.0.0",
-		"jest": "~25.5.3"
-	},
-	"peerDependencies": {
-		"@irvingjs/core": ">=5.0.0"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@irvingjs/tracking",
+  "version": "5.4.0-alpha.2",
+  "description": "Integration for React Tracking",
+  "files": [
+    "services/**/*",
+    "irving.config.js",
+    "!*.test.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/tracking"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-tracking": "~8.0.0"
+  },
+  "devDependencies": {
+    "@irvingjs/babel-preset-irving": "~5.4.0-alpha.0",
+    "@irvingjs/core": "~5.4.0-alpha.16",
+    "babel-plugin-module-resolver": "~4.0.0",
+    "jest": "~26.6.3"
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">=5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

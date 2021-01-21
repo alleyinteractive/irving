@@ -30,10 +30,10 @@
     "react-hook-form": "^6.0.6"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "~5.4.0-alpha.16",
+    "@irvingjs/babel-preset-irving": "~5.4.0-alpha.0",
     "@irvingjs/core": "~5.4.0-alpha.16",
     "babel-plugin-module-resolver": "~4.0.0",
-    "jest": "~25.5.3"
+    "jest": "~26.6.3"
   },
   "peerDependencies": {
     "@irvingjs/core": ">=5.0.0"
