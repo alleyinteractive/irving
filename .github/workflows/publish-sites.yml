@@ -1,0 +1,21 @@
+# Publish to storybook QA and irvingjs.com
+name: Publish Sites
+
+on:
+  pull_request
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  publish-storybook-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm run develop:bootstrap
+      - run: npm run storybook-qa:release
+      - run: cd irvingjs.com && npm run ci
+      - run: npm run deploy:staging
