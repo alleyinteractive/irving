@@ -3,9 +3,7 @@
 name: Pull Request
 
 on:
-  pull_request:
-    branches:
-      - main
+  pull_request
 
 jobs:
   build:
@@ -16,4 +14,6 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
+      - run: npm run develop:bootstrap
       - run: npm test
+      - run: npm run audit:ci
