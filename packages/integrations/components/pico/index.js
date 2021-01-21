@@ -2,8 +2,8 @@ import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import getLogService from '@irvingjs/services/logService';
-import usePollForNode from './usePollForNode';
-import useWidgetScript from './useWidgetScript';
+// import usePollForNode from './usePollForNode';
+import useGadgetScript from './useGadgetScript';
 import PicoObserver from './observer';
 // Pico.
 import {
@@ -27,11 +27,8 @@ const Pico = (props) => {
     pageInfo,
     publisherId,
     tiers,
-    widgetUrl,
+    widgetUrl: gadgetUrl, // Rename for back-compat.
   } = props;
-
-  // Inject the widget script into the DOM.
-  useWidgetScript(widgetUrl, publisherId);
 
   /**
    * Ensure page info has the right format.
@@ -49,6 +46,7 @@ const Pico = (props) => {
 
   // Create the dispatch function.
   const dispatch = useDispatch();
+
   // Create a function that dispatches the current page info for the saga to respond to.
   const dispatchUpdatePicoPageInfo = useCallback(
     (payload) => {
@@ -66,7 +64,8 @@ const Pico = (props) => {
     },
     [dispatch]
   );
-  // Create a function that updates the store when the `pico.loaded` event is fired.
+
+  // Create a function that updates the store when the `pico.ready` event is fired.
   const dispatchPicoLoaded = useCallback(
     () => dispatch(actionPicoLoaded()),
     [dispatch]
@@ -78,53 +77,52 @@ const Pico = (props) => {
   // Grab the `scriptAdded` value from the `pico` branch of the state tree.
   const picoScriptAdded = useSelector(picoScriptAddedSelector);
 
-  // Add listeners for pico events.
+  // Add listeners for Pico events.
   useEffect(() => {
     // Dispatch an action to update the integrations.pico.loaded state in Redux.
-    const loadHandler = () => {
-      if (! picoLoaded) {
-        log.info('Pico: Running load handler.');
-        dispatchPicoLoaded();
-      }
+    const loadHandler = async () => {
+      log.info('Pico: Running load handler.');
+      dispatchPicoLoaded();
+    };
+
+    const readyHandler = async () => {
+      log.info('Pico: Running ready handler.');
+      dispatchPicoLoaded();
     };
 
     log.info('Pico: Event listeners added.');
-    // The pico.loaded event fires after the Pico object is fully initialized.
-    window.addEventListener('pico.loaded', loadHandler);
+
+    // The pico.ready event fires after the Pico object is initialized in the DOM.
+    document.addEventListener('pico-init', loadHandler);
+    document.addEventListener('pico.ready', readyHandler);
 
     return () => {
-      window.removeEventListener('pico.loaded', loadHandler);
+      log.info('Pico: Event listeners removed.');
+      document.removeEventListener('pico-init', loadHandler);
+      document.removeEventListener('pico.ready', readyHandler);
     };
+  }, [picoScriptAdded]);
+
+  // Mount our Pico Signal nodes into the DOM.
+  useEffect(() => {
+    if (! isPicoMounted()) {
+      log.info('Pico: Mounting nodes.');
+      mountPicoNodes();
+    }
   }, []);
 
-  // Mount an effect that triggers the initial visit once `picoScriptAdded` has
+  // Mount an effect that triggers the initial visit once `picoLoaded` has
   // been set to true and only if `picoLoaded` has not been set to true yet.
   useEffect(() => {
-    if (picoScriptAdded) {
+    if (picoLoaded) {
       log.info('Pico: Dispatching page visit.');
       // Dispatch the initial visit to trigger the `pico.loaded` event.
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
-  }, [picoScriptAdded, picoPageInfo.url]);
+  }, [picoLoaded, picoPageInfo.url]);
 
-  // Poll for the existence of the Pico widget container.
-  const widgetContainer = usePollForNode('#pico-widget-container');
-
-  // Mount an effect that watches for the status of `picoLoaded` and the polled
-  // widget container node in order to determine when to mount the Pico nodes
-  // into the DOM.
-  useEffect(() => {
-    log.info(
-      'Pico: Attempting to mount nodes:',
-      [widgetContainer, isPicoMounted(), picoLoaded]
-    );
-
-    // Ensure the target nodes are only mounted once on the initial server load.
-    if (widgetContainer && ! isPicoMounted()) {
-      log.info('Pico: Mounting nodes.');
-      mountPicoNodes();
-    }
-  }, [picoLoaded, widgetContainer]);
+  // Inject the gadget script into the DOM.
+  useGadgetScript(gadgetUrl, publisherId);
 
   if (picoScriptAdded) {
     // Inject the Pico Signal into the DOM.
@@ -140,13 +138,13 @@ const Pico = (props) => {
 
 Pico.defaultProps = {
   tiers: [],
-  widgetUrl: 'https://widget.pico.tools',
+  widgetUrl: 'https://gadget.pico.tools',
 };
 
 Pico.propTypes = {
   pageInfo: PropTypes.shape({
-    article: PropTypes.bool.isRequired,
-    postId: PropTypes.string.isRequired,
+    article: PropTypes.bool,
+    postId: PropTypes.number.isRequired,
     postType: PropTypes.string.isRequired,
     resourceRef: PropTypes.string,
     taxonomies: PropTypes.object.isRequired,
