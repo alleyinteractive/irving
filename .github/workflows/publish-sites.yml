@@ -19,3 +19,14 @@ jobs:
       - run: npm run storybook-qa:release
       - run: cd irvingjs.com && npm run ci
       - run: npm run deploy:staging
+
+  publish-irvingjs-com:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: cd irvingjs.com
+      - run: npm run ci
+      - run: npm run deploy:staging
