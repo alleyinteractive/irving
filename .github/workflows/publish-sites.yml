@@ -17,8 +17,6 @@ jobs:
       - run: npm ci
       - run: npm run develop:bootstrap
       - run: npm run storybook-qa:release
-      - run: cd irvingjs.com && npm run ci
-      - run: npm run deploy:staging
 
   publish-irvingjs-com:
     runs-on: ubuntu-latest
