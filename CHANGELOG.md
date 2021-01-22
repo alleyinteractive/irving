@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.21](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.20...v5.4.0-alpha.21) (2021-01-22)
+
+
+### Bug Fixes
+
+* **runtime:** add fallback of chunks.runtime to make sure runtime is loaded without loadable ([3ebfb84](https://github.com/alleyinteractive/irving/commit/3ebfb845fd4164d8e276fe4e7ca55496196e4d58))
+
+
+
+
+
 # [5.4.0-alpha.20](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.19...v5.4.0-alpha.20) (2021-01-22)
 
 **Note:** Version bump only for package irving

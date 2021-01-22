@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.21](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.4.0-alpha.20...v5.4.0-alpha.21) (2021-01-22)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
 # [5.4.0-alpha.19](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.4.0-alpha.18...v5.4.0-alpha.19) (2021-01-22)
 
 
