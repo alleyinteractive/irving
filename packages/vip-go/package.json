@@ -17,16 +17,16 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "@automattic/vip-go": "~1.0.0",
-    "@automattic/vip-go-preflight-checks": "~1.0.0",
-    "ioredis": "~4.16.3",
-    "newrelic": "~5.13.1"
+    "@automattic/vip-go": "^1.0.0",
+    "@automattic/vip-go-preflight-checks": "^1.0.0",
+    "ioredis": "^4.16.3",
+    "newrelic": "^5.13.1"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "~5.4.0-alpha.0",
-    "@irvingjs/core": "~5.4.0-alpha.16",
-    "babel-plugin-module-resolver": "~4.0.0",
-    "jest": "~26.6.3"
+    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
+    "@irvingjs/core": "^5.4.0-alpha.16",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "jest": "^26.6.3"
   },
   "peerDependencies": {
     "@irvingjs/core": ">=5.0.0"

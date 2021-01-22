@@ -10,7 +10,7 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "serverless-http": "~2.5.0"
+    "serverless-http": "^2.5.0"
   },
   "peerDependencies": {
     "@irvingjs/core": ">=5.0.0"
