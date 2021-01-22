@@ -22,11 +22,11 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "@irvingjs/styled": "^5.4.0-alpha.18",
-    "howler": "^2.1.3",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "@irvingjs/styled": "~5.4.0-alpha.18",
+    "howler": "~2.1.3",
+    "prop-types": "~15.7.2",
+    "react": "~16.13.1",
+    "react-dom": "~16.13.1"
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "~5.4.0-alpha.0",
