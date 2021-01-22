@@ -1,35 +1,35 @@
 {
-	"name": "@irvingjs/styleguide",
-	"version": "5.4.0-alpha.10",
-	"description": "React Styleguidist for Irving",
-	"files": [
-		"config/**/*",
-		"components/**/*",
-		"styleguide/**/*",
-		"styleguide.js",
-		"!*.test.js"
-	],
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/alleyinteractive/irving/packages/styleguide"
-	},
-	"author": "Alley (Alley.co)",
-	"license": "MIT",
-	"dependencies": {
-		"react-styleguidist": "^9.2.0"
-	},
-	"devDependencies": {
-		"@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
-		"@irvingjs/core": "^5.4.0-alpha.10",
-		"babel-plugin-module-resolver": "^4.0.0",
-		"jest": "^25.5.3"
-	},
-	"peerDependencies": {
-		"@irvingjs/core": ">=2.0.0"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"gitHead": "a855ce1255df9c35b5cd049e4c2d65b8665982dd"
+  "name": "@irvingjs/styleguide",
+  "version": "5.4.0-alpha.19",
+  "description": "React Styleguidist for Irving",
+  "files": [
+    "config/**/*",
+    "components/**/*",
+    "styleguide/**/*",
+    "styleguide.js",
+    "!*.test.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alleyinteractive/irving/packages/styleguide"
+  },
+  "author": "Alley (Alley.co)",
+  "license": "MIT",
+  "dependencies": {
+    "react-styleguidist": "^11.1.5"
+  },
+  "devDependencies": {
+    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.19",
+    "@irvingjs/core": "^5.4.0-alpha.19",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "jest": "^26.6.3"
+  },
+  "peerDependencies": {
+    "@irvingjs/core": ">=5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "a855ce1255df9c35b5cd049e4c2d65b8665982dd"
 }

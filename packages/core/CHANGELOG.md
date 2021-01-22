@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.19](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.18...v5.4.0-alpha.19) (2021-01-22)
+
+
+### Bug Fixes
+
+* **audit:** further audit fixes ([255c6cf](https://github.com/alleyinteractive/irving/packages/core/commit/255c6cfac79437c396b16c893376fa4fdbfe0789))
+* **deps:** switch back to carets but leave .npmrc files so all future installs are tilde ([1ba0fc0](https://github.com/alleyinteractive/irving/packages/core/commit/1ba0fc076d90a4cc038158a058b641cd9043cd9a))
+* **deps:** update jest, sync ([e0e95fc](https://github.com/alleyinteractive/irving/packages/core/commit/e0e95fc6475b987bd6a7156673e2eaf2512939aa))
+* **deps:** update locks again ([9277062](https://github.com/alleyinteractive/irving/packages/core/commit/9277062f96e6b4953eef0723fafe3376817701ec))
+* **versions:** fix mismatched react versions ([4c001aa](https://github.com/alleyinteractive/irving/packages/core/commit/4c001aa57baf56423a7e6daa539c0d9d6f513a06))
+* **versions:** switch to using tildes everywhere ([9e81488](https://github.com/alleyinteractive/irving/packages/core/commit/9e8148880a70ac87fac00fcb283948643dcae042))
+
+
+
+
+
+# [5.4.0-alpha.18](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.17...v5.4.0-alpha.18) (2021-01-22)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.4.0-alpha.17](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.16...v5.4.0-alpha.17) (2021-01-21)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.4.0-alpha.16](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.15...v5.4.0-alpha.16) (2021-01-21)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.4.0-alpha.15](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.14...v5.4.0-alpha.15) (2021-01-21)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.4.0-alpha.14](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.13...v5.4.0-alpha.14) (2021-01-21)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.4.0-alpha.13](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.12...v5.4.0-alpha.13) (2021-01-21)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.4.0-alpha.12](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.11...v5.4.0-alpha.12) (2021-01-21)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.4.0-alpha.11](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.10...v5.4.0-alpha.11) (2021-01-18)
+
+
+### Bug Fixes
+
+* **middleware order:** rearrange middleware so redirects occur before proxies ([f8182eb](https://github.com/alleyinteractive/irving/packages/core/commit/f8182eb05b42e6ad2f61c002651ac2bc86ad4e29))
+
+
+
+
+
 # [5.4.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.9...v5.4.0-alpha.10) (2021-01-18)
 
 

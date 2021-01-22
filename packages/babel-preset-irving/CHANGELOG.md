@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.19](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.4.0-alpha.18...v5.4.0-alpha.19) (2021-01-22)
+
+
+### Bug Fixes
+
+* **deps:** switch back to carets but leave .npmrc files so all future installs are tilde ([1ba0fc0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/1ba0fc076d90a4cc038158a058b641cd9043cd9a))
+* **versions:** switch to using tildes everywhere ([9e81488](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/9e8148880a70ac87fac00fcb283948643dcae042))
+
+
+
+
+
 # [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
 
 
