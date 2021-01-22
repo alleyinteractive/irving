@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.18](https://github.com/alleyinteractive/irving/packages/tracking/compare/v5.4.0-alpha.17...v5.4.0-alpha.18) (2021-01-22)
+
+**Note:** Version bump only for package @irvingjs/tracking
+
+
+
+
+
 # [5.4.0-alpha.2](https://github.com/alleyinteractive/irving/packages/tracking/compare/v5.3.1...v5.4.0-alpha.2) (2020-12-18)
 
 
