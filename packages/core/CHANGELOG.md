@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.19](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.18...v5.4.0-alpha.19) (2021-01-22)
+
+
+### Bug Fixes
+
+* **audit:** further audit fixes ([255c6cf](https://github.com/alleyinteractive/irving/packages/core/commit/255c6cfac79437c396b16c893376fa4fdbfe0789))
+* **deps:** switch back to carets but leave .npmrc files so all future installs are tilde ([1ba0fc0](https://github.com/alleyinteractive/irving/packages/core/commit/1ba0fc076d90a4cc038158a058b641cd9043cd9a))
+* **deps:** update jest, sync ([e0e95fc](https://github.com/alleyinteractive/irving/packages/core/commit/e0e95fc6475b987bd6a7156673e2eaf2512939aa))
+* **deps:** update locks again ([9277062](https://github.com/alleyinteractive/irving/packages/core/commit/9277062f96e6b4953eef0723fafe3376817701ec))
+* **versions:** fix mismatched react versions ([4c001aa](https://github.com/alleyinteractive/irving/packages/core/commit/4c001aa57baf56423a7e6daa539c0d9d6f513a06))
+* **versions:** switch to using tildes everywhere ([9e81488](https://github.com/alleyinteractive/irving/packages/core/commit/9e8148880a70ac87fac00fcb283948643dcae042))
+
+
+
+
+
 # [5.4.0-alpha.18](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.17...v5.4.0-alpha.18) (2021-01-22)
 
 **Note:** Version bump only for package @irvingjs/core

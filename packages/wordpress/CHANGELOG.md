@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.19](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.0-alpha.18...v5.4.0-alpha.19) (2021-01-22)
+
+
+### Bug Fixes
+
+* **audit:** further audit fixes ([255c6cf](https://github.com/alleyinteractive/irving/packages/example-package/commit/255c6cfac79437c396b16c893376fa4fdbfe0789))
+* **deps:** switch back to carets but leave .npmrc files so all future installs are tilde ([1ba0fc0](https://github.com/alleyinteractive/irving/packages/example-package/commit/1ba0fc076d90a4cc038158a058b641cd9043cd9a))
+* **deps:** update jest, sync ([e0e95fc](https://github.com/alleyinteractive/irving/packages/example-package/commit/e0e95fc6475b987bd6a7156673e2eaf2512939aa))
+* **package updates:** ran npm audit fix on all Irving packages ([9a6070b](https://github.com/alleyinteractive/irving/packages/example-package/commit/9a6070b3ad21b277cfdfc92092c184239bd281e9))
+* **versions:** fix mismatched react versions ([4c001aa](https://github.com/alleyinteractive/irving/packages/example-package/commit/4c001aa57baf56423a7e6daa539c0d9d6f513a06))
+* **versions:** switch to using tildes everywhere ([9e81488](https://github.com/alleyinteractive/irving/packages/example-package/commit/9e8148880a70ac87fac00fcb283948643dcae042))
+
+
+
+
+
 # [5.4.0-alpha.18](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.0-alpha.17...v5.4.0-alpha.18) (2021-01-22)
 
 **Note:** Version bump only for package @irvingjs/wordpress
