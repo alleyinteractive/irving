@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "~5.4.0-alpha.0",
-    "@irvingjs/core": "!5.4.0-alpha.18",
+    "@irvingjs/core": "~5.4.0-alpha.18",
     "@testing-library/jest-dom": "~5.11.4",
     "@testing-library/react": "~11.0.2",
     "babel-plugin-module-resolver": "~4.0.0",
