@@ -1,5 +1,5 @@
 const auth = require('basic-auth');
-const getEnv = require('../config/irving/getEnv');
+const { getEnv } = require('../config/irving/multisite');
 
 /**
  * A middleware that will force Basic Auth if related environment variables are set.

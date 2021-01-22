@@ -18,14 +18,13 @@ const config = multisiteConfig.length ?
   [];
 
 /**
- * A utility function that replaces the `ROOT_URL` and `API_ROOT_URL` values
- * in the process.env object.
+ * Get config for a specific site/hostname.
+ *
  * @param {string} hostname - The hostname to search for.
- * @returns {object} env object, with site-specific values if available.
+ * @returns {object} site-specific config object.
  */
-module.exports = (hostname = window.location.hostname) => {
-  const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
-  const hostConfig = config.find(
+module.exports.getSiteConfig = (hostname = window.location.hostname) => (
+  config.find(
     (site) => {
       const { domain } = site;
       if (Array.isArray(domain)) {
@@ -34,9 +33,20 @@ module.exports = (hostname = window.location.hostname) => {
 
       return domain === hostname;
     }
-  );
+  )
+);
 
-  if (! hostConfig) {
+/**
+ * A utility function that replaces the `ROOT_URL` and `API_ROOT_URL` values
+ * in the process.env object.
+ * @param {string} hostname - The hostname to search for.
+ * @returns {object} env object, with site-specific values if available.
+ */
+module.exports.getEnv = (hostname = window.location.hostname) => {
+  const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
+  const siteConfig = getSiteConfig(hostname);
+
+  if (! siteConfig) {
     return env;
   }
 

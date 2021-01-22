@@ -3,7 +3,7 @@ const cors = require('cors');
 const purgeCache = require('./purgeCache');
 const getCacheKeys = require('./getCacheKeys');
 const createCheckAuth = require('./auth');
-const getEnv = require('../config/irving/getEnv');
+const { getEnv } = require('../config/irving/multisite');
 
 // Necessary to wrap this to get the request (and hostname) in scope.
 const corsMiddleware = (req, res, next) => {

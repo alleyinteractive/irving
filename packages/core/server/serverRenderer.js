@@ -15,7 +15,7 @@ import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
 import createClientEnv from 'config/irving/createClientEnv';
-import getEnv from 'config/irving/getEnv';
+import { getEnv } from 'config/irving/multisite';
 import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
