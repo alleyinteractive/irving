@@ -2,17 +2,17 @@ import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import getLogService from '@irvingjs/services/logService';
-// import usePollForNode from './usePollForNode';
 import useGadgetScript from './useGadgetScript';
 import PicoObserver from './observer';
 // Pico.
 import {
   actionPicoLoaded,
+  actionPicoReady,
   actionUpdatePicoPageInfo,
 } from '../../actions/picoActions';
 import {
   picoLoadedSelector,
-  picoScriptAddedSelector,
+  picoReadySelector,
 } from '../../selectors/picoSelector';
 // Utility functions.
 import {
@@ -47,35 +47,29 @@ const Pico = (props) => {
   // Create the dispatch function.
   const dispatch = useDispatch();
 
-  // Create a function that dispatches the current page info for the saga to respond to.
-  const dispatchUpdatePicoPageInfo = useCallback(
-    (payload) => {
-      // Trigger the page visit with Pico.
-      const pollForFn = setInterval(() => {
-        if ('function' === typeof window.pico) {
-          // Prevent future polling events.
-          clearInterval(pollForFn);
-          // Trigger the visit.
-          window.pico('visit', payload);
-        }
-      }, 250);
-
-      return dispatch(actionUpdatePicoPageInfo(payload));
-    },
+  // Create a function that updates the store when the `pico-init` event is fired.
+  const dispatchPicoLoaded = useCallback(
+    () => dispatch(actionPicoLoaded()),
     [dispatch]
   );
 
   // Create a function that updates the store when the `pico.ready` event is fired.
-  const dispatchPicoLoaded = useCallback(
-    () => dispatch(actionPicoLoaded()),
+  const dispatchPicoReady = useCallback(
+    () => dispatch(actionPicoReady()),
+    [dispatch]
+  );
+
+  // Create a function that dispatches the current page info for the saga to respond to.
+  const dispatchUpdatePicoPageInfo = useCallback(
+    (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
     [dispatch]
   );
 
   // Grab the `loaded` value from the `pico` branch of the state tree.
   const picoLoaded = useSelector(picoLoadedSelector);
 
-  // Grab the `scriptAdded` value from the `pico` branch of the state tree.
-  const picoScriptAdded = useSelector(picoScriptAddedSelector);
+  // Grab the `ready` value from the `pico` branch of the state tree.
+  const picoReady = useSelector(picoReadySelector);
 
   // Add listeners for Pico events.
   useEffect(() => {
@@ -87,7 +81,7 @@ const Pico = (props) => {
 
     const readyHandler = async () => {
       log.info('Pico: Running ready handler.');
-      dispatchPicoLoaded();
+      dispatchPicoReady();
     };
 
     log.info('Pico: Event listeners added.');
@@ -101,7 +95,7 @@ const Pico = (props) => {
       document.removeEventListener('pico-init', loadHandler);
       document.removeEventListener('pico.ready', readyHandler);
     };
-  }, [picoScriptAdded]);
+  }, []);
 
   // Mount our Pico Signal nodes into the DOM.
   useEffect(() => {
@@ -116,7 +110,7 @@ const Pico = (props) => {
   useEffect(() => {
     if (picoLoaded) {
       log.info('Pico: Dispatching page visit.');
-      // Dispatch the initial visit to trigger the `pico.loaded` event.
+      // Dispatch the initial visit to trigger the `pico-init` event.
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
   }, [picoLoaded, picoPageInfo.url]);
@@ -124,16 +118,11 @@ const Pico = (props) => {
   // Inject the gadget script into the DOM.
   useGadgetScript(gadgetUrl, publisherId);
 
-  if (picoScriptAdded) {
-    // Inject the Pico Signal into the DOM.
-    log.info('Pico: Returning observer component.');
-
-    return (
-      <PicoObserver tiers={tiers} />
-    );
-  }
-
-  return null;
+  // Inject the Pico Signal into the DOM.
+  log.info('Pico: Returning observer component.');
+  return (
+    picoReady ? <PicoObserver tiers={tiers} /> : null
+  );
 };
 
 Pico.defaultProps = {

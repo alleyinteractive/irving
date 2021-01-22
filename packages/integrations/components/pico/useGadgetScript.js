@@ -9,11 +9,13 @@ const log = getLogService('irving:pico');
 
 export default function useGadgetScript(gadgetUrl, publisherId) {
   const dispatch = useDispatch();
+
   // Create a function that updates the store whenever the script is added.
   const dispatchPicoScriptAdded = useCallback(
     () => dispatch(actionPicoScriptAdded()),
     [dispatch]
   );
+
   // Grab the `scriptAdded` value from the `pico` branch of the state tree.
   const picoScriptAdded = useSelector(picoScriptAddedSelector);
 
@@ -37,5 +39,5 @@ export default function useGadgetScript(gadgetUrl, publisherId) {
       // Update the store when the script has been added into the DOM.
       dispatchPicoScriptAdded();
     }
-  }, [picoScriptAdded]);
+  }, []);
 }
