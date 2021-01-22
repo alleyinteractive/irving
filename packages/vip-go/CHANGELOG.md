@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.22](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v5.4.0-alpha.21...v5.4.0-alpha.22) (2021-01-22)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
 # [5.4.0-alpha.21](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v5.4.0-alpha.20...v5.4.0-alpha.21) (2021-01-22)
 
 **Note:** Version bump only for package @irvingjs/vip-go
