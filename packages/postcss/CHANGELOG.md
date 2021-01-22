@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.18](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.0-alpha.17...v5.4.0-alpha.18) (2021-01-22)
+
+**Note:** Version bump only for package @irvingjs/postcss
+
+
+
+
+
 # [5.4.0-alpha.17](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.0-alpha.16...v5.4.0-alpha.17) (2021-01-21)
 
 **Note:** Version bump only for package @irvingjs/postcss

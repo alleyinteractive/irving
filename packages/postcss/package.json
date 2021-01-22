@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/postcss",
-  "version": "5.4.0-alpha.17",
+  "version": "5.4.0-alpha.18",
   "description": "PostCSS configuration functionality for Irving",
   "files": [
     "config/**/*",
@@ -15,10 +15,10 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "^9.7.6",
-    "postcss-loader": "^3.0.0",
-    "stylelint": "^13.3.3",
-    "stylelint-order": "^4.0.0"
+    "autoprefixer": "~9.7.6",
+    "postcss-loader": "~3.0.0",
+    "stylelint": "~13.3.3",
+    "stylelint-order": "~4.0.0"
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "~5.4.0-alpha.0",

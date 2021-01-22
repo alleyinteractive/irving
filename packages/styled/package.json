@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/styled",
-  "version": "5.4.0-alpha.17",
+  "version": "5.4.0-alpha.18",
   "description": "Integration for React components with attached styles for Irving",
   "files": [
     "server/**/*",
@@ -26,17 +26,17 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "babel-plugin-styled-components": "^1.10.7",
-    "classnames": "^2.2.6",
-    "lodash": "^4.17.15",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "styled-components": "^5.2.1",
-    "stylelint": "^13.3.3",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-custom-processor-loader": "^0.6.0",
-    "stylelint-order": "^4.0.0",
-    "stylelint-processor-styled-components": "^1.10.0"
+    "babel-plugin-styled-components": "~1.10.7",
+    "classnames": "~2.2.6",
+    "lodash": "~4.17.15",
+    "react": "~16.13.1",
+    "react-dom": "~16.13.1",
+    "styled-components": "~5.2.1",
+    "stylelint": "~13.3.3",
+    "stylelint-config-styled-components": "~0.1.1",
+    "stylelint-custom-processor-loader": "~0.6.0",
+    "stylelint-order": "~4.0.0",
+    "stylelint-processor-styled-components": "~1.10.0"
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "~5.4.0-alpha.0",
