@@ -1,13 +1,13 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import ThemeContext from './themeContext';
 import withThemes from './withThemes';
 
 describe('withThemes', () => {
   const ThemeableComponent = ({ theme }) => (
     <div>
-      <span className={theme.testClass}>Foo</span>
-      <span className={theme.testClass2}>Bar</span>
+      <span data-testid={theme.testClass}>Foo</span>
+      <span data-testid={theme.testClass2}>Bar</span>
     </div>
   );
   const testThemes = {
@@ -28,47 +28,52 @@ describe('withThemes', () => {
   const ThemedComponentComposes = withThemes('Foo', testThemes, true)(ThemeableComponent);
 
   it('Should use the default theme if no theme is specified', () => {
-    const wrapper = mount(<ThemedComponent />);
-    expect(wrapper.contains([
-      <span className="default__testClass__01234">Foo</span>,
-      <span className="default__testClass2___ghjkl">Bar</span>,
-    ])).toBe(true);
+    render(<ThemedComponent />);
+
+    const el1 = screen.getByTestId('default__testClass__01234');
+    const el2 = screen.getByTestId('default__testClass2___ghjkl');
+
+    expect(el1.textContent).toBe('Foo');
+    expect(el2.textContent).toBe('Bar');
   });
 
   it('Should get a `contextThemes` value from context and provide the specified theme to the component as a prop', () => {
-    const wrapper = mount(
+    render(
       <ThemeContext.Provider value={{ Foo: 'theme1' }}>
         <ThemedComponent />
       </ThemeContext.Provider>
     );
-    expect(wrapper.contains([
-      <span className="theme1__testClass__12345">Foo</span>,
-      <span className="theme1__testClass2___asdfg">Bar</span>,
-    ])).toBe(true);
+    const el1 = screen.getByTestId('theme1__testClass__12345');
+    const el2 = screen.getByTestId('theme1__testClass2___asdfg');
+
+    expect(el1.textContent).toBe('Foo');
+    expect(el2.textContent).toBe('Bar');
   });
 
   it('Should render a component with a theme provided directly to the `themeName` prop', () => {
-    const wrapper = mount(
-      <ThemedComponent themeName="theme2" />
-    );
-    expect(wrapper.contains([
-      <span className="theme2__testClass__34567">Foo</span>,
-      <span className="theme2__testClass2___qwert">Bar</span>,
-    ])).toBe(true);
+    render(<ThemedComponent themeName="theme2" />);
+    const el1 = screen.getByTestId('theme2__testClass__34567');
+    const el2 = screen.getByTestId('theme2__testClass2___qwert');
+
+    expect(el1.textContent).toBe('Foo');
+    expect(el2.textContent).toBe('Bar');
   });
 
   it('Should combine classNames of provided theme and default if `composes` is set to `true`', () => {
-    const wrapper = mount(
-      <ThemedComponentComposes themeName="theme1" />
+    render(<ThemedComponentComposes themeName="theme1" />);
+    const el1 = screen.getByTestId(
+      'default__testClass__01234 theme1__testClass__12345'
     );
-    expect(wrapper.contains([
-      <span className="default__testClass__01234 theme1__testClass__12345">Foo</span>,
-      <span className="default__testClass2___ghjkl theme1__testClass2___asdfg">Bar</span>,
-    ])).toBe(true);
+    const el2 = screen.getByTestId(
+      'default__testClass2___ghjkl theme1__testClass2___asdfg'
+    );
+
+    expect(el1.textContent).toBe('Foo');
+    expect(el2.textContent).toBe('Bar');
   });
 
   it('Should utilize a theme provided directly via a `theme` prop first instead of any theme derived from context or `themeName`', () => {
-    const wrapper = mount(
+    render(
       <ThemedComponent
         themeName="theme1"
         theme={{
@@ -77,9 +82,10 @@ describe('withThemes', () => {
         }}
       />
     );
-    expect(wrapper.contains([
-      <span className="default__testClass__56789">Foo</span>,
-      <span className="default__testClass2___lalala">Bar</span>,
-    ])).toBe(true);
+    const el1 = screen.getByTestId('default__testClass__56789');
+    const el2 = screen.getByTestId('default__testClass2___lalala');
+
+    expect(el1.textContent).toBe('Foo');
+    expect(el2.textContent).toBe('Bar');
   });
 });

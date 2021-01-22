@@ -26,19 +26,18 @@
   "dependencies": {
     "@irvingjs/styled": "^5.4.0-alpha.18",
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^16.13.1"
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
-    "@irvingjs/core": "^5.4.0-alpha.18",
+    "@irvingjs/core": "^5.4.0-alpha.16",
     "babel-loader": "^8.1.0",
-    "jest": "^25.5.3",
+    "jest": "^26.6.3",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
   "peerDependencies": {
-    "@irvingjs/core": ">=2.0.0"
+    "@irvingjs/core": ">=5.0.0"
   },
   "publishConfig": {
     "access": "public"
