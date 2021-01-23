@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.23](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.22...v5.4.0-alpha.23) (2021-01-23)
+
+
+### Bug Fixes
+
+* **cli:** fix link-all command ([4297973](https://github.com/alleyinteractive/irving/packages/core/commit/42979730d64d266e1291c5de2abbf757de2c8a2d))
+
+
+
+
+
 # [5.4.0-alpha.22](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.21...v5.4.0-alpha.22) (2021-01-22)
 
 **Note:** Version bump only for package @irvingjs/core
