@@ -29,6 +29,10 @@ program.command('dev')
     require('./dev');
   });
 
-program.command('link-all', 'npm link all Irving packages installed in your');
+program.command('link-all')
+  .description('npm link all Irving packages installed in your project')
+  .action(() => {
+    require('../cli/linkAll');
+  });
 
 program.parse(process.argv);
