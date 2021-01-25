@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import getLogService from '@irvingjs/services/logService';
+import useLoading from '@irvingjs/core/hooks/useLoading';
 import useGadgetScript from './useGadgetScript';
 import PicoObserver from './observer';
 // Pico.
@@ -65,6 +67,8 @@ const Pico = (props) => {
     [dispatch]
   );
 
+  const irvingIsLoading = useLoading();
+
   // Grab the `loaded` value from the `pico` branch of the state tree.
   const picoLoaded = useSelector(picoLoadedSelector);
 
@@ -108,12 +112,12 @@ const Pico = (props) => {
   // Mount an effect that triggers the initial visit once `picoLoaded` has
   // been set to true and only if `picoLoaded` has not been set to true yet.
   useEffect(() => {
-    if (picoLoaded) {
+    if (! irvingIsLoading && picoLoaded) {
       log.info('Pico: Dispatching page visit.');
       // Dispatch the initial visit to trigger the `pico-init` event.
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
-  }, [picoLoaded, picoPageInfo.url]);
+  }, [irvingIsLoading, picoLoaded, picoPageInfo.url]);
 
   // Inject the gadget script into the DOM.
   useGadgetScript(gadgetUrl, publisherId);
