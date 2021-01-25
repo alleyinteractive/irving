@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.24](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.23...v5.4.0-alpha.24) (2021-01-25)
+
+
+### Bug Fixes
+
+* **pico:** only update Pico page info after authorized requests finish ([0beca15](https://github.com/alleyinteractive/irving/commit/0beca1546a2da17699196fb48279bbe0305db116))
+
+
+
+
+
 # [5.4.0-alpha.23](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.22...v5.4.0-alpha.23) (2021-01-23)
 
 
