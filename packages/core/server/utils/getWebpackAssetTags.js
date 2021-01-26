@@ -44,7 +44,7 @@ export const createAssetTags = (assets, rootUrl) => {
  */
 const getWebpackAssetTags = (clientStats, hostname) => {
   const { assetsByChunkName: chunks } = clientStats;
-  const runtimeJsPath = chunks['runtime~main'];
+  const runtimeJsPath = chunks['runtime~main'] || chunks.runtime;
   const { ROOT_URL } = getEnv(hostname);
   let tags = [];
 

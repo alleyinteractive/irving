@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0-alpha.23](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.22...v5.4.0-alpha.23) (2021-01-23)
+
+
+### Bug Fixes
+
+* **cli:** fix link-all command ([4297973](https://github.com/alleyinteractive/irving/packages/core/commit/42979730d64d266e1291c5de2abbf757de2c8a2d))
+
+
+
+
+
+# [5.4.0-alpha.22](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.21...v5.4.0-alpha.22) (2021-01-22)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.4.0-alpha.21](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.20...v5.4.0-alpha.21) (2021-01-22)
+
+
+### Bug Fixes
+
+* **runtime:** add fallback of chunks.runtime to make sure runtime is loaded without loadable ([3ebfb84](https://github.com/alleyinteractive/irving/packages/core/commit/3ebfb845fd4164d8e276fe4e7ca55496196e4d58))
+
+
+
+
+
+# [5.4.0-alpha.19](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.18...v5.4.0-alpha.19) (2021-01-22)
+
+
+### Bug Fixes
+
+* **audit:** further audit fixes ([255c6cf](https://github.com/alleyinteractive/irving/packages/core/commit/255c6cfac79437c396b16c893376fa4fdbfe0789))
+* **deps:** switch back to carets but leave .npmrc files so all future installs are tilde ([1ba0fc0](https://github.com/alleyinteractive/irving/packages/core/commit/1ba0fc076d90a4cc038158a058b641cd9043cd9a))
+* **deps:** update jest, sync ([e0e95fc](https://github.com/alleyinteractive/irving/packages/core/commit/e0e95fc6475b987bd6a7156673e2eaf2512939aa))
+* **deps:** update locks again ([9277062](https://github.com/alleyinteractive/irving/packages/core/commit/9277062f96e6b4953eef0723fafe3376817701ec))
+* **versions:** fix mismatched react versions ([4c001aa](https://github.com/alleyinteractive/irving/packages/core/commit/4c001aa57baf56423a7e6daa539c0d9d6f513a06))
+* **versions:** switch to using tildes everywhere ([9e81488](https://github.com/alleyinteractive/irving/packages/core/commit/9e8148880a70ac87fac00fcb283948643dcae042))
+
+
+
+
+
+# [5.4.0-alpha.18](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.17...v5.4.0-alpha.18) (2021-01-22)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
 # [5.4.0-alpha.17](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.0-alpha.16...v5.4.0-alpha.17) (2021-01-21)
 
 **Note:** Version bump only for package @irvingjs/core

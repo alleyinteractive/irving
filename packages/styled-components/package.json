@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/styled-components",
-  "version": "5.4.0-alpha.17",
+  "version": "5.4.0-alpha.23",
   "description": "Integration for React components with attached styles for Irving",
   "files": [
     "components/**/*",
@@ -23,7 +23,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@irvingjs/styled": "^5.4.0-alpha.17",
+    "@irvingjs/styled": "^5.4.0-alpha.23",
     "@wordpress/i18n": "^3.10.0",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
@@ -35,15 +35,15 @@
     "styled-css-grid": "^1.2.1"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
-    "@irvingjs/core": "^5.4.0-alpha.17",
+    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.19",
+    "@irvingjs/core": "^5.4.0-alpha.23",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.2",
     "babel-plugin-module-resolver": "^4.0.0",
-    "jest": "^25.5.3"
+    "jest": "^26.6.3"
   },
   "peerDependencies": {
-    "@irvingjs/core": ">=2.0.0"
+    "@irvingjs/core": ">=5.0.0"
   },
   "publishConfig": {
     "access": "public"

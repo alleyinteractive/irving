@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "5.4.0-alpha.17",
+  "version": "5.4.0-alpha.23",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -43,7 +43,7 @@
   "dependencies": {
     "@babel/core": "^7.10.4",
     "@hot-loader/react-dom": "^16.13.0",
-    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
+    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.19",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.2",
     "@svgr/webpack": "^5.4.0",
     "abort-controller": "^3.0.0",
@@ -84,7 +84,6 @@
     "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-dev-utils": "^10.2.1",
-    "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
     "react-redux": "^7.2.0",
     "react-refresh": "^0.8.3",
@@ -128,7 +127,7 @@
   },
   "gitHead": "a855ce1255df9c35b5cd049e4c2d65b8665982dd",
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^2.7.0",
+    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.2",
     "babel-jest": "^25.5.1",
@@ -136,7 +135,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "fetch-mock": "^7.7.3",
     "ioredis-mock": "^4.19.0",
-    "jest": "^25.5.3",
+    "jest": "^26.6.3",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "mock-fs": "^4.12.0",

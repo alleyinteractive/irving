@@ -9,7 +9,8 @@
     "dart-sass": "^1.25.0",
     "eleventy-plugin-svg-contents": "^0.7.0",
     "postcss": "^8.1.2",
-    "postcss-units": "^1.2.1"
+    "postcss-units": "^1.2.1",
+    "surge": "^0.21.7"
   },
   "repository": {
     "type": "git",
