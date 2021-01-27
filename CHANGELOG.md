@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.4.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.4.0...v5.4.1-alpha.0) (2021-01-27)
+
+
+### Bug Fixes
+
+* **deps:** add syncpack ([03235e7](https://github.com/alleyinteractive/irving/commit/03235e756af5fee22c68baac7be9bd490173873d))
+
+
+
+
+
 # [5.4.0](https://github.com/alleyinteractive/irving/compare/v5.4.0-beta.0...v5.4.0) (2021-01-27)
 
 **Note:** Version bump only for package irving

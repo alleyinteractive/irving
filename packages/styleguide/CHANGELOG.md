@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.4.1-alpha.0](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.4.0...v5.4.1-alpha.0) (2021-01-27)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
 # [5.4.0](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.4.0-beta.0...v5.4.0) (2021-01-27)
 
 **Note:** Version bump only for package @irvingjs/styleguide
