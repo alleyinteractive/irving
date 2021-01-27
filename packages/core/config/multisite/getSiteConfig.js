@@ -33,27 +33,7 @@ module.exports.getSiteConfig = (hostname = window.location.hostname) => (
 
       return domain === hostname;
     }
-  )
+  ) || {} // Return an empty object as a fallback/default.
 );
 
-/**
- * A utility function that replaces the `ROOT_URL` and `API_ROOT_URL` values
- * in the process.env object.
- * @param {string} hostname - The hostname to search for.
- * @returns {object} env object, with site-specific values if available.
- */
-module.exports.getEnv = (hostname = window.location.hostname) => {
-  const env = Object.keys(process.env).length ? process.env : window.__ENV__; // eslint-disable-line no-underscore-dangle
-  const siteConfig = getSiteConfig(hostname);
-
-  if (! siteConfig) {
-    return env;
-  }
-
-  const multisiteEnv = {
-    ...env,
-    ...config[hostIndex].env,
-  };
-
-  return multisiteEnv;
-};
+module.exports.multisiteConfig = config;

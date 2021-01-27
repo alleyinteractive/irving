@@ -1,5 +1,5 @@
 const { getValueFromConfig } = require('./getValueFromConfig');
-const { getEnv } = require('./multisite');
+const { getEnv } = require('../multisite');
 
 /**
  * Filter out env vars that are unsafe for rendering in the app.ejs template.

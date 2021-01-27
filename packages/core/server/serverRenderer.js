@@ -15,7 +15,7 @@ import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
 import createClientEnv from 'config/irving/createClientEnv';
-import { getEnv } from 'config/irving/multisite';
+import { getEnv, getSiteConfig } from 'config/multisite';
 import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
@@ -86,12 +86,16 @@ const render = async (req, res, clientStats) => {
     </Provider>
   );
 
+  // Get additional site-specific scripts and styles.
+  const { head: siteSpecificHead } = getSiteConfig(req.hostname);
+
   // Get some template vars and allow customization by user.
   const customTemplateVars = getTemplateVars(
     'getAppTemplateVars',
     {
       Wrapper: AppWrapper,
       head: {
+        ...siteSpecificHead,
         end: [getWebpackAssetTags(clientStats, req.hostname)],
       },
     },

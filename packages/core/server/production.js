@@ -4,7 +4,7 @@ const {
   clientBuild,
   serverBuild,
 } = require('../config/paths');
-const { getEnv } = require('../config/irving/multisite');
+const { getEnv } = require('../config/multisite');
 const path = require('path');
 const express = require('express');
 const createCheckAuth = require('./auth');

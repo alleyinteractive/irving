@@ -1,6 +1,6 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const proxyPassthrough = require('../config/proxyPassthrough');
-const { getEnv } = require('../config/irving/multisite');
+const { getEnv } = require('../config/multisite');
 
 // Set up a reusable proxy for responses that should be served directly.
 module.exports = (app) => {

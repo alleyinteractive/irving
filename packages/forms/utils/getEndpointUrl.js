@@ -1,4 +1,4 @@
-import getEnv from '@irvingjs/core/config/irving/getEnv';
+import getEnv from '@irvingjs/core/config/multisite/getEnv';
 
 const getEndpointUrl = (endpoint) => {
   const { API_ROOT_URL } = getEnv();

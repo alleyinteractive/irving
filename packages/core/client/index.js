@@ -16,7 +16,7 @@ import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
 import rootSaga from 'sagas';
 import history from 'utils/history';
-import { getEnv } from 'config/irving/multisite';
+import { getEnv } from 'config/multisite';
 import debug from 'debug';
 
 const env = getEnv();
