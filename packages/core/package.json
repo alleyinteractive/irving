@@ -47,6 +47,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.2",
     "@svgr/webpack": "^5.4.0",
     "abort-controller": "^3.0.0",
+    "axios": "~0.21.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
