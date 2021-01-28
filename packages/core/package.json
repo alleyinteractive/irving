@@ -127,7 +127,7 @@
   },
   "gitHead": "a855ce1255df9c35b5cd049e4c2d65b8665982dd",
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
+    "@irvingjs/babel-preset-irving": "^5.5.0-alpha.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.2",
     "babel-jest": "^25.5.1",
