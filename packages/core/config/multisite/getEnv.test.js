@@ -6,8 +6,8 @@ describe('getEnv', () => {
     expect(mergedEnv).toMatchObject({
       API_ROOT_URL: 'https://irving-multisite.test/api',
       ROOT_URL: 'https://multisite-one.irving.test',
-      BASIC_AUTH_USERNAME: 'alley',
-      BASIC_AUTH_PASSWORD: 'interactive',
+      BASIC_AUTH_USERNAME: 'user',
+      BASIC_AUTH_PASSWORD: 'pass',
       BASIC_AUTH: true,
     });
   });

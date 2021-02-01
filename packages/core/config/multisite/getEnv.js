@@ -8,7 +8,7 @@ const getEnv = require('../../utils/universalEnv');
  * @returns {object} env object, with site-specific values if available.
  */
 module.exports = (hostname = window.location.hostname) => {
-  const env = getEnv(); // eslint-disable-line no-underscore-dangle
+  const env = getEnv();
   const siteConfig = getSiteConfig(hostname);
 
   if (! siteConfig) {
