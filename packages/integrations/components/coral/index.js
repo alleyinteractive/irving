@@ -53,8 +53,8 @@ const CoralEmbed = ({
    *
    * @see https://stackoverflow.com/questions/49082844/how-could-firebase-send-a-jwt-token-which-payload-contains-an-underscore-charact
    *
-   * @param token str A base64url encoded JWT token.
-   * @returns string a JWT token with a base64 payload.
+   * @param string token A base64url encoded JWT token.
+   * @returns string A JWT token with a base64 payload.
    */
   const base64UrlDecodeJWTPayload = (token) => {
     // Split the token into parts so we can decode the payload.
