@@ -15,9 +15,10 @@ module.exports = (hostname = window.location.hostname) => {
     return env;
   }
 
+  const siteEnv = siteConfig.env || siteConfig.vars;
   const multisiteEnv = {
     ...env,
-    ...siteConfig.env,
+    ...siteEnv,
   };
 
   return multisiteEnv;

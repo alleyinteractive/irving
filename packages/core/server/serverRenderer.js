@@ -95,6 +95,7 @@ const render = async (req, res, clientStats) => {
     {
       Wrapper: AppWrapper,
       head: {
+        // @todo this should ultimately be merged fully via getTemplateVars.
         ...siteSpecificHead,
         end: [getWebpackAssetTags(clientStats, req.hostname)],
       },
