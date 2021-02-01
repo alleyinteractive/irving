@@ -43,6 +43,29 @@ const CoralEmbed = ({
   // https://reactjs.org/docs/hooks-rules.html
   const shouldPurgeUser = useSelector(purgeSelector);
 
+  /**
+   * Decode the payload of a JWT token so it becomes a base64 encoded string.
+   *
+   * This fixes an issue with the way Coral decodes JWT access token payloads
+   * using `atob()`, which assumes the string is base64. When URL safe string
+   * replacements for `+` and `/` are included, Coral will not be able to
+   * decode the string properly and fail to log in the user.
+   *
+   * @see https://stackoverflow.com/questions/49082844/how-could-firebase-send-a-jwt-token-which-payload-contains-an-underscore-charact
+   *
+   * @param string token A base64url encoded JWT token.
+   * @returns string A JWT token with a base64 payload.
+   */
+  const base64UrlDecodeJWTPayload = (token) => {
+    // Split the token into parts so we can decode the payload.
+    const parts = token.split('.');
+
+    // Replace URL encoded characters with the expected base64 alternatives.
+    parts[1] = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+
+    return parts.join('.');
+  };
+
   useEffect(() => {
     if (window.Coral) {
       embed = window.Coral.createStreamEmbed({
@@ -54,7 +77,7 @@ const CoralEmbed = ({
 
       if (accessToken) {
         // Login the user if an access token exists.
-        embed.login(accessToken);
+        embed.login(base64UrlDecodeJWTPayload(accessToken));
         // Register the login in the state tree.
         dispatchLogin();
       }
