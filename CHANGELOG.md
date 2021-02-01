@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v5.5.0-alpha.0...v5.5.0-alpha.1) (2021-01-28)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.5.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.4.1-alpha.0...v5.5.0-alpha.0) (2021-01-27)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.4.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.4.0...v5.4.1-alpha.0) (2021-01-27)
+
+
+### Bug Fixes
+
+* **deps:** add syncpack ([03235e7](https://github.com/alleyinteractive/irving/commit/03235e756af5fee22c68baac7be9bd490173873d))
+
+
+
+
+
+# [5.4.0](https://github.com/alleyinteractive/irving/compare/v5.4.0-beta.0...v5.4.0) (2021-01-27)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [5.4.0-beta.0](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.24...v5.4.0-beta.0) (2021-01-25)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
 # [5.4.0-alpha.24](https://github.com/alleyinteractive/irving/compare/v5.4.0-alpha.23...v5.4.0-alpha.24) (2021-01-25)
 
 
@@ -263,11 +306,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
 
-
+**Note:** Version bump only for package irving
 
 # [5.3.0-alpha.23](https://github.com/alleyinteractive/irving/compare/v5.3.0...v5.3.0-alpha.23) (2020-12-17)
 
-
+**Note:** Version bump only for package irving
 
 # [5.3.0-alpha.22](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.21...v5.3.0-alpha.22) (2020-12-17)
 
@@ -308,7 +351,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [5.4.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.23...v5.4.0-alpha.0) (2020-12-17)
 
-
+**Note:** Version bump only for package irving
 
 # [5.3.0](https://github.com/alleyinteractive/irving/compare/v5.3.0-alpha.22...v5.3.0) (2020-12-17)
 
