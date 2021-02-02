@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.3...v5.5.0-alpha.4) (2021-02-02)
+
+
+### Bug Fixes
+
+* **html.js:** add back iframe and time tag support ([5384dba](https://github.com/alleyinteractive/irving/packages/core/commit/5384dba789a8249c88fafdab2d8439be9fe00160))
+
+
+
+
+
 # [5.5.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.2...v5.5.0-alpha.3) (2021-02-02)
 
 
