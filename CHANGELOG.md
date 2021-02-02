@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.4.1-rc.0](https://github.com/alleyinteractive/irving/compare/v5.4.0...v5.4.1-rc.0) (2021-02-02)
+
+
+### Bug Fixes
+
+* **integrations:** fix Coral login error when JWT fails ([a415778](https://github.com/alleyinteractive/irving/commit/a415778b7cae9db4e5f55b84ca1dcb2e65b7f106)), closes [#457](https://github.com/alleyinteractive/irving/issues/457)
+
+
+
+
+
 # [5.4.0](https://github.com/alleyinteractive/irving/compare/v5.4.0-beta.0...v5.4.0) (2021-01-27)
 
 **Note:** Version bump only for package irving
