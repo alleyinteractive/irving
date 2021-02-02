@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.1...v5.5.0-alpha.2) (2021-02-01)
+
+
+### Bug Fixes
+
+* **integrations:** fix Coral login error when JWT fails ([cee314b](https://github.com/alleyinteractive/irving/packages/integrations/commit/cee314b3c04d0467f78cf9eb45dd2898a58912c9))
+
+
+
+
+
 # [5.5.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.0...v5.5.0-alpha.1) (2021-01-28)
 
 **Note:** Version bump only for package @irvingjs/integrations
