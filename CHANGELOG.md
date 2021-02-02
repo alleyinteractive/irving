@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v5.5.0-alpha.2...v5.5.0-alpha.3) (2021-02-02)
+
+
+### Features
+
+* **multisite:** allow configuring entry points, head fields in multisite.config.js ([1f18eca](https://github.com/alleyinteractive/irving/commit/1f18eca2fdc73a2fe6300c5adf6377a51526fedf))
+* **multisite:** begin updating multisite setup ([a7f3e85](https://github.com/alleyinteractive/irving/commit/a7f3e857de3c10fe2c56553500b06718247fafdb))
+
+
+
+
+
 # [5.5.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v5.5.0-alpha.1...v5.5.0-alpha.2) (2021-02-01)
 
 
