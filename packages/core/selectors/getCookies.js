@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import pick from 'lodash/fp/pick';
 import get from 'lodash/fp/get';
-import getEnv from 'config/irving/getEnv';
+import { getEnv } from 'config/multisite';
 import defaultCookies from 'config/defaultCookies';
 
 /**

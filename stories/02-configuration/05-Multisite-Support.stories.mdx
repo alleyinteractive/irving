@@ -17,14 +17,14 @@ The `multisite.config.js` file should be created alongside the main `irving.conf
 const config = [
   {
     domain: 'test-site.example.com',
-    vars: {
+    env: {
       API_ROOT_URL: 'https://test-site-api.example.com/wp-json/irving/v1',
       ROOT_URL: 'https://test-site.example.com',
     },
   },
   {
     domain: 'another-site.example.com',
-    vars: {
+    env: {
       API_ROOT_URL: 'https://another-site-api.example.com/wp-json/irving/v1',
       ROOT_URL: 'https://another-site.example.com',
     },

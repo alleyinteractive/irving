@@ -5,6 +5,7 @@ const {
   clientRoot,
   proxyUrl,
 } = require('../paths');
+const { getEntries } = require('../multisite');
 
 /**
  * Get the context specific entry configuration.
@@ -42,6 +43,7 @@ module.exports = function getEntry(context) {
           ...clientPolyfills,
           clientRoot,
         ],
+        ...getEntries(),
       };
 
     case 'development_client': {
@@ -56,6 +58,7 @@ module.exports = function getEntry(context) {
           `webpack-hot-middleware/client?${queryString}`,
           clientRoot,
         ],
+        ...getEntries(),
       };
     }
 

@@ -1,6 +1,6 @@
 const omit = require('lodash/fp/omit');
 const queryString = require('query-string');
-const getEnv = require('../../config/irving/getEnv');
+const { getEnv } = require('../../config/multisite');
 const { CONTEXT_PAGE } = require('../../config/constants');
 const defaultCookies = require('../../config/defaultCookies');
 const getExtraQueryParams = require('./getExtraQueryParams');

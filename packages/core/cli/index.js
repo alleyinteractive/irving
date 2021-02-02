@@ -32,7 +32,7 @@ program.command('dev')
 program.command('link-all')
   .description('npm link all Irving packages installed in your project')
   .action(() => {
-    require('../cli/linkAll');
+    require('./linkAll');
   });
 
 program.parse(process.argv);

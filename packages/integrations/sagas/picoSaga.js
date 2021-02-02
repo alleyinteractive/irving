@@ -4,7 +4,7 @@ import {
   takeLatest,
   takeEvery,
 } from 'redux-saga/effects';
-import getEnv from '@irvingjs/core/config/irving/getEnv';
+import getEnv from '@irvingjs/core/config/multisite/getEnv';
 import getLogService from '@irvingjs/services/logService';
 import {
   SEND_PICO_VERIFICATION_REQUEST,
