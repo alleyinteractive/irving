@@ -33,22 +33,27 @@ const getValFromFunction = (val, ...args) => (
 );
 
 /**
- * Reducer function to convert the values of a `head` config object into strings.
+ * Reducer function to convert the values of a `head` config object into arrays of strings.
  *
  * For example, if one value in the object was an array of <script> tags,
  * these tags would be concatenated into a single string in preparation for rendering in the app.ejs template.
  *
- * @param {string} config Current head configuration
- * @param {object} key Key to convert into a string
+ * @param {object} config Current head configuration
+ * @param {string} key Key to convert into an array
  * @return {object}
  */
-const stringifyHeadConfig = (config, key) => {
+const normalizeHeadConfig = (config, key) => {
   let value = getValFromFunction(config[key]);
 
   // If val is an array or above function returns an array, map through it.
   if (Array.isArray(value)) {
     // Call any functions in this array (they should return strings)
-    value = value.map((curr) => getValFromFunction(curr)).join('');
+    value = value.map((curr) => getValFromFunction(curr));
+  } else {
+    // Call `toString` on non-array values.
+    // If it's a string, this will do nothing, and if it's from Helmet it'll convert it to a string.
+    // If it's an object of some other type well...it shouldn't be.
+    value = [value.toString()];
   }
 
   // Merge in newly stringified value.
@@ -141,7 +146,7 @@ export default function getTemplateVars(
   ].concat(headConfigs).map((config) => {
     const headObject = getValFromFunction(config);
     // Reduce through each value in the head object and turn it into a string.
-    return Object.keys(headObject).reduce(stringifyHeadConfig, headObject);
+    return Object.keys(headObject).reduce(normalizeHeadConfig, headObject);
   }, {});
 
   const mergedHead = {};
@@ -154,6 +159,10 @@ export default function getTemplateVars(
       .join('');
   }
   /* eslint-enable */
+
+  // console.log(stringifiedConfigs.map((config) => (
+  //   omit(['end'], config)
+  // )));
 
   return {
     ...mergedVars,

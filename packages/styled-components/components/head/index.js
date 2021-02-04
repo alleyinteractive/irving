@@ -8,7 +8,13 @@ const Head = (props) => {
   } = props;
 
   return (
-    <Helmet>
+    <Helmet
+      onChangeClientState={
+        (newState, addedTags, removedTags) => (
+          console.log(newState, addedTags, removedTags)
+        )
+      }
+    >
       {children.map((child) => {
         const {
           type,

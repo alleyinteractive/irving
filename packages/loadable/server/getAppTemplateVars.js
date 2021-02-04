@@ -1,17 +1,17 @@
 import React from 'react';
 
 /* eslint-disable global-require, import/no-dynamic-require */
-export default function getAppTemplateVars(templateVars) {
+export default function getAppTemplateVars(templateVars, clientStats) {
   if (
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {
-    const path = require('path');
-    const { clientBuild } = require('@irvingjs/core/config/paths');
-    const statsFile = path.resolve(clientBuild, './loadable-stats.json');
+    // const path = require('path');
+    // const { clientBuild } = require('@irvingjs/core/config/paths');
+    // const statsFile = path.resolve(clientBuild, './loadable-stats.json');
     const { Wrapper } = templateVars;
     const { ChunkExtractor } = require('@loadable/server');
-    const extractor = new ChunkExtractor({ statsFile });
+    const extractor = new ChunkExtractor({ stats: clientStats });
 
     return {
       Wrapper: () => extractor.collectChunks(<Wrapper />),
