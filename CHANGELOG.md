@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.4.1-rc.2](https://github.com/alleyinteractive/irving/compare/v5.4.1-rc.1...v5.4.1-rc.2) (2021-02-04)
+
+
+### Reverts
+
+* **pico:** revert update Pico page info after autorized requests finish ([654474e](https://github.com/alleyinteractive/irving/commit/654474e1421c49efc3a0b06e2ea7d3a5fe0c7d83)), closes [#454](https://github.com/alleyinteractive/irving/issues/454)
+* **pico:** revert update the Pico integration to support Pico Gadget ([807dd33](https://github.com/alleyinteractive/irving/commit/807dd3393c88a837ae65819b27ab1ee8e39395f5)), closes [#451](https://github.com/alleyinteractive/irving/issues/451)
+
+
+
+
+
 ## [5.4.1-rc.1](https://github.com/alleyinteractive/irving/compare/v5.4.1-rc.0...v5.4.1-rc.1) (2021-02-02)
 
 
