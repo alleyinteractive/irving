@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.4...v5.5.0-alpha.5) (2021-02-04)
+
+
+### Bug Fixes
+
+* **sanitize:** add mjs extension to file-loader excludes ([667f7d5](https://github.com/alleyinteractive/irving/packages/core/commit/667f7d5b7a42e8559767654fdb4ac94597d53c43))
+
+
+
+
+
 # [5.5.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.3...v5.5.0-alpha.4) (2021-02-02)
 
 
