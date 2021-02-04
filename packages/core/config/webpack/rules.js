@@ -58,7 +58,7 @@ module.exports = function getRules(context) {
     {
       exclude: [
         /\.html$/,
-        /\.(js|jsx)$/,
+        /\.(js|jsx|mjs)$/,
         /\.css$/,
         /\.json$/,
         /\.bmp$/,

@@ -25,7 +25,7 @@
     "develop:link": "lerna exec --stream -- npm link",
     "develop:install": "npm install && lerna exec --stream -- npm install",
     "develop:prepare": "npm install && npm run develop:link && npm run develop:setup",
-    "develop:setup": "npm run develop:cleanup && npm run develop:bootstrap",
+    "develop:setup": "npm run develop:cleanup && npm install && npm run develop:bootstrap",
     "test": "BABEL_ENV=test lerna run test --parallel",
     "test:watch": "BABEL_ENV=test lerna run test:watch --parallel",
     "storybook": "WEBPACK_BUILD=true start-storybook -s ./stories/public -p 6006",
