@@ -24,7 +24,7 @@
     "develop:cleanup": "lerna exec --parallel -- \"rm -rf node_modules\"",
     "develop:link": "lerna exec --parallel -- npm link",
     "develop:prepare": "npm install && npm run develop:link && npm run develop:setup",
-    "develop:setup": "npm run develop:cleanup && npm run develop:bootstrap",
+    "develop:setup": "npm run develop:cleanup && npm install && npm run develop:bootstrap",
     "test": "BABEL_ENV=test lerna run test --parallel",
     "test:watch": "BABEL_ENV=test lerna run test:watch --parallel",
     "storybook": "WEBPACK_BUILD=true start-storybook -s ./stories/public -p 6006",
