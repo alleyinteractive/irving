@@ -1,7 +1,6 @@
 import { createAction } from '@irvingjs/core/actions';
 import {
   PICO_LOADED,
-  PICO_READY,
   PICO_SCRIPT_ADDED,
   RECEIVE_PICO_PLAN_UPGRADE,
   RECEIVE_PICO_VERIFICATION_FAILURE,
@@ -12,19 +11,11 @@ import {
 } from './types';
 
 /**
- * Create an action that updates the store when Pico has initialized.
+ * Create an action that updates the store when Pico has loaded.
  * @returns {{type, payload}} The Redux action.
  */
 export function actionPicoLoaded() {
   return createAction(PICO_LOADED);
-}
-
-/**
- * Create an action that updates the store when Pico is ready.
- * @returns {{type, payload}} The Redux action.
- */
-export function actionPicoReady() {
-  return createAction(PICO_READY);
 }
 
 /**

@@ -2,15 +2,12 @@ import {
   call,
   put,
   takeLatest,
-  takeEvery,
 } from 'redux-saga/effects';
 import getEnv from '@irvingjs/core/config/irving/getEnv';
-import getLogService from '@irvingjs/services/logService';
 import {
   SEND_PICO_VERIFICATION_REQUEST,
   SET_CORAL_USERNAME,
   UPDATE_PICO_SIGNAL,
-  UPDATE_PICO_PAGE_INFO,
 } from '../actions/types';
 import { actionReceivePicoVerificationFailure } from '../actions/picoActions';
 import {
@@ -20,14 +17,11 @@ import {
   actionReceiveCoralUsernameSetHash,
 } from '../actions/coralActions';
 
-const log = getLogService('irving:integrations:pico');
-
 // The Pico saga.
 export default [
   takeLatest(SEND_PICO_VERIFICATION_REQUEST, verifyPicoCoralUser),
   takeLatest(SET_CORAL_USERNAME, trackSetCoralUsername),
   takeLatest(UPDATE_PICO_SIGNAL, trackUpdatePicoSignal),
-  takeEvery(UPDATE_PICO_PAGE_INFO, trackUpdatePageInfo),
 ];
 
 /**
@@ -84,7 +78,7 @@ async function sendVerificationRequest(payload) {
     return response;
   } catch (error) {
     // Log the error to the developer console.
-    log.error(
+    console.error(
       'There was an error trying to verify the Pico user credentials: ',
       error
     );
@@ -116,18 +110,4 @@ function trackUpdatePicoSignal(signal) {
     event: 'irving.updatePicoSignal',
     picoSignal: signal.payload ?? {},
   });
-}
-
-/**
- * Send pageInfo updates to Pico on each page visit.
- *
- * @param object payload Pico pageInfo object.
- */
-function trackUpdatePageInfo({ payload }) {
-  // Trigger the page visit with Pico.
-  try {
-    window.pico('visit', payload);
-  } catch (error) {
-    log.error(error);
-  }
 }
