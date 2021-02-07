@@ -42,8 +42,13 @@ ConnectedProvider.propTypes = {
 const createMapStateToProps = () => {
   const getProviderConfig = createGetProviderConfig();
   return function mapStateToProps(state, props) {
+    const {
+      config,
+      children: apiChildren = [],
+    } = getProviderConfig(state, props);
     return {
-      config: getProviderConfig(state, props),
+      config,
+      children: apiChildren.concat(props.children),
     };
   };
 };
