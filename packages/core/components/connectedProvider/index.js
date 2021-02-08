@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import createGetProviderConfig from 'selectors/createGetProviderConfig';
 import toProvider from 'utils/toProvider';
+import toReactElement from 'utils/toReactElement';
 
 const ConnectedProvider = (props) => {
   const {
@@ -48,7 +49,9 @@ const createMapStateToProps = () => {
     } = getProviderConfig(state, props);
     return {
       config,
-      children: apiChildren.concat(props.children),
+      children: apiChildren
+        .map(toReactElement)
+        .concat(props.children),
     };
   };
 };

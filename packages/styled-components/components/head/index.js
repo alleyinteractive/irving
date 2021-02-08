@@ -16,36 +16,34 @@ const Head = (props) => {
     'html',
   ];
   const otherChildren = children.filter(
-    ({ name }) => ! validTypes.includes(name)
+    ({ type }) => ! validTypes.includes(type)
   );
   const helmetChildren = children
-    .filter(({ name }) => validTypes.includes(name))
+    .filter(({ type }) => validTypes.includes(type))
     .map((child) => {
+      const { type, props: childProps } = child;
       const {
-        name,
         children: tagContent,
         config,
-      } = child;
+      } = childProps;
 
       if (
-        ('script' === name || 'style' === name) &&
-        Array.isArray(child.children) &&
-        child.children.length
+        ('script' === type || 'style' === type) &&
+        Array.isArray(tagContent) &&
+        tagContent.length
       ) {
         // <Helmet> requires the `children` prop for `style` and `script`
         // elements to be a string. As such, we reduce the array to a
         // single string using join().
-        return React.createElement(
-          name,
+        return React.cloneElement(
+          child,
           config,
           tagContent.join('')
         );
       }
 
-      return React.createElement(name, config);
+      return child;
     });
-
-  console.log(helmetChildren);
 
   return (
     <>
