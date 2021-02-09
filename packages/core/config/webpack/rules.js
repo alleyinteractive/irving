@@ -68,11 +68,6 @@ module.exports = function getRules(context) {
       ],
       exclude: [/assets\/icons/],
       type: 'asset',
-      parser: {
-        dataUrlCondition: {
-          maxSize: 10 * 1024, // 10kb
-        },
-      },
     },
     {
       test: /\.svg$/,
