@@ -1,4 +1,7 @@
-module.exports = {
+const { getValueFromFiles } = require('./config/irving/getValueFromFiles');
+const { buildContext } = require('./config/paths');
+
+const config = {
   extends: 'airbnb',
   parser: 'babel-eslint',
   parserOptions: {
@@ -80,3 +83,9 @@ module.exports = {
     yoda: [2, 'always'],
   },
 };
+
+module.exports = getValueFromFiles(
+  'config/.eslintrc.js',
+  config,
+  { base: buildContext }
+);

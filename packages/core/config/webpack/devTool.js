@@ -10,7 +10,7 @@ module.exports = function getDevTool(context) {
     // and we don't have to worry about exposing source code.
     case 'production_server':
     case 'development_server':
-      return 'sourcemap';
+      return 'source-map';
 
     // a fast but helpful devtool for development.
     case 'development_client':

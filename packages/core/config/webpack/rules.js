@@ -4,7 +4,6 @@ const {
   buildContext,
   irvingRoot,
 } = require('../paths');
-const { maybeResolveBuildModule } = require('../../utils/userModule');
 
 const include = (filepath) => {
   const matches = (
@@ -42,19 +41,6 @@ module.exports = function getRules(context) {
   const isServer = context.includes('server');
 
   return [
-    {
-      enforce: 'pre',
-      test: /\.jsx?$/,
-      include,
-      use: [
-        {
-          loader: 'eslint-loader',
-          options: {
-            configFile: maybeResolveBuildModule('.eslintrc.js'),
-          },
-        },
-      ],
-    },
     {
       exclude: [
         /\.html$/,

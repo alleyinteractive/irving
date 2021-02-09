@@ -32,7 +32,7 @@ module.exports = function getOptimization(context) {
 
     case 'development_client':
       return {
-        namedModules: true,
+        moduleIds: 'named',
         splitChunks: {
           name: 'common',
           chunks: 'all',

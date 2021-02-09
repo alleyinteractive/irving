@@ -48,7 +48,7 @@ module.exports = (env, argv) => {
       node: false,
       externals: [
         nodeExternals({
-          whitelist: [
+          allowlist: [
             // Allow references to vendor css, so we can include them in our bundle.
             /\.css$/,
             // Include other irving packages in node_modules.
