@@ -46,6 +46,7 @@ module.exports = function getRules(context) {
         /\.html$/,
         /\.(js|jsx|mjs)$/,
         /\.css$/,
+        /\.s[ac]ss$/,
         /\.json$/,
         /\.bmp$/,
         /\.gif$/,
@@ -55,15 +56,7 @@ module.exports = function getRules(context) {
         /\.otf$/,
         /\.ico$/,
       ],
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            emitFile: ! isServer,
-            name: 'static/media/[name].[hash:8].[ext]',
-          },
-        },
-      ],
+      type: 'asset/resource',
     },
     {
       test: [
@@ -76,17 +69,12 @@ module.exports = function getRules(context) {
         /\.ico$/,
       ],
       exclude: [/assets\/icons/],
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            publicPath: '/',
-            limit: 10000,
-            emitFile: ! isServer,
-            name: 'static/media/[name].[hash:8].[ext]',
-          },
+      type: 'asset',
+      parser: {
+        dataUrlCondition: {
+          maxSize: 10 * 1024, // 10kb
         },
-      ],
+      },
     },
     {
       test: /\.svg$/,

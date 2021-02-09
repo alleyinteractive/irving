@@ -22,6 +22,7 @@ module.exports = function getOutput(context) {
         publicPath: `${rootUrl}/`,
         filename: 'static/js/[name].[chunkhash:8].bundle.js',
         chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+        assetModuleFilename: 'static/media/[name].[contenthash:8].[ext]',
       };
 
     case 'development_client':
@@ -30,6 +31,7 @@ module.exports = function getOutput(context) {
         publicPath: `${rootUrl}/`,
         filename: '[name].bundle.js',
         chunkFilename: '[name].chunk.js',
+        assetModuleFilename: 'static/media/[name].[ext]',
       };
 
     default:
