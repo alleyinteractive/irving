@@ -20,8 +20,6 @@ import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
 
-
-
 const monitor = getMonitorService();
 const logError = getLogService('irving:render:error');
 const logRequest = getLogService('irving:render:request');

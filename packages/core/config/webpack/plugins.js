@@ -10,7 +10,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { rootUrl } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
 const { maybeResolveUserModule } = require('../../utils/userModule');
-const eslingConfig = require('../../.eslintrc.js');
+const eslintConfig = require('../../.eslintrc.js');
 
 /**
  * Get the context specific plugins configuration.
@@ -35,7 +35,9 @@ module.exports = function getPlugins(context, argv) {
     new webpack.EnvironmentPlugin({
       IRVING_EXECUTION_CONTEXT: context,
     }),
-    new ESLintPlugin(eslingConfig),
+    new ESLintPlugin({
+      baseConfig: eslintConfig,
+    }),
   ];
 
   switch (context) {
