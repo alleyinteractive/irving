@@ -39,12 +39,12 @@
     "audit:ci": "npm run audit:self && npm run audit:packages"
   },
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
-    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
+    "@irvingjs/babel-preset-irving": "^5.5.0-alpha.0",
     "@storybook/addon-a11y": "^5.3.19",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-docs": "^5.3.18",
