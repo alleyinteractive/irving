@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.5.0-alpha.5...v5.5.0-alpha.6) (2021-02-10)
+
+
+### Features
+
+* **text:** add `nowrap` prop to text component to prevent rendering outer div ([23a64c4](https://github.com/alleyinteractive/irving/packages/styled-components/commit/23a64c40baff0af38c6271c1f8de01b50c8d48e5))
+
+
+
+
+
 # [5.5.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.5.0-alpha.4...v5.5.0-alpha.5) (2021-02-04)
 
 **Note:** Version bump only for package @irvingjs/styled-components
