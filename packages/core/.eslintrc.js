@@ -1,6 +1,3 @@
-// const { getValueFromFiles } = require('./config/irving/getValueFromFiles');
-// const { buildContext } = require('./config/paths');
-
 module.exports = {
   extends: 'airbnb',
   parser: 'babel-eslint',

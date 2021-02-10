@@ -35,9 +35,9 @@ const developmentMiddleware = (app) => {
     },
     publicPath: clientConfig.output.publicPath,
     serverSideRender: true,
-    // infrastructureLogging: {
-    //   level: 'warn', // Info output is overwhelming with bundle information.
-    // },
+    infrastructureLogging: {
+      level: 'warn', // Info output is overwhelming with bundle information.
+    },
   }));
   // Support hot module reloading.
   app.use(webpackHotMiddleware(clientCompiler));
