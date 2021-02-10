@@ -32,6 +32,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **multisite:** allow configuring entry points, head fields in multisite.config.js ([1f18eca](https://github.com/alleyinteractive/irving/packages/core/commit/1f18eca2fdc73a2fe6300c5adf6377a51526fedf))
 * **multisite:** begin updating multisite setup ([a7f3e85](https://github.com/alleyinteractive/irving/packages/core/commit/a7f3e857de3c10fe2c56553500b06718247fafdb))
+## [5.4.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.1-rc.3...v5.4.1) (2021-02-05)
+
+**Note:** Version bump only for package @irvingjs/core
 
 
 
@@ -40,9 +43,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [5.5.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.0...v5.5.0-alpha.1) (2021-01-28)
 
 **Note:** Version bump only for package @irvingjs/core
+## [5.4.1-rc.3](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.1-rc.2...v5.4.1-rc.3) (2021-02-04)
+
+**Note:** Version bump only for package @irvingjs/core
 
 
+## [5.4.1-rc.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.1-rc.0...v5.4.1-rc.1) (2021-02-02)
 
+
+### Bug Fixes
+
+* **html.js:** add back iframe and time tag support ([bdd69ef](https://github.com/alleyinteractive/irving/packages/core/commit/bdd69ef22dac62f5a1ac440178e5783d19f99e24))
 
 
 # [5.5.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.4.1-alpha.0...v5.5.0-alpha.0) (2021-01-27)

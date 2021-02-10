@@ -5,12 +5,7 @@ const picoSelector = (state) => state.integrations.pico;
 
 export const picoLoadedSelector = createSelector(
   picoSelector,
-  (branch) => maybeSelect(branch, 'isLoaded')
-);
-
-export const picoReadySelector = createSelector(
-  picoSelector,
-  (branch) => maybeSelect(branch, 'isReady')
+  (branch) => maybeSelect(branch, 'loaded')
 );
 
 export const picoPageInfoSelector = createSelector(

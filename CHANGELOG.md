@@ -31,6 +31,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **html.js:** add back iframe and time tag support ([5384dba](https://github.com/alleyinteractive/irving/commit/5384dba789a8249c88fafdab2d8439be9fe00160))
+## [5.4.1](https://github.com/alleyinteractive/irving/compare/v5.4.1-rc.3...v5.4.1) (2021-02-05)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [5.4.1-rc.3](https://github.com/alleyinteractive/irving/compare/v5.4.1-rc.2...v5.4.1-rc.3) (2021-02-04)
+
+**Note:** Version bump only for package irving
 
 
 
@@ -43,19 +54,34 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **multisite:** allow configuring entry points, head fields in multisite.config.js ([1f18eca](https://github.com/alleyinteractive/irving/commit/1f18eca2fdc73a2fe6300c5adf6377a51526fedf))
 * **multisite:** begin updating multisite setup ([a7f3e85](https://github.com/alleyinteractive/irving/commit/a7f3e857de3c10fe2c56553500b06718247fafdb))
+## [5.4.1-rc.2](https://github.com/alleyinteractive/irving/compare/v5.4.1-rc.1...v5.4.1-rc.2) (2021-02-04)
 
 
+### Reverts
+
+* **pico:** revert update Pico page info after autorized requests finish ([654474e](https://github.com/alleyinteractive/irving/commit/654474e1421c49efc3a0b06e2ea7d3a5fe0c7d83)), closes [#454](https://github.com/alleyinteractive/irving/issues/454)
+* **pico:** revert update the Pico integration to support Pico Gadget ([807dd33](https://github.com/alleyinteractive/irving/commit/807dd3393c88a837ae65819b27ab1ee8e39395f5)), closes [#451](https://github.com/alleyinteractive/irving/issues/451)
 
 
-
-# [5.5.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v5.5.0-alpha.1...v5.5.0-alpha.2) (2021-02-01)
+## [5.4.1-rc.1](https://github.com/alleyinteractive/irving/compare/v5.4.1-rc.0...v5.4.1-rc.1) (2021-02-02)
 
 
 ### Bug Fixes
 
 * **integrations:** fix Coral login error when JWT fails ([cee314b](https://github.com/alleyinteractive/irving/commit/cee314b3c04d0467f78cf9eb45dd2898a58912c9))
 
+## [5.4.1-rc.0](https://github.com/alleyinteractive/irving/compare/v5.4.0...v5.4.1-rc.0) (2021-02-02)
 
+
+### Bug Fixes
+
+* **deps:** add syncpack ([03235e7](https://github.com/alleyinteractive/irving/commit/03235e756af5fee22c68baac7be9bd490173873d))
+* **integrations:** fix Coral login error when JWT fails ([a415778](https://github.com/alleyinteractive/irving/commit/a415778b7cae9db4e5f55b84ca1dcb2e65b7f106)), closes [#457](https://github.com/alleyinteractive/irving/issues/457)
+
+
+# [5.5.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v5.5.0-alpha.1...v5.5.0-alpha.2) (2021-02-01)
+
+**Note:** Version bump only for package irving
 
 
 
@@ -70,6 +96,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [5.5.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.4.1-alpha.0...v5.5.0-alpha.0) (2021-01-27)
 
 **Note:** Version bump only for package irving
+* **html.js:** add back iframe and time tag support ([bdd69ef](https://github.com/alleyinteractive/irving/commit/bdd69ef22dac62f5a1ac440178e5783d19f99e24))
 
 
 
@@ -77,12 +104,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [5.4.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.4.0...v5.4.1-alpha.0) (2021-01-27)
 
-
-### Bug Fixes
-
-* **deps:** add syncpack ([03235e7](https://github.com/alleyinteractive/irving/commit/03235e756af5fee22c68baac7be9bd490173873d))
-
-
+**Note:** Version bump only for package irving
 
 
 
