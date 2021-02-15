@@ -123,30 +123,13 @@ module.exports = function getRules(context) {
     },
     {
       test: /\.css$/,
-      include: /node_modules\/(?!@irvingjs)/,
+      include: [
+        /node_modules\/(?!@irvingjs)/,
+        include,
+      ],
       use: [
         MiniCSSExtractPlugin.loader,
         'css-loader',
-      ],
-    },
-    {
-      test: /\.css$/,
-      include,
-      use: [
-        MiniCSSExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: {
-            url: true,
-            importLoaders: 1,
-            modules: {
-              mode: 'local',
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-            sourceMap: ! isProd,
-            localsConvention: 'camelCase',
-          },
-        },
       ],
     },
   ];

@@ -48,13 +48,13 @@ const AdminBar = (props) => {
       <iframe
         title="Admin Bar Iframe"
         src={iframeSrc}
-        className={styles.iframe}
+        className="irving-wp-admin-bar__iframe"
         style={{
           height: hover ? '100%' : `${height}px`,
         }}
       />
       <div
-        className={styles.spacer}
+        className="irving-wp-admin-bar__spacer"
         style={{
           height: `${height}px`,
         }}

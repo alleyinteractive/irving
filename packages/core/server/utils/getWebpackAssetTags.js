@@ -45,11 +45,12 @@ export const createAssetTags = (assets, rootUrl) => {
 const getWebpackAssetTags = (clientStats, hostname) => {
   const { assetsByChunkName: chunks } = clientStats;
   const runtimeJsPath = chunks['runtime~main'] || chunks.runtime;
-  const { ROOT_URL } = getEnv(hostname);
+  const { ROOT_URL, NODE_ENV } = getEnv(hostname);
+  const isDev = 'development' === NODE_ENV;
   let tags = [];
 
   // Abstracted webpack runtime asset.
-  if (runtimeJsPath) {
+  if (runtimeJsPath && ! isDev) {
     // Memoize file operation for optimal performance.
     if (! runtimeSrc) {
       runtimeSrc = fs.readFileSync(`${clientBuild}/${runtimeJsPath}`);
@@ -61,10 +62,13 @@ const getWebpackAssetTags = (clientStats, hostname) => {
 
   // Include any other webpack assets that haven't been included yet.
   tags = Object.keys(chunks).reduce((acc, chunkName) => {
-    // Runtime main is rendered inline above.
+    // Runtime main is rendered inline above, unless in a dev
+    // env in which case it should be rendered as a regular script tag.
     if (
-      'runtime~main' === chunkName ||
-      'runtime' === chunkName
+      (
+        'runtime~main' === chunkName ||
+        'runtime' === chunkName
+      ) && ! isDev
     ) {
       return acc;
     }
