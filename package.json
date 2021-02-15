@@ -21,8 +21,9 @@
     "release": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-commits --conventional-graduate --create-release github",
     "//": "nohoist option is used to prevent internal packages from being hoisted/deleted by lerna (which is a bug, I think)",
     "develop:bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
-    "develop:cleanup": "lerna exec --parallel -- \"rm -rf node_modules\"",
-    "develop:link": "lerna exec --parallel -- npm link",
+    "develop:cleanup": "lerna exec --stream -- \"rm -rf node_modules\" && rm -rf node_modules",
+    "develop:link": "lerna exec --stream -- npm link",
+    "develop:install": "npm install && lerna exec --stream -- npm install",
     "develop:prepare": "npm install && npm run develop:link && npm run develop:setup",
     "develop:setup": "npm run develop:cleanup && npm install && npm run develop:bootstrap",
     "test": "BABEL_ENV=test lerna run test --parallel",
@@ -33,8 +34,8 @@
     "storybook:release": "npm run storybook:build && npm run storybook:deploy",
     "storybook-qa:deploy": "surge storybook-static --domain storybook-qa.irvingjs.com",
     "storybook-qa:release": "npm run storybook:build && npm run storybook-qa:deploy",
-    "audit:packages": "bash bin/audit.sh \"$(lerna exec --stream \"npm audit --color=always | grep 'found[\\s\\S]*'\")\"",
-    "audit:self": "bash bin/audit.sh \"$(npm audit --color=always | grep -A 3 'found[\\s\\S]*')\"",
+    "audit:packages": "bash bin/audit.sh \"$(lerna exec --stream \"npm audit --production --color=always | grep 'found[\\s\\S]*'\")\"",
+    "audit:self": "bash bin/audit.sh \"$(npm audit --production --color=always | grep -A 3 'found[\\s\\S]*')\"",
     "audit:ci": "npm run audit:self && npm run audit:packages"
   },
   "dependencies": {
@@ -66,7 +67,8 @@
     "jest-enzyme": "^7.1.2",
     "lerna": "^3.20.2",
     "npm-check-updates": "^11.0.2",
-    "surge": "^0.21.6"
+    "surge": "^0.21.6",
+    "syncpack": "~5.6.10"
   },
   "engines": {
     "node": "12",

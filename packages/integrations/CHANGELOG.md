@@ -3,19 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.7](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.6...v5.5.0-alpha.7) (2021-02-10)
+
+
+
 ## [5.4.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.1-rc.3...v5.4.1) (2021-02-05)
 
-**Note:** Version bump only for package @irvingjs/integrations
 
 
-
-
-
-## [5.4.1-rc.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.1-rc.2...v5.4.1-rc.3) (2021-02-04)
-
-**Note:** Version bump only for package @irvingjs/integrations
-
-
+## [5.4.1-rc.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.5...v5.4.1-rc.3) (2021-02-04)
 
 
 
@@ -29,8 +25,71 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [5.4.1-rc.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.4...v5.4.1-rc.1) (2021-02-02)
 
 
+
+## [5.4.1-rc.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.3...v5.4.1-rc.0) (2021-02-02)
+
+
+### Bug Fixes
+
+* **integrations:** fix Coral login error when JWT fails ([a415778](https://github.com/alleyinteractive/irving/packages/integrations/commit/a415778b7cae9db4e5f55b84ca1dcb2e65b7f106)), closes [#457](https://github.com/alleyinteractive/irving/packages/integrations/issues/457)
+
+
+
+
+
+# [5.5.0-alpha.5](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.4...v5.5.0-alpha.5) (2021-02-04)
+**Note:** Version bump only for package @irvingjs/integrations
+## [5.4.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.1-rc.3...v5.4.1) (2021-02-05)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.5.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.3...v5.5.0-alpha.4) (2021-02-02)
+**Note:** Version bump only for package @irvingjs/integrations
+## [5.4.1-rc.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.1-rc.2...v5.4.1-rc.3) (2021-02-04)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.5.0-alpha.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.2...v5.5.0-alpha.3) (2021-02-02)
+
+
+### Features
+
+* **multisite:** allow configuring entry points, head fields in multisite.config.js ([1f18eca](https://github.com/alleyinteractive/irving/packages/integrations/commit/1f18eca2fdc73a2fe6300c5adf6377a51526fedf))
+## [5.4.1-rc.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.1-rc.1...v5.4.1-rc.2) (2021-02-04)
+
+
+### Reverts
+
+* **pico:** revert update Pico page info after autorized requests finish ([654474e](https://github.com/alleyinteractive/irving/packages/integrations/commit/654474e1421c49efc3a0b06e2ea7d3a5fe0c7d83)), closes [#454](https://github.com/alleyinteractive/irving/packages/integrations/issues/454)
+* **pico:** revert update the Pico integration to support Pico Gadget ([807dd33](https://github.com/alleyinteractive/irving/packages/integrations/commit/807dd3393c88a837ae65819b27ab1ee8e39395f5)), closes [#451](https://github.com/alleyinteractive/irving/packages/integrations/issues/451)
+
+
+
+
+
+# [5.5.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.1...v5.5.0-alpha.2) (2021-02-01)
+
+
+### Bug Fixes
+
+* **integrations:** fix Coral login error when JWT fails ([cee314b](https://github.com/alleyinteractive/irving/packages/integrations/commit/cee314b3c04d0467f78cf9eb45dd2898a58912c9))
+
+
+
+
+
+# [5.5.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.0...v5.5.0-alpha.1) (2021-01-28)
 ## [5.4.1-rc.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.1-rc.0...v5.4.1-rc.1) (2021-02-02)
 
 **Note:** Version bump only for package @irvingjs/integrations
@@ -39,6 +98,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [5.5.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.1-alpha.0...v5.5.0-alpha.0) (2021-01-27)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+## [5.4.1-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.0...v5.4.1-alpha.0) (2021-01-27)
+
+**Note:** Version bump only for package @irvingjs/integrations
 ## [5.4.1-rc.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.4.0...v5.4.1-rc.0) (2021-02-02)
 
 

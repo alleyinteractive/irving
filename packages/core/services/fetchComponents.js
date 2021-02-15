@@ -5,7 +5,7 @@ import {
 } from 'config/constants';
 import isNode from 'utils/isNode';
 import shouldAuthorize from 'utils/shouldAuthorize';
-import getEnv from 'config/irving/getEnv';
+import { getEnv } from 'config/multisite';
 import getLogService from '@irvingjs/services/logService';
 import getCacheService from '@irvingjs/services/cacheService';
 import createEndpointUrl from 'utils/endpoint/createEndpointUrl';

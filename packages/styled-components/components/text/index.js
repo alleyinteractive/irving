@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
+import htmlParser from 'react-html-parser';
 import EmbedContainer from 'react-oembed-container';
 import { richText } from '@irvingjs/core/config/html';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
@@ -29,11 +30,22 @@ const Text = (props) => {
     html,
     oembed,
     theme,
+    nowrap,
   } = props;
   const standardProps = useStandardProps(props, {
     tag: 'div',
   });
   const { TextWrapper } = theme;
+  const htmlWrapper = nowrap ? (
+    <>
+      {htmlParser(sanitizeHtml(content, richText))}
+    </>
+  ) : (
+    <TextWrapper
+      {...standardProps}
+      dangerouslySetInnerHTML={{ __html: sanitizeHtml(content, richText) }} // eslint-disable-line react/no-danger, max-len
+    />
+  );
 
   switch (true) {
     case ! content.length:
@@ -42,20 +54,12 @@ const Text = (props) => {
     case true === oembed:
       return (
         <EmbedContainer markup={content}>
-          <TextWrapper
-            {...standardProps}
-            dangerouslySetInnerHTML={{ __html: sanitizeHtml(content, richText) }} // eslint-disable-line react/no-danger, max-len
-          />
+          {htmlWrapper}
         </EmbedContainer>
       );
 
     case true === html:
-      return (
-        <TextWrapper
-          {...standardProps}
-          dangerouslySetInnerHTML={{ __html: sanitizeHtml(content, richText) }} // eslint-disable-line react/no-danger
-        />
-      );
+      return htmlWrapper;
 
     default:
       return (
@@ -74,6 +78,7 @@ Text.defaultProps = {
   content: '',
   html: false,
   oembed: false,
+  nowrap: false,
 };
 
 Text.propTypes = {
