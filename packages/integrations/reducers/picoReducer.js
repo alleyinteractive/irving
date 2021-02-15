@@ -1,5 +1,6 @@
 import {
   PICO_LOADED,
+  PICO_READY,
   PICO_SCRIPT_ADDED,
   UPDATE_PICO_PAGE_INFO,
   UPDATE_PICO_SIGNAL,
@@ -20,7 +21,13 @@ export default function picoReducer(
     case PICO_LOADED:
       return {
         ...state,
-        loaded: true,
+        isLoaded: true,
+      };
+
+    case PICO_READY:
+      return {
+        ...state,
+        isReady: true,
       };
 
     case PICO_SCRIPT_ADDED:
