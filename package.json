@@ -54,7 +54,7 @@
     "@storybook/react": "^5.3.18",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.2",
-    "@testing-library/react-hooks": "^3.4.1",
+    "@testing-library/react-hooks": "~3.7.0",
     "babel-jest": "^25.5.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
