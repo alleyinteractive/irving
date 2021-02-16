@@ -1,6 +1,6 @@
-import { screen } from '@testing-library/react';
 import React from 'react';
-import render from '../../../../test/test-utils';
+import { screen } from '@testing-library/react';
+import render from 'test-utils';
 import Loader from '.';
 
 it('should skip rendering wrapped component if loading', () => {
