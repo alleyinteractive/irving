@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v5.5.0-alpha.8...v5.5.0-alpha.9) (2021-02-16)
+
+
+### Bug Fixes
+
+* **providers:** auto-convert provider apiChildren to components ([c5950c9](https://github.com/alleyinteractive/irving/commit/c5950c965375717485564ba2717bf61df7b0e0a3))
+
+
+### Features
+
+* **provider:** change head component into provider, allow providers to have children ([085338c](https://github.com/alleyinteractive/irving/commit/085338c681ef402f93619df4066c095550bcf806))
+
+
+
+
+
 # [5.5.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v5.5.0-alpha.7...v5.5.0-alpha.8) (2021-02-16)
 
 
