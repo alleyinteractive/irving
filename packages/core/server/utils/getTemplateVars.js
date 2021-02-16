@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import omit from 'lodash/fp/omit';
 import mergeWith from 'lodash/mergeWith';
 import { getConfigValues } from 'config/irving/getValueFromConfig';
+import { getEnv, getSiteConfig } from 'config/multisite';
 
 export const defaultHead = {
   htmlAttributes: [],
@@ -61,11 +62,21 @@ const stringifyHeadConfig = (config, key) => {
  * @param {string} key Key for configured functions for getting template vars.
  * @param {object} initialVars Variables passed in from serverRenderer.
  * @param {object} clientStats Webpack client-side build stats object.
- * @param {object} env Current environmental variables, including site-specific overrides from multisite config.
+ * @param {string} hostname Current request hostname.
  * @return {object}
  */
-export default function getTemplateVars(key, initialVars, clientStats, env) {
+export default function getTemplateVars(
+  key,
+  initialVars,
+  clientStats,
+  hostname
+) {
   const templateVars = getConfigValues(key);
+  const env = getEnv(hostname);
+  // Get additional site-specific scripts and styles.
+  const {
+    head: siteSpecificHead = {}, // Add default in case head is unconfigured.
+  } = getSiteConfig(hostname);
 
   // Separate arrays for head configuration and other template variables,
   // as they will be extracted and merged using different methods.
@@ -118,6 +129,8 @@ export default function getTemplateVars(key, initialVars, clientStats, env) {
     defaultHead,
     // Spread to prevent mutation
     { ...initialVars.head },
+    // head values for current site in multisite config.
+    siteSpecificHead,
   ].concat(headConfigs).map((config) => {
     const headObject = getValFromFunction(config);
     // Reduce through each value in the head object and turn it into a string.
