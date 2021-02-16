@@ -15,6 +15,13 @@ describe('providersReducer', () => {
 
   const providerData = {
     name: 'irving/test-provider',
+    children: [
+      {
+        name: 'link',
+        config: { src: 'https://test.com/my-styles.css' },
+        children: [],
+      },
+    ],
     config: {
       lorem: 'ipsum',
       dolor: 'sit',
@@ -46,11 +53,27 @@ describe('providersReducer', () => {
             dolor: 'sit',
             amet: 'adipscing',
           },
+          children: [
+            {
+              name: 'link',
+              config: { src: 'https://test.com/my-styles.css' },
+              children: [],
+            },
+          ],
         },
         default: {
-          lorem: 'ipsum',
-          dolor: 'sit',
-          amet: 'adipscing',
+          children: [
+            {
+              name: 'link',
+              config: { src: 'https://test.com/my-styles.css' },
+              children: [],
+            },
+          ],
+          config: {
+            lorem: 'ipsum',
+            dolor: 'sit',
+            amet: 'adipscing',
+          },
         },
       },
     });
@@ -92,6 +115,13 @@ describe('providersReducer', () => {
 
     expect(resultState.current).toStrictEqual({
       key: 'my-key-two',
+      children: [
+        {
+          name: 'link',
+          config: { src: 'https://test.com/my-styles.css' },
+          children: [],
+        },
+      ],
       config: {
         providerKey: 'my-key-two',
         lorem: 'this is now updated',
@@ -100,16 +130,34 @@ describe('providersReducer', () => {
       },
     });
     expect(resultState['my-key']).toEqual({
-      providerKey: 'my-key',
-      lorem: 'ipsum',
-      dolor: 'sit',
-      amet: 'adipscing',
+      children: [
+        {
+          name: 'link',
+          config: { src: 'https://test.com/my-styles.css' },
+          children: [],
+        },
+      ],
+      config: {
+        providerKey: 'my-key',
+        lorem: 'ipsum',
+        dolor: 'sit',
+        amet: 'adipscing',
+      },
     });
     expect(resultState['my-key-two']).toEqual({
-      providerKey: 'my-key-two',
-      lorem: 'this is now updated',
-      dolor: 'sit',
-      amet: 'adipscing',
+      children: [
+        {
+          name: 'link',
+          config: { src: 'https://test.com/my-styles.css' },
+          children: [],
+        },
+      ],
+      config: {
+        providerKey: 'my-key-two',
+        lorem: 'this is now updated',
+        dolor: 'sit',
+        amet: 'adipscing',
+      },
     });
   });
 
