@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import IntegrationsManager from './index';
-import GoogleAnalytics from '../googleAnalytics';
 
 describe('<IntegrationsManager />', () => {
   const trackingId = 'UA-000000-1';
