@@ -3,7 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.7](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.5.0-alpha.6...v5.5.0-alpha.7) (2021-02-10)
+
+
+
+## [5.4.1](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.4.1-rc.3...v5.4.1) (2021-02-05)
+
+
+
+## [5.4.1-rc.3](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.5.0-alpha.5...v5.4.1-rc.3) (2021-02-04)
+
+
+
+## [5.4.1-rc.1](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.5.0-alpha.4...v5.4.1-rc.1) (2021-02-02)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
 # [5.5.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.5.0-alpha.4...v5.5.0-alpha.5) (2021-02-04)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+## [5.4.1](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.4.1-rc.3...v5.4.1) (2021-02-05)
 
 **Note:** Version bump only for package @irvingjs/styleguide
 
@@ -12,6 +35,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [5.5.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.5.0-alpha.3...v5.5.0-alpha.4) (2021-02-02)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+## [5.4.1-rc.3](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.4.1-rc.2...v5.4.1-rc.3) (2021-02-04)
 
 **Note:** Version bump only for package @irvingjs/styleguide
 
@@ -44,6 +70,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [5.4.1-alpha.0](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.4.0...v5.4.1-alpha.0) (2021-01-27)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+## [5.4.1-rc.1](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v5.4.1-rc.0...v5.4.1-rc.1) (2021-02-02)
 
 **Note:** Version bump only for package @irvingjs/styleguide
 
