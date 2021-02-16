@@ -1,41 +1,57 @@
-import React, { cloneElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 const Head = (props) => {
-  const {
-    children,
-  } = props;
+  const { children } = props;
+  const validTypes = [
+    'title',
+    'base',
+    'meta',
+    'link',
+    'script',
+    'noscript',
+    'style',
+    'body',
+    'html',
+  ];
+  const otherChildren = children.filter(
+    ({ type }) => ! validTypes.includes(type)
+  );
+  const helmetChildren = children
+    .filter(({ type }) => validTypes.includes(type))
+    .map((child) => {
+      const { type, props: childProps } = child;
+      const {
+        children: tagContent,
+        config,
+      } = childProps;
 
-  return (
-    <Helmet>
-      {children.map((child) => {
-        const {
-          type,
-        } = child;
-
-        // Check the component type.
-        if ('style' !== type && 'script' !== type) {
-          return child;
-        }
-
-        // Validate a non-empty array.
-        if (! Array.isArray(child.props.children) ||
-          ! child.props.children.length) {
-          return child;
-        }
-
+      if (
+        ('script' === type || 'style' === type) &&
+        Array.isArray(tagContent) &&
+        tagContent.length
+      ) {
         // <Helmet> requires the `children` prop for `style` and `script`
         // elements to be a string. As such, we reduce the array to a
         // single string using join().
-        return cloneElement(
+        return React.cloneElement(
           child,
-          {
-            children: child.props.children.join(''),
-          }
+          config,
+          tagContent.join('')
         );
-      })}
-    </Helmet>
+      }
+
+      return child;
+    });
+
+  return (
+    <>
+      <Helmet>
+        {helmetChildren}
+      </Helmet>
+      {otherChildren}
+    </>
   );
 };
 
