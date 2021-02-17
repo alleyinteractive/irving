@@ -11,7 +11,7 @@ import getRouteKey from 'selectors/getRouteKey';
  * @returns {object} The updated Redux state
  */
 export const providerReducer = (providerState, provider) => {
-  const { config } = provider;
+  const { config, children } = provider;
   const {
     providerKey = 'default',
   } = config;
@@ -24,7 +24,10 @@ export const providerReducer = (providerState, provider) => {
 
   // Set a new key if hasn't been set before.
   if (! newState[providerKey]) {
-    newState[providerKey] = config;
+    newState[providerKey] = {
+      config,
+      children,
+    };
   }
 
   // Reset currrent config value.
@@ -32,6 +35,7 @@ export const providerReducer = (providerState, provider) => {
     newState.current = {
       key: providerKey,
       config,
+      children,
     };
   }
 

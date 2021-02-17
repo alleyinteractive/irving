@@ -25,7 +25,7 @@ const createGetFromProviderConfig = (providerName, key) => (
         { name: providerName }
       ),
     ],
-    (config) => (
+    ({ config }) => (
       get(key, config) || null
     )
   )
