@@ -6,6 +6,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [5.5.0-beta.0](https://github.com/alleyinteractive/irving/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
 
 **Note:** Version bump only for package irving
+# [5.5.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v5.5.0-alpha.9...v5.5.0-alpha.10) (2021-02-17)
+
+
+### Bug Fixes
+
+* **multisite:** merge site-specific head fully into other head configs ([ea9eab0](https://github.com/alleyinteractive/irving/commit/ea9eab0f61e253bedc075f04ebe9129f67eee399))
 
 
 
