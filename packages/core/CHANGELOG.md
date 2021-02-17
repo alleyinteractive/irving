@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.9...v5.5.0-alpha.10) (2021-02-17)
+
+
+### Bug Fixes
+
+* **multisite:** merge site-specific head fully into other head configs ([ea9eab0](https://github.com/alleyinteractive/irving/packages/core/commit/ea9eab0f61e253bedc075f04ebe9129f67eee399))
+
+
+
+
+
 # [5.5.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.8...v5.5.0-alpha.9) (2021-02-16)
 
 
