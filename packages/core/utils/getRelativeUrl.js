@@ -45,6 +45,8 @@ export default function getRelativeUrl(url) {
     const windowHost = replacewww(window.location.host);
     const windowHostname = replacewww(window.location.hostname);
 
+    console.log(url, urlPath);
+
     /**
      * Consider provided target URL to be relative (and transform/return it accordingly) only if:
      * - Link URL host is the same as current (window.location) host

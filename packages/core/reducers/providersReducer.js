@@ -1,6 +1,9 @@
 import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
-import { RECEIVE_COMPONENTS } from 'actions/types';
+import {
+  RECEIVE_COMPONENTS,
+  FINISH_LOADING,
+} from 'actions/types';
 import getRouteKey from 'selectors/getRouteKey';
 
 /**
@@ -50,14 +53,43 @@ export const providerReducer = (providerState, provider) => {
  * @returns {object} The updated Redux state
  */
 export default function providersReducer(state, action) {
-  const { type, payload } = action;
+  const {
+    type,
+    payload,
+  } = action;
 
-  if (RECEIVE_COMPONENTS !== type) {
+  if (
+    RECEIVE_COMPONENTS !== type &&
+    FINISH_LOADING !== type
+  ) {
     return state;
   }
 
+  const routeKey = getRouteKey(state);
   const currentProviders = get('components.providers', state);
-  const { providers } = payload;
+
+  // Return all providers current value or route key if no payload is present.
+  if (! payload) {
+    const routeProviders = Object.keys(currentProviders)
+      .reduce((acc, name) => {
+        const provider = currentProviders[name];
+        const current = provider[routeKey] ?
+          provider[routeKey] : provider.current;
+
+        return {
+          ...acc,
+          [name]: {
+            ...provider,
+            current,
+          },
+        };
+      }, {});
+    return set('components.providers', routeProviders, state);
+  }
+
+  const {
+    providers,
+  } = payload;
   const newProviders = providers.reduce((acc, provider) => {
     const newProvider = provider;
     const {
@@ -68,7 +100,7 @@ export default function providersReducer(state, action) {
     // If user specifies 'route' as they provider data key,
     // key new data for every route change.
     if ('route' === providerKey) {
-      newProvider.config.providerKey = getRouteKey(state);
+      newProvider.config.providerKey = routeKey;
     }
 
     const currentState = acc[name];

@@ -45,6 +45,8 @@ const Head = (props) => {
       return child;
     });
 
+  console.log('HEAD RENDERING');
+
   return (
     <>
       <Helmet>
