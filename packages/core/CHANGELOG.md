@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.5.0-alpha.11](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.10...v5.5.0-alpha.11) (2021-02-19)
+
+
+### Bug Fixes
+
+* **providers:** make it so providers using route key always update on location change ([fbf1dad](https://github.com/alleyinteractive/irving/packages/core/commit/fbf1dad63d3339715a7cc353945e1ec4ae50a9cd))
+* **providers:** remove unnecessary selector ([a8412f4](https://github.com/alleyinteractive/irving/packages/core/commit/a8412f4dd43a534a096c89bdd7f787b1dbcb2535))
+* **providers:** use switch statement for providersReducer ([c0fc009](https://github.com/alleyinteractive/irving/packages/core/commit/c0fc0093540242636fbb85576fe5865ad4972c70))
+
+
+
+
+
 # [5.5.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.9...v5.5.0-alpha.10) (2021-02-17)
 
 
