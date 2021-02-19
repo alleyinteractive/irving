@@ -1,6 +1,9 @@
 import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
-import { RECEIVE_COMPONENTS } from 'actions/types';
+import {
+  RECEIVE_COMPONENTS,
+  FINISH_LOADING,
+} from 'actions/types';
 import getRouteKey from 'selectors/getRouteKey';
 
 /**
@@ -50,37 +53,64 @@ export const providerReducer = (providerState, provider) => {
  * @returns {object} The updated Redux state
  */
 export default function providersReducer(state, action) {
-  const { type, payload } = action;
+  const {
+    type,
+    payload,
+  } = action;
 
-  if (RECEIVE_COMPONENTS !== type) {
-    return state;
-  }
-
+  const routeKey = getRouteKey(state);
   const currentProviders = get('components.providers', state);
-  const { providers } = payload;
-  const newProviders = providers.reduce((acc, provider) => {
-    const newProvider = provider;
-    const {
-      name,
-      config: { providerKey },
-    } = newProvider;
+  const { providers } = payload || {};
+  let newProviders;
 
-    // If user specifies 'route' as they provider data key,
-    // key new data for every route change.
-    if ('route' === providerKey) {
-      newProvider.config.providerKey = getRouteKey(state);
-    }
+  switch (type) {
+    case FINISH_LOADING:
+      // Return all providers current value or route key if no payload is present.
+      newProviders = Object.keys(currentProviders)
+        .reduce((acc, name) => {
+          const provider = currentProviders[name];
+          const current = provider[routeKey] ?
+            provider[routeKey] : provider.current;
 
-    const currentState = acc[name];
+          return {
+            ...acc,
+            [name]: {
+              ...provider,
+              current,
+            },
+          };
+        }, {});
+      break;
 
-    return {
-      ...acc,
-      [name]: providerReducer(
-        currentState,
-        newProvider
-      ),
-    };
-  }, currentProviders);
+    case RECEIVE_COMPONENTS:
+      newProviders = providers.reduce((acc, provider) => {
+        const newProvider = provider;
+        const {
+          name,
+          config: { providerKey },
+        } = newProvider;
+
+        // If user specifies 'route' as they provider data key,
+        // key new data for every route change.
+        if ('route' === providerKey) {
+          newProvider.config.providerKey = routeKey;
+        }
+
+        const currentState = acc[name];
+
+        return {
+          ...acc,
+          [name]: providerReducer(
+            currentState,
+            newProvider
+          ),
+        };
+      }, currentProviders);
+      break;
+
+    default:
+      newProviders = currentProviders;
+  }
 
   return set('components.providers', newProviders, state);
 }
