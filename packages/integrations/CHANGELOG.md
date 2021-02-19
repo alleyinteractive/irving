@@ -6,6 +6,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [5.5.0-alpha.11](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.10...v5.5.0-alpha.11) (2021-02-19)
 
 **Note:** Version bump only for package @irvingjs/integrations
+# [5.5.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-beta.1...v5.5.0) (2021-02-17)
+
+**Note:** Version bump only for package @irvingjs/integrations
 
 
 
