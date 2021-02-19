@@ -69,7 +69,8 @@ export default function getTemplateVars(
   key,
   initialVars,
   clientStats,
-  hostname
+  hostname,
+  helmetContext
 ) {
   const templateVars = getConfigValues(key);
   const env = getEnv(hostname);
@@ -129,6 +130,7 @@ export default function getTemplateVars(
     defaultHead,
     // Spread to prevent mutation
     { ...initialVars.head },
+    helmetContext.helmet,
     // head values for current site in multisite config.
     siteSpecificHead,
   ].concat(headConfigs).map((config) => {

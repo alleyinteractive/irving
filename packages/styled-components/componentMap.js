@@ -1,7 +1,7 @@
 import SiteThemeProvider from '@irvingjs/styled/components/siteThemeProvider';
 import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import App from 'components/app';
-import Head from 'components/head';
+// import Head from 'components/head';
 import * as BodyWrapper from 'components/bodyWrapper';
 import * as Byline from 'components/byline';
 import * as Container from 'components/container';
@@ -78,7 +78,7 @@ export const defaultMapping = {
   'irving/container': Container.Component,
   'irving/footer-wrapper': Fragment.Component,
   'irving/fragment': Fragment.Component,
-  'irving/head': Head,
+  // 'irving/head': Head,
   'irving/header-wrapper': Fragment.Component,
   'irving/image': Image.Component,
   'irving/link': Link.Component,
@@ -93,7 +93,7 @@ export const defaultMapping = {
   'styled-css-grid/cell': StyledCSSGridCell,
   'styled-css-grid/grid': StyledCSSGrid,
   app: App,
-  head: Head,
+  // head: Head,
 };
 
 /**

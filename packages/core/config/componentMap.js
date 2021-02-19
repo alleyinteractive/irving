@@ -1,11 +1,14 @@
 import DefaultAppContent from 'components/app/defaultAppContent';
 import DefaultErrorMessage from 'components/defaultErrorMessage';
 import NotConfigured from 'components/notConfigured';
+import Head from 'components/head';
 import userComponentMap from '@irvingjs/componentMap';
 
 const componentMap = {
   app: DefaultAppContent,
   'error-message': DefaultErrorMessage,
+  'irving/head': Head,
+  head: Head,
   ...userComponentMap,
 };
 

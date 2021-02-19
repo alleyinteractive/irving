@@ -7,11 +7,16 @@ import toReactElement from 'utils/toReactElement';
 const ConnectedProvider = (props) => {
   const {
     children,
+    apiChildren,
     config,
     name,
   } = props;
 
-  return toProvider(name, config, children);
+  const combinedChildren = apiChildren
+    .map(toReactElement)
+    .concat(children);
+
+  return toProvider(name, config, combinedChildren);
 };
 
 ConnectedProvider.propTypes = {
@@ -49,9 +54,7 @@ const createMapStateToProps = () => {
     } = getProviderConfig(state, props);
     return {
       config,
-      children: apiChildren
-        .map(toReactElement)
-        .concat(props.children),
+      apiChildren,
     };
   };
 };

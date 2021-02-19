@@ -1,8 +1,8 @@
-import getAppTemplateVars from './server/getAppTemplateVars';
+// import getAppTemplateVars from './server/getAppTemplateVars';
 
 export default {
   name: 'styled-components',
-  getAppTemplateVars,
+  // getAppTemplateVars,
   shouldOmitIrvingProps: [
     (type, props) => (
       props.componentName.includes('-icon')

@@ -2,6 +2,7 @@
 /* global appView, errorView */
 import React from 'react';
 import { Provider } from 'react-redux';
+import { HelmetProvider } from 'react-helmet-async';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import queryString from 'query-string';
@@ -22,6 +23,7 @@ import encodeState from './utils/encodeState';
 const monitor = getMonitorService();
 const logError = getLogService('irving:render:error');
 const logRequest = getLogService('irving:render:request');
+const helmetContext = {};
 
 /**
  * Handle rendering the app as a string that can then be returned as a response
@@ -81,7 +83,9 @@ const render = async (req, res, clientStats) => {
 
   const AppWrapper = () => (
     <Provider store={store}>
-      <App />
+      <HelmetProvider context={helmetContext}>
+        <App />
+      </HelmetProvider>
     </Provider>
   );
 
@@ -95,7 +99,8 @@ const render = async (req, res, clientStats) => {
       },
     },
     clientStats,
-    req.hostname
+    req.hostname,
+    helmetContext
   );
 
   const stateEncoded = encodeState(getState());

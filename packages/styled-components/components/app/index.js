@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import PropTypes from 'prop-types';
 import CssReset from '@irvingjs/styled/components/reset';
 import getTrackingService from '@irvingjs/core/services/trackingService';
