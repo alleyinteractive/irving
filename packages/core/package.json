@@ -103,7 +103,7 @@
     "universal-cookie": "^4.0.3",
     "universal-cookie-express": "^4.0.3",
     "url-loader": "^4.1.0",
-    "url-parse": "^1.4.7",
+    "url-parse": "~1.5.1",
     "url-pattern": "^1.0.3",
     "webpack": "^4.44.2",
     "webpack-bundle-analyzer": "^4.3.0",
