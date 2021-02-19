@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.6.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.6.0-alpha.0...v5.6.0-alpha.1) (2021-02-19)
+
+
+### Bug Fixes
+
+* **deps:** update url-parse package to prevent bug in version 1.5.0 ([aa0bb0a](https://github.com/alleyinteractive/irving/packages/core/commit/aa0bb0a989836c90aca64067ceec52757a8a0c00))
+
+
+
+
+
 # [5.6.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.11...v5.6.0-alpha.0) (2021-02-19)
 
 
