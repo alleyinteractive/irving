@@ -17,7 +17,10 @@ describe('createGetProviderConfig', () => {
     };
 
     expect(getProviderConfig(mockState, { name: 'irving/another-provider' }))
-      .toEqual({});
+      .toEqual({
+        config: {},
+        children: [],
+      });
   });
 
   it('should retrieve the current config if provider is in state', () => {
@@ -37,7 +40,9 @@ describe('createGetProviderConfig', () => {
 
     expect(getProviderConfig(mockState, { name: 'irving/test-provider' }))
       .toEqual({
-        lorem: 'ipsum',
+        config: {
+          lorem: 'ipsum',
+        },
       });
   });
 });
