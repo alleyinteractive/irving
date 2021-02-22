@@ -14,8 +14,8 @@
   "scripts": {
     "build": "lerna run build",
     "preinstall": "npx check-node-version --package",
-    "prerelease:canary": "HUSKY_SKIP_HOOKS=1 lerna publish --conventional-prerelease --preid alpha --dist-tag canary",
-    "prerelease:canary:ci": "npm run prerelease:canary -- --yes",
+    "prerelease:alpha": "HUSKY_SKIP_HOOKS=1 lerna publish --conventional-prerelease --preid alpha --dist-tag alpha",
+    "prerelease:alpha:ci": "npm run prerelease:alpha -- --yes",
     "prerelease:beta": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-prerelease --create-release github --preid beta --dist-tag beta",
     "prerelease:rc": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-prerelease --create-release github --preid rc --dist-tag rc",
     "release": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-commits --conventional-graduate --create-release github",
