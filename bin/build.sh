@@ -15,5 +15,5 @@ else
 	# Perform publish
 	npm ci
 	npm run develop:bootstrap
-	npm run prerelease:canary:ci
+	npm run prerelease:alpha:ci
 fi
