@@ -8,6 +8,7 @@ import * as Container from 'components/container';
 import * as Fragment from 'components/fragment';
 import * as Image from 'components/image';
 import * as Link from 'components/link';
+import * as Loader from 'components/loader';
 import * as Logo from 'components/logo';
 import * as Menu from 'components/menu';
 import * as Pagination from 'components/pagination';
@@ -56,6 +57,7 @@ export const components = {
   'irving/social-links': SocialLinks,
   'irving/social-sharing': SocialSharing,
   'irving/text': Text,
+  'irving/loader': Loader,
 };
 
 export const defaultIcons = {
@@ -82,6 +84,7 @@ export const defaultMapping = {
   'irving/header-wrapper': Fragment.Component,
   'irving/image': Image.Component,
   'irving/link': Link.Component,
+  'irving/loader': Loader.Component,
   'irving/logo': Logo.Component,
   'irving/menu': Menu.Component,
   'irving/pagination': Pagination.Component,

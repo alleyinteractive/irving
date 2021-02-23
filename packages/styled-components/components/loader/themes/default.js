@@ -27,18 +27,10 @@ export const Wrapper = styled.div``;
 
 export const LoadingWrapper = styled.div`
   align-items: center;
+  background-color: #FFF;
   display: flex;
   justify-content: center;
   padding: 4rem;
-
-  ${(props) => (
-    props.fullScreen ? `
-      height: 100%;
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-    ` : ''
-  )};
 `;
 
 export const SpinnerIcon = styled(SpinnerSVG)`
