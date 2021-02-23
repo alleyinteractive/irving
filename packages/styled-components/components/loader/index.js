@@ -48,7 +48,7 @@ const Loader = (props) => {
               type={transition.type}
               style={transitionStyle}
             >
-              {! loading ? (
+              {loading ? (
                 <LoadingComponent
                   {...standardProps}
                   {...loadingProps}
