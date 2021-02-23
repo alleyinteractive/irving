@@ -29,6 +29,7 @@ const Loader = (props) => {
     Wrapper,
   } = theme;
   const loading = useLoading();
+  /* eslint-disable */
 
   return (
     <>
@@ -47,7 +48,7 @@ const Loader = (props) => {
               type={transition.type}
               style={transitionStyle}
             >
-              {loading ? (
+              {! loading ? (
                 <LoadingComponent
                   {...standardProps}
                   {...loadingProps}
@@ -79,6 +80,10 @@ const Loader = (props) => {
 Loader.propTypes = {
   ...standardPropTypes,
   /**
+   * Name of the component
+   */
+  componentName: PropTypes.string,
+  /**
    * Transition characteristics.
    */
   transition: PropTypes.shape({
@@ -100,6 +105,9 @@ Loader.propTypes = {
 
 Loader.defaultProps = {
   ...getStandardDefaultProps(),
+  // this component is sometimes used independent of the component map,
+  // so we're making sure component name classes still get added.
+  componentName: 'irving/loader',
   theme: defaultStyles,
   transition: {
     enabled: true,
