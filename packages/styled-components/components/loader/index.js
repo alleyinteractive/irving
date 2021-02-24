@@ -29,7 +29,6 @@ const Loader = (props) => {
     Wrapper,
   } = theme;
   const loading = useLoading();
-  /* eslint-disable */
 
   return (
     <>
