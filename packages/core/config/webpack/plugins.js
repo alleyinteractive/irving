@@ -104,7 +104,6 @@ module.exports = function getPlugins(context, argv) {
           filename: '[name].css',
           chunkFilename: '[id].css',
         }),
-
       ];
 
     default:

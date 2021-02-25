@@ -1,22 +1,33 @@
 import React from 'react';
-import Loader from 'components/loader';
+import PropTypes from 'prop-types';
+import {
+  Component as LoaderComponent,
+  themeMap as loaderThemeMap,
+} from 'components/loader';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
+import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
 import * as defaultStyles from './themes/default';
 
+const Loader = withThemes(loaderThemeMap)(LoaderComponent);
+
 const BodyWrapper = (props) => {
   const {
     children,
     theme,
+    loadingProps,
   } = props;
   const standardProps = useStandardProps(props);
   const { Main } = theme;
 
   return (
-    <Loader>
+    <Loader
+      theme={theme}
+      loadingProps={loadingProps}
+    >
       <Main
         {...standardProps}
         id="content"
@@ -29,11 +40,16 @@ const BodyWrapper = (props) => {
 
 BodyWrapper.propTypes = {
   ...standardPropTypes,
+  /**
+   * Props passed to Loader component.
+   */
+  loadingProps: PropTypes.object,
 };
 
 BodyWrapper.defaultProps = {
   ...getStandardDefaultProps(),
   theme: defaultStyles,
+  loadingProps: {},
 };
 
 const themeMap = {
