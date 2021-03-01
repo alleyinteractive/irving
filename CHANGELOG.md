@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.6.1-beta.0](https://github.com/alleyinteractive/irving/compare/v5.6.0...v5.6.1-beta.0) (2021-03-01)
+
+
+### Bug Fixes
+
+* **loader:** remove test case for loading component, remove fullscree… … ([92eb9b0](https://github.com/alleyinteractive/irving/commit/92eb9b0607a1c14963691bd3ee9dc2a664c21740))
+
+
+
+
+
 # [5.6.0](https://github.com/alleyinteractive/irving/compare/v5.6.0-beta.0...v5.6.0) (2021-02-22)
 
 **Note:** Version bump only for package irving
