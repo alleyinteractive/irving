@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.7.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.6.1...v5.7.0-alpha.3) (2021-03-02)
+
+
+
+# [5.7.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.7.0-alpha.1...v5.7.0-alpha.2) (2021-02-25)
+
+
+### Bug Fixes
+
+* **loader:** make loader configurable and themable via bodyWrapper ([a534d16](https://github.com/alleyinteractive/irving/packages/styled/commit/a534d16ca7ecb6b61fa6a7e289b27a0c2f92c7f0))
+
+
+
+# [5.7.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.7.0-alpha.0...v5.7.0-alpha.1) (2021-02-22)
+
+
+
+# [5.7.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.6.0...v5.7.0-alpha.0) (2021-02-22)
+
+
+
+
+
 # [5.7.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled/compare/v5.7.0-alpha.1...v5.7.0-alpha.2) (2021-02-25)
 
 
