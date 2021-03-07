@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.7.0-canary.1](https://github.com/alleyinteractive/irving/compare/v5.7.0-canary.0...v5.7.0-canary.1) (2021-03-07)
+
+
+### Bug Fixes
+
+* **pico:** add updated, content ready actions and postmessage handling ([0b1ef17](https://github.com/alleyinteractive/irving/commit/0b1ef1779255843e9ea5c3bf24f650794b579015))
+
+
+
+
+
 # [5.7.0-canary.0](https://github.com/alleyinteractive/irving/compare/v5.7.0-alpha.1...v5.7.0-canary.0) (2021-02-22)
 
 **Note:** Version bump only for package irving
