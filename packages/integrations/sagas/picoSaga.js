@@ -126,6 +126,7 @@ function trackUpdatePicoSignal(signal) {
 function trackUpdatePageInfo({ payload }) {
   // Trigger the page visit with Pico.
   try {
+    log.info('Pico: firing visit', payload);
     window.pico('visit', payload);
   } catch (error) {
     log.error(error);

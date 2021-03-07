@@ -1,4 +1,7 @@
-import React, { useEffect, useCallback } from 'react';
+import React, {
+  useEffect,
+  useCallback,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import getLogService from '@irvingjs/services/logService';
@@ -10,10 +13,13 @@ import {
   actionPicoLoaded,
   actionPicoReady,
   actionUpdatePicoPageInfo,
+  actionPicoUpdated,
 } from '../../actions/picoActions';
 import {
-  picoLoadedSelector,
   picoReadySelector,
+  picoScriptAddedSelector,
+  picoContentReadySelector,
+  picoUpdatedSelector,
 } from '../../selectors/picoSelector';
 // Utility functions.
 import {
@@ -66,13 +72,49 @@ const Pico = (props) => {
     [dispatch]
   );
 
+  const dispatchUpdated = useCallback(
+    () => dispatch(actionPicoUpdated()),
+    [dispatch]
+  );
+
   const irvingIsLoading = useLoading();
-
-  // Grab the `loaded` value from the `pico` branch of the state tree.
-  const picoLoaded = useSelector(picoLoadedSelector);
-
-  // Grab the `ready` value from the `pico` branch of the state tree.
+  const picoScriptAdded = useSelector(picoScriptAddedSelector);
+  const contentReady = useSelector(picoContentReadySelector);
   const picoReady = useSelector(picoReadySelector);
+  const picoUpdated = useSelector(picoUpdatedSelector);
+
+  useEffect(() => {
+    const messageHandler = (e) => {
+      if (e.origin.includes('pico.tools')) {
+        try {
+          const data = Object.values(JSON.parse(e.data)).pop();
+
+          data.forEach((entry) => {
+            const { data: messageData } = entry;
+            if (
+              messageData &&
+              'update' === messageData.name
+            ) {
+              log.info(messageData, picoUpdated);
+              if (! picoUpdated) {
+                log.info('Pico: updated, dispatching visit', messageData.args);
+                window.Pico.handleNavigationEvent(window.Pico.post);
+                dispatchUpdated();
+              }
+            }
+          });
+        } catch (err) {
+          log.error('%o', err);
+        }
+      }
+    };
+
+    window.addEventListener('message', messageHandler);
+
+    return () => (
+      window.removeEventListener('message', messageHandler)
+    );
+  }, [picoUpdated]);
 
   // Add listeners for Pico events.
   useEffect(() => {
@@ -87,15 +129,14 @@ const Pico = (props) => {
       dispatchPicoReady();
     };
 
-    log.info('Pico: Event listeners added.');
-
     // The pico.ready event fires after the Pico object is initialized in the DOM.
-    document.addEventListener('pico-init', loadHandler);
+    log.info('Pico: adding event listeners.');
+    document.addEventListener('pico.loaded', loadHandler);
     document.addEventListener('pico.ready', readyHandler);
 
     return () => {
-      log.info('Pico: Event listeners removed.');
-      document.removeEventListener('pico-init', loadHandler);
+      log.info('Pico: removing event listeners.');
+      document.removeEventListener('pico.loaded', loadHandler);
       document.removeEventListener('pico.ready', readyHandler);
     };
   }, []);
@@ -108,15 +149,30 @@ const Pico = (props) => {
     }
   }, []);
 
-  // Mount an effect that triggers the initial visit once `picoLoaded` has
-  // been set to true and only if `picoLoaded` has not been set to true yet.
+  if (contentReady) {
+    log.info('Pico: Content ready to be blocked');
+  }
+
+  // Mount an effect that triggers the initial visit once irving has loaded.
   useEffect(() => {
-    if (! irvingIsLoading && picoLoaded) {
+    if (
+      ! irvingIsLoading &&
+      picoScriptAdded &&
+      (
+        (contentReady && picoPageInfo.article) ||
+        ! picoPageInfo.article
+      )
+    ) {
+      // Dispatch the initial visit to trigger the `pico.loaded` event.
       log.info('Pico: Dispatching page visit.');
-      // Dispatch the initial visit to trigger the `pico-init` event.
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
-  }, [irvingIsLoading, picoLoaded, picoPageInfo.url]);
+  }, [
+    irvingIsLoading,
+    picoScriptAdded,
+    contentReady,
+    picoPageInfo.url,
+  ]);
 
   // Inject the gadget script into the DOM.
   useGadgetScript(gadgetUrl, publisherId);
