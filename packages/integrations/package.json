@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/integrations",
-  "version": "5.7.0-canary.1",
+  "version": "5.7.0-canary.2",
   "description": "Third party integrations for Irving",
   "files": [
     "actions/**/*",

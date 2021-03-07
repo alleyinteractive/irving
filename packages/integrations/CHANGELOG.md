@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.7.0-canary.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-canary.1...v5.7.0-canary.2) (2021-03-07)
+
+
+### Bug Fixes
+
+* **pico:** switch to using dispatchUpdatePicoPageInfo instead of handleNavigationEvent ([a06ed7a](https://github.com/alleyinteractive/irving/packages/integrations/commit/a06ed7afd82dcebe3e12eba72afd14bb85834778))
+
+
+
+
+
 # [5.7.0-canary.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-canary.0...v5.7.0-canary.1) (2021-03-07)
 
 
