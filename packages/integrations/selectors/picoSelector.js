@@ -13,6 +13,16 @@ export const picoReadySelector = createSelector(
   (branch) => maybeSelect(branch, 'isReady')
 );
 
+export const picoContentReadySelector = createSelector(
+  picoSelector,
+  (branch) => maybeSelect(branch, 'contentReady')
+);
+
+export const picoUpdatedSelector = createSelector(
+  picoSelector,
+  (branch) => maybeSelect(branch, 'updated')
+);
+
 export const picoPageInfoSelector = createSelector(
   picoSelector,
   (branch) => maybeSelect(branch, 'pageInfo')

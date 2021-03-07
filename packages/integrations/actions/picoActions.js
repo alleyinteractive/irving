@@ -2,7 +2,9 @@ import { createAction } from '@irvingjs/core/actions';
 import {
   PICO_LOADED,
   PICO_READY,
+  PICO_CONTENT_READY,
   PICO_SCRIPT_ADDED,
+  PICO_UPDATED,
   RECEIVE_PICO_PLAN_UPGRADE,
   RECEIVE_PICO_VERIFICATION_FAILURE,
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
@@ -28,11 +30,28 @@ export function actionPicoReady() {
 }
 
 /**
+ * Create an action that updates the store when post content is ready to be blocked.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionPicoContentReady() {
+  return createAction(PICO_CONTENT_READY);
+}
+
+/**
  * Create an action that updates the store when the Pico script is added.
  * @returns {{type, payload}} The Redux action.
  */
 export function actionPicoScriptAdded() {
   return createAction(PICO_SCRIPT_ADDED);
+}
+
+/**
+ * Create an action that updates the store to indicate pico has internally
+ * updated itself with new page info.
+ * @returns {{type, payload}} The Redux action.
+ */
+export function actionPicoUpdated() {
+  return createAction(PICO_UPDATED);
 }
 
 /**
