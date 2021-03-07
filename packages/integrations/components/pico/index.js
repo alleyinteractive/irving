@@ -100,8 +100,8 @@ const Pico = (props) => {
                   'Pico: updated, dispatching visit',
                   messageData.args
                 );
-                dispatchUpdatePicoPageInfo(picoPageInfo);
                 dispatchUpdated();
+                dispatchUpdatePicoPageInfo(picoPageInfo);
               }
             }
           });
@@ -150,10 +150,6 @@ const Pico = (props) => {
       mountPicoNodes();
     }
   }, []);
-
-  if (contentReady) {
-    log.info('Pico: Content ready to be blocked');
-  }
 
   // Mount an effect that triggers the initial visit once irving has loaded.
   useEffect(() => {
