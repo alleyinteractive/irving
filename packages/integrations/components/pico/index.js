@@ -95,11 +95,13 @@ const Pico = (props) => {
               messageData &&
               'update' === messageData.name
             ) {
-              log.info(messageData, picoUpdated);
               if (! picoUpdated) {
-                log.info('Pico: updated, dispatching visit', messageData.args);
-                window.Pico.handleNavigationEvent(window.Pico.post);
+                log.info(
+                  'Pico: updated, dispatching visit',
+                  messageData.args
+                );
                 dispatchUpdated();
+                dispatchUpdatePicoPageInfo(picoPageInfo);
               }
             }
           });
@@ -148,10 +150,6 @@ const Pico = (props) => {
       mountPicoNodes();
     }
   }, []);
-
-  if (contentReady) {
-    log.info('Pico: Content ready to be blocked');
-  }
 
   // Mount an effect that triggers the initial visit once irving has loaded.
   useEffect(() => {
