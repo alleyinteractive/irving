@@ -3,7 +3,15 @@ export const manager = {
   hydrated: false,
 };
 
-export const pico = {};
+export const pico = {
+  contentReady: false,
+  isLoaded: false,
+  isReady: false,
+  isUpdated: false,
+  scriptAdded: false,
+  signal: {},
+  pageInfo: {},
+};
 
 export const coral = {};
 

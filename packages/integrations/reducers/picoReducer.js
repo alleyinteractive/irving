@@ -42,14 +42,14 @@ export default function picoReducer(
     case PICO_UPDATED:
       return {
         ...state,
-        updated: true,
+        isUpdated: true,
       };
 
     case LOCATION_CHANGE:
       return {
         ...state,
         contentReady: false,
-        updated: false,
+        isUpdated: false,
       };
 
     case PICO_SCRIPT_ADDED:
