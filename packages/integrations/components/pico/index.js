@@ -150,7 +150,7 @@ const Pico = (props) => {
    */
   useEffect(() => {
     if (picoUpdated) {
-      log.info('Pico: updated, dispatching visit', picoUpdated);
+      log.info('Pico: updated');
       // dispatchUpdatePicoPageInfo(picoPageInfo);
     }
   }, [picoUpdated]);
@@ -166,7 +166,7 @@ const Pico = (props) => {
       )
     ) {
       // Dispatch the initial visit to trigger the `pico.loaded` event.
-      log.info('Pico: ready, dispatching page visit.', picoUpdated);
+      log.info('Pico: ready, dispatching page visit.');
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
   }, [
