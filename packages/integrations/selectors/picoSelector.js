@@ -20,7 +20,7 @@ export const picoContentReadySelector = createSelector(
 
 export const picoUpdatedSelector = createSelector(
   picoSelector,
-  (branch) => maybeSelect(branch, 'updated')
+  (branch) => maybeSelect(branch, 'isUpdated')
 );
 
 export const picoPageInfoSelector = createSelector(
