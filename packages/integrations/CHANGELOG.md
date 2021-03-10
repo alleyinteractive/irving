@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.7.0-canary.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-canary.2...v5.7.0-canary.3) (2021-03-10)
+
+
+### Bug Fixes
+
+* **pico:** modify log for pico updated ([57caa26](https://github.com/alleyinteractive/irving/packages/integrations/commit/57caa2604fcb3836680493ecc0960c9e716bb3a9))
+* **pico:** switch to using postmessage hook ([0ab4c44](https://github.com/alleyinteractive/irving/packages/integrations/commit/0ab4c44812fb3f94bc9290740ec7353e45102e7e))
+
+
+
+
+
 # [5.7.0-canary.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-canary.1...v5.7.0-canary.2) (2021-03-07)
 
 
