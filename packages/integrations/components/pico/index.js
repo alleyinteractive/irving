@@ -8,19 +8,15 @@ import PropTypes from 'prop-types';
 import getLogService from '@irvingjs/services/logService';
 import useLoading from '@irvingjs/core/hooks/useLoading';
 import useGadgetScript from './useGadgetScript';
-import usePostMessage from './usePostMessage';
 import usePicoEventListeners from './usePicoEventListeners';
 import PicoObserver from './observer';
 // Pico.
 import {
   actionUpdatePicoPageInfo,
-  actionPicoUpdated,
 } from '../../actions/picoActions';
 import {
-  picoReadySelector,
   picoLifecycleSelector,
   picoContentReadySelector,
-  // picoUpdatedSelector,
 } from '../../selectors/picoSelector';
 // Utility functions.
 import {
@@ -55,55 +51,23 @@ const Pico = (props) => {
   /**
    * Actions and selectors for:
    * - pico.pageInfo
-   * - pico.isUpdated
+   * - pico.lifecycle
    */
   const dispatch = useDispatch();
   const dispatchUpdatePicoPageInfo = useCallback(
     (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
     [dispatch]
   );
-  // const dispatchUpdated = useCallback(
-  //   () => dispatch(actionPicoUpdated()),
-  //   [dispatch]
-  // );
 
   const irvingIsLoading = useLoading();
   const {
     scriptOnload,
-    init: picoInitialized,
-    loaded: picoLoaded,
     ready: picoReady,
   } = useSelector(picoLifecycleSelector);
   const contentReady = useSelector(picoContentReadySelector);
-  // const picoUpdated = useSelector(picoUpdatedSelector);
 
   // Add lifecycle listeners.
   usePicoEventListeners();
-
-  // Check when pico has updated user info and set `updated` to true in redux.
-  // usePostMessage(
-  //   'pico.tools',
-  //   (e) => {
-  //     try {
-  //       const data = Object.values(JSON.parse(e.data)).pop();
-
-  //       data.forEach((entry) => {
-  //         const { data: messageData } = entry;
-  //         if (
-  //           messageData &&
-  //           'update' === messageData.name
-  //         ) {
-  //           if (! picoUpdated) {
-  //             dispatchUpdated();
-  //           }
-  //         }
-  //       });
-  //     } catch (err) {
-  //       log.error('%o', err);
-  //     }
-  //   },
-  //   [picoUpdated]
-  // );
 
   // Mount our Pico Signal nodes into the DOM.
   useEffect(() => {
@@ -113,27 +77,9 @@ const Pico = (props) => {
     }
   }, []);
 
-  /**
-   * Respond to pico updated and send out another visit.
-   * @todo figure out why this is necessary for content blocking and remove it.
-   *  we should only be sending one visit per pageview, ideally, but their
-   *  server logic is capable of deduping visits by URL.
-   */
-  // useEffect(() => {
-  //   if (picoUpdated) {
-  //     log.info('[irving:Pico] updated');
-  //     dispatchUpdatePicoPageInfo(picoPageInfo);
-  //   }
-  // }, [picoUpdated]);
-
   // Mount an effect that triggers the initial visit once irving has loaded.
   useEffect(() => {
-    console.log(
-      irvingIsLoading,
-      scriptOnload,
-      contentReady,
-      picoPageInfo.url,
-    );
+
     if (
       ! irvingIsLoading &&
       scriptOnload &&
@@ -171,10 +117,11 @@ Pico.defaultProps = {
 Pico.propTypes = {
   pageInfo: PropTypes.shape({
     article: PropTypes.bool,
-    postId: PropTypes.number.isRequired,
-    postType: PropTypes.string.isRequired,
+    postId: PropTypes.number,
+    postType: PropTypes.string,
     resourceRef: PropTypes.string,
-    taxonomies: PropTypes.object.isRequired,
+    taxonomies: PropTypes.object,
+    url: PropTypes.string,
   }).isRequired,
   publisherId: PropTypes.string.isRequired,
   tiers: PropTypes.array,
