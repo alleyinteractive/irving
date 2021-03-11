@@ -33,13 +33,15 @@ const withPico = (ChildComponent) => {
     const [canComment, setCanComment] = useState(false);
 
     useEffect(() => {
-      log.info('[irving:Coral:withPico] Running effect');
+      log.info(
+        '[irving:Coral:withPico] running effect, checking if user can comment'
+      );
 
       if (coralToken && ! requireUsername) {
-        log.info('[irving:Coral:withPico] Setting canComment: true');
+        log.info('[irving:Coral:withPico] setting canComment: ', true);
         setCanComment(true);
       } else {
-        log.info('[irving:Coral:withPico] Setting canComment: false');
+        log.info('[irving:Coral:withPico] setting canComment: ', false);
         setCanComment(false);
       }
     }, [coralToken, requireUsername, status, tier]);
@@ -78,20 +80,20 @@ const withPico = (ChildComponent) => {
     };
 
     if (picoLoaded && ssoTiers.includes(tier) && canComment) {
-      log.info('[irving:Coral:withPico] Returning authenticated embed');
+      log.info('[irving:Coral:withPico] returning authenticated embed');
       return (
         <ChildComponent {...props} events={handlers} accessToken={coralToken} />
       );
     }
 
     if (picoLoaded && ! canComment) {
-      log.info('[irving:Coral:withPico] Returning default embed');
+      log.info('[irving:Coral:withPico] returning default embed');
       return (
         <ChildComponent {...props} events={handlers} />
       );
     }
 
-    log.info('[irving:Coral:withPico] Waiting for Pico to load');
+    log.info('[irving:Coral:withPico] waiting for Pico to load');
     return null;
   };
 
