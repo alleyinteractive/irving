@@ -1,32 +1,22 @@
 import { createAction } from '@irvingjs/core/actions';
 import {
-  PICO_LOADED,
-  PICO_READY,
   PICO_CONTENT_READY,
-  PICO_SCRIPT_ADDED,
-  PICO_UPDATED,
   RECEIVE_PICO_PLAN_UPGRADE,
   RECEIVE_PICO_VERIFICATION_FAILURE,
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
   SEND_PICO_VERIFICATION_REQUEST,
+  UPDATE_PICO_LIFECYCLE,
   UPDATE_PICO_PAGE_INFO,
   UPDATE_PICO_SIGNAL,
 } from './types';
 
 /**
- * Create an action that updates the store when Pico has initialized.
+ * Create an action that updates the store with the Pico's current lifecycle status.
+ * @param {object} lifecycleStatus - Pico lifecycle updates object.
  * @returns {{type, payload}} The Redux action.
  */
-export function actionPicoLoaded() {
-  return createAction(PICO_LOADED);
-}
-
-/**
- * Create an action that updates the store when Pico is ready.
- * @returns {{type, payload}} The Redux action.
- */
-export function actionPicoReady() {
-  return createAction(PICO_READY);
+export function actionUpdatePicoLifecycle(lifecycleStatus) {
+  return createAction(UPDATE_PICO_LIFECYCLE, lifecycleStatus);
 }
 
 /**
@@ -35,23 +25,6 @@ export function actionPicoReady() {
  */
 export function actionPicoContentReady() {
   return createAction(PICO_CONTENT_READY);
-}
-
-/**
- * Create an action that updates the store when the Pico script is added.
- * @returns {{type, payload}} The Redux action.
- */
-export function actionPicoScriptAdded() {
-  return createAction(PICO_SCRIPT_ADDED);
-}
-
-/**
- * Create an action that updates the store to indicate pico has internally
- * updated itself with new page info.
- * @returns {{type, payload}} The Redux action.
- */
-export function actionPicoUpdated() {
-  return createAction(PICO_UPDATED);
 }
 
 /**

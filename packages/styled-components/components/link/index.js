@@ -108,7 +108,10 @@ Link.defaultProps = {
 Link.propTypes = {
   ...analyticsPropTypes,
   ...standardPropTypes,
-  ariaHidden: PropTypes.oneOf([null, 'true']),
+  ariaHidden: PropTypes.oneOfType([
+    PropTypes.oneOf([null, 'true']),
+    PropTypes.bool,
+  ]),
   /**
    * Destination for anchor tag (`href` attribute)
    */

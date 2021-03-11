@@ -1,10 +1,7 @@
 import { LOCATION_CHANGE } from '@irvingjs/core/actions/types';
 import {
-  PICO_LOADED,
-  PICO_READY,
   PICO_CONTENT_READY,
-  PICO_SCRIPT_ADDED,
-  PICO_UPDATED,
+  UPDATE_PICO_LIFECYCLE,
   UPDATE_PICO_PAGE_INFO,
   UPDATE_PICO_SIGNAL,
 } from '../actions/types';
@@ -21,16 +18,13 @@ export default function picoReducer(
   { type, payload }
 ) {
   switch (type) {
-    case PICO_LOADED:
+    case UPDATE_PICO_LIFECYCLE:
       return {
         ...state,
-        isLoaded: true,
-      };
-
-    case PICO_READY:
-      return {
-        ...state,
-        isReady: true,
+        lifecycle: {
+          ...state.lifecycle,
+          ...payload,
+        },
       };
 
     case PICO_CONTENT_READY:
@@ -39,23 +33,11 @@ export default function picoReducer(
         contentReady: true,
       };
 
-    case PICO_UPDATED:
-      return {
-        ...state,
-        isUpdated: true,
-      };
-
     case LOCATION_CHANGE:
       return {
         ...state,
         contentReady: false,
         isUpdated: false,
-      };
-
-    case PICO_SCRIPT_ADDED:
-      return {
-        ...state,
-        scriptAdded: true,
       };
 
     case UPDATE_PICO_PAGE_INFO:

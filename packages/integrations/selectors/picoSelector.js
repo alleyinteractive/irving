@@ -3,14 +3,9 @@ import { maybeSelect } from './utils';
 
 const picoSelector = (state) => state.integrations.pico;
 
-export const picoLoadedSelector = createSelector(
+export const picoLifecycleSelector = createSelector(
   picoSelector,
-  (branch) => maybeSelect(branch, 'isLoaded')
-);
-
-export const picoReadySelector = createSelector(
-  picoSelector,
-  (branch) => maybeSelect(branch, 'isReady')
+  (branch) => maybeSelect(branch, 'lifecycle')
 );
 
 export const picoContentReadySelector = createSelector(
@@ -18,19 +13,9 @@ export const picoContentReadySelector = createSelector(
   (branch) => maybeSelect(branch, 'contentReady')
 );
 
-export const picoUpdatedSelector = createSelector(
-  picoSelector,
-  (branch) => maybeSelect(branch, 'isUpdated')
-);
-
 export const picoPageInfoSelector = createSelector(
   picoSelector,
   (branch) => maybeSelect(branch, 'pageInfo')
-);
-
-export const picoScriptAddedSelector = createSelector(
-  picoSelector,
-  (branch) => maybeSelect(branch, 'scriptAdded')
 );
 
 export const picoSignalSelector = createSelector(
