@@ -9,19 +9,18 @@ import getLogService from '@irvingjs/services/logService';
 import useLoading from '@irvingjs/core/hooks/useLoading';
 import useGadgetScript from './useGadgetScript';
 import usePostMessage from './usePostMessage';
+import usePicoEventListeners from './usePicoEventListeners';
 import PicoObserver from './observer';
 // Pico.
 import {
-  actionPicoLoaded,
-  actionPicoReady,
   actionUpdatePicoPageInfo,
   actionPicoUpdated,
 } from '../../actions/picoActions';
 import {
   picoReadySelector,
-  picoScriptAddedSelector,
+  picoLifecycleSelector,
   picoContentReadySelector,
-  picoUpdatedSelector,
+  // picoUpdatedSelector,
 } from '../../selectors/picoSelector';
 // Utility functions.
 import {
@@ -55,89 +54,61 @@ const Pico = (props) => {
 
   /**
    * Actions and selectors for:
-   * - pico.isLoaded
-   * - pico.isReady
    * - pico.pageInfo
    * - pico.isUpdated
    */
   const dispatch = useDispatch();
-  const dispatchPicoLoaded = useCallback(
-    () => dispatch(actionPicoLoaded()),
-    [dispatch]
-  );
-  const dispatchPicoReady = useCallback(
-    () => dispatch(actionPicoReady()),
-    [dispatch]
-  );
   const dispatchUpdatePicoPageInfo = useCallback(
     (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
     [dispatch]
   );
-  const dispatchUpdated = useCallback(
-    () => dispatch(actionPicoUpdated()),
-    [dispatch]
-  );
+  // const dispatchUpdated = useCallback(
+  //   () => dispatch(actionPicoUpdated()),
+  //   [dispatch]
+  // );
 
   const irvingIsLoading = useLoading();
-  const picoScriptAdded = useSelector(picoScriptAddedSelector);
+  const {
+    scriptOnload,
+    init: picoInitialized,
+    loaded: picoLoaded,
+    ready: picoReady,
+  } = useSelector(picoLifecycleSelector);
   const contentReady = useSelector(picoContentReadySelector);
-  const picoReady = useSelector(picoReadySelector);
-  const picoUpdated = useSelector(picoUpdatedSelector);
+  // const picoUpdated = useSelector(picoUpdatedSelector);
+
+  // Add lifecycle listeners.
+  usePicoEventListeners();
 
   // Check when pico has updated user info and set `updated` to true in redux.
-  usePostMessage(
-    'pico.tools',
-    (e) => {
-      try {
-        const data = Object.values(JSON.parse(e.data)).pop();
+  // usePostMessage(
+  //   'pico.tools',
+  //   (e) => {
+  //     try {
+  //       const data = Object.values(JSON.parse(e.data)).pop();
 
-        data.forEach((entry) => {
-          const { data: messageData } = entry;
-          if (
-            messageData &&
-            'update' === messageData.name
-          ) {
-            if (! picoUpdated) {
-              dispatchUpdated();
-            }
-          }
-        });
-      } catch (err) {
-        log.error('%o', err);
-      }
-    },
-    [picoUpdated]
-  );
-
-  // Add listeners for Pico events.
-  useEffect(() => {
-    // Dispatch an action to update the integrations.pico.loaded state in Redux.
-    const loadHandler = () => {
-      log.info('Pico: Running load handler.');
-      dispatchPicoLoaded();
-    };
-
-    const readyHandler = () => {
-      log.info('Pico: Running ready handler.');
-      dispatchPicoReady();
-    };
-
-    // The pico.ready event fires after the Pico object is initialized in the DOM.
-    log.info('Pico: adding event listeners.');
-    window.addEventListener('pico.loaded', loadHandler);
-    window.addEventListener('pico.ready', readyHandler);
-
-    return () => {
-      log.info('Pico: removing event listeners.');
-      window.removeEventListener('pico.loaded', loadHandler);
-      window.removeEventListener('pico.ready', readyHandler);
-    };
-  }, []);
+  //       data.forEach((entry) => {
+  //         const { data: messageData } = entry;
+  //         if (
+  //           messageData &&
+  //           'update' === messageData.name
+  //         ) {
+  //           if (! picoUpdated) {
+  //             dispatchUpdated();
+  //           }
+  //         }
+  //       });
+  //     } catch (err) {
+  //       log.error('%o', err);
+  //     }
+  //   },
+  //   [picoUpdated]
+  // );
 
   // Mount our Pico Signal nodes into the DOM.
   useEffect(() => {
     if (! isPicoMounted()) {
-      log.info('Pico: Mounting nodes.');
+      log.info('[irving:Pico] Mounting nodes.');
       mountPicoNodes();
     }
   }, []);
@@ -148,30 +119,36 @@ const Pico = (props) => {
    *  we should only be sending one visit per pageview, ideally, but their
    *  server logic is capable of deduping visits by URL.
    */
-  useEffect(() => {
-    if (picoUpdated) {
-      log.info('Pico: updated');
-      // dispatchUpdatePicoPageInfo(picoPageInfo);
-    }
-  }, [picoUpdated]);
+  // useEffect(() => {
+  //   if (picoUpdated) {
+  //     log.info('[irving:Pico] updated');
+  //     dispatchUpdatePicoPageInfo(picoPageInfo);
+  //   }
+  // }, [picoUpdated]);
 
   // Mount an effect that triggers the initial visit once irving has loaded.
   useEffect(() => {
+    console.log(
+      irvingIsLoading,
+      scriptOnload,
+      contentReady,
+      picoPageInfo.url,
+    );
     if (
       ! irvingIsLoading &&
-      picoScriptAdded &&
+      scriptOnload &&
       (
         (contentReady && picoPageInfo.article) ||
         ! picoPageInfo.article
       )
     ) {
       // Dispatch the initial visit to trigger the `pico.loaded` event.
-      log.info('Pico: ready, dispatching page visit.');
+      log.info('[irving:Pico] ready, dispatching page visit.');
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
   }, [
     irvingIsLoading,
-    picoScriptAdded,
+    scriptOnload,
     contentReady,
     picoPageInfo.url,
   ]);
@@ -180,7 +157,7 @@ const Pico = (props) => {
   useGadgetScript(gadgetUrl, publisherId);
 
   // Inject the Pico Signal into the DOM.
-  log.info('Pico: Returning observer component.');
+  log.info('[irving:Pico] rendering signal observer component.');
   return (
     picoReady ? <PicoObserver tiers={tiers} /> : null
   );
