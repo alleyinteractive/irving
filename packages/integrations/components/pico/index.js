@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, {
   useEffect,
   useCallback,
@@ -79,7 +78,6 @@ const Pico = (props) => {
 
   // Mount an effect that triggers the initial visit once irving has loaded.
   useEffect(() => {
-
     if (
       ! irvingIsLoading &&
       scriptOnload &&
