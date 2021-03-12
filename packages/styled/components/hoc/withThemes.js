@@ -4,10 +4,16 @@ import assign from 'lodash/fp/assign';
 
 const withThemes = (themeMap) => (WrappedComponent) => {
   const ThemedComponent = (props) => {
-    const { themeName } = props;
+    const {
+      theme: propsTheme,
+      themeName,
+    } = props;
+    const currentTheme = propsTheme && Object.keys(propsTheme).length ?
+      propsTheme :
+      themeMap[themeName] || {};
     const theme = assign(
       themeMap.default,
-      themeMap[themeName]
+      currentTheme
     );
 
     return (
@@ -23,10 +29,15 @@ const withThemes = (themeMap) => (WrappedComponent) => {
      * Prop indicating which theme to use.
      */
     themeName: PropTypes.oneOf(Object.keys(themeMap)),
+    /**
+     * Theme (styles) to apply to the component.
+     */
+    theme: PropTypes.object,
   };
 
   ThemedComponent.defaultProps = {
     themeName: 'default',
+    theme: {},
   };
 
   return ThemedComponent;
