@@ -1,29 +1,30 @@
 import { createAction } from '@irvingjs/core/actions';
 import {
-  PICO_LOADED,
-  PICO_SCRIPT_ADDED,
+  PICO_CONTENT_READY,
   RECEIVE_PICO_PLAN_UPGRADE,
   RECEIVE_PICO_VERIFICATION_FAILURE,
   REQUIRE_UPGRADE_FOR_CORAL_SSO,
   SEND_PICO_VERIFICATION_REQUEST,
+  UPDATE_PICO_LIFECYCLE,
   UPDATE_PICO_PAGE_INFO,
   UPDATE_PICO_SIGNAL,
 } from './types';
 
 /**
- * Create an action that updates the store when Pico has loaded.
+ * Create an action that updates the store with the Pico's current lifecycle status.
+ * @param {object} lifecycleStatus - Pico lifecycle updates object.
  * @returns {{type, payload}} The Redux action.
  */
-export function actionPicoLoaded() {
-  return createAction(PICO_LOADED);
+export function actionUpdatePicoLifecycle(lifecycleStatus) {
+  return createAction(UPDATE_PICO_LIFECYCLE, lifecycleStatus);
 }
 
 /**
- * Create an action that updates the store when the Pico script is added.
+ * Create an action that updates the store when post content is ready to be blocked.
  * @returns {{type, payload}} The Redux action.
  */
-export function actionPicoScriptAdded() {
-  return createAction(PICO_SCRIPT_ADDED);
+export function actionPicoContentReady() {
+  return createAction(PICO_CONTENT_READY);
 }
 
 /**

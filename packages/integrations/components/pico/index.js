@@ -1,18 +1,21 @@
-import React, { useEffect, useCallback } from 'react';
+import React, {
+  useEffect,
+  useCallback,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import getLogService from '@irvingjs/services/logService';
-import usePollForNode from './usePollForNode';
-import useWidgetScript from './useWidgetScript';
+import useLoading from '@irvingjs/core/hooks/useLoading';
+import useGadgetScript from './useGadgetScript';
+import usePicoEventListeners from './usePicoEventListeners';
 import PicoObserver from './observer';
 // Pico.
 import {
-  actionPicoLoaded,
   actionUpdatePicoPageInfo,
 } from '../../actions/picoActions';
 import {
-  picoLoadedSelector,
-  picoScriptAddedSelector,
+  picoLifecycleSelector,
+  picoContentReadySelector,
 } from '../../selectors/picoSelector';
 // Utility functions.
 import {
@@ -27,11 +30,8 @@ const Pico = (props) => {
     pageInfo,
     publisherId,
     tiers,
-    widgetUrl,
+    widgetUrl: gadgetUrl, // Rename for back-compat.
   } = props;
-
-  // Inject the widget script into the DOM.
-  useWidgetScript(widgetUrl, publisherId);
 
   /**
    * Ensure page info has the right format.
@@ -47,109 +47,79 @@ const Pico = (props) => {
     url: window.location.href,
   };
 
-  // Create the dispatch function.
+  /**
+   * Actions and selectors for:
+   * - pico.pageInfo
+   * - pico.lifecycle
+   */
   const dispatch = useDispatch();
-  // Create a function that dispatches the current page info for the saga to respond to.
   const dispatchUpdatePicoPageInfo = useCallback(
-    (payload) => {
-      // Trigger the page visit with Pico.
-      const pollForFn = setInterval(() => {
-        if ('function' === typeof window.pico) {
-          // Prevent future polling events.
-          clearInterval(pollForFn);
-          // Trigger the visit.
-          window.pico('visit', payload);
-        }
-      }, 250);
-
-      return dispatch(actionUpdatePicoPageInfo(payload));
-    },
-    [dispatch]
-  );
-  // Create a function that updates the store when the `pico.loaded` event is fired.
-  const dispatchPicoLoaded = useCallback(
-    () => dispatch(actionPicoLoaded()),
+    (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
     [dispatch]
   );
 
-  // Grab the `loaded` value from the `pico` branch of the state tree.
-  const picoLoaded = useSelector(picoLoadedSelector);
+  const irvingIsLoading = useLoading();
+  const {
+    scriptOnload,
+    ready: picoReady,
+  } = useSelector(picoLifecycleSelector);
+  const contentReady = useSelector(picoContentReadySelector);
 
-  // Grab the `scriptAdded` value from the `pico` branch of the state tree.
-  const picoScriptAdded = useSelector(picoScriptAddedSelector);
+  // Add lifecycle listeners.
+  usePicoEventListeners();
 
-  // Add listeners for pico events.
+  // Mount our Pico Signal nodes into the DOM.
   useEffect(() => {
-    // Dispatch an action to update the integrations.pico.loaded state in Redux.
-    const loadHandler = () => {
-      if (! picoLoaded) {
-        log.info('Pico: Running load handler.');
-        dispatchPicoLoaded();
-      }
-    };
-
-    log.info('Pico: Event listeners added.');
-    // The pico.loaded event fires after the Pico object is fully initialized.
-    window.addEventListener('pico.loaded', loadHandler);
-
-    return () => {
-      window.removeEventListener('pico.loaded', loadHandler);
-    };
-  }, []);
-
-  // Mount an effect that triggers the initial visit once `picoScriptAdded` has
-  // been set to true and only if `picoLoaded` has not been set to true yet.
-  useEffect(() => {
-    if (picoScriptAdded) {
-      log.info('Pico: Dispatching page visit.');
-      // Dispatch the initial visit to trigger the `pico.loaded` event.
-      dispatchUpdatePicoPageInfo(picoPageInfo);
-    }
-  }, [picoScriptAdded, picoPageInfo.url]);
-
-  // Poll for the existence of the Pico widget container.
-  const widgetContainer = usePollForNode('#pico-widget-container');
-
-  // Mount an effect that watches for the status of `picoLoaded` and the polled
-  // widget container node in order to determine when to mount the Pico nodes
-  // into the DOM.
-  useEffect(() => {
-    log.info(
-      'Pico: Attempting to mount nodes:',
-      [widgetContainer, isPicoMounted(), picoLoaded]
-    );
-
-    // Ensure the target nodes are only mounted once on the initial server load.
-    if (widgetContainer && ! isPicoMounted()) {
-      log.info('Pico: Mounting nodes.');
+    if (! isPicoMounted()) {
+      log.info('[irving:Pico] Mounting nodes.');
       mountPicoNodes();
     }
-  }, [picoLoaded, widgetContainer]);
+  }, []);
 
-  if (picoScriptAdded) {
-    // Inject the Pico Signal into the DOM.
-    log.info('Pico: Returning observer component.');
+  // Mount an effect that triggers the initial visit once irving has loaded.
+  useEffect(() => {
+    if (
+      ! irvingIsLoading &&
+      scriptOnload &&
+      (
+        (contentReady && picoPageInfo.article) ||
+        ! picoPageInfo.article
+      )
+    ) {
+      // Dispatch the initial visit to trigger the `pico.loaded` event.
+      log.info('[irving:Pico] ready, dispatching page visit.');
+      dispatchUpdatePicoPageInfo(picoPageInfo);
+    }
+  }, [
+    irvingIsLoading,
+    scriptOnload,
+    contentReady,
+    picoPageInfo.url,
+  ]);
 
-    return (
-      <PicoObserver tiers={tiers} />
-    );
-  }
+  // Inject the gadget script into the DOM.
+  useGadgetScript(gadgetUrl, publisherId);
 
-  return null;
+  // Inject the Pico Signal into the DOM.
+  log.info('[irving:Pico] rendering signal observer component.');
+  return (
+    picoReady ? <PicoObserver tiers={tiers} /> : null
+  );
 };
 
 Pico.defaultProps = {
   tiers: [],
-  widgetUrl: 'https://widget.pico.tools',
+  widgetUrl: 'https://gadget.pico.tools',
 };
 
 Pico.propTypes = {
   pageInfo: PropTypes.shape({
-    article: PropTypes.bool.isRequired,
-    postId: PropTypes.string.isRequired,
-    postType: PropTypes.string.isRequired,
+    article: PropTypes.bool,
+    postId: PropTypes.number,
+    postType: PropTypes.string,
     resourceRef: PropTypes.string,
-    taxonomies: PropTypes.object.isRequired,
+    taxonomies: PropTypes.object,
+    url: PropTypes.string,
   }).isRequired,
   publisherId: PropTypes.string.isRequired,
   tiers: PropTypes.array,
