@@ -20,6 +20,7 @@
     "prerelease:beta": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-prerelease --create-release github --preid beta --dist-tag beta",
     "prerelease:rc": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-prerelease --create-release github --preid rc --dist-tag rc",
     "release": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-commits --conventional-graduate --create-release github",
+    "release:bump": "HUSKY_SKIP_HOOKS=1 lerna publish preminor --conventional-prerelease --preid alpha --dist-tag alpha",
     "//": "nohoist option is used to prevent internal packages from being hoisted/deleted by lerna (which is a bug, I think)",
     "develop:bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
     "develop:cleanup": "lerna exec --stream -- \"rm -rf node_modules\" && rm -rf node_modules",
