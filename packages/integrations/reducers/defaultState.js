@@ -5,10 +5,6 @@ export const manager = {
 
 export const pico = {
   contentReady: false,
-  isInitialized: false,
-  isLoaded: false,
-  isReady: false,
-  isUpdated: false,
   signal: {},
   pageInfo: {},
   lifecycle: {
