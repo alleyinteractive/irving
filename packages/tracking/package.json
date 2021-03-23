@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/tracking",
-  "version": "5.8.0",
+  "version": "5.8.1",
   "description": "Integration for React Tracking",
   "files": [
     "services/**/*",
@@ -21,8 +21,8 @@
     "react-tracking": "^8.0.0"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^5.8.0",
-    "@irvingjs/core": "^5.8.0",
+    "@irvingjs/babel-preset-irving": "^5.8.1",
+    "@irvingjs/core": "^5.8.1",
     "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^26.6.3"
   },
