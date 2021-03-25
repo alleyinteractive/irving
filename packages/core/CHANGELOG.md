@@ -3,6 +3,233 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* **webpack:** add back in some polyfills webpack 5 took out ([a9fc46b](https://github.com/alleyinteractive/irving/packages/core/commit/a9fc46b63a12b4849bc9e4819b79cb7f746f9429))
+* **webpack:** add some comments ([1c318bd](https://github.com/alleyinteractive/irving/packages/core/commit/1c318bd22675398f15f9fa3b91074ede3a720483))
+* **webpack:** get new eslint webpack plugin working ([c5b8aae](https://github.com/alleyinteractive/irving/packages/core/commit/c5b8aaed4a392e639132c03c6dd96ba0cab99b85))
+* **webpack:** process non-icon svg as asset/resource to prevent breaking in clip paths ([f0e9296](https://github.com/alleyinteractive/irving/packages/core/commit/f0e92967db04370b1f62a4cd4c70459bf9755de8))
+* **webpack:** use default maxSize for normal asset modules ([43af6c8](https://github.com/alleyinteractive/irving/packages/core/commit/43af6c8c05014ddeea8ef593ce1c645f384ff018))
+
+
+### Features
+
+* **webpack:** continue tweaks to webpack config to support webpack 5 upgrade ([3af53e7](https://github.com/alleyinteractive/irving/packages/core/commit/3af53e76ac13aee64933a8d5e3f467b14cb4e8e8))
+
+
+
+
+
+# [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+
+
+
+## [5.8.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+
+## [5.8.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+# [5.8.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.8.0-alpha.2...v5.8.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.8.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.8.0-alpha.0...v5.8.0-alpha.1) (2021-03-23)
+
+
+### Features
+
+* **logging:** improved error logging ([feaf906](https://github.com/alleyinteractive/irving/packages/core/commit/feaf9064db73d44eb1d3497c8a482c3d4508676b))
+
+
+
+
+
+# [5.8.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.7.0...v5.8.0-alpha.0) (2021-03-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.7.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.7.0-beta.0...v5.7.0) (2021-03-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.7.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.7.0-alpha.4...v5.7.0-beta.0) (2021-03-12)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.7.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v5.6.1...v5.7.0-alpha.3) (2021-03-02)
+
+
+
+# [5.7.0-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v5.7.0-alpha.1...v5.7.0-alpha.2) (2021-02-25)
+
+
+
+# [5.7.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.7.0-alpha.0...v5.7.0-alpha.1) (2021-02-22)
+
+
+
+# [5.7.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.6.0...v5.7.0-alpha.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.7.0-alpha.2](https://github.com/alleyinteractive/irving/packages/core/compare/v5.7.0-alpha.1...v5.7.0-alpha.2) (2021-02-25)
+
+**Note:** Version bump only for package @irvingjs/core
+## [5.6.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.6.1-beta.0...v5.6.1) (2021-03-02)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.7.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.7.0-alpha.0...v5.7.0-alpha.1) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.7.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.6.0...v5.7.0-alpha.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/core
+## [5.6.1-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.6.0...v5.6.1-beta.0) (2021-03-01)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.6.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.6.0-beta.0...v5.6.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.6.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.6.0-alpha.1...v5.6.0-beta.0) (2021-02-19)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.6.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.6.0-alpha.0...v5.6.0-alpha.1) (2021-02-19)
+
+
+### Bug Fixes
+
+* **deps:** update url-parse package to prevent bug in version 1.5.0 ([aa0bb0a](https://github.com/alleyinteractive/irving/packages/core/commit/aa0bb0a989836c90aca64067ceec52757a8a0c00))
+
+
+
+
+
+# [5.6.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.11...v5.6.0-alpha.0) (2021-02-19)
+
+
+
+# [5.5.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-beta.1...v5.5.0) (2021-02-17)
+
+
+
+# [5.5.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.10...v5.5.0-beta.1) (2021-02-17)
+
+
+
+# [5.5.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.5.0-alpha.11](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.10...v5.5.0-alpha.11) (2021-02-19)
+
+
+### Bug Fixes
+
+* **providers:** make it so providers using route key always update on location change ([fbf1dad](https://github.com/alleyinteractive/irving/packages/core/commit/fbf1dad63d3339715a7cc353945e1ec4ae50a9cd))
+* **providers:** remove unnecessary selector ([a8412f4](https://github.com/alleyinteractive/irving/packages/core/commit/a8412f4dd43a534a096c89bdd7f787b1dbcb2535))
+* **providers:** use switch statement for providersReducer ([c0fc009](https://github.com/alleyinteractive/irving/packages/core/commit/c0fc0093540242636fbb85576fe5865ad4972c70))
+
+
+
+
+
+# [5.5.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-beta.1...v5.5.0) (2021-02-17)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.5.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.10...v5.5.0-beta.1) (2021-02-17)
+
+
+
+# [5.5.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [5.5.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/core
 # [5.5.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v5.5.0-alpha.9...v5.5.0-alpha.10) (2021-02-17)
 
 

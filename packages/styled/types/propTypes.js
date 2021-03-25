@@ -43,6 +43,10 @@ export const standardPropTypes = {
    * Theme (styles) to apply to the component.
    */
   theme: PropTypes.object,
+  /**
+   * Name of theme to apply to component.
+   */
+  themeName: PropTypes.string,
 };
 
 export const getStandardDefaultProps = () => ({
@@ -51,4 +55,5 @@ export const getStandardDefaultProps = () => ({
   className: '',
   style: {},
   tag: '',
+  themeName: 'default',
 });

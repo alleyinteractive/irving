@@ -37,7 +37,6 @@ module.exports = (multiConfig) => (
         publicPath: `${rootUrl}/`,
         filename: '[name].js',
         chunkFilename: '[name].js',
-        jsonpFunction: 'irvingEditorJsonp',
       },
 
       externals: {

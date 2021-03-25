@@ -3,6 +3,215 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+
+
+
+## [5.8.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+## [5.8.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+# [5.8.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.8.0-alpha.2...v5.8.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.8.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.8.0-alpha.1...v5.8.0-alpha.2) (2021-03-23)
+
+
+### Bug Fixes
+
+* **pico:** add visited flag in redux to prevent multiple visit calls on a single navigation ([ab5b6b6](https://github.com/alleyinteractive/irving/packages/integrations/commit/ab5b6b66f69228dcded65cd91eb1d8272835aab2))
+
+
+
+
+
+# [5.8.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.8.0-alpha.0...v5.8.0-alpha.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.8.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0...v5.8.0-alpha.0) (2021-03-16)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.7.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-beta.0...v5.7.0) (2021-03-16)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.7.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-alpha.4...v5.7.0-beta.0) (2021-03-12)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.7.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-alpha.3...v5.7.0-alpha.4) (2021-03-12)
+
+
+### Bug Fixes
+
+* **pico:** add updated, content ready actions and postmessage handling ([0b1ef17](https://github.com/alleyinteractive/irving/packages/integrations/commit/0b1ef1779255843e9ea5c3bf24f650794b579015))
+* **pico:** modify log for pico updated ([57caa26](https://github.com/alleyinteractive/irving/packages/integrations/commit/57caa2604fcb3836680493ecc0960c9e716bb3a9))
+* **pico:** remove eslint disable, remove postMessage hook ([b4829f1](https://github.com/alleyinteractive/irving/packages/integrations/commit/b4829f10494785f663a214a0888cd1ea066aff05))
+* **pico:** switch to using dispatchUpdatePicoPageInfo instead of handleNavigationEvent ([a06ed7a](https://github.com/alleyinteractive/irving/packages/integrations/commit/a06ed7afd82dcebe3e12eba72afd14bb85834778))
+* **pico:** switch to using postmessage hook ([0ab4c44](https://github.com/alleyinteractive/irving/packages/integrations/commit/0ab4c44812fb3f94bc9290740ec7353e45102e7e))
+
+
+
+
+
+# [5.7.0-alpha.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.6.1...v5.7.0-alpha.3) (2021-03-02)
+
+
+
+# [5.7.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-alpha.1...v5.7.0-alpha.2) (2021-02-25)
+
+
+
+# [5.7.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-alpha.0...v5.7.0-alpha.1) (2021-02-22)
+
+
+
+# [5.7.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.6.0...v5.7.0-alpha.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.7.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-alpha.1...v5.7.0-alpha.2) (2021-02-25)
+
+**Note:** Version bump only for package @irvingjs/integrations
+## [5.6.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.6.1-beta.0...v5.6.1) (2021-03-02)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.7.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.7.0-alpha.0...v5.7.0-alpha.1) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.7.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.6.0...v5.7.0-alpha.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/integrations
+## [5.6.1-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.6.0...v5.6.1-beta.0) (2021-03-01)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.6.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.6.0-beta.0...v5.6.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.6.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.6.0-alpha.1...v5.6.0-beta.0) (2021-02-19)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.6.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.6.0-alpha.0...v5.6.0-alpha.1) (2021-02-19)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.6.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.11...v5.6.0-alpha.0) (2021-02-19)
+
+
+
+# [5.5.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-beta.1...v5.5.0) (2021-02-17)
+
+
+
+# [5.5.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.10...v5.5.0-beta.1) (2021-02-17)
+
+
+
+# [5.5.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [5.5.0-alpha.11](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.10...v5.5.0-alpha.11) (2021-02-19)
+
+**Note:** Version bump only for package @irvingjs/integrations
+# [5.5.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-beta.1...v5.5.0) (2021-02-17)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
 # [5.5.0-alpha.10](https://github.com/alleyinteractive/irving/packages/integrations/compare/v5.5.0-alpha.9...v5.5.0-alpha.10) (2021-02-17)
 
 **Note:** Version bump only for package @irvingjs/integrations

@@ -9,7 +9,7 @@ import {
   requireUsernameSelector,
 } from '../../selectors/coralSelector';
 import {
-  picoLoadedSelector,
+  picoLifecycleSelector,
   picoSignalSelector,
 } from '../../selectors/picoSelector';
 
@@ -20,7 +20,7 @@ const withPico = (ChildComponent) => {
     const { ssoTiers } = props;
 
     // Grab the status of whether or not Pico has loaded.
-    const picoLoaded = useSelector(picoLoadedSelector);
+    const { loaded: picoLoaded } = useSelector(picoLifecycleSelector);
     // Grab the value of the Pico signal from the Redux store.
     const { status, tier } = useSelector(picoSignalSelector) || {};
     // Grab the value of the Coral token from the Redux store.
@@ -33,13 +33,15 @@ const withPico = (ChildComponent) => {
     const [canComment, setCanComment] = useState(false);
 
     useEffect(() => {
-      log.info('withPico: Running effect');
+      log.info(
+        '[irving:Coral:withPico] running effect, checking if user can comment'
+      );
 
       if (coralToken && ! requireUsername) {
-        log.info('withPico: Setting canComment: true');
+        log.info('[irving:Coral:withPico] setting canComment: ', true);
         setCanComment(true);
       } else {
-        log.info('withPico: Setting canComment: false');
+        log.info('[irving:Coral:withPico] setting canComment: ', false);
         setCanComment(false);
       }
     }, [coralToken, requireUsername, status, tier]);
@@ -78,20 +80,20 @@ const withPico = (ChildComponent) => {
     };
 
     if (picoLoaded && ssoTiers.includes(tier) && canComment) {
-      log.info('withPico: Returning authenticated embed');
+      log.info('[irving:Coral:withPico] returning authenticated embed');
       return (
         <ChildComponent {...props} events={handlers} accessToken={coralToken} />
       );
     }
 
     if (picoLoaded && ! canComment) {
-      log.info('withPico: Returning default embed');
+      log.info('[irving:Coral:withPico] returning default embed');
       return (
         <ChildComponent {...props} events={handlers} />
       );
     }
 
-    log.info('withPico: Waiting for Pico to load');
+    log.info('[irving:Coral:withPico] waiting for Pico to load');
     return null;
   };
 
