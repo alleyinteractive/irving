@@ -3,6 +3,129 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+
+## [5.8.1](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+# [5.8.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.8.0-alpha.2...v5.8.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.8.0-alpha.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.7.0...v5.8.0-alpha.0) (2021-03-16)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.7.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.7.0-beta.0...v5.7.0) (2021-03-16)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.7.0-beta.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.7.0-alpha.4...v5.7.0-beta.0) (2021-03-12)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.7.0-alpha.1](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.7.0-alpha.0...v5.7.0-alpha.1) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.7.0-alpha.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.6.0...v5.7.0-alpha.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.6.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.6.0-beta.0...v5.6.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.6.0-beta.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.6.0-alpha.1...v5.6.0-beta.0) (2021-02-19)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.6.0-alpha.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.5.0-alpha.11...v5.6.0-alpha.0) (2021-02-19)
+
+
+
+# [5.5.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.5.0-beta.1...v5.5.0) (2021-02-17)
+
+
+
+# [5.5.0-beta.1](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.5.0-alpha.10...v5.5.0-beta.1) (2021-02-17)
+
+
+
+# [5.5.0-beta.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.5.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.5.0-beta.1...v5.5.0) (2021-02-17)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.5.0-beta.1](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.5.0-alpha.10...v5.5.0-beta.1) (2021-02-17)
+
+
+
+# [5.5.0-beta.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [5.5.0-beta.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
 # [5.5.0-alpha.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v5.4.1-alpha.0...v5.5.0-alpha.0) (2021-01-27)
 
 **Note:** Version bump only for package @irvingjs/babel-preset-irving

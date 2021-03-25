@@ -12,6 +12,7 @@ export const defaultProviderState = {
   current: {
     key: '',
     config: {},
+    children: [],
   },
 };
 

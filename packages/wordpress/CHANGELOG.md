@@ -2,8 +2,224 @@
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## [5.8.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+# [5.8.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.0-alpha.2...v5.8.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.8.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.0-alpha.0...v5.8.0-alpha.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.8.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.7.0...v5.8.0-alpha.0) (2021-03-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.7.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.7.0-beta.0...v5.7.0) (2021-03-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.7.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.7.0-alpha.4...v5.7.0-beta.0) (2021-03-12)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.7.0-alpha.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.6.1...v5.7.0-alpha.3) (2021-03-02)
+
+
+
+# [5.7.0-alpha.2](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.7.0-alpha.1...v5.7.0-alpha.2) (2021-02-25)
+
+
+
+# [5.7.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.7.0-alpha.0...v5.7.0-alpha.1) (2021-02-22)
+
+
+
+# [5.7.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.6.0...v5.7.0-alpha.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.7.0-alpha.2](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.7.0-alpha.1...v5.7.0-alpha.2) (2021-02-25)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+## [5.6.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.6.1-beta.0...v5.6.1) (2021-03-02)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.7.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.7.0-alpha.0...v5.7.0-alpha.1) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.7.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.6.0...v5.7.0-alpha.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+## [5.6.1-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.6.0...v5.6.1-beta.0) (2021-03-01)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.6.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.6.0-beta.0...v5.6.0) (2021-02-22)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.6.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.6.0-alpha.1...v5.6.0-beta.0) (2021-02-19)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.6.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.6.0-alpha.0...v5.6.0-alpha.1) (2021-02-19)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.6.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.11...v5.6.0-alpha.0) (2021-02-19)
+
+
+
+# [5.5.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-beta.1...v5.5.0) (2021-02-17)
+
+
+
+# [5.5.0-beta.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.10...v5.5.0-beta.1) (2021-02-17)
+
+
+
+# [5.5.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.5.0-alpha.11](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.10...v5.5.0-alpha.11) (2021-02-19)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+# [5.5.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-beta.1...v5.5.0) (2021-02-17)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.5.0-beta.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.10...v5.5.0-beta.1) (2021-02-17)
+
+
+
+# [5.5.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.5.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.9...v5.5.0-beta.0) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+# [5.5.0-alpha.10](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.9...v5.5.0-alpha.10) (2021-02-17)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.5.0-alpha.9](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.8...v5.5.0-alpha.9) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.5.0-alpha.8](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.7...v5.5.0-alpha.8) (2021-02-16)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.5.0-alpha.7](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.6...v5.5.0-alpha.7) (2021-02-10)
+
+
+
+## [5.4.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.1-rc.3...v5.4.1) (2021-02-05)
+
+
+
+## [5.4.1-rc.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.5...v5.4.1-rc.3) (2021-02-04)
+
+
+
+## [5.4.1-rc.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.4...v5.4.1-rc.1) (2021-02-02)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
 
 # [5.5.0-alpha.5](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.4...v5.5.0-alpha.5) (2021-02-04)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+## [5.4.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.1-rc.3...v5.4.1) (2021-02-05)
 
 **Note:** Version bump only for package @irvingjs/wordpress
 
@@ -12,6 +228,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [5.5.0-alpha.4](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.5.0-alpha.3...v5.5.0-alpha.4) (2021-02-02)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+## [5.4.1-rc.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.1-rc.2...v5.4.1-rc.3) (2021-02-04)
 
 **Note:** Version bump only for package @irvingjs/wordpress
 
@@ -44,6 +263,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [5.4.1-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.0...v5.4.1-alpha.0) (2021-01-27)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+## [5.4.1-rc.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.4.1-rc.0...v5.4.1-rc.1) (2021-02-02)
 
 **Note:** Version bump only for package @irvingjs/wordpress
 

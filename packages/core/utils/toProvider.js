@@ -23,5 +23,5 @@ export default function toProvider(name, config, children) {
     return children;
   }
 
-  return React.createElement(type, props);
+  return React.createElement(type, props, children);
 }

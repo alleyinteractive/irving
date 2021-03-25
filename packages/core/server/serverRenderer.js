@@ -15,7 +15,6 @@ import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
 import createClientEnv from 'config/irving/createClientEnv';
-import { getEnv, getSiteConfig } from 'config/multisite';
 import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
@@ -86,22 +85,17 @@ const render = async (req, res, clientStats) => {
     </Provider>
   );
 
-  // Get additional site-specific scripts and styles.
-  const { head: siteSpecificHead } = getSiteConfig(req.hostname);
-
   // Get some template vars and allow customization by user.
   const customTemplateVars = getTemplateVars(
     'getAppTemplateVars',
     {
       Wrapper: AppWrapper,
       head: {
-        // @todo this should ultimately be merged fully via getTemplateVars.
-        ...siteSpecificHead,
         end: [getWebpackAssetTags(clientStats, req.hostname)],
       },
     },
     clientStats,
-    getEnv(req.hostname)
+    req.hostname
   );
 
   const stateEncoded = encodeState(getState());
@@ -142,6 +136,10 @@ export default function serverRenderer(options) {
     } catch (err) {
       logError.error('%o', { url: req.originalUrl, err });
 
+      const errorToDisplay = req.query.debug ?
+        err :
+        'This error has been logged.';
+
       // Render a error page.
       const ErrorMessageComponent = getComponent('error-message');
       const ErrorWrapper = () => (
@@ -154,6 +152,7 @@ export default function serverRenderer(options) {
         head: {
           title: '<title>Something has gone wrong</title>',
         },
+        errorToDisplay,
       });
 
       res.status(500);

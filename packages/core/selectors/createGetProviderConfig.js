@@ -19,10 +19,13 @@ const createGetProviderConfig = () => createSelector(
     const currentProvider = providers[name];
 
     if (currentProvider) {
-      return currentProvider.current.config;
+      return currentProvider.current;
     }
 
-    return {};
+    return {
+      config: {},
+      children: [],
+    };
   }
 );
 

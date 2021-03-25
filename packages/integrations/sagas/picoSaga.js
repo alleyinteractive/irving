@@ -4,7 +4,7 @@ import {
   takeLatest,
   takeEvery,
 } from 'redux-saga/effects';
-import getEnv from '@irvingjs/core/config/multisite/getEnv';
+import getEnv from '@irvingjs/core/config/irving/getEnv';
 import getLogService from '@irvingjs/services/logService';
 import {
   SEND_PICO_VERIFICATION_REQUEST,
@@ -126,6 +126,7 @@ function trackUpdatePicoSignal(signal) {
 function trackUpdatePageInfo({ payload }) {
   // Trigger the page visit with Pico.
   try {
+    log.info('[irving:trackUpdatePageInfo] firing Pico visit', payload);
     window.pico('visit', payload);
   } catch (error) {
     log.error(error);

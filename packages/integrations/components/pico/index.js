@@ -1,19 +1,22 @@
-import React, { useEffect, useCallback } from 'react';
+import React, {
+  useEffect,
+  useCallback,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import getLogService from '@irvingjs/services/logService';
 import useLoading from '@irvingjs/core/hooks/useLoading';
 import useGadgetScript from './useGadgetScript';
+import usePicoEventListeners from './usePicoEventListeners';
 import PicoObserver from './observer';
 // Pico.
 import {
-  actionPicoLoaded,
-  actionPicoReady,
   actionUpdatePicoPageInfo,
 } from '../../actions/picoActions';
 import {
-  picoLoadedSelector,
-  picoReadySelector,
+  picoLifecycleSelector,
+  picoContentReadySelector,
+  picoVisitedSelector,
 } from '../../selectors/picoSelector';
 // Utility functions.
 import {
@@ -45,84 +48,63 @@ const Pico = (props) => {
     url: window.location.href,
   };
 
-  // Create the dispatch function.
+  /**
+   * Actions and selectors for:
+   * - pico.pageInfo
+   * - pico.lifecycle
+   */
   const dispatch = useDispatch();
-
-  // Create a function that updates the store when the `pico-init` event is fired.
-  const dispatchPicoLoaded = useCallback(
-    () => dispatch(actionPicoLoaded()),
-    [dispatch]
-  );
-
-  // Create a function that updates the store when the `pico.ready` event is fired.
-  const dispatchPicoReady = useCallback(
-    () => dispatch(actionPicoReady()),
-    [dispatch]
-  );
-
-  // Create a function that dispatches the current page info for the saga to respond to.
   const dispatchUpdatePicoPageInfo = useCallback(
     (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
     [dispatch]
   );
 
   const irvingIsLoading = useLoading();
+  const {
+    scriptOnload,
+    ready: picoReady,
+  } = useSelector(picoLifecycleSelector);
+  const contentReady = useSelector(picoContentReadySelector);
+  const visited = useSelector(picoVisitedSelector);
 
-  // Grab the `loaded` value from the `pico` branch of the state tree.
-  const picoLoaded = useSelector(picoLoadedSelector);
-
-  // Grab the `ready` value from the `pico` branch of the state tree.
-  const picoReady = useSelector(picoReadySelector);
-
-  // Add listeners for Pico events.
-  useEffect(() => {
-    // Dispatch an action to update the integrations.pico.loaded state in Redux.
-    const loadHandler = async () => {
-      log.info('Pico: Running load handler.');
-      dispatchPicoLoaded();
-    };
-
-    const readyHandler = async () => {
-      log.info('Pico: Running ready handler.');
-      dispatchPicoReady();
-    };
-
-    log.info('Pico: Event listeners added.');
-
-    // The pico.ready event fires after the Pico object is initialized in the DOM.
-    document.addEventListener('pico-init', loadHandler);
-    document.addEventListener('pico.ready', readyHandler);
-
-    return () => {
-      log.info('Pico: Event listeners removed.');
-      document.removeEventListener('pico-init', loadHandler);
-      document.removeEventListener('pico.ready', readyHandler);
-    };
-  }, []);
+  // Add lifecycle listeners.
+  usePicoEventListeners();
 
   // Mount our Pico Signal nodes into the DOM.
   useEffect(() => {
     if (! isPicoMounted()) {
-      log.info('Pico: Mounting nodes.');
+      log.info('[irving:Pico] Mounting nodes.');
       mountPicoNodes();
     }
   }, []);
 
-  // Mount an effect that triggers the initial visit once `picoLoaded` has
-  // been set to true and only if `picoLoaded` has not been set to true yet.
+  // Mount an effect that triggers the initial visit once irving has loaded.
   useEffect(() => {
-    if (! irvingIsLoading && picoLoaded) {
-      log.info('Pico: Dispatching page visit.');
-      // Dispatch the initial visit to trigger the `pico-init` event.
+    if (
+      ! irvingIsLoading &&
+      scriptOnload &&
+      ! visited &&
+      (
+        (contentReady && picoPageInfo.article) ||
+        ! picoPageInfo.article
+      )
+    ) {
+      // Dispatch the initial visit to trigger the `pico.loaded` event.
+      log.info('[irving:Pico] ready, dispatching page visit.');
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
-  }, [irvingIsLoading, picoLoaded, picoPageInfo.url]);
+  }, [
+    irvingIsLoading,
+    scriptOnload,
+    contentReady,
+    picoPageInfo.url,
+  ]);
 
   // Inject the gadget script into the DOM.
   useGadgetScript(gadgetUrl, publisherId);
 
   // Inject the Pico Signal into the DOM.
-  log.info('Pico: Returning observer component.');
+  log.info('[irving:Pico] rendering signal observer component.');
   return (
     picoReady ? <PicoObserver tiers={tiers} /> : null
   );
@@ -136,10 +118,11 @@ Pico.defaultProps = {
 Pico.propTypes = {
   pageInfo: PropTypes.shape({
     article: PropTypes.bool,
-    postId: PropTypes.number.isRequired,
-    postType: PropTypes.string.isRequired,
+    postId: PropTypes.number,
+    postType: PropTypes.string,
     resourceRef: PropTypes.string,
-    taxonomies: PropTypes.object.isRequired,
+    taxonomies: PropTypes.object,
+    url: PropTypes.string,
   }).isRequired,
   publisherId: PropTypes.string.isRequired,
   tiers: PropTypes.array,

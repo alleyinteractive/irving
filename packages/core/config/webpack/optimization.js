@@ -37,6 +37,7 @@ module.exports = function getOptimization(context) {
           name: 'common',
           chunks: 'all',
         },
+        runtimeChunk: 'single',
       };
 
     default:

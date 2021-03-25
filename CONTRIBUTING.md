@@ -21,7 +21,7 @@ Note: For merge commits, just use `chore` for the type of change, `merge` for th
 
 ### Publishing
 
-* `npm run prerelease:canary` - publish a prerelease to npm. This will use the npm `@canary` tag using the `-alpha` prerelease identifier. Publish to the `@canary` tag from the `master` branch after doing a CR/PR from your feature branch. Because this is the alpha tag, don't worry about publishing something broken. **NOTE**: Travis will automatically publish `alpha` versions from the `master` branch, so you will rarely (if ever) need to run this command yourself.
+* `npm run prerelease:alpha` - publish a prerelease to npm. This will use the npm `@alpha` tag using the `-alpha` prerelease identifier. Publish to the `@alpha` tag from the `master` branch after doing a CR/PR from your feature branch. Because this is the alpha tag, don't worry about publishing something broken. **NOTE**: Travis will automatically publish `alpha` versions from the `master` branch, so you will rarely (if ever) need to run this command yourself.
 * `npm run prerelease:beta` - publish a prerelease to both git and npm. This will use the npm `@beta` tag using the `-beta` prerelease identifier. Publishes to the `@beta` tag don't need to be 100% stable, but should indicate all the major feature development for a release is finished and you're ready to start adding some polish. Beta releases should be made from a `release/*` branch.
 * `npm run prerelease:rc` - publish a release candidate to both git and npm. This will use the npm `@rc` tag using the `-rc` prerelease identifier. Publishes to the `@rc` tag should be considered stable. This is the last check before publishing a new, stable release. Ideally, multiple folks at Alley should install and try out this code before a stable release. Release candidates should be made from a `release/*` branch.
 * `npm run release` - publish a stable release to the npm `@latest` tag. Stable releases should be made from a `release/*` branch.
@@ -58,7 +58,7 @@ Specific branches will be used for specific purposes in this repo. Considering t
 7. If you are a maintainer, you may now:
   * `git checkout master && git pull origin master` to checkout `master` and pull down your newly-merged code.
   * Travis will automatically create an `alpha` release for your changes.
-  * Install and verify the new `alpha` release in your project via `npm install @irvingjs/package-name@canary`.
+  * Install and verify the new `alpha` release in your project via `npm install @irvingjs/package-name@alpha`.
   * When you're satisfied, notify the designated release organizer that your feature is ready to move along to `beta`.
 8. If you are not a maintainter:
   * Keep an eye on the releases page. When you see your code has been released, _install and test it!_.
@@ -99,5 +99,5 @@ Steps:
 * **Important:** After creating a `release` branch, never merge master into that branch again. Release branches should remain stagnant unless a patch needs to be introduced.
 * In prior versions of this document (and prior release processes) we made use of a `develop` branch. This branch is no more! Please don't merge into or make releases from `develop`.
 * Please read about [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) before publishing. The type of commit you choose will have ramifications on the semver version number you release. For example, a type of `fix` will indicate a `patch` release, a type of `feat` will indicate a `minor` release.
-* When you want to test out a newly published package, don't forget the npm tag. For example, for a canary release, run `npm install @irvingjs/core@canary --save-dev`.
+* When you want to test out a newly published package, don't forget the npm tag. For example, for a canary release, run `npm install @irvingjs/core@alpha --save-dev`.
 * When commitizen kicks in for a merge, choose `chore` for the type, `merge` for the scope, and `merge` for the commit message. Everything else can be skipped.
