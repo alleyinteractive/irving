@@ -13,7 +13,7 @@ describe('<Byline />', () => {
   it('returns two authors when it receives two authors', () => {
     const authors = ['Washington Irving', 'Ebenezer Irving'];
     render(<Byline children={authors} />);
-     const authorsWrapper = screen.getByTestId('authors-wrapper');
+    const authorsWrapper = screen.getByTestId('authors-wrapper');
     expect(authorsWrapper.textContent).toBe('By Washington Irving and Ebenezer Irving');
   });
 
