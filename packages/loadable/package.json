@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/loadable",
-  "version": "5.8.1",
+  "version": "5.8.2-alpha.0",
   "description": "Integration with React Loadable",
   "files": [
     "components/**/*",
@@ -30,8 +30,8 @@
     "react": "^16.13.1"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^5.8.1",
-    "@irvingjs/core": "^5.8.1",
+    "@irvingjs/babel-preset-irving": "^5.8.2-alpha.0",
+    "@irvingjs/core": "^5.8.2-alpha.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "enzyme": "^3.11.0",
     "jest": "^26.6.3"

@@ -2,7 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+
+
+
 ## [5.8.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [5.8.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.0...v5.8.1) (2021-03-23)
 
 **Note:** Version bump only for package @irvingjs/wordpress
 
