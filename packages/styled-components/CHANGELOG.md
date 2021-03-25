@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* **webpack:** add back in some polyfills webpack 5 took out ([a9fc46b](https://github.com/alleyinteractive/irving/packages/styled-components/commit/a9fc46b63a12b4849bc9e4819b79cb7f746f9429))
+* **webpack:** add some comments ([1c318bd](https://github.com/alleyinteractive/irving/packages/styled-components/commit/1c318bd22675398f15f9fa3b91074ede3a720483))
+
+
+
+
+
 # [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
 
 **Note:** Version bump only for package @irvingjs/styled-components

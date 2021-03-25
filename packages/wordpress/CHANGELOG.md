@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* **webpack:** get new eslint webpack plugin working ([c5b8aae](https://github.com/alleyinteractive/irving/packages/example-package/commit/c5b8aaed4a392e639132c03c6dd96ba0cab99b85))
+
+
+### Features
+
+* **webpack:** continue tweaks to webpack config to support webpack 5 upgrade ([3af53e7](https://github.com/alleyinteractive/irving/packages/example-package/commit/3af53e76ac13aee64933a8d5e3f467b14cb4e8e8))
+
+
+
+
+
 # [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
 
 **Note:** Version bump only for package @irvingjs/wordpress

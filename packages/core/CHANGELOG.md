@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* **webpack:** add back in some polyfills webpack 5 took out ([a9fc46b](https://github.com/alleyinteractive/irving/packages/core/commit/a9fc46b63a12b4849bc9e4819b79cb7f746f9429))
+* **webpack:** add some comments ([1c318bd](https://github.com/alleyinteractive/irving/packages/core/commit/1c318bd22675398f15f9fa3b91074ede3a720483))
+* **webpack:** get new eslint webpack plugin working ([c5b8aae](https://github.com/alleyinteractive/irving/packages/core/commit/c5b8aaed4a392e639132c03c6dd96ba0cab99b85))
+* **webpack:** process non-icon svg as asset/resource to prevent breaking in clip paths ([f0e9296](https://github.com/alleyinteractive/irving/packages/core/commit/f0e92967db04370b1f62a4cd4c70459bf9755de8))
+* **webpack:** use default maxSize for normal asset modules ([43af6c8](https://github.com/alleyinteractive/irving/packages/core/commit/43af6c8c05014ddeea8ef593ce1c645f384ff018))
+
+
+### Features
+
+* **webpack:** continue tweaks to webpack config to support webpack 5 upgrade ([3af53e7](https://github.com/alleyinteractive/irving/packages/core/commit/3af53e76ac13aee64933a8d5e3f467b14cb4e8e8))
+
+
+
+
+
 # [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
 
 **Note:** Version bump only for package @irvingjs/core
