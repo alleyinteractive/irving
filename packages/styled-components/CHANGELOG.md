@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.8.2-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.1...v5.8.2-beta.0) (2021-03-26)
+
+
+### Bug Fixes
+
+* **menu item component:** fixes classes on the menu item ([f5f83b1](https://github.com/alleyinteractive/irving/packages/styled-components/commit/f5f83b15a44a42d1d6431ccfbe2ab0a68a483b1e))
+
+
+
+
+
 ## [5.8.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.0...v5.8.1) (2021-03-23)
 
 **Note:** Version bump only for package @irvingjs/styled-components
