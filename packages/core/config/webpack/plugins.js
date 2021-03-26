@@ -49,7 +49,6 @@ module.exports = function getPlugins(context, argv) {
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
         }),
-        new webpack.HashedModuleIdsPlugin(),
         new MiniCSSExtractPlugin({
           filename: '[name].[hash].css',
           chunkFilename: '[id].[hash].css',
