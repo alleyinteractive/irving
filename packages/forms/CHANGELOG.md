@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/forms/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/packages/forms/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
+
+
+### Features
+
+* **deps:** update to react and react-dom v17 ([0c1989c](https://github.com/alleyinteractive/irving/packages/forms/commit/0c1989cfaa5d794e6e7d0b53b973e8e95d9b3dab))
+
+
+
+
+
 # [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/forms/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
 
 **Note:** Version bump only for package @irvingjs/forms
