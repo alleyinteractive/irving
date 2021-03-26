@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
+
+
+### Bug Fixes
+
+* **webpack:** fix css minimizer ([4991a56](https://github.com/alleyinteractive/irving/commit/4991a563330d721f9cd992ef03887998554ba005))
+
+
+
+
+
 # [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
 
 
