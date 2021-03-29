@@ -3,12 +3,75 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **deps:** stupid package locks ([d8d248a](https://github.com/alleyinteractive/irving/packages/example-package/commit/d8d248aefdb491962147c3bb7a18ac32c775f26f))
+* **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/packages/example-package/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
+
+
+### Features
+
+* **deps:** update to react and react-dom v17 ([0c1989c](https://github.com/alleyinteractive/irving/packages/example-package/commit/0c1989cfaa5d794e6e7d0b53b973e8e95d9b3dab))
+
+
+
+
+
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* **webpack:** get new eslint webpack plugin working ([c5b8aae](https://github.com/alleyinteractive/irving/packages/example-package/commit/c5b8aaed4a392e639132c03c6dd96ba0cab99b85))
+
+
+### Features
+
+* **webpack:** continue tweaks to webpack config to support webpack 5 upgrade ([3af53e7](https://github.com/alleyinteractive/irving/packages/example-package/commit/3af53e76ac13aee64933a8d5e3f467b14cb4e8e8))
+
+
+
+
+
+# [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+
+
+
 ## [5.8.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.0...v5.8.1) (2021-03-23)
 
 **Note:** Version bump only for package @irvingjs/wordpress
 
 
 
+
+
+# [5.8.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/wordpress
 
 
 # [5.8.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v5.8.0-alpha.2...v5.8.0) (2021-03-23)

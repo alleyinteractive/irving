@@ -1,14 +1,16 @@
 const webpack = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const CleanPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const ReactRefreshWebpackPlugin = require(
   '@pmmmwh/react-refresh-webpack-plugin'
 );
+const ESLintPlugin = require('eslint-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { rootUrl } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
 const { maybeResolveUserModule } = require('../../utils/userModule');
+const eslintConfig = require('../../.eslintrc.js');
 
 /**
  * Get the context specific plugins configuration.
@@ -33,18 +35,20 @@ module.exports = function getPlugins(context, argv) {
     new webpack.EnvironmentPlugin({
       IRVING_EXECUTION_CONTEXT: context,
     }),
+    new ESLintPlugin({
+      baseConfig: eslintConfig,
+    }),
   ];
 
   switch (context) {
     case 'production_server':
       return [
         ...commonPlugins,
-        new CleanPlugin(),
+        new CleanWebpackPlugin(),
         // Ensures async components can be rendered sync server-side.
         new webpack.optimize.LimitChunkCountPlugin({
           maxChunks: 1,
         }),
-        new webpack.HashedModuleIdsPlugin(),
         new MiniCSSExtractPlugin({
           filename: '[name].[hash].css',
           chunkFilename: '[id].[hash].css',
@@ -67,7 +71,7 @@ module.exports = function getPlugins(context, argv) {
     case 'production_client':
       return [
         ...commonPlugins,
-        new CleanPlugin(),
+        new CleanWebpackPlugin(),
         new StatsWriterPlugin({
           stats: {
             all: false,

@@ -3,13 +3,8 @@ const path = require('path');
 module.exports = {
   setupFiles: [path.join(__dirname, './test/jest.setup.js')],
   setupFilesAfterEnv: [
-    'jest-enzyme',
     '@testing-library/jest-dom/extend-expect',
   ],
-  testEnvironment: 'enzyme',
-  testEnvironmentOptions: {
-    enzymeAdapter: 'react16',
-  },
   testMatch: [
     '**/*.test.js',
   ],
@@ -17,7 +12,14 @@ module.exports = {
   transform: {
     '^.+\\.(js|jsx)$': path.join(__dirname, 'babelTransform.js'),
     '^.+\\.css$': path.join(__dirname, '/__mocks__/mockCssTransform.js'),
-    '^.+\\.svg$': path.join(__dirname, '/__mocks__/mockSvgTransform.js'),
+  },
+  moduleDirectories: [
+    'node_modules',
+    'test',
+    __dirname,
+  ],
+  moduleNameMapper: {
+    '\\.svg$': path.join(__dirname, '/__mocks__/mockSVG.js'),
   },
   transformIgnorePatterns: [
     '/node_modules/(?!@irvingjs)',

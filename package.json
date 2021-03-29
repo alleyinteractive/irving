@@ -21,6 +21,7 @@
     "prerelease:rc": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-prerelease --create-release github --preid rc --dist-tag rc",
     "release": "HUSKY_SKIP_HOOKS=1 dotenv -- lerna publish --conventional-commits --conventional-graduate --create-release github",
     "release:bump": "HUSKY_SKIP_HOOKS=1 lerna publish preminor --conventional-prerelease --preid alpha --dist-tag alpha",
+    "release:recover": "HUSKY_SKIP_HOOKS=1 lerna publish from-git",
     "//": "nohoist option is used to prevent internal packages from being hoisted/deleted by lerna (which is a bug, I think)",
     "develop:bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
     "develop:cleanup": "lerna exec --stream -- \"rm -rf node_modules\" && rm -rf node_modules",
@@ -41,12 +42,12 @@
     "audit:ci": "npm run audit:self && npm run audit:packages"
   },
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
-    "@irvingjs/babel-preset-irving": "^5.4.0-alpha.0",
+    "@irvingjs/babel-preset-irving": "^5.5.0-alpha.0",
     "@storybook/addon-a11y": "^5.3.19",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-docs": "^5.3.18",
@@ -54,11 +55,11 @@
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.0.2",
-    "@testing-library/react-hooks": "^3.4.1",
+    "@testing-library/jest-dom": "~5.11.9",
+    "@testing-library/react": "~11.2.5",
+    "@testing-library/react-hooks": "~3.7.0",
     "babel-jest": "^25.5.1",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "~8.2.2",
     "babel-plugin-module-resolver": "^4.0.0",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.1.0",
@@ -69,6 +70,7 @@
     "jest-enzyme": "^7.1.2",
     "lerna": "^3.20.2",
     "npm-check-updates": "^11.0.2",
+    "react-test-renderer": "~17.0.1",
     "surge": "^0.21.6",
     "syncpack": "~5.6.10"
   },

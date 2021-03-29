@@ -3,12 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/packages/vip-go/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
+
+
+
+
+
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+
+
+
 ## [5.8.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v5.8.0...v5.8.1) (2021-03-23)
 
 **Note:** Version bump only for package @irvingjs/vip-go
 
 
 
+
+
+
+## [5.8.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/vip-go
 
 
 # [5.8.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v5.8.0-alpha.2...v5.8.0) (2021-03-23)
