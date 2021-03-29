@@ -13,10 +13,6 @@ module.exports = function babelPresetIrving(api) {
         targets: {
           browsers: 'last 3 versions',
         },
-        corejs: {
-          version: 3,
-        },
-        useBuiltIns: 'usage',
       };
       break;
 
