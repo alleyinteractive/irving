@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
+
+**Note:** Version bump only for package @irvingjs/styleguide
+
+
+
+
+
+# [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/packages/styleguide/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
+
+
+
+
+
 # [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
 
 **Note:** Version bump only for package @irvingjs/styleguide
