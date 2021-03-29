@@ -5,16 +5,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
 
+
 **Note:** Version bump only for package @irvingjs/styled-components
-
-
-
 
 
 # [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
 
 
-### Bug Fixes
 
 * **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/packages/styled-components/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
 * **rtl:** add peer dep for testing library ([484a1d2](https://github.com/alleyinteractive/irving/packages/styled-components/commit/484a1d27659b8fbf78ed6101741e89fa37910bae))
@@ -24,9 +21,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **deps:** update to react and react-dom v17 ([0c1989c](https://github.com/alleyinteractive/irving/packages/styled-components/commit/0c1989cfaa5d794e6e7d0b53b973e8e95d9b3dab))
-
-
-
 
 
 # [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
@@ -39,17 +33,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
 # [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
 
 **Note:** Version bump only for package @irvingjs/styled-components
 
 
+## [5.8.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.2-beta.0...v5.8.2) (2021-03-27)
 
+### Bug Fixes
+
+* **menu item component:** fixes classes on the menu item ([f5f83b1](https://github.com/alleyinteractive/irving/packages/styled-components/commit/f5f83b15a44a42d1d6431ccfbe2ab0a68a483b1e))
+
+## [5.8.2-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.1...v5.8.2-beta.0) (2021-03-26)
 
 
 ## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+
 
 
 

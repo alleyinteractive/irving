@@ -3,6 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+
 # [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
 
 
@@ -11,13 +12,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **webpack:** fix css minimizer ([4991a56](https://github.com/alleyinteractive/irving/commit/4991a563330d721f9cd992ef03887998554ba005))
 
 
-
-
-
 # [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
-
-
-### Bug Fixes
 
 * **deps:** add missing testing library dep ([8289a21](https://github.com/alleyinteractive/irving/commit/8289a21ca211e76d30a6c4ae1c6efd4527a38f4b))
 * **deps:** stupid package locks ([d8d248a](https://github.com/alleyinteractive/irving/commit/d8d248aefdb491962147c3bb7a18ac32c775f26f))
@@ -30,6 +25,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **deps:** update to react and react-dom v17 ([0c1989c](https://github.com/alleyinteractive/irving/commit/0c1989cfaa5d794e6e7d0b53b973e8e95d9b3dab))
 
+
+
+## [5.8.2](https://github.com/alleyinteractive/irving/compare/v5.8.2-beta.0...v5.8.2) (2021-03-27)
+
+**Note:** Version bump only for package irving
+
+### Bug Fixes
+
+* **menu item component:** fixes classes on the menu item ([f5f83b1](https://github.com/alleyinteractive/irving/commit/f5f83b15a44a42d1d6431ccfbe2ab0a68a483b1e))
+
+
+## [5.8.2-beta.0](https://github.com/alleyinteractive/irving/compare/v5.8.1...v5.8.2-beta.0) (2021-03-26)
 
 
 
@@ -75,7 +82,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-=======
 ## [5.8.1](https://github.com/alleyinteractive/irving/compare/v5.8.0...v5.8.1) (2021-03-23)
 
 
