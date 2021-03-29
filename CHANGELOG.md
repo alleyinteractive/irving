@@ -5,35 +5,33 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.0.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v5.8.2...v6.0.0-alpha.4) (2021-03-29)
 
+**Note:** Version bump only for package irving
 
+# [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
+
+**Note:** Version bump only for package irving
 
 # [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
-
 
 ### Bug Fixes
 
 * **webpack:** fix css minimizer ([4991a56](https://github.com/alleyinteractive/irving/commit/4991a563330d721f9cd992ef03887998554ba005))
 
 
-
 # [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
 
+* **deps:** add missing testing library dep ([8289a21](https://github.com/alleyinteractive/irving/commit/8289a21ca211e76d30a6c4ae1c6efd4527a38f4b))
+* **deps:** stupid package locks ([d8d248a](https://github.com/alleyinteractive/irving/commit/d8d248aefdb491962147c3bb7a18ac32c775f26f))
+* **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
+* **rtl:** add peer dep for testing library ([484a1d2](https://github.com/alleyinteractive/irving/commit/484a1d27659b8fbf78ed6101741e89fa37910bae))
+* **test:** remove enzyme entirely, replace integrations test with testing library ([a12f211](https://github.com/alleyinteractive/irving/commit/a12f211dfd6ad08e046bf780462a7827e064ee0e))
 
+
+### Features
+
+* **deps:** update to react and react-dom v17 ([0c1989c](https://github.com/alleyinteractive/irving/commit/0c1989cfaa5d794e6e7d0b53b973e8e95d9b3dab))
 
 # [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
-
-
-
-# [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
-
-
-
-## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
-
-
-
-## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.8.1...v5.8.1-alpha.0) (2021-03-23)
-
 
 ### Bug Fixes
 
@@ -55,36 +53,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **webpack:** continue tweaks to webpack config to support webpack 5 upgrade ([3af53e7](https://github.com/alleyinteractive/irving/commit/3af53e76ac13aee64933a8d5e3f467b14cb4e8e8))
 
 
-
-
-
-
-# [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
-
-
-### Bug Fixes
-
-* **webpack:** fix css minimizer ([4991a56](https://github.com/alleyinteractive/irving/commit/4991a563330d721f9cd992ef03887998554ba005))
-
-
-# [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
-
-* **deps:** add missing testing library dep ([8289a21](https://github.com/alleyinteractive/irving/commit/8289a21ca211e76d30a6c4ae1c6efd4527a38f4b))
-* **deps:** stupid package locks ([d8d248a](https://github.com/alleyinteractive/irving/commit/d8d248aefdb491962147c3bb7a18ac32c775f26f))
-* **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
-* **rtl:** add peer dep for testing library ([484a1d2](https://github.com/alleyinteractive/irving/commit/484a1d27659b8fbf78ed6101741e89fa37910bae))
-* **test:** remove enzyme entirely, replace integrations test with testing library ([a12f211](https://github.com/alleyinteractive/irving/commit/a12f211dfd6ad08e046bf780462a7827e064ee0e))
-
-
-### Features
-
-* **deps:** update to react and react-dom v17 ([0c1989c](https://github.com/alleyinteractive/irving/commit/0c1989cfaa5d794e6e7d0b53b973e8e95d9b3dab))
-
-
-
 ## [5.8.2](https://github.com/alleyinteractive/irving/compare/v5.8.2-beta.0...v5.8.2) (2021-03-27)
-
-**Note:** Version bump only for package irving
 
 ### Bug Fixes
 
@@ -93,39 +62,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [5.8.2-beta.0](https://github.com/alleyinteractive/irving/compare/v5.8.1...v5.8.2-beta.0) (2021-03-26)
 
-
-
-
-# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
-
-
-### Bug Fixes
-
-* **webpack:** add back in some polyfills webpack 5 took out ([a9fc46b](https://github.com/alleyinteractive/irving/commit/a9fc46b63a12b4849bc9e4819b79cb7f746f9429))
-* **webpack:** add some comments ([1c318bd](https://github.com/alleyinteractive/irving/commit/1c318bd22675398f15f9fa3b91074ede3a720483))
-* **webpack:** get new eslint webpack plugin working ([c5b8aae](https://github.com/alleyinteractive/irving/commit/c5b8aaed4a392e639132c03c6dd96ba0cab99b85))
-* **webpack:** process non-icon svg as asset/resource to prevent breaking in clip paths ([f0e9296](https://github.com/alleyinteractive/irving/commit/f0e92967db04370b1f62a4cd4c70459bf9755de8))
-* **webpack:** use default maxSize for normal asset modules ([43af6c8](https://github.com/alleyinteractive/irving/commit/43af6c8c05014ddeea8ef593ce1c645f384ff018))
-
-
-### Features
-
-* **webpack:** continue tweaks to webpack config to support webpack 5 upgrade ([3af53e7](https://github.com/alleyinteractive/irving/commit/3af53e76ac13aee64933a8d5e3f467b14cb4e8e8))
-
-
-
-
-
-# [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
-
 **Note:** Version bump only for package irving
-
-
 
 
 
 ## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
-
+**Note:** Version bump only for package irving
 
 
 ## [5.8.1](https://github.com/alleyinteractive/irving/compare/v5.8.0...v5.8.1) (2021-03-23)
@@ -135,11 +77,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
 ## [5.8.1](https://github.com/alleyinteractive/irving/compare/v5.8.0...v5.8.1) (2021-03-23)
 
-
+**Note:** Version bump only for package irving
 
 ## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
 
