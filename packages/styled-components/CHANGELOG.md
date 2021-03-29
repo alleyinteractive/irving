@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.2...v6.0.0-alpha.4) (2021-03-29)
+
+
+
+# [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
+
+
+
+# [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
+
+
+
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+
+
+# [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
+
+
+
+## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+
+
+
+## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.1...v5.8.1-alpha.0) (2021-03-23)
+
+
+### Bug Fixes
+
+* **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/packages/styled-components/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
+* **rtl:** add peer dep for testing library ([484a1d2](https://github.com/alleyinteractive/irving/packages/styled-components/commit/484a1d27659b8fbf78ed6101741e89fa37910bae))
+* **test:** remove enzyme entirely, replace integrations test with testing library ([a12f211](https://github.com/alleyinteractive/irving/packages/styled-components/commit/a12f211dfd6ad08e046bf780462a7827e064ee0e))
+* **webpack:** add back in some polyfills webpack 5 took out ([a9fc46b](https://github.com/alleyinteractive/irving/packages/styled-components/commit/a9fc46b63a12b4849bc9e4819b79cb7f746f9429))
+* **webpack:** add some comments ([1c318bd](https://github.com/alleyinteractive/irving/packages/styled-components/commit/1c318bd22675398f15f9fa3b91074ede3a720483))
+
+
+### Features
+
+* **deps:** update to react and react-dom v17 ([0c1989c](https://github.com/alleyinteractive/irving/packages/styled-components/commit/0c1989cfaa5d794e6e7d0b53b973e8e95d9b3dab))
+
+
+
+
+
 # [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
 
 
