@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.7...v6.0.0-alpha.8) (2021-03-30)
+
+
+### Bug Fixes
+
+* **npm:** update react-dev-utils ([804a94d](https://github.com/alleyinteractive/irving/packages/core/commit/804a94d3cf70b1e5e61ba046c8bca53826fc106c))
+* **sc:** fix missing fallback modules for sanitize-html ([4ec6643](https://github.com/alleyinteractive/irving/packages/core/commit/4ec66438173831db2f73324d63afe8f69296db2b))
+
+
+
+
+
 # [6.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.6...v6.0.0-alpha.7) (2021-03-30)
 
 
