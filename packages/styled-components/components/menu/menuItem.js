@@ -69,7 +69,10 @@ MenuItem.propTypes = {
   /**
    * Classnames.
    */
-  classes: PropTypes.string,
+  classes: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
   /**
    * Unique key.
    */
