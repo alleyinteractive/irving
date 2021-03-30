@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.6...v6.0.0-alpha.7) (2021-03-30)
+
+
+### Bug Fixes
+
+* **webpack:** fix a couple configs causing build errors ([899b0e3](https://github.com/alleyinteractive/irving/commit/899b0e385975c912d541133a170da18ddfc52a59))
+
+
+
+
+
 # [6.0.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.5...v6.0.0-alpha.6) (2021-03-29)
 
 **Note:** Version bump only for package irving
