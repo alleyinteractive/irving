@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.9...v6.0.0-alpha.10) (2021-03-30)
+
+
+### Bug Fixes
+
+* **npm:** pin styled package to 5.2.1 as there's a bug in 5.2.2 ([17ecfd2](https://github.com/alleyinteractive/irving/commit/17ecfd28ee93ebc3b73302b7055bee35172dc112))
+
+
+
+
+
 # [6.0.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.8...v6.0.0-alpha.9) (2021-03-30)
 
 
