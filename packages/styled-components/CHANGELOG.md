@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.7...v6.0.0-alpha.8) (2021-03-30)
+
+
+### Bug Fixes
+
+* **sc:** fix missing fallback modules for sanitize-html ([4ec6643](https://github.com/alleyinteractive/irving/packages/styled-components/commit/4ec66438173831db2f73324d63afe8f69296db2b))
+
+
+
+
+
 # [6.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.6...v6.0.0-alpha.7) (2021-03-30)
 
 **Note:** Version bump only for package @irvingjs/styled-components
