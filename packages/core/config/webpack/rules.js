@@ -109,9 +109,9 @@ module.exports = function getRules(context) {
             modules: {
               mode: 'local',
               localIdentName: '[name]__[local]--[hash:base64:5]',
+              exportLocalsConvention: 'camelCase',
             },
             sourceMap: ! isProd,
-            localsConvention: 'camelCase',
           },
         },
       ],

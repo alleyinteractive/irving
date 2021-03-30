@@ -27,11 +27,15 @@ module.exports = (program) => {
       // Log compile errors.
       if (stats.hasErrors()) {
         info.errors.forEach((error) => {
-          const errorParts = error.match(messageRegExp);
-          console.error( // eslint-disable-line no-console
-            chalk.black.bgRed(errorParts[1]),
-            chalk.red(errorParts[2])
-          );
+          if (error.message) {
+            const errorParts = error.message.match(messageRegExp);
+            console.error( // eslint-disable-line no-console
+              chalk.black.bgRed(errorParts[1]),
+              chalk.red(errorParts[2])
+            );
+          } else {
+            console.error(chalk.red(error));
+          }
         });
 
         process.exitCode = 1;
@@ -41,11 +45,15 @@ module.exports = (program) => {
       // Log compile warnings.
       if (stats.hasWarnings()) {
         info.warnings.forEach((warning) => {
-          const warnParts = warning.match(messageRegExp);
-          console.warn( // eslint-disable-line no-console
-            chalk.black.bgYellow(warnParts[1]),
-            chalk.yellow(warnParts[2])
-          );
+          if (warning.message) {
+            const warnParts = warning.message.match(messageRegExp);
+            console.warn( // eslint-disable-line no-console
+              chalk.black.bgYellow(warnParts[1]),
+              chalk.yellow(warnParts[2])
+            );
+          } else {
+            console.warn(chalk.yellow(warning));
+          }
         });
       }
 
