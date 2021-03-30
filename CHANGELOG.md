@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.8...v6.0.0-alpha.9) (2021-03-30)
+
+
+### Bug Fixes
+
+* **webpack:** fix a couple rules related to svgs ([7b30fb0](https://github.com/alleyinteractive/irving/commit/7b30fb023b2f75b2090845574c1be96408e8d667))
+
+
+
+
+
 # [6.0.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.7...v6.0.0-alpha.8) (2021-03-30)
 
 
