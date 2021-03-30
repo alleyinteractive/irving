@@ -50,8 +50,8 @@ module.exports = function getPlugins(context, argv) {
           maxChunks: 1,
         }),
         new MiniCSSExtractPlugin({
-          filename: '[name].[hash].css',
-          chunkFilename: '[id].[hash].css',
+          filename: '[name].[contenthash].css',
+          chunkFilename: '[id].[contenthash].css',
         }),
       ];
 
@@ -89,8 +89,8 @@ module.exports = function getPlugins(context, argv) {
           publicPath: `${rootUrl}/`,
         }),
         new MiniCSSExtractPlugin({
-          filename: '[name].[hash].css',
-          chunkFilename: '[id].[hash].css',
+          filename: '[name].[contenthash].css',
+          chunkFilename: '[id].[contenthash].css',
         }),
         (analyze && new BundleAnalyzerPlugin()),
       ].filter(Boolean);
