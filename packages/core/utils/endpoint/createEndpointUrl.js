@@ -44,6 +44,8 @@ function createEndpointUrl(
     }
   );
 
+  console.log(query, cookie);
+
   return `${env.API_ROOT_URL}/components?${query}`;
 }
 
