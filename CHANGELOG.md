@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.11](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.10...v6.0.0-alpha.11) (2021-03-30)
+
+
+### Bug Fixes
+
+* **props:** fix some prop type declarations ([cb515b0](https://github.com/alleyinteractive/irving/commit/cb515b0db3c53b8022ef92a82439aab8626bf5d0))
+
+
+
+
+
 # [6.0.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.9...v6.0.0-alpha.10) (2021-03-30)
 
 
