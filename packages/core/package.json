@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "6.0.0-alpha.11",
+  "version": "6.0.0-alpha.12",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
