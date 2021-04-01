@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.1](https://github.com/alleyinteractive/irving/compare/v6.0.0-beta.0...v6.0.0-beta.1) (2021-04-01)
+
+
+### Bug Fixes
+
+* **debug:** remove console log ([ee61126](https://github.com/alleyinteractive/irving/commit/ee611263639854958610f99545f05419c97fc631))
+
+
+### Features
+
+* **auth:** update auth functionality to use new cookie name + basic auth ([04d76b5](https://github.com/alleyinteractive/irving/commit/04d76b5cd1151cf6587777573df5faafb4c63b27))
+
+
+
+
+
 # [6.0.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
 
 **Note:** Version bump only for package irving
