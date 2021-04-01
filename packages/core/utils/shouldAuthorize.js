@@ -7,7 +7,7 @@ import isNode from './isNode';
  * @param {object} cookie Object containing valid cookies for the app.
  */
 export const getBearerToken = (cookie) => (
-  get('authorizationBearerToken', cookie)
+  get('authorizationToken', cookie)
 );
 
 /**
@@ -17,7 +17,7 @@ export const getBearerToken = (cookie) => (
  * @param {object} cookie Object containing valid cookies for the app.
  */
 export default function shouldAuthorize(cookie) {
-  const authorizationBearerToken = getBearerToken(cookie);
-  return (authorizationBearerToken && ! isNode()) ?
-    authorizationBearerToken : false;
+  const authorizationToken = getBearerToken(cookie);
+  return (authorizationToken && ! isNode()) ?
+    authorizationToken : false;
 }
