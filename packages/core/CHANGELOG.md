@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
+
+
+### Bug Fixes
+
+* **css:** update css loader ([1099f56](https://github.com/alleyinteractive/irving/packages/core/commit/1099f56d92d71a207e98281c1d77ae9551807ca8))
+
+
+
+
+
 # [6.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-beta.0...v6.0.0-beta.1) (2021-04-01)
 
 
