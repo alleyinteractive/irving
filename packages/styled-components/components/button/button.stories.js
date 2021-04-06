@@ -6,4 +6,4 @@ export default {
   title: 'Styled Components|Button',
 };
 
-export const BasicExample = () => <Button>Cool Button</Button>;
+export const BasicExample = () => <Button>Button Example</Button>;

@@ -16,15 +16,13 @@ const Button = (props) => {
     theme,
     onClick,
   } = props;
-  const {
-    Button
-  } = theme;
+  const { ButtonWrapper } = theme;
   const standardProps = useStandardProps(props);
 
   return (
-    <Button {...standardProps} onClick={onClick}>
+    <ButtonWrapper {...standardProps} onClick={onClick}>
       {children}
-    </Button>
+    </ButtonWrapper>
   );
 };
 
@@ -36,7 +34,7 @@ Button.defaultProps = {
 Button.propTypes = {
   ...standardPropTypes,
   /**
-   * OnClick function.
+   * Button OnClick function.
    */
   onClick: PropTypes.func,
 };
