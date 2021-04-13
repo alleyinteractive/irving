@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.14](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.13...v6.0.0-alpha.14) (2021-04-13)
+
+
+### Bug Fixes
+
+* **deps:** update react refresh ([87ab76d](https://github.com/alleyinteractive/irving/packages/core/commit/87ab76d1c35a787aed244eccbb68b61d8095ad7c))
+
+
+
+
+
 # [6.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.12...v6.0.0-alpha.13) (2021-04-12)
 
 **Note:** Version bump only for package @irvingjs/core
