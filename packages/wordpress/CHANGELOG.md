@@ -6,6 +6,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
 
 **Note:** Version bump only for package @irvingjs/wordpress
+# [6.0.0-alpha.14](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.13...v6.0.0-alpha.14) (2021-04-13)
+
+**Note:** Version bump only for package @irvingjs/wordpress
 
 
 
@@ -14,12 +17,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-beta.0...v6.0.0-beta.1) (2021-04-01)
 
 **Note:** Version bump only for package @irvingjs/wordpress
+# [6.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.12...v6.0.0-alpha.13) (2021-04-12)
+
+**Note:** Version bump only for package @irvingjs/wordpress
 
 
 
 
 
 # [6.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+# [6.0.0-alpha.12](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.11...v6.0.0-alpha.12) (2021-04-01)
 
 **Note:** Version bump only for package @irvingjs/wordpress
 

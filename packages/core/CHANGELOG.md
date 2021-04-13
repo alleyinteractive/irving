@@ -5,10 +5,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
 
+**Note:** Version bump only for package @irvingjs/core
+# [6.0.0-alpha.14](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.13...v6.0.0-alpha.14) (2021-04-13)
+
 
 ### Bug Fixes
 
 * **css:** update css loader ([1099f56](https://github.com/alleyinteractive/irving/packages/core/commit/1099f56d92d71a207e98281c1d77ae9551807ca8))
+* **deps:** update react refresh ([87ab76d](https://github.com/alleyinteractive/irving/packages/core/commit/87ab76d1c35a787aed244eccbb68b61d8095ad7c))
 
 
 
@@ -33,6 +37,25 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
 
 **Note:** Version bump only for package @irvingjs/core
+# [6.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.12...v6.0.0-alpha.13) (2021-04-12)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [6.0.0-alpha.12](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.11...v6.0.0-alpha.12) (2021-04-01)
+
+
+### Bug Fixes
+
+* **debug:** remove console log ([ee61126](https://github.com/alleyinteractive/irving/packages/core/commit/ee611263639854958610f99545f05419c97fc631))
+
+
+### Features
+
+* **auth:** update auth functionality to use new cookie name + basic auth ([04d76b5](https://github.com/alleyinteractive/irving/packages/core/commit/04d76b5cd1151cf6587777573df5faafb4c63b27))
 
 
 
