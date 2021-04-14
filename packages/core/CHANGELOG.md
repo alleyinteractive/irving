@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.4](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2021-04-14)
+
+
+### Features
+
+* **auth:** allow both Bearer or Basic tokens to be used for auth ([6964c3e](https://github.com/alleyinteractive/irving/packages/core/commit/6964c3ead9bde3276d7cf744d6cbe5f1a43470e4))
+
+
+
+
+
 # [6.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.14...v6.0.0-beta.3) (2021-04-13)
 
 
