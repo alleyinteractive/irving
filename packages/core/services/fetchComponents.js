@@ -4,7 +4,7 @@ import {
   CONTEXT_PAGE,
 } from 'config/constants';
 import isNode from 'utils/isNode';
-import shouldAuthorize from 'utils/shouldAuthorize';
+import { maybeMergeAuthHeaders } from 'utils/authorization';
 import { getEnv } from 'config/multisite';
 import getLogService from '@irvingjs/services/logService';
 import getCacheService from '@irvingjs/services/cacheService';
@@ -49,22 +49,14 @@ export async function fetchComponents(
     FETCH_TIMEOUT || 10000
   );
 
-  // Set up fetch options.
-  const options = {
+  // Set up fetch options, including authorization header if applicable.
+  const options = maybeMergeAuthHeaders(cookie, {
     headers: {
       Accept: 'application/json',
     },
     credentials: 'include', // Support XHR with basic auth.
     signal: controller.signal,
-  };
-
-  // Set up Authorization header, if applicable.
-  const authorizationToken = shouldAuthorize(cookie);
-  if (authorizationToken) {
-    // Set to same origin so we don't conflict with other cookies.
-    options.credentials = 'same-origin';
-    options.headers.Authorization = `Basic ${authorizationToken}`;
-  }
+  });
 
   const response = await fetch(apiUrl, options);
 

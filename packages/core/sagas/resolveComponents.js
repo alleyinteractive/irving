@@ -12,9 +12,10 @@ import getRouteMeta from 'selectors/getRouteMeta';
 import cachedFetchComponents, {
   fetchComponents,
 } from 'services/fetchComponents';
-import shouldAuthorize, {
-  getBearerToken,
-} from 'utils/shouldAuthorize';
+import {
+  shouldAuthorize,
+  getAuthToken,
+} from 'utils/authorization';
 import history from 'utils/history';
 import isNode from 'utils/isNode';
 import getRelativeUrl from 'utils/getRelativeUrl';
@@ -32,9 +33,9 @@ export default function* resolveComponents() {
     context,
     cached,
   } = yield select(getRouteMeta);
-  // If bearer token cookie is set, bypass redis when fetching components.
-  const bearerToken = getBearerToken(cookie);
-  const fetchService = bearerToken ? fetchComponents : cachedFetchComponents;
+  // If auth token cookie is set, bypass redis when fetching components.
+  const authToken = getAuthToken(cookie);
+  const fetchService = authToken ? fetchComponents : cachedFetchComponents;
 
   if (shouldAuthorize(cookie)) {
     yield* resolveComponentsAuthorized();

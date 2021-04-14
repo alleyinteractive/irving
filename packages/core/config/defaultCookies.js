@@ -1,4 +1,5 @@
 module.exports = [
-  'authorizationToken',
+  'authorizationBearerToken',
+  'authorizationBasicToken',
   'bypassCache',
 ];
