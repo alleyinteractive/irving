@@ -38,22 +38,6 @@ const PicoObserver = ({ tiers }) => {
     [dispatch]
   );
 
-  // Define the callback referenced in the `useMutationObserver` hook that listens
-  // for changes to the target DOM element.
-  const observerCallback = (mutations) => {
-    mutations.forEach((mutation) => {
-      const { target, type, attributeName } = mutation;
-
-      if ('attributes' === type && 'data-pico-status' === attributeName) {
-        const email = target.getAttribute('data-pico-email');
-        const status = target.getAttribute('data-pico-status');
-        const tier = target.getAttribute('data-pico-tier');
-
-        updateSignal({ email, status, tier });
-      }
-    });
-  };
-
   // Grab the value of the Pico signal from the Redux store.
   const { status, tier, email } = useSelector(picoSignalSelector) || {};
   // Define effect constants based on values present in the signal object.
@@ -68,8 +52,37 @@ const PicoObserver = ({ tiers }) => {
   // Poll for the existence of the Pico signal container.
   const signal = usePollForNode('#PicoSignal-container');
 
+  // Check current attribute values on Pico signal and dispatch updates.
+  const checkSignalAttributes = (target) => {
+    const emailAttr = target.getAttribute('data-pico-email');
+    const statusAttr = target.getAttribute('data-pico-status');
+    const tierAttr = target.getAttribute('data-pico-tier');
+
+    updateSignal({
+      email: emailAttr,
+      status: statusAttr,
+      tier: tierAttr,
+    });
+  };
+
+  // Define the callback referenced in the `useMutationObserver` hook that listens
+  // for changes to the target DOM element.
+  const observerCallback = (mutations) => {
+    mutations.forEach((mutation) => {
+      const { target, type, attributeName } = mutation;
+
+      if ('attributes' === type && 'data-pico-status' === attributeName) {
+        checkSignalAttributes(target);
+      }
+    });
+  };
+
   useEffect(() => {
     if (signal) {
+      // Update with initial attribute values.
+      checkSignalAttributes(signal);
+
+      // Add observer.
       const observer = new MutationObserver(observerCallback);
 
       observer.observe(signal, { attributes: true });

@@ -50,7 +50,10 @@ export default function picoReducer(
     case UPDATE_PICO_SIGNAL:
       return {
         ...state,
-        signal: payload,
+        signal: {
+          ...state.signal,
+          ...payload,
+        },
       };
 
     default:
