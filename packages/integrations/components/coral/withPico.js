@@ -31,6 +31,12 @@ const withPico = (ChildComponent) => {
     // Instantiate a local state value to track the user's ability to log into
     // the Coral embed.
     const [canComment, setCanComment] = useState(false);
+    // Recreated events so signal values don't get stale.
+    const [embedEventHandlers, setEmbedEventHandlers] = useState(null);
+
+    // Status of embed
+    const authenticated = (picoLoaded && ssoTiers.includes(tier) && canComment);
+    const unauthenticated = (picoLoaded && ! canComment);
 
     useEffect(() => {
       log.info(
@@ -50,46 +56,50 @@ const withPico = (ChildComponent) => {
     const dispatch = useDispatch();
 
     // Define Coral event handlers.
-    const handlers = (events) => {
-      events.on('loginPrompt', () => {
-        // If the user is registered but not paying show the upgrade modal on click.
-        if ('registered' === status) {
-          dispatch(actionRequireUpgrade());
-        } else if ('paying' === status && ! ssoTiers.includes(tier)) {
-          // If the user is paying but cannot comment, prompt them to upgrade their subscription.
-          dispatch(actionRequireUpgrade());
-        } else {
-          // Summon the base Pico modal.
-          const ruleNode = document.getElementById('PicoRule-button');
+    useEffect(() => {
+      const handlers = () => (events) => {
+        events.on('loginPrompt', () => {
+          // If the user is registered but not paying show the upgrade modal on click.
+          if ('registered' === status) {
+            dispatch(actionRequireUpgrade());
+          } else if ('paying' === status && ! ssoTiers.includes(tier)) {
+            // If the user is paying but cannot comment, prompt them to upgrade their subscription.
+            dispatch(actionRequireUpgrade());
+          } else {
+            // Summon the base Pico modal.
+            const ruleNode = document.getElementById('PicoRule-button');
 
-          if (ruleNode) {
-            ruleNode.click();
+            if (ruleNode) {
+              ruleNode.click();
+            }
           }
-        }
-      });
-
-      events.onAny((eventName, data) => {
-        window.dataLayer = window.dataLayer ?? [];
-        window.dataLayer.push({
-          event: `${eventName}Coral`,
-          coralEvent: {
-            ...data,
-          },
         });
-      });
-    };
 
-    if (picoLoaded && ssoTiers.includes(tier) && canComment) {
+        events.onAny((eventName, data) => {
+          window.dataLayer = window.dataLayer ?? [];
+          window.dataLayer.push({
+            event: `${eventName}Coral`,
+            coralEvent: {
+              ...data,
+            },
+          });
+        });
+      };
+
+      setEmbedEventHandlers(handlers);
+    }, [status, tier]);
+
+    if (authenticated) {
       log.info('[irving:Coral:withPico] returning authenticated embed');
       return (
-        <ChildComponent {...props} events={handlers} accessToken={coralToken} />
+        <ChildComponent {...props} events={embedEventHandlers} accessToken={coralToken} />
       );
     }
 
-    if (picoLoaded && ! canComment) {
+    if (unauthenticated) {
       log.info('[irving:Coral:withPico] returning default embed');
       return (
-        <ChildComponent {...props} events={handlers} />
+        <ChildComponent {...props} events={embedEventHandlers} />
       );
     }
 
