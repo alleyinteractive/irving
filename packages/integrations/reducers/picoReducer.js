@@ -37,12 +37,13 @@ export default function picoReducer(
       return {
         ...state,
         contentReady: false,
-        isUpdated: false,
+        visited: false,
       };
 
     case UPDATE_PICO_PAGE_INFO:
       return {
         ...state,
+        visited: true,
         pageInfo: payload,
       };
 

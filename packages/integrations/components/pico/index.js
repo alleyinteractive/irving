@@ -16,6 +16,7 @@ import {
 import {
   picoLifecycleSelector,
   picoContentReadySelector,
+  picoVisitedSelector,
 } from '../../selectors/picoSelector';
 // Utility functions.
 import {
@@ -64,6 +65,7 @@ const Pico = (props) => {
     ready: picoReady,
   } = useSelector(picoLifecycleSelector);
   const contentReady = useSelector(picoContentReadySelector);
+  const visited = useSelector(picoVisitedSelector);
 
   // Add lifecycle listeners.
   usePicoEventListeners();
@@ -81,6 +83,7 @@ const Pico = (props) => {
     if (
       ! irvingIsLoading &&
       scriptOnload &&
+      ! visited &&
       (
         (contentReady && picoPageInfo.article) ||
         ! picoPageInfo.article

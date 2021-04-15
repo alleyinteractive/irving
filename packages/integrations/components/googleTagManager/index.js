@@ -86,11 +86,12 @@ const GoogleTagManager = (props) => {
 };
 
 GoogleTagManager.defaultProps = {
+  containerId: '',
   dataLayer: [],
 };
 
 GoogleTagManager.propTypes = {
-  containerId: PropTypes.string.isRequired,
+  containerId: PropTypes.string,
   dataLayer: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array, // Empty objects turn to arrays in PHP :(

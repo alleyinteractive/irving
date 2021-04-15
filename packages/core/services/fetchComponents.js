@@ -4,7 +4,7 @@ import {
   CONTEXT_PAGE,
 } from 'config/constants';
 import isNode from 'utils/isNode';
-import shouldAuthorize from 'utils/shouldAuthorize';
+import { maybeMergeAuthHeaders } from 'utils/authorization';
 import { getEnv } from 'config/multisite';
 import getLogService from '@irvingjs/services/logService';
 import getCacheService from '@irvingjs/services/cacheService';
@@ -49,29 +49,28 @@ export async function fetchComponents(
     FETCH_TIMEOUT || 10000
   );
 
-  // Set up fetch options.
-  const options = {
+  // Set up fetch options, including authorization header if applicable.
+  const options = maybeMergeAuthHeaders(cookie, {
     headers: {
       Accept: 'application/json',
     },
     credentials: 'include', // Support XHR with basic auth.
     signal: controller.signal,
-  };
-
-  // Set up Authorization header, if applicable.
-  const authorizationBearerToken = shouldAuthorize(cookie);
-  if (authorizationBearerToken) {
-    // Set to same origin so we don't conflict with other cookies.
-    options.credentials = 'same-origin';
-    options.headers.Authorization = `Bearer ${authorizationBearerToken}`;
-  }
+  });
 
   const response = await fetch(apiUrl, options);
 
   // Clear timeout once response is returned (no matter what it is).
   clearTimeout(timeout);
 
-  const data = await response.json();
+  let data = null;
+
+  try {
+    data = await response.json();
+  } catch (error) {
+    throw new Error(`API error: ${error}`);
+  }
+
   const {
     redirectTo,
     redirectStatus,
@@ -96,7 +95,8 @@ export async function fetchComponents(
     ! redirectTo &&
     404 !== response.status
   ) {
-    throw new Error(`API error: ${data.message}`);
+    const message = data.message || data.data || 'No error returned by API';
+    throw new Error(`API error: ${message}`);
   }
 
   return {

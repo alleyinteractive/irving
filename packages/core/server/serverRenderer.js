@@ -136,6 +136,10 @@ export default function serverRenderer(options) {
     } catch (err) {
       logError.error('%o', { url: req.originalUrl, err });
 
+      const errorToDisplay = req.query.debug ?
+        err :
+        'This error has been logged.';
+
       // Render a error page.
       const ErrorMessageComponent = getComponent('error-message');
       const ErrorWrapper = () => (
@@ -148,6 +152,7 @@ export default function serverRenderer(options) {
         head: {
           title: '<title>Something has gone wrong</title>',
         },
+        errorToDisplay,
       });
 
       res.status(500);

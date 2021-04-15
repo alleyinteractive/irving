@@ -3,6 +3,174 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.14...v6.0.0-alpha.15) (2021-04-14)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.14](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.13...v6.0.0-alpha.14) (2021-04-13)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.12...v6.0.0-alpha.13) (2021-04-12)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.12](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.11...v6.0.0-alpha.12) (2021-04-01)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.11](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.10...v6.0.0-alpha.11) (2021-03-30)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.9...v6.0.0-alpha.10) (2021-03-30)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.8...v6.0.0-alpha.9) (2021-03-30)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.7...v6.0.0-alpha.8) (2021-03-30)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.6...v6.0.0-alpha.7) (2021-03-30)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.5...v6.0.0-alpha.6) (2021-03-29)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.4...v6.0.0-alpha.5) (2021-03-29)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **deps:** stupid package locks ([d8d248a](https://github.com/alleyinteractive/irving/packages/audio-player/commit/d8d248aefdb491962147c3bb7a18ac32c775f26f))
+* **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/packages/audio-player/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
+
+
+### Features
+
+* **deps:** update to react and react-dom v17 ([0c1989c](https://github.com/alleyinteractive/irving/packages/audio-player/commit/0c1989cfaa5d794e6e7d0b53b973e8e95d9b3dab))
+
+
+
+
+
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+
+
+
+## [5.8.1](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+
+## [5.8.1](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+# [5.8.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v5.8.0-alpha.2...v5.8.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
+# [5.8.0-alpha.1](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v5.8.0-alpha.0...v5.8.0-alpha.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/audio-player
+
+
+
+
+
 # [5.8.0-alpha.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v5.7.0...v5.8.0-alpha.0) (2021-03-16)
 
 **Note:** Version bump only for package @irvingjs/audio-player

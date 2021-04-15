@@ -3,6 +3,227 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.14...v6.0.0-alpha.15) (2021-04-14)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.0.0-alpha.14](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.13...v6.0.0-alpha.14) (2021-04-13)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.12...v6.0.0-alpha.13) (2021-04-12)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.0.0-alpha.12](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.11...v6.0.0-alpha.12) (2021-04-01)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.0.0-alpha.11](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.10...v6.0.0-alpha.11) (2021-03-30)
+
+
+### Bug Fixes
+
+* **props:** fix some prop type declarations ([cb515b0](https://github.com/alleyinteractive/irving/packages/styled-components/commit/cb515b0db3c53b8022ef92a82439aab8626bf5d0))
+
+
+
+
+
+# [6.0.0-alpha.10](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.9...v6.0.0-alpha.10) (2021-03-30)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.0.0-alpha.9](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.8...v6.0.0-alpha.9) (2021-03-30)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.0.0-alpha.8](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.7...v6.0.0-alpha.8) (2021-03-30)
+
+
+### Bug Fixes
+
+* **sc:** fix missing fallback modules for sanitize-html ([4ec6643](https://github.com/alleyinteractive/irving/packages/styled-components/commit/4ec66438173831db2f73324d63afe8f69296db2b))
+
+
+
+
+
+# [6.0.0-alpha.7](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.6...v6.0.0-alpha.7) (2021-03-30)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.0.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.5...v6.0.0-alpha.6) (2021-03-29)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.0.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.4...v6.0.0-alpha.5) (2021-03-29)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.0.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.2...v6.0.0-alpha.4) (2021-03-29)
+
+
+
+# [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
+
+
+
+# [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
+
+
+
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+
+
+# [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
+
+
+
+## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+
+
+
+## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.1...v5.8.1-alpha.0) (2021-03-23)
+
+
+### Bug Fixes
+
+* **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/packages/styled-components/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
+* **rtl:** add peer dep for testing library ([484a1d2](https://github.com/alleyinteractive/irving/packages/styled-components/commit/484a1d27659b8fbf78ed6101741e89fa37910bae))
+* **test:** remove enzyme entirely, replace integrations test with testing library ([a12f211](https://github.com/alleyinteractive/irving/packages/styled-components/commit/a12f211dfd6ad08e046bf780462a7827e064ee0e))
+* **webpack:** add back in some polyfills webpack 5 took out ([a9fc46b](https://github.com/alleyinteractive/irving/packages/styled-components/commit/a9fc46b63a12b4849bc9e4819b79cb7f746f9429))
+* **webpack:** add some comments ([1c318bd](https://github.com/alleyinteractive/irving/packages/styled-components/commit/1c318bd22675398f15f9fa3b91074ede3a720483))
+
+
+### Features
+
+* **deps:** update to react and react-dom v17 ([0c1989c](https://github.com/alleyinteractive/irving/packages/styled-components/commit/0c1989cfaa5d794e6e7d0b53b973e8e95d9b3dab))
+
+
+
+
+
+# [6.0.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2021-03-26)
+
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+# [6.0.0-alpha.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.1...v6.0.0-alpha.2) (2021-03-25)
+
+
+
+* **deps:** update package locks ([dda4b98](https://github.com/alleyinteractive/irving/packages/styled-components/commit/dda4b98772d8b4ac9ffb0e0c52a304f76147d746))
+* **rtl:** add peer dep for testing library ([484a1d2](https://github.com/alleyinteractive/irving/packages/styled-components/commit/484a1d27659b8fbf78ed6101741e89fa37910bae))
+* **test:** remove enzyme entirely, replace integrations test with testing library ([a12f211](https://github.com/alleyinteractive/irving/packages/styled-components/commit/a12f211dfd6ad08e046bf780462a7827e064ee0e))
+
+
+### Features
+
+* **deps:** update to react and react-dom v17 ([0c1989c](https://github.com/alleyinteractive/irving/packages/styled-components/commit/0c1989cfaa5d794e6e7d0b53b973e8e95d9b3dab))
+
+
+# [6.0.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.0.0-alpha.0...v6.0.0-alpha.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* **webpack:** add back in some polyfills webpack 5 took out ([a9fc46b](https://github.com/alleyinteractive/irving/packages/styled-components/commit/a9fc46b63a12b4849bc9e4819b79cb7f746f9429))
+* **webpack:** add some comments ([1c318bd](https://github.com/alleyinteractive/irving/packages/styled-components/commit/1c318bd22675398f15f9fa3b91074ede3a720483))
+
+
+
+# [6.0.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.2-alpha.0...v6.0.0-alpha.0) (2021-03-25)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+## [5.8.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.2-beta.0...v5.8.2) (2021-03-27)
+
+### Bug Fixes
+
+* **menu item component:** fixes classes on the menu item ([f5f83b1](https://github.com/alleyinteractive/irving/packages/styled-components/commit/f5f83b15a44a42d1d6431ccfbe2ab0a68a483b1e))
+
+## [5.8.2-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.1...v5.8.2-beta.0) (2021-03-26)
+
+
+## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+
+
+
+
+## [5.8.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [5.8.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.0...v5.8.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+# [5.8.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.0-alpha.2...v5.8.0) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [5.8.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.8.0-alpha.0...v5.8.0-alpha.1) (2021-03-23)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
 # [5.8.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v5.7.0...v5.8.0-alpha.0) (2021-03-16)
 
 **Note:** Version bump only for package @irvingjs/styled-components

@@ -4,7 +4,6 @@ const {
   buildContext,
   irvingRoot,
 } = require('../paths');
-const { maybeResolveBuildModule } = require('../../utils/userModule');
 
 const include = (filepath) => {
   const matches = (
@@ -43,64 +42,34 @@ module.exports = function getRules(context) {
 
   return [
     {
-      enforce: 'pre',
-      test: /\.jsx?$/,
-      include,
-      use: [
-        {
-          loader: 'eslint-loader',
-          options: {
-            configFile: maybeResolveBuildModule('.eslintrc.js'),
-          },
-        },
-      ],
-    },
-    {
       exclude: [
         /\.html$/,
         /\.(js|jsx|mjs)$/,
-        /\.s?[ac]ss$/,
+        /\.css$/,
+        /\.s[ac]ss$/,
         /\.json$/,
         /\.bmp$/,
         /\.gif$/,
         /\.jpe?g$/,
         /\.png$/,
-        /\.svg$/,
         /\.otf$/,
         /\.ico$/,
+        /\.svg$/,
       ],
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            emitFile: ! isServer,
-            name: 'static/media/[name].[hash:8].[ext]',
-          },
-        },
-      ],
+      type: 'asset/resource',
     },
     {
       test: [
         /\.bmp$/,
         /\.gif$/,
         /\.jpe?g$/,
-        /\.svg$/,
         /\.png$/,
         /\.otf$/,
         /\.ico$/,
+        /\.svg$/,
       ],
       exclude: [/assets\/icons/],
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            publicPath: '/',
-            limit: 10000,
-            emitFile: ! isServer,
-            name: 'static/media/[name].[hash:8].[ext]',
-          },
-        },
-      ],
+      type: 'asset',
     },
     {
       test: /\.svg$/,
@@ -142,9 +111,9 @@ module.exports = function getRules(context) {
             modules: {
               mode: 'local',
               localIdentName: '[name]__[local]--[hash:base64:5]',
+              exportLocalsConvention: 'camelCase',
             },
             sourceMap: ! isProd,
-            localsConvention: 'camelCase',
           },
         },
       ],

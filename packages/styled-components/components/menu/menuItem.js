@@ -29,7 +29,7 @@ const MenuItem = (props) => {
   } = theme;
 
   return (
-    <ItemWrapper key={id} classnames={classes} title={attributeTitle}>
+    <ItemWrapper key={id} className={classes} title={attributeTitle}>
       <Link href={url} target={target}>{title}</Link>
       {children && (
         <Dropdown>
@@ -48,7 +48,7 @@ const MenuItem = (props) => {
 
 MenuItem.defaultProps = {
   attributeTitle: '',
-  classes: [],
+  classes: '',
   id: 0,
   level: 1,
   target: '',
@@ -69,7 +69,10 @@ MenuItem.propTypes = {
   /**
    * Classnames.
    */
-  classes: PropTypes.array,
+  classes: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
   /**
    * Unique key.
    */

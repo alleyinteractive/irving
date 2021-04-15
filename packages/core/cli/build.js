@@ -22,34 +22,27 @@ module.exports = (program) => {
       }
 
       const info = stats.toJson();
-      const messageRegExp = /(\([^)]*\))([\s\S]*)/;
 
       // Log compile errors.
       if (stats.hasErrors()) {
         info.errors.forEach((error) => {
-          const errorParts = error.match(messageRegExp);
-          console.error( // eslint-disable-line no-console
-            chalk.black.bgRed(errorParts[1]),
-            chalk.red(errorParts[2])
-          );
+          console.error(chalk.red(error.message));
         });
 
-        process.exitCode = 1;
-        throw new Error('build failed');
+        console.error(chalk.red('build failed'));
+        process.exit(1);
       }
 
       // Log compile warnings.
       if (stats.hasWarnings()) {
         info.warnings.forEach((warning) => {
-          const warnParts = warning.match(messageRegExp);
-          console.warn( // eslint-disable-line no-console
-            chalk.black.bgYellow(warnParts[1]),
-            chalk.yellow(warnParts[2])
-          );
+          console.warn(chalk.yellow(warning.message));
         });
       }
 
-      console.log('build complete'); // eslint-disable-line no-console
+      console.log(stats.toString({ // eslint-disable-line no-console
+        colors: true,
+      }));
     }
   );
 };

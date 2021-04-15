@@ -1,5 +1,5 @@
 const TerserJSPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CSSMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 /**
  * Get the context specific output configuration.
@@ -12,6 +12,7 @@ module.exports = function getOptimization(context) {
     case 'production_server':
     case 'development_server':
       return {
+        moduleIds: 'deterministic',
         // This keeps the emitted code readable if we need to review it manually.
         // Minimization isn't useful for NodeJS anyways.
         minimize: false,
@@ -21,7 +22,7 @@ module.exports = function getOptimization(context) {
       return {
         minimizer: [
           new TerserJSPlugin({}),
-          new OptimizeCSSAssetsPlugin({}),
+          new CSSMinimizerPlugin(),
         ],
         splitChunks: {
           name: 'common',
@@ -32,7 +33,7 @@ module.exports = function getOptimization(context) {
 
     case 'development_client':
       return {
-        namedModules: true,
+        moduleIds: 'named',
         splitChunks: {
           name: 'common',
           chunks: 'all',

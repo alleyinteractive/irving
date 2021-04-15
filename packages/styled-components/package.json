@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/styled-components",
-  "version": "5.8.0-alpha.0",
+  "version": "6.0.0-alpha.15",
   "description": "Integration for React components with attached styles for Irving",
   "files": [
     "components/**/*",
@@ -23,11 +23,14 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@irvingjs/styled": "^5.8.0-alpha.0",
+    "@irvingjs/styled": "^6.0.0-alpha.15",
     "@wordpress/i18n": "^3.10.0",
+    "buffer": "~6.0.3",
+    "native-url": "~0.3.4",
+    "path-browserify": "~1.0.1",
     "query-string": "^6.13.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^6.0.6",
     "react-html-parser": "~2.0.2",
@@ -36,10 +39,10 @@
     "styled-css-grid": "^1.2.1"
   },
   "devDependencies": {
-    "@irvingjs/babel-preset-irving": "^5.8.0-alpha.0",
-    "@irvingjs/core": "^5.8.0-alpha.0",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.0.2",
+    "@irvingjs/babel-preset-irving": "^6.0.0-alpha.5",
+    "@irvingjs/core": "^6.0.0-alpha.15",
+    "@testing-library/jest-dom": "~5.11.9",
+    "@testing-library/react": "~11.2.5",
     "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^26.6.3"
   },

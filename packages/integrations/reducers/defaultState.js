@@ -7,6 +7,7 @@ export const pico = {
   contentReady: false,
   signal: {},
   pageInfo: {},
+  visited: false,
   lifecycle: {
     scriptAdded: false,
     scriptOnload: false,
