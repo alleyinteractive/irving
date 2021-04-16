@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.17](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.16...v6.0.0-alpha.17) (2021-04-16)
+
+
+### Bug Fixes
+
+* **wordpress:** fix issue with blockEditor build assets being removed ([402ee67](https://github.com/alleyinteractive/irving/commit/402ee673578366cad9a71d9beb16b2a003345b5f))
+
+
+
+
+
 # [6.0.0-alpha.16](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.15...v6.0.0-alpha.16) (2021-04-16)
 
 
