@@ -23,10 +23,24 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [6.0.0-beta.3](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.14...v6.0.0-beta.3) (2021-04-13)
-
+**Note:** Version bump only for package irving
 
 
 # [6.0.0-beta.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
+
+**Note:** Version bump only for package irving
+# [6.0.0-alpha.17](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.16...v6.0.0-alpha.17) (2021-04-16)
+
+
+### Bug Fixes
+
+* **wordpress:** fix issue with blockEditor build assets being removed ([402ee67](https://github.com/alleyinteractive/irving/commit/402ee673578366cad9a71d9beb16b2a003345b5f))
+
+
+
+
+
+# [6.0.0-alpha.16](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.15...v6.0.0-alpha.16) (2021-04-16)
 
 
 ### Bug Fixes
@@ -37,10 +51,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.0.0-beta.1](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.12...v6.0.0-beta.1) (2021-04-01)
 
-
+**Note:** Version bump only for package irving
 
 # [6.0.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
 
+* **pico:** make pico signal attribute updates more consistent ([fa3b14d](https://github.com/alleyinteractive/irving/commit/fa3b14d439984f6ee2a9262a241679a609c3b2e3))
+
+
+
+
+
+# [6.0.0-alpha.15](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.14...v6.0.0-alpha.15) (2021-04-14)
+
+
+### Features
+
+* **auth:** allow both Bearer or Basic tokens to be used for auth ([6964c3e](https://github.com/alleyinteractive/irving/commit/6964c3ead9bde3276d7cf744d6cbe5f1a43470e4))
 
 
 
@@ -48,6 +74,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.0.0-beta.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
 
 **Note:** Version bump only for package irving
+
 # [6.0.0-alpha.14](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.13...v6.0.0-alpha.14) (2021-04-13)
 
 

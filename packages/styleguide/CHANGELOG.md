@@ -6,6 +6,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-beta.4...v6.0.0-rc.0) (2021-04-15)
 
 **Note:** Version bump only for package @irvingjs/styleguide
+# [6.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-alpha.14...v6.0.0-alpha.15) (2021-04-14)
+
+**Note:** Version bump only for package @irvingjs/styleguide
 
 
 
@@ -22,14 +25,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-alpha.14...v6.0.0-beta.3) (2021-04-13)
 
 
-
+**Note:** Version bump only for package @irvingjs/styleguide
 # [6.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
 
-
+**Note:** Version bump only for package @irvingjs/styleguide
 
 # [6.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-alpha.12...v6.0.0-beta.1) (2021-04-01)
 
-
+**Note:** Version bump only for package @irvingjs/styleguide
 
 # [6.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
 

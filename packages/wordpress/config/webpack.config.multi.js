@@ -4,6 +4,7 @@ const {
   rootUrl,
   buildContext,
 } = require('@irvingjs/core/config/paths');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const coreAliases = require('@irvingjs/core/config/aliases');
 const aliases = Object.keys(coreAliases)
   .reduce((acc, alias) => {
@@ -17,8 +18,21 @@ const aliases = Object.keys(coreAliases)
     };
   }, {});
 
-module.exports = (multiConfig) => (
-  [
+module.exports = (multiConfig) => {
+  // Modify the client build's clean webpack plugin to prevent it from
+  // removing blockEditor assets (this config can handle that separately as necessary).
+  multiConfig[0].plugins = multiConfig[0].plugins
+    .map((pluginInstance) => {
+      if (pluginInstance.cleanOnceBeforeBuildPatterns) {
+        pluginInstance.cleanOnceBeforeBuildPatterns.push(
+          '!**/blockEditor**'
+        );
+      }
+
+      return pluginInstance;
+    });
+
+  return [
     ...multiConfig,
     /**
      * Webpack config for producing block editor JS file for enqueueing in WP admin.
@@ -83,5 +97,5 @@ module.exports = (multiConfig) => (
         ],
       },
     },
-  ]
-);
+  ];
+};

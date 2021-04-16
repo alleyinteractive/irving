@@ -22,16 +22,28 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.14...v6.0.0-beta.3) (2021-04-13)
 
 
-
+**Note:** Version bump only for package @irvingjs/integrations
 # [6.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
 
-
+**Note:** Version bump only for package @irvingjs/integrations
 
 # [6.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.12...v6.0.0-beta.1) (2021-04-01)
-
+**Note:** Version bump only for package @irvingjs/integrations
 
 
 # [6.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
+# [6.0.0-alpha.16](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.15...v6.0.0-alpha.16) (2021-04-16)
+
+
+### Bug Fixes
+
+* **pico:** make pico signal attribute updates more consistent ([fa3b14d](https://github.com/alleyinteractive/irving/packages/integrations/commit/fa3b14d439984f6ee2a9262a241679a609c3b2e3))
+
+
+
+
+
+# [6.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.14...v6.0.0-alpha.15) (2021-04-14)
 
 **Note:** Version bump only for package @irvingjs/integrations
 
