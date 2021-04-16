@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.16](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.15...v6.0.0-alpha.16) (2021-04-16)
+
+
+### Bug Fixes
+
+* **pico:** make pico signal attribute updates more consistent ([fa3b14d](https://github.com/alleyinteractive/irving/commit/fa3b14d439984f6ee2a9262a241679a609c3b2e3))
+
+
+
+
+
 # [6.0.0-alpha.15](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.14...v6.0.0-alpha.15) (2021-04-14)
 
 
