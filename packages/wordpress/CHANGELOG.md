@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-rc.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.17...v6.0.0-rc.1) (2021-04-16)
+
+
+
+# [6.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.15...v6.0.0-rc.0) (2021-04-15)
+
+
+
+# [6.0.0-beta.4](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2021-04-14)
+
+
+
+# [6.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.14...v6.0.0-beta.3) (2021-04-13)
+
+
+
+# [6.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
+
+
+
+# [6.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.12...v6.0.0-beta.1) (2021-04-01)
+
+
+
+# [6.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
 # [6.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.0.0-beta.4...v6.0.0-rc.0) (2021-04-15)
 
 **Note:** Version bump only for package @irvingjs/wordpress
