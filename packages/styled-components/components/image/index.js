@@ -109,12 +109,12 @@ const Image = (props) => {
         <ImageMeta>
           {caption && (
             <ImageCaption
-              dangerouslySetInnerHTML={{ __html: sanitize(caption, config) }} // eslint-disable-line react/no-danger, max-len
+              dangerouslySetInnerHTML={{ __html: sanitize(caption, config) }} // eslint-disable-line react/no-danger
             />
           )}
           {credit && (
             <ImageCredit
-              dangerouslySetInnerHTML={{ __html: sanitize(credit, config) }} // eslint-disable-line react/no-danger, max-len
+              dangerouslySetInnerHTML={{ __html: sanitize(credit, config) }} // eslint-disable-line react/no-danger
             />
           )}
         </ImageMeta>

@@ -29,7 +29,7 @@ module.exports = {
     config.module.rules[0].exclude = [
       /\bcore-js\b/,
       /\bwebpack\/buildin\b/,
-      /node_modules/,
+      /\bnode_modules\b/,
     ];
     return config;
   },

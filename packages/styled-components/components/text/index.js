@@ -45,7 +45,7 @@ const Text = (props) => {
     <TextWrapper
       {...standardProps}
       dangerouslySetInnerHTML={{
-        __html: sanitize(content, config), // eslint-disable-line react/no-danger, max-len
+        __html: sanitize(content, config), // eslint-disable-line react/no-danger
       }}
     />
   );
