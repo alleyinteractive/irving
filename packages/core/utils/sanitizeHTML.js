@@ -24,13 +24,14 @@ module.exports.config = getValueFromConfig(
   'sanitizeHTML',
   {
     ADD_TAGS: [
-      'iframe', 'link',
+      'iframe', 'link', 'title',
     ],
     ADD_ATTR: [
-      'rel', 'href', 'type', 'target', 'nohref', 'xml:lang', 'currenttime',
-      'duration', 'char', 'charoff', 'hspace', 'longdesc', 'vspace', 'autofocus',
-      'dirname', 'form', 'formaction', 'formenctype', 'formmethod',
-      'formnovalidate', 'formtaget', 'rules', 'abbr', 'axis',
+      'abbr', 'autofocus', 'axis', 'buffered', 'char', 'charoff', 'currenttime',
+      'dirname', 'duration', 'form', 'formaction', 'formenctype', 'formmethod',
+      'formnovalidate', 'formtaget', 'href', 'hspace', 'intrinsicsize',
+      'longdesc', 'nohref', 'rel', 'rules', 'target', 'type', 'vspace',
+      'xml:lang',
     ],
     FORBID_TAGS: [
       'body', 'html', 'head', 'main'
