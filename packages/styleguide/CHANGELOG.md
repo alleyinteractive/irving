@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.18](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-alpha.17...v6.0.0-alpha.18) (2021-04-20)
+
+
+### Bug Fixes
+
+* **storybook:** fix storybook (was broken with webpack 5) ([5e054d0](https://github.com/alleyinteractive/irving/packages/styleguide/commit/5e054d01781b37eef63e38edfbb04fdd5f10046d))
+
+
+### Features
+
+* **sanitize:** remove sanitize-html and replace with dompurify ([e67a1b9](https://github.com/alleyinteractive/irving/packages/styleguide/commit/e67a1b9498ad893fbfa07b6e6a39137d6df6f8ed))
+
+
+
+
+
 # [6.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/styleguide/compare/v6.0.0-alpha.14...v6.0.0-alpha.15) (2021-04-14)
 
 **Note:** Version bump only for package @irvingjs/styleguide

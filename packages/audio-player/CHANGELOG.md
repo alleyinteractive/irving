@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-alpha.18](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.17...v6.0.0-alpha.18) (2021-04-20)
+
+
+### Features
+
+* **sanitize:** remove sanitize-html and replace with dompurify ([e67a1b9](https://github.com/alleyinteractive/irving/packages/audio-player/commit/e67a1b9498ad893fbfa07b6e6a39137d6df6f8ed))
+
+
+
+
+
 # [6.0.0-alpha.15](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.0.0-alpha.14...v6.0.0-alpha.15) (2021-04-14)
 
 **Note:** Version bump only for package @irvingjs/audio-player
