@@ -4,14 +4,24 @@ import Menu from '.';
 
 export default {
   component: Menu,
-  title: 'Styled Components|Menu',
+  title: 'Styled Components/Menu',
 };
 
 const menuItems = [
   {
-    title: "Testing",
-    url: "https://google.com",
-  }
+    props: {
+      id: 1,
+      title: "Testing",
+      url: "https://google.com",
+    },
+  },
+  {
+    props: {
+      id: 2,
+      title: "Another menu item",
+      url: "https://duckduckgo.com",
+    },
+  },
 ];
 export const BasicExample = () => <Menu location="example">{menuItems}</Menu>;
 

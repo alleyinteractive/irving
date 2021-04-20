@@ -4,7 +4,7 @@ import SocialSharing from '.';
 
 export default {
   component: SocialSharing,
-  title: 'Styled Components|SocialSharing',
+  title: 'Styled Components/SocialSharing',
 };
 
 const title = "Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.";

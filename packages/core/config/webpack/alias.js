@@ -11,7 +11,9 @@ module.exports = function getAlias(context) {
   switch (context) {
     case 'development_server':
     case 'production_server':
-      return {};
+      return {
+        canvas: path.join(__dirname, '../../utils/shimCanvas.js'),
+      };
 
     case 'development_client':
       // Use the app version of these packages to prevent duplicate react errors with npm link

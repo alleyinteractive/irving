@@ -4,7 +4,7 @@ import Fragment from '.';
 
 export default {
   component: Fragment,
-  title: 'Styled Components|Fragment',
+  title: 'Styled Components/Fragment',
 };
 
 export const BasicEample = () => <Fragment>Basic Example</Fragment>;

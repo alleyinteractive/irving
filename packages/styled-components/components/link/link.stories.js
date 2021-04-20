@@ -3,7 +3,7 @@ import { Component as Link } from '.';
 
 export default {
   component: Link,
-  title: 'Styled Components|Link',
+  title: 'Styled Components/Link',
 };
 
 /**

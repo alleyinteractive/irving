@@ -7,7 +7,7 @@ import Text from '../text';
 
 export default {
   component: Byline,
-  title: 'Styled Components|Byline',
+  title: 'Styled Components/Byline',
 };
 
 const authors = [

@@ -4,7 +4,7 @@ import Pagination from '.';
 
 export default {
   component: Pagination,
-  title: 'Styled Components|Pagination',
+  title: 'Styled Components/Pagination',
 };
 
 export const BasicEample = () => <Pagination totalPages={5} />;

@@ -5,7 +5,7 @@ import Container from '../container';
 
 export default {
   component: Image,
-  title: 'Styled Components|Image',
+  title: 'Styled Components/Image',
 };
 
 const bannerImage = 'https://source.unsplash.com/random/1200x680';

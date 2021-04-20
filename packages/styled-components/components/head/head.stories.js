@@ -4,7 +4,7 @@ import Head from '.';
 
 export default {
   component: Head,
-  title: 'Styled Components|Head',
+  title: 'Styled Components/Head',
 };
 
 const children = [

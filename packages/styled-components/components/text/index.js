@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import sanitizeHtml from 'sanitize-html';
 import htmlParser from 'react-html-parser';
 import EmbedContainer from 'react-oembed-container';
-import { richText } from '@irvingjs/core/config/html';
+import { sanitize, config } from '@irvingjs/core/utils/sanitizeHTML';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
@@ -38,12 +37,16 @@ const Text = (props) => {
   const { TextWrapper } = theme;
   const htmlWrapper = nowrap ? (
     <>
-      {htmlParser(sanitizeHtml(content, richText))}
+      {htmlParser(sanitize(content, {
+        ADD_TAGS: ['iframe'],
+      }))}
     </>
   ) : (
     <TextWrapper
       {...standardProps}
-      dangerouslySetInnerHTML={{ __html: sanitizeHtml(content, richText) }} // eslint-disable-line react/no-danger, max-len
+      dangerouslySetInnerHTML={{
+        __html: sanitize(content, config), // eslint-disable-line react/no-danger
+      }}
     />
   );
 
