@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-rc.2](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-rc.1...v6.0.0-rc.2) (2021-04-20)
+
+
+### Bug Fixes
+
+* **sanitize:** alphabetize, add title tag ([0fcc395](https://github.com/alleyinteractive/irving/packages/core/commit/0fcc395ae430496b2b6b5e0afc6b8657038742ec))
+* **sanitize:** fix/update sanitization settings ([7ec5923](https://github.com/alleyinteractive/irving/packages/core/commit/7ec592382b0e048711675190074258d765fabf4d))
+* **sanitize:** remove html config and unnecessary sanitize alias ([78f6786](https://github.com/alleyinteractive/irving/packages/core/commit/78f67868fa1acf282affb3db84bed8518fe874dd))
+
+
+### Features
+
+* **sanitize:** remove sanitize-html and replace with dompurify ([e67a1b9](https://github.com/alleyinteractive/irving/packages/core/commit/e67a1b9498ad893fbfa07b6e6a39137d6df6f8ed))
+
+
+
+
+
 # [6.0.0-rc.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-alpha.17...v6.0.0-rc.1) (2021-04-16)
 
 
