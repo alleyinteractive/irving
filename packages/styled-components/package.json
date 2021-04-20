@@ -12,6 +12,7 @@
     "!*.test.js"
   ],
   "main": "index.js",
+  "browser": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/alleyinteractive/irving/packages/styled-components"
@@ -26,6 +27,7 @@
     "@irvingjs/styled": "^6.0.0-alpha.15",
     "@wordpress/i18n": "^3.10.0",
     "buffer": "~6.0.3",
+    "dompurify": "~2.2.7",
     "native-url": "~0.3.4",
     "path-browserify": "~1.0.1",
     "query-string": "^6.13.1",

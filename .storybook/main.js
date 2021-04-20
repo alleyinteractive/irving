@@ -3,9 +3,12 @@ const getEnv = require('../packages/core/config/env');
 const proxyPassthrough = require('../packages/core/config/proxyPassthrough');
 
 module.exports = {
+  core: {
+    builder: 'webpack5',
+  },
   stories: [
-    '../stories/**/*.stories.(js|mdx)',
-    '../packages/styled-components/components/**/*.stories.(js|mdx)',
+    '../stories/**/*.stories.@(js|mdx)',
+    '../packages/styled-components/components/**/*.stories.@(js|mdx)',
   ],
   addons: [
     '@storybook/addon-a11y',
@@ -23,10 +26,11 @@ module.exports = {
         proxyPassthrough: JSON.stringify(proxyPassthrough),
       }),
     ]);
-    config.module.rules[0].exclude.push([
+    config.module.rules[0].exclude = [
       /\bcore-js\b/,
-      /\bwebpack\/buildin\b/
-    ]);
+      /\bwebpack\/buildin\b/,
+      /\bnode_modules\b/,
+    ];
     return config;
   },
 };

@@ -1,4 +1,4 @@
-<Meta title="Configuration|Irving Config JS" />
+<Meta title="Configuration/Irving Config JS" />
 
 # Configuration Options
 This section outlines the different ways you can configure Irving using `irving.config.js`.
@@ -443,3 +443,18 @@ const irvingConfig = {
 ```
 
 An example of when you might want to use this is if you are providing a third-party component directly in your component map, and that component passes its props to a native HTML element for which a `componentName` attribute would not be allowed.
+
+## HTML sanitization settings
+* **where to configure**: `irving.config.js` in the `sanitizeHTML` key
+* **type**: object
+* **purpose**: Allows you to configure [`dompurify`](https://github.com/cure53/DOMPurify#can-i-configure-dompurify), which Irving uses under the hood to sanitize HTML in specific components, such as [`text`](https://github.com/alleyinteractive/irving/tree/main/packages/styled-components/components/text).
+
+Example:
+```javascript
+const irvingConfig = {
+  sanitizeHTML: {
+    // extend the existing array of allowed tags and add <my-tag> to the list.
+    ADD_TAGS: ['my-tag'],
+  },
+};
+```

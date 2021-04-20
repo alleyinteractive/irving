@@ -4,7 +4,7 @@ import Container from '.';
 
 export default {
   component: Container,
-  title: 'Styled Components|Container',
+  title: 'Styled Components/Container',
 };
 
 export const BasicEample = () => <Container>Basic Example</Container>;
