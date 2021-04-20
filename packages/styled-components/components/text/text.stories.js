@@ -10,7 +10,7 @@ import {
 
 export default {
   component: Text,
-  title: 'Styled Components|Text',
+  title: 'Styled Components/Text',
 };
 
 export const PlainTextExample = () => <Text content="Hello World" />;

@@ -1,4 +1,4 @@
-<Meta title="Features|Caching" />
+<Meta title="Features/Caching" />
 
 # Caching
 Out of the box, Irving uses Redis to cache data retrieved from your API_ROOT_URL on the server-side. By serving the initial load from a cache local to the node application, we can save ourselves a full request to the CMS. This allows first-time, server-rendered requests (usually the slowest of all Irving requests to process) to load much more quickly. The entire response for a given endpoint is stored in Redis, and uses keys in the format `components-endpoint:${endpoint}`. Example: `components-endpoint:path=/&context=site`.

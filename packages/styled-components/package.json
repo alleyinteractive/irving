@@ -12,6 +12,7 @@
     "!*.test.js"
   ],
   "main": "index.js",
+  "browser": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/alleyinteractive/irving/packages/styled-components"

@@ -4,7 +4,7 @@ import Logo from '.';
 
 export default {
   component: Logo,
-  title: 'Styled Components|Logo',
+  title: 'Styled Components/Logo',
 };
 
 export const BasicEample = () => <Logo siteName="Example Site" />;
