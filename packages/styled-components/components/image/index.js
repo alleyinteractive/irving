@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import sanitizeHTML from '@irvingjs/core/utils/sanitizeHTML';
+import { sanitize, config } from '@irvingjs/core/utils/sanitizeHTML';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
@@ -109,12 +109,12 @@ const Image = (props) => {
         <ImageMeta>
           {caption && (
             <ImageCaption
-              dangerouslySetInnerHTML={{ __html: sanitizeHTML(caption) }} // eslint-disable-line react/no-danger, max-len
+              dangerouslySetInnerHTML={{ __html: sanitize(caption, config) }} // eslint-disable-line react/no-danger, max-len
             />
           )}
           {credit && (
             <ImageCredit
-              dangerouslySetInnerHTML={{ __html: sanitizeHTML(credit) }} // eslint-disable-line react/no-danger, max-len
+              dangerouslySetInnerHTML={{ __html: sanitize(credit, config) }} // eslint-disable-line react/no-danger, max-len
             />
           )}
         </ImageMeta>

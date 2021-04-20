@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import htmlParser from 'react-html-parser';
 import EmbedContainer from 'react-oembed-container';
-import sanitizeHTML from '@irvingjs/core/utils/sanitizeHTML';
+import { sanitize, config } from '@irvingjs/core/utils/sanitizeHTML';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
@@ -37,12 +37,16 @@ const Text = (props) => {
   const { TextWrapper } = theme;
   const htmlWrapper = nowrap ? (
     <>
-      {htmlParser(sanitizeHTML(content))}
+      {htmlParser(sanitize(content, {
+        ADD_TAGS: ['iframe'],
+      }))}
     </>
   ) : (
     <TextWrapper
       {...standardProps}
-      dangerouslySetInnerHTML={{ __html: sanitizeHTML(content) }} // eslint-disable-line react/no-danger, max-len
+      dangerouslySetInnerHTML={{
+        __html: sanitize(content, config), // eslint-disable-line react/no-danger, max-len
+      }}
     />
   );
 
