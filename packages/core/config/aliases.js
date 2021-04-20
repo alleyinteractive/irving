@@ -19,6 +19,7 @@ const aliases = {
   services: './services',
   utils: './utils',
   config: './config',
+  '@irvingjs/sanitize': path.join(__dirname, '../utils/sanitizeHTML.js'),
   // Aliases for irving config files. Use core defaults if they don't exist.
   '@irvingjs/irving.config': maybeResolveBuildModule('irving.config.js'),
   // Multisite config alias.
