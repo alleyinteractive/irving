@@ -341,35 +341,35 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **webpack:** continue tweaks to webpack config to support webpack 5 upgrade ([3af53e7](https://github.com/alleyinteractive/irving/commit/3af53e76ac13aee64933a8d5e3f467b14cb4e8e8))
 
 
-## [5.8.2](https://github.com/alleyinteractive/irving/compare/v5.8.2-beta.0...v5.8.2) (2021-03-27)
+# [5.8.2](https://github.com/alleyinteractive/irving/compare/v5.8.2-beta.0...v5.8.2) (2021-03-27)
 
 ### Bug Fixes
 
 * **menu item component:** fixes classes on the menu item ([f5f83b1](https://github.com/alleyinteractive/irving/commit/f5f83b15a44a42d1d6431ccfbe2ab0a68a483b1e))
 
 
-## [5.8.2-beta.0](https://github.com/alleyinteractive/irving/compare/v5.8.1...v5.8.2-beta.0) (2021-03-26)
+# [5.8.2-beta.0](https://github.com/alleyinteractive/irving/compare/v5.8.1...v5.8.2-beta.0) (2021-03-26)
 
 **Note:** Version bump only for package irving
 
 
 
-## [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
+# [5.8.2-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.8.1-alpha.0...v5.8.2-alpha.0) (2021-03-25)
 **Note:** Version bump only for package irving
 
 
-## [5.8.1](https://github.com/alleyinteractive/irving/compare/v5.8.0...v5.8.1) (2021-03-23)
+# [5.8.1](https://github.com/alleyinteractive/irving/compare/v5.8.0...v5.8.1) (2021-03-23)
 
 **Note:** Version bump only for package irving
 
 
 
 
-## [5.8.1](https://github.com/alleyinteractive/irving/compare/v5.8.0...v5.8.1) (2021-03-23)
+# [5.8.1](https://github.com/alleyinteractive/irving/compare/v5.8.0...v5.8.1) (2021-03-23)
 
 **Note:** Version bump only for package irving
 
-## [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
+# [5.8.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v5.8.0...v5.8.1-alpha.0) (2021-03-23)
 
 **Note:** Version bump only for package irving
 
