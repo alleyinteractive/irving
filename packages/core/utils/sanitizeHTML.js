@@ -27,11 +27,11 @@ module.exports.config = getValueFromConfig(
       'iframe', 'link', 'title',
     ],
     ADD_ATTR: [
-      'abbr', 'autofocus', 'axis', 'buffered', 'char', 'charoff', 'currenttime',
-      'dirname', 'duration', 'form', 'formaction', 'formenctype', 'formmethod',
-      'formnovalidate', 'formtaget', 'href', 'hspace', 'intrinsicsize',
-      'longdesc', 'nohref', 'rel', 'rules', 'target', 'type', 'vspace',
-      'xml:lang',
+      'abbr', 'allow', 'allowfullscreen', 'autofocus', 'axis', 'buffered',
+      'char', 'charoff', 'currenttime', 'dirname', 'duration', 'form',
+      'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtaget',
+      'href', 'hspace', 'intrinsicsize', 'longdesc', 'nohref', 'rel', 'rules',
+      'target', 'type', 'vspace', 'xml:lang',
     ],
     FORBID_TAGS: [
       'body', 'html', 'head', 'main'

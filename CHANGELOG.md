@@ -3,7 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+
+# [6.0.0](https://github.com/alleyinteractive/irving/compare/v6.0.0-rc.3...v6.0.0) (2021-04-21)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.0.0-rc.3](https://github.com/alleyinteractive/irving/compare/v6.0.0-rc.2...v6.0.0-rc.3) (2021-04-21)
+
+
+### Bug Fixes
+
+* **sanitize:** add a couple more attributes ([fd543af](https://github.com/alleyinteractive/irving/commit/fd543aff77c98e316425304dc78a6028aacbf6fa))
+
+
 # [6.0.0-alpha.18](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.17...v6.0.0-alpha.18) (2021-04-20)
+
+**Note:** Version bump only for package irving
+
+
+# [6.0.0-rc.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-rc.1...v6.0.0-rc.2) (2021-04-20)
 
 
 ### Bug Fixes
@@ -23,6 +45,67 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [6.0.0-rc.1](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.17...v6.0.0-rc.1) (2021-04-16)
+
+**Note:** Version bump only for package irving
+
+# [6.0.0-rc.0](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.15...v6.0.0-rc.0) (2021-04-15)
+
+**Note:** Version bump only for package irving
+
+# [6.0.0-beta.4](https://github.com/alleyinteractive/irving/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2021-04-14)
+
+
+**Note:** Version bump only for package irving
+# [6.0.0-beta.3](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.14...v6.0.0-beta.3) (2021-04-13)
+
+**Note:** Version bump only for package irving
+
+# [6.0.0-beta.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
+
+
+### Bug Fixes
+
+* **css:** update css loader ([1099f56](https://github.com/alleyinteractive/irving/commit/1099f56d92d71a207e98281c1d77ae9551807ca8))
+
+
+
+# [6.0.0-beta.1](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.12...v6.0.0-beta.1) (2021-04-01)
+
+**Note:** Version bump only for package irving
+
+# [6.0.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
+
+
+**Note:** Version bump only for package irving
+
+
+# [6.0.0-rc.0](https://github.com/alleyinteractive/irving/compare/v6.0.0-beta.4...v6.0.0-rc.0) (2021-04-15)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.0.0-beta.4](https://github.com/alleyinteractive/irving/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2021-04-14)
+
+
+### Features
+
+* **auth:** allow both Bearer or Basic tokens to be used for auth ([6964c3e](https://github.com/alleyinteractive/irving/commit/6964c3ead9bde3276d7cf744d6cbe5f1a43470e4))
+
+
+
+
+
+# [6.0.0-beta.3](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.14...v6.0.0-beta.3) (2021-04-13)
+**Note:** Version bump only for package irving
+
+
+# [6.0.0-beta.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
+
+**Note:** Version bump only for package irving
 # [6.0.0-alpha.17](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.16...v6.0.0-alpha.17) (2021-04-16)
 
 
@@ -38,6 +121,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ### Bug Fixes
+
+* **css:** update css loader ([1099f56](https://github.com/alleyinteractive/irving/commit/1099f56d92d71a207e98281c1d77ae9551807ca8))
+
+
+
+# [6.0.0-beta.1](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.12...v6.0.0-beta.1) (2021-04-01)
+
+**Note:** Version bump only for package irving
+
+# [6.0.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
 
 * **pico:** make pico signal attribute updates more consistent ([fa3b14d](https://github.com/alleyinteractive/irving/commit/fa3b14d439984f6ee2a9262a241679a609c3b2e3))
 
@@ -55,18 +148,41 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [6.0.0-beta.2](https://github.com/alleyinteractive/irving/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
+
+**Note:** Version bump only for package irving
 
 # [6.0.0-alpha.14](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.13...v6.0.0-alpha.14) (2021-04-13)
 
 
 ### Bug Fixes
 
+* **css:** update css loader ([1099f56](https://github.com/alleyinteractive/irving/commit/1099f56d92d71a207e98281c1d77ae9551807ca8))
 * **deps:** update react refresh ([87ab76d](https://github.com/alleyinteractive/irving/commit/87ab76d1c35a787aed244eccbb68b61d8095ad7c))
 
 
 
 
 
+# [6.0.0-beta.1](https://github.com/alleyinteractive/irving/compare/v6.0.0-beta.0...v6.0.0-beta.1) (2021-04-01)
+
+
+### Bug Fixes
+
+* **debug:** remove console log ([ee61126](https://github.com/alleyinteractive/irving/commit/ee611263639854958610f99545f05419c97fc631))
+
+
+### Features
+
+* **auth:** update auth functionality to use new cookie name + basic auth ([04d76b5](https://github.com/alleyinteractive/irving/commit/04d76b5cd1151cf6587777573df5faafb4c63b27))
+
+
+
+
+
+# [6.0.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
+
+**Note:** Version bump only for package irving
 # [6.0.0-alpha.13](https://github.com/alleyinteractive/irving/compare/v6.0.0-alpha.12...v6.0.0-alpha.13) (2021-04-12)
 
 **Note:** Version bump only for package irving

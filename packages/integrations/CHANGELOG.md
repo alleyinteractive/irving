@@ -3,7 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [6.0.0-alpha.18](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.17...v6.0.0-alpha.18) (2021-04-20)
+# [6.0.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-rc.3...v6.0.0) (2021-04-21)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.0.0-rc.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-rc.2...v6.0.0-rc.3) (2021-04-21)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.0.0-rc.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-rc.1...v6.0.0-rc.2) (2021-04-20)
 
 
 ### Features
@@ -11,9 +27,72 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **sanitize:** remove sanitize-html and replace with dompurify ([e67a1b9](https://github.com/alleyinteractive/irving/packages/integrations/commit/e67a1b9498ad893fbfa07b6e6a39137d6df6f8ed))
 
 
+# [6.0.0-alpha.18](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.17...v6.0.0-alpha.18) (2021-04-20)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+# [6.0.0-rc.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.17...v6.0.0-rc.1) (2021-04-16)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [6.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.15...v6.0.0-rc.0) (2021-04-15)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [6.0.0-beta.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2021-04-14)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [6.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.14...v6.0.0-beta.3) (2021-04-13)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [6.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [6.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.12...v6.0.0-beta.1) (2021-04-01)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [6.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
+
+**Note:** Version bump only for package @irvingjs/integrations
 
 
 
+
+
+# [6.0.0-rc.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-beta.4...v6.0.0-rc.0) (2021-04-15)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.0.0-beta.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2021-04-14)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.0.0-beta.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.14...v6.0.0-beta.3) (2021-04-13)
+
+
+**Note:** Version bump only for package @irvingjs/integrations
+# [6.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [6.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.12...v6.0.0-beta.1) (2021-04-01)
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+# [6.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
 # [6.0.0-alpha.16](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.15...v6.0.0-alpha.16) (2021-04-16)
 
 
@@ -33,6 +112,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [6.0.0-beta.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-04-01)
+
+**Note:** Version bump only for package @irvingjs/integrations
 # [6.0.0-alpha.14](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.13...v6.0.0-alpha.14) (2021-04-13)
 
 **Note:** Version bump only for package @irvingjs/integrations
@@ -41,6 +123,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [6.0.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-beta.0...v6.0.0-beta.1) (2021-04-01)
+
+**Note:** Version bump only for package @irvingjs/integrations
 # [6.0.0-alpha.13](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.12...v6.0.0-alpha.13) (2021-04-12)
 
 **Note:** Version bump only for package @irvingjs/integrations
@@ -49,6 +134,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [6.0.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.11...v6.0.0-beta.0) (2021-03-31)
+
+**Note:** Version bump only for package @irvingjs/integrations
 # [6.0.0-alpha.12](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.0.0-alpha.11...v6.0.0-alpha.12) (2021-04-01)
 
 **Note:** Version bump only for package @irvingjs/integrations
