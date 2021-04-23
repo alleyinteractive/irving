@@ -9,11 +9,21 @@ const { serverBuild, clientBuild, rootUrl } = require('../paths');
 module.exports = function getOutput(context) {
   switch (context) {
     case 'production_server':
+      return {
+        path: serverBuild,
+        publicPath: `${rootUrl}/`,
+        filename: '[name].bundle.js',
+        libraryTarget: 'commonjs2',
+        assetModuleFilename: 'static/media/[name].[contenthash:8][ext]',
+      };
+
     case 'development_server':
       return {
         path: serverBuild,
+        publicPath: `${rootUrl}/`,
         filename: '[name].bundle.js',
         libraryTarget: 'commonjs2',
+        assetModuleFilename: 'static/media/[name][ext]',
       };
 
     case 'production_client':
