@@ -58,8 +58,8 @@ export default function* resolveComponents() {
       context
     );
 
-    // Only redirect on client side and if there's, otherwise just receive components
-    // otherwise there's a strange flash of content.
+    // Only redirect on client side and if there's a redirect set up,
+    // otherwise just receive components. This prevents a strange flash of content before the redirect.
     if ((result.redirectTo && isNode()) || ! result.redirectTo) {
       yield put(actionReceiveComponents(result));
       return;
