@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0...v6.0.1) (2021-04-23)
+
+
+### Bug Fixes
+
+* **redirect): fix(redirect:** return early from components saga if we aren't redirecting ([d9a26a4](https://github.com/alleyinteractive/irving/packages/core/commit/d9a26a4f304f5463aec23f88071247f4b6a58be5))
+* **webpack:** fix asset output settings on the server side to prevent missing images ([639bf42](https://github.com/alleyinteractive/irving/packages/core/commit/639bf42c940ca0d318105d2454e6116396ebd7c3))
+
+
+
+
+
 # [6.0.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.0.0-rc.3...v6.0.0) (2021-04-21)
 
 **Note:** Version bump only for package @irvingjs/core
