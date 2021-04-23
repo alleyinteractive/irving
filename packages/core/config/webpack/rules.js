@@ -57,6 +57,9 @@ module.exports = function getRules(context) {
         /\.svg$/,
       ],
       type: 'asset/resource',
+      generator: {
+        emit: ! isServer,
+      },
     },
     {
       test: [
@@ -70,6 +73,9 @@ module.exports = function getRules(context) {
       ],
       exclude: [/assets\/icons/],
       type: 'asset',
+      generator: {
+        emit: ! isServer,
+      },
     },
     {
       test: /\.svg$/,
