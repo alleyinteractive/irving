@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "6.1.0-alpha.1",
+  "version": "6.1.0-alpha.2",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -43,7 +43,7 @@
   "dependencies": {
     "@babel/core": "^7.10.4",
     "@hot-loader/react-dom": "^16.13.0",
-    "@irvingjs/babel-preset-irving": "^6.1.0-alpha.0",
+    "@irvingjs/babel-preset-irving": "^6.1.0-alpha.2",
     "@pmmmwh/react-refresh-webpack-plugin": "~0.4.3",
     "@svgr/webpack": "~5.5.0",
     "abort-controller": "^3.0.0",
