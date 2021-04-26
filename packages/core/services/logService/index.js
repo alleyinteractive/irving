@@ -46,7 +46,15 @@ const getService = (namespace) => {
 
             // Send error to production monitoring service.
             if ('production' === env) {
-              monitor.logError(message);
+              // Make sure we're sending an actual error object.
+              if (
+                ['emerg', 'crit', 'error'].includes(method) &&
+                'string' === typeof message
+              ) {
+                monitor.logError(new Error(message));
+              } else {
+                monitor.logError(message);
+              }
             }
           }
         });
