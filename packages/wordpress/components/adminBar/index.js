@@ -44,21 +44,19 @@ const AdminBar = (props) => {
     };
   });
 
-  // We don't have a valid iframe, but we do have children.
-  if (! iframeSrc && children) {
-
-    // Create a cookie to flag the backend to generate a new token.
-    const cookieOptions = {
-      path: '/',
-    };
-
-    if (0 !== cookieDomain.length) {
-      cookieDomain.domain = cookieDomain;
-    }
+  // We don't have a valid iframe, but we do have children and a cookie domain.
+  if (! iframeSrc && children && 0 !== cookieDomain.length) {
 
     // Create a new `irvingResetToken` cookie, which will trigger a new token
     // to be created on the backend.
-    cookies.set( 'irvingResetToken', 'true', cookieOptions);
+    cookies.set(
+      'irvingResetToken',
+      'true',
+      {
+        domain: cookieDomain,
+        path: '/',
+      }
+    );
 
     return children;
   }
