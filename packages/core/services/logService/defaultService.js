@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
 module.exports = {
-  emerg: console.error,
-  alert: console.error,
-  crit: console.error,
   error: console.error,
-  warning: console.warn,
-  notice: console.log,
+  warn: console.warn,
   info: console.info,
-  debug: console.debug,
+  http: console.log,
+  verbose: console.log,
+  debug: console.log,
+  silly: console.log,
 };
 /* eslint-enable */

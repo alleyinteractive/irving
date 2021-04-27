@@ -14,7 +14,7 @@ const getService = () => {
   try {
     const { newrelic, logger } = require('@automattic/vip-go'); // eslint-disable-line global-require
     const client = newrelic({
-      logger: logger('irving:newrelic'),
+      logger: logger('irving:vip:monitorService'),
     });
 
     // VIP Go's package can return nothing if newrelic is not installed or configured improperly.
@@ -31,6 +31,7 @@ const getService = () => {
       logTransaction(method, status, category) {
         client.setTransactionName(`${method} ${status} ${category}`);
       },
+      logMessage: () => {}
     };
   } catch (err) {
     return defaultService;

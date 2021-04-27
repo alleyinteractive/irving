@@ -72,6 +72,7 @@ const render = async (req, res, clientStats) => {
   } = getState().route;
   monitor.logTransaction(req.method, status, 'server render');
   logRequest.info('%o', { url: req.originalUrl, status });
+  logError.warn('Dapibus mollis suspendisse nec litora fames');
 
   // Redirect before trying to render.
   if (redirectTo) {
