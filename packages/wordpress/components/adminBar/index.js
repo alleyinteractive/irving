@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import get from 'lodash/fp/get';
 import PropTypes from 'prop-types';
+import Cookies from 'universal-cookie';
 import getEnv from '@irvingjs/core/config/irving/getEnv';
 import styles from './adminBar.css';
 
 const AdminBar = (props) => {
   const {
+    children,
+    cookieDomain,
     iframeSrc,
   } = props;
   const hostname = useSelector((state) => get('route.hostname', state));
@@ -15,6 +18,8 @@ const AdminBar = (props) => {
     API_ROOT_URL.replace('/wp-json/irving/v1', '');
   const [hover, setHover] = useState(false);
   const [height, setHeight] = useState(0);
+
+  const cookies = new Cookies();
 
   useEffect(() => {
     const handleMessage = (event) => {
@@ -38,6 +43,25 @@ const AdminBar = (props) => {
       window.removeEventListener('message', handleMessage);
     };
   });
+
+  // We don't have a valid iframe, but we do have children.
+  if (! iframeSrc && children) {
+
+    // Create a cookie to flag the backend to generate a new token.
+    const cookieOptions = {
+      path: '/',
+    };
+
+    if (0 !== cookieDomain.length) {
+      cookieDomain.domain = cookieDomain;
+    }
+
+    // Create a new `irvingResetToken` cookie, which will trigger a new token
+    // to be created on the backend.
+    cookies.set( 'irvingResetToken', 'true', cookieOptions);
+
+    return children;
+  }
 
   if (! iframeSrc) {
     return null;
@@ -64,10 +88,20 @@ const AdminBar = (props) => {
 };
 
 AdminBar.defaultProps = {
+  children: [],
+  cookieDomain: '',
   iframeSrc: '',
 };
 
 AdminBar.propTypes = {
+  /**
+   * Custom children.
+   */
+  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+   * Domain to create new cookies.
+   */
+  cookieDomain: PropTypes.string,
   /**
    * Source URL for the admin bar iframe.
    */
