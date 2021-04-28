@@ -2,6 +2,7 @@ const defaultService = require(
   '@irvingjs/core/services/logService/defaultService'
 );
 const getEnv = require('@irvingjs/core/utils/universalEnv');
+const monitor = require('@irvingjs/core/services/monitorService/getService')();
 
 /**
  * Create a debug logger that will conditionally handle logged errors based on
@@ -30,7 +31,7 @@ const getService = (namespace) => {
     let transport;
 
     // Set up sentry transport.
-    if (SENTRY_DSN) {
+    if (SENTRY_DSN && 'production' === env) {
       const SentryTransport = require('winston-transport-sentry-node').default;
       const sentryFormat = format((info) => {
         const { app_type, ...extra } = info;
@@ -64,13 +65,29 @@ const getService = (namespace) => {
     service = Object.keys(defaultService)
       .reduce((acc, method) => {
         acc[method] = (...messages) => {
-          messages.forEach((message) => {
-            if ('error' === method && 'development' === env) {
+          if ('error' === method) {
+            const initialMessage = messages[0];
+            // Format the messages like winston would.
+            const messageInfo = format.splat().transform({
+              level: method,
+              message: initialMessage,
+              splat: [...messages.slice(1)],
+            });
+
+            if ('development' === env) {
               // In development the app should crash fast when encountering any errors.
-              // throw message;
-              console.log(message);
+              throw messageInfo.message;
             }
-          });
+
+            // Send error to production monitoring service.
+            if ('production' === env) {
+              if (! initialMessage instanceof Error) {
+                monitor.logError(new Error(messageInfo.message));
+              } else {
+                monitor.logError(message);
+              }
+            }
+          }
 
           log[method](...messages);
         };
