@@ -18,14 +18,12 @@ module.exports = {
   ],
   webpackFinal: (config) => {
     config.plugins = config.plugins.concat([
-      new webpack.EnvironmentPlugin({
-        WEBPACK_BUILD: true,
-      }),
       new webpack.DefinePlugin({
         irvingEnv: JSON.stringify(getEnv()),
         proxyPassthrough: JSON.stringify(proxyPassthrough),
       }),
     ]);
+    console.log(config.resolve.alias);
     config.module.rules[0].exclude = [
       /\bcore-js\b/,
       /\bwebpack\/buildin\b/,
