@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.2...v6.1.0-alpha.3) (2021-04-28)
+
+
+### Bug Fixes
+
+* **wp admin bar:** update the admin bar to display children, and set a flag for invalid tokens ([615ab12](https://github.com/alleyinteractive/irving/commit/615ab12ee06883237055a8b22a897e38679945f1))
+
+
+
+
+
 # [6.1.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.1...v6.1.0-alpha.2) (2021-04-23)
 
 
