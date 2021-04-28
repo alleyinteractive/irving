@@ -39,6 +39,7 @@ const getService = () => {
     logTransaction(method, status, category) {
       newrelic.setTransactionName(`${method} ${status} ${category}`);
     },
+    logMessage: () => {},
   };
 
   return service;

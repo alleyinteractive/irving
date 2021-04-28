@@ -43,7 +43,9 @@ export async function fetchComponents(
   const controller = new AbortController();
   const timeout = setTimeout(
     () => {
-      log.error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.'); // eslint-disable-line max-len
+      log.error(
+        new Error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.') // eslint-disable-line max-len
+      );
       controller.abort();
     },
     FETCH_TIMEOUT || 10000
