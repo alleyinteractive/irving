@@ -81,10 +81,10 @@ const getService = (namespace) => {
 
             // Send error to production monitoring service.
             if ('production' === env) {
-              if (! initialMessage instanceof Error) {
-                monitor.logError(new Error(messageInfo.message));
-              } else {
+              if (message instanceof Error) {
                 monitor.logError(message);
+              } else {
+                monitor.logError(new Error(messageInfo.message));
               }
             }
           }

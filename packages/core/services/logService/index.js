@@ -27,9 +27,7 @@ const getService = (namespace) => {
     .reduce((acc, method) => {
       acc[method] = (...messages) => {
         messages.forEach((message) => {
-          const isErrorMethod = ['emerg', 'crit', 'error'].includes(method);
-
-          if (isErrorMethod) {
+          if ('error' === method) {
             // In development the app should crash fast when encountering any errors.
             if ('development' === env) {
               throw message;
@@ -37,10 +35,10 @@ const getService = (namespace) => {
 
             // Send error to production monitoring service.
             if ('production' === env) {
-              if ('string' === typeof message) {
-                monitor.logError(new Error(message));
-              } else {
+              if (message instanceof Error) {
                 monitor.logError(message);
+              } else {
+                monitor.logError(new Error(message));
               }
             }
           } else {
