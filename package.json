@@ -3,7 +3,7 @@
   "//": "Root irving package should never be published",
   "private": true,
   "description": "Irving is a ReactJS based, isomorphically rendered, headless CMS frontend application.",
-  "homepage": "https://github.com/alleyinteractive/irving#readme",
+  "homepage": "https://irvingjs.com",
   "repository": {
     "type": "git",
     "url": "git@github.com:alleyinteractive/irving.git"

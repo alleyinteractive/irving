@@ -1,6 +1,6 @@
 const webpack = require('webpack');
-const getEnv = require('../packages/core/config/env');
-const proxyPassthrough = require('../packages/core/config/proxyPassthrough');
+const getEnv = require('../../packages/core/config/env');
+const proxyPassthrough = require('../../packages/core/config/proxyPassthrough');
 
 module.exports = {
   core: {
