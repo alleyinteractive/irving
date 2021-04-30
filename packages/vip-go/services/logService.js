@@ -66,26 +66,27 @@ const getService = (namespace) => {
       .reduce((acc, method) => {
         acc[method] = (...messages) => {
           if ('error' === method) {
-            const initialMessage = messages[0];
+            let messageToLog = messages[0];
+
             // Format the messages like winston would.
-            const messageInfo = format.splat().transform({
-              level: method,
-              message: initialMessage,
-              splat: [...messages.slice(1)],
-            });
+            if (! (messageToLog instanceof Error)) {
+              const transformedMessage = (1 < messages.length) ?
+                format.splat().transform({
+                  level: method,
+                  message: messageToLog,
+                  splat: [...messages.slice(1)],
+                }).message : messageToLog;
+              messageToLog = new Error(transformedMessage);
+            }
 
             if ('development' === env) {
               // In development the app should crash fast when encountering any errors.
-              throw messageInfo.message;
+              throw messageToLog;
             }
 
             // Send error to production monitoring service.
             if ('production' === env) {
-              if (message instanceof Error) {
-                monitor.logError(message);
-              } else {
-                monitor.logError(new Error(messageInfo.message));
-              }
+              monitor.logError(messageToLog);
             }
           }
 
