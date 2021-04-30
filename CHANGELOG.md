@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.4...v6.1.0-alpha.5) (2021-04-30)
+
+
+### Bug Fixes
+
+* **logservice:** fix logic for transforming/formatting logs ([dcd7bc5](https://github.com/alleyinteractive/irving/commit/dcd7bc544076ae4ae1a612678f5d821eedc00bd4))
+
+
+
+
+
 # [6.1.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.3...v6.1.0-alpha.4) (2021-04-28)
 
 
