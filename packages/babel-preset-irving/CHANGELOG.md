@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0-alpha.6](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v6.1.0-alpha.5...v6.1.0-alpha.6) (2021-05-03)
+
+
+### Bug Fixes
+
+* **pico:** add new PICO_SCRIPT_FILENAME environmental variable ([c82fed0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/c82fed052cda01a365320f9d5e7cb7e46314a805))
+
+
+
+
+
 # [6.1.0-alpha.2](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v6.1.0-alpha.1...v6.1.0-alpha.2) (2021-04-23)
 
 

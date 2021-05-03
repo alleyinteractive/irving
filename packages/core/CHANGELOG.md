@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v6.1.0-alpha.5...v6.1.0-alpha.6) (2021-05-03)
+
+
+### Bug Fixes
+
+* **pico:** add new PICO_SCRIPT_FILENAME environmental variable ([c82fed0](https://github.com/alleyinteractive/irving/packages/core/commit/c82fed052cda01a365320f9d5e7cb7e46314a805))
+
+
+
+
+
 # [6.1.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v6.1.0-alpha.3...v6.1.0-alpha.4) (2021-04-28)
 
 
