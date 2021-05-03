@@ -6,4 +6,5 @@ export default {
   sagas,
   reducers: getReducers,
   defaultState: getDefaultState,
+  clientEnvAllowlist: ['PICO_SCRIPT_FILENAME'],
 };
