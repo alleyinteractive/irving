@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.0...v6.1.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **webpack:** get rid of styled-components fallback packages, add one to vip-go ([21a860a](https://github.com/alleyinteractive/irving/packages/styled-components/commit/21a860a2dfadfd1e00fb961fed008ceec44d7cfc))
+
+
+
+
+
 # [6.1.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.0-beta.1...v6.1.0) (2021-05-04)
 
 **Note:** Version bump only for package @irvingjs/styled-components
