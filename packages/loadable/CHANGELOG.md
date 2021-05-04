@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0-beta.1](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v6.1.0-beta.0...v6.1.0-beta.1) (2021-05-04)
+
+**Note:** Version bump only for package @irvingjs/loadable
+
+
+
+
+
 # [6.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v6.1.0-alpha.6...v6.1.0-beta.0) (2021-05-03)
 
 **Note:** Version bump only for package @irvingjs/loadable
