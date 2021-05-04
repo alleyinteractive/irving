@@ -1,3 +1,4 @@
+const generateLogInfo = require('./generateLogInfo');
 const defaultService = require(
   '@irvingjs/core/services/logService/defaultService'
 );
@@ -65,32 +66,24 @@ const getService = (namespace) => {
     service = Object.keys(defaultService)
       .reduce((acc, method) => {
         acc[method] = (...messages) => {
-          if ('error' === method) {
-            let messageToLog = messages[0];
+          // Construct log info object and send it to winston.
+          const logInfo = generateLogInfo(method, messages);
+          log[method](logInfo);
 
-            // Format the messages like winston would.
-            if (! (messageToLog instanceof Error)) {
-              const transformedMessage = (1 < messages.length) ?
-                format.splat().transform({
-                  level: method,
-                  message: messageToLog,
-                  splat: [...messages.slice(1)],
-                }).message : messageToLog;
-              messageToLog = new Error(transformedMessage);
-            }
+          // If we have an error, do a couple more things with it.
+          if ('error' === logInfo.level) {
+            const err = new Error(logInfo.message);
 
             if ('development' === env) {
               // In development the app should crash fast when encountering any errors.
-              throw messageToLog;
+              throw err;
             }
 
             // Send error to production monitoring service.
             if ('production' === env) {
-              monitor.logError(messageToLog);
+              monitor.logError(err);
             }
           }
-
-          log[method](...messages);
         };
 
         return acc;
