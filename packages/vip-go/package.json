@@ -21,6 +21,7 @@
     "@automattic/vip-go-preflight-checks": "^1.0.0",
     "ioredis": "^4.16.3",
     "newrelic": "^5.13.1",
+    "util": "~0.12.3",
     "winston-transport-sentry-node": "~1.0.2"
   },
   "devDependencies": {
