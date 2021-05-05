@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.2...v6.1.3) (2021-05-05)
+
+
+### Bug Fixes
+
+* **logservice:** some more refinements to sentry setup ([13ba244](https://github.com/alleyinteractive/irving/packages/vip-go/commit/13ba2440d1c7d4a269a772c1265c119e5c4a2a60))
+
+
+
+
+
 ## [6.1.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0...v6.1.1) (2021-05-04)
 
 
