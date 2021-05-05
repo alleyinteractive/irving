@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.2-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.1...v6.1.2-beta.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **webpack:** fix missing buffer fallback in styled-components from last release ([a0ad32f](https://github.com/alleyinteractive/irving/packages/styled-components/commit/a0ad32fb7be6014731bde71f267b2a6c409d10f9))
+
+
+
+
+
 ## [6.1.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.0...v6.1.1) (2021-05-04)
 
 
