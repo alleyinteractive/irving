@@ -1,4 +1,3 @@
-const generateLogInfo = require('./generateLogInfo');
 const defaultService = require(
   '@irvingjs/core/services/logService/defaultService'
 );
@@ -15,10 +14,6 @@ const monitor = require('@irvingjs/core/services/monitorService/getService')();
  * @return {function}         A logging function.
  */
 const getService = (namespace) => {
-  const {
-    NODE_ENV: env,
-    SENTRY_DSN,
-  } = getEnv();
   let service = defaultService;
 
   /* eslint-disable global-require */
@@ -28,11 +23,19 @@ const getService = (namespace) => {
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {
+    const {
+      ROOT_URL,
+      NODE_ENV,
+      IRVING_APP_ENVIRONMENT,
+      SENTRY_DSN,
+      SENTRY_ENVIRONMENT,
+    } = getEnv();
+    const generateLogInfo = require('./generateLogInfo');
     const { format } = require('winston');
     let transport;
 
     // Set up sentry transport.
-    if (SENTRY_DSN && 'production' === env) {
+    if (SENTRY_DSN && 'production' === NODE_ENV) {
       const SentryTransport = require('winston-transport-sentry-node').default;
       const sentryFormat = format((info) => {
         const { app_type, ...extra } = info;
@@ -47,9 +50,9 @@ const getService = (namespace) => {
 
       transport = new SentryTransport({
         sentry: {
-          dsn: SENTRY_DSN
+          environment: IRVING_APP_ENVIRONMENT || SENTRY_ENVIRONMENT || NODE_ENV,
+          serverName: ROOT_URL,
         },
-        environment: env,
         format: sentryFormat(),
         level: 'warn', // only log at warn and above.
       });
@@ -58,7 +61,7 @@ const getService = (namespace) => {
     // Set up the logger.
     const { logger } = require('@automattic/vip-go');
     const log = logger(namespace, {
-      silent: 'test' === env,
+      silent: 'test' === NODE_ENV,
       transport,
     });
 
@@ -74,13 +77,13 @@ const getService = (namespace) => {
           if ('error' === logInfo.level) {
             const err = new Error(logInfo.message);
 
-            if ('development' === env) {
+            if ('development' === NODE_ENV) {
               // In development the app should crash fast when encountering any errors.
               throw err;
             }
 
             // Send error to production monitoring service.
-            if ('production' === env) {
+            if ('production' === NODE_ENV) {
               monitor.logError(err);
             }
           }
