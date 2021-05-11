@@ -20,8 +20,7 @@ import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
 
 const monitor = getMonitorService();
-const logError = getLogService('irving:render:error');
-const logRequest = getLogService('irving:render:request');
+const log = getLogService('irving:server:render');
 
 /**
  * Handle rendering the app as a string that can then be returned as a response
@@ -71,7 +70,7 @@ const render = async (req, res, clientStats) => {
     status,
   } = getState().route;
   monitor.logTransaction(req.method, status, 'server render');
-  logRequest.info('%o', { url: req.originalUrl, status });
+  log.info('%o', { url: req.originalUrl, status });
 
   // Redirect before trying to render.
   if (redirectTo) {
@@ -134,7 +133,7 @@ export default function serverRenderer(options) {
         options.clientStats
       );
     } catch (err) {
-      logError.error('%o', { url: req.originalUrl, err });
+      log.error('%o', { url: req.originalUrl, err });
 
       const errorToDisplay = req.query.debug ?
         err :

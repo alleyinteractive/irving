@@ -1,4 +1,5 @@
 /* eslint-disable global-require */
+const { format } = require('util');
 const defaultService = require('./defaultService');
 const monitor = require('../monitorService/getService')();
 let service;
@@ -26,25 +27,25 @@ const getService = (namespace) => {
   return Object.keys(defaultService)
     .reduce((acc, method) => {
       acc[method] = (...messages) => {
-        messages.forEach((message) => {
-          if ('error' === method) {
-            // In development the app should crash fast when encountering any errors.
-            if ('development' === env) {
-              throw message;
-            }
+        const messageFormatted = format(...messages);
 
-            // Send error to production monitoring service.
-            if ('production' === env) {
-              if (message instanceof Error) {
-                monitor.logError(message);
-              } else {
-                monitor.logError(new Error(message));
-              }
-            }
-          } else {
-            monitor.logMessage(message);
+        if ('error' === method) {
+          const firstMessage = messages[0];
+          const message = (firstMessage instanceof Error) ?
+            firstMessage : new Error(messageFormatted);
+
+          // In development the app should crash fast when encountering any errors.
+          if ('development' === env) {
+            throw message;
           }
-        });
+
+          // Send error to production monitoring service.
+          if ('production' === env) {
+            monitor.logError(message);
+          }
+        } else {
+          monitor.logMessage(messageFormatted);
+        }
 
         log(...messages);
       };

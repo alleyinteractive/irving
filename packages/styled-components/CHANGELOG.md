@@ -6,6 +6,55 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.1.0-alpha.7](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.0-alpha.6...v6.1.0-alpha.7) (2021-05-03)
 
 **Note:** Version bump only for package @irvingjs/styled-components
+## [6.1.2](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.2-beta.0...v6.1.2) (2021-05-05)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+## [6.1.2-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.1...v6.1.2-beta.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **webpack:** fix missing buffer fallback in styled-components from last release ([a0ad32f](https://github.com/alleyinteractive/irving/packages/styled-components/commit/a0ad32fb7be6014731bde71f267b2a6c409d10f9))
+
+
+
+
+
+## [6.1.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.0...v6.1.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **webpack:** get rid of styled-components fallback packages, add one to vip-go ([21a860a](https://github.com/alleyinteractive/irving/packages/styled-components/commit/21a860a2dfadfd1e00fb961fed008ceec44d7cfc))
+
+
+
+
+
+# [6.1.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.0-beta.1...v6.1.0) (2021-05-04)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.1.0-beta.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.0-beta.0...v6.1.0-beta.1) (2021-05-04)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
+# [6.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.0-alpha.6...v6.1.0-beta.0) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/styled-components
 
 
 

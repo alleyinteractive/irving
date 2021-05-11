@@ -6,6 +6,28 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.1.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v6.1.0-alpha.6...v6.1.0-alpha.7) (2021-05-03)
 
 **Note:** Version bump only for package @irvingjs/core
+# [6.1.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.1.0-beta.1...v6.1.0) (2021-05-04)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
+# [6.1.0-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.1.0-beta.0...v6.1.0-beta.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **logservice:** normalize log messages and errors ([38a6bcf](https://github.com/alleyinteractive/irving/packages/core/commit/38a6bcfa2b5466296235d6df974104e39edb7d6c))
+
+
+
+
+
+# [6.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.1.0-alpha.6...v6.1.0-beta.0) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/core
 
 
 

@@ -6,6 +6,61 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.1.0-alpha.7](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-alpha.6...v6.1.0-alpha.7) (2021-05-03)
 
 **Note:** Version bump only for package @irvingjs/vip-go
+## [6.1.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.3...v6.1.4) (2021-05-11)
+
+
+### Bug Fixes
+
+* **logservice:** fix vip-go log service to work better with errors, add tests ([7eccf22](https://github.com/alleyinteractive/irving/packages/vip-go/commit/7eccf22eae8ae6f59402e61e506a06dbe690a952))
+
+
+
+
+
+## [6.1.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.2...v6.1.3) (2021-05-05)
+
+
+### Bug Fixes
+
+* **logservice:** some more refinements to sentry setup ([13ba244](https://github.com/alleyinteractive/irving/packages/vip-go/commit/13ba2440d1c7d4a269a772c1265c119e5c4a2a60))
+
+
+
+
+
+## [6.1.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0...v6.1.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **webpack:** get rid of styled-components fallback packages, add one to vip-go ([21a860a](https://github.com/alleyinteractive/irving/packages/vip-go/commit/21a860a2dfadfd1e00fb961fed008ceec44d7cfc))
+
+
+
+
+
+# [6.1.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-beta.1...v6.1.0) (2021-05-04)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.1.0-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-beta.0...v6.1.0-beta.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **logservice:** normalize log messages and errors ([38a6bcf](https://github.com/alleyinteractive/irving/packages/vip-go/commit/38a6bcfa2b5466296235d6df974104e39edb7d6c))
+
+
+
+
+
+# [6.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-alpha.6...v6.1.0-beta.0) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/vip-go
 
 
 

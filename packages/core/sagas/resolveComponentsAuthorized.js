@@ -12,7 +12,7 @@ import getRouteMeta from 'selectors/getRouteMeta';
 import { fetchComponents } from 'services/fetchComponents';
 import getLogService from '@irvingjs/services/logService';
 
-const debug = getLogService('irving:sagas:authorization');
+const log = getLogService('irving:sagas:authorization');
 
 export default function* resolveComponentsAuthorized() {
   const {
@@ -35,7 +35,7 @@ export default function* resolveComponentsAuthorized() {
     );
     yield put(actionReceiveComponents(result));
   } catch (err) {
-    yield call(debug.error, err);
+    yield call(log.error, '%o', err);
     yield put(actionReceiveError(err));
   }
 }

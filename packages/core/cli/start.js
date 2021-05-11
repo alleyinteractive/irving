@@ -6,11 +6,11 @@ const coreLogService = require('../services/logService');
 const app = require('../server');
 
 // Create logger
-const createLogger = getValueFromFiles(
+const getLogService = getValueFromFiles(
   'services/logService.js',
   coreLogService
 );
-const log = createLogger('irving:server');
+const log = getLogService('irving:server');
 
 // Set up environmental variables as early as possible.
 require('../config/env')();
@@ -39,7 +39,7 @@ if ('development' === process.env.NODE_ENV) {
 
 // Handle uncaught promise exceptions.
 process.on('unhandledRejection', (err) => {
-  log.error(err);
+  log.error('%o', err);
 
   if ('production' !== process.env.NODE_ENV) {
     throw err;

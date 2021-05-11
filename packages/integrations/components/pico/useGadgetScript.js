@@ -7,7 +7,6 @@ import { actionUpdatePicoLifecycle } from '../../actions/picoActions';
 import { picoLifecycleSelector } from '../../selectors/picoSelector';
 
 const log = getLogService('irving:pico');
-const env = getEnv();
 
 export default function useGadgetScript(gadgetUrl, publisherId) {
   const dispatch = useDispatch();
