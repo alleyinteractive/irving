@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.1.4...v6.2.0-alpha.0) (2021-05-11)
+
+
+
+# [6.1.0-alpha.7](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.1.0-alpha.6...v6.1.0-alpha.7) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.1.0-alpha.7](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.1.0-alpha.6...v6.1.0-alpha.7) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+# [6.1.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.1.0-beta.1...v6.1.0) (2021-05-04)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.1.0-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.1.0-beta.0...v6.1.0-beta.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **logservice:** normalize log messages and errors ([38a6bcf](https://github.com/alleyinteractive/irving/packages/integrations/commit/38a6bcfa2b5466296235d6df974104e39edb7d6c))
+
+
+
+
+
+# [6.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.1.0-alpha.6...v6.1.0-beta.0) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.1.0-alpha.6](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.1.0-alpha.5...v6.1.0-alpha.6) (2021-05-03)
+
+
+### Bug Fixes
+
+* **pico:** add new PICO_SCRIPT_FILENAME environmental variable ([c82fed0](https://github.com/alleyinteractive/irving/packages/integrations/commit/c82fed052cda01a365320f9d5e7cb7e46314a805))
+
+
+
+
+
+# [6.1.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.1.0-alpha.3...v6.1.0-alpha.4) (2021-04-28)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
 # [6.1.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.1.0-alpha.1...v6.1.0-alpha.2) (2021-04-23)
 
 **Note:** Version bump only for package @irvingjs/integrations

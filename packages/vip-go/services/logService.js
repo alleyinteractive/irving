@@ -1,6 +1,8 @@
 const defaultService = require(
   '@irvingjs/core/services/logService/defaultService'
 );
+const getEnv = require('@irvingjs/core/utils/universalEnv');
+const monitor = require('@irvingjs/core/services/monitorService/getService')();
 
 /**
  * Create a debug logger that will conditionally handle logged errors based on
@@ -12,7 +14,6 @@ const defaultService = require(
  * @return {function}         A logging function.
  */
 const getService = (namespace) => {
-  const env = process.env.NODE_ENV;
   let service = defaultService;
 
   /* eslint-disable global-require */
@@ -22,32 +23,70 @@ const getService = (namespace) => {
     'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
     'development_server' === process.env.IRVING_EXECUTION_CONTEXT
   ) {
-    const getMonitorService = require('./monitorService');
-    const monitor = getMonitorService();
+    const {
+      ROOT_URL,
+      NODE_ENV,
+      IRVING_APP_ENVIRONMENT,
+      SENTRY_DSN,
+      SENTRY_ENVIRONMENT,
+    } = getEnv();
+    const generateLogInfo = require('./generateLogInfo');
+    const { format } = require('winston');
+    let transport;
+
+    // Set up sentry transport.
+    if (SENTRY_DSN && 'production' === NODE_ENV) {
+      const SentryTransport = require('winston-transport-sentry-node').default;
+      const sentryFormat = format((info) => {
+        const { app_type, ...extra } = info;
+
+        return {
+          ...extra,
+          tags: {
+            source: app_type,
+          },
+        };
+      });
+
+      transport = new SentryTransport({
+        sentry: {
+          environment: IRVING_APP_ENVIRONMENT || SENTRY_ENVIRONMENT || NODE_ENV,
+          serverName: ROOT_URL,
+        },
+        format: sentryFormat(),
+        level: 'warn', // only log at warn and above.
+      });
+    }
+
+    // Set up the logger.
     const { logger } = require('@automattic/vip-go');
     const log = logger(namespace, {
-      silent: 'test' === env,
+      silent: 'test' === NODE_ENV,
+      transport,
     });
 
     // Map log levels to winston log levels in node.
     service = Object.keys(defaultService)
       .reduce((acc, method) => {
         acc[method] = (...messages) => {
-          messages.forEach((message) => {
-            if (message instanceof Error) {
+          // Construct log info object and send it to winston.
+          const logInfo = generateLogInfo(method, messages);
+          log[method](logInfo);
+
+          // If we have an error, do a couple more things with it.
+          if ('error' === logInfo.level) {
+            const err = new Error(logInfo.message);
+
+            if ('development' === NODE_ENV) {
               // In development the app should crash fast when encountering any errors.
-              if ('development' === env) {
-                throw message;
-              }
-
-              // Send error to production monitoring service.
-              if ('production' === env) {
-                monitor.logError(message);
-              }
+              throw err;
             }
-          });
 
-          log[method](...messages);
+            // Send error to production monitoring service.
+            if ('production' === NODE_ENV) {
+              monitor.logError(err);
+            }
+          }
         };
 
         return acc;

@@ -21,6 +21,7 @@ module.exports = function getAlias(context) {
         'react-dom': path.join(appRoot, './node_modules/react-dom'),
         react: path.join(appRoot, './node_modules/react'),
         'react-redux': path.join(appRoot, './node_modules/react-redux'),
+        redux: path.join(appRoot, './node_modules/redux'),
         'prop-types': path.join(appRoot, './node_modules/prop-types'),
         'styled-components': path.join(
           appRoot,

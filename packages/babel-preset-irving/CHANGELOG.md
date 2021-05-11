@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v6.1.4...v6.2.0-alpha.0) (2021-05-11)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [6.1.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v6.1.0-beta.1...v6.1.0) (2021-05-04)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [6.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v6.1.0-alpha.6...v6.1.0-beta.0) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
+# [6.1.0-alpha.6](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v6.1.0-alpha.5...v6.1.0-alpha.6) (2021-05-03)
+
+
+### Bug Fixes
+
+* **pico:** add new PICO_SCRIPT_FILENAME environmental variable ([c82fed0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/commit/c82fed052cda01a365320f9d5e7cb7e46314a805))
+
+
+
+
+
 # [6.1.0-alpha.2](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v6.1.0-alpha.1...v6.1.0-alpha.2) (2021-04-23)
 
 

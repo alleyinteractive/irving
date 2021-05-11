@@ -1,18 +1,8 @@
 /* eslint-disable global-require */
+const { format } = require('util');
 const defaultService = require('./defaultService');
+const monitor = require('../monitorService/getService')();
 let service;
-let getMonitorService;
-
-if (
-  process.env.IRVING_EXECUTION_CONTEXT ||
-  'test' === process.env.BABEL_ENV
-) {
-  getMonitorService = require('@irvingjs/services/monitorService');
-} else {
-  getMonitorService = require('../monitorService/getServiceFromFilesystem');
-}
-
-const monitor = getMonitorService();
 
 /**
  * Create a debug logger that will conditionally handle logged errors based on
@@ -37,19 +27,25 @@ const getService = (namespace) => {
   return Object.keys(defaultService)
     .reduce((acc, method) => {
       acc[method] = (...messages) => {
-        messages.forEach((message) => {
-          if (message instanceof Error) {
-            // In development the app should crash fast when encountering any errors.
-            if ('development' === env) {
-              throw message;
-            }
+        const messageFormatted = format(...messages);
 
-            // Send error to production monitoring service.
-            if ('production' === env) {
-              monitor.logError(message);
-            }
+        if ('error' === method) {
+          const firstMessage = messages[0];
+          const message = (firstMessage instanceof Error) ?
+            firstMessage : new Error(messageFormatted);
+
+          // In development the app should crash fast when encountering any errors.
+          if ('development' === env) {
+            throw message;
           }
-        });
+
+          // Send error to production monitoring service.
+          if ('production' === env) {
+            monitor.logError(message);
+          }
+        } else {
+          monitor.logMessage(messageFormatted);
+        }
 
         log(...messages);
       };

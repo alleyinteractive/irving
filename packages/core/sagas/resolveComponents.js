@@ -22,7 +22,7 @@ import getRelativeUrl from 'utils/getRelativeUrl';
 import getLogService from '@irvingjs/services/logService';
 import resolveComponentsAuthorized from './resolveComponentsAuthorized';
 
-const debug = getLogService('irving:sagas:location');
+const log = getLogService('irving:sagas:location');
 
 export default function* resolveComponents() {
   const {
@@ -76,7 +76,7 @@ export default function* resolveComponents() {
       }
     }
   } catch (err) {
-    yield call(debug.error, err);
+    yield call(log.error, '%o', err);
     yield put(actionReceiveError(err));
   }
 }

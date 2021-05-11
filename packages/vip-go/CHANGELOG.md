@@ -3,6 +3,113 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.4...v6.2.0-alpha.0) (2021-05-11)
+
+
+
+# [6.1.0-alpha.7](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-alpha.6...v6.1.0-alpha.7) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.1.0-alpha.7](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-alpha.6...v6.1.0-alpha.7) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+## [6.1.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.3...v6.1.4) (2021-05-11)
+
+
+### Bug Fixes
+
+* **logservice:** fix vip-go log service to work better with errors, add tests ([7eccf22](https://github.com/alleyinteractive/irving/packages/vip-go/commit/7eccf22eae8ae6f59402e61e506a06dbe690a952))
+
+
+
+
+
+## [6.1.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.2...v6.1.3) (2021-05-05)
+
+
+### Bug Fixes
+
+* **logservice:** some more refinements to sentry setup ([13ba244](https://github.com/alleyinteractive/irving/packages/vip-go/commit/13ba2440d1c7d4a269a772c1265c119e5c4a2a60))
+
+
+
+
+
+## [6.1.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0...v6.1.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **webpack:** get rid of styled-components fallback packages, add one to vip-go ([21a860a](https://github.com/alleyinteractive/irving/packages/vip-go/commit/21a860a2dfadfd1e00fb961fed008ceec44d7cfc))
+
+
+
+
+
+# [6.1.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-beta.1...v6.1.0) (2021-05-04)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.1.0-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-beta.0...v6.1.0-beta.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **logservice:** normalize log messages and errors ([38a6bcf](https://github.com/alleyinteractive/irving/packages/vip-go/commit/38a6bcfa2b5466296235d6df974104e39edb7d6c))
+
+
+
+
+
+# [6.1.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-alpha.6...v6.1.0-beta.0) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.1.0-alpha.6](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-alpha.5...v6.1.0-alpha.6) (2021-05-03)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.1.0-alpha.5](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-alpha.4...v6.1.0-alpha.5) (2021-04-30)
+
+
+### Bug Fixes
+
+* **logservice:** fix logic for transforming/formatting logs ([dcd7bc5](https://github.com/alleyinteractive/irving/packages/vip-go/commit/dcd7bc544076ae4ae1a612678f5d821eedc00bd4))
+
+
+
+
+
+# [6.1.0-alpha.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-alpha.3...v6.1.0-alpha.4) (2021-04-28)
+
+
+### Bug Fixes
+
+* **logservice:** add back in log for sending logs to newrelic monitoring ([5e2ef43](https://github.com/alleyinteractive/irving/packages/vip-go/commit/5e2ef43eacd0728d8daa00701dff862277442e8f))
+* **logservice:** remove unnecessary newrelic transport, fix eslint issue ([0a14ce2](https://github.com/alleyinteractive/irving/packages/vip-go/commit/0a14ce288cd29645ac16d7862f42aefa377057b5))
+* **logservice:** switch up log levels to match winston ([cbb88db](https://github.com/alleyinteractive/irving/packages/vip-go/commit/cbb88db3cccc35d76826ff19d8a76ee11076eacd))
+
+
+
+
+
 # [6.1.0-alpha.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.0-alpha.1...v6.1.0-alpha.2) (2021-04-23)
 
 **Note:** Version bump only for package @irvingjs/vip-go

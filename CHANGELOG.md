@@ -3,6 +3,137 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.1.4...v6.2.0-alpha.0) (2021-05-11)
+
+
+
+# [6.1.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.6...v6.1.0-alpha.7) (2021-05-03)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.1.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.6...v6.1.0-alpha.7) (2021-05-03)
+
+**Note:** Version bump only for package irving
+## [6.1.4](https://github.com/alleyinteractive/irving/compare/v6.1.3...v6.1.4) (2021-05-11)
+
+
+### Bug Fixes
+
+* **logservice:** fix vip-go log service to work better with errors, add tests ([7eccf22](https://github.com/alleyinteractive/irving/commit/7eccf22eae8ae6f59402e61e506a06dbe690a952))
+
+
+
+
+
+## [6.1.3](https://github.com/alleyinteractive/irving/compare/v6.1.2...v6.1.3) (2021-05-05)
+
+
+### Bug Fixes
+
+* **logservice:** some more refinements to sentry setup ([13ba244](https://github.com/alleyinteractive/irving/commit/13ba2440d1c7d4a269a772c1265c119e5c4a2a60))
+
+
+
+
+
+## [6.1.2](https://github.com/alleyinteractive/irving/compare/v6.1.2-beta.0...v6.1.2) (2021-05-05)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [6.1.2-beta.0](https://github.com/alleyinteractive/irving/compare/v6.1.1...v6.1.2-beta.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **webpack:** fix missing buffer fallback in styled-components from last release ([a0ad32f](https://github.com/alleyinteractive/irving/commit/a0ad32fb7be6014731bde71f267b2a6c409d10f9))
+
+
+
+
+
+## [6.1.1](https://github.com/alleyinteractive/irving/compare/v6.1.0...v6.1.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **webpack:** get rid of styled-components fallback packages, add one to vip-go ([21a860a](https://github.com/alleyinteractive/irving/commit/21a860a2dfadfd1e00fb961fed008ceec44d7cfc))
+
+
+
+
+
+# [6.1.0](https://github.com/alleyinteractive/irving/compare/v6.1.0-beta.1...v6.1.0) (2021-05-04)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.1.0-beta.1](https://github.com/alleyinteractive/irving/compare/v6.1.0-beta.0...v6.1.0-beta.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* **logservice:** normalize log messages and errors ([38a6bcf](https://github.com/alleyinteractive/irving/commit/38a6bcfa2b5466296235d6df974104e39edb7d6c))
+
+
+
+
+
+# [6.1.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.6...v6.1.0-beta.0) (2021-05-03)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.1.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.5...v6.1.0-alpha.6) (2021-05-03)
+
+
+### Bug Fixes
+
+* **pico:** add new PICO_SCRIPT_FILENAME environmental variable ([c82fed0](https://github.com/alleyinteractive/irving/commit/c82fed052cda01a365320f9d5e7cb7e46314a805))
+
+
+
+
+
+# [6.1.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.4...v6.1.0-alpha.5) (2021-04-30)
+
+
+### Bug Fixes
+
+* **logservice:** fix logic for transforming/formatting logs ([dcd7bc5](https://github.com/alleyinteractive/irving/commit/dcd7bc544076ae4ae1a612678f5d821eedc00bd4))
+
+
+
+
+
+# [6.1.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.3...v6.1.0-alpha.4) (2021-04-28)
+
+
+### Bug Fixes
+
+* **logging:** make sure emerg, crit, and error log methods use Error object ([3d96885](https://github.com/alleyinteractive/irving/commit/3d968854b2cf7ba56d0fd90d8940882c8a79e4cc))
+* **logservice:** add back in log for sending logs to newrelic monitoring ([5e2ef43](https://github.com/alleyinteractive/irving/commit/5e2ef43eacd0728d8daa00701dff862277442e8f))
+* **logservice:** remove unnecessary newrelic transport, fix eslint issue ([0a14ce2](https://github.com/alleyinteractive/irving/commit/0a14ce288cd29645ac16d7862f42aefa377057b5))
+* **logservice:** switch up log levels to match winston ([cbb88db](https://github.com/alleyinteractive/irving/commit/cbb88db3cccc35d76826ff19d8a76ee11076eacd))
+* **test:** fix service tests ([63cd51e](https://github.com/alleyinteractive/irving/commit/63cd51e2874e3f75f94a1b313b71970972343bb0))
+
+
+
+
+
 # [6.1.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.1.0-alpha.2...v6.1.0-alpha.3) (2021-04-28)
 
 
@@ -38,7 +169,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.1.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.0.0...v6.1.0-alpha.0) (2021-04-21)
 
-
+**Note:** Version bump only for package irving
 
 # [6.0.0-alpha.18](https://github.com/alleyinteractive/irving/compare/v6.0.0-rc.1...v6.0.0-alpha.18) (2021-04-20)
 
