@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.3...v6.1.4) (2021-05-11)
+
+
+### Bug Fixes
+
+* **logservice:** fix vip-go log service to work better with errors, add tests ([7eccf22](https://github.com/alleyinteractive/irving/packages/vip-go/commit/7eccf22eae8ae6f59402e61e506a06dbe690a952))
+
+
+
+
+
 ## [6.1.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.2...v6.1.3) (2021-05-05)
 
 
