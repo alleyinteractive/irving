@@ -11,14 +11,16 @@ jobs:
   # This workflow contains a single job called "build"
   publish-storybook-qa:
     runs-on: ubuntu-latest
+    defaults:
+        run:
+          working-directory: ./docs
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
       - run: npm ci
-      - run: npm run develop:bootstrap
-      - run: npm run storybook-qa:release
+      - run: npm run qa:release
 
   publish-irvingjs-com-staging:
     runs-on: ubuntu-latest

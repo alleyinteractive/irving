@@ -1,6 +1,8 @@
+const path = require('path');
 const webpack = require('webpack');
-const getEnv = require('../../packages/core/config/env');
-const proxyPassthrough = require('../../packages/core/config/proxyPassthrough');
+const packagesRoot = path.join(__dirname, '../../packages');
+const getEnv = require(path.join(packagesRoot, 'core/config/env'));
+const proxyPassthrough = require(path.join(packagesRoot, 'core/config/proxyPassthrough'));
 
 module.exports = {
   core: {
@@ -8,7 +10,7 @@ module.exports = {
   },
   stories: [
     '../stories/**/*.stories.@(js|mdx)',
-    '../packages/styled-components/components/**/*.stories.@(js|mdx)',
+    `${path.join(packagesRoot, 'styled-components/components')}/**/*.stories.@(js|mdx)`,
   ],
   addons: [
     '@storybook/addon-a11y',
@@ -23,12 +25,15 @@ module.exports = {
         proxyPassthrough: JSON.stringify(proxyPassthrough),
       }),
     ]);
-    console.log(config.resolve.alias);
     config.module.rules[0].exclude = [
       /\bcore-js\b/,
       /\bwebpack\/buildin\b/,
       /\bnode_modules\b/,
     ];
+    config.resolve.fallback = {
+      crypto: require.resolve('crypto-browserify'),
+      stream: require.resolve('stream-browserify'),
+    };
     return config;
   },
 };

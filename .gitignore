@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+/docs/node_modules
 /irvingjs.com/node_modules
 /packages/**/node_modules
 .npmrc
@@ -15,7 +16,7 @@
 /styleguide/static
 
 # storybook
-/storybook-static/
+docs/storybook-static/
 
 # misc
 .DS_Store
