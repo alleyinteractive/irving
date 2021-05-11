@@ -16,6 +16,10 @@
   },
   "author": "Alley (Alley.co)",
   "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
   "dependencies": {
     "@automattic/vip-go": "^1.0.0",
     "@automattic/vip-go-preflight-checks": "^1.0.0",

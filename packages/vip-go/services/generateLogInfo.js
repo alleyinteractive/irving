@@ -20,9 +20,9 @@ module.exports = function generateLogInfo(method, messages) {
   // Construct info object.
   if (message instanceof Error) {
     info = {
-      message: firstMessage.message,
-      name: firstMessage.name,
-      stack: firstMessage.stack,
+      message: message.message,
+      name: message.name,
+      stack: message.stack,
     };
   } else {
     info = { message };
