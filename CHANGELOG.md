@@ -169,7 +169,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.1.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.0.0...v6.1.0-alpha.0) (2021-04-21)
 
-
+**Note:** Version bump only for package irving
 
 # [6.0.0-alpha.18](https://github.com/alleyinteractive/irving/compare/v6.0.0-rc.1...v6.0.0-alpha.18) (2021-04-20)
 
