@@ -1,5 +1,5 @@
 const getValueFromFiles = require('../../config/irving/getValueFromFiles');
-const coreCacheService = require('.');
+const coreCacheService = require('./index');
 const getDefaultService = require('./defaultService');
 
 /**
