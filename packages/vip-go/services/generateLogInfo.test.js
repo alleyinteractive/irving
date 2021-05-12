@@ -29,19 +29,11 @@ describe('generateLogInfo', () => {
     const messages = ['lorem ipsum dolor sit amet'];
     const logInfo = generateLogInfo('error', messages);
 
-    expect(logInfo).toEqual({
+    expect(logInfo).toMatchObject({
       level: 'error',
       message: 'lorem ipsum dolor sit amet',
       name: 'Error',
-      stack: `Error: lorem ipsum dolor sit amet
-    at generateLogInfo (/Users/owenstowe/broadway/www/irving/packages/vip-go/services/generateLogInfo.js:14:17)
-    at Object.<anonymous> (/Users/owenstowe/broadway/www/irving/packages/vip-go/services/generateLogInfo.test.js:30:21)
-    at Object.asyncJestTest (/Users/owenstowe/broadway/www/irving/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
-    at /Users/owenstowe/broadway/www/irving/node_modules/jest-jasmine2/build/queueRunner.js:45:12
-    at new Promise (<anonymous>)
-    at mapper (/Users/owenstowe/broadway/www/irving/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
-    at /Users/owenstowe/broadway/www/irving/node_modules/jest-jasmine2/build/queueRunner.js:75:41
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)`,
+      stack: expect.stringContaining('Error: lorem ipsum dolor sit amet'),
     });
   });
 
@@ -49,18 +41,11 @@ describe('generateLogInfo', () => {
     const messages = [new Error('lorem ipsum dolor sit amet')];
     const logInfo = generateLogInfo('error', messages);
 
-    expect(logInfo).toEqual({
+    expect(logInfo).toMatchObject({
       level: 'error',
       message: 'lorem ipsum dolor sit amet',
       name: 'Error',
-      stack: `Error: lorem ipsum dolor sit amet
-    at Object.<anonymous> (/Users/owenstowe/broadway/www/irving/packages/vip-go/services/generateLogInfo.test.js:49:23)
-    at Object.asyncJestTest (/Users/owenstowe/broadway/www/irving/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
-    at /Users/owenstowe/broadway/www/irving/node_modules/jest-jasmine2/build/queueRunner.js:45:12
-    at new Promise (<anonymous>)
-    at mapper (/Users/owenstowe/broadway/www/irving/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
-    at /Users/owenstowe/broadway/www/irving/node_modules/jest-jasmine2/build/queueRunner.js:75:41
-    at processTicksAndRejections (internal/process/task_queues.js:97:5)`,
+      stack: expect.stringContaining('Error: lorem ipsum dolor sit amet'),
     });
   });
 });

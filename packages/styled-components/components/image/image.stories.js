@@ -1,16 +1,11 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import Image from '.';
-import Container from '../container';
 
 export default {
   component: Image,
   title: 'Styled Components/Image',
 };
 
-const bannerImage = 'https://source.unsplash.com/random/1200x680';
-const largeImage = 'https://source.unsplash.com/random/2000x2000';
-const mediumImage = 'https://source.unsplash.com/random/1000x1000';
 const smallImage = 'https://source.unsplash.com/random/500x500';
 const smallImageFallback = 'https://source.unsplash.com/random/499x499';
 

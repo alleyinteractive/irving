@@ -1,4 +1,4 @@
-import getMonitorService from './getServiceFromFilesystem';
+const getMonitorService = require('./getServiceFromFilesystem');
 
 describe('monitorService', () => {
   const monitorService = getMonitorService();

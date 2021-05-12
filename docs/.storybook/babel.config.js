@@ -1,5 +1,6 @@
 const path = require('path');
-const aliases = require('../packages/core/config/aliases');
+const packagesRoot = path.join(__dirname, '../../packages');
+const aliases = require(path.join(packagesRoot, 'core/config/aliases'));
 
 module.exports = {
   plugins: [
@@ -7,7 +8,7 @@ module.exports = {
       'module-resolver',
       {
         root: [
-          "./packages/core/"
+          path.join(packagesRoot, 'core'),
         ],
         cwd: "packagejson",
         alias: {

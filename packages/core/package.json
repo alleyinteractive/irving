@@ -32,7 +32,7 @@
   },
   "license": "MIT",
   "author": "Alley (Alley.co)",
-  "main": "cli/irving.js",
+  "main": "cli/index.js",
   "bin": {
     "irving": "./bin/irving"
   },
@@ -103,7 +103,7 @@
     "url-loader": "~4.1.1",
     "url-parse": "^1.4.7",
     "url-pattern": "^1.0.3",
-    "webpack": "~5.35.0",
+    "webpack": "~5.36.1",
     "webpack-bundle-analyzer": "~4.4.0",
     "webpack-cli": "~4.6.0",
     "webpack-dev-middleware": "~4.1.0",

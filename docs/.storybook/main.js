@@ -1,6 +1,8 @@
+const path = require('path');
 const webpack = require('webpack');
-const getEnv = require('../packages/core/config/env');
-const proxyPassthrough = require('../packages/core/config/proxyPassthrough');
+const packagesRoot = path.join(__dirname, '../../packages');
+const getEnv = require(path.join(packagesRoot, 'core/config/env'));
+const proxyPassthrough = require(path.join(packagesRoot, 'core/config/proxyPassthrough'));
 
 module.exports = {
   core: {
@@ -8,7 +10,7 @@ module.exports = {
   },
   stories: [
     '../stories/**/*.stories.@(js|mdx)',
-    '../packages/styled-components/components/**/*.stories.@(js|mdx)',
+    `${path.join(packagesRoot, 'styled-components/components')}/**/*.stories.@(js|mdx)`,
   ],
   addons: [
     '@storybook/addon-a11y',
@@ -18,9 +20,6 @@ module.exports = {
   ],
   webpackFinal: (config) => {
     config.plugins = config.plugins.concat([
-      new webpack.EnvironmentPlugin({
-        WEBPACK_BUILD: true,
-      }),
       new webpack.DefinePlugin({
         irvingEnv: JSON.stringify(getEnv()),
         proxyPassthrough: JSON.stringify(proxyPassthrough),
@@ -31,6 +30,10 @@ module.exports = {
       /\bwebpack\/buildin\b/,
       /\bnode_modules\b/,
     ];
+    config.resolve.fallback = {
+      crypto: require.resolve('crypto-browserify'),
+      stream: require.resolve('stream-browserify'),
+    };
     return config;
   },
 };

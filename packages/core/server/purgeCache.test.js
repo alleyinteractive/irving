@@ -1,5 +1,5 @@
-import waitForExpect from 'wait-for-expect';
-import purgeCache from './purgeCache';
+const waitForExpect = require('wait-for-expect');
+const purgeCache = require('./purgeCache');
 
 jest.mock('ioredis');
 

@@ -1,0 +1,43 @@
+{
+  "name": "@irvingjs/docs",
+  "private": true,
+  "description": "Documentation for Irving JS packages, components, and usage",
+  "homepage": "https://github.com/alleyinteractive/irving/docs",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:alleyinteractive/irving.git"
+  },
+  "license": "MIT",
+  "author": "Alley (Alley.co)",
+  "main": "main.js",
+  "scripts": {
+    "start": "start-storybook -s ./stories/public -p 6006",
+    "build": "build-storybook -s ./stories/public",
+    "deploy": "surge storybook-static --domain storybook.irvingjs.com",
+    "release": "npm run build && npm run deploy",
+    "qa:deploy": "surge storybook-static --domain storybook-qa.irvingjs.com",
+    "qa:release": "npm run build && npm run qa:deploy"
+  },
+  "engines": {
+    "node": "12",
+    "npm": "6"
+  },
+  "dependencies": {
+    "@storybook/addon-a11y": "^6.2.9",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-docs": "^6.2.9",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/addons": "^6.2.9",
+    "@storybook/builder-webpack5": "^6.2.9",
+    "@storybook/react": "^6.2.9",
+    "crypto-browserify": "^3.12.0",
+    "stream-browserify": "^3.0.0",
+    "webpack": "^4.46.0"
+  },
+  "devDependencies": {
+    "@irvingjs/babel-preset-irving": "^6.2.0-alpha.0",
+    "@irvingjs/core": "^6.2.0-alpha.0",
+    "babel-plugin-module-resolver": "^4.0.0"
+  }
+}

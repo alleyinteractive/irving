@@ -1,5 +1,5 @@
 const getValueFromFiles = require('../../config/irving/getValueFromFiles');
-const coreLogService = require('.');
+const coreLogService = require('./index');
 
 module.exports = (namespace) => (
   getValueFromFiles(
