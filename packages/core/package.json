@@ -32,7 +32,7 @@
   },
   "license": "MIT",
   "author": "Alley (Alley.co)",
-  "main": "cli/index.js",
+  "main": "irving.config.js",
   "bin": {
     "irving": "./bin/irving"
   },
