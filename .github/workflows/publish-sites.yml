@@ -18,9 +18,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: setup
+      - name: prepare repo
         run: npm run develop:bootstrap
-      - name: release
+        working-directory: ./docs
+      - name: release storybook qa
         run: |
           npm ci
           npm run qa:release
