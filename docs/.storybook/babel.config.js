@@ -1,5 +1,5 @@
 const path = require('path');
-const packagesRoot = path.join(__dirname, '../../');
+const { packagesRoot } = require('./path');
 const aliases = require(path.join(packagesRoot, 'core/config/aliases'));
 
 module.exports = {
