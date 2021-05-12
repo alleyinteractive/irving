@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/storybook",
-  "version": "6.2.0-alpha.1",
+  "version": "6.2.0-alpha.2",
   "description": "React Storybook for Irving",
   "files": [
     ".storybook/**/*",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^6.2.0-alpha.1",
-    "@irvingjs/core": "^6.2.0-alpha.1",
+    "@irvingjs/core": "^6.2.0-alpha.2",
     "babel-plugin-module-resolver": "^4.0.0",
     "jest": "^26.6.3"
   },

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.2.0-alpha.1...v6.2.0-alpha.2) (2021-05-12)
+
+
+### Bug Fixes
+
+* **deps:** try to fix missing dotenv dep ([db8bad9](https://github.com/alleyinteractive/irving/commit/db8bad9d8fb77b9a64a15085c27003ef00d32b6f))
+* **docs:** one more storybook fallback fix' ([2cff5fd](https://github.com/alleyinteractive/irving/commit/2cff5fd4acb665a410bd36fc2fe3cdd6999a5bf9))
+
+
+
+
+
 # [6.2.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.2.0-alpha.0...v6.2.0-alpha.1) (2021-05-12)
 
 
