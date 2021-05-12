@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.2.0-alpha.0...v6.2.0-alpha.1) (2021-05-12)
+
+
+### Features
+
+* **storybook:** remove all traces of styleguidist (including package), replace with storybook ([5637f73](https://github.com/alleyinteractive/irving/packages/audio-player/commit/5637f73ddc07ce304d6f46f63e8f72f5730339c6))
+
+
+
+
+
 # [6.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/audio-player/compare/v6.1.4...v6.2.0-alpha.0) (2021-05-11)
 
 

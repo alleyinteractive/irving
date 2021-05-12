@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.2.0-alpha.0...v6.2.0-alpha.1) (2021-05-12)
+
+
+### Bug Fixes
+
+* **logservice:** fix test for generateLogInfo to be less specific ([5452e82](https://github.com/alleyinteractive/irving/packages/vip-go/commit/5452e820b062353f3a99f937a297863568394188))
+
+
+
+
+
 # [6.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.1.4...v6.2.0-alpha.0) (2021-05-11)
 
 

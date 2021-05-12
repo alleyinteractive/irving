@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.2.0-alpha.0...v6.2.0-alpha.1) (2021-05-12)
+
+
+### Bug Fixes
+
+* **docs:** move docs package back into root dir of irving repo ([6d801b7](https://github.com/alleyinteractive/irving/commit/6d801b754752d48cc0c9994f548062a7be5376de))
+* **logservice:** fix test for generateLogInfo to be less specific ([5452e82](https://github.com/alleyinteractive/irving/commit/5452e820b062353f3a99f937a297863568394188))
+* **storybook:** attempt to fix storybook (no luck) ([ce7a876](https://github.com/alleyinteractive/irving/commit/ce7a876c23ca1a4797e7129bd1690e42f66f0c32))
+* **text:** weird test issue ([2ba1b0d](https://github.com/alleyinteractive/irving/commit/2ba1b0de1dc897cbc99ac319782a0d64c5115d19))
+
+
+### Features
+
+* **storybook:** add init script to help set up a new storybook with IRving ([c6322c7](https://github.com/alleyinteractive/irving/commit/c6322c7d60bcde1334679f7f4986e69c19b5e0cb))
+* **storybook:** remove all traces of styleguidist (including package), replace with storybook ([5637f73](https://github.com/alleyinteractive/irving/commit/5637f73ddc07ce304d6f46f63e8f72f5730339c6))
+
+
+
+
+
 # [6.2.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.1.4...v6.2.0-alpha.0) (2021-05-11)
 
 

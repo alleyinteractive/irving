@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.2.0-alpha.0...v6.2.0-alpha.1) (2021-05-12)
+
+
+### Bug Fixes
+
+* **docs:** move docs package back into root dir of irving repo ([6d801b7](https://github.com/alleyinteractive/irving/packages/styled-components/commit/6d801b754752d48cc0c9994f548062a7be5376de))
+* **text:** weird test issue ([2ba1b0d](https://github.com/alleyinteractive/irving/packages/styled-components/commit/2ba1b0de1dc897cbc99ac319782a0d64c5115d19))
+
+
+
+
+
 # [6.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.1.4...v6.2.0-alpha.0) (2021-05-11)
 
 

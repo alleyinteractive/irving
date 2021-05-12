@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.2.0-alpha.0...v6.2.0-alpha.1) (2021-05-12)
+
+
+### Bug Fixes
+
+* **docs:** move docs package back into root dir of irving repo ([6d801b7](https://github.com/alleyinteractive/irving/packages/example-package/commit/6d801b754752d48cc0c9994f548062a7be5376de))
+* **storybook:** attempt to fix storybook (no luck) ([ce7a876](https://github.com/alleyinteractive/irving/packages/example-package/commit/ce7a876c23ca1a4797e7129bd1690e42f66f0c32))
+
+
+
+
+
 # [6.2.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.1.4...v6.2.0-alpha.0) (2021-05-11)
 
 
