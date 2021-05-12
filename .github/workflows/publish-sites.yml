@@ -20,8 +20,8 @@ jobs:
         with:
           node-version: 12
       - run: |
-        npm ci
-        npm run qa:release
+          npm ci
+          npm run qa:release
 
   publish-irvingjs-com-staging:
     runs-on: ubuntu-latest
@@ -34,5 +34,5 @@ jobs:
         with:
           node-version: 12
       - run: |
-        npm ci
-        npm run deploy:staging
+          npm ci
+          npm run deploy:staging
