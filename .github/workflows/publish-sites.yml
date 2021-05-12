@@ -8,18 +8,23 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  setup:
+
   # This workflow contains a single job called "build"
   publish-storybook-qa:
     runs-on: ubuntu-latest
-    defaults:
-        run:
-          working-directory: ./docs
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci && npm run qa:release
+      - name: setup
+        run: npm run develop:bootstrap
+      - name: release
+        run: |
+          npm ci
+          npm run qa:release
+        working-directory: ./docs
 
   publish-irvingjs-com-staging:
     runs-on: ubuntu-latest
@@ -31,4 +36,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci && npm run deploy:staging
+      - run: |
+          npm ci
+          npm run deploy:staging

@@ -23,7 +23,6 @@
     "npm": "6"
   },
   "dependencies": {
-    "@irvingjs/core": "^6.2.0-alpha.0",
     "@storybook/addon-a11y": "^6.2.9",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-docs": "^6.2.9",

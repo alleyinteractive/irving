@@ -1,3 +1,3 @@
-import { defaultIcons } from '../../packages/styled-components/componentMap';
+import { defaultIcons } from '../../styled-components/componentMap';
 
 export default defaultIcons;
