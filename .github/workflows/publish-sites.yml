@@ -8,8 +8,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  setup:
-
   # This workflow contains a single job called "build"
   publish-storybook-qa:
     runs-on: ubuntu-latest
