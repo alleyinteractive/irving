@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const { packagesRoot } = require('./paths');
-const proxyPassthrough = require(path.join(packagesRoot, 'core/config/proxyPassthrough'));
 
 module.exports = {
   core: {
@@ -20,8 +19,7 @@ module.exports = {
   webpackFinal: (config) => {
     config.plugins = config.plugins.concat([
       new webpack.DefinePlugin({
-        irvingEnv: JSON.stringify({}),
-        proxyPassthrough: JSON.stringify(proxyPassthrough),
+        proxyPassthrough: JSON.stringify([]),
       }),
     ]);
     config.module.rules[0].exclude = [
