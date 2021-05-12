@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const { packagesRoot } = require('./path');
+const { packagesRoot } = require('./paths');
 const getEnv = require(path.join(packagesRoot, 'core/config/env'));
 const proxyPassthrough = require(path.join(packagesRoot, 'core/config/proxyPassthrough'));
 
