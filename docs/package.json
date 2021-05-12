@@ -14,9 +14,9 @@
     "start": "start-storybook -s ./stories/public -p 6006",
     "build": "build-storybook -s ./stories/public",
     "deploy": "surge storybook-static --domain storybook.irvingjs.com",
-    "release": "npm run storybook:build && npm run storybook:deploy",
+    "release": "npm run build && npm run deploy",
     "qa:deploy": "surge storybook-static --domain storybook-qa.irvingjs.com",
-    "qa:release": "npm run storybook:build && npm run storybook-qa:deploy"
+    "qa:release": "npm run build && npm run qa:deploy"
   },
   "engines": {
     "node": "12",

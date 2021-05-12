@@ -10,7 +10,5 @@ These files and folders store various configurations. Uses include tooling like 
 * [jest.setup.js](https://github.com/alleyinteractive/irving/blob/production/config/jest.setup.js) Jest config for testing.
 * [paths.js](https://github.com/alleyinteractive/irving/blob/production/config/paths.js) - Exports various system paths for easy use.
 * [postcss.config.js](https://github.com/alleyinteractive/irving/blob/production/config/postcss.config.js) - Post CSS config. See [CSS Styling](CSS-Styling) for more.
-* [styleguide.config.js](https://github.com/alleyinteractive/irving/blob/production/config/styleguide.config.js) -
-[Styleguide](Styleguide) config.
 * [stylelint.config.js](https://github.com/alleyinteractive/irving/blob/production/config/stylelint.config.js) - Stylelinter config. See [CSS Styling](CSS-Styling) for more.
 * [webpack.config.js](https://github.com/alleyinteractive/irving/blob/production/config/webpack.config.js)

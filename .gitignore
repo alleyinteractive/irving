@@ -9,12 +9,6 @@
 /packages/**/dist
 /irvingjs.com/dist/*
 
-# styleguide
-/styleguide/index.html
-/styleguide/stats.json
-/styleguide/build
-/styleguide/static
-
 # storybook
 docs/storybook-static/
 
