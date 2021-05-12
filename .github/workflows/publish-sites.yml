@@ -23,6 +23,9 @@ jobs:
         run: npm run develop:bootstrap
         working-directory: ./
       - name: release storybook qa
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
           npm ci
           npm run qa:release
@@ -37,6 +40,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: |
+      - name: publish irvingjs.com
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
           npm ci
           npm run deploy:staging
