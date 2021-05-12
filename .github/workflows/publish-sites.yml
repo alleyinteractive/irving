@@ -19,8 +19,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci
-      - run: npm run qa:release
+      - run: |
+        npm ci
+        npm run qa:release
 
   publish-irvingjs-com-staging:
     runs-on: ubuntu-latest
@@ -32,5 +33,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci
-      - run: npm run deploy:staging
+      - run: |
+        npm ci
+        npm run deploy:staging
