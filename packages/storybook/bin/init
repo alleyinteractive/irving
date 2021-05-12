@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+// @todo merge this into the irving core CLI when we make it extensible.
+const path = require('path');
+const chalk = require('chalk');
+const {
+  copyFileSync,
+  mkdirSync,
+  readdirSync,
+  openSync,
+} = require('fs');
+const destDir = path.join(process.cwd(), '.storybook');
+const srcDir = path.join(
+  process.cwd(),
+  'node_modules/@irvingjs/storybook/.storybook'
+);
+
+/**
+ * Copy over configuration files from this package into a user's project.
+ */
+const copyConfigFiles = () => {
+  const configFiles = readdirSync(srcDir);
+
+  for (const file of configFiles) {
+    const srcPath = path.join(srcDir, file);
+    const destPath = path.join(destDir, file);
+    const shortName = `.storybook/${file}`;
+
+    try {
+      openSync(destPath);
+      console.log(chalk.yellow(`${shortName} already exists, skipping...`));
+      continue;
+    } catch (e) {
+      copyFileSync(srcPath, destPath);
+      console.log(chalk.green(`copied ${shortName}`));
+    }
+  }
+};
+
+try {
+  openSync(destDir);
+  console.log(chalk.yellow('.storybook directory exists, copying files...'));
+  copyConfigFiles();
+} catch (e) {
+  console.log(chalk.green('.storybook directory does not exist, creating...'));
+  mkdirSync(destDir);
+
+  console.log(chalk.green('copying configuration files...'));
+  copyConfigFiles();
+}
