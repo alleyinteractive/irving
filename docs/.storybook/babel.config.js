@@ -15,7 +15,7 @@ module.exports = {
           ...aliases,
           '@irvingjs/componentMap': path.resolve(
             __dirname,
-            'componentMap.js'
+            '../componentMap.js'
           ),
         },
       },
