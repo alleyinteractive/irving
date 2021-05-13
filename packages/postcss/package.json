@@ -17,7 +17,7 @@
   "dependencies": {
     "autoprefixer": "^9.7.6",
     "postcss-loader": "^3.0.0",
-    "stylelint": "^13.3.3",
+    "stylelint": "~13.13.1",
     "stylelint-order": "^4.0.0"
   },
   "devDependencies": {
