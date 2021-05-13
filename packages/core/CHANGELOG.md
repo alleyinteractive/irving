@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.0-alpha.5...v6.2.0-alpha.6) (2021-05-13)
+
+**Note:** Version bump only for package @irvingjs/core
+
+
+
+
+
 # [6.2.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.0-alpha.4...v6.2.0-alpha.5) (2021-05-12)
 
 **Note:** Version bump only for package @irvingjs/core
