@@ -12,6 +12,7 @@ const spin = keyframes`
   }
 `;
 
+/* stylelint-disable declaration-no-important */
 export const Wrapper = styled.div`
   height: auto !important;
 `;
