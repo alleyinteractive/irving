@@ -27,7 +27,7 @@
   },
   "peerDependencies": {
     "react": "^17.0.1",
-    "webpack": ">=5.36.1"
+    "webpack": "~5.37.0"
   },
   "publishConfig": {
     "access": "public"
