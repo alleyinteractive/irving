@@ -12,18 +12,9 @@ const spin = keyframes`
   }
 `;
 
-export const Transition = styled.div`
-
-  .fade {
-    opacity: 0;
-  }
-
-  .fade.fade-enter-done {
-    opacity: 1;
-  }
+export const Wrapper = styled.div`
+  height: auto !important;
 `;
-
-export const Wrapper = styled.div``;
 
 export const LoadingWrapper = styled.div`
   align-items: center;

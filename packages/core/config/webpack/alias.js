@@ -27,7 +27,6 @@ module.exports = function getAlias(context) {
           appRoot,
           './node_modules/styled-components'
         ),
-        webpack: path.join(appRoot, './node_modules/webpack'),
       };
 
     case 'production_client':
