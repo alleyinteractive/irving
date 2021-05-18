@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.2.0-alpha.8...v6.2.0-alpha.9) (2021-05-18)
+
+
+### Bug Fixes
+
+* **loader:** remove react-transition-group from loader component, core ([ad22431](https://github.com/alleyinteractive/irving/packages/styled-components/commit/ad224313b5ab19d63feab81a763d4c99555b61b3))
+* **stylelint:** stylelint disable for !important height ([3e8fe21](https://github.com/alleyinteractive/irving/packages/styled-components/commit/3e8fe21dfdc668b1c2d0a576267ef503874fa674))
+
+
+
+
+
 # [6.2.0-alpha.8](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.2.0-alpha.7...v6.2.0-alpha.8) (2021-05-18)
 
 **Note:** Version bump only for package @irvingjs/styled-components

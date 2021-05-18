@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.0-alpha.8...v6.2.0-alpha.9) (2021-05-18)
+
+
+### Bug Fixes
+
+* **loader:** remove react-transition-group from loader component, core ([ad22431](https://github.com/alleyinteractive/irving/packages/core/commit/ad224313b5ab19d63feab81a763d4c99555b61b3))
+* **webpack:** add back in webpack alias for good measure ([ed3c3d9](https://github.com/alleyinteractive/irving/packages/core/commit/ed3c3d9960e7e6a90443f7ae5f49668071485c45))
+* **webpack:** remove quotes around webpack alias ([19e3321](https://github.com/alleyinteractive/irving/packages/core/commit/19e3321c523646b4f7729646c67e18abe1e8cc12))
+
+
+
+
+
 # [6.2.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.0-alpha.7...v6.2.0-alpha.8) (2021-05-18)
 
 **Note:** Version bump only for package @irvingjs/core
