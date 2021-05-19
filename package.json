@@ -23,7 +23,7 @@
     "release:bump": "HUSKY_SKIP_HOOKS=1 lerna publish preminor --conventional-prerelease --preid alpha --dist-tag alpha",
     "release:recover": "HUSKY_SKIP_HOOKS=1 lerna publish from-git",
     "//": "nohoist option is used to prevent internal packages from being hoisted/deleted by lerna (which is a bug, I think)",
-    "develop:bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/* --nohoist=webpack",
+    "develop:bootstrap": "lerna bootstrap --hoist --nohoist=@irvingjs/*",
     "develop:cleanup": "lerna exec --stream -- \"rm -rf node_modules\" && rm -rf node_modules",
     "develop:link": "lerna exec --stream -- npm link",
     "develop:install": "npm install && lerna exec --stream -- npm install",
@@ -37,7 +37,8 @@
   },
   "dependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "webpack": "~5.37.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
