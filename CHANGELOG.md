@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-beta.2](https://github.com/alleyinteractive/irving/compare/v6.2.0-beta.1...v6.2.0-beta.2) (2021-05-19)
+
+
+### Bug Fixes
+
+* **deps:** remove some packages from babel-preset-irving, hoist webpack ([d543b40](https://github.com/alleyinteractive/irving/commit/d543b40c2c8982c2bd8f8788a44200af6fc42a57))
+
+
+
+
+
 # [6.2.0-beta.1](https://github.com/alleyinteractive/irving/compare/v6.2.0-beta.0...v6.2.0-beta.1) (2021-05-18)
 
 **Note:** Version bump only for package irving

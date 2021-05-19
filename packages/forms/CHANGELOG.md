@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-beta.2](https://github.com/alleyinteractive/irving/packages/forms/compare/v6.2.0-beta.1...v6.2.0-beta.2) (2021-05-19)
+
+**Note:** Version bump only for package @irvingjs/forms
+
+
+
+
+
 # [6.2.0-beta.1](https://github.com/alleyinteractive/irving/packages/forms/compare/v6.2.0-beta.0...v6.2.0-beta.1) (2021-05-18)
 
 **Note:** Version bump only for package @irvingjs/forms
