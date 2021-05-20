@@ -6,7 +6,7 @@ This project uses [Commitizen](https://github.com/commitizen/cz-cli) and [Conven
 
 Note: For merge commits, just use `chore` for the type of change, `merge` for the scope, and `merge commit` for the message. Likely, however, it will not matter what you put into Commitizen as you'll just get a normal merge commit message such as `Merge branch 'my-branch' into master`.
 
-## Helpful NPM scripts for publishing and devleopment
+## Helpful NPM scripts for publishing and development
 
 ### Development
 
