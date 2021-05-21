@@ -13,7 +13,7 @@ module.exports = (app) => {
 
     // Return early if we don't have what we need.
     if (!API_ORIGIN && !API_ROOT_URL) {
-      return
+      return;
     }
 
     createProxyMiddleware({
