@@ -8,10 +8,9 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('info', messages);
 
     expect(logInfo).toEqual({
-      href: null,
+      url: null,
       level: 'info',
       message: 'lorem ipsum dolor sit amet',
-      search: null,
     });
   });
 
@@ -24,10 +23,23 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('info', messages);
 
     expect(logInfo).toEqual({
-      href: null,
+      url: null,
       level: 'info',
       message: 'this is an object: { lorem: \'ipsum\' } and this is a string: lorem ipsum dolor sit amet',
-      search: null,
+    });
+  });
+
+  it('should return a url string', () => {
+    const messages = [
+      'This is some message',
+      { url: 'https://startwars.com?yoda=youmust' },
+    ];
+    const logInfo = generateLogInfo('info', messages);
+
+    expect(logInfo).toEqual({
+      level: 'info',
+      url: 'https://startwars.com?yoda=youmust',
+      message: 'This is some message { url: \'https://startwars.com?yoda=youmust\' }',
     });
   });
 
@@ -36,12 +48,11 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('error', messages);
 
     expect(logInfo).toMatchObject({
-      href: null,
+      url: null,
       level: 'error',
       message: 'lorem ipsum dolor sit amet',
       name: 'Error',
       stack: expect.stringContaining('Error: lorem ipsum dolor sit amet'),
-      search: null,
     });
   });
 
@@ -50,12 +61,11 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('error', messages);
 
     expect(logInfo).toMatchObject({
-      href: null,
+      url: null,
       level: 'error',
       message: 'lorem ipsum dolor sit amet',
       name: 'Error',
       stack: expect.stringContaining('Error: lorem ipsum dolor sit amet'),
-      search: null,
     });
   });
 });
