@@ -1,13 +1,14 @@
 const realFetch = require('node-fetch');
+const URL = require('url-parse');
 
 module.exports = function isomorphicFetch(url, options) {
-  let newUrl = url;
+  const newUrl = URL(url);
 
-  if (/^\/\//.test(newUrl)) {
-    newUrl = `https:${newUrl}`;
+  if (! newUrl.protocol) {
+    newUrl.set('protocol', 'https');
   }
 
-  return realFetch.call(this, newUrl, options);
+  return realFetch.call(this, newUrl.toString(), options);
 };
 
 if (! global.fetch) {
