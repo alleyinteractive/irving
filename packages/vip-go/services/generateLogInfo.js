@@ -1,22 +1,19 @@
 const { format } = require('util');
-const { URL } = require('url');
-const isValidURL = require('../util/isValidURL');
 
 module.exports = function generateLogInfo(method, messages) {
-  const hasUrl = messages.filter((message) => isValidURL(message));
+  const hasUrl = messages.filter(
+    (message) => 'object' === typeof message && message.url
+  );
   const firstMessage = messages[0];
   let message = firstMessage;
   let info = {
-    href: null,
-    search: null,
+    url: null,
   };
 
-  // If we find a url, send along the query string.
+  // If we find a url, send it along.
   if (hasUrl.length) {
-    const url = new URL(hasUrl[0]);
     info = {
-      href: url.href,
-      search: url.search,
+      url: hasUrl[0].url,
     };
   }
 

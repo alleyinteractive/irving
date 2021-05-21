@@ -1,4 +1,5 @@
 import AbortController from 'abort-controller';
+import { format } from 'util';
 import omit from 'lodash/fp/omit';
 import {
   CONTEXT_PAGE,
@@ -44,7 +45,8 @@ export async function fetchComponents(
   const timeout = setTimeout(
     () => {
       log.error(
-        new Error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.') // eslint-disable-line max-len
+        new Error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.'), // eslint-disable-line max-len
+        { url: format('%s%s%s', hostname, path, search) }
       );
       controller.abort();
     },
