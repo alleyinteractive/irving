@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* globals it, describe, expect */
 import generateLogInfo from './generateLogInfo';
 
 describe('generateLogInfo', () => {
@@ -6,8 +8,10 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('info', messages);
 
     expect(logInfo).toEqual({
+      href: null,
       level: 'info',
       message: 'lorem ipsum dolor sit amet',
+      search: null,
     });
   });
 
@@ -20,8 +24,10 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('info', messages);
 
     expect(logInfo).toEqual({
+      href: null,
       level: 'info',
-      message: `this is an object: { lorem: 'ipsum' } and this is a string: lorem ipsum dolor sit amet`,
+      message: 'this is an object: { lorem: \'ipsum\' } and this is a string: lorem ipsum dolor sit amet',
+      search: null,
     });
   });
 
@@ -30,10 +36,12 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('error', messages);
 
     expect(logInfo).toMatchObject({
+      href: null,
       level: 'error',
       message: 'lorem ipsum dolor sit amet',
       name: 'Error',
       stack: expect.stringContaining('Error: lorem ipsum dolor sit amet'),
+      search: null,
     });
   });
 
@@ -42,10 +50,12 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('error', messages);
 
     expect(logInfo).toMatchObject({
+      href: null,
       level: 'error',
       message: 'lorem ipsum dolor sit amet',
       name: 'Error',
       stack: expect.stringContaining('Error: lorem ipsum dolor sit amet'),
+      search: null,
     });
   });
 });
