@@ -1,4 +1,4 @@
-import fetchMock from 'fetch-mock';
+import fetchMock from 'fetch-mock-jest';
 import fetchComponentData, {
   cacheResult,
 } from './fetchComponentData';
@@ -64,7 +64,7 @@ describe('cacheResult', () => {
             new Promise(
               (resolve) => setTimeout(
                 async () => resolve(await cacheResult(endpoint)),
-                  100
+                100
               )
             )
           )

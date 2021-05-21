@@ -1,4 +1,4 @@
-import fetchMock from 'fetch-mock';
+import fetchMock from 'fetch-mock-jest';
 import cachedFetchComponents, {
   fetchComponents,
 } from 'services/fetchComponents';
