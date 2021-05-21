@@ -1,18 +1,24 @@
 const { format } = require('util');
+const { URL } = require('url');
 const isValidURL = require('../util/isValidURL');
 
 module.exports = function generateLogInfo(method, messages) {
-  const hasUrl = messages.filter((message) => {
-    if ('string' !== typeof message) {
-      return false;
-    }
-    return isValidURL(message);
-  });
+  const hasUrl = messages.filter((message) => isValidURL(message));
   const firstMessage = messages[0];
   let message = firstMessage;
   let info = {
-    url: hasUrl.length ? hasUrl[0] : null,
+    href: null,
+    search: null,
   };
+
+  // If we find a url, send along the query string.
+  if (hasUrl.length) {
+    const url = new URL(hasUrl[0]);
+    info = {
+      href: url.href,
+      search: url.search,
+    };
+  }
 
   // Format string messages like winston would.
   if (! (firstMessage instanceof Error)) {
