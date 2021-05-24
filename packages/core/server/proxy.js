@@ -10,6 +10,12 @@ module.exports = (app) => {
       API_ROOT_URL,
       API_ORIGIN,
     } = getEnv(req.hostname);
+
+    // Return early if we don't have what we need.
+    if (!API_ORIGIN && !API_ROOT_URL) {
+      return;
+    }
+
     createProxyMiddleware({
       changeOrigin: true,
       followRedirects: true,
