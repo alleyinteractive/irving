@@ -1,19 +1,19 @@
 const { format } = require('util');
 
 module.exports = function generateLogInfo(method, messages) {
-  const url = messages.find(
-    (message) => 'object' === typeof message && message.url
+  const hasUrl = messages.find(
+    (message) => 'object' === typeof message && message.errorUrl
   );
   const firstMessage = messages[0];
   let message = firstMessage;
   let info = {
-    url: null,
+    errorUrl: null,
   };
 
   // If we find a url, send it along.
-  if (url) {
+  if (hasUrl) {
     info = {
-      url,
+      errorUrl: hasUrl.errorUrl,
     };
   }
 

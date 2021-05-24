@@ -8,7 +8,7 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('info', messages);
 
     expect(logInfo).toEqual({
-      url: null,
+      errorUrl: null,
       level: 'info',
       message: 'lorem ipsum dolor sit amet',
     });
@@ -23,7 +23,7 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('info', messages);
 
     expect(logInfo).toEqual({
-      url: null,
+      errorUrl: null,
       level: 'info',
       message: 'this is an object: { lorem: \'ipsum\' } and this is a string: lorem ipsum dolor sit amet',
     });
@@ -32,14 +32,14 @@ describe('generateLogInfo', () => {
   it('should return a url string', () => {
     const messages = [
       'This is some message',
-      { url: 'https://startwars.com?yoda=youmust' },
+      { errorUrl: 'https://startwars.com?yoda=youmust' },
     ];
     const logInfo = generateLogInfo('info', messages);
 
     expect(logInfo).toEqual({
       level: 'info',
-      url: 'https://startwars.com?yoda=youmust',
-      message: 'This is some message { url: \'https://startwars.com?yoda=youmust\' }',
+      errorUrl: 'https://startwars.com?yoda=youmust',
+      message: 'This is some message { errorUrl: \'https://startwars.com?yoda=youmust\' }',
     });
   });
 
@@ -48,7 +48,7 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('error', messages);
 
     expect(logInfo).toMatchObject({
-      url: null,
+      errorUrl: null,
       level: 'error',
       message: 'lorem ipsum dolor sit amet',
       name: 'Error',
@@ -61,7 +61,7 @@ describe('generateLogInfo', () => {
     const logInfo = generateLogInfo('error', messages);
 
     expect(logInfo).toMatchObject({
-      url: null,
+      errorUrl: null,
       level: 'error',
       message: 'lorem ipsum dolor sit amet',
       name: 'Error',
