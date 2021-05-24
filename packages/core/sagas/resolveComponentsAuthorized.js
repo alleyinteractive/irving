@@ -11,6 +11,7 @@ import {
 import getRouteMeta from 'selectors/getRouteMeta';
 import { fetchComponents } from 'services/fetchComponents';
 import getLogService from '@irvingjs/services/logService';
+import { getEnv } from 'config/multisite';
 
 const log = getLogService('irving:sagas:authorization');
 
@@ -35,7 +36,13 @@ export default function* resolveComponentsAuthorized() {
     );
     yield put(actionReceiveComponents(result));
   } catch (err) {
-    yield call(log.error, '%o', err);
+    const { ROOT_URL } = getEnv(hostname);
+    yield call(
+      log.error,
+      '%o',
+      err,
+      { errorUrl: ROOT_URL + hostname + path + search }
+    );
     yield put(actionReceiveError(err));
   }
 }
