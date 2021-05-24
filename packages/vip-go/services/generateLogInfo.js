@@ -1,7 +1,7 @@
 const { format } = require('util');
 
 module.exports = function generateLogInfo(method, messages) {
-  const hasUrl = messages.filter(
+  const url = messages.find(
     (message) => 'object' === typeof message && message.url
   );
   const firstMessage = messages[0];
@@ -11,9 +11,9 @@ module.exports = function generateLogInfo(method, messages) {
   };
 
   // If we find a url, send it along.
-  if (hasUrl.length) {
+  if (url) {
     info = {
-      url: hasUrl[0].url,
+      url,
     };
   }
 
