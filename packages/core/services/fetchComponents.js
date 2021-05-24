@@ -29,7 +29,7 @@ export async function fetchComponents(
   cookie = {},
   context = CONTEXT_PAGE
 ) {
-  const { FETCH_TIMEOUT } = getEnv(hostname);
+  const { FETCH_TIMEOUT, ROOT_URL } = getEnv(hostname);
   const apiUrl = createEndpointUrl(
     hostname,
     path,
@@ -45,7 +45,7 @@ export async function fetchComponents(
     () => {
       log.error(
         new Error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.'), // eslint-disable-line max-len
-        { url: hostname + path + search }
+        { errorUrl: ROOT_URL + path + search }
       );
       controller.abort();
     },
