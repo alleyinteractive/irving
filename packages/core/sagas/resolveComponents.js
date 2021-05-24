@@ -20,6 +20,7 @@ import history from 'utils/history';
 import isNode from 'utils/isNode';
 import getRelativeUrl from 'utils/getRelativeUrl';
 import getLogService from '@irvingjs/services/logService';
+import { getEnv } from 'config/multisite';
 import resolveComponentsAuthorized from './resolveComponentsAuthorized';
 
 const log = getLogService('irving:sagas:location');
@@ -76,7 +77,8 @@ export default function* resolveComponents() {
       }
     }
   } catch (err) {
-    yield call(log.error, '%o', err);
+    const { ROOT_URL } = getEnv(hostname);
+    yield call(log.error, err, { errorUrl: ROOT_URL + path + search });
     yield put(actionReceiveError(err));
   }
 }
