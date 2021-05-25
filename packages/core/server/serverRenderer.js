@@ -15,6 +15,7 @@ import getMonitorService from '@irvingjs/services/monitorService';
 import App from 'components/app';
 import getComponent from 'config/componentMap';
 import createClientEnv from 'config/irving/createClientEnv';
+import { getEnv } from 'config/multisite';
 import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
@@ -133,7 +134,12 @@ export default function serverRenderer(options) {
         options.clientStats
       );
     } catch (err) {
-      log.error('%o', { url: req.originalUrl, err });
+      const { ROOT_URL } = getEnv(req.hostname);
+      log.error(
+        '%o',
+        { url: req.originalUrl, err },
+        { errorUrl: ROOT_URL + req.originalUrl, justin: 'test' }
+      );
 
       const errorToDisplay = req.query.debug ?
         err :
