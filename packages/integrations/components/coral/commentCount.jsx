@@ -10,7 +10,7 @@ const CommentCount = (props) => {
   } = props;
 
   // We need an embedUrl and articleUrl to proceed.
-  if (! embedUrl || ! articleUrl) {
+  if (!embedUrl || !articleUrl) {
     return null;
   }
 
@@ -23,7 +23,7 @@ const CommentCount = (props) => {
         defer: true,
       },
       dispose: false,
-    }
+    },
   );
 
   useEffect(() => {

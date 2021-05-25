@@ -20,29 +20,29 @@ const PicoObserver = ({ tiers }) => {
   // Define a function to dispatch user verification requests to the Pico API.
   const sendVerificationRequest = useCallback(
     (user) => dispatch(actionVerifyPicoUser(user)),
-    [dispatch]
+    [dispatch],
   );
   // Define a function that will set the visibility state of the plan upgrade modal.
   const receivePlanUpgrade = useCallback(
     () => dispatch(actionReceivePicoPlanUpgrade()),
-    [dispatch]
+    [dispatch],
   );
   // Define a function to dispatch logout requests.
   const requestLogout = useCallback(
     () => dispatch(actionReceiveCoralLogoutRequest()),
-    [dispatch]
+    [dispatch],
   );
   // Define a function that updates the signal object in the Redux store.
   const updateSignal = useCallback(
     (signalObject) => dispatch(actionUpdatePicoSignal(signalObject)),
-    [dispatch]
+    [dispatch],
   );
 
   // Grab the value of the Pico signal from the Redux store.
   const { status, tier, email } = useSelector(picoSignalSelector) || {};
   // Define effect constants based on values present in the signal object.
-  const isAnonymous = 'anonymous' === status;
-  const isPaying = 'paying' === status;
+  const isAnonymous = status === 'anonymous';
+  const isPaying = status === 'paying';
   const isValidSSOTier = tiers.includes(tier);
   // Grab the status of the Coral upgrade modal visibility state from the Redux store.
   const showUpgradeModal = useSelector(showUpgradeModalSelector);
@@ -71,7 +71,7 @@ const PicoObserver = ({ tiers }) => {
     mutations.forEach((mutation) => {
       const { target, type, attributeName } = mutation;
 
-      if ('attributes' === type && 'data-pico-status' === attributeName) {
+      if (type === 'attributes' && attributeName === 'data-pico-status') {
         checkSignalAttributes(target);
       }
     });
@@ -101,9 +101,9 @@ const PicoObserver = ({ tiers }) => {
   }, [coralToken, isAnonymous]);
 
   useEffect(() => {
-    if (! coralToken && isValidSSOTier) {
+    if (!coralToken && isValidSSOTier) {
       setTimeout(() => {
-        if (window.Pico && 'object' === typeof window.Pico.user) {
+        if (window.Pico && typeof window.Pico.user === 'object') {
           const {
             Pico: {
               user: {
@@ -119,7 +119,7 @@ const PicoObserver = ({ tiers }) => {
   }, [coralToken, isValidSSOTier]);
 
   useEffect(() => {
-    if (! coralToken && isPaying && isValidSSOTier && showUpgradeModal) {
+    if (!coralToken && isPaying && isValidSSOTier && showUpgradeModal) {
       receivePlanUpgrade();
     }
   }, [coralToken, isPaying, isValidSSOTier, showUpgradeModal]);

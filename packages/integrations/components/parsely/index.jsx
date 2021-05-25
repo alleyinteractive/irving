@@ -6,7 +6,7 @@ const Parsely = (props) => {
 
   // It's possible for this to be an empty string if
   // setting is unconfigured. Do not render if this is the case.
-  if (! site) {
+  if (!site) {
     return null;
   }
 

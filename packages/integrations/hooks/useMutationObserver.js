@@ -16,7 +16,7 @@ const defaultConfig = {
 export default function useMutationObserver(
   ref,
   callback,
-  options = defaultConfig
+  options = defaultConfig,
 ) {
   useEffect(() => {
     if (ref.current) {

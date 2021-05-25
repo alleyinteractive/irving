@@ -21,7 +21,7 @@ const usePicoEventListeners = () => {
       ...acc,
       [eventName]: () => {
         log.info(
-          `[irving:usePicoEventListeners] pico.${eventName} handler called.`
+          `[irving:usePicoEventListeners] pico.${eventName} handler called.`,
         );
         dispatch(actionUpdatePicoLifecycle({ [eventName]: true }));
       },

@@ -6,6 +6,7 @@ import { HYDRATE_COMPONENTS } from './types';
  * @param {Object} componentMap - The hydrated components.
  * @returns {{type, payload}} The Redux action.
  */
+/* eslint-disable-next-line import/prefer-default-export */
 export function actionHydrateComponents(componentMap) {
   return createAction(HYDRATE_COMPONENTS, componentMap);
 }

@@ -7,17 +7,17 @@ const DisqusEmbed = (props) => {
   const { forumShortname } = props;
   const config = validateDisqusConfig(props, window.location.pathname);
 
-  if (! config || ! forumShortname) {
+  if (!config || !forumShortname) {
     return null;
   }
 
   // This script must load only when an anchor element exists in the DOM.
   const disqusLoaded = useLoadScript(
     `https://${forumShortname}.disqus.com/embed.js`,
-    'disqus-embed'
+    'disqus-embed',
   );
 
-  if (! disqusLoaded) {
+  if (!disqusLoaded) {
     return null;
   }
 

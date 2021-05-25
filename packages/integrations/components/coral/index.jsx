@@ -17,25 +17,25 @@ const CoralEmbed = ({
   embedUrl,
   events,
 }) => {
-  if (! embedUrl) {
+  if (!embedUrl) {
     return null;
   }
 
   const loaded = useLoadScript(
     `${embedUrl}/assets/js/embed.js`,
-    'coral'
+    'coral',
   );
 
   const dispatch = useDispatch();
   // Define a function that will update the store when the user logs out.
   const dispatchLogout = useCallback(
     () => dispatch(actionReceiveCoralLogout()),
-    [dispatch]
+    [dispatch],
   );
   // Define a function that will update the store when a user logs in.
   const dispatchLogin = useCallback(
     () => dispatch(actionReceiveCoralLogin()),
-    [dispatch]
+    [dispatch],
   );
 
   // Define whether or not the user is set to be purged. This must be defined
@@ -82,7 +82,7 @@ const CoralEmbed = ({
         dispatchLogin();
       }
 
-      if (! accessToken && shouldPurgeUser) {
+      if (!accessToken && shouldPurgeUser) {
         // Log-out the user.
         embed.logout();
         // Clear the Coral branch of the state tree and prep it for re-authentication.

@@ -53,8 +53,8 @@ function mountSignupFormNodes(documentBody) {
  */
 export function isPicoMounted() {
   return (
-    document.getElementById('PicoSignal-container') &&
-    document.getElementById('PicoRule-button')
+    document.getElementById('PicoSignal-container')
+    && document.getElementById('PicoRule-button')
   );
 }
 

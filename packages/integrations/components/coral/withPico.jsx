@@ -34,10 +34,10 @@ const withPico = (ChildComponent) => {
 
     useEffect(() => {
       log.info(
-        '[irving:Coral:withPico] running effect, checking if user can comment'
+        '[irving:Coral:withPico] running effect, checking if user can comment',
       );
 
-      if (coralToken && ! requireUsername) {
+      if (coralToken && !requireUsername) {
         log.info('[irving:Coral:withPico] setting canComment: ', true);
         setCanComment(true);
       } else {
@@ -53,9 +53,9 @@ const withPico = (ChildComponent) => {
     const handlers = (events) => {
       events.on('loginPrompt', () => {
         // If the user is registered but not paying show the upgrade modal on click.
-        if ('registered' === status) {
+        if (status === 'registered') {
           dispatch(actionRequireUpgrade());
-        } else if ('paying' === status && ! ssoTiers.includes(tier)) {
+        } else if (status === 'paying' && !ssoTiers.includes(tier)) {
           // If the user is paying but cannot comment, prompt them to upgrade their subscription.
           dispatch(actionRequireUpgrade());
         } else {
@@ -86,7 +86,7 @@ const withPico = (ChildComponent) => {
       );
     }
 
-    if (picoLoaded && ! canComment) {
+    if (picoLoaded && !canComment) {
       log.info('[irving:Coral:withPico] returning default embed');
       return (
         <ChildComponent {...props} events={handlers} />

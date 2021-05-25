@@ -17,7 +17,7 @@ import componentMap from './componentMap';
 const IntegrationsManager = ({ integrations }) => {
   // Test for empty objects.
   const isEmpty = (obj) => (
-    0 === Object.keys(obj).length && obj.constructor === Object
+    Object.keys(obj).length === 0 && obj.constructor === Object
   );
 
   // Bail early if no integrations exist.
@@ -63,7 +63,7 @@ const IntegrationsManager = ({ integrations }) => {
 
     // If the current component key exists in the key map, clone that component
     // with the hydrated props for render.
-    if (- 1 < index) {
+    if (index > -1) {
       const props = { key: component.key, ...component.props };
       // Clone the element.
       return React.createElement(componentMap[index].el, props, null);

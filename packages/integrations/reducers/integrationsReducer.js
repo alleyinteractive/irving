@@ -10,7 +10,7 @@ import { manager as defaultState } from './defaultState';
  */
 export default function integrationsReducer(
   state = defaultState,
-  { type, payload }
+  { type, payload },
 ) {
   switch (type) {
     case HYDRATE_COMPONENTS:

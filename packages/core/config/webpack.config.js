@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
   const isProd = mode === 'production';
   const server = getConfigService(argv, 'server');
   const client = getConfigService(argv, 'client');
-  const extensions = ['.js', '.json'];
+  const extensions = ['.js', '.jsx', '.json'];
   const multiConfig = [
     {
       context: buildContext,

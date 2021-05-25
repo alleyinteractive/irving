@@ -8,13 +8,13 @@ const { BABEL_ENV } = getEnv();
 const GoogleAnalytics = (props) => {
   const { trackingId } = props;
 
-  if (! trackingId) {
+  if (!trackingId) {
     return null;
   }
 
   return (
     <>
-      {('test' === BABEL_ENV) && (
+      {(BABEL_ENV === 'test') && (
         <div data-testid={trackingId} />
       )}
       <Helmet>

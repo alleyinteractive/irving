@@ -40,7 +40,7 @@ const Pico = (props) => {
    * @see https://help.trypico.com/en/articles/3199263-installing-pico-on-your-website
    */
   const picoPageInfo = {
-    article: ('post' === pageInfo.postType),
+    article: (pageInfo.postType === 'post'),
     post_id: pageInfo.postId,
     post_type: pageInfo.postType,
     resource_ref: pageInfo.resourceRef,
@@ -56,7 +56,7 @@ const Pico = (props) => {
   const dispatch = useDispatch();
   const dispatchUpdatePicoPageInfo = useCallback(
     (payload) => dispatch(actionUpdatePicoPageInfo(payload)),
-    [dispatch]
+    [dispatch],
   );
 
   const irvingIsLoading = useLoading();
@@ -72,7 +72,7 @@ const Pico = (props) => {
 
   // Mount our Pico Signal nodes into the DOM.
   useEffect(() => {
-    if (! isPicoMounted()) {
+    if (!isPicoMounted()) {
       log.info('[irving:Pico] Mounting nodes.');
       mountPicoNodes();
     }
@@ -81,12 +81,12 @@ const Pico = (props) => {
   // Mount an effect that triggers the initial visit once irving has loaded.
   useEffect(() => {
     if (
-      ! irvingIsLoading &&
-      scriptOnload &&
-      ! visited &&
-      (
-        (contentReady && picoPageInfo.article) ||
-        ! picoPageInfo.article
+      !irvingIsLoading
+      && scriptOnload
+      && !visited
+      && (
+        (contentReady && picoPageInfo.article)
+        || !picoPageInfo.article
       )
     ) {
       // Dispatch the initial visit to trigger the `pico.loaded` event.

@@ -13,7 +13,7 @@ const usePicoLockableContent = () => {
   ), [dispatch]);
 
   useEffect(() => {
-    if (! contentReady) {
+    if (!contentReady) {
       console.log('[irving:usePicoLockableContent] content ready to be locked');
       dispatchContentReady();
     }

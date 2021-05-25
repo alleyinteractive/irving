@@ -17,7 +17,7 @@ const GoogleTagManager = (props) => {
     dataLayer,
   } = props;
 
-  if (! containerId) {
+  if (!containerId) {
     return null;
   }
 
@@ -33,7 +33,7 @@ const GoogleTagManager = (props) => {
    * Effect for starting the GTM dataLayer.
    */
   useEffect(() => {
-    if (0 === started.length) {
+    if (started.length === 0) {
       window.dataLayer.push({
         'gtm.start': new Date().getTime(),
         event: 'gtm.js',
