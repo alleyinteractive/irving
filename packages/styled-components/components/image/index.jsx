@@ -66,8 +66,8 @@ const Image = (props) => {
   // Allow using an aspect ratio mapping.
   let { aspectRatio } = props;
   if (
-    'string' === typeof aspectRatio &&
-    undefined !== aspectRatioMapping[aspectRatio]
+    typeof aspectRatio === 'string'
+    && undefined !== aspectRatioMapping[aspectRatio]
   ) {
     aspectRatio = aspectRatioMapping[aspectRatio];
   }
@@ -75,7 +75,7 @@ const Image = (props) => {
   // Ensure we constrain the sizes attribute if none
   // is passed whenever a srcset attribute is present.
   const getSizes = () => {
-    if (srcset && ! sizes && width) {
+    if (srcset && !sizes && width) {
       return `(max-width: ${width}px) 100vw, ${width}px`;
     }
 
@@ -83,7 +83,7 @@ const Image = (props) => {
   };
 
   // Bail early if we don't have a src to work with.
-  if (! (src || fallbackSrc)) {
+  if (!(src || fallbackSrc)) {
     return null;
   }
 
@@ -119,7 +119,7 @@ const Image = (props) => {
           )}
         </ImageMeta>
       )}
-      {0 !== children.length && children}
+      {children.length !== 0 && children}
     </FigureWrapper>
   );
 };

@@ -59,10 +59,10 @@ const Link = (props) => {
 
     // Allow the user to open the link in a new tab
     if (
-      event.ctrlKey ||
-      event.shiftKey ||
-      event.metaKey ||
-      (event.button && 1 === event.button)
+      event.ctrlKey
+      || event.shiftKey
+      || event.metaKey
+      || (event.button && event.button === 1)
     ) {
       return;
     }
@@ -72,7 +72,7 @@ const Link = (props) => {
   /* eslint-enable */
 
   const ariaProps = Object.keys(props).reduce((acc, propName) => {
-    if (! propName.includes('aria')) {
+    if (!propName.includes('aria')) {
       return acc;
     }
 

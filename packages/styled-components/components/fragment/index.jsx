@@ -18,7 +18,7 @@ const Fragment = (props) => {
   const { Element } = theme;
   const standardProps = useStandardProps(props);
   const { as } = standardProps;
-  const useTag = (as || (Object.keys(style).length && ! style.length));
+  const useTag = (as || (Object.keys(style).length && !style.length));
 
   return (
     <>

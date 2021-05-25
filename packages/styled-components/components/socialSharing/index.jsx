@@ -88,7 +88,7 @@ const SocialSharing = (props) => {
   const whatsAppStory = sprintf( // Translators: %1$s - article title, %2$s - article url.
     __('Check out this story: %1$s %2$s', 'irving-styled-components'),
     title,
-    url
+    url,
   );
 
   const getWhatsAppUrl = `https://api.whatsapp.com/send/?${
@@ -97,7 +97,7 @@ const SocialSharing = (props) => {
     })
   }`;
 
-  if (0 === platforms.length) {
+  if (platforms.length === 0) {
     return null;
   }
 
@@ -156,7 +156,7 @@ const SocialSharing = (props) => {
                   config: {
                     title: sprintf( // Translators: %1$s - platform.
                       __('Share on %1$s', 'irving-styled-components'),
-                      platform
+                      platform,
                     ),
                   },
                   children: [],

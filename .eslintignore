@@ -4,3 +4,4 @@ assets/*
 node_modules/*
 packages/*/node_modules/*
 *.test.js
+*.stories.js

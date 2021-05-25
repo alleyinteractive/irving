@@ -51,17 +51,17 @@ const Text = (props) => {
   );
 
   switch (true) {
-    case ! content.length:
+    case !content.length:
       return false;
 
-    case true === oembed:
+    case oembed === true:
       return (
         <EmbedContainer markup={content}>
           {htmlWrapper}
         </EmbedContainer>
       );
 
-    case true === html:
+    case html === true:
       return htmlWrapper;
 
     default:

@@ -37,7 +37,7 @@ const buildUrl = (props, page) => {
   const currentQueryVars = queryString.parse(window.location.search);
   const qs = Object.keys(currentQueryVars).length ? `?${queryString.stringify(currentQueryVars)}` : '';
 
-  if (1 === page) {
+  if (page === 1) {
     return `${baseUrl}${qs}`;
   }
 
@@ -78,7 +78,7 @@ const Pagination = (props) => {
   } = theme;
 
   // Don't display if there aren't any pages.
-  if (1 === totalPages) {
+  if (totalPages === 1) {
     return (
       <NoResults />
     );
@@ -90,18 +90,18 @@ const Pagination = (props) => {
    * Do some math to determine the start and end range of navigation buttons.
    */
   const newRange = Math.floor(range / 2);
-  const startRange = (1 > (currentPage - newRange)) ?
-    1 :
-    (currentPage - newRange);
-  const endRange = (totalPages < (currentPage + newRange)) ?
-    totalPages :
-    (currentPage + newRange);
+  const startRange = ((currentPage - newRange) < 1)
+    ? 1
+    : (currentPage - newRange);
+  const endRange = (totalPages < (currentPage + newRange))
+    ? totalPages
+    : (currentPage + newRange);
 
   /**
    * Render a handful of pagination buttons around the current page.
    */
   // eslint-disable-next-line no-plusplus
-  for (let i = startRange; i <= endRange; i ++) {
+  for (let i = startRange; i <= endRange; i++) {
     if (i === currentPage) {
       pages.push(<CurrentPageNavWrapper className="irving-pagination-current-page">{i}</CurrentPageNavWrapper>);
     } else {
@@ -117,7 +117,7 @@ const Pagination = (props) => {
           href={buildUrl(props, i)}
         >
           {i}
-        </NavWrapper>
+        </NavWrapper>,
       );
     }
   }
@@ -134,10 +134,10 @@ const Pagination = (props) => {
   if (displayFirstAndLast) {
     switch (true) {
       default:
-      case (1 === startRange):
+      case (startRange === 1):
         break;
 
-      case (2 === startRange):
+      case (startRange === 2):
         pages.unshift(
           <NavWrapper
             analytics={({
@@ -150,11 +150,11 @@ const Pagination = (props) => {
             href={buildUrl(props, 1)}
           >
             1
-          </NavWrapper>
+          </NavWrapper>,
         );
         break;
 
-      case (3 === startRange):
+      case (startRange === 3):
         pages.unshift(
           <NavWrapper
             analytics={({
@@ -167,7 +167,7 @@ const Pagination = (props) => {
             href={buildUrl(props, 2)}
           >
             2
-          </NavWrapper>
+          </NavWrapper>,
         );
         pages.unshift(
           <NavWrapper
@@ -181,11 +181,11 @@ const Pagination = (props) => {
             href={buildUrl(props, 1)}
           >
             1
-          </NavWrapper>
+          </NavWrapper>,
         );
         break;
 
-      case (4 <= startRange):
+      case (startRange >= 4):
         pages.unshift(<EllipsesNavWrapper>...</EllipsesNavWrapper>);
         pages.unshift(
           <NavWrapper
@@ -199,7 +199,7 @@ const Pagination = (props) => {
             href={buildUrl(props, 1)}
           >
             1
-          </NavWrapper>
+          </NavWrapper>,
         );
         break;
     }
@@ -222,7 +222,7 @@ const Pagination = (props) => {
             href={buildUrl(props, totalPages)}
           >
             {totalPages}
-          </NavWrapper>
+          </NavWrapper>,
         );
         break;
 
@@ -239,7 +239,7 @@ const Pagination = (props) => {
             href={buildUrl(props, totalPages - 1)}
           >
             {totalPages - 1}
-          </NavWrapper>
+          </NavWrapper>,
         );
         pages.push(
           <NavWrapper
@@ -253,7 +253,7 @@ const Pagination = (props) => {
             href={buildUrl(props, totalPages)}
           >
             {totalPages}
-          </NavWrapper>
+          </NavWrapper>,
         );
         break;
 
@@ -271,7 +271,7 @@ const Pagination = (props) => {
             href={buildUrl(props, totalPages)}
           >
             {totalPages}
-          </NavWrapper>
+          </NavWrapper>,
         );
         break;
     }
@@ -281,14 +281,14 @@ const Pagination = (props) => {
    * Display `Prev` and `Next` buttons.
    */
   if (displayPrevAndNext) {
-    if (1 < currentPage) {
+    if (currentPage > 1) {
       pages.unshift(
         <NextAndPrevNavWrapper
           as={Link}
           href={buildUrl(props, currentPage - 1)}
         >
           Prev
-        </NextAndPrevNavWrapper>
+        </NextAndPrevNavWrapper>,
       );
     }
 
@@ -299,7 +299,7 @@ const Pagination = (props) => {
           href={buildUrl(props, currentPage + 1)}
         >
           Next
-        </NextAndPrevNavWrapper>
+        </NextAndPrevNavWrapper>,
       );
     }
   }
@@ -312,7 +312,7 @@ const Pagination = (props) => {
           {
             key: `${page.props.href}-${index}`,
             ...page.props,
-          }
+          },
         )
       ))}
     </PaginationWrapper>

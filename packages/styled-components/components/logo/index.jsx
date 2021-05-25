@@ -47,7 +47,7 @@ const Logo = (props) => {
         as={Link}
         href={href}
       >
-        {(logoImageUrl && ! hasChildren) ? (
+        {(logoImageUrl && !hasChildren) ? (
           <LogoImage>
             <img src={logoImageUrl} alt={siteName} />
           </LogoImage>

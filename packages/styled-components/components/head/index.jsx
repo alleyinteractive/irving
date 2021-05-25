@@ -15,13 +15,13 @@ const Head = (props) => {
         } = child;
 
         // Check the component type.
-        if ('style' !== type && 'script' !== type) {
+        if (type !== 'style' && type !== 'script') {
           return child;
         }
 
         // Validate a non-empty array.
-        if (! Array.isArray(child.props.children) ||
-          ! child.props.children.length) {
+        if (!Array.isArray(child.props.children)
+          || !child.props.children.length) {
           return child;
         }
 
@@ -32,7 +32,7 @@ const Head = (props) => {
           child,
           {
             children: child.props.children.join(''),
-          }
+          },
         );
       })}
     </Helmet>

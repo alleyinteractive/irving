@@ -11,15 +11,15 @@ const menuItems = [
   {
     props: {
       id: 1,
-      title: "Testing",
-      url: "https://google.com",
+      title: 'Testing',
+      url: 'https://google.com',
     },
   },
   {
     props: {
       id: 2,
-      title: "Another menu item",
-      url: "https://duckduckgo.com",
+      title: 'Another menu item',
+      url: 'https://duckduckgo.com',
     },
   },
 ];

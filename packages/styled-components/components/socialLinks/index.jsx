@@ -48,7 +48,7 @@ const SocialLinks = (props) => {
 
   return (
     <SocialLinksWrapper {...standardProps}>
-      {items && 0 !== items.length && (
+      {items && items.length !== 0 && (
         <SocialLinksList>
           {items.map(({ platform, url, icon }) => (
             <SocialLinksItem key={platform}>

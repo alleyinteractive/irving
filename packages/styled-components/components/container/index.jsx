@@ -32,25 +32,25 @@ const Container = (props) => {
   } = props;
   const { ContainerWrapper } = theme;
 
-  if (0 === children.length) {
+  if (children.length === 0) {
     return false;
   }
 
   // Setup a max-width style.
   if (
-    'string' === typeof maxWidth &&
-    undefined !== widths[maxWidth] &&
-    0 !== maxWidth.length
+    typeof maxWidth === 'string'
+    && undefined !== widths[maxWidth]
+    && maxWidth.length !== 0
   ) {
     style.maxWidth = `${widths[maxWidth]}px`; // Use one of our predefined sizes.
-  } else if ('string' === typeof maxWidth && 0 !== maxWidth.length) {
+  } else if (typeof maxWidth === 'string' && maxWidth.length !== 0) {
     style.maxWidth = maxWidth; // Use the string value 1:1.
-  } else if ('number' === typeof maxWidth) {
+  } else if (typeof maxWidth === 'number') {
     style.maxWidth = `${maxWidth}px`; // Use the interger value as pixels.
   }
 
   // Setup a background image.
-  if ('' !== backgroundImageUrl) {
+  if (backgroundImageUrl !== '') {
     style.backgroundImage = `url(${backgroundImageUrl})`;
     style.backgroundRepeat = 'no-repeat';
     style.backgroundSize = 'cover';

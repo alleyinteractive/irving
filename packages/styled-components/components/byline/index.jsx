@@ -33,10 +33,10 @@ const Byline = (props) => {
   // change the delimiter(s) accordingly.
   switch (true) {
     default:
-    case (0 === children.length):
+    case (children.length === 0):
       return false;
 
-    case (1 === children.length):
+    case (children.length === 1):
       return (
         <BylineWrapper {...standardProps}>
           <AuthorsWrapper data-testid="authors-wrapper">
@@ -46,7 +46,7 @@ const Byline = (props) => {
         </BylineWrapper>
       );
 
-    case (2 === children.length):
+    case (children.length === 2):
       return (
         <BylineWrapper {...standardProps}>
           <AuthorsWrapper data-testid="authors-wrapper">
@@ -58,7 +58,7 @@ const Byline = (props) => {
         </BylineWrapper>
       );
 
-    case (3 <= children.length):
+    case (children.length >= 3):
       return (
         <BylineWrapper {...standardProps}>
           <AuthorsWrapper data-testid="authors-wrapper">
