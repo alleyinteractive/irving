@@ -30,7 +30,7 @@ describe('purgeCache', () => {
       const req = mockRequest(['/no-key-for-this']);
       const res = mockResponse();
 
-      await purgeCache(req, res);
+      await purgeCache(req, res, () => {});
 
       await waitForExpect(() => {
         expect(res.body)
@@ -46,7 +46,7 @@ Cache purge successful!`);
       const req = mockRequest(['/']);
       const res = mockResponse();
 
-      await purgeCache(req, res);
+      await purgeCache(req, res, () => {});
 
       await waitForExpect(() => {
         expect(res.body)
@@ -62,7 +62,7 @@ Cache purge successful!`);
       const req = mockRequest(['/test-page']);
       const res = mockResponse();
 
-      await purgeCache(req, res);
+      await purgeCache(req, res, () => {});
 
       await waitForExpect(() => {
         expect(res.body)
@@ -78,7 +78,7 @@ Cache purge successful!`);
       const req = mockRequest(['/test-article', '/test-term']);
       const res = mockResponse();
 
-      await purgeCache(req, res);
+      await purgeCache(req, res, () => {});
 
       await waitForExpect(() => {
         expect(res.body)
@@ -95,7 +95,7 @@ Cache purge successful!`);
       const req = mockRequest();
       const res = mockResponse();
 
-      await purgeCache(req, res);
+      await purgeCache(req, res, () => {});
 
       await waitForExpect(() => {
         expect(res.body)

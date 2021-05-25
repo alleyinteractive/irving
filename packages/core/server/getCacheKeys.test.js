@@ -16,7 +16,7 @@ describe('getCacheKeys', () => {
       const req = {};
       const res = mockResponse();
 
-      await getCacheKeys(req, res);
+      await getCacheKeys(req, res, () => {});
 
       await waitForExpect(() => {
         expect(res.json).toHaveBeenCalledWith(
