@@ -41,7 +41,7 @@ module.exports = (multiConfig) => {
     {
       name: 'editor',
       entry: {
-        blockEditor: path.join(__dirname, '../blockEditor.js'),
+        blockEditor: path.join(__dirname, '../blockEditor.jsx'),
       },
       mode: 'production',
       devtool: 'source-map',
@@ -62,13 +62,14 @@ module.exports = (multiConfig) => {
 
       resolve: {
         alias: aliases,
+        extensions: ['.js', '.jsx', '.json'],
       },
 
       // Loaders
       module: {
         rules: [
           {
-            test: /\.js$/,
+            test: /\.jsx?$/,
             include: (filepath) => (
               (
                 (
