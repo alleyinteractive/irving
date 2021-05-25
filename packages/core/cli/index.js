@@ -1,12 +1,14 @@
+/* eslint-disable global-require */
 require('../config/env')();
 const { Command } = require('commander');
+
 const program = new Command();
 
 program.command('build')
   .description('run a production build for your Irving app')
   .option(
     '-a --analyze',
-    'analyze build results with BundleAnalyzer webpack plugin'
+    'analyze build results with BundleAnalyzer webpack plugin',
   )
   .action((cmdObj) => {
     process.env.NODE_ENV = 'production';
@@ -22,7 +24,7 @@ program.command('start')
 
 program.command('dev')
   .description(
-    'build your Irving app, watch for changes, and refresh with HMR'
+    'build your Irving app, watch for changes, and refresh with HMR',
   )
   .action(() => {
     process.env.NODE_ENV = 'development';

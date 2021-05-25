@@ -2,6 +2,7 @@ import { css } from 'styled-components';
 import { caption, link } from './utils';
 
 /* stylelint-disable selector-max-specificity */
+/* eslint-disable indent, import/prefer-default-export */
 export const galleryBlock = css`
 
   .wp-block-gallery ul,

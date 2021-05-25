@@ -1,7 +1,7 @@
 /* eslint max-len: 0 */
 import styled from 'styled-components';
 
-// eslint-disable import/prefer-default-export.
+/* eslint-disable import/prefer-default-export */
 export const TextWrapper = styled.div`
   height: 0;
   max-width: 100%;
@@ -18,4 +18,4 @@ export const TextWrapper = styled.div`
     width: 100%;
   }
 `;
-// eslint-enable.
+/* eslint-enable */

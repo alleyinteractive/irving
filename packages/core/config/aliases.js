@@ -30,5 +30,5 @@ const aliases = {
 module.exports = getValueFromFiles(
   'config/aliases',
   aliases,
-  { base: buildContext }
+  { base: buildContext },
 );

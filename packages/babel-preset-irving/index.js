@@ -1,5 +1,5 @@
 const getTarget = (caller) => (
-  (caller && 'babel-loader' === caller.name) ? caller.target : null
+  (caller && caller.name === 'babel-loader') ? caller.target : null
 );
 
 module.exports = function babelPresetIrving(api) {

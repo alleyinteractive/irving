@@ -19,7 +19,7 @@ const validateDisqusConfig = (config, defaultPathname = '') => {
   }
 
   const identifierRegExp = new RegExp(/^\d+\s.+$/);
-  if (! identifierRegExp.test(config.pageIdentifier)) {
+  if (!identifierRegExp.test(config.pageIdentifier)) {
     return false;
   }
 

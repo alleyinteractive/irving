@@ -5,7 +5,7 @@ const bodyText = css`
   color: ${siteTheme('blocks.bodyText.color', '#000000')};
   font-family: ${siteTheme(
     'blocks.bodyText.fontFamily',
-    'Arial, Helvetica, sans-serif'
+    'Arial, Helvetica, sans-serif',
   )};
   font-size: ${siteTheme('blocks.bodyText.fontSize', '1rem')};
   font-style: ${siteTheme('blocks.bodyText.fontStyle', 'normal')};

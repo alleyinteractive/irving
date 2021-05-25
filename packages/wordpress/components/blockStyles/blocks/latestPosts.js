@@ -2,6 +2,7 @@ import { css } from 'styled-components';
 import { link, list, listItem } from './utils';
 
 /* stylelint-disable selector-max-specificity */
+/* eslint-disable indent, import/prefer-default-export */
 export const latestPostsBlock = css`
 
   [data-type="core/latest-posts"] ul,

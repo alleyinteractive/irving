@@ -13,12 +13,12 @@ const getProviders = createSelector(
   ],
   (providers) => {
     // Not passing in a state param results in a function from lodash/get, hence this check.
-    const providerNames = (providers && 'function' !== typeof providers) ?
-      Object.keys(providers) : [];
+    const providerNames = (providers && typeof providers !== 'function')
+      ? Object.keys(providers) : [];
 
-    return (providers && Array.isArray(providerNames)) ?
-      providerNames : [];
-  }
+    return (providers && Array.isArray(providerNames))
+      ? providerNames : [];
+  },
 );
 
 export default getProviders;

@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import {
   call,
   put,
@@ -45,7 +46,7 @@ function* verifyPicoCoralUser({ payload }) {
     username_set_hash: usernameSetHash,
   } = yield call(sendVerificationRequest, payload);
 
-  if ('success' === status) {
+  if (status === 'success') {
     if (requireUsername) {
       yield put(actionReceiveCoralUsernameRequest());
       yield put(actionReceiveCoralUsernameSetHash(usernameSetHash));
@@ -54,7 +55,7 @@ function* verifyPicoCoralUser({ payload }) {
     }
   }
 
-  if ('failed' === status) {
+  if (status === 'failed') {
     if (validationError) {
       yield put(actionReceiveCoralUsernameValidationFailure(validationError));
     } else {
@@ -78,7 +79,7 @@ async function sendVerificationRequest(payload) {
     const { API_ROOT_URL } = getEnv();
 
     const response = await fetch(
-      `${API_ROOT_URL}/data/validate_sso_user?user=${encodeURIComponent(email)}&id=${id}` // eslint-disable-line max-len
+      `${API_ROOT_URL}/data/validate_sso_user?user=${encodeURIComponent(email)}&id=${id}`, // eslint-disable-line max-len
     ).then((res) => res.json());
 
     return response;
@@ -86,7 +87,7 @@ async function sendVerificationRequest(payload) {
     // Log the error to the developer console.
     log.error(
       'There was an error trying to verify the Pico user credentials: ',
-      error
+      error,
     );
   }
 

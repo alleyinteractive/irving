@@ -38,7 +38,7 @@ const getConfigValues = (key) => {
     }
 
     return null;
-  }).filter((value) => !! value);
+  }).filter((value) => !!value);
 };
 
 /**

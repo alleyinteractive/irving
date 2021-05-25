@@ -8,13 +8,14 @@ import { useState, useEffect } from 'react';
  * @param {object} opts Options for loading this script.
  * @param {bool}   opts.attr Load this script with provided attributes.
  * @param {bool}   opts.footer Load this script at the end of the body tag.
- * @param {bool}   opts.dispose Remove this script from the DOM when the component loading it is unmounted.
+ * @param {bool}   opts.dispose Remove this script from the DOM when the
+ *                              component loading it is unmounted.
  * @returns {bool} Has the script finished loading?
  */
 const useLoadScript = (
   src,
   id,
-  opts = {}
+  opts = {},
 ) => {
   const [loaded, setLoaded] = useState(false);
   const {
@@ -37,7 +38,7 @@ const useLoadScript = (
     });
 
     // Insert either at the end of the body tag or before the first script in the head tag.
-    if (! document.getElementById(id)) {
+    if (!document.getElementById(id)) {
       if (footer) {
         document.body.appendChild(script);
       } else {

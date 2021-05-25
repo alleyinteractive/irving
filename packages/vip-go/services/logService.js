@@ -1,5 +1,5 @@
 const defaultService = require(
-  '@irvingjs/core/services/logService/defaultService'
+  '@irvingjs/core/services/logService/defaultService',
 );
 const getEnv = require('@irvingjs/core/utils/universalEnv');
 const monitor = require('@irvingjs/core/services/monitorService/getService')();
@@ -19,9 +19,9 @@ const getService = (namespace) => {
   /* eslint-disable global-require */
   // This is still required for log service, as core expects the log service to be isomorphic.
   if (
-    ! process.env.IRVING_EXECUTION_CONTEXT ||
-    'production_server' === process.env.IRVING_EXECUTION_CONTEXT ||
-    'development_server' === process.env.IRVING_EXECUTION_CONTEXT
+    !process.env.IRVING_EXECUTION_CONTEXT
+    || process.env.IRVING_EXECUTION_CONTEXT === 'production_server'
+    || process.env.IRVING_EXECUTION_CONTEXT === 'development_server'
   ) {
     const {
       ROOT_URL,
@@ -35,7 +35,7 @@ const getService = (namespace) => {
     let transport;
 
     // Set up sentry transport.
-    if (SENTRY_DSN && 'production' === NODE_ENV) {
+    if (SENTRY_DSN && NODE_ENV === 'production') {
       const SentryTransport = require('winston-transport-sentry-node').default;
       const sentryFormat = format((info) => {
         const {
@@ -66,7 +66,7 @@ const getService = (namespace) => {
     // Set up the logger.
     const { logger } = require('@automattic/vip-go');
     const log = logger(namespace, {
-      silent: 'test' === NODE_ENV,
+      silent: NODE_ENV === 'test',
       transport,
     });
 
@@ -79,16 +79,16 @@ const getService = (namespace) => {
           log[method](logInfo);
 
           // If we have an error, do a couple more things with it.
-          if ('error' === logInfo.level) {
+          if (logInfo.level === 'error') {
             const err = new Error(logInfo.message);
 
-            if ('development' === NODE_ENV) {
+            if (NODE_ENV === 'development') {
               // In development the app should crash fast when encountering any errors.
               throw err;
             }
 
             // Send error to production monitoring service.
-            if ('production' === NODE_ENV) {
+            if (NODE_ENV === 'production') {
               monitor.logError(err);
             }
           }

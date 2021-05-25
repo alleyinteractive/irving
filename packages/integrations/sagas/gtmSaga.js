@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import {
   takeLatest,
 } from 'redux-saga/effects';
@@ -15,7 +16,7 @@ export default [
       RECEIVE_PICO_VERIFICATION_FAILURE,
       RECEIVE_PICO_PLAN_UPGRADE,
     ],
-    sendPicoEvent
+    sendPicoEvent,
   ),
 ];
 

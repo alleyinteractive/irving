@@ -12,8 +12,8 @@ const useClientNavigationOnClick = (url) => {
     const [baseUrl] = href.split('#');
 
     if (
-      baseUrl === window.location.href &&
-      href.includes('#')
+      baseUrl === window.location.href
+      && href.includes('#')
     ) {
       return;
     }

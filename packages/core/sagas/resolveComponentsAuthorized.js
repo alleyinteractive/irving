@@ -32,7 +32,7 @@ export default function* resolveComponentsAuthorized() {
       path,
       search,
       cookie,
-      context
+      context,
     );
     yield put(actionReceiveComponents(result));
   } catch (err) {
@@ -41,7 +41,7 @@ export default function* resolveComponentsAuthorized() {
       log.error,
       '%o',
       err,
-      { errorUrl: ROOT_URL + hostname + path + search }
+      { errorUrl: ROOT_URL + hostname + path + search },
     );
     yield put(actionReceiveError(err));
   }

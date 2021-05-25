@@ -1,5 +1,5 @@
 const defaultService = require(
-  '@irvingjs/core/services/monitorService/defaultService'
+  '@irvingjs/core/services/monitorService/defaultService',
 )();
 
 /**
@@ -18,7 +18,7 @@ const getService = () => {
     });
 
     // VIP Go's package can return nothing if newrelic is not installed or configured improperly.
-    if (! client) {
+    if (!client) {
       return defaultService;
     }
 
@@ -31,7 +31,7 @@ const getService = () => {
       logTransaction(method, status, category) {
         client.setTransactionName(`${method} ${status} ${category}`);
       },
-      logMessage: () => {}
+      logMessage: () => {},
     };
   } catch (err) {
     return defaultService;

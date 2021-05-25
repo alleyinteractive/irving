@@ -2,8 +2,8 @@
 let getLogService;
 
 if (
-  process.env.IRVING_EXECUTION_CONTEXT ||
-  'test' === process.env.BABEL_ENV
+  process.env.IRVING_EXECUTION_CONTEXT
+  || process.env.BABEL_ENV === 'test'
 ) {
   getLogService = require('@irvingjs/services/logService');
 } else {

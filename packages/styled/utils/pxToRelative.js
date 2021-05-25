@@ -1,5 +1,6 @@
 /**
- * Create a function for converting px values to the relative unit of your choice.
+ * Create a function for converting px values to the relative unit of
+ * your choice.
  *
  * @param {string} unit Relative unit to which px value should be converted.
  * @param {integer} base Base font size to use as conversion ratio.
@@ -15,12 +16,12 @@ export const createRelativeConverter = (unit, base = 16) => {
   const convertValues = (values) => (
     values.map(
       (value) => {
-        if (0 === value) {
+        if (value === 0) {
           return value;
         }
 
         return `${parseFloat(value) / base}${unit}`;
-      }
+      },
     ).join(' ')
   );
 
@@ -28,15 +29,16 @@ export const createRelativeConverter = (unit, base = 16) => {
    * Convert array of px values to relative unit defined in the outer scope.
    *
    * @param {number} pxVal Value(s) to convert.
-   * @return {function|string} Props function for use in styled components or string of converted values.
+   * @return {function|string} Props function for use in styled components or
+   *                           string of converted values.
    */
   return (...pxVal) => {
-    const containsFunc = pxVal.some((val) => 'function' === typeof val);
+    const containsFunc = pxVal.some((val) => typeof val === 'function');
 
     if (containsFunc) {
       return (props) => {
         const normalizedValues = pxVal.map((value) => (
-          'function' === typeof value ? value(props) : value
+          typeof value === 'function' ? value(props) : value
         ));
 
         return convertValues(normalizedValues);

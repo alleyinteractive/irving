@@ -10,24 +10,24 @@ const { getEnv } = require('../config/multisite');
  * @returns {*}
  */
 const createCheckAuth = (realm, passthrough = true) => (req, res, next) => {
-  const hasFallback = 'function' === typeof passthrough;
+  const hasFallback = typeof passthrough === 'function';
   const {
     BASIC_AUTH_USERNAME: username,
     BASIC_AUTH_PASSWORD: password,
   } = getEnv(req.hostname);
 
-  if (! username || ! password) {
-    if (! passthrough) {
+  if (!username || !password) {
+    if (!passthrough) {
       return res.status(401).send();
     }
 
-    if (! hasFallback) {
+    if (!hasFallback) {
       return next();
     }
   }
 
   const user = auth(req);
-  if (! user || user.name !== username || user.pass !== password) {
+  if (!user || user.name !== username || user.pass !== password) {
     if (hasFallback) {
       return passthrough(req, res, next);
     }

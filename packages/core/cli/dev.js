@@ -19,15 +19,15 @@ const ignore = [
   'reducers/*',
   'sagas/*',
   'selectors/*',
-  'server/serverRenderer.js',
-  'server/getAppTemplateVars.js',
-  'server/getErrorTemplateVars.js',
+  'server/serverRenderer.jsx',
+  'server/getAppTemplateVars.jsx',
+  'server/getErrorTemplateVars.jsx',
   'services/*',
   'styles/*',
   'utils/*',
   'hooks/*',
   'irving.config.js',
-  'componentMap.js'
+  'componentMap.js',
 ];
 const script = path.join(__dirname, './start.js');
 
@@ -41,8 +41,8 @@ nodemon.on('crash', () => {
   // project to restart the app.
   if (isIgnoreApplied(nodemon)) {
     nodemon.config.load({ script }, () => {
-      utils.log.info('Nodemon is temporarily watching all directories for a' +
-        ' file change to resolve the error.');
+      utils.log.info('Nodemon is temporarily watching all directories for a'
+        + ' file change to resolve the error.');
     });
   }
 });
@@ -50,10 +50,10 @@ nodemon.on('crash', () => {
 nodemon.on('restart', () => {
   // If the app has successfully restarted, make sure that we are ignore the
   // isomorphic code directories again.
-  if (! isIgnoreApplied(nodemon)) {
+  if (!isIgnoreApplied(nodemon)) {
     nodemon.config.load({ script, ignore }, () => {
-      utils.log.info('Nodemon has continued to ignore directories where front' +
-        ' end changes may occur.');
+      utils.log.info('Nodemon has continued to ignore directories where front'
+        + ' end changes may occur.');
     });
   }
 });

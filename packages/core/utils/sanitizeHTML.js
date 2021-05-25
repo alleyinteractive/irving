@@ -1,5 +1,7 @@
+/* eslint-disable global-require */
 const getEnv = require('./universalEnv');
 const { getValueFromConfig } = require('../config/irving/getValueFromConfig');
+
 const {
   IRVING_EXECUTION_CONTEXT,
   BABEL_ENV,
@@ -8,10 +10,10 @@ const {
 let sanitizeHTML;
 
 if (
-  ! IRVING_EXECUTION_CONTEXT ||
-  'development_server' === IRVING_EXECUTION_CONTEXT ||
-  'production_server' === IRVING_EXECUTION_CONTEXT ||
-  'test' == BABEL_ENV
+  !IRVING_EXECUTION_CONTEXT
+  || IRVING_EXECUTION_CONTEXT === 'development_server'
+  || IRVING_EXECUTION_CONTEXT === 'production_server'
+  || BABEL_ENV === 'test'
 ) {
   const createDOMPurify = require('dompurify');
   sanitizeHTML = createDOMPurify(window);
@@ -34,7 +36,7 @@ module.exports.config = getValueFromConfig(
       'target', 'type', 'vspace', 'xml:lang',
     ],
     FORBID_TAGS: [
-      'body', 'html', 'head', 'main'
-    ]
-  }
+      'body', 'html', 'head', 'main',
+    ],
+  },
 );

@@ -1,8 +1,9 @@
 /* eslint-disable global-require, no-console, import/first, import/order */
 // Start monitor service as early as possible.
 const getMonitorService = require(
-  '../services/monitorService/getServiceFromFilesystem'
+  '../services/monitorService/getServiceFromFilesystem',
 );
+
 const monitorService = getMonitorService();
 monitorService.start();
 
@@ -18,6 +19,7 @@ const { customizeRedirect } = require('./customizeRedirect');
 
 // Start log service.
 const logService = require('../services/logService/getServiceFromFilesystem');
+
 const log = logService('irving:server');
 
 // Create app.
@@ -32,7 +34,7 @@ app.set('view engine', 'ejs');
 // Run all customize server functions.
 const irvingServerMiddleware = getValueFromFiles(
   'server/customizeServer.js',
-  [() => {}]
+  [() => {}],
 );
 irvingServerMiddleware.forEach((middleware) => middleware(app));
 
@@ -46,7 +48,7 @@ app.use(cookiesMiddleware());
 proxyMiddleware(app);
 
 // Only load the appropriate middleware for the current env.
-if ('development' === process.env.NODE_ENV) {
+if (process.env.NODE_ENV === 'development') {
   require('./development')(app);
 } else {
   require('./production')(app);
@@ -66,7 +68,7 @@ app.use((err, req, res, next) => {
 // Run all export server functions.
 const serverExportMiddleware = getValueFromFiles(
   'server/exportServer.js',
-  [() => {}]
+  [() => {}],
 );
 
 module.exports = serverExportMiddleware.reduce(
@@ -79,5 +81,5 @@ module.exports = serverExportMiddleware.reduce(
 
     return acc;
   },
-  app
+  app,
 );

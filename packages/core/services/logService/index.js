@@ -2,6 +2,7 @@
 const { format } = require('util');
 const defaultService = require('./defaultService');
 const monitor = require('../monitorService/getService')();
+
 let service;
 
 /**
@@ -29,18 +30,18 @@ const getService = (namespace) => {
       acc[method] = (...messages) => {
         const messageFormatted = format(...messages);
 
-        if ('error' === method) {
+        if (method === 'error') {
           const firstMessage = messages[0];
-          const message = (firstMessage instanceof Error) ?
-            firstMessage : new Error(messageFormatted);
+          const message = (firstMessage instanceof Error)
+            ? firstMessage : new Error(messageFormatted);
 
           // In development the app should crash fast when encountering any errors.
-          if ('development' === env) {
+          if (env === 'development') {
             throw message;
           }
 
           // Send error to production monitoring service.
-          if ('production' === env) {
+          if (env === 'production') {
             monitor.logError(message);
           }
         } else {

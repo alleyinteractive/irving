@@ -11,7 +11,7 @@ const getPageComponents = createSelector(
     getRouteKey,
     get('components.page'),
   ],
-  (routeKey, pageMap) => pageMap[routeKey] || []
+  (routeKey, pageMap) => pageMap[routeKey] || [],
 );
 
 export default getPageComponents;

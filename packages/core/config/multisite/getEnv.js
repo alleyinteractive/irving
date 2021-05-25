@@ -11,7 +11,7 @@ module.exports = (hostname = window.location.hostname) => {
   const env = getEnv();
   const siteConfig = getSiteConfig(hostname);
 
-  if (! siteConfig) {
+  if (!siteConfig) {
     return env;
   }
 

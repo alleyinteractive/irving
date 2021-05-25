@@ -16,15 +16,15 @@ const getServiceAliases = (target) => {
    * undefined: return path to core's cache client
    */
   let cacheClientValue = resolveConfigFilepath('services/cacheClient');
-  if ('web' === target) {
+  if (target === 'web') {
     cacheClientValue = path.join(
       irvingRoot,
-      'services/cacheService/defaultClient.js'
+      'services/cacheService/defaultClient.js',
     );
-  } else if (! cacheClientValue) {
+  } else if (!cacheClientValue) {
     cacheClientValue = path.join(
       irvingRoot,
-      'services/cacheService/cacheClient.js'
+      'services/cacheService/cacheClient.js',
     );
   }
 
@@ -36,15 +36,15 @@ const getServiceAliases = (target) => {
    * undefined: return path to core's cache service
    */
   let cacheServiceValue = resolveConfigFilepath('services/cacheService');
-  if ('web' === target) {
+  if (target === 'web') {
     cacheServiceValue = path.join(
       irvingRoot,
-      'services/cacheService/defaultService.js'
+      'services/cacheService/defaultService.js',
     );
-  } else if (! cacheServiceValue) {
+  } else if (!cacheServiceValue) {
     cacheServiceValue = path.join(
       irvingRoot,
-      'services/cacheService/index.js'
+      'services/cacheService/index.js',
     );
   }
 
@@ -56,15 +56,15 @@ const getServiceAliases = (target) => {
    * undefined: return path to core's monitor service
    */
   let monitorServiceValue = resolveConfigFilepath('services/monitorService');
-  if ('web' === target) {
+  if (target === 'web') {
     monitorServiceValue = path.join(
       irvingRoot,
-      'services/monitorService/defaultService.js'
+      'services/monitorService/defaultService.js',
     );
-  } else if (! monitorServiceValue) {
+  } else if (!monitorServiceValue) {
     monitorServiceValue = path.join(
       irvingRoot,
-      'services/monitorService/index.js'
+      'services/monitorService/index.js',
     );
   }
 
@@ -75,10 +75,10 @@ const getServiceAliases = (target) => {
    * undefined: return path to core's log service
    */
   let logServiceValue = resolveConfigFilepath('services/logService');
-  if (! logServiceValue) {
+  if (!logServiceValue) {
     logServiceValue = path.join(
       irvingRoot,
-      'services/logService/index.js'
+      'services/logService/index.js',
     );
   }
 

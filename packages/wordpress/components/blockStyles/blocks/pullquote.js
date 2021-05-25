@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { link } from './utils';
 
-/* eslint-disable indent */
+/* eslint-disable indent, import/prefer-default-export */
 export const pullquoteBlock = css`
 
   .wp-block-pullquote {

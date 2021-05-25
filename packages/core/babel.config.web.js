@@ -1,15 +1,6 @@
-const path = require('path');
-const fs = require('fs');
 const { getValueFromFiles } = require('./config/irving/getValueFromFiles');
-const getServiceAliases = require('./config/irving/getServiceAliases');
-const {
-  buildContext,
-} = require('./config/paths');
-const aliases = require('./config/aliases');
-const scopeDir = path.join(__dirname, '../');
-const packageDirs = fs.readdirSync(scopeDir);
-const packageRoots = ! packageDirs.length ? [] :
-  packageDirs.map((dir) => path.join(scopeDir, dir));
+const { buildContext } = require('./config/paths');
+const getModuleResolverOptions = require('./config/getModuleResolverOptions');
 
 const config = (api) => {
   api.cache.using(() => process.env.NODE_ENV);
@@ -18,17 +9,7 @@ const config = (api) => {
     plugins: [
       [
         'module-resolver',
-        {
-          root: [
-            buildContext,
-            ...packageRoots,
-          ],
-          cwd: 'packagejson',
-          alias: {
-            ...getServiceAliases('web'),
-            ...aliases,
-          },
-        },
+        getModuleResolverOptions('web'),
       ],
       [
         'react-remove-properties',

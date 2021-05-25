@@ -1,6 +1,7 @@
 import { css } from 'styled-components';
 import { link, list, listItem } from './utils';
 
+/* eslint-disable indent, import/prefer-default-export */
 export const listBlock = css`
 
   [data-type="core/list"],

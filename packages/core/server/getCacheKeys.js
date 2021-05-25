@@ -1,7 +1,7 @@
 const cacheService = require('../services/cacheService')();
 
-const getCacheKeys = async (req, res) => {
-  if (! cacheService.client) {
+const getCacheKeys = async (req, res, next) => {
+  if (!cacheService.client) {
     return res.send('Redis client is not configured.');
   }
 
@@ -15,6 +15,8 @@ const getCacheKeys = async (req, res) => {
   });
 
   stream.on('end', () => res.json(keyList));
+
+  return next();
 };
 
 module.exports = getCacheKeys;

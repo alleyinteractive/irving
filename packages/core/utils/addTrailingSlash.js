@@ -5,11 +5,11 @@ import {
 
 const forceTrailingSlashes = getValueFromUserConfig(
   'forceTrailingSlashes',
-  false
+  false,
 );
 const trailingSlashDenylist = getValueFromConfig(
   'trailingSlashDenylist',
-  []
+  [],
 );
 
 /**
@@ -20,18 +20,18 @@ const trailingSlashDenylist = getValueFromConfig(
  */
 export default function addTrailingSlash(
   url,
-  replace = forceTrailingSlashes
+  replace = forceTrailingSlashes,
 ) {
   // Add a trailing slash, if relevant env var is configured.
   if (replace) {
     const splitUrl = url.split('/');
 
     if (
-      '/' !== url[url.length - 1] &&
+      url[url.length - 1] !== '/'
       // Don't add trailing slashes to filepaths.
-      ! splitUrl[splitUrl.length - 1].includes('.') &&
+      && !splitUrl[splitUrl.length - 1].includes('.')
       // Don't add trailling slashes to any URL/path configured in the denylist.
-      ! trailingSlashDenylist.some((path) => (
+      && !trailingSlashDenylist.some((path) => (
         url.includes(path) || path.includes(url)
       ))
     ) {

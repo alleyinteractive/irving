@@ -11,23 +11,23 @@ const include = (filepath) => {
       (
         (
           // Anything within irving root + build context should be included in build.
-          filepath.includes(irvingRoot) ||
-          filepath.includes(buildContext) ||
+          filepath.includes(irvingRoot)
+          || filepath.includes(buildContext)
           // Monorepo root directory (if it exists, which it won't outside a development context).
-          filepath.includes(path.join(__dirname, '../../../../'))
-        ) &&
-        ! filepath.includes('node_modules') &&
-        ! filepath.includes('shimDom')
-      ) ||
+          || filepath.includes(path.join(__dirname, '../../../../'))
+        )
+        && !filepath.includes('node_modules')
+        && !filepath.includes('shimDom')
+      )
       // Anything imported within irving packages should be included in build,
       // even if located within node_modules (but not nested node modules).
-      filepath.match(/node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/)
-    ) &&
+      || filepath.match(/node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/)
+    )
     // Exclude minified JS.
-    ! filepath.match(/\.min\.js$/)
+    && !filepath.match(/\.min\.js$/)
   );
 
-  return !! matches;
+  return !!matches;
 };
 
 /**
@@ -58,7 +58,7 @@ module.exports = function getRules(context) {
       ],
       type: 'asset/resource',
       generator: {
-        emit: ! isServer,
+        emit: !isServer,
       },
     },
     {
@@ -74,7 +74,7 @@ module.exports = function getRules(context) {
       exclude: [/assets\/icons/],
       type: 'asset',
       generator: {
-        emit: ! isServer,
+        emit: !isServer,
       },
     },
     {
@@ -89,9 +89,9 @@ module.exports = function getRules(context) {
         {
           loader: 'babel-loader',
           options: {
-            extends: isServer ?
-              path.join(irvingRoot, 'babel.config.node.js') :
-              path.join(irvingRoot, 'babel.config.web.js'),
+            extends: isServer
+              ? path.join(irvingRoot, 'babel.config.node.js')
+              : path.join(irvingRoot, 'babel.config.web.js'),
           },
         },
       ],
@@ -119,7 +119,7 @@ module.exports = function getRules(context) {
               localIdentName: '[name]__[local]--[hash:base64:5]',
               exportLocalsConvention: 'camelCase',
             },
-            sourceMap: ! isProd,
+            sourceMap: !isProd,
           },
         },
       ],

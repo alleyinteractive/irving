@@ -14,7 +14,7 @@ const authors = [
   <Link href="#">Washington Irving</Link>,
   <Link href="#">William Irving Sr.</Link>,
   <Link href="#">Sarah Irving</Link>,
-  <Link href="#">Ebenezer Irving</Link>
+  <Link href="#">Ebenezer Irving</Link>,
 ];
 
 export const BasicExample = () => <Byline>{[authors[0]]}</Byline>;
@@ -37,13 +37,13 @@ export const DifferentNumbersOfAuthors = () => (
  * Example with an avatar and timestamp.
  */
 export const AvatarAndTimestampExample = () => (
-  <Container style={{"align-items": "center", "display": "flex", "margin-bottom": "1rem"}}>
+  <Container style={{ 'align-items': 'center', display: 'flex', 'margin-bottom': '1rem' }}>
     <img
       src="https://api.adorable.io/avatars/50/abott@adorable.png"
       style={{
-        "border-radius": "50%",
-        "margin-bottom": 0,
-        "margin-right": "1rem"
+        'border-radius': '50%',
+        'margin-bottom': 0,
+        'margin-right': '1rem',
       }}
     />
     <Container>

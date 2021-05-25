@@ -23,7 +23,7 @@ import { coral as defaultState } from './defaultState';
  */
 export default function coralReducer(
   state = defaultState,
-  { type, payload }
+  { type, payload },
 ) {
   switch (type) {
     case DISMISS_CORAL_UPGRADE_MODAL:

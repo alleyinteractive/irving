@@ -15,7 +15,7 @@ import { pico as defaultState } from './defaultState';
  */
 export default function picoReducer(
   state = defaultState,
-  { type, payload }
+  { type, payload },
 ) {
   switch (type) {
     case UPDATE_PICO_LIFECYCLE:

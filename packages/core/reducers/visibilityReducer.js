@@ -24,10 +24,9 @@ export default function visibilityReducer(visibleState = defaultState, action) {
     case UPDATE_VISIBILITY: {
       const { name, isVisible } = payload;
       // Toggle value if it was omitted in action.
-      const newValue =
-        (null !== isVisible && 'undefined' !== typeof isVisible) ?
-          isVisible :
-          ! visibleState[name];
+      const newValue = (isVisible !== null && typeof isVisible !== 'undefined')
+        ? isVisible
+        : !visibleState[name];
 
       return { ...visibleState, [name]: newValue };
     }

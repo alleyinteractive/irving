@@ -25,7 +25,7 @@ module.exports = function getAlias(context) {
         'prop-types': path.join(appRoot, './node_modules/prop-types'),
         'styled-components': path.join(
           appRoot,
-          './node_modules/styled-components'
+          './node_modules/styled-components',
         ),
         webpack: path.join(appRoot, './node_modules/webpack'),
       };

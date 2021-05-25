@@ -20,14 +20,14 @@ export default function useGadgetScript(gadgetUrl, publisherId) {
     () => dispatch(actionUpdatePicoLifecycle({
       scriptAdded: true,
     })),
-    [dispatch]
+    [dispatch],
   );
 
   // Grab the `scriptAdded` value from the `pico` branch of the state tree.
   const { scriptAdded: picoScriptAdded } = useSelector(picoLifecycleSelector);
 
   useEffect(() => {
-    if (! picoScriptAdded) {
+    if (!picoScriptAdded) {
       log.info('[irving:useGadgetScript] adding Pico gadget script.');
 
       // Get the `body` DOM node.

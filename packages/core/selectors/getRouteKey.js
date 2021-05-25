@@ -23,7 +23,7 @@ const getRouteKey = createSelector(
     const key = redirectTo || `${pathname}${(queries ? `?${queries}` : '')}`;
 
     return replace(/\./g, '%2E', key);
-  }
+  },
 );
 
 export default getRouteKey;

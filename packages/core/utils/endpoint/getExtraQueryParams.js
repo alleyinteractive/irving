@@ -6,7 +6,7 @@
  */
 const getExtraQueryParams = (env) => Object
   .keys(env)
-  .filter((key) => 0 === key.indexOf('API_QUERY_PARAM_'))
+  .filter((key) => key.indexOf('API_QUERY_PARAM_') === 0)
   .reduce((acc, key) => {
     const param = key.replace('API_QUERY_PARAM_', '').toLowerCase();
     return {

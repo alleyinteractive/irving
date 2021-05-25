@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 const layout = require('./layout.js');
 const {
   breakpoints,

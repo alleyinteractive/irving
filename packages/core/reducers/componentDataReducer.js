@@ -19,7 +19,7 @@ import {
 const componentDataReducer = (state = componentData, action) => {
   const { type, payload } = action;
 
-  if (! payload) {
+  if (!payload) {
     return state;
   }
 

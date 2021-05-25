@@ -8,7 +8,7 @@ const app = require('../server');
 // Create logger
 const getLogService = getValueFromFiles(
   'services/logService.js',
-  coreLogService
+  coreLogService,
 );
 const log = getLogService('irving:server');
 
@@ -18,22 +18,22 @@ require('../config/env')();
 // Allow customization of how server is created.
 const startServer = getValueFromFiles(
   'server/startServer.js',
-  coreStartServer
+  coreStartServer,
 );
 
 // Start the server.
 const started = startServer(app);
 
 // Fall back to core.
-if (! started) {
+if (!started) {
   coreStartServer(app);
 }
 
 // Open app for convenience and to get the initial build started.
-if ('development' === process.env.NODE_ENV) {
+if (process.env.NODE_ENV === 'development') {
   const openBrowser = require('react-dev-utils/openBrowser');
-  const defaultRoot = process.env.DEV_URL ||
-    `https://localhost:${process.env.PORT || '3001'}`;
+  const defaultRoot = process.env.DEV_URL
+    || `https://localhost:${process.env.PORT || '3001'}`;
   openBrowser(rootUrl || defaultRoot);
 }
 
@@ -41,7 +41,7 @@ if ('development' === process.env.NODE_ENV) {
 process.on('unhandledRejection', (err) => {
   log.error('%o', err);
 
-  if ('production' !== process.env.NODE_ENV) {
+  if (process.env.NODE_ENV !== 'production') {
     throw err;
   }
 });

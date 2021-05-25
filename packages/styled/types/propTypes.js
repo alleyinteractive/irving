@@ -11,7 +11,7 @@ export const standardPropTypes = {
       PropTypes.oneOfType([
         PropTypes.node,
         PropTypes.element,
-      ])
+      ]),
     ),
     PropTypes.object,
     PropTypes.node,

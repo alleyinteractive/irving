@@ -1,4 +1,5 @@
 module.exports = (config) => {
+  // eslint-disable-next-line no-param-reassign
   config.module.rules = config.module.rules
     .map((rule) => {
       // If it's the CSS loader array, push another loader on for postcss.

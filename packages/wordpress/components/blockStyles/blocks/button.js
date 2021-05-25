@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-/* eslint-disable indent */
+/* eslint-disable indent, import/prefer-default-export */
 export const buttonBlock = css`
 
   .wp-block-button__link {

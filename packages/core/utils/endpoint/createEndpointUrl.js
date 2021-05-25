@@ -20,7 +20,7 @@ function createEndpointUrl(
   path,
   search = '',
   cookie = {},
-  context = CONTEXT_PAGE
+  context = CONTEXT_PAGE,
 ) {
   const env = getEnv(hostname);
   const queryObject = { path };
@@ -41,7 +41,7 @@ function createEndpointUrl(
     {
       encode: false,
       sort: false,
-    }
+    },
   );
 
   return `${env.API_ROOT_URL}/components?${query}`;

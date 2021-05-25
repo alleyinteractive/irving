@@ -33,7 +33,7 @@ export const replaceWithSiteTheme = (styleObject, siteTheme) => (
       const themeStyle = get(
         siteTheme,
         styleObject[property],
-        styleObject[property]
+        styleObject[property],
       );
 
       return {
@@ -63,8 +63,8 @@ const useStandardProps = (props, componentDefaults = {}) => {
     themeName,
     componentName,
   } = props;
-  const componentNameClass = componentName ?
-    createComponentNameClass(componentName) : '';
+  const componentNameClass = componentName
+    ? createComponentNameClass(componentName) : '';
   // Using the `styled-components` ThemeContext, attempt to use dynamic
   // values in CSS properties.
   const siteTheme = useContext(ThemeContext);
@@ -73,12 +73,12 @@ const useStandardProps = (props, componentDefaults = {}) => {
       className,
       componentNameClass,
       componentDefaults.className,
-      { [`${componentNameClass}--${themeName}`]: themeName }
+      { [`${componentNameClass}--${themeName}`]: themeName },
     ),
     id: id || componentDefaults.id,
     style: replaceWithSiteTheme(
       { ...componentDefaults.style, ...style },
-      siteTheme
+      siteTheme,
     ),
   };
 

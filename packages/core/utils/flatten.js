@@ -7,8 +7,8 @@ function flatten(obj) {
   return Object.keys(obj)
     .reduce(
       (acc, curr) => (
-        Object.assign({}, acc, obj[curr])
-      ), {}
+        { ...acc, ...obj[curr] }
+      ), {},
     );
 }
 

@@ -92,5 +92,5 @@ module.exports = getValueFromFiles(
   {
     base: buildContext,
     ignorePackages: ['@irvingjs/styled'],
-  }
+  },
 );

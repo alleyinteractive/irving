@@ -5,7 +5,7 @@ module.exports = function isomorphicFetch(url, options) {
   const newUrl = URL(url);
 
   // Resolves node error with fetch URLs missing a protocol.
-  if (! newUrl.protocol) {
+  if (!newUrl.protocol) {
     newUrl.set('protocol', 'https');
   }
 
@@ -15,7 +15,7 @@ module.exports = function isomorphicFetch(url, options) {
   return realFetch.call(this, normalizedUrl, options);
 };
 
-if (! global.fetch) {
+if (!global.fetch) {
   global.fetch = module.exports;
   global.Response = realFetch.Response;
   global.Headers = realFetch.Headers;

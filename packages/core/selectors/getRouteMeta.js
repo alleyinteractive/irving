@@ -30,9 +30,9 @@ const getRouteMeta = createSelector(
       hash: route.hash,
       cookie: cookies,
       context,
-      cached: !! pageComponents.length,
+      cached: !!pageComponents.length,
     };
-  }
+  },
 );
 
 export default getRouteMeta;

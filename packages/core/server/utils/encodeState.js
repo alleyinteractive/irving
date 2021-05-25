@@ -5,11 +5,11 @@ import preloadedStateDenylist from 'config/preloadedStateDenylist';
 const encodeState = (state) => {
   const unsetConfigs = getValueFromConfig(
     'preloadedStateDenylist',
-    preloadedStateDenylist
+    preloadedStateDenylist,
   );
   const sanitizedState = unsetConfigs.reduce(
     (acc, config) => unset(config.key, acc),
-    state
+    state,
   );
 
   // https://redux.js.org/recipes/server-rendering#security-considerations

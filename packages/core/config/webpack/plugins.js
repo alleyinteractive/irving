@@ -3,7 +3,7 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const ReactRefreshWebpackPlugin = require(
-  '@pmmmwh/react-refresh-webpack-plugin'
+  '@pmmmwh/react-refresh-webpack-plugin',
 );
 const ESLintPlugin = require('eslint-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -22,13 +22,14 @@ const eslintConfig = require('../../.eslintrc.js');
 module.exports = function getPlugins(context, argv) {
   const { analyze } = argv;
 
-  // Define paths to app and error templates at compile time because express needs paths, not the template module itself.
-  // This allows user to more deeply customize app and error templates.
+  // Define paths to app and error templates at compile time because
+  // express needs paths, not the template module itself. This allows user to
+  // more deeply customize app and error templates.
   const commonPlugins = [
     new webpack.DefinePlugin({
       appView: JSON.stringify(maybeResolveUserModule('server/views/app.ejs')),
       errorView: JSON.stringify(
-        maybeResolveUserModule('server/views/error.ejs')
+        maybeResolveUserModule('server/views/error.ejs'),
       ),
       proxyPassthrough: JSON.stringify(proxyPassthrough),
     }),

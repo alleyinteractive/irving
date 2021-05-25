@@ -9,7 +9,7 @@ const { maybeResolve } = require('../userModule');
 const maybeRequire = (filepath) => {
   const resolvedPath = maybeResolve(filepath);
 
-  if (! fs.existsSync(resolvedPath)) {
+  if (!fs.existsSync(resolvedPath)) {
     return null;
   }
 

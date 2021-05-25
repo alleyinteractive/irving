@@ -1,6 +1,7 @@
-# Ignore built files
 build/*
 dist/*
-
-# Ignore asset files
 assets/*
+node_modules/*
+packages/*/node_modules/*
+*.test.js
+*.stories.js

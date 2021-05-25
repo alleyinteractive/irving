@@ -16,7 +16,7 @@ export default async function fetchComponentData(endpoint) {
   const controller = new AbortController();
   const timeout = setTimeout(
     () => controller.abort(),
-    env.FETCH_TIMEOUT || 10000
+    env.FETCH_TIMEOUT || 10000,
   );
 
   // Fetch data for component.
@@ -35,7 +35,7 @@ export default async function fetchComponentData(endpoint) {
     return response.json();
   }
 
-  if (! response.ok) {
+  if (!response.ok) {
     throw new Error(await response.text());
   }
 
@@ -59,7 +59,7 @@ export async function cacheResult(endpoint) {
   };
 
   // Check if we have a cache client set up.
-  if (! cache.client) {
+  if (!cache.client) {
     log.info('%o', info);
     return fetchComponentData(endpoint);
   }
@@ -69,7 +69,7 @@ export async function cacheResult(endpoint) {
     await fetchComponentData(endpoint),
     {
       payload: true,
-    }
+    },
   );
 
   log.info('%o', {
