@@ -10,6 +10,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **babel:** fix configuration of babel module resolver with eslint ([82c2dbc](https://github.com/alleyinteractive/irving/commit/82c2dbca76e02b356f4f7982d59d4d8c228570bd))
 * **eslint:** eslint style updates for loadable package ([b9905d3](https://github.com/alleyinteractive/irving/commit/b9905d3d02afe64487df81543b99911dd801d98a))
+# [6.3.0](https://github.com/alleyinteractive/irving/compare/v6.3.0-beta.0...v6.3.0) (2021-05-25)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.3.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.3.0-alpha.2...v6.3.0-beta.0) (2021-05-25)
+
+**Note:** Version bump only for package irving
 
 
 

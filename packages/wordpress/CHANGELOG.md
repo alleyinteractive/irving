@@ -9,6 +9,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **babel:** fix configuration of babel module resolver with eslint ([82c2dbc](https://github.com/alleyinteractive/irving/packages/example-package/commit/82c2dbca76e02b356f4f7982d59d4d8c228570bd))
+# [6.3.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.3.0-beta.0...v6.3.0) (2021-05-25)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
+# [6.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.3.0-alpha.2...v6.3.0-beta.0) (2021-05-25)
+
+**Note:** Version bump only for package @irvingjs/wordpress
 
 
 
