@@ -2,7 +2,7 @@ const { format } = require('util');
 
 module.exports = function generateLogInfo(method, messages) {
   const hasUrl = messages.find(
-    (message) => 'object' === typeof message && message.errorUrl
+    (message) => typeof message === 'object' && message.errorUrl,
   );
   const firstMessage = messages[0];
   let message = firstMessage;
@@ -18,11 +18,11 @@ module.exports = function generateLogInfo(method, messages) {
   }
 
   // Format string messages like winston would.
-  if (! (firstMessage instanceof Error)) {
+  if (!(firstMessage instanceof Error)) {
     const formattedMessage = format(...messages);
 
     // error logged, but message isn't a string.
-    if ('error' === method) {
+    if (method === 'error') {
       message = new Error(formattedMessage);
     } else {
       message = formattedMessage;

@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 const defaultClient = require(
-  '@irvingjs/core/services/cacheService/defaultClient'
+  '@irvingjs/core/services/cacheService/defaultClient',
 );
 
 /**
@@ -17,7 +17,7 @@ const getClient = () => {
     logger: logger('irving:redis'),
   });
 
-  if (! client) {
+  if (!client) {
     return defaultClient;
   }
 

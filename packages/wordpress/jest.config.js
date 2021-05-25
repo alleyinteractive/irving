@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/extensions
 const baseConfig = require('../../jest.config.base.js');
 
 /**

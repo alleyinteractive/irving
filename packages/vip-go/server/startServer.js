@@ -10,7 +10,7 @@ const {
 module.exports = function startServer(app) {
   let vipServer;
 
-  if ('development' !== NODE_ENV) {
+  if (NODE_ENV !== 'development') {
     vipServer = server(app, { PORT });
     vipServer.listen();
   }
