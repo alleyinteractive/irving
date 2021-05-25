@@ -1,10 +1,10 @@
 const autoprefixer = require('autoprefixer');
 const stylelint = require('stylelint');
 const getValueFromFiles = require(
-  '@irvingjs/core/config/irving/getValueFromFiles'
+  '@irvingjs/core/config/irving/getValueFromFiles',
 );
 const { buildContext } = require('@irvingjs/core/config/paths');
-const stylelintConfig = require('./stylelint.config.js');
+const stylelintConfig = require('./stylelint.config.js'); // eslint-disable-line import/extensions
 
 // Call all config getters, passing in configs in succession.
 const processedStylelintConfig = getValueFromFiles(
@@ -13,7 +13,7 @@ const processedStylelintConfig = getValueFromFiles(
   {
     base: buildContext,
     ignorePackages: ['@irvingjs/postcss'],
-  }
+  },
 );
 
 // Base postcss config.
@@ -33,7 +33,7 @@ const config = getValueFromFiles(
   {
     base: buildContext,
     ignorePackages: ['@irvingjs/postcss'],
-  }
+  },
 );
 
 // Config
