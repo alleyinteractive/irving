@@ -4,11 +4,15 @@ const URL = require('url-parse');
 module.exports = function isomorphicFetch(url, options) {
   const newUrl = URL(url);
 
+  // Resolves node error with fetch URLs missing a protocol.
   if (! newUrl.protocol) {
     newUrl.set('protocol', 'https');
   }
 
-  return realFetch.call(this, newUrl.toString(), options);
+  // Resolves node error involving unescaped characters in fetch URLs.
+  const normalizedUrl = encodeURI(newUrl.toString());
+
+  return realFetch.call(this, normalizedUrl, options);
 };
 
 if (! global.fetch) {
