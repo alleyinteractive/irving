@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 const defaultService = require('./defaultService')();
+
 let service;
 let getClient;
 
@@ -11,7 +12,7 @@ if (process.env.IRVING_EXECUTION_CONTEXT) {
 
   getClient = getValueFromFiles(
     'services/cacheClient',
-    coreCacheClient
+    coreCacheClient,
   );
 }
 
@@ -28,7 +29,7 @@ const getService = () => {
   const cacheClient = getClient();
   let Stampede;
 
-  if (! cacheClient) {
+  if (!cacheClient) {
     return defaultService;
   }
 
@@ -46,14 +47,15 @@ const getService = () => {
     key,
     JSON.stringify(value),
     'EX',
-    process.env.CACHE_EXPIRE || 300
+    process.env.CACHE_EXPIRE || 300,
   );
 
   const del = (key) => cacheClient.del(key);
 
   /**
-   * @todo this will probably only work for ioredis, but since stampede has adapters for various clients,
-   * this is something we could change in the future potentially.
+   * @todo this will probably only work for ioredis, but since stampede has
+   * adapters for various clients, this is something we could change in the
+   * future potentially.
    */
   const clientAdapter = {
     client: cacheClient,

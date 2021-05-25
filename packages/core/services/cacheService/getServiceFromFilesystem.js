@@ -8,10 +8,10 @@ const getDefaultService = require('./defaultService');
 const getService = () => {
   const service = getValueFromFiles(
     'services/cacheService',
-    coreCacheService
+    coreCacheService,
   )();
 
-  if (! service) {
+  if (!service) {
     return getDefaultService();
   }
 

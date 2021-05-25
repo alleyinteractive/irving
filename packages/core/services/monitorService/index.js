@@ -1,4 +1,5 @@
 const defaultService = require('./defaultService')();
+
 let service;
 
 /**
@@ -17,9 +18,9 @@ const getService = () => {
   const configured = [
     'NEW_RELIC_APP_NAME',
     'NEW_RELIC_LICENSE_KEY',
-  ].every((field) => ('undefined' !== typeof process.env[field]));
+  ].every((field) => (typeof process.env[field] !== 'undefined'));
 
-  if (! configured) {
+  if (!configured) {
     return defaultService;
   }
 

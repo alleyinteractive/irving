@@ -7,11 +7,13 @@ const noOp = require('./noOp');
  * @param trackingOptions
  * @returns {function} With tracking HOC.
  */
+/* eslint-disable react/jsx-props-no-spreading */
 function withTracking(...trackingOptions) {
   return (DecoratedComponent) => {
-    const decoratedComponentName =
-      DecoratedComponent.displayName || DecoratedComponent.name || 'Component';
-    function WithTracking({ ...props }) {
+    const decoratedComponentName = DecoratedComponent.displayName
+      || DecoratedComponent.name
+      || 'Component';
+      function WithTracking({ ...props }) {
       return (
         <DecoratedComponent
           {...props}
@@ -23,5 +25,6 @@ function withTracking(...trackingOptions) {
     return WithTracking;
   };
 }
+/* eslint-enable */
 
 module.exports = withTracking;

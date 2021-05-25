@@ -8,10 +8,10 @@ const getDefaultService = require('./defaultService');
 const getService = () => {
   const service = getValueFromFiles(
     'services/monitorService',
-    coreMonitorService
+    coreMonitorService,
   )();
 
-  if (! service) {
+  if (!service) {
     return getDefaultService();
   }
 

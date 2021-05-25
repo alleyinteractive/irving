@@ -27,7 +27,7 @@ export async function fetchComponents(
   path,
   search = '',
   cookie = {},
-  context = CONTEXT_PAGE
+  context = CONTEXT_PAGE,
 ) {
   const { FETCH_TIMEOUT, ROOT_URL } = getEnv(hostname);
   const apiUrl = createEndpointUrl(
@@ -35,7 +35,7 @@ export async function fetchComponents(
     path,
     search,
     cookie,
-    context
+    context,
   );
 
   // Create abort controller and set timeout to abort fetch call.
@@ -45,11 +45,11 @@ export async function fetchComponents(
     () => {
       log.error(
         new Error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.'), // eslint-disable-line max-len
-        { errorUrl: ROOT_URL + path + search }
+        { errorUrl: ROOT_URL + path + search },
       );
       controller.abort();
     },
-    FETCH_TIMEOUT || 10000
+    FETCH_TIMEOUT || 10000,
   );
 
   // Set up fetch options, including authorization header if applicable.
@@ -94,9 +94,9 @@ export async function fetchComponents(
 
   // Abort if error is encountered, except 404s, which we will handle ourselves.
   if (
-    ! response.ok &&
-    ! redirectTo &&
-    404 !== response.status
+    !response.ok
+    && !redirectTo
+    && response.status !== 404
   ) {
     const message = data.message || data.data || 'No error returned by API';
     throw new Error(`API error: ${message}`);
@@ -124,7 +124,7 @@ async function cachedFetchComponents(
   path,
   search,
   cookie = {},
-  context = CONTEXT_PAGE
+  context = CONTEXT_PAGE,
 ) {
   const cache = getCacheService();
   const apiUrl = createEndpointUrl(
@@ -132,7 +132,7 @@ async function cachedFetchComponents(
     path,
     search,
     cookie,
-    context
+    context,
   );
   const key = `components-endpoint:${apiUrl}`;
   const info = {
@@ -146,7 +146,7 @@ async function cachedFetchComponents(
     bypassCache,
   } = cookie;
 
-  if (bypassCache || ! cache.client) {
+  if (bypassCache || !cache.client) {
     log.info('%o', info);
     return fetchComponents(hostname, path, search, cookie, context);
   }
@@ -156,7 +156,7 @@ async function cachedFetchComponents(
     await fetchComponents(hostname, path, search, cookie, context),
     {
       payload: true,
-    }
+    },
   );
 
   log.info('%o', {

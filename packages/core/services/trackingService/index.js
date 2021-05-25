@@ -15,7 +15,7 @@ const getService = () => {
   }
   service = getValueFromConfig(
     'trackingService',
-    defaultService()
+    defaultService(),
   );
   return service;
 };

@@ -16,9 +16,9 @@ const getClient = () => {
 
   // Redis env variables have not been configured.
   if (
-    ! isRedisUrl(host) &&
-    (! host || ! port) &&
-    'test' !== process.env.BABEL_ENV
+    !isRedisUrl(host)
+    && (!host || !port)
+    && process.env.BABEL_ENV !== 'test'
   ) {
     return client;
   }
