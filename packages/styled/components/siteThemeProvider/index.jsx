@@ -23,10 +23,12 @@ SiteThemeProvider.propTypes = {
   /**
    * Children of the component.
    */
+  /* eslint-disable-next-line react/forbid-prop-types */
   children: PropTypes.array.isRequired,
   /**
    * Children of the component.
    */
+  /* eslint-disable-next-line react/forbid-prop-types */
   theme: PropTypes.object.isRequired,
 };
 

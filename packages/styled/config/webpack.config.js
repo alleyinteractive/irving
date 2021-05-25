@@ -1,12 +1,13 @@
 const path = require('path');
 
 module.exports = (config) => {
+  // eslint-disable-next-line no-param-reassign
   config.module.rules = config.module.rules
     .map((rule) => {
       if (
-        rule.test &&
-        rule.test.toString().includes('jsx') &&
-        ! rule.enforce
+        rule.test
+        && rule.test.toString().includes('jsx')
+        && !rule.enforce
       ) {
         rule.use.push({
           loader: 'stylelint-custom-processor-loader',

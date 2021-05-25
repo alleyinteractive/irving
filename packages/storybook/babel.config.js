@@ -6,13 +6,13 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: [ process.cwd() ],
+        root: [process.cwd()],
         cwd: 'packagejson',
         alias: {
           ...aliases,
           '@irvingjs/componentMap': path.resolve(
             process.cwd(),
-            'componentMap.js'
+            'componentMap.js',
           ),
         },
       },

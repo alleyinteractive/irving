@@ -8,20 +8,22 @@ const withThemes = (themeMap) => (WrappedComponent) => {
       theme: propsTheme,
       themeName,
     } = props;
-    const currentTheme = propsTheme && Object.keys(propsTheme).length ?
-      propsTheme :
-      themeMap[themeName] || {};
+    const currentTheme = propsTheme && Object.keys(propsTheme).length
+      ? propsTheme
+      : themeMap[themeName] || {};
     const theme = assign(
       themeMap.default,
-      currentTheme
+      currentTheme,
     );
 
+    /* eslint-disable react/jsx-props-no-spreading */
     return (
       <WrappedComponent
         {...props}
         theme={theme}
       />
     );
+    /* eslint-enable */
   };
 
   ThemedComponent.propTypes = {
@@ -32,6 +34,7 @@ const withThemes = (themeMap) => (WrappedComponent) => {
     /**
      * Theme (styles) to apply to the component.
      */
+    /* eslint-disable-next-line react/forbid-prop-types */
     theme: PropTypes.object,
   };
 
