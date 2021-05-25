@@ -22,7 +22,7 @@ ConnectedRoot.propTypes = {
     /**
      * Component configuration (mapped to props)
      */
-    config: PropTypes.object.isRequired,
+    config: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     /**
      * Component children
      */

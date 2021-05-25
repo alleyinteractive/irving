@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const chalk = require('chalk');
-const getConfig = require('../config/webpack.config.js');
+const getConfig = require('../config/webpack.config.js'); // eslint-disable-line import/extensions
 
 // Compile.
 module.exports = (program) => {
@@ -43,6 +43,6 @@ module.exports = (program) => {
       console.log(stats.toString({ // eslint-disable-line no-console
         colors: true,
       }));
-    }
+    },
   );
 };

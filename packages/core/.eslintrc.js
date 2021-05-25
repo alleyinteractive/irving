@@ -29,5 +29,6 @@ module.exports = {
   globals: {},
   rules: {
     'import/no-extraneous-dependencies': [0],
+    'react/state-in-constructor': [1, 'never'],
   },
 };

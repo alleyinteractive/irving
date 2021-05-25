@@ -56,6 +56,7 @@ const withData = (
     }
 
     // Return component.
+    /* eslint-disable react/jsx-props-no-spreading */
     if (isDataLoaded && !isDataLoading) {
       return (
         <WrappedComponent
@@ -65,6 +66,7 @@ const withData = (
         />
       );
     }
+    /* eslint-enable */
 
     return <Placeholder />;
   };
