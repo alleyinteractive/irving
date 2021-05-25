@@ -25,16 +25,16 @@ const getCookies = createSelector(
   ],
   (hostname, routeCookies) => {
     const env = getEnv(hostname);
-    const envAllowList = env.COOKIE_MAP_LIST ?
-      env.COOKIE_MAP_LIST.split(',') :
-      [];
+    const envAllowList = env.COOKIE_MAP_LIST
+      ? env.COOKIE_MAP_LIST.split(',')
+      : [];
     const allowlistCookies = [
       ...defaultCookies,
       ...envAllowList,
     ];
 
     return pick(allowlistCookies)(routeCookies);
-  }
+  },
 );
 
 export default getCookies;

@@ -30,7 +30,7 @@ const log = getLogService('irving:server:render');
  * @param {object} req Express request object
  * @param {object} res Express response object to be rendered.
  * @param {object} clientStats Webpack client-side build statistics object.
- **/
+ * */
 const render = async (req, res, clientStats) => {
   // Set up multisite env as early as possible
   const env = createClientEnv(req.hostname);
@@ -40,7 +40,7 @@ const render = async (req, res, clientStats) => {
   const store = createStore(
     rootReducer,
     defaultState,
-    applyMiddleware(sagaMiddleware)
+    applyMiddleware(sagaMiddleware),
   );
   const { getState, dispatch } = store;
   const search = queryString.stringify(req.query, { arrayFormat: 'bracket' });
@@ -95,7 +95,7 @@ const render = async (req, res, clientStats) => {
       },
     },
     clientStats,
-    req.hostname
+    req.hostname,
   );
 
   const stateEncoded = encodeState(getState());
@@ -131,19 +131,19 @@ export default function serverRenderer(options) {
       await render(
         req,
         res,
-        options.clientStats
+        options.clientStats,
       );
     } catch (err) {
       const { ROOT_URL } = getEnv(req.hostname);
       log.error(
         '%o',
         { url: req.originalUrl, err },
-        { errorUrl: ROOT_URL + req.originalUrl, justin: 'test' }
+        { errorUrl: ROOT_URL + req.originalUrl, justin: 'test' },
       );
 
-      const errorToDisplay = req.query.debug ?
-        err :
-        'This error has been logged.';
+      const errorToDisplay = req.query.debug
+        ? err
+        : 'This error has been logged.';
 
       // Render a error page.
       const ErrorMessageComponent = getComponent('error-message');

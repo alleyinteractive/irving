@@ -20,13 +20,13 @@ export const createAssetTags = (assets, rootUrl) => {
     /* eslint-disable max-len */
     if (assetPath.match(/\.js$/)) {
       tags.push(
-        `<script defer src="${rootUrl}/${assetPath}"></script>`
+        `<script defer src="${rootUrl}/${assetPath}"></script>`,
       );
     }
 
     if (assetPath.match(/\.css$/)) {
       tags.push(
-        `<link rel="stylesheet" href="${rootUrl}/${assetPath}"></link>`
+        `<link rel="stylesheet" href="${rootUrl}/${assetPath}"></link>`,
       );
     }
     /* eslint-enable */
@@ -50,11 +50,11 @@ const getWebpackAssetTags = (clientStats, hostname) => {
 
   // Abstracted webpack runtime asset.
   if (
-    runtimeJsPath &&
-    'development' !== NODE_ENV
+    runtimeJsPath
+    && NODE_ENV !== 'development'
   ) {
     // Memoize file operation for optimal performance.
-    if (! runtimeSrc) {
+    if (!runtimeSrc) {
       runtimeSrc = fs.readFileSync(`${clientBuild}/${runtimeJsPath}`);
     }
 
@@ -67,9 +67,9 @@ const getWebpackAssetTags = (clientStats, hostname) => {
     // Runtime main is rendered inline above.
     if (
       (
-        'runtime~main' === chunkName ||
-        'runtime' === chunkName
-      ) && 'development' !== NODE_ENV
+        chunkName === 'runtime~main'
+        || chunkName === 'runtime'
+      ) && NODE_ENV !== 'development'
     ) {
       return acc;
     }

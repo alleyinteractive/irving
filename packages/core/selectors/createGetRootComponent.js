@@ -22,7 +22,7 @@ const createGetRootComponent = () => createSelector(
     }
 
     return defaults.find(matchComponent);
-  }
+  },
 );
 
 export default createGetRootComponent;

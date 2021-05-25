@@ -4,7 +4,7 @@ const logService = require('../services/logService/getServiceFromFilesystem');
 const createEndpointUrl = require('../utils/endpoint/createEndpointUrl');
 const { CONTEXT_SITE } = require('../config/constants');
 const cacheService = require(
-  '../services/cacheService/getServiceFromFilesystem'
+  '../services/cacheService/getServiceFromFilesystem',
 )();
 
 const log = logService('irving:cache:purge');
@@ -17,39 +17,39 @@ const log = logService('irving:cache:purge');
  * @returns {string} Path to be used as a redis key.
  */
 const createKeyFromPath = (hostname, path) => {
-  if (! path) {
+  if (!path) {
     return false;
   }
 
   const normalizedPath = [...path].reduce(
     (acc, letter, idx) => {
       // Normalize to include preceeding slash.
-      if (0 === idx && '/' !== letter) {
+      if (idx === 0 && letter !== '/') {
         return `/${acc}`;
       }
 
       // Remove trailing slash to prevent mismatched keys
       if (
-        1 !== path.length &&
-        path.length - 1 === idx &&
-        '/' === letter
+        path.length !== 1
+        && path.length - 1 === idx
+        && letter === '/'
       ) {
         return acc;
       }
 
       return `${acc}${letter}`;
     },
-    ''
+    '',
   );
 
   // Return exact match if path is "/".
-  if ('/' === normalizedPath) {
+  if (normalizedPath === '/') {
     const endpoint = createEndpointUrl(
       hostname,
       normalizedPath,
       '',
       {},
-      CONTEXT_SITE
+      CONTEXT_SITE,
     );
     return `components-endpoint:${endpoint}`;
   }
@@ -59,7 +59,7 @@ const createKeyFromPath = (hostname, path) => {
     normalizedPath,
     '',
     {},
-    ''
+    '',
   );
   return `components-endpoint:${endpoint}*`;
 };
@@ -105,8 +105,8 @@ const executeStream = async (pipeline, res, key = '') => {
  * @param {object} res Response object.
  * @returns {*}
  */
-const purgeCache = async (req, res) => {
-  if (! cacheService.client || ! cacheService.client.pipeline) {
+const purgeCache = async (req, res, next) => {
+  if (!cacheService.client || !cacheService.client.pipeline) {
     return res.send('Redis client is not configured.');
   }
 
@@ -120,7 +120,7 @@ const purgeCache = async (req, res) => {
     Promise.all(
       paths.map(async (path) => (
         executeStream(pipeline, res, createKeyFromPath(req.hostname, path))
-      ))
+      )),
     ).then(() => {
       pipeline.exec();
       log.info(completeMessage);
@@ -137,6 +137,8 @@ const purgeCache = async (req, res) => {
     res.write(completeMessage);
     return res.end();
   }
+
+  return next();
 };
 
 module.exports = purgeCache;

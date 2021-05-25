@@ -19,7 +19,7 @@ module.exports = (app) => {
     createProxyMiddleware({
       changeOrigin: true,
       followRedirects: true,
-      secure: 'development' !== process.env.NODE_ENV,
+      secure: process.env.NODE_ENV !== 'development',
       target: API_ORIGIN || API_ROOT_URL.replace('/wp-json/irving/v1', ''),
       xfwd: true,
     })(req, res, next);
@@ -29,4 +29,4 @@ module.exports = (app) => {
   proxyPassthrough.forEach((pattern) => {
     app.use(pattern, proxyWrapper);
   });
-}
+};

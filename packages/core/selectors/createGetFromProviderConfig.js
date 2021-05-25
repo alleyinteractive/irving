@@ -22,12 +22,12 @@ const createGetFromProviderConfig = (providerName, key) => (
     [
       (state) => createGetProviderConfig()(
         state,
-        { name: providerName }
+        { name: providerName },
       ),
     ],
     ({ config }) => (
       get(key, config) || null
-    )
+    ),
   )
 );
 

@@ -12,10 +12,10 @@ const getRoots = createSelector(
     get('components.defaults'),
   ],
   (defaults) => (
-    Array.isArray(defaults) ?
-      defaults.map((component) => component.name) :
-      []
-  )
+    Array.isArray(defaults)
+      ? defaults.map((component) => component.name)
+      : []
+  ),
 );
 
 export default getRoots;

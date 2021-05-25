@@ -12,7 +12,7 @@ const createGetProviderConfig = () => createSelector(
     (state, props = {}) => props.name,
   ],
   (providers, name) => {
-    if (! name || ! providers) {
+    if (!name || !providers) {
       return {};
     }
 
@@ -26,7 +26,7 @@ const createGetProviderConfig = () => createSelector(
       config: {},
       children: [],
     };
-  }
+  },
 );
 
 export default createGetProviderConfig;

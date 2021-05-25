@@ -12,7 +12,7 @@ const getValueFromFiles = require('../config/irving/getValueFromFiles');
 
 // App must be built using the build command before production mode can be run.
 const clientStats = nodeRequire(
-  path.join(clientBuild, 'stats.json')
+  path.join(clientBuild, 'stats.json'),
 );
 const {
   default: serverRenderer,
@@ -27,7 +27,7 @@ const productionMiddleware = async (app) => {
   // Allow customization of production server
   const irvingProdMiddleware = getValueFromFiles(
     'server/customizeProdServer.js',
-    [() => {}]
+    [() => {}],
   );
   irvingProdMiddleware.forEach((middleware) => middleware(app));
 

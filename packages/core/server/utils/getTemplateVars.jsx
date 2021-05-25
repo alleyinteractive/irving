@@ -20,21 +20,24 @@ export const defaultHead = {
 };
 
 /**
- * Check if a value is a function and, if so, call that function to get underlying value.
+ * Check if a value is a function and, if so, call that function to get
+ * underlying value.
  *
  * @param {(func|string|array} val Value to call.
  * @param {array} args Arguments to pass to the value function, if applicable.
  * @returns {string|array};
  */
 const getValFromFunction = (val, ...args) => (
-  'function' === typeof val ? val(...args) : val
+  typeof val === 'function' ? val(...args) : val
 );
 
 /**
- * Reducer function to convert the values of a `head` config object into strings.
+ * Reducer function to convert the values of a `head` config object into
+ * strings.
  *
  * For example, if one value in the object was an array of <script> tags,
- * these tags would be concatenated into a single string in preparation for rendering in the app.ejs template.
+ * these tags would be concatenated into a single string in preparation for
+ * rendering in the app.ejs template.
  *
  * @param {string} config Current head configuration
  * @param {object} key Key to convert into a string
@@ -69,7 +72,7 @@ export default function getTemplateVars(
   key,
   initialVars,
   clientStats,
-  hostname
+  hostname,
 ) {
   const templateVars = getConfigValues(key);
   const env = getEnv(hostname);
@@ -85,8 +88,9 @@ export default function getTemplateVars(
   /**
    * Normalize each provided config (from user, packages, etc.).
    *
-   * IMPORTANT: each config function must only be called once, otherwise we will make a new instance of variables inside
-   * config function, causing problems with certain packages (like styled components, lodable).
+   * IMPORTANT: each config function must only be called once, otherwise we
+   * will make a new instance of variables inside config function, causing
+   * problems with certain packages (like styled components, lodable).
    */
   const mergedVars = templateVars.reduce(
     (acc, varsConfig) => {
@@ -94,7 +98,7 @@ export default function getTemplateVars(
         varsConfig,
         acc,
         clientStats,
-        env
+        env,
       );
       // Separate arrays for head configuration and other template variables,
       // as they will be extracted and merged using different methods.
@@ -111,10 +115,10 @@ export default function getTemplateVars(
           }
 
           return undefined;
-        }
+        },
       );
     },
-    initialVars
+    initialVars,
   );
 
   // Merge template vars.
@@ -123,8 +127,9 @@ export default function getTemplateVars(
   // This needs to happen first to ensure proper SSR rendering of stylesheets.
   const appHtml = renderToString(<Wrapper />);
 
-  // Stringify values for both default config (to ensure all head values are present)
-  // and intial variables passed in via parameter (to ensure any core `head` properties are present)
+  // Stringify values for both default config (to ensure all head
+  // values are present) and intial variables passed in via parameter
+  // (to ensure any core `head` properties are present)
   const stringifiedConfigs = [
     defaultHead,
     // Spread to prevent mutation

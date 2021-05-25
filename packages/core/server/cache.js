@@ -15,10 +15,10 @@ const corsMiddleware = (req, res, next) => {
       } = getEnv(req.hostname);
 
       if (
-        origin &&
-        (
-          API_ROOT_URL.includes(origin) ||
-          API_ORIGIN === origin
+        origin
+        && (
+          API_ROOT_URL.includes(origin)
+          || API_ORIGIN === origin
         )
       ) {
         callback(null, true);
@@ -36,13 +36,13 @@ const cacheMiddleware = (app) => {
     '/purge-cache',
     bodyParser.json(),
     createCheckAuth('cache', corsMiddleware),
-    purgeCache
+    purgeCache,
   );
 
   app.get(
     '/cache-keys',
     createCheckAuth('cache', false),
-    getCacheKeys
+    getCacheKeys,
   );
 };
 

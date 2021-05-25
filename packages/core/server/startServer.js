@@ -1,5 +1,6 @@
 const http = require('http');
 const https = require('https');
+
 const {
   HTTPS_KEY_PATH,
   HTTPS_CERT_PATH,
@@ -20,14 +21,14 @@ module.exports = function startServer(app) {
         os.homedir(),
         HTTPS_KEY_PATH,
       ),
-      'utf8'
+      'utf8',
     );
     const cert = fs.readFileSync(
       path.join(
         os.homedir(),
-        HTTPS_CERT_PATH
+        HTTPS_CERT_PATH,
       ),
-      'utf8'
+      'utf8',
     );
 
     server = https.createServer({ key, cert }, app);

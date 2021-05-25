@@ -3,11 +3,11 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const getConfig = require('../config/webpack.config.js');
+const getConfig = require('../config/webpack.config.js'); // eslint-disable-line import/extensions
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
 
 const config = getConfig({}, { mode: 'development' });
-const matchClient = ({ name }) => 'client' === name;
+const matchClient = ({ name }) => name === 'client';
 const multiCompiler = webpack(config);
 const clientCompiler = multiCompiler.compilers.find(matchClient);
 const clientConfig = config.find(matchClient);
@@ -23,7 +23,7 @@ const developmentMiddleware = (app) => {
   // Allow customization of development server
   const irvingDevMiddleware = getValueFromFiles(
     'server/customizeDevServer.js',
-    [() => {}]
+    [() => {}],
   );
 
   irvingDevMiddleware.forEach((middleware) => middleware(app));

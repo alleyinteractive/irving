@@ -1,4 +1,5 @@
 const getValueFromFiles = require('../config/irving/getValueFromFiles');
+
 const { NODE_ENV } = process.env;
 const config = getValueFromFiles(
   'server/customizeRedirect.js',
@@ -6,7 +7,7 @@ const config = getValueFromFiles(
     https: true,
     subDomain: 'www',
     reverse: true,
-  }
+  },
 );
 
 /**
@@ -37,7 +38,7 @@ const getRedirect = (req, redirectConfig) => {
       break;
 
     // Redirect http to https.
-    case (https && 'https' !== requestProtocol):
+    case (https && requestProtocol !== 'https'):
       targetProtocol = 'https';
       redirectProtocol = true;
       break;
@@ -61,7 +62,7 @@ const getRedirect = (req, redirectConfig) => {
       break;
 
     // redirect naked to subdomain (test.com -> www.test.com).
-    case (! reverse && subDomain && ! requestHost.includes(subDomain)):
+    case (!reverse && subDomain && !requestHost.includes(subDomain)):
       targetHost = `${subDomain}.${requestHost}`;
       redirectHost = true;
       break;
@@ -97,15 +98,15 @@ const getRedirect = (req, redirectConfig) => {
  * @return {void};
  */
 const customizeRedirect = (req, res, next) => {
-  const hasConfig = !! Object.keys(config).length;
-  const isDev = 'development' === NODE_ENV;
+  const hasConfig = !!Object.keys(config).length;
+  const isDev = NODE_ENV === 'development';
 
   /**
    * Move on if:
    * - no config was added
    * - in a dev environment
    */
-  if (! hasConfig || isDev) {
+  if (!hasConfig || isDev) {
     return next();
   }
 
@@ -116,7 +117,7 @@ const customizeRedirect = (req, res, next) => {
     return res.redirect([redirect, req.url].join(''));
   }
 
-  next();
+  return next();
 };
 
 module.exports = {
