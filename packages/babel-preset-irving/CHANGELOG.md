@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0-beta.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v6.3.0-alpha.2...v6.3.0-beta.0) (2021-05-25)
+
+**Note:** Version bump only for package @irvingjs/babel-preset-irving
+
+
+
+
+
 # [6.3.0-alpha.0](https://github.com/alleyinteractive/irving/packages/babel-preset-irving/compare/v6.2.1-alpha.1...v6.3.0-alpha.0) (2021-05-24)
 
 **Note:** Version bump only for package @irvingjs/babel-preset-irving
