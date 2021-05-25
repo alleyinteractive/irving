@@ -1,8 +1,5 @@
-# Ignore built files
 build/*
-
-# Ignore asset files
+dist/*
 assets/*
-
-# Ignore asset files
+node_modules/*
 *.test.js

@@ -51,14 +51,15 @@ const PlayPauseButton = (props) => {
     }
   };
 
+  /* eslint-disable react/jsx-props-no-spreading */
   return (
     <Wrapper
       {...standardProps}
       type="button"
       onClick={
-        selectedAndPlaying ?
-          () => dispatch(actionPauseAudio()) :
-          playOrLoadAudio
+        selectedAndPlaying
+          ? () => dispatch(actionPauseAudio())
+          : playOrLoadAudio
       }
     >
       {selectedAndLoading ? (
@@ -86,6 +87,7 @@ const PlayPauseButton = (props) => {
       )}
     </Wrapper>
   );
+  /* eslint-enable */
 };
 
 PlayPauseButton.defaultProps = {

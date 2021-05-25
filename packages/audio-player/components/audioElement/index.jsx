@@ -28,9 +28,9 @@ const AudioElement = (props) => {
 
       // If the sound is still playing, continue stepping.
       if (playing) {
-        if ('number' === typeof currentSeek) {
+        if (typeof currentSeek === 'number') {
           dispatch(
-            actionReceiveAudioTime(currentSeek, player.duration())
+            actionReceiveAudioTime(currentSeek, player.duration()),
           );
         }
         requestAnimationFrame(updateTime);
@@ -41,10 +41,10 @@ const AudioElement = (props) => {
     onReady();
 
     // Play on load
-    if (! playing) {
+    if (!playing) {
       window.setTimeout(
         () => dispatch(actionPlayAudio()),
-        1000
+        1000,
       );
     }
   };
@@ -85,10 +85,10 @@ const AudioElement = (props) => {
   // Manage play/pause state changes.
   useEffect(() => {
     if (player) {
-      if (playing && ! player.playing()) {
+      if (playing && !player.playing()) {
         player.play();
         requestAnimationFrame(updateTime);
-      } else if (! playing && player.playing()) {
+      } else if (!playing && player.playing()) {
         player.pause();
       }
     }

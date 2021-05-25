@@ -27,7 +27,7 @@ const {
  */
 export default function playerReducer(
   state = defaultPlayerState,
-  { type, payload }
+  { type, payload },
 ) {
   switch (type) {
     case LOAD_AUDIO: {
@@ -42,7 +42,7 @@ export default function playerReducer(
         set('playing', false),
         set('seek', defaultSeek),
         set('volume', defaultVolume),
-        set('visible', true)
+        set('visible', true),
       )(state);
     }
 
@@ -50,7 +50,7 @@ export default function playerReducer(
       return compose(
         set('loading', false),
         set('playing', true),
-        set('visible', true)
+        set('visible', true),
       )(state);
 
     case STOP_AUDIO:
@@ -71,7 +71,7 @@ export default function playerReducer(
     case LOCATION_CHANGE: {
       const { visible, src } = state;
 
-      return set('visible', visible || !! src, state);
+      return set('visible', visible || !!src, state);
     }
 
     default:
