@@ -19,7 +19,7 @@ const formReducer = (state = {}, action) => {
   const formEndpoint = get('formEndpoint', payload);
   const formResponse = get('response', payload);
 
-  if (! formEndpoint) {
+  if (!formEndpoint) {
     return state;
   }
 
@@ -65,7 +65,7 @@ const formReducer = (state = {}, action) => {
   return set(
     formEndpoint,
     merge(formState, newFormState),
-    state
+    state,
   );
 };
 

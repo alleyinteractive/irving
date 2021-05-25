@@ -6,7 +6,7 @@ import { formState as defaultState } from '../reducers/defaultState';
 
 const useConnectedForm = (formEndpoint, useFormOpts) => {
   const formState = useSelector(
-    (state) => (get(`forms.${formEndpoint}`, state) || defaultState)
+    (state) => (get(`forms.${formEndpoint}`, state) || defaultState),
   );
   const dispatch = useDispatch();
   const { redirect } = formState;

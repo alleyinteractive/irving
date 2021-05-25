@@ -20,11 +20,11 @@ export default async function submitForm(formEndpoint, submission) {
   });
 
   // Return data if invalid or redirected
-  if (400 === res.status || (300 <= res.status && 400 > res.status)) {
+  if (res.status === 400 || (res.status >= 300 && res.status < 400)) {
     return res.json();
   }
 
-  if (! res.ok) {
+  if (!res.ok) {
     throw new Error(await res.text());
   }
 

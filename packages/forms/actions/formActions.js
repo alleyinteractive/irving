@@ -14,7 +14,7 @@ import {
  * @returns {{type, payload}}
  */
 export function actionRequestSubmit(formEndpoint, submission) {
-  const omitEmpty = omitBy((value) => ! value);
+  const omitEmpty = omitBy((value) => !value);
   return createAction(REQUEST_SUBMIT, {
     formEndpoint,
     submission: omitEmpty(submission),
@@ -34,7 +34,7 @@ export function actionReceiveSubmitted(formEndpoint, response) {
 export function actionReceiveSubmitError(formEndpoint, err) {
   return createAction(
     RECEIVE_SUBMIT_ERROR,
-    { formEndpoint, error: err.message }
+    { formEndpoint, error: err.message },
   );
 }
 

@@ -14,9 +14,9 @@ export default function* watchRequestSubmit(data) {
   try {
     const response = yield call(submitForm, formEndpoint, submission);
     if (
-      response &&
-      response.validation &&
-      Object.keys(response.validation).length
+      response
+      && response.validation
+      && Object.keys(response.validation).length
     ) {
       yield put(actionReceiveSubmitInvalid(formEndpoint, response.validation));
     } else {
