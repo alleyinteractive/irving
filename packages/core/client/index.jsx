@@ -28,20 +28,21 @@ if (env.DEBUG) {
 const cookies = new Cookies();
 const sagaMiddleware = createSagaMiddleware();
 const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware));
-const preloadedState = window.__PRELOADED_STATE__ || defaultState; // eslint-disable-line no-underscore-dangle
+const preloadedState = window.__PRELOADED_STATE__ // eslint-disable-line no-underscore-dangle
+  || defaultState;
 
 // Rehydrate denylisted keys (like cookies, yum).
 const unsetConfigs = getValueFromConfig(
   'preloadedStateDenylist',
-  preloadedStateDenylist
+  preloadedStateDenylist,
 );
 const rehydratedState = unsetConfigs.reduce(
   (acc, config) => set(
     config.key,
     config.rehydrationFunction(),
-    acc
+    acc,
   ),
-  preloadedState
+  preloadedState,
 );
 
 // Persist state.
@@ -62,7 +63,7 @@ history.listen((location, action) => {
     {
       ...location,
       cookie: cookies.getAll({ doNotParse: true }),
-    }
+    },
   ));
 });
 
@@ -75,7 +76,7 @@ const render = () => {
     <Provider store={store}>
       <App />
     </Provider>,
-    rootEl
+    rootEl,
   );
 };
 
@@ -98,7 +99,7 @@ const waitForPersistor = () => (
 // Collect functions defining conditions to wait for before rendering the client-side application
 const waitForClientRender = getValueFromConfig(
   'waitForClientRender',
-  [waitForPersistor]
+  [waitForPersistor],
 );
 
 Promise.all(waitForClientRender.map((waitFunc) => waitFunc()))
