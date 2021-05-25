@@ -24,6 +24,6 @@ export default function* rootSaga() {
       takeLatest(LOCATION_CHANGE, waitToScroll),
       takeEvery(LOCATION_CHANGE, onLocationChange),
       takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
-    ])
+    ]),
   );
 }

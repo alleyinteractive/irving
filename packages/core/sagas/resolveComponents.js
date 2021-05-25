@@ -56,12 +56,13 @@ export default function* resolveComponents() {
       path,
       search,
       cookie,
-      context
+      context,
     );
 
     // Only redirect on client side and if there's a redirect set up,
-    // otherwise just receive components. This prevents a strange flash of content before the redirect.
-    if ((result.redirectTo && isNode()) || ! result.redirectTo) {
+    // otherwise just receive components. This prevents a strange flash of
+    // content before the redirect.
+    if ((result.redirectTo && isNode()) || !result.redirectTo) {
       yield put(actionReceiveComponents(result));
       return;
     }

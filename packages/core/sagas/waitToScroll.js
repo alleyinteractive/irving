@@ -8,30 +8,15 @@ import { FINISH_LOADING, RECEIVE_COMPONENTS } from 'actions/types';
 import getRouteMeta from 'selectors/getRouteMeta';
 
 /**
- * Mimic traditional browser navigation scroll behavior.
- * - Scroll to the top when history state changes.
- * - Scroll to id if url hash is present.
+ * Wrap requestAnimationFrame in a Promise.
+ * @returns {Promise}
  */
-export default function* waitToScroll() {
-  const { hash, cached } = yield select(getRouteMeta);
-  // Wait for new content to be received before scrolling.
-  if (! cached) {
-    yield take(RECEIVE_COMPONENTS);
-  } else {
-    yield take(FINISH_LOADING);
-  }
-
-  if (hash) {
-    // Wait for rendering to complete, and then scroll to id.
-    const el = yield call(waitForEl, hash);
-    if (el) {
-      el.scrollIntoView(true);
-      return;
-    }
-  }
-
-  // Scroll to top on page change
-  window.scrollTo(0, 0);
+function requestAnimationFramePromise() {
+  return new Promise((resolve) => {
+    window.requestAnimationFrame(() => {
+      resolve();
+    });
+  });
 }
 
 /**
@@ -61,13 +46,28 @@ function* waitForEl(selector) {
 }
 
 /**
- * Wrap requestAnimationFrame in a Promise.
- * @returns {Promise}
+ * Mimic traditional browser navigation scroll behavior.
+ * - Scroll to the top when history state changes.
+ * - Scroll to id if url hash is present.
  */
-function requestAnimationFramePromise() {
-  return new Promise((resolve) => {
-    window.requestAnimationFrame(() => {
-      resolve();
-    });
-  });
+export default function* waitToScroll() {
+  const { hash, cached } = yield select(getRouteMeta);
+  // Wait for new content to be received before scrolling.
+  if (!cached) {
+    yield take(RECEIVE_COMPONENTS);
+  } else {
+    yield take(FINISH_LOADING);
+  }
+
+  if (hash) {
+    // Wait for rendering to complete, and then scroll to id.
+    const el = yield call(waitForEl, hash);
+    if (el) {
+      el.scrollIntoView(true);
+      return;
+    }
+  }
+
+  // Scroll to top on page change
+  window.scrollTo(0, 0);
 }
