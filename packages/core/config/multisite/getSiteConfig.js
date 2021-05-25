@@ -1,4 +1,5 @@
 const uniq = require('lodash/uniq');
+
 let multisiteConfig;
 
 /* eslint-disable global-require, import/no-dynamic-require */
@@ -7,15 +8,15 @@ if (process.env.IRVING_EXECUTION_CONTEXT) {
 } else {
   const { maybeResolveBuildModule } = require('../../utils/userModule');
   multisiteConfig = require(
-    maybeResolveBuildModule('multisite.config.js')
+    maybeResolveBuildModule('multisite.config.js'),
   );
 }
 /* eslint-enable */
 
 // If a configuration exists, ensure no site config appears twice.
-const config = multisiteConfig.length ?
-  uniq(multisiteConfig, 'domain').flat() :
-  [];
+const config = multisiteConfig.length
+  ? uniq(multisiteConfig, 'domain').flat()
+  : [];
 
 /**
  * Get config for a specific site/hostname.
@@ -32,7 +33,7 @@ module.exports.getSiteConfig = (hostname = window.location.hostname) => (
       }
 
       return domain === hostname;
-    }
+    },
   ) || {} // Return an empty object as a fallback/default.
 );
 

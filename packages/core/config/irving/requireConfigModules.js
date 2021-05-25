@@ -19,8 +19,8 @@ const requireConfigModules = (filepath, opts) => {
 
   // Prevent infinite loops in testing.
   if (
-    'test' === process.env.BABEL_ENV &&
-    filepath.includes('babel.config.js')
+    process.env.BABEL_ENV === 'test'
+    && filepath.includes('babel.config.js')
   ) {
     return configModules;
   }

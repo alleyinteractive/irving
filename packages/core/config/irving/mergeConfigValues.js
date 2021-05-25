@@ -12,17 +12,17 @@ const isPlainObject = require('lodash/isPlainObject');
 const mergeConfigArray = (configs, initial = [], args = []) => (
   configs.reduce(
     (acc, config) => {
-      if (! config) {
+      if (!config) {
         return acc;
       }
 
-      if ('function' === typeof config) {
+      if (typeof config === 'function') {
         return config(acc, ...args);
       }
 
       return acc.concat(config);
     },
-    initial
+    initial,
   )
 );
 
@@ -37,11 +37,11 @@ const mergeConfigArray = (configs, initial = [], args = []) => (
 const mergeConfigObject = (configs, initial = {}, args = []) => (
   configs.reduce(
     (acc, config) => {
-      if (! config) {
+      if (!config) {
         return acc;
       }
 
-      if ('function' === typeof config) {
+      if (typeof config === 'function') {
         return config(acc, ...args);
       }
 
@@ -53,7 +53,7 @@ const mergeConfigObject = (configs, initial = {}, args = []) => (
         return undefined;
       });
     },
-    initial
+    initial,
   )
 );
 
@@ -67,7 +67,7 @@ const mergeConfigObject = (configs, initial = {}, args = []) => (
 const mergeConfigValues = (configs, initial = null, args = []) => {
   if (Array.isArray(initial)) {
     // This should result in an array of functions, to be called inline.
-    if (initial.length && 'function' === typeof initial[0]) {
+    if (initial.length && typeof initial[0] === 'function') {
       return configs.reduce((acc, config) => acc.concat(config), initial);
     }
 

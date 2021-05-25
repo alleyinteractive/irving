@@ -18,14 +18,14 @@ const getValueFromFiles = (
   filepath,
   defaultValue,
   opts = {},
-  args = []
+  args = [],
 ) => {
   const normalizedOpts = {
     base: appRoot,
     ignorePackages: [],
     ...opts,
   };
-  const isSingleFunction = 'function' === typeof defaultValue;
+  const isSingleFunction = typeof defaultValue === 'function';
   const configs = requireConfigModules(filepath, normalizedOpts);
 
   // Return any single-function config results as-is.
@@ -33,7 +33,7 @@ const getValueFromFiles = (
     // Return the final config file found if we're looking for a singular file.
     // @todo figure out a better way to control which is used.
     const lastConfig = configs[configs.length - 1];
-    if (lastConfig && 'function' === typeof lastConfig) {
+    if (lastConfig && typeof lastConfig === 'function') {
       return lastConfig;
     }
 

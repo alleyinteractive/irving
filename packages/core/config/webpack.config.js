@@ -6,7 +6,7 @@ const { getValueFromFiles } = require('./irving/getValueFromFiles');
 
 module.exports = (env, argv) => {
   const { mode } = argv;
-  const isProd = 'production' === mode;
+  const isProd = mode === 'production';
   const server = getConfigService(argv, 'server');
   const client = getConfigService(argv, 'client');
   const extensions = ['.js', '.json'];
@@ -18,7 +18,7 @@ module.exports = (env, argv) => {
       resolve: {
         extensions,
         alias: client.getAlias(),
-        symlinks: ! isProd,
+        symlinks: !isProd,
       },
       devtool: client.getDevTool(),
       entry: client.getEntry(),
@@ -38,7 +38,7 @@ module.exports = (env, argv) => {
       resolve: {
         extensions,
         alias: server.getAlias(),
-        symlinks: ! isProd,
+        symlinks: !isProd,
       },
       // Quiet bundle size errors, as they are not applicable for code executed in NodeJS.
       performance: {
@@ -72,13 +72,13 @@ module.exports = (env, argv) => {
     'config/webpack.config.client.js',
     multiConfig[0],
     { base: buildContext },
-    [argv]
+    [argv],
   );
   const serverConfig = getValueFromFiles(
     'config/webpack.config.server.js',
     multiConfig[1],
     { base: buildContext },
-    [argv]
+    [argv],
   );
 
   // Process each config using the same webpack.config.js
@@ -90,7 +90,7 @@ module.exports = (env, argv) => {
       'config/webpack.config.js',
       config,
       { base: buildContext },
-      [argv]
+      [argv],
     )
   ));
 
@@ -99,7 +99,7 @@ module.exports = (env, argv) => {
     'config/webpack.config.multi.js',
     processedMultiConfig,
     { base: buildContext },
-    [argv]
+    [argv],
   );
 
   return finalConfigs;

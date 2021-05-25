@@ -22,7 +22,7 @@ const createClientEnv = (hostname) => {
       'COOKIE_MAP_LIST',
       'FETCH_TIMEOUT',
       'IRVING_EXECUTION_CONTEXT',
-    ]
+    ],
   );
   const allowlist = [
     new RegExp(allowlistArray.join('|')),

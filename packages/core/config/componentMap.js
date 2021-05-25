@@ -18,7 +18,7 @@ const componentMap = {
  */
 export default function getComponent(
   name,
-  FallbackComponent = NotConfigured
+  FallbackComponent = NotConfigured,
 ) {
   // Custom component
   if (componentMap[name]) {

@@ -13,7 +13,7 @@ const resolveConfigFilepath = (configPath) => {
   // Get config paths.
   const packageConfigPaths = resolvePackageConfigs(
     configPath,
-    { base: buildContext }
+    { base: buildContext },
   );
   const userConfigPath = path.join(buildContext, configPath);
   const configs = packageConfigPaths.concat(userConfigPath);

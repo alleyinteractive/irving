@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const { buildContext } = require('../paths');
+
 const packagejson = path.join(buildContext, 'package.json');
 const defaultIgnorePackages = [
   '@irvingjs/core',
@@ -38,7 +39,7 @@ const resolvePackageConfigs = (filepath, opts) => {
 
     const configFile = path.resolve(base, 'node_modules', dep, filepath);
     return configFile;
-  }).filter((config) => !! config);
+  }).filter((config) => !!config);
 };
 
 module.exports = resolvePackageConfigs;

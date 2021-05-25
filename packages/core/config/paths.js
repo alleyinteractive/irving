@@ -3,6 +3,7 @@ const fs = require('fs');
 
 // Support isomorphic environment variables from local .env file
 require('dotenv').config();
+
 const {
   PROXY_URL,
   ROOT_URL,
@@ -21,7 +22,7 @@ const irvingRoot = path.join(__dirname, '../');
 // Path to irving core relative to the appRoot.
 const appIrvingRoot = path.join(
   appRoot,
-  path.relative(buildContext, irvingRoot)
+  path.relative(buildContext, irvingRoot),
 );
 
 /**
