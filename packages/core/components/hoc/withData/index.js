@@ -11,7 +11,7 @@ import getRequestUrl from './getRequestUrl';
 
 const withData = (
   endpoint,
-  opts = {}
+  opts = {},
 ) => (WrappedComponent) => {
   const {
     placeholder: Placeholder = DataPlaceholder,
@@ -38,8 +38,8 @@ const withData = (
       // Only fetch if we haven't already or refreshOnMount is set,
       // otherwise refreshing of data must be explicit.
       if (
-        refreshOnMount ||
-        (! componentData || ! componentData.length)
+        refreshOnMount
+        || (!componentData || !componentData.length)
       ) {
         fetchComponentData(requestUrl, cache);
       }
@@ -56,7 +56,7 @@ const withData = (
     }
 
     // Return component.
-    if (isDataLoaded && ! isDataLoading) {
+    if (isDataLoaded && !isDataLoading) {
       return (
         <WrappedComponent
           {...props}

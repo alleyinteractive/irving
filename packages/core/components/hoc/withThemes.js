@@ -20,7 +20,7 @@ import ThemeContext from 'components/hoc/themeContext';
 const withThemes = (
   identifier,
   componentThemes,
-  composes = false
+  composes = false,
 ) => (WrappedComponent) => {
   const ThemePicker = (props) => {
     const contextThemes = useContext(ThemeContext);
@@ -33,9 +33,9 @@ const withThemes = (
      */
     const getThemeName = () => {
       const { themeName: propsThemeName } = props;
-      const hasThemeFromContext = contextThemes &&
-        Object.keys(contextThemes).length &&
-        contextThemes[identifier];
+      const hasThemeFromContext = contextThemes
+        && Object.keys(contextThemes).length
+        && contextThemes[identifier];
 
       if (propsThemeName) {
         return propsThemeName;
@@ -58,9 +58,9 @@ const withThemes = (
       const defaultTheme = componentThemes.default || {};
       const { theme: propsTheme } = props;
       const themeName = getThemeName();
-      const theme = Object.keys(propsTheme).length ?
-        propsTheme :
-        componentThemes[themeName];
+      const theme = Object.keys(propsTheme).length
+        ? propsTheme
+        : componentThemes[themeName];
 
       // Should theme styles override or compose the defaults?
       if (composes) {
@@ -69,7 +69,7 @@ const withThemes = (
             classNames(srcValue, objValue)
           ),
           theme,
-          defaultTheme
+          defaultTheme,
         );
       }
 

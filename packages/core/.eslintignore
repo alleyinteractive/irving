@@ -3,3 +3,6 @@ build/*
 
 # Ignore asset files
 assets/*
+
+# Ignore asset files
+*.test.js

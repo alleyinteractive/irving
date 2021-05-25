@@ -27,7 +27,7 @@ const Root = (props) => {
         ),
         roots.map((name) => (
           <ConnectedRoot key={name} name={name} />
-        ))
+        )),
       )}
     </>
   );

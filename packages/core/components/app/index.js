@@ -37,7 +37,7 @@ App.propTypes = {
 };
 
 const appMapStateToProps = (state) => ({
-  error: !! state.error,
+  error: !!state.error,
 });
 
 export default connect(appMapStateToProps)(trackingService.withTracking(
@@ -49,5 +49,5 @@ export default connect(appMapStateToProps)(trackingService.withTracking(
   {
     dispatchOnMount: true,
     ...getValueFromConfig('trackingOptions', {}),
-  }
+  },
 )(App));
