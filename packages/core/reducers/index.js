@@ -29,7 +29,7 @@ const rootReducer = reduceReducers(
   defaultState,
   rootSliceReducer,
   componentsReducer,
-  providersReducer
+  providersReducer,
 );
 
 export default rootReducer;

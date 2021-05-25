@@ -21,6 +21,6 @@ export default function componentReducer(state, action) {
 
   return flow(
     set('components.defaults', defaults.length ? defaults : currentDefaults),
-    set(`components.page.${key}`, page)
+    set(`components.page.${key}`, page),
   )(state);
 }

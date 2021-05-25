@@ -26,7 +26,7 @@ export const providerReducer = (providerState, provider) => {
   };
 
   // Set a new key if hasn't been set before.
-  if (! newState[providerKey]) {
+  if (!newState[providerKey]) {
     newState[providerKey] = {
       config,
       children,
@@ -69,8 +69,8 @@ export default function providersReducer(state, action) {
       newProviders = Object.keys(currentProviders)
         .reduce((acc, name) => {
           const provider = currentProviders[name];
-          const current = provider[routeKey] ?
-            provider[routeKey] : provider.current;
+          const current = provider[routeKey]
+            ? provider[routeKey] : provider.current;
 
           return {
             ...acc,
@@ -92,7 +92,7 @@ export default function providersReducer(state, action) {
 
         // If user specifies 'route' as they provider data key,
         // key new data for every route change.
-        if ('route' === providerKey) {
+        if (providerKey === 'route') {
           newProvider.config.providerKey = routeKey;
         }
 
@@ -102,7 +102,7 @@ export default function providersReducer(state, action) {
           ...acc,
           [name]: providerReducer(
             currentState,
-            newProvider
+            newProvider,
           ),
         };
       }, currentProviders);
