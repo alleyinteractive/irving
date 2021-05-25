@@ -25,8 +25,8 @@ const useIntersect = (opts = {}) => {
         rootMargin,
         threshold,
         delay,
-      }
-    )
+      },
+    ),
   );
 
   useEffect(() => {
