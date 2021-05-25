@@ -3,8 +3,8 @@ import React from 'react';
 /* eslint-disable global-require, import/no-dynamic-require */
 export default function getAppTemplateVars(templateVars) {
   if (
-    'development_server' === process.env.IRVING_EXECUTION_CONTEXT ||
-    'production_server' === process.env.IRVING_EXECUTION_CONTEXT
+    process.env.IRVING_EXECUTION_CONTEXT === 'development_server'
+    || process.env.IRVING_EXECUTION_CONTEXT === 'production_server'
   ) {
     const path = require('path');
     const { clientBuild } = require('@irvingjs/core/config/paths');
@@ -24,7 +24,7 @@ export default function getAppTemplateVars(templateVars) {
            */
           extractor.getLinkTags().replace(
             /(data-chunk="[^"]+"\srel=)("preload")(\sas="[^"]+")/gi,
-            '$1"prefetch"'
+            '$1"prefetch"',
           )
         ),
         style: () => extractor.getStyleTags(),
