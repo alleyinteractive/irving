@@ -4,28 +4,29 @@ const {
   rootUrl,
   buildContext,
 } = require('@irvingjs/core/config/paths');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const coreAliases = require('@irvingjs/core/config/aliases');
+
 const aliases = Object.keys(coreAliases)
   .reduce((acc, alias) => {
     const aliasPath = coreAliases[alias];
 
     return {
       ...acc,
-      [alias]: aliasPath.startsWith('./') ?
-        path.join(buildContext, aliasPath) :
-        aliasPath,
+      [alias]: aliasPath.startsWith('./')
+        ? path.join(buildContext, aliasPath)
+        : aliasPath,
     };
   }, {});
 
 module.exports = (multiConfig) => {
   // Modify the client build's clean webpack plugin to prevent it from
   // removing blockEditor assets (this config can handle that separately as necessary).
+  // eslint-disable-next-line no-param-reassign
   multiConfig[0].plugins = multiConfig[0].plugins
     .map((pluginInstance) => {
       if (pluginInstance.cleanOnceBeforeBuildPatterns) {
         pluginInstance.cleanOnceBeforeBuildPatterns.push(
-          '!**/blockEditor**'
+          '!**/blockEditor**',
         );
       }
 
@@ -72,19 +73,19 @@ module.exports = (multiConfig) => {
               (
                 (
                   (
-                    filepath.includes(buildContext) ||
-                    filepath.includes(path.join(__dirname, '../../'))
-                  ) &&
-                  ! filepath.includes('node_modules')
-                ) ||
+                    filepath.includes(buildContext)
+                    || filepath.includes(path.join(__dirname, '../../'))
+                  )
+                  && !filepath.includes('node_modules')
+                )
                 // Anything imported within irving packages should be included in build,
                 // even if located within node_modules (but not nested node modules).
-                filepath.match(
-                  /node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/
+                || filepath.match(
+                  /node_modules\/@irvingjs\/[^/]*\/(?!node_modules)/,
                 )
-              ) &&
+              )
               // Exclude minified JS.
-              ! filepath.match(/\.min\.js$/)
+              && !filepath.match(/\.min\.js$/)
             ),
             use: {
               loader: 'babel-loader',

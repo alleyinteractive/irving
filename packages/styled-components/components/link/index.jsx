@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types, react/jsx-props-no-spreading, consistent-return */
 import React from 'react';
 import PropTypes from 'prop-types';
 import useClientNavigationOnClick from
@@ -49,7 +50,6 @@ const Link = (props) => {
   } = theme;
   const standardProps = useStandardProps(props);
 
-  /* eslint-disable consistent-return */
   const handleClick = (event) => {
     tracking.trackEvent({
       component: 'link',
@@ -69,7 +69,6 @@ const Link = (props) => {
 
     return onClick ? onClick(event) : defaultOnClick(event);
   };
-  /* eslint-enable */
 
   const ariaProps = Object.keys(props).reduce((acc, propName) => {
     if (!propName.includes('aria')) {

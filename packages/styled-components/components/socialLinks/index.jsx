@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types, react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import toReactElement from '@irvingjs/core/utils/toReactElement';

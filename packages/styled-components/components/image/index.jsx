@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types, react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { sanitize, config } from '@irvingjs/core/utils/sanitizeHTML';
@@ -59,7 +60,8 @@ const Image = (props) => {
   const standardProps = useStandardProps(props);
 
   /**
-   * @todo possibly replace this with similar functionality. This hook breaks b/c it references window.
+   * @todo possibly replace this with similar functionality.
+   * This hook breaks b/c it references window.
    * const [width] = useImageSize(src || fallbackSrc);
    */
 
@@ -109,12 +111,16 @@ const Image = (props) => {
         <ImageMeta>
           {caption && (
             <ImageCaption
-              dangerouslySetInnerHTML={{ __html: sanitize(caption, config) }} // eslint-disable-line react/no-danger
+              dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+                __html: sanitize(caption, config),
+              }}
             />
           )}
           {credit && (
             <ImageCredit
-              dangerouslySetInnerHTML={{ __html: sanitize(credit, config) }} // eslint-disable-line react/no-danger
+              dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+                __html: sanitize(credit, config),
+              }}
             />
           )}
         </ImageMeta>

@@ -16,7 +16,7 @@ const htmlVars = {
   '--nc-ac-tx': '#0C4047',
 };
 
-// eslint-disable import/prefer-default-export.
+/* eslint-disable import/prefer-default-export */
 export const TextWrapper = styled.div`
 
   address,
@@ -395,4 +395,4 @@ export const TextWrapper = styled.div`
     max-width: 100%;
   }
 `;
-// eslint-enable.
+/* eslint-enable */

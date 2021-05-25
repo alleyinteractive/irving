@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types, react/jsx-props-no-spreading */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';

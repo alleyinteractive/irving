@@ -14,8 +14,8 @@ const AdminBar = (props) => {
   } = props;
   const hostname = useSelector((state) => get('route.hostname', state));
   const { API_ORIGIN, API_ROOT_URL } = getEnv(hostname);
-  const iframeOrigin = API_ORIGIN ||
-    API_ROOT_URL.replace('/wp-json/irving/v1', '');
+  const iframeOrigin = API_ORIGIN
+    || API_ROOT_URL.replace('/wp-json/irving/v1', '');
   const [hover, setHover] = useState(false);
   const [height, setHeight] = useState(0);
 
@@ -24,17 +24,17 @@ const AdminBar = (props) => {
   useEffect(() => {
     const handleMessage = (event) => {
       if (
-        event.origin !== iframeOrigin &&
-        ! iframeOrigin.includes(event.origin)
+        event.origin !== iframeOrigin
+        && !iframeOrigin.includes(event.origin)
       ) {
         return;
       }
 
-      if ('undefined' !== typeof event.data.hovered) {
+      if (typeof event.data.hovered !== 'undefined') {
         setHover(event.data.hovered);
       }
 
-      if ('undefined' !== typeof event.data.height) {
+      if (typeof event.data.height !== 'undefined') {
         setHeight(event.data.height);
       }
     };
@@ -45,8 +45,7 @@ const AdminBar = (props) => {
   });
 
   // We don't have a valid iframe, but we do have children and a cookie domain.
-  if (! iframeSrc && children && 0 !== cookieDomain.length) {
-
+  if (!iframeSrc && children && cookieDomain.length !== 0) {
     // Create a new `irvingResetToken` cookie, which will trigger a new token
     // to be created on the backend.
     cookies.set(
@@ -55,13 +54,13 @@ const AdminBar = (props) => {
       {
         domain: cookieDomain,
         path: '/',
-      }
+      },
     );
 
     return children;
   }
 
-  if (! iframeSrc) {
+  if (!iframeSrc) {
     return null;
   }
 
@@ -86,7 +85,6 @@ const AdminBar = (props) => {
 };
 
 AdminBar.defaultProps = {
-  children: [],
   cookieDomain: '',
   iframeSrc: '',
 };

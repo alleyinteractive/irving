@@ -4,10 +4,10 @@ const { maybeResolve } = require('@irvingjs/core/utils/userModule');
 
 // Determine path to user block map, if it exists.
 let blockStylesConfig = maybeResolve(
-  path.join(buildContext, './blockStyles.config.js')
+  path.join(buildContext, './blockStyles.config.js'),
 );
 
-if (! blockStylesConfig) {
+if (!blockStylesConfig) {
   blockStylesConfig = path.join(__dirname, './blockStyles.config.js');
 }
 

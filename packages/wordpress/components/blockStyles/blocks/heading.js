@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { link } from './utils';
 
-/* eslint-disable indent */
+/* eslint-disable indent, import/prefer-default-export */
 const heading = css`
   color: #000000;
   font-family: "Arial", "Helvetica", sans-serif;

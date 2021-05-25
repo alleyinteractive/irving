@@ -2,6 +2,7 @@ import { css } from 'styled-components';
 import { bodyText, link } from './utils';
 
 /* stylelint-disable selector-max-specificity */
+/* eslint-disable indent, import/prefer-default-export */
 export const paragraphBlock = css`
 
   [data-type="core/paragraph"],

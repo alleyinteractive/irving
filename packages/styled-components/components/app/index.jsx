@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types, react/jsx-props-no-spreading */
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';

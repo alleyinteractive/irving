@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { bodyText, link, caption } from './utils';
 
-/* eslint-disable indent */
+/* eslint-disable indent, import/prefer-default-export */
 export const tableBlock = css`
 
   .wp-block-table {

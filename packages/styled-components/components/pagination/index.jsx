@@ -1,4 +1,4 @@
-/* eslint max-len: 0 */
+/* eslint-disable react/forbid-prop-types, react/jsx-props-no-spreading, max-len */
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
