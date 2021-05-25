@@ -25,7 +25,7 @@ const replacewww = (urlString) => (
 export default function getRelativeUrl(url) {
   let result = false;
 
-  if ('string' !== typeof url) {
+  if (typeof url !== 'string') {
     return false;
   }
 
@@ -54,16 +54,16 @@ export default function getRelativeUrl(url) {
      */
     if (
       (
-        urlHost === windowHost ||
-        urlHostname === windowHostname
-      ) &&
-      (
-        'http:' === protocol ||
-        'https:' === protocol ||
-        ! protocol
-      ) &&
-      '#' !== url[0] &&
-      ! proxyRegExp.some((proxy) => proxy.test(url))
+        urlHost === windowHost
+        || urlHostname === windowHostname
+      )
+      && (
+        protocol === 'http:'
+        || protocol === 'https:'
+        || !protocol
+      )
+      && url[0] !== '#'
+      && !proxyRegExp.some((proxy) => proxy.test(url))
     ) {
       // Internal URL, add query and hash.
       result = `${addTrailingSlash(urlPath)}${(query || '')}${(hash || '')}`;

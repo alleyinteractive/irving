@@ -19,7 +19,7 @@ export const getAuthToken = (cookie) => {
  * @param {object} cookie Object containing valid cookies for the app.
  * @param {object} fetchOptions Existing fetch options to which auth will be added.
  */
- export const maybeMergeAuthHeaders = (cookie, fetchOptions = {}) => {
+export const maybeMergeAuthHeaders = (cookie, fetchOptions = {}) => {
   const bearerToken = get('authorizationBearerToken', cookie);
   const basicToken = get('authorizationBasicToken', cookie);
   let authHeaderValue;
@@ -53,5 +53,5 @@ export const getAuthToken = (cookie) => {
 export const shouldAuthorize = (cookie) => {
   const authToken = getAuthToken(cookie);
 
-  return (authToken && ! isNode()) ? true : false;
+  return !!((authToken && !isNode()));
 };

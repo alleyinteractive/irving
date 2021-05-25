@@ -18,10 +18,12 @@ export function createComponentGroups(componentGroups) {
         convertedComponents = convertedComponents
           .map((component, index) => (
             // Support text nodes.
-            isString(component) ? component : toReactElement(
-              component,
-              String(index)
-            )
+            isString(component)
+              ? component
+              : toReactElement( // eslint-disable-line no-use-before-define
+                component,
+                String(index),
+              )
           ));
       }
 
@@ -40,7 +42,7 @@ export function createComponentGroups(componentGroups) {
  */
 export default function toReactElement(
   apiComponent,
-  keyPrefix = ''
+  keyPrefix = '',
 ) {
   const {
     name,
@@ -66,13 +68,13 @@ export default function toReactElement(
     isString(child) ? child : toReactElement(child, String(index))
   ));
 
-  const type = 0 !== alias.length ?
-    getReactComponent(alias) :
-    getReactComponent(name);
+  const type = alias.length !== 0
+    ? getReactComponent(alias)
+    : getReactComponent(name);
 
   const checkShouldOmitFunctions = getValueFromConfig(
     'shouldOmitIrvingProps',
-    [(componentType) => 'string' === typeof componentType]
+    [(componentType) => typeof componentType === 'string'],
   );
   const shouldOmitIrvingProps = checkShouldOmitFunctions
     .some((validationFunction) => (
@@ -89,7 +91,7 @@ export default function toReactElement(
     ], props);
 
     // Support self closing tags.
-    if (! childElements.length) {
+    if (!childElements.length) {
       return React.createElement(type, props);
     }
   }

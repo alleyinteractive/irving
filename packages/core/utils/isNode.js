@@ -3,7 +3,7 @@
  * @returns {boolean}
  */
 export default function isNode() {
-  return 'undefined' !== typeof process &&
-    process.release &&
-    'node' === process.release.name;
+  return typeof process !== 'undefined'
+    && process.release
+    && process.release.name === 'node';
 }

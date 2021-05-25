@@ -19,7 +19,7 @@ export default function toProvider(name, config, children) {
 
   const type = getReactComponent(name, null);
 
-  if (! type) {
+  if (!type) {
     return children;
   }
 

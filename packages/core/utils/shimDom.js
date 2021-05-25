@@ -1,4 +1,5 @@
 const { JSDOM } = require('jsdom');
+
 const { window: shim } = new JSDOM('<!doctype html>', {
   url: process.env.ROOT_URL || 'localhost:3001',
 });
@@ -6,7 +7,6 @@ const { window: shim } = new JSDOM('<!doctype html>', {
 shim.addEventListener = () => {};
 shim.matchMedia = () => ({
   matches: false,
-  media: query,
   onchange: null,
   addListener: () => {},
   removeListener: () => {},
