@@ -5,7 +5,7 @@
 	"files": [
 		"components/**/*",
 		"config/**/*",
-		"blockEditor.js",
+		"blockEditor.jsx",
 		"babel.config.js",
 		"irving.config.js",
 		"webpack.config.js",
