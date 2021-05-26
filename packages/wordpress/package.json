@@ -1,6 +1,6 @@
 {
 	"name": "@irvingjs/wordpress",
-	"version": "6.4.0-alpha.0",
+	"version": "6.4.0-alpha.1",
 	"description": "An example package for creating your own.",
 	"files": [
 		"components/**/*",
