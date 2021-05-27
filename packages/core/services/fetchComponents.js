@@ -1,8 +1,5 @@
 import AbortController from 'abort-controller';
 import omit from 'lodash/fp/omit';
-import {
-  CONTEXT_PAGE,
-} from 'config/constants';
 import isNode from 'utils/isNode';
 import { maybeMergeAuthHeaders } from 'utils/authorization';
 import { getEnv } from 'config/multisite';
