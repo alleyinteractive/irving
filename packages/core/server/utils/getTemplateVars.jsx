@@ -2,7 +2,10 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import omit from 'lodash/fp/omit';
 import mergeWith from 'lodash/mergeWith';
-import { getConfigValues } from 'config/irving/getValueFromConfig';
+import {
+  getConfigValues,
+  getValueFromUserConfig,
+} from 'config/irving/getValueFromConfig';
 import { getEnv, getSiteConfig } from 'config/multisite';
 
 export const defaultHead = {
@@ -18,6 +21,9 @@ export const defaultHead = {
   noscript: [],
   end: [],
 };
+
+// Determine if user wants to disable SSR.
+const disableSSR = getValueFromUserConfig('disableSSR', false);
 
 /**
  * Check if a value is a function and, if so, call that function to get
@@ -156,6 +162,6 @@ export default function getTemplateVars(
   return {
     ...mergedVars,
     head: mergedHead,
-    appHtml,
+    appHtml: disableSSR ? '' : appHtml,
   };
 }
