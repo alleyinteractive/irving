@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import getEnv from '@irvingjs/core/config/irving/getEnv';
 import getLogService from '@irvingjs/services/logService';
 import CoralEmbed from './index';
 import { actionRequireUpgrade } from '../../actions/picoActions';
+import { actionReceiveCoralToken } from '../../actions/coralActions';
 import {
   tokenSelector,
   requireUsernameSelector,
@@ -22,7 +24,7 @@ const withPico = (ChildComponent) => {
     // Grab the status of whether or not Pico has loaded.
     const { loaded: picoLoaded } = useSelector(picoLifecycleSelector);
     // Grab the value of the Pico signal from the Redux store.
-    const { status, tier } = useSelector(picoSignalSelector) || {};
+    const { email, status, tier } = useSelector(picoSignalSelector) || {};
     // Grab the value of the Coral token from the Redux store.
     const coralToken = useSelector(tokenSelector);
     // Grab the true/false value of whether or not a username needs to be set
@@ -51,13 +53,28 @@ const withPico = (ChildComponent) => {
 
     // Define Coral event handlers.
     const handlers = (events) => {
-      events.on('loginPrompt', () => {
+      events.on('loginPrompt', async () => {
+        const id = window.Pico.user.id || '';
+
         // If the user is registered but not paying show the upgrade modal on click.
         if (status === 'registered') {
           dispatch(actionRequireUpgrade());
         } else if (status === 'paying' && !ssoTiers.includes(tier)) {
           // If the user is paying but cannot comment, prompt them to upgrade their subscription.
           dispatch(actionRequireUpgrade());
+        } else if (
+          status === 'paying' &&
+          ssoTiers.includes(tier)
+          && id !== ''
+        ) {
+          const { API_ROOT_URL } = getEnv();
+          const { status: ssoStatus, jwt } = await fetch(
+            `${API_ROOT_URL}/data/validate_sso_user?user=${encodeURIComponent(email)}&id=${id}` // eslint-disable-line max-len
+          ).then((res) => res.json());
+
+          if ('success' === ssoStatus) {
+            dispatch(actionReceiveCoralToken(jwt));
+          }
         } else {
           // Summon the base Pico modal.
           const ruleNode = document.getElementById('PicoRule-button');
