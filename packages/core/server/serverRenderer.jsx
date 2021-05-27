@@ -138,7 +138,12 @@ export default function serverRenderer(options) {
       log.error(
         '%o',
         { url: req.originalUrl, err },
-        { errorUrl: ROOT_URL + req.originalUrl, justin: 'test' },
+        {
+          tags: {
+            ROOT_URL,
+            errorUrl: req.originalUrl,
+          }
+        },
       );
 
       const errorToDisplay = req.query.debug
