@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.1...v6.4.0-alpha.2) (2021-05-27)
+
+
+### Bug Fixes
+
+* **withpico.jsx:** add conditional logic to automatically log paying tier users into Coral ([349fcb1](https://github.com/alleyinteractive/irving/commit/349fcb127633564f56c36b48654fa26f8772b9af))
+
+
+
+
+
 # [6.4.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.0...v6.4.0-alpha.1) (2021-05-26)
 
 
