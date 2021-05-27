@@ -35,20 +35,23 @@ const getService = (namespace) => {
     let transport;
 
     // Set up sentry transport.
-    if (SENTRY_DSN && 'production' === NODE_ENV) {
+    if (
+      SENTRY_DSN
+      // && NODE_ENV === 'production'
+    ) {
       const SentryTransport = require('winston-transport-sentry-node').default;
       const sentryFormat = format((info) => {
         const {
           app_type: appType,
-          errorUrl,
+          tags,
           ...extra
         } = info;
 
         return {
           ...extra,
           tags: {
+            ...tags,
             source: appType,
-            errorUrl,
           },
         };
       });
@@ -82,10 +85,10 @@ const getService = (namespace) => {
           if ('error' === logInfo.level) {
             const err = new Error(logInfo.message);
 
-            if ('development' === NODE_ENV) {
-              // In development the app should crash fast when encountering any errors.
-              throw err;
-            }
+            // if (NODE_ENV === 'development') {
+            //   // In development the app should crash fast when encountering any errors.
+            //   throw err;
+            // }
 
             // Send error to production monitoring service.
             if ('production' === NODE_ENV) {

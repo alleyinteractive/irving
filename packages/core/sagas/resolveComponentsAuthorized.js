@@ -41,7 +41,12 @@ export default function* resolveComponentsAuthorized() {
       log.error,
       '%o',
       err,
-      { errorUrl: ROOT_URL + hostname + path + search }
+      {
+        tags: {
+          ROOT_URL,
+          errorUrl: hostname + path + search,
+        },
+      }
     );
     yield put(actionReceiveError(err));
   }
