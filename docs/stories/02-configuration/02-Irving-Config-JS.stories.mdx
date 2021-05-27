@@ -144,6 +144,11 @@ const getEnvAllowlist = () => ([
 export default getEnvAllowlist;
 ```
 
+## Disable SSR
+* **where to configure**: `irving.config.js` in the `disableSSR` key
+* **type**: array
+* **purpose**: Disable server-side rendering, forcing Irving to render client-side only. This will switch the client-side script from using `hydrate` to using `render`.
+
 ## Logging Service
 * **where to configure**: `services/logService.js`
 * **type**: function (replaces core service)

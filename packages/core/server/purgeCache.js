@@ -44,23 +44,23 @@ const createKeyFromPath = (hostname, path) => {
 
   // Return exact match if path is "/".
   if (normalizedPath === '/') {
-    const endpoint = createEndpointUrl(
+    const endpoint = createEndpointUrl({
       hostname,
-      normalizedPath,
-      '',
-      {},
-      CONTEXT_SITE,
-    );
+      path: normalizedPath,
+      search: '',
+      cookie: {},
+      context: CONTEXT_SITE,
+    });
     return `components-endpoint:${endpoint}`;
   }
 
-  const endpoint = createEndpointUrl(
+  const endpoint = createEndpointUrl({
     hostname,
-    normalizedPath,
-    '',
-    {},
-    '',
-  );
+    path: normalizedPath,
+    search: '',
+    cookie: {},
+    context: '',
+  });
   return `components-endpoint:${endpoint}*`;
 };
 

@@ -1,8 +1,5 @@
 import AbortController from 'abort-controller';
 import omit from 'lodash/fp/omit';
-import {
-  CONTEXT_PAGE,
-} from 'config/constants';
 import isNode from 'utils/isNode';
 import { maybeMergeAuthHeaders } from 'utils/authorization';
 import { getEnv } from 'config/multisite';
@@ -15,28 +12,19 @@ const log = getLogService('irving:components');
 /**
  * Fetch components for the page from the API.
  *
- * @param {string} hostname Hostname for current site
- * @param {string} path Path of the request page
- * @param {string} search Search string
- * @param {object} cookie Cookie header string
- * @param {string} context "Page" (page specific components) or "site" (all components)
+ * @param {object} routeMeta metadata for current route.
+ * @param {object} routeCookies allowlist of cookies for passing to in request endpoint.
  * @returns {Promise<{object}>}
  */
-export async function fetchComponents(
-  hostname,
-  path,
-  search = '',
-  cookie = {},
-  context = CONTEXT_PAGE,
-) {
-  const { FETCH_TIMEOUT, ROOT_URL } = getEnv(hostname);
-  const apiUrl = createEndpointUrl(
+export async function fetchComponents(routeMeta, routeCookies) {
+  const {
+    cookie,
     hostname,
     path,
     search,
-    cookie,
-    context,
-  );
+  } = routeMeta;
+  const { FETCH_TIMEOUT, ROOT_URL } = getEnv(hostname);
+  const apiUrl = createEndpointUrl(routeMeta, routeCookies);
 
   // Create abort controller and set timeout to abort fetch call.
   // Default timeout is 10s, but can be configured with env var.
@@ -112,28 +100,13 @@ export async function fetchComponents(
 /**
  * Cache fetchComponents responses. Return cached response if available.
  *
- * @param {string} hostname Hostname for current site
- * @param {string} path Path of the request page
- * @param {string} search Search string
- * @param {object} cookie Cookie header string
- * @param {string} context "Page" (page specific components) or "site" (all components)
+ * @param {object} routeMeta metadata for current route.
+ * @param {object} routeCookies allowlist of cookies for passing to in request endpoint.
  * @returns {Promise<{object}>} - fetchComponents return value
  */
-async function cachedFetchComponents(
-  hostname,
-  path,
-  search,
-  cookie = {},
-  context = CONTEXT_PAGE,
-) {
+async function cachedFetchComponents(routeMeta, routeCookies) {
   const cache = getCacheService();
-  const apiUrl = createEndpointUrl(
-    hostname,
-    path,
-    search,
-    cookie,
-    context,
-  );
+  const apiUrl = createEndpointUrl(routeMeta, routeCookies);
   const key = `components-endpoint:${apiUrl}`;
   const info = {
     cached: false,
@@ -142,18 +115,16 @@ async function cachedFetchComponents(
     cacheKey: key,
     updated: null,
   };
-  const {
-    bypassCache,
-  } = cookie;
+  const { cookie: { bypassCache } = {} } = routeMeta;
 
   if (bypassCache || !cache.client) {
     log.info('%o', info);
-    return fetchComponents(hostname, path, search, cookie, context);
+    return fetchComponents(routeMeta, routeCookies);
   }
 
   const cachedResult = await cache.cached(
     key,
-    await fetchComponents(hostname, path, search, cookie, context),
+    await fetchComponents(routeMeta, routeCookies),
     {
       payload: true,
     },

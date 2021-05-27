@@ -9,7 +9,13 @@ jest.mock('ioredis');
 
 const hostname = 'multisite-one.irving.test';
 const cache = cacheService();
-const endpoint = createEndpointUrl(hostname, '/cache', '&bar=baz', {}, 'page');
+const endpoint = createEndpointUrl({
+  hostname,
+  path: '/cache',
+  search: '&bar=baz',
+  cookie: {},
+  context: 'page'
+});
 const cacheKey = `components-endpoint:${endpoint}`;
 
 beforeEach(() => {
@@ -34,7 +40,10 @@ describe('fetchComponents', () => {
         }
       );
 
-      expect(await fetchComponents(hostname, '/foo')).toBeDefined();
+      expect(await fetchComponents(
+        { hostname, path: '/foo'},
+        {},
+      )).toBeDefined();
       done();
     }
   );
@@ -51,7 +60,10 @@ describe('fetchComponents', () => {
         },
       });
 
-      expect(await fetchComponents(hostname, '/foo', '?bar=baz')).toBeDefined();
+      expect(await fetchComponents(
+        { hostname, path: '/foo', search: '?bar=baz'},
+        {},
+      )).toBeDefined();
       done();
     }
   );
@@ -61,7 +73,7 @@ describe('cachedFetchComponents', () => {
   const hostname = 'multisite-one.irving.test';
 
   it(
-    'should get fetch response from cached',
+    'should get fetch response from cache',
     async (done) => {
       // Throws an error if the request doesn't match.
       fetchMock.get('https://irving-multisite.test/api/components', {}, {
@@ -72,11 +84,13 @@ describe('cachedFetchComponents', () => {
         },
       });
 
-      const result = await cachedFetchComponents(
+      const result = await cachedFetchComponents({
         hostname,
-        '/cache',
-        '?bar=baz'
-      );
+        path: '/cache',
+        search: '?bar=baz',
+        cookie: {},
+        context: 'page',
+      }, {});
       expect(result).toBeDefined();
 
       // Getting directly from cache.
@@ -84,19 +98,21 @@ describe('cachedFetchComponents', () => {
       expect(result).toEqual(getCached);
 
       // Second Request.
-      const firstCachedResponse = await cachedFetchComponents(
+      const firstCachedResponse = await cachedFetchComponents({
         hostname,
-        '/cache',
-        '?bar=baz'
-      );
+        path: '/cache',
+        search: '?bar=baz',
+      }, {});
       expect(result).toEqual(firstCachedResponse);
 
       // Third Request.
-      const secondCachedResponse = await cachedFetchComponents(
+      const secondCachedResponse = await cachedFetchComponents({
         hostname,
-        '/cache',
-        '?bar=baz'
-      );
+        path: '/cache',
+        search: '?bar=baz',
+        cookie: {},
+        context: 'page',
+      }, {});
       expect(result).toEqual(secondCachedResponse);
       done();
     }
@@ -114,12 +130,12 @@ describe('cachedFetchComponents', () => {
         },
       });
 
-      const result = await cachedFetchComponents(
+      const result = await cachedFetchComponents({
         hostname,
-        '/cache',
-        '?bar=baz',
-        { bypassCache: true }
-      );
+        path: '/cache',
+        search: '?bar=baz',
+        cookie: { bypassCache: true },
+      }, {});
 
       expect(result).toBeDefined();
       expect(result.data).toBeUndefined();
@@ -144,11 +160,11 @@ describe('cachedFetchComponents', () => {
           async () => (
             new Promise(
               (resolve) => setTimeout(
-                async () => resolve(await cachedFetchComponents(
+                async () => resolve(await cachedFetchComponents({
                   hostname,
-                  '/cache',
-                  '?bar=baz'
-                )),
+                  path: '/cache',
+                  search: '?bar=baz',
+                })),
                 100
               )
             )

@@ -150,6 +150,18 @@ Use basic auth to protect caching endpoints.
 		<td>Override default filename for Pico's gadget script</td>
 		<td><code>PICO_SCRIPT_FILENAME=override-script.min.js</code></td>
 	</tr>
+	<tr>
+		<td><code>ROUTE_COOKIES</code></td>
+		<td>Default: []</td>
+		<td>Comma-separated allowlist of cookies that should be included in endpoint URLs to differentiate data based on cookie value</td>
+		<td><code>ROUTE_COOKIES=myCookie,anotherCookie</code></td>
+	</tr>
+	<tr>
+		<td><code>COOKIE_ALLOWLIST</code></td>
+		<td>Default: authorizationBearerToken,authorizationBasicToken,bypassCache</td>
+		<td>Comma-separated allowlist of cookies relevant to your app. Only allowlisted cookies will be included in redux `route.cookie` state and provided by the `getCookies` selector.</td>
+		<td><code>COOKIE_ALLOWLIST=myCookie,anotherCookie</code></td>
+	</tr>
 </table>
 
 ##### Services

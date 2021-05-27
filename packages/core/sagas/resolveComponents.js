@@ -9,6 +9,7 @@ import {
   actionFinishLoading,
 } from 'actions';
 import getRouteMeta from 'selectors/getRouteMeta';
+import getRouteCookies from 'selectors/getRouteCookies';
 import cachedFetchComponents, {
   fetchComponents,
 } from 'services/fetchComponents';
@@ -26,15 +27,16 @@ import resolveComponentsAuthorized from './resolveComponentsAuthorized';
 const log = getLogService('irving:sagas:location');
 
 export default function* resolveComponents() {
+  const routeMeta = yield select(getRouteMeta);
+  const routeCookies = yield select(getRouteCookies);
+  // If auth token cookie is set, bypass redis when fetching components.
   const {
+    cookie,
+    cached,
     hostname,
     path,
     search,
-    cookie,
-    context,
-    cached,
-  } = yield select(getRouteMeta);
-  // If auth token cookie is set, bypass redis when fetching components.
+  } = routeMeta;
   const authToken = getAuthToken(cookie);
   const fetchService = authToken ? fetchComponents : cachedFetchComponents;
 
@@ -52,11 +54,8 @@ export default function* resolveComponents() {
   try {
     const result = yield call(
       fetchService,
-      hostname,
-      path,
-      search,
-      cookie,
-      context,
+      routeMeta,
+      routeCookies,
     );
 
     // Only redirect on client side and if there's a redirect set up,

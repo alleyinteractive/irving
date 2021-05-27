@@ -3,18 +3,10 @@ import pick from 'lodash/fp/pick';
 import get from 'lodash/fp/get';
 import { getEnv } from 'config/multisite';
 import defaultCookies from 'config/defaultCookies';
+import getRouteCookies from 'selectors/getRouteCookies';
 
 /**
- * Get any query parameters that should be mapped from the
- * cookies in the request.
- * ---
- * This can be used to pass cookie values as parameters in the components
- * request URL. In many cases, we won't be able to use cookies in the
- * Components API, so this can be used to pass the values we need as a parameter
- * instead.
- * ---
- * The specific cookies to be mapped to query params can be set as a comma-separated
- * list in the `COOKIE_MAP_LIST` environment variable.
+ * Pick cookies relevant to the app from the full cookie object.
  *
  * @returns {object}
  */
@@ -22,18 +14,22 @@ const getCookies = createSelector(
   [
     get('route.hostname'),
     get('route.cookie'),
+    getRouteCookies,
   ],
-  (hostname, routeCookies) => {
+  (hostname, cookies, routeCookies) => {
     const env = getEnv(hostname);
-    const envAllowList = env.COOKIE_MAP_LIST
-      ? env.COOKIE_MAP_LIST.split(',')
+    const envAllowList = env.COOKIE_ALLOWLIST
+      ? env.COOKIE_ALLOWLIST.split(',')
       : [];
     const allowlistCookies = [
       ...defaultCookies,
       ...envAllowList,
     ];
 
-    return pick(allowlistCookies)(routeCookies);
+    return {
+      ...routeCookies,
+      ...pick(allowlistCookies)(cookies),
+    }
   },
 );
 
