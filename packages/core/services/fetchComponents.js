@@ -115,7 +115,7 @@ async function cachedFetchComponents(routeMeta, routeCookies) {
     cacheKey: key,
     updated: null,
   };
-  const { cookie: { bypassCache } } = routeMeta;
+  const { cookie: { bypassCache } = {} } = routeMeta;
 
   if (bypassCache || !cache.client) {
     log.info('%o', info);
