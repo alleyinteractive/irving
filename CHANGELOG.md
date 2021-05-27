@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.2...v6.4.0-alpha.3) (2021-05-27)
+
+
+### Features
+
+* **ssr:** add irving config to disable SSR ([e47622a](https://github.com/alleyinteractive/irving/commit/e47622a7a3fc828a0c6e0fbfe23a6c5ea16b4d96))
+
+
+
+
+
 # [6.4.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.1...v6.4.0-alpha.2) (2021-05-27)
 
 
