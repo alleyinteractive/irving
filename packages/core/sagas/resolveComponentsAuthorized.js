@@ -9,6 +9,7 @@ import {
   actionRequestComponentsAuthorized,
 } from 'actions';
 import getRouteMeta from 'selectors/getRouteMeta';
+import getRouteCookies from 'selectors/getRouteCookies';
 import { fetchComponents } from 'services/fetchComponents';
 import getLogService from '@irvingjs/services/logService';
 import { getEnv } from 'config/multisite';
@@ -16,23 +17,20 @@ import { getEnv } from 'config/multisite';
 const log = getLogService('irving:sagas:authorization');
 
 export default function* resolveComponentsAuthorized() {
+  const routeMeta = yield select(getRouteMeta);
+  const routeCookies = yield select(getRouteCookies);
   const {
     hostname,
     path,
     search,
-    cookie,
-    context,
-  } = yield select(getRouteMeta);
+  } = routeMeta;
   yield put(actionRequestComponentsAuthorized());
 
   try {
     const result = yield call(
       fetchComponents,
-      hostname,
-      path,
-      search,
-      cookie,
-      context,
+      routeMeta,
+      routeCookies,
     );
     yield put(actionReceiveComponents(result));
   } catch (err) {

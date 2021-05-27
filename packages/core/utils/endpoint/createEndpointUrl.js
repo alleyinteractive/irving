@@ -15,13 +15,13 @@ const getExtraQueryParams = require('./getExtraQueryParams');
  * @param {string} cookie Cookie header string
  * @param {string} [context] "Page" (page specific components) or "site" (all components)
  */
-function createEndpointUrl(
-  hostname,
-  path,
-  search = '',
-  cookie = {},
-  context = CONTEXT_PAGE,
-) {
+function createEndpointUrl(routeMeta, routeCookies) {
+  const {
+    hostname,
+    path,
+    search = '',
+    context = CONTEXT_PAGE,
+  } = routeMeta;
   const env = getEnv(hostname);
   const queryObject = { path };
 
@@ -36,7 +36,7 @@ function createEndpointUrl(
       ...queryObject,
       ...getExtraQueryParams(env),
       ...queryString.parse(search),
-      ...omit(defaultCookies, cookie),
+      ...routeCookies,
     },
     {
       encode: false,
