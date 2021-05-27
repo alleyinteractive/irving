@@ -10,7 +10,10 @@ import set from 'lodash/fp/set';
 import { actionLocationChange } from 'actions';
 import Cookies from 'universal-cookie';
 import App from 'components/app';
-import { getValueFromConfig } from 'config/irving/getValueFromConfig';
+import {
+  getValueFromConfig,
+  getValueFromUserConfig,
+} from 'config/irving/getValueFromConfig';
 import preloadedStateDenylist from 'config/preloadedStateDenylist';
 import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
@@ -67,12 +70,16 @@ history.listen((location, action) => {
   ));
 });
 
+// Determine if user wants to disable SSR.
+const disableSSR = getValueFromUserConfig('disableSSR', false);
+const renderMethod = disableSSR ? 'render' : 'hydrate';
+
 const render = () => {
   const rootEl = document.getElementById('root');
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
-  ReactDOM.hydrate(
+  ReactDOM[renderMethod](
     <Provider store={store}>
       <App />
     </Provider>,
