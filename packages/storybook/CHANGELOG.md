@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/storybook/compare/v6.4.0-alpha.4...v6.4.0-alpha.5) (2021-05-27)
+
+**Note:** Version bump only for package @irvingjs/storybook
+
+
+
+
+
 # [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/storybook/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/storybook
