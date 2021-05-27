@@ -3,7 +3,7 @@ import getRouteKey from './getRouteKey';
 describe('getRouteKey', () => {
   beforeEach(() => {
     // Allow myFunCookie to be included in routes.
-    process.env.COOKIE_MAP_LIST = 'myFunCookie';
+    process.env.ROUTE_COOKIES = 'myFunCookie';
   });
 
   it('should use just pathname if search and cookies are empty', () => {

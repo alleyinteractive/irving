@@ -95,6 +95,7 @@ Cache purge successful!`);
       const req = mockRequest();
       const res = mockResponse();
 
+
       await purgeCache(req, res, () => {});
 
       await waitForExpect(() => {
