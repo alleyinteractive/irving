@@ -14,6 +14,7 @@ const mockRedisDatabase = {
   'components-endpoint:https://irving-multisite.test/api/components?path=/test-term&context=site': 'data',
   'components-endpoint:https://irving-multisite.test/api/components?path=/test-term&context=site&another-param': 'data',
   'components-endpoint:https://irving-multisite.test/api/components?path=/test-test-test': 'data',
+  // 'components-endpoint:https://irving-multisite.test/api/components?path=/cache&context=page': 'data',
 };
 /* eslint-enable max-len */
 

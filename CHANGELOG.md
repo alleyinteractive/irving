@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
+
+
+### Bug Fixes
+
+* **cookies:** separate app cookies from route cookies to remove auth tokens from route keys ([6ccc068](https://github.com/alleyinteractive/irving/commit/6ccc068eb7492acbf050bf788cb987bb2708b3cb))
+* **docs:** fix a docblock ([35c99ee](https://github.com/alleyinteractive/irving/commit/35c99eec356b074658fb3493d019d9dfe51dcdbc))
+
+
+### Performance Improvements
+
+* **purgecache:** fix purgeCache test ([cec4708](https://github.com/alleyinteractive/irving/commit/cec47082f7183d628b3889ddae134be902e327d9))
+
+
+
+
+
+# [6.4.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.2...v6.4.0-alpha.3) (2021-05-27)
+
+
+### Features
+
+* **ssr:** add irving config to disable SSR ([e47622a](https://github.com/alleyinteractive/irving/commit/e47622a7a3fc828a0c6e0fbfe23a6c5ea16b4d96))
+
+
+
+
+
+# [6.4.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.1...v6.4.0-alpha.2) (2021-05-27)
+
+
+### Bug Fixes
+
+* **withpico.jsx:** add conditional logic to automatically log paying tier users into Coral ([349fcb1](https://github.com/alleyinteractive/irving/commit/349fcb127633564f56c36b48654fa26f8772b9af))
+
+
+
+
+
 # [6.4.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.0...v6.4.0-alpha.1) (2021-05-26)
 
 
