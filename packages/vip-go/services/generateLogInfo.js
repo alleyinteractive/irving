@@ -7,7 +7,7 @@ module.exports = function generateLogInfo(method, messages) {
   // Filter out tags.
   const noTags = messages.filter(
     (message) => (
-      'object' === typeof message ||
+      'object' !== typeof message ||
       (
         'object' === typeof message &&
         ! message.tags
