@@ -35,20 +35,23 @@ const getService = (namespace) => {
     let transport;
 
     // Set up sentry transport.
-    if (SENTRY_DSN && NODE_ENV === 'production') {
+    if (
+      SENTRY_DSN
+      && NODE_ENV === 'production'
+    ) {
       const SentryTransport = require('winston-transport-sentry-node').default;
       const sentryFormat = format((info) => {
         const {
           app_type: appType,
-          errorUrl,
+          tags,
           ...extra
         } = info;
 
         return {
           ...extra,
           tags: {
+            ...tags,
             source: appType,
-            errorUrl,
           },
         };
       });

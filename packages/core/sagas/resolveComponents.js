@@ -78,7 +78,12 @@ export default function* resolveComponents() {
     }
   } catch (err) {
     const { ROOT_URL } = getEnv(hostname);
-    yield call(log.error, err, { errorUrl: ROOT_URL + path + search });
+    yield call(log.error, err, {
+      tags: {
+        ROOT_URL,
+        errorUrl: hostname + path + search,
+      },
+    });
     yield put(actionReceiveError(err));
   }
 }

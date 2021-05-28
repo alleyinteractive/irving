@@ -33,7 +33,12 @@ export async function fetchComponents(routeMeta, routeCookies) {
     () => {
       log.error(
         new Error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.'), // eslint-disable-line max-len
-        { errorUrl: ROOT_URL + path + search },
+        {
+          tags: {
+            ROOT_URL,
+            errorUrl: hostname + path + search,
+          }
+        },
       );
       controller.abort();
     },
@@ -59,7 +64,14 @@ export async function fetchComponents(routeMeta, routeCookies) {
   try {
     data = await response.json();
   } catch (error) {
-    throw new Error(`API error: ${error}`);
+    const apiError = new Error(`API error: ${error}`);
+    log.error(apiError, {
+      tags: {
+        ROOT_URL,
+        errorUrl: hostname + path + search,
+      }
+    });
+    throw apiError;
   }
 
   const {
@@ -87,7 +99,14 @@ export async function fetchComponents(routeMeta, routeCookies) {
     && response.status !== 404
   ) {
     const message = data.message || data.data || 'No error returned by API';
-    throw new Error(`API error: ${message}`);
+    const apiError = new Error(`API error: ${message}`);
+    log.error(apiError, {
+      tags: {
+        ROOT_URL,
+        errorUrl: hostname + path + search,
+      }
+    });
+    throw apiError;
   }
 
   return {
