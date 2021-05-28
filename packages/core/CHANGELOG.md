@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
+
+
+
+## [6.2.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
+
+
+
+## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
+
+
+
+## [6.2.1-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.4...v6.2.1-beta.0) (2021-05-27)
+
+
+### Bug Fixes
+
+* **ssr:** disableSSR option ([120c818](https://github.com/alleyinteractive/irving/packages/core/commit/120c81849b743c9c9bfc4d681fdf8a37f7007a9c))
+
+
+
+
+
 # [6.4.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.5...v6.4.0-alpha.6) (2021-05-28)
 
 
