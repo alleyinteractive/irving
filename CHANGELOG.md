@@ -3,6 +3,108 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.8](https://github.com/alleyinteractive/irving/compare/v6.3.1...v6.4.0-alpha.8) (2021-05-28)
+
+
+
+# [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
+
+
+
+# [6.4.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.5...v6.4.0-alpha.6) (2021-05-28)
+
+
+
+# [6.4.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v6.2.1...v6.4.0-alpha.5) (2021-05-27)
+
+
+
+## [6.2.1](https://github.com/alleyinteractive/irving/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
+
+
+
+## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
+
+
+
+## [6.2.1-beta.0](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.4...v6.2.1-beta.0) (2021-05-27)
+
+
+
+# [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
+
+
+### Bug Fixes
+
+* **docs:** add docs for disableSSR ([c26b5c1](https://github.com/alleyinteractive/irving/commit/c26b5c156336e769b15d44c5c6f354fa277025fc))
+* **ssr:** disableSSR option ([120c818](https://github.com/alleyinteractive/irving/commit/120c81849b743c9c9bfc4d681fdf8a37f7007a9c))
+
+
+### Performance Improvements
+
+* **purgecache:** fix purgeCache test ([cec4708](https://github.com/alleyinteractive/irving/commit/cec47082f7183d628b3889ddae134be902e327d9))
+
+
+
+# [6.4.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.2...v6.4.0-alpha.3) (2021-05-27)
+
+
+### Bug Fixes
+
+* **cookies:** separate app cookies from route cookies to remove auth tokens from route keys ([6ccc068](https://github.com/alleyinteractive/irving/commit/6ccc068eb7492acbf050bf788cb987bb2708b3cb))
+* **docs:** fix a docblock ([35c99ee](https://github.com/alleyinteractive/irving/commit/35c99eec356b074658fb3493d019d9dfe51dcdbc))
+* **logservice:** uncomment code ([0e05f53](https://github.com/alleyinteractive/irving/commit/0e05f5370e537b4f17e5a945c0068755dcf06ebb))
+
+
+### Features
+
+* **logservice:** allow passing of arbitrary tags to the vip log service ([c9bc608](https://github.com/alleyinteractive/irving/commit/c9bc6087227e8a8f4a3337bb988d3750a7a07d41))
+
+
+
+# [6.4.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.1...v6.4.0-alpha.2) (2021-05-27)
+
+
+### Features
+
+* **ssr:** add irving config to disable SSR ([e47622a](https://github.com/alleyinteractive/irving/commit/e47622a7a3fc828a0c6e0fbfe23a6c5ea16b4d96))
+
+
+
+# [6.4.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.0...v6.4.0-alpha.1) (2021-05-26)
+
+
+### Bug Fixes
+
+* **wordpress:** fix extension in published files for wordpress package ([909d724](https://github.com/alleyinteractive/irving/commit/909d72461f4b534852205b3247e0d771e6cbb03d))
+
+
+
+# [6.4.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.3.1-alpha.0...v6.4.0-alpha.0) (2021-05-26)
+
+
+
+## [6.3.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.3.0...v6.3.1-alpha.0) (2021-05-26)
+
+
+### Bug Fixes
+
+* **withpico.jsx:** add conditional logic to automatically log paying tier users into Coral ([349fcb1](https://github.com/alleyinteractive/irving/commit/349fcb127633564f56c36b48654fa26f8772b9af))
+
+
+
+# [6.3.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.3.0-beta.0...v6.3.0-alpha.3) (2021-05-25)
+
+
+### Bug Fixes
+
+* **babel:** fix configuration of babel module resolver with eslint ([82c2dbc](https://github.com/alleyinteractive/irving/commit/82c2dbca76e02b356f4f7982d59d4d8c228570bd))
+* **eslint:** eslint style updates for loadable package ([b9905d3](https://github.com/alleyinteractive/irving/commit/b9905d3d02afe64487df81543b99911dd801d98a))
+
+
+
+
+
 # [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
 
 **Note:** Version bump only for package irving

@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.1...v6.4.0-alpha.8) (2021-05-28)
+
+
+
+# [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
+
+
+
+# [6.4.0-alpha.6](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.5...v6.4.0-alpha.6) (2021-05-28)
+
+
+
+# [6.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.1...v6.4.0-alpha.5) (2021-05-27)
+
+
+
+## [6.2.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
+
+
+
+## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
+
+
+
+## [6.2.1-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.4...v6.2.1-beta.0) (2021-05-27)
+
+
+
+# [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
+
+
+### Bug Fixes
+
+* **ssr:** disableSSR option ([120c818](https://github.com/alleyinteractive/irving/packages/core/commit/120c81849b743c9c9bfc4d681fdf8a37f7007a9c))
+
+
+### Performance Improvements
+
+* **purgecache:** fix purgeCache test ([cec4708](https://github.com/alleyinteractive/irving/packages/core/commit/cec47082f7183d628b3889ddae134be902e327d9))
+
+
+
+# [6.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.2...v6.4.0-alpha.3) (2021-05-27)
+
+
+### Bug Fixes
+
+* **cookies:** separate app cookies from route cookies to remove auth tokens from route keys ([6ccc068](https://github.com/alleyinteractive/irving/packages/core/commit/6ccc068eb7492acbf050bf788cb987bb2708b3cb))
+* **docs:** fix a docblock ([35c99ee](https://github.com/alleyinteractive/irving/packages/core/commit/35c99eec356b074658fb3493d019d9dfe51dcdbc))
+
+
+### Features
+
+* **logservice:** allow passing of arbitrary tags to the vip log service ([c9bc608](https://github.com/alleyinteractive/irving/packages/core/commit/c9bc6087227e8a8f4a3337bb988d3750a7a07d41))
+* **ssr:** add irving config to disable SSR ([e47622a](https://github.com/alleyinteractive/irving/packages/core/commit/e47622a7a3fc828a0c6e0fbfe23a6c5ea16b4d96))
+
+
+
+# [6.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.1-alpha.0...v6.4.0-alpha.0) (2021-05-26)
+
+
+
+## [6.3.1-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.0...v6.3.1-alpha.0) (2021-05-26)
+
+
+
+# [6.3.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.0-beta.0...v6.3.0-alpha.3) (2021-05-25)
+
+
+### Bug Fixes
+
+* **babel:** fix configuration of babel module resolver with eslint ([82c2dbc](https://github.com/alleyinteractive/irving/packages/core/commit/82c2dbca76e02b356f4f7982d59d4d8c228570bd))
+
+
+
+
+
 # [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
 
 **Note:** Version bump only for package @irvingjs/core

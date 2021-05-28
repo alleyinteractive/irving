@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.8](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.3.1...v6.4.0-alpha.8) (2021-05-28)
+
+
+
+# [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
+
+
+
+# [6.4.0-alpha.6](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.5...v6.4.0-alpha.6) (2021-05-28)
+
+
+
+# [6.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.2.1...v6.4.0-alpha.5) (2021-05-27)
+
+
+
+## [6.2.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
+
+
+
+## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
+
+
+
+## [6.2.1-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.4...v6.2.1-beta.0) (2021-05-27)
+
+
+
+# [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
+
+
+
+# [6.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.2...v6.4.0-alpha.3) (2021-05-27)
+
+
+### Bug Fixes
+
+* **logservice:** uncomment code ([0e05f53](https://github.com/alleyinteractive/irving/packages/vip-go/commit/0e05f5370e537b4f17e5a945c0068755dcf06ebb))
+
+
+### Features
+
+* **logservice:** allow passing of arbitrary tags to the vip log service ([c9bc608](https://github.com/alleyinteractive/irving/packages/vip-go/commit/c9bc6087227e8a8f4a3337bb988d3750a7a07d41))
+
+
+
+# [6.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.3.1-alpha.0...v6.4.0-alpha.0) (2021-05-26)
+
+
+
+## [6.3.1-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.3.0...v6.3.1-alpha.0) (2021-05-26)
+
+
+
+# [6.3.0-alpha.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.3.0-beta.0...v6.3.0-alpha.3) (2021-05-25)
+
+
+
+
+
 # [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
 
 
