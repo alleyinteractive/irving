@@ -96,14 +96,19 @@ const withPico = (ChildComponent) => {
       });
     };
 
-    if (picoLoaded && ssoTiers.includes(tier) && canComment) {
+    if (
+      undefined !== status &&
+      picoLoaded &&
+      ssoTiers.includes(tier) &&
+      canComment
+    ) {
       log.info('[irving:Coral:withPico] returning authenticated embed');
       return (
         <ChildComponent {...props} events={handlers} accessToken={coralToken} />
       );
     }
 
-    if (picoLoaded && !canComment) {
+    if (undefined !== status && picoLoaded && !canComment) {
       log.info('[irving:Coral:withPico] returning default embed');
       return (
         <ChildComponent {...props} events={handlers} />
