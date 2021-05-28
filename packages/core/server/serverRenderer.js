@@ -16,6 +16,7 @@ import App from 'components/app';
 import getComponent from 'config/componentMap';
 import createClientEnv from 'config/irving/createClientEnv';
 import { getEnv } from 'config/multisite';
+import createRouteLogTags from 'utils/createRouteLogTags';
 import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
@@ -134,15 +135,11 @@ export default function serverRenderer(options) {
         options.clientStats
       );
     } catch (err) {
-      const { ROOT_URL } = getEnv(req.hostname);
       log.error(
         '%o',
         { url: req.originalUrl, err },
         {
-          tags: {
-            ROOT_URL,
-            errorUrl: req.originalUrl,
-          },
+          tags: createRouteLogTags(req, getEnv(req.hostname)),
         }
       );
 

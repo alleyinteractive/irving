@@ -4,6 +4,7 @@ import {
   CONTEXT_PAGE,
 } from 'config/constants';
 import isNode from 'utils/isNode';
+import createRouteLogTags from 'utils/createRouteLogTags';
 import { maybeMergeAuthHeaders } from 'utils/authorization';
 import { getEnv } from 'config/multisite';
 import getLogService from '@irvingjs/services/logService';
@@ -29,13 +30,26 @@ export async function fetchComponents(
   cookie = {},
   context = CONTEXT_PAGE
 ) {
-  const { FETCH_TIMEOUT, ROOT_URL } = getEnv(hostname);
+  const env = getEnv(hostname);
+  const { FETCH_TIMEOUT } = env;
   const apiUrl = createEndpointUrl(
     hostname,
     path,
     search,
     cookie,
     context
+  );
+
+  log.error(
+    'OWEN TEST',
+    {
+      tags: createRouteLogTags({
+        hostname,
+        path,
+        search,
+        context,
+      }, env),
+    }
   );
 
   // Create abort controller and set timeout to abort fetch call.
@@ -46,10 +60,12 @@ export async function fetchComponents(
       log.error(
         new Error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.'), // eslint-disable-line max-len
         {
-          tags: {
-            ROOT_URL,
-            errorUrl: hostname + path + search,
-          },
+          tags: createRouteLogTags({
+            hostname,
+            path,
+            search,
+            context,
+          }, env),
         }
       );
       controller.abort();
@@ -78,10 +94,12 @@ export async function fetchComponents(
   } catch (error) {
     const apiError = new Error(`API error: ${error}`);
     log.error(apiError, {
-      tags: {
-        ROOT_URL,
-        errorUrl: hostname + path + search,
-      }
+      tags: createRouteLogTags({
+        hostname,
+        path,
+        search,
+        context,
+      }, env),
     });
     throw apiError;
   }
@@ -113,10 +131,12 @@ export async function fetchComponents(
     const message = data.message || data.data || 'No error returned by API';
     const apiError = new Error(`API error: ${message}`);
     log.error(apiError, {
-      tags: {
-        ROOT_URL,
-        errorUrl: hostname + path + search,
-      }
+      tags: createRouteLogTags({
+        hostname,
+        path,
+        search,
+        context,
+      }, env),
     });
     throw apiError;
   }

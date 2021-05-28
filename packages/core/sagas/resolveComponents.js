@@ -19,6 +19,7 @@ import {
 import history from 'utils/history';
 import isNode from 'utils/isNode';
 import getRelativeUrl from 'utils/getRelativeUrl';
+import createRouteLogTags from 'utils/createRouteLogTags';
 import getLogService from '@irvingjs/services/logService';
 import { getEnv } from 'config/multisite';
 import resolveComponentsAuthorized from './resolveComponentsAuthorized';
@@ -26,6 +27,7 @@ import resolveComponentsAuthorized from './resolveComponentsAuthorized';
 const log = getLogService('irving:sagas:location');
 
 export default function* resolveComponents() {
+  const routeMeta = yield select(getRouteMeta);
   const {
     hostname,
     path,
@@ -33,7 +35,7 @@ export default function* resolveComponents() {
     cookie,
     context,
     cached,
-  } = yield select(getRouteMeta);
+  } = routeMeta;
   // If auth token cookie is set, bypass redis when fetching components.
   const authToken = getAuthToken(cookie);
   const fetchService = authToken ? fetchComponents : cachedFetchComponents;
@@ -77,12 +79,8 @@ export default function* resolveComponents() {
       }
     }
   } catch (err) {
-    const { ROOT_URL } = getEnv(hostname);
     yield call(log.error, err, {
-      tags: {
-        ROOT_URL,
-        errorUrl: hostname + path + search,
-      },
+      tags: createRouteLogTags(routeMeta, getEnv(hostname)),
     });
     yield put(actionReceiveError(err));
   }
