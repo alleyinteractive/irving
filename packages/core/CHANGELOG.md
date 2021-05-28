@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.1-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.0...v6.3.1-beta.0) (2021-05-28)
+
+
+### Features
+
+* **logservice:** allow passing of arbitrary tags to the vip log service ([9b7a17d](https://github.com/alleyinteractive/irving/packages/core/commit/9b7a17d887b04dc9c136406137c666a860579317))
+* **ssr:** add irving config to disable SSR ([16f132b](https://github.com/alleyinteractive/irving/packages/core/commit/16f132b4d868626dca66a83f917956f4a9593c82))
+
+
+
+
+
 # [6.3.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.0-beta.0...v6.3.0) (2021-05-25)
 
 **Note:** Version bump only for package @irvingjs/core
