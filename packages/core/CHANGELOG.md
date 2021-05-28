@@ -5,16 +5,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
 
-
+**Note:** Version bump only for package @irvingjs/core
 
 ## [6.2.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
 
-
+**Note:** Version bump only for package @irvingjs/core
 
 ## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
 
 
-
+**Note:** Version bump only for package @irvingjs/core
 ## [6.2.1-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.4...v6.2.1-beta.0) (2021-05-27)
 
 
@@ -40,17 +40,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.4...v6.4.0-alpha.5) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/core
-## [6.2.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
-
-**Note:** Version bump only for package @irvingjs/core
-
-
-## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
+## [6.3.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.1-beta.1...v6.3.1) (2021-05-28)
 
 **Note:** Version bump only for package @irvingjs/core
 
 
 # [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
+
+
+
+## [6.3.1-beta.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.1-beta.0...v6.3.1-beta.1) (2021-05-28)
 
 
 ### Bug Fixes
@@ -62,12 +61,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Performance Improvements
 
 * **purgecache:** fix purgeCache test ([cec4708](https://github.com/alleyinteractive/irving/packages/core/commit/cec47082f7183d628b3889ddae134be902e327d9))
+* **logservice:** abstract out a utility for creating route-related logging tags ([1cf5932](https://github.com/alleyinteractive/irving/packages/core/commit/1cf593258be5f49f055ce45d660a3dd8102861cd))
+
 
 
 
 
 
 # [6.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.2...v6.4.0-alpha.3) (2021-05-27)
+
+**Note:** Version bump only for package @irvingjs/core
+## [6.3.1-beta.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.0...v6.3.1-beta.0) (2021-05-28)
 
 
 ### Features
@@ -107,6 +111,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **babel:** fix configuration of babel module resolver with eslint ([82c2dbc](https://github.com/alleyinteractive/irving/packages/core/commit/82c2dbca76e02b356f4f7982d59d4d8c228570bd))
+* **logservice:** allow passing of arbitrary tags to the vip log service ([9b7a17d](https://github.com/alleyinteractive/irving/packages/core/commit/9b7a17d887b04dc9c136406137c666a860579317))
+* **ssr:** add irving config to disable SSR ([16f132b](https://github.com/alleyinteractive/irving/packages/core/commit/16f132b4d868626dca66a83f917956f4a9593c82))
+
+
+
+
+
 # [6.3.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.0-beta.0...v6.3.0) (2021-05-25)
 
 **Note:** Version bump only for package @irvingjs/core

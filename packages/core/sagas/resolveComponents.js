@@ -20,6 +20,7 @@ import {
 import history from 'utils/history';
 import isNode from 'utils/isNode';
 import getRelativeUrl from 'utils/getRelativeUrl';
+import createRouteLogTags from 'utils/createRouteLogTags';
 import getLogService from '@irvingjs/services/logService';
 import { getEnv } from 'config/multisite';
 import resolveComponentsAuthorized from './resolveComponentsAuthorized';
@@ -34,8 +35,6 @@ export default function* resolveComponents() {
     cookie,
     cached,
     hostname,
-    path,
-    search,
   } = routeMeta;
   const authToken = getAuthToken(cookie);
   const fetchService = authToken ? fetchComponents : cachedFetchComponents;
@@ -77,12 +76,8 @@ export default function* resolveComponents() {
       }
     }
   } catch (err) {
-    const { ROOT_URL } = getEnv(hostname);
     yield call(log.error, err, {
-      tags: {
-        ROOT_URL,
-        errorUrl: hostname + path + search,
-      },
+      tags: createRouteLogTags(routeMeta, getEnv(hostname)),
     });
     yield put(actionReceiveError(err));
   }

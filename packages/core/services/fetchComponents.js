@@ -1,6 +1,7 @@
 import AbortController from 'abort-controller';
 import omit from 'lodash/fp/omit';
 import isNode from 'utils/isNode';
+import createRouteLogTags from 'utils/createRouteLogTags';
 import { maybeMergeAuthHeaders } from 'utils/authorization';
 import { getEnv } from 'config/multisite';
 import getLogService from '@irvingjs/services/logService';
@@ -20,11 +21,16 @@ export async function fetchComponents(routeMeta, routeCookies) {
   const {
     cookie,
     hostname,
-    path,
-    search,
   } = routeMeta;
-  const { FETCH_TIMEOUT, ROOT_URL } = getEnv(hostname);
+  const { FETCH_TIMEOUT } = getEnv(hostname);
   const apiUrl = createEndpointUrl(routeMeta, routeCookies);
+
+  log.error(
+    'OWEN TEST',
+    {
+      tags: createRouteLogTags(routeMeta, env),
+    }
+  );
 
   // Create abort controller and set timeout to abort fetch call.
   // Default timeout is 10s, but can be configured with env var.
@@ -34,11 +40,8 @@ export async function fetchComponents(routeMeta, routeCookies) {
       log.error(
         new Error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.'), // eslint-disable-line max-len
         {
-          tags: {
-            ROOT_URL,
-            errorUrl: hostname + path + search,
-          }
-        },
+          tags: createRouteLogTags(routeMeta, env),
+        }
       );
       controller.abort();
     },
@@ -66,10 +69,7 @@ export async function fetchComponents(routeMeta, routeCookies) {
   } catch (error) {
     const apiError = new Error(`API error: ${error}`);
     log.error(apiError, {
-      tags: {
-        ROOT_URL,
-        errorUrl: hostname + path + search,
-      }
+      tags: createRouteLogTags(routeMeta, env),
     });
     throw apiError;
   }
@@ -101,10 +101,7 @@ export async function fetchComponents(routeMeta, routeCookies) {
     const message = data.message || data.data || 'No error returned by API';
     const apiError = new Error(`API error: ${message}`);
     log.error(apiError, {
-      tags: {
-        ROOT_URL,
-        errorUrl: hostname + path + search,
-      }
+      tags: createRouteLogTags(routeMeta, env),
     });
     throw apiError;
   }

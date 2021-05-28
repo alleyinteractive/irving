@@ -5,16 +5,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
 
-
+**Note:** Version bump only for package @irvingjs/wordpress
 
 ## [6.2.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
 
-
+**Note:** Version bump only for package @irvingjs/wordpress
 
 ## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
 
 
-
+**Note:** Version bump only for package @irvingjs/wordpress
 ## [6.2.1-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.4.0-alpha.4...v6.2.1-beta.0) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/wordpress
@@ -34,26 +34,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.4.0-alpha.4...v6.4.0-alpha.5) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/wordpress
-## [6.2.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
-
-**Note:** Version bump only for package @irvingjs/wordpress
-
-
 
 
 
 # [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/wordpress
-## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
-
-**Note:** Version bump only for package @irvingjs/wordpress
-
-
 
 
 
 # [6.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.4.0-alpha.2...v6.4.0-alpha.3) (2021-05-27)
+**Note:** Version bump only for package @irvingjs/wordpress
+## [6.3.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.3.1-beta.1...v6.3.1) (2021-05-28)
 
 **Note:** Version bump only for package @irvingjs/wordpress
 
@@ -73,6 +65,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [6.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.3.1-alpha.0...v6.4.0-alpha.0) (2021-05-26)
+**Note:** Version bump only for package @irvingjs/wordpress
+## [6.3.1-beta.1](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.3.1-beta.0...v6.3.1-beta.1) (2021-05-28)
 
 **Note:** Version bump only for package @irvingjs/wordpress
 
@@ -92,15 +86,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **babel:** fix configuration of babel module resolver with eslint ([82c2dbc](https://github.com/alleyinteractive/irving/packages/example-package/commit/82c2dbca76e02b356f4f7982d59d4d8c228570bd))
 
 
+## [6.3.1-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.3.0...v6.3.1-beta.0) (2021-05-28)
+
+**Note:** Version bump only for package @irvingjs/wordpress
 
 
 
-# [6.3.0-alpha.3](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.3.0-alpha.2...v6.3.0-alpha.3) (2021-05-25)
 
 
-### Bug Fixes
-
-* **babel:** fix configuration of babel module resolver with eslint ([82c2dbc](https://github.com/alleyinteractive/irving/packages/example-package/commit/82c2dbca76e02b356f4f7982d59d4d8c228570bd))
 # [6.3.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.3.0-beta.0...v6.3.0) (2021-05-25)
 
 **Note:** Version bump only for package @irvingjs/wordpress

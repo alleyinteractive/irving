@@ -6,16 +6,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
 
 
-
+**Note:** Version bump only for package @irvingjs/vip-go
 ## [6.2.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
 
 
-
+**Note:** Version bump only for package @irvingjs/vip-go
 ## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
 
-
+**Note:** Version bump only for package @irvingjs/vip-go
 
 ## [6.2.1-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.4...v6.2.1-beta.0) (2021-05-27)
+**Note:** Version bump only for package @irvingjs/vip-go
+## [6.3.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.3.1-beta.1...v6.3.1) (2021-05-28)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+## [6.3.1-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.3.1-beta.0...v6.3.1-beta.1) (2021-05-28)
 
 **Note:** Version bump only for package @irvingjs/vip-go
 
@@ -24,11 +34,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [6.4.0-alpha.6](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.5...v6.4.0-alpha.6) (2021-05-28)
+**Note:** Version bump only for package @irvingjs/vip-go
+## [6.3.1-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.3.0...v6.3.1-beta.0) (2021-05-28)
 
 
 ### Bug Fixes
 
-* **logservice:** uncomment code ([0e05f53](https://github.com/alleyinteractive/irving/packages/vip-go/commit/0e05f5370e537b4f17e5a945c0068755dcf06ebb))
+* **logservice:** uncomment code ([78efc8c](https://github.com/alleyinteractive/irving/packages/vip-go/commit/78efc8c333bbbada983e7c7e0085265ba66cd7bc))
 
 
 ### Features
@@ -42,10 +54,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.4...v6.4.0-alpha.5) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/vip-go
-## [6.2.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
-
-**Note:** Version bump only for package @irvingjs/vip-go
-
 
 
 
@@ -53,10 +61,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/vip-go
-## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
-
-**Note:** Version bump only for package @irvingjs/vip-go
-
 
 
 
@@ -92,6 +96,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.3.0-alpha.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.3.0-alpha.2...v6.3.0-alpha.3) (2021-05-25)
 
 **Note:** Version bump only for package @irvingjs/vip-go
+* **logservice:** allow passing of arbitrary tags to the vip log service ([9b7a17d](https://github.com/alleyinteractive/irving/packages/vip-go/commit/9b7a17d887b04dc9c136406137c666a860579317))
 
 
 

@@ -5,16 +5,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.4.0-alpha.7](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.4.0-alpha.6...v6.4.0-alpha.7) (2021-05-28)
 
-
+**Note:** Version bump only for package @irvingjs/styled
 
 ## [6.2.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
 
-
+**Note:** Version bump only for package @irvingjs/styled
 
 ## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
 
 
-
+**Note:** Version bump only for package @irvingjs/styled
 ## [6.2.1-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.4.0-alpha.4...v6.2.1-beta.0) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/styled
@@ -24,6 +24,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [6.4.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.4.0-alpha.5...v6.4.0-alpha.6) (2021-05-28)
+## [6.3.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.3.1-beta.1...v6.3.1) (2021-05-28)
 
 **Note:** Version bump only for package @irvingjs/styled
 
@@ -34,9 +35,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.4.0-alpha.4...v6.4.0-alpha.5) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/styled
-## [6.2.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
-
-**Note:** Version bump only for package @irvingjs/styled
 
 
 
@@ -45,12 +43,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/styled
-## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
-
-**Note:** Version bump only for package @irvingjs/styled
-
-
-
 
 
 # [6.4.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.4.0-alpha.2...v6.4.0-alpha.3) (2021-05-27)
@@ -74,6 +66,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @irvingjs/styled
 # [6.3.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.3.0-beta.0...v6.3.0-alpha.3) (2021-05-25)
+**Note:** Version bump only for package @irvingjs/styled
+## [6.3.1-beta.1](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.3.1-beta.0...v6.3.1-beta.1) (2021-05-28)
 
 **Note:** Version bump only for package @irvingjs/styled
 
@@ -82,6 +76,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [6.3.0-alpha.3](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.3.0-alpha.2...v6.3.0-alpha.3) (2021-05-25)
+**Note:** Version bump only for package @irvingjs/styled
+## [6.3.1-beta.0](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.3.0...v6.3.1-beta.0) (2021-05-28)
 
 **Note:** Version bump only for package @irvingjs/styled
 
