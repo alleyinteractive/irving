@@ -40,18 +40,6 @@ export async function fetchComponents(
     context
   );
 
-  log.error(
-    'OWEN TEST',
-    {
-      tags: createRouteLogTags({
-        hostname,
-        path,
-        search,
-        context,
-      }, env),
-    }
-  );
-
   // Create abort controller and set timeout to abort fetch call.
   // Default timeout is 10s, but can be configured with env var.
   const controller = new AbortController();
