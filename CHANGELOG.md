@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.1-beta.1](https://github.com/alleyinteractive/irving/compare/v6.3.1-beta.0...v6.3.1-beta.1) (2021-05-28)
+
+
+### Bug Fixes
+
+* **logservice:** abstract out a utility for creating route-related logging tags ([1cf5932](https://github.com/alleyinteractive/irving/commit/1cf593258be5f49f055ce45d660a3dd8102861cd))
+
+
+
+
+
 ## [6.3.1-beta.0](https://github.com/alleyinteractive/irving/compare/v6.3.0...v6.3.1-beta.0) (2021-05-28)
 
 
