@@ -6,12 +6,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.4.0-alpha.5](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.4.0-alpha.4...v6.4.0-alpha.5) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/postcss
+## [6.2.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
+
+**Note:** Version bump only for package @irvingjs/postcss
 
 
 
 
 
 # [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
+
+**Note:** Version bump only for package @irvingjs/postcss
+## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/postcss
 
@@ -37,7 +43,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [6.3.1-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.3.0...v6.3.1-alpha.0) (2021-05-26)
 
-
+**Note:** Version bump only for package @irvingjs/postcss
 
 # [6.3.0-alpha.3](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.3.0-beta.0...v6.3.0-alpha.3) (2021-05-25)
 
@@ -103,6 +109,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [6.2.1-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.2.0...v6.2.1-alpha.0) (2021-05-21)
+
+**Note:** Version bump only for package @irvingjs/postcss
+## [6.2.1-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.2.0...v6.2.1-beta.0) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/postcss
 

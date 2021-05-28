@@ -6,6 +6,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [6.4.0-alpha.0](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v6.3.1-alpha.0...v6.4.0-alpha.0) (2021-05-26)
 
 **Note:** Version bump only for package @irvingjs/aws-lambda
+## [6.2.1](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
+
+**Note:** Version bump only for package @irvingjs/aws-lambda
 
 
 
@@ -13,7 +16,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [6.3.1-alpha.0](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v6.3.0...v6.3.1-alpha.0) (2021-05-26)
 
-
+**Note:** Version bump only for package @irvingjs/aws-lambda
 
 # [6.3.0-alpha.3](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v6.3.0-beta.0...v6.3.0-alpha.3) (2021-05-25)
 
@@ -48,6 +51,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [6.3.0-alpha.0](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v6.2.1-alpha.1...v6.3.0-alpha.0) (2021-05-24)
+
+**Note:** Version bump only for package @irvingjs/aws-lambda
+## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
 
 **Note:** Version bump only for package @irvingjs/aws-lambda
 

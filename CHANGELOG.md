@@ -5,10 +5,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.4.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.4...v6.4.0-alpha.5) (2021-05-27)
 
+
+**Note:** Version bump only for package irving
+## [6.2.1](https://github.com/alleyinteractive/irving/compare/v6.2.1-beta.1...v6.2.1) (2021-05-27)
+
 **Note:** Version bump only for package irving
 
 
+## [6.2.1-beta.1](https://github.com/alleyinteractive/irving/compare/v6.2.1-beta.0...v6.2.1-beta.1) (2021-05-27)
 
+**Note:** Version bump only for package irving
 
 
 # [6.4.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v6.4.0-alpha.3...v6.4.0-alpha.4) (2021-05-27)
@@ -71,7 +77,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [6.3.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.3.0...v6.3.1-alpha.0) (2021-05-26)
 
-
+**Note:** Version bump only for package irving
 
 # [6.3.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.3.0-beta.0...v6.3.0-alpha.3) (2021-05-25)
 
@@ -140,15 +146,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 **Note:** Version bump only for package irving
 
 
-
-
-
 ## [6.2.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.2.0...v6.2.1-alpha.0) (2021-05-21)
+
+**Note:** Version bump only for package irving
+## [6.2.1-beta.0](https://github.com/alleyinteractive/irving/compare/v6.2.0...v6.2.1-beta.0) (2021-05-27)
 
 
 ### Bug Fixes
 
 * **isomorphicfetch:** attempt to address issue with fetch called using URL without protocol ([2f16b62](https://github.com/alleyinteractive/irving/commit/2f16b624ff22447248e038e4f7a28ecacc4a3432))
+* **docs:** add docs for disableSSR ([c26b5c1](https://github.com/alleyinteractive/irving/commit/c26b5c156336e769b15d44c5c6f354fa277025fc))
+* **ssr:** disableSSR option ([120c818](https://github.com/alleyinteractive/irving/commit/120c81849b743c9c9bfc4d681fdf8a37f7007a9c))
 
 
 
