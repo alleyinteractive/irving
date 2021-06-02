@@ -1,4 +1,6 @@
 const path = require('path');
+const { appRoot } = require('@irvingjs/core/config/paths');
+
 const { buildContext } = require('@irvingjs/core/config/paths');
 const { maybeResolve } = require('@irvingjs/core/utils/userModule');
 
@@ -11,6 +13,15 @@ if (!blockStylesConfig) {
   blockStylesConfig = path.join(__dirname, './blockStyles.config.js');
 }
 
-module.exports = {
+const aliases = {
   '@irvingjs/blockStyles.config': blockStylesConfig,
-};
+}
+
+if (process.env.NODE_ENV === 'development') {
+  aliases['styled-components'] = path.join(
+    appRoot,
+    './node_modules/styled-components',
+  );
+}
+
+module.exports = aliases;
