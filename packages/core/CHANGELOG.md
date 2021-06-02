@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.11](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.10...v6.4.0-alpha.11) (2021-06-02)
+
+
+### Bug Fixes
+
+* **useclientnavigationonclick:** remove commented import ([0e1850a](https://github.com/alleyinteractive/irving/packages/core/commit/0e1850af7630d3927e38dbe86608b62659c603a6))
+* **waittoscroll:** add case for authenticated requests when waiting to scroll to URL hashes ([01962a9](https://github.com/alleyinteractive/irving/packages/core/commit/01962a98230f5f9429e493855ccad7649dd70de8))
+
+
+
+
+
 # [6.4.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.8...v6.4.0-alpha.9) (2021-06-02)
 
 

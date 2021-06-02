@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/core",
-  "version": "6.4.0-alpha.9",
+  "version": "6.4.0-alpha.11",
   "description": "Irving core application",
   "files": [
     "actions/**/*",
@@ -125,6 +125,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "~5.11.9",
     "@testing-library/react": "~11.2.5",
+    "@testing-library/react-hooks": "~3.7.0",
     "babel-jest": "^25.5.1",
     "fetch-mock-jest": "~1.5.1",
     "ioredis-mock": "^4.19.0",
