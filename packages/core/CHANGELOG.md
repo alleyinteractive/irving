@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v6.4.0-alpha.8...v6.4.0-alpha.9) (2021-06-02)
+
+
+### Bug Fixes
+
+* **test:** remove test log that made it into main branch ([da98243](https://github.com/alleyinteractive/irving/packages/core/commit/da98243b81edfb7b9be02ddc6f33df2a0727469a))
+
+
+
+
+
 # [6.4.0-alpha.8](https://github.com/alleyinteractive/irving/packages/core/compare/v6.3.1...v6.4.0-alpha.8) (2021-05-28)
 
 
