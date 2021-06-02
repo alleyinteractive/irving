@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react-hooks'
 import useClientNavigationOnClick from './useClientNavigationOnClick';
 
 describe('useClientNavigationOnClick', () => {
@@ -20,7 +20,8 @@ describe('useClientNavigationOnClick', () => {
   );
 
   it('should do nothing if link has an absolute URL', () => {
-    render(<Link href="https://google.com" />);
+    const { result } = renderHook(() => useClientNavigationOnClick())
     const link = screen.getByTestId('link');
+    link.fireEvent()
   });
 });
