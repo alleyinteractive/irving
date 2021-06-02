@@ -97,7 +97,7 @@ const withPico = (ChildComponent) => {
     };
 
     if (
-      undefined !== status &&
+      status !== undefined &&
       picoLoaded &&
       ssoTiers.includes(tier) &&
       canComment
@@ -108,7 +108,7 @@ const withPico = (ChildComponent) => {
       );
     }
 
-    if (undefined !== status && picoLoaded && !canComment) {
+    if (status !== undefined && picoLoaded && !canComment) {
       log.info('[irving:Coral:withPico] returning default embed');
       return (
         <ChildComponent {...props} events={handlers} />
