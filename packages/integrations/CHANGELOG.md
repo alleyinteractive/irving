@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0-alpha.10](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.4.0-alpha.9...v6.4.0-alpha.10) (2021-06-02)
+
+
+### Bug Fixes
+
+* fix style issues ([e57b51a](https://github.com/alleyinteractive/irving/packages/integrations/commit/e57b51ade14c5ccdf4d19139421cf218b225197f))
+
+
+
+
+
 # [6.4.0-alpha.9](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.4.0-alpha.8...v6.4.0-alpha.9) (2021-06-02)
 
 **Note:** Version bump only for package @irvingjs/integrations
