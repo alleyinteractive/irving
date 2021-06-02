@@ -10,10 +10,6 @@ export const LinkWrapper = styled.a`
     pointer-events: none;
   }
 
-  svg {
-    pointer-events: none;
-  }
-
   &:hover {
     text-decoration: underline;
   }
