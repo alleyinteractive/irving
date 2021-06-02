@@ -1,4 +1,3 @@
-// import { renderHook, act } from '@testing-library/react-hooks'
 jest.mock('../utils/history');
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
