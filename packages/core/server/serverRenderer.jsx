@@ -20,6 +20,7 @@ import createRouteLogTags from 'utils/createRouteLogTags';
 import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
+// const getEnv = require('@irvingjs/core/utils/universalEnv');
 
 const monitor = getMonitorService();
 const log = getLogService('irving:server:render');
@@ -35,6 +36,9 @@ const log = getLogService('irving:server:render');
 const render = async (req, res, clientStats) => {
   // Set up multisite env as early as possible
   const env = createClientEnv(req.hostname);
+
+  // Check to see if we are rending error to the browser.
+  const { IRVING_RENDER_ERRORS } = getEnv(req.hostname);
 
   // Initialize store and middleware.
   const sagaMiddleware = createSagaMiddleware();
@@ -72,7 +76,7 @@ const render = async (req, res, clientStats) => {
     status,
   } = getState().route;
 
-  if (getState().error) {
+  if (getState().error && IRVING_RENDER_ERRORS) {
     throw new Error(getState().error);
   }
 

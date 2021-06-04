@@ -27,6 +27,7 @@ const getService = (namespace) => {
       ROOT_URL,
       NODE_ENV,
       IRVING_APP_ENVIRONMENT,
+      IRVING_RENDER_ERRORS,
       SENTRY_DSN,
       SENTRY_ENVIRONMENT,
     } = getEnv();
@@ -85,7 +86,7 @@ const getService = (namespace) => {
           if (logInfo.level === 'error') {
             const err = new Error(logInfo.message);
 
-            if (NODE_ENV === 'development') {
+            if (NODE_ENV === 'development' && !IRVING_RENDER_ERRORS) {
               // In development the app should crash fast when encountering any errors.
               throw err;
             }
