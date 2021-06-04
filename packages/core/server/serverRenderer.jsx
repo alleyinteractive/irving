@@ -20,7 +20,6 @@ import createRouteLogTags from 'utils/createRouteLogTags';
 import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
-// const getEnv = require('@irvingjs/core/utils/universalEnv');
 
 const monitor = getMonitorService();
 const log = getLogService('irving:server:render');
