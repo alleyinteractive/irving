@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/aws-lambda",
-  "version": "6.4.0-alpha.7",
+  "version": "6.4.0",
   "description": "Run Irving on AWS Lambda",
   "main": "index.js",
   "repository": {
