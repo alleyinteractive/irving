@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/audio-player",
-  "version": "6.5.0-alpha.0",
+  "version": "6.5.0-alpha.1",
   "description": "Persistent audio player and related components for Irving",
   "files": [
     "actions/**/*",
