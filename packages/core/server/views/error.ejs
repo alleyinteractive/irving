@@ -16,6 +16,10 @@
 <body <%- head.bodyAttributes.toString() %>>
     <%- head.noscript.toString() %>
     <%- appHtml %>
-    <%- errorToDisplay %>
+    <% if (errorToDisplay) { %>
+        <pre style="background-color: white; padding: 20px; white-space: pre-wrap;">
+            <%= errorToDisplay %>
+        </pre>
+    <% } %>
 </body>
 </html>
