@@ -36,7 +36,7 @@ const getService = (namespace) => {
             ? firstMessage : new Error(messageFormatted);
 
           // In development the app should crash fast when encountering any errors.
-          if (env === 'development') {
+          if (env === 'development' && !process.env.IRVING_RENDER_ERRORS) {
             throw message;
           }
 

@@ -35,7 +35,7 @@ export async function fetchComponents(routeMeta, routeCookies) {
         new Error('Components: Components Endpoint fetch was aborted for taking too long. Increase the `FETCH_TIMEOUT` environment variable.'), // eslint-disable-line max-len
         {
           tags: createRouteLogTags(routeMeta, env),
-        }
+        },
       );
       controller.abort();
     },

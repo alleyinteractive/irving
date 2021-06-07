@@ -36,6 +36,9 @@ const render = async (req, res, clientStats) => {
   // Set up multisite env as early as possible
   const env = createClientEnv(req.hostname);
 
+  // Check to see if we are rendering errors to the browser.
+  const { IRVING_RENDER_ERRORS } = getEnv(req.hostname);
+
   // Initialize store and middleware.
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
@@ -71,6 +74,11 @@ const render = async (req, res, clientStats) => {
     redirectStatus,
     status,
   } = getState().route;
+
+  if (getState().error && IRVING_RENDER_ERRORS) {
+    throw new Error(getState().error);
+  }
+
   monitor.logTransaction(req.method, status, 'server render');
   log.info('%o', { url: req.originalUrl, status });
 
@@ -140,7 +148,7 @@ export default function serverRenderer(options) {
         { url: req.originalUrl, err },
         {
           tags: createRouteLogTags(req, getEnv(req.hostname)),
-        }
+        },
       );
 
       const errorToDisplay = req.query.debug
@@ -159,7 +167,7 @@ export default function serverRenderer(options) {
         head: {
           title: '<title>Something has gone wrong</title>',
         },
-        errorToDisplay,
+        errorToDisplay: err.stack || err,
       });
 
       res.status(500);
