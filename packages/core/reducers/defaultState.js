@@ -19,11 +19,12 @@ export const defaultProviderState = {
 export const defaultProviderKey = 'default';
 
 export const route = {
-  status: null,
-  redirectTo: false,
-  redirectStatus: 0,
   action: '',
+  apiValid: true,
   cookies: {},
+  redirectStatus: 0,
+  redirectTo: false,
+  status: null,
 };
 
 export const visible = {
