@@ -151,10 +151,6 @@ export default function serverRenderer(options) {
         },
       );
 
-      const errorToDisplay = req.query.debug
-        ? err
-        : 'This error has been logged.';
-
       // Render a error page.
       const ErrorMessageComponent = getComponent('error-message');
       const ErrorWrapper = () => (
@@ -167,7 +163,9 @@ export default function serverRenderer(options) {
         head: {
           title: '<title>Something has gone wrong</title>',
         },
-        errorToDisplay: err.stack || err,
+        errorToDisplay: req.query.debug || process.env.NODE_ENV === 'development'
+          ? err.stack || err
+          : 'This error has been logged',
       });
 
       res.status(500);
