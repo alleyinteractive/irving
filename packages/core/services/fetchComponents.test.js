@@ -25,45 +25,18 @@ beforeEach(() => {
 
 describe('fetchComponents', () => {
   it(
-    'should append extra query params that are defined',
+    'should return a network (invalid API) 404',
     async (done) => {
-      process.env.API_QUERY_PARAM_BAR = 'baz';
-
-      // Throws an error if the request doesn't match.
-      fetchMock.get(
-        'https://irving-multisite.test/api/components', {}, {
-          query: {
-            path: '/foo',
-            context: 'page',
-            bar: 'baz',
-          },
-        }
-      );
-
       expect(await fetchComponents(
-        { hostname, path: '/foo'},
+        { hostname: 'starwars.com', path: '/foo'},
         {},
-      )).toBeDefined();
-      done();
-    }
-  );
-
-  it(
-    'should pass query params from the request to the api',
-    async (done) => {
-      // Throws an error if the request doesn't match.
-      fetchMock.get('https://irving-multisite.test/api/components', {}, {
-        query: {
-          path: '/foo',
-          context: 'page',
-          bar: 'baz',
-        },
+      )).toEqual({
+          apiValid: false,
+          defaults: [],
+          page: [],
+          providers: [],
+          status: 404,
       });
-
-      expect(await fetchComponents(
-        { hostname, path: '/foo', search: '?bar=baz'},
-        {},
-      )).toBeDefined();
       done();
     }
   );

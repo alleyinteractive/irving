@@ -1,11 +1,13 @@
 import DefaultAppContent from 'components/app/defaultAppContent';
 import DefaultErrorMessage from 'components/defaultErrorMessage';
+import DefaultRouteInvalid from 'components/defaultRouteInvalid';
 import NotConfigured from 'components/notConfigured';
 import userComponentMap from '@irvingjs/componentMap';
 
 const componentMap = {
   app: DefaultAppContent,
   'error-message': DefaultErrorMessage,
+  'route-invalid-message': DefaultRouteInvalid,
   ...userComponentMap,
 };
 

@@ -23,8 +23,23 @@ export async function fetchComponents(routeMeta, routeCookies) {
     hostname,
   } = routeMeta;
   const env = getEnv(hostname);
-  const { FETCH_TIMEOUT } = env;
+  const { FETCH_TIMEOUT, API_ROOT_URL } = env;
   const apiUrl = createEndpointUrl(routeMeta, routeCookies);
+
+  /**
+   * If for some reason the API_ROOT_URL is not defined or a user/bot finds
+   * an URL that is not mapped to a site on the network, return early
+   * and avoid making an invalid fetch request ex:(https://undefined/foo/bar).
+   */
+  if (!API_ROOT_URL) {
+    return {
+      apiValid: false,
+      defaults: [],
+      page: [],
+      providers: [],
+      status: 404,
+    };
+  }
 
   // Create abort controller and set timeout to abort fetch call.
   // Default timeout is 10s, but can be configured with env var.
@@ -77,6 +92,7 @@ export async function fetchComponents(routeMeta, routeCookies) {
     // Execute request without automatic redirect resolution, so we can
     // intercept and cascade the redirect down to the client.
     return {
+      apiValid: true,
       defaults: [],
       page: [],
       providers: [],
@@ -102,6 +118,7 @@ export async function fetchComponents(routeMeta, routeCookies) {
 
   return {
     ...data,
+    apiValid: true,
     status: response.status,
     redirectTo,
   };

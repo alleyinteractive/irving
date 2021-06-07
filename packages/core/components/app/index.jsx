@@ -8,11 +8,23 @@ import getTrackingService from 'services/trackingService';
 import { getValueFromConfig } from 'config/irving/getValueFromConfig';
 
 const ErrorMessage = getComponent('error-message');
+const RouteInvalid = getComponent('route-invalid-message');
 const AppContentComponent = getComponent('app');
 const trackingService = getTrackingService();
 
 const App = (props) => {
-  const { error } = props;
+  const { apiValid, error } = props;
+
+  /**
+   * If the API URL is invalid, return early as only bad things happen from here.
+   */
+  if (!apiValid) {
+    return (
+      <ErrorBoundary>
+        <RouteInvalid />
+      </ErrorBoundary>
+    );
+  }
 
   return (
     <ErrorBoundary>
@@ -38,6 +50,7 @@ App.propTypes = {
 
 const appMapStateToProps = (state) => ({
   error: !!state.error,
+  apiValid: state.route.apiValid,
 });
 
 export default connect(appMapStateToProps)(trackingService.withTracking(
