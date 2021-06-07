@@ -23,8 +23,19 @@ export async function fetchComponents(routeMeta, routeCookies) {
     hostname,
   } = routeMeta;
   const env = getEnv(hostname);
-  const { FETCH_TIMEOUT } = env;
+  const { FETCH_TIMEOUT, API_ROOT_URL } = env;
   const apiUrl = createEndpointUrl(routeMeta, routeCookies);
+
+  console.log('API_ROOT_URL', API_ROOT_URL);
+
+  if (!API_ROOT_URL) {
+    return {
+      defaults: [],
+      page: [],
+      providers: [],
+      status: 404,
+    };
+  }
 
   // Create abort controller and set timeout to abort fetch call.
   // Default timeout is 10s, but can be configured with env var.
