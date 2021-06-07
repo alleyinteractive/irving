@@ -29,7 +29,7 @@ export async function fetchComponents(routeMeta, routeCookies) {
   /**
    * If for some reason the API_ROOT_URL is not defined or a user/bot finds
    * an URL that is not mapped to a site on the network, return early
-   * and avoid making and invalid fetch request ex:(https://undefined/foo/bar).
+   * and avoid making an invalid fetch request ex:(https://undefined/foo/bar).
    */
   if (!API_ROOT_URL) {
     return {
