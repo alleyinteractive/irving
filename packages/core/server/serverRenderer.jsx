@@ -36,7 +36,7 @@ const render = async (req, res, clientStats) => {
   // Set up multisite env as early as possible
   const env = createClientEnv(req.hostname);
 
-  // Check to see if we are rending error to the browser.
+  // Check to see if we are rendering errors to the browser.
   const { IRVING_RENDER_ERRORS } = getEnv(req.hostname);
 
   // Initialize store and middleware.
@@ -151,10 +151,6 @@ export default function serverRenderer(options) {
         },
       );
 
-      const errorToDisplay = req.query.debug
-        ? err
-        : 'This error has been logged.';
-
       // Render a error page.
       const ErrorMessageComponent = getComponent('error-message');
       const ErrorWrapper = () => (
@@ -167,7 +163,9 @@ export default function serverRenderer(options) {
         head: {
           title: '<title>Something has gone wrong</title>',
         },
-        errorToDisplay: err.stack || err,
+        errorToDisplay: req.query.debug || process.env.NODE_ENV === 'development'
+          ? err.stack || err
+          : 'This error has been logged',
       });
 
       res.status(500);
