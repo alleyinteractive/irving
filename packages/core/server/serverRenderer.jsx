@@ -36,7 +36,7 @@ const render = async (req, res, clientStats) => {
   // Set up multisite env as early as possible
   const env = createClientEnv(req.hostname);
 
-  // Check to see if we are rending error to the browser.
+  // Check to see if we are rendering errors to the browser.
   const { IRVING_RENDER_ERRORS } = getEnv(req.hostname);
 
   // Initialize store and middleware.
