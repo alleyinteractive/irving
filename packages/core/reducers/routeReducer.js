@@ -20,6 +20,7 @@ export default function routeReducer(routeState = defaultState, action) {
       return {
         ...routeState,
         ...payload,
+        apiValid: defaultState.apiValid,
         status: defaultState.status,
         redirectTo: defaultState.redirectTo,
         redirectStatus: defaultState.redirectStatus,
@@ -31,6 +32,7 @@ export default function routeReducer(routeState = defaultState, action) {
         status: payload.status,
         redirectTo: payload.redirectTo,
         redirectStatus: payload.redirectStatus,
+        apiValid: payload.apiValid,
       };
 
     case RECEIVE_ERROR:
