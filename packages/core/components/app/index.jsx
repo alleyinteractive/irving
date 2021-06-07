@@ -16,7 +16,7 @@ const App = (props) => {
   const { apiValid, error } = props;
 
   /**
-   * If the API URL is invalid, return early as only things bad happen from here.
+   * If the API URL is invalid, return early as only bad things happen from here.
    */
   if (!apiValid) {
     return (
