@@ -33,11 +33,11 @@ export async function fetchComponents(routeMeta, routeCookies) {
    */
   if (!API_ROOT_URL) {
     return {
+      apiValid: false,
       defaults: [],
       page: [],
       providers: [],
       status: 404,
-      apiValid: false,
     };
   }
 
