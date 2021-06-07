@@ -26,14 +26,13 @@ export async function fetchComponents(routeMeta, routeCookies) {
   const { FETCH_TIMEOUT, API_ROOT_URL } = env;
   const apiUrl = createEndpointUrl(routeMeta, routeCookies);
 
-  console.log('API_ROOT_URL', API_ROOT_URL);
-
   if (!API_ROOT_URL) {
     return {
       defaults: [],
       page: [],
       providers: [],
       status: 404,
+      apiValid: false,
     };
   }
 
@@ -88,6 +87,7 @@ export async function fetchComponents(routeMeta, routeCookies) {
     // Execute request without automatic redirect resolution, so we can
     // intercept and cascade the redirect down to the client.
     return {
+      apiValid: true,
       defaults: [],
       page: [],
       providers: [],
@@ -113,6 +113,7 @@ export async function fetchComponents(routeMeta, routeCookies) {
 
   return {
     ...data,
+    apiValid: true,
     status: response.status,
     redirectTo,
   };
