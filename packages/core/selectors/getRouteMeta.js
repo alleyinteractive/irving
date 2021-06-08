@@ -27,7 +27,9 @@ const getRouteMeta = createSelector(
       hostname: route.hostname,
       path: route.pathname,
       search: route.search,
-      hash: route.hash,
+      hash: route.hash || (
+        window.location ? window.location.hash : ''
+      ),
       cookie: cookies,
       context,
       cached: !!pageComponents.length,

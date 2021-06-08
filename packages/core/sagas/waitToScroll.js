@@ -2,11 +2,8 @@ import {
   call,
   delay,
   select,
-  take,
 } from 'redux-saga/effects';
-import { FINISH_LOADING, RECEIVE_COMPONENTS } from 'actions/types';
 import getRouteMeta from 'selectors/getRouteMeta';
-import { shouldAuthorize } from 'utils/authorization';
 
 /**
  * Wrap requestAnimationFrame in a Promise.
@@ -28,7 +25,7 @@ function requestAnimationFramePromise() {
  * @returns {Element|null}
  */
 function* waitForEl(selector) {
-  const maxTries = 3;
+  const maxTries = 10;
   let tries = 0;
 
   while (tries < maxTries) {
@@ -51,18 +48,8 @@ function* waitForEl(selector) {
  * - Scroll to the top when history state changes.
  * - Scroll to id if url hash is present.
  */
- export default function* waitToScroll() {
-  const {
-    hash,
-    cached,
-    cookie,
-  } = yield select(getRouteMeta);
-  // Wait for new content to be received before scrolling.
-  if (!cached || shouldAuthorize(cookie)) {
-    yield take(RECEIVE_COMPONENTS);
-  } else {
-    yield take(FINISH_LOADING);
-  }
+export default function* waitToScroll() {
+  const { hash } = yield select(getRouteMeta);
 
   if (hash) {
     // Wait for rendering to complete, and then scroll to id.
