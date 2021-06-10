@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.1-beta.0](https://github.com/alleyinteractive/irving/compare/v6.4.0...v6.4.1-beta.0) (2021-06-10)
+
+
+### Bug Fixes
+
+* **waittoscroll:** fix waitToScroll functionality to ensure it fires on server-side loads ([c6dbe36](https://github.com/alleyinteractive/irving/commit/c6dbe3609d5d1b84445bce20192b99a7bba8d245))
+
+
+
+
+
 # [6.4.0](https://github.com/alleyinteractive/irving/compare/v6.4.0-beta.0...v6.4.0) (2021-06-04)
 
 **Note:** Version bump only for package irving
