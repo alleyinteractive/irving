@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import isNode from '@irvingjs/core/utils/isNode';
 import serialize from 'serialize-javascript';
-
+import { actionSetContainerId } from '../../actions/gtmActions';
 /**
  * Google Tag Manager integration.
  *
@@ -20,6 +21,9 @@ const GoogleTagManager = (props) => {
   if (!containerId) {
     return null;
   }
+
+  const dispatch = useDispatch();
+  dispatch(actionSetContainerId(containerId));
 
   /**
    * Check for gtm.start in dataLayer.
@@ -63,7 +67,6 @@ const GoogleTagManager = (props) => {
             window.dataLayer = window.dataLayer || [];
             if (${isNode()}) {
               window.gtag = function () {
-                console.log(arguments);
                 window.dataLayer.push(arguments);
               };
               window.gtag('js', new Date());
