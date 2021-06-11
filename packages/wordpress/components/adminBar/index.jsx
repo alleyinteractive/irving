@@ -66,20 +66,22 @@ const AdminBar = (props) => {
 
   return (
     <>
-      <iframe
-        title="Admin Bar Iframe"
-        src={iframeSrc}
-        className={styles.iframe}
-        style={{
-          height: hover ? '100%' : `${height}px`,
-        }}
-      />
-      <div
+      <aside
         className={styles.spacer}
+        id="wordpress-admin-bar__wrapper"
         style={{
           height: `${height}px`,
         }}
-      />
+      >
+        <iframe
+          title="Admin Bar Iframe"
+          src={iframeSrc}
+          className={styles.iframe}
+          style={{
+            height: hover ? '100%' : `${height}px`,
+          }}
+        />
+      </aside>
     </>
   );
 };
