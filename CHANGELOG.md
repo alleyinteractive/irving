@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0-alpha.7](https://github.com/alleyinteractive/irving/compare/v6.5.0-alpha.6...v6.5.0-alpha.7) (2021-06-11)
+
+
+### Bug Fixes
+
+* **pico:** ensure Read More break selector data is passed to Pico correctly ([d3bda2a](https://github.com/alleyinteractive/irving/commit/d3bda2ab855ddc6864b24d347646c696f1b751b4))
+
+
+
+
+
 # [6.5.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v6.5.0-alpha.5...v6.5.0-alpha.6) (2021-06-11)
 
 **Note:** Version bump only for package irving
