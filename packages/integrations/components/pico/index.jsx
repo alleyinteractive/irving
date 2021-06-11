@@ -44,6 +44,7 @@ const Pico = (props) => {
    */
   const picoPageInfo = {
     article: (pageInfo.postType === 'post'),
+    break_selector: pageInfo.breakSelector || null,
     post_id: pageInfo.postId,
     post_type: pageInfo.postType,
     resource_ref: pageInfo.resourceRef,
