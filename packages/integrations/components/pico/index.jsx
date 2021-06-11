@@ -18,11 +18,14 @@ import {
   picoContentReadySelector,
   picoVisitedSelector,
 } from '../../selectors/picoSelector';
+// GTM.
+import { containerIdSelector } from '../../selectors/gtmSelector';
 // Utility functions.
 import {
   isPicoMounted,
   mountPicoNodes,
 } from './utils';
+import usePicoGTMEvents from './usePicoGTMEvents';
 
 const log = getLogService('irving:integrations:pico');
 
@@ -67,9 +70,11 @@ const Pico = (props) => {
   } = useSelector(picoLifecycleSelector);
   const contentReady = useSelector(picoContentReadySelector);
   const visited = useSelector(picoVisitedSelector);
+  const gtmContainerId = useSelector(containerIdSelector);
 
   // Add lifecycle listeners.
   usePicoEventListeners();
+  usePicoGTMEvents(gtmContainerId);
 
   // Mount our Pico Signal nodes into the DOM.
   useEffect(() => {

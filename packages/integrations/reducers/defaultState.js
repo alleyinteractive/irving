@@ -20,8 +20,13 @@ export const pico = {
 
 export const coral = {};
 
+export const gtm = {
+  gtmContainerId: '',
+};
+
 export default {
   manager,
   pico,
   coral,
+  gtm,
 };
