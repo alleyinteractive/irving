@@ -11,14 +11,6 @@ const events = [
 
 // Add listeners for Pico events.
 const usePicoGTMEvents = (gtmContainerId) => {
-  /**
-   * Return early if we don't have a containerId
-   * or gtag is not initialized.
-   */
-  if (!window || !window.gtag || !gtmContainerId) {
-    return null;
-  }
-
   const sendEvent = (event) => {
     log.info(
       `[irving:usePicoGTMEvents] ${event} handler called.`,
@@ -27,8 +19,13 @@ const usePicoGTMEvents = (gtmContainerId) => {
   };
 
   useEffect(() => {
-    log.info('[irving:usePicoGTMEvents] adding event listeners.');
-    events.forEach((event) => document.addEventListener(event, () => sendEvent(event)));
+    /**
+     * Attach events if we have a gtmContainerId.
+     */
+    if (gtmContainerId) {
+      log.info('[irving:usePicoGTMEvents] adding event listeners.');
+      events.forEach((event) => document.addEventListener(event, () => sendEvent(event)));
+    }
 
     return () => {
       log.info('[irving:usePicoGTMEvents] removing event listeners.');
