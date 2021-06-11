@@ -28,10 +28,12 @@ const usePicoGTMEvents = (gtmContainerId) => {
     }
 
     return () => {
-      log.info('[irving:usePicoGTMEvents] removing event listeners.');
-      events.forEach((eventName) => {
-        document.removeEventListener(eventName, sendEvent);
-      });
+      if (gtmContainerId) {
+        log.info('[irving:usePicoGTMEvents] removing event listeners.');
+        events.forEach((eventName) => {
+          document.removeEventListener(eventName, sendEvent);
+        });
+      }
     };
   }, []);
 
