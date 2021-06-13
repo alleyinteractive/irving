@@ -32,9 +32,9 @@ Here is a simplified and annotated version of the link component showing what a 
     } from '@irvingjs/styled/types/analyticsPropTypes';
 
     /**
-     * We bring in the tracking service so that there is only one instance of `react-tracking`.
+     * We bring in the tracking service using the built-in service import alias.
      */
-    import getTrackingService from '../../../core/services/trackingService';
+    import getTrackingService from '@irvingjs/services/trackingService';
 
     /**
      * Get the tracking service object. This contains the react-tracking functions we'll use.

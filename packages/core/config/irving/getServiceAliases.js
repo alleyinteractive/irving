@@ -69,7 +69,7 @@ const getServiceAliases = (target) => {
   }
 
   /**
-   * Get monitor service.
+   * Get log service.
    *
    * web and node: return path to configured log service
    * undefined: return path to core's log service
@@ -82,11 +82,26 @@ const getServiceAliases = (target) => {
     );
   }
 
+  /**
+   * Get tracking service.
+   *
+   * web and node: return path to configured tracking service
+   * undefined: return path to core's tracking service
+   */
+  let trackingServiceValue = resolveConfigFilepath('services/trackingService');
+  if (!trackingServiceValue) {
+    trackingServiceValue = path.join(
+      irvingRoot,
+      'services/trackingService/index.js',
+    );
+  }
+
   return {
     '@irvingjs/services/cacheClient': cacheClientValue,
     '@irvingjs/services/cacheService': cacheServiceValue,
     '@irvingjs/services/monitorService': monitorServiceValue,
     '@irvingjs/services/logService': logServiceValue,
+    '@irvingjs/services/trackingService': trackingServiceValue,
   };
 };
 

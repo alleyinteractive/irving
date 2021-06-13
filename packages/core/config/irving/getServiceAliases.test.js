@@ -29,6 +29,10 @@ describe('getServiceAliases', () => {
         process.cwd(),
         'services/monitorService/defaultService.js'
       ),
+      '@irvingjs/services/trackingService': path.join(
+        process.cwd(),
+        'services/trackingService/index.js'
+      ),
     });
   });
 
@@ -51,6 +55,10 @@ describe('getServiceAliases', () => {
       '@irvingjs/services/monitorService': path.join(
         process.cwd(),
         'services/monitorService/index.js'
+      ),
+      '@irvingjs/services/trackingService': path.join(
+        process.cwd(),
+        'services/trackingService/index.js'
       ),
     });
   });

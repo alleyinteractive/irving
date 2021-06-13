@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import getLogService from '@irvingjs/services/logService';
+import getTrackingService from '@irvingjs/services/trackingService';
 
+const { useTracking } = getTrackingService();
 const log = getLogService('irving:integrations:pico');
 const events = [
   'pico.user.registered',
@@ -11,11 +13,19 @@ const events = [
 
 // Add listeners for Pico events.
 const usePicoGTMEvents = (gtmContainerId) => {
+  const { trackEvent } = useTracking();
   const sendEvent = (event) => {
     log.info(
       `[irving:usePicoGTMEvents] ${event} handler called.`,
     );
-    window.gtag('event', event, { send_to: `${gtmContainerId}/${event}` });
+    trackEvent({
+      event,
+      eventData: {
+        action: event.split('.').join(' '),
+        category: 'Pico',
+        label: event,
+      },
+    });
   };
 
   useEffect(() => {
