@@ -66,11 +66,6 @@ const GoogleTagManager = (props) => {
           {`
             window.dataLayer = window.dataLayer || [];
             if (${isNode()}) {
-              window.gtag = function () {
-                window.dataLayer.push(arguments);
-              };
-              window.gtag('js', new Date());
-              window.gtag('config', ${containerId});
               var data = ${serialize(dataLayer, { json: true })};
               data.event = 'irving.initialRender';
               window.dataLayer.push(data);
