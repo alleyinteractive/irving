@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0-alpha.8](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.5.0-alpha.7...v6.5.0-alpha.8) (2021-06-14)
+
+
+### Features
+
+* **wordpress admin bar:** tweaks the admin bar component markup to make targeting easier ([66d4c08](https://github.com/alleyinteractive/irving/packages/example-package/commit/66d4c08c4ec111e1dc17c47e6b00653069b00829))
+
+
+
+
+
 # [6.5.0-alpha.5](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.5.0-alpha.4...v6.5.0-alpha.5) (2021-06-09)
 
 **Note:** Version bump only for package @irvingjs/wordpress
