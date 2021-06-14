@@ -12,18 +12,19 @@ const events = [
 ];
 
 // Add listeners for Pico events.
-const usePicoGTMEvents = (gtmContainerId) => {
+const usePicoGTMEvents = () => {
   const { trackEvent } = useTracking();
+
   const sendEvent = (event) => {
     log.info(
-      `[irving:usePicoGTMEvents] ${event} handler called.`,
+      `[irving:usePicoGTMEvents] ${event.type} handler called.`,
     );
     trackEvent({
-      event,
+      event: event.type,
       eventData: {
-        action: event.split('.').join(' '),
+        action: event.detail,
         category: 'Pico',
-        label: event,
+        label: event.type,
       },
     });
   };
@@ -32,18 +33,13 @@ const usePicoGTMEvents = (gtmContainerId) => {
     /**
      * Attach events if we have a gtmContainerId.
      */
-    if (gtmContainerId) {
-      log.info('[irving:usePicoGTMEvents] adding event listeners.');
-      events.forEach((event) => document.addEventListener(event, () => sendEvent(event)));
-    }
+    log.info('[irving:usePicoGTMEvents] adding event listeners.');
+    events.forEach((event) => document.addEventListener(event, sendEvent));
 
     return () => {
-      if (gtmContainerId) {
-        log.info('[irving:usePicoGTMEvents] removing event listeners.');
-        events.forEach((eventName) => {
-          document.removeEventListener(eventName, sendEvent);
-        });
-      }
+      events.forEach((eventName) => {
+        document.removeEventListener(eventName, sendEvent);
+      });
     };
   }, []);
 
