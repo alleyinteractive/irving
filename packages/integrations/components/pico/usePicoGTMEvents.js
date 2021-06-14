@@ -35,6 +35,7 @@ const usePicoGTMEvents = () => {
     events.forEach((event) => document.addEventListener(event, sendEvent));
 
     return () => {
+      log.info('[irving:usePicoGTMEvents] removing event listeners.');
       events.forEach((eventName) => {
         document.removeEventListener(eventName, sendEvent);
       });
