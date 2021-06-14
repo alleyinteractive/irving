@@ -21,6 +21,7 @@ const usePicoGTMEvents = () => {
     );
     trackEvent({
       event: event.type,
+      eventContext: 'irving.integrations.pico',
       eventData: {
         action: event.detail,
         category: 'Pico',
@@ -30,9 +31,6 @@ const usePicoGTMEvents = () => {
   };
 
   useEffect(() => {
-    /**
-     * Attach events if we have a gtmContainerId.
-     */
     log.info('[irving:usePicoGTMEvents] adding event listeners.');
     events.forEach((event) => document.addEventListener(event, sendEvent));
 
