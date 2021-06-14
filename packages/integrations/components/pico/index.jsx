@@ -18,8 +18,6 @@ import {
   picoContentReadySelector,
   picoVisitedSelector,
 } from '../../selectors/picoSelector';
-// GTM.
-import { containerIdSelector } from '../../selectors/gtmSelector';
 // Utility functions.
 import {
   isPicoMounted,
@@ -70,11 +68,10 @@ const Pico = (props) => {
   } = useSelector(picoLifecycleSelector);
   const contentReady = useSelector(picoContentReadySelector);
   const visited = useSelector(picoVisitedSelector);
-  const gtmContainerId = useSelector(containerIdSelector);
 
   // Add lifecycle listeners.
   usePicoEventListeners();
-  usePicoGTMEvents(gtmContainerId);
+  usePicoGTMEvents();
 
   // Mount our Pico Signal nodes into the DOM.
   useEffect(() => {
