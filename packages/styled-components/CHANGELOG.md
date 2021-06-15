@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0-alpha.9](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.5.0-alpha.8...v6.5.0-alpha.9) (2021-06-15)
+
+
+### Bug Fixes
+
+* **tracking:** update config to include trackinService alias, try out with usePicoGTMEvents ([1941a78](https://github.com/alleyinteractive/irving/packages/styled-components/commit/1941a7843688ed4c586a31a9eef6725af4159b49))
+
+
+
+
+
 # [6.5.0-alpha.5](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.5.0-alpha.4...v6.5.0-alpha.5) (2021-06-09)
 
 **Note:** Version bump only for package @irvingjs/styled-components

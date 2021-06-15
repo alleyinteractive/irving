@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0-alpha.9](https://github.com/alleyinteractive/irving/packages/core/compare/v6.5.0-alpha.8...v6.5.0-alpha.9) (2021-06-15)
+
+
+### Bug Fixes
+
+* **tracking:** update config to include trackinService alias, try out with usePicoGTMEvents ([1941a78](https://github.com/alleyinteractive/irving/packages/core/commit/1941a7843688ed4c586a31a9eef6725af4159b49))
+* **trackingservice:** return defaultService as-is instead of wrapping in a function ([ff85f06](https://github.com/alleyinteractive/irving/packages/core/commit/ff85f0671f5d6350cd0158455b8fe84a67287eb0))
+
+
+
+
+
 # [6.5.0-alpha.5](https://github.com/alleyinteractive/irving/packages/core/compare/v6.5.0-alpha.4...v6.5.0-alpha.5) (2021-06-09)
 
 
