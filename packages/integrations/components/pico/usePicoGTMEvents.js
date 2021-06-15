@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import getLogService from '@irvingjs/services/logService';
+import getTrackingService from '@irvingjs/services/trackingService';
 
+const { useTracking } = getTrackingService();
 const log = getLogService('irving:integrations:pico');
 const events = [
   'pico.user.registered',
@@ -10,30 +12,33 @@ const events = [
 ];
 
 // Add listeners for Pico events.
-const usePicoGTMEvents = (gtmContainerId) => {
+const usePicoGTMEvents = () => {
+  const { trackEvent } = useTracking();
+
   const sendEvent = (event) => {
     log.info(
-      `[irving:usePicoGTMEvents] ${event} handler called.`,
+      `[irving:usePicoGTMEvents] ${event.type} handler called.`,
     );
-    window.gtag('event', event, { send_to: `${gtmContainerId}/${event}` });
+    trackEvent({
+      event: event.type,
+      eventContext: 'irving.integrations.pico',
+      eventData: {
+        action: event.detail,
+        category: 'Pico',
+        label: event.type,
+      },
+    });
   };
 
   useEffect(() => {
-    /**
-     * Attach events if we have a gtmContainerId.
-     */
-    if (gtmContainerId) {
-      log.info('[irving:usePicoGTMEvents] adding event listeners.');
-      events.forEach((event) => document.addEventListener(event, () => sendEvent(event)));
-    }
+    log.info('[irving:usePicoGTMEvents] adding event listeners.');
+    events.forEach((event) => document.addEventListener(event, sendEvent));
 
     return () => {
-      if (gtmContainerId) {
-        log.info('[irving:usePicoGTMEvents] removing event listeners.');
-        events.forEach((eventName) => {
-          document.removeEventListener(eventName, sendEvent);
-        });
-      }
+      log.info('[irving:usePicoGTMEvents] removing event listeners.');
+      events.forEach((eventName) => {
+        document.removeEventListener(eventName, sendEvent);
+      });
     };
   }, []);
 

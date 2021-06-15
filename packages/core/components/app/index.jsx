@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ErrorBoundary from 'components/errorBoundary';
 import Root from 'components/root';
 import getComponent from 'config/componentMap';
-import getTrackingService from 'services/trackingService';
+import getTrackingService from '@irvingjs/services/trackingService';
 import { getValueFromConfig } from 'config/irving/getValueFromConfig';
 
 const ErrorMessage = getComponent('error-message');
