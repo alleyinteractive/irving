@@ -5,6 +5,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.5.0-alpha.10](https://github.com/alleyinteractive/irving/packages/core/compare/v6.5.0-alpha.9...v6.5.0-alpha.10) (2021-06-17)
 
+### Bug Fixes
+# [6.5.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.5.0-alpha.9...v6.5.0) (2021-06-17)
 
 ### Bug Fixes
 

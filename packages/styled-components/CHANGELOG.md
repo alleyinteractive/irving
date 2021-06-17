@@ -11,6 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [6.5.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.5.0-alpha.9...v6.5.0) (2021-06-17)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
 # [6.5.0-alpha.9](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.5.0-alpha.8...v6.5.0-alpha.9) (2021-06-15)
 
 
