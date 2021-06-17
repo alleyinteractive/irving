@@ -2,6 +2,7 @@ const queryString = require('query-string');
 const { getEnv } = require('../../config/multisite');
 const { CONTEXT_PAGE } = require('../../config/constants');
 const getExtraQueryParams = require('./getExtraQueryParams');
+const validateEndpointUrl = require('./validateEndpointUrl');
 
 /**
  * Creates the query string for both the components
@@ -39,7 +40,9 @@ function createEndpointUrl(routeMeta, routeCookies) {
     },
   );
 
-  return `${env.API_ROOT_URL}/components?${query}`;
+  const endPoint = validateEndpointUrl(env, `${env.API_ROOT_URL}/components?${query}`);
+
+  return endPoint;
 }
 
 module.exports = createEndpointUrl;

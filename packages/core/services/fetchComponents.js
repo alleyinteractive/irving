@@ -26,7 +26,7 @@ export async function fetchComponents(routeMeta, routeCookies) {
   const { FETCH_TIMEOUT, API_ROOT_URL } = env;
   const apiUrl = createEndpointUrl(routeMeta, routeCookies);
 
-  console.log(apiUrl);
+  console.log(routeMeta);
 
 
   /**
