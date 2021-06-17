@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0-alpha.10](https://github.com/alleyinteractive/irving/compare/v6.5.0-alpha.9...v6.5.0-alpha.10) (2021-06-17)
+
+
+### Bug Fixes
+
+* **purgecache:** move call to resolve back outside of res.write callback ([34fa147](https://github.com/alleyinteractive/irving/commit/34fa1478af6c342510ecc37ef0fda1247f5b1796))
+* **purgecache:** remove call to next, causing response to end before write is finished ([61263a3](https://github.com/alleyinteractive/irving/commit/61263a3b2d0239ff8f032d7a7a4be98bdc23db88))
+* **purgecache:** remove unnecessary paramter ([d83952f](https://github.com/alleyinteractive/irving/commit/d83952f0b528360e6b6be485c0102b2ab16ec3e2))
+
+
+
+
+
 # [6.5.0-alpha.9](https://github.com/alleyinteractive/irving/compare/v6.5.0-alpha.8...v6.5.0-alpha.9) (2021-06-15)
 
 
