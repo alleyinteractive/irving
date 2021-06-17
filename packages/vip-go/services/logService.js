@@ -29,16 +29,20 @@ const getService = (namespace) => {
       IRVING_APP_ENVIRONMENT,
       IRVING_RENDER_ERRORS,
       SENTRY_DSN,
+      SENTRY_LOG_LOCAL,
       SENTRY_ENVIRONMENT,
     } = getEnv();
     const generateLogInfo = require('./generateLogInfo');
     const { format } = require('winston');
     let transport;
 
-    // Set up sentry transport.
+    /**
+     * Don't log events to Sentry unless SENTRY_LOG_LOCAL
+     * is explicitly set as an environment variable.
+     */
     if (
-      SENTRY_DSN
-      && NODE_ENV === 'production'
+      (SENTRY_DSN && NODE_ENV === 'production')
+      || (SENTRY_DSN && SENTRY_LOG_LOCAL)
     ) {
       const SentryTransport = require('winston-transport-sentry-node').default;
       const sentryFormat = format((info) => {

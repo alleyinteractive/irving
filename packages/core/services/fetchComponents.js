@@ -26,6 +26,9 @@ export async function fetchComponents(routeMeta, routeCookies) {
   const { FETCH_TIMEOUT, API_ROOT_URL } = env;
   const apiUrl = createEndpointUrl(routeMeta, routeCookies);
 
+  console.log(apiUrl);
+
+
   /**
    * If for some reason the API_ROOT_URL is not defined or a user/bot finds
    * an URL that is not mapped to a site on the network, return early
