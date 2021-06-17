@@ -16,6 +16,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [6.5.0](https://github.com/alleyinteractive/irving/compare/v6.5.0-alpha.9...v6.5.0) (2021-06-17)
 
+### Features
+* **API:** Multi site config 404 [41a38d4](https://github.com/alleyinteractive/irving/pull/546)
+* **Routing:** Multi site config 404 [41a38d4](https://github.com/alleyinteractive/irving/pull/544)
 
 ### Bug Fixes
 
