@@ -92,8 +92,7 @@ const executeStream = async (pipeline, res, key = '') => {
     stream.on('end', () => {
       const message = `Purged ${matches} entries${keyMessage}`;
       log.info(message);
-      res.write(`${message}\n`);
-      resolve();
+      res.write(`${message}\n`, 'utf8', () => resolve());
     });
   });
 };
@@ -137,8 +136,6 @@ const purgeCache = async (req, res, next) => {
     res.write(completeMessage);
     return res.end();
   }
-
-  return next();
 };
 
 module.exports = purgeCache;
