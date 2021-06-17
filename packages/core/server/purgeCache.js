@@ -92,7 +92,8 @@ const executeStream = async (pipeline, res, key = '') => {
     stream.on('end', () => {
       const message = `Purged ${matches} entries${keyMessage}`;
       log.info(message);
-      res.write(`${message}\n`, 'utf8', () => resolve());
+      res.write(`${message}\n`);
+      resolve();
     });
   });
 };
