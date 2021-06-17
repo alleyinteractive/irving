@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "6.5.0-alpha.10",
+  "version": "6.6.0-alpha.0",
   "npmClient": "npm",
   "command": {
     "publish": {
