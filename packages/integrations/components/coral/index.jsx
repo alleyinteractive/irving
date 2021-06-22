@@ -16,6 +16,7 @@ const CoralEmbed = ({
   accessToken,
   embedUrl,
   events,
+  storyId,
 }) => {
   if (!embedUrl) {
     return null;
@@ -70,6 +71,7 @@ const CoralEmbed = ({
     if (window.Coral) {
       embed = window.Coral.createStreamEmbed({
         id: 'coral_thread',
+        storyID: storyId,
         autoRender: true,
         rootURL: embedUrl,
         events,
@@ -110,6 +112,7 @@ CoralEmbed.propTypes = {
   embedUrl: PropTypes.string.isRequired,
   events: PropTypes.func,
   accessToken: PropTypes.string,
+  storyId: PropTypes.number.isRequired,
 };
 
 export default CoralEmbed;
