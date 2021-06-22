@@ -11,6 +11,9 @@ module.exports = (app) => {
       API_ORIGIN,
     } = getEnv(req.hostname);
 
+    console.log('API_ORIGIN', API_ORIGIN);
+    console.log('API_ROOT_URL', API_ROOT_URL);
+
     // Return early if we don't have what we need.
     if (!API_ORIGIN && !API_ROOT_URL) {
       return;
@@ -26,7 +29,8 @@ module.exports = (app) => {
   };
 
   // Create proxies for each configured proxy pattern.
-  proxyPassthrough.forEach((pattern) => {
+  [...new Set(proxyPassthrough)].forEach((pattern) => {
+    console.log(pattern);
     app.use(pattern, proxyWrapper);
   });
 };
