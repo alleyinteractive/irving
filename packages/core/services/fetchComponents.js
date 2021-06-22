@@ -23,18 +23,15 @@ export async function fetchComponents(routeMeta, routeCookies) {
     hostname,
   } = routeMeta;
   const env = getEnv(hostname);
-  const { FETCH_TIMEOUT, API_ROOT_URL } = env;
+  const { FETCH_TIMEOUT, API_ROOT_URL, IRVING_RENDER_ERRORS } = env;
   const apiUrl = createEndpointUrl(routeMeta, routeCookies);
-
-  console.log(routeMeta);
-
 
   /**
    * If for some reason the API_ROOT_URL is not defined or a user/bot finds
    * an URL that is not mapped to a site on the network, return early
    * and avoid making an invalid fetch request ex:(https://undefined/foo/bar).
    */
-  if (!API_ROOT_URL) {
+  if (!API_ROOT_URL && IRVING_RENDER_ERRORS) {
     return {
       apiValid: false,
       defaults: [],
