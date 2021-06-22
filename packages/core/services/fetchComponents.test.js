@@ -23,8 +23,6 @@ beforeEach(() => {
   fetchMock.restore();
 });
 
-describe('fetchComponents', () => {
-
 describe('cachedFetchComponents', () => {
   const hostname = 'multisite-one.irving.test';
 
