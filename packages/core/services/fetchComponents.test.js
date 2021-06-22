@@ -23,25 +23,6 @@ beforeEach(() => {
   fetchMock.restore();
 });
 
-describe('fetchComponents', () => {
-  it(
-    'should return a network (invalid API) 404',
-    async (done) => {
-      expect(await fetchComponents(
-        { hostname: 'starwars.com', path: '/foo'},
-        {},
-      )).toEqual({
-          apiValid: false,
-          defaults: [],
-          page: [],
-          providers: [],
-          status: 404,
-      });
-      done();
-    }
-  );
-});
-
 describe('cachedFetchComponents', () => {
   const hostname = 'multisite-one.irving.test';
 
