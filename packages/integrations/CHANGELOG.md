@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.6.0-alpha.1...v6.6.0-alpha.2) (2021-06-22)
+
+
+### Bug Fixes
+
+* **coral:** pass post ID to Coral embed ([5ba3386](https://github.com/alleyinteractive/irving/packages/integrations/commit/5ba3386b473669ec9b7e740c3ccdf7d23c73688f))
+
+
+
+
+
 # [6.6.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.6.0-alpha.0...v6.6.0-alpha.1) (2021-06-22)
 
 **Note:** Version bump only for package @irvingjs/integrations
