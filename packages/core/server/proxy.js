@@ -30,7 +30,6 @@ module.exports = (app) => {
 
   // Create proxies for each configured proxy pattern.
   [...new Set(proxyPassthrough)].forEach((pattern) => {
-    console.log(pattern);
     app.use(pattern, proxyWrapper);
   });
 };
