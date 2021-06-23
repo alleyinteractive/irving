@@ -11,9 +11,6 @@ module.exports = (app) => {
       API_ORIGIN,
     } = getEnv(req.hostname);
 
-    console.log('API_ORIGIN', API_ORIGIN);
-    console.log('API_ROOT_URL', API_ROOT_URL);
-
     // Return early if we don't have what we need.
     if (!API_ORIGIN && !API_ROOT_URL) {
       return;
