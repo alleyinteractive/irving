@@ -62,7 +62,20 @@ module.exports = (config) => {
 * **type**: function (replaces core function)
 * **purpose**: Replace functionality for Irving core's caching service. Irving uses [Redis](Caching.md) via the [ioredis](https://github.com/luin/ioredis) package, but using this configuration field you may replace it with an entirely separate cache.
 
-If you are replacing the cache service, in order to function properly your replacement service should return an object containing a `get`, `set`, `del`, `update`, `insert`, `remove`, `cached`, and `close` method and a `client` key containing the underlying cache client. Out of the box, `update` and `insert` are aliases for `set`, and `remove` is an alias for `del`.
+If you are replacing the cache service, in order to properly integrate with Irving core, the cache service should return an object that looks like the following:
+
+```javascript
+const service = {
+  client: null, // cache client object
+  get: () => null, // get a cache key
+  set: () => {}, // set a cache value
+  del: () => null, // delete a key
+  insert: () => null, // probably an alias for set
+  remove: () => null, // probably an alias for del
+  cached: () => {}, // set a value in the cache. Should be able to handle a promise as its value that will return the actual value to store in the cache
+  close: () => {}, // close cache connection.
+}
+```
 
 ## Cache client
 * **where to configure**: `server/cacheClient.js`
@@ -76,21 +89,6 @@ If you are replacing the cache service, in order to function properly your repla
 ```javascript
 module.exports = function customizeServer(app) {
   app.get('/my-fun-route', routeHandler);
-}
-```
-
-In order to properly integrate with Irving core, the cache service should return an object that looks like the following:
-
-```javascript
-const service = {
-  client: null, // cache client object
-  get: () => null, // get a cache key
-  set: () => {}, // set a cache value
-  del: () => null, // delete a key
-  insert: () => null, // probably an alias for set
-  remove: () => null, // probably an alias for del
-  cached: () => {}, // set a value in the cache. Should be able to handle a promise as its value that will return the actual value to store in the cache
-  close: () => {}, // close cache connection.
 }
 ```
 
