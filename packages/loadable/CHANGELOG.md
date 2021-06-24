@@ -7,6 +7,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @irvingjs/loadable
 
+## [6.5.3](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v6.5.2...v6.5.3) (2021-06-23)
+
+**Note:** Version bump only for package @irvingjs/loadable
+
 
 
 
@@ -16,14 +20,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 **Note:** Version bump only for package @irvingjs/loadable
 
 
+## [6.5.2](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v6.5.1...v6.5.2) (2021-06-22)
+
+**Note:** Version bump only for package @irvingjs/loadable
+
+
 
 
 
 # [6.6.0-alpha.0](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v6.5.0...v6.6.0-alpha.0) (2021-06-17)
 
-
+**Note:** Version bump only for package @irvingjs/loadable
 
 # [6.5.0-alpha.10](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v6.5.0-alpha.9...v6.5.0-alpha.10) (2021-06-17)
+
+**Note:** Version bump only for package @irvingjs/loadable
+
+## [6.5.1](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v6.5.0...v6.5.1) (2021-06-22)
 
 **Note:** Version bump only for package @irvingjs/loadable
 

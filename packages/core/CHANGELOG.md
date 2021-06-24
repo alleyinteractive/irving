@@ -7,6 +7,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @irvingjs/core
 
+## [6.5.3](https://github.com/alleyinteractive/irving/packages/core/compare/v6.5.2...v6.5.3) (2021-06-23)
+
+**Note:** Version bump only for package @irvingjs/core
+
 
 
 
@@ -15,9 +19,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @irvingjs/core
 
+## [6.5.2](https://github.com/alleyinteractive/irving/packages/core/compare/v6.5.1...v6.5.2) (2021-06-22)
+
+**Note:** Version bump only for package @irvingjs/core
 
 
 
+
+
+## [6.5.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.5.0...v6.5.1) (2021-06-22)
+
+
+### Bug Fixes
+
+* **api:** iRVING_RENDER_ERRORS check ([4297896](https://github.com/alleyinteractive/irving/packages/core/commit/4297896109ee5e249cb47a40c3420f898a5f2c6c))
+
+
+
+
+
+# [6.5.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.5.0-alpha.9...v6.5.0) (2021-06-17)
 
 # [6.6.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.5.0...v6.6.0-alpha.0) (2021-06-17)
 
