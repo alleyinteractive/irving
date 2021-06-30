@@ -32,8 +32,8 @@ inquirer
       message: 'have any dependencies been installed in the release branch that have not been merged into main?',
     },
   ])
-  .then(({ depdendencies, releaseBranch }) => {
-    console.log(depdendencies);
+  .then(({ dependencies, releaseBranch }) => {
+    console.log(dependencies);
     execSync(`git checkout ${releaseBranch}`);
     execSync('git checkout main');
   });
