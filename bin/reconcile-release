@@ -5,6 +5,9 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
+// Skip commitizen for all commits happening within this script.
+process.env.HUSKY_SKIP_HOOKS = 1;
+
 const releaseBranches = execSync('git branch --all')
   .toString('utf8')
   .split('\n  ')
