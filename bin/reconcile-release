@@ -18,6 +18,7 @@ const releaseBranches = execSync('git branch --all')
       .replace('*', '')
       .trim()
   ))
+  .concat('release-merge-test')
   .reverse();
 
 inquirer
@@ -32,7 +33,11 @@ inquirer
   .then(({ releaseBranch }) => {
     execSync(`git checkout ${releaseBranch}`);
     execSync('git checkout release-merge');
-    execSync(`git merge ${releaseBranch}`);
+    const mergeResults = execSync(`git merge ${releaseBranch}`).toString('utf8');
+
+    if (mergeResults.includes('Automatic merge failed')) {
+      console.log('HELLO I AM CONFLICTED');
+    }
 
     return inquirer.prompt([
       {
