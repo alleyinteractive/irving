@@ -2,8 +2,24 @@
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
 
-const hello = 'test';
+const changelog = fs.readFileSync(
+  path.join(__dirname, '../CHANGELOG.md'),
+  'utf8'
+);
+const releaseVersion = '6.5';
+const regexp = new RegExp(`(#\\s\\[${releaseVersion}[.\\d\\-]+((alpha|beta|rc)[.\\d]+)?\\]\\([^)]*\\)\\s\\([0-9\-]+\\))(?![\\r\\n]+\\*\\*Note:\\*\\*)[\\s\\S]+?(?=\\n#\\s)`, 'g');
+const entries = changelog.match(regexp);
+const entriesCleaned = entries
+  .map((entry) => (
+    entry.replace(/\n(?=\n)/g, '')
+      .replace('### ', '#### ')
+      .replace('# [', '### [')
+  )).join('');
+
+console.log(entriesCleaned);
 
 const releaseBranches = execSync('git branch --all')
   .toString('utf8')
@@ -62,8 +78,43 @@ inquirer
 Use "y" or the enter key to continue once manual resolution is complete.`,
         },
       ]);
-    } else {
-      execSync('git ls-tree -r --name-only main | grep -E ".*((package|package-lock|lerna)\\.json|\/CHANGELOG.md)$" | xargs git checkout --ours --');
-
     }
+  })
+  .then(() => {
+    // auto-resolve conflicts in package.json, package-lock, lerna.json, and package changelogs.
+    execSync('git ls-tree -r --name-only main | grep -E ".*((package|package-lock|lerna)\\.json|\/CHANGELOG.md)$" | xargs git checkout --ours --');
+    return inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'continueMerge',
+        message: `Unfortunately, the root CHANGELOG.md file cannot be automatically merged.
+Please manually resolve conflicts in this file and continue when finished. Keep in mind:
+- every changelog heading should have release notes, even if it's just "**Note:** Version bump only for package irving"
+- depending on how far your release branch and the main branch have diverged, there may be duplicate changelog entries. Verify this is not the case before completing your merge.`,
+      },
+      {
+        type: 'input',
+        name: 'releaseVersion',
+        message: 'What is the latest release version on your release branch?',
+      },
+    ]);
+  })
+  .then(({ releaseVersion }) => {
+    console.log(chalk.green(`Creating commit roundup for ${releaseVersion}`));
+
+    const changelog = fs.readFileSync(
+      path.join(__dirname, '../CHANGELOG.md'),
+      'utf8'
+    );
+    const regexp = new RegExp(`(#\\s\\[${releaseVersion}[.\\d\\-]+((alpha|beta|rc)[.\\d]+)?\\]\\([^)]*\\)\\s\\([0-9\-]+\\))(?![\\r\\n]+\\*\\*Note:\\*\\*)[\\s\\S]+?(?=\\n#\\s)`, 'g');
+    const entries = changelog.match(regexp);
+    const entriesCleaned = entries
+      .map((entry) => (
+        entry
+          // replace empty newlines.
+          .replace(/\n(?=\n)/g, '')
+          // change heading hierarchy to work better with GH release.
+          .replace('### ', '#### ')
+          .replace('# [', '### [')
+      )).join('');
   });
