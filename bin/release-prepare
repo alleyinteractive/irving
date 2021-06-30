@@ -16,4 +16,4 @@ const versionMatches = lernaJson.version.match(/^\d\.\d/);
 const releaseBranchName = `release/${versionMatches[0]}`;
 
 execSync(`git checkout ${releaseBranchName}`);
-execSync('npm run release:beta');
+execSync('npm run prerelease:beta');
