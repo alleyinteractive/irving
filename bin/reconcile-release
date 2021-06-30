@@ -1,13 +1,39 @@
 #!/usr/bin/env node
 const chalk = require('chalk');
 const inquirer = require('inquirer');
+const { execSync } = require('child_process');
+
+const releaseBranches = execSync('git branch --all')
+  .toString('utf8')
+  .split('\n  ')
+  .filter((branch) => (
+    branch.indexOf('release') === 0 ||
+    branch.indexOf('remotes/origin/release') === 0
+  ))
+  .map((branch) => (
+    branch
+      .replace('remotes/origin/', '')
+      .replace('*', '')
+      .trim()
+  ))
+  .reverse();
 
 inquirer
   .prompt([
     {
+      type: 'list',
+      choices: releaseBranches,
+      name: 'releaseBranch',
+      message: 'Welcome to the Irving release wizard! Which release branch would you like to merge?'
+    },
+    {
       type: 'confirm',
       name: 'dependencies',
       message: 'have any dependencies been installed in the release branch that have not been merged into main?',
-    }
+    },
   ])
-  .then((answers) => console.log(chalk.green(answers.name)));
+  .then(({ depdendencies, releaseBranch }) => {
+    console.log(depdendencies);
+    execSync(`git checkout ${releaseBranch}`);
+    execSync('git checkout main');
+  });
