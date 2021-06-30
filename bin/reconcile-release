@@ -37,8 +37,9 @@ inquirer
     try {
       execSync(`git merge ${releaseBranch}`).toString('utf8');
     } catch (e) {
-      console.log(e);
-      if (e.message.includes('Automatic merge failed')) {
+      const message = e.stderr.toString('utf8');
+      console.log(message);
+      if (message.includes('Automatic merge failed')) {
         console.log('HELLO I AM CONFLICTED');
       }
     }
