@@ -26,14 +26,17 @@ inquirer
       name: 'releaseBranch',
       message: 'Welcome to the Irving release wizard! Which release branch would you like to merge?'
     },
-    {
-      type: 'confirm',
-      name: 'dependencies',
-      message: 'have any dependencies been installed in the release branch that have not been merged into main?',
-    },
   ])
-  .then(({ dependencies, releaseBranch }) => {
-    console.log(dependencies);
+  .then(({ releaseBranch }) => {
     execSync(`git checkout ${releaseBranch}`);
-    execSync('git checkout main');
+    execSync('git checkout release-merge');
+    execSync(`git merge ${releaseBranch}`);
+
+    return inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'dependencies',
+        message: 'have any dependencies been installed in the release branch that have not been merged into main?',
+      },
+    ]);
   });
