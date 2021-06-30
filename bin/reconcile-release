@@ -33,10 +33,14 @@ inquirer
   .then(({ releaseBranch }) => {
     execSync(`git checkout ${releaseBranch}`);
     execSync('git checkout release-merge');
-    const mergeResults = execSync(`git merge ${releaseBranch}`).toString('utf8');
 
-    if (mergeResults.includes('Automatic merge failed')) {
-      console.log('HELLO I AM CONFLICTED');
+    try {
+      execSync(`git merge ${releaseBranch}`).toString('utf8');
+    } catch (e) {
+      console.log(e);
+      if (e.message.includes('Automatic merge failed')) {
+        console.log('HELLO I AM CONFLICTED');
+      }
     }
 
     return inquirer.prompt([
