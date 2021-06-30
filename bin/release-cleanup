@@ -23,7 +23,6 @@ const releaseBranches = execSync('git branch --all')
       .replace('*', '')
       .trim()
   ))
-  .concat('release-merge-test')
   .reverse();
 
 const reconcile = async () => {
@@ -37,7 +36,7 @@ const reconcile = async () => {
   ]);
 
   execSync(`git checkout ${releaseBranch}`);
-  execSync('git checkout release-merge');
+  execSync('git checkout main');
 
   // Attempt merge.
   let hasConflict = false;
