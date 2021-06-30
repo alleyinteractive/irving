@@ -10,6 +10,8 @@ process.env.HUSKY_SKIP_HOOKS = 1;
 
 const blahblahblah = 'test';
 
+const blahblahblah = 'test';
+
 const releaseBranches = execSync('git branch --all')
   .toString('utf8')
   .split('\n  ')
