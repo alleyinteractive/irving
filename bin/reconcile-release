@@ -51,7 +51,7 @@ inquirer
           {
             type: 'confirm',
             name: 'error',
-            message: e.message,
+            message: `${e.message} ${e.status} ${e.stdout.toString('utf8')} ${e.stderr.toString('utf8')}`,
           },
         ]);
       }
