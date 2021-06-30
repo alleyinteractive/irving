@@ -37,9 +37,8 @@ inquirer
     try {
       execSync(`git merge ${releaseBranch}`).toString('utf8');
     } catch (e) {
-      const message = e.stderr.toString('utf8');
-      console.log(message);
-      if (message.includes('Automatic merge failed')) {
+      console.log(e.message);
+      if (e.message.includes('Automatic merge failed')) {
         return inquirer.prompt([
           {
             type: 'confirm',
@@ -52,7 +51,7 @@ inquirer
           {
             type: 'confirm',
             name: 'error',
-            message,
+            message: e.message,
           },
         ]);
       }
