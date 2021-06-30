@@ -47,15 +47,17 @@ const reconcile = async () => {
   } catch (e) {
     const gitMessage = e.stdout.toString('utf8');
     hasConflict = gitMessage.includes('Automatic merge failed');
-    const { mismatchedDeps = false } = await inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'mismatchedDeps',
-        message: `${chalk.red('Merge conflict encountered.')} Have any dependencies been installed in the release branch that have not been merged into main?`,
-      },
-    ]) || {};
 
     if (hasConflict) {
+      // Prompt release coordinator to check for mismatched package.json dependencies.
+      const { mismatchedDeps = false } = await inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'mismatchedDeps',
+          message: `${chalk.red('Merge conflict encountered.')} Have any dependencies been installed in the release branch that have not been merged into main?`,
+        },
+      ]) || {};
+
       if (mismatchedDeps) {
         await inquirer.prompt([
           {
@@ -67,7 +69,7 @@ const reconcile = async () => {
         ]);
       }
 
-      // auto-resolve conflicts in package.json, package-lock, lerna.json, and package changelogs.
+      // Auto-resolve conflicts in package.json, package-lock, lerna.json, and package changelogs.
       execSync('git ls-tree -r --name-only main | grep -E ".*((package|package-lock|lerna)\\.json|\/CHANGELOG.md)$" | xargs git checkout --ours --');
       await inquirer.prompt([
         {
@@ -79,39 +81,42 @@ Please manually resolve conflicts in this file and continue when finished. Keep 
 - depending on how far your release branch and the main branch have diverged, there may be duplicate changelog entries. Verify this is not the case before completing your merge.`,
         },
       ]);
+    } else {
+      console.error(chalk.red('Something unexpected went wrong when attempting to merge your release branch, please try again or merge manually.'));
     }
+  }
 
-    // Bump release
-    console.log(chalk.green('Bumping main branch to next version...'));
-    execSync('npm run release:bump');
+  // Bump release
+  console.log(chalk.green('Bumping main branch to next version...'));
+  execSync('npm run release:bump');
 
-    // Generate commit roundup.
-    const { releaseVersion } = await inquirer.prompt([
-      {
-        type: 'input',
-        name: 'releaseVersion',
-        message: 'What is the latest release version on your release branch?',
-      }
-    ]);
-    console.log(chalk.green(`Creating commit roundup for ${releaseVersion}`));
-    const changelog = fs.readFileSync(
-      path.join(__dirname, '../CHANGELOG.md'),
-      'utf8'
-    );
-    const regexp = new RegExp(`(#\\s\\[${releaseVersion}[.\\d\\-]+((alpha|beta|rc)[.\\d]+)?\\]\\([^)]*\\)\\s\\([0-9\-]+\\))(?![\\r\\n]+\\*\\*Note:\\*\\*)[\\s\\S]+?(?=\\n#\\s)`, 'g');
-    const entries = changelog.match(regexp);
-    const entriesCleaned = entries
-      .map((entry) => (
-        entry
-          // replace empty newlines.
-          .replace(/\n(?=\n)/g, '')
-          // change heading hierarchy to work better with GH release.
-          .replace('### ', '#### ')
-          .replace('# [', '### [')
-      )).join('');
+  // Generate commit roundup.
+  const { releaseVersion } = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'releaseVersion',
+      message: 'What is the latest release version on your release branch?',
+    }
+  ]);
+  console.log(chalk.green(`Creating commit roundup for ${releaseVersion}`));
+  const changelog = fs.readFileSync(
+    path.join(__dirname, '../CHANGELOG.md'),
+    'utf8'
+  );
+  const regexp = new RegExp(`(#\\s\\[${releaseVersion}[.\\d\\-]+((alpha|beta|rc)[.\\d]+)?\\]\\([^)]*\\)\\s\\([0-9\-]+\\))(?![\\r\\n]+\\*\\*Note:\\*\\*)[\\s\\S]+?(?=\\n#\\s)`, 'g');
+  const entries = changelog.match(regexp);
+  const entriesCleaned = entries
+    .map((entry) => (
+      entry
+        // replace empty newlines.
+        .replace(/\n(?=\n)/g, '')
+        // change heading hierarchy to work better with GH release.
+        .replace('### ', '#### ')
+        .replace('# [', '### [')
+    )).join('');
 
-      console.log(chalk.magentaBright('Commit roundup generated'));
-      console.log(entriesCleaned);
+    console.log(chalk.magentaBright('Commit roundup generated'));
+    console.log(entriesCleaned);
 }
 
 reconcile();
