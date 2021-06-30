@@ -87,7 +87,7 @@ Please manually resolve conflicts in this file and continue when finished. Keep 
 
   // Bump release
   console.log(chalk.green('Bumping main branch to next version...'));
-  // execSync('npm run release:bump');
+  execSync('npm run release:bump');
 
   // Generate commit roundup.
   const { releaseVersion } = await inquirer.prompt([
