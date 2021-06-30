@@ -37,23 +37,19 @@ inquirer
     try {
       execSync(`git merge ${releaseBranch}`).toString('utf8');
     } catch (e) {
-      console.log(e.message);
-      if (e.message.includes('Automatic merge failed')) {
+      const gitMessage = e.stdout.toString('utf8');
+
+      if (gitMessage.includes('Automatic merge failed')) {
         return inquirer.prompt([
           {
             type: 'confirm',
             name: 'dependencies',
-            message: 'have any dependencies been installed in the release branch that have not been merged into main?',
+            message: 'Have any dependencies been installed in the release branch that have not been merged into main?',
           },
         ]);
       } else {
-        return inquirer.prompt([
-          {
-            type: 'confirm',
-            name: 'error',
-            message: `${e.message} ${e.status} ${e.stdout.toString('utf8')} ${e.stderr.toString('utf8')}`,
-          },
-        ]);
+        console.log(chalk.red('An unknown error ocurred, try again', e.message));
       }
     }
-  });
+  })
+  .then(({ dependencies}) => console.log(dependencies));
