@@ -3,6 +3,8 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const { execSync } = require('child_process');
 
+const hello = 'test';
+
 const releaseBranches = execSync('git branch --all')
   .toString('utf8')
   .split('\n  ')
