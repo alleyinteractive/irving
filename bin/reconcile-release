@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+const chalk = require('chalk');
+const inquirer = require('inquirer');
+
+inquirer
+  .prompt([
+    {
+      type: 'confirm',
+      name: 'dependencies',
+      message: 'have any dependencies been installed in the release branch that have not been merged into main?',
+    }
+  ])
+  .then((answers) => console.log(chalk.green(answers.name)));
