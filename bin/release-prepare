@@ -1,0 +1,19 @@
+const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+
+// Skip commitizen for all commits happening within this script.
+process.env.HUSKY_SKIP_HOOKS = 1;
+
+const lernaJson = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, '../lerna.json'),
+    'utf8'
+  )
+);
+
+const versionMatches = lernaJson.version.match(/^\d\.\d/);
+const releaseBranchName = `release/${versionMatches[0]}`;
+
+execSync(`git checkout ${releaseBranchName}`);
+execSync('npm run prerelease:beta -- --force-publish --yes');
