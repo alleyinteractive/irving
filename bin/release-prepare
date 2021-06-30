@@ -1,4 +1,4 @@
-const { execSync } = require('child_process');
+const { execSync, spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -16,4 +16,16 @@ const versionMatches = lernaJson.version.match(/^\d\.\d/);
 const releaseBranchName = `release/${versionMatches[0]}`;
 
 execSync(`git checkout ${releaseBranchName}`);
-execSync('npm run prerelease:beta -- --force-publish --yes');
+
+const release = spawn('npm run prerelease:beta', ['--', '--force-publish', '--yes']);
+release.stdout.on('data', (data) => {
+  console.log(`stdout: ${data}`);
+});
+
+release.stderr.on('data', (data) => {
+  console.error(`stderr: ${data}`);
+});
+
+release.on('close', (code) => {
+  console.log(`release complete, exited with code ${code}`);
+});
