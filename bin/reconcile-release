@@ -43,8 +43,8 @@ inquirer
         return inquirer.prompt([
           {
             type: 'confirm',
-            name: 'dependencies',
-            message: 'Have any dependencies been installed in the release branch that have not been merged into main?',
+            name: 'mismatchedDeps',
+            message: `${chalk.red('Merge conflict encountered.')} Have any dependencies been installed in the release branch that have not been merged into main?`,
           },
         ]);
       } else {
@@ -52,4 +52,18 @@ inquirer
       }
     }
   })
-  .then(({ dependencies}) => console.log(dependencies));
+  .then(({ mismatchedDeps }) => {
+    if (mismatchedDeps) {
+      return inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'continueMerge',
+          message: `Please manually resolve conflicts in package.json files with mismatched dependencies before continuing.
+Use "y" or the enter key to continue once manual resolution is complete.`,
+        },
+      ]);
+    } else {
+      execSync('git ls-tree -r --name-only main | grep -E ".*((package|package-lock|lerna)\\.json|\/CHANGELOG.md)$" | xargs git checkout --ours --');
+
+    }
+  });
