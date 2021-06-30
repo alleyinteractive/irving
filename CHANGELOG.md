@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0-beta.1](https://github.com/alleyinteractive/irving/compare/v6.6.0-beta.0...v6.6.0-beta.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* **release:** force publish prerplease ([cdf978a](https://github.com/alleyinteractive/irving/commit/cdf978afe7aea34126206acd4718af877f514053))
+* **release:** try again ([3c065bf](https://github.com/alleyinteractive/irving/commit/3c065bfa9fc3c6e958b92a4cdb5b73307f1b326b))
+* **release:** use spawn for better feedback ([36c7085](https://github.com/alleyinteractive/irving/commit/36c70856683972b9794870a27475a1ed260da173))
+* **release:** woops, wrong command ([4544e90](https://github.com/alleyinteractive/irving/commit/4544e90080a6dafd4392b7f52bcd0aabbe881f4b))
+
+
+
+
+
 # [6.6.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.6.0-alpha.3...v6.6.0-beta.0) (2021-06-30)
 
 
