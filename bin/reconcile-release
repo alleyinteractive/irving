@@ -55,7 +55,7 @@ inquirer
       }
     }
   })
-  .then(({ mismatchedDeps }) => {
+  .then(({ mismatchedDeps = false } = {}) => {
     if (mismatchedDeps) {
       return inquirer.prompt([
         {
