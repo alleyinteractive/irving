@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.7.0-alpha.0...v6.7.0-alpha.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* **release:** add --yes flag ([5c22f5d](https://github.com/alleyinteractive/irving/packages/core/commit/5c22f5d66b57a19223d05517f6572b169a06a5a2))
+
+
+
+
+
 # [6.7.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.6.0-alpha.5...v6.7.0-alpha.0) (2021-06-30)
 
 **Note:** Version bump only for package @irvingjs/core
