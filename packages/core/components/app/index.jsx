@@ -19,6 +19,7 @@ const App = (props) => {
    * If the API URL is invalid, return early as only bad things happen from here.
    */
   if (!apiValid) {
+    console.log(apiValid);
     return (
       <ErrorBoundary>
         <RouteInvalid />
