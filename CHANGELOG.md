@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v6.6.0-alpha.3...v6.6.0-alpha.4) (2021-06-30)
+
+
+### Bug Fixes
+
+* **release:** begin handling next steps for merge ([f48d28c](https://github.com/alleyinteractive/irving/commit/f48d28ca6f634edd28ef6afcee3edce3f930a9b5))
+* **release:** change roundup messaging ([5b1890a](https://github.com/alleyinteractive/irving/commit/5b1890aa350f09a9878c75271305ad2fda08b120))
+* **release:** fix spelling ([69385b8](https://github.com/alleyinteractive/irving/commit/69385b8af089a4e837b870a4c6a038bf11f5757e))
+* **release:** force publish prerplease ([cdf978a](https://github.com/alleyinteractive/irving/commit/cdf978afe7aea34126206acd4718af877f514053))
+* **release:** further reorganization ([008d4c8](https://github.com/alleyinteractive/irving/commit/008d4c8aecfa39d6eaa6b045e5c26cfc865c4f59))
+* **release:** lets try something else ([8f77caf](https://github.com/alleyinteractive/irving/commit/8f77caf109819f2b2ba14c1ee43ec7e102804797))
+* **release:** lets try this AGAIN ([f7f183e](https://github.com/alleyinteractive/irving/commit/f7f183ef45f50b1370fa17d91031f50a04cc02cc))
+* **release:** once again ([97415bd](https://github.com/alleyinteractive/irving/commit/97415bddf8167ff3105748fe25972d6e9f0ba6b4))
+* **release:** set some defaults ([e7de1cb](https://github.com/alleyinteractive/irving/commit/e7de1cbd3de4ba7cef28b86ca3c6b77656f97852))
+* **release:** skip commitizen ([bfd4d0a](https://github.com/alleyinteractive/irving/commit/bfd4d0afeff6a79d423588efa9e5b95a0126cd6a))
+* **release:** switch to async/await ([d998f0b](https://github.com/alleyinteractive/irving/commit/d998f0beabc26da8eed564bbed971cea9b60c53d))
+* **release:** try again ([3c065bf](https://github.com/alleyinteractive/irving/commit/3c065bfa9fc3c6e958b92a4cdb5b73307f1b326b))
+* **release:** use spawn for better feedback ([36c7085](https://github.com/alleyinteractive/irving/commit/36c70856683972b9794870a27475a1ed260da173))
+* **release:** woops ([ec96409](https://github.com/alleyinteractive/irving/commit/ec964099701434b95d7658aba4636348808db79c))
+* **release:** woops, wrong command ([4544e90](https://github.com/alleyinteractive/irving/commit/4544e90080a6dafd4392b7f52bcd0aabbe881f4b))
+* **release:** wow ([3deae35](https://github.com/alleyinteractive/irving/commit/3deae35c0b17ce5dd65b8b63ec181c443f72a238))
+* **release:** wrap merge command in a try/catch ([e7af8a3](https://github.com/alleyinteractive/irving/commit/e7af8a3a17e24c30b3ed1372762b744cd272a60c))
+
+
+
+
+
 # [6.6.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.5.3...v6.6.0-alpha.3) (2021-06-24)
 
 
