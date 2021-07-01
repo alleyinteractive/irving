@@ -5,6 +5,7 @@ module.exports = [
   '/wp-json/',
   '*.rss',
   '*/amp/',
+  '*/embed/',
   '*/feed/',
   '/favicon.ico',
 ];
