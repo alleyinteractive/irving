@@ -113,8 +113,11 @@ Please manually resolve conflicts in this file and continue when finished. Keep 
         .replace('# [', '### [')
     )).join('');
 
-    console.log(chalk.magentaBright(`Commit roundup generated for release ${releaseVersion}`));
-    console.log(entriesCleaned);
+  console.log(chalk.magentaBright(`Commit roundup generated for release ${releaseVersion}`));
+  console.log(entriesCleaned);
+
+  // Bump to next minor alpha version.
+  execSync('npm run release:bump -- --yes');
 }
 
 reconcile();
