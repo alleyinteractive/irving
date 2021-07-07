@@ -16,7 +16,8 @@ const lernaJson = JSON.parse(
 const versionMatches = lernaJson.version.match(/^\d\.\d/);
 const releaseBranchName = `release/${versionMatches[0]}`;
 
-const hasBranch = execSync(`git branch --list ${releaseBranchName}`);
+const hasBranch = execSync(`git branch --list ${releaseBranchName}`)
+  .toString('utf8');
 
 if (! hasBranch) {
   execSync(`git checkout -b ${releaseBranchName}`);
