@@ -16,7 +16,15 @@ const lernaJson = JSON.parse(
 const versionMatches = lernaJson.version.match(/^\d\.\d/);
 const releaseBranchName = `release/${versionMatches[0]}`;
 
-execSync(`git checkout ${releaseBranchName}`);
+const hasBranch = execSync(`git branch --list ${releaseBranchName}`);
+
+if (! hasBranch) {
+  execSync(`git checkout -b ${releaseBranchName}`);
+} else {
+  execSync(`git checkout ${releaseBranchName}`);
+}
+
+execSync(`git push origin ${releaseBranchName}`);
 
 const release = spawn('npm', ['run', 'prerelease:beta', '--', '--force-publish', '--yes']);
 release.stdout.on('data', (data) => {
