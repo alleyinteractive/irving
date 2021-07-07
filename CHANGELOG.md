@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.7.0-alpha.2...v6.7.0-alpha.3) (2021-07-07)
+
+
+### Features
+
+* **a11ly:** ➜ Pass aria atts and tabindex to link ([090e78f](https://github.com/alleyinteractive/irving/commit/090e78f1300d03103e46b50e9bb83b470b85728b))
+
+
+
+
+
 # [6.7.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.7.0-alpha.1...v6.7.0-alpha.2) (2021-07-01)
 
 **Note:** Version bump only for package irving
