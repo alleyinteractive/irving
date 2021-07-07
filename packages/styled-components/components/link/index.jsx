@@ -76,7 +76,7 @@ const Link = (props) => {
       return acc;
     }
 
-    // Convert aria values to kebab case as camelCase aria key do not work.
+    // Convert aria values to kebab case as camelCase aria attributes do not work.
     const kebabAria = `aria-${propName.replace('aria', '').toLocaleLowerCase()}`;
 
     return {
