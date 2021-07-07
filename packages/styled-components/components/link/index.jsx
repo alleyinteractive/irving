@@ -39,6 +39,7 @@ const Link = (props) => {
     rel,
     target,
     theme,
+    tabIndex,
   } = props;
   const {
     onClick: defaultOnClick,
@@ -71,15 +72,18 @@ const Link = (props) => {
   };
 
   const ariaProps = Object.keys(props).reduce((acc, propName) => {
-    if (!propName.includes('aria')) {
+    if (!propName.startsWith('aria')) {
       return acc;
     }
 
+    // Convert aria values to kebab case as camelCase aria attributes do not work.
+    const kebabAria = `aria-${propName.replace('aria', '').toLocaleLowerCase()}`;
+
     return {
       ...acc,
-      [propName]: props[propName],
+      [kebabAria]: props[propName],
     };
-  });
+  }, {});
 
   return (
     <LinkWrapper
@@ -89,6 +93,7 @@ const Link = (props) => {
       onClick={handleClick}
       rel={rel}
       target={target}
+      tabIndex={tabIndex}
     >
       {children}
     </LinkWrapper>
