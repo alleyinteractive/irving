@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0-beta.0](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v6.7.0-alpha.3...v6.7.0-beta.0) (2021-07-07)
+
+**Note:** Version bump only for package @irvingjs/aws-lambda
+
+
+
+
+
 # [6.7.0-alpha.0](https://github.com/alleyinteractive/irving/packages/aws-lambda/compare/v6.6.0-alpha.5...v6.7.0-alpha.0) (2021-06-30)
 
 
