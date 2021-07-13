@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v6.8.0-alpha.3...v6.8.0-alpha.4) (2021-07-13)
+
+
+### Reverts
+
+* Revert "Update deps and move to devDeps to devDeps" ([e97bf01](https://github.com/alleyinteractive/irving/packages/core/commit/e97bf017e1c2f9d8dd9b1d7e800ab4a706e5257f))
+
+
+
+
+
 # [6.8.0-alpha.3](https://github.com/alleyinteractive/irving/packages/core/compare/v6.8.0-alpha.2...v6.8.0-alpha.3) (2021-07-13)
 
 **Note:** Version bump only for package @irvingjs/core
