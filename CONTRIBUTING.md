@@ -101,3 +101,14 @@ Steps:
 * Please read about [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) before publishing. The type of commit you choose will have ramifications on the semver version number you release. For example, a type of `fix` will indicate a `patch` release, a type of `feat` will indicate a `minor` release.
 * When you want to test out a newly published package, don't forget the npm tag. For example, for a canary release, run `npm install @irvingjs/core@alpha --save-dev`.
 * When commitizen kicks in for a merge, choose `chore` for the type, `merge` for the scope, and `merge` for the commit message. Everything else can be skipped.
+
+
+## Testing
+
+### Run Tests
+* `cd` into the root Irving directory.
+* Run `npm run bootstrap`
+* Use `npm run test` or `npm run test:watch`
+
+### Writing tests
+* Create a `{something}.test.js` file anywhere.
