@@ -1,33 +1,41 @@
 const { format } = require('util');
 
 module.exports = function generateLogInfo(method, messages) {
-  const hasTags = messages.find(
-    (message) => typeof message === 'object' && message.tags,
+  const hasKey = (key) => messages.find(
+    (message) => typeof message === 'object' && message[key],
   );
-  // Filter out tags.
-  const noTags = messages.filter(
+
+  const hasTags = hasKey('tags');
+  const hasAdditionalData = hasKey('additionalData');
+
+  // Filter out tags and additionalData (objects).
+  const noTagsOrData = messages.filter(
     (message) => (
       typeof message !== 'object'
       || (
         typeof message === 'object'
-        && ! message.tags
+        && !message.tags
+        && !message.additionalData
       )
-    )
+    ),
   );
-  const firstMessage = noTags[0];
-  let message = firstMessage;
-  let info = { tags: {} };
 
-  // If we find tags, send them along.
-  if (hasTags) {
+  let message = noTagsOrData[0];
+
+  let info = {
+    tags: hasTags ? hasTags.tags : {},
+  };
+
+  if (hasAdditionalData) {
     info = {
-      tags: hasTags.tags,
+      ...hasAdditionalData.additionalData,
+      ...info,
     };
   }
 
   // Format string messages like winston would.
-  if (!(firstMessage instanceof Error)) {
-    const formattedMessage = format(...noTags);
+  if (!(message instanceof Error)) {
+    const formattedMessage = format(...noTagsOrData);
 
     // error logged, but message isn't a string.
     if (method === 'error') {
