@@ -66,6 +66,12 @@ const getService = (namespace) => {
         format: sentryFormat(),
         level: 'warn', // only log at warn and above.
       });
+
+      /**
+       * Clear the scope to make sure we only get tags/additional data from the
+       * current error being logged.
+       */
+      transport.sentry.configureScope((scope) => scope.clear());
     }
 
     // Set up the logger.
