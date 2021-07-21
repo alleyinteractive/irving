@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/vip-go",
-  "version": "6.8.0-alpha.4",
+  "version": "6.8.0-alpha.5",
   "description": "Integration for WordPress VIP's Node server helpers",
   "files": [
     "server/**/*",

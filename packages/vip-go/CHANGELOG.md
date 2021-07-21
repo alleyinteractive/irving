@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0-alpha.5](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.8.0-alpha.4...v6.8.0-alpha.5) (2021-07-21)
+
+
+### Features
+
+* **sentry:** allow passing additionalData to Sentry ([1495b93](https://github.com/alleyinteractive/irving/packages/vip-go/commit/1495b93fd68cc3ef24adc6459f149cd9608dcbe9))
+
+
+
+
+
 # [6.8.0-alpha.4](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.8.0-alpha.3...v6.8.0-alpha.4) (2021-07-13)
 
 **Note:** Version bump only for package @irvingjs/vip-go
