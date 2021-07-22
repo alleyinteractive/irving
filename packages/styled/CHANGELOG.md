@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0-alpha.6](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.8.0-alpha.5...v6.8.0-alpha.6) (2021-07-22)
+
+**Note:** Version bump only for package @irvingjs/styled
+
+
+
+
+
 # [6.8.0-alpha.4](https://github.com/alleyinteractive/irving/packages/styled/compare/v6.8.0-alpha.3...v6.8.0-alpha.4) (2021-07-13)
 
 

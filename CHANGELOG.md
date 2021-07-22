@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v6.8.0-alpha.5...v6.8.0-alpha.6) (2021-07-22)
+
+
+### Features
+
+* **sentry:** send response, request url and status to sentry when response.json() fails ([fc3e392](https://github.com/alleyinteractive/irving/commit/fc3e392a3600ea07befb9b1eb6028ad305001c1f))
+
+
+
+
+
 # [6.8.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v6.8.0-alpha.4...v6.8.0-alpha.5) (2021-07-21)
 
 
