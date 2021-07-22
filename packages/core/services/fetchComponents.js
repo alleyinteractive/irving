@@ -79,7 +79,13 @@ export async function fetchComponents(routeMeta, routeCookies) {
     const apiError = new Error(`API error: ${error}`);
     log.error(apiError, {
       tags: createRouteLogTags(routeMeta, env),
+      additionalData: {
+        response,
+        reqUrl: response.url,
+        status: response.status,
+      },
     });
+
     throw apiError;
   }
 
