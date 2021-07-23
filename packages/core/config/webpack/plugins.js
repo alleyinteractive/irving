@@ -93,6 +93,9 @@ module.exports = function getPlugins(context, argv) {
           filename: '[name].[contenthash].css',
           chunkFilename: '[id].[contenthash].css',
         }),
+        new webpack.ProvidePlugin({
+          process: 'process/browser',
+        }),
         (analyze && new BundleAnalyzerPlugin()),
       ].filter(Boolean);
 
@@ -108,6 +111,9 @@ module.exports = function getPlugins(context, argv) {
         new MiniCSSExtractPlugin({
           filename: '[name].css',
           chunkFilename: '[id].css',
+        }),
+        new webpack.ProvidePlugin({
+          process: 'process/browser',
         }),
       ];
 

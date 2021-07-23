@@ -2,6 +2,7 @@
 const { format } = require('util');
 const defaultService = require('./defaultService');
 const monitor = require('../monitorService/getService')();
+const getEnv = require('../../utils/universalEnv');
 
 let service;
 
@@ -15,7 +16,7 @@ let service;
  * @return {function}        A logging function.
  */
 const getService = (namespace) => {
-  const env = process.env.NODE_ENV;
+  const { NODE_ENV: env } = getEnv();
 
   // Memoize service, so it can reused.
   if (service) {
