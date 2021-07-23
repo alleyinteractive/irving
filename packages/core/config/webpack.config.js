@@ -19,6 +19,9 @@ module.exports = (env, argv) => {
         extensions,
         alias: client.getAlias(),
         symlinks: !isProd,
+        fallback: {
+          util: require.resolve('util'),
+        },
       },
       devtool: client.getDevTool(),
       entry: client.getEntry(),
