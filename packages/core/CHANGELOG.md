@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.8.0...v6.8.1-alpha.0) (2021-07-23)
+
+
+### Bug Fixes
+
+* **logservice:** fix issue with latest verstion of `util` package referencing `process` ([d6f1562](https://github.com/alleyinteractive/irving/packages/core/commit/d6f1562d89e0f939548a1b996f9cf5210bd63c79))
+
+
+
+
+
 # [6.8.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.8.0-beta.0...v6.8.0) (2021-07-22)
 
 **Note:** Version bump only for package @irvingjs/core

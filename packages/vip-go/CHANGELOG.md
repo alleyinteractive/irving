@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.8.0...v6.8.1-alpha.0) (2021-07-23)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
 # [6.8.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.8.0-beta.0...v6.8.0) (2021-07-22)
 
 **Note:** Version bump only for package @irvingjs/vip-go
