@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.1-beta.0](https://github.com/alleyinteractive/irving/compare/v6.8.0...v6.8.1-beta.0) (2021-07-23)
+
+
+### Bug Fixes
+
+* **logservice:** fix issue with latest verstion of `util` package referencing `process` ([74dc231](https://github.com/alleyinteractive/irving/commit/74dc231f2d65ad7c71b6fa41b3820a8bac3a95bf))
+
+
+
+
+
 # [6.8.0](https://github.com/alleyinteractive/irving/compare/v6.8.0-beta.0...v6.8.0) (2021-07-22)
 
 **Note:** Version bump only for package irving
