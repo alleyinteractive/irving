@@ -93,6 +93,7 @@ module.exports = function getPlugins(context, argv) {
           filename: '[name].[contenthash].css',
           chunkFilename: '[id].[contenthash].css',
         }),
+        // Mostly added to address https://github.com/browserify/node-util/issues/43
         new webpack.ProvidePlugin({
           process: 'process/browser',
         }),
@@ -112,6 +113,7 @@ module.exports = function getPlugins(context, argv) {
           filename: '[name].css',
           chunkFilename: '[id].css',
         }),
+        // See comment about ProvidePlugin above.
         new webpack.ProvidePlugin({
           process: 'process/browser',
         }),
