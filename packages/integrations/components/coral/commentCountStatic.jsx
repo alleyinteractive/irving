@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 
 const CommentCountStatic = (props) => {
   const {
+    articleUrl,
     count,
     countText,
+    noText,
   } = props;
 
   return (
-    <span className="coral-count">
+    <span
+      className="coral-count"
+      data-coral-url={articleUrl}
+      data-coral-notext={noText}
+    >
       <span className="coral-count-number">{count}</span>
       <span className="coral-count-text">{countText}</span>
     </span>
@@ -17,11 +23,14 @@ const CommentCountStatic = (props) => {
 
 CommentCountStatic.defaultProps = {
   countText: 'Comments',
+  noText: false,
 };
 
 CommentCountStatic.propTypes = {
+  articleUrl: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
   countText: PropTypes.string,
+  noText: PropTypes.bool,
 };
 
 export default CommentCountStatic;
