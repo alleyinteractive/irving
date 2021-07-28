@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.8.1...v6.9.0-alpha.0) (2021-07-28)
+
+
+### Features
+
+* **commentcountstatic:** add new Coral component for displaying static comment count data ([a89a8ac](https://github.com/alleyinteractive/irving/commit/a89a8ac35b38c1811f0dba68bf956a7e5ea66b1a))
+
+
+
+## [6.8.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.8.0...v6.8.1-alpha.0) (2021-07-23)
+
+
+### Bug Fixes
+
+* **logservice:** fix issue with latest verstion of `util` package referencing `process` ([d6f1562](https://github.com/alleyinteractive/irving/commit/d6f1562d89e0f939548a1b996f9cf5210bd63c79))
+
+
+
+
+
 ## [6.8.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.8.0...v6.8.1-alpha.0) (2021-07-23)
 
 **Note:** Version bump only for package irving
