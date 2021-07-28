@@ -1,7 +1,7 @@
 import {
   getValueFromConfig,
   getValueFromUserConfig,
-} from 'config/irving/getValueFromConfig';
+} from '../config/irving/getValueFromConfig';
 
 const forceTrailingSlashes = getValueFromUserConfig(
   'forceTrailingSlashes',

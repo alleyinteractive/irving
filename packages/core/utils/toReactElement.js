@@ -1,7 +1,7 @@
 import { isString, omit } from 'lodash/fp';
 import React from 'react';
-import getReactComponent from 'config/componentMap';
-import { getValueFromConfig } from 'config/irving/getValueFromConfig';
+import getReactComponent from '../config/componentMap';
+import { getValueFromConfig } from '../config/irving/getValueFromConfig';
 
 /**
  * Recursively map a tree of API components within component groups to React elements.

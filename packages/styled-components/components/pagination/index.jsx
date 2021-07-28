@@ -11,7 +11,7 @@ import {
   getAnalyticsDefaultProps,
   analyticsPropTypes,
 } from '@irvingjs/styled/types/analyticsPropTypes';
-import Link from 'components/link';
+import Link from '../link';
 import * as defaultStyles from './themes/default';
 
 /**

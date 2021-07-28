@@ -1,7 +1,7 @@
 import { get, replace } from 'lodash/fp';
 import { createSelector } from 'reselect';
 import queryString from 'query-string';
-import getRouteCookies from 'selectors/getRouteCookies';
+import getRouteCookies from './getRouteCookies';
 
 /**
  * Select the current route's unique key.

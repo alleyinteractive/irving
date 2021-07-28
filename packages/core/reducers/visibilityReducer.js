@@ -2,7 +2,7 @@ import mapValues from 'lodash/fp/mapValues';
 import {
   UPDATE_VISIBILITY,
   LOCATION_CHANGE,
-} from 'actions/types';
+} from '../actions/types';
 import { visible as defaultState } from './defaultState';
 
 /**

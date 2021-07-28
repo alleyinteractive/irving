@@ -1,7 +1,6 @@
 /* eslint-disable react/forbid-prop-types, react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'components/link';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import {
   standardPropTypes,
@@ -11,6 +10,7 @@ import {
   analyticsPropTypes,
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
+import Link from '../link';
 import * as defaultStyles from './themes/default';
 
 /**

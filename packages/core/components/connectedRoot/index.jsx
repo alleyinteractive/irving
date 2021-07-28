@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import createGetRootComponent from 'selectors/createGetRootComponent';
-import toReactElement from 'utils/toReactElement';
+import createGetRootComponent from '../../selectors/createGetRootComponent';
+import toReactElement from '../../utils/toReactElement';
 
 const ConnectedRoot = (props) => {
   const { apiComponent } = props;

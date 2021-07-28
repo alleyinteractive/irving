@@ -1,6 +1,6 @@
 import memoize from 'lodash/memoize';
-import getRelativeUrl from 'utils/getRelativeUrl';
-import history from 'utils/history';
+import getRelativeUrl from '../utils/getRelativeUrl';
+import history from '../utils/history';
 
 // Checking for a relative URL is expensive, memoize it.
 const parseUrl = memoize(getRelativeUrl);

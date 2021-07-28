@@ -3,17 +3,17 @@ import {
   put,
   select,
 } from 'redux-saga/effects';
+import getLogService from '@irvingjs/services/logService';
 import {
   actionReceiveComponents,
   actionReceiveError,
   actionRequestComponentsAuthorized,
-} from 'actions';
-import getRouteMeta from 'selectors/getRouteMeta';
-import getRouteCookies from 'selectors/getRouteCookies';
-import { fetchComponents } from 'services/fetchComponents';
-import getLogService from '@irvingjs/services/logService';
-import createRouteLogTags from 'utils/createRouteLogTags';
-import { getEnv } from 'config/multisite';
+} from '../actions';
+import getRouteMeta from '../selectors/getRouteMeta';
+import getRouteCookies from '../selectors/getRouteCookies';
+import { fetchComponents } from '../services/fetchComponents';
+import createRouteLogTags from '../utils/createRouteLogTags';
+import { getEnv } from '../config/multisite';
 
 const log = getLogService('irving:sagas:authorization');
 

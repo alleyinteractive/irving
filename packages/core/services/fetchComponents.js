@@ -1,12 +1,12 @@
 import AbortController from 'abort-controller';
 import omit from 'lodash/fp/omit';
-import isNode from 'utils/isNode';
-import createRouteLogTags from 'utils/createRouteLogTags';
-import { maybeMergeAuthHeaders } from 'utils/authorization';
-import { getEnv } from 'config/multisite';
 import getLogService from '@irvingjs/services/logService';
 import getCacheService from '@irvingjs/services/cacheService';
-import createEndpointUrl from 'utils/endpoint/createEndpointUrl';
+import createEndpointUrl from '../utils/endpoint/createEndpointUrl';
+import isNode from '../utils/isNode';
+import createRouteLogTags from '../utils/createRouteLogTags';
+import { maybeMergeAuthHeaders } from '../utils/authorization';
+import { getEnv } from '../config/multisite';
 
 const log = getLogService('irving:components');
 

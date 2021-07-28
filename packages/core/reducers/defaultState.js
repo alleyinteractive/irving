@@ -1,6 +1,6 @@
 import {
   getValueFromConfig,
-} from 'config/irving/getValueFromConfig';
+} from '../config/irving/getValueFromConfig';
 
 export const components = {
   defaults: [],

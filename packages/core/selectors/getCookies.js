@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 import pick from 'lodash/fp/pick';
 import get from 'lodash/fp/get';
-import { getEnv } from 'config/multisite';
-import defaultCookies from 'config/defaultCookies';
-import getRouteCookies from 'selectors/getRouteCookies';
+import { getEnv } from '../config/multisite';
+import defaultCookies from '../config/defaultCookies';
+import getRouteCookies from './getRouteCookies';
 
 /**
  * Pick cookies relevant to the app from the full cookie object.

@@ -4,10 +4,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore } from 'redux-persist';
 import { createWrapper } from 'next-redux-wrapper';
 import browserStorage from 'redux-persist/lib/storage';
-import rootReducer from 'reducers';
-import defaultState from 'reducers/defaultState';
-import rootSaga from 'sagas';
-import isNode from 'utils/isNode';
+import rootReducer from '../reducers';
+import defaultState from '../reducers/defaultState';
+import rootSaga from '../sagas';
+import isNode from '../utils/isNode';
 
 // Persist state.
 const persistConfig = {

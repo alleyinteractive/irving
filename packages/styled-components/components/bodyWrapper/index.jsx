@@ -1,16 +1,16 @@
 /* eslint-disable react/forbid-prop-types, react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Component as LoaderComponent,
-  themeMap as loaderThemeMap,
-} from 'components/loader';
 import useStandardProps from '@irvingjs/styled/hooks/useStandardProps';
 import withThemes from '@irvingjs/styled/components/hoc/withThemes';
 import {
   standardPropTypes,
   getStandardDefaultProps,
 } from '@irvingjs/styled/types/propTypes';
+import {
+  Component as LoaderComponent,
+  themeMap as loaderThemeMap,
+} from '../loader';
 import * as defaultStyles from './themes/default';
 
 const Loader = withThemes(loaderThemeMap)(LoaderComponent);

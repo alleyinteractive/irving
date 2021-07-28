@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ConnectedProvider from 'components/connectedProvider';
-import ConnectedRoot from 'components/connectedRoot';
-import getRoots from 'selectors/getRoots';
-import getProviders from 'selectors/getProviders';
+import ConnectedProvider from '../connectedProvider';
+import ConnectedRoot from '../connectedRoot';
+import getRoots from '../../selectors/getRoots';
+import getProviders from '../../selectors/getProviders';
 
 const Root = (props) => {
   const {

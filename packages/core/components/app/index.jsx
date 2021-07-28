@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ErrorBoundary from 'components/errorBoundary';
-import Root from 'components/root';
-import getComponent from 'config/componentMap';
 import getTrackingService from '@irvingjs/services/trackingService';
-import { getValueFromConfig } from 'config/irving/getValueFromConfig';
+import ErrorBoundary from '../errorBoundary';
+import Root from '../root';
+import getComponent from '../../config/componentMap';
+import { getValueFromConfig } from '../../config/irving/getValueFromConfig';
 
 const ErrorMessage = getComponent('error-message');
 const RouteInvalid = getComponent('route-invalid-message');

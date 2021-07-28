@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getComponent from 'config/componentMap';
+import getComponent from '../../config/componentMap';
 
 const ErrorMessage = getComponent('error-message');
 

@@ -1,8 +1,8 @@
 import get from 'lodash/fp/get';
 import { createSelector } from 'reselect';
-import { CONTEXT_PAGE, CONTEXT_SITE } from 'config/constants';
-import getPageComponents from 'selectors/getPageComponents';
-import getCookies from 'selectors/getCookies';
+import { CONTEXT_PAGE, CONTEXT_SITE } from '../config/constants';
+import getPageComponents from './getPageComponents';
+import getCookies from './getCookies';
 
 const getRouteMeta = createSelector(
   [

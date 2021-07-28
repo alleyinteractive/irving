@@ -3,15 +3,13 @@ import {
   LOCATION_CHANGE,
   RECEIVE_COMPONENTS,
   FINISH_LOADING,
-  REQUEST_COMPONENT_DATA,
-} from 'actions/types';
+} from '../actions/types';
 import {
   getValueFromConfig,
-} from 'config/irving/getValueFromConfig';
+} from '../config/irving/getValueFromConfig';
 import resolveComponents from './resolveComponents';
 import waitToScroll from './waitToScroll';
 import onLocationChange from './onLocationChange';
-import watchComponentData from './componentDataSaga';
 
 /**
  * Combine all sagas, and run them continuously in parallel.
@@ -31,6 +29,5 @@ export default function* rootSaga() {
   yield all(getValueFromConfig('sagas', [
     takeLatest(LOCATION_CHANGE, resolveComponents),
     takeEvery(LOCATION_CHANGE, onLocationChange),
-    takeEvery(REQUEST_COMPONENT_DATA, watchComponentData),
   ]));
 }

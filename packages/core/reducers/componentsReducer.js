@@ -1,6 +1,6 @@
 import { flow, set } from 'lodash/fp';
-import { RECEIVE_COMPONENTS } from 'actions/types';
-import getRouteKey from 'selectors/getRouteKey';
+import { RECEIVE_COMPONENTS } from '../actions/types';
+import getRouteKey from '../selectors/getRouteKey';
 
 /**
  * Handle component related Redux actions.

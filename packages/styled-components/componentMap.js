@@ -1,21 +1,5 @@
 import SiteThemeProvider from '@irvingjs/styled/components/siteThemeProvider';
 import withThemes from '@irvingjs/styled/components/hoc/withThemes';
-import App from 'components/app';
-import Head from 'components/head';
-import * as BodyWrapper from 'components/bodyWrapper';
-import * as Byline from 'components/byline';
-import * as Container from 'components/container';
-import * as Fragment from 'components/fragment';
-import * as Image from 'components/image';
-import * as Link from 'components/link';
-import * as Loader from 'components/loader';
-import * as Logo from 'components/logo';
-import * as Menu from 'components/menu';
-import * as Pagination from 'components/pagination';
-import * as SearchForm from 'components/searchForm';
-import * as SocialLinks from 'components/socialLinks';
-import * as SocialSharing from 'components/socialSharing';
-import * as Text from 'components/text';
 
 // Default icons.
 import {
@@ -37,10 +21,27 @@ import {
  *
  * @see https://github.com/azz/styled-css-grid
  */
-import {
+ import {
   Grid as StyledCSSGrid,
   Cell as StyledCSSGridCell,
 } from 'styled-css-grid';
+
+import App from './components/app';
+import Head from './components/head';
+import * as BodyWrapper from './components/bodyWrapper';
+import * as Byline from './components/byline';
+import * as Container from './components/container';
+import * as Fragment from './components/fragment';
+import * as Image from './components/image';
+import * as Link from './components/link';
+import * as Loader from './components/loader';
+import * as Logo from './components/logo';
+import * as Menu from './components/menu';
+import * as Pagination from './components/pagination';
+import * as SearchForm from './components/searchForm';
+import * as SocialLinks from './components/socialLinks';
+import * as SocialSharing from './components/socialSharing';
+import * as Text from './components/text';
 
 // Map the entire export for each component.
 export const components = {

@@ -1,7 +1,7 @@
 import fs from 'fs';
-import { getValueFromConfigNoMemo } from 'config/irving/getValueFromConfig';
-import { clientBuild } from 'config/paths';
-import { getEnv } from 'config/multisite';
+import { getValueFromConfigNoMemo } from '../../config/irving/getValueFromConfig';
+import { clientBuild } from '../../config/paths';
+import { getEnv } from '../../config/multisite';
 
 let runtimeSrc;
 

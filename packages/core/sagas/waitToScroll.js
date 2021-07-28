@@ -3,7 +3,7 @@ import {
   delay,
   select,
 } from 'redux-saga/effects';
-import getRouteMeta from 'selectors/getRouteMeta';
+import getRouteMeta from '../selectors/getRouteMeta';
 
 /**
  * Wrap requestAnimationFrame in a Promise.

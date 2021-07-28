@@ -3,8 +3,8 @@ import set from 'lodash/fp/set';
 import {
   RECEIVE_COMPONENTS,
   FINISH_LOADING,
-} from 'actions/types';
-import getRouteKey from 'selectors/getRouteKey';
+} from '../actions/types';
+import getRouteKey from '../selectors/getRouteKey';
 
 /**
  * Handle redux state changes for a single provider.

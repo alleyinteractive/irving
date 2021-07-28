@@ -4,8 +4,8 @@ import {
   RECEIVE_COMPONENTS,
   RECEIVE_ERROR,
   FINISH_LOADING,
-} from 'actions/types';
-import { error as defaultState } from 'reducers/defaultState';
+} from '../actions/types';
+import { error as defaultState } from './defaultState';
 
 /**
  * Handle Redux actions operating on the loading state slice.

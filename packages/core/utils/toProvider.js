@@ -1,5 +1,5 @@
 import React from 'react';
-import getReactComponent from 'config/componentMap';
+import getReactComponent from '../config/componentMap';
 
 /**
  * Convert a component to a provider.

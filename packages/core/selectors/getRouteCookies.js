@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import pick from 'lodash/fp/pick';
 import get from 'lodash/fp/get';
-import { getEnv } from 'config/multisite';
+import { getEnv } from '../config/multisite';
 
 /**
  * Get any query parameters that should be mapped from the

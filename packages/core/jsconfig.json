@@ -2,7 +2,17 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "*": ["./*"]
+            "actions": "./actions",
+            "assets": "./assets",
+            "components": "./components",
+            "hooks": "./hooks",
+            "reducers": "./reducers",
+            "sagas": "./sagas",
+            "selectors": "./selectors",
+            "server": "./server",
+            "services": "./services",
+            "utils": "./utils",
+            "config": "./config",
         },
     }
 }

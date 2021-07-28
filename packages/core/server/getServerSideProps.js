@@ -1,4 +1,4 @@
-import { actionLocationChange } from 'actions';
+import { actionLocationChange } from '../actions';
 // import resolveComponents from 'sagas/resolveComponents';
 import queryString from 'query-string';
 import { wrapper } from './store';

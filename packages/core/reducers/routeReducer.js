@@ -2,8 +2,8 @@ import {
   LOCATION_CHANGE,
   RECEIVE_COMPONENTS,
   RECEIVE_ERROR,
-} from 'actions/types';
-import { route as defaultState } from 'reducers/defaultState';
+} from '../actions/types';
+import { route as defaultState } from './defaultState';
 
 /**
  * Handle Redux actions operating on the route state slice.

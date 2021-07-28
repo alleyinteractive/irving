@@ -1,5 +1,5 @@
-import { LOCATION_CHANGE, RECEIVE_ERROR } from 'actions/types';
-import { error as defaultState } from 'reducers/defaultState';
+import { LOCATION_CHANGE, RECEIVE_ERROR } from '../actions/types';
+import { error as defaultState } from './defaultState';
 
 /**
  * Handle Redux actions operating on the error state slice.

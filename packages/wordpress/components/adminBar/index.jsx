@@ -4,7 +4,7 @@ import get from 'lodash/fp/get';
 import PropTypes from 'prop-types';
 import Cookies from 'universal-cookie';
 import getEnv from '@irvingjs/core/config/irving/getEnv';
-import styles from './adminBar.css';
+// import styles from './adminBar.module.css';
 
 const AdminBar = (props) => {
   const {
@@ -67,7 +67,6 @@ const AdminBar = (props) => {
   return (
     <>
       <aside
-        className={styles.spacer}
         id="wordpress-admin-bar__wrapper"
         style={{
           height: `${height}px`,
@@ -76,7 +75,6 @@ const AdminBar = (props) => {
         <iframe
           title="Admin Bar Iframe"
           src={iframeSrc}
-          className={styles.iframe}
           style={{
             height: hover ? '100%' : `${height}px`,
           }}

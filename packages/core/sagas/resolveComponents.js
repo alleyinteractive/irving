@@ -3,27 +3,27 @@ import {
   select,
   put,
 } from 'redux-saga/effects';
+import getLogService from '@irvingjs/services/logService';
 import {
   actionReceiveComponents,
   actionReceiveError,
   actionFinishLoading,
-} from 'actions';
+} from '../actions';
 import waitToScroll from './waitToScroll';
-import getRouteMeta from 'selectors/getRouteMeta';
-import getRouteCookies from 'selectors/getRouteCookies';
+import getRouteMeta from '../selectors/getRouteMeta';
+import getRouteCookies from '../selectors/getRouteCookies';
 import cachedFetchComponents, {
   fetchComponents,
-} from 'services/fetchComponents';
+} from '../services/fetchComponents';
 import {
   shouldAuthorize,
   getAuthToken,
-} from 'utils/authorization';
-import history from 'utils/history';
-import isNode from 'utils/isNode';
-import getRelativeUrl from 'utils/getRelativeUrl';
-import createRouteLogTags from 'utils/createRouteLogTags';
-import getLogService from '@irvingjs/services/logService';
-import { getEnv } from 'config/multisite';
+} from '../utils/authorization';
+import history from '../utils/history';
+import isNode from '../utils/isNode';
+import getRelativeUrl from '../utils/getRelativeUrl';
+import createRouteLogTags from '../utils/createRouteLogTags';
+import { getEnv } from '../config/multisite';
 import resolveComponentsAuthorized from './resolveComponentsAuthorized';
 
 const log = getLogService('irving:sagas:location');
