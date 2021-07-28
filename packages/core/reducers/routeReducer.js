@@ -30,8 +30,8 @@ export default function routeReducer(routeState = defaultState, action) {
       return {
         ...routeState,
         status: payload.status,
-        redirectTo: payload.redirectTo,
-        redirectStatus: payload.redirectStatus,
+        redirectTo: payload.redirectTo || null,
+        redirectStatus: payload.redirectStatus || null,
         apiValid: payload.apiValid,
       };
 

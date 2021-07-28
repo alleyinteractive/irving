@@ -22,6 +22,7 @@ export const route = {
   action: '',
   apiValid: true,
   cookies: {},
+  hostname: '',
   redirectStatus: 0,
   redirectTo: false,
   status: null,

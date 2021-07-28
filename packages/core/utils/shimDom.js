@@ -19,5 +19,6 @@ shim.IntersectionObserver = function IntersectionObserver() {
   this.unobserve = () => {};
   this.disconnect = () => {};
 };
+shim.scrollTo = () => {};
 
 module.exports = shim;

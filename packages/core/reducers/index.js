@@ -5,6 +5,7 @@ import {
   getValueFromConfig,
 } from '../config/irving/getValueFromConfig';
 import componentsReducer from './componentsReducer';
+import hydrateReducer from './hydrateReducer';
 import providersReducer from './providersReducer';
 import routeReducer from './routeReducer';
 import errorReducer from './errorReducer';
@@ -25,6 +26,7 @@ const rootSliceReducer = combineReducers(reducers);
 // reduceReducers determines the order they will be run in.
 const rootReducer = reduceReducers(
   defaultState,
+  hydrateReducer,
   rootSliceReducer,
   componentsReducer,
   providersReducer,

@@ -22,9 +22,9 @@ export default function* rootSaga() {
     FINISH_LOADING,
   ], waitToScroll);
 
-  // Ensure authorized component requests and auto-scrolling
-  // are also made after initial server-side render.
-  yield* resolveComponents();
+  // // Ensure authorized component requests and auto-scrolling
+  // // are also made after initial server-side render.
+  // yield* resolveComponents();
 
   yield all(getValueFromConfig('sagas', [
     takeLatest(LOCATION_CHANGE, resolveComponents),
