@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.9.0-alpha.0...v6.9.0-alpha.1) (2021-07-29)
+
+
+### Bug Fixes
+
+* **commentcountstatic:** add support for additional Coral config in static component ([232f7c2](https://github.com/alleyinteractive/irving/packages/integrations/commit/232f7c2c5558716e705e1af35d1c7c6b97f2d70e))
+
+
+
+
+
 # [6.9.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.8.1...v6.9.0-alpha.0) (2021-07-28)
 
 
