@@ -19,11 +19,20 @@ const usePicoGTMEvents = () => {
     log.info(
       `[irving:usePicoGTMEvents] ${event.type} handler called.`,
     );
+
+    /**
+     * Pico sends a string back for event.type for every event,
+     * except for pico.user.registered which it sends {user: name@email.com}
+     * which would results in an action that is [object, object] so here we check
+     * for that case and send along "User registered" manually.
+     */
+    const action = event.type === 'pico.user.registered' ? 'User registered' : event.detail;
+
     trackEvent({
       event: event.type,
       eventContext: 'irving.integrations.pico',
       eventData: {
-        action: event.detail,
+        action,
         category: 'Pico',
         label: event.type,
       },
