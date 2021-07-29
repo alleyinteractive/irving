@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.9.0-alpha.1...v6.9.0-alpha.2) (2021-07-29)
+
+
+### Bug Fixes
+
+* **analytics:** fix [object object] ga event action ([53c6896](https://github.com/alleyinteractive/irving/packages/integrations/commit/53c689627632be3fb822c30ad3a4917b9e55c8c7))
+
+
+
+
+
 # [6.9.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.9.0-alpha.0...v6.9.0-alpha.1) (2021-07-29)
 
 
