@@ -8,8 +8,6 @@ const path = require('path');
 // Skip commitizen for all commits happening within this script.
 process.env.HUSKY_SKIP_HOOKS = 1;
 
-const blahblahblah = 'test';
-
 const releaseBranches = execSync('git branch --all')
   .toString('utf8')
   .split('\n  ')
@@ -37,6 +35,7 @@ const reconcile = async () => {
 
   execSync(`git checkout ${releaseBranch}`);
   execSync('git checkout main');
+  execSync('git pull origin main');
 
   // Attempt merge.
   let hasConflict = false;
@@ -94,7 +93,7 @@ Please manually resolve conflicts in this file and continue when finished. Keep 
     {
       type: 'input',
       name: 'releaseVersion',
-      message: 'What version are you releasing? (e.g. 6.5)',
+      message: 'What version was just released? (e.g. 6.5)',
     }
   ]);
   const changelog = fs.readFileSync(
@@ -118,6 +117,8 @@ Please manually resolve conflicts in this file and continue when finished. Keep 
 
   // Bump to next minor alpha version.
   execSync('npm run release:bump -- --yes');
+
+  console.log(chalk.magenta('Last step: manually commit and push the changes!'));
 }
 
 reconcile();
