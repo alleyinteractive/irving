@@ -13,6 +13,7 @@ import {
   getAnalyticsDefaultProps,
 } from '@irvingjs/styled/types/analyticsPropTypes';
 import getTrackingService from '@irvingjs/services/trackingService';
+import NextLink from 'next/link';
 import * as defaultStyles from './themes/default';
 
 const trackingService = getTrackingService();
@@ -85,18 +86,21 @@ const Link = (props) => {
     };
   }, {});
 
+  const newDestination = destination.replace('https://defector.irving.alley.test', 'http://localhost:3000');
+
   return (
-    <LinkWrapper
-      {...standardProps}
-      {...ariaProps}
-      href={destination}
-      onClick={handleClick}
-      rel={rel}
-      target={target}
-      tabIndex={tabIndex}
-    >
-      {children}
-    </LinkWrapper>
+    <NextLink href={newDestination}>
+      <a
+        {...standardProps}
+        {...ariaProps}
+        onClick={handleClick}
+        rel={rel}
+        target={target}
+        tabIndex={tabIndex}
+      >
+        {children}
+      </a>
+    </NextLink>
   );
 };
 
