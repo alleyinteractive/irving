@@ -117,8 +117,6 @@ Please manually resolve conflicts in this file and continue when finished. Keep 
 
   // Bump to next minor alpha version.
   execSync('npm run release:bump -- --yes');
-
-  console.log(chalk.magenta('Last step: manually commit and push the changes!'));
 }
 
 reconcile();
