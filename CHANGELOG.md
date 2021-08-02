@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.9.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.9.0...v6.9.1-alpha.0) (2021-08-02)
+
+
+
+# [6.9.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.9.0-beta.0...v6.9.0-alpha.3) (2021-07-29)
+
+
+### Bug Fixes
+
+* **commentcountstatic:** differentiate class name for secondary Coral comment count component" ([646d822](https://github.com/alleyinteractive/irving/commit/646d822932fd91861fc1ad81caa51445e5252a36))
+
+
+
+
+
 # [6.9.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.9.0-alpha.2...v6.9.0-alpha.3) (2021-07-29)
 
 
