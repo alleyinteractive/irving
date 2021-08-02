@@ -14,6 +14,30 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [6.9.0](https://github.com/alleyinteractive/irving/compare/v6.9.0-beta.1...v6.9.0) (2021-08-02)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.9.0-beta.1](https://github.com/alleyinteractive/irving/compare/v6.9.0-beta.0...v6.9.0-beta.1) (2021-07-30)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.9.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.9.0-alpha.2...v6.9.0-beta.0) (2021-07-29)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
 # [6.9.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.9.0-alpha.1...v6.9.0-alpha.2) (2021-07-29)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v6.9.0-beta.1...v6.9.0) (2021-08-02)
+
+**Note:** Version bump only for package @irvingjs/loadable
+
+
+
+
+
+# [6.9.0-beta.0](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v6.9.0-alpha.2...v6.9.0-beta.0) (2021-07-29)
+
+**Note:** Version bump only for package @irvingjs/loadable
+
+
+
+
+
 ## [6.8.1-alpha.0](https://github.com/alleyinteractive/irving/packages/loaodable/compare/v6.8.0...v6.8.1-alpha.0) (2021-07-23)
 
 **Note:** Version bump only for package @irvingjs/loadable
