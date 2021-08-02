@@ -1,5 +1,5 @@
 import queryString from 'query-string';
-import { END } from 'redux-saga'
+import { END } from 'redux-saga';
 import { actionLocationChange } from '../actions';
 import { wrapper } from './store';
 
@@ -8,14 +8,20 @@ import { wrapper } from './store';
 // exported when you use `getServerSideProps` or `getInitialProps`
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (props) => {
-    const { req } = props;
+    const { req, query } = props;
     const { getState, dispatch } = store;
     const search = queryString.stringify(req.query, { arrayFormat: 'bracket' });
+
+    const pathname = query.path ? query.path.reduce(
+      (acc, slug) => `${acc + slug}/`,
+      '/',
+    ) : '/';
 
     // Sync express request with route state.
     dispatch(actionLocationChange('PUSH', {
       hostname: req.headers.host,
-      pathname: req.url,
+      // pathname: req.url,
+      pathname,
       search: `?${search}`,
       // cookie: req.universalCookies.getAll({ doNotParse: true }),
       hash: '', // Only available in browser.
