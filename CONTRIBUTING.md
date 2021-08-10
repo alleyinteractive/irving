@@ -2,12 +2,15 @@
 This document is intended to make contributing to this project easier, more transparent, and more standardized.
 
 ## Preparing your environment for contributing to Irving
-**Important:**
+### Important Notes before you begin setup
 * Before publishing any release manually, you will need to authenticate your machine to use the `alleyops` npm account by running `npm adduser` and following the prompts. Credentials for the account can be found in the Alley Leads 1Password vault.
-* If you are publishing a `beta`, `rc`, or stable release, you will also need to have a valid `GH_TOKEN` in your Irving `.env` file. In Github, create your token under [account > Settings > Developer Settings > Personal Access Tokens](https://github.com/settings/tokens). Then create a `.env` file at the root of the cloned Irving repo and assign it to a `GH_TOKEN` environmental variable.
+* If you are publishing a `beta`, `rc`, or stable release, you will also need to have a valid `GH_TOKEN` in your Irving `.env` file. In Github, create your token under [account > Settings > Developer Settings > Personal Access Tokens](https://github.com/settings/tokens). Then create a `.env` file at the root of the cloned Irving repo and assign it to a `GH_TOKEN` environmental variable. It'll look like this:
+`GH_TOKEN=asfh8aa3h49oqwh2398yhfiosds89as7df`
 **NOTE:** The project in which you are testing your Irving changes must be on at least Irving `3.1.0` for this setup process to work properly.
+
+### Setup Steps
 1. Fork or clone the Irving repo.
-2. `git checkout master` - Check out the NPM package release branch.
+2. `git checkout main` - Check out the main branch.
 3. `npm run develop:prepare` - If you have run this script in the past, you can skip this step. Run this at the root of the Irving repo to prepare the irving repo for development. **IMPORTANT NOTE** this script is memory intensive and may take time, but you should only ever need to run it once. Get up and make yourself some coffee or a cocktail and just let it run! This script will:
   * Run `npm install`.
   * Run `npm link` within all Irving packages to create global symlinks. (see [docs on npm link](https://docs.npmjs.com/cli/link))
@@ -16,27 +19,27 @@ This document is intended to make contributing to this project easier, more tran
   * **NOTE:** If you run into an error attempting to run this script, try running `develop:cleanup` first then attempt to run `develop:prepare` again.
 4. `npm install && npx irving link-all` - In the project where you'll be testing out your changes, run these commands to symlink all installed Irving packages.
 5. A couple troubleshooting tips:
-* If you run into errors with linked packages, especially errors related to missing imports, run `npm run develop:setup` in the irving repo root and your problems should be solved.
+* If you run into errors with linked packages, especially errors related to missing imports, first try `npm run develop:bootstrap` and, if that doesn't work, `npm run develop:setup` in the irving repo root. Your problems should be solved.
 * If you'd like to unlink all irving packages, run `npm install` in the root of your project.
 * If you'd like to re-link all irving packages, run `npx irving link-all` in the root of your project.
 
 ## Commitizen
 This project uses [Commitizen](https://github.com/commitizen/cz-cli) and [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog) to standardize commit messages and changelogs. This means when you enter `git commit` to commit your code you will see a (maybe) unfamiliar, interactive series of questions. These questions will result in a standardized format for your commit message. If you have any questions about the possible categories, scopes, etc. please create an issue in GitHub and we will do our best to respond.
 
-Note: For merge commits, just use `chore` for the type of change, `merge` for the scope, and `merge commit` for the message. Likely, however, it will not matter what you put into Commitizen as you'll just get a normal merge commit message such as `Merge branch 'my-branch' into master`.
+Note: For merge commits, just use `chore` for the type of change, `merge` for the scope, and `merge commit` for the message. Likely, however, it will not matter what you put into Commitizen as you'll just get a normal merge commit message such as `Merge branch 'my-branch' into main`.
 
 ## Git Workflow
 Specific branches will be used for specific purposes in this repo. Considering this, the lifecycle of a new feature, bugfix, etc. should largely follow the steps below.
 
 ### Irving Git Workflow
 1. If for some reason you need to reset links, run `npm run develop:setup` in the Irving repo root and `npx irving link-all` in your project.
-2. `git checkout -b feature/issue-17/branch-title` - create a new feature branch based on master. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
+2. `git checkout -b feature/issue-17/branch-title` - create a new feature branch based on main. If your branch relates to a specific GitHub issue, reference that issue in your branch name (and all subsequent commits).
 3. `npm run test` and/or `npm run test:watch` - If you've fixed a bug or added a new feature, please write tests! These commands can be used to run tests from within the package you are modifying or at the root of the repo if you want to run all tests for all packages.
-4. When ready, push your code and create a pull request into `master` branches.
+4. When ready, push your code and create a pull request into `main` branches.
 5. Your code will be reviewed.
-6. Once your code passes review, a maintainer will merge your PR into `master` (or you can do so yourself if you are a maintainer).
+6. Once your code passes review, a maintainer will merge your PR into `main` (or you can do so yourself if you are a maintainer).
 7. If you are a maintainer, you may now:
-  * `git checkout master && git pull origin master` to checkout `master` and pull down your newly-merged code.
+  * `git checkout main && git pull origin main` to checkout `main` and pull down your newly-merged code.
   * Travis will automatically create an `alpha` release for your changes.
   * Install and verify the new `alpha` release in your project via `npm install @irvingjs/package-name@alpha`.
   * When you're satisfied, notify the designated release organizer that your feature is ready to move along to `beta`.
