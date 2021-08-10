@@ -28,7 +28,7 @@ export default function useGadgetScript(gadgetUrl, publisherId) {
 
   useEffect(() => {
     if (!picoScriptAdded) {
-      log.info('[irving:useGadgetScript] adding Pico gadget script.');
+      log.info('adding Pico gadget script.');
 
       // Get the `body` DOM node.
       const documentBody = document.getElementsByTagName('body')[0];

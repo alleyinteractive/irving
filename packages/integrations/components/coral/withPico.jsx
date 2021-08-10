@@ -36,14 +36,14 @@ const withPico = (ChildComponent) => {
 
     useEffect(() => {
       log.info(
-        '[irving:Coral:withPico] running effect, checking if user can comment',
+        'running effect, checking if user can comment',
       );
 
       if (coralToken && !requireUsername) {
-        log.info('[irving:Coral:withPico] setting canComment: ', true);
+        log.info('setting canComment: ', true);
         setCanComment(true);
       } else {
-        log.info('[irving:Coral:withPico] setting canComment: ', false);
+        log.info('setting canComment: ', false);
         setCanComment(false);
       }
     }, [coralToken, requireUsername, status, tier]);
@@ -63,16 +63,16 @@ const withPico = (ChildComponent) => {
           // If the user is paying but cannot comment, prompt them to upgrade their subscription.
           dispatch(actionRequireUpgrade());
         } else if (
-          status === 'paying' &&
-          ssoTiers.includes(tier)
+          status === 'paying'
+          && ssoTiers.includes(tier)
           && id !== ''
         ) {
           const { API_ROOT_URL } = getEnv();
           const { status: ssoStatus, jwt } = await fetch(
-            `${API_ROOT_URL}/data/validate_sso_user?user=${encodeURIComponent(email)}&id=${id}` // eslint-disable-line max-len
+            `${API_ROOT_URL}/data/validate_sso_user?user=${encodeURIComponent(email)}&id=${id}`, // eslint-disable-line max-len
           ).then((res) => res.json());
 
-          if ('success' === ssoStatus) {
+          if (ssoStatus === 'success') {
             dispatch(actionReceiveCoralToken(jwt));
           }
         } else {
@@ -97,25 +97,25 @@ const withPico = (ChildComponent) => {
     };
 
     if (
-      status !== undefined &&
-      picoLoaded &&
-      ssoTiers.includes(tier) &&
-      canComment
+      status !== undefined
+      && picoLoaded
+      && ssoTiers.includes(tier)
+      && canComment
     ) {
-      log.info('[irving:Coral:withPico] returning authenticated embed');
+      log.info('returning authenticated embed');
       return (
         <ChildComponent {...props} events={handlers} accessToken={coralToken} />
       );
     }
 
     if (status !== undefined && picoLoaded && !canComment) {
-      log.info('[irving:Coral:withPico] returning default embed');
+      log.info('returning default embed');
       return (
         <ChildComponent {...props} events={handlers} />
       );
     }
 
-    log.info('[irving:Coral:withPico] waiting for Pico to load');
+    log.info('waiting for Pico to load');
     return null;
   };
 

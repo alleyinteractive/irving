@@ -17,7 +17,7 @@ const usePicoGTMEvents = () => {
 
   const sendEvent = (event) => {
     log.info(
-      `[irving:usePicoGTMEvents] ${event.type} handler called.`,
+      `${event.type} handler called.`,
     );
 
     /**
@@ -40,11 +40,11 @@ const usePicoGTMEvents = () => {
   };
 
   useEffect(() => {
-    log.info('[irving:usePicoGTMEvents] adding event listeners.');
+    log.info('adding event listeners.');
     events.forEach((event) => document.addEventListener(event, sendEvent));
 
     return () => {
-      log.info('[irving:usePicoGTMEvents] removing event listeners.');
+      log.info('removing event listeners.');
       events.forEach((eventName) => {
         document.removeEventListener(eventName, sendEvent);
       });

@@ -21,19 +21,19 @@ const usePicoEventListeners = () => {
       ...acc,
       [eventName]: () => {
         log.info(
-          `[irving:usePicoEventListeners] pico.${eventName} handler called.`,
+          `pico.${eventName} handler called.`,
         );
         dispatch(actionUpdatePicoLifecycle({ [eventName]: true }));
       },
     }), {});
 
-    log.info('[irving:usePicoEventListeners] adding event listeners.');
+    log.info('adding event listeners.');
     lifecycleEvents.forEach((eventName) => {
       document.addEventListener(`pico.${eventName}`, handlers[eventName]);
     });
 
     return () => {
-      log.info('[irving:usePicoEventListeners] removing event listeners.');
+      log.info('removing event listeners.');
       lifecycleEvents.forEach((eventName) => {
         document.removeEventListener(`pico.${eventName}`, handlers[eventName]);
       });

@@ -151,7 +151,7 @@ async function cachedFetchComponents(routeMeta, routeCookies) {
   const { cookie: { bypassCache } = {} } = routeMeta;
 
   if (bypassCache || !cache.client) {
-    log.info('%o', info);
+    log.info('%O', info);
     return fetchComponents(routeMeta, routeCookies);
   }
 
@@ -163,7 +163,7 @@ async function cachedFetchComponents(routeMeta, routeCookies) {
     },
   );
 
-  log.info('%o', {
+  log.info('%O', {
     ...info,
     ...omit('data', cachedResult),
     cached: true,

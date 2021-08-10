@@ -79,15 +79,6 @@ const renderMethod = disableSSR ? 'render' : 'hydrate';
 const render = () => {
   const rootEl = document.getElementById('root');
 
-  log.error(
-    new Error('JUSTIN CLIENT ERROR'), // eslint-disable-line max-len
-    {
-      tags: {
-        foo: 'bar',
-      },
-    },
-  );
-
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.
