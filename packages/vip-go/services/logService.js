@@ -62,10 +62,9 @@ const getService = (namespace) => {
       acc[method] = (...messages) => {
         // Construct log info object & log it with debug.
         const logInfo = generateLogInfo(method, messages);
-        // console.log('messages', messages);
-        // console.log('messages', logInfo);
         logger(...logInfo.message);
 
+        // Log stack to the console if we have an error.
         if (logInfo.stack) {
           logger(logInfo.stack);
         }
@@ -74,16 +73,16 @@ const getService = (namespace) => {
         if (logInfo.level === 'error') {
           const err = new Error(logInfo.message);
 
-          // if (logToSentry) {
-          //   Sentry.withScope((scope) => {
-          //     scope.setLevel('error');
-          //     Sentry.captureException(err, {
-          //       contexts: logInfo.contexts,
-          //       extra: logInfo.extra,
-          //       tags: logInfo.tags,
-          //     });
-          //   });
-          // }
+          if (logToSentry) {
+            Sentry.withScope((scope) => {
+              scope.setLevel('error');
+              Sentry.captureException(err, {
+                contexts: logInfo.contexts,
+                extra: logInfo.extra,
+                tags: logInfo.tags,
+              });
+            });
+          }
 
           if (NODE_ENV === 'development' && !IRVING_RENDER_ERRORS) {
             // In development the app should crash fast when encountering any errors.
