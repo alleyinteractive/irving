@@ -38,10 +38,6 @@
     "audit:ci": "npm run audit:self && npm run audit:packages"
   },
   "dependencies": {
-    "@sentry/node": "^6.10.0",
-    "@sentry/react": "^6.10.0",
-    "@sentry/tracing": "^6.10.0",
-    "debug": "^4.3.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "webpack": "~5.37.0"
