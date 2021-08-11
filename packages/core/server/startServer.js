@@ -1,5 +1,8 @@
 const http = require('http');
 const https = require('https');
+const logService = require('../services/logService/getServiceFromFilesystem');
+
+const log = logService('irving:server:start');
 
 const {
   HTTPS_KEY_PATH,
@@ -37,7 +40,7 @@ module.exports = function startServer(app) {
   }
 
   server.listen(PORT);
-  console.log(`Server listening on port ${PORT}!`);
+  log.info(`Server listening on port ${PORT}!`);
 
   return server;
 };
