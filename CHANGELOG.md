@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.10.0-alpha.0...v6.10.0-alpha.1) (2021-08-11)
+
+
+### Features
+
+* **logging:** add debug package ([6fc28da](https://github.com/alleyinteractive/irving/commit/6fc28da4beab6f0bb2c46b80a840c15b6785d32a))
+* **logging:** add env vars to client allowlist ([f0c65e4](https://github.com/alleyinteractive/irving/commit/f0c65e4d7e23c6d0fcc6eb6d7ab69f83eccf9af1))
+* **logging:** update logService to support debug package ([783d1a0](https://github.com/alleyinteractive/irving/commit/783d1a0c3fbf648015caaf0b0116e23a2f51c87f))
+* **update generateloginfo() to support debug logging:** update generateLogInfo() to support debug ([a2f7a6f](https://github.com/alleyinteractive/irving/commit/a2f7a6f9488268ad603b2b9fda2360e07299bbe3))
+
+
+
+
+
 # [6.10.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.9.1-alpha.0...v6.10.0-alpha.0) (2021-08-02)
 
 **Note:** Version bump only for package irving

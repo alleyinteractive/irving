@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0-alpha.1](https://github.com/alleyinteractive/irving/packages/core/compare/v6.10.0-alpha.0...v6.10.0-alpha.1) (2021-08-11)
+
+
+### Features
+
+* **logging:** add env vars to client allowlist ([f0c65e4](https://github.com/alleyinteractive/irving/packages/core/commit/f0c65e4d7e23c6d0fcc6eb6d7ab69f83eccf9af1))
+
+
+
+
+
 # [6.10.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.9.1-alpha.0...v6.10.0-alpha.0) (2021-08-02)
 
 **Note:** Version bump only for package @irvingjs/core
