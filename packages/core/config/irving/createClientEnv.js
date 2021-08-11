@@ -15,14 +15,17 @@ const createClientEnv = (hostname) => {
   const allowlistArray = getValueFromConfig(
     'clientEnvAllowlist',
     [
-      'NODE_ENV',
       'API_ROOT_URL',
-      'DEBUG',
-      'ROOT_URL',
-      'ROUTE_COOKIES',
       'COOKIE_ALLOWLIST',
+      'DEBUG',
       'FETCH_TIMEOUT',
       'IRVING_EXECUTION_CONTEXT',
+      'IRVING_RENDER_ERRORS',
+      'NODE_ENV',
+      'ROOT_URL',
+      'ROUTE_COOKIES',
+      'SENTRY_DSN',
+      'SENTRY_ENVIRONMENT',
     ],
   );
   const allowlist = [

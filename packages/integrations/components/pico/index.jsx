@@ -76,7 +76,7 @@ const Pico = (props) => {
   // Mount our Pico Signal nodes into the DOM.
   useEffect(() => {
     if (!isPicoMounted()) {
-      log.info('[irving:Pico] Mounting nodes.');
+      log.info('Mounting nodes.');
       mountPicoNodes();
     }
   }, []);
@@ -93,7 +93,7 @@ const Pico = (props) => {
       )
     ) {
       // Dispatch the initial visit to trigger the `pico.loaded` event.
-      log.info('[irving:Pico] ready, dispatching page visit.');
+      log.info('ready, dispatching page visit.');
       dispatchUpdatePicoPageInfo(picoPageInfo);
     }
   }, [
@@ -107,7 +107,7 @@ const Pico = (props) => {
   useGadgetScript(gadgetUrl, publisherId);
 
   // Inject the Pico Signal into the DOM.
-  log.info('[irving:Pico] rendering signal observer component.');
+  log.info('rendering signal observer component.');
   return (
     picoReady ? <PicoObserver tiers={tiers} /> : null
   );

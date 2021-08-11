@@ -19,10 +19,12 @@ import rootReducer from 'reducers';
 import defaultState from 'reducers/defaultState';
 import rootSaga from 'sagas';
 import history from 'utils/history';
+import getLogService from '@irvingjs/services/logService';
 import { getEnv } from 'config/multisite';
 import debug from 'debug';
 
 const env = getEnv();
+const log = getLogService('irving:client:render');
 
 if (env.DEBUG) {
   debug.enable(env.DEBUG);
@@ -76,6 +78,7 @@ const renderMethod = disableSSR ? 'render' : 'hydrate';
 
 const render = () => {
   const rootEl = document.getElementById('root');
+
   // It is imperative that the server React component tree matches the client
   // component tree, so that the client can re-hydrate the app from the server
   // rendered markup, otherwise the app will be completely re-rendered.

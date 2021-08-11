@@ -2,6 +2,9 @@
 const defaultClient = require(
   '@irvingjs/core/services/cacheService/defaultClient',
 );
+const getLogService = require('./logService');
+
+const logger = getLogService('irving:redis');
 
 /**
  * @typedef {object} CacheService
@@ -12,9 +15,9 @@ const defaultClient = require(
  * @returns {CacheService}
  */
 const getClient = () => {
-  const { redis, logger } = require('@automattic/vip-go');
+  const { redis } = require('@automattic/vip-go');
   const client = redis({
-    logger: logger('irving:redis'),
+    logger,
   });
 
   if (!client) {
