@@ -30,19 +30,20 @@ module.exports = function generateLogInfo(method, messages) {
     }, {});
   }
 
-  let message = messages;
+  const message = messages;
+  let error = false;
 
-  if (!(messages[0] instanceof Error) && method === 'error') {
-    message = new Error(messages[0]);
+  if (method === 'error') {
+    error = !(messages[0] instanceof Error) ? new Error(messages[0]) : messages[0];
   }
 
   // Construct info object.
-  if (message instanceof Error) {
+  if (error) {
     info = {
       ...info,
-      message: message.message,
-      name: message.name,
-      stack: message.stack,
+      message: [error.message],
+      name: error.name,
+      stack: error.stack,
     };
   } else {
     info = { ...info, message };
