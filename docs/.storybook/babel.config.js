@@ -1,6 +1,7 @@
 const path = require('path');
 const { packagesRoot } = require('./paths');
 const aliases = require(path.join(packagesRoot, 'core/config/aliases'));
+const getServiceAliases = require(path.join(packagesRoot, 'core/config/irving/getServiceAliases'));
 
 module.exports = {
   plugins: [
@@ -13,6 +14,7 @@ module.exports = {
         cwd: "packagejson",
         alias: {
           ...aliases,
+          ...getServiceAliases('web'),
           '@irvingjs/componentMap': path.resolve(
             __dirname,
             '../componentMap.js'
