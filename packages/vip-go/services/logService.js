@@ -20,6 +20,7 @@ let initialized = false;
  */
 const getService = (namespace) => {
   let service = defaultService;
+  let logServiceConfig = {};
   let Sentry;
 
   // Init logger with proper namespace.
@@ -46,12 +47,15 @@ const getService = (namespace) => {
     Sentry = require('@sentry/node');
   } else {
     Sentry = SentryReact;
+    // eslint-disable-next-line global-require
+    logServiceConfig = require('@irvingjs/services/logServiceConfig');
   }
 
   if (logToSentry && !initialized) {
     Sentry.init({
       dsn: SENTRY_DSN,
       environment: SENTRY_ENVIRONMENT || IRVING_APP_ENVIRONMENT || NODE_ENV,
+      ...logServiceConfig,
     });
     initialized = true;
   }
