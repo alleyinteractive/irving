@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.10.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.10.0...v6.10.1-alpha.0) (2021-08-20)
+
+
+### Bug Fixes
+
+* **storybook:** add service aliases to docs babel config ([89700de](https://github.com/alleyinteractive/irving/commit/89700de60d529da4892861738103deed5e350ab4))
+
+
+### Features
+
+* **logservice:** adds logservice config alias ([4cc3a70](https://github.com/alleyinteractive/irving/commit/4cc3a70296b88a12885f27412b9907602075bf7a))
+
+
+
+
+
 # [6.10.0](https://github.com/alleyinteractive/irving/compare/v6.10.0-beta.0...v6.10.0) (2021-08-12)
 
 **Note:** Version bump only for package irving
