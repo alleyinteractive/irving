@@ -25,10 +25,6 @@ describe('getServiceAliases', () => {
         process.cwd(),
         'node_modules/@irvingjs/test-package-two/services/logService.js'
       ),
-      '@irvingjs/services/logServiceConfig': path.join(
-        process.cwd(),
-        '/services/logService/sentry.config.js'
-      ),
       '@irvingjs/services/monitorService': path.join(
         process.cwd(),
         'services/monitorService/defaultService.js'
@@ -55,10 +51,6 @@ describe('getServiceAliases', () => {
       '@irvingjs/services/logService': path.join(
         process.cwd(),
         'node_modules/@irvingjs/test-package-two/services/logService.js'
-      ),
-      '@irvingjs/services/logServiceConfig': path.join(
-        process.cwd(),
-        '/services/logService/sentry.config.js'
       ),
       '@irvingjs/services/monitorService': path.join(
         process.cwd(),
