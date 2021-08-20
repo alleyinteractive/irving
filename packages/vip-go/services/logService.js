@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const defaultService = require(
   '@irvingjs/core/services/logService/defaultService',
 );
@@ -43,12 +44,19 @@ const getService = (namespace) => {
     || process.env.IRVING_EXECUTION_CONTEXT === 'production_server'
     || process.env.IRVING_EXECUTION_CONTEXT === 'development_server'
   ) {
-    // eslint-disable-next-line global-require
     Sentry = require('@sentry/node');
   } else {
     Sentry = SentryReact;
-    // eslint-disable-next-line global-require
+  }
+
+  if (
+    process.env.IRVING_EXECUTION_CONTEXT
+    || process.env.BABEL_ENV === 'test'
+  ) {
     sentryConfig = require('@irvingjs/config/sentryConfig');
+  } else {
+    const getSentryConfig = require('../config/getSentryConfig');
+    sentryConfig = getSentryConfig();
   }
 
   if (logToSentry && !initialized) {
