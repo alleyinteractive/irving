@@ -83,17 +83,6 @@ const getServiceAliases = (target) => {
   }
 
   /**
-   * Get the log service config.
-   */
-  let logServiceConfig = resolveConfigFilepath('sentry.config.js');
-  if (!logServiceConfig) {
-    logServiceConfig = path.join(
-      irvingRoot,
-      'services/logService/sentry.config.js',
-    );
-  }
-
-  /**
    * Get tracking service.
    *
    * web and node: return path to configured tracking service
@@ -112,7 +101,6 @@ const getServiceAliases = (target) => {
     '@irvingjs/services/cacheService': cacheServiceValue,
     '@irvingjs/services/monitorService': monitorServiceValue,
     '@irvingjs/services/logService': logServiceValue,
-    '@irvingjs/services/logServiceConfig': logServiceConfig,
     '@irvingjs/services/trackingService': trackingServiceValue,
   };
 };
