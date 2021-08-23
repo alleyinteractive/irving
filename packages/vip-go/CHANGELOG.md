@@ -15,14 +15,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [6.10.1-alpha.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1-alpha.0...v6.10.1-alpha.1) (2021-08-20)
+## [6.10.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1-beta.0...v6.10.1) (2021-08-23)
 
 **Note:** Version bump only for package @irvingjs/vip-go
 
 
 
-
-
-## [6.10.1-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.0...v6.10.1-alpha.0) (2021-08-20)
+## [6.10.1-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.0...v6.10.1-beta.0) (2021-08-23)
 
 **Note:** Version bump only for package @irvingjs/vip-go
 

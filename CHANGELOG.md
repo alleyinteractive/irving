@@ -15,6 +15,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 ## [6.10.1-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.10.1-alpha.0...v6.10.1-alpha.1) (2021-08-20)
+## [6.10.1](https://github.com/alleyinteractive/irving/compare/v6.10.1-beta.0...v6.10.1) (2021-08-23)
 
 **Note:** Version bump only for package irving
 
@@ -33,6 +34,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **logservice:** adds logservice config alias ([4cc3a70](https://github.com/alleyinteractive/irving/commit/4cc3a70296b88a12885f27412b9907602075bf7a))
+## [6.10.1-beta.0](https://github.com/alleyinteractive/irving/compare/v6.10.0...v6.10.1-beta.0) (2021-08-23)
+
+**Note:** Version bump only for package irving
 
 
 
