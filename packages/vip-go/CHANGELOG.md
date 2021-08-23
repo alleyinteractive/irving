@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1...v6.11.0-alpha.0) (2021-08-23)
+
+
+
+## [6.10.1-alpha.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1-alpha.1...v6.10.1-alpha.2) (2021-08-23)
+
+
+### Reverts
+
+* Revert "refactor(logging): move sentry config" ([72fcb6f](https://github.com/alleyinteractive/irving/packages/vip-go/commit/72fcb6fa2dd6c7ecfc9819de95e3b7a760d5fba8))
+
+
+
+## [6.10.1-alpha.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1-alpha.0...v6.10.1-alpha.1) (2021-08-20)
+
+
+
+## [6.10.1-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.0...v6.10.1-alpha.0) (2021-08-20)
+
+
+
+
+
 ## [6.10.1-alpha.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1-alpha.1...v6.10.1-alpha.2) (2021-08-23)
 
 
