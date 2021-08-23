@@ -53,9 +53,9 @@ const getService = (namespace) => {
     process.env.IRVING_EXECUTION_CONTEXT
     || process.env.BABEL_ENV === 'test'
   ) {
-    sentryConfig = require('@irvingjs/config/sentryConfig');
+    sentryConfig = require('@irvingjs/sentryConfig');
   } else {
-    const getSentryConfig = require('../config/getSentryConfig');
+    const getSentryConfig = require('./getSentryConfig');
     sentryConfig = getSentryConfig();
   }
 

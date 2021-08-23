@@ -12,9 +12,10 @@ const getSentryConfig = () => {
   if (!sentryConfig) {
     sentryConfig = path.join(
       __dirname,
-      'sentry.config.js',
+      '../sentry.config.js',
     );
   }
+
   return sentryConfig;
 };
 
