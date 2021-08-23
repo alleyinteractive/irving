@@ -13,7 +13,7 @@ const lernaJson = JSON.parse(
   )
 );
 
-const versionMatches = lernaJson.version.match(/^\d\.\d/);
+const versionMatches = lernaJson.version.match(/^\d\.\d+/);
 const releaseBranchName = `release/${versionMatches[0]}`;
 
 const hasBranch = execSync(`git branch --list ${releaseBranchName}`)
