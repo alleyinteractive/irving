@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.11.0-alpha.0...v6.11.0-alpha.1) (2021-08-23)
+
+
+### Bug Fixes
+
+* **release:** fix release-prepare script to accommodate 2+ digit minor versions ([d17f817](https://github.com/alleyinteractive/irving/commit/d17f8175d8b50b6aed9fa9ade18e052610f1dc27))
+
+
+
+
+
 # [6.11.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.10.1...v6.11.0-alpha.0) (2021-08-23)
 
 
