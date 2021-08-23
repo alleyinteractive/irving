@@ -1,5 +1,5 @@
-const getSentryConfig = require('../services/getSentryConfig');
+const getSentryConfig = require('./getSentryConfig');
 
 module.exports = {
-  '@irvingjs/sentryConfig': getSentryConfig(),
+  '@irvingjs/config/sentryConfig': getSentryConfig(),
 };
