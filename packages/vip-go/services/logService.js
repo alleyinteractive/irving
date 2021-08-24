@@ -4,7 +4,6 @@ const defaultService = require(
 );
 const getEnv = require('@irvingjs/core/utils/universalEnv');
 const monitor = require('@irvingjs/core/services/monitorService/getService')();
-const SentryReact = require('@sentry/react');
 const debug = require('debug');
 const generateLogInfo = require('./generateLogInfo');
 
@@ -23,7 +22,6 @@ const getService = (namespace) => {
   let service = defaultService;
   let sentryConfig = {};
   let Sentry;
-
   // Init logger with proper namespace.
   const logger = debug(namespace);
 
@@ -46,7 +44,7 @@ const getService = (namespace) => {
   ) {
     Sentry = require('@sentry/node');
   } else {
-    Sentry = SentryReact;
+    Sentry = require('@sentry/react');
   }
 
   if (
@@ -56,7 +54,7 @@ const getService = (namespace) => {
     sentryConfig = require('@irvingjs/config/sentryConfig');
   } else {
     const getSentryConfig = require('../config/getSentryConfig');
-    sentryConfig = getSentryConfig();
+    sentryConfig = require(getSentryConfig());
   }
 
   if (logToSentry && !initialized) {
