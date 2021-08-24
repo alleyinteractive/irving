@@ -4,11 +4,11 @@ const defaultService = require(
 );
 const getEnv = require('@irvingjs/core/utils/universalEnv');
 const monitor = require('@irvingjs/core/services/monitorService/getService')();
-const SentryReact = require('@sentry/react');
 const debug = require('debug');
 const generateLogInfo = require('./generateLogInfo');
 
 let initialized = false;
+let Sentry;
 
 /**
  * Create a debug logger that will conditionally handle logged errors based on
@@ -22,8 +22,6 @@ let initialized = false;
 const getService = (namespace) => {
   let service = defaultService;
   let sentryConfig = {};
-  let Sentry;
-
   // Init logger with proper namespace.
   const logger = debug(namespace);
 
@@ -46,7 +44,7 @@ const getService = (namespace) => {
   ) {
     Sentry = require('@sentry/node');
   } else {
-    Sentry = SentryReact;
+    Sentry = require('@sentry/react');
   }
 
   if (
@@ -55,8 +53,8 @@ const getService = (namespace) => {
   ) {
     sentryConfig = require('@irvingjs/config/sentryConfig');
   } else {
-    const getSentryConfig = require('../config/getSentryConfig');
-    sentryConfig = getSentryConfig();
+    const getSentryConfigPath = require('../config/getSentryConfig');
+    sentryConfig = require(getSentryConfigPath());
   }
 
   if (logToSentry && !initialized) {
@@ -66,8 +64,8 @@ const getService = (namespace) => {
       ...sentryConfig,
     };
     debug('irving:sentry:initconfig')('%O', initConfig);
-    Sentry.init(initConfig);
     initialized = true;
+    Sentry.init(initConfig);
   }
 
   // Map log levels to winston log levels in node.
