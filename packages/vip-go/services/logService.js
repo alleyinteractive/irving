@@ -60,11 +60,13 @@ const getService = (namespace) => {
   }
 
   if (logToSentry && !initialized) {
-    Sentry.init({
+    const initConfig = {
       dsn: SENTRY_DSN,
       environment: SENTRY_ENVIRONMENT || IRVING_APP_ENVIRONMENT || NODE_ENV,
       ...sentryConfig,
-    });
+    };
+    debug('irving:sentry:initconfig')('%o', initConfig);
+    Sentry.init(initConfig);
     initialized = true;
   }
 
