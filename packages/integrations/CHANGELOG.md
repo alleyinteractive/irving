@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.11.0-alpha.3...v6.11.0-alpha.4) (2021-09-01)
+
+
+### Bug Fixes
+
+* **pico:** make sure pico script is loaded before triggering visit ([418fc97](https://github.com/alleyinteractive/irving/packages/integrations/commit/418fc97da99b7c1f7c413020de864f03ec825623))
+
+
+
+
+
 # [6.11.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.11.0-alpha.0...v6.11.0-alpha.1) (2021-08-23)
 
 **Note:** Version bump only for package @irvingjs/integrations
