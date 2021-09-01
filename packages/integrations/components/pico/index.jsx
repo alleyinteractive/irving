@@ -62,10 +62,8 @@ const Pico = (props) => {
   );
 
   const irvingIsLoading = useLoading();
-  const {
-    scriptOnload,
-    ready: picoReady,
-  } = useSelector(picoLifecycleSelector);
+  const { ready: picoReady } = useSelector(picoLifecycleSelector);
+  const scriptLoaded = window?.Pico?.getInstance()?.scriptLoaded;
   const contentReady = useSelector(picoContentReadySelector);
   const visited = useSelector(picoVisitedSelector);
 
@@ -85,7 +83,7 @@ const Pico = (props) => {
   useEffect(() => {
     if (
       !irvingIsLoading
-      && scriptOnload
+      && scriptLoaded
       && !visited
       && (
         (contentReady && picoPageInfo.article)
@@ -98,7 +96,7 @@ const Pico = (props) => {
     }
   }, [
     irvingIsLoading,
-    scriptOnload,
+    scriptLoaded,
     contentReady,
     picoPageInfo.url,
   ]);
