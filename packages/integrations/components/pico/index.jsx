@@ -63,9 +63,10 @@ const Pico = (props) => {
 
   const irvingIsLoading = useLoading();
   const { ready: picoReady } = useSelector(picoLifecycleSelector);
-  const scriptLoaded = window?.Pico?.getInstance()?.scriptLoaded;
   const contentReady = useSelector(picoContentReadySelector);
   const visited = useSelector(picoVisitedSelector);
+  const picoInstance = window?.Pico?.instance || false;
+  const scriptLoaded = picoInstance ? window?.Pico?.getInstance() : false;
 
   // Add lifecycle listeners.
   usePicoEventListeners();
@@ -96,9 +97,10 @@ const Pico = (props) => {
     }
   }, [
     irvingIsLoading,
-    scriptLoaded,
+    picoInstance,
     contentReady,
     picoPageInfo.url,
+    scriptLoaded,
   ]);
 
   // Inject the gadget script into the DOM.
