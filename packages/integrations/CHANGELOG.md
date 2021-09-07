@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0-alpha.5](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.11.0-alpha.4...v6.11.0-alpha.5) (2021-09-07)
+
+
+### Bug Fixes
+
+* **pico:** fix local storage is not available ([c04e4dd](https://github.com/alleyinteractive/irving/packages/integrations/commit/c04e4dd88a3ed0e4710758cbf763e6118f169ca0))
+
+
+
+
+
 # [6.11.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.11.0-alpha.3...v6.11.0-alpha.4) (2021-09-01)
 
 
