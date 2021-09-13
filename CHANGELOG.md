@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v6.11.0-alpha.5...v6.11.0-alpha.6) (2021-09-13)
+
+
+### Bug Fixes
+
+* **coral:** remove base64url encoding to base64 encoding conversion on Coral JWT token ([eebfc05](https://github.com/alleyinteractive/irving/commit/eebfc0552564cf6da952ef9367b76224187e0b03))
+
+
+
+
+
 # [6.11.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v6.11.0-alpha.4...v6.11.0-alpha.5) (2021-09-07)
 
 
