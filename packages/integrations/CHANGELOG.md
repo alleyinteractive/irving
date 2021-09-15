@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.13.0-alpha.0...v6.13.0-alpha.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* **pico:** fix scriptLoaded flag to use pico lifecycle instead of accessing Pico object directly ([6deb71a](https://github.com/alleyinteractive/irving/packages/integrations/commit/6deb71a7c364e05fbc4a5fe6d221c3417ba06aee))
+
+
+
+
+
 # [6.13.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.12.0...v6.13.0-alpha.0) (2021-09-14)
 
 **Note:** Version bump only for package @irvingjs/integrations
