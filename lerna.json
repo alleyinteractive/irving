@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "6.12.1-beta.0",
+  "version": "6.12.1",
   "npmClient": "npm",
   "command": {
     "publish": {
