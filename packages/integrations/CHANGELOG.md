@@ -3,6 +3,114 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.13.0-alpha.0...v6.13.0-alpha.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* **pico:** fix scriptLoaded flag to use pico lifecycle instead of accessing Pico object directly ([6deb71a](https://github.com/alleyinteractive/irving/packages/integrations/commit/6deb71a7c364e05fbc4a5fe6d221c3417ba06aee))
+
+
+
+
+
+# [6.13.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.12.0...v6.13.0-alpha.0) (2021-09-14)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.12.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.12.0-beta.0...v6.12.0) (2021-09-14)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.12.0-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.12.0-alpha.0...v6.12.0-beta.0) (2021-09-14)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.12.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.11.0-alpha.6...v6.12.0-alpha.0) (2021-09-14)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.11.0-alpha.6](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.11.0-alpha.5...v6.11.0-alpha.6) (2021-09-13)
+
+
+### Bug Fixes
+
+* **coral:** remove base64url encoding to base64 encoding conversion on Coral JWT token ([eebfc05](https://github.com/alleyinteractive/irving/packages/integrations/commit/eebfc0552564cf6da952ef9367b76224187e0b03))
+
+
+
+
+
+# [6.11.0-alpha.5](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.11.0-alpha.4...v6.11.0-alpha.5) (2021-09-07)
+
+
+### Bug Fixes
+
+* **pico:** fix local storage is not available ([c04e4dd](https://github.com/alleyinteractive/irving/packages/integrations/commit/c04e4dd88a3ed0e4710758cbf763e6118f169ca0))
+
+
+
+
+
+# [6.11.0-alpha.4](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.11.0-alpha.3...v6.11.0-alpha.4) (2021-09-01)
+
+
+### Bug Fixes
+
+* **pico:** make sure pico script is loaded before triggering visit ([418fc97](https://github.com/alleyinteractive/irving/packages/integrations/commit/418fc97da99b7c1f7c413020de864f03ec825623))
+
+
+
+
+
+# [6.11.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.11.0-alpha.0...v6.11.0-alpha.1) (2021-08-23)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+# [6.11.0-alpha.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.10.1...v6.11.0-alpha.0) (2021-08-23)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+## [6.10.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.10.1-beta.0...v6.10.1) (2021-08-23)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
+## [6.10.1-beta.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.10.0...v6.10.1-beta.0) (2021-08-23)
+
+**Note:** Version bump only for package @irvingjs/integrations
+
+
+
+
+
 # [6.10.0](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.10.0-beta.0...v6.10.0) (2021-08-12)
 
 **Note:** Version bump only for package @irvingjs/integrations

@@ -3,6 +3,114 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.12.0...v6.13.0-alpha.0) (2021-09-14)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.12.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.12.0-beta.0...v6.12.0) (2021-09-14)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.12.0-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.12.0-alpha.0...v6.12.0-beta.0) (2021-09-14)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.12.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.11.0-alpha.6...v6.12.0-alpha.0) (2021-09-14)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.11.0-alpha.3](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.11.0-alpha.2...v6.11.0-alpha.3) (2021-08-24)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.11.0-alpha.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.11.0-alpha.1...v6.11.0-alpha.2) (2021-08-24)
+
+
+### Features
+
+* **logging:** log sentry init config ([4a94669](https://github.com/alleyinteractive/irving/packages/vip-go/commit/4a94669366843f04a5f4f725c439db45dc8e3f2b))
+
+
+
+
+
+# [6.11.0-alpha.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.11.0-alpha.0...v6.11.0-alpha.1) (2021-08-23)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
+# [6.11.0-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1...v6.11.0-alpha.0) (2021-08-23)
+
+
+
+## [6.10.1-alpha.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1-alpha.1...v6.10.1-alpha.2) (2021-08-23)
+
+
+### Reverts
+
+* Revert "refactor(logging): move sentry config" ([72fcb6f](https://github.com/alleyinteractive/irving/packages/vip-go/commit/72fcb6fa2dd6c7ecfc9819de95e3b7a760d5fba8))
+
+
+
+## [6.10.1-alpha.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1-alpha.0...v6.10.1-alpha.1) (2021-08-20)
+
+
+
+## [6.10.1-alpha.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.0...v6.10.1-alpha.0) (2021-08-20)
+
+
+
+
+
+## [6.10.1-alpha.2](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1-alpha.1...v6.10.1-alpha.2) (2021-08-23)
+
+
+### Reverts
+
+* Revert "refactor(logging): move sentry config" ([72fcb6f](https://github.com/alleyinteractive/irving/packages/vip-go/commit/72fcb6fa2dd6c7ecfc9819de95e3b7a760d5fba8))
+
+
+
+
+
+## [6.10.1-alpha.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1-alpha.0...v6.10.1-alpha.1) (2021-08-20)
+## [6.10.1](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.1-beta.0...v6.10.1) (2021-08-23)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+## [6.10.1-beta.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.0...v6.10.1-beta.0) (2021-08-23)
+
+**Note:** Version bump only for package @irvingjs/vip-go
+
+
+
+
+
 # [6.10.0](https://github.com/alleyinteractive/irving/packages/vip-go/compare/v6.10.0-beta.0...v6.10.0) (2021-08-12)
 
 **Note:** Version bump only for package @irvingjs/vip-go

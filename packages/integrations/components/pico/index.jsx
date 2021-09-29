@@ -63,8 +63,8 @@ const Pico = (props) => {
 
   const irvingIsLoading = useLoading();
   const {
-    scriptOnload,
     ready: picoReady,
+    scriptOnload: scriptLoaded,
   } = useSelector(picoLifecycleSelector);
   const contentReady = useSelector(picoContentReadySelector);
   const visited = useSelector(picoVisitedSelector);
@@ -85,7 +85,7 @@ const Pico = (props) => {
   useEffect(() => {
     if (
       !irvingIsLoading
-      && scriptOnload
+      && scriptLoaded
       && !visited
       && (
         (contentReady && picoPageInfo.article)
@@ -98,9 +98,9 @@ const Pico = (props) => {
     }
   }, [
     irvingIsLoading,
-    scriptOnload,
     contentReady,
     picoPageInfo.url,
+    scriptLoaded,
   ]);
 
   // Inject the gadget script into the DOM.
@@ -118,9 +118,11 @@ Pico.defaultProps = {
   widgetUrl: 'https://gadget.pico.tools',
 };
 
+/* eslint-disable react/forbid-prop-types */
 Pico.propTypes = {
   pageInfo: PropTypes.shape({
     article: PropTypes.bool,
+    breakSelector: PropTypes.string,
     postId: PropTypes.number,
     postType: PropTypes.string,
     resourceRef: PropTypes.string,

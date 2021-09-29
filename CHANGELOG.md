@@ -3,6 +3,184 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.13.0-alpha.0...v6.13.0-alpha.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* **pico:** fix scriptLoaded flag to use pico lifecycle instead of accessing Pico object directly ([6deb71a](https://github.com/alleyinteractive/irving/commit/6deb71a7c364e05fbc4a5fe6d221c3417ba06aee))
+
+
+
+
+
+# [6.13.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.12.0...v6.13.0-alpha.0) (2021-09-14)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.12.0](https://github.com/alleyinteractive/irving/compare/v6.12.0-beta.0...v6.12.0) (2021-09-14)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.12.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.12.0-alpha.0...v6.12.0-beta.0) (2021-09-14)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.12.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.11.0-alpha.6...v6.12.0-alpha.0) (2021-09-14)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.11.0-alpha.6](https://github.com/alleyinteractive/irving/compare/v6.11.0-alpha.5...v6.11.0-alpha.6) (2021-09-13)
+
+
+### Bug Fixes
+
+* **coral:** remove base64url encoding to base64 encoding conversion on Coral JWT token ([eebfc05](https://github.com/alleyinteractive/irving/commit/eebfc0552564cf6da952ef9367b76224187e0b03))
+
+
+
+
+
+# [6.11.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v6.11.0-alpha.4...v6.11.0-alpha.5) (2021-09-07)
+
+
+### Bug Fixes
+
+* **pico:** fix local storage is not available ([c04e4dd](https://github.com/alleyinteractive/irving/commit/c04e4dd88a3ed0e4710758cbf763e6118f169ca0))
+
+
+
+
+
+# [6.11.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v6.11.0-alpha.3...v6.11.0-alpha.4) (2021-09-01)
+
+
+### Bug Fixes
+
+* **pico:** make sure pico script is loaded before triggering visit ([418fc97](https://github.com/alleyinteractive/irving/commit/418fc97da99b7c1f7c413020de864f03ec825623))
+
+
+
+
+
+# [6.11.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.11.0-alpha.2...v6.11.0-alpha.3) (2021-08-24)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+# [6.11.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.11.0-alpha.1...v6.11.0-alpha.2) (2021-08-24)
+
+
+### Features
+
+* **logging:** log sentry init config ([4a94669](https://github.com/alleyinteractive/irving/commit/4a94669366843f04a5f4f725c439db45dc8e3f2b))
+
+
+
+
+
+# [6.11.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.11.0-alpha.0...v6.11.0-alpha.1) (2021-08-23)
+
+
+### Bug Fixes
+
+* **release:** fix release-prepare script to accommodate 2+ digit minor versions ([d17f817](https://github.com/alleyinteractive/irving/commit/d17f8175d8b50b6aed9fa9ade18e052610f1dc27))
+
+
+
+
+
+# [6.11.0-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.10.1...v6.11.0-alpha.0) (2021-08-23)
+
+
+
+## [6.10.1-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.10.1-alpha.1...v6.10.1-alpha.2) (2021-08-23)
+
+
+### Reverts
+
+* Revert "refactor(logging): move sentry config" ([72fcb6f](https://github.com/alleyinteractive/irving/commit/72fcb6fa2dd6c7ecfc9819de95e3b7a760d5fba8))
+
+
+
+## [6.10.1-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.10.1-alpha.0...v6.10.1-alpha.1) (2021-08-20)
+
+
+
+## [6.10.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.10.0...v6.10.1-alpha.0) (2021-08-20)
+
+
+### Bug Fixes
+
+* **storybook:** add service aliases to docs babel config ([89700de](https://github.com/alleyinteractive/irving/commit/89700de60d529da4892861738103deed5e350ab4))
+
+
+### Features
+
+* **logservice:** adds logservice config alias ([4cc3a70](https://github.com/alleyinteractive/irving/commit/4cc3a70296b88a12885f27412b9907602075bf7a))
+
+
+
+
+
+## [6.10.1-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.10.1-alpha.1...v6.10.1-alpha.2) (2021-08-23)
+
+
+### Reverts
+
+* Revert "refactor(logging): move sentry config" ([72fcb6f](https://github.com/alleyinteractive/irving/commit/72fcb6fa2dd6c7ecfc9819de95e3b7a760d5fba8))
+
+
+
+
+
+## [6.10.1-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.10.1-alpha.0...v6.10.1-alpha.1) (2021-08-20)
+## [6.10.1](https://github.com/alleyinteractive/irving/compare/v6.10.1-beta.0...v6.10.1) (2021-08-23)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [6.10.1-alpha.0](https://github.com/alleyinteractive/irving/compare/v6.10.0...v6.10.1-alpha.0) (2021-08-20)
+
+
+### Bug Fixes
+
+* **storybook:** add service aliases to docs babel config ([89700de](https://github.com/alleyinteractive/irving/commit/89700de60d529da4892861738103deed5e350ab4))
+
+
+### Features
+
+* **logservice:** adds logservice config alias ([4cc3a70](https://github.com/alleyinteractive/irving/commit/4cc3a70296b88a12885f27412b9907602075bf7a))
+## [6.10.1-beta.0](https://github.com/alleyinteractive/irving/compare/v6.10.0...v6.10.1-beta.0) (2021-08-23)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
 # [6.10.0](https://github.com/alleyinteractive/irving/compare/v6.10.0-beta.0...v6.10.0) (2021-08-12)
 
 **Note:** Version bump only for package irving
