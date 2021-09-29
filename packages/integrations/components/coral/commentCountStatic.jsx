@@ -14,6 +14,7 @@ const CommentCountStatic = (props) => {
       className="coral-count-static"
       data-coral-url={articleUrl}
       data-coral-notext={noText}
+      data-coral-comment-count={count}
     >
       <span className="coral-count-number">{count}</span>
       <span className="coral-count-text">{countText}</span>
