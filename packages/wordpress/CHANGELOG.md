@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0-beta.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.13.0-alpha.1...v6.13.0-beta.0) (2021-09-30)
+
+**Note:** Version bump only for package @irvingjs/wordpress
+
+
+
+
+
 # [6.13.0-alpha.0](https://github.com/alleyinteractive/irving/packages/example-package/compare/v6.12.0...v6.13.0-alpha.0) (2021-09-14)
 
 **Note:** Version bump only for package @irvingjs/wordpress
