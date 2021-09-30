@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0-alpha.2](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.13.0-alpha.1...v6.13.0-alpha.2) (2021-09-30)
+
+
+### Features
+
+* **static comment count component:** adds a new data attribute indicating the number of comments ([e1cff70](https://github.com/alleyinteractive/irving/packages/integrations/commit/e1cff70ca9fdc9a25b546e1ef065d1291a8f7203))
+
+
+
+
+
 # [6.13.0-alpha.1](https://github.com/alleyinteractive/irving/packages/integrations/compare/v6.13.0-alpha.0...v6.13.0-alpha.1) (2021-09-15)
 
 
