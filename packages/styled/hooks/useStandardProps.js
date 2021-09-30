@@ -51,18 +51,21 @@ export const createComponentNameClass = memoize((componentName) => (
 
 /**
  * Provide a component with a standardized set of props for that component to use.
- * @param {object} props    React comonent props.
+ * @param {object} props    React component props.
  * @param {object} componentDefaults Overrides for default prop values.
  */
 const useStandardProps = (props, componentDefaults = {}) => {
   const {
+    align = false,
     className = '',
+    componentName,
     id = '',
     style = {},
     tag = '',
     themeName,
-    componentName,
   } = props;
+
+  const alignClass = align ? `align${align}` : align;
   const componentNameClass = componentName
     ? createComponentNameClass(componentName) : '';
   // Using the `styled-components` ThemeContext, attempt to use dynamic
@@ -70,6 +73,7 @@ const useStandardProps = (props, componentDefaults = {}) => {
   const siteTheme = useContext(ThemeContext);
   const standardizedProps = {
     className: classNames(
+      alignClass,
       className,
       componentNameClass,
       componentDefaults.className,
