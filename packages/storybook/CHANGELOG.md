@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0-alpha.3](https://github.com/alleyinteractive/irving/packages/storybook/compare/v6.13.0-alpha.2...v6.13.0-alpha.3) (2021-09-30)
+
+
+### Bug Fixes
+
+* **storybook:** add service aliases to storybook babel config ([c82a591](https://github.com/alleyinteractive/irving/packages/storybook/commit/c82a591a1ef1926de12ea39f81a052dd8c0de415))
+
+
+
+
+
 # [6.13.0-alpha.0](https://github.com/alleyinteractive/irving/packages/storybook/compare/v6.12.0...v6.13.0-alpha.0) (2021-09-14)
 
 **Note:** Version bump only for package @irvingjs/storybook
