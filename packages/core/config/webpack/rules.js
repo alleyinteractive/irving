@@ -95,6 +95,9 @@ module.exports = function getRules(context) {
           },
         },
       ],
+      resolve: {
+        fullySpecified: false,
+      },
     },
     {
       test: /\.css$/,

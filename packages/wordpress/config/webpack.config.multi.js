@@ -95,6 +95,9 @@ module.exports = (multiConfig) => {
                 extends: path.join(__dirname, '../babel.config.js'),
               },
             },
+            resolve: {
+              fullySpecified: false,
+            },
           },
         ],
       },
