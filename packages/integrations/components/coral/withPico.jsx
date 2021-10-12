@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import getEnv from '@irvingjs/core/config/irving/getEnv';
 import getLogService from '@irvingjs/services/logService';
 import CoralEmbed from './index';
+import ProfileTab from './profileTab';
 import { actionRequireUpgrade } from '../../actions/picoActions';
 import { actionReceiveCoralToken } from '../../actions/coralActions';
 import {
@@ -33,6 +34,10 @@ const withPico = (ChildComponent) => {
     // Instantiate a local state value to track the user's ability to log into
     // the Coral embed.
     const [canComment, setCanComment] = useState(false);
+    // State value to track main tab.
+    const [mainTab, setMainTab] = useState(false);
+    // State value to track profile tab.
+    const [profileTab, setProfileTab] = useState(false);
 
     useEffect(() => {
       log.info(
@@ -53,6 +58,10 @@ const withPico = (ChildComponent) => {
 
     // Define Coral event handlers.
     const handlers = (events) => {
+      events.on('setMainTab', ({ tab }) => setMainTab(tab));
+
+      events.on('setProfileTab', ({ tab }) => setProfileTab(tab));
+
       events.on('loginPrompt', async () => {
         const id = window.Pico.user.id || '';
 
@@ -103,8 +112,12 @@ const withPico = (ChildComponent) => {
       && canComment
     ) {
       log.info('returning authenticated embed');
+      const showProfileTab = mainTab === 'PROFILE' && profileTab === 'PREFERENCES';
       return (
-        <ChildComponent {...props} events={handlers} accessToken={coralToken} />
+        <>
+          <ChildComponent {...props} events={handlers} accessToken={coralToken} />
+          <ProfileTab showProfileTab={showProfileTab} />
+        </>
       );
     }
 
