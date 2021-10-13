@@ -42,11 +42,8 @@ const maybeResolveUserModule = (userPath, corePath) => {
   // appRoot. This will support app finding appropriate file if build happens
   // in a different place than app execution.
   if (fs.existsSync(path.resolve(buildContext, userPath))) {
-    console.log('USER FILE', path.resolve(appRoot, userPath));
     return path.resolve(appRoot, userPath);
   }
-
-  console.log('CORE FILE', path.resolve(appIrvingRoot, defaultPath));
 
   // Use path to irving core relative to app root otherwise.
   return path.resolve(appIrvingRoot, defaultPath);
