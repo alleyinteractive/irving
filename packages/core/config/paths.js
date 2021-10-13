@@ -17,7 +17,7 @@ const buildContext = BUILD_CONTEXT || fs.realpathSync(process.cwd());
 
 // Root of user app and root of irving core.
 const appRoot = APP_ROOT || fs.realpathSync(process.cwd());
-const irvingRoot = path.join(__dirname, '../');
+const irvingRoot = path.join(buildContext, 'node_modules/@irvingjs/core');
 
 // Path to irving core relative to the appRoot.
 const appIrvingRoot = path.join(

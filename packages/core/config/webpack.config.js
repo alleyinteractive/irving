@@ -62,7 +62,7 @@ module.exports = (env, argv) => {
       entry: server.getEntry(),
       output: server.getOutput(),
       module: {
-        noParse: /(nodeRequire|userModule|config\/paths)/,
+        noParse: /nodeRequire/,
         rules: server.getRules(),
       },
       plugins: server.getPlugins(),

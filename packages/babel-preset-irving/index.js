@@ -36,6 +36,7 @@ module.exports = function babelPresetIrving(api) {
       require('@babel/plugin-syntax-dynamic-import'),
       [require('@babel/plugin-transform-runtime'), {
         corejs: 3,
+        useESModules: false,
       }],
     ],
     presets: [
