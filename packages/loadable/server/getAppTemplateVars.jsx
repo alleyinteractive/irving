@@ -16,7 +16,7 @@ export default function getAppTemplateVars(templateVars) {
     return {
       Wrapper: () => extractor.collectChunks(<Wrapper />),
       head: {
-        script: () => extractor.getScriptTags(),
+        footer: () => extractor.getScriptTags(),
         link: () => (
           /**
            *  @todo find a better way to get rid of the auto-preloading that
