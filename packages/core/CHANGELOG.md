@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0-alpha.4](https://github.com/alleyinteractive/irving/packages/core/compare/v6.13.0-alpha.3...v6.13.0-alpha.4) (2021-10-21)
+
+
+### Bug Fixes
+
+* **client:** additional logging for client render method ([12126d9](https://github.com/alleyinteractive/irving/packages/core/commit/12126d9877d51aec1acb8acf345e39b23f30242c))
+* **log:** another log for body query ([b3d66c5](https://github.com/alleyinteractive/irving/packages/core/commit/b3d66c5405f0344cf4d9eabcdecad4a8b75d94e4))
+* **scripts:** add a footer field for inserting tags at the end of <body> ([94aacc5](https://github.com/alleyinteractive/irving/packages/core/commit/94aacc54928c561e7316f36808eba36d6a8712f3))
+
+
+
+
+
 # [6.13.0-alpha.0](https://github.com/alleyinteractive/irving/packages/core/compare/v6.12.0...v6.13.0-alpha.0) (2021-09-14)
 
 **Note:** Version bump only for package @irvingjs/core
