@@ -79,7 +79,8 @@ const renderMethod = disableSSR ? 'render' : 'hydrate';
 const render = () => {
   const rootEl = document.getElementById('root');
 
-  log.info('Root element: ', rootEl);
+  log.info('rootEl: ', rootEl);
+  log.info('body: ', document.querySelector('body'));
   log.info('Render method', renderMethod);
 
   // It is imperative that the server React component tree matches the client
