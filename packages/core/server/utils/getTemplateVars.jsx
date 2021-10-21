@@ -20,6 +20,7 @@ export const defaultHead = {
   script: [],
   noscript: [],
   end: [],
+  footer: [],
 };
 
 // Determine if user wants to disable SSR.
