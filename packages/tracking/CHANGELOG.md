@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.14.0](https://github.com/alleyinteractive/irving/packages/tracking/compare/v6.14.0-beta.0...v6.14.0) (2021-10-22)
+
+**Note:** Version bump only for package @irvingjs/tracking
+
+
+
+
+
 # [6.14.0-beta.0](https://github.com/alleyinteractive/irving/packages/tracking/compare/v6.14.0-alpha.0...v6.14.0-beta.0) (2021-10-21)
 
 **Note:** Version bump only for package @irvingjs/tracking
