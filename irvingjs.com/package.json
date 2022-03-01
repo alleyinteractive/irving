@@ -17,8 +17,8 @@
     "url": "https://github.com/alleyinteractive/irving"
   },
   "engines": {
-    "node": "12",
-    "npm": "6"
+    "node": "16",
+    "npm": "8"
   },
   "scripts": {
     "start": "ELEVENTY_ENV=development npx @11ty/eleventy --serve",
