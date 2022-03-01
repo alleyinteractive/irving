@@ -32,7 +32,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "react-hook-form": "~7.27.1",
+    "react-hook-form": "~6.15.8",
     "react-html-parser": "~2.0.2",
     "react-icons": "^3.10.0",
     "react-oembed-container": "~1.0.1",
