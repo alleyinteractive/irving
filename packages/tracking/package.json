@@ -18,7 +18,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-tracking": "^8.0.0"
+    "react-tracking": "~9.2.0"
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^6.14.0-alpha.0",
