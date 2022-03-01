@@ -19,8 +19,8 @@
     "qa:release": "npm run build && npm run qa:deploy"
   },
   "engines": {
-    "node": "12",
-    "npm": "6"
+    "node": "16",
+    "npm": "8"
   },
   "dependencies": {
     "@storybook/addon-a11y": "^6.2.9",

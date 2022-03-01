@@ -27,7 +27,7 @@
     "@loadable/server": "^5.13.2",
     "@loadable/webpack-plugin": "^5.13.0",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1"
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^6.14.0-alpha.0",
