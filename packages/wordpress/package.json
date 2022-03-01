@@ -25,9 +25,9 @@
 	},
 	"dependencies": {
 		"@irvingjs/styled": "^6.14.1-beta.1",
-		"prop-types": "^15.7.2",
-		"react": "^17.0.1",
-		"universal-cookie": "^4.0.4"
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "universal-cookie": "^4.0.4"
 	},
 	"devDependencies": {
 		"@irvingjs/babel-preset-irving": "^6.14.1-beta.1",
