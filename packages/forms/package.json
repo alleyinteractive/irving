@@ -27,7 +27,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^6.0.6"
+    "react-hook-form": "~6.15.8"
   },
   "devDependencies": {
     "@irvingjs/babel-preset-irving": "^6.14.0-alpha.2",
