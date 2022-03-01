@@ -26,18 +26,18 @@ const config = (api) => {
   };
 
   // Add fast refresh plugin only in development.
-  if ('development' === process.env.NODE_ENV) {
+  if (process.env.NODE_ENV === 'development') {
     coreConfig.plugins.push(
       ['react-refresh/babel', {
         skipEnvCheck: true,
-      }]
+      }],
     );
   }
 
   return getValueFromFiles(
     'config/babel.config.js',
     coreConfig,
-    { base: buildContext }
+    { base: buildContext },
   );
 };
 

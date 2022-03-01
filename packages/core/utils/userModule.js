@@ -6,7 +6,7 @@ const {
   buildContext,
   appIrvingRoot,
   irvingRoot,
-} = require('../config/paths.js');
+} = require('../config/paths');
 
 /**
  * Resolve the path to a module required in the build, fall back to irving core.
