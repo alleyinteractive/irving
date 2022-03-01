@@ -37,6 +37,22 @@
     "audit:self": "bash bin/audit.sh \"$(npm audit --production --color=always | grep -A 3 'found[\\s\\S]*')\"",
     "audit:ci": "npm run audit:self && npm run audit:packages"
   },
+  "workspaces": [
+    "packages/audio-player",
+    "packages/aws-lambda",
+    "packages/babel-preset-irving",
+    "packages/core",
+    "packages/forms",
+    "packages/integrations",
+    "packages/loadable",
+    "packages/postcss",
+    "packages/storybook",
+    "packages/styled",
+    "packages/styled-components",
+    "packages/tracking",
+    "packages/vip-go",
+    "packages/wordpress"
+  ],
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
