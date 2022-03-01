@@ -1,6 +1,6 @@
 {
   "name": "@irvingjs/audio-player",
-  "version": "6.14.0-alpha.2",
+  "version": "6.14.0-alpha.3",
   "description": "Persistent audio player and related components for Irving",
   "files": [
     "actions/**/*",
@@ -22,7 +22,7 @@
   "author": "Alley (Alley.co)",
   "license": "MIT",
   "dependencies": {
-    "@irvingjs/styled": "^6.14.0-alpha.2",
+    "@irvingjs/styled": "^6.14.0-alpha.3",
     "howler": "^2.1.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
