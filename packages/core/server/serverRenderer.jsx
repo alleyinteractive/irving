@@ -144,7 +144,7 @@ export default function serverRenderer(options) {
       );
     } catch (err) {
       log.error(
-        '%o',
+        '%O',
         { url: req.originalUrl, err },
         {
           tags: createRouteLogTags(req, getEnv(req.hostname)),
