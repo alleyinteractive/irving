@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.14.1-beta.6](https://github.com/alleyinteractive/irving/packages/core/compare/v6.14.1-beta.5...v6.14.1-beta.6) (2022-03-02)
+
+
+### Bug Fixes
+
+* **approot:** attempt to eliminate APP_ROOT env var ([82671f4](https://github.com/alleyinteractive/irving/packages/core/commit/82671f47000638538aaf94605a5297f2357735d6))
+
+
+
+
+
 ## [6.14.1-beta.5](https://github.com/alleyinteractive/irving/packages/core/compare/v6.14.1-beta.4...v6.14.1-beta.5) (2022-03-02)
 
 
