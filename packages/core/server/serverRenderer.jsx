@@ -1,5 +1,4 @@
 // Global passed in via webpack define plugin
-/* global appView, errorView */
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -20,7 +19,10 @@ import createRouteLogTags from 'utils/createRouteLogTags';
 import getWebpackAssetTags from './utils/getWebpackAssetTags';
 import getTemplateVars from './utils/getTemplateVars';
 import encodeState from './utils/encodeState';
+import { maybeResolveUserModule } from '../utils/userModule';
 
+const appView = maybeResolveUserModule('server/views/app.ejs');
+const errorView = maybeResolveUserModule('server/views/error.ejs');
 const monitor = getMonitorService();
 const log = getLogService('irving:server:render');
 

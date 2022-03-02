@@ -9,7 +9,6 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { rootUrl } = require('../paths');
 const proxyPassthrough = require('../proxyPassthrough');
-const { maybeResolveUserModule } = require('../../utils/userModule');
 const eslintConfig = require('../../.eslintrc.js');
 
 /**
@@ -27,10 +26,6 @@ module.exports = function getPlugins(context, argv) {
   // more deeply customize app and error templates.
   const commonPlugins = [
     new webpack.DefinePlugin({
-      appView: JSON.stringify(maybeResolveUserModule('server/views/app.ejs')),
-      errorView: JSON.stringify(
-        maybeResolveUserModule('server/views/error.ejs'),
-      ),
       proxyPassthrough: JSON.stringify(proxyPassthrough),
     }),
     new webpack.EnvironmentPlugin({
