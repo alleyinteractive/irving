@@ -22,6 +22,7 @@ let Sentry;
 const getService = (namespace) => {
   let service = defaultService;
   let sentryConfig = {};
+  let vipLogger = {};
   // Init logger with proper namespace.
   const logger = debug(namespace);
 
@@ -43,6 +44,7 @@ const getService = (namespace) => {
     || process.env.IRVING_EXECUTION_CONTEXT === 'development_server'
   ) {
     Sentry = require('@sentry/node');
+    vipLogger = require('@automattic/vip-go').logger(namespace);
   } else {
     Sentry = require('@sentry/react');
   }
@@ -74,11 +76,19 @@ const getService = (namespace) => {
       acc[method] = (...messages) => {
         // Construct log info object & log it with debug.
         const logInfo = generateLogInfo(method, messages);
-        logger(...logInfo.message);
+        if (vipLogger[method]) {
+          vipLogger[method](logInfo.message);
+        } else {
+          logger(logInfo.message);
+        }
 
         // Log stack to the console if we have an error.
         if (logInfo.stack) {
-          logger(logInfo.stack);
+          if (vipLogger[method]) {
+            vipLogger[method](logInfo.stack);
+          } else {
+            logger(logInfo.stack);
+          }
         }
 
         // If we have an error, do a couple more things with it.
