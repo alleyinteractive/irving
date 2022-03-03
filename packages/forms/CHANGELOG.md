@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.15.0](https://github.com/alleyinteractive/irving/packages/forms/compare/v6.15.0-alpha.0...v6.15.0) (2022-03-03)
+
+**Note:** Version bump only for package @irvingjs/forms
+
+
+
+
+
 # [6.15.0-alpha.0](https://github.com/alleyinteractive/irving/packages/forms/compare/v6.14.1...v6.15.0-alpha.0) (2022-03-03)
 
 **Note:** Version bump only for package @irvingjs/forms
