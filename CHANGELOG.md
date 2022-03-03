@@ -3,7 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [6.14.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.4...v6.14.0-alpha.5) (2022-03-01)
+## [6.14.0-alpha.5](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.4...v6.14.0-alpha.5) (2022-03-01)
+
+**Note:** Version bump only for package irving
+## [6.14.1](https://github.com/alleyinteractive/irving/compare/v6.14.1-beta.6...v6.14.1) (2022-03-03)
 
 **Note:** Version bump only for package irving
 
@@ -11,7 +14,33 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [6.14.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.3...v6.14.0-alpha.4) (2022-03-01)
+## [6.14.0-alpha.4](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.3...v6.14.0-alpha.4) (2022-03-01)
+
+**Note:** Version bump only for package irving
+## [6.14.1-beta.6](https://github.com/alleyinteractive/irving/compare/v6.14.1-beta.5...v6.14.1-beta.6) (2022-03-02)
+
+
+### Bug Fixes
+
+* **approot:** attempt to eliminate APP_ROOT env var ([82671f4](https://github.com/alleyinteractive/irving/commit/82671f47000638538aaf94605a5297f2357735d6))
+
+
+
+
+
+## [6.14.1-beta.5](https://github.com/alleyinteractive/irving/compare/v6.14.1-beta.4...v6.14.1-beta.5) (2022-03-02)
+
+
+### Bug Fixes
+
+* **log:** fix vip logging to prevent bad formatting ([6f90289](https://github.com/alleyinteractive/irving/commit/6f90289b75061bcca537d79ab79ab002dd49ab09))
+* **log:** try capital O object formatting for server render log ([040124b](https://github.com/alleyinteractive/irving/commit/040124b4a3cc4382cf30be33eca9508f9e345b75))
+
+
+
+
+
+## [6.14.1-beta.4](https://github.com/alleyinteractive/irving/compare/v6.14.1-beta.3...v6.14.1-beta.4) (2022-03-02)
 
 **Note:** Version bump only for package irving
 
@@ -19,7 +48,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [6.14.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.2...v6.14.0-alpha.3) (2022-03-01)
+## [6.14.1-beta.3](https://github.com/alleyinteractive/irving/compare/v6.14.1-beta.2...v6.14.1-beta.3) (2022-03-02)
 
 **Note:** Version bump only for package irving
 
@@ -27,7 +56,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [6.14.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.1...v6.14.0-alpha.2) (2022-03-01)
+## [6.14.1-beta.2](https://github.com/alleyinteractive/irving/compare/v6.14.1-beta.1...v6.14.1-beta.2) (2022-03-01)
 
 **Note:** Version bump only for package irving
 
@@ -35,7 +64,40 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [6.14.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.0...v6.14.0-alpha.1) (2022-03-01)
+## [6.14.1-beta.1](https://github.com/alleyinteractive/irving/compare/v6.14.1-beta.0...v6.14.1-beta.1) (2022-03-01)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [6.14.0-alpha.3](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.2...v6.14.0-alpha.3) (2022-03-01)
+
+**Note:** Version bump only for package irving
+## [6.14.1-beta.0](https://github.com/alleyinteractive/irving/compare/v6.14.0...v6.14.1-beta.0) (2022-03-01)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [6.14.0-alpha.2](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.1...v6.14.0-alpha.2) (2022-03-01)
+
+**Note:** Version bump only for package irving
+## [6.14.0](https://github.com/alleyinteractive/irving/compare/v6.14.0-beta.0...v6.14.0) (2021-10-22)
+
+**Note:** Version bump only for package irving
+
+
+
+
+
+## [6.14.0-alpha.1](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.0...v6.14.0-alpha.1) (2022-03-01)
+
+**Note:** Version bump only for package irving
+## [6.14.0-beta.0](https://github.com/alleyinteractive/irving/compare/v6.14.0-alpha.0...v6.14.0-beta.0) (2021-10-21)
 
 **Note:** Version bump only for package irving
 

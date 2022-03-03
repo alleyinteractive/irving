@@ -1,3 +1,5 @@
+const util = require('util');
+
 /**
  * Utility function to format log info for the Debug package.
  *
@@ -9,7 +11,6 @@ module.exports = function generateLogInfo(method, messages) {
   const hasKey = (key) => messages.find(
     (message) => typeof message === 'object' && message[key],
   );
-
   // Allow-listed valid Sentry keys.
   const sentryKeys = [
     'tags',
@@ -30,11 +31,12 @@ module.exports = function generateLogInfo(method, messages) {
     }, {});
   }
 
-  const message = messages;
   let error = false;
 
   if (method === 'error') {
-    error = !(messages[0] instanceof Error) ? new Error(messages[0]) : messages[0];
+    error = !(messages[0] instanceof Error)
+      ? new Error(util.format(...messages))
+      : messages[0];
   }
 
   // Construct info object.
@@ -46,7 +48,10 @@ module.exports = function generateLogInfo(method, messages) {
       stack: error.stack,
     };
   } else {
-    info = { ...info, message };
+    info = {
+      ...info,
+      message: util.format(...messages),
+    };
   }
 
   return {
