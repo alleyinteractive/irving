@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.16.0](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.16.0-beta.2...v6.16.0) (2022-04-05)
+
+**Note:** Version bump only for package @irvingjs/styled-components
+
+
+
+
+
 # [6.16.0-beta.1](https://github.com/alleyinteractive/irving/packages/styled-components/compare/v6.16.0-beta.0...v6.16.0-beta.1) (2022-04-05)
 
 **Note:** Version bump only for package @irvingjs/styled-components
