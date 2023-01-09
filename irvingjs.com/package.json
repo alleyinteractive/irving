@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A landing page for Irving JS",
   "devDependencies": {
-    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy": "^1.0.2",
     "autoprefixer": "^10.0.1",
     "cssnano": "^4.1.10",
     "dart-sass": "^1.25.0",
